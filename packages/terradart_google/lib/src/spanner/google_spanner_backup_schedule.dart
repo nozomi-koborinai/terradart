@@ -90,7 +90,7 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
 
   /// Sets `kms_key_names`.
   const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyNames(
-    TfArg<List<Object?>> kmsKeyNames,
+    TfArg<List<String>> kmsKeyNames,
   ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames;
 
   /// The Terraform argument this choice sets.
@@ -122,7 +122,7 @@ final class SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames
     this.kmsKeyNames,
   );
 
-  final TfArg<List<Object?>> kmsKeyNames;
+  final TfArg<List<String>> kmsKeyNames;
 
   @override
   String get blockKey => 'kms_key_names';

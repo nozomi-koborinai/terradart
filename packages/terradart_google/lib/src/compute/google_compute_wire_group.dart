@@ -38,7 +38,7 @@ final class ComputeWireGroupEndpointsInterconnects {
 
   final TfArg<String> interconnectName;
 
-  final TfArg<List<Object?>>? vlanTags;
+  final TfArg<List<num>>? vlanTags;
 
   Map<String, Object?> encode() => {
     'interconnect': ?interconnect?.toTfJson(),

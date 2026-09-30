@@ -27,9 +27,9 @@ final class GluePartitionStorageDescriptor {
     this.sortColumns,
   });
 
-  final TfArg<List<Object?>>? additionalLocations;
+  final TfArg<List<String>>? additionalLocations;
 
-  final TfArg<List<Object?>>? bucketColumns;
+  final TfArg<List<String>>? bucketColumns;
 
   final TfArg<bool>? compressed;
 
@@ -127,11 +127,11 @@ final class GluePartitionStorageDescriptorSkewedInfo {
     this.skewedColumnValues,
   });
 
-  final TfArg<List<Object?>>? skewedColumnNames;
+  final TfArg<List<String>>? skewedColumnNames;
 
   final TfArg<Map<String, String>>? skewedColumnValueLocationMaps;
 
-  final TfArg<List<Object?>>? skewedColumnValues;
+  final TfArg<List<String>>? skewedColumnValues;
 
   Map<String, Object?> encode() => {
     'skewed_column_names': ?skewedColumnNames?.toTfJson(),

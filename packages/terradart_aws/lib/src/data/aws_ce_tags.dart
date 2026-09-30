@@ -73,9 +73,9 @@ final class DataCeTagsFilterAndCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -96,9 +96,9 @@ final class DataCeTagsFilterAndDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -115,9 +115,9 @@ final class DataCeTagsFilterAndTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -138,9 +138,9 @@ final class DataCeTagsFilterCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -157,9 +157,9 @@ final class DataCeTagsFilterDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -199,9 +199,9 @@ final class DataCeTagsFilterNotCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -222,9 +222,9 @@ final class DataCeTagsFilterNotDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -241,9 +241,9 @@ final class DataCeTagsFilterNotTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -283,9 +283,9 @@ final class DataCeTagsFilterOrCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -302,9 +302,9 @@ final class DataCeTagsFilterOrDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -321,9 +321,9 @@ final class DataCeTagsFilterOrTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -340,9 +340,9 @@ final class DataCeTagsFilterTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),

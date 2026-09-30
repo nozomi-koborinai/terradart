@@ -502,7 +502,7 @@ final class AppEngineFlexibleAppVersionNetwork {
     this.subnetwork,
   });
 
-  final TfArg<List<Object?>>? forwardedPorts;
+  final TfArg<List<String>>? forwardedPorts;
 
   final TfArg<String>? instanceTag;
 

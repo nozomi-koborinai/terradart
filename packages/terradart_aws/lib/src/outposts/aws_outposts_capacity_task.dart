@@ -43,7 +43,7 @@ final class OutpostsCapacityTaskInstancePool {
 final class OutpostsCapacityTaskInstancesToExclude {
   const OutpostsCapacityTaskInstancesToExclude({required this.instances});
 
-  final TfArg<List<Object?>> instances;
+  final TfArg<List<String>> instances;
 
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
 }

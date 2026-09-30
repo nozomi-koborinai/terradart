@@ -54,7 +54,7 @@ final class ConfigConfigRuleScope {
 
   final TfArg<String>? complianceResourceId;
 
-  final TfArg<List<Object?>>? complianceResourceTypes;
+  final TfArg<List<String>>? complianceResourceTypes;
 
   final TfArg<String>? tagKey;
 

@@ -34,7 +34,7 @@ final class S3vectorsIndexMetadataConfiguration {
     required this.nonFilterableMetadataKeys,
   });
 
-  final TfArg<List<Object?>> nonFilterableMetadataKeys;
+  final TfArg<List<String>> nonFilterableMetadataKeys;
 
   Map<String, Object?> encode() => {
     'non_filterable_metadata_keys': nonFilterableMetadataKeys.toTfJson(),

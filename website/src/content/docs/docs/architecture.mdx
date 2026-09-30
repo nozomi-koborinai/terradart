@@ -107,10 +107,10 @@ graph LR
 
 Two export kinds cover most cases:
 
-- **`ResourceIdExport`** — for values that aren't known until apply time, like a Cloud Run service URL. Pass `emitTerraformOutput: true` and Terraform writes the resolved value into its output. Application code can fetch it via `terraform output -raw <name>`.
-- **`StringExport`** — for literals known at synth time (service name, region, project ID). These materialize as `static const` declarations on the generated `<StackName>Exports` class in your `.app.dart` file — `dart analyze` catches rename drift before you ever `terraform apply`.
+- **`ResourceIdExport`** — exports a resource attribute. When the attribute is set by a literal in the Stack (`ResourceIdExport(topic.nameRef)` with `name: .literal('orders-prod')`), it becomes a typed Dart constant. When it is only known after apply (`ResourceIdExport(topic.id)`, a Cloud Run service URL), it becomes a Terraform `output` automatically; application code can fetch it via `terraform output -raw <name>`. `emitTerraformOutput: true` additionally emits the output for an export that is also a constant.
+- **`StringExport`** — a plain value that belongs to no resource (an API version). It materializes as a `static const` on the generated `<StackName>Exports` class. For a value a resource also uses, prefer `ResourceIdExport` on that resource's attribute, so the string is written once.
 
-Calling `setAppExportsOutputPath(...)` is what triggers the `.app.dart` emission. Exports whose values are only known after apply (for example `ResourceIdExport(topic.id)`) emit Terraform `output` blocks only; literal-resolvable exports (for example `ResourceIdExport(topic.nameRef)`) become typed Dart constants. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+Calling `setAppExportsOutputPath(...)` sets where the `.app.dart` file goes; `writeTo` rewrites it on every synth, so a constant that stops resolving disappears from it. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 A worked end-to-end example lives in the [cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
 

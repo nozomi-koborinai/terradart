@@ -32,9 +32,10 @@ String _iamPolicyDataJson({required String role, required String member}) {
 
 /// Pub/Sub Stack: a topic and a push subscription.
 ///
-/// `addExport` registers a typed Dart constant ("ORDERS_TOPIC_ID") whose
-/// value is the topic's full resource path -- consumed by Firebase Functions
-/// Dart subscribers via the generated `<stack>.app.dart` file.
+/// `addExport` registers the topic name ("ORDERS_TOPIC_NAME"), a literal,
+/// as a typed Dart constant in the generated `<stack>.app.dart` file that
+/// subscribers import. The full resource path ("ORDERS_TOPIC_ID") is only
+/// known after apply, so it is a Terraform output only.
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
     : super(

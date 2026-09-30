@@ -54,7 +54,7 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPat
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }

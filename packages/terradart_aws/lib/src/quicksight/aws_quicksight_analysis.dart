@@ -918,7 +918,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
     this.selectAllOptions,
   });
 
-  final TfArg<List<Object?>>? categoryValues;
+  final TfArg<List<String>>? categoryValues;
 
   final TfArg<String> matchOperator;
 
@@ -944,7 +944,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
     this.selectAllOptions,
   });
 
-  final TfArg<List<Object?>>? categoryValues;
+  final TfArg<List<String>>? categoryValues;
 
   final TfArg<String> matchOperator;
 
@@ -1471,7 +1471,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSh
 
   final TfArg<String> sheetId;
 
-  final TfArg<List<Object?>>? visualIds;
+  final TfArg<List<String>>? visualIds;
 
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
@@ -1550,7 +1550,7 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
     this.rollingDate,
   });
 
-  final TfArg<List<Object?>>? staticValues;
+  final TfArg<List<String>>? staticValues;
 
   final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
   dynamicValue;
@@ -1650,7 +1650,7 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDec
     this.dynamicValue,
   });
 
-  final TfArg<List<Object?>>? staticValues;
+  final TfArg<List<num>>? staticValues;
 
   final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
   dynamicValue;
@@ -1696,7 +1696,7 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDecl
 
   final TfArg<String> parameterValueType;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationDefaultValues?
+  final QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues?
   defaultValues;
 
   final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset?
@@ -1707,6 +1707,26 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDecl
     'parameter_value_type': parameterValueType.toTfJson(),
     'default_values': ?defaultValues?.encode(),
     'values_when_unset': ?valuesWhenUnset?.encode(),
+  };
+}
+
+/// Typed helper for the `definition.parameter_declarations.string_parameter_declaration.default_values` block of
+/// `aws_quicksight_analysis` (derived from provider schema).
+@immutable
+final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues {
+  const QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues({
+    this.staticValues,
+    this.dynamicValue,
+  });
+
+  final TfArg<List<String>>? staticValues;
+
+  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
+  dynamicValue;
+
+  Map<String, Object?> encode() => {
+    'static_values': ?staticValues?.toTfJson(),
+    'dynamic_value': ?dynamicValue?.encode(),
   };
 }
 
@@ -2078,7 +2098,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableVa
     this.values,
   });
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
@@ -2855,7 +2875,7 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectabl
     this.linkToDataSetColumn,
   });
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   final QuicksightAnalysisDefinitionColumnConfigurationsColumn?
   linkToDataSetColumn;
@@ -3315,7 +3335,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 
   final TfArg<String>? selectedFieldOption;
 
-  final TfArg<List<Object?>>? selectedFields;
+  final TfArg<List<String>>? selectedFields;
 
   Map<String, Object?> encode() => {
     'selected_field_option': ?selectedFieldOption?.toTfJson(),
@@ -3353,7 +3373,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 
   final TfArg<String>? targetVisualOption;
 
-  final TfArg<List<Object?>>? targetVisuals;
+  final TfArg<List<String>>? targetVisuals;
 
   Map<String, Object?> encode() => {
     'target_visual_option': ?targetVisualOption?.toTfJson(),
@@ -3498,13 +3518,13 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
     this.stringValues,
   });
 
-  final TfArg<List<Object?>>? dateTimeValues;
+  final TfArg<List<String>>? dateTimeValues;
 
-  final TfArg<List<Object?>>? decimalValues;
+  final TfArg<List<num>>? decimalValues;
 
-  final TfArg<List<Object?>>? integerValues;
+  final TfArg<List<num>>? integerValues;
 
-  final TfArg<List<Object?>>? stringValues;
+  final TfArg<List<String>>? stringValues;
 
   Map<String, Object?> encode() => {
     'date_time_values': ?dateTimeValues?.toTfJson(),
@@ -5200,7 +5220,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
     required this.column,
   });
 
-  final TfArg<List<Object?>> categoryValues;
+  final TfArg<List<String>> categoryValues;
 
   final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
 
@@ -9576,7 +9596,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
     this.status,
   });
 
-  final TfArg<List<Object?>>? rowAlternateColors;
+  final TfArg<List<String>>? rowAlternateColors;
 
   final TfArg<String>? status;
 
@@ -10431,7 +10451,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
     this.selectedFieldOptions,
   });
 
-  final TfArg<List<Object?>>? order;
+  final TfArg<List<String>>? order;
 
   final List<
     QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptions
@@ -11417,9 +11437,9 @@ final class QuicksightAnalysisParameters {
   final List<QuicksightAnalysisParametersDateTimeParameters>?
   dateTimeParameters;
 
-  final List<QuicksightAnalysisParametersDateTimeParameters>? decimalParameters;
+  final List<QuicksightAnalysisParametersDecimalParameters>? decimalParameters;
 
-  final List<QuicksightAnalysisParametersDateTimeParameters>? integerParameters;
+  final List<QuicksightAnalysisParametersDecimalParameters>? integerParameters;
 
   final List<QuicksightAnalysisParametersDateTimeParameters>? stringParameters;
 
@@ -11447,7 +11467,27 @@ final class QuicksightAnalysisParametersDateTimeParameters {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'values': values.toTfJson(),
+  };
+}
+
+/// Typed helper for the `parameters.decimal_parameters` block of
+/// `aws_quicksight_analysis` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class QuicksightAnalysisParametersDecimalParameters {
+  const QuicksightAnalysisParametersDecimalParameters({
+    required this.name,
+    required this.values,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<List<num>> values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -11464,7 +11504,7 @@ final class QuicksightAnalysisPermissions {
     required this.principal,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final TfArg<String> principal;
 

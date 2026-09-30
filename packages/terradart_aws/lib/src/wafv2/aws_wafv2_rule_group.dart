@@ -691,7 +691,7 @@ final class Wafv2RuleGroupRuleStatementAsnMatchStatement {
     this.forwardedIpConfig,
   });
 
-  final TfArg<List<Object?>> asnList;
+  final TfArg<List<num>> asnList;
 
   final Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig?
   forwardedIpConfig;
@@ -909,9 +909,9 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatc
     this.all,
   });
 
-  final TfArg<List<Object?>>? excludedCookies;
+  final TfArg<List<String>>? excludedCookies;
 
-  final TfArg<List<Object?>>? includedCookies;
+  final TfArg<List<String>>? includedCookies;
 
   final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
   all;
@@ -975,9 +975,9 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatc
     this.all,
   });
 
-  final TfArg<List<Object?>>? excludedHeaders;
+  final TfArg<List<String>>? excludedHeaders;
 
-  final TfArg<List<Object?>>? includedHeaders;
+  final TfArg<List<String>>? includedHeaders;
 
   final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
   all;
@@ -1044,7 +1044,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMat
     this.all,
   });
 
-  final TfArg<List<Object?>>? includedPaths;
+  final TfArg<List<String>>? includedPaths;
 
   final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
   all;
@@ -1101,7 +1101,7 @@ final class Wafv2RuleGroupRuleStatementGeoMatchStatement {
     this.forwardedIpConfig,
   });
 
-  final TfArg<List<Object?>> countryCodes;
+  final TfArg<List<String>> countryCodes;
 
   final Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig?
   forwardedIpConfig;

@@ -21,7 +21,7 @@ final class DataOrganizationFilter {
     this.parent,
   });
 
-  final TfArg<List<Object?>>? id;
+  final TfArg<List<String>>? id;
 
   final TfArg<num>? pageSize;
 

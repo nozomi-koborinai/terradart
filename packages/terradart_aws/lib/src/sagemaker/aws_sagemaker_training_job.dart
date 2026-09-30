@@ -29,9 +29,9 @@ final class SagemakerTrainingJobAlgorithmSpecification {
 
   final TfArg<String>? algorithmName;
 
-  final TfArg<List<Object?>>? containerArguments;
+  final TfArg<List<String>>? containerArguments;
 
-  final TfArg<List<Object?>>? containerEntrypoint;
+  final TfArg<List<String>>? containerEntrypoint;
 
   final TfArg<bool>? enableSagemakerMetricsTimeSeries;
 
@@ -607,9 +607,9 @@ final class SagemakerTrainingJobInputDataConfigDataSourceS3DataSource {
     this.modelAccessConfig,
   });
 
-  final TfArg<List<Object?>>? attributeNames;
+  final TfArg<List<String>>? attributeNames;
 
-  final TfArg<List<Object?>>? instanceGroupNames;
+  final TfArg<List<String>>? instanceGroupNames;
 
   final TfArg<
     SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataDistributionType

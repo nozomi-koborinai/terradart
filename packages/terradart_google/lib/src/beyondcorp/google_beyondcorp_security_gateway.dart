@@ -56,7 +56,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
     this.contextualHeaders,
   });
 
-  final TfArg<List<Object?>>? allowedClientHeaders;
+  final TfArg<List<String>>? allowedClientHeaders;
 
   final TfArg<bool>? clientIp;
 

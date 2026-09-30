@@ -53,6 +53,16 @@ const terradartCatalog = <CatalogEntry>[
     ]);
   });
 
+  test('a generator covering data sources leaves new resources awaiting', () {
+    final factories = readCatalog(catalog);
+    expect(awaitingExample(factories, {'dataSource'}).map((f) => f.className), [
+      'AwsNew',
+      'AwsOld',
+    ]);
+    expect(awaitingExample(factories, {'resource', 'dataSource'}), isEmpty);
+    expect(awaitingExample(factories, const {}), factories);
+  });
+
   test('awaiting-example lines go under one section, once', () {
     const existing = '# ledger\nGoogleOld: org-only\n';
     final factories = [

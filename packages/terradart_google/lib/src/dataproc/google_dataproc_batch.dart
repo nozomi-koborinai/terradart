@@ -224,7 +224,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
-  final TfArg<List<Object?>>? networkTags;
+  final TfArg<List<String>>? networkTags;
 
   final DataprocBatchEnvironmentConfigExecutionConfigNetwork? network;
 

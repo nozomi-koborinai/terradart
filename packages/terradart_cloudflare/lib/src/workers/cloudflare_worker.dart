@@ -63,7 +63,7 @@ final class WorkerObservabilityLogs {
     this.persist,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool>? enabled;
 
@@ -94,7 +94,7 @@ final class WorkerObservabilityTraces {
     this.propagationPolicy,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool>? enabled;
 
@@ -268,7 +268,7 @@ final class WorkerPreviewsBaseConfigObservabilityLogs {
     this.persist,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool>? enabled;
 
@@ -299,7 +299,7 @@ final class WorkerPreviewsBaseConfigObservabilityTraces {
     this.propagationPolicy,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool>? enabled;
 

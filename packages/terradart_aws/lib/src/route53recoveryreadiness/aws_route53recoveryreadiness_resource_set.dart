@@ -17,7 +17,7 @@ final class Route53recoveryreadinessResourceSetResources {
     this.dnsTargetResource,
   });
 
-  final TfArg<List<Object?>>? readinessScopes;
+  final TfArg<List<String>>? readinessScopes;
 
   final TfArg<String>? resourceArn;
 

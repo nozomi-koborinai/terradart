@@ -238,7 +238,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpl
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -384,7 +384,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpl
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -487,7 +487,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketDefinitions {
 
   final TfArg<String> accountId;
 
-  final TfArg<List<Object?>> buckets;
+  final TfArg<List<String>> buckets;
 
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
@@ -568,7 +568,7 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeT
   >?
   key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -761,7 +761,7 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeT
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),

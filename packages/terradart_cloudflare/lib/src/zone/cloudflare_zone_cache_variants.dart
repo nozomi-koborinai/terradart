@@ -27,27 +27,27 @@ final class ZoneCacheVariantsValue {
     this.webp,
   });
 
-  final TfArg<List<Object?>>? avif;
+  final TfArg<List<String>>? avif;
 
-  final TfArg<List<Object?>>? bmp;
+  final TfArg<List<String>>? bmp;
 
-  final TfArg<List<Object?>>? gif;
+  final TfArg<List<String>>? gif;
 
-  final TfArg<List<Object?>>? jp2;
+  final TfArg<List<String>>? jp2;
 
-  final TfArg<List<Object?>>? jpeg;
+  final TfArg<List<String>>? jpeg;
 
-  final TfArg<List<Object?>>? jpg;
+  final TfArg<List<String>>? jpg;
 
-  final TfArg<List<Object?>>? jpg2;
+  final TfArg<List<String>>? jpg2;
 
-  final TfArg<List<Object?>>? png;
+  final TfArg<List<String>>? png;
 
-  final TfArg<List<Object?>>? tif;
+  final TfArg<List<String>>? tif;
 
-  final TfArg<List<Object?>>? tiff;
+  final TfArg<List<String>>? tiff;
 
-  final TfArg<List<Object?>>? webp;
+  final TfArg<List<String>>? webp;
 
   Map<String, Object?> encode() => {
     'avif': ?avif?.toTfJson(),

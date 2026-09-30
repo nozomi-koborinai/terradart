@@ -127,7 +127,7 @@ final class ClouddeployAutomationRulesAdvanceRolloutRule {
 
   final TfArg<String> id;
 
-  final TfArg<List<Object?>>? sourcePhases;
+  final TfArg<List<String>>? sourcePhases;
 
   final TfArg<String>? wait;
 
@@ -178,9 +178,9 @@ final class ClouddeployAutomationRulesRepairRolloutRule {
 
   final TfArg<String> id;
 
-  final TfArg<List<Object?>>? jobs;
+  final TfArg<List<String>>? jobs;
 
-  final TfArg<List<Object?>>? phases;
+  final TfArg<List<String>>? phases;
 
   final List<ClouddeployAutomationRulesRepairRolloutRuleRepairPhases>?
   repairPhases;

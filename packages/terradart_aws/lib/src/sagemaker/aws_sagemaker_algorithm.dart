@@ -21,7 +21,7 @@ final class SagemakerAlgorithmInferenceSpecification {
     this.containers,
   });
 
-  final TfArg<List<Object?>>? supportedContentTypes;
+  final TfArg<List<String>>? supportedContentTypes;
 
   final List<
     TfArg<
@@ -30,7 +30,7 @@ final class SagemakerAlgorithmInferenceSpecification {
   >?
   supportedRealtimeInferenceInstanceTypes;
 
-  final TfArg<List<Object?>>? supportedResponseMimeTypes;
+  final TfArg<List<String>>? supportedResponseMimeTypes;
 
   final List<
     TfArg<
@@ -1201,7 +1201,7 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1305,7 +1305,7 @@ final class SagemakerAlgorithmTrainingSpecificationTrainingChannels {
   >?
   supportedCompressionTypes;
 
-  final TfArg<List<Object?>> supportedContentTypes;
+  final TfArg<List<String>> supportedContentTypes;
 
   final List<
     TfArg<
@@ -1678,9 +1678,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
     this.modelAccessConfig,
   });
 
-  final TfArg<List<Object?>>? attributeNames;
+  final TfArg<List<String>>? attributeNames;
 
-  final TfArg<List<Object?>>? instanceGroupNames;
+  final TfArg<List<String>>? instanceGroupNames;
 
   final TfArg<
     SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataDistributionType

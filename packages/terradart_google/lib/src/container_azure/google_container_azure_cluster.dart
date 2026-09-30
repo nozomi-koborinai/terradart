@@ -228,9 +228,9 @@ final class ContainerAzureClusterNetworking {
     required this.virtualNetworkId,
   });
 
-  final TfArg<List<Object?>> podAddressCidrBlocks;
+  final TfArg<List<String>> podAddressCidrBlocks;
 
-  final TfArg<List<Object?>> serviceAddressCidrBlocks;
+  final TfArg<List<String>> serviceAddressCidrBlocks;
 
   final TfArg<String> virtualNetworkId;
 

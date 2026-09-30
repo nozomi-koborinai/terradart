@@ -78,7 +78,7 @@ final class ClouddomainsRegistrationContactSettingsAdminContactPostalAddress {
     required this.regionCode,
   });
 
-  final TfArg<List<Object?>>? addressLines;
+  final TfArg<List<String>>? addressLines;
 
   final TfArg<String>? administrativeArea;
 
@@ -88,7 +88,7 @@ final class ClouddomainsRegistrationContactSettingsAdminContactPostalAddress {
 
   final TfArg<String>? postalCode;
 
-  final TfArg<List<Object?>>? recipients;
+  final TfArg<List<String>>? recipients;
 
   final TfArg<String> regionCode;
 
@@ -145,7 +145,7 @@ final class ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddres
     required this.regionCode,
   });
 
-  final TfArg<List<Object?>>? addressLines;
+  final TfArg<List<String>>? addressLines;
 
   final TfArg<String>? administrativeArea;
 
@@ -155,7 +155,7 @@ final class ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddres
 
   final TfArg<String>? postalCode;
 
-  final TfArg<List<Object?>>? recipients;
+  final TfArg<List<String>>? recipients;
 
   final TfArg<String> regionCode;
 
@@ -212,7 +212,7 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress
     required this.regionCode,
   });
 
-  final TfArg<List<Object?>>? addressLines;
+  final TfArg<List<String>>? addressLines;
 
   final TfArg<String>? administrativeArea;
 
@@ -222,7 +222,7 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress
 
   final TfArg<String>? postalCode;
 
-  final TfArg<List<Object?>>? recipients;
+  final TfArg<List<String>>? recipients;
 
   final TfArg<String> regionCode;
 
@@ -263,7 +263,7 @@ final class ClouddomainsRegistrationDnsSettingsCustomDns {
     this.dsRecords,
   });
 
-  final TfArg<List<Object?>> nameServers;
+  final TfArg<List<String>> nameServers;
 
   final List<ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords>? dsRecords;
 
@@ -313,9 +313,9 @@ final class ClouddomainsRegistrationDnsSettingsGlueRecords {
 
   final TfArg<String> hostName;
 
-  final TfArg<List<Object?>>? ipv4Addresses;
+  final TfArg<List<String>>? ipv4Addresses;
 
-  final TfArg<List<Object?>>? ipv6Addresses;
+  final TfArg<List<String>>? ipv6Addresses;
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),

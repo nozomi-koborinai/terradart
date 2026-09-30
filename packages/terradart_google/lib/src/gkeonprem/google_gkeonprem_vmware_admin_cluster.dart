@@ -301,9 +301,9 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
     this.hostConfig,
   });
 
-  final TfArg<List<Object?>> podAddressCidrBlocks;
+  final TfArg<List<String>> podAddressCidrBlocks;
 
-  final TfArg<List<Object?>> serviceAddressCidrBlocks;
+  final TfArg<List<String>> serviceAddressCidrBlocks;
 
   final TfArg<String>? vcenterNetwork;
 
@@ -465,11 +465,11 @@ final class GkeonpremVmwareAdminClusterNetworkConfigHostConfig {
     this.ntpServers,
   });
 
-  final TfArg<List<Object?>>? dnsSearchDomains;
+  final TfArg<List<String>>? dnsSearchDomains;
 
-  final TfArg<List<Object?>>? dnsServers;
+  final TfArg<List<String>>? dnsServers;
 
-  final TfArg<List<Object?>>? ntpServers;
+  final TfArg<List<String>>? ntpServers;
 
   Map<String, Object?> encode() => {
     'dns_search_domains': ?dnsSearchDomains?.toTfJson(),

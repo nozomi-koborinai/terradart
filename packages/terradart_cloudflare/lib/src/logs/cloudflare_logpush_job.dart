@@ -106,7 +106,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<String>? fieldDelimiter;
 
-  final TfArg<List<Object?>>? fieldNames;
+  final TfArg<List<String>>? fieldNames;
 
   final TfArg<bool>? mergeSubrequests;
 

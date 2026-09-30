@@ -505,7 +505,7 @@ final class ContainerClusterClusterAutoscaling {
     this.resourceLimits,
   });
 
-  final TfArg<List<Object?>>? autoProvisioningLocations;
+  final TfArg<List<String>>? autoProvisioningLocations;
 
   final TfArg<String>? autoscalingProfile;
 
@@ -556,7 +556,7 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaults {
 
   final TfArg<String>? minCpuPlatform;
 
-  final TfArg<List<Object?>>? oauthScopes;
+  final TfArg<List<String>>? oauthScopes;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
@@ -866,7 +866,7 @@ final class ContainerClusterDnsConfig {
 final class ContainerClusterEnableK8sBetaApis {
   const ContainerClusterEnableK8sBetaApis({required this.enabledApis});
 
-  final TfArg<List<Object?>> enabledApis;
+  final TfArg<List<String>> enabledApis;
 
   Map<String, Object?> encode() => {'enabled_apis': enabledApis.toTfJson()};
 }
@@ -998,7 +998,7 @@ final class ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig {
     required this.subnetwork,
   });
 
-  final TfArg<List<Object?>>? podIpv4RangeNames;
+  final TfArg<List<String>>? podIpv4RangeNames;
 
   final TfArg<String>? status;
 
@@ -1019,7 +1019,7 @@ final class ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig {
     required this.podRangeNames,
   });
 
-  final TfArg<List<Object?>> podRangeNames;
+  final TfArg<List<String>> podRangeNames;
 
   Map<String, Object?> encode() => {
     'pod_range_names': podRangeNames.toTfJson(),
@@ -1071,7 +1071,7 @@ final class ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig {
 final class ContainerClusterLoggingConfig {
   const ContainerClusterLoggingConfig({required this.enableComponents});
 
-  final TfArg<List<Object?>> enableComponents;
+  final TfArg<List<String>> enableComponents;
 
   Map<String, Object?> encode() => {
     'enable_components': enableComponents.toTfJson(),
@@ -1391,7 +1391,7 @@ final class ContainerClusterMonitoringConfig {
     this.managedPrometheus,
   });
 
-  final TfArg<List<Object?>>? enableComponents;
+  final TfArg<List<String>>? enableComponents;
 
   final ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig?
   advancedDatapathObservabilityConfig;
@@ -1574,7 +1574,7 @@ final class ContainerClusterNodeConfig {
 
   final TfArg<String>? nodeGroup;
 
-  final TfArg<List<Object?>>? oauthScopes;
+  final TfArg<List<String>>? oauthScopes;
 
   final TfArg<bool>? preemptible;
 
@@ -1586,9 +1586,9 @@ final class ContainerClusterNodeConfig {
 
   final TfArg<bool>? spot;
 
-  final TfArg<List<Object?>>? storagePools;
+  final TfArg<List<String>>? storagePools;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final ContainerClusterNodeConfigAdvancedMachineFeatures?
   advancedMachineFeatures;
@@ -1823,7 +1823,7 @@ final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfi
     required this.gcpSecretManagerCertificateConfig,
   });
 
-  final TfArg<List<Object?>> fqdns;
+  final TfArg<List<String>> fqdns;
 
   final ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
@@ -1882,7 +1882,7 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts {
     this.header,
   });
 
-  final TfArg<List<Object?>>? capabilities;
+  final TfArg<List<String>>? capabilities;
 
   final TfArg<String>? dialTimeout;
 
@@ -1991,7 +1991,7 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -2161,7 +2161,7 @@ final class ContainerClusterNodeConfigKubeletConfig {
     this.topologyManager,
   });
 
-  final TfArg<List<Object?>>? allowedUnsafeSysctls;
+  final TfArg<List<String>>? allowedUnsafeSysctls;
 
   final TfArg<num>? containerLogMaxFiles;
 
@@ -2671,7 +2671,7 @@ final class ContainerClusterNodeConfigReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': consumeReservationType.toTfJson(),
@@ -2763,7 +2763,7 @@ final class ContainerClusterNodeConfigSoleTenantConfigNodeAffinity {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -2881,7 +2881,7 @@ final class ContainerClusterNodePool {
 
   final TfArg<num>? nodeCount;
 
-  final TfArg<List<Object?>>? nodeLocations;
+  final TfArg<List<String>>? nodeLocations;
 
   final TfArg<String>? version;
 
@@ -3223,7 +3223,7 @@ final class ContainerClusterNodePoolNodeConfig {
 
   final TfArg<String>? nodeGroup;
 
-  final TfArg<List<Object?>>? oauthScopes;
+  final TfArg<List<String>>? oauthScopes;
 
   final TfArg<bool>? preemptible;
 
@@ -3235,9 +3235,9 @@ final class ContainerClusterNodePoolNodeConfig {
 
   final TfArg<bool>? spot;
 
-  final TfArg<List<Object?>>? storagePools;
+  final TfArg<List<String>>? storagePools;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures?
   advancedMachineFeatures;
@@ -3476,7 +3476,7 @@ final class ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAcc
     required this.gcpSecretManagerCertificateConfig,
   });
 
-  final TfArg<List<Object?>> fqdns;
+  final TfArg<List<String>> fqdns;
 
   final ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
@@ -3537,7 +3537,7 @@ final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts
     this.header,
   });
 
-  final TfArg<List<Object?>>? capabilities;
+  final TfArg<List<String>>? capabilities;
 
   final TfArg<String>? dialTimeout;
 
@@ -3648,7 +3648,7 @@ final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -3818,7 +3818,7 @@ final class ContainerClusterNodePoolNodeConfigKubeletConfig {
     this.topologyManager,
   });
 
-  final TfArg<List<Object?>>? allowedUnsafeSysctls;
+  final TfArg<List<String>>? allowedUnsafeSysctls;
 
   final TfArg<num>? containerLogMaxFiles;
 
@@ -4334,7 +4334,7 @@ final class ContainerClusterNodePoolNodeConfigReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': consumeReservationType.toTfJson(),
@@ -4426,7 +4426,7 @@ final class ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -4692,7 +4692,7 @@ final class ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoa
 final class ContainerClusterNodePoolAutoConfigNetworkTags {
   const ContainerClusterNodePoolAutoConfigNetworkTags({this.tags});
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
@@ -4819,7 +4819,7 @@ final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPr
     required this.gcpSecretManagerCertificateConfig,
   });
 
-  final TfArg<List<Object?>> fqdns;
+  final TfArg<List<String>> fqdns;
 
   final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
@@ -4880,7 +4880,7 @@ final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRe
     this.header,
   });
 
-  final TfArg<List<Object?>>? capabilities;
+  final TfArg<List<String>>? capabilities;
 
   final TfArg<String>? dialTimeout;
 
@@ -4991,7 +4991,7 @@ final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRe
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -5067,7 +5067,7 @@ final class ContainerClusterNotificationConfigPubsubFilter {
     required this.eventType,
   });
 
-  final TfArg<List<Object?>> eventType;
+  final TfArg<List<String>> eventType;
 
   Map<String, Object?> encode() => {'event_type': eventType.toTfJson()};
 }
@@ -5346,9 +5346,9 @@ final class ContainerClusterUserManagedKeysConfig {
 
   final TfArg<String>? gkeopsEtcdBackupEncryptionKey;
 
-  final TfArg<List<Object?>>? serviceAccountSigningKeys;
+  final TfArg<List<String>>? serviceAccountSigningKeys;
 
-  final TfArg<List<Object?>>? serviceAccountVerificationKeys;
+  final TfArg<List<String>>? serviceAccountVerificationKeys;
 
   Map<String, Object?> encode() => {
     'aggregation_ca': ?aggregationCa?.toTfJson(),

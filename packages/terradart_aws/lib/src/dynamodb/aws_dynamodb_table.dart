@@ -208,7 +208,7 @@ final class DynamodbTableGlobalSecondaryIndex {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>>? nonKeyAttributes;
+  final TfArg<List<String>>? nonKeyAttributes;
 
   final TfArg<DynamodbTableGlobalSecondaryIndexProjectionType> projectionType;
 
@@ -401,7 +401,7 @@ final class DynamodbTableImportTableInputFormatOptionsCsv {
 
   final TfArg<String>? delimiter;
 
-  final TfArg<List<Object?>>? headerList;
+  final TfArg<List<String>>? headerList;
 
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
@@ -445,7 +445,7 @@ final class DynamodbTableLocalSecondaryIndex {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>>? nonKeyAttributes;
+  final TfArg<List<String>>? nonKeyAttributes;
 
   final TfArg<DynamodbTableLocalSecondaryIndexProjectionType> projectionType;
 

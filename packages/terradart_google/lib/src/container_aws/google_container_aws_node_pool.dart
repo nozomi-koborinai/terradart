@@ -50,7 +50,7 @@ final class ContainerAwsNodePoolConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<String>>? securityGroupIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -93,7 +93,7 @@ final class ContainerAwsNodePoolConfigAutoscalingMetricsCollection {
 
   final TfArg<String> granularity;
 
-  final TfArg<List<Object?>>? metrics;
+  final TfArg<List<String>>? metrics;
 
   Map<String, Object?> encode() => {
     'granularity': granularity.toTfJson(),

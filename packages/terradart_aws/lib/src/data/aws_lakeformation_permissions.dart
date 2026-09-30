@@ -87,7 +87,7 @@ final class DataLakeformationPermissionsLfTag {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -130,7 +130,7 @@ final class DataLakeformationPermissionsLfTagPolicyExpression {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -180,11 +180,11 @@ final class DataLakeformationPermissionsTableWithColumns {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<List<Object?>>? columnNames;
+  final TfArg<List<String>>? columnNames;
 
   final TfArg<String> databaseName;
 
-  final TfArg<List<Object?>>? excludedColumnNames;
+  final TfArg<List<String>>? excludedColumnNames;
 
   final TfArg<String> name;
 

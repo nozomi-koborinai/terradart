@@ -26,7 +26,7 @@ final class DatasyncLocationEfsEc2Config {
     required this.subnetArn,
   });
 
-  final TfArg<List<Object?>> securityGroupArns;
+  final TfArg<List<String>> securityGroupArns;
 
   final TfArg<String> subnetArn;
 

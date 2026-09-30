@@ -101,9 +101,9 @@ final class OrgPolicyPolicyDryRunSpecRulesValues {
     this.deniedValues,
   });
 
-  final TfArg<List<Object?>>? allowedValues;
+  final TfArg<List<String>>? allowedValues;
 
-  final TfArg<List<Object?>>? deniedValues;
+  final TfArg<List<String>>? deniedValues;
 
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
@@ -198,9 +198,9 @@ final class OrgPolicyPolicySpecRulesCondition {
 final class OrgPolicyPolicySpecRulesValues {
   const OrgPolicyPolicySpecRulesValues({this.allowedValues, this.deniedValues});
 
-  final TfArg<List<Object?>>? allowedValues;
+  final TfArg<List<String>>? allowedValues;
 
-  final TfArg<List<Object?>>? deniedValues;
+  final TfArg<List<String>>? deniedValues;
 
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),

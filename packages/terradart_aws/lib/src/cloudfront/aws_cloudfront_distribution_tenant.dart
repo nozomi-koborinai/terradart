@@ -54,7 +54,7 @@ final class CloudfrontDistributionTenantCustomizationsGeoRestriction {
     this.restrictionType,
   });
 
-  final TfArg<List<Object?>>? locations;
+  final TfArg<List<String>>? locations;
 
   final TfArg<
     CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType

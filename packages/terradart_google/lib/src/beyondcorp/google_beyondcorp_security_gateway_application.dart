@@ -29,7 +29,7 @@ final class BeyondcorpSecurityGatewayApplicationEndpointMatchers {
 
   final TfArg<String> hostname;
 
-  final TfArg<List<Object?>> ports;
+  final TfArg<List<num>> ports;
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
@@ -73,7 +73,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsEgressPolicy {
     required this.regions,
   });
 
-  final TfArg<List<Object?>> regions;
+  final TfArg<List<String>> regions;
 
   Map<String, Object?> encode() => {'regions': regions.toTfJson()};
 }
@@ -138,7 +138,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol {
     this.contextualHeaders,
   });
 
-  final TfArg<List<Object?>>? allowedClientHeaders;
+  final TfArg<List<String>>? allowedClientHeaders;
 
   final TfArg<bool>? clientIp;
 

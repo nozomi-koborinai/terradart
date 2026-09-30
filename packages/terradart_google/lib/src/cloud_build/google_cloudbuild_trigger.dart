@@ -335,7 +335,7 @@ final class CloudbuildTriggerBuild {
     required this.step,
   });
 
-  final TfArg<List<Object?>>? images;
+  final TfArg<List<String>>? images;
 
   final TfArg<String>? logsBucket;
 
@@ -343,7 +343,7 @@ final class CloudbuildTriggerBuild {
 
   final TfArg<Map<String, String>>? substitutions;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final TfArg<String>? timeout;
 
@@ -387,7 +387,7 @@ final class CloudbuildTriggerBuildArtifacts {
     this.pythonPackages,
   });
 
-  final TfArg<List<Object?>>? images;
+  final TfArg<List<String>>? images;
 
   final List<CloudbuildTriggerBuildArtifactsMavenArtifacts>? mavenArtifacts;
 
@@ -467,7 +467,7 @@ final class CloudbuildTriggerBuildArtifactsObjects {
 
   final TfArg<String>? location;
 
-  final TfArg<List<Object?>>? paths;
+  final TfArg<List<String>>? paths;
 
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
@@ -484,7 +484,7 @@ final class CloudbuildTriggerBuildArtifactsPythonPackages {
     this.repository,
   });
 
-  final TfArg<List<Object?>>? paths;
+  final TfArg<List<String>>? paths;
 
   final TfArg<String>? repository;
 
@@ -549,7 +549,7 @@ final class CloudbuildTriggerBuildOptions {
 
   final TfArg<bool>? dynamicSubstitutions;
 
-  final TfArg<List<Object?>>? env;
+  final TfArg<List<String>>? env;
 
   final TfArg<CloudbuildTriggerBuildOptionsLogStreamingOption>?
   logStreamingOption;
@@ -561,7 +561,7 @@ final class CloudbuildTriggerBuildOptions {
   final TfArg<CloudbuildTriggerBuildOptionsRequestedVerifyOption>?
   requestedVerifyOption;
 
-  final TfArg<List<Object?>>? secretEnv;
+  final TfArg<List<String>>? secretEnv;
 
   final List<TfArg<CloudbuildTriggerBuildOptionsSourceProvenanceHash>>?
   sourceProvenanceHash;
@@ -852,17 +852,17 @@ final class CloudbuildTriggerBuildStep {
     this.volumes,
   });
 
-  final TfArg<List<Object?>>? allowExitCodes;
+  final TfArg<List<num>>? allowExitCodes;
 
   final TfArg<bool>? allowFailure;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String>? dir;
 
   final TfArg<String>? entrypoint;
 
-  final TfArg<List<Object?>>? env;
+  final TfArg<List<String>>? env;
 
   final TfArg<String>? id;
 
@@ -870,13 +870,13 @@ final class CloudbuildTriggerBuildStep {
 
   final TfArg<String>? script;
 
-  final TfArg<List<Object?>>? secretEnv;
+  final TfArg<List<String>>? secretEnv;
 
   final TfArg<String>? timeout;
 
   final TfArg<String>? timing;
 
-  final TfArg<List<Object?>>? waitFor;
+  final TfArg<List<String>>? waitFor;
 
   final List<CloudbuildTriggerBuildStepVolumes>? volumes;
 

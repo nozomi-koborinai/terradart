@@ -100,9 +100,9 @@ final class ContainerAwsClusterControlPlane {
 
   final TfArg<String>? instanceType;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<String>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<String>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -329,9 +329,9 @@ final class ContainerAwsClusterNetworking {
 
   final TfArg<bool>? perNodePoolSgRulesDisabled;
 
-  final TfArg<List<Object?>> podAddressCidrBlocks;
+  final TfArg<List<String>> podAddressCidrBlocks;
 
-  final TfArg<List<Object?>> serviceAddressCidrBlocks;
+  final TfArg<List<String>> serviceAddressCidrBlocks;
 
   final TfArg<String> vpcId;
 

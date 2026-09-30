@@ -135,7 +135,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsEnumTypeOptions 
     this.validationCheckDisabled,
   });
 
-  final TfArg<List<Object?>> possibleValues;
+  final TfArg<List<String>> possibleValues;
 
   final TfArg<bool>? validationCheckDisabled;
 
@@ -314,7 +314,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOpti
     this.validationCheckDisabled,
   });
 
-  final TfArg<List<Object?>> possibleValues;
+  final TfArg<List<String>> possibleValues;
 
   final TfArg<bool>? validationCheckDisabled;
 

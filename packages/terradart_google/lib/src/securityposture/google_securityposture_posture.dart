@@ -215,9 +215,9 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
     this.deniedValues,
   });
 
-  final TfArg<List<Object?>>? allowedValues;
+  final TfArg<List<String>>? allowedValues;
 
-  final TfArg<List<Object?>>? deniedValues;
+  final TfArg<List<String>>? deniedValues;
 
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
@@ -273,11 +273,11 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>> methodTypes;
+  final TfArg<List<String>> methodTypes;
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> resourceTypes;
+  final TfArg<List<String>> resourceTypes;
 
   Map<String, Object?> encode() => {
     'action_type': actionType.toTfJson(),
@@ -372,9 +372,9 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
     this.deniedValues,
   });
 
-  final TfArg<List<Object?>>? allowedValues;
+  final TfArg<List<String>>? allowedValues;
 
-  final TfArg<List<Object?>>? deniedValues;
+  final TfArg<List<String>>? deniedValues;
 
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
@@ -581,7 +581,7 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
     required this.resourceTypes,
   });
 
-  final TfArg<List<Object?>> resourceTypes;
+  final TfArg<List<String>> resourceTypes;
 
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }

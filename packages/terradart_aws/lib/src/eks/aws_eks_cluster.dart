@@ -389,7 +389,7 @@ final class EksClusterOutpostConfig {
 
   final TfArg<String>? etcdInstanceType;
 
-  final TfArg<List<Object?>> outpostArns;
+  final TfArg<List<String>> outpostArns;
 
   final EksClusterOutpostConfigControlPlanePlacement? controlPlanePlacement;
 
@@ -483,7 +483,7 @@ final class EksClusterRemoteNetworkConfig {
 final class EksClusterRemoteNetworkConfigRemoteNodeNetworks {
   const EksClusterRemoteNetworkConfigRemoteNodeNetworks({this.cidrs});
 
-  final TfArg<List<Object?>>? cidrs;
+  final TfArg<List<String>>? cidrs;
 
   Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
@@ -494,7 +494,7 @@ final class EksClusterRemoteNetworkConfigRemoteNodeNetworks {
 final class EksClusterRemoteNetworkConfigRemotePodNetworks {
   const EksClusterRemoteNetworkConfigRemotePodNetworks({this.cidrs});
 
-  final TfArg<List<Object?>>? cidrs;
+  final TfArg<List<String>>? cidrs;
 
   Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
@@ -562,7 +562,7 @@ final class EksClusterVpcConfig {
 
   final TfArg<bool>? endpointPublicAccess;
 
-  final TfArg<List<Object?>>? publicAccessCidrs;
+  final TfArg<List<String>>? publicAccessCidrs;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 

@@ -262,7 +262,7 @@ final class CloudRunV2ServiceBuildConfig {
 final class CloudRunV2ServiceMultiRegionSettings {
   const CloudRunV2ServiceMultiRegionSettings({this.regions});
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   Map<String, Object?> encode() => {'regions': ?regions?.toTfJson()};
 }
@@ -401,13 +401,13 @@ final class CloudRunV2ServiceTemplateContainers {
     this.volumeMounts,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String>? baseImageUri;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
-  final TfArg<List<Object?>>? dependsOn;
+  final TfArg<List<String>>? dependsOn;
 
   final TfArg<String> image;
 
@@ -961,9 +961,9 @@ final class CloudRunV2ServiceTemplateSandboxesTemplates {
     this.volumeMounts,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String> image;
 
@@ -1186,7 +1186,7 @@ final class CloudRunV2ServiceTemplateVolumesSourceSecret
 final class CloudRunV2ServiceTemplateVolumesCloudSqlInstance {
   const CloudRunV2ServiceTemplateVolumesCloudSqlInstance({this.instances});
 
-  final TfArg<List<Object?>>? instances;
+  final TfArg<List<String>>? instances;
 
   Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
 }
@@ -1219,7 +1219,7 @@ final class CloudRunV2ServiceTemplateVolumesGcs {
 
   final RefTo<GoogleStorageBucket> bucket;
 
-  final TfArg<List<Object?>>? mountOptions;
+  final TfArg<List<String>>? mountOptions;
 
   final TfArg<bool>? readOnly;
 
@@ -1386,7 +1386,7 @@ final class CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),

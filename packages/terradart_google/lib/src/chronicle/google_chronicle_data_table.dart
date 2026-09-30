@@ -71,7 +71,7 @@ enum ChronicleDataTableColumnInfoColumnType implements TerraformEnum {
 final class ChronicleDataTableScopeInfo {
   const ChronicleDataTableScopeInfo({required this.dataAccessScopes});
 
-  final TfArg<List<Object?>> dataAccessScopes;
+  final TfArg<List<String>> dataAccessScopes;
 
   Map<String, Object?> encode() => {
     'data_access_scopes': dataAccessScopes.toTfJson(),

@@ -29,11 +29,11 @@ final class DataShareFilter {
 
   final TfArg<DataShareFilterOrder>? order;
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
   final TfArg<DataShareFilterStatus>? status;
 
-  final TfArg<List<Object?>>? tag;
+  final TfArg<List<String>>? tag;
 
   final TfArg<DataShareFilterTargetType>? targetType;
 

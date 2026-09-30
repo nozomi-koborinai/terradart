@@ -129,7 +129,7 @@ final class BatchComputeEnvironmentComputeResources {
 
   final TfArg<String>? instanceRole;
 
-  final TfArg<List<Object?>>? instanceType;
+  final TfArg<List<String>>? instanceType;
 
   final TfArg<num> maxVcpus;
 

@@ -34,7 +34,7 @@ final class FsxFileCacheDataRepositoryAssociation {
 
   final TfArg<String> dataRepositoryPath;
 
-  final TfArg<List<Object?>>? dataRepositorySubdirectories;
+  final TfArg<List<String>>? dataRepositorySubdirectories;
 
   final TfArg<String> fileCachePath;
 
@@ -60,7 +60,7 @@ final class FsxFileCacheDataRepositoryAssociationNfs {
     required this.version,
   });
 
-  final TfArg<List<Object?>>? dnsIps;
+  final TfArg<List<String>>? dnsIps;
 
   final TfArg<FsxFileCacheDataRepositoryAssociationNfsVersion> version;
 

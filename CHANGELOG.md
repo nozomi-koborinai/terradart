@@ -47,6 +47,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Value lists inside helper classes take their element type**
+  (**breaking**; `terradart_codegen`, `terradart_google`,
+  `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`) — a list
+  or set of strings, numbers or booleans in a generated helper class is a
+  `TfArg<List<String>>` / `List<num>` / `List<bool>`, as at the top level,
+  instead of `TfArg<List<Object?>>` (1,047 google, 39 google-beta, 1,142
+  aws and 200 cloudflare fields; `GoogleStorageFtpServer`
+  `allowedCidrBlocks` is a string list again). Five AWS QuickSight helpers
+  split where the element type tells two block shapes apart. Synth output
+  is unchanged. See `MIGRATING.md`.
 - **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
   wherever the argument has a static type, a migrated Stack reads like the
   examples: `name: .literal('orders')`, `instance: .ref(db.nameRef)`,
@@ -265,6 +275,20 @@ Per-package changelogs live alongside each package and are the system of record 
   exactly-one groups are sealed. The weekly schema bump re-syncs the MM YAML
   with the google-beta ride-along. Synth output is unchanged; see
   [MIGRATING.md](MIGRATING.md).
+
+### Fixed
+
+- **No stale AppExport constants** (`terradart_core`) — with
+  `setAppExportsOutputPath` set, `writeTo` rewrites the constants file on
+  every synth, as an empty class when no export resolves to a constant.
+  Before, a constant that stopped resolving (a `.literal` name changed to
+  `.variable`) left the old file behind and the app compiled against the
+  old value.
+- **Terraform output name collisions** (`terradart_core`) — `addExport`
+  throws `ArgumentError` when a second export would emit the same `output`
+  name (`terraformOutputName ?? name`); the later one used to overwrite the
+  earlier one silently. The missing-output-path `StateError` now names the
+  exports concerned.
 
 ## [0.30.0] - 2026-09-28
 

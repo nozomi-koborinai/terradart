@@ -209,7 +209,7 @@ final class LoadBalancerPoolOrigins {
 final class LoadBalancerPoolOriginsHeader {
   const LoadBalancerPoolOriginsHeader({this.host});
 
-  final TfArg<List<Object?>>? host;
+  final TfArg<List<String>>? host;
 
   Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }

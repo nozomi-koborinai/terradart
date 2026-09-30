@@ -50,7 +50,7 @@ final class HealthcheckHttpConfig {
 
   final TfArg<String>? expectedBody;
 
-  final TfArg<List<Object?>>? expectedCodes;
+  final TfArg<List<String>>? expectedCodes;
 
   final TfArg<bool>? followRedirects;
 

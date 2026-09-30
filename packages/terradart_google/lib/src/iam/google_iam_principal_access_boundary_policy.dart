@@ -40,7 +40,7 @@ final class IamPrincipalAccessBoundaryPolicyDetailsRules {
 
   final TfArg<String> effect;
 
-  final TfArg<List<Object?>> resources;
+  final TfArg<List<String>> resources;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),

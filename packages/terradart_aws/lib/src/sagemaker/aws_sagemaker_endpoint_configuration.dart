@@ -226,9 +226,9 @@ final class SagemakerEndpointConfigurationDataCaptureConfigCaptureContentTypeHea
     this.jsonContentTypes,
   });
 
-  final TfArg<List<Object?>>? csvContentTypes;
+  final TfArg<List<String>>? csvContentTypes;
 
-  final TfArg<List<Object?>>? jsonContentTypes;
+  final TfArg<List<String>>? jsonContentTypes;
 
   Map<String, Object?> encode() => {
     'csv_content_types': ?csvContentTypes?.toTfJson(),

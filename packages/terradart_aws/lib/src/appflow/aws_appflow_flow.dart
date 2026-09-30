@@ -162,7 +162,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 
   final TfArg<String> entityName;
 
-  final TfArg<List<Object?>>? idFieldNames;
+  final TfArg<List<String>>? idFieldNames;
 
   final TfArg<
     AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType
@@ -627,7 +627,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
   >?
   dataTransferApi;
 
-  final TfArg<List<Object?>>? idFieldNames;
+  final TfArg<List<String>>? idFieldNames;
 
   final TfArg<String> object;
 
@@ -712,7 +712,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
     this.successResponseHandlingConfig,
   });
 
-  final TfArg<List<Object?>>? idFieldNames;
+  final TfArg<List<String>>? idFieldNames;
 
   final TfArg<String> objectPath;
 
@@ -1031,7 +1031,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
     this.errorHandlingConfig,
   });
 
-  final TfArg<List<Object?>>? idFieldNames;
+  final TfArg<List<String>>? idFieldNames;
 
   final TfArg<String> object;
 
@@ -1644,7 +1644,7 @@ final class AppflowFlowTask {
 
   final TfArg<String>? destinationField;
 
-  final TfArg<List<Object?>>? sourceFields;
+  final TfArg<List<String>>? sourceFields;
 
   final TfArg<Map<String, String>>? taskProperties;
 

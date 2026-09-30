@@ -722,7 +722,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationKnowledgeBaseInferenceCon
 
   final TfArg<num>? maxTokens;
 
-  final TfArg<List<Object?>>? stopSequences;
+  final TfArg<List<String>>? stopSequences;
 
   final TfArg<num>? temperature;
 
@@ -993,7 +993,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
   final TfArg<num>? maxTokens;
 
-  final TfArg<List<Object?>>? stopSequences;
+  final TfArg<List<String>>? stopSequences;
 
   final TfArg<num>? temperature;
 

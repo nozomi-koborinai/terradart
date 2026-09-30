@@ -150,7 +150,7 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup {
     this.nodeGroupConfig,
   });
 
-  final TfArg<List<Object?>> roles;
+  final TfArg<List<String>> roles;
 
   final DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfig?
   nodeGroupConfig;
@@ -276,7 +276,7 @@ final class DataprocClusterClusterConfigDataprocMetricConfigMetrics {
     required this.metricSource,
   });
 
-  final TfArg<List<Object?>>? metricOverrides;
+  final TfArg<List<String>>? metricOverrides;
 
   final TfArg<String> metricSource;
 
@@ -346,11 +346,11 @@ final class DataprocClusterClusterConfigGceClusterConfig {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<List<Object?>>? serviceAccountScopes;
+  final TfArg<List<String>>? serviceAccountScopes;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final TfArg<String>? zone;
 
@@ -429,7 +429,7 @@ final class DataprocClusterClusterConfigGceClusterConfigReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),
@@ -670,7 +670,7 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 
@@ -906,7 +906,7 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 
@@ -1131,7 +1131,7 @@ final class DataprocClusterClusterConfigSoftwareConfig {
 
   final TfArg<String>? imageVersion;
 
-  final TfArg<List<Object?>>? optionalComponents;
+  final TfArg<List<String>>? optionalComponents;
 
   final TfArg<Map<String, String>>? overrideProperties;
 
@@ -1309,7 +1309,7 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 
@@ -1530,7 +1530,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 
   final TfArg<String> nodePool;
 
-  final TfArg<List<Object?>> roles;
+  final TfArg<List<String>> roles;
 
   final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfig?
   nodePoolConfig;
@@ -1552,7 +1552,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
     this.config,
   });
 
-  final TfArg<List<Object?>> locations;
+  final TfArg<List<String>> locations;
 
   final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigAutoscaling?
   autoscaling;

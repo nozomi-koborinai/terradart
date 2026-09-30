@@ -18,9 +18,9 @@ final class SecuritylakeAwsLogSourceSource {
     this.sourceVersion,
   });
 
-  final TfArg<List<Object?>>? accounts;
+  final TfArg<List<String>>? accounts;
 
-  final TfArg<List<Object?>> regions;
+  final TfArg<List<String>> regions;
 
   final TfArg<String> sourceName;
 

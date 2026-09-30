@@ -59,7 +59,7 @@ final class CleanroomsCollaborationMember {
 
   final TfArg<String> displayName;
 
-  final TfArg<List<Object?>> memberAbilities;
+  final TfArg<List<String>> memberAbilities;
 
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),

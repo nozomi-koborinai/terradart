@@ -177,7 +177,8 @@ abstract base class Stack {
 
   /// Register an export for synth's AppExport emitter. Order is preserved
   /// for deterministic output. Throws [ArgumentError] if `name` is already
-  /// registered (catch typos / collisions early).
+  /// registered, or if the Terraform `output` name the export may emit
+  /// (`terraformOutputName ?? name`) is already taken by another export.
   void addExport(String name, AppExport export) {
     if (_appExports.containsKey(name)) {
       throw ArgumentError.value(
@@ -186,8 +187,31 @@ abstract base class Stack {
         'AppExport "$name" is already registered on this Stack.',
       );
     }
+    final outputName = _outputNameOf(name, export);
+    if (outputName != null) {
+      for (final MapEntry(key: other, value: registered)
+          in _appExports.entries) {
+        if (_outputNameOf(other, registered) == outputName) {
+          throw ArgumentError.value(
+            name,
+            'name',
+            'AppExport "$name" would emit Terraform output "$outputName", '
+                'which AppExport "$other" already emits. Set a distinct '
+                'terraformOutputName.',
+          );
+        }
+      }
+    }
     _appExports[name] = export;
   }
+
+  /// The Terraform `output` name [export] may emit, or `null` for the
+  /// variants that never emit one.
+  static String? _outputNameOf(String name, AppExport export) =>
+      switch (export) {
+        StringExport() || EnvBackedExport() => null,
+        _ => export.terraformOutputName ?? name,
+      };
 
   /// Declare a `variable "<name>" { ... }` block, making
   /// `TfArg.variable('<name>')` references in this stack resolvable.
@@ -360,10 +384,10 @@ abstract base class Stack {
   ///
   /// Always writes `${outDir}/main.tf.json` with two-space indentation,
   /// creating [outDir] recursively if it does not exist. When
-  /// AppExports produced Dart constants AND
   /// [setAppExportsOutputPath] was called, also writes the generated
   /// constants file at that path (creating its parent directories
-  /// recursively).
+  /// recursively) — an empty class when no export resolved to a
+  /// constant, so a stale constant never survives a re-synth.
   ///
   /// Throws [StateError] when exports were registered via [addExport]
   /// but no output path was set via [setAppExportsOutputPath] — the
@@ -376,11 +400,11 @@ abstract base class Stack {
     // on disk. Otherwise users see a confusing tf-out/ directory next to
     // the exception and assume the synth half-succeeded.
     if (result.dartConstants != null && result.dartConstantsPath == null) {
+      final names = _appExports.keys.map((n) => '"$n"').join(', ');
       throw StateError(
-        'AppExport constants were registered (addExport called) '
-        'but no output path was set. Call '
-        'setAppExportsOutputPath() in your Stack constructor '
-        'before writeTo().',
+        'AppExports $names produce Dart constants, but no output path was '
+        'set. Call setAppExportsOutputPath(...) in the Stack constructor, '
+        "e.g. setAppExportsOutputPath('lib/generated/<stack>.app.dart').",
       );
     }
 

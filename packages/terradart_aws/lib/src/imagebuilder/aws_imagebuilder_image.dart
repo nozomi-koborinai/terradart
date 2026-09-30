@@ -107,7 +107,7 @@ final class ImagebuilderImageImageScanningConfigurationEcrConfiguration {
     this.repositoryName,
   });
 
-  final TfArg<List<Object?>>? containerTags;
+  final TfArg<List<String>>? containerTags;
 
   final TfArg<String>? repositoryName;
 

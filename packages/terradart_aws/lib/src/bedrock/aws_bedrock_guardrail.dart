@@ -530,7 +530,7 @@ final class BedrockGuardrailTopicPolicyConfigTopicsConfig {
 
   final TfArg<String> definition;
 
-  final TfArg<List<Object?>>? examples;
+  final TfArg<List<String>>? examples;
 
   final TfArg<String> name;
 

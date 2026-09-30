@@ -168,7 +168,7 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig {
 
   final TfArg<String>? beaconFeeRecipient;
 
-  final TfArg<List<Object?>>? mevRelayUrls;
+  final TfArg<List<String>>? mevRelayUrls;
 
   Map<String, Object?> encode() => {
     'beacon_fee_recipient': ?beaconFeeRecipient?.toTfJson(),

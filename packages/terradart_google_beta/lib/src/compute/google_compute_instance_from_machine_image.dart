@@ -379,7 +379,7 @@ final class ComputeInstanceFromMachineImageReservationAffinitySpecificReservatio
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -563,7 +563,7 @@ final class ComputeInstanceFromMachineImageSchedulingNodeAffinities {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -617,7 +617,7 @@ final class ComputeInstanceFromMachineImageServiceAccount {
 
   final RefTo<GoogleServiceAccount>? email;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),

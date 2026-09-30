@@ -27,7 +27,7 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<Object?>>? daysOfWeek;
 
-  final TfArg<List<Object?>>? hoursOfDay;
+  final TfArg<List<num>>? hoursOfDay;
 
   final TfArg<bool> isCustomActionTimeoutEnabled;
 
@@ -41,7 +41,7 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
   final TfArg<OdbCloudExadataInfrastructureMaintenanceWindowPreference>
   preference;
 
-  final TfArg<List<Object?>>? weeksOfMonth;
+  final TfArg<List<num>>? weeksOfMonth;
 
   Map<String, Object?> encode() => {
     'custom_action_timeout_in_mins': customActionTimeoutInMins.toTfJson(),

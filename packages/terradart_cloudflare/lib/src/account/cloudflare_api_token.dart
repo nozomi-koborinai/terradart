@@ -35,9 +35,9 @@ final class ApiTokenCondition {
 final class ApiTokenConditionRequestIp {
   const ApiTokenConditionRequestIp({this.inCase, this.notIn});
 
-  final TfArg<List<Object?>>? inCase;
+  final TfArg<List<String>>? inCase;
 
-  final TfArg<List<Object?>>? notIn;
+  final TfArg<List<String>>? notIn;
 
   Map<String, Object?> encode() => {
     'in': ?inCase?.toTfJson(),

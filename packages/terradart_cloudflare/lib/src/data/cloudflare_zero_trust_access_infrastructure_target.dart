@@ -53,7 +53,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? ipV6;
 
-  final TfArg<List<Object?>>? ips;
+  final TfArg<List<String>>? ips;
 
   final TfArg<String>? ipv4End;
 
@@ -69,9 +69,9 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<DataZeroTrustAccessInfrastructureTargetFilterOrder>? order;
 
-  final TfArg<List<Object?>>? tag;
+  final TfArg<List<String>>? tag;
 
-  final TfArg<List<Object?>>? targetIds;
+  final TfArg<List<String>>? targetIds;
 
   final TfArg<String>? virtualNetworkId;
 

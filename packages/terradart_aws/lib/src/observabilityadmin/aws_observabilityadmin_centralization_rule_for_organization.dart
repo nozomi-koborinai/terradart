@@ -316,7 +316,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSource {
     this.sourceMetricsConfiguration,
   });
 
-  final TfArg<List<Object?>> regions;
+  final TfArg<List<String>> regions;
 
   final TfArg<String> scope;
 

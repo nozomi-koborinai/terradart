@@ -259,17 +259,17 @@ final class NetworkConnectivitySpokeLinkedInterconnectAttachments {
     required this.uris,
   });
 
-  final TfArg<List<Object?>>? excludeExportRanges;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  final TfArg<List<Object?>>? excludeImportRanges;
+  final TfArg<List<String>>? excludeImportRanges;
 
-  final TfArg<List<Object?>>? includeExportRanges;
+  final TfArg<List<String>>? includeExportRanges;
 
-  final TfArg<List<Object?>>? includeImportRanges;
+  final TfArg<List<String>>? includeImportRanges;
 
   final TfArg<bool> siteToSiteDataTransfer;
 
-  final TfArg<List<Object?>> uris;
+  final TfArg<List<String>> uris;
 
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
@@ -292,9 +292,9 @@ final class NetworkConnectivitySpokeLinkedProducerVpcNetwork {
     required this.peering,
   });
 
-  final TfArg<List<Object?>>? excludeExportRanges;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  final TfArg<List<Object?>>? includeExportRanges;
+  final TfArg<List<String>>? includeExportRanges;
 
   final RefTo<GoogleComputeNetwork> network;
 
@@ -321,13 +321,13 @@ final class NetworkConnectivitySpokeLinkedRouterApplianceInstances {
     required this.instances,
   });
 
-  final TfArg<List<Object?>>? excludeExportRanges;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  final TfArg<List<Object?>>? excludeImportRanges;
+  final TfArg<List<String>>? excludeImportRanges;
 
-  final TfArg<List<Object?>>? includeExportRanges;
+  final TfArg<List<String>>? includeExportRanges;
 
-  final TfArg<List<Object?>>? includeImportRanges;
+  final TfArg<List<String>>? includeImportRanges;
 
   final TfArg<bool> siteToSiteDataTransfer;
 
@@ -373,9 +373,9 @@ final class NetworkConnectivitySpokeLinkedVpcNetwork {
     required this.uri,
   });
 
-  final TfArg<List<Object?>>? excludeExportRanges;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  final TfArg<List<Object?>>? includeExportRanges;
+  final TfArg<List<String>>? includeExportRanges;
 
   final TfArg<String> uri;
 
@@ -399,17 +399,17 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
     required this.uris,
   });
 
-  final TfArg<List<Object?>>? excludeExportRanges;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  final TfArg<List<Object?>>? excludeImportRanges;
+  final TfArg<List<String>>? excludeImportRanges;
 
-  final TfArg<List<Object?>>? includeExportRanges;
+  final TfArg<List<String>>? includeExportRanges;
 
-  final TfArg<List<Object?>>? includeImportRanges;
+  final TfArg<List<String>>? includeImportRanges;
 
   final TfArg<bool> siteToSiteDataTransfer;
 
-  final TfArg<List<Object?>> uris;
+  final TfArg<List<String>> uris;
 
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),

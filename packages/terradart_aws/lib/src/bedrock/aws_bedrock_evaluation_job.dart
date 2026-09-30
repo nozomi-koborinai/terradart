@@ -309,7 +309,7 @@ final class BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig {
     this.dataset,
   });
 
-  final TfArg<List<Object?>> metricNames;
+  final TfArg<List<String>> metricNames;
 
   final TfArg<
     BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigTaskType
@@ -499,7 +499,7 @@ final class BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfig {
     this.dataset,
   });
 
-  final TfArg<List<Object?>> metricNames;
+  final TfArg<List<String>> metricNames;
 
   final TfArg<
     BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigTaskType

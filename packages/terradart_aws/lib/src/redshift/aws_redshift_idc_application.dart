@@ -28,7 +28,7 @@ final class RedshiftIdcApplicationAuthorizedTokenIssuer {
     this.trustedTokenIssuerArn,
   });
 
-  final TfArg<List<Object?>>? authorizedAudiencesList;
+  final TfArg<List<String>>? authorizedAudiencesList;
 
   final TfArg<String>? trustedTokenIssuerArn;
 

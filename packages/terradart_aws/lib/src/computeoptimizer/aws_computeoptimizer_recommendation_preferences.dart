@@ -138,12 +138,12 @@ sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
 
   /// Sets `exclude_list`.
   const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.excludeList(
-    TfArg<List<Object?>> excludeList,
+    TfArg<List<String>> excludeList,
   ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList;
 
   /// Sets `include_list`.
   const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.includeList(
-    TfArg<List<Object?>> includeList,
+    TfArg<List<String>> includeList,
   ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList;
 
   /// The Terraform argument this choice sets.
@@ -159,7 +159,7 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcl
     this.excludeList,
   );
 
-  final TfArg<List<Object?>> excludeList;
+  final TfArg<List<String>> excludeList;
 
   @override
   String get blockKey => 'exclude_list';
@@ -175,7 +175,7 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncl
     this.includeList,
   );
 
-  final TfArg<List<Object?>> includeList;
+  final TfArg<List<String>> includeList;
 
   @override
   String get blockKey => 'include_list';

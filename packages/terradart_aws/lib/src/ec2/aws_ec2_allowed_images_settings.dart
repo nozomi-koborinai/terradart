@@ -29,11 +29,11 @@ final class Ec2AllowedImagesSettingsImageCriterion {
     this.deprecationTimeCondition,
   });
 
-  final TfArg<List<Object?>>? imageNames;
+  final TfArg<List<String>>? imageNames;
 
-  final TfArg<List<Object?>>? imageProviders;
+  final TfArg<List<String>>? imageProviders;
 
-  final TfArg<List<Object?>>? marketplaceProductCodes;
+  final TfArg<List<String>>? marketplaceProductCodes;
 
   final List<Ec2AllowedImagesSettingsImageCriterionCreationDateCondition>?
   creationDateCondition;

@@ -45,11 +45,11 @@ final class EcsDaemonTaskDefinitionContainerDefinition {
     this.ulimit,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<num>? cpu;
 
-  final TfArg<List<Object?>>? entryPoint;
+  final TfArg<List<String>>? entryPoint;
 
   final TfArg<bool>? essential;
 
@@ -293,7 +293,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionHealthCheck {
     this.timeout,
   });
 
-  final TfArg<List<Object?>> command;
+  final TfArg<List<String>> command;
 
   final TfArg<num>? interval;
 
@@ -354,9 +354,9 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilitie
     this.drop,
   });
 
-  final TfArg<List<Object?>>? add;
+  final TfArg<List<String>>? add;
 
-  final TfArg<List<Object?>>? drop;
+  final TfArg<List<String>>? drop;
 
   Map<String, Object?> encode() => {
     'add': ?add?.toTfJson(),
@@ -419,7 +419,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs {
 
   final TfArg<String> containerPath;
 
-  final TfArg<List<Object?>>? mountOptions;
+  final TfArg<List<String>>? mountOptions;
 
   final TfArg<num> size;
 
@@ -548,7 +548,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy {
 
   final TfArg<bool> enabled;
 
-  final TfArg<List<Object?>>? ignoredExitCodes;
+  final TfArg<List<num>>? ignoredExitCodes;
 
   final TfArg<num>? restartAttemptPeriod;
 

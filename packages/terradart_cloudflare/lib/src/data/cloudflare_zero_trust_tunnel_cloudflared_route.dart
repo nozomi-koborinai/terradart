@@ -35,7 +35,7 @@ final class DataZeroTrustTunnelCloudflaredRouteFilter {
 
   final TfArg<String>? networkSuperset;
 
-  final TfArg<List<Object?>>? tunTypes;
+  final TfArg<List<String>>? tunTypes;
 
   final TfArg<String>? tunnelId;
 

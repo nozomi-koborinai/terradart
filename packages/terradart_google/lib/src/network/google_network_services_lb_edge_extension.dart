@@ -57,15 +57,15 @@ final class NetworkServicesLbEdgeExtensionExtensionChainsExtensions {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<List<Object?>>? forwardAttributes;
+  final TfArg<List<String>>? forwardAttributes;
 
-  final TfArg<List<Object?>>? forwardHeaders;
+  final TfArg<List<String>>? forwardHeaders;
 
   final TfArg<String> name;
 
   final TfArg<String> service;
 
-  final TfArg<List<Object?>>? supportedEvents;
+  final TfArg<List<String>>? supportedEvents;
 
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),

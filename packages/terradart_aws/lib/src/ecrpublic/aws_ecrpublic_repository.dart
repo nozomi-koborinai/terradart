@@ -22,13 +22,13 @@ final class EcrpublicRepositoryCatalogData {
 
   final TfArg<String>? aboutText;
 
-  final TfArg<List<Object?>>? architectures;
+  final TfArg<List<String>>? architectures;
 
   final TfArg<String>? description;
 
   final TfArg<String>? logoImageBlob;
 
-  final TfArg<List<Object?>>? operatingSystems;
+  final TfArg<List<String>>? operatingSystems;
 
   final TfArg<String>? usageText;
 

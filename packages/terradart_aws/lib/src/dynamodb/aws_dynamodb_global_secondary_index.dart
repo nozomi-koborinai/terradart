@@ -80,7 +80,7 @@ final class DynamodbGlobalSecondaryIndexProjection {
     required this.projectionType,
   });
 
-  final TfArg<List<Object?>>? nonKeyAttributes;
+  final TfArg<List<String>>? nonKeyAttributes;
 
   final TfArg<DynamodbGlobalSecondaryIndexProjectionProjectionType>
   projectionType;

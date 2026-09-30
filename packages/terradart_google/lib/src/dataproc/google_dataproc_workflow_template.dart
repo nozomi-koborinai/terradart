@@ -46,7 +46,7 @@ final class DataprocWorkflowTemplateJobs {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<List<Object?>>? prerequisiteStepIds;
+  final TfArg<List<String>>? prerequisiteStepIds;
 
   final TfArg<String> stepId;
 
@@ -99,13 +99,13 @@ final class DataprocWorkflowTemplateJobsHadoopJob {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? mainClass;
 
@@ -157,7 +157,7 @@ final class DataprocWorkflowTemplateJobsHiveJob {
 
   final TfArg<bool>? continueOnFailure;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
@@ -183,7 +183,7 @@ final class DataprocWorkflowTemplateJobsHiveJob {
 final class DataprocWorkflowTemplateJobsHiveJobQueryList {
   const DataprocWorkflowTemplateJobsHiveJobQueryList({required this.queries});
 
-  final TfArg<List<Object?>> queries;
+  final TfArg<List<String>> queries;
 
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
@@ -204,7 +204,7 @@ final class DataprocWorkflowTemplateJobsPigJob {
 
   final TfArg<bool>? continueOnFailure;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
@@ -246,7 +246,7 @@ final class DataprocWorkflowTemplateJobsPigJobLoggingConfig {
 final class DataprocWorkflowTemplateJobsPigJobQueryList {
   const DataprocWorkflowTemplateJobsPigJobQueryList({required this.queries});
 
-  final TfArg<List<Object?>> queries;
+  final TfArg<List<String>> queries;
 
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
@@ -265,7 +265,7 @@ final class DataprocWorkflowTemplateJobsPrestoJob {
     this.queryList,
   });
 
-  final TfArg<List<Object?>>? clientTags;
+  final TfArg<List<String>>? clientTags;
 
   final TfArg<bool>? continueOnFailure;
 
@@ -311,7 +311,7 @@ final class DataprocWorkflowTemplateJobsPrestoJobLoggingConfig {
 final class DataprocWorkflowTemplateJobsPrestoJobQueryList {
   const DataprocWorkflowTemplateJobsPrestoJobQueryList({required this.queries});
 
-  final TfArg<List<Object?>> queries;
+  final TfArg<List<String>> queries;
 
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
@@ -331,19 +331,19 @@ final class DataprocWorkflowTemplateJobsPysparkJob {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String> mainPythonFileUri;
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<List<Object?>>? pythonFileUris;
+  final TfArg<List<String>>? pythonFileUris;
 
   final DataprocWorkflowTemplateJobsPysparkJobLoggingConfig? loggingConfig;
 
@@ -408,13 +408,13 @@ final class DataprocWorkflowTemplateJobsSparkJob {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? mainClass;
 
@@ -464,11 +464,11 @@ final class DataprocWorkflowTemplateJobsSparkRJob {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
   final TfArg<String> mainRFileUri;
 
@@ -514,7 +514,7 @@ final class DataprocWorkflowTemplateJobsSparkSqlJob {
     this.queryList,
   });
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
@@ -559,7 +559,7 @@ final class DataprocWorkflowTemplateJobsSparkSqlJobQueryList {
     required this.queries,
   });
 
-  final TfArg<List<Object?>> queries;
+  final TfArg<List<String>> queries;
 
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
@@ -577,7 +577,7 @@ final class DataprocWorkflowTemplateParameters {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>> fields;
+  final TfArg<List<String>> fields;
 
   final TfArg<String> name;
 
@@ -615,7 +615,7 @@ final class DataprocWorkflowTemplateParametersValidationRegex {
     required this.regexes,
   });
 
-  final TfArg<List<Object?>> regexes;
+  final TfArg<List<String>> regexes;
 
   Map<String, Object?> encode() => {'regexes': regexes.toTfJson()};
 }
@@ -628,7 +628,7 @@ final class DataprocWorkflowTemplateParametersValidationValues {
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -848,11 +848,11 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<List<Object?>>? serviceAccountScopes;
+  final TfArg<List<String>>? serviceAccountScopes;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final TfArg<String>? zone;
 
@@ -926,7 +926,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),
@@ -1202,7 +1202,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 
@@ -1479,7 +1479,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 
@@ -1684,7 +1684,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig 
 
   final TfArg<String>? imageVersion;
 
-  final TfArg<List<Object?>>? optionalComponents;
+  final TfArg<List<String>>? optionalComponents;
 
   final TfArg<Map<String, String>>? properties;
 
@@ -1882,7 +1882,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
     this.diskConfig,
   });
 
-  final TfArg<List<Object?>>? machineTypes;
+  final TfArg<List<String>>? machineTypes;
 
   final TfArg<num>? rank;
 

@@ -96,7 +96,7 @@ final class EksCapabilityConfigurationArgoCdAwsIdc {
 final class EksCapabilityConfigurationArgoCdNetworkAccess {
   const EksCapabilityConfigurationArgoCdNetworkAccess({this.vpceIds});
 
-  final TfArg<List<Object?>>? vpceIds;
+  final TfArg<List<String>>? vpceIds;
 
   Map<String, Object?> encode() => {'vpce_ids': ?vpceIds?.toTfJson()};
 }

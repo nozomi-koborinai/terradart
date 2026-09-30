@@ -36,7 +36,7 @@ final class VectorSearchDataObjectVectors {
 final class VectorSearchDataObjectVectorsDense {
   const VectorSearchDataObjectVectorsDense({required this.values});
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<num>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -50,9 +50,9 @@ final class VectorSearchDataObjectVectorsSparse {
     required this.values,
   });
 
-  final TfArg<List<Object?>> indices;
+  final TfArg<List<num>> indices;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<num>> values;
 
   Map<String, Object?> encode() => {
     'indices': indices.toTfJson(),

@@ -225,7 +225,7 @@ final class MonitoringAlertPolicyAlertStrategyNotificationChannelStrategy {
     this.renotifyInterval,
   });
 
-  final TfArg<List<Object?>>? notificationChannelNames;
+  final TfArg<List<String>>? notificationChannelNames;
 
   final TfArg<String>? renotifyInterval;
 
@@ -333,7 +333,7 @@ final class MonitoringAlertPolicyConditionsConditionAbsentAggregations {
 
   final TfArg<Reducer>? crossSeriesReducer;
 
-  final TfArg<List<Object?>>? groupByFields;
+  final TfArg<List<String>>? groupByFields;
 
   final TfArg<Aligner>? perSeriesAligner;
 
@@ -805,7 +805,7 @@ final class MonitoringAlertPolicyConditionsConditionThresholdAggregations {
 
   final TfArg<Reducer>? crossSeriesReducer;
 
-  final TfArg<List<Object?>>? groupByFields;
+  final TfArg<List<String>>? groupByFields;
 
   final TfArg<Aligner>? perSeriesAligner;
 
@@ -832,7 +832,7 @@ final class MonitoringAlertPolicyConditionsConditionThresholdDenominatorAggregat
 
   final TfArg<Reducer>? crossSeriesReducer;
 
-  final TfArg<List<Object?>>? groupByFields;
+  final TfArg<List<String>>? groupByFields;
 
   final TfArg<Aligner>? perSeriesAligner;
 

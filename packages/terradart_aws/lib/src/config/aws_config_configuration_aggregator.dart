@@ -101,11 +101,11 @@ final class ConfigConfigurationAggregatorAccountAggregationSource {
     this.regions,
   });
 
-  final TfArg<List<Object?>> accountIds;
+  final TfArg<List<String>> accountIds;
 
   final TfArg<bool>? allRegions;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   Map<String, Object?> encode() => {
     'account_ids': accountIds.toTfJson(),
@@ -126,7 +126,7 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSource {
 
   final TfArg<bool>? allRegions;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   final RefTo<AwsIamRole> roleArn;
 

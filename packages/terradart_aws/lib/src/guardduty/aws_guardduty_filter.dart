@@ -46,7 +46,7 @@ final class GuarddutyFilterFindingCriteriaCriterion {
     this.notMatches,
   });
 
-  final TfArg<List<Object?>>? equals;
+  final TfArg<List<String>>? equals;
 
   final TfArg<String> field;
 
@@ -58,11 +58,11 @@ final class GuarddutyFilterFindingCriteriaCriterion {
 
   final TfArg<String>? lessThanOrEqual;
 
-  final TfArg<List<Object?>>? matches;
+  final TfArg<List<String>>? matches;
 
-  final TfArg<List<Object?>>? notEquals;
+  final TfArg<List<String>>? notEquals;
 
-  final TfArg<List<Object?>>? notMatches;
+  final TfArg<List<String>>? notMatches;
 
   Map<String, Object?> encode() => {
     'equals': ?equals?.toTfJson(),

@@ -23,7 +23,7 @@ final class ZeroTrustDeviceDefaultProfileLocalDomainFallbackDomains {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? dnsServer;
+  final TfArg<List<String>>? dnsServer;
 
   final TfArg<String> suffix;
 

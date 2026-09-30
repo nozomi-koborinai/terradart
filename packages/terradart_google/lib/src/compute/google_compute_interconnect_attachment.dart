@@ -154,7 +154,7 @@ final class ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanT
 
   final TfArg<String>? innerApplianceIpAddress;
 
-  final TfArg<List<Object?>>? innerVlanTags;
+  final TfArg<List<String>>? innerVlanTags;
 
   Map<String, Object?> encode() => {
     'inner_appliance_ip_address': ?innerApplianceIpAddress?.toTfJson(),

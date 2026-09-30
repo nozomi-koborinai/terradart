@@ -130,7 +130,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSe
     this.sessionSettings,
   });
 
-  final TfArg<List<Object?>>? accessLevels;
+  final TfArg<List<String>>? accessLevels;
 
   final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings?
   sessionSettings;
@@ -197,7 +197,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsDryRunSe
     this.accessLevels,
   });
 
-  final TfArg<List<Object?>>? accessLevels;
+  final TfArg<List<String>>? accessLevels;
 
   Map<String, Object?> encode() => {'access_levels': ?accessLevels?.toTfJson()};
 }

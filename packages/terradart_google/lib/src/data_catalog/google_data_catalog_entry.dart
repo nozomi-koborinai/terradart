@@ -66,7 +66,7 @@ final class DataCatalogEntryCustomType extends DataCatalogEntryKind {
 final class DataCatalogEntryGcsFilesetSpec {
   const DataCatalogEntryGcsFilesetSpec({required this.filePatterns});
 
-  final TfArg<List<Object?>> filePatterns;
+  final TfArg<List<String>> filePatterns;
 
   Map<String, Object?> encode() => {'file_patterns': filePatterns.toTfJson()};
 }

@@ -116,7 +116,7 @@ final class MqBrokerLdapServerMetadata {
     this.userSearchSubtree,
   });
 
-  final TfArg<List<Object?>>? hosts;
+  final TfArg<List<String>>? hosts;
 
   final TfArg<String>? roleBase;
 
@@ -221,7 +221,7 @@ final class MqBrokerUser {
 
   final TfArg<bool>? consoleAccess;
 
-  final TfArg<List<Object?>>? groups;
+  final TfArg<List<String>>? groups;
 
   final TfArg<String> password;
 

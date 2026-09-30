@@ -231,7 +231,7 @@ final class StorageBatchOperationsJobBucketListBucketsPrefixList {
     this.includedObjectPrefixes,
   });
 
-  final TfArg<List<Object?>>? includedObjectPrefixes;
+  final TfArg<List<String>>? includedObjectPrefixes;
 
   Map<String, Object?> encode() => {
     'included_object_prefixes': ?includedObjectPrefixes?.toTfJson(),

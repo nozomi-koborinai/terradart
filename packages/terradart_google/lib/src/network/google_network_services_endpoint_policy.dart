@@ -97,7 +97,7 @@ final class NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMeta
 final class NetworkServicesEndpointPolicyTrafficPortSelector {
   const NetworkServicesEndpointPolicyTrafficPortSelector({required this.ports});
 
-  final TfArg<List<Object?>> ports;
+  final TfArg<List<String>> ports;
 
   Map<String, Object?> encode() => {'ports': ports.toTfJson()};
 }

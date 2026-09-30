@@ -23,7 +23,7 @@ final class DataZeroTrustListFilter {
 
   final TfArg<DataZeroTrustListFilterDirection>? direction;
 
-  final TfArg<List<Object?>>? filter;
+  final TfArg<List<String>>? filter;
 
   final TfArg<DataZeroTrustListFilterOrderBy>? orderBy;
 

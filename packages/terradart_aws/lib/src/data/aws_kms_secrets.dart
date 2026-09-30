@@ -25,7 +25,7 @@ final class DataKmsSecretsSecret {
 
   final TfArg<String>? encryptionAlgorithm;
 
-  final TfArg<List<Object?>>? grantTokens;
+  final TfArg<List<String>>? grantTokens;
 
   final RefTo<AwsKmsKey>? keyId;
 

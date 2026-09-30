@@ -299,7 +299,7 @@ final class GkeBackupBackupPlanBackupConfigSelectedNamespaces {
     required this.namespaces,
   });
 
-  final TfArg<List<Object?>> namespaces;
+  final TfArg<List<String>> namespaces;
 
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }

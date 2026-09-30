@@ -236,9 +236,9 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
     this.volumeMounts,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String> image;
 
@@ -415,9 +415,9 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
     this.volumeMounts,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String> image;
 

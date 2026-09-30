@@ -504,7 +504,7 @@ final class DmsEndpointOracleSettings {
 
   final TfArg<bool>? enableHomogenousTablespace;
 
-  final TfArg<List<Object?>>? extraArchivedLogDestIds;
+  final TfArg<List<num>>? extraArchivedLogDestIds;
 
   final TfArg<bool>? failTaskOnLobTruncation;
 

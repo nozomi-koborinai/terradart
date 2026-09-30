@@ -779,7 +779,7 @@ final class Wafv2WebAclRuleStatementAsnMatchStatement {
     this.forwardedIpConfig,
   });
 
-  final TfArg<List<Object?>> asnList;
+  final TfArg<List<num>> asnList;
 
   final List<Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig>?
   forwardedIpConfig;
@@ -987,9 +987,9 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPa
     this.all,
   });
 
-  final TfArg<List<Object?>>? excludedCookies;
+  final TfArg<List<String>>? excludedCookies;
 
-  final TfArg<List<Object?>>? includedCookies;
+  final TfArg<List<String>>? includedCookies;
 
   final List<Wafv2WebAclRuleOverrideActionCount>? all;
 
@@ -1055,9 +1055,9 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPa
     this.all,
   });
 
-  final TfArg<List<Object?>>? excludedHeaders;
+  final TfArg<List<String>>? excludedHeaders;
 
-  final TfArg<List<Object?>>? includedHeaders;
+  final TfArg<List<String>>? includedHeaders;
 
   final List<Wafv2WebAclRuleOverrideActionCount>? all;
 
@@ -1126,7 +1126,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchP
     this.all,
   });
 
-  final TfArg<List<Object?>>? includedPaths;
+  final TfArg<List<String>>? includedPaths;
 
   final List<Wafv2WebAclRuleOverrideActionCount>? all;
 
@@ -1182,7 +1182,7 @@ final class Wafv2WebAclRuleStatementGeoMatchStatement {
     this.forwardedIpConfig,
   });
 
-  final TfArg<List<Object?>> countryCodes;
+  final TfArg<List<String>> countryCodes;
 
   final List<Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig>?
   forwardedIpConfig;
@@ -1495,7 +1495,7 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
     required this.identifiers,
   });
 
-  final TfArg<List<Object?>> identifiers;
+  final TfArg<List<String>> identifiers;
 
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
@@ -1566,9 +1566,9 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
     required this.successStrings,
   });
 
-  final TfArg<List<Object?>> failureStrings;
+  final TfArg<List<String>> failureStrings;
 
-  final TfArg<List<Object?>> successStrings;
+  final TfArg<List<String>> successStrings;
 
   Map<String, Object?> encode() => {
     'failure_strings': failureStrings.toTfJson(),
@@ -1587,11 +1587,11 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -1611,11 +1611,11 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> identifier;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -1634,9 +1634,9 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
     required this.successCodes,
   });
 
-  final TfArg<List<Object?>> failureCodes;
+  final TfArg<List<num>> failureCodes;
 
-  final TfArg<List<Object?>> successCodes;
+  final TfArg<List<num>> successCodes;
 
   Map<String, Object?> encode() => {
     'failure_codes': failureCodes.toTfJson(),

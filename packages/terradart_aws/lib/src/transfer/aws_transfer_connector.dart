@@ -149,7 +149,7 @@ final class TransferConnectorEgressConfigVpcLattice {
 final class TransferConnectorSftpConfig {
   const TransferConnectorSftpConfig({this.trustedHostKeys, this.userSecretId});
 
-  final TfArg<List<Object?>>? trustedHostKeys;
+  final TfArg<List<String>>? trustedHostKeys;
 
   final TfArg<String>? userSecretId;
 

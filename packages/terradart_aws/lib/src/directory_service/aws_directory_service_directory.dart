@@ -54,7 +54,7 @@ final class DirectoryServiceDirectoryConnectSettings {
     required this.vpcId,
   });
 
-  final TfArg<List<Object?>> customerDnsIps;
+  final TfArg<List<String>> customerDnsIps;
 
   final TfArg<String> customerUsername;
 

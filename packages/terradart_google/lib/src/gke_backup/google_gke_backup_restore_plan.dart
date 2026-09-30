@@ -393,7 +393,7 @@ final class GkeBackupRestorePlanRestoreConfigExcludedNamespaces {
     required this.namespaces,
   });
 
-  final TfArg<List<Object?>> namespaces;
+  final TfArg<List<String>> namespaces;
 
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }
@@ -520,7 +520,7 @@ final class GkeBackupRestorePlanRestoreConfigSelectedNamespaces {
     required this.namespaces,
   });
 
-  final TfArg<List<Object?>> namespaces;
+  final TfArg<List<String>> namespaces;
 
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }
@@ -609,7 +609,7 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter {
 
   final TfArg<String>? jsonPath;
 
-  final TfArg<List<Object?>>? namespaces;
+  final TfArg<List<String>>? namespaces;
 
   final List<
     GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGroupKinds

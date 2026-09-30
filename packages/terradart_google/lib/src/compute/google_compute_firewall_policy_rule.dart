@@ -39,33 +39,33 @@ final class ComputeFirewallPolicyRuleMatch {
     this.srcSecureTags,
   });
 
-  final TfArg<List<Object?>>? destAddressGroups;
+  final TfArg<List<String>>? destAddressGroups;
 
-  final TfArg<List<Object?>>? destFqdns;
+  final TfArg<List<String>>? destFqdns;
 
-  final TfArg<List<Object?>>? destIpRanges;
+  final TfArg<List<String>>? destIpRanges;
 
   final TfArg<ComputeFirewallPolicyRuleMatchDestNetworkContext>?
   destNetworkContext;
 
-  final TfArg<List<Object?>>? destRegionCodes;
+  final TfArg<List<String>>? destRegionCodes;
 
-  final TfArg<List<Object?>>? destThreatIntelligences;
+  final TfArg<List<String>>? destThreatIntelligences;
 
-  final TfArg<List<Object?>>? srcAddressGroups;
+  final TfArg<List<String>>? srcAddressGroups;
 
-  final TfArg<List<Object?>>? srcFqdns;
+  final TfArg<List<String>>? srcFqdns;
 
-  final TfArg<List<Object?>>? srcIpRanges;
+  final TfArg<List<String>>? srcIpRanges;
 
   final TfArg<ComputeFirewallPolicyRuleMatchSrcNetworkContext>?
   srcNetworkContext;
 
-  final TfArg<List<Object?>>? srcNetworks;
+  final TfArg<List<String>>? srcNetworks;
 
-  final TfArg<List<Object?>>? srcRegionCodes;
+  final TfArg<List<String>>? srcRegionCodes;
 
-  final TfArg<List<Object?>>? srcThreatIntelligences;
+  final TfArg<List<String>>? srcThreatIntelligences;
 
   final List<ComputeFirewallPolicyRuleMatchLayer4Configs> layer4Configs;
 
@@ -128,7 +128,7 @@ final class ComputeFirewallPolicyRuleMatchLayer4Configs {
 
   final TfArg<String> ipProtocol;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<String>>? ports;
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),

@@ -76,7 +76,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
   >?
   privateIpv6GoogleAccess;
 
-  final TfArg<List<Object?>>? resourcePolicies;
+  final TfArg<List<String>>? resourcePolicies;
 
   final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachineFeatures?
   advancedMachineFeatures;
@@ -238,7 +238,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAff
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_allocation_type': ?consumeAllocationType?.toTfJson(),
@@ -319,7 +319,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
 
   final TfArg<String>? kind;
 
-  final TfArg<List<Object?>>? license;
+  final TfArg<List<String>>? license;
 
   final TfArg<BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksMode>?
   mode;
@@ -504,7 +504,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitiali
 
   final TfArg<String>? diskName;
 
-  final TfArg<List<Object?>>? replicaZones;
+  final TfArg<List<String>>? replicaZones;
 
   Map<String, Object?> encode() => {
     'disk_name': ?diskName?.toTfJson(),
@@ -1165,7 +1165,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNod
   >?
   operator;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -1199,7 +1199,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccoun
 
   final RefTo<GoogleServiceAccount>? email;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
@@ -1238,7 +1238,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags {
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -1300,7 +1300,7 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 
   final TfArg<bool>? enableConfidentialCompute;
 
-  final TfArg<List<Object?>>? licenses;
+  final TfArg<List<String>>? licenses;
 
   final TfArg<String> name;
 
@@ -1310,7 +1310,7 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 
   final TfArg<num>? provisionedThroughput;
 
-  final TfArg<List<Object?>>? resourcePolicy;
+  final TfArg<List<String>>? resourcePolicy;
 
   final TfArg<num> sizeGb;
 
@@ -1523,7 +1523,7 @@ final class BackupDrRestoreWorkloadRegionDiskTargetEnvironment {
 
   final TfArg<String> region;
 
-  final TfArg<List<Object?>> replicaZones;
+  final TfArg<List<String>> replicaZones;
 
   final TfArg<bool>? useProjectServiceAccount;
 

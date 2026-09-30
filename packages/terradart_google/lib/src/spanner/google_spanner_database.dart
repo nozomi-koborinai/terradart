@@ -32,7 +32,7 @@ sealed class SpannerDatabaseEncryptionConfig {
 
   /// Sets `kms_key_names`.
   const factory SpannerDatabaseEncryptionConfig.kmsKeyNames(
-    TfArg<List<Object?>> kmsKeyNames,
+    TfArg<List<String>> kmsKeyNames,
   ) = SpannerDatabaseEncryptionConfigKmsKeyNames;
 
   /// The Terraform argument this choice sets.
@@ -62,7 +62,7 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
     extends SpannerDatabaseEncryptionConfig {
   const SpannerDatabaseEncryptionConfigKmsKeyNames(this.kmsKeyNames);
 
-  final TfArg<List<Object?>> kmsKeyNames;
+  final TfArg<List<String>> kmsKeyNames;
 
   @override
   String get blockKey => 'kms_key_names';

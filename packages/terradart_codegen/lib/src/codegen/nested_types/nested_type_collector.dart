@@ -21,10 +21,10 @@ final class NestedAttrSpec {
   /// Whether the underlying schema type is a `list`/`set` of [dartType]
   /// rather than a bare scalar. Currently only ever `true` for a
   /// list-of-enum-string attribute (`["list", "string"]` with a
-  /// `Possible values: [...]` description) — every other repeated shape
-  /// (a plain list of strings, a list of objects, ...) has no clean
-  /// per-element [dartType] to repeat, so it stays `false` and falls back
-  /// to an opaque [dartType] instead (see `_scalarDartType`).
+  /// `Possible values: [...]` description) — every other list shape stays
+  /// `false` and is carried whole by [dartType] instead: `List<String>`
+  /// for a plain list of strings, an opaque `List<Object?>` for a list of
+  /// objects (see `_scalarDartType`).
   final bool repeated;
 
   /// The resource this input names, when it is typed `RefTo<...>`; its
@@ -653,13 +653,15 @@ bool _isListOrSetOfString(Object? rawType) =>
 /// [_attrTypeInfo] didn't already resolve as an enum.
 ///
 /// Scalars map cleanly (`"string"`->`String`, `"bool"`->`bool`,
-/// `"number"`->`num`, `"dynamic"`->`Object?`), as does a map-of-scalar
-/// (`["map", "string"]`->`Map<String, String>`). Everything else — a list
-/// or set of *anything* (including a plain list of primitives), a bare
-/// object type, a tuple, or a map of a non-scalar — has no single clean
-/// representation in [NestedAttrSpec] (no derived nested-class-inside-a-list
-/// shape here), so it conservatively falls back to a `Map<String, dynamic>`
-/// / `List<Object?>`-style dartType. Genuinely unrecognized shapes throw,
+/// `"number"`->`num`, `"dynamic"`->`Object?`), as do a map-of-scalar
+/// (`["map", "string"]`->`Map<String, String>`) and a list or set of
+/// scalars (`["set", "string"]`->`List<String>`, as `writeDartType` types
+/// the same shape at the top level). Everything else — a list or set of a
+/// non-scalar, a bare object type, a tuple, or a map of a non-scalar — has
+/// no single clean representation in [NestedAttrSpec] (no derived
+/// nested-class-inside-a-list shape here), so it conservatively falls back
+/// to a `Map<String, dynamic>` / `List<Object?>`-style dartType. Genuinely
+/// unrecognized shapes throw,
 /// matching `_type_decoder.dart`'s fail-fast convention for malformed
 /// schema input.
 String _scalarDartType(Object? rawType) {
@@ -688,7 +690,13 @@ String _scalarDartType(Object? rawType) {
         return 'Map<String, dynamic>';
       case 'list':
       case 'set':
-        return 'List<Object?>';
+        final elementType = rawType.length > 1 ? rawType[1] : null;
+        return switch (elementType) {
+          'string' => 'List<String>',
+          'bool' => 'List<bool>',
+          'number' => 'List<num>',
+          _ => 'List<Object?>',
+        };
       case 'object':
         return 'Map<String, dynamic>';
       case 'tuple':

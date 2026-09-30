@@ -15,7 +15,7 @@ const Set<String> _googleDataplexDataProductSensitive = <String>{};
 final class DataplexDataProductAccessApprovalConfig {
   const DataplexDataProductAccessApprovalConfig({this.approverEmails});
 
-  final TfArg<List<Object?>>? approverEmails;
+  final TfArg<List<String>>? approverEmails;
 
   Map<String, Object?> encode() => {
     'approver_emails': ?approverEmails?.toTfJson(),

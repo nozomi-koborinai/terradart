@@ -16,7 +16,7 @@ final class EksAccessPolicyAssociationAccessScope {
     required this.type,
   });
 
-  final TfArg<List<Object?>>? namespaces;
+  final TfArg<List<String>>? namespaces;
 
   final TfArg<String> type;
 

@@ -280,7 +280,7 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<String>? connectionId;
 
-  final TfArg<List<Object?>>? decimalTargetTypes;
+  final TfArg<List<String>>? decimalTargetTypes;
 
   final TfArg<FileSetSpecType>? fileSetSpecType;
 
@@ -300,7 +300,7 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<ExternalDataSourceFormat>? sourceFormat;
 
-  final TfArg<List<Object?>> sourceUris;
+  final TfArg<List<String>> sourceUris;
 
   final BigqueryTableExternalDataConfigurationAvroOptions? avroOptions;
 
@@ -738,7 +738,7 @@ final class BigqueryTableTableConstraintsForeignKeysReferencedTable {
 final class BigqueryTableTableConstraintsPrimaryKey {
   const BigqueryTableTableConstraintsPrimaryKey({required this.columns});
 
-  final TfArg<List<Object?>> columns;
+  final TfArg<List<String>> columns;
 
   Map<String, Object?> encode() => {'columns': columns.toTfJson()};
 }

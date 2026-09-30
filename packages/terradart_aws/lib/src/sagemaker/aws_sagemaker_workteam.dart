@@ -59,7 +59,7 @@ final class SagemakerWorkteamMemberDefinitionOidcMemberDefinition {
     required this.groups,
   });
 
-  final TfArg<List<Object?>> groups;
+  final TfArg<List<String>> groups;
 
   Map<String, Object?> encode() => {'groups': groups.toTfJson()};
 }

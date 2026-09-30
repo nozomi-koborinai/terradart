@@ -23,9 +23,9 @@ enum DatazoneGlossaryTermStatus implements TerraformEnum {
 final class DatazoneGlossaryTermTermRelations {
   const DatazoneGlossaryTermTermRelations({this.classifies, this.isA});
 
-  final TfArg<List<Object?>>? classifies;
+  final TfArg<List<String>>? classifies;
 
-  final TfArg<List<Object?>>? isA;
+  final TfArg<List<String>>? isA;
 
   Map<String, Object?> encode() => {
     'classifies': ?classifies?.toTfJson(),

@@ -143,7 +143,7 @@ final class VpcEndpointDnsOptions {
 
   final TfArg<VpcEndpointDnsOptionsPrivateDnsPreference>? privateDnsPreference;
 
-  final TfArg<List<Object?>>? privateDnsSpecifiedDomains;
+  final TfArg<List<String>>? privateDnsSpecifiedDomains;
 
   Map<String, Object?> encode() => {
     'dns_record_ip_type': ?dnsRecordIpType?.toTfJson(),

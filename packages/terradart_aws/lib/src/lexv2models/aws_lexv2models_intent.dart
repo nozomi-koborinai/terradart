@@ -21355,7 +21355,7 @@ final class Lexv2modelsIntentQnaIntentConfigurationDataSourceConfigurationOpense
 
   final TfArg<bool>? exactResponse;
 
-  final TfArg<List<Object?>>? includeFields;
+  final TfArg<List<String>>? includeFields;
 
   final TfArg<String> indexName;
 

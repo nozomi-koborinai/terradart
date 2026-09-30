@@ -65,7 +65,7 @@ final class EcsServiceAlarms {
     required this.rollback,
   });
 
-  final TfArg<List<Object?>> alarmNames;
+  final TfArg<List<String>> alarmNames;
 
   final TfArg<bool> enable;
 

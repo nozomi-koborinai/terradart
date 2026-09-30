@@ -189,7 +189,7 @@ final class LakeformationResourceLfTagTableWithColumns {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<List<Object?>>? columnNames;
+  final TfArg<List<String>>? columnNames;
 
   final TfArg<String> databaseName;
 
@@ -216,7 +216,7 @@ final class LakeformationResourceLfTagTableWithColumnsColumnWildcard {
     this.excludedColumnNames,
   });
 
-  final TfArg<List<Object?>>? excludedColumnNames;
+  final TfArg<List<String>>? excludedColumnNames;
 
   Map<String, Object?> encode() => {
     'excluded_column_names': ?excludedColumnNames?.toTfJson(),
