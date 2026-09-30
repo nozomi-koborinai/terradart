@@ -25,7 +25,7 @@ final class MagicWanIpsecTunnelBgp {
 
   final TfArg<String>? exportFilterId;
 
-  final TfArg<List<Object?>>? extraPrefixes;
+  final TfArg<List<String>>? extraPrefixes;
 
   final TfArg<String>? importFilterId;
 

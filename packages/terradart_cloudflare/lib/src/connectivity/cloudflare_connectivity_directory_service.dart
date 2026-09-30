@@ -80,7 +80,7 @@ final class ConnectivityDirectoryServiceHostResolverNetwork {
     required this.tunnelId,
   });
 
-  final TfArg<List<Object?>>? resolverIps;
+  final TfArg<List<String>>? resolverIps;
 
   final TfArg<String> tunnelId;
 

@@ -124,7 +124,7 @@ final class SqlDatabaseInstanceClone {
 
   final TfArg<String>? allocatedIpRange;
 
-  final TfArg<List<Object?>>? databaseNames;
+  final TfArg<List<String>>? databaseNames;
 
   final TfArg<String>? pointInTime;
 
@@ -469,7 +469,7 @@ final class SqlDatabaseInstanceSettingsActiveDirectoryConfig {
 
   final TfArg<String>? adminCredentialSecretName;
 
-  final TfArg<List<Object?>>? dnsServers;
+  final TfArg<List<String>>? dnsServers;
 
   final TfArg<String> domain;
 
@@ -747,7 +747,7 @@ final class SqlDatabaseInstanceSettingsIpConfiguration {
 
   final TfArg<String>? allocatedIpRange;
 
-  final TfArg<List<Object?>>? customSubjectAlternativeNames;
+  final TfArg<List<String>>? customSubjectAlternativeNames;
 
   final TfArg<bool>? enablePrivatePathForGoogleCloudServices;
 
@@ -825,7 +825,7 @@ final class SqlDatabaseInstanceSettingsIpConfigurationPscConfig {
     this.pscAutoConnections,
   });
 
-  final TfArg<List<Object?>>? allowedConsumerProjects;
+  final TfArg<List<String>>? allowedConsumerProjects;
 
   final TfArg<String>? networkAttachmentUri;
 

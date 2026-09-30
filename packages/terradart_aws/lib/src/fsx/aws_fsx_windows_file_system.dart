@@ -221,7 +221,7 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectory {
     this.username,
   });
 
-  final TfArg<List<Object?>> dnsIps;
+  final TfArg<List<String>> dnsIps;
 
   final TfArg<String>? domainJoinServiceAccountSecret;
 

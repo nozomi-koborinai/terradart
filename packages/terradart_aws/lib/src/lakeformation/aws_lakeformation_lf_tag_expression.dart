@@ -18,7 +18,7 @@ final class LakeformationLfTagExpressionExpression {
 
   final TfArg<String> tagKey;
 
-  final TfArg<List<Object?>> tagValues;
+  final TfArg<List<String>> tagValues;
 
   Map<String, Object?> encode() => {
     'tag_key': tagKey.toTfJson(),

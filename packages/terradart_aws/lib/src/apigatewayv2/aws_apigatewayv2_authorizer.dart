@@ -36,7 +36,7 @@ enum Apigatewayv2AuthorizerAuthorizerType implements TerraformEnum {
 final class Apigatewayv2AuthorizerJwtConfiguration {
   const Apigatewayv2AuthorizerJwtConfiguration({this.audience, this.issuer});
 
-  final TfArg<List<Object?>>? audience;
+  final TfArg<List<String>>? audience;
 
   final TfArg<String>? issuer;
 

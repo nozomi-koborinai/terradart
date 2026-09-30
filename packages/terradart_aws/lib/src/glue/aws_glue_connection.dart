@@ -197,7 +197,7 @@ final class GlueConnectionPhysicalConnectionRequirements {
 
   final TfArg<String>? availabilityZone;
 
-  final TfArg<List<Object?>>? securityGroupIdList;
+  final TfArg<List<String>>? securityGroupIdList;
 
   final RefTo<AwsSubnet>? subnetId;
 

@@ -79,7 +79,7 @@ final class SpectrumApplicationEdgeIps {
 
   final TfArg<SpectrumApplicationEdgeIpsConnectivity>? connectivity;
 
-  final TfArg<List<Object?>>? ips;
+  final TfArg<List<String>>? ips;
 
   final TfArg<SpectrumApplicationEdgeIpsType>? type;
 

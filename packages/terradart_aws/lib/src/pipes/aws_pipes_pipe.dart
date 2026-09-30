@@ -112,7 +112,7 @@ final class PipesPipeEnrichmentParametersHttpParameters {
 
   final TfArg<Map<String, String>>? headerParameters;
 
-  final TfArg<List<Object?>>? pathParameterValues;
+  final TfArg<List<String>>? pathParameterValues;
 
   final TfArg<Map<String, String>>? queryStringParameters;
 
@@ -831,7 +831,7 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
     this.vpc,
   });
 
-  final TfArg<List<Object?>>? additionalBootstrapServers;
+  final TfArg<List<String>>? additionalBootstrapServers;
 
   final TfArg<num>? batchSize;
 
@@ -1299,7 +1299,7 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverrides {
     this.resourceRequirement,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String>? instanceType;
 
@@ -1698,7 +1698,7 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
     this.resourceRequirement,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<num>? cpu;
 
@@ -1945,7 +1945,7 @@ final class PipesPipeTargetParametersEventbridgeEventBusParameters {
 
   final TfArg<String>? endpointId;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   final TfArg<String>? source;
 
@@ -1972,7 +1972,7 @@ final class PipesPipeTargetParametersHttpParameters {
 
   final TfArg<Map<String, String>>? headerParameters;
 
-  final TfArg<List<Object?>>? pathParameterValues;
+  final TfArg<List<String>>? pathParameterValues;
 
   final TfArg<Map<String, String>>? queryStringParameters;
 
@@ -2044,7 +2044,7 @@ final class PipesPipeTargetParametersRedshiftDataParameters {
 
   final TfArg<String>? secretManagerArn;
 
-  final TfArg<List<Object?>> sqls;
+  final TfArg<List<String>> sqls;
 
   final TfArg<String>? statementName;
 

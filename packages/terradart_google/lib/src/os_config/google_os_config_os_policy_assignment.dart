@@ -232,7 +232,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecEnfor
     this.file,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<
     OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecEnforceInterpreter
@@ -353,7 +353,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecValid
     this.file,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<
     OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecValidateInterpreter
@@ -767,7 +767,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesPkgMsi {
     required this.source,
   });
 
-  final TfArg<List<Object?>>? properties;
+  final TfArg<List<String>>? properties;
 
   final OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesPkgMsiSource
   source;
@@ -1014,7 +1014,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesRepositor
   >
   archiveType;
 
-  final TfArg<List<Object?>> components;
+  final TfArg<List<String>> components;
 
   final TfArg<String> distribution;
 
@@ -1079,7 +1079,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesRepositor
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 
@@ -1106,7 +1106,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesRepositor
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 

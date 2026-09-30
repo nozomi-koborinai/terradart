@@ -37,7 +37,7 @@ final class ChronicleReferenceListScopeInfo {
 final class ChronicleReferenceListScopeInfoReferenceListScope {
   const ChronicleReferenceListScopeInfoReferenceListScope({this.scopeNames});
 
-  final TfArg<List<Object?>>? scopeNames;
+  final TfArg<List<String>>? scopeNames;
 
   Map<String, Object?> encode() => {'scope_names': ?scopeNames?.toTfJson()};
 }

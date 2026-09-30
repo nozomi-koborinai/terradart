@@ -242,9 +242,9 @@ final class HypercomputeclusterClusterOrchestratorSlurm {
 
   final TfArg<String>? defaultPartition;
 
-  final TfArg<List<Object?>>? epilogBashScripts;
+  final TfArg<List<String>>? epilogBashScripts;
 
-  final TfArg<List<Object?>>? prologBashScripts;
+  final TfArg<List<String>>? prologBashScripts;
 
   final HypercomputeclusterClusterOrchestratorSlurmLoginNodes loginNodes;
 
@@ -462,7 +462,7 @@ final class HypercomputeclusterClusterOrchestratorSlurmPartitions {
 
   final TfArg<String> id;
 
-  final TfArg<List<Object?>> nodeSetIds;
+  final TfArg<List<String>> nodeSetIds;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),

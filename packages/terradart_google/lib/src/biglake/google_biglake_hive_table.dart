@@ -49,7 +49,7 @@ final class BiglakeHiveTableStorageDescriptor {
     this.sortCols,
   });
 
-  final TfArg<List<Object?>>? bucketCols;
+  final TfArg<List<String>>? bucketCols;
 
   final TfArg<bool>? compressed;
 
@@ -175,7 +175,7 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfo {
     required this.skewedKeyValuesLocations,
   });
 
-  final TfArg<List<Object?>> skewedColNames;
+  final TfArg<List<String>> skewedColNames;
 
   final List<BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues>
   skewedColValues;
@@ -202,7 +202,7 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues {
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -218,7 +218,7 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations 
 
   final TfArg<String> location;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),

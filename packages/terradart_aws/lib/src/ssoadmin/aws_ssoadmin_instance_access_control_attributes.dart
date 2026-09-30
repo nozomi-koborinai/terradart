@@ -35,7 +35,7 @@ final class SsoadminInstanceAccessControlAttributesAttributeValue {
     required this.source,
   });
 
-  final TfArg<List<Object?>> source;
+  final TfArg<List<String>> source;
 
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 }

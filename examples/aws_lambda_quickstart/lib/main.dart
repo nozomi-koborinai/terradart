@@ -54,7 +54,7 @@ final class AwsLambdaStack extends Stack {
             DataIamPolicyDocumentStatementCondition(
               test: .literal('StringEquals'),
               variable: .literal('aws:SourceAccount'),
-              values: .literal([TfArg.ref(account.accountId)]),
+              values: .literal([account.accountId.interpolation]),
             ),
           ],
         ),

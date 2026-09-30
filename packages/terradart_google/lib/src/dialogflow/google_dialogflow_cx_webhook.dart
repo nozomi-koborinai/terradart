@@ -28,7 +28,7 @@ final class DialogflowCxWebhookGenericWebService {
     this.serviceAccountAuthConfig,
   });
 
-  final TfArg<List<Object?>>? allowedCaCerts;
+  final TfArg<List<String>>? allowedCaCerts;
 
   final TfArg<DialogflowCxWebhookGenericWebServiceHttpMethod>? httpMethod;
 
@@ -132,7 +132,7 @@ final class DialogflowCxWebhookGenericWebServiceOauthConfig {
 
   final TfArg<String>? clientSecret;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String>? secretVersionForClientSecret;
 
@@ -220,7 +220,7 @@ final class DialogflowCxWebhookServiceDirectoryGenericWebService {
     this.serviceAccountAuthConfig,
   });
 
-  final TfArg<List<Object?>>? allowedCaCerts;
+  final TfArg<List<String>>? allowedCaCerts;
 
   final TfArg<DialogflowCxWebhookServiceDirectoryGenericWebServiceHttpMethod>?
   httpMethod;
@@ -335,7 +335,7 @@ final class DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig {
 
   final TfArg<String>? clientSecret;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String>? secretVersionForClientSecret;
 

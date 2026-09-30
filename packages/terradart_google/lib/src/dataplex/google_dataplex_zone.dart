@@ -33,9 +33,9 @@ final class DataplexZoneDiscoverySpec {
 
   final TfArg<bool> enabled;
 
-  final TfArg<List<Object?>>? excludePatterns;
+  final TfArg<List<String>>? excludePatterns;
 
-  final TfArg<List<Object?>>? includePatterns;
+  final TfArg<List<String>>? includePatterns;
 
   final TfArg<String>? schedule;
 

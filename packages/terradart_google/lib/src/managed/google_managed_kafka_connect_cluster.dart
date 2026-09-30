@@ -63,9 +63,9 @@ final class ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs {
     required this.primarySubnet,
   });
 
-  final TfArg<List<Object?>>? additionalSubnets;
+  final TfArg<List<String>>? additionalSubnets;
 
-  final TfArg<List<Object?>>? dnsDomainNames;
+  final TfArg<List<String>>? dnsDomainNames;
 
   final TfArg<String> primarySubnet;
 

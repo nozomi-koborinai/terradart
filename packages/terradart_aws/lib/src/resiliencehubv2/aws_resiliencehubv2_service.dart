@@ -30,7 +30,7 @@ final class Resiliencehubv2ServiceAssociatedSystem {
 
   final TfArg<String> systemArn;
 
-  final TfArg<List<Object?>>? userJourneyIds;
+  final TfArg<List<String>>? userJourneyIds;
 
   Map<String, Object?> encode() => {
     'system_arn': systemArn.toTfJson(),

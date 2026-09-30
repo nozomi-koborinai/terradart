@@ -40,7 +40,7 @@ final class ApigeeSecurityFeedbackFeedbackContexts {
 
   final TfArg<ApigeeSecurityFeedbackFeedbackContextsAttribute> attribute;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'attribute': attribute.toTfJson(),

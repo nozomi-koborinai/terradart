@@ -145,11 +145,11 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     this.privateEndpointOverride,
   });
 
-  final TfArg<List<Object?>>? allowedAudience;
+  final TfArg<List<String>>? allowedAudience;
 
-  final TfArg<List<Object?>>? allowedClients;
+  final TfArg<List<String>>? allowedClients;
 
-  final TfArg<List<Object?>>? allowedScopes;
+  final TfArg<List<String>>? allowedScopes;
 
   final TfArg<String> discoveryUrl;
 
@@ -280,7 +280,7 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String>? matchValueString;
 
-  final TfArg<List<Object?>>? matchValueStringList;
+  final TfArg<List<String>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),

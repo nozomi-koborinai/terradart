@@ -185,7 +185,7 @@ final class FinspaceKxClusterDatabaseCacheConfigurations {
 
   final TfArg<String> cacheType;
 
-  final TfArg<List<Object?>>? dbPaths;
+  final TfArg<List<String>>? dbPaths;
 
   Map<String, Object?> encode() => {
     'cache_type': cacheType.toTfJson(),
@@ -265,7 +265,7 @@ final class FinspaceKxClusterTickerplantLogConfiguration {
     required this.tickerplantLogVolumes,
   });
 
-  final TfArg<List<Object?>> tickerplantLogVolumes;
+  final TfArg<List<String>> tickerplantLogVolumes;
 
   Map<String, Object?> encode() => {
     'tickerplant_log_volumes': tickerplantLogVolumes.toTfJson(),

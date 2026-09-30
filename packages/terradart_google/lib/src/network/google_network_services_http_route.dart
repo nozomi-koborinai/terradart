@@ -96,17 +96,17 @@ final class NetworkServicesHttpRouteRulesActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<String>? maxAge;
 
@@ -249,7 +249,7 @@ final class NetworkServicesHttpRouteRulesActionRequestHeaderModifier {
 
   final TfArg<Map<String, String>>? add;
 
-  final TfArg<List<Object?>>? remove;
+  final TfArg<List<String>>? remove;
 
   final TfArg<Map<String, String>>? set;
 
@@ -305,7 +305,7 @@ final class NetworkServicesHttpRouteRulesActionResponseHeaderModifier {
 
   final TfArg<Map<String, String>>? add;
 
-  final TfArg<List<Object?>>? remove;
+  final TfArg<List<String>>? remove;
 
   final TfArg<Map<String, String>>? set;
 
@@ -330,7 +330,7 @@ final class NetworkServicesHttpRouteRulesActionRetryPolicy {
 
   final TfArg<String>? perTryTimeout;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),

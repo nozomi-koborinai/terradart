@@ -104,7 +104,7 @@ final class NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig {
     required this.targetProject,
   });
 
-  final TfArg<List<Object?>> domains;
+  final TfArg<List<String>> domains;
 
   final TfArg<String> targetNetwork;
 

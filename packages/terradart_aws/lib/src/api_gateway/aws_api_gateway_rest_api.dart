@@ -74,7 +74,7 @@ final class ApiGatewayRestApiEndpointConfiguration {
 
   final List<TfArg<ApiGatewayRestApiEndpointConfigurationTypes>> types;
 
-  final TfArg<List<Object?>>? vpcEndpointIds;
+  final TfArg<List<String>>? vpcEndpointIds;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),

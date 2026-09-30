@@ -64,7 +64,7 @@ final class ConfigRemediationConfigurationParameter {
 
   final TfArg<String>? staticValue;
 
-  final TfArg<List<Object?>>? staticValues;
+  final TfArg<List<String>>? staticValues;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),

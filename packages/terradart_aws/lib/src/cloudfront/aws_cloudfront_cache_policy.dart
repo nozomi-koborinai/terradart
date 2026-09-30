@@ -87,7 +87,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -136,7 +136,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -187,7 +187,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }

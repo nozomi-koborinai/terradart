@@ -455,7 +455,7 @@ final class PubsubTopicMessageStoragePolicy {
     this.enforceInTransit,
   });
 
-  final TfArg<List<Object?>> allowedPersistenceRegions;
+  final TfArg<List<String>> allowedPersistenceRegions;
 
   final TfArg<bool>? enforceInTransit;
 

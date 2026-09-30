@@ -48,7 +48,7 @@ final class MskClusterBrokerNodeGroupInfo {
 
   final TfArg<MskClusterBrokerNodeGroupInfoAzDistribution>? azDistribution;
 
-  final TfArg<List<Object?>> clientSubnets;
+  final TfArg<List<String>> clientSubnets;
 
   final TfArg<String> instanceType;
 
@@ -292,7 +292,7 @@ final class MskClusterClientAuthenticationSasl {
 final class MskClusterClientAuthenticationTls {
   const MskClusterClientAuthenticationTls({this.certificateAuthorityArns});
 
-  final TfArg<List<Object?>>? certificateAuthorityArns;
+  final TfArg<List<String>>? certificateAuthorityArns;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arns': ?certificateAuthorityArns?.toTfJson(),

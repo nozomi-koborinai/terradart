@@ -37,9 +37,9 @@ final class IamProjectAccessPolicyDetailsRules {
 
   final TfArg<IamProjectAccessPolicyDetailsRulesEffect> effect;
 
-  final TfArg<List<Object?>>? excludedPrincipals;
+  final TfArg<List<String>>? excludedPrincipals;
 
-  final TfArg<List<Object?>> principals;
+  final TfArg<List<String>> principals;
 
   final List<IamProjectAccessPolicyDetailsRulesConditions>? conditions;
 
@@ -94,9 +94,9 @@ final class IamProjectAccessPolicyDetailsRulesOperation {
     required this.permissions,
   });
 
-  final TfArg<List<Object?>>? excludedPermissions;
+  final TfArg<List<String>>? excludedPermissions;
 
-  final TfArg<List<Object?>> permissions;
+  final TfArg<List<String>> permissions;
 
   Map<String, Object?> encode() => {
     'excluded_permissions': ?excludedPermissions?.toTfJson(),

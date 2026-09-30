@@ -189,7 +189,7 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow {
 
   final TfArg<bool>? enablePkce;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlowClientSecret?
   clientSecret;

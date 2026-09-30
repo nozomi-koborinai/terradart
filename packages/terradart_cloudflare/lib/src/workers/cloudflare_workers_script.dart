@@ -291,9 +291,9 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? algorithm;
 
-  final TfArg<List<Object?>>? allowedDestinationAddresses;
+  final TfArg<List<String>>? allowedDestinationAddresses;
 
-  final TfArg<List<Object?>>? allowedSenderAddresses;
+  final TfArg<List<String>>? allowedSenderAddresses;
 
   final TfArg<String>? appId;
 
@@ -510,7 +510,7 @@ enum WorkersScriptBindingsUsages implements TerraformEnum {
 final class WorkersScriptBindingsOutbound {
   const WorkersScriptBindingsOutbound({this.params, this.worker});
 
-  final TfArg<List<Object?>>? params;
+  final TfArg<List<String>>? params;
 
   final WorkersScriptBindingsOutboundWorker? worker;
 
@@ -698,11 +698,11 @@ final class WorkersScriptMigrations {
     this.transferredClasses,
   });
 
-  final TfArg<List<Object?>>? deletedClasses;
+  final TfArg<List<String>>? deletedClasses;
 
-  final TfArg<List<Object?>>? newClasses;
+  final TfArg<List<String>>? newClasses;
 
-  final TfArg<List<Object?>>? newSqliteClasses;
+  final TfArg<List<String>>? newSqliteClasses;
 
   final TfArg<String>? newTag;
 
@@ -756,11 +756,11 @@ final class WorkersScriptMigrationsSteps {
     this.transferredClasses,
   });
 
-  final TfArg<List<Object?>>? deletedClasses;
+  final TfArg<List<String>>? deletedClasses;
 
-  final TfArg<List<Object?>>? newClasses;
+  final TfArg<List<String>>? newClasses;
 
-  final TfArg<List<Object?>>? newSqliteClasses;
+  final TfArg<List<String>>? newSqliteClasses;
 
   final List<WorkersScriptMigrationsStepsRenamedClasses>? renamedClasses;
 
@@ -894,7 +894,7 @@ final class WorkersScriptObservabilityLogs {
     this.persist,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool> enabled;
 
@@ -925,7 +925,7 @@ final class WorkersScriptObservabilityTraces {
     this.propagationPolicy,
   });
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<bool>? enabled;
 

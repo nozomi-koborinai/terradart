@@ -676,7 +676,7 @@ final class SagemakerSpaceSpaceSettingsJupyterServerAppSettings {
     required this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<SagemakerSpaceSpaceSettingsJupyterServerAppSettingsCodeRepository>?
   codeRepository;
@@ -936,7 +936,7 @@ final class SagemakerSpaceSpaceSettingsKernelGatewayAppSettings {
     required this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<SagemakerSpaceSpaceSettingsKernelGatewayAppSettingsCustomImage>?
   customImage;

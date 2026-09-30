@@ -51,7 +51,7 @@ final class Resiliencehubv2InputSourceResourceConfigurationEks {
 
   final TfArg<String> clusterArn;
 
-  final TfArg<List<Object?>> namespaces;
+  final TfArg<List<String>> namespaces;
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
@@ -70,7 +70,7 @@ final class Resiliencehubv2InputSourceResourceConfigurationResourceTag {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),

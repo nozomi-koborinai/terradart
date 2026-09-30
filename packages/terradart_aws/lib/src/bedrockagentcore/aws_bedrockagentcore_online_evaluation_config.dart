@@ -49,9 +49,9 @@ final class BedrockagentcoreOnlineEvaluationConfigDataSourceConfigCloudwatchLogs
     required this.serviceNames,
   });
 
-  final TfArg<List<Object?>> logGroupNames;
+  final TfArg<List<String>> logGroupNames;
 
-  final TfArg<List<Object?>> serviceNames;
+  final TfArg<List<String>> serviceNames;
 
   Map<String, Object?> encode() => {
     'log_group_names': logGroupNames.toTfJson(),

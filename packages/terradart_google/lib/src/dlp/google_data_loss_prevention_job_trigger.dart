@@ -522,7 +522,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDi
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -590,7 +590,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesRe
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -1002,7 +1002,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -1037,7 +1037,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
     this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String>? pattern;
 
@@ -1147,7 +1147,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -1192,7 +1192,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwo
     this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String>? pattern;
 
@@ -1575,9 +1575,9 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
 
   final RefTo<GoogleStorageBucket> bucketName;
 
-  final TfArg<List<Object?>>? excludeRegex;
+  final TfArg<List<String>>? excludeRegex;
 
-  final TfArg<List<Object?>>? includeRegex;
+  final TfArg<List<String>>? includeRegex;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
@@ -1654,7 +1654,7 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<List<Object?>>? requiredFindingLabelKeys;
+  final TfArg<List<String>>? requiredFindingLabelKeys;
 
   final DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptions?
   tableOptions;

@@ -91,7 +91,7 @@ final class MagicTransitSiteLanStaticAddressing {
 final class MagicTransitSiteLanStaticAddressingDhcpRelay {
   const MagicTransitSiteLanStaticAddressingDhcpRelay({this.serverAddresses});
 
-  final TfArg<List<Object?>>? serverAddresses;
+  final TfArg<List<String>>? serverAddresses;
 
   Map<String, Object?> encode() => {
     'server_addresses': ?serverAddresses?.toTfJson(),
@@ -117,7 +117,7 @@ final class MagicTransitSiteLanStaticAddressingDhcpServer {
 
   final TfArg<String>? dnsServer;
 
-  final TfArg<List<Object?>>? dnsServers;
+  final TfArg<List<String>>? dnsServers;
 
   final TfArg<Map<String, String>>? reservations;
 

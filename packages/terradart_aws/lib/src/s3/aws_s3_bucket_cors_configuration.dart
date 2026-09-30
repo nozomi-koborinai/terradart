@@ -22,13 +22,13 @@ final class S3BucketCorsConfigurationCorsRule {
     this.maxAgeSeconds,
   });
 
-  final TfArg<List<Object?>>? allowedHeaders;
+  final TfArg<List<String>>? allowedHeaders;
 
-  final TfArg<List<Object?>> allowedMethods;
+  final TfArg<List<String>> allowedMethods;
 
-  final TfArg<List<Object?>> allowedOrigins;
+  final TfArg<List<String>> allowedOrigins;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<String>? id;
 

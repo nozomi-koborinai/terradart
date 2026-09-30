@@ -301,7 +301,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     this.file,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String> interpreter;
 
@@ -404,7 +404,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     this.file,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String> interpreter;
 
@@ -774,7 +774,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.source,
   });
 
-  final TfArg<List<Object?>>? properties;
+  final TfArg<List<String>>? properties;
 
   final OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSource
   source;
@@ -1018,7 +1018,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
 
   final TfArg<String> archiveType;
 
-  final TfArg<List<Object?>> components;
+  final TfArg<List<String>> components;
 
   final TfArg<String> distribution;
 
@@ -1069,7 +1069,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 
@@ -1096,7 +1096,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 
@@ -1195,7 +1195,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestrationScopeSelecto
     this.includedLocations,
   });
 
-  final TfArg<List<Object?>>? includedLocations;
+  final TfArg<List<String>>? includedLocations;
 
   Map<String, Object?> encode() => {
     'included_locations': ?includedLocations?.toTfJson(),
@@ -1211,9 +1211,9 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestrationScopeSelecto
     this.includedProjects,
   });
 
-  final TfArg<List<Object?>>? includedFolders;
+  final TfArg<List<String>>? includedFolders;
 
-  final TfArg<List<Object?>>? includedProjects;
+  final TfArg<List<String>>? includedProjects;
 
   Map<String, Object?> encode() => {
     'included_folders': ?includedFolders?.toTfJson(),

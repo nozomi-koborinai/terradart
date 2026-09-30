@@ -154,7 +154,7 @@ final class CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods {
   >
   cachedMethods;
 
-  final TfArg<List<Object?>> items;
+  final TfArg<List<String>> items;
 
   Map<String, Object?> encode() => {
     'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
@@ -269,7 +269,7 @@ final class CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -416,7 +416,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods 
   >
   cachedMethods;
 
-  final TfArg<List<Object?>> items;
+  final TfArg<List<String>> items;
 
   Map<String, Object?> encode() => {
     'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
@@ -531,7 +531,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroup
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -810,7 +810,7 @@ final class CloudfrontMultitenantDistributionOriginGroupFailoverCriteria {
     required this.statusCodes,
   });
 
-  final TfArg<List<Object?>> statusCodes;
+  final TfArg<List<num>> statusCodes;
 
   Map<String, Object?> encode() => {'status_codes': statusCodes.toTfJson()};
 }
@@ -852,7 +852,7 @@ final class CloudfrontMultitenantDistributionRestrictionsGeoRestriction {
     required this.restrictionType,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   final TfArg<
     CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType

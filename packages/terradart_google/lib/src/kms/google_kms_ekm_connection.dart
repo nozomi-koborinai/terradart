@@ -56,7 +56,7 @@ final class KmsEkmConnectionServiceResolversServerCertificates {
 
   final TfArg<String> rawDer;
 
-  final TfArg<List<Object?>>? subjectAlternativeDnsNames;
+  final TfArg<List<String>>? subjectAlternativeDnsNames;
 
   Map<String, Object?> encode() => {
     'raw_der': rawDer.toTfJson(),

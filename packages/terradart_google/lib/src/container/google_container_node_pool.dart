@@ -304,7 +304,7 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<String>? nodeGroup;
 
-  final TfArg<List<Object?>>? oauthScopes;
+  final TfArg<List<String>>? oauthScopes;
 
   final TfArg<bool>? preemptible;
 
@@ -316,9 +316,9 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<bool>? spot;
 
-  final TfArg<List<Object?>>? storagePools;
+  final TfArg<List<String>>? storagePools;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final ContainerNodePoolNodeConfigAdvancedMachineFeatures?
   advancedMachineFeatures;
@@ -553,7 +553,7 @@ final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConf
     required this.gcpSecretManagerCertificateConfig,
   });
 
-  final TfArg<List<Object?>> fqdns;
+  final TfArg<List<String>> fqdns;
 
   final ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
@@ -612,7 +612,7 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts {
     this.header,
   });
 
-  final TfArg<List<Object?>>? capabilities;
+  final TfArg<List<String>>? capabilities;
 
   final TfArg<String>? dialTimeout;
 
@@ -721,7 +721,7 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader 
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -891,7 +891,7 @@ final class ContainerNodePoolNodeConfigKubeletConfig {
     this.topologyManager,
   });
 
-  final TfArg<List<Object?>>? allowedUnsafeSysctls;
+  final TfArg<List<String>>? allowedUnsafeSysctls;
 
   final TfArg<num>? containerLogMaxFiles;
 
@@ -1403,7 +1403,7 @@ final class ContainerNodePoolNodeConfigReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': consumeReservationType.toTfJson(),
@@ -1495,7 +1495,7 @@ final class ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),

@@ -44,11 +44,11 @@ final class QuicksightThemeConfigurationDataColorPalette {
     this.minMaxGradient,
   });
 
-  final TfArg<List<Object?>>? colors;
+  final TfArg<List<String>>? colors;
 
   final TfArg<String>? emptyFillColor;
 
-  final TfArg<List<Object?>>? minMaxGradient;
+  final TfArg<List<String>>? minMaxGradient;
 
   Map<String, Object?> encode() => {
     'colors': ?colors?.toTfJson(),
@@ -242,7 +242,7 @@ final class QuicksightThemePermissions {
     required this.principal,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final TfArg<String> principal;
 

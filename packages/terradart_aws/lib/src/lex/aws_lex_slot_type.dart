@@ -23,7 +23,7 @@ enum LexSlotTypeValueSelectionStrategy implements TerraformEnum {
 final class LexSlotTypeEnumerationValue {
   const LexSlotTypeEnumerationValue({this.synonyms, required this.value});
 
-  final TfArg<List<Object?>>? synonyms;
+  final TfArg<List<String>>? synonyms;
 
   final TfArg<String> value;
 

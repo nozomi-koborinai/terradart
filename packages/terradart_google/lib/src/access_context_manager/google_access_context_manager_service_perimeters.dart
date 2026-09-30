@@ -76,11 +76,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpec {
     this.vpcAccessibleServices,
   });
 
-  final TfArg<List<Object?>>? accessLevels;
+  final TfArg<List<String>>? accessLevels;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? restrictedServices;
+  final TfArg<List<String>>? restrictedServices;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersSpecEgressPolicies
@@ -143,7 +143,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
     this.sources,
   });
 
-  final TfArg<List<Object?>>? identities;
+  final TfArg<List<String>>? identities;
 
   final TfArg<
     AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoliciesEgressFromIdentityType
@@ -247,11 +247,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
     this.operations,
   });
 
-  final TfArg<List<Object?>>? externalResources;
+  final TfArg<List<String>>? externalResources;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<String>>? roles;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoliciesEgressToOperations
@@ -344,7 +344,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
     this.sources,
   });
 
-  final TfArg<List<Object?>>? identities;
+  final TfArg<List<String>>? identities;
 
   final TfArg<
     AccessContextManagerServicePerimetersServicePerimetersSpecIngressPoliciesIngressFromIdentityType
@@ -427,9 +427,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
     this.operations,
   });
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<String>>? roles;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersSpecIngressPoliciesIngressToOperations
@@ -497,11 +497,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecVpcAccessi
     this.allowedServicePatterns,
   });
 
-  final TfArg<List<Object?>>? allowedServices;
+  final TfArg<List<String>>? allowedServices;
 
   final TfArg<bool>? enableRestriction;
 
-  final TfArg<List<Object?>>? servicePatternsEnforcementScopes;
+  final TfArg<List<String>>? servicePatternsEnforcementScopes;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersSpecVpcAccessibleServicesAllowedServicePatterns
@@ -595,11 +595,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatus {
     this.vpcAccessibleServices,
   });
 
-  final TfArg<List<Object?>>? accessLevels;
+  final TfArg<List<String>>? accessLevels;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? restrictedServices;
+  final TfArg<List<String>>? restrictedServices;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersStatusEgressPolicies
@@ -662,7 +662,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
     this.sources,
   });
 
-  final TfArg<List<Object?>>? identities;
+  final TfArg<List<String>>? identities;
 
   final TfArg<
     AccessContextManagerServicePerimetersServicePerimetersStatusEgressPoliciesEgressFromIdentityType
@@ -766,11 +766,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
     this.operations,
   });
 
-  final TfArg<List<Object?>>? externalResources;
+  final TfArg<List<String>>? externalResources;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<String>>? roles;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersStatusEgressPoliciesEgressToOperations
@@ -863,7 +863,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
     this.sources,
   });
 
-  final TfArg<List<Object?>>? identities;
+  final TfArg<List<String>>? identities;
 
   final TfArg<
     AccessContextManagerServicePerimetersServicePerimetersStatusIngressPoliciesIngressFromIdentityType
@@ -946,9 +946,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
     this.operations,
   });
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<String>>? roles;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersStatusIngressPoliciesIngressToOperations
@@ -1016,11 +1016,11 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusVpcAcces
     this.allowedServicePatterns,
   });
 
-  final TfArg<List<Object?>>? allowedServices;
+  final TfArg<List<String>>? allowedServices;
 
   final TfArg<bool>? enableRestriction;
 
-  final TfArg<List<Object?>>? servicePatternsEnforcementScopes;
+  final TfArg<List<String>>? servicePatternsEnforcementScopes;
 
   final List<
     AccessContextManagerServicePerimetersServicePerimetersStatusVpcAccessibleServicesAllowedServicePatterns

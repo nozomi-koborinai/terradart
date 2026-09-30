@@ -220,7 +220,7 @@ final class CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings {
     this.enableRecaptcha,
   });
 
-  final TfArg<List<Object?>>? allowedOrigins;
+  final TfArg<List<String>>? allowedOrigins;
 
   final TfArg<bool>? enableOriginCheck;
 
@@ -490,7 +490,7 @@ final class CesAppLanguageSettings {
 
   final TfArg<String>? fallbackAction;
 
-  final TfArg<List<Object?>>? supportedLanguageCodes;
+  final TfArg<List<String>>? supportedLanguageCodes;
 
   Map<String, Object?> encode() => {
     'default_language_code': ?defaultLanguageCode?.toTfJson(),
@@ -728,7 +728,7 @@ final class CesAppVariableDeclarationsSchema {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? enumCase;
+  final TfArg<List<String>>? enumCase;
 
   final TfArg<String>? items;
 
@@ -740,7 +740,7 @@ final class CesAppVariableDeclarationsSchema {
 
   final TfArg<String>? ref;
 
-  final TfArg<List<Object?>>? required;
+  final TfArg<List<String>>? required;
 
   final TfArg<String>? title;
 
@@ -773,7 +773,7 @@ final class CesAppVariableDeclarationsSchema {
 final class CesAppVpcScSettings {
   const CesAppVpcScSettings({this.allowedOrigins});
 
-  final TfArg<List<Object?>>? allowedOrigins;
+  final TfArg<List<String>>? allowedOrigins;
 
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),

@@ -152,9 +152,9 @@ final class AiSearchInstancePublicEndpointParams {
     this.searchEndpoint,
   });
 
-  final TfArg<List<Object?>>? authorizedHosts;
+  final TfArg<List<String>>? authorizedHosts;
 
-  final TfArg<List<Object?>>? customDomains;
+  final TfArg<List<String>>? customDomains;
 
   final TfArg<bool>? defaultDomainEnabled;
 
@@ -331,9 +331,9 @@ final class AiSearchInstanceSourceParams {
     this.webCrawler,
   });
 
-  final TfArg<List<Object?>>? excludeItems;
+  final TfArg<List<String>>? excludeItems;
 
-  final TfArg<List<Object?>>? includeItems;
+  final TfArg<List<String>>? includeItems;
 
   final TfArg<String>? prefix;
 
@@ -449,7 +449,7 @@ final class AiSearchInstanceSourceParamsWebCrawlerParseOptions {
 
   final TfArg<bool>? includeImages;
 
-  final TfArg<List<Object?>>? specificSitemaps;
+  final TfArg<List<String>>? specificSitemaps;
 
   final TfArg<bool>? useBrowserRendering;
 

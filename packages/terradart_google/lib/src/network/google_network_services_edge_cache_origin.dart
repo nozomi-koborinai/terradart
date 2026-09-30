@@ -159,7 +159,7 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite {
 final class NetworkServicesEdgeCacheOriginOriginRedirect {
   const NetworkServicesEdgeCacheOriginOriginRedirect({this.redirectConditions});
 
-  final TfArg<List<Object?>>? redirectConditions;
+  final TfArg<List<String>>? redirectConditions;
 
   Map<String, Object?> encode() => {
     'redirect_conditions': ?redirectConditions?.toTfJson(),

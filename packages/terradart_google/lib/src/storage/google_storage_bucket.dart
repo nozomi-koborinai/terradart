@@ -69,11 +69,11 @@ final class StorageBucketCors {
 
   final TfArg<num>? maxAgeSeconds;
 
-  final TfArg<List<Object?>>? method;
+  final TfArg<List<String>>? method;
 
-  final TfArg<List<Object?>>? origin;
+  final TfArg<List<String>>? origin;
 
-  final TfArg<List<Object?>>? responseHeader;
+  final TfArg<List<String>>? responseHeader;
 
   Map<String, Object?> encode() => {
     'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
@@ -89,7 +89,7 @@ final class StorageBucketCors {
 final class StorageBucketCustomPlacementConfig {
   const StorageBucketCustomPlacementConfig({required this.dataLocations});
 
-  final TfArg<List<Object?>> dataLocations;
+  final TfArg<List<String>> dataLocations;
 
   Map<String, Object?> encode() => {'data_locations': dataLocations.toTfJson()};
 }
@@ -223,7 +223,7 @@ final class StorageBucketIpFilterPublicNetworkSource {
     required this.allowedIpCidrRanges,
   });
 
-  final TfArg<List<Object?>> allowedIpCidrRanges;
+  final TfArg<List<String>> allowedIpCidrRanges;
 
   Map<String, Object?> encode() => {
     'allowed_ip_cidr_ranges': allowedIpCidrRanges.toTfJson(),
@@ -239,7 +239,7 @@ final class StorageBucketIpFilterVpcNetworkSources {
     required this.network,
   });
 
-  final TfArg<List<Object?>> allowedIpCidrRanges;
+  final TfArg<List<String>> allowedIpCidrRanges;
 
   final RefTo<GoogleComputeNetwork> network;
 
@@ -321,11 +321,11 @@ final class StorageBucketLifecycleRuleCondition {
 
   final TfArg<num>? daysSinceNoncurrentTime;
 
-  final TfArg<List<Object?>>? matchesPrefix;
+  final TfArg<List<String>>? matchesPrefix;
 
-  final TfArg<List<Object?>>? matchesStorageClass;
+  final TfArg<List<String>>? matchesStorageClass;
 
-  final TfArg<List<Object?>>? matchesSuffix;
+  final TfArg<List<String>>? matchesSuffix;
 
   final TfArg<String>? noncurrentTimeBefore;
 

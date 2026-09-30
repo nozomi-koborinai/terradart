@@ -164,7 +164,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -177,7 +177,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }

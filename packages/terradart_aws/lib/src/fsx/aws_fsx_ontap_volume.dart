@@ -118,7 +118,7 @@ final class FsxOntapVolumeAggregateConfiguration {
     this.constituentsPerAggregate,
   });
 
-  final TfArg<List<Object?>>? aggregates;
+  final TfArg<List<String>>? aggregates;
 
   final TfArg<num>? constituentsPerAggregate;
 

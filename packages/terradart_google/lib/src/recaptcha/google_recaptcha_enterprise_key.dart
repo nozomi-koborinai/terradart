@@ -18,7 +18,7 @@ final class RecaptchaEnterpriseKeyAndroidSettings {
 
   final TfArg<bool>? allowAllPackageNames;
 
-  final TfArg<List<Object?>>? allowedPackageNames;
+  final TfArg<List<String>>? allowedPackageNames;
 
   Map<String, Object?> encode() => {
     'allow_all_package_names': ?allowAllPackageNames?.toTfJson(),
@@ -37,7 +37,7 @@ final class RecaptchaEnterpriseKeyIosSettings {
 
   final TfArg<bool>? allowAllBundleIds;
 
-  final TfArg<List<Object?>>? allowedBundleIds;
+  final TfArg<List<String>>? allowedBundleIds;
 
   Map<String, Object?> encode() => {
     'allow_all_bundle_ids': ?allowAllBundleIds?.toTfJson(),
@@ -137,7 +137,7 @@ final class RecaptchaEnterpriseKeyWebSettings {
 
   final TfArg<bool>? allowAmpTraffic;
 
-  final TfArg<List<Object?>>? allowedDomains;
+  final TfArg<List<String>>? allowedDomains;
 
   final TfArg<RecaptchaEnterpriseKeyWebSettingsChallengeSecurityPreference>?
   challengeSecurityPreference;

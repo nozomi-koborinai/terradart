@@ -66,7 +66,7 @@ final class AppstreamStackStorageConnectors {
 
   final TfArg<AppstreamStackStorageConnectorsConnectorType> connectorType;
 
-  final TfArg<List<Object?>>? domains;
+  final TfArg<List<String>>? domains;
 
   final TfArg<String>? resourceIdentifier;
 

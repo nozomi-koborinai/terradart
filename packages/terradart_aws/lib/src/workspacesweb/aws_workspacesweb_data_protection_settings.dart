@@ -20,9 +20,9 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration {
 
   final TfArg<num>? globalConfidenceLevel;
 
-  final TfArg<List<Object?>>? globalEnforcedUrls;
+  final TfArg<List<String>>? globalEnforcedUrls;
 
-  final TfArg<List<Object?>>? globalExemptUrls;
+  final TfArg<List<String>>? globalExemptUrls;
 
   final List<
     WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern
@@ -57,9 +57,9 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 
   final TfArg<num>? confidenceLevel;
 
-  final TfArg<List<Object?>>? enforcedUrls;
+  final TfArg<List<String>>? enforcedUrls;
 
-  final TfArg<List<Object?>>? exemptUrls;
+  final TfArg<List<String>>? exemptUrls;
 
   final List<
     WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern

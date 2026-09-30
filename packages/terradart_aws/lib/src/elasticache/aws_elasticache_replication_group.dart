@@ -344,11 +344,11 @@ final class ElasticacheReplicationGroupNodeGroupConfiguration {
 
   final TfArg<String>? primaryOutpostArn;
 
-  final TfArg<List<Object?>>? replicaAvailabilityZones;
+  final TfArg<List<String>>? replicaAvailabilityZones;
 
   final TfArg<num>? replicaCount;
 
-  final TfArg<List<Object?>>? replicaOutpostArns;
+  final TfArg<List<String>>? replicaOutpostArns;
 
   final TfArg<String>? slots;
 

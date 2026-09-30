@@ -35,7 +35,7 @@ enum LookerInstancePlatformEdition implements TerraformEnum {
 final class LookerInstanceAdminSettings {
   const LookerInstanceAdminSettings({this.allowedEmailDomains});
 
-  final TfArg<List<Object?>>? allowedEmailDomains;
+  final TfArg<List<String>>? allowedEmailDomains;
 
   Map<String, Object?> encode() => {
     'allowed_email_domains': ?allowedEmailDomains?.toTfJson(),
@@ -51,7 +51,7 @@ final class LookerInstanceControlledEgressConfig {
     this.marketplaceEnabled,
   });
 
-  final TfArg<List<Object?>>? egressFqdns;
+  final TfArg<List<String>>? egressFqdns;
 
   final TfArg<bool>? marketplaceEnabled;
 
@@ -317,7 +317,7 @@ final class LookerInstancePeriodicExportConfigStartTime {
 final class LookerInstancePscConfig {
   const LookerInstancePscConfig({this.allowedVpcs, this.serviceAttachments});
 
-  final TfArg<List<Object?>>? allowedVpcs;
+  final TfArg<List<String>>? allowedVpcs;
 
   final List<LookerInstancePscConfigServiceAttachments>? serviceAttachments;
 

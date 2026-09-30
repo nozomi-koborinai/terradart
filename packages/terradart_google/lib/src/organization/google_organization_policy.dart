@@ -53,7 +53,7 @@ final class OrganizationPolicyListPolicyAllow {
 
   final TfArg<bool>? all;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
@@ -69,7 +69,7 @@ final class OrganizationPolicyListPolicyDeny {
 
   final TfArg<bool>? all;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),

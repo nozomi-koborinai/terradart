@@ -52,7 +52,7 @@ final class DiscoveryEngineSearchEngineKnowledgeGraphConfig {
     this.featureConfig,
   });
 
-  final TfArg<List<Object?>>? cloudKnowledgeGraphTypes;
+  final TfArg<List<String>>? cloudKnowledgeGraphTypes;
 
   final TfArg<bool>? enableCloudKnowledgeGraph;
 
@@ -114,7 +114,7 @@ final class DiscoveryEngineSearchEngineSearchEngineConfig {
   >?
   requiredSubscriptionTier;
 
-  final TfArg<List<Object?>>? searchAddOns;
+  final TfArg<List<String>>? searchAddOns;
 
   final TfArg<DiscoveryEngineSearchEngineSearchTier>? searchTier;
 

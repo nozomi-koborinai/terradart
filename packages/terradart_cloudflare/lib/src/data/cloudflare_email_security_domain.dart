@@ -32,7 +32,7 @@ final class DataEmailSecurityDomainFilter {
 
   final TfArg<DataEmailSecurityDomainFilterDirection>? direction;
 
-  final TfArg<List<Object?>>? domain;
+  final TfArg<List<String>>? domain;
 
   final TfArg<String>? integrationId;
 

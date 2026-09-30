@@ -65,7 +65,7 @@ final class AiGatewayDlp {
 
   final TfArg<bool> enabled;
 
-  final TfArg<List<Object?>>? profiles;
+  final TfArg<List<String>>? profiles;
 
   final List<AiGatewayDlpPolicies>? policies;
 
@@ -107,7 +107,7 @@ final class AiGatewayDlpPolicies {
 
   final TfArg<String> id;
 
-  final TfArg<List<Object?>> profiles;
+  final TfArg<List<String>> profiles;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -699,7 +699,7 @@ final class AiGatewaySpendLimitsRulesAiGatewayProvider {
 
   final TfArg<AiGatewaySpendLimitsRulesAiGatewayProviderMode> mode;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
@@ -724,7 +724,7 @@ final class AiGatewaySpendLimitsRulesMetadata {
 
   final TfArg<AiGatewaySpendLimitsRulesMetadataMode> mode;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
@@ -753,7 +753,7 @@ final class AiGatewaySpendLimitsRulesModel {
 
   final TfArg<AiGatewaySpendLimitsRulesModelMode> mode;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),

@@ -89,7 +89,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<bool>? enableThirdPersonMemories;
 
-  final TfArg<List<Object?>>? scopeKeys;
+  final TfArg<List<String>>? scopeKeys;
 
   final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig?
   consolidationConfig;
@@ -749,7 +749,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
     this.schemaConfigs,
   });
 
-  final TfArg<List<Object?>>? scopeKeys;
+  final TfArg<List<String>>? scopeKeys;
 
   final List<
     VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs

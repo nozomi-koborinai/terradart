@@ -13,7 +13,7 @@ const Set<String> _googleHealthcareWorkspaceSensitive = <String>{};
 final class HealthcareWorkspaceSettings {
   const HealthcareWorkspaceSettings({required this.dataProjectIds});
 
-  final TfArg<List<Object?>> dataProjectIds;
+  final TfArg<List<String>> dataProjectIds;
 
   Map<String, Object?> encode() => {
     'data_project_ids': dataProjectIds.toTfJson(),

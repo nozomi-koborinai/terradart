@@ -114,7 +114,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
     this.postCallAnalyticsSettings,
   });
 
-  final TfArg<List<Object?>>? callAnalyticsStreamCategories;
+  final TfArg<List<String>>? callAnalyticsStreamCategories;
 
   final TfArg<
     ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType
@@ -653,7 +653,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
     required this.ruleName,
   });
 
-  final TfArg<List<Object?>> keywords;
+  final TfArg<List<String>> keywords;
 
   final TfArg<bool>? negate;
 

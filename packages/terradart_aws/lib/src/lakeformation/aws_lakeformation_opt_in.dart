@@ -327,7 +327,7 @@ final class LakeformationOptInResourceDataLfTag {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -368,7 +368,7 @@ final class LakeformationOptInResourceDataLfTagPolicy {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<List<Object?>>? expression;
+  final TfArg<List<String>>? expression;
 
   final TfArg<String>? expressionName;
 
@@ -423,7 +423,7 @@ final class LakeformationOptInResourceDataTableWithColumns {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<List<Object?>>? columnNames;
+  final TfArg<List<String>>? columnNames;
 
   final TfArg<String> databaseName;
 
@@ -450,7 +450,7 @@ final class LakeformationOptInResourceDataTableWithColumnsColumnWildcard {
     this.excludedColumnNames,
   });
 
-  final TfArg<List<Object?>>? excludedColumnNames;
+  final TfArg<List<String>>? excludedColumnNames;
 
   Map<String, Object?> encode() => {
     'excluded_column_names': ?excludedColumnNames?.toTfJson(),

@@ -195,7 +195,7 @@ final class DialogflowCxAgentGitIntegrationSettingsGithubSettings {
 
   final TfArg<String>? accessToken;
 
-  final TfArg<List<Object?>>? branches;
+  final TfArg<List<String>>? branches;
 
   final TfArg<String>? displayName;
 

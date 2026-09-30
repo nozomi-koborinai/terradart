@@ -75,7 +75,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<String>? appsDomain;
 
-  final TfArg<List<Object?>>? attributes;
+  final TfArg<List<String>>? attributes;
 
   final TfArg<String>? authUrl;
 
@@ -87,7 +87,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<String>? certsUrl;
 
-  final TfArg<List<Object?>>? claims;
+  final TfArg<List<String>>? claims;
 
   final TfArg<String>? clientId;
 
@@ -105,7 +105,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? forceAuthn;
 
-  final TfArg<List<Object?>>? idpPublicCerts;
+  final TfArg<List<String>>? idpPublicCerts;
 
   final TfArg<String>? issuerUrl;
 
@@ -123,7 +123,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? restrictToAccountMembers;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<bool>? signRequest;
 

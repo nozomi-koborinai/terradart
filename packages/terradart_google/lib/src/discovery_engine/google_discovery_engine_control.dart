@@ -453,7 +453,7 @@ final class DiscoveryEngineControlRedirectAction {
 final class DiscoveryEngineControlSynonymsAction {
   const DiscoveryEngineControlSynonymsAction({this.synonyms});
 
-  final TfArg<List<Object?>>? synonyms;
+  final TfArg<List<String>>? synonyms;
 
   Map<String, Object?> encode() => {'synonyms': ?synonyms?.toTfJson()};
 }

@@ -13,7 +13,7 @@ const Set<String> _awsCloudwatchAlarmMuteRuleSensitive = <String>{};
 final class CloudwatchAlarmMuteRuleMuteTargets {
   const CloudwatchAlarmMuteRuleMuteTargets({required this.alarmNames});
 
-  final TfArg<List<Object?>> alarmNames;
+  final TfArg<List<String>> alarmNames;
 
   Map<String, Object?> encode() => {'alarm_names': alarmNames.toTfJson()};
 }

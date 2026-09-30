@@ -24,7 +24,7 @@ final class DataSecretsStoreSecretFilter {
 
   final TfArg<DataSecretsStoreSecretFilterOrder>? order;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String>? search;
 

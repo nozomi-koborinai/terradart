@@ -27,7 +27,7 @@ final class EmailRoutingRuleActions {
 
   final TfArg<EmailRoutingRuleActionsType> type;
 
-  final TfArg<List<Object?>>? value;
+  final TfArg<List<String>>? value;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),

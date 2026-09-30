@@ -283,13 +283,13 @@ final class ComposerEnvironmentConfigNodeConfig {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<List<Object?>>? oauthScopes;
+  final TfArg<List<String>>? oauthScopes;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final TfArg<String>? zone;
 

@@ -150,19 +150,19 @@ final class CodepipelineStageAction {
 
   final TfArg<CodepipelineStageActionCategory> category;
 
-  final TfArg<List<Object?>>? commands;
+  final TfArg<List<String>>? commands;
 
   final TfArg<Map<String, String>>? configuration;
 
-  final TfArg<List<Object?>>? inputArtifacts;
+  final TfArg<List<String>>? inputArtifacts;
 
   final TfArg<String> name;
 
   final TfArg<String>? namespace;
 
-  final TfArg<List<Object?>>? outputArtifacts;
+  final TfArg<List<String>>? outputArtifacts;
 
-  final TfArg<List<Object?>>? outputVariables;
+  final TfArg<List<String>>? outputVariables;
 
   final TfArg<CodepipelineStageActionOwner> owner;
 
@@ -239,7 +239,7 @@ final class CodepipelineStageActionOutputArtifactsForComputeAction {
     required this.name,
   });
 
-  final TfArg<List<Object?>>? files;
+  final TfArg<List<String>>? files;
 
   final TfArg<String> name;
 
@@ -294,11 +294,11 @@ final class CodepipelineStageBeforeEntryConditionRule {
     required this.ruleTypeId,
   });
 
-  final TfArg<List<Object?>>? commands;
+  final TfArg<List<String>>? commands;
 
   final TfArg<Map<String, String>>? configuration;
 
-  final TfArg<List<Object?>>? inputArtifacts;
+  final TfArg<List<String>>? inputArtifacts;
 
   final TfArg<String> name;
 
@@ -415,11 +415,11 @@ final class CodepipelineStageOnFailureConditionRule {
     required this.ruleTypeId,
   });
 
-  final TfArg<List<Object?>>? commands;
+  final TfArg<List<String>>? commands;
 
   final TfArg<Map<String, String>>? configuration;
 
-  final TfArg<List<Object?>>? inputArtifacts;
+  final TfArg<List<String>>? inputArtifacts;
 
   final TfArg<String> name;
 
@@ -536,11 +536,11 @@ final class CodepipelineStageOnSuccessConditionRule {
     required this.ruleTypeId,
   });
 
-  final TfArg<List<Object?>>? commands;
+  final TfArg<List<String>>? commands;
 
   final TfArg<Map<String, String>>? configuration;
 
-  final TfArg<List<Object?>>? inputArtifacts;
+  final TfArg<List<String>>? inputArtifacts;
 
   final TfArg<String> name;
 
@@ -644,7 +644,7 @@ final class CodepipelineTriggerGitConfigurationPullRequest {
     this.filePaths,
   });
 
-  final TfArg<List<Object?>>? events;
+  final TfArg<List<String>>? events;
 
   final CodepipelineTriggerGitConfigurationPullRequestBranches? branches;
 
@@ -666,9 +666,9 @@ final class CodepipelineTriggerGitConfigurationPullRequestBranches {
     this.includes,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? includes;
+  final TfArg<List<String>>? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -685,9 +685,9 @@ final class CodepipelineTriggerGitConfigurationPullRequestFilePaths {
     this.includes,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? includes;
+  final TfArg<List<String>>? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -727,9 +727,9 @@ final class CodepipelineTriggerGitConfigurationPushBranches {
     this.includes,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? includes;
+  final TfArg<List<String>>? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -746,9 +746,9 @@ final class CodepipelineTriggerGitConfigurationPushFilePaths {
     this.includes,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? includes;
+  final TfArg<List<String>>? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -765,9 +765,9 @@ final class CodepipelineTriggerGitConfigurationPushTags {
     this.includes,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? includes;
+  final TfArg<List<String>>? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),

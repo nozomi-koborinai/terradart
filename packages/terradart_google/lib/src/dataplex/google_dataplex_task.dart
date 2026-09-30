@@ -114,9 +114,9 @@ final class DataplexTaskNotebook {
     this.infrastructureSpec,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
   final TfArg<String> notebook;
 
@@ -185,11 +185,11 @@ final class DataplexTaskNotebookInfrastructureSpecContainerImage {
 
   final TfArg<String>? image;
 
-  final TfArg<List<Object?>>? javaJars;
+  final TfArg<List<String>>? javaJars;
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<List<Object?>>? pythonPackages;
+  final TfArg<List<String>>? pythonPackages;
 
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
@@ -210,7 +210,7 @@ final class DataplexTaskNotebookInfrastructureSpecVpcNetwork {
 
   final DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget target;
 
-  final TfArg<List<Object?>>? networkTags;
+  final TfArg<List<String>>? networkTags;
 
   Map<String, Object?> encode() => {
     ...target.encode(),
@@ -286,9 +286,9 @@ final class DataplexTaskSpark {
     this.infrastructureSpec,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
   final DataplexTaskSparkDriver driver;
 
@@ -467,11 +467,11 @@ final class DataplexTaskSparkInfrastructureSpecContainerImage {
 
   final TfArg<String>? image;
 
-  final TfArg<List<Object?>>? javaJars;
+  final TfArg<List<String>>? javaJars;
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<List<Object?>>? pythonPackages;
+  final TfArg<List<String>>? pythonPackages;
 
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
@@ -492,7 +492,7 @@ final class DataplexTaskSparkInfrastructureSpecVpcNetwork {
 
   final DataplexTaskSparkInfrastructureSpecVpcNetworkTarget target;
 
-  final TfArg<List<Object?>>? networkTags;
+  final TfArg<List<String>>? networkTags;
 
   Map<String, Object?> encode() => {
     ...target.encode(),

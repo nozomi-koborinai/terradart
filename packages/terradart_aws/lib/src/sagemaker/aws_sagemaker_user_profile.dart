@@ -453,7 +453,7 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettings {
 
   final TfArg<String>? builtInLifecycleConfigArn;
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagement?
   appLifecycleManagement;
@@ -850,7 +850,7 @@ final class SagemakerUserProfileUserSettingsJupyterLabAppSettings {
 
   final TfArg<String>? builtInLifecycleConfigArn;
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagement?
   appLifecycleManagement;
@@ -1205,9 +1205,9 @@ final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsEmrSettings {
     this.executionRoleArns,
   });
 
-  final TfArg<List<Object?>>? assumableRoleArns;
+  final TfArg<List<String>>? assumableRoleArns;
 
-  final TfArg<List<Object?>>? executionRoleArns;
+  final TfArg<List<String>>? executionRoleArns;
 
   Map<String, Object?> encode() => {
     'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
@@ -1225,7 +1225,7 @@ final class SagemakerUserProfileUserSettingsJupyterServerAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerUserProfileUserSettingsJupyterServerAppSettingsCodeRepository
@@ -1487,7 +1487,7 @@ final class SagemakerUserProfileUserSettingsKernelGatewayAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerUserProfileUserSettingsKernelGatewayAppSettingsCustomImage

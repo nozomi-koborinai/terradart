@@ -389,7 +389,7 @@ final class EksNodeGroupRemoteAccess {
 
   final TfArg<String>? ec2SshKey;
 
-  final TfArg<List<Object?>>? sourceSecurityGroupIds;
+  final TfArg<List<String>>? sourceSecurityGroupIds;
 
   Map<String, Object?> encode() => {
     'ec2_ssh_key': ?ec2SshKey?.toTfJson(),

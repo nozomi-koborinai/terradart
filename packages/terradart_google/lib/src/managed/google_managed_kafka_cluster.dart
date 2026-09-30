@@ -98,7 +98,7 @@ final class ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig {
     required this.allowedSourceIpRanges,
   });
 
-  final TfArg<List<Object?>> allowedSourceIpRanges;
+  final TfArg<List<String>> allowedSourceIpRanges;
 
   Map<String, Object?> encode() => {
     'allowed_source_ip_ranges': allowedSourceIpRanges.toTfJson(),

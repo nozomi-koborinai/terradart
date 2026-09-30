@@ -41,7 +41,7 @@ final class Ec2FleetFleetInstanceSet {
     this.platform,
   });
 
-  final TfArg<List<Object?>>? instanceIds;
+  final TfArg<List<String>>? instanceIds;
 
   final TfArg<String>? instanceType;
 
@@ -192,7 +192,7 @@ final class Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements {
   >?
   acceleratorTypes;
 
-  final TfArg<List<Object?>>? allowedInstanceTypes;
+  final TfArg<List<String>>? allowedInstanceTypes;
 
   final TfArg<
     Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBareMetal
@@ -211,7 +211,7 @@ final class Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements {
   >?
   cpuManufacturers;
 
-  final TfArg<List<Object?>>? excludedInstanceTypes;
+  final TfArg<List<String>>? excludedInstanceTypes;
 
   final List<
     TfArg<

@@ -753,7 +753,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
     this.timestampFormats,
   });
 
-  final TfArg<List<Object?>>? timestampFormats;
+  final TfArg<List<String>>? timestampFormats;
 
   Map<String, Object?> encode() => {
     'timestamp_formats': ?timestampFormats?.toTfJson(),
@@ -893,7 +893,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? blockSizeBytes;
 
-  final TfArg<List<Object?>>? bloomFilterColumns;
+  final TfArg<List<String>>? bloomFilterColumns;
 
   final TfArg<num>? bloomFilterFalsePositiveProbability;
 
@@ -1643,7 +1643,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableCon
 
   final TfArg<String> tableName;
 
-  final TfArg<List<Object?>>? uniqueKeys;
+  final TfArg<List<String>>? uniqueKeys;
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),

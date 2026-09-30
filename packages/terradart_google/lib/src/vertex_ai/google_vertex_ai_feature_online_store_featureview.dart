@@ -92,7 +92,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySource {
     required this.uri,
   });
 
-  final TfArg<List<Object?>> entityIdColumns;
+  final TfArg<List<String>> entityIdColumns;
 
   final TfArg<String> uri;
 
@@ -135,7 +135,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGro
 
   final TfArg<String> featureGroupId;
 
-  final TfArg<List<Object?>> featureIds;
+  final TfArg<List<String>> featureIds;
 
   Map<String, Object?> encode() => {
     'feature_group_id': featureGroupId.toTfJson(),

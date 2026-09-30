@@ -36,7 +36,7 @@ final class BillingBudgetAllUpdatesRule {
 
   final TfArg<bool>? enableProjectLevelRecipients;
 
-  final TfArg<List<Object?>>? monitoringNotificationChannels;
+  final TfArg<List<String>>? monitoringNotificationChannels;
 
   final RefTo<GooglePubsubTopic>? pubsubTopic;
 
@@ -148,20 +148,20 @@ final class BillingBudgetBudgetFilter {
 
   final TfArg<BillingBudgetBudgetFilterCalendarPeriod>? calendarPeriod;
 
-  final TfArg<List<Object?>>? creditTypes;
+  final TfArg<List<String>>? creditTypes;
 
   final TfArg<BillingBudgetBudgetFilterCreditTypesTreatment>?
   creditTypesTreatment;
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<List<Object?>>? projects;
+  final TfArg<List<String>>? projects;
 
-  final TfArg<List<Object?>>? resourceAncestors;
+  final TfArg<List<String>>? resourceAncestors;
 
-  final TfArg<List<Object?>>? services;
+  final TfArg<List<String>>? services;
 
-  final TfArg<List<Object?>>? subaccounts;
+  final TfArg<List<String>>? subaccounts;
 
   final BillingBudgetBudgetFilterCustomPeriod? customPeriod;
 

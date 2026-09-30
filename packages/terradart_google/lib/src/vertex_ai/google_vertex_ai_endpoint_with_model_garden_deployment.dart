@@ -210,7 +210,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 
   final TfArg<String> reservationAffinityType;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -255,7 +255,7 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServic
 
   final TfArg<bool> enablePrivateServiceConnect;
 
-  final TfArg<List<Object?>>? projectAllowlist;
+  final TfArg<List<String>>? projectAllowlist;
 
   final VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfigPscAutomationConfigs?
   pscAutomationConfigs;
@@ -338,9 +338,9 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec {
     this.startupProbe,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String>? deploymentTimeout;
 
@@ -487,7 +487,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
     this.command,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
@@ -643,7 +643,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
     this.command,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
@@ -814,7 +814,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
     this.command,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }

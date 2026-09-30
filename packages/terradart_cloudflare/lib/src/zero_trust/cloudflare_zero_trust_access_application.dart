@@ -215,7 +215,7 @@ sealed class ZeroTrustAccessApplicationCorsHeadersOrigins {
 
   /// Sets `allowed_origins`.
   const factory ZeroTrustAccessApplicationCorsHeadersOrigins.allowedOrigins(
-    TfArg<List<Object?>> allowedOrigins,
+    TfArg<List<String>> allowedOrigins,
   ) = ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins;
 
   /// The Terraform argument this choice sets.
@@ -249,7 +249,7 @@ final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins
     this.allowedOrigins,
   );
 
-  final TfArg<List<Object?>> allowedOrigins;
+  final TfArg<List<String>> allowedOrigins;
 
   @override
   String get blockKey => 'allowed_origins';
@@ -275,7 +275,7 @@ sealed class ZeroTrustAccessApplicationCorsHeadersRequestHeaders {
 
   /// Sets `allowed_headers`.
   const factory ZeroTrustAccessApplicationCorsHeadersRequestHeaders.allowedHeaders(
-    TfArg<List<Object?>> allowedHeaders,
+    TfArg<List<String>> allowedHeaders,
   ) = ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders;
 
   /// The Terraform argument this choice sets.
@@ -309,7 +309,7 @@ final class ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders
     this.allowedHeaders,
   );
 
-  final TfArg<List<Object?>> allowedHeaders;
+  final TfArg<List<String>> allowedHeaders;
 
   @override
   String get blockKey => 'allowed_headers';
@@ -542,7 +542,7 @@ final class ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistratio
 
   final TfArg<bool>? allowAnyOnLoopback;
 
-  final TfArg<List<Object?>>? allowedUris;
+  final TfArg<List<String>>? allowedUris;
 
   final TfArg<bool>? enabled;
 
@@ -768,7 +768,7 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRulesSsh {
 
   final TfArg<bool>? allowEmailAlias;
 
-  final TfArg<List<Object?>> usernames;
+  final TfArg<List<String>> usernames;
 
   Map<String, Object?> encode() => {
     'allow_email_alias': ?allowEmailAlias?.toTfJson(),
@@ -2267,7 +2267,7 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? nameIdTransformJsonata;
 
-  final TfArg<List<Object?>>? redirectUris;
+  final TfArg<List<String>>? redirectUris;
 
   final TfArg<String>? samlAttributeTransformJsonata;
 
@@ -2606,7 +2606,7 @@ final class ZeroTrustAccessApplicationScimConfigAuthentication {
 
   final TfArg<ZeroTrustAccessApplicationScimConfigAuthenticationScheme> scheme;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String>? token;
 

@@ -1665,7 +1665,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
     this.keyProviderSettings,
   });
 
-  final TfArg<List<Object?>>? adMarkers;
+  final TfArg<List<String>>? adMarkers;
 
   final TfArg<String>? baseUrlContent;
 
@@ -2239,7 +2239,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGr
     this.restartDelay,
   });
 
-  final TfArg<List<Object?>>? adMarkers;
+  final TfArg<List<String>>? adMarkers;
 
   final TfArg<String>? authenticationScheme;
 
@@ -2299,9 +2299,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputs {
     required this.outputSettings,
   });
 
-  final TfArg<List<Object?>>? audioDescriptionNames;
+  final TfArg<List<String>>? audioDescriptionNames;
 
-  final TfArg<List<Object?>>? captionDescriptionNames;
+  final TfArg<List<String>>? captionDescriptionNames;
 
   final TfArg<String>? outputName;
 
@@ -5059,7 +5059,7 @@ final class MedialiveChannelVpc {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> publicAddressAllocationIds;
+  final TfArg<List<String>> publicAddressAllocationIds;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 

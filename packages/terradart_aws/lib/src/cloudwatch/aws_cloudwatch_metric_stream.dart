@@ -164,7 +164,7 @@ final class CloudwatchMetricStreamExcludeFilter {
     required this.namespace,
   });
 
-  final TfArg<List<Object?>>? metricNames;
+  final TfArg<List<String>>? metricNames;
 
   final TfArg<String> namespace;
 
@@ -183,7 +183,7 @@ final class CloudwatchMetricStreamIncludeFilter {
     required this.namespace,
   });
 
-  final TfArg<List<Object?>>? metricNames;
+  final TfArg<List<String>>? metricNames;
 
   final TfArg<String> namespace;
 
@@ -202,7 +202,7 @@ final class CloudwatchMetricStreamStatisticsConfiguration {
     required this.includeMetric,
   });
 
-  final TfArg<List<Object?>> additionalStatistics;
+  final TfArg<List<String>> additionalStatistics;
 
   final List<CloudwatchMetricStreamStatisticsConfigurationIncludeMetric>
   includeMetric;

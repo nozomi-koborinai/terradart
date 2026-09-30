@@ -177,9 +177,9 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
     this.recordPreprocessorSourceUri,
   });
 
-  final TfArg<List<Object?>>? containerArguments;
+  final TfArg<List<String>>? containerArguments;
 
-  final TfArg<List<Object?>>? containerEntrypoint;
+  final TfArg<List<String>>? containerEntrypoint;
 
   final TfArg<String> imageUri;
 

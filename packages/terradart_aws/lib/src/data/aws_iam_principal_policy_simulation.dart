@@ -21,7 +21,7 @@ final class DataIamPrincipalPolicySimulationContext {
 
   final TfArg<String> type;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),

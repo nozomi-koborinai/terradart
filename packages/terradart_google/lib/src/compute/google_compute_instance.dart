@@ -266,7 +266,7 @@ final class ComputeInstanceBootDisk {
 
   final TfArg<bool>? forceAttach;
 
-  final TfArg<List<Object?>>? guestOsFeatures;
+  final TfArg<List<String>>? guestOsFeatures;
 
   final TfArg<String>? interface;
 
@@ -329,11 +329,11 @@ final class ComputeInstanceBootDiskInitializeParams {
 
   final TfArg<num>? provisionedThroughput;
 
-  final TfArg<List<Object?>>? replicaZones;
+  final TfArg<List<String>>? replicaZones;
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
-  final TfArg<List<Object?>>? resourcePolicies;
+  final TfArg<List<String>>? resourcePolicies;
 
   final TfArg<num>? size;
 
@@ -686,7 +686,7 @@ final class ComputeInstanceReservationAffinitySpecificReservation {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -811,7 +811,7 @@ final class ComputeInstanceSchedulingNodeAffinities {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -864,7 +864,7 @@ final class ComputeInstanceServiceAccount {
 
   final RefTo<GoogleServiceAccount>? email;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),

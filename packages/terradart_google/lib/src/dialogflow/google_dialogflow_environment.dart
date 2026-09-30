@@ -156,7 +156,7 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs {
     this.voice,
   });
 
-  final TfArg<List<Object?>>? effectsProfileId;
+  final TfArg<List<String>>? effectsProfileId;
 
   final TfArg<String> language;
 

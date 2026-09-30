@@ -265,7 +265,7 @@ final class GkeHubFeatureMembershipConfigmanagementPolicyController {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>>? exemptableNamespaces;
+  final TfArg<List<String>>? exemptableNamespaces;
 
   final TfArg<bool>? logDeniesEnabled;
 
@@ -298,7 +298,7 @@ final class GkeHubFeatureMembershipConfigmanagementPolicyControllerMonitoring {
     this.backends,
   });
 
-  final TfArg<List<Object?>>? backends;
+  final TfArg<List<String>>? backends;
 
   Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
@@ -382,7 +382,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfig {
 
   final TfArg<num>? constraintViolationLimit;
 
-  final TfArg<List<Object?>>? exemptableNamespaces;
+  final TfArg<List<String>>? exemptableNamespaces;
 
   final TfArg<
     GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigInstallSpec
@@ -584,7 +584,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigMoni
     this.backends,
   });
 
-  final TfArg<List<Object?>>? backends;
+  final TfArg<List<String>>? backends;
 
   Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
@@ -623,7 +623,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPoli
 
   final TfArg<String> bundleName;
 
-  final TfArg<List<Object?>>? exemptedNamespaces;
+  final TfArg<List<String>>? exemptedNamespaces;
 
   Map<String, Object?> encode() => {
     'bundle_name': bundleName.toTfJson(),

@@ -85,7 +85,7 @@ final class AppsyncResolverBackendPipelineConfig
 final class AppsyncResolverCachingConfig {
   const AppsyncResolverCachingConfig({this.cachingKeys, this.ttl});
 
-  final TfArg<List<Object?>>? cachingKeys;
+  final TfArg<List<String>>? cachingKeys;
 
   final TfArg<num>? ttl;
 
@@ -101,7 +101,7 @@ final class AppsyncResolverCachingConfig {
 final class AppsyncResolverPipelineConfig {
   const AppsyncResolverPipelineConfig({this.functions});
 
-  final TfArg<List<Object?>>? functions;
+  final TfArg<List<String>>? functions;
 
   Map<String, Object?> encode() => {'functions': ?functions?.toTfJson()};
 }

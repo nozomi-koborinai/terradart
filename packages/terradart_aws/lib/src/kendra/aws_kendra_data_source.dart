@@ -78,11 +78,11 @@ final class KendraDataSourceConfigurationS3Configuration {
 
   final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<List<Object?>>? exclusionPatterns;
+  final TfArg<List<String>>? exclusionPatterns;
 
-  final TfArg<List<Object?>>? inclusionPatterns;
+  final TfArg<List<String>>? inclusionPatterns;
 
-  final TfArg<List<Object?>>? inclusionPrefixes;
+  final TfArg<List<String>>? inclusionPrefixes;
 
   final KendraDataSourceConfigurationS3ConfigurationAccessControlListConfiguration?
   accessControlListConfiguration;
@@ -165,9 +165,9 @@ final class KendraDataSourceConfigurationWebCrawlerConfiguration {
 
   final TfArg<num>? maxUrlsPerMinuteCrawlRate;
 
-  final TfArg<List<Object?>>? urlExclusionPatterns;
+  final TfArg<List<String>>? urlExclusionPatterns;
 
-  final TfArg<List<Object?>>? urlInclusionPatterns;
+  final TfArg<List<String>>? urlInclusionPatterns;
 
   final KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfiguration?
   authenticationConfiguration;
@@ -288,7 +288,7 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfi
     this.webCrawlerMode,
   });
 
-  final TfArg<List<Object?>> seedUrls;
+  final TfArg<List<String>> seedUrls;
 
   final TfArg<
     KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode
@@ -323,7 +323,7 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSiteMapsConf
     required this.siteMaps,
   });
 
-  final TfArg<List<Object?>> siteMaps;
+  final TfArg<List<String>> siteMaps;
 
   Map<String, Object?> encode() => {'site_maps': siteMaps.toTfJson()};
 }
@@ -430,7 +430,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
   final TfArg<num>? longValue;
 
-  final TfArg<List<Object?>>? stringListValue;
+  final TfArg<List<String>>? stringListValue;
 
   final TfArg<String>? stringValue;
 
@@ -482,7 +482,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
   final TfArg<num>? longValue;
 
-  final TfArg<List<Object?>>? stringListValue;
+  final TfArg<List<String>>? stringListValue;
 
   final TfArg<String>? stringValue;
 
@@ -558,7 +558,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
 
   final TfArg<num>? longValue;
 
-  final TfArg<List<Object?>>? stringListValue;
+  final TfArg<List<String>>? stringListValue;
 
   final TfArg<String>? stringValue;
 
@@ -634,7 +634,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
 
   final TfArg<num>? longValue;
 
-  final TfArg<List<Object?>>? stringListValue;
+  final TfArg<List<String>>? stringListValue;
 
   final TfArg<String>? stringValue;
 

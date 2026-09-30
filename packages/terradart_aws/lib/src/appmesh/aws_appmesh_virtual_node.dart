@@ -92,7 +92,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls {
 
   final TfArg<bool>? enforce;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<num>>? ports;
 
   final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificate?
   certificate;
@@ -204,7 +204,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation
     required this.exact,
   });
 
-  final TfArg<List<Object?>> exact;
+  final TfArg<List<String>> exact;
 
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
@@ -243,7 +243,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation
     required this.certificateAuthorityArns,
   });
 
-  final TfArg<List<Object?>> certificateAuthorityArns;
+  final TfArg<List<String>> certificateAuthorityArns;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
@@ -313,7 +313,7 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls {
 
   final TfArg<bool>? enforce;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<num>>? ports;
 
   final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate?
   certificate;
@@ -424,7 +424,7 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjec
     required this.exact,
   });
 
-  final TfArg<List<Object?>> exact;
+  final TfArg<List<String>> exact;
 
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
@@ -463,7 +463,7 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustA
     required this.certificateAuthorityArns,
   });
 
-  final TfArg<List<Object?>> certificateAuthorityArns;
+  final TfArg<List<String>> certificateAuthorityArns;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
@@ -1249,7 +1249,7 @@ final class AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNamesMa
     required this.exact,
   });
 
-  final TfArg<List<Object?>> exact;
+  final TfArg<List<String>> exact;
 
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }

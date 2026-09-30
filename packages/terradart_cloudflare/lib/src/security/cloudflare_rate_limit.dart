@@ -113,7 +113,7 @@ final class RateLimitMatchRequest {
 
   final List<TfArg<RateLimitMatchRequestMethods>>? methods;
 
-  final TfArg<List<Object?>>? schemes;
+  final TfArg<List<String>>? schemes;
 
   final TfArg<String>? url;
 

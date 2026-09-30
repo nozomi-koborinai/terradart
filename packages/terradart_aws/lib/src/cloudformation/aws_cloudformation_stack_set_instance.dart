@@ -166,11 +166,11 @@ final class CloudformationStackSetInstanceDeploymentTargets {
 
   final TfArg<String>? accountFilterType;
 
-  final TfArg<List<Object?>>? accounts;
+  final TfArg<List<String>>? accounts;
 
   final TfArg<String>? accountsUrl;
 
-  final TfArg<List<Object?>>? organizationalUnitIds;
+  final TfArg<List<String>>? organizationalUnitIds;
 
   Map<String, Object?> encode() => {
     'account_filter_type': ?accountFilterType?.toTfJson(),
@@ -208,7 +208,7 @@ final class CloudformationStackSetInstanceOperationPreferences {
   >?
   regionConcurrencyType;
 
-  final TfArg<List<Object?>>? regionOrder;
+  final TfArg<List<String>>? regionOrder;
 
   Map<String, Object?> encode() => {
     'concurrency_mode': ?concurrencyMode?.toTfJson(),

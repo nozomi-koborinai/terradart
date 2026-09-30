@@ -20,7 +20,7 @@ final class LightsailContainerServiceDeploymentVersionContainer {
     this.ports,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<String> containerName;
 

@@ -40,11 +40,11 @@ final class KendraExperienceConfigurationContentSourceConfiguration {
     this.faqIds,
   });
 
-  final TfArg<List<Object?>>? dataSourceIds;
+  final TfArg<List<String>>? dataSourceIds;
 
   final TfArg<bool>? directPutContent;
 
-  final TfArg<List<Object?>>? faqIds;
+  final TfArg<List<String>>? faqIds;
 
   Map<String, Object?> encode() => {
     'data_source_ids': ?dataSourceIds?.toTfJson(),

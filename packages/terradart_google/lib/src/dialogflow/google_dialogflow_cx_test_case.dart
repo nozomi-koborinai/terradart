@@ -180,7 +180,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextR
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -206,7 +206,7 @@ final class DialogflowCxTestCaseTestConfig {
 
   final DialogflowCxTestCaseTestConfigStart? start;
 
-  final TfArg<List<Object?>>? trackingParameters;
+  final TfArg<List<String>>? trackingParameters;
 
   Map<String, Object?> encode() => {
     ...?start?.encode(),

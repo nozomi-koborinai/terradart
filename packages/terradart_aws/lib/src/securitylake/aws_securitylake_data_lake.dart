@@ -108,7 +108,7 @@ final class SecuritylakeDataLakeConfigurationReplicationConfiguration {
     this.roleArn,
   });
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   final RefTo<AwsIamRole>? roleArn;
 

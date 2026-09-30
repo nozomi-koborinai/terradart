@@ -129,7 +129,7 @@ final class VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConn
 
   final TfArg<bool> enablePrivateServiceConnect;
 
-  final TfArg<List<Object?>>? projectAllowlist;
+  final TfArg<List<String>>? projectAllowlist;
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),

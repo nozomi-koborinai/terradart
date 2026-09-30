@@ -331,7 +331,7 @@ final class LbListenerRuleActionJwtValidationAdditionalClaim {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
@@ -452,9 +452,9 @@ final class LbListenerRuleCondition {
 final class LbListenerRuleConditionHostHeader {
   const LbListenerRuleConditionHostHeader({this.regexValues, this.values});
 
-  final TfArg<List<Object?>>? regexValues;
+  final TfArg<List<String>>? regexValues;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
@@ -474,9 +474,9 @@ final class LbListenerRuleConditionHttpHeader {
 
   final TfArg<String> httpHeaderName;
 
-  final TfArg<List<Object?>>? regexValues;
+  final TfArg<List<String>>? regexValues;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'http_header_name': httpHeaderName.toTfJson(),
@@ -491,7 +491,7 @@ final class LbListenerRuleConditionHttpHeader {
 final class LbListenerRuleConditionHttpRequestMethod {
   const LbListenerRuleConditionHttpRequestMethod({required this.values});
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -502,9 +502,9 @@ final class LbListenerRuleConditionHttpRequestMethod {
 final class LbListenerRuleConditionPathPattern {
   const LbListenerRuleConditionPathPattern({this.regexValues, this.values});
 
-  final TfArg<List<Object?>>? regexValues;
+  final TfArg<List<String>>? regexValues;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
@@ -536,7 +536,7 @@ final class LbListenerRuleConditionSourceIp {
 
   final TfArg<LbListenerRuleConditionSourceIpIpAddressType>? ipAddressType;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),

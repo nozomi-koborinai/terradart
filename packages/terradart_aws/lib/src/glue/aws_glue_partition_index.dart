@@ -15,7 +15,7 @@ final class GluePartitionIndexPartitionIndex {
 
   final TfArg<String>? indexName;
 
-  final TfArg<List<Object?>>? keys;
+  final TfArg<List<String>>? keys;
 
   Map<String, Object?> encode() => {
     'index_name': ?indexName?.toTfJson(),

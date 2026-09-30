@@ -26,7 +26,7 @@ final class QuicksightFolderPermissions {
     required this.principal,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final TfArg<String> principal;
 

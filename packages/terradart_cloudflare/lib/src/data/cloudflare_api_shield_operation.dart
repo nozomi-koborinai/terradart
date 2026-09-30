@@ -26,11 +26,11 @@ final class DataApiShieldOperationFilter {
 
   final TfArg<String>? endpoint;
 
-  final TfArg<List<Object?>>? feature;
+  final TfArg<List<String>>? feature;
 
-  final TfArg<List<Object?>>? host;
+  final TfArg<List<String>>? host;
 
-  final TfArg<List<Object?>>? method;
+  final TfArg<List<String>>? method;
 
   final TfArg<DataApiShieldOperationFilterOrder>? order;
 

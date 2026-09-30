@@ -39,9 +39,9 @@ final class WorkstationsWorkstationConfigContainer {
     this.workingDir,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<Map<String, String>>? env;
 
@@ -175,9 +175,9 @@ final class WorkstationsWorkstationConfigHostGceInstance {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<List<Object?>>? serviceAccountScopes;
+  final TfArg<List<String>>? serviceAccountScopes;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final TfArg<Map<String, String>>? vmTags;
 

@@ -89,7 +89,7 @@ final class CesToolClientFunctionParameters {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? enumCase;
+  final TfArg<List<String>>? enumCase;
 
   final TfArg<String>? items;
 
@@ -109,7 +109,7 @@ final class CesToolClientFunctionParameters {
 
   final TfArg<String>? ref;
 
-  final TfArg<List<Object?>>? required;
+  final TfArg<List<String>>? required;
 
   final TfArg<String>? title;
 
@@ -176,7 +176,7 @@ final class CesToolClientFunctionResponse {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? enumCase;
+  final TfArg<List<String>>? enumCase;
 
   final TfArg<String>? items;
 
@@ -196,7 +196,7 @@ final class CesToolClientFunctionResponse {
 
   final TfArg<String>? ref;
 
-  final TfArg<List<Object?>>? required;
+  final TfArg<List<String>>? required;
 
   final TfArg<String>? title;
 
@@ -343,7 +343,7 @@ final class CesToolDataStoreToolBoostSpecs {
     required this.spec,
   });
 
-  final TfArg<List<Object?>> dataStores;
+  final TfArg<List<String>> dataStores;
 
   final List<CesToolDataStoreToolBoostSpecsSpec> spec;
 
@@ -728,15 +728,15 @@ final class CesToolGoogleSearchTool {
     this.promptConfig,
   });
 
-  final TfArg<List<Object?>>? contextUrls;
+  final TfArg<List<String>>? contextUrls;
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? excludeDomains;
+  final TfArg<List<String>>? excludeDomains;
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>>? preferredDomains;
+  final TfArg<List<String>>? preferredDomains;
 
   final CesToolGoogleSearchToolPromptConfig? promptConfig;
 
@@ -983,7 +983,7 @@ final class CesToolWidgetToolParameters {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? enumCase;
+  final TfArg<List<String>>? enumCase;
 
   final TfArg<String>? items;
 
@@ -1003,7 +1003,7 @@ final class CesToolWidgetToolParameters {
 
   final TfArg<String>? ref;
 
-  final TfArg<List<Object?>>? required;
+  final TfArg<List<String>>? required;
 
   final TfArg<String>? title;
 

@@ -259,7 +259,7 @@ final class RedisClusterCrossClusterReplicationConfigSecondaryClusters {
 final class RedisClusterGcsSource {
   const RedisClusterGcsSource({required this.uris});
 
-  final TfArg<List<Object?>> uris;
+  final TfArg<List<String>> uris;
 
   Map<String, Object?> encode() => {'uris': uris.toTfJson()};
 }

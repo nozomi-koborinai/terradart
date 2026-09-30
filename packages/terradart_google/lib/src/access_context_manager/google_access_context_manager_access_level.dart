@@ -120,15 +120,15 @@ final class AccessContextManagerAccessLevelBasicConditions {
     this.vpcNetworkSources,
   });
 
-  final TfArg<List<Object?>>? ipSubnetworks;
+  final TfArg<List<String>>? ipSubnetworks;
 
-  final TfArg<List<Object?>>? members;
+  final TfArg<List<String>>? members;
 
   final TfArg<bool>? negate;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
-  final TfArg<List<Object?>>? requiredAccessLevels;
+  final TfArg<List<String>>? requiredAccessLevels;
 
   final AccessContextManagerAccessLevelBasicConditionsDevicePolicy?
   devicePolicy;
@@ -302,7 +302,7 @@ final class AccessContextManagerAccessLevelBasicConditionsVpcNetworkSourcesVpcSu
 
   final TfArg<String> network;
 
-  final TfArg<List<Object?>>? vpcIpSubnetworks;
+  final TfArg<List<String>>? vpcIpSubnetworks;
 
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),

@@ -50,7 +50,7 @@ final class QuicksightDataSetColumnGroupsGeoSpatialColumnGroup {
     required this.name,
   });
 
-  final TfArg<List<Object?>> columns;
+  final TfArg<List<String>> columns;
 
   final TfArg<String> countryCode;
 
@@ -72,9 +72,9 @@ final class QuicksightDataSetColumnLevelPermissionRules {
     this.principals,
   });
 
-  final TfArg<List<Object?>>? columnNames;
+  final TfArg<List<String>>? columnNames;
 
-  final TfArg<List<Object?>>? principals;
+  final TfArg<List<String>>? principals;
 
   Map<String, Object?> encode() => {
     'column_names': ?columnNames?.toTfJson(),
@@ -112,7 +112,7 @@ final class QuicksightDataSetFieldFolders {
     required this.fieldFoldersId,
   });
 
-  final TfArg<List<Object?>>? columns;
+  final TfArg<List<String>>? columns;
 
   final TfArg<String>? description;
 
@@ -286,7 +286,7 @@ final class QuicksightDataSetLogicalTableMapDataTransformsProjectOperation {
     required this.projectedColumns,
   });
 
-  final TfArg<List<Object?>> projectedColumns;
+  final TfArg<List<String>> projectedColumns;
 
   Map<String, Object?> encode() => {
     'projected_columns': projectedColumns.toTfJson(),
@@ -378,7 +378,7 @@ final class QuicksightDataSetLogicalTableMapDataTransformsUntagColumnOperation {
 
   final TfArg<String> columnName;
 
-  final TfArg<List<Object?>> tagNames;
+  final TfArg<List<String>> tagNames;
 
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
@@ -481,7 +481,7 @@ final class QuicksightDataSetPermissions {
     required this.principal,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final TfArg<String> principal;
 

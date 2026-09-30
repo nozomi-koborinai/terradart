@@ -180,7 +180,7 @@ final class MailmanagerTrafficPolicyPolicyStatementConditionBooleanExpressionEva
     required this.attribute,
   });
 
-  final TfArg<List<Object?>> addressLists;
+  final TfArg<List<String>> addressLists;
 
   final TfArg<
     MailmanagerTrafficPolicyPolicyStatementConditionBooleanExpressionEvaluateIsInAddressListAttribute
@@ -220,7 +220,7 @@ final class MailmanagerTrafficPolicyPolicyStatementConditionIpExpression {
   >
   operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<
     MailmanagerTrafficPolicyPolicyStatementConditionIpExpressionEvaluate
@@ -290,7 +290,7 @@ final class MailmanagerTrafficPolicyPolicyStatementConditionIpv6Expression {
   >
   operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<
     MailmanagerTrafficPolicyPolicyStatementConditionIpv6ExpressionEvaluate
@@ -360,7 +360,7 @@ final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpression {
   >
   operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<
     MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate

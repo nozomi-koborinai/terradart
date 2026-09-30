@@ -128,7 +128,7 @@ final class BedrockagentcoreMemoryStrategyConfigurationReflection {
 
   final TfArg<String> modelId;
 
-  final TfArg<List<Object?>> namespaceTemplates;
+  final TfArg<List<String>> namespaceTemplates;
 
   Map<String, Object?> encode() => {
     'append_to_prompt': appendToPrompt.toTfJson(),
@@ -459,7 +459,7 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
     this.maxItems,
   });
 
-  final TfArg<List<Object?>>? allowedValues;
+  final TfArg<List<String>>? allowedValues;
 
   final TfArg<num>? maxItems;
 
@@ -477,7 +477,7 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
     required this.allowedValues,
   });
 
-  final TfArg<List<Object?>> allowedValues;
+  final TfArg<List<String>> allowedValues;
 
   Map<String, Object?> encode() => {'allowed_values': allowedValues.toTfJson()};
 }
@@ -490,7 +490,7 @@ final class BedrockagentcoreMemoryStrategyReflectionConfiguration {
     required this.namespaceTemplates,
   });
 
-  final TfArg<List<Object?>> namespaceTemplates;
+  final TfArg<List<String>> namespaceTemplates;
 
   Map<String, Object?> encode() => {
     'namespace_templates': namespaceTemplates.toTfJson(),

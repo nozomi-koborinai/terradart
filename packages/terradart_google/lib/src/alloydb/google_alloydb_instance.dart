@@ -152,7 +152,7 @@ final class AlloydbInstancePscInstanceConfig {
     this.pscInterfaceConfigs,
   });
 
-  final TfArg<List<Object?>>? allowedConsumerProjects;
+  final TfArg<List<String>>? allowedConsumerProjects;
 
   final List<AlloydbInstancePscInstanceConfigPscAutoConnections>?
   pscAutoConnections;

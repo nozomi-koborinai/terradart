@@ -115,7 +115,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? edgeLocations;
+  final TfArg<List<String>>? edgeLocations;
 
   final TfArg<num> ruleNumber;
 
@@ -144,7 +144,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
     required this.associateRoutingPolicies,
   });
 
-  final TfArg<List<Object?>> associateRoutingPolicies;
+  final TfArg<List<String>> associateRoutingPolicies;
 
   Map<String, Object?> encode() => {
     'associate_routing_policies': associateRoutingPolicies.toTfJson(),
@@ -183,11 +183,11 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration 
     required this.edgeLocations,
   });
 
-  final TfArg<List<Object?>> asnRanges;
+  final TfArg<List<String>> asnRanges;
 
   final TfArg<bool>? dnsSupport;
 
-  final TfArg<List<Object?>>? insideCidrBlocks;
+  final TfArg<List<String>>? insideCidrBlocks;
 
   final TfArg<bool>? securityGroupReferencingSupport;
 
@@ -221,7 +221,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationE
 
   final TfArg<String>? asn;
 
-  final TfArg<List<Object?>>? insideCidrBlocks;
+  final TfArg<List<String>>? insideCidrBlocks;
 
   final TfArg<String> location;
 
@@ -398,19 +398,19 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? destinationCidrBlocks;
+  final TfArg<List<String>>? destinationCidrBlocks;
 
-  final TfArg<List<Object?>>? destinations;
+  final TfArg<List<String>>? destinations;
 
   final TfArg<String>? mode;
 
-  final TfArg<List<Object?>>? routingPolicyNames;
+  final TfArg<List<String>>? routingPolicyNames;
 
   final TfArg<String> segment;
 
-  final TfArg<List<Object?>>? shareWith;
+  final TfArg<List<String>>? shareWith;
 
-  final TfArg<List<Object?>>? shareWithExcept;
+  final TfArg<List<String>>? shareWithExcept;
 
   final DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocationAssociation?
   edgeLocationAssociation;
@@ -450,7 +450,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocatio
 
   final TfArg<String> peerEdgeLocation;
 
-  final TfArg<List<Object?>> routingPolicyNames;
+  final TfArg<List<String>> routingPolicyNames;
 
   Map<String, Object?> encode() => {
     'edge_location': edgeLocation.toTfJson(),
@@ -468,7 +468,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia {
     this.withEdgeOverride,
   });
 
-  final TfArg<List<Object?>>? networkFunctionGroups;
+  final TfArg<List<String>>? networkFunctionGroups;
 
   final List<
     DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdgeOverride
@@ -513,7 +513,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo 
     this.segments,
   });
 
-  final TfArg<List<Object?>>? segments;
+  final TfArg<List<String>>? segments;
 
   Map<String, Object?> encode() => {'segments': ?segments?.toTfJson()};
 }
@@ -532,13 +532,13 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegments {
     this.requireAttachmentAcceptance,
   });
 
-  final TfArg<List<Object?>>? allowFilter;
+  final TfArg<List<String>>? allowFilter;
 
-  final TfArg<List<Object?>>? denyFilter;
+  final TfArg<List<String>>? denyFilter;
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? edgeLocations;
+  final TfArg<List<String>>? edgeLocations;
 
   final TfArg<bool>? isolateAttachments;
 

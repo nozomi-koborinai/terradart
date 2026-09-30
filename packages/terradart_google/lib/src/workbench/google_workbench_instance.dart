@@ -44,7 +44,7 @@ final class WorkbenchInstanceGceSetup {
 
   final TfArg<String>? minCpuPlatform;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final List<WorkbenchInstanceGceSetupAcceleratorConfigs>? acceleratorConfigs;
 
@@ -287,7 +287,7 @@ final class WorkbenchInstanceGceSetupDataDisks {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
-  final TfArg<List<Object?>>? resourcePolicies;
+  final TfArg<List<String>>? resourcePolicies;
 
   Map<String, Object?> encode() => {
     'disk_encryption': ?diskEncryption?.toTfJson(),
@@ -395,7 +395,7 @@ final class WorkbenchInstanceGceSetupReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),

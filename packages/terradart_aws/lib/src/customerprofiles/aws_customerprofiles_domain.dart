@@ -254,16 +254,16 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
     this.phoneNumber,
   });
 
-  final TfArg<List<Object?>>? address;
+  final TfArg<List<String>>? address;
 
   final TfArg<
     CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel
   >
   attributeMatchingModel;
 
-  final TfArg<List<Object?>>? emailAddress;
+  final TfArg<List<String>>? emailAddress;
 
-  final TfArg<List<Object?>>? phoneNumber;
+  final TfArg<List<String>>? phoneNumber;
 
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
@@ -362,7 +362,7 @@ final class CustomerprofilesDomainRuleBasedMatchingMatchingRules {
     required this.rule,
   });
 
-  final TfArg<List<Object?>> rule;
+  final TfArg<List<String>> rule;
 
   Map<String, Object?> encode() => {'rule': rule.toTfJson()};
 }

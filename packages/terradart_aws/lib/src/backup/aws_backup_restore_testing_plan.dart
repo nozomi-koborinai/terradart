@@ -22,9 +22,9 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
   final TfArg<BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm>
   algorithm;
 
-  final TfArg<List<Object?>>? excludeVaults;
+  final TfArg<List<String>>? excludeVaults;
 
-  final TfArg<List<Object?>> includeVaults;
+  final TfArg<List<String>> includeVaults;
 
   final List<
     TfArg<BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes>

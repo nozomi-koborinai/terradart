@@ -212,7 +212,7 @@ final class NetworkConnectivityPolicyBasedRouteInterconnectAttachment {
 final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
   const NetworkConnectivityPolicyBasedRouteVirtualMachine({required this.tags});
 
-  final TfArg<List<Object?>> tags;
+  final TfArg<List<String>> tags;
 
   Map<String, Object?> encode() => {'tags': tags.toTfJson()};
 }

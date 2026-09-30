@@ -217,7 +217,7 @@ final class DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall {
 final class DialogflowCxPageEntryFulfillmentMessagesText {
   const DialogflowCxPageEntryFulfillmentMessagesText({this.text});
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -451,7 +451,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText {
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -780,7 +780,7 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -1021,7 +1021,7 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -1456,7 +1456,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -1697,7 +1697,7 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText {
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }

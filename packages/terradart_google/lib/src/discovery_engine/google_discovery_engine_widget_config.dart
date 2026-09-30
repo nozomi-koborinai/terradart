@@ -21,7 +21,7 @@ final class DiscoveryEngineWidgetConfigAccessSettings {
 
   final TfArg<bool>? allowPublicAccess;
 
-  final TfArg<List<Object?>>? allowlistedDomains;
+  final TfArg<List<String>>? allowlistedDomains;
 
   final TfArg<bool>? enableWebApp;
 

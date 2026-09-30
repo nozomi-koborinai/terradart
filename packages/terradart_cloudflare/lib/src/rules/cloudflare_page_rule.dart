@@ -414,9 +414,9 @@ final class PageRuleActionsCacheKeyFields {
 final class PageRuleActionsCacheKeyFieldsCookie {
   const PageRuleActionsCacheKeyFieldsCookie({this.checkPresence, this.include});
 
-  final TfArg<List<Object?>>? checkPresence;
+  final TfArg<List<String>>? checkPresence;
 
-  final TfArg<List<Object?>>? include;
+  final TfArg<List<String>>? include;
 
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
@@ -434,11 +434,11 @@ final class PageRuleActionsCacheKeyFieldsHeader {
     this.include,
   });
 
-  final TfArg<List<Object?>>? checkPresence;
+  final TfArg<List<String>>? checkPresence;
 
-  final TfArg<List<Object?>>? exclude;
+  final TfArg<List<String>>? exclude;
 
-  final TfArg<List<Object?>>? include;
+  final TfArg<List<String>>? include;
 
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
@@ -464,9 +464,9 @@ final class PageRuleActionsCacheKeyFieldsHost {
 final class PageRuleActionsCacheKeyFieldsQueryString {
   const PageRuleActionsCacheKeyFieldsQueryString({this.exclude, this.include});
 
-  final TfArg<List<Object?>>? exclude;
+  final TfArg<List<String>>? exclude;
 
-  final TfArg<List<Object?>>? include;
+  final TfArg<List<String>>? include;
 
   Map<String, Object?> encode() => {
     'exclude': ?exclude?.toTfJson(),

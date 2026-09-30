@@ -36,11 +36,11 @@ final class MagicTransitSiteAclLan1 {
 
   final TfArg<String>? lanName;
 
-  final TfArg<List<Object?>>? portRanges;
+  final TfArg<List<String>>? portRanges;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<num>>? ports;
 
-  final TfArg<List<Object?>>? subnets;
+  final TfArg<List<String>>? subnets;
 
   Map<String, Object?> encode() => {
     'lan_id': lanId.toTfJson(),
@@ -67,11 +67,11 @@ final class MagicTransitSiteAclLan2 {
 
   final TfArg<String>? lanName;
 
-  final TfArg<List<Object?>>? portRanges;
+  final TfArg<List<String>>? portRanges;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<num>>? ports;
 
-  final TfArg<List<Object?>>? subnets;
+  final TfArg<List<String>>? subnets;
 
   Map<String, Object?> encode() => {
     'lan_id': lanId.toTfJson(),
