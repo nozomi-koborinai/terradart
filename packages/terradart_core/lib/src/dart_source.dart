@@ -1,6 +1,7 @@
 // Helpers for the Dart and Terraform source that synth writes: a string
-// literal that always compiles, and identifier checks for the names that
-// become `static const` members and `output` blocks.
+// literal that always compiles, identifier checks for the names that become
+// `static const` members and `output` blocks, and the reader getter and
+// environment variable an output name maps to.
 
 /// Dart's reserved words, which can never be used as identifiers. Built-in
 /// identifiers such as `get`, `static`, or `await` are legal member names
@@ -46,13 +47,36 @@ final RegExp _terraformIdentifier = RegExp(r'^[A-Za-z_][A-Za-z0-9_-]*$');
 
 /// Whether [name] can be declared as a Dart member (`static const T name`).
 ///
-/// `$` is legal in Dart identifiers but rejected here: an export key doubles
-/// as the default Terraform `output` name, where `$` is not allowed.
+/// `$` is legal in Dart identifiers but rejected here, so a generated name is
+/// never one Dart reads as string interpolation when quoted.
 bool isDartIdentifier(String name) =>
     _dartIdentifier.hasMatch(name) && !dartReservedWords.contains(name);
 
 /// Whether [name] is a valid Terraform `output` block name.
 bool isTerraformIdentifier(String name) => _terraformIdentifier.hasMatch(name);
+
+/// The generated reader's getter for the output [name]: `ordersTopicId` for
+/// `orders_topic_id` or `orders-topic-id`. Not always an identifier
+/// (`class`, `_1`); check it with [isDartIdentifier].
+String outputGetterName(String name) {
+  final parts = [
+    for (final p in name.split(RegExp('[-_]+')))
+      if (p.isNotEmpty) p,
+  ];
+  if (parts.isEmpty) return '';
+  return [
+    parts.first[0].toLowerCase() + parts.first.substring(1),
+    for (final p in parts.skip(1)) p[0].toUpperCase() + p.substring(1),
+  ].join();
+}
+
+/// The environment variable that carries the output [name]:
+/// `ORDERS_TOPIC_ID` for `orders_topic_id`, `ordersTopicId` or
+/// `orders-topic-id`.
+String outputEnvironmentName(String name) => name
+    .replaceAllMapped(RegExp('([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}')
+    .replaceAll('-', '_')
+    .toUpperCase();
 
 /// A Dart string literal whose value is exactly [value].
 ///

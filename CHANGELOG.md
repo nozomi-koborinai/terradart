@@ -8,6 +8,15 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Typed outputs reader** (`terradart_core`) — the `appExports` file also
+  holds `<Stack>Outputs`: one getter per non-sensitive `addOutput`, typed
+  like its value and named in lowerCamelCase, built from `terraform output
+  -json` (`fromTerraformJson`) or the app's environment (`fromEnvironment`,
+  one SCREAMING_SNAKE_CASE variable per output, JSON for non-`String`
+  values). Getters read lazily and throw a `StateError` naming the output
+  and variable when a value is missing or mistyped. With `appExports` set,
+  `addOutput` rejects a name whose getter is not a usable identifier or
+  whose getter or variable another output has.
 - **Typed resource references, part 2** (`terradart_codegen`,
   `terradart_migrate`, `tool/`) — `tool/reference_targets.yaml` lists which
   string inputs name another resource: name patterns per referenced type

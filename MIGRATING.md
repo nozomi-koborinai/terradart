@@ -71,6 +71,15 @@ What changes in behavior:
 - **The file is always written** when `appExports` is set, rewritten in full
   on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
   The Stack's class name drops a leading `_`.
+- **The file also holds a typed outputs reader**, `<Stack>Outputs`, with a
+  getter per non-sensitive output (`ordersTopicId` for `orders_topic_id`).
+  Replace code that shells out to `terraform output -raw` or reads a
+  hand-named environment variable with
+  `<Stack>Outputs.fromTerraformJson(...)` /
+  `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
+  set, an output name whose getter would not be a Dart identifier
+  (`class`), or that shares its getter or variable with another output
+  (`topic_id` / `topic-id`), throws; rename it.
 - `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
   no longer exported from `package:terradart_core/terradart_core.dart`; they
   were synth internals.
