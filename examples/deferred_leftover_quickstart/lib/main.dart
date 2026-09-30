@@ -1298,11 +1298,10 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleObservabilityLink(
         localName: 'observability_link',
-        bucket: .literal('terradart-leftover'),
+        bucket: observabilityBucket.ref,
         dataset: .literal('terradart-leftover'),
         linkId: .literal('terradart-leftover'),
         location: .literal('global'),
-        dependsOn: [ResourceDependency(observabilityBucket)],
       ),
     );
 

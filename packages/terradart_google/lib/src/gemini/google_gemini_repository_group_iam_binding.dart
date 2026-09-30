@@ -3,6 +3,11 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+import '../gemini/google_gemini_repository_group.dart'
+    show GoogleGeminiRepositoryGroup;
+
 /// Sensitive field paths for `google_gemini_repository_group_iam_binding`.
 const Set<String> _googleGeminiRepositoryGroupIamBindingSensitive = <String>{};
 
@@ -17,8 +22,8 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
 
   GoogleGeminiRepositoryGroupIamBinding({
     required super.localName,
-    required TfArg<String> repositoryGroupId,
-    required TfArg<String> codeRepositoryIndex,
+    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
+    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
@@ -31,8 +36,12 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_group_id': repositoryGroupId,
-           'code_repository_index': codeRepositoryIndex,
+           'repository_group_id': repositoryGroupId.encodeAs(
+             'repository_group_id',
+           ),
+           'code_repository_index': codeRepositoryIndex.encodeAs(
+             'code_repository_index_id',
+           ),
            'role': role,
            'members': members,
            'condition': ?condition,

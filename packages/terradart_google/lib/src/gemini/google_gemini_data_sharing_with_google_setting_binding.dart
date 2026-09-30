@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_data_sharing_with_google_setting.dart'
+    show GoogleGeminiDataSharingWithGoogleSetting;
+
 /// Sensitive field paths for `google_gemini_data_sharing_with_google_setting_binding`.
 const Set<String> _googleGeminiDataSharingWithGoogleSettingBindingSensitive =
     <String>{};
@@ -41,7 +44,8 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
 
   GoogleGeminiDataSharingWithGoogleSettingBinding({
     required super.localName,
-    required TfArg<String> dataSharingWithGoogleSettingId,
+    required RefTo<GoogleGeminiDataSharingWithGoogleSetting>
+    dataSharingWithGoogleSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -56,8 +60,8 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_sharing_with_google_setting_id':
-               dataSharingWithGoogleSettingId,
+           'data_sharing_with_google_setting_id': dataSharingWithGoogleSettingId
+               .encodeAs('data_sharing_with_google_setting_id'),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,
