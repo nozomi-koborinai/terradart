@@ -8,8 +8,7 @@ deriveNestedTypes: true
 curatedDoc: |-
   /// Cloud Deploy **deploy policy** — restricts rollout actions on
   /// selected pipelines / targets. Nested `rules` and `selectors` blocks
-  /// are passed as structured maps (same as the other Cloud Deploy
-  /// factories).
+  /// take the derived helper types.
   ///
   /// **Cost:** gcp-cost: Cloud Deploy `C3AD-803F-FC89` Active Multiple
   /// Target Delivery Pipelines `E1A5-8E1F-C1DE` **$5/count**.
@@ -23,19 +22,21 @@ curatedDoc: |-
   ///   localName: 'freeze',
   ///   name: TfArg.literal('terradart-deploy-policy'),
   ///   location: TfArg.literal('us-central1'),
-  ///   selectors: TfArg.literal([
-  ///     {
-  ///       'delivery_pipeline': {'id': 'terradart-pipeline'},
-  ///     },
-  ///   ]),
-  ///   rules: TfArg.literal([
-  ///     {
-  ///       'rollout_restriction': {
-  ///         'id': 'no-automation',
-  ///         'invokers': ['DEPLOY_AUTOMATION'],
-  ///       },
-  ///     },
-  ///   ]),
+  ///   selectors: [
+  ///     ClouddeployDeployPolicySelectors(
+  ///       deliveryPipeline: ClouddeployDeployPolicySelectorsDeliveryPipeline(
+  ///         id: TfArg.literal('terradart-pipeline'),
+  ///       ),
+  ///     ),
+  ///   ],
+  ///   rules: [
+  ///     ClouddeployDeployPolicyRules(
+  ///       rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(
+  ///         id: TfArg.literal('no-automation'),
+  ///         invokers: [TfArg.literal(.deployAutomation)],
+  ///       ),
+  ///     ),
+  ///   ],
   /// );
   /// ```
 

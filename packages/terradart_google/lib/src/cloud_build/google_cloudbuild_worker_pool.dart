@@ -135,7 +135,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///   localName: 'main_pool',
 ///   name: TfArg.literal('main-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   workerConfig: const CloudbuildWorkerPoolWorkerConfig(
+///   workerConfig: CloudbuildWorkerPoolWorkerConfig(
 ///     diskSizeGb: TfArg.literal(100),
 ///     machineType: TfArg.literal('e2-medium'),
 ///     noExternalIp: TfArg.literal(true),
@@ -149,7 +149,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///   localName: 'vpc_pool',
 ///   name: TfArg.literal('vpc-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   workerConfig: const CloudbuildWorkerPoolWorkerConfig(
+///   workerConfig: CloudbuildWorkerPoolWorkerConfig(
 ///     machineType: TfArg.literal('e2-standard-4'),
 ///     noExternalIp: TfArg.literal(true),
 ///   ),

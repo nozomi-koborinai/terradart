@@ -50,24 +50,29 @@ curatedDoc: |-
   ///   localName: 'web_rigm',
   ///   name: TfArg.literal('web-rigm'),
   ///   region: TfArg.literal('asia-northeast1'),
-  ///   /* ... versions, base_instance_name, target_size ... */
+  ///   baseInstanceName: .literal('web'),
+  ///   versions: [
+  ///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+  ///       instanceTemplate: .ref(template.selfLink),
+  ///     ),
+  ///   ],
   /// );
   /// final autoscaler = GoogleComputeRegionAutoscaler(
   ///   localName: 'web_autoscaler',
   ///   name: TfArg.literal('web-autoscaler'),
   ///   region: TfArg.literal('asia-northeast1'),
   ///   target: TfArg.ref(rigm.selfLink),
-  ///   autoscalingPolicy: const ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
-  ///     minReplicas: 2,
-  ///     maxReplicas: 20,
-  ///     cooldownPeriod: 90,
-  ///     cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(target: 0.65),
+  ///   autoscalingPolicy: ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
+  ///     minReplicas: .literal(2),
+  ///     maxReplicas: .literal(20),
+  ///     cooldownPeriod: .literal(90),
+  ///     cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(target: .literal(0.65)),
   ///     scalingSchedules: {
   ///       'business_hours': ComputeRegionAutoscalerRegionAutoscalerScalingSchedule(
-  ///         minRequiredReplicas: 8,
-  ///         schedule: '0 9 * * MON-FRI',
-  ///         durationSec: 28800,
-  ///         timeZone: 'Asia/Tokyo',
+  ///         minRequiredReplicas: .literal(8),
+  ///         schedule: .literal('0 9 * * MON-FRI'),
+  ///         durationSec: .literal(28800),
+  ///         timeZone: .literal('Asia/Tokyo'),
   ///       ),
   ///     },
   ///   ),

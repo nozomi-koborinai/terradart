@@ -20,8 +20,8 @@ curatedDoc: |-
   ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
   ///   // Duration into the `"{seconds}s"` form Terraform expects.
   ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
-  ///   versionTemplate: const KmsCryptoKeyVersionTemplate(
-  ///     algorithm: 'GOOGLE_SYMMETRIC_ENCRYPTION',
+  ///   versionTemplate: KmsCryptoKeyVersionTemplate(
+  ///     algorithm: .literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
   ///     protectionLevel: KmsProtectionLevel.software,
   ///   ),
   /// );

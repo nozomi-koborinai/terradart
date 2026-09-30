@@ -768,24 +768,24 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 ///   rules: [
 ///     // Higher-priority allow for JP traffic.
 ///     ComputeSecurityPolicySecurityPolicyRule(
-///       priority: 1000,
+///       priority: TfArg.literal(1000),
 ///       action: SecurityPolicyRuleAction.allow,
 ///       match: ComputeSecurityPolicySecurityPolicyRuleMatch.expr(
 ///         ComputeSecurityPolicySecurityPolicyRuleMatchExpr(
-///           expression: "origin.region_code == 'JP'",
+///           expression: TfArg.literal("origin.region_code == 'JP'"),
 ///         ),
 ///       ),
-///       description: 'allow JP',
+///       description: TfArg.literal('allow JP'),
 ///     ),
 ///     // Default-deny (lowest priority, match all).
 ///     ComputeSecurityPolicySecurityPolicyRule(
-///       priority: 2147483647,
+///       priority: TfArg.literal(2147483647),
 ///       action: SecurityPolicyRuleAction.deny403,
 ///       match: ComputeSecurityPolicySecurityPolicyRuleMatch.config(
 ///         versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
 ///         config: ComputeSecurityPolicySecurityPolicyRuleMatchConfig(srcIpRanges: ['*']),
 ///       ),
-///       description: 'default deny',
+///       description: TfArg.literal('default deny'),
 ///     ),
 ///   ],
 /// );
@@ -794,22 +794,22 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 /// Example (rate-limit on `/api/*`, redirect overflow to a CAPTCHA):
 /// ```dart
 /// ComputeSecurityPolicySecurityPolicyRule(
-///   priority: 500,
+///   priority: TfArg.literal(500),
 ///   action: SecurityPolicyRuleAction.throttle,
 ///   match: ComputeSecurityPolicySecurityPolicyRuleMatch.expr(
 ///     ComputeSecurityPolicySecurityPolicyRuleMatchExpr(
-///       expression: "request.path.matches('/api/.*')",
+///       expression: TfArg.literal("request.path.matches('/api/.*')"),
 ///     ),
 ///   ),
 ///   rateLimitOptions: ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions(
-///     conformAction: 'allow',
-///     exceedAction: 'redirect',
+///     conformAction: TfArg.literal('allow'),
+///     exceedAction: TfArg.literal('redirect'),
 ///     rateLimitThreshold: ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold(
-///       count: 100,
-///       intervalSec: 60,
+///       count: TfArg.literal(100),
+///       intervalSec: TfArg.literal(60),
 ///     ),
 ///     exceedRedirectOptions: ComputeSecurityPolicySecurityPolicyRuleRedirectOptions(
-///       type: 'GOOGLE_RECAPTCHA',
+///       type: TfArg.literal('GOOGLE_RECAPTCHA'),
 ///     ),
 ///   ),
 /// );

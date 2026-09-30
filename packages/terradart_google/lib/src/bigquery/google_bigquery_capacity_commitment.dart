@@ -110,9 +110,9 @@ enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
 ///   capacityCommitmentId: TfArg.literal('yearly-1k'),
 ///   location: TfArg.literal('US'),
 ///   slotCount: TfArg.literal(1000),
-///   plan: BigqueryCapacityCommitmentPlan.annual,
-///   renewalPlan: BigqueryCapacityCommitmentRenewalPlan.annual,
-///   edition: BigqueryCapacityCommitmentEdition.enterprise,
+///   plan: .literal(BigqueryCapacityCommitmentPlan.annual),
+///   renewalPlan: .literal(BigqueryCapacityCommitmentRenewalPlan.annual),
+///   edition: .literal(BigqueryCapacityCommitmentEdition.enterprise),
 /// );
 /// ```
 final class GoogleBigqueryCapacityCommitment extends Resource {

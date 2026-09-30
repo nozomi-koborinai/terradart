@@ -143,16 +143,12 @@ final class ComputeRegionTargetHttpsProxyCertificatesSslCertificates
 ///       'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
 ///     ]),
 ///   ),
-///   sslPolicy: TfArg.ref(var.region_ssl_policy_id),
+///   sslPolicy: TfArg.ref(regionSslPolicy.selfLink),
 /// );
 /// ```
 ///
-/// `sslPolicy` is the self-link of a regional SSL policy
-/// (`google_compute_region_ssl_policy`). The regional SSL policy
-/// wrapper is not curated in this wave (a follow-up wave will add it);
-/// pass the self-link via an input variable, e.g.
-/// `TfArg.ref(var.region_ssl_policy_id)`. The currently curated
-/// `GoogleComputeSslPolicy` resource is *global* and cannot be used
+/// `sslPolicy` is the self-link of a [GoogleComputeRegionSslPolicy] in
+/// the same region. The global [GoogleComputeSslPolicy] cannot be used
 /// here.
 ///
 /// Note: unlike the global `google_compute_target_https_proxy`, the

@@ -75,22 +75,25 @@ curatedDoc: |-
   ///       ),
   ///     ),
   ///   ],
-  ///   namedPorts: const [
-  ///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort(name: 'http', port: 80),
+  ///   namedPorts: [
+  ///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort(
+  ///       name: TfArg.literal('http'),
+  ///       port: TfArg.literal(80),
+  ///     ),
   ///   ],
   ///   autoHealingPolicies: ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy(
   ///     healthCheck: TfArg.literal(
   ///       // var.health_check_id — typically a Batch 4 health check.
   ///       'projects/p/regions/asia-northeast1/healthChecks/web-hc',
   ///     ),
-  ///     initialDelaySec: 300,
+  ///     initialDelaySec: TfArg.literal(300),
   ///   ),
-  ///   updatePolicy: const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy(
+  ///   updatePolicy: ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy(
   ///     type: RegionInstanceGroupManagerUpdatePolicyType.proactive,
   ///     instanceRedistributionType: RegionInstanceGroupManagerInstanceRedistributionType.proactive,
   ///     minimalAction: RegionInstanceGroupManagerUpdatePolicyAction.replace,
-  ///     maxSurgeFixed: 2,
-  ///     maxUnavailableFixed: 0,
+  ///     maxSurgeFixed: TfArg.literal(2),
+  ///     maxUnavailableFixed: TfArg.literal(0),
   ///     replacementMethod:
   ///         RegionInstanceGroupManagerUpdatePolicyReplacementMethod.substitute,
   ///   ),

@@ -62,16 +62,16 @@ final class GkeHubMembershipEndpointGkeCluster {
 /// final membership = GoogleGkeHubMembership(
 ///   localName: 'main',
 ///   membershipId: TfArg.literal('main-cluster'),
-///   endpoint: {
-///     'gke_cluster': {
-///       'resource_link': TfArg.ref(cluster.id),
-///     },
-///   },
-///   authority: {
-///     'issuer': TfArg.literal(
+///   endpoint: GkeHubMembershipEndpoint(
+///     gkeCluster: GkeHubMembershipEndpointGkeCluster(
+///       resourceLink: TfArg.ref(cluster.id),
+///     ),
+///   ),
+///   authority: GkeHubMembershipAuthority(
+///     issuer: TfArg.literal(
 ///       'https://container.googleapis.com/v1/${cluster.id}',
 ///     ),
-///   },
+///   ),
 /// );
 /// ```
 final class GoogleGkeHubMembership extends Resource {

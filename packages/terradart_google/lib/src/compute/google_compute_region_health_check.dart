@@ -516,13 +516,12 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 ///   timeoutSec: TfArg.literal(5),
 ///   healthyThreshold: TfArg.literal(2),
 ///   unhealthyThreshold: TfArg.literal(3),
-///   httpsHealthCheck: const ComputeRegionHealthCheckHttpsHealthCheckConfig(
-///     port: 443,
-///     requestPath: '/healthz',
-///     portSpecification:
-///         RegionHealthCheckPortSpecification.useFixedPort,
+///   protocol: .https(
+///     port: .literal(443),
+///     requestPath: .literal('/healthz'),
+///     portSpecification: .useFixedPort,
 ///   ),
-///   logConfig: const ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: true),
+///   logConfig: ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: .literal(true)),
 /// );
 /// ```
 ///

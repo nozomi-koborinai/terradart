@@ -108,8 +108,9 @@ final class VertexAiFeaturestoreOnlineServingConfigScaling {
 /// **$0.94/h**; alternate online-node SKU `6875-441B-3793` **$1.11/h**;
 /// us-central1 optimized online node `565E-845D-9FC2` **$0.3/h**) plus
 /// online/offline storage (e.g. online storage `43C6-5652-01F4`
-/// **$0.29/GiBy.mo**). Setting [onlineServingConfig] with
-/// `fixedNodeCount` / scaling reserves node capacity until destroy.
+/// **$0.29/GiBy.mo**). Setting [onlineServingConfig] to
+/// `.fixedNodeCount(...)` / `.scaling(...)` reserves node capacity until
+/// destroy.
 /// Too expensive for apply-smoke — factories ship without a quickstart.
 ///
 /// Pair with [GoogleVertexAiFeaturestoreEntitytype] and
@@ -122,9 +123,7 @@ final class VertexAiFeaturestoreOnlineServingConfigScaling {
 ///   localName: 'fs',
 ///   name: TfArg.literal('terradart_fs'),
 ///   region: TfArg.literal('us-central1'),
-///   onlineServingConfig: VertexAiFeaturestoreOnlineServingConfig(
-///     fixedNodeCount: TfArg.literal(1),
-///   ),
+///   onlineServingConfig: .fixedNodeCount(TfArg.literal(1)),
 /// );
 /// ```
 final class GoogleVertexAiFeaturestore extends Resource {

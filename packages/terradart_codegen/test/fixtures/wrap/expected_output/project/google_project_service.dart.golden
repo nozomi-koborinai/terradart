@@ -41,7 +41,7 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// final orders = GooglePubsubTopic(
 ///   localName: 'orders',
 ///   name: TfArg.literal('orders-prod'),
-///   dependsOn: [pubsubApi],
+///   dependsOn: [ResourceDependency(pubsubApi)],
 /// );
 /// ```
 final class GoogleProjectService extends Resource {

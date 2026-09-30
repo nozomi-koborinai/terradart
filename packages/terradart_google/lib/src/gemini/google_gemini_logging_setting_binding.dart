@@ -37,7 +37,7 @@ enum GeminiLoggingSettingBindingProduct implements TerraformEnum {
 /// ```dart
 /// GoogleGeminiLoggingSettingBinding(
 ///   localName: 'logging_bind',
-///   loggingSettingId: TfArg.literal('terradart-logging'),
+///   loggingSettingId: .literal('terradart-logging'),
 ///   settingBindingId: TfArg.literal('terradart-logging-bind'),
 ///   location: TfArg.literal('global'),
 ///   target: TfArg.literal('projects/${current.number.interpolation}'),

@@ -374,8 +374,8 @@ final class EdgecontainerClusterSystemAddonsConfigIngress {
 ///   name: TfArg.literal('terradart-edge'),
 ///   location: TfArg.literal('us-central1'),
 ///   networking: EdgecontainerClusterNetworking(
-///     clusterIpv4CidrBlocks: [TfArg.literal('10.96.0.0/17')],
-///     servicesIpv4CidrBlocks: [TfArg.literal('10.200.0.0/20')],
+///     clusterIpv4CidrBlocks: TfArg.literal(['10.96.0.0/17']),
+///     servicesIpv4CidrBlocks: TfArg.literal(['10.200.0.0/20']),
 ///   ),
 ///   fleet: EdgecontainerClusterFleet(
 ///     project: TfArg.literal('projects/$projectNumber'),

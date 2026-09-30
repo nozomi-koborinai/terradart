@@ -24,9 +24,9 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 ///   name: TfArg.literal('app-config'),
 ///   environment: TfArg.ref(env.nameRef),
 ///   region: TfArg.literal('us-central1'),
-///   data: {
-///     'KEY': TfArg.literal('value'),
-///   },
+///   data: TfArg.literal({
+///     'KEY': 'value',
+///   }),
 /// );
 /// ```
 final class GoogleComposerUserWorkloadsConfigMap extends Resource {

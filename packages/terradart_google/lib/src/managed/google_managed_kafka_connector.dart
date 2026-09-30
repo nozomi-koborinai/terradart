@@ -43,10 +43,10 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 ///   connectorId: TfArg.literal('gcs-sink'),
 ///   connectCluster: TfArg.ref(connect.connectClusterIdRef),
 ///   location: TfArg.literal('us-central1'),
-///   configs: {
-///     'connector.class': TfArg.literal('com.example.SinkConnector'),
-///     'tasks.max': TfArg.literal('1'),
-///   },
+///   configs: TfArg.literal({
+///     'connector.class': 'com.example.SinkConnector',
+///     'tasks.max': '1',
+///   }),
 /// );
 /// ```
 final class GoogleManagedKafkaConnector extends Resource {

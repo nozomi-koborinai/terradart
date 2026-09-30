@@ -463,7 +463,7 @@ final class StorageBucketWebsite {
 ///   location: TfArg.literal('ASIA-NORTHEAST1'),
 ///   storageClass: TfArg.literal(BucketStorageClass.standard),
 ///   forceDestroy: TfArg.literal(false),
-///   versioning: const StorageBucketVersioning(enabled: true),
+///   versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
 ///   uniformBucketLevelAccess: TfArg.literal(true),
 /// );
 /// ```

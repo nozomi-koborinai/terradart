@@ -19,7 +19,7 @@ curatedDoc: |-
   ///   localName: 'vpc',
   ///   name: TfArg.literal('my-vpc-deployment'),
   ///   location: TfArg.literal('us-central1'),
-  ///   serviceAccount: TfArg.literal(
+  ///   serviceAccount: RefTo.literal(
   ///     'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com',
   ///   ),
   ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(

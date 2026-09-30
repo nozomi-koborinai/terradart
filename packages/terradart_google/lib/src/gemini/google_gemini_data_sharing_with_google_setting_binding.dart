@@ -32,7 +32,7 @@ const Set<String> _googleGeminiDataSharingWithGoogleSettingBindingSensitive =
 /// ```dart
 /// GoogleGeminiDataSharingWithGoogleSettingBinding(
 ///   localName: 'sharing_bind',
-///   dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
+///   dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
 ///   settingBindingId: TfArg.literal('terradart-sharing-bind'),
 ///   location: TfArg.literal('global'),
 ///   target: TfArg.literal('projects/${current.number.interpolation}'),

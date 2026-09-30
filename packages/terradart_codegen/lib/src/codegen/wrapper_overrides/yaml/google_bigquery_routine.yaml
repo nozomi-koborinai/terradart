@@ -41,13 +41,13 @@ curatedDoc: |-
   ///   localName: 'add_one',
   ///   datasetId: dataset.ref,
   ///   routineId: TfArg.literal('add_one'),
-  ///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),
+  ///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction),
   ///   definitionBody: TfArg.literal('x + 1'),
-  ///   language: TfArg.literal(BigqueryRoutineLanguage.sql.terraformValue),
-  ///   arguments: const [
+  ///   language: TfArg.literal(BigqueryRoutineLanguage.sql),
+  ///   arguments: [
   ///     BigqueryRoutineArgument(
-  ///       name: 'x',
-  ///       dataType: '{"typeKind":"INT64"}',
+  ///       name: .literal('x'),
+  ///       dataType: .literal('{"typeKind":"INT64"}'),
   ///     ),
   ///   ],
   ///   returnType: TfArg.literal('{"typeKind":"INT64"}'),

@@ -27,7 +27,7 @@ const Set<String> _googleProjectSensitive = <String>{};
 /// final current = stack.addData(GoogleProject(localName: 'current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
 ///   localName: 'pubsub_cmek',
-///   topic: TfArg.ref(topic.nameRef),
+///   topic: topic.ref,
 ///   role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypterDecrypter'),
 ///   member: TfArg.literal(
 ///     'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',

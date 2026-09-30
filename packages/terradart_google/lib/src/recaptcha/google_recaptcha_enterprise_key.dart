@@ -254,10 +254,12 @@ final class RecaptchaEnterpriseKeyWebSettingsChallengeSettingsDefaultSettings {
 /// GoogleRecaptchaEnterpriseKey(
 ///   localName: 'web_login',
 ///   displayName: TfArg.literal('Login page'),
-///   webSettings: TfArg.literal({
-///     'integration_type': 'SCORE',
-///     'allow_all_domains': true,
-///   }),
+///   webSettings: RecaptchaEnterpriseKeyWebSettings(
+///     integrationType: TfArg.literal(
+///       RecaptchaEnterpriseKeyWebSettingsIntegrationType.score,
+///     ),
+///     allowAllDomains: TfArg.literal(true),
+///   ),
 /// );
 /// ```
 final class GoogleRecaptchaEnterpriseKey extends Resource {

@@ -41,7 +41,7 @@ enum GeminiReleaseChannelSettingBindingProduct implements TerraformEnum {
 /// ```dart
 /// GoogleGeminiReleaseChannelSettingBinding(
 ///   localName: 'channel_bind',
-///   releaseChannelSettingId: TfArg.literal('terradart-channel'),
+///   releaseChannelSettingId: .literal('terradart-channel'),
 ///   settingBindingId: TfArg.literal('terradart-channel-bind'),
 ///   location: TfArg.literal('global'),
 ///   target: TfArg.literal('projects/${current.number.interpolation}'),

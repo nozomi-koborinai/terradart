@@ -49,18 +49,23 @@ curatedDoc: |-
   ///   localName: 'web_igm',
   ///   name: TfArg.literal('web-igm'),
   ///   zone: TfArg.literal('asia-northeast1-a'),
-  ///   /* ... versions, base_instance_name, target_size ... */
+  ///   baseInstanceName: .literal('web'),
+  ///   versions: [
+  ///     ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+  ///       instanceTemplate: .ref(template.selfLink),
+  ///     ),
+  ///   ],
   /// );
   /// final autoscaler = GoogleComputeAutoscaler(
   ///   localName: 'web_autoscaler',
   ///   name: TfArg.literal('web-autoscaler'),
   ///   zone: TfArg.literal('asia-northeast1-a'),
   ///   target: TfArg.ref(igm.selfLink),
-  ///   autoscalingPolicy: const ComputeAutoscalerAutoscalerAutoscalingPolicy(
-  ///     minReplicas: 1,
-  ///     maxReplicas: 10,
-  ///     cooldownPeriod: 60,
-  ///     cpuUtilization: ComputeAutoscalerAutoscalerCpuUtilization(target: 0.6),
+  ///   autoscalingPolicy: ComputeAutoscalerAutoscalerAutoscalingPolicy(
+  ///     minReplicas: .literal(1),
+  ///     maxReplicas: .literal(10),
+  ///     cooldownPeriod: .literal(60),
+  ///     cpuUtilization: ComputeAutoscalerAutoscalerCpuUtilization(target: .literal(0.6)),
   ///   ),
   /// );
   /// ```

@@ -1190,26 +1190,31 @@ final class ComputeBackendServiceTlsSettingsSubjectAltNames {
 ///     // var.security_policy_id — see Cloud Armor curation in Batch 4.
 ///     'projects/p/global/securityPolicies/edge-deny-all',
 ///   ),
-///   backends: [
+///   backend: [
 ///     ComputeBackendServiceBackend(
 ///       group: TfArg.literal(
 ///         // var.backend_group_id — typically a Batch 4 NEG or a
 ///         // Batch 3 MIG self-link.
 ///         'projects/p/zones/asia-northeast1-a/networkEndpointGroups/api-neg',
 ///       ),
-///       balancingMode: BackendServiceBalancingMode.rate,
-///       maxRatePerEndpoint: 100,
-///       capacityScaler: 1.0,
+///       balancingMode: TfArg.literal(BackendServiceBalancingMode.rate),
+///       maxRatePerEndpoint: TfArg.literal(100),
+///       capacityScaler: TfArg.literal(1.0),
 ///     ),
 ///   ],
-///   iap: const ComputeBackendServiceIap(
-///     enabled: true,
-///     oauth2ClientId: 'xxx.apps.googleusercontent.com',
-///     oauth2ClientSecret: 'super-secret', // sensitive — masked at synth.
+///   iap: ComputeBackendServiceIap(
+///     enabled: TfArg.literal(true),
+///     oauth2ClientId: .oauth2ClientId(
+///       TfArg.literal('xxx.apps.googleusercontent.com'),
+///     ),
+///     // sensitive — masked at synth.
+///     oauth2ClientSecret: .oauth2ClientSecret(
+///       TfArg.literal('super-secret'),
+///     ),
 ///   ),
-///   logConfig: const ComputeBackendServiceLogConfig(
-///     enable: true,
-///     sampleRate: 1.0,
+///   logConfig: ComputeBackendServiceLogConfig(
+///     enable: TfArg.literal(true),
+///     sampleRate: TfArg.literal(1.0),
 ///   ),
 /// );
 /// ```

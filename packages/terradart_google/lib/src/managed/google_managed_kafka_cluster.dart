@@ -187,8 +187,8 @@ final class ManagedKafkaClusterTlsConfigTrustConfigCasConfigs {
 ///   clusterId: TfArg.literal('terradart-mk'),
 ///   location: TfArg.literal('us-central1'),
 ///   capacityConfig: ManagedKafkaClusterCapacityConfig(
-///     vcpuCount: TfArg.literal(3),
-///     memoryBytes: TfArg.literal(3221225472), // 3 GiB
+///     vcpuCount: TfArg.literal('3'),
+///     memoryBytes: TfArg.literal('3221225472'), // 3 GiB
 ///   ),
 ///   gcpConfig: ManagedKafkaClusterGcpConfig(
 ///     accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(
