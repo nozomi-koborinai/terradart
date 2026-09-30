@@ -1744,6 +1744,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_firestore_backup_schedule` | `GoogleFirestoreBackupSchedule` | [firestore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_quickstart) |
+| `google_firestore_change_stream` | `GoogleFirestoreChangeStream` | [firestore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_quickstart) |
 | `google_firestore_database` | `GoogleFirestoreDatabase` | [firestore_document_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_document_quickstart), [firestore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_quickstart) |
 | `google_firestore_document` | `GoogleFirestoreDocument` | [firestore_document_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_document_quickstart) |
 | `google_firestore_field` | `GoogleFirestoreField` | [firestore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/firestore_quickstart) |
@@ -1851,11 +1852,14 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | --- | --- | --- |
 | `google_iam_access_boundary_policy` | `GoogleIamAccessBoundaryPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_deny_policy` | `GoogleIamDenyPolicy` | [project_iam_audit_config_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/project_iam_audit_config_quickstart) |
+| `google_iam_folder_access_policy` | `GoogleIamFolderAccessPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_folders_policy_binding` | `GoogleIamFoldersPolicyBinding` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_oauth_client` | `GoogleIamOauthClient` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
 | `google_iam_oauth_client_credential` | `GoogleIamOauthClientCredential` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
+| `google_iam_organization_access_policy` | `GoogleIamOrganizationAccessPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_organizations_policy_binding` | `GoogleIamOrganizationsPolicyBinding` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_principal_access_boundary_policy` | `GoogleIamPrincipalAccessBoundaryPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
+| `google_iam_project_access_policy` | `GoogleIamProjectAccessPolicy` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
 | `google_iam_projects_policy_binding` | `GoogleIamProjectsPolicyBinding` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_iam_workforce_pool` | `GoogleIamWorkforcePool` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
 | `google_iam_workforce_pool_iam_binding` | `GoogleIamWorkforcePoolIamBinding` | — |
@@ -2065,6 +2069,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
+| `google_memorystore_acl_policy` | `GoogleMemorystoreAclPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_memorystore_instance` | `GoogleMemorystoreInstance` | — |
 | `google_memorystore_instance_desired_user_created_endpoints` | `GoogleMemorystoreInstanceDesiredUserCreatedEndpoints` | — |
 
@@ -2343,6 +2348,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_redis_cluster` | `GoogleRedisCluster` | — |
+| `google_redis_cluster_acl_policy` | `GoogleRedisClusterAclPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_redis_cluster_user_created_connections` | `GoogleRedisClusterUserCreatedConnections` | — |
 | `google_redis_instance` | `GoogleRedisInstance` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 
@@ -2566,6 +2572,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_vertex_ai_deployment_resource_pool` | `GoogleVertexAiDeploymentResourcePool` | — |
 | `google_vertex_ai_endpoint` | `GoogleVertexAiEndpoint` | — |
 | `google_vertex_ai_endpoint_with_model_garden_deployment` | `GoogleVertexAiEndpointWithModelGardenDeployment` | — |
+| `google_vertex_ai_evaluation_metric` | `GoogleVertexAiEvaluationMetric` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_feature_group` | `GoogleVertexAiFeatureGroup` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_feature_group_feature` | `GoogleVertexAiFeatureGroupFeature` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_feature_online_store` | `GoogleVertexAiFeatureOnlineStore` | — |
