@@ -283,7 +283,7 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
 
   final TfArg<String> entryPoint;
 
-  final TfArg<List<Object?>>? entryPointArguments;
+  final TfArg<List<String>>? entryPointArguments;
 
   final TfArg<String>? sparkSubmitParameters;
 

@@ -291,7 +291,7 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionar
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -359,7 +359,7 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex {
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -825,7 +825,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -860,7 +860,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -970,7 +970,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -1015,7 +1015,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleH
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 
@@ -1224,7 +1224,7 @@ final class DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoT
     required this.infoTypeNames,
   });
 
-  final TfArg<List<Object?>> infoTypeNames;
+  final TfArg<List<String>> infoTypeNames;
 
   Map<String, Object?> encode() => {
     'info_type_names': infoTypeNames.toTfJson(),

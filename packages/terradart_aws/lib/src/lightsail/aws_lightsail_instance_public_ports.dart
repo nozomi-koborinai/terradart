@@ -20,13 +20,13 @@ final class LightsailInstancePublicPortsPortInfo {
     required this.toPort,
   });
 
-  final TfArg<List<Object?>>? cidrListAliases;
+  final TfArg<List<String>>? cidrListAliases;
 
-  final TfArg<List<Object?>>? cidrs;
+  final TfArg<List<String>>? cidrs;
 
   final TfArg<num> fromPort;
 
-  final TfArg<List<Object?>>? ipv6Cidrs;
+  final TfArg<List<String>>? ipv6Cidrs;
 
   final TfArg<String> protocol;
 

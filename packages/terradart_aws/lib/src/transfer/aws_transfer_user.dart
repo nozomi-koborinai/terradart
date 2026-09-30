@@ -50,7 +50,7 @@ final class TransferUserPosixProfile {
 
   final TfArg<num> gid;
 
-  final TfArg<List<Object?>>? secondaryGids;
+  final TfArg<List<num>>? secondaryGids;
 
   final TfArg<num> uid;
 

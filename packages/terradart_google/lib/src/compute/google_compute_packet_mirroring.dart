@@ -38,11 +38,11 @@ final class ComputePacketMirroringFilter {
     this.ipProtocols,
   });
 
-  final TfArg<List<Object?>>? cidrRanges;
+  final TfArg<List<String>>? cidrRanges;
 
   final TfArg<ComputePacketMirroringFilterDirection>? direction;
 
-  final TfArg<List<Object?>>? ipProtocols;
+  final TfArg<List<String>>? ipProtocols;
 
   Map<String, Object?> encode() => {
     'cidr_ranges': ?cidrRanges?.toTfJson(),
@@ -72,7 +72,7 @@ final class ComputePacketMirroringMirroredResources {
     this.subnetworks,
   });
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   final List<ComputePacketMirroringMirroredResourcesInstances>? instances;
 

@@ -30,7 +30,7 @@ final class FisExperimentTemplateAction {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>>? startAfter;
+  final TfArg<List<String>>? startAfter;
 
   final List<FisExperimentTemplateActionParameter>? parameter;
 
@@ -321,7 +321,7 @@ final class FisExperimentTemplateTarget {
 
   final TfArg<Map<String, String>>? parameters;
 
-  final TfArg<List<Object?>>? resourceArns;
+  final TfArg<List<String>>? resourceArns;
 
   final TfArg<String> resourceType;
 
@@ -354,7 +354,7 @@ final class FisExperimentTemplateTargetFilter {
 
   final TfArg<String> path;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),

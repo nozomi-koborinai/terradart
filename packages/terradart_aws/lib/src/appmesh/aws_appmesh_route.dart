@@ -217,13 +217,13 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicy {
     required this.perRetryTimeout,
   });
 
-  final TfArg<List<Object?>>? grpcRetryEvents;
+  final TfArg<List<String>>? grpcRetryEvents;
 
-  final TfArg<List<Object?>>? httpRetryEvents;
+  final TfArg<List<String>>? httpRetryEvents;
 
   final TfArg<num> maxRetries;
 
-  final TfArg<List<Object?>>? tcpRetryEvents;
+  final TfArg<List<String>>? tcpRetryEvents;
 
   final AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout perRetryTimeout;
 
@@ -575,11 +575,11 @@ final class AppmeshRouteSpecHttp2RouteRetryPolicy {
     required this.perRetryTimeout,
   });
 
-  final TfArg<List<Object?>>? httpRetryEvents;
+  final TfArg<List<String>>? httpRetryEvents;
 
   final TfArg<num> maxRetries;
 
-  final TfArg<List<Object?>>? tcpRetryEvents;
+  final TfArg<List<String>>? tcpRetryEvents;
 
   final AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout perRetryTimeout;
 
@@ -897,11 +897,11 @@ final class AppmeshRouteSpecHttpRouteRetryPolicy {
     required this.perRetryTimeout,
   });
 
-  final TfArg<List<Object?>>? httpRetryEvents;
+  final TfArg<List<String>>? httpRetryEvents;
 
   final TfArg<num> maxRetries;
 
-  final TfArg<List<Object?>>? tcpRetryEvents;
+  final TfArg<List<String>>? tcpRetryEvents;
 
   final AppmeshRouteSpecHttpRouteRetryPolicyPerRetryTimeout perRetryTimeout;
 

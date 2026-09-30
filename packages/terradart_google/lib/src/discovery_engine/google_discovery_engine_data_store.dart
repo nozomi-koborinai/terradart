@@ -174,13 +174,13 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig
 
   final TfArg<bool>? enableTableAnnotation;
 
-  final TfArg<List<Object?>>? excludeHtmlClasses;
+  final TfArg<List<String>>? excludeHtmlClasses;
 
-  final TfArg<List<Object?>>? excludeHtmlElements;
+  final TfArg<List<String>>? excludeHtmlElements;
 
-  final TfArg<List<Object?>>? excludeHtmlIds;
+  final TfArg<List<String>>? excludeHtmlIds;
 
-  final TfArg<List<Object?>>? structuredContentTypes;
+  final TfArg<List<String>>? structuredContentTypes;
 
   Map<String, Object?> encode() => {
     'enable_get_processed_document': ?enableGetProcessedDocument?.toTfJson(),
@@ -271,13 +271,13 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrid
 
   final TfArg<bool>? enableTableAnnotation;
 
-  final TfArg<List<Object?>>? excludeHtmlClasses;
+  final TfArg<List<String>>? excludeHtmlClasses;
 
-  final TfArg<List<Object?>>? excludeHtmlElements;
+  final TfArg<List<String>>? excludeHtmlElements;
 
-  final TfArg<List<Object?>>? excludeHtmlIds;
+  final TfArg<List<String>>? excludeHtmlIds;
 
-  final TfArg<List<Object?>>? structuredContentTypes;
+  final TfArg<List<String>>? structuredContentTypes;
 
   Map<String, Object?> encode() => {
     'enable_get_processed_document': ?enableGetProcessedDocument?.toTfJson(),

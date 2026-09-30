@@ -416,7 +416,7 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice
 final class BedrockagentcoreGatewayRuleConditionMatchPaths {
   const BedrockagentcoreGatewayRuleConditionMatchPaths({required this.anyOf});
 
-  final TfArg<List<Object?>> anyOf;
+  final TfArg<List<String>> anyOf;
 
   Map<String, Object?> encode() => {'any_of': anyOf.toTfJson()};
 }

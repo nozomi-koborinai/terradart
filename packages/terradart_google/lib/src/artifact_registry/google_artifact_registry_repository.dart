@@ -272,13 +272,13 @@ final class ArtifactRegistryRepositoryCleanupPoliciesCondition {
 
   final TfArg<String>? olderThan;
 
-  final TfArg<List<Object?>>? packageNamePrefixes;
+  final TfArg<List<String>>? packageNamePrefixes;
 
-  final TfArg<List<Object?>>? tagPrefixes;
+  final TfArg<List<String>>? tagPrefixes;
 
   final TfArg<ArtifactRegistryCleanupTagState>? tagState;
 
-  final TfArg<List<Object?>>? versionNamePrefixes;
+  final TfArg<List<String>>? versionNamePrefixes;
 
   Map<String, Object?> encode() => {
     'newer_than': ?newerThan?.toTfJson(),
@@ -301,7 +301,7 @@ final class ArtifactRegistryRepositoryCleanupPoliciesMostRecentVersions {
 
   final TfArg<num>? keepCount;
 
-  final TfArg<List<Object?>>? packageNamePrefixes;
+  final TfArg<List<String>>? packageNamePrefixes;
 
   Map<String, Object?> encode() => {
     'keep_count': ?keepCount?.toTfJson(),

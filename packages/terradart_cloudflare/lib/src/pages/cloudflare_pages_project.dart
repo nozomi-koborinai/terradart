@@ -103,7 +103,7 @@ final class PagesProjectDeploymentConfigsPreview {
 
   final TfArg<String>? compatibilityDate;
 
-  final TfArg<List<Object?>>? compatibilityFlags;
+  final TfArg<List<String>>? compatibilityFlags;
 
   final TfArg<bool>? failOpen;
 
@@ -480,7 +480,7 @@ final class PagesProjectDeploymentConfigsProduction {
 
   final TfArg<String>? compatibilityDate;
 
-  final TfArg<List<Object?>>? compatibilityFlags;
+  final TfArg<List<String>>? compatibilityFlags;
 
   final TfArg<bool>? failOpen;
 
@@ -878,15 +878,15 @@ final class PagesProjectSourceConfig {
 
   final TfArg<String>? ownerId;
 
-  final TfArg<List<Object?>>? pathExcludes;
+  final TfArg<List<String>>? pathExcludes;
 
-  final TfArg<List<Object?>>? pathIncludes;
+  final TfArg<List<String>>? pathIncludes;
 
   final TfArg<bool>? prCommentsEnabled;
 
-  final TfArg<List<Object?>>? previewBranchExcludes;
+  final TfArg<List<String>>? previewBranchExcludes;
 
-  final TfArg<List<Object?>>? previewBranchIncludes;
+  final TfArg<List<String>>? previewBranchIncludes;
 
   final TfArg<PagesProjectSourceConfigPreviewDeploymentSetting>?
   previewDeploymentSetting;

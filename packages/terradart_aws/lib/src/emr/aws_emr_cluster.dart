@@ -126,7 +126,7 @@ final class EmrClusterBootstrapAction {
     required this.path,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String> name;
 

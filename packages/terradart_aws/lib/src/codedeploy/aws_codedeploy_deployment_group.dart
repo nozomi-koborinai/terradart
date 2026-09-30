@@ -30,7 +30,7 @@ final class CodedeployDeploymentGroupAlarmConfiguration {
     this.ignorePollAlarmFailure,
   });
 
-  final TfArg<List<Object?>>? alarms;
+  final TfArg<List<String>>? alarms;
 
   final TfArg<bool>? enabled;
 
@@ -54,7 +54,7 @@ final class CodedeployDeploymentGroupAutoRollbackConfiguration {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>>? events;
+  final TfArg<List<String>>? events;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -422,7 +422,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTraf
     required this.listenerArns,
   });
 
-  final TfArg<List<Object?>> listenerArns;
+  final TfArg<List<String>> listenerArns;
 
   Map<String, Object?> encode() => {'listener_arns': listenerArns.toTfJson()};
 }
@@ -448,7 +448,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTraf
     required this.listenerArns,
   });
 
-  final TfArg<List<Object?>> listenerArns;
+  final TfArg<List<String>> listenerArns;
 
   Map<String, Object?> encode() => {'listener_arns': listenerArns.toTfJson()};
 }

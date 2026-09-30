@@ -27,7 +27,7 @@ final class DialogflowEntityTypeEntities {
     required this.value,
   });
 
-  final TfArg<List<Object?>> synonyms;
+  final TfArg<List<String>> synonyms;
 
   final TfArg<String> value;
 

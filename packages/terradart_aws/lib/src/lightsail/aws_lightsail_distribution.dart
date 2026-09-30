@@ -81,7 +81,7 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedCookies {
     this.option,
   });
 
-  final TfArg<List<Object?>>? cookiesAllowList;
+  final TfArg<List<String>>? cookiesAllowList;
 
   final TfArg<String>? option;
 
@@ -100,7 +100,7 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedHeaders {
     this.option,
   });
 
-  final TfArg<List<Object?>>? headersAllowList;
+  final TfArg<List<String>>? headersAllowList;
 
   final TfArg<LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption>?
   option;
@@ -136,7 +136,7 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings {
 
   final TfArg<bool>? option;
 
-  final TfArg<List<Object?>>? queryStringsAllowedList;
+  final TfArg<List<String>>? queryStringsAllowedList;
 
   Map<String, Object?> encode() => {
     'option': ?option?.toTfJson(),

@@ -248,7 +248,7 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
     this.regions,
   });
 
-  final TfArg<List<Object?>>? accounts;
+  final TfArg<List<String>>? accounts;
 
   final ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance
   failureTolerance;
@@ -256,7 +256,7 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
   final ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency
   maxConcurrency;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),

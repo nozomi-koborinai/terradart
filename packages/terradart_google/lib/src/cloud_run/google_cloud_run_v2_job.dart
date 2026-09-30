@@ -342,11 +342,11 @@ final class CloudRunV2JobTemplateTemplateContainers {
     this.volumeMounts,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
-  final TfArg<List<Object?>>? dependsOn;
+  final TfArg<List<String>>? dependsOn;
 
   final TfArg<String> image;
 
@@ -806,7 +806,7 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceSecret
 final class CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance {
   const CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance({this.instances});
 
-  final TfArg<List<Object?>>? instances;
+  final TfArg<List<String>>? instances;
 
   Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
 }
@@ -842,7 +842,7 @@ final class CloudRunV2JobTemplateTemplateVolumesGcs {
 
   final RefTo<GoogleStorageBucket> bucket;
 
-  final TfArg<List<Object?>>? mountOptions;
+  final TfArg<List<String>>? mountOptions;
 
   final TfArg<bool>? readOnly;
 
@@ -961,7 +961,7 @@ final class CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),

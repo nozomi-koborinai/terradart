@@ -149,7 +149,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequestAccess {
     required this.teamName,
   });
 
-  final TfArg<List<Object?>> audTag;
+  final TfArg<List<String>> audTag;
 
   final TfArg<bool>? required;
 
@@ -243,7 +243,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess {
     required this.teamName,
   });
 
-  final TfArg<List<Object?>> audTag;
+  final TfArg<List<String>> audTag;
 
   final TfArg<bool>? required;
 

@@ -25,7 +25,7 @@ final class ConfigConfigurationRecorderRecordingGroup {
 
   final TfArg<bool>? includeGlobalResourceTypes;
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
   final List<ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes>?
   exclusionByResourceTypes;
@@ -54,7 +54,7 @@ final class ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes {
     this.resourceTypes,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -142,7 +142,7 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
   >
   recordingFrequency;
 
-  final TfArg<List<Object?>> resourceTypes;
+  final TfArg<List<String>> resourceTypes;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),

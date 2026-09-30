@@ -13,7 +13,7 @@ const Set<String> _googleCesEvaluationSensitive = <String>{};
 final class CesEvaluationGolden {
   const CesEvaluationGolden({this.evaluationExpectations, required this.turns});
 
-  final TfArg<List<Object?>>? evaluationExpectations;
+  final TfArg<List<String>>? evaluationExpectations;
 
   final List<CesEvaluationGoldenTurns> turns;
 
@@ -665,11 +665,11 @@ final class CesEvaluationScenario {
     this.userFacts,
   });
 
-  final TfArg<List<Object?>>? evaluationExpectations;
+  final TfArg<List<String>>? evaluationExpectations;
 
   final TfArg<num>? maxTurns;
 
-  final TfArg<List<Object?>> rubrics;
+  final TfArg<List<String>> rubrics;
 
   final TfArg<String> task;
 

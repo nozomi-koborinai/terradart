@@ -27,7 +27,7 @@ final class NetappVolumeBackupConfig {
     this.scheduledBackupEnabled,
   });
 
-  final TfArg<List<Object?>>? backupPolicies;
+  final TfArg<List<String>>? backupPolicies;
 
   final TfArg<String>? backupVault;
 
@@ -50,7 +50,7 @@ final class NetappVolumeBlockDevices {
     required this.osType,
   });
 
-  final TfArg<List<Object?>>? hostGroups;
+  final TfArg<List<String>>? hostGroups;
 
   final TfArg<String>? name;
 
@@ -92,7 +92,7 @@ final class NetappVolumeCacheParameters {
 
   final TfArg<String>? peerClusterName;
 
-  final TfArg<List<Object?>>? peerIpAddresses;
+  final TfArg<List<String>>? peerIpAddresses;
 
   final TfArg<String>? peerSvmName;
 
@@ -256,7 +256,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final TfArg<String>? peerClusterName;
 
-  final TfArg<List<Object?>>? peerIpAddresses;
+  final TfArg<List<String>>? peerIpAddresses;
 
   final TfArg<String>? peerSvmName;
 

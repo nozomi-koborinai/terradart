@@ -16,9 +16,9 @@ final class ContainerAttachedClusterAuthorization {
     this.adminUsers,
   });
 
-  final TfArg<List<Object?>>? adminGroups;
+  final TfArg<List<String>>? adminGroups;
 
-  final TfArg<List<Object?>>? adminUsers;
+  final TfArg<List<String>>? adminUsers;
 
   Map<String, Object?> encode() => {
     'admin_groups': ?adminGroups?.toTfJson(),

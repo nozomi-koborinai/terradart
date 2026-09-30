@@ -349,9 +349,9 @@ final class CognitoRiskConfigurationRiskExceptionConfiguration {
     this.skippedIpRangeList,
   });
 
-  final TfArg<List<Object?>>? blockedIpRangeList;
+  final TfArg<List<String>>? blockedIpRangeList;
 
-  final TfArg<List<Object?>>? skippedIpRangeList;
+  final TfArg<List<String>>? skippedIpRangeList;
 
   Map<String, Object?> encode() => {
     'blocked_ip_range_list': ?blockedIpRangeList?.toTfJson(),

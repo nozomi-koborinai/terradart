@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — 39 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Synth output is unchanged. See `MIGRATING.md`.
 - **Breaking** — a Magic Modules `write_only` input and its plaintext sibling are one nullable sealed argument, as the provider rejects setting both: `FirebaseAiLogicConfigGenerativeLanguageConfig(apiKey: .apiKeyWo(...))` instead of separate `apiKey` / `apiKeyWo` fields.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource will take. Additive.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).

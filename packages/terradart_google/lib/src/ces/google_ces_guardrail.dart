@@ -231,11 +231,11 @@ final class CesGuardrailContentFilter {
     required this.matchType,
   });
 
-  final TfArg<List<Object?>>? bannedContents;
+  final TfArg<List<String>>? bannedContents;
 
-  final TfArg<List<Object?>>? bannedContentsInAgentResponse;
+  final TfArg<List<String>>? bannedContentsInAgentResponse;
 
-  final TfArg<List<Object?>>? bannedContentsInUserInput;
+  final TfArg<List<String>>? bannedContentsInUserInput;
 
   final TfArg<bool>? disregardDiacritics;
 

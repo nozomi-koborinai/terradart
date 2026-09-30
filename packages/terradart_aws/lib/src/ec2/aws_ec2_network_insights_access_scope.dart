@@ -76,19 +76,19 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStat
     this.sourcePrefixLists,
   });
 
-  final TfArg<List<Object?>>? destinationAddresses;
+  final TfArg<List<String>>? destinationAddresses;
 
-  final TfArg<List<Object?>>? destinationPorts;
+  final TfArg<List<String>>? destinationPorts;
 
-  final TfArg<List<Object?>>? destinationPrefixLists;
+  final TfArg<List<String>>? destinationPrefixLists;
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<String>>? protocols;
 
-  final TfArg<List<Object?>>? sourceAddresses;
+  final TfArg<List<String>>? sourceAddresses;
 
-  final TfArg<List<Object?>>? sourcePorts;
+  final TfArg<List<String>>? sourcePorts;
 
-  final TfArg<List<Object?>>? sourcePrefixLists;
+  final TfArg<List<String>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
     'destination_addresses': ?destinationAddresses?.toTfJson(),
@@ -110,9 +110,9 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatemen
     this.resources,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -161,19 +161,19 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsSourcePacketHeaderStatement
     this.sourcePrefixLists,
   });
 
-  final TfArg<List<Object?>>? destinationAddresses;
+  final TfArg<List<String>>? destinationAddresses;
 
-  final TfArg<List<Object?>>? destinationPorts;
+  final TfArg<List<String>>? destinationPorts;
 
-  final TfArg<List<Object?>>? destinationPrefixLists;
+  final TfArg<List<String>>? destinationPrefixLists;
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<String>>? protocols;
 
-  final TfArg<List<Object?>>? sourceAddresses;
+  final TfArg<List<String>>? sourceAddresses;
 
-  final TfArg<List<Object?>>? sourcePorts;
+  final TfArg<List<String>>? sourcePorts;
 
-  final TfArg<List<Object?>>? sourcePrefixLists;
+  final TfArg<List<String>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
     'destination_addresses': ?destinationAddresses?.toTfJson(),
@@ -195,9 +195,9 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsSourceResourceStatement {
     this.resources,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -233,9 +233,9 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsThroughResourcesResourceSta
     this.resources,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -306,19 +306,19 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationPacketHeaderStatem
     this.sourcePrefixLists,
   });
 
-  final TfArg<List<Object?>>? destinationAddresses;
+  final TfArg<List<String>>? destinationAddresses;
 
-  final TfArg<List<Object?>>? destinationPorts;
+  final TfArg<List<String>>? destinationPorts;
 
-  final TfArg<List<Object?>>? destinationPrefixLists;
+  final TfArg<List<String>>? destinationPrefixLists;
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<String>>? protocols;
 
-  final TfArg<List<Object?>>? sourceAddresses;
+  final TfArg<List<String>>? sourceAddresses;
 
-  final TfArg<List<Object?>>? sourcePorts;
+  final TfArg<List<String>>? sourcePorts;
 
-  final TfArg<List<Object?>>? sourcePrefixLists;
+  final TfArg<List<String>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
     'destination_addresses': ?destinationAddresses?.toTfJson(),
@@ -340,9 +340,9 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationResourceStatement 
     this.resources,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -391,19 +391,19 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsSourcePacketHeaderStatement {
     this.sourcePrefixLists,
   });
 
-  final TfArg<List<Object?>>? destinationAddresses;
+  final TfArg<List<String>>? destinationAddresses;
 
-  final TfArg<List<Object?>>? destinationPorts;
+  final TfArg<List<String>>? destinationPorts;
 
-  final TfArg<List<Object?>>? destinationPrefixLists;
+  final TfArg<List<String>>? destinationPrefixLists;
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<String>>? protocols;
 
-  final TfArg<List<Object?>>? sourceAddresses;
+  final TfArg<List<String>>? sourceAddresses;
 
-  final TfArg<List<Object?>>? sourcePorts;
+  final TfArg<List<String>>? sourcePorts;
 
-  final TfArg<List<Object?>>? sourcePrefixLists;
+  final TfArg<List<String>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
     'destination_addresses': ?destinationAddresses?.toTfJson(),
@@ -425,9 +425,9 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsSourceResourceStatement {
     this.resources,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),

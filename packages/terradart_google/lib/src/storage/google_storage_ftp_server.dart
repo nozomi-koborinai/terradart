@@ -88,7 +88,7 @@ final class StorageFtpServerConfigExternalConfig
 final class StorageFtpServerExternalConfig {
   const StorageFtpServerExternalConfig({this.allowedCidrBlocks});
 
-  final TfArg<List<Object?>>? allowedCidrBlocks;
+  final TfArg<List<String>>? allowedCidrBlocks;
 
   Map<String, Object?> encode() => {
     'allowed_cidr_blocks': ?allowedCidrBlocks?.toTfJson(),

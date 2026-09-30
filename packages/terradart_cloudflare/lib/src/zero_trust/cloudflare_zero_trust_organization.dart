@@ -121,7 +121,7 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
 
   final TfArg<bool>? requireFipsDevice;
 
-  final TfArg<List<Object?>>? sshKeySize;
+  final TfArg<List<num>>? sshKeySize;
 
   final List<TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType>>?
   sshKeyType;

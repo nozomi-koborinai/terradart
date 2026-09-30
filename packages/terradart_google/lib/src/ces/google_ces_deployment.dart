@@ -100,7 +100,7 @@ final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
     this.enableRecaptcha,
   });
 
-  final TfArg<List<Object?>>? allowedOrigins;
+  final TfArg<List<String>>? allowedOrigins;
 
   final TfArg<bool>? enableOriginCheck;
 

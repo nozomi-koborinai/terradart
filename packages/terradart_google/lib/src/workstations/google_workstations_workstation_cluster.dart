@@ -30,7 +30,7 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
     required this.enablePrivateEndpoint,
   });
 
-  final TfArg<List<Object?>>? allowedProjects;
+  final TfArg<List<String>>? allowedProjects;
 
   final TfArg<bool> enablePrivateEndpoint;
 

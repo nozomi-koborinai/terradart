@@ -146,7 +146,7 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<bool>? disableValueTrimming;
 
-  final TfArg<List<Object?>>? header;
+  final TfArg<List<String>>? header;
 
   final TfArg<String>? quoteSymbol;
 

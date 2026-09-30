@@ -221,7 +221,7 @@ final class CloudwatchLogTransformerTransformerConfigCsv {
     this.source,
   });
 
-  final TfArg<List<Object?>>? columns;
+  final TfArg<List<String>>? columns;
 
   final TfArg<String>? delimiter;
 
@@ -253,7 +253,7 @@ final class CloudwatchLogTransformerTransformerConfigDateTimeConverter {
 
   final TfArg<String>? locale;
 
-  final TfArg<List<Object?>> matchPatterns;
+  final TfArg<List<String>> matchPatterns;
 
   final TfArg<String> source;
 
@@ -284,7 +284,7 @@ final class CloudwatchLogTransformerTransformerConfigDeleteKeys {
     required this.withKeys,
   });
 
-  final TfArg<List<Object?>> withKeys;
+  final TfArg<List<String>> withKeys;
 
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
@@ -367,7 +367,7 @@ final class CloudwatchLogTransformerTransformerConfigLowerCaseString {
     required this.withKeys,
   });
 
-  final TfArg<List<Object?>> withKeys;
+  final TfArg<List<String>> withKeys;
 
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
@@ -688,7 +688,7 @@ final class CloudwatchLogTransformerTransformerConfigTrimString {
     required this.withKeys,
   });
 
-  final TfArg<List<Object?>> withKeys;
+  final TfArg<List<String>> withKeys;
 
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
@@ -750,7 +750,7 @@ final class CloudwatchLogTransformerTransformerConfigUpperCaseString {
     required this.withKeys,
   });
 
-  final TfArg<List<Object?>> withKeys;
+  final TfArg<List<String>> withKeys;
 
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }

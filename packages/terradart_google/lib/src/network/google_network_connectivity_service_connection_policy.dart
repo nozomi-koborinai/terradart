@@ -21,7 +21,7 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
     required this.subnetworks,
   });
 
-  final TfArg<List<Object?>>? allowedGoogleProducersResourceHierarchyLevel;
+  final TfArg<List<String>>? allowedGoogleProducersResourceHierarchyLevel;
 
   final TfArg<String>? limit;
 
@@ -30,7 +30,7 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
   >?
   producerInstanceLocation;
 
-  final TfArg<List<Object?>> subnetworks;
+  final TfArg<List<String>> subnetworks;
 
   Map<String, Object?> encode() => {
     'allowed_google_producers_resource_hierarchy_level':

@@ -87,7 +87,7 @@ final class TranscoderJobConfigEditList {
     this.startTimeOffset,
   });
 
-  final TfArg<List<Object?>>? inputs;
+  final TfArg<List<String>>? inputs;
 
   final TfArg<String>? key;
 
@@ -139,7 +139,7 @@ final class TranscoderJobConfigElementaryStreamsAudioStream {
 
   final TfArg<num>? channelCount;
 
-  final TfArg<List<Object?>>? channelLayout;
+  final TfArg<List<String>>? channelLayout;
 
   final TfArg<String>? codec;
 
@@ -423,7 +423,7 @@ final class TranscoderJobConfigManifests {
 
   final TfArg<String>? fileName;
 
-  final TfArg<List<Object?>>? muxStreams;
+  final TfArg<List<String>>? muxStreams;
 
   final TfArg<TranscoderJobConfigManifestsType>? type;
 
@@ -460,7 +460,7 @@ final class TranscoderJobConfigMuxStreams {
 
   final TfArg<String>? container;
 
-  final TfArg<List<Object?>>? elementaryStreams;
+  final TfArg<List<String>>? elementaryStreams;
 
   final TfArg<String>? encryptionId;
 

@@ -149,7 +149,7 @@ final class ComputeRolloutPlanWavesSelectorsLocationSelector {
     this.includedLocations,
   });
 
-  final TfArg<List<Object?>>? includedLocations;
+  final TfArg<List<String>>? includedLocations;
 
   Map<String, Object?> encode() => {
     'included_locations': ?includedLocations?.toTfJson(),
@@ -166,11 +166,11 @@ final class ComputeRolloutPlanWavesSelectorsResourceHierarchySelector {
     this.includedProjects,
   });
 
-  final TfArg<List<Object?>>? includedFolders;
+  final TfArg<List<String>>? includedFolders;
 
-  final TfArg<List<Object?>>? includedOrganizations;
+  final TfArg<List<String>>? includedOrganizations;
 
-  final TfArg<List<Object?>>? includedProjects;
+  final TfArg<List<String>>? includedProjects;
 
   Map<String, Object?> encode() => {
     'included_folders': ?includedFolders?.toTfJson(),

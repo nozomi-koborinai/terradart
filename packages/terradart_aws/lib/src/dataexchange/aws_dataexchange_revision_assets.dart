@@ -77,9 +77,9 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
 
   final RefTo<AwsS3Bucket> bucket;
 
-  final TfArg<List<Object?>>? keyPrefixes;
+  final TfArg<List<String>>? keyPrefixes;
 
-  final TfArg<List<Object?>>? keys;
+  final TfArg<List<String>>? keys;
 
   final List<
     DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSourceKmsKeysToGrant

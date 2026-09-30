@@ -397,7 +397,7 @@ final class LexIntentSlot {
 
   final TfArg<String>? responseCard;
 
-  final TfArg<List<Object?>>? sampleUtterances;
+  final TfArg<List<String>>? sampleUtterances;
 
   final TfArg<LexIntentSlotSlotConstraint> slotConstraint;
 

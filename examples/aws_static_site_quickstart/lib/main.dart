@@ -179,7 +179,7 @@ final class AwsStaticSiteStack extends Stack {
             DataIamPolicyDocumentStatementCondition(
               test: .literal('StringEquals'),
               variable: .literal('AWS:SourceArn'),
-              values: .literal([TfArg.ref(distribution.arn)]),
+              values: .literal([distribution.arn.interpolation]),
             ),
           ],
         ),

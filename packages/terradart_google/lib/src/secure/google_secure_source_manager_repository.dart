@@ -22,7 +22,7 @@ final class SecureSourceManagerRepositoryInitialConfig {
 
   final TfArg<String>? defaultBranch;
 
-  final TfArg<List<Object?>>? gitignores;
+  final TfArg<List<String>>? gitignores;
 
   final TfArg<String>? license;
 

@@ -333,7 +333,7 @@ final class DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesText {
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -768,7 +768,7 @@ final class DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessages
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -1052,7 +1052,7 @@ final class DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesText {
     this.text,
   });
 
-  final TfArg<List<Object?>>? text;
+  final TfArg<List<String>>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }

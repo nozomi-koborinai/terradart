@@ -842,12 +842,12 @@ sealed class LaunchTemplateInstanceRequirementsInstanceTypes {
 
   /// Sets `allowed_instance_types`.
   const factory LaunchTemplateInstanceRequirementsInstanceTypes.allowedInstanceTypes(
-    TfArg<List<Object?>> allowedInstanceTypes,
+    TfArg<List<String>> allowedInstanceTypes,
   ) = LaunchTemplateInstanceRequirementsInstanceTypesAllowedInstanceTypes;
 
   /// Sets `excluded_instance_types`.
   const factory LaunchTemplateInstanceRequirementsInstanceTypes.excludedInstanceTypes(
-    TfArg<List<Object?>> excludedInstanceTypes,
+    TfArg<List<String>> excludedInstanceTypes,
   ) = LaunchTemplateInstanceRequirementsInstanceTypesExcludedInstanceTypes;
 
   /// The Terraform argument this choice sets.
@@ -863,7 +863,7 @@ final class LaunchTemplateInstanceRequirementsInstanceTypesAllowedInstanceTypes
     this.allowedInstanceTypes,
   );
 
-  final TfArg<List<Object?>> allowedInstanceTypes;
+  final TfArg<List<String>> allowedInstanceTypes;
 
   @override
   String get blockKey => 'allowed_instance_types';
@@ -881,7 +881,7 @@ final class LaunchTemplateInstanceRequirementsInstanceTypesExcludedInstanceTypes
     this.excludedInstanceTypes,
   );
 
-  final TfArg<List<Object?>> excludedInstanceTypes;
+  final TfArg<List<String>> excludedInstanceTypes;
 
   @override
   String get blockKey => 'excluded_instance_types';
@@ -1424,19 +1424,19 @@ final class LaunchTemplateNetworkInterfaces {
 
   final TfArg<num>? ipv4AddressCount;
 
-  final TfArg<List<Object?>>? ipv4Addresses;
+  final TfArg<List<String>>? ipv4Addresses;
 
   final TfArg<num>? ipv4PrefixCount;
 
-  final TfArg<List<Object?>>? ipv4Prefixes;
+  final TfArg<List<String>>? ipv4Prefixes;
 
   final TfArg<num>? ipv6AddressCount;
 
-  final TfArg<List<Object?>>? ipv6Addresses;
+  final TfArg<List<String>>? ipv6Addresses;
 
   final TfArg<num>? ipv6PrefixCount;
 
-  final TfArg<List<Object?>>? ipv6Prefixes;
+  final TfArg<List<String>>? ipv6Prefixes;
 
   final TfArg<num>? networkCardIndex;
 
@@ -1792,7 +1792,7 @@ final class LaunchTemplateSecondaryInterfaces {
 
   final TfArg<num>? privateIpAddressCount;
 
-  final TfArg<List<Object?>>? privateIpAddresses;
+  final TfArg<List<String>>? privateIpAddresses;
 
   final TfArg<String>? secondarySubnetId;
 

@@ -300,7 +300,7 @@ final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
   final TfArg<DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType>
   eventType;
 
-  final TfArg<List<Object?>> snapshotOwner;
+  final TfArg<List<String>> snapshotOwner;
 
   Map<String, Object?> encode() => {
     'description_regex': descriptionRegex.toTfJson(),
@@ -335,7 +335,7 @@ final class DlmLifecyclePolicyPolicyDetailsExclusions {
 
   final TfArg<Map<String, String>>? excludeTags;
 
-  final TfArg<List<Object?>>? excludeVolumeTypes;
+  final TfArg<List<String>>? excludeVolumeTypes;
 
   Map<String, Object?> encode() => {
     'exclude_boot_volumes': ?excludeBootVolumes?.toTfJson(),
@@ -522,7 +522,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
   final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation>?
   location;
 
-  final TfArg<List<Object?>>? times;
+  final TfArg<List<String>>? times;
 
   final DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts? scripts;
 
@@ -794,7 +794,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
     this.intervalUnit,
   });
 
-  final TfArg<List<Object?>> availabilityZones;
+  final TfArg<List<String>> availabilityZones;
 
   final TfArg<num>? count;
 
@@ -877,7 +877,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
     this.unshareIntervalUnit,
   });
 
-  final TfArg<List<Object?>> targetAccounts;
+  final TfArg<List<String>> targetAccounts;
 
   final TfArg<num>? unshareInterval;
 

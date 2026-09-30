@@ -445,7 +445,7 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 
   final TfArg<bool>? useReservationPool;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -607,7 +607,7 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
 
   final TfArg<bool>? preflightValidations;
 
-  final TfArg<List<Object?>>? reservedIpRanges;
+  final TfArg<List<String>>? reservedIpRanges;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 

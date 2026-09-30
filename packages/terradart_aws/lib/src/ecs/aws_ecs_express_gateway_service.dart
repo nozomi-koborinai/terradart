@@ -25,7 +25,7 @@ final class EcsExpressGatewayServicePrimaryContainer {
 
   final TfArg<List<Object?>>? awsLogsConfiguration;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<num>? containerPort;
 

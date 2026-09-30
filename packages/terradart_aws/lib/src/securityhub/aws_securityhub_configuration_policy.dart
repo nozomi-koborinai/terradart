@@ -17,7 +17,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
     this.securityControlsConfiguration,
   });
 
-  final TfArg<List<Object?>>? enabledStandardArns;
+  final TfArg<List<String>>? enabledStandardArns;
 
   final TfArg<bool> serviceEnabled;
 
@@ -67,12 +67,12 @@ sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCo
 
   /// Sets `disabled_control_identifiers`.
   const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.disabledControlIdentifiers(
-    TfArg<List<Object?>> disabledControlIdentifiers,
+    TfArg<List<String>> disabledControlIdentifiers,
   ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers;
 
   /// Sets `enabled_control_identifiers`.
   const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.enabledControlIdentifiers(
-    TfArg<List<Object?>> enabledControlIdentifiers,
+    TfArg<List<String>> enabledControlIdentifiers,
   ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers;
 
   /// The Terraform argument this choice sets.
@@ -89,7 +89,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
     this.disabledControlIdentifiers,
   );
 
-  final TfArg<List<Object?>> disabledControlIdentifiers;
+  final TfArg<List<String>> disabledControlIdentifiers;
 
   @override
   String get blockKey => 'disabled_control_identifiers';
@@ -108,7 +108,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
     this.enabledControlIdentifiers,
   );
 
-  final TfArg<List<Object?>> enabledControlIdentifiers;
+  final TfArg<List<String>> enabledControlIdentifiers;
 
   @override
   String get blockKey => 'enabled_control_identifiers';
@@ -247,7 +247,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
     required this.value,
   });
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -273,7 +273,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
     required this.value,
   });
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<num>> value;
 
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -299,7 +299,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
     required this.value,
   });
 
-  final TfArg<List<Object?>> value;
+  final TfArg<List<String>> value;
 
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }

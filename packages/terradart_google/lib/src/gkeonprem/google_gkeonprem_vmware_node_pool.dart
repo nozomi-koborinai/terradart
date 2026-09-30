@@ -120,7 +120,7 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfig {
 
   final TfArg<String>? datastore;
 
-  final TfArg<List<Object?>>? hostGroups;
+  final TfArg<List<String>>? hostGroups;
 
   final List<GkeonpremVmwareNodePoolConfigVsphereConfigTags>? tags;
 

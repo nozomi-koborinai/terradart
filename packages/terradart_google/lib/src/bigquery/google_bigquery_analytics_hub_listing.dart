@@ -97,7 +97,7 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
 
   final TfArg<String> dataset;
 
-  final TfArg<List<Object?>>? replicaLocations;
+  final TfArg<List<String>>? replicaLocations;
 
   final List<BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources>?
   selectedResources;
@@ -212,7 +212,7 @@ final class BigqueryAnalyticsHubListingPubsubTopic {
     required this.topic,
   });
 
-  final TfArg<List<Object?>>? dataAffinityRegions;
+  final TfArg<List<String>>? dataAffinityRegions;
 
   final RefTo<GooglePubsubTopic> topic;
 

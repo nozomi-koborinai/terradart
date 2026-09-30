@@ -232,7 +232,7 @@ final class FlowLogTagFieldSpecification {
 
   final TfArg<FlowLogTagFieldSpecificationResourceType> resourceType;
 
-  final TfArg<List<Object?>> tagKeys;
+  final TfArg<List<String>> tagKeys;
 
   Map<String, Object?> encode() => {
     'resource_type': resourceType.toTfJson(),

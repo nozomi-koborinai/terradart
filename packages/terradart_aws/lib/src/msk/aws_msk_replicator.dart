@@ -165,7 +165,7 @@ final class MskReplicatorKafkaClusterVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>>? securityGroupsIds;
+  final TfArg<List<String>>? securityGroupsIds;
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
@@ -442,9 +442,9 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
   >?
   consumerGroupOffsetSyncMode;
 
-  final TfArg<List<Object?>>? consumerGroupsToExclude;
+  final TfArg<List<String>>? consumerGroupsToExclude;
 
-  final TfArg<List<Object?>> consumerGroupsToReplicate;
+  final TfArg<List<String>> consumerGroupsToReplicate;
 
   final TfArg<bool>? detectAndCopyNewConsumerGroups;
 
@@ -494,9 +494,9 @@ final class MskReplicatorReplicationInfoListTopicReplication {
 
   final TfArg<bool>? detectAndCopyNewTopics;
 
-  final TfArg<List<Object?>>? topicsToExclude;
+  final TfArg<List<String>>? topicsToExclude;
 
-  final TfArg<List<Object?>> topicsToReplicate;
+  final TfArg<List<String>> topicsToReplicate;
 
   final MskReplicatorReplicationInfoListTopicReplicationStartingPosition?
   startingPosition;

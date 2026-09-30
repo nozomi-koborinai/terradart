@@ -57,7 +57,7 @@ final class NetworkServicesEdgeCacheServiceRoutingHostRule {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>> hosts;
+  final TfArg<List<String>> hosts;
 
   final TfArg<String> pathMatcher;
 
@@ -531,7 +531,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   >
   actions;
 
-  final TfArg<List<Object?>>? copiedParameters;
+  final TfArg<List<String>>? copiedParameters;
 
   final TfArg<String>? keyset;
 
@@ -580,15 +580,15 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 
   final TfArg<bool>? excludeQueryString;
 
-  final TfArg<List<Object?>>? excludedQueryParameters;
+  final TfArg<List<String>>? excludedQueryParameters;
 
   final TfArg<bool>? includeProtocol;
 
-  final TfArg<List<Object?>>? includedCookieNames;
+  final TfArg<List<String>>? includedCookieNames;
 
-  final TfArg<List<Object?>>? includedHeaderNames;
+  final TfArg<List<String>>? includedHeaderNames;
 
-  final TfArg<List<Object?>>? includedQueryParameters;
+  final TfArg<List<String>>? includedQueryParameters;
 
   Map<String, Object?> encode() => {
     'exclude_host': ?excludeHost?.toTfJson(),
@@ -658,15 +658,15 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<String> maxAge;
 
@@ -712,7 +712,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMetho
     this.allowedMethods,
   });
 
-  final TfArg<List<Object?>>? allowedMethods;
+  final TfArg<List<String>>? allowedMethods;
 
   Map<String, Object?> encode() => {
     'allowed_methods': ?allowedMethods?.toTfJson(),

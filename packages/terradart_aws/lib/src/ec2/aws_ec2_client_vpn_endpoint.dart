@@ -197,12 +197,12 @@ sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
 
   /// Sets `availability_zone_ids`.
   const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZoneIds(
-    TfArg<List<Object?>> availabilityZoneIds,
+    TfArg<List<String>> availabilityZoneIds,
   ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds;
 
   /// Sets `availability_zones`.
   const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZones(
-    TfArg<List<Object?>> availabilityZones,
+    TfArg<List<String>> availabilityZones,
   ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZones;
 
   /// The Terraform argument this choice sets.
@@ -218,7 +218,7 @@ final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds
     this.availabilityZoneIds,
   );
 
-  final TfArg<List<Object?>> availabilityZoneIds;
+  final TfArg<List<String>> availabilityZoneIds;
 
   @override
   String get blockKey => 'availability_zone_ids';
@@ -236,7 +236,7 @@ final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvail
     this.availabilityZones,
   );
 
-  final TfArg<List<Object?>> availabilityZones;
+  final TfArg<List<String>> availabilityZones;
 
   @override
   String get blockKey => 'availability_zones';

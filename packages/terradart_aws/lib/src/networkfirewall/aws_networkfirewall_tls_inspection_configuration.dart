@@ -134,7 +134,7 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
     this.sourcePorts,
   });
 
-  final TfArg<List<Object?>> protocols;
+  final TfArg<List<num>> protocols;
 
   final List<
     NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination

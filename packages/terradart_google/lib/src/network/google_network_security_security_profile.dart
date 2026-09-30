@@ -179,7 +179,7 @@ final class NetworkSecuritySecurityProfileCustomMirroringProfile {
     required this.mirroringEndpointGroup,
   });
 
-  final TfArg<List<Object?>>? mirroringDeploymentGroups;
+  final TfArg<List<String>>? mirroringDeploymentGroups;
 
   final TfArg<String> mirroringEndpointGroup;
 
@@ -407,7 +407,7 @@ final class NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters {
 
   final TfArg<num> priority;
 
-  final TfArg<List<Object?>>? urls;
+  final TfArg<List<String>>? urls;
 
   Map<String, Object?> encode() => {
     'filtering_action': filteringAction.toTfJson(),

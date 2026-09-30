@@ -28,7 +28,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
 
   final TfArg<bool>? allowFieldUpdates;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   final TfArg<ObservabilityadminTelemetryRuleForOrganizationRuleResourceType>?
   resourceType;
@@ -295,19 +295,19 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.startsWith,
   });
 
-  final TfArg<List<Object?>>? endsWith;
+  final TfArg<List<String>>? endsWith;
 
-  final TfArg<List<Object?>>? equals;
+  final TfArg<List<String>>? equals;
 
   final TfArg<String> field;
 
-  final TfArg<List<Object?>>? notEndsWith;
+  final TfArg<List<String>>? notEndsWith;
 
-  final TfArg<List<Object?>>? notEquals;
+  final TfArg<List<String>>? notEquals;
 
-  final TfArg<List<Object?>>? notStartsWith;
+  final TfArg<List<String>>? notStartsWith;
 
-  final TfArg<List<Object?>>? startsWith;
+  final TfArg<List<String>>? startsWith;
 
   Map<String, Object?> encode() => {
     'ends_with': ?endsWith?.toTfJson(),

@@ -2702,7 +2702,7 @@ final class ChronicleFeedDetailsCloudPassageSettings {
     this.authentication,
   });
 
-  final TfArg<List<Object?>>? eventTypes;
+  final TfArg<List<String>>? eventTypes;
 
   final ChronicleFeedDetailsCloudPassageSettingsAuthentication? authentication;
 
@@ -3756,7 +3756,7 @@ final class ChronicleFeedDetailsNetskopeAlertV2Settings {
 
   final TfArg<String>? contentCategory;
 
-  final TfArg<List<Object?>>? contentTypes;
+  final TfArg<List<String>>? contentTypes;
 
   final TfArg<String>? hostname;
 
@@ -4791,7 +4791,7 @@ final class ChronicleFeedDetailsThreatConnectIocSettings {
 
   final TfArg<String>? hostname;
 
-  final TfArg<List<Object?>>? owners;
+  final TfArg<List<String>>? owners;
 
   final ChronicleFeedDetailsThreatConnectIocSettingsAuthentication?
   authentication;
@@ -4835,11 +4835,11 @@ final class ChronicleFeedDetailsThreatConnectIocV3Settings {
     this.authentication,
   });
 
-  final TfArg<List<Object?>>? fields;
+  final TfArg<List<String>>? fields;
 
   final TfArg<String>? hostname;
 
-  final TfArg<List<Object?>>? owners;
+  final TfArg<List<String>>? owners;
 
   final TfArg<num>? schedule;
 
@@ -5212,7 +5212,7 @@ final class ChronicleFeedDetailsWorkspaceActivitySettings {
     this.authentication,
   });
 
-  final TfArg<List<Object?>>? applications;
+  final TfArg<List<String>>? applications;
 
   final TfArg<String>? workspaceCustomerId;
 

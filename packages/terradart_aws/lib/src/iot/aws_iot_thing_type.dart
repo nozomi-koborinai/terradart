@@ -15,7 +15,7 @@ final class IotThingTypeProperties {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>>? searchableAttributes;
+  final TfArg<List<String>>? searchableAttributes;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),

@@ -18,11 +18,11 @@ final class ChronicleFindingsRefinementDeploymentDetectionExclusionApplication {
     this.rules,
   });
 
-  final TfArg<List<Object?>>? curatedRuleSets;
+  final TfArg<List<String>>? curatedRuleSets;
 
-  final TfArg<List<Object?>>? curatedRules;
+  final TfArg<List<String>>? curatedRules;
 
-  final TfArg<List<Object?>>? rules;
+  final TfArg<List<String>>? rules;
 
   Map<String, Object?> encode() => {
     'curated_rule_sets': ?curatedRuleSets?.toTfJson(),

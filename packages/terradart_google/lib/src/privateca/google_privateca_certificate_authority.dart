@@ -144,13 +144,13 @@ final class PrivatecaCertificateAuthorityConfigSubjectConfigSubjectAltName {
     this.uris,
   });
 
-  final TfArg<List<Object?>>? dnsNames;
+  final TfArg<List<String>>? dnsNames;
 
-  final TfArg<List<Object?>>? emailAddresses;
+  final TfArg<List<String>>? emailAddresses;
 
-  final TfArg<List<Object?>>? ipAddresses;
+  final TfArg<List<String>>? ipAddresses;
 
-  final TfArg<List<Object?>>? uris;
+  final TfArg<List<String>>? uris;
 
   Map<String, Object?> encode() => {
     'dns_names': ?dnsNames?.toTfJson(),
@@ -184,7 +184,7 @@ final class PrivatecaCertificateAuthorityConfigX509Config {
     this.policyIds,
   });
 
-  final TfArg<List<Object?>>? aiaOcspServers;
+  final TfArg<List<String>>? aiaOcspServers;
 
   final List<PrivatecaCertificateAuthorityConfigX509ConfigAdditionalExtensions>?
   additionalExtensions;
@@ -244,7 +244,7 @@ final class PrivatecaCertificateAuthorityConfigX509ConfigAdditionalExtensionsObj
     required this.objectIdPath,
   });
 
-  final TfArg<List<Object?>> objectIdPath;
+  final TfArg<List<num>> objectIdPath;
 
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
@@ -397,7 +397,7 @@ final class PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageUnknownExtended
     required this.objectIdPath,
   });
 
-  final TfArg<List<Object?>> objectIdPath;
+  final TfArg<List<num>> objectIdPath;
 
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
@@ -420,21 +420,21 @@ final class PrivatecaCertificateAuthorityConfigX509ConfigNameConstraints {
 
   final TfArg<bool> critical;
 
-  final TfArg<List<Object?>>? excludedDnsNames;
+  final TfArg<List<String>>? excludedDnsNames;
 
-  final TfArg<List<Object?>>? excludedEmailAddresses;
+  final TfArg<List<String>>? excludedEmailAddresses;
 
-  final TfArg<List<Object?>>? excludedIpRanges;
+  final TfArg<List<String>>? excludedIpRanges;
 
-  final TfArg<List<Object?>>? excludedUris;
+  final TfArg<List<String>>? excludedUris;
 
-  final TfArg<List<Object?>>? permittedDnsNames;
+  final TfArg<List<String>>? permittedDnsNames;
 
-  final TfArg<List<Object?>>? permittedEmailAddresses;
+  final TfArg<List<String>>? permittedEmailAddresses;
 
-  final TfArg<List<Object?>>? permittedIpRanges;
+  final TfArg<List<String>>? permittedIpRanges;
 
-  final TfArg<List<Object?>>? permittedUris;
+  final TfArg<List<String>>? permittedUris;
 
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
@@ -457,7 +457,7 @@ final class PrivatecaCertificateAuthorityConfigX509ConfigPolicyIds {
     required this.objectIdPath,
   });
 
-  final TfArg<List<Object?>> objectIdPath;
+  final TfArg<List<num>> objectIdPath;
 
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
@@ -585,7 +585,7 @@ final class PrivatecaCertificateAuthoritySubordinateConfigPemIssuerChain {
     this.pemCertificates,
   });
 
-  final TfArg<List<Object?>>? pemCertificates;
+  final TfArg<List<String>>? pemCertificates;
 
   Map<String, Object?> encode() => {
     'pem_certificates': ?pemCertificates?.toTfJson(),
@@ -601,9 +601,9 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
     this.crlAccessUrls,
   });
 
-  final TfArg<List<Object?>>? aiaIssuingCertificateUrls;
+  final TfArg<List<String>>? aiaIssuingCertificateUrls;
 
-  final TfArg<List<Object?>>? crlAccessUrls;
+  final TfArg<List<String>>? crlAccessUrls;
 
   Map<String, Object?> encode() => {
     'aia_issuing_certificate_urls': ?aiaIssuingCertificateUrls?.toTfJson(),

@@ -59,7 +59,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders {
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -72,7 +72,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods {
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -85,7 +85,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins {
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -98,7 +98,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders 
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }

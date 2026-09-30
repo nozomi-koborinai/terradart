@@ -29,7 +29,7 @@ final class GlueCrawlerCatalogTarget {
 
   final TfArg<String>? eventQueueArn;
 
-  final TfArg<List<Object?>> tables;
+  final TfArg<List<String>> tables;
 
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
@@ -55,7 +55,7 @@ final class GlueCrawlerDeltaTarget {
 
   final TfArg<bool>? createNativeDeltaTable;
 
-  final TfArg<List<Object?>> deltaTables;
+  final TfArg<List<String>> deltaTables;
 
   final TfArg<bool> writeManifest;
 
@@ -103,11 +103,11 @@ final class GlueCrawlerHudiTarget {
 
   final TfArg<String>? connectionName;
 
-  final TfArg<List<Object?>>? exclusions;
+  final TfArg<List<String>>? exclusions;
 
   final TfArg<num> maximumTraversalDepth;
 
-  final TfArg<List<Object?>> paths;
+  final TfArg<List<String>> paths;
 
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
@@ -130,11 +130,11 @@ final class GlueCrawlerIcebergTarget {
 
   final TfArg<String>? connectionName;
 
-  final TfArg<List<Object?>>? exclusions;
+  final TfArg<List<String>>? exclusions;
 
   final TfArg<num> maximumTraversalDepth;
 
-  final TfArg<List<Object?>> paths;
+  final TfArg<List<String>> paths;
 
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
@@ -160,7 +160,7 @@ final class GlueCrawlerJdbcTarget {
   final List<TfArg<GlueCrawlerJdbcTargetEnableAdditionalMetadata>>?
   enableAdditionalMetadata;
 
-  final TfArg<List<Object?>>? exclusions;
+  final TfArg<List<String>>? exclusions;
 
   final TfArg<String> path;
 
@@ -297,7 +297,7 @@ final class GlueCrawlerS3Target {
 
   final TfArg<String>? eventQueueArn;
 
-  final TfArg<List<Object?>>? exclusions;
+  final TfArg<List<String>>? exclusions;
 
   final TfArg<String> path;
 

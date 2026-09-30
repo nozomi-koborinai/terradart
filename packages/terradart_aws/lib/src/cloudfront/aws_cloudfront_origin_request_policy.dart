@@ -48,7 +48,7 @@ enum CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior
 final class CloudfrontOriginRequestPolicyCookiesConfigCookies {
   const CloudfrontOriginRequestPolicyCookiesConfigCookies({this.items});
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -95,7 +95,7 @@ enum CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior
 final class CloudfrontOriginRequestPolicyHeadersConfigHeaders {
   const CloudfrontOriginRequestPolicyHeadersConfigHeaders({this.items});
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
@@ -146,7 +146,7 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings {
     this.items,
   });
 
-  final TfArg<List<Object?>>? items;
+  final TfArg<List<String>>? items;
 
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }

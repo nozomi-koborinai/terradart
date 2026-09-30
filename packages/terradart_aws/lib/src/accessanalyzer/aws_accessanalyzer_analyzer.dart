@@ -118,9 +118,9 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusi
     this.resourceTypes,
   });
 
-  final TfArg<List<Object?>>? accountIds;
+  final TfArg<List<String>>? accountIds;
 
-  final TfArg<List<Object?>>? resourceArns;
+  final TfArg<List<String>>? resourceArns;
 
   final List<
     TfArg<
@@ -213,7 +213,7 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion
     this.resourceTags,
   });
 
-  final TfArg<List<Object?>>? accountIds;
+  final TfArg<List<String>>? accountIds;
 
   final TfArg<List<Object?>>? resourceTags;
 

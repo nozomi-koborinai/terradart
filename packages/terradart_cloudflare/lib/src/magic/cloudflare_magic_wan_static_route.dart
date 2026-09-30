@@ -15,9 +15,9 @@ const Set<String> _cloudflareMagicWanStaticRouteSensitive = <String>{};
 final class MagicWanStaticRouteScope {
   const MagicWanStaticRouteScope({this.coloNames, this.coloRegions});
 
-  final TfArg<List<Object?>>? coloNames;
+  final TfArg<List<String>>? coloNames;
 
-  final TfArg<List<Object?>>? coloRegions;
+  final TfArg<List<String>>? coloRegions;
 
   Map<String, Object?> encode() => {
     'colo_names': ?coloNames?.toTfJson(),

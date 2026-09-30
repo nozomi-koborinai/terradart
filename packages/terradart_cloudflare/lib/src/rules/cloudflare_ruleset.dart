@@ -276,7 +276,7 @@ final class RulesetRulesActionParameters {
     this.vary,
   });
 
-  final TfArg<List<Object?>>? additionalCacheablePorts;
+  final TfArg<List<num>>? additionalCacheablePorts;
 
   final RulesetRulesActionParametersBody? body;
 
@@ -344,7 +344,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<RulesetRulesActionParametersRuleset>? ruleset;
 
-  final TfArg<List<Object?>>? rulesets;
+  final TfArg<List<String>>? rulesets;
 
   final TfArg<RulesetRulesActionParametersSecurityLevel>? securityLevel;
 
@@ -637,7 +637,7 @@ sealed class RulesetRulesActionParametersValue {
 
   /// Sets `values`.
   const factory RulesetRulesActionParametersValue.values(
-    TfArg<List<Object?>> values,
+    TfArg<List<String>> values,
   ) = RulesetRulesActionParametersValueValues;
 
   /// Sets `expression`.
@@ -656,7 +656,7 @@ final class RulesetRulesActionParametersValueValues
     extends RulesetRulesActionParametersValue {
   const RulesetRulesActionParametersValueValues(this.values);
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   @override
   String get blockKey => 'values';
@@ -961,9 +961,9 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyCookie {
     this.include,
   });
 
-  final TfArg<List<Object?>>? checkPresence;
+  final TfArg<List<String>>? checkPresence;
 
-  final TfArg<List<Object?>>? include;
+  final TfArg<List<String>>? include;
 
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
@@ -982,13 +982,13 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHeader {
     this.include,
   });
 
-  final TfArg<List<Object?>>? checkPresence;
+  final TfArg<List<String>>? checkPresence;
 
   final TfArg<Map<String, dynamic>>? contains;
 
   final TfArg<bool>? excludeOrigin;
 
-  final TfArg<List<Object?>>? include;
+  final TfArg<List<String>>? include;
 
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
@@ -1074,7 +1074,7 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
 
   /// Sets `list`.
   const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude.list(
-    TfArg<List<Object?>> list,
+    TfArg<List<String>> list,
   ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList;
 
   /// Sets `all`.
@@ -1095,7 +1095,7 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList
     this.list,
   );
 
-  final TfArg<List<Object?>> list;
+  final TfArg<List<String>> list;
 
   @override
   String get blockKey => 'list';
@@ -1129,7 +1129,7 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
 
   /// Sets `list`.
   const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude.list(
-    TfArg<List<Object?>> list,
+    TfArg<List<String>> list,
   ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList;
 
   /// Sets `all`.
@@ -1150,7 +1150,7 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList
     this.list,
   );
 
-  final TfArg<List<Object?>> list;
+  final TfArg<List<String>> list;
 
   @override
   String get blockKey => 'list';
@@ -1688,7 +1688,7 @@ final class RulesetRulesActionParametersNoCache {
 
   final TfArg<RulesetRulesActionParametersNoCacheOperation> operation;
 
-  final TfArg<List<Object?>>? qualifiers;
+  final TfArg<List<String>>? qualifiers;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1958,7 +1958,7 @@ final class RulesetRulesActionParametersPrivate {
 
   final TfArg<RulesetRulesActionParametersPrivateOperation> operation;
 
-  final TfArg<List<Object?>>? qualifiers;
+  final TfArg<List<String>>? qualifiers;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -2424,9 +2424,9 @@ final class RulesetRulesActionParametersVaryHeaders {
 
   final TfArg<RulesetRulesActionParametersVaryHeadersAction> action;
 
-  final TfArg<List<Object?>>? languages;
+  final TfArg<List<String>>? languages;
 
-  final TfArg<List<Object?>>? mediaTypes;
+  final TfArg<List<String>>? mediaTypes;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -2491,7 +2491,7 @@ final class RulesetRulesRatelimit {
     this.scoreResponseHeaderName,
   });
 
-  final TfArg<List<Object?>> characteristics;
+  final TfArg<List<String>> characteristics;
 
   final TfArg<String>? countingExpression;
 

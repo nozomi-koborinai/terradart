@@ -203,7 +203,7 @@ final class DialogflowCxToolOpenApiSpecAuthenticationOauthConfig {
 
   final TfArg<String> oauthGrantType;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String>? secretVersionForClientSecret;
 

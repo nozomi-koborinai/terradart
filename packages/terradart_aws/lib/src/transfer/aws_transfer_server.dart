@@ -134,7 +134,7 @@ final class TransferServerEndpointDetails {
     this.vpcId,
   });
 
-  final TfArg<List<Object?>>? addressAllocationIds;
+  final TfArg<List<String>>? addressAllocationIds;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 

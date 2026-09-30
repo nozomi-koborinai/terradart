@@ -33,7 +33,7 @@ final class ZeroTrustAccessPolicyApprovalGroups {
 
   final TfArg<num> approvalsNeeded;
 
-  final TfArg<List<Object?>>? emailAddresses;
+  final TfArg<List<String>>? emailAddresses;
 
   final TfArg<String>? emailListUuid;
 

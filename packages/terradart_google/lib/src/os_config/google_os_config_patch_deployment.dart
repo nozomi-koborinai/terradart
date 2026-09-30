@@ -94,11 +94,11 @@ final class OsConfigPatchDeploymentInstanceFilter {
 
   final TfArg<bool>? all;
 
-  final TfArg<List<Object?>>? instanceNamePrefixes;
+  final TfArg<List<String>>? instanceNamePrefixes;
 
-  final TfArg<List<Object?>>? instances;
+  final TfArg<List<String>>? instances;
 
-  final TfArg<List<Object?>>? zones;
+  final TfArg<List<String>>? zones;
 
   final List<OsConfigPatchDeploymentInstanceFilterGroupLabels>? groupLabels;
 
@@ -208,9 +208,9 @@ final class OsConfigPatchDeploymentPatchConfigApt {
     this.type,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? exclusivePackages;
+  final TfArg<List<String>>? exclusivePackages;
 
   final TfArg<OsConfigPatchDeploymentPatchConfigAptType>? type;
 
@@ -273,7 +273,7 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedSuccessCodes;
+  final TfArg<List<num>>? allowedSuccessCodes;
 
   final TfArg<
     OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigInterpreter
@@ -395,7 +395,7 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedSuccessCodes;
+  final TfArg<List<num>>? allowedSuccessCodes;
 
   final TfArg<
     OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigInterpreter
@@ -538,7 +538,7 @@ final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedSuccessCodes;
+  final TfArg<List<num>>? allowedSuccessCodes;
 
   final TfArg<
     OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigInterpreter
@@ -658,7 +658,7 @@ final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedSuccessCodes;
+  final TfArg<List<num>>? allowedSuccessCodes;
 
   final TfArg<
     OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigInterpreter
@@ -785,9 +785,9 @@ final class OsConfigPatchDeploymentPatchConfigWindowsUpdate {
   >?
   classifications;
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? exclusivePatches;
+  final TfArg<List<String>>? exclusivePatches;
 
   Map<String, Object?> encode() => {
     if (classifications != null)
@@ -828,9 +828,9 @@ final class OsConfigPatchDeploymentPatchConfigYum {
     this.security,
   });
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? exclusivePackages;
+  final TfArg<List<String>>? exclusivePackages;
 
   final TfArg<bool>? minimal;
 
@@ -857,13 +857,13 @@ final class OsConfigPatchDeploymentPatchConfigZypper {
     this.withUpdate,
   });
 
-  final TfArg<List<Object?>>? categories;
+  final TfArg<List<String>>? categories;
 
-  final TfArg<List<Object?>>? excludes;
+  final TfArg<List<String>>? excludes;
 
-  final TfArg<List<Object?>>? exclusivePatches;
+  final TfArg<List<String>>? exclusivePatches;
 
-  final TfArg<List<Object?>>? severities;
+  final TfArg<List<String>>? severities;
 
   final TfArg<bool>? withOptional;
 

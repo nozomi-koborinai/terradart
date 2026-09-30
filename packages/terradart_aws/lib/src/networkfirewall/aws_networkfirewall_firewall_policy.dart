@@ -60,11 +60,11 @@ final class NetworkfirewallFirewallPolicyFirewallPolicy {
 
   final TfArg<bool>? enableTlsSessionHolding;
 
-  final TfArg<List<Object?>>? statefulDefaultActions;
+  final TfArg<List<String>>? statefulDefaultActions;
 
-  final TfArg<List<Object?>> statelessDefaultActions;
+  final TfArg<List<String>> statelessDefaultActions;
 
-  final TfArg<List<Object?>> statelessFragmentDefaultActions;
+  final TfArg<List<String>> statelessFragmentDefaultActions;
 
   final TfArg<String>? tlsInspectionConfigurationArn;
 
@@ -159,7 +159,7 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariab
     required this.definition,
   });
 
-  final TfArg<List<Object?>> definition;
+  final TfArg<List<String>> definition;
 
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }

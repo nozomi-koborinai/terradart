@@ -55,15 +55,15 @@ final class BackupReportPlanReportSetting {
     required this.reportTemplate,
   });
 
-  final TfArg<List<Object?>>? accounts;
+  final TfArg<List<String>>? accounts;
 
-  final TfArg<List<Object?>>? frameworkArns;
+  final TfArg<List<String>>? frameworkArns;
 
   final TfArg<num>? numberOfFrameworks;
 
-  final TfArg<List<Object?>>? organizationUnits;
+  final TfArg<List<String>>? organizationUnits;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   final TfArg<BackupReportPlanReportSettingReportTemplate> reportTemplate;
 

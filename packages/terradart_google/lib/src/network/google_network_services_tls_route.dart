@@ -65,9 +65,9 @@ final class NetworkServicesTlsRouteRulesActionDestinations {
 final class NetworkServicesTlsRouteRulesMatches {
   const NetworkServicesTlsRouteRulesMatches({this.alpn, this.sniHost});
 
-  final TfArg<List<Object?>>? alpn;
+  final TfArg<List<String>>? alpn;
 
-  final TfArg<List<Object?>>? sniHost;
+  final TfArg<List<String>>? sniHost;
 
   Map<String, Object?> encode() => {
     'alpn': ?alpn?.toTfJson(),

@@ -502,7 +502,7 @@ final class IamWorkforcePoolProviderOidcWebSsoConfig {
     required this.responseType,
   });
 
-  final TfArg<List<Object?>>? additionalScopes;
+  final TfArg<List<String>>? additionalScopes;
 
   final TfArg<IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior>
   assertionClaimsBehavior;

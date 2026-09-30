@@ -1293,7 +1293,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   final TfArg<String> authCodeUrl;
 
-  final TfArg<List<Object?>> oauthScopes;
+  final TfArg<List<String>> oauthScopes;
 
   final TfArg<String> tokenUrl;
 

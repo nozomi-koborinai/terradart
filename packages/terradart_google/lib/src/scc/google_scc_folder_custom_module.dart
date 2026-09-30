@@ -161,7 +161,7 @@ final class SccFolderCustomModuleCustomConfigResourceSelector {
     required this.resourceTypes,
   });
 
-  final TfArg<List<Object?>> resourceTypes;
+  final TfArg<List<String>> resourceTypes;
 
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }

@@ -34,7 +34,7 @@ enum DialogflowCxEntityTypeKind implements TerraformEnum {
 final class DialogflowCxEntityTypeEntities {
   const DialogflowCxEntityTypeEntities({this.synonyms, this.value});
 
-  final TfArg<List<Object?>>? synonyms;
+  final TfArg<List<String>>? synonyms;
 
   final TfArg<String>? value;
 

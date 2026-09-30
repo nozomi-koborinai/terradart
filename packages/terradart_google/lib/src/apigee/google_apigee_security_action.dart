@@ -189,27 +189,27 @@ final class ApigeeSecurityActionConditionConfig {
     this.userAgents,
   });
 
-  final TfArg<List<Object?>>? accessTokens;
+  final TfArg<List<String>>? accessTokens;
 
-  final TfArg<List<Object?>>? apiKeys;
+  final TfArg<List<String>>? apiKeys;
 
-  final TfArg<List<Object?>>? apiProducts;
+  final TfArg<List<String>>? apiProducts;
 
-  final TfArg<List<Object?>>? asns;
+  final TfArg<List<String>>? asns;
 
-  final TfArg<List<Object?>>? botReasons;
+  final TfArg<List<String>>? botReasons;
 
-  final TfArg<List<Object?>>? developerApps;
+  final TfArg<List<String>>? developerApps;
 
-  final TfArg<List<Object?>>? developers;
+  final TfArg<List<String>>? developers;
 
-  final TfArg<List<Object?>>? httpMethods;
+  final TfArg<List<String>>? httpMethods;
 
-  final TfArg<List<Object?>>? ipAddressRanges;
+  final TfArg<List<String>>? ipAddressRanges;
 
-  final TfArg<List<Object?>>? regionCodes;
+  final TfArg<List<String>>? regionCodes;
 
-  final TfArg<List<Object?>>? userAgents;
+  final TfArg<List<String>>? userAgents;
 
   Map<String, Object?> encode() => {
     'access_tokens': ?accessTokens?.toTfJson(),

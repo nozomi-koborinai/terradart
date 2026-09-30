@@ -78,7 +78,7 @@ final class DbOptionGroupOption {
     this.optionSettings,
   });
 
-  final TfArg<List<Object?>>? dbSecurityGroupMemberships;
+  final TfArg<List<String>>? dbSecurityGroupMemberships;
 
   final TfArg<String> optionName;
 
@@ -86,7 +86,7 @@ final class DbOptionGroupOption {
 
   final TfArg<String>? version;
 
-  final TfArg<List<Object?>>? vpcSecurityGroupMemberships;
+  final TfArg<List<String>>? vpcSecurityGroupMemberships;
 
   final List<DbOptionGroupOptionOptionSettings>? optionSettings;
 

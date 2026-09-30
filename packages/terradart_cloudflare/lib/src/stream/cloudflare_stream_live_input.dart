@@ -32,7 +32,7 @@ final class StreamLiveInputRecording {
     this.timeoutSeconds,
   });
 
-  final TfArg<List<Object?>>? allowedOrigins;
+  final TfArg<List<String>>? allowedOrigins;
 
   final TfArg<bool>? hideLiveViewerCount;
 

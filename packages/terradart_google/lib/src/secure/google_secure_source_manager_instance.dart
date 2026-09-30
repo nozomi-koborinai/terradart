@@ -48,7 +48,7 @@ final class SecureSourceManagerInstancePrivateConfig {
 
   final TfArg<bool> isPrivate;
 
-  final TfArg<List<Object?>>? pscAllowedProjects;
+  final TfArg<List<String>>? pscAllowedProjects;
 
   final SecureSourceManagerInstancePrivateConfigCustomHostConfig?
   customHostConfig;

@@ -304,13 +304,13 @@ final class EdgecontainerClusterNetworking {
     this.servicesIpv6CidrBlocks,
   });
 
-  final TfArg<List<Object?>> clusterIpv4CidrBlocks;
+  final TfArg<List<String>> clusterIpv4CidrBlocks;
 
-  final TfArg<List<Object?>>? clusterIpv6CidrBlocks;
+  final TfArg<List<String>>? clusterIpv6CidrBlocks;
 
-  final TfArg<List<Object?>> servicesIpv4CidrBlocks;
+  final TfArg<List<String>> servicesIpv4CidrBlocks;
 
-  final TfArg<List<Object?>>? servicesIpv6CidrBlocks;
+  final TfArg<List<String>>? servicesIpv6CidrBlocks;
 
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_blocks': clusterIpv4CidrBlocks.toTfJson(),

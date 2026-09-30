@@ -60,7 +60,7 @@ final class TokenValidationRulesSelector {
 final class TokenValidationRulesSelectorExclude {
   const TokenValidationRulesSelectorExclude({this.operationIds});
 
-  final TfArg<List<Object?>>? operationIds;
+  final TfArg<List<String>>? operationIds;
 
   Map<String, Object?> encode() => {'operation_ids': ?operationIds?.toTfJson()};
 }
@@ -71,7 +71,7 @@ final class TokenValidationRulesSelectorExclude {
 final class TokenValidationRulesSelectorInclude {
   const TokenValidationRulesSelectorInclude({this.host});
 
-  final TfArg<List<Object?>>? host;
+  final TfArg<List<String>>? host;
 
   Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }

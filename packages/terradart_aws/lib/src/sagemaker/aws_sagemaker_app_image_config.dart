@@ -38,9 +38,9 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig {
     this.containerEnvironmentVariables,
   });
 
-  final TfArg<List<Object?>>? containerArguments;
+  final TfArg<List<String>>? containerArguments;
 
-  final TfArg<List<Object?>>? containerEntrypoint;
+  final TfArg<List<String>>? containerEntrypoint;
 
   final TfArg<Map<String, String>>? containerEnvironmentVariables;
 
@@ -106,9 +106,9 @@ final class SagemakerAppImageConfigJupyterLabImageConfigContainerConfig {
     this.containerEnvironmentVariables,
   });
 
-  final TfArg<List<Object?>>? containerArguments;
+  final TfArg<List<String>>? containerArguments;
 
-  final TfArg<List<Object?>>? containerEntrypoint;
+  final TfArg<List<String>>? containerEntrypoint;
 
   final TfArg<Map<String, String>>? containerEnvironmentVariables;
 

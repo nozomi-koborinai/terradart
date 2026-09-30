@@ -366,7 +366,7 @@ final class CloudwatchEventTargetHttpTarget {
 
   final TfArg<Map<String, String>>? headerParameters;
 
-  final TfArg<List<Object?>>? pathParameterValues;
+  final TfArg<List<String>>? pathParameterValues;
 
   final TfArg<Map<String, String>>? queryStringParameters;
 
@@ -474,7 +474,7 @@ final class CloudwatchEventTargetRunCommandTargets {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),

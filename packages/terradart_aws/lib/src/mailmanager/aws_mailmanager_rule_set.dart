@@ -483,7 +483,7 @@ enum MailmanagerRuleSetRuleActionRelayMailFrom implements TerraformEnum {
 final class MailmanagerRuleSetRuleActionReplaceRecipient {
   const MailmanagerRuleSetRuleActionReplaceRecipient({this.replaceWith});
 
-  final TfArg<List<Object?>>? replaceWith;
+  final TfArg<List<String>>? replaceWith;
 
   Map<String, Object?> encode() => {'replace_with': ?replaceWith?.toTfJson()};
 }
@@ -775,7 +775,7 @@ final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressL
     required this.attribute,
   });
 
-  final TfArg<List<Object?>> addressLists;
+  final TfArg<List<String>> addressLists;
 
   final TfArg<
     MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressListAttribute
@@ -864,7 +864,7 @@ final class MailmanagerRuleSetRuleConditionIpExpression {
 
   final TfArg<MailmanagerRuleSetRuleConditionIpExpressionOperator> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<MailmanagerRuleSetRuleConditionIpExpressionEvaluate>? evaluate;
 
@@ -992,7 +992,7 @@ final class MailmanagerRuleSetRuleConditionStringExpression {
 
   final TfArg<MailmanagerRuleSetRuleConditionStringExpressionOperator> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<MailmanagerRuleSetRuleConditionStringExpressionEvaluate>? evaluate;
 
@@ -1539,7 +1539,7 @@ final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressList
     required this.attribute,
   });
 
-  final TfArg<List<Object?>> addressLists;
+  final TfArg<List<String>> addressLists;
 
   final TfArg<
     MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressListAttribute
@@ -1625,7 +1625,7 @@ final class MailmanagerRuleSetRuleUnlessIpExpression {
 
   final TfArg<MailmanagerRuleSetRuleUnlessIpExpressionOperator> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<MailmanagerRuleSetRuleUnlessIpExpressionEvaluate>? evaluate;
 
@@ -1750,7 +1750,7 @@ final class MailmanagerRuleSetRuleUnlessStringExpression {
 
   final TfArg<MailmanagerRuleSetRuleUnlessStringExpressionOperator> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final List<MailmanagerRuleSetRuleUnlessStringExpressionEvaluate>? evaluate;
 

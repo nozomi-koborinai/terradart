@@ -118,19 +118,19 @@ final class CloudtrailAdvancedEventSelectorFieldSelector {
     this.startsWith,
   });
 
-  final TfArg<List<Object?>>? endsWith;
+  final TfArg<List<String>>? endsWith;
 
-  final TfArg<List<Object?>>? equals;
+  final TfArg<List<String>>? equals;
 
   final TfArg<CloudtrailAdvancedEventSelectorFieldSelectorField> field;
 
-  final TfArg<List<Object?>>? notEndsWith;
+  final TfArg<List<String>>? notEndsWith;
 
-  final TfArg<List<Object?>>? notEquals;
+  final TfArg<List<String>>? notEquals;
 
-  final TfArg<List<Object?>>? notStartsWith;
+  final TfArg<List<String>>? notStartsWith;
 
-  final TfArg<List<Object?>>? startsWith;
+  final TfArg<List<String>>? startsWith;
 
   Map<String, Object?> encode() => {
     'ends_with': ?endsWith?.toTfJson(),
@@ -174,7 +174,7 @@ final class CloudtrailEventSelector {
     this.dataResource,
   });
 
-  final TfArg<List<Object?>>? excludeManagementEventSources;
+  final TfArg<List<String>>? excludeManagementEventSources;
 
   final TfArg<bool>? includeManagementEvents;
 
@@ -214,7 +214,7 @@ final class CloudtrailEventSelectorDataResource {
 
   final TfArg<CloudtrailEventSelectorDataResourceType> type;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),

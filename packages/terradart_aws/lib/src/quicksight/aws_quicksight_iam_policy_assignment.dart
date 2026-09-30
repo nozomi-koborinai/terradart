@@ -24,9 +24,9 @@ enum QuicksightIamPolicyAssignmentAssignmentStatus implements TerraformEnum {
 final class QuicksightIamPolicyAssignmentIdentities {
   const QuicksightIamPolicyAssignmentIdentities({this.group, this.user});
 
-  final TfArg<List<Object?>>? group;
+  final TfArg<List<String>>? group;
 
-  final TfArg<List<Object?>>? user;
+  final TfArg<List<String>>? user;
 
   Map<String, Object?> encode() => {
     'group': ?group?.toTfJson(),

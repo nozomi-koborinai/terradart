@@ -309,7 +309,7 @@ final class GkeonpremVmwareClusterLoadBalancerMetalLbConfigAddressPools {
     required this.pool,
   });
 
-  final TfArg<List<Object?>> addresses;
+  final TfArg<List<String>> addresses;
 
   final TfArg<bool>? avoidBuggyIps;
 
@@ -357,9 +357,9 @@ final class GkeonpremVmwareClusterNetworkConfig {
     this.hostConfig,
   });
 
-  final TfArg<List<Object?>> podAddressCidrBlocks;
+  final TfArg<List<String>> podAddressCidrBlocks;
 
-  final TfArg<List<Object?>> serviceAddressCidrBlocks;
+  final TfArg<List<String>> serviceAddressCidrBlocks;
 
   final TfArg<String>? vcenterNetwork;
 
@@ -521,11 +521,11 @@ final class GkeonpremVmwareClusterNetworkConfigHostConfig {
     this.ntpServers,
   });
 
-  final TfArg<List<Object?>>? dnsSearchDomains;
+  final TfArg<List<String>>? dnsSearchDomains;
 
-  final TfArg<List<Object?>>? dnsServers;
+  final TfArg<List<String>>? dnsServers;
 
-  final TfArg<List<Object?>>? ntpServers;
+  final TfArg<List<String>>? ntpServers;
 
   Map<String, Object?> encode() => {
     'dns_search_domains': ?dnsSearchDomains?.toTfJson(),

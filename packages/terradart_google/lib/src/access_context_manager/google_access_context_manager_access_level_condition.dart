@@ -156,7 +156,7 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwo
 
   final TfArg<String> network;
 
-  final TfArg<List<Object?>>? vpcIpSubnetworks;
+  final TfArg<List<String>>? vpcIpSubnetworks;
 
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),

@@ -115,7 +115,7 @@ final class NatGatewayAvailabilityZoneAddress {
     this.availabilityZoneId,
   });
 
-  final TfArg<List<Object?>>? allocationIds;
+  final TfArg<List<String>>? allocationIds;
 
   final TfArg<String>? availabilityZone;
 

@@ -19,15 +19,15 @@ final class AccessanalyzerArchiveRuleFilter {
     this.neq,
   });
 
-  final TfArg<List<Object?>>? contains;
+  final TfArg<List<String>>? contains;
 
   final TfArg<String> criteria;
 
-  final TfArg<List<Object?>>? eq;
+  final TfArg<List<String>>? eq;
 
   final TfArg<String>? exists;
 
-  final TfArg<List<Object?>>? neq;
+  final TfArg<List<String>>? neq;
 
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),

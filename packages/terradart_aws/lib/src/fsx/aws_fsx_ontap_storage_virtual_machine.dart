@@ -58,7 +58,7 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManaged
     required this.username,
   });
 
-  final TfArg<List<Object?>> dnsIps;
+  final TfArg<List<String>> dnsIps;
 
   final TfArg<String> domainName;
 

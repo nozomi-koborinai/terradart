@@ -216,7 +216,7 @@ final class CesAgentRemoteDialogflowAgent {
 final class CesAgentToolsets {
   const CesAgentToolsets({this.toolIds, required this.toolset});
 
-  final TfArg<List<Object?>>? toolIds;
+  final TfArg<List<String>>? toolIds;
 
   final TfArg<String> toolset;
 

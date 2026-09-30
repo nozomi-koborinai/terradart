@@ -68,7 +68,7 @@ final class CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols {
     required this.quantity,
   });
 
-  final TfArg<List<Object?>> items;
+  final TfArg<List<String>> items;
 
   final TfArg<num> quantity;
 

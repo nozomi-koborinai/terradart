@@ -269,7 +269,7 @@ final class DatazonePolicyGrantDetailCreateProjectFromProjectProfile {
 
   final TfArg<bool>? includeChildDomainUnits;
 
-  final TfArg<List<Object?>>? projectProfiles;
+  final TfArg<List<String>>? projectProfiles;
 
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),

@@ -36,7 +36,7 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
 
   final TfArg<String> scmProvider;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   final TfArg<String>? sslCaCertificate;
 
@@ -81,7 +81,7 @@ final class DeveloperConnectAccountConnectorProviderOauthConfig {
     this.systemProviderId,
   });
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   final TfArg<String>? systemProviderId;
 

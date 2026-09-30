@@ -22,11 +22,11 @@ final class OsConfigGuestPoliciesAssignment {
     this.osTypes,
   });
 
-  final TfArg<List<Object?>>? instanceNamePrefixes;
+  final TfArg<List<String>>? instanceNamePrefixes;
 
-  final TfArg<List<Object?>>? instances;
+  final TfArg<List<String>>? instances;
 
-  final TfArg<List<Object?>>? zones;
+  final TfArg<List<String>>? zones;
 
   final List<OsConfigGuestPoliciesAssignmentGroupLabels>? groupLabels;
 
@@ -118,7 +118,7 @@ final class OsConfigGuestPoliciesPackageRepositoriesApt {
   final TfArg<OsConfigGuestPoliciesPackageRepositoriesAptArchiveType>?
   archiveType;
 
-  final TfArg<List<Object?>> components;
+  final TfArg<List<String>> components;
 
   final TfArg<String> distribution;
 
@@ -182,7 +182,7 @@ final class OsConfigGuestPoliciesPackageRepositoriesYum {
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 
@@ -209,7 +209,7 @@ final class OsConfigGuestPoliciesPackageRepositoriesZypper {
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<Object?>>? gpgKeys;
+  final TfArg<List<String>>? gpgKeys;
 
   final TfArg<String> id;
 
@@ -520,7 +520,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsFileExec {
 
   final TfArg<String>? allowedExitCodes;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String>? artifactId;
 
@@ -544,11 +544,11 @@ final class OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation {
     this.flags,
   });
 
-  final TfArg<List<Object?>>? allowedExitCodes;
+  final TfArg<List<num>>? allowedExitCodes;
 
   final TfArg<String> artifactId;
 
-  final TfArg<List<Object?>>? flags;
+  final TfArg<List<String>>? flags;
 
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
@@ -580,7 +580,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsScriptRun {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedExitCodes;
+  final TfArg<List<num>>? allowedExitCodes;
 
   final TfArg<OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter>?
   interpreter;
@@ -740,9 +740,9 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsFileExec {
     this.localPath,
   });
 
-  final TfArg<List<Object?>>? allowedExitCodes;
+  final TfArg<List<num>>? allowedExitCodes;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
   final TfArg<String>? artifactId;
 
@@ -766,11 +766,11 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation {
     this.flags,
   });
 
-  final TfArg<List<Object?>>? allowedExitCodes;
+  final TfArg<List<num>>? allowedExitCodes;
 
   final TfArg<String> artifactId;
 
-  final TfArg<List<Object?>>? flags;
+  final TfArg<List<String>>? flags;
 
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
@@ -802,7 +802,7 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsScriptRun {
     required this.script,
   });
 
-  final TfArg<List<Object?>>? allowedExitCodes;
+  final TfArg<List<num>>? allowedExitCodes;
 
   final TfArg<OsConfigGuestPoliciesRecipesUpdateStepsScriptRunInterpreter>?
   interpreter;

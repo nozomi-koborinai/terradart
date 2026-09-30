@@ -1222,7 +1222,7 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryClustering {
     required this.columns,
   });
 
-  final TfArg<List<Object?>> columns;
+  final TfArg<List<String>> columns;
 
   Map<String, Object?> encode() => {'columns': columns.toTfJson()};
 }

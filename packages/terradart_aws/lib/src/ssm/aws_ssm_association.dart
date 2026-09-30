@@ -64,7 +64,7 @@ final class SsmAssociationTargets {
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),

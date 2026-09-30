@@ -134,13 +134,13 @@ final class ComputeRouterNatRulesAction {
     this.sourceNatDrainRanges,
   });
 
-  final TfArg<List<Object?>>? sourceNatActiveIps;
+  final TfArg<List<String>>? sourceNatActiveIps;
 
-  final TfArg<List<Object?>>? sourceNatActiveRanges;
+  final TfArg<List<String>>? sourceNatActiveRanges;
 
-  final TfArg<List<Object?>>? sourceNatDrainIps;
+  final TfArg<List<String>>? sourceNatDrainIps;
 
-  final TfArg<List<Object?>>? sourceNatDrainRanges;
+  final TfArg<List<String>>? sourceNatDrainRanges;
 
   Map<String, Object?> encode() => {
     'source_nat_active_ips': ?sourceNatActiveIps?.toTfJson(),
@@ -162,9 +162,9 @@ final class ComputeRouterNatSubnetwork {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>>? secondaryIpRangeNames;
+  final TfArg<List<String>>? secondaryIpRangeNames;
 
-  final TfArg<List<Object?>> sourceIpRangesToNat;
+  final TfArg<List<String>> sourceIpRangesToNat;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),

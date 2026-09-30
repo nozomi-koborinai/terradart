@@ -159,7 +159,7 @@ final class ApihubPluginConfigTemplateAuthConfigTemplate {
     this.serviceAccount,
   });
 
-  final TfArg<List<Object?>> supportedAuthTypes;
+  final TfArg<List<String>> supportedAuthTypes;
 
   final ApihubPluginConfigTemplateAuthConfigTemplateServiceAccount?
   serviceAccount;

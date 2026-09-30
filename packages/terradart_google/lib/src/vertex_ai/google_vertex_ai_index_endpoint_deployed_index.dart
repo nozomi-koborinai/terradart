@@ -87,9 +87,9 @@ final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvide
     this.audiences,
   });
 
-  final TfArg<List<Object?>>? allowedIssuers;
+  final TfArg<List<String>>? allowedIssuers;
 
-  final TfArg<List<Object?>>? audiences;
+  final TfArg<List<String>>? audiences;
 
   Map<String, Object?> encode() => {
     'allowed_issuers': ?allowedIssuers?.toTfJson(),

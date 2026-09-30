@@ -62,7 +62,7 @@ final class FsxOpenzfsVolumeNfsExportsClientConfigurations {
 
   final TfArg<String> clients;
 
-  final TfArg<List<Object?>> options;
+  final TfArg<List<String>> options;
 
   Map<String, Object?> encode() => {
     'clients': clients.toTfJson(),

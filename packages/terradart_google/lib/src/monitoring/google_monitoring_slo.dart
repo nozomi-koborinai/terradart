@@ -183,11 +183,11 @@ final class MonitoringSloBasicSli {
     required this.objective,
   });
 
-  final TfArg<List<Object?>>? location;
+  final TfArg<List<String>>? location;
 
-  final TfArg<List<Object?>>? method;
+  final TfArg<List<String>>? method;
 
-  final TfArg<List<Object?>>? version;
+  final TfArg<List<String>>? version;
 
   final MonitoringSloBasicSliObjective objective;
 
@@ -600,11 +600,11 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforman
     required this.objective,
   });
 
-  final TfArg<List<Object?>>? location;
+  final TfArg<List<String>>? location;
 
-  final TfArg<List<Object?>>? method;
+  final TfArg<List<String>>? method;
 
-  final TfArg<List<Object?>>? version;
+  final TfArg<List<String>>? version;
 
   final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective
   objective;

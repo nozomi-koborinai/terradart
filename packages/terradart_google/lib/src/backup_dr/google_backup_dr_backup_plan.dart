@@ -45,7 +45,7 @@ final class BackupDrBackupPlanBackupRulesStandardSchedule {
     this.weekDayOfMonth,
   });
 
-  final TfArg<List<Object?>>? daysOfMonth;
+  final TfArg<List<num>>? daysOfMonth;
 
   final List<TfArg<BackupDrBackupPlanBackupRulesStandardScheduleDaysOfWeek>>?
   daysOfWeek;

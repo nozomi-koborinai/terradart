@@ -25,15 +25,15 @@ final class AiSearchNamespacePublicEndpointParams {
     this.searchEndpoint,
   });
 
-  final TfArg<List<Object?>>? authorizedHosts;
+  final TfArg<List<String>>? authorizedHosts;
 
-  final TfArg<List<Object?>>? customDomains;
+  final TfArg<List<String>>? customDomains;
 
   final TfArg<bool>? defaultDomainEnabled;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>>? instancesAllowed;
+  final TfArg<List<String>>? instancesAllowed;
 
   final AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint?
   chatCompletionsEndpoint;

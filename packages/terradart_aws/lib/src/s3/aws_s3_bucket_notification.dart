@@ -23,7 +23,7 @@ final class S3BucketNotificationLambdaFunction {
     this.lambdaFunctionArn,
   });
 
-  final TfArg<List<Object?>> events;
+  final TfArg<List<String>> events;
 
   final TfArg<String>? filterPrefix;
 
@@ -54,7 +54,7 @@ final class S3BucketNotificationQueue {
     required this.queueArn,
   });
 
-  final TfArg<List<Object?>> events;
+  final TfArg<List<String>> events;
 
   final TfArg<String>? filterPrefix;
 
@@ -85,7 +85,7 @@ final class S3BucketNotificationTopic {
     required this.topicArn,
   });
 
-  final TfArg<List<Object?>> events;
+  final TfArg<List<String>> events;
 
   final TfArg<String>? filterPrefix;
 

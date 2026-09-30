@@ -52,11 +52,11 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer {
     this.privateEndpointOverrides,
   });
 
-  final TfArg<List<Object?>>? allowedAudience;
+  final TfArg<List<String>>? allowedAudience;
 
-  final TfArg<List<Object?>>? allowedClients;
+  final TfArg<List<String>>? allowedClients;
 
-  final TfArg<List<Object?>>? allowedScopes;
+  final TfArg<List<String>>? allowedScopes;
 
   final TfArg<String> discoveryUrl;
 
@@ -109,7 +109,7 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAll
     this.hostingEnvironment,
   });
 
-  final TfArg<List<Object?>>? workloadIdentities;
+  final TfArg<List<String>>? workloadIdentities;
 
   final List<
     BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment
@@ -232,7 +232,7 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 
   final TfArg<String>? matchValueString;
 
-  final TfArg<List<Object?>>? matchValueStringList;
+  final TfArg<List<String>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
@@ -1073,7 +1073,7 @@ final class BedrockagentcoreHarnessSkill {
 final class BedrockagentcoreHarnessSkillAwsSkills {
   const BedrockagentcoreHarnessSkillAwsSkills({this.paths});
 
-  final TfArg<List<Object?>>? paths;
+  final TfArg<List<String>>? paths;
 
   Map<String, Object?> encode() => {'paths': ?paths?.toTfJson()};
 }
@@ -1315,7 +1315,7 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
 
   final TfArg<String> providerArn;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   Map<String, Object?> encode() => {
     'custom_parameters': ?customParameters?.toTfJson(),

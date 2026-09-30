@@ -84,15 +84,15 @@ final class RumAppMonitorAppMonitorConfiguration {
 
   final TfArg<bool>? enableXray;
 
-  final TfArg<List<Object?>>? excludedPages;
+  final TfArg<List<String>>? excludedPages;
 
-  final TfArg<List<Object?>>? favoritePages;
+  final TfArg<List<String>>? favoritePages;
 
   final TfArg<String>? guestRoleArn;
 
   final TfArg<String>? identityPoolId;
 
-  final TfArg<List<Object?>>? includedPages;
+  final TfArg<List<String>>? includedPages;
 
   final TfArg<num>? sessionSampleRate;
 

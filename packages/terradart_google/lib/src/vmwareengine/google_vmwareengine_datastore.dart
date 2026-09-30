@@ -62,7 +62,7 @@ final class VmwareengineDatastoreNfsDatastoreThirdPartyFileService {
 
   final RefTo<GoogleComputeNetwork> network;
 
-  final TfArg<List<Object?>> servers;
+  final TfArg<List<String>> servers;
 
   Map<String, Object?> encode() => {
     'file_share': fileShare.toTfJson(),

@@ -103,7 +103,7 @@ final class DataEcsTaskExecutionOverridesContainerOverrides {
     this.resourceRequirements,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<num>? cpu;
 

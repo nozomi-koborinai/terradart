@@ -20,7 +20,7 @@ final class DataKmsSecretSecret {
 
   final TfArg<Map<String, String>>? context;
 
-  final TfArg<List<Object?>>? grantTokens;
+  final TfArg<List<String>>? grantTokens;
 
   final TfArg<String> name;
 

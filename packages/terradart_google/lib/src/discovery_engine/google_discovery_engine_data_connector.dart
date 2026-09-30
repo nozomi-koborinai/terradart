@@ -98,9 +98,9 @@ final class DiscoveryEngineDataConnectorBapConfig {
     this.supportedConnectorModes,
   });
 
-  final TfArg<List<Object?>>? enabledActions;
+  final TfArg<List<String>>? enabledActions;
 
-  final TfArg<List<Object?>>? supportedConnectorModes;
+  final TfArg<List<String>>? supportedConnectorModes;
 
   Map<String, Object?> encode() => {
     'enabled_actions': ?enabledActions?.toTfJson(),

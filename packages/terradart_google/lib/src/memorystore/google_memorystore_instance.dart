@@ -261,7 +261,7 @@ final class MemorystoreInstanceDesiredPscAutoConnections {
 final class MemorystoreInstanceGcsSource {
   const MemorystoreInstanceGcsSource({required this.uris});
 
-  final TfArg<List<Object?>> uris;
+  final TfArg<List<String>> uris;
 
   Map<String, Object?> encode() => {'uris': uris.toTfJson()};
 }

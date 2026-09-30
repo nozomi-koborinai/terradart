@@ -192,7 +192,7 @@ final class LoadBalancerRulesOverrides {
 
   final TfArg<Map<String, dynamic>>? countryPools;
 
-  final TfArg<List<Object?>>? defaultPools;
+  final TfArg<List<String>>? defaultPools;
 
   final TfArg<String>? fallbackPool;
 
@@ -350,7 +350,7 @@ final class LoadBalancerRulesOverridesSessionAffinityAttributes {
 
   final TfArg<num>? drainDuration;
 
-  final TfArg<List<Object?>>? headers;
+  final TfArg<List<String>>? headers;
 
   final TfArg<bool>? requireAllHeaders;
 
@@ -433,7 +433,7 @@ final class LoadBalancerSessionAffinityAttributes {
 
   final TfArg<num>? drainDuration;
 
-  final TfArg<List<Object?>>? headers;
+  final TfArg<List<String>>? headers;
 
   final TfArg<bool>? requireAllHeaders;
 

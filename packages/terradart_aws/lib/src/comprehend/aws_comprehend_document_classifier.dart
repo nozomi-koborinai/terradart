@@ -247,7 +247,7 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
 
   final TfArg<String>? annotationDataS3Uri;
 
-  final TfArg<List<Object?>> attributeNames;
+  final TfArg<List<String>> attributeNames;
 
   final TfArg<
     ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType

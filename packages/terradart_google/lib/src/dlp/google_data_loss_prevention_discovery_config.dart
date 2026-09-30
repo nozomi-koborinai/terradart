@@ -710,7 +710,7 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableMo
   >?
   frequency;
 
-  final TfArg<List<Object?>>? types;
+  final TfArg<List<String>>? types;
 
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),

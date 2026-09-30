@@ -104,9 +104,9 @@ final class Macie2FindingsFilterFindingCriteriaCriterion {
     this.neq,
   });
 
-  final TfArg<List<Object?>>? eq;
+  final TfArg<List<String>>? eq;
 
-  final TfArg<List<Object?>>? eqExactMatch;
+  final TfArg<List<String>>? eqExactMatch;
 
   final TfArg<String> field;
 
@@ -118,7 +118,7 @@ final class Macie2FindingsFilterFindingCriteriaCriterion {
 
   final TfArg<String>? lte;
 
-  final TfArg<List<Object?>>? neq;
+  final TfArg<List<String>>? neq;
 
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),

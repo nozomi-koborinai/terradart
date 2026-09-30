@@ -24,7 +24,7 @@ enum DevopsguruResourceCollectionType implements TerraformEnum {
 final class DevopsguruResourceCollectionCloudformation {
   const DevopsguruResourceCollectionCloudformation({required this.stackNames});
 
-  final TfArg<List<Object?>> stackNames;
+  final TfArg<List<String>> stackNames;
 
   Map<String, Object?> encode() => {'stack_names': stackNames.toTfJson()};
 }
@@ -40,7 +40,7 @@ final class DevopsguruResourceCollectionTags {
 
   final TfArg<String> appBoundaryKey;
 
-  final TfArg<List<Object?>> tagValues;
+  final TfArg<List<String>> tagValues;
 
   Map<String, Object?> encode() => {
     'app_boundary_key': appBoundaryKey.toTfJson(),

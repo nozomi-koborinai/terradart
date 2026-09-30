@@ -72,7 +72,7 @@ final class VertexAiEndpointPrivateServiceConnectConfig {
 
   final TfArg<bool> enablePrivateServiceConnect;
 
-  final TfArg<List<Object?>>? projectAllowlist;
+  final TfArg<List<String>>? projectAllowlist;
 
   final List<VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs>?
   pscAutomationConfigs;

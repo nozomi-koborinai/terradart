@@ -44,13 +44,13 @@ final class LambdaFunctionUrlCors {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 

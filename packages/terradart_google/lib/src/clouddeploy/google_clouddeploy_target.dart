@@ -113,7 +113,7 @@ final class ClouddeployTargetExecutionConfigs {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<List<Object?>> usages;
+  final TfArg<List<String>> usages;
 
   final TfArg<bool>? verbose;
 
@@ -210,7 +210,7 @@ final class ClouddeployTargetGke {
 final class ClouddeployTargetMultiTarget {
   const ClouddeployTargetMultiTarget({required this.targetIds});
 
-  final TfArg<List<Object?>> targetIds;
+  final TfArg<List<String>> targetIds;
 
   Map<String, Object?> encode() => {'target_ids': targetIds.toTfJson()};
 }

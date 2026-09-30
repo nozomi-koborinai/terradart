@@ -70,7 +70,7 @@ final class DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactRegistry 
 final class DeveloperConnectInsightsConfigTargetProjects {
   const DeveloperConnectInsightsConfigTargetProjects({this.projectIds});
 
-  final TfArg<List<Object?>>? projectIds;
+  final TfArg<List<String>>? projectIds;
 
   Map<String, Object?> encode() => {'project_ids': ?projectIds?.toTfJson()};
 }

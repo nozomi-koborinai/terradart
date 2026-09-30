@@ -316,7 +316,7 @@ final class BigqueryJobExtract {
 
   final TfArg<BigqueryJobExtractDestinationFormat>? destinationFormat;
 
-  final TfArg<List<Object?>> destinationUris;
+  final TfArg<List<String>> destinationUris;
 
   final TfArg<String>? fieldDelimiter;
 
@@ -482,17 +482,17 @@ final class BigqueryJobLoad {
 
   final TfArg<String>? nullMarker;
 
-  final TfArg<List<Object?>>? projectionFields;
+  final TfArg<List<String>>? projectionFields;
 
   final TfArg<String>? quote;
 
-  final TfArg<List<Object?>>? schemaUpdateOptions;
+  final TfArg<List<String>>? schemaUpdateOptions;
 
   final TfArg<num>? skipLeadingRows;
 
   final TfArg<BigqueryJobLoadSourceFormat>? sourceFormat;
 
-  final TfArg<List<Object?>> sourceUris;
+  final TfArg<List<String>> sourceUris;
 
   final TfArg<BigqueryJobLoadWriteDisposition>? writeDisposition;
 
@@ -673,7 +673,7 @@ final class BigqueryJobQuery {
 
   final TfArg<String> query;
 
-  final TfArg<List<Object?>>? schemaUpdateOptions;
+  final TfArg<List<String>>? schemaUpdateOptions;
 
   final TfArg<bool>? useLegacySql;
 

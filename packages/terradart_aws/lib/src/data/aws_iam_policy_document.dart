@@ -23,15 +23,15 @@ final class DataIamPolicyDocumentStatement {
     this.principals,
   });
 
-  final TfArg<List<Object?>>? actions;
+  final TfArg<List<String>>? actions;
 
   final TfArg<String>? effect;
 
-  final TfArg<List<Object?>>? notActions;
+  final TfArg<List<String>>? notActions;
 
-  final TfArg<List<Object?>>? notResources;
+  final TfArg<List<String>>? notResources;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   final TfArg<String>? sid;
 
@@ -69,7 +69,7 @@ final class DataIamPolicyDocumentStatementCondition {
 
   final TfArg<String> test;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   final TfArg<String> variable;
 
@@ -89,7 +89,7 @@ final class DataIamPolicyDocumentStatementNotPrincipals {
     required this.type,
   });
 
-  final TfArg<List<Object?>> identifiers;
+  final TfArg<List<String>> identifiers;
 
   final TfArg<String> type;
 
@@ -108,7 +108,7 @@ final class DataIamPolicyDocumentStatementPrincipals {
     required this.type,
   });
 
-  final TfArg<List<Object?>> identifiers;
+  final TfArg<List<String>> identifiers;
 
   final TfArg<String> type;
 

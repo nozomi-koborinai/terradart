@@ -76,9 +76,9 @@ final class DataEcrLifecyclePolicyDocumentRuleSelection {
 
   final TfArg<String>? storageClass;
 
-  final TfArg<List<Object?>>? tagPatternList;
+  final TfArg<List<String>>? tagPatternList;
 
-  final TfArg<List<Object?>>? tagPrefixList;
+  final TfArg<List<String>>? tagPrefixList;
 
   final TfArg<String> tagStatus;
 

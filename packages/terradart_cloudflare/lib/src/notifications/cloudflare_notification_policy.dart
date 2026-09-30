@@ -155,94 +155,94 @@ final class NotificationPolicyFilters {
     this.zones,
   });
 
-  final TfArg<List<Object?>>? actions;
+  final TfArg<List<String>>? actions;
 
-  final TfArg<List<Object?>>? affectedAsns;
+  final TfArg<List<String>>? affectedAsns;
 
-  final TfArg<List<Object?>>? affectedComponents;
+  final TfArg<List<String>>? affectedComponents;
 
-  final TfArg<List<Object?>>? affectedLocations;
+  final TfArg<List<String>>? affectedLocations;
 
-  final TfArg<List<Object?>>? airportCode;
+  final TfArg<List<String>>? airportCode;
 
-  final TfArg<List<Object?>>? alertTriggerPreferences;
+  final TfArg<List<String>>? alertTriggerPreferences;
 
-  final TfArg<List<Object?>>? alertTriggerPreferencesValue;
+  final TfArg<List<String>>? alertTriggerPreferencesValue;
 
-  final TfArg<List<Object?>>? enabled;
+  final TfArg<List<String>>? enabled;
 
-  final TfArg<List<Object?>>? environment;
+  final TfArg<List<String>>? environment;
 
-  final TfArg<List<Object?>>? event;
+  final TfArg<List<String>>? event;
 
-  final TfArg<List<Object?>>? eventSource;
+  final TfArg<List<String>>? eventSource;
 
-  final TfArg<List<Object?>>? eventType;
+  final TfArg<List<String>>? eventType;
 
-  final TfArg<List<Object?>>? groupBy;
+  final TfArg<List<String>>? groupBy;
 
-  final TfArg<List<Object?>>? healthCheckId;
+  final TfArg<List<String>>? healthCheckId;
 
   final List<TfArg<NotificationPolicyFiltersIncidentImpact>>? incidentImpact;
 
-  final TfArg<List<Object?>>? inputId;
+  final TfArg<List<String>>? inputId;
 
-  final TfArg<List<Object?>>? insightClass;
+  final TfArg<List<String>>? insightClass;
 
-  final TfArg<List<Object?>>? limit;
+  final TfArg<List<String>>? limit;
 
-  final TfArg<List<Object?>>? logoTag;
+  final TfArg<List<String>>? logoTag;
 
-  final TfArg<List<Object?>>? megabitsPerSecond;
+  final TfArg<List<String>>? megabitsPerSecond;
 
-  final TfArg<List<Object?>>? newHealth;
+  final TfArg<List<String>>? newHealth;
 
-  final TfArg<List<Object?>>? newStatus;
+  final TfArg<List<String>>? newStatus;
 
-  final TfArg<List<Object?>>? packetsPerSecond;
+  final TfArg<List<String>>? packetsPerSecond;
 
-  final TfArg<List<Object?>>? poolId;
+  final TfArg<List<String>>? poolId;
 
-  final TfArg<List<Object?>>? popNames;
+  final TfArg<List<String>>? popNames;
 
-  final TfArg<List<Object?>>? product;
+  final TfArg<List<String>>? product;
 
-  final TfArg<List<Object?>>? projectId;
+  final TfArg<List<String>>? projectId;
 
-  final TfArg<List<Object?>>? protocol;
+  final TfArg<List<String>>? protocol;
 
-  final TfArg<List<Object?>>? queryTag;
+  final TfArg<List<String>>? queryTag;
 
-  final TfArg<List<Object?>>? requestsPerSecond;
+  final TfArg<List<String>>? requestsPerSecond;
 
-  final TfArg<List<Object?>>? selectors;
+  final TfArg<List<String>>? selectors;
 
-  final TfArg<List<Object?>>? services;
+  final TfArg<List<String>>? services;
 
-  final TfArg<List<Object?>>? slo;
+  final TfArg<List<String>>? slo;
 
-  final TfArg<List<Object?>>? status;
+  final TfArg<List<String>>? status;
 
-  final TfArg<List<Object?>>? targetHostname;
+  final TfArg<List<String>>? targetHostname;
 
-  final TfArg<List<Object?>>? targetIp;
+  final TfArg<List<String>>? targetIp;
 
-  final TfArg<List<Object?>>? targetZoneName;
+  final TfArg<List<String>>? targetZoneName;
 
-  final TfArg<List<Object?>>? tokenId;
+  final TfArg<List<String>>? tokenId;
 
   final List<TfArg<NotificationPolicyFiltersTrafficExclusions>>?
   trafficExclusions;
 
-  final TfArg<List<Object?>>? tunnelId;
+  final TfArg<List<String>>? tunnelId;
 
-  final TfArg<List<Object?>>? tunnelName;
+  final TfArg<List<String>>? tunnelName;
 
-  final TfArg<List<Object?>>? type;
+  final TfArg<List<String>>? type;
 
-  final TfArg<List<Object?>>? where;
+  final TfArg<List<String>>? where;
 
-  final TfArg<List<Object?>>? zones;
+  final TfArg<List<String>>? zones;
 
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),

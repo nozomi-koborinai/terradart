@@ -52,9 +52,9 @@ final class StorageTransferJobLoggingConfig {
 
   final TfArg<bool>? enableOnPremGcsTransferLogs;
 
-  final TfArg<List<Object?>>? logActionStates;
+  final TfArg<List<String>>? logActionStates;
 
-  final TfArg<List<Object?>>? logActions;
+  final TfArg<List<String>>? logActions;
 
   Map<String, Object?> encode() => {
     'enable_on_prem_gcs_transfer_logs': ?enableOnPremGcsTransferLogs
@@ -74,7 +74,7 @@ final class StorageTransferJobNotificationConfig {
     required this.pubsubTopic,
   });
 
-  final TfArg<List<Object?>>? eventTypes;
+  final TfArg<List<String>>? eventTypes;
 
   final TfArg<String> payloadFormat;
 
@@ -165,9 +165,9 @@ final class StorageTransferJobReplicationSpecObjectConditions {
     this.minTimeElapsedSinceLastModification,
   });
 
-  final TfArg<List<Object?>>? excludePrefixes;
+  final TfArg<List<String>>? excludePrefixes;
 
-  final TfArg<List<Object?>>? includePrefixes;
+  final TfArg<List<String>>? includePrefixes;
 
   final TfArg<String>? lastModifiedBefore;
 
@@ -702,9 +702,9 @@ final class StorageTransferJobTransferSpecObjectConditions {
     this.minTimeElapsedSinceLastModification,
   });
 
-  final TfArg<List<Object?>>? excludePrefixes;
+  final TfArg<List<String>>? excludePrefixes;
 
-  final TfArg<List<Object?>>? includePrefixes;
+  final TfArg<List<String>>? includePrefixes;
 
   final TfArg<String>? lastModifiedBefore;
 
