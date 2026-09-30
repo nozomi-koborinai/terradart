@@ -25,7 +25,7 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 **Task progress:**
 
 - [ ] 1. From the **repository root**, run `dart pub get` if dependencies changed.
-- [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`). This includes `check_example_topology` (strict quickstarts only).
+- [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`). This includes `check_example_topology` (strict quickstarts only) and `render_coverage_page --check` (the website coverage page must match a fresh render; on a stale page run `dart tool/render_coverage_page.dart` and commit it).
 - [ ] 3. `example_synth_gates` (inside step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`; `check_docs_consistency` is the text-only docs check. The full gate then runs the three migrator gates on the same `tf-out` (`migrate_roundtrip_gates` over every quickstart, `migrate_fixture_gates`, `migrate_moved_gates`); `--quick` skips them, so a change to a curated factory or a quickstart needs the full gate before pushing.
 - [ ] 4. If you touched `pubsub_quickstart` or synth/export paths, run `tool/smoke_quickstart.sh`.
 - [ ] 5. Report which commands ran in the PR or task summary.
