@@ -73208,10 +73208,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
+          tfName: 'pipeline_id',
+          dartName: 'pipelineId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'role',
+          dartName: 'role',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -73222,10 +73229,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateSlot(
-          tfName: 'pipeline_id',
-          dartName: 'pipelineId',
+          tfName: 'condition',
+          dartName: 'condition',
+          kind: MigrateSlotKind.passthrough,
+          required: false,
+          dartType: 'Map<String, dynamic>',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -73235,22 +73249,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
-        MigrateSlot(
-          tfName: 'role',
-          dartName: 'role',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'condition',
-          dartName: 'condition',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
-        ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_eventarc_pipeline_iam_member',
@@ -73259,10 +73262,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
+          tfName: 'pipeline_id',
+          dartName: 'pipelineId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'role',
+          dartName: 'role',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -73273,10 +73283,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'pipeline_id',
-          dartName: 'pipelineId',
+          tfName: 'condition',
+          dartName: 'condition',
+          kind: MigrateSlotKind.passthrough,
+          required: false,
+          dartType: 'Map<String, dynamic>',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -73286,22 +73303,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
-        MigrateSlot(
-          tfName: 'role',
-          dartName: 'role',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'condition',
-          dartName: 'condition',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
-        ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_eventarc_pipeline_iam_policy',
@@ -73309,13 +73315,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       barrel: 'eventarc',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
         MigrateSlot(
           tfName: 'pipeline_id',
           dartName: 'pipelineId',
@@ -73331,6 +73330,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -73338,7 +73344,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_eventarc_pipeline_iam_policy',
