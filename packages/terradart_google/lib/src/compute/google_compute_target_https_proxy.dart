@@ -169,14 +169,12 @@ final class ComputeTargetHttpsProxyCertificatesSslCertificates
 ///   certificates: .sslCertificates(
 ///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
 ///   ),
-///   sslPolicy: TfArg.ref(var.ssl_policy_id),
+///   sslPolicy: TfArg.ref(sslPolicy.selfLink),
 ///   quicOverride: TfArg.literal(QuicOverride.enable),
 /// );
 /// ```
 ///
-/// `sslPolicy` is the self-link of a [GoogleComputeSslPolicy] (Batch 4 in
-/// the curation roadmap). When passed via input variable use
-/// `TfArg.ref(var.ssl_policy_id)`.
+/// `sslPolicy` is the self-link of a [GoogleComputeSslPolicy].
 ///
 /// Composition pattern: extends `Resource`
 /// for runtime behavior.

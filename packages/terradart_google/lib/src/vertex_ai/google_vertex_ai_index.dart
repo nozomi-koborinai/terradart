@@ -200,8 +200,8 @@ final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig {
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
 ///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
-///       algorithmConfig: VertexAiIndexMetadataConfigAlgorithmConfig(
-///         treeAhConfig: VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig(
+///       algorithmConfig: .treeAhConfig(
+///         VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),
 ///           leafNodesToSearchPercent: TfArg.literal(10),
 ///         ),

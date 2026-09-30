@@ -3630,13 +3630,13 @@ final class ComputeUrlMapTestHeaders {
 ///
 /// Default target (highest fallback):
 /// - `default_service`: self-link to the **backend** consulted when no
-///   [hostRules] / [pathMatchers] match the incoming request. The link
+///   [hostRule] / [pathMatcher] match the incoming request. The link
 ///   accepts either a
 ///   [GoogleComputeBackendService] (`.../backendServices/<name>`) **or** a
 ///   [GoogleComputeBackendBucket] (`.../backendBuckets/<name>`). The GCP
 ///   API distinguishes by URL segment, not by a separate field. Mutually
-///   exclusive with [defaultUrlRedirect] -- exactly one of the two must be
-///   set when no [pathMatchers] are present.
+///   exclusive with `defaultAction: .defaultUrlRedirect(...)` -- exactly one of the two must be
+///   set when no [pathMatcher] entries are present.
 ///
 /// Matching pipeline (request flow):
 ///
@@ -3665,49 +3665,48 @@ final class ComputeUrlMapTestHeaders {
 ///   localName: 'urlmap',
 ///   name: TfArg.literal('urlmap-prod'),
 ///   defaultService: TfArg.ref(login.selfLink),
-///   hostRules: const [
+///   hostRule: [
 ///     ComputeUrlMapHostRule(
-///       hosts: ['mysite.com', 'myothersite.com'],
-///       pathMatcher: 'allpaths',
+///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
+///       pathMatcher: TfArg.literal('allpaths'),
 ///     ),
 ///   ],
-///   pathMatchers: [
+///   pathMatcher: [
 ///     ComputeUrlMapPathMatcher(
-///       name: 'allpaths',
+///       name: TfArg.literal('allpaths'),
 ///       defaultService: TfArg.ref(login.selfLink),
-///       pathRules: [
+///       pathRule: [
 ///         ComputeUrlMapPathMatcherPathRule(
-///           paths: const ['/home'],
+///           paths: TfArg.literal(const ['/home']),
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
 ///         ComputeUrlMapPathMatcherPathRule(
-///           paths: const ['/static'],
+///           paths: TfArg.literal(const ['/static']),
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
 ///       ],
 ///     ),
 ///   ],
-///   tests: const [
-///     ComputeUrlMapTest(host: 'mysite.com', path: '/home'),
+///   test: [
+///     ComputeUrlMapTest(
+///       host: TfArg.literal('mysite.com'),
+///       path: TfArg.literal('/home'),
+///     ),
 ///   ],
 /// );
 /// ```
 ///
 /// Naming convention: ALL nested helper types in this resource are prefixed
-/// `UrlMap...` (e.g. [ComputeUrlMapHostRule], [ComputeUrlMapPathMatcher],
+/// `ComputeUrlMap...` (e.g. [ComputeUrlMapHostRule], [ComputeUrlMapPathMatcher],
 /// [ComputeUrlMapDefaultUrlRedirect]) to avoid colliding with similarly-named structures
 /// in sibling load-balancer resources such as `google_compute_backend_service`.
 ///
-/// Deeply nested traffic-policy sub-blocks (`default_route_action`,
-/// `path_matcher.default_route_action`, `path_rule.route_action`,
-/// `route_rules.route_action`, `default_custom_error_response_policy`) are
-/// not modeled as typed helpers -- they form a sprawling Envoy-style config
-/// (cache_policy, cors_policy, fault_injection_policy, retry_policy,
-/// url_rewrite, weighted_backend_services, ...) that would dominate the
-/// curated surface for little common-case win. Pass a raw
-/// `Map<String, Object?>` via [ComputeUrlMapPathMatcher.advancedExtra] etc. keyed
-/// by the Terraform block name when you need them; see the per-class doc
-/// for the exact escape-hatch key.
+/// Traffic-policy sub-blocks (`path_matcher.default_route_action`,
+/// `path_rule.route_action`, `route_rules.route_action`, ...) are typed
+/// helpers too (e.g. [ComputeUrlMapPathMatcherPathRuleRouteAction]); the top-level
+/// `default_url_redirect` / `default_route_action` pair is the sealed
+/// [defaultAction] argument (`.defaultUrlRedirect(...)` /
+/// `.defaultRouteAction(...)`).
 ///
 /// Composition pattern: extends `Resource` for
 /// runtime behavior.

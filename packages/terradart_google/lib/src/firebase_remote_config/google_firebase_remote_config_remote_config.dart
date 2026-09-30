@@ -281,23 +281,23 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 /// ```dart
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
 ///   localName: 'default',
-///   conditions: const [
+///   conditions: [
 ///     FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
-///       name: 'staging_only',
-///       expression: "app.id == 'com.example.app.staging'",
+///       name: .literal('staging_only'),
+///       expression: .literal("app.id == 'com.example.app.staging'"),
 ///       tagColor: RemoteConfigTagColor.orange,
 ///     ),
 ///   ],
-///   parameters: const [
+///   parameters: [
 ///     FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
-///       parameterName: 'feature_x_enabled',
+///       parameterName: .literal('feature_x_enabled'),
 ///       valueType: RemoteConfigValueType.boolean,
-///       description: 'Gates the feature X rollout.',
-///       defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: 'false'),
+///       description: .literal('Gates the feature X rollout.'),
+///       defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: .literal('false')),
 ///       conditionalValues: [
 ///         FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
-///           conditionName: 'staging_only',
-///           value: 'true',
+///           conditionName: .literal('staging_only'),
+///           value: .literal('true'),
 ///         ),
 ///       ],
 ///     ),
@@ -309,15 +309,15 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 /// ```dart
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
 ///   localName: 'default',
-///   parameterGroups: const [
+///   parameterGroups: [
 ///     FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup(
-///       parameterGroupName: 'search_v2',
-///       description: 'New mobile search view.',
+///       parameterGroupName: .literal('search_v2'),
+///       description: .literal('New mobile search view.'),
 ///       parameters: [
 ///         FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
-///           parameterName: 'search_layout',
+///           parameterName: .literal('search_layout'),
 ///           valueType: RemoteConfigValueType.string,
-///           defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: 'grid'),
+///           defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: .literal('grid')),
 ///         ),
 ///       ],
 ///     ),

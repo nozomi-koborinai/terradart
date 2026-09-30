@@ -1068,26 +1068,27 @@ final class ComputeRegionBackendServiceTlsSettingsSubjectAltNames {
 ///     // var.security_policy_id — see Batch 4 regional Cloud Armor.
 ///     'projects/p/regions/asia-northeast1/securityPolicies/edge-deny-all',
 ///   ),
-///   backends: [
+///   backend: [
 ///     ComputeRegionBackendServiceBackend(
 ///       group: TfArg.literal(
 ///         // var.backend_group_id — typically a Batch 4 regional NEG
 ///         // or a Batch 3 regional MIG self-link.
 ///         'projects/p/regions/asia-northeast1/networkEndpointGroups/api-rneg',
 ///       ),
-///       balancingMode: RegionBackendServiceBalancingMode.rate,
-///       maxRatePerEndpoint: 100,
-///       capacityScaler: 1.0,
+///       balancingMode: TfArg.literal(RegionBackendServiceBalancingMode.rate),
+///       maxRatePerEndpoint: TfArg.literal(100),
+///       capacityScaler: TfArg.literal(1.0),
 ///     ),
 ///   ],
-///   iap: const ComputeRegionBackendServiceIap(
-///     enabled: true,
-///     oauth2ClientId: 'xxx.apps.googleusercontent.com',
-///     oauth2ClientSecret: 'super-secret', // sensitive — masked at synth.
+///   iap: ComputeRegionBackendServiceIap(
+///     enabled: TfArg.literal(true),
+///     oauth2ClientId: TfArg.literal('xxx.apps.googleusercontent.com'),
+///     // sensitive — masked at synth.
+///     oauth2ClientSecret: TfArg.literal('super-secret'),
 ///   ),
-///   logConfig: const ComputeRegionBackendServiceLogConfig(
-///     enable: true,
-///     sampleRate: 1.0,
+///   logConfig: ComputeRegionBackendServiceLogConfig(
+///     enable: TfArg.literal(true),
+///     sampleRate: TfArg.literal(1.0),
 ///   ),
 /// );
 /// ```

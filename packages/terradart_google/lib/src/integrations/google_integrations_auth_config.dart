@@ -574,10 +574,11 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword {
 ///   location: TfArg.literal('us-east1'),
 ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
 ///     credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
-///     usernameAndPassword:
-///         IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
-///       username: TfArg.literal('terradart-dummy'),
-///       password: TfArg.literal('terradart-dummy-password'),
+///     secret: .usernameAndPassword(
+///       IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
+///         username: TfArg.literal('terradart-dummy'),
+///         password: TfArg.literal('terradart-dummy-password'),
+///       ),
 ///     ),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),

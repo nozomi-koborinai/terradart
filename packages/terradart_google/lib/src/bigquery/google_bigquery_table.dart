@@ -820,7 +820,7 @@ final class BigqueryTableView {
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_bigquery_table.`).
-/// - `datasetId`: parent BigQuery dataset id. Typically
+/// - `datasetId`: parent BigQuery dataset. Typically
 ///   `dataset.ref` where `dataset` is a
 ///   `GoogleBigqueryDataset`.
 /// - `tableId`: BigQuery table id. Letters/digits/underscores, up to 1024
@@ -844,9 +844,9 @@ final class BigqueryTableView {
 ///   tableId: TfArg.literal('events_v1'),
 ///   friendlyName: TfArg.literal('Click events'),
 ///   description: TfArg.literal('Raw click events partitioned by day.'),
-///   timePartitioning: const BigqueryTableTimePartitioning(
-///     type: TimePartitioningType.day,
-///     field: 'event_time',
+///   timePartitioning: BigqueryTableTimePartitioning(
+///     type: TfArg.literal(TimePartitioningType.day),
+///     field: TfArg.literal('event_time'),
 ///   ),
 ///   clustering: TfArg.literal(const ['user_id', 'campaign_id']),
 ///   deletionProtection: TfArg.literal(false),

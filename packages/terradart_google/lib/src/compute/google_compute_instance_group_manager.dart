@@ -482,21 +482,24 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 ///       ),
 ///     ),
 ///   ],
-///   namedPorts: const [
-///     ComputeInstanceGroupManagerInstanceGroupManagerNamedPort(name: 'http', port: 80),
+///   namedPorts: [
+///     ComputeInstanceGroupManagerInstanceGroupManagerNamedPort(
+///       name: TfArg.literal('http'),
+///       port: TfArg.literal(80),
+///     ),
 ///   ],
 ///   autoHealingPolicies: ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy(
 ///     healthCheck: TfArg.literal(
 ///       // var.health_check_id — typically a Batch 4 health check.
 ///       'projects/p/global/healthChecks/web-hc',
 ///     ),
-///     initialDelaySec: 300,
+///     initialDelaySec: TfArg.literal(300),
 ///   ),
-///   updatePolicy: const ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy(
+///   updatePolicy: ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy(
 ///     type: InstanceGroupManagerUpdatePolicyType.proactive,
 ///     minimalAction: InstanceGroupManagerUpdatePolicyAction.replace,
-///     maxSurgeFixed: 1,
-///     maxUnavailableFixed: 0,
+///     maxSurgeFixed: TfArg.literal(1),
+///     maxUnavailableFixed: TfArg.literal(0),
 ///     replacementMethod:
 ///         InstanceGroupManagerUpdatePolicyReplacementMethod.substitute,
 ///   ),

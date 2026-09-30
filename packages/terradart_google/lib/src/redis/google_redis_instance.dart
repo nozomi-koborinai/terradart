@@ -208,7 +208,7 @@ class RedisInstancePersistenceConfig {
 ///   memorySizeGb: TfArg.literal(1),
 ///   region: TfArg.literal('us-central1'),
 ///   tier: TfArg.literal(RedisInstanceTier.basic),
-///   authorizedNetwork: TfArg.literal('default'),
+///   authorizedNetwork: .literal('default'),
 /// );
 /// ```
 final class GoogleRedisInstance extends Resource {

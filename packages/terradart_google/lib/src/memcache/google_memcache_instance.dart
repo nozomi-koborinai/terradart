@@ -113,7 +113,7 @@ final class MemcacheInstanceMemcacheParameters {
 ///     memorySizeMb: TfArg.literal(1024),
 ///   ),
 ///   region: TfArg.literal('asia-northeast1'),
-///   authorizedNetwork: TfArg.literal('default'),
+///   authorizedNetwork: .literal('default'),
 /// );
 /// ```
 final class GoogleMemcacheInstance extends Resource {

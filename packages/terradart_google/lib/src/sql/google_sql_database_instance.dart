@@ -1098,10 +1098,10 @@ final class SqlDatabaseInstanceSettingsSqlServerAuditConfig {
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: TfArg.ref(vpc.selfLink),
 ///     ),
-///     backupConfiguration: const SqlDatabaseInstanceSettingsBackupConfiguration(
-///       enabled: true,
-///       pointInTimeRecoveryEnabled: true,
-///       startTime: '03:00',
+///     backupConfiguration: SqlDatabaseInstanceSettingsBackupConfiguration(
+///       enabled: TfArg.literal(true),
+///       pointInTimeRecoveryEnabled: TfArg.literal(true),
+///       startTime: TfArg.literal('03:00'),
 ///     ),
 ///   ),
 /// );

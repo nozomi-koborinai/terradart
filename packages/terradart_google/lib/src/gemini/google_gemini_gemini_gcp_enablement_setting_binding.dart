@@ -32,7 +32,7 @@ const Set<String> _googleGeminiGeminiGcpEnablementSettingBindingSensitive =
 /// ```dart
 /// GoogleGeminiGeminiGcpEnablementSettingBinding(
 ///   localName: 'enablement_bind',
-///   geminiGcpEnablementSettingId: TfArg.literal('terradart-enablement'),
+///   geminiGcpEnablementSettingId: .literal('terradart-enablement'),
 ///   settingBindingId: TfArg.literal('terradart-enablement-bind'),
 ///   location: TfArg.literal('global'),
 ///   target: TfArg.literal('projects/${current.number.interpolation}'),

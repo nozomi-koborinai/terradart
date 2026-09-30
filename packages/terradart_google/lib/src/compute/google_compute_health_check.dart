@@ -512,13 +512,13 @@ class ComputeHealthCheckHealthCheckLogConfig {
 ///   timeoutSec: TfArg.literal(5),
 ///   healthyThreshold: TfArg.literal(2),
 ///   unhealthyThreshold: TfArg.literal(3),
-///   protocol: const ComputeHealthCheckHttpHealthCheckConfig(
+///   protocol: .http(
 ///     port: TfArg.literal(8080),
 ///     requestPath: TfArg.literal('/healthz'),
 ///     proxyHeader: HealthCheckProxyHeader.none,
 ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
 ///   ),
-///   logConfig: const ComputeHealthCheckHealthCheckLogConfig(enable: true),
+///   logConfig: ComputeHealthCheckHealthCheckLogConfig(enable: .literal(true)),
 /// );
 /// ```
 ///
@@ -527,7 +527,7 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// final grpcHc = GoogleComputeHealthCheck(
 ///   localName: 'grpc_hc',
 ///   name: TfArg.literal('grpc-hc'),
-///   protocol: const ComputeHealthCheckGrpcHealthCheckConfig(
+///   protocol: .grpc(
 ///     port: TfArg.literal(50051),
 ///     grpcServiceName: TfArg.literal('my.Service'),
 ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
