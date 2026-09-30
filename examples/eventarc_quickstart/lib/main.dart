@@ -106,7 +106,7 @@ final class EventarcStack extends Stack {
       GoogleEventarcPipelineIamMember(
         localName: 'ingest_pipeline_viewer',
         location: .literal(location),
-        pipelineId: .ref(pipeline.nameRef),
+        pipelineId: .ref(TfRef.attribute<String>(pipeline, 'pipeline_id')),
         role: .literal('roles/viewer'),
         member: .ref(triggerSa.iamMember),
         dependsOn: [ResourceDependency(pipeline)],
