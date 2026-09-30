@@ -358,6 +358,15 @@ final class AnalyticsStack extends Stack {
       ),
     );
 
+    // Carbon Footprint exports must be enrolled before a transfer config can
+    // use them; enrollment is project-wide.
+    add(
+      GoogleBigqueryDataTransferDataSourceEnrollment(
+        localName: 'carbon_footprint',
+        dataSourceId: .literal('61cede5a-0000-2440-ad42-883d24f8f7b8'),
+      ),
+    );
+
     add(
       GoogleBigqueryCapacityCommitment(
         localName: 'analytics_trial',

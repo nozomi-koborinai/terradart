@@ -28,6 +28,7 @@ import 'package:terradart_google/deployment_manager.dart';
 import 'package:terradart_google/developer_connect.dart';
 import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/document_ai.dart';
+import 'package:terradart_google/eventarc.dart';
 import 'package:terradart_google/firebaserules.dart';
 import 'package:terradart_google/folder.dart';
 import 'package:terradart_google/gemini.dart';
@@ -37,6 +38,7 @@ import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/memorystore.dart';
 import 'package:terradart_google/model_armor.dart';
+import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/observability.dart';
 import 'package:terradart_google/organization.dart';
@@ -47,6 +49,7 @@ import 'package:terradart_google/securityposture.dart';
 import 'package:terradart_google/service_networking.dart';
 import 'package:terradart_google/site_verification.dart';
 import 'package:terradart_google/transcoder.dart';
+import 'package:terradart_google/vertex_ai.dart';
 
 final class DeferredLeftoverStack extends Stack {
   DeferredLeftoverStack({required String projectId})
@@ -1279,6 +1282,106 @@ final class DeferredLeftoverStack extends Stack {
             rule: .literal('on ~* +@read'),
           ),
         ],
+      ),
+    );
+
+    // A link exposes an existing dataset of the bucket; datasets appear once
+    // telemetry lands and have no Terraform resource.
+    final observabilityBucket = add(
+      GoogleObservabilityBucket(
+        localName: 'observability_bucket',
+        bucketId: .literal('terradart-leftover'),
+        location: .literal('global'),
+        displayName: .literal('terradart leftover'),
+      ),
+    );
+    add(
+      GoogleObservabilityLink(
+        localName: 'observability_link',
+        bucket: .literal('terradart-leftover'),
+        dataset: .literal('terradart-leftover'),
+        linkId: .literal('terradart-leftover'),
+        location: .literal('global'),
+        dependsOn: [ResourceDependency(observabilityBucket)],
+      ),
+    );
+
+    // Snoozes cannot be deleted: destroy only cancels them.
+    add(
+      GoogleMonitoringSnooze(
+        localName: 'monitoring_snooze',
+        displayName: .literal('terradart leftover'),
+        criteria: .literal({
+          'policies': ['projects/$projectId/alertPolicies/123456789'],
+        }),
+        interval: .literal({
+          'start_time': '2030-01-01T00:00:00Z',
+          'end_time': '2030-01-02T00:00:00Z',
+        }),
+      ),
+    );
+
+    add(
+      GoogleNetworkManagementNetworkMonitoringProvider(
+        localName: 'network_monitoring_provider',
+        location: .literal('global'),
+        networkMonitoringProviderId: .literal('terradart-leftover'),
+        providerType: .literal('EXTERNAL'),
+      ),
+    );
+
+    add(
+      GoogleNetworkServicesAgentConnectivityTemplate(
+        localName: 'agent_connectivity_template',
+        agentConnectivityTemplateId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        accessPath: .literal(.agentToAnywhere),
+        accessTypes: .literal(['PRIVATE']),
+        egressNetworkConfig:
+            NetworkServicesAgentConnectivityTemplateEgressNetworkConfig(
+              networkAttachment: .literal(
+                'projects/$projectId/regions/us-central1/networkAttachments/terradart-leftover',
+              ),
+              vpcEgress: .literal(.privateRangesOnly),
+            ),
+      ),
+    );
+
+    // RAG Engine bills the project's RagManagedDb tier while it is provisioned.
+    add(
+      GoogleVertexAiRagCorpus(
+        localName: 'vertex_ai_rag_corpus',
+        displayName: .literal('terradart leftover'),
+        region: .literal('us-central1'),
+        backend: .vectorDbConfig(
+          VertexAiRagCorpusVectorDbConfig(
+            backend: .ragManagedDb(
+              .knn(VertexAiRagCorpusVectorDbConfigRagManagedDbKnn()),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    // Authoritative grants on a dummy pipeline; eventarc_quickstart shows the
+    // additive GoogleEventarcPipelineIamMember on a real one.
+    add(
+      GoogleEventarcPipelineIamBinding(
+        localName: 'eventarc_pipeline_iam_binding',
+        location: .literal('us-central1'),
+        pipelineId: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
+        members: .literal([
+          'serviceAccount:terradart@$projectId.iam.gserviceaccount.com',
+        ]),
+      ),
+    );
+    add(
+      GoogleEventarcPipelineIamPolicy(
+        localName: 'eventarc_pipeline_iam_policy',
+        location: .literal('us-central1'),
+        pipelineId: .literal('terradart-leftover-policy'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
   }

@@ -1,6 +1,6 @@
 # Gemini for Google Cloud quickstart
 
-End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). Enables the Gemini API and configures the project's settings: a GCP enablement setting, a logging setting (log metadata, not prompts/responses), a release-channel setting, and a data-sharing-with-Google setting — and exports the enablement setting id as a typed Dart constant.
+End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). Enables the Gemini API and configures the project's settings: a GCP enablement setting, a logging setting (log metadata, not prompts/responses), a release-channel setting, a data-sharing-with-Google setting, and Conversational Analytics observability settings for Gemini Data Analytics and Gemini in BigQuery — each with its project binding — and exports the enablement setting id as a typed Dart constant.
 
 ## Prerequisites
 

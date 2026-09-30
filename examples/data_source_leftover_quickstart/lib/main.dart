@@ -434,6 +434,30 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
+      DataGoogleBiglakeHiveCatalogIamPolicy(
+        localName: 'biglake_hive_catalog_iam_policy',
+        name: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleBiglakeHiveDatabaseIamPolicy(
+        localName: 'biglake_hive_database_iam_policy',
+        catalog: TfArg.literal(leftover),
+        name: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleBiglakeHiveTableIamPolicy(
+        localName: 'biglake_hive_table_iam_policy',
+        catalog: TfArg.literal(leftover),
+        database: TfArg.literal(leftover),
+        name: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
       DataGoogleBiglakeIcebergCatalogIamPolicy(
         localName: 'biglake_iceberg_catalog_iam_policy',
         name: TfArg.literal(leftover),
@@ -738,6 +762,14 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'cloudbuild_trigger',
         location: TfArg.literal(leftover),
         triggerId: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleCloudbuildWorkerPool(
+        localName: 'cloudbuild_worker_pool',
+        location: TfArg.literal(leftover),
+        name: TfArg.literal(leftover),
       ),
     );
 
@@ -1220,6 +1252,12 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
+      DataGoogleComputeServiceAttachments(
+        localName: 'compute_service_attachments',
+      ),
+    );
+
+    addData(
       DataGoogleComputeSnapshot(
         localName: 'compute_snapshot',
         name: TfArg.literal(leftover),
@@ -1409,6 +1447,13 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'data_lineage_config',
         location: TfArg.literal(leftover),
         parent: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleDataformRepositoryIamPolicy(
+        localName: 'dataform_repository_iam_policy',
+        repository: TfArg.literal(leftover),
       ),
     );
 
@@ -1636,6 +1681,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
+      DataGoogleEventarcPipelineIamPolicy(
+        localName: 'eventarc_pipeline_iam_policy',
+        pipelineId: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
       DataGoogleFilestoreInstance(
         localName: 'filestore_instance',
         name: TfArg.literal(leftover),
@@ -1812,6 +1864,13 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleIamWorkloadIdentityPoolIamPolicy(
         localName: 'iam_workload_identity_pool_iam_policy',
         workloadIdentityPoolId: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleIamWorkloadIdentityPoolOpenidConfig(
+        localName: 'iam_workload_identity_pool_openid_config',
+        resourceName: TfArg.literal(leftover),
       ),
     );
 
@@ -2129,6 +2188,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
+      DataGoogleMemorystoreAclPolicy(
+        localName: 'memorystore_acl_policy',
+        aclPolicyId: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
       DataGoogleMemorystoreInstance(
         localName: 'memorystore_instance',
         instanceId: TfArg.literal(leftover),
@@ -2215,6 +2281,30 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleNetworkSecurityAddressGroups(
         localName: 'network_security_address_groups',
         location: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleObservabilityFolderSettings(
+        localName: 'observability_folder_settings',
+        folder: TfArg.literal(leftover),
+        location: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleObservabilityOrganizationSettings(
+        localName: 'observability_organization_settings',
+        location: TfArg.literal(leftover),
+        organization: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleObservabilityProjectSettings(
+        localName: 'observability_project_settings',
+        location: TfArg.literal(leftover),
+        project: TfArg.literal(projectId),
       ),
     );
 
@@ -2533,6 +2623,13 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleRedisCluster(
         localName: 'redis_cluster',
         name: TfArg.literal(leftover),
+      ),
+    );
+
+    addData(
+      DataGoogleRedisClusterAclPolicy(
+        localName: 'redis_cluster_acl_policy',
+        aclPolicyId: TfArg.literal(leftover),
       ),
     );
 

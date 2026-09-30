@@ -160,6 +160,35 @@ final class AssetsStack extends Stack {
       ),
     );
 
+    // ---- Managed SFTP: the reader SA gets a read-only view of the bucket ----
+    final sftp = add(
+      GoogleStorageFtpServer(
+        localName: 'assets_sftp',
+        serverId: .literal('assets-sftp'),
+        location: .literal('asia-northeast1'),
+        accessType: .literal(.external),
+        config: .external(allowedCidrBlocks: .literal(['203.0.113.0/24'])),
+      ),
+    );
+
+    add(
+      GoogleStorageFtpUser(
+        localName: 'assets_sftp_reader',
+        serverId: .literal('assets-sftp'),
+        userId: .literal('assets-reader'),
+        location: .literal('asia-northeast1'),
+        customerServiceAccount: .ref(reader.email),
+        storageDirectoryMappings: [
+          StorageFtpUserStorageDirectoryMappings(
+            bucket: assets.ref,
+            directory: .literal('/assets'),
+            permission: .literal(.readOnly),
+          ),
+        ],
+        dependsOn: [ResourceDependency(sftp)],
+      ),
+    );
+
     final managedFolder = add(
       GoogleStorageManagedFolder(
         localName: 'config_folder',
