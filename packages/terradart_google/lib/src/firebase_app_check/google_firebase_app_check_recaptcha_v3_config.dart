@@ -51,4 +51,17 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
   /// Reference to `site_secret_set` attribute.
   TfRef<bool> get siteSecretSet =>
       TfRef.attribute<bool>(this, 'site_secret_set');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `site_secret` attribute.
+  TfRef<String> get siteSecretRef =>
+      TfRef.attribute<String>(this, 'site_secret');
+
+  /// Reference to `token_ttl` attribute.
+  TfRef<String> get tokenTtlRef => TfRef.attribute<String>(this, 'token_ttl');
 }

@@ -71,4 +71,15 @@ final class DataAwsCognitoIdentityPool extends Data {
   /// Reference to `supported_login_providers` attribute.
   TfRef<Map<String, String>> get supportedLoginProviders =>
       TfRef.attribute<Map<String, String>>(this, 'supported_login_providers');
+
+  /// Reference to `identity_pool_name` attribute.
+  TfRef<String> get identityPoolNameRef =>
+      TfRef.attribute<String>(this, 'identity_pool_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

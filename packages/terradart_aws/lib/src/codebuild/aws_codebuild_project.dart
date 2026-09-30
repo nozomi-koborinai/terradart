@@ -1124,4 +1124,54 @@ final class AwsCodebuildProject extends Resource {
   /// Reference to `public_project_alias` attribute.
   TfRef<String> get publicProjectAlias =>
       TfRef.attribute<String>(this, 'public_project_alias');
+
+  /// Reference to `auto_retry_limit` attribute.
+  TfRef<num> get autoRetryLimitRef =>
+      TfRef.attribute<num>(this, 'auto_retry_limit');
+
+  /// Reference to `badge_enabled` attribute.
+  TfRef<bool> get badgeEnabledRef =>
+      TfRef.attribute<bool>(this, 'badge_enabled');
+
+  /// Reference to `build_timeout` attribute.
+  TfRef<num> get buildTimeoutRef => TfRef.attribute<num>(this, 'build_timeout');
+
+  /// Reference to `concurrent_build_limit` attribute.
+  TfRef<num> get concurrentBuildLimitRef =>
+      TfRef.attribute<num>(this, 'concurrent_build_limit');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encryption_key` attribute.
+  TfRef<String> get encryptionKeyRef =>
+      TfRef.attribute<String>(this, 'encryption_key');
+
+  /// Reference to `project_visibility` attribute.
+  TfRef<String> get projectVisibilityRef =>
+      TfRef.attribute<String>(this, 'project_visibility');
+
+  /// Reference to `queued_timeout` attribute.
+  TfRef<num> get queuedTimeoutRef =>
+      TfRef.attribute<num>(this, 'queued_timeout');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_access_role` attribute.
+  TfRef<String> get resourceAccessRoleRef =>
+      TfRef.attribute<String>(this, 'resource_access_role');
+
+  /// Reference to `service_role` attribute.
+  TfRef<String> get serviceRoleRef =>
+      TfRef.attribute<String>(this, 'service_role');
+
+  /// Reference to `source_version` attribute.
+  TfRef<String> get sourceVersionRef =>
+      TfRef.attribute<String>(this, 'source_version');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

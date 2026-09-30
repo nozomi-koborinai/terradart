@@ -67,4 +67,18 @@ final class DataAwsEksAddon extends Data {
   /// Reference to `service_account_role_arn` attribute.
   TfRef<String> get serviceAccountRoleArn =>
       TfRef.attribute<String>(this, 'service_account_role_arn');
+
+  /// Reference to `addon_name` attribute.
+  TfRef<String> get addonNameRef => TfRef.attribute<String>(this, 'addon_name');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

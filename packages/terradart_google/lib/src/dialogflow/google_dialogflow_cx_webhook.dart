@@ -450,6 +450,35 @@ final class GoogleDialogflowCxWebhook extends Resource {
   /// Reference to `start_flow` attribute.
   TfRef<String> get startFlow => TfRef.attribute<String>(this, 'start_flow');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_spell_correction` attribute.
+  TfRef<bool> get enableSpellCorrectionRef =>
+      TfRef.attribute<bool>(this, 'enable_spell_correction');
+
+  /// Reference to `enable_stackdriver_logging` attribute.
+  TfRef<bool> get enableStackdriverLoggingRef =>
+      TfRef.attribute<bool>(this, 'enable_stackdriver_logging');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `security_settings` attribute.
+  TfRef<String> get securitySettingsRef =>
+      TfRef.attribute<String>(this, 'security_settings');
+
+  /// Reference to `timeout` attribute.
+  TfRef<String> get timeoutRef => TfRef.attribute<String>(this, 'timeout');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

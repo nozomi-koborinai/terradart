@@ -42,4 +42,16 @@ final class AwsServicecatalogTagOption extends Resource {
 
   /// Reference to `owner` attribute.
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `active` attribute.
+  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

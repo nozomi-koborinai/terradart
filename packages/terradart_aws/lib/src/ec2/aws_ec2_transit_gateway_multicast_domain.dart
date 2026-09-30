@@ -88,4 +88,27 @@ final class AwsEc2TransitGatewayMulticastDomain extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `auto_accept_shared_associations` attribute.
+  TfRef<String> get autoAcceptSharedAssociationsRef =>
+      TfRef.attribute<String>(this, 'auto_accept_shared_associations');
+
+  /// Reference to `igmpv2_support` attribute.
+  TfRef<String> get igmpv2SupportRef =>
+      TfRef.attribute<String>(this, 'igmpv2_support');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `static_sources_support` attribute.
+  TfRef<String> get staticSourcesSupportRef =>
+      TfRef.attribute<String>(this, 'static_sources_support');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
 }

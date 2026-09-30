@@ -36,4 +36,11 @@ final class AwsIamGroupMembership extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `group` attribute.
+  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+
+  /// Reference to `users` attribute.
+  TfRef<List<String>> get usersRef =>
+      TfRef.attribute<List<String>>(this, 'users');
 }

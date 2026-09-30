@@ -24,7 +24,7 @@ const Set<String> _googleStorageBucketAclSensitive = <String>{};
 /// ```dart
 /// GoogleStorageBucketAcl(
 ///   localName: 'legacy_acl',
-///   bucket: TfArg.ref(legacy.nameRef),
+///   bucket: legacy.ref,
 ///   predefinedAcl: TfArg.literal('private'),
 /// );
 /// ```
@@ -62,4 +62,23 @@ final class GoogleStorageBucketAcl extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `default_acl` attribute.
+  TfRef<String> get defaultAclRef =>
+      TfRef.attribute<String>(this, 'default_acl');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `predefined_acl` attribute.
+  TfRef<String> get predefinedAclRef =>
+      TfRef.attribute<String>(this, 'predefined_acl');
+
+  /// Reference to `role_entity` attribute.
+  TfRef<List<String>> get roleEntityRef =>
+      TfRef.attribute<List<String>>(this, 'role_entity');
 }

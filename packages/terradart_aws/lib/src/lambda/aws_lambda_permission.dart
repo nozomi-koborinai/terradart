@@ -133,4 +133,51 @@ final class AwsLambdaPermission extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `event_source_token` attribute.
+  TfRef<String> get eventSourceTokenRef =>
+      TfRef.attribute<String>(this, 'event_source_token');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `function_url_auth_type` attribute.
+  TfRef<String> get functionUrlAuthTypeRef =>
+      TfRef.attribute<String>(this, 'function_url_auth_type');
+
+  /// Reference to `invoked_via_function_url` attribute.
+  TfRef<bool> get invokedViaFunctionUrlRef =>
+      TfRef.attribute<bool>(this, 'invoked_via_function_url');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `principal_org_id` attribute.
+  TfRef<String> get principalOrgIdRef =>
+      TfRef.attribute<String>(this, 'principal_org_id');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_account` attribute.
+  TfRef<String> get sourceAccountRef =>
+      TfRef.attribute<String>(this, 'source_account');
+
+  /// Reference to `source_arn` attribute.
+  TfRef<String> get sourceArnRef => TfRef.attribute<String>(this, 'source_arn');
+
+  /// Reference to `statement_id` attribute.
+  TfRef<String> get statementIdRef =>
+      TfRef.attribute<String>(this, 'statement_id');
+
+  /// Reference to `statement_id_prefix` attribute.
+  TfRef<String> get statementIdPrefixRef =>
+      TfRef.attribute<String>(this, 'statement_id_prefix');
 }

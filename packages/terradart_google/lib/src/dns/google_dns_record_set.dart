@@ -201,4 +201,25 @@ final class GoogleDnsRecordSet extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `managed_zone` attribute.
+  TfRef<String> get managedZoneRef =>
+      TfRef.attribute<String>(this, 'managed_zone');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `rrdatas` attribute.
+  TfRef<List<String>> get rrdatasRef =>
+      TfRef.attribute<List<String>>(this, 'rrdatas');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

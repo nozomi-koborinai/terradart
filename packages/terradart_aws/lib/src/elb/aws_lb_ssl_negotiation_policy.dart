@@ -69,4 +69,18 @@ final class AwsLbSslNegotiationPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `lb_port` attribute.
+  TfRef<num> get lbPortRef => TfRef.attribute<num>(this, 'lb_port');
+
+  /// Reference to `load_balancer` attribute.
+  TfRef<String> get loadBalancerRef =>
+      TfRef.attribute<String>(this, 'load_balancer');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `triggers` attribute.
+  TfRef<Map<String, String>> get triggersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

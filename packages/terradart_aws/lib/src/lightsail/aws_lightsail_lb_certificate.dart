@@ -61,4 +61,18 @@ final class AwsLightsailLbCertificate extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `lb_name` attribute.
+  TfRef<String> get lbNameRef => TfRef.attribute<String>(this, 'lb_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subject_alternative_names` attribute.
+  TfRef<List<String>> get subjectAlternativeNamesRef =>
+      TfRef.attribute<List<String>>(this, 'subject_alternative_names');
 }

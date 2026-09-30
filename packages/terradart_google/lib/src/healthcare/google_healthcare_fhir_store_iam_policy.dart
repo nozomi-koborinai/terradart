@@ -41,4 +41,12 @@ final class GoogleHealthcareFhirStoreIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `fhir_store_id` attribute.
+  TfRef<String> get fhirStoreIdRef =>
+      TfRef.attribute<String>(this, 'fhir_store_id');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
 }

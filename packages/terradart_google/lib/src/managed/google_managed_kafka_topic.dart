@@ -70,6 +70,31 @@ final class GoogleManagedKafkaTopic extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `configs` attribute.
+  TfRef<Map<String, String>> get configsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'configs');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `partition_count` attribute.
+  TfRef<num> get partitionCountRef =>
+      TfRef.attribute<num>(this, 'partition_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `replication_factor` attribute.
+  TfRef<num> get replicationFactorRef =>
+      TfRef.attribute<num>(this, 'replication_factor');
+
   /// Reference to `topic_id` attribute.
   TfRef<String> get topicIdRef => TfRef.attribute<String>(this, 'topic_id');
 

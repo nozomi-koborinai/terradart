@@ -512,4 +512,124 @@ final class AwsDocdbCluster extends Resource {
   /// Reference to `reader_endpoint` attribute.
   TfRef<String> get readerEndpoint =>
       TfRef.attribute<String>(this, 'reader_endpoint');
+
+  /// Reference to `allow_major_version_upgrade` attribute.
+  TfRef<bool> get allowMajorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'allow_major_version_upgrade');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `backup_retention_period` attribute.
+  TfRef<num> get backupRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'backup_retention_period');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `cluster_identifier_prefix` attribute.
+  TfRef<String> get clusterIdentifierPrefixRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier_prefix');
+
+  /// Reference to `cluster_members` attribute.
+  TfRef<List<String>> get clusterMembersRef =>
+      TfRef.attribute<List<String>>(this, 'cluster_members');
+
+  /// Reference to `db_cluster_parameter_group_name` attribute.
+  TfRef<String> get dbClusterParameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'db_cluster_parameter_group_name');
+
+  /// Reference to `db_subnet_group_name` attribute.
+  TfRef<String> get dbSubnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'db_subnet_group_name');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `enabled_cloudwatch_logs_exports` attribute.
+  TfRef<List<String>> get enabledCloudwatchLogsExportsRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_cloudwatch_logs_exports');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `final_snapshot_identifier` attribute.
+  TfRef<String> get finalSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'final_snapshot_identifier');
+
+  /// Reference to `global_cluster_identifier` attribute.
+  TfRef<String> get globalClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'global_cluster_identifier');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `manage_master_user_password` attribute.
+  TfRef<bool> get manageMasterUserPasswordRef =>
+      TfRef.attribute<bool>(this, 'manage_master_user_password');
+
+  /// Reference to `master_password` attribute.
+  TfRef<String> get masterPasswordRef =>
+      TfRef.attribute<String>(this, 'master_password');
+
+  /// Reference to `master_password_wo_version` attribute.
+  TfRef<num> get masterPasswordWoVersionRef =>
+      TfRef.attribute<num>(this, 'master_password_wo_version');
+
+  /// Reference to `master_username` attribute.
+  TfRef<String> get masterUsernameRef =>
+      TfRef.attribute<String>(this, 'master_username');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkTypeRef =>
+      TfRef.attribute<String>(this, 'network_type');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `preferred_backup_window` attribute.
+  TfRef<String> get preferredBackupWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_backup_window');
+
+  /// Reference to `preferred_maintenance_window` attribute.
+  TfRef<String> get preferredMaintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_final_snapshot` attribute.
+  TfRef<bool> get skipFinalSnapshotRef =>
+      TfRef.attribute<bool>(this, 'skip_final_snapshot');
+
+  /// Reference to `snapshot_identifier` attribute.
+  TfRef<String> get snapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'snapshot_identifier');
+
+  /// Reference to `storage_encrypted` attribute.
+  TfRef<bool> get storageEncryptedRef =>
+      TfRef.attribute<bool>(this, 'storage_encrypted');
+
+  /// Reference to `storage_type` attribute.
+  TfRef<String> get storageTypeRef =>
+      TfRef.attribute<String>(this, 'storage_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

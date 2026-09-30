@@ -49,4 +49,10 @@ final class DataGoogleDataLineageConfig extends Data {
   /// Reference to `ingestion` attribute.
   TfRef<List<Map<String, Object?>>> get ingestion =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ingestion');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

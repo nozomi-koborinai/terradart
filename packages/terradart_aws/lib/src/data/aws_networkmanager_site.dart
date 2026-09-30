@@ -47,4 +47,15 @@ final class DataAwsNetworkmanagerSite extends Data {
   /// Reference to `location` attribute.
   TfRef<List<Map<String, Object?>>> get location =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'location');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -64,4 +64,23 @@ final class AwsDatazoneProject extends Resource {
   /// Reference to `project_status` attribute.
   TfRef<String> get projectStatus =>
       TfRef.attribute<String>(this, 'project_status');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_identifier` attribute.
+  TfRef<String> get domainIdentifierRef =>
+      TfRef.attribute<String>(this, 'domain_identifier');
+
+  /// Reference to `glossary_terms` attribute.
+  TfRef<List<String>> get glossaryTermsRef =>
+      TfRef.attribute<List<String>>(this, 'glossary_terms');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_deletion_check` attribute.
+  TfRef<bool> get skipDeletionCheckRef =>
+      TfRef.attribute<bool>(this, 'skip_deletion_check');
 }

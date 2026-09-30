@@ -95,4 +95,11 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
   /// Reference to `is_default_network` attribute.
   TfRef<bool> get isDefaultNetwork =>
       TfRef.attribute<bool>(this, 'is_default_network');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `virtual_network_id` attribute.
+  TfRef<String> get virtualNetworkIdRef =>
+      TfRef.attribute<String>(this, 'virtual_network_id');
 }

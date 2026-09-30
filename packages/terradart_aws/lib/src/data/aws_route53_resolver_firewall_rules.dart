@@ -37,4 +37,17 @@ final class DataAwsRoute53ResolverFirewallRules extends Data {
   /// Reference to `firewall_rules` attribute.
   TfRef<List<Map<String, Object?>>> get firewallRules =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'firewall_rules');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `firewall_rule_group_id` attribute.
+  TfRef<String> get firewallRuleGroupIdRef =>
+      TfRef.attribute<String>(this, 'firewall_rule_group_id');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

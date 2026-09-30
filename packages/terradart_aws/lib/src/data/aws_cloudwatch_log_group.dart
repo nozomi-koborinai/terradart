@@ -57,4 +57,11 @@ final class DataAwsCloudwatchLogGroup extends Data {
   /// Reference to `retention_in_days` attribute.
   TfRef<num> get retentionInDays =>
       TfRef.attribute<num>(this, 'retention_in_days');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

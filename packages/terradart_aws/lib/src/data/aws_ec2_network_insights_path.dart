@@ -101,4 +101,15 @@ final class DataAwsEc2NetworkInsightsPath extends Data {
 
   /// Reference to `source_ip` attribute.
   TfRef<String> get sourceIp => TfRef.attribute<String>(this, 'source_ip');
+
+  /// Reference to `network_insights_path_id` attribute.
+  TfRef<String> get networkInsightsPathIdRef =>
+      TfRef.attribute<String>(this, 'network_insights_path_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

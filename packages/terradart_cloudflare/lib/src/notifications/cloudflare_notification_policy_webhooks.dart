@@ -66,4 +66,13 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `secret` attribute.
+  TfRef<String> get secretRef => TfRef.attribute<String>(this, 'secret');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

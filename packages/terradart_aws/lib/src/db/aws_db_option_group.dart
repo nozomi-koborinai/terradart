@@ -168,4 +168,30 @@ final class AwsDbOptionGroup extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `engine_name` attribute.
+  TfRef<String> get engineNameRef =>
+      TfRef.attribute<String>(this, 'engine_name');
+
+  /// Reference to `major_engine_version` attribute.
+  TfRef<String> get majorEngineVersionRef =>
+      TfRef.attribute<String>(this, 'major_engine_version');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `option_group_description` attribute.
+  TfRef<String> get optionGroupDescriptionRef =>
+      TfRef.attribute<String>(this, 'option_group_description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

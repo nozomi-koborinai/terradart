@@ -154,4 +154,26 @@ final class GoogleNetworkServicesWasmPlugin extends Resource {
   /// Reference to `used_by` attribute.
   TfRef<List<Map<String, Object?>>> get usedBy =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'used_by');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `main_version_id` attribute.
+  TfRef<String> get mainVersionIdRef =>
+      TfRef.attribute<String>(this, 'main_version_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

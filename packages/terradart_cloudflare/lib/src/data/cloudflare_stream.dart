@@ -109,4 +109,11 @@ final class DataCloudflareStream extends Data {
 
   /// Reference to `uploaded` attribute.
   TfRef<String> get uploaded => TfRef.attribute<String>(this, 'uploaded');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
 }

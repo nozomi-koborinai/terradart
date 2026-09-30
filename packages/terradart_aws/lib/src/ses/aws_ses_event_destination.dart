@@ -240,4 +240,18 @@ final class AwsSesEventDestination extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `configuration_set_name` attribute.
+  TfRef<String> get configurationSetNameRef =>
+      TfRef.attribute<String>(this, 'configuration_set_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `matching_types` attribute.
+  TfRef<List<String>> get matchingTypesRef =>
+      TfRef.attribute<List<String>>(this, 'matching_types');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

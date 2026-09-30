@@ -172,4 +172,15 @@ final class CloudflareHyperdriveConfig extends Resource {
   /// Reference to `restarted_on` attribute.
   TfRef<String> get restartedOn =>
       TfRef.attribute<String>(this, 'restarted_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `integration` attribute.
+  TfRef<String> get integrationRef =>
+      TfRef.attribute<String>(this, 'integration');
+
+  /// Reference to `origin_connection_limit` attribute.
+  TfRef<num> get originConnectionLimitRef =>
+      TfRef.attribute<num>(this, 'origin_connection_limit');
 }

@@ -29,4 +29,7 @@ final class DataGoogleSqlTiers extends Data {
   /// Reference to `tiers` attribute.
   TfRef<List<Map<String, Object?>>> get tiers =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'tiers');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

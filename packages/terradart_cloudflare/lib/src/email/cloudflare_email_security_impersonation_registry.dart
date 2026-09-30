@@ -83,4 +83,32 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `comments` attribute.
+  TfRef<String> get commentsRef => TfRef.attribute<String>(this, 'comments');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<num> get directoryIdRef => TfRef.attribute<num>(this, 'directory_id');
+
+  /// Reference to `directory_node_id` attribute.
+  TfRef<num> get directoryNodeIdRef =>
+      TfRef.attribute<num>(this, 'directory_node_id');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `external_directory_node_id` attribute.
+  TfRef<String> get externalDirectoryNodeIdRef =>
+      TfRef.attribute<String>(this, 'external_directory_node_id');
+
+  /// Reference to `is_email_regex` attribute.
+  TfRef<bool> get isEmailRegexRef =>
+      TfRef.attribute<bool>(this, 'is_email_regex');
+
+  /// Reference to `provenance` attribute.
+  TfRef<String> get provenanceRef =>
+      TfRef.attribute<String>(this, 'provenance');
 }

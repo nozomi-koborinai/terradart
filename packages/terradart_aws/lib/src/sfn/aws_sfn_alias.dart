@@ -71,4 +71,11 @@ final class AwsSfnAlias extends Resource {
   /// Reference to `creation_date` attribute.
   TfRef<String> get creationDate =>
       TfRef.attribute<String>(this, 'creation_date');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

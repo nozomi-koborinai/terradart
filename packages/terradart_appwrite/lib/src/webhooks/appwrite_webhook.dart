@@ -66,4 +66,28 @@ final class AppwriteWebhook extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `auth_password` attribute.
+  TfRef<String> get authPasswordRef =>
+      TfRef.attribute<String>(this, 'auth_password');
+
+  /// Reference to `auth_username` attribute.
+  TfRef<String> get authUsernameRef =>
+      TfRef.attribute<String>(this, 'auth_username');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `events` attribute.
+  TfRef<List<String>> get eventsRef =>
+      TfRef.attribute<List<String>>(this, 'events');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `tls` attribute.
+  TfRef<bool> get tlsRef => TfRef.attribute<bool>(this, 'tls');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

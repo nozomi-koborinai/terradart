@@ -36,4 +36,12 @@ final class AwsNotificationsOrganizationalUnitAssociation extends Resource {
   /// `RefTo<AwsNotificationsOrganizationalUnitAssociation>`.
   RefTo<AwsNotificationsOrganizationalUnitAssociation> get ref =>
       RefTo.of(this);
+
+  /// Reference to `notification_configuration_arn` attribute.
+  TfRef<String> get notificationConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'notification_configuration_arn');
+
+  /// Reference to `organizational_unit_id` attribute.
+  TfRef<String> get organizationalUnitIdRef =>
+      TfRef.attribute<String>(this, 'organizational_unit_id');
 }

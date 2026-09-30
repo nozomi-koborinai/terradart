@@ -81,4 +81,32 @@ final class AwsRdsExportTask extends Resource {
   /// Reference to `warning_message` attribute.
   TfRef<String> get warningMessage =>
       TfRef.attribute<String>(this, 'warning_message');
+
+  /// Reference to `export_only` attribute.
+  TfRef<List<String>> get exportOnlyRef =>
+      TfRef.attribute<List<String>>(this, 'export_only');
+
+  /// Reference to `export_task_identifier` attribute.
+  TfRef<String> get exportTaskIdentifierRef =>
+      TfRef.attribute<String>(this, 'export_task_identifier');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_bucket_name` attribute.
+  TfRef<String> get s3BucketNameRef =>
+      TfRef.attribute<String>(this, 's3_bucket_name');
+
+  /// Reference to `s3_prefix` attribute.
+  TfRef<String> get s3PrefixRef => TfRef.attribute<String>(this, 's3_prefix');
+
+  /// Reference to `source_arn` attribute.
+  TfRef<String> get sourceArnRef => TfRef.attribute<String>(this, 'source_arn');
 }

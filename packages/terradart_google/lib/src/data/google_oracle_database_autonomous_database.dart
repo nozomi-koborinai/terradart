@@ -113,4 +113,14 @@ final class DataGoogleOracleDatabaseAutonomousDatabase extends Data {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `autonomous_database_id` attribute.
+  TfRef<String> get autonomousDatabaseIdRef =>
+      TfRef.attribute<String>(this, 'autonomous_database_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

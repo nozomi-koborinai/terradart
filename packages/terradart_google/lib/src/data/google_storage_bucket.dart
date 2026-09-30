@@ -157,4 +157,7 @@ final class DataGoogleStorageBucket extends Data {
   /// Reference to `website` attribute.
   TfRef<List<Map<String, Object?>>> get website =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'website');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

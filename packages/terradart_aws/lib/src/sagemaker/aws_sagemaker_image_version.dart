@@ -99,4 +99,42 @@ final class AwsSagemakerImageVersion extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `aliases` attribute.
+  TfRef<List<String>> get aliasesRef =>
+      TfRef.attribute<List<String>>(this, 'aliases');
+
+  /// Reference to `base_image` attribute.
+  TfRef<String> get baseImageRef => TfRef.attribute<String>(this, 'base_image');
+
+  /// Reference to `horovod` attribute.
+  TfRef<bool> get horovodRef => TfRef.attribute<bool>(this, 'horovod');
+
+  /// Reference to `image_name` attribute.
+  TfRef<String> get imageNameRef => TfRef.attribute<String>(this, 'image_name');
+
+  /// Reference to `job_type` attribute.
+  TfRef<String> get jobTypeRef => TfRef.attribute<String>(this, 'job_type');
+
+  /// Reference to `ml_framework` attribute.
+  TfRef<String> get mlFrameworkRef =>
+      TfRef.attribute<String>(this, 'ml_framework');
+
+  /// Reference to `processor` attribute.
+  TfRef<String> get processorRef => TfRef.attribute<String>(this, 'processor');
+
+  /// Reference to `programming_lang` attribute.
+  TfRef<String> get programmingLangRef =>
+      TfRef.attribute<String>(this, 'programming_lang');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_notes` attribute.
+  TfRef<String> get releaseNotesRef =>
+      TfRef.attribute<String>(this, 'release_notes');
+
+  /// Reference to `vendor_guidance` attribute.
+  TfRef<String> get vendorGuidanceRef =>
+      TfRef.attribute<String>(this, 'vendor_guidance');
 }

@@ -308,4 +308,30 @@ final class AwsGlueCatalog extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `allow_full_table_external_data_access` attribute.
+  TfRef<String> get allowFullTableExternalDataAccessRef =>
+      TfRef.attribute<String>(this, 'allow_full_table_external_data_access');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `overwrite_child_resource_permissions_with_default` attribute.
+  TfRef<String> get overwriteChildResourcePermissionsWithDefaultRef =>
+      TfRef.attribute<String>(
+        this,
+        'overwrite_child_resource_permissions_with_default',
+      );
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

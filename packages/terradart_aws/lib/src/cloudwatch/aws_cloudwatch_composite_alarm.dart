@@ -79,4 +79,37 @@ final class AwsCloudwatchCompositeAlarm extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `actions_enabled` attribute.
+  TfRef<bool> get actionsEnabledRef =>
+      TfRef.attribute<bool>(this, 'actions_enabled');
+
+  /// Reference to `alarm_actions` attribute.
+  TfRef<List<String>> get alarmActionsRef =>
+      TfRef.attribute<List<String>>(this, 'alarm_actions');
+
+  /// Reference to `alarm_description` attribute.
+  TfRef<String> get alarmDescriptionRef =>
+      TfRef.attribute<String>(this, 'alarm_description');
+
+  /// Reference to `alarm_name` attribute.
+  TfRef<String> get alarmNameRef => TfRef.attribute<String>(this, 'alarm_name');
+
+  /// Reference to `alarm_rule` attribute.
+  TfRef<String> get alarmRuleRef => TfRef.attribute<String>(this, 'alarm_rule');
+
+  /// Reference to `insufficient_data_actions` attribute.
+  TfRef<List<String>> get insufficientDataActionsRef =>
+      TfRef.attribute<List<String>>(this, 'insufficient_data_actions');
+
+  /// Reference to `ok_actions` attribute.
+  TfRef<List<String>> get okActionsRef =>
+      TfRef.attribute<List<String>>(this, 'ok_actions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

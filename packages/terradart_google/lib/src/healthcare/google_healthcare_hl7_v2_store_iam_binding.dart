@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_healthcare_hl7_v2_store_iam_binding`.
 const Set<String> _googleHealthcareHl7V2StoreIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_healthcare_hl7_v2_store_iam_binding` (derived from provider schema).
+@immutable
+final class HealthcareHl7V2StoreIamBindingCondition {
+  const HealthcareHl7V2StoreIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_healthcare_hl7_v2_store_iam_binding`.
 ///
@@ -21,7 +45,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
     required TfArg<String> hl7V2StoreId,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    HealthcareHl7V2StoreIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,7 +56,8 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
            'hl7_v2_store_id': hl7V2StoreId,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
@@ -49,4 +74,15 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `hl7_v2_store_id` attribute.
+  TfRef<String> get hl7V2StoreIdRef =>
+      TfRef.attribute<String>(this, 'hl7_v2_store_id');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

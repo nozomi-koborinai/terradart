@@ -63,4 +63,24 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `assessment_id` attribute.
+  TfRef<String> get assessmentIdRef =>
+      TfRef.attribute<String>(this, 'assessment_id');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `control_set_id` attribute.
+  TfRef<String> get controlSetIdRef =>
+      TfRef.attribute<String>(this, 'control_set_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `role_type` attribute.
+  TfRef<String> get roleTypeRef => TfRef.attribute<String>(this, 'role_type');
 }

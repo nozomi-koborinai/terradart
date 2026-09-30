@@ -1107,6 +1107,48 @@ final class GoogleCloudRunV2Job extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `client` attribute.
+  TfRef<String> get clientRef => TfRef.attribute<String>(this, 'client');
+
+  /// Reference to `client_version` attribute.
+  TfRef<String> get clientVersionRef =>
+      TfRef.attribute<String>(this, 'client_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `launch_stage` attribute.
+  TfRef<String> get launchStageRef =>
+      TfRef.attribute<String>(this, 'launch_stage');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `run_execution_token` attribute.
+  TfRef<String> get runExecutionTokenRef =>
+      TfRef.attribute<String>(this, 'run_execution_token');
+
+  /// Reference to `start_execution_token` attribute.
+  TfRef<String> get startExecutionTokenRef =>
+      TfRef.attribute<String>(this, 'start_execution_token');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
   /// Reference to `execution_count` — total number of executions that
   /// have ever run. Kept (not derived) to preserve the `int` type; the
   /// schema's `number` would widen the derived getter to `TfRef<num>`.

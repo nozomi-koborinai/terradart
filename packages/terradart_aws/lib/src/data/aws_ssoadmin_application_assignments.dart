@@ -34,4 +34,11 @@ final class DataAwsSsoadminApplicationAssignments extends Data {
         this,
         'application_assignments',
       );
+
+  /// Reference to `application_arn` attribute.
+  TfRef<String> get applicationArnRef =>
+      TfRef.attribute<String>(this, 'application_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

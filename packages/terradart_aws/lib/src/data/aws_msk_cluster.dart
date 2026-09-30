@@ -99,4 +99,15 @@ final class DataAwsMskCluster extends Data {
   /// Reference to `zookeeper_connect_string_tls` attribute.
   TfRef<String> get zookeeperConnectStringTls =>
       TfRef.attribute<String>(this, 'zookeeper_connect_string_tls');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

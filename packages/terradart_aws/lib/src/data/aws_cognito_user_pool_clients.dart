@@ -34,4 +34,11 @@ final class DataAwsCognitoUserPoolClients extends Data {
   /// Reference to `client_names` attribute.
   TfRef<List<String>> get clientNames =>
       TfRef.attribute<List<String>>(this, 'client_names');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

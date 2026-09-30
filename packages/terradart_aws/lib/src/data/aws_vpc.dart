@@ -111,4 +111,24 @@ final class DataAwsVpc extends Data {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `cidr_block` attribute.
+  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+
+  /// Reference to `default` attribute.
+  TfRef<bool> get defaultRef => TfRef.attribute<bool>(this, 'default');
+
+  /// Reference to `dhcp_options_id` attribute.
+  TfRef<String> get dhcpOptionsIdRef =>
+      TfRef.attribute<String>(this, 'dhcp_options_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

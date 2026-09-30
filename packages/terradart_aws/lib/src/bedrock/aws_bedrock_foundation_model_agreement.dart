@@ -35,4 +35,14 @@ final class AwsBedrockFoundationModelAgreement extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsBedrockFoundationModelAgreement>`.
   RefTo<AwsBedrockFoundationModelAgreement> get ref => RefTo.of(this);
+
+  /// Reference to `model_id` attribute.
+  TfRef<String> get modelIdRef => TfRef.attribute<String>(this, 'model_id');
+
+  /// Reference to `offer_token` attribute.
+  TfRef<String> get offerTokenRef =>
+      TfRef.attribute<String>(this, 'offer_token');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

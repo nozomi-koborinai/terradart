@@ -499,4 +499,17 @@ final class CloudflareWorker extends Resource {
 
   /// Reference to `updated_on` attribute.
   TfRef<String> get updatedOn => TfRef.attribute<String>(this, 'updated_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `force` attribute.
+  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+
+  /// Reference to `logpush` attribute.
+  TfRef<bool> get logpushRef => TfRef.attribute<bool>(this, 'logpush');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
 }

@@ -66,4 +66,15 @@ final class DataAwsInstances extends Data {
   /// Reference to `public_ips` attribute.
   TfRef<List<String>> get publicIps =>
       TfRef.attribute<List<String>>(this, 'public_ips');
+
+  /// Reference to `instance_state_names` attribute.
+  TfRef<List<String>> get instanceStateNamesRef =>
+      TfRef.attribute<List<String>>(this, 'instance_state_names');
+
+  /// Reference to `instance_tags` attribute.
+  TfRef<Map<String, String>> get instanceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'instance_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

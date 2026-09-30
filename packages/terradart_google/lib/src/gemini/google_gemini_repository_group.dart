@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+
 /// Sensitive field paths for `google_gemini_repository_group`.
 const Set<String> _googleGeminiRepositoryGroupSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleGeminiRepositoryGroup extends Resource {
 
   GoogleGeminiRepositoryGroup({
     required super.localName,
-    required TfArg<String> codeRepositoryIndex,
+    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
@@ -55,7 +58,9 @@ final class GoogleGeminiRepositoryGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'code_repository_index': codeRepositoryIndex,
+           'code_repository_index': codeRepositoryIndex.encodeAs(
+             'code_repository_index_id',
+           ),
            'deletion_policy': ?deletionPolicy,
            'labels': ?labels,
            'location': location,
@@ -93,4 +98,26 @@ final class GoogleGeminiRepositoryGroup extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `code_repository_index` attribute.
+  TfRef<String> get codeRepositoryIndexRef =>
+      TfRef.attribute<String>(this, 'code_repository_index');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_group_id` attribute.
+  TfRef<String> get repositoryGroupIdRef =>
+      TfRef.attribute<String>(this, 'repository_group_id');
 }

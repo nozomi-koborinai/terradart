@@ -58,4 +58,19 @@ final class AwsRamPermission extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `policy_template` attribute.
+  TfRef<String> get policyTemplateRef =>
+      TfRef.attribute<String>(this, 'policy_template');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -35,4 +35,14 @@ final class DataCloudflareZeroTrustDlpSensitivityLevels extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpSensitivityLevelsSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `sensitivity_group_id` attribute.
+  TfRef<String> get sensitivityGroupIdRef =>
+      TfRef.attribute<String>(this, 'sensitivity_group_id');
 }

@@ -101,9 +101,9 @@ export 'src/scc/google_scc_project_scc_big_query_export.dart'
     show GoogleSccProjectSccBigQueryExport;
 export 'src/scc/google_scc_source.dart' show GoogleSccSource;
 export 'src/scc/google_scc_source_iam_binding.dart'
-    show GoogleSccSourceIamBinding;
+    show GoogleSccSourceIamBinding, SccSourceIamBindingCondition;
 export 'src/scc/google_scc_source_iam_member.dart'
-    show GoogleSccSourceIamMember;
+    show GoogleSccSourceIamMember, SccSourceIamMemberCondition;
 export 'src/scc/google_scc_source_iam_policy.dart'
     show GoogleSccSourceIamPolicy;
 export 'src/scc/google_scc_v2_folder_mute_config.dart'
@@ -127,9 +127,13 @@ export 'src/scc/google_scc_v2_organization_scc_big_query_exports.dart'
 export 'src/scc/google_scc_v2_organization_source.dart'
     show GoogleSccV2OrganizationSource;
 export 'src/scc/google_scc_v2_organization_source_iam_binding.dart'
-    show GoogleSccV2OrganizationSourceIamBinding;
+    show
+        GoogleSccV2OrganizationSourceIamBinding,
+        SccV2OrganizationSourceIamBindingCondition;
 export 'src/scc/google_scc_v2_organization_source_iam_member.dart'
-    show GoogleSccV2OrganizationSourceIamMember;
+    show
+        GoogleSccV2OrganizationSourceIamMember,
+        SccV2OrganizationSourceIamMemberCondition;
 export 'src/scc/google_scc_v2_organization_source_iam_policy.dart'
     show GoogleSccV2OrganizationSourceIamPolicy;
 export 'src/scc/google_scc_v2_project_mute_config.dart'

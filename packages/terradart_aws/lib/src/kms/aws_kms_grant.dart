@@ -110,4 +110,30 @@ final class AwsKmsGrant extends Resource {
 
   /// Reference to `grant_token` attribute.
   TfRef<String> get grantToken => TfRef.attribute<String>(this, 'grant_token');
+
+  /// Reference to `grant_creation_tokens` attribute.
+  TfRef<List<String>> get grantCreationTokensRef =>
+      TfRef.attribute<List<String>>(this, 'grant_creation_tokens');
+
+  /// Reference to `grantee_principal` attribute.
+  TfRef<String> get granteePrincipalRef =>
+      TfRef.attribute<String>(this, 'grantee_principal');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `operations` attribute.
+  TfRef<List<String>> get operationsRef =>
+      TfRef.attribute<List<String>>(this, 'operations');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retire_on_delete` attribute.
+  TfRef<bool> get retireOnDeleteRef =>
+      TfRef.attribute<bool>(this, 'retire_on_delete');
+
+  /// Reference to `retiring_principal` attribute.
+  TfRef<String> get retiringPrincipalRef =>
+      TfRef.attribute<String>(this, 'retiring_principal');
 }

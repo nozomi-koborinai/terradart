@@ -103,4 +103,75 @@ final class AwsAmplifyBranch extends Resource {
   /// Reference to `source_branch` attribute.
   TfRef<String> get sourceBranch =>
       TfRef.attribute<String>(this, 'source_branch');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `backend_environment_arn` attribute.
+  TfRef<String> get backendEnvironmentArnRef =>
+      TfRef.attribute<String>(this, 'backend_environment_arn');
+
+  /// Reference to `basic_auth_credentials` attribute.
+  TfRef<String> get basicAuthCredentialsRef =>
+      TfRef.attribute<String>(this, 'basic_auth_credentials');
+
+  /// Reference to `branch_name` attribute.
+  TfRef<String> get branchNameRef =>
+      TfRef.attribute<String>(this, 'branch_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_auto_build` attribute.
+  TfRef<bool> get enableAutoBuildRef =>
+      TfRef.attribute<bool>(this, 'enable_auto_build');
+
+  /// Reference to `enable_basic_auth` attribute.
+  TfRef<bool> get enableBasicAuthRef =>
+      TfRef.attribute<bool>(this, 'enable_basic_auth');
+
+  /// Reference to `enable_notification` attribute.
+  TfRef<bool> get enableNotificationRef =>
+      TfRef.attribute<bool>(this, 'enable_notification');
+
+  /// Reference to `enable_performance_mode` attribute.
+  TfRef<bool> get enablePerformanceModeRef =>
+      TfRef.attribute<bool>(this, 'enable_performance_mode');
+
+  /// Reference to `enable_pull_request_preview` attribute.
+  TfRef<bool> get enablePullRequestPreviewRef =>
+      TfRef.attribute<bool>(this, 'enable_pull_request_preview');
+
+  /// Reference to `enable_skew_protection` attribute.
+  TfRef<bool> get enableSkewProtectionRef =>
+      TfRef.attribute<bool>(this, 'enable_skew_protection');
+
+  /// Reference to `environment_variables` attribute.
+  TfRef<Map<String, String>> get environmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment_variables');
+
+  /// Reference to `framework` attribute.
+  TfRef<String> get frameworkRef => TfRef.attribute<String>(this, 'framework');
+
+  /// Reference to `pull_request_environment_name` attribute.
+  TfRef<String> get pullRequestEnvironmentNameRef =>
+      TfRef.attribute<String>(this, 'pull_request_environment_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stage` attribute.
+  TfRef<String> get stageRef => TfRef.attribute<String>(this, 'stage');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `ttl` attribute.
+  TfRef<String> get ttlRef => TfRef.attribute<String>(this, 'ttl');
 }

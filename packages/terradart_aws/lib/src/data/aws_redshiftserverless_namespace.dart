@@ -61,4 +61,11 @@ final class DataAwsRedshiftserverlessNamespace extends Data {
   /// Reference to `namespace_id` attribute.
   TfRef<String> get namespaceId =>
       TfRef.attribute<String>(this, 'namespace_id');
+
+  /// Reference to `namespace_name` attribute.
+  TfRef<String> get namespaceNameRef =>
+      TfRef.attribute<String>(this, 'namespace_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

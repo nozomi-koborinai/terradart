@@ -34,4 +34,14 @@ final class DataAwsMskKafkaVersion extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `preferred_versions` attribute.
+  TfRef<List<String>> get preferredVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_versions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

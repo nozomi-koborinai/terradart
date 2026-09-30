@@ -199,4 +199,27 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsArczonalshiftZonalAutoshiftConfiguration>`.
   RefTo<AwsArczonalshiftZonalAutoshiftConfiguration> get ref => RefTo.of(this);
+
+  /// Reference to `allowed_windows` attribute.
+  TfRef<List<String>> get allowedWindowsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_windows');
+
+  /// Reference to `blocked_dates` attribute.
+  TfRef<List<String>> get blockedDatesRef =>
+      TfRef.attribute<List<String>>(this, 'blocked_dates');
+
+  /// Reference to `blocked_windows` attribute.
+  TfRef<List<String>> get blockedWindowsRef =>
+      TfRef.attribute<List<String>>(this, 'blocked_windows');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `zonal_autoshift_status` attribute.
+  TfRef<String> get zonalAutoshiftStatusRef =>
+      TfRef.attribute<String>(this, 'zonal_autoshift_status');
 }

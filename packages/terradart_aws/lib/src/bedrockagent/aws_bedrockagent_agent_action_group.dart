@@ -377,4 +377,38 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
   /// Reference to `action_group_id` attribute.
   TfRef<String> get actionGroupId =>
       TfRef.attribute<String>(this, 'action_group_id');
+
+  /// Reference to `action_group_name` attribute.
+  TfRef<String> get actionGroupNameRef =>
+      TfRef.attribute<String>(this, 'action_group_name');
+
+  /// Reference to `action_group_state` attribute.
+  TfRef<String> get actionGroupStateRef =>
+      TfRef.attribute<String>(this, 'action_group_state');
+
+  /// Reference to `agent_id` attribute.
+  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+
+  /// Reference to `agent_version` attribute.
+  TfRef<String> get agentVersionRef =>
+      TfRef.attribute<String>(this, 'agent_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parent_action_group_signature` attribute.
+  TfRef<String> get parentActionGroupSignatureRef =>
+      TfRef.attribute<String>(this, 'parent_action_group_signature');
+
+  /// Reference to `prepare_agent` attribute.
+  TfRef<bool> get prepareAgentRef =>
+      TfRef.attribute<bool>(this, 'prepare_agent');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_resource_in_use_check` attribute.
+  TfRef<bool> get skipResourceInUseCheckRef =>
+      TfRef.attribute<bool>(this, 'skip_resource_in_use_check');
 }

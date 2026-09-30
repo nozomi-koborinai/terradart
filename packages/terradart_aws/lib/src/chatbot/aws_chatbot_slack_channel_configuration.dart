@@ -79,4 +79,43 @@ final class AwsChatbotSlackChannelConfiguration extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `configuration_name` attribute.
+  TfRef<String> get configurationNameRef =>
+      TfRef.attribute<String>(this, 'configuration_name');
+
+  /// Reference to `guardrail_policy_arns` attribute.
+  TfRef<List<String>> get guardrailPolicyArnsRef =>
+      TfRef.attribute<List<String>>(this, 'guardrail_policy_arns');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `logging_level` attribute.
+  TfRef<String> get loggingLevelRef =>
+      TfRef.attribute<String>(this, 'logging_level');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `slack_channel_id` attribute.
+  TfRef<String> get slackChannelIdRef =>
+      TfRef.attribute<String>(this, 'slack_channel_id');
+
+  /// Reference to `slack_team_id` attribute.
+  TfRef<String> get slackTeamIdRef =>
+      TfRef.attribute<String>(this, 'slack_team_id');
+
+  /// Reference to `sns_topic_arns` attribute.
+  TfRef<List<String>> get snsTopicArnsRef =>
+      TfRef.attribute<List<String>>(this, 'sns_topic_arns');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_authorization_required` attribute.
+  TfRef<bool> get userAuthorizationRequiredRef =>
+      TfRef.attribute<bool>(this, 'user_authorization_required');
 }

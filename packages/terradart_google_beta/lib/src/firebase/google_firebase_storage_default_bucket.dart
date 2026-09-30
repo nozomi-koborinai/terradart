@@ -49,4 +49,14 @@ final class GoogleFirebaseStorageDefaultBucket extends Resource {
   /// Reference to `bucket` attribute.
   TfRef<List<Map<String, Object?>>> get bucket =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

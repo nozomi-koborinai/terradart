@@ -89,4 +89,11 @@ final class DataCloudflareUserGroup extends Data {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `user_group_id` attribute.
+  TfRef<String> get userGroupIdRef =>
+      TfRef.attribute<String>(this, 'user_group_id');
 }

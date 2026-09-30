@@ -88,6 +88,28 @@ terraform destroy -auto-approve
 
 See [FRICTIONS.md](./FRICTIONS.md) for the full context. This is a GCP / Terraform google provider behavior, not a terradart bug.
 
+## Outputs as the service's environment
+
+`main.dart` registers the Cloud SQL connection name and database as outputs
+(`db_instance`, `db_name`) before the Cloud Run service, and passes
+`outputEnvironment()` to the service as its `env`. Synth writes the matching
+typed reader to `lib/generated/single_project_app.app.dart`, so an app built
+into the container reads the same values without repeating a variable name:
+
+```dart
+import 'dart:io';
+
+import 'generated/single_project_app.app.dart';
+
+final outputs = SingleProjectAppOutputs.fromEnvironment(Platform.environment);
+final instance = outputs.dbInstance; // DB_INSTANCE
+```
+
+The generated file imports only `dart:convert`, so the app can copy it or
+depend on a small shared package that holds it, without depending on
+`terradart_google`. `coffee_service_uri` is registered after the service:
+a service's environment cannot reference the service itself.
+
 ## v0.9 patterns
 
 This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:

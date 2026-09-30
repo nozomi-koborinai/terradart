@@ -73,4 +73,34 @@ final class AwsServicecatalogPortfolioShare extends Resource {
 
   /// Reference to `accepted` attribute.
   TfRef<bool> get accepted => TfRef.attribute<bool>(this, 'accepted');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `portfolio_id` attribute.
+  TfRef<String> get portfolioIdRef =>
+      TfRef.attribute<String>(this, 'portfolio_id');
+
+  /// Reference to `principal_id` attribute.
+  TfRef<String> get principalIdRef =>
+      TfRef.attribute<String>(this, 'principal_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `share_principals` attribute.
+  TfRef<bool> get sharePrincipalsRef =>
+      TfRef.attribute<bool>(this, 'share_principals');
+
+  /// Reference to `share_tag_options` attribute.
+  TfRef<bool> get shareTagOptionsRef =>
+      TfRef.attribute<bool>(this, 'share_tag_options');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `wait_for_acceptance` attribute.
+  TfRef<bool> get waitForAcceptanceRef =>
+      TfRef.attribute<bool>(this, 'wait_for_acceptance');
 }

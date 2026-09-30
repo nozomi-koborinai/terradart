@@ -70,4 +70,22 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network_monitoring_provider_id` attribute.
+  TfRef<String> get networkMonitoringProviderIdRef =>
+      TfRef.attribute<String>(this, 'network_monitoring_provider_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provider_type` attribute.
+  TfRef<String> get providerTypeRef =>
+      TfRef.attribute<String>(this, 'provider_type');
 }

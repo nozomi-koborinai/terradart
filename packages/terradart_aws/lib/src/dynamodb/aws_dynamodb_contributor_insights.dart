@@ -49,4 +49,16 @@ final class AwsDynamodbContributorInsights extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `index_name` attribute.
+  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_name` attribute.
+  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
 }

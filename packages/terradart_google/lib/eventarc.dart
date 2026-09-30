@@ -40,9 +40,9 @@ export 'src/eventarc/google_eventarc_pipeline.dart'
         EventarcPipelineRetryPolicy,
         GoogleEventarcPipeline;
 export 'src/eventarc/google_eventarc_pipeline_iam_binding.dart'
-    show GoogleEventarcPipelineIamBinding;
+    show EventarcPipelineIamBindingCondition, GoogleEventarcPipelineIamBinding;
 export 'src/eventarc/google_eventarc_pipeline_iam_member.dart'
-    show GoogleEventarcPipelineIamMember;
+    show EventarcPipelineIamMemberCondition, GoogleEventarcPipelineIamMember;
 export 'src/eventarc/google_eventarc_pipeline_iam_policy.dart'
     show GoogleEventarcPipelineIamPolicy;
 export 'src/eventarc/google_eventarc_trigger.dart'

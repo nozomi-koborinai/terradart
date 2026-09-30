@@ -38,4 +38,13 @@ final class AwsAppstreamFleetStackAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `fleet_name` attribute.
+  TfRef<String> get fleetNameRef => TfRef.attribute<String>(this, 'fleet_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stack_name` attribute.
+  TfRef<String> get stackNameRef => TfRef.attribute<String>(this, 'stack_name');
 }

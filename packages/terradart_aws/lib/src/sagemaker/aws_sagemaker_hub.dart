@@ -63,4 +63,26 @@ final class AwsSagemakerHub extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `hub_description` attribute.
+  TfRef<String> get hubDescriptionRef =>
+      TfRef.attribute<String>(this, 'hub_description');
+
+  /// Reference to `hub_display_name` attribute.
+  TfRef<String> get hubDisplayNameRef =>
+      TfRef.attribute<String>(this, 'hub_display_name');
+
+  /// Reference to `hub_name` attribute.
+  TfRef<String> get hubNameRef => TfRef.attribute<String>(this, 'hub_name');
+
+  /// Reference to `hub_search_keywords` attribute.
+  TfRef<List<String>> get hubSearchKeywordsRef =>
+      TfRef.attribute<List<String>>(this, 'hub_search_keywords');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

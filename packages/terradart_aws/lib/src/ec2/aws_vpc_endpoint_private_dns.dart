@@ -34,4 +34,15 @@ final class AwsVpcEndpointPrivateDns extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsVpcEndpointPrivateDns>`.
   RefTo<AwsVpcEndpointPrivateDns> get ref => RefTo.of(this);
+
+  /// Reference to `private_dns_enabled` attribute.
+  TfRef<bool> get privateDnsEnabledRef =>
+      TfRef.attribute<bool>(this, 'private_dns_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_endpoint_id` attribute.
+  TfRef<String> get vpcEndpointIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

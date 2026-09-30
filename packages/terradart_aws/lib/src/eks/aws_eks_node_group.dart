@@ -661,4 +661,60 @@ final class AwsEksNodeGroup extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `ami_type` attribute.
+  TfRef<String> get amiTypeRef => TfRef.attribute<String>(this, 'ami_type');
+
+  /// Reference to `capacity_type` attribute.
+  TfRef<String> get capacityTypeRef =>
+      TfRef.attribute<String>(this, 'capacity_type');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `disk_size` attribute.
+  TfRef<num> get diskSizeRef => TfRef.attribute<num>(this, 'disk_size');
+
+  /// Reference to `force_update_version` attribute.
+  TfRef<bool> get forceUpdateVersionRef =>
+      TfRef.attribute<bool>(this, 'force_update_version');
+
+  /// Reference to `instance_types` attribute.
+  TfRef<List<String>> get instanceTypesRef =>
+      TfRef.attribute<List<String>>(this, 'instance_types');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `node_group_name` attribute.
+  TfRef<String> get nodeGroupNameRef =>
+      TfRef.attribute<String>(this, 'node_group_name');
+
+  /// Reference to `node_group_name_prefix` attribute.
+  TfRef<String> get nodeGroupNamePrefixRef =>
+      TfRef.attribute<String>(this, 'node_group_name_prefix');
+
+  /// Reference to `node_role_arn` attribute.
+  TfRef<String> get nodeRoleArnRef =>
+      TfRef.attribute<String>(this, 'node_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_version` attribute.
+  TfRef<String> get releaseVersionRef =>
+      TfRef.attribute<String>(this, 'release_version');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

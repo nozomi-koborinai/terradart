@@ -26,4 +26,7 @@ final class DataAwsOdbCloudAutonomousVmClusters extends Data {
         this,
         'cloud_autonomous_vm_clusters',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

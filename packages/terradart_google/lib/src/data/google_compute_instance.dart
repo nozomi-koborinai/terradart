@@ -218,4 +218,13 @@ final class DataGoogleComputeInstance extends Data {
         this,
         'workload_identity_config',
       );
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

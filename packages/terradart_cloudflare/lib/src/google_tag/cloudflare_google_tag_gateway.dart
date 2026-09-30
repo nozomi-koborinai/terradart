@@ -49,4 +49,24 @@ final class CloudflareGoogleTagGateway extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `endpoint` attribute.
+  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+
+  /// Reference to `hide_original_ip` attribute.
+  TfRef<bool> get hideOriginalIpRef =>
+      TfRef.attribute<bool>(this, 'hide_original_ip');
+
+  /// Reference to `measurement_id` attribute.
+  TfRef<String> get measurementIdRef =>
+      TfRef.attribute<String>(this, 'measurement_id');
+
+  /// Reference to `set_up_tag` attribute.
+  TfRef<bool> get setUpTagRef => TfRef.attribute<bool>(this, 'set_up_tag');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

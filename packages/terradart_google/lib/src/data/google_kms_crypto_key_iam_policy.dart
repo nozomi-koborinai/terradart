@@ -37,4 +37,8 @@ final class DataGoogleKmsCryptoKeyIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `crypto_key_id` attribute.
+  TfRef<String> get cryptoKeyIdRef =>
+      TfRef.attribute<String>(this, 'crypto_key_id');
 }

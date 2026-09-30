@@ -260,4 +260,31 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `catalog_type` attribute.
+  TfRef<String> get catalogTypeRef =>
+      TfRef.attribute<String>(this, 'catalog_type');
+
+  /// Reference to `credential_mode` attribute.
+  TfRef<String> get credentialModeRef =>
+      TfRef.attribute<String>(this, 'credential_mode');
+
+  /// Reference to `default_location` attribute.
+  TfRef<String> get defaultLocationRef =>
+      TfRef.attribute<String>(this, 'default_location');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `primary_location` attribute.
+  TfRef<String> get primaryLocationRef =>
+      TfRef.attribute<String>(this, 'primary_location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

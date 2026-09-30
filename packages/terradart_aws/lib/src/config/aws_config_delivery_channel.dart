@@ -87,4 +87,23 @@ final class AwsConfigDeliveryChannel extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_bucket_name` attribute.
+  TfRef<String> get s3BucketNameRef =>
+      TfRef.attribute<String>(this, 's3_bucket_name');
+
+  /// Reference to `s3_key_prefix` attribute.
+  TfRef<String> get s3KeyPrefixRef =>
+      TfRef.attribute<String>(this, 's3_key_prefix');
+
+  /// Reference to `s3_kms_key_arn` attribute.
+  TfRef<String> get s3KmsKeyArnRef =>
+      TfRef.attribute<String>(this, 's3_kms_key_arn');
+
+  /// Reference to `sns_topic_arn` attribute.
+  TfRef<String> get snsTopicArnRef =>
+      TfRef.attribute<String>(this, 'sns_topic_arn');
 }

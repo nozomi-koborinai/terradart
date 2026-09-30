@@ -42,6 +42,6 @@ terraform apply
 - `google_cloudfunctions2_function.hello_http` -- a Python 3.11 HTTP-triggered function with:
   - `Cloudfunctions2FunctionBuildConfig(runtime: .literal('python311'), entryPoint: .literal('hello'), source: .storageSource(...), updatePolicy: .automaticUpdatePolicy(...))`.
   - `ServiceConfig(availableMemory: '256M', timeoutSeconds: 60, ingressSettings: IngressSettings.allowInternalAndGclb, ...)`.
-  - The runtime SA's email wired via `TfArg.ref(runtimeSa.email)`.
+  - The runtime SA's email wired via `serviceAccountEmail: .of(runtimeSa)`.
 
 The sealed build `source` keeps the `storage_source` / `repo_source` mutual exclusion honest at the type level: each `Cloudfunctions2FunctionBuildConfig.source` is exactly one of `.storageSource(...)` or `.repoSource(...)`.

@@ -90,6 +90,21 @@ final class GoogleChronicleRetrohunt extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `retrohunt` attribute.
+  TfRef<String> get retrohuntRef => TfRef.attribute<String>(this, 'retrohunt');
+
+  /// Reference to `rule` attribute.
+  TfRef<String> get ruleRef => TfRef.attribute<String>(this, 'rule');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

@@ -221,6 +221,33 @@ final class GoogleChronicleParser extends Resource {
   TfRef<String> get validationStage =>
       TfRef.attribute<String>(this, 'validation_stage');
 
+  /// Reference to `cbn` attribute.
+  TfRef<String> get cbnRef => TfRef.attribute<String>(this, 'cbn');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `logtype` attribute.
+  TfRef<String> get logtypeRef => TfRef.attribute<String>(this, 'logtype');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `validated_on_empty_logs` attribute.
+  TfRef<bool> get validatedOnEmptyLogsRef =>
+      TfRef.attribute<bool>(this, 'validated_on_empty_logs');
+
+  /// Reference to `validation_skipped` attribute.
+  TfRef<bool> get validationSkippedRef =>
+      TfRef.attribute<bool>(this, 'validation_skipped');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

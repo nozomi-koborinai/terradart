@@ -89,4 +89,22 @@ final class DataAwsSsmPatchBaseline extends Data {
   /// Reference to `source` attribute.
   TfRef<List<Map<String, Object?>>> get source =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'source');
+
+  /// Reference to `default_baseline` attribute.
+  TfRef<bool> get defaultBaselineRef =>
+      TfRef.attribute<bool>(this, 'default_baseline');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `operating_system` attribute.
+  TfRef<String> get operatingSystemRef =>
+      TfRef.attribute<String>(this, 'operating_system');
+
+  /// Reference to `owner` attribute.
+  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

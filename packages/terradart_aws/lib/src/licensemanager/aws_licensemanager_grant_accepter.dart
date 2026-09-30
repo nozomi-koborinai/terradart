@@ -57,4 +57,10 @@ final class AwsLicensemanagerGrantAccepter extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `grant_arn` attribute.
+  TfRef<String> get grantArnRef => TfRef.attribute<String>(this, 'grant_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

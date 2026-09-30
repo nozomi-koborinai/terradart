@@ -45,4 +45,7 @@ final class AwsCloudtrailOrganizationDelegatedAdminAccount extends Resource {
   /// Reference to `service_principal` attribute.
   TfRef<String> get servicePrincipal =>
       TfRef.attribute<String>(this, 'service_principal');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

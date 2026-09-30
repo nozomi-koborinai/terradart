@@ -60,4 +60,25 @@ final class AwsKinesisVideoStream extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `data_retention_in_hours` attribute.
+  TfRef<num> get dataRetentionInHoursRef =>
+      TfRef.attribute<num>(this, 'data_retention_in_hours');
+
+  /// Reference to `device_name` attribute.
+  TfRef<String> get deviceNameRef =>
+      TfRef.attribute<String>(this, 'device_name');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `media_type` attribute.
+  TfRef<String> get mediaTypeRef => TfRef.attribute<String>(this, 'media_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

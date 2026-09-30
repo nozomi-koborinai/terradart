@@ -111,4 +111,23 @@ final class AwsCodepipelineWebhook extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `authentication` attribute.
+  TfRef<String> get authenticationRef =>
+      TfRef.attribute<String>(this, 'authentication');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_action` attribute.
+  TfRef<String> get targetActionRef =>
+      TfRef.attribute<String>(this, 'target_action');
+
+  /// Reference to `target_pipeline` attribute.
+  TfRef<String> get targetPipelineRef =>
+      TfRef.attribute<String>(this, 'target_pipeline');
 }

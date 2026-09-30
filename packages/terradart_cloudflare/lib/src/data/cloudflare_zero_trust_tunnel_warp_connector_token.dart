@@ -38,4 +38,10 @@ final class DataCloudflareZeroTrustTunnelWarpConnectorToken extends Data {
 
   /// Reference to `token` attribute.
   TfRef<String> get token => TfRef.attribute<String>(this, 'token');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `tunnel_id` attribute.
+  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
 }

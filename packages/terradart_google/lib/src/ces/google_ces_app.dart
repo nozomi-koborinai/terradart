@@ -912,6 +912,46 @@ final class GoogleCesApp extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `global_instruction` attribute.
+  TfRef<String> get globalInstructionRef =>
+      TfRef.attribute<String>(this, 'global_instruction');
+
+  /// Reference to `guardrails` attribute.
+  TfRef<List<String>> get guardrailsRef =>
+      TfRef.attribute<List<String>>(this, 'guardrails');
+
+  /// Reference to `locked` attribute.
+  TfRef<bool> get lockedRef => TfRef.attribute<bool>(this, 'locked');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Map<String, String>> get metadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'metadata');
+
+  /// Reference to `pinned` attribute.
+  TfRef<bool> get pinnedRef => TfRef.attribute<bool>(this, 'pinned');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `root_agent` attribute.
+  TfRef<String> get rootAgentRef => TfRef.attribute<String>(this, 'root_agent');
+
+  /// Reference to `tool_execution_mode` attribute.
+  TfRef<String> get toolExecutionModeRef =>
+      TfRef.attribute<String>(this, 'tool_execution_mode');
+
   /// Reference to `app_id` (parent segment for agents / tools / guardrails).
   TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
 

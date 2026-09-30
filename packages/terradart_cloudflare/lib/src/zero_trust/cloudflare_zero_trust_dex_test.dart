@@ -95,4 +95,17 @@ final class CloudflareZeroTrustDexTest extends Resource {
 
   /// Reference to `test_id` attribute.
   TfRef<String> get testId => TfRef.attribute<String>(this, 'test_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `interval` attribute.
+  TfRef<String> get intervalRef => TfRef.attribute<String>(this, 'interval');
 }

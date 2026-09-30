@@ -33,4 +33,10 @@ final class DataGoogleStorageBuckets extends Data {
   /// Reference to `buckets` attribute.
   TfRef<List<Map<String, Object?>>> get buckets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'buckets');
+
+  /// Reference to `prefix` attribute.
+  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

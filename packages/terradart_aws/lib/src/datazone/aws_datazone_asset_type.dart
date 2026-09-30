@@ -83,4 +83,19 @@ final class AwsDatazoneAssetType extends Resource {
 
   /// Reference to `revision` attribute.
   TfRef<String> get revision => TfRef.attribute<String>(this, 'revision');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_identifier` attribute.
+  TfRef<String> get domainIdentifierRef =>
+      TfRef.attribute<String>(this, 'domain_identifier');
+
+  /// Reference to `owning_project_identifier` attribute.
+  TfRef<String> get owningProjectIdentifierRef =>
+      TfRef.attribute<String>(this, 'owning_project_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

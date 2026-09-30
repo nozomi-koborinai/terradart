@@ -4,6 +4,7 @@
 outputDir: biglake
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 
 curatedDoc: |-

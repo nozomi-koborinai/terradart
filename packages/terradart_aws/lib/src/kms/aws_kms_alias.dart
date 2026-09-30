@@ -104,4 +104,15 @@ final class AwsKmsAlias extends Resource {
   /// Reference to `target_key_arn` attribute.
   TfRef<String> get targetKeyArn =>
       TfRef.attribute<String>(this, 'target_key_arn');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_key_id` attribute.
+  TfRef<String> get targetKeyIdRef =>
+      TfRef.attribute<String>(this, 'target_key_id');
 }

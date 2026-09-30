@@ -34,4 +34,14 @@ final class AwsS3vectorsVectorBucketPolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsS3vectorsVectorBucketPolicy>`.
   RefTo<AwsS3vectorsVectorBucketPolicy> get ref => RefTo.of(this);
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vector_bucket_arn` attribute.
+  TfRef<String> get vectorBucketArnRef =>
+      TfRef.attribute<String>(this, 'vector_bucket_arn');
 }

@@ -44,4 +44,14 @@ final class DataAwsSecretsmanagerSecretVersions extends Data {
   /// Reference to `versions` attribute.
   TfRef<List<Map<String, Object?>>> get versions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'versions');
+
+  /// Reference to `include_deprecated` attribute.
+  TfRef<bool> get includeDeprecatedRef =>
+      TfRef.attribute<bool>(this, 'include_deprecated');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secret_id` attribute.
+  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
 }

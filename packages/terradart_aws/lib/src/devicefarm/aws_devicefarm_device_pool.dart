@@ -111,4 +111,22 @@ final class AwsDevicefarmDevicePool extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `max_devices` attribute.
+  TfRef<num> get maxDevicesRef => TfRef.attribute<num>(this, 'max_devices');
+
+  /// Reference to `project_arn` attribute.
+  TfRef<String> get projectArnRef =>
+      TfRef.attribute<String>(this, 'project_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

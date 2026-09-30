@@ -96,4 +96,15 @@ final class AwsCodestarconnectionsHost extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `provider_endpoint` attribute.
+  TfRef<String> get providerEndpointRef =>
+      TfRef.attribute<String>(this, 'provider_endpoint');
+
+  /// Reference to `provider_type` attribute.
+  TfRef<String> get providerTypeRef =>
+      TfRef.attribute<String>(this, 'provider_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

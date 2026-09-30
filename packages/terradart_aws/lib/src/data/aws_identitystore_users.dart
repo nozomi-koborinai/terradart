@@ -27,4 +27,11 @@ final class DataAwsIdentitystoreUsers extends Data {
   /// Reference to `users` attribute.
   TfRef<List<Map<String, Object?>>> get users =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'users');
+
+  /// Reference to `identity_store_id` attribute.
+  TfRef<String> get identityStoreIdRef =>
+      TfRef.attribute<String>(this, 'identity_store_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

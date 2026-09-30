@@ -36,4 +36,13 @@ final class DataGoogleParameterManagerRegionalParameters extends Data {
   /// Reference to `parameters` attribute.
   TfRef<List<Map<String, Object?>>> get parameters =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'parameters');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -37,4 +37,7 @@ final class DataCloudflareAccountDnsSettings extends Data {
   /// Reference to `enforce_dns_only` attribute.
   TfRef<bool> get enforceDnsOnly =>
       TfRef.attribute<bool>(this, 'enforce_dns_only');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

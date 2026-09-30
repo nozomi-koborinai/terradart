@@ -313,4 +313,22 @@ final class AwsSsmcontactsRotation extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `contact_ids` attribute.
+  TfRef<List<String>> get contactIdsRef =>
+      TfRef.attribute<List<String>>(this, 'contact_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `start_time` attribute.
+  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `time_zone_id` attribute.
+  TfRef<String> get timeZoneIdRef =>
+      TfRef.attribute<String>(this, 'time_zone_id');
 }

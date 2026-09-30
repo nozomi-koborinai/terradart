@@ -53,4 +53,32 @@ final class AwsPinpointEmailChannel extends Resource {
   /// Reference to `messages_per_second` attribute.
   TfRef<num> get messagesPerSecond =>
       TfRef.attribute<num>(this, 'messages_per_second');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `configuration_set` attribute.
+  TfRef<String> get configurationSetRef =>
+      TfRef.attribute<String>(this, 'configuration_set');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `from_address` attribute.
+  TfRef<String> get fromAddressRef =>
+      TfRef.attribute<String>(this, 'from_address');
+
+  /// Reference to `identity` attribute.
+  TfRef<String> get identityRef => TfRef.attribute<String>(this, 'identity');
+
+  /// Reference to `orchestration_sending_role_arn` attribute.
+  TfRef<String> get orchestrationSendingRoleArnRef =>
+      TfRef.attribute<String>(this, 'orchestration_sending_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
 }

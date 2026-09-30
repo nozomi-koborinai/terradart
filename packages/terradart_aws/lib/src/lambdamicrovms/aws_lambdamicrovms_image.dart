@@ -134,4 +134,39 @@ final class AwsLambdamicrovmsImage extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `additional_os_capabilities` attribute.
+  TfRef<List<String>> get additionalOsCapabilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'additional_os_capabilities');
+
+  /// Reference to `base_image_arn` attribute.
+  TfRef<String> get baseImageArnRef =>
+      TfRef.attribute<String>(this, 'base_image_arn');
+
+  /// Reference to `base_image_version` attribute.
+  TfRef<String> get baseImageVersionRef =>
+      TfRef.attribute<String>(this, 'base_image_version');
+
+  /// Reference to `build_role_arn` attribute.
+  TfRef<String> get buildRoleArnRef =>
+      TfRef.attribute<String>(this, 'build_role_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `egress_network_connectors` attribute.
+  TfRef<List<String>> get egressNetworkConnectorsRef =>
+      TfRef.attribute<List<String>>(this, 'egress_network_connectors');
+
+  /// Reference to `environment_variables` attribute.
+  TfRef<Map<String, String>> get environmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment_variables');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

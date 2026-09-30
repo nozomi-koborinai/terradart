@@ -52,4 +52,10 @@ final class CloudflareSecretsStore extends Resource {
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `force` attribute.
+  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
 }

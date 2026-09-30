@@ -50,4 +50,11 @@ final class DataAwsVpcIpams extends Data {
   /// Reference to `ipams` attribute.
   TfRef<List<Map<String, Object?>>> get ipams =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ipams');
+
+  /// Reference to `ipam_ids` attribute.
+  TfRef<List<String>> get ipamIdsRef =>
+      TfRef.attribute<List<String>>(this, 'ipam_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

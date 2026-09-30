@@ -31,4 +31,11 @@ final class DataAwsWafregionalSubscribedRuleGroup extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `metric_name` attribute.
+  TfRef<String> get metricNameRef =>
+      TfRef.attribute<String>(this, 'metric_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

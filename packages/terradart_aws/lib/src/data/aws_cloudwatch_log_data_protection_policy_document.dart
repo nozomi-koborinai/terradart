@@ -242,4 +242,11 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
 
   /// Reference to `json` attribute.
   TfRef<String> get json => TfRef.attribute<String>(this, 'json');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

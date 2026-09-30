@@ -74,4 +74,19 @@ final class AwsSecurityhubStandardsControl extends Resource {
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `control_status` attribute.
+  TfRef<String> get controlStatusRef =>
+      TfRef.attribute<String>(this, 'control_status');
+
+  /// Reference to `disabled_reason` attribute.
+  TfRef<String> get disabledReasonRef =>
+      TfRef.attribute<String>(this, 'disabled_reason');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `standards_control_arn` attribute.
+  TfRef<String> get standardsControlArnRef =>
+      TfRef.attribute<String>(this, 'standards_control_arn');
 }

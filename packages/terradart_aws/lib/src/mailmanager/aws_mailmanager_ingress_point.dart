@@ -269,4 +269,29 @@ final class AwsMailmanagerIngressPoint extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_set_id` attribute.
+  TfRef<String> get ruleSetIdRef =>
+      TfRef.attribute<String>(this, 'rule_set_id');
+
+  /// Reference to `status_to_update` attribute.
+  TfRef<String> get statusToUpdateRef =>
+      TfRef.attribute<String>(this, 'status_to_update');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tls_policy` attribute.
+  TfRef<String> get tlsPolicyRef => TfRef.attribute<String>(this, 'tls_policy');
+
+  /// Reference to `traffic_policy_id` attribute.
+  TfRef<String> get trafficPolicyIdRef =>
+      TfRef.attribute<String>(this, 'traffic_policy_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

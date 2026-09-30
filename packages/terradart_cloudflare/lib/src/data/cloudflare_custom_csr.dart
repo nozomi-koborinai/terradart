@@ -97,4 +97,14 @@ final class DataCloudflareCustomCsr extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `custom_csr_id` attribute.
+  TfRef<String> get customCsrIdRef =>
+      TfRef.attribute<String>(this, 'custom_csr_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

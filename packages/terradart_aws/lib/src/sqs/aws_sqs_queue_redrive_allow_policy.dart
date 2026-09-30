@@ -37,4 +37,14 @@ final class AwsSqsQueueRedriveAllowPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `queue_url` attribute.
+  TfRef<String> get queueUrlRef => TfRef.attribute<String>(this, 'queue_url');
+
+  /// Reference to `redrive_allow_policy` attribute.
+  TfRef<String> get redriveAllowPolicyRef =>
+      TfRef.attribute<String>(this, 'redrive_allow_policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

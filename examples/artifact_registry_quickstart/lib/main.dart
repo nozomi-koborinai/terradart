@@ -107,9 +107,6 @@ final class ArtifactRegistryStack extends Stack {
       ),
     );
 
-    addExport(
-      'AR_PROJECT_CONFIG_NAME',
-      ResourceIdExport(projectConfig.nameRef, emitTerraformOutput: true),
-    );
+    addOutput('ar_project_config_name', .ref(projectConfig.nameRef));
   }
 }

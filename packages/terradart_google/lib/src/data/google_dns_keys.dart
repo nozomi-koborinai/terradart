@@ -37,4 +37,11 @@ final class DataGoogleDnsKeys extends Data {
   /// Reference to `zone_signing_keys` attribute.
   TfRef<List<Map<String, Object?>>> get zoneSigningKeys =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'zone_signing_keys');
+
+  /// Reference to `managed_zone` attribute.
+  TfRef<String> get managedZoneRef =>
+      TfRef.attribute<String>(this, 'managed_zone');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

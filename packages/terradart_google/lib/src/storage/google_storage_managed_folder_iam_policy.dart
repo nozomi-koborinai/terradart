@@ -48,4 +48,15 @@ final class GoogleStorageManagedFolderIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `managed_folder` attribute.
+  TfRef<String> get managedFolderRef =>
+      TfRef.attribute<String>(this, 'managed_folder');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
 }

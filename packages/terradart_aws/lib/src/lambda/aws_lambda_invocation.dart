@@ -62,4 +62,32 @@ final class AwsLambdaInvocation extends Resource {
 
   /// Reference to `result` attribute.
   TfRef<String> get result => TfRef.attribute<String>(this, 'result');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `input` attribute.
+  TfRef<String> get inputRef => TfRef.attribute<String>(this, 'input');
+
+  /// Reference to `lifecycle_scope` attribute.
+  TfRef<String> get lifecycleScopeRef =>
+      TfRef.attribute<String>(this, 'lifecycle_scope');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tenant_id` attribute.
+  TfRef<String> get tenantIdRef => TfRef.attribute<String>(this, 'tenant_id');
+
+  /// Reference to `terraform_key` attribute.
+  TfRef<String> get terraformKeyRef =>
+      TfRef.attribute<String>(this, 'terraform_key');
+
+  /// Reference to `triggers` attribute.
+  TfRef<Map<String, String>> get triggersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

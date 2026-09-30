@@ -302,7 +302,7 @@ final class DnsRecordSettings {
 /// backend (e.g. a `CNAME` for `api.example.com` toward Cloud Run's
 /// `ghs.googlehosted.com`).
 ///
-/// Reference the parent zone with `zoneId: TfArg.ref(zone.id)`.
+/// Reference the parent zone with `zoneId: zone.ref`.
 /// `ttl: 1` means
 /// "automatic" in Cloudflare's API; proxied records always use it.
 /// Structured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]
@@ -377,4 +377,37 @@ final class CloudflareDnsRecord extends Resource {
   /// Reference to `tags_modified_on` attribute.
   TfRef<String> get tagsModifiedOn =>
       TfRef.attribute<String>(this, 'tags_modified_on');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `include_shadow_metadata` attribute.
+  TfRef<bool> get includeShadowMetadataRef =>
+      TfRef.attribute<bool>(this, 'include_shadow_metadata');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `private_routing` attribute.
+  TfRef<bool> get privateRoutingRef =>
+      TfRef.attribute<bool>(this, 'private_routing');
+
+  /// Reference to `proxied` attribute.
+  TfRef<bool> get proxiedRef => TfRef.attribute<bool>(this, 'proxied');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

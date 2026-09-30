@@ -38,4 +38,12 @@ final class AwsNotificationsManagedNotificationAdditionalChannelAssociation
   /// `RefTo<AwsNotificationsManagedNotificationAdditionalChannelAssociation>`.
   RefTo<AwsNotificationsManagedNotificationAdditionalChannelAssociation>
   get ref => RefTo.of(this);
+
+  /// Reference to `channel_arn` attribute.
+  TfRef<String> get channelArnRef =>
+      TfRef.attribute<String>(this, 'channel_arn');
+
+  /// Reference to `managed_notification_arn` attribute.
+  TfRef<String> get managedNotificationArnRef =>
+      TfRef.attribute<String>(this, 'managed_notification_arn');
 }

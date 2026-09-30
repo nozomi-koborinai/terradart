@@ -400,4 +400,22 @@ final class GooglePrivilegedAccessManagerEntitlement extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `entitlement_id` attribute.
+  TfRef<String> get entitlementIdRef =>
+      TfRef.attribute<String>(this, 'entitlement_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `max_request_duration` attribute.
+  TfRef<String> get maxRequestDurationRef =>
+      TfRef.attribute<String>(this, 'max_request_duration');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

@@ -150,4 +150,7 @@ final class DataAwsEc2CapacityBlockReservation extends Data {
 
   /// Reference to `tenancy` attribute.
   TfRef<String> get tenancy => TfRef.attribute<String>(this, 'tenancy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

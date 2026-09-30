@@ -56,4 +56,20 @@ final class AwsCognitoUserPoolUiCustomization extends Resource {
   /// Reference to `last_modified_date` attribute.
   TfRef<String> get lastModifiedDate =>
       TfRef.attribute<String>(this, 'last_modified_date');
+
+  /// Reference to `client_id` attribute.
+  TfRef<String> get clientIdRef => TfRef.attribute<String>(this, 'client_id');
+
+  /// Reference to `css` attribute.
+  TfRef<String> get cssRef => TfRef.attribute<String>(this, 'css');
+
+  /// Reference to `image_file` attribute.
+  TfRef<String> get imageFileRef => TfRef.attribute<String>(this, 'image_file');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

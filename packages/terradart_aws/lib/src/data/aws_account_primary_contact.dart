@@ -69,4 +69,7 @@ final class DataAwsAccountPrimaryContact extends Data {
 
   /// Reference to `website_url` attribute.
   TfRef<String> get websiteUrl => TfRef.attribute<String>(this, 'website_url');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

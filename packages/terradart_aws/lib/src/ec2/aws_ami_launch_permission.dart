@@ -155,4 +155,24 @@ final class AwsAmiLaunchPermission extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `group` attribute.
+  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+
+  /// Reference to `organization_arn` attribute.
+  TfRef<String> get organizationArnRef =>
+      TfRef.attribute<String>(this, 'organization_arn');
+
+  /// Reference to `organizational_unit_arn` attribute.
+  TfRef<String> get organizationalUnitArnRef =>
+      TfRef.attribute<String>(this, 'organizational_unit_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

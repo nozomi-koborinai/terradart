@@ -52,4 +52,15 @@ final class AwsRoute53ResolverQueryLogConfig extends Resource {
   /// Reference to `share_status` attribute.
   TfRef<String> get shareStatus =>
       TfRef.attribute<String>(this, 'share_status');
+
+  /// Reference to `destination_arn` attribute.
+  TfRef<String> get destinationArnRef =>
+      TfRef.attribute<String>(this, 'destination_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -715,4 +715,45 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `attribute_condition` attribute.
+  TfRef<String> get attributeConditionRef =>
+      TfRef.attribute<String>(this, 'attribute_condition');
+
+  /// Reference to `attribute_mapping` attribute.
+  TfRef<Map<String, String>> get attributeMappingRef =>
+      TfRef.attribute<Map<String, String>>(this, 'attribute_mapping');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `detailed_audit_logging` attribute.
+  TfRef<bool> get detailedAuditLoggingRef =>
+      TfRef.attribute<bool>(this, 'detailed_audit_logging');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_id` attribute.
+  TfRef<String> get providerIdRef =>
+      TfRef.attribute<String>(this, 'provider_id');
+
+  /// Reference to `scim_usage` attribute.
+  TfRef<String> get scimUsageRef => TfRef.attribute<String>(this, 'scim_usage');
+
+  /// Reference to `workforce_pool_id` attribute.
+  TfRef<String> get workforcePoolIdRef =>
+      TfRef.attribute<String>(this, 'workforce_pool_id');
 }

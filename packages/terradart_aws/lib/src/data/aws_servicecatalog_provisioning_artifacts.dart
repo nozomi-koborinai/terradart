@@ -39,4 +39,14 @@ final class DataAwsServicecatalogProvisioningArtifacts extends Data {
         this,
         'provisioning_artifact_details',
       );
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `product_id` attribute.
+  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

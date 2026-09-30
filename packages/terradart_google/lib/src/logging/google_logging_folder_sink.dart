@@ -114,6 +114,35 @@ final class GoogleLoggingFolderSink extends Resource {
   TfRef<String> get writerIdentity =>
       TfRef.attribute<String>(this, 'writer_identity');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `include_children` attribute.
+  TfRef<bool> get includeChildrenRef =>
+      TfRef.attribute<bool>(this, 'include_children');
+
+  /// Reference to `intercept_children` attribute.
+  TfRef<bool> get interceptChildrenRef =>
+      TfRef.attribute<bool>(this, 'intercept_children');
+
   /// Reference to `writer_identity` attribute. Auto-populated by the
   /// provider; pass via `TfArg.ref(sink.writerIdentityRef)` to the
   /// destination's IAM member resource so the sink can write logs.

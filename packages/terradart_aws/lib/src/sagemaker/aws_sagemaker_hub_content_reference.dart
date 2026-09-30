@@ -59,4 +59,26 @@ final class AwsSagemakerHubContentReference extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `hub_content_name` attribute.
+  TfRef<String> get hubContentNameRef =>
+      TfRef.attribute<String>(this, 'hub_content_name');
+
+  /// Reference to `hub_name` attribute.
+  TfRef<String> get hubNameRef => TfRef.attribute<String>(this, 'hub_name');
+
+  /// Reference to `min_version` attribute.
+  TfRef<String> get minVersionRef =>
+      TfRef.attribute<String>(this, 'min_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sagemaker_public_hub_content_arn` attribute.
+  TfRef<String> get sagemakerPublicHubContentArnRef =>
+      TfRef.attribute<String>(this, 'sagemaker_public_hub_content_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -1024,4 +1024,32 @@ final class GoogleMonitoringAlertPolicy extends Resource {
   /// Reference to `creation_record` attribute.
   TfRef<List<Map<String, Object?>>> get creationRecord =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'creation_record');
+
+  /// Reference to `combiner` attribute.
+  TfRef<String> get combinerRef => TfRef.attribute<String>(this, 'combiner');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `notification_channels` attribute.
+  TfRef<List<String>> get notificationChannelsRef =>
+      TfRef.attribute<List<String>>(this, 'notification_channels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `severity` attribute.
+  TfRef<String> get severityRef => TfRef.attribute<String>(this, 'severity');
+
+  /// Reference to `user_labels` attribute.
+  TfRef<Map<String, String>> get userLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_labels');
 }

@@ -201,4 +201,41 @@ final class AwsAppstreamImageBuilder extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `appstream_agent_version` attribute.
+  TfRef<String> get appstreamAgentVersionRef =>
+      TfRef.attribute<String>(this, 'appstream_agent_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_default_internet_access` attribute.
+  TfRef<bool> get enableDefaultInternetAccessRef =>
+      TfRef.attribute<bool>(this, 'enable_default_internet_access');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `image_arn` attribute.
+  TfRef<String> get imageArnRef => TfRef.attribute<String>(this, 'image_arn');
+
+  /// Reference to `image_name` attribute.
+  TfRef<String> get imageNameRef => TfRef.attribute<String>(this, 'image_name');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

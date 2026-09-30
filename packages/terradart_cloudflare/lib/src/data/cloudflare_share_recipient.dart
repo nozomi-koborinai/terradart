@@ -50,4 +50,18 @@ final class DataCloudflareShareRecipient extends Data {
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `include_resources` attribute.
+  TfRef<bool> get includeResourcesRef =>
+      TfRef.attribute<bool>(this, 'include_resources');
+
+  /// Reference to `recipient_id` attribute.
+  TfRef<String> get recipientIdRef =>
+      TfRef.attribute<String>(this, 'recipient_id');
+
+  /// Reference to `share_id` attribute.
+  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
 }

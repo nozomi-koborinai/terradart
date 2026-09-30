@@ -52,4 +52,14 @@ final class AwsObservabilityadminTelemetryEvaluationForOrganization
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `all_regions` attribute.
+  TfRef<bool> get allRegionsRef => TfRef.attribute<bool>(this, 'all_regions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `regions` attribute.
+  TfRef<List<String>> get regionsRef =>
+      TfRef.attribute<List<String>>(this, 'regions');
 }

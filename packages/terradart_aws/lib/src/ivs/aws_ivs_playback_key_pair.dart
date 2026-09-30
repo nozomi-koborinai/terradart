@@ -48,4 +48,14 @@ final class AwsIvsPlaybackKeyPair extends Resource {
 
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `public_key` attribute.
+  TfRef<String> get publicKeyRef => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

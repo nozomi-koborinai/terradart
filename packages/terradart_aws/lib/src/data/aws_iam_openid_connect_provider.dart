@@ -41,4 +41,14 @@ final class DataAwsIamOpenidConnectProvider extends Data {
   /// Reference to `thumbprint_list` attribute.
   TfRef<List<String>> get thumbprintList =>
       TfRef.attribute<List<String>>(this, 'thumbprint_list');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

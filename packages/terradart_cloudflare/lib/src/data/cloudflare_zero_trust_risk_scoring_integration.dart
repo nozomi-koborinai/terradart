@@ -66,4 +66,11 @@ final class DataCloudflareZeroTrustRiskScoringIntegration extends Data {
   /// Reference to `well_known_url` attribute.
   TfRef<String> get wellKnownUrl =>
       TfRef.attribute<String>(this, 'well_known_url');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationIdRef =>
+      TfRef.attribute<String>(this, 'integration_id');
 }

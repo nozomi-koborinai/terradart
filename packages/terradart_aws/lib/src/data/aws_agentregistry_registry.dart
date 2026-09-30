@@ -73,4 +73,11 @@ final class DataAwsAgentregistryRegistry extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_id` attribute.
+  TfRef<String> get registryIdRef =>
+      TfRef.attribute<String>(this, 'registry_id');
 }

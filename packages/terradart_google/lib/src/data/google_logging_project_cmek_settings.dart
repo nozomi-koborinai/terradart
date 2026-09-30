@@ -44,4 +44,11 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
   /// Reference to `service_account_id` attribute.
   TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

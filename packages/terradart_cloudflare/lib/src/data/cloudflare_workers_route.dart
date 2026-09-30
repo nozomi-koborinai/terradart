@@ -43,4 +43,10 @@ final class DataCloudflareWorkersRoute extends Data {
 
   /// Reference to `script` attribute.
   TfRef<String> get script => TfRef.attribute<String>(this, 'script');
+
+  /// Reference to `route_id` attribute.
+  TfRef<String> get routeIdRef => TfRef.attribute<String>(this, 'route_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

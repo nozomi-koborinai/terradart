@@ -61,4 +61,27 @@ final class GoogleBigqueryReservationAssignment extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `assignee` attribute.
+  TfRef<String> get assigneeRef => TfRef.attribute<String>(this, 'assignee');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `job_type` attribute.
+  TfRef<String> get jobTypeRef => TfRef.attribute<String>(this, 'job_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reservation` attribute.
+  TfRef<String> get reservationRef =>
+      TfRef.attribute<String>(this, 'reservation');
 }

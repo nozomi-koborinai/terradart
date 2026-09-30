@@ -39,4 +39,19 @@ final class AwsChimeVoiceConnectorLogging extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `enable_media_metric_logs` attribute.
+  TfRef<bool> get enableMediaMetricLogsRef =>
+      TfRef.attribute<bool>(this, 'enable_media_metric_logs');
+
+  /// Reference to `enable_sip_logs` attribute.
+  TfRef<bool> get enableSipLogsRef =>
+      TfRef.attribute<bool>(this, 'enable_sip_logs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `voice_connector_id` attribute.
+  TfRef<String> get voiceConnectorIdRef =>
+      TfRef.attribute<String>(this, 'voice_connector_id');
 }

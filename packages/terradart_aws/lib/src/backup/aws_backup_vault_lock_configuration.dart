@@ -45,4 +45,23 @@ final class AwsBackupVaultLockConfiguration extends Resource {
   /// Reference to `backup_vault_arn` attribute.
   TfRef<String> get backupVaultArn =>
       TfRef.attribute<String>(this, 'backup_vault_arn');
+
+  /// Reference to `backup_vault_name` attribute.
+  TfRef<String> get backupVaultNameRef =>
+      TfRef.attribute<String>(this, 'backup_vault_name');
+
+  /// Reference to `changeable_for_days` attribute.
+  TfRef<num> get changeableForDaysRef =>
+      TfRef.attribute<num>(this, 'changeable_for_days');
+
+  /// Reference to `max_retention_days` attribute.
+  TfRef<num> get maxRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'max_retention_days');
+
+  /// Reference to `min_retention_days` attribute.
+  TfRef<num> get minRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'min_retention_days');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

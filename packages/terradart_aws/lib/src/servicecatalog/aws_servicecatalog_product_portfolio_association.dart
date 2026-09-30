@@ -59,4 +59,22 @@ final class AwsServicecatalogProductPortfolioAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `portfolio_id` attribute.
+  TfRef<String> get portfolioIdRef =>
+      TfRef.attribute<String>(this, 'portfolio_id');
+
+  /// Reference to `product_id` attribute.
+  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_portfolio_id` attribute.
+  TfRef<String> get sourcePortfolioIdRef =>
+      TfRef.attribute<String>(this, 'source_portfolio_id');
 }

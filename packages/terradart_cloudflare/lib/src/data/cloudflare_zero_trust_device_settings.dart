@@ -66,4 +66,7 @@ final class DataCloudflareZeroTrustDeviceSettings extends Data {
   /// Reference to `use_zt_virtual_ip` attribute.
   TfRef<bool> get useZtVirtualIp =>
       TfRef.attribute<bool>(this, 'use_zt_virtual_ip');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

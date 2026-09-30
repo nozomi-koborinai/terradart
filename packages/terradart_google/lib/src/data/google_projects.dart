@@ -29,4 +29,7 @@ final class DataGoogleProjects extends Data {
   /// Reference to `projects` attribute.
   TfRef<List<Map<String, Object?>>> get projects =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'projects');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
 }

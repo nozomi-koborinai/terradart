@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/workflow_stack.app.dart`
-/// (literal exports such as `HELLO_WORKFLOW_NAME`). Computed exports like
-/// `HELLO_WORKFLOW_ID` appear as Terraform outputs only.
+/// (with `WorkflowStackConstants.helloWorkflowName`). Computed values such as
+/// `hello_workflow_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

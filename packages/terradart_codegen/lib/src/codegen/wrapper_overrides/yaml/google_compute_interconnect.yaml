@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -22,6 +23,8 @@ paramOrder:
   - remote_location
   - requested_features
   - labels
+  - macsec
+  - params
   - deletion_policy
   - project
 

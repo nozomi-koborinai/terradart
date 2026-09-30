@@ -75,4 +75,18 @@ final class DataAwsKendraQuerySuggestionsBlockList extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `index_id` attribute.
+  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
+
+  /// Reference to `query_suggestions_block_list_id` attribute.
+  TfRef<String> get querySuggestionsBlockListIdRef =>
+      TfRef.attribute<String>(this, 'query_suggestions_block_list_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

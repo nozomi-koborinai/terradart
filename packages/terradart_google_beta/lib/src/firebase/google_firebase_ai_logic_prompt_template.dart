@@ -68,4 +68,30 @@ final class GoogleFirebaseAiLogicPromptTemplate extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `regional_propagation_disabled` attribute.
+  TfRef<bool> get regionalPropagationDisabledRef =>
+      TfRef.attribute<bool>(this, 'regional_propagation_disabled');
+
+  /// Reference to `template_id` attribute.
+  TfRef<String> get templateIdRef =>
+      TfRef.attribute<String>(this, 'template_id');
+
+  /// Reference to `template_string` attribute.
+  TfRef<String> get templateStringRef =>
+      TfRef.attribute<String>(this, 'template_string');
 }

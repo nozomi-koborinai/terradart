@@ -254,4 +254,23 @@ final class AwsSagemakerWorkteam extends Resource {
 
   /// Reference to `subdomain` attribute.
   TfRef<String> get subdomain => TfRef.attribute<String>(this, 'subdomain');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `workforce_name` attribute.
+  TfRef<String> get workforceNameRef =>
+      TfRef.attribute<String>(this, 'workforce_name');
+
+  /// Reference to `workteam_name` attribute.
+  TfRef<String> get workteamNameRef =>
+      TfRef.attribute<String>(this, 'workteam_name');
 }

@@ -38,4 +38,14 @@ final class AwsSnapshotCreateVolumePermission extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_id` attribute.
+  TfRef<String> get snapshotIdRef =>
+      TfRef.attribute<String>(this, 'snapshot_id');
 }

@@ -1,7 +1,6 @@
 import 'package:terradart_core/src/backends.dart';
 import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
-import 'package:terradart_core/src/synth/output_emitter.dart';
 import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
@@ -899,49 +898,6 @@ void main() {
         equals({
           'google_project': {
             'eu': {'project_id': 'orders-prod', 'provider': 'google.eu'},
-          },
-        }),
-      );
-    });
-  });
-
-  group('TfJsonEncoder.outputBlock', () {
-    test('returns null for empty list', () {
-      expect(TfJsonEncoder.outputBlock(const []), isNull);
-    });
-
-    test('serialises minimal output', () {
-      final out = TfJsonEncoder.outputBlock(const [
-        TerraformOutputSpec(
-          name: 'topicName',
-          value: r'${google_pubsub_topic.orders.name}',
-          sensitive: false,
-        ),
-      ]);
-      expect(
-        out,
-        equals({
-          'topicName': {'value': r'${google_pubsub_topic.orders.name}'},
-        }),
-      );
-    });
-
-    test('serialises sensitive + description', () {
-      final out = TfJsonEncoder.outputBlock(const [
-        TerraformOutputSpec(
-          name: 'apiKey',
-          value: r'${google_secret_manager_secret_version.api.secret_data}',
-          sensitive: true,
-          description: 'API key (sensitive)',
-        ),
-      ]);
-      expect(
-        out,
-        equals({
-          'apiKey': {
-            'value': r'${google_secret_manager_secret_version.api.secret_data}',
-            'sensitive': true,
-            'description': 'API key (sensitive)',
           },
         }),
       );

@@ -43,4 +43,8 @@ final class DataAwsDxGateway extends Data {
   /// Reference to `owner_account_id` attribute.
   TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -72,4 +72,25 @@ final class AwsSchemasSchema extends Resource {
   /// Reference to `version_created_date` attribute.
   TfRef<String> get versionCreatedDate =>
       TfRef.attribute<String>(this, 'version_created_date');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_name` attribute.
+  TfRef<String> get registryNameRef =>
+      TfRef.attribute<String>(this, 'registry_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

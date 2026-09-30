@@ -34,4 +34,10 @@ final class DataGoogleOracleDatabaseCloudVmClusters extends Data {
   /// Reference to `cloud_vm_clusters` attribute.
   TfRef<List<Map<String, Object?>>> get cloudVmClusters =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'cloud_vm_clusters');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

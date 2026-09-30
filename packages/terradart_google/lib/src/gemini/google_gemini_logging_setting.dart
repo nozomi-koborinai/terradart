@@ -62,4 +62,29 @@ final class GoogleGeminiLoggingSetting extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `log_metadata` attribute.
+  TfRef<bool> get logMetadataRef => TfRef.attribute<bool>(this, 'log_metadata');
+
+  /// Reference to `log_prompts_and_responses` attribute.
+  TfRef<bool> get logPromptsAndResponsesRef =>
+      TfRef.attribute<bool>(this, 'log_prompts_and_responses');
+
+  /// Reference to `logging_setting_id` attribute.
+  TfRef<String> get loggingSettingIdRef =>
+      TfRef.attribute<String>(this, 'logging_setting_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

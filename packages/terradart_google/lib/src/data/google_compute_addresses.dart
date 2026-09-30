@@ -34,4 +34,13 @@ final class DataGoogleComputeAddresses extends Data {
   /// Reference to `addresses` attribute.
   TfRef<List<Map<String, Object?>>> get addresses =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'addresses');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -210,10 +210,10 @@ final class DataplexCatalogStack extends Stack {
           'projects/${current.number.interpolation}/locations/us-central1'
           '/entryTypes/terradart-dataset',
         ),
-        entrySource: .literal({
-          'display_name': 'Customer dataset',
-          'description': 'Catalog entry for the customer 360 dataset',
-        }),
+        entrySource: DataplexEntryEntrySource(
+          displayName: .literal('Customer dataset'),
+          description: .literal('Catalog entry for the customer 360 dataset'),
+        ),
         dependsOn: [
           ResourceDependency(catalogGroup),
           ResourceDependency(datasetType),

@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_colab_runtime_template_iam_binding`.
 const Set<String> _googleColabRuntimeTemplateIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_colab_runtime_template_iam_binding` (derived from provider schema).
+@immutable
+final class ColabRuntimeTemplateIamBindingCondition {
+  const ColabRuntimeTemplateIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_colab_runtime_template_iam_binding`.
 ///
@@ -22,7 +46,7 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
-    TfArg<Map<String, dynamic>>? condition,
+    ColabRuntimeTemplateIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -35,7 +59,8 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
            'role': role,
            'members': members,
            'location': ?location,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'project': ?project,
          },
        );
@@ -53,4 +78,21 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `runtime_template` attribute.
+  TfRef<String> get runtimeTemplateRef =>
+      TfRef.attribute<String>(this, 'runtime_template');
 }

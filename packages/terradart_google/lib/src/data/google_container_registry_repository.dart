@@ -34,4 +34,10 @@ final class DataGoogleContainerRegistryRepository extends Data {
   /// Reference to `repository_url` attribute.
   TfRef<String> get repositoryUrl =>
       TfRef.attribute<String>(this, 'repository_url');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

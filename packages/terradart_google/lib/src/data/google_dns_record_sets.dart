@@ -43,4 +43,14 @@ final class DataGoogleDnsRecordSets extends Data {
   /// Reference to `rrsets` attribute.
   TfRef<List<Map<String, Object?>>> get rrsets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rrsets');
+
+  /// Reference to `managed_zone` attribute.
+  TfRef<String> get managedZoneRef =>
+      TfRef.attribute<String>(this, 'managed_zone');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

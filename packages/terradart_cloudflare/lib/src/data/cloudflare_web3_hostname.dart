@@ -58,4 +58,11 @@ final class DataCloudflareWeb3Hostname extends Data {
 
   /// Reference to `target` attribute.
   TfRef<String> get target => TfRef.attribute<String>(this, 'target');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

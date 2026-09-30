@@ -161,4 +161,27 @@ final class AwsAmiFromInstance extends Resource {
   /// Reference to `virtualization_type` attribute.
   TfRef<String> get virtualizationType =>
       TfRef.attribute<String>(this, 'virtualization_type');
+
+  /// Reference to `deprecation_time` attribute.
+  TfRef<String> get deprecationTimeRef =>
+      TfRef.attribute<String>(this, 'deprecation_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_without_reboot` attribute.
+  TfRef<bool> get snapshotWithoutRebootRef =>
+      TfRef.attribute<bool>(this, 'snapshot_without_reboot');
+
+  /// Reference to `source_instance_id` attribute.
+  TfRef<String> get sourceInstanceIdRef =>
+      TfRef.attribute<String>(this, 'source_instance_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

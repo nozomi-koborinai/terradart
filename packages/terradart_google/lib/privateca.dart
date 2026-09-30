@@ -13,9 +13,9 @@ export 'src/privateca/google_privateca_ca_pool.dart'
         PrivatecaCaPoolPublishingOptionsEncodingFormat,
         PrivatecaCaPoolTier;
 export 'src/privateca/google_privateca_ca_pool_iam_binding.dart'
-    show GooglePrivatecaCaPoolIamBinding;
+    show GooglePrivatecaCaPoolIamBinding, PrivatecaCaPoolIamBindingCondition;
 export 'src/privateca/google_privateca_ca_pool_iam_member.dart'
-    show GooglePrivatecaCaPoolIamMember;
+    show GooglePrivatecaCaPoolIamMember, PrivatecaCaPoolIamMemberCondition;
 export 'src/privateca/google_privateca_ca_pool_iam_policy.dart'
     show GooglePrivatecaCaPoolIamPolicy;
 export 'src/privateca/google_privateca_certificate.dart'
@@ -82,8 +82,12 @@ export 'src/privateca/google_privateca_certificate_template.dart'
         PrivatecaCertificateTemplatePredefinedValuesNameConstraints,
         PrivatecaCertificateTemplatePredefinedValuesPolicyIds;
 export 'src/privateca/google_privateca_certificate_template_iam_binding.dart'
-    show GooglePrivatecaCertificateTemplateIamBinding;
+    show
+        GooglePrivatecaCertificateTemplateIamBinding,
+        PrivatecaCertificateTemplateIamBindingCondition;
 export 'src/privateca/google_privateca_certificate_template_iam_member.dart'
-    show GooglePrivatecaCertificateTemplateIamMember;
+    show
+        GooglePrivatecaCertificateTemplateIamMember,
+        PrivatecaCertificateTemplateIamMemberCondition;
 export 'src/privateca/google_privateca_certificate_template_iam_policy.dart'
     show GooglePrivatecaCertificateTemplateIamPolicy;

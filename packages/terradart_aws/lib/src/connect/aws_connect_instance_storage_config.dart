@@ -263,4 +263,15 @@ final class AwsConnectInstanceStorageConfig extends Resource {
   /// Reference to `association_id` attribute.
   TfRef<String> get associationId =>
       TfRef.attribute<String>(this, 'association_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
 }

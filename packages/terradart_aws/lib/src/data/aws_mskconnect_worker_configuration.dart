@@ -50,4 +50,11 @@ final class DataAwsMskconnectWorkerConfiguration extends Data {
   /// Reference to `properties_file_content` attribute.
   TfRef<String> get propertiesFileContent =>
       TfRef.attribute<String>(this, 'properties_file_content');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

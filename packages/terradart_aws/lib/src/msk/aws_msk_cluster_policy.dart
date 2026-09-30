@@ -41,4 +41,14 @@ final class AwsMskClusterPolicy extends Resource {
   /// Reference to `current_version` attribute.
   TfRef<String> get currentVersion =>
       TfRef.attribute<String>(this, 'current_version');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

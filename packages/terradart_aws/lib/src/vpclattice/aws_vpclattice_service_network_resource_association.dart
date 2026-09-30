@@ -56,4 +56,23 @@ final class AwsVpclatticeServiceNetworkResourceAssociation extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `private_dns_enabled` attribute.
+  TfRef<bool> get privateDnsEnabledRef =>
+      TfRef.attribute<bool>(this, 'private_dns_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_configuration_identifier` attribute.
+  TfRef<String> get resourceConfigurationIdentifierRef =>
+      TfRef.attribute<String>(this, 'resource_configuration_identifier');
+
+  /// Reference to `service_network_identifier` attribute.
+  TfRef<String> get serviceNetworkIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_network_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -57,4 +57,10 @@ final class DataCloudflareMagicWanBgpFilterProfile extends Data {
   /// Reference to `targets` attribute.
   TfRef<List<String>> get targets =>
       TfRef.attribute<List<String>>(this, 'targets');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `profile_id` attribute.
+  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
 }

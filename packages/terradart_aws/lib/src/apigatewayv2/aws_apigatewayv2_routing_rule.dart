@@ -152,4 +152,14 @@ final class AwsApigatewayv2RoutingRule extends Resource {
   /// Reference to `routing_rule_id` attribute.
   TfRef<String> get routingRuleId =>
       TfRef.attribute<String>(this, 'routing_rule_id');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

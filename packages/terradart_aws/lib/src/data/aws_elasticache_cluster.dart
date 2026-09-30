@@ -119,4 +119,14 @@ final class DataAwsElasticacheCluster extends Data {
   /// Reference to `subnet_group_name` attribute.
   TfRef<String> get subnetGroupName =>
       TfRef.attribute<String>(this, 'subnet_group_name');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

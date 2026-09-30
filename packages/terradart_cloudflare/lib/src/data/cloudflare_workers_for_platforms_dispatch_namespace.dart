@@ -70,4 +70,11 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
   /// Reference to `trusted_workers` attribute.
   TfRef<bool> get trustedWorkers =>
       TfRef.attribute<bool>(this, 'trusted_workers');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dispatch_namespace` attribute.
+  TfRef<String> get dispatchNamespaceRef =>
+      TfRef.attribute<String>(this, 'dispatch_namespace');
 }

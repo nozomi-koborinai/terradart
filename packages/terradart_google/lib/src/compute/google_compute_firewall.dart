@@ -201,7 +201,7 @@ final class ComputeFirewallParams {
 ///   `google_compute_firewall.`).
 /// - `name`: GCP firewall rule name.
 /// - `network`: VPC network this rule attaches to. Typically
-///   `TfArg.ref(vpc.selfLink)` where `vpc` is a `GoogleComputeNetwork`.
+///   `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.
 ///
 /// Choose exactly one [ComputeFirewallRulePolicy]:
 /// - [ComputeFirewallAllowPolicy] — permit matching traffic.
@@ -212,7 +212,7 @@ final class ComputeFirewallParams {
 /// final allowSsh = GoogleComputeFirewall(
 ///   localName: 'allow_ssh',
 ///   name: TfArg.literal('allow-ssh'),
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   direction: TfArg.literal(FirewallDirection.ingress),
 ///   priority: TfArg.literal(1000),
 ///   rulePolicy: ComputeFirewallAllowPolicy(
@@ -295,4 +295,55 @@ final class GoogleComputeFirewall extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination_ranges` attribute.
+  TfRef<List<String>> get destinationRangesRef =>
+      TfRef.attribute<List<String>>(this, 'destination_ranges');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `enable_logging` attribute.
+  TfRef<bool> get enableLoggingRef =>
+      TfRef.attribute<bool>(this, 'enable_logging');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_ranges` attribute.
+  TfRef<List<String>> get sourceRangesRef =>
+      TfRef.attribute<List<String>>(this, 'source_ranges');
+
+  /// Reference to `source_service_accounts` attribute.
+  TfRef<List<String>> get sourceServiceAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'source_service_accounts');
+
+  /// Reference to `source_tags` attribute.
+  TfRef<List<String>> get sourceTagsRef =>
+      TfRef.attribute<List<String>>(this, 'source_tags');
+
+  /// Reference to `target_service_accounts` attribute.
+  TfRef<List<String>> get targetServiceAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'target_service_accounts');
+
+  /// Reference to `target_tags` attribute.
+  TfRef<List<String>> get targetTagsRef =>
+      TfRef.attribute<List<String>>(this, 'target_tags');
 }

@@ -223,7 +223,7 @@ class BigqueryRoutineSparkOptions {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_bigquery_routine.`).
 /// - `datasetId`: parent BigQuery dataset id. Typically
-///   `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a
+///   `dataset.ref` where `dataset` is a
 ///   `GoogleBigqueryDataset`.
 /// - `routineId`: routine id. Letters/digits/underscores only, up to 256
 ///   chars. Immutable after create.
@@ -252,7 +252,7 @@ class BigqueryRoutineSparkOptions {
 /// ```dart
 /// final addOne = GoogleBigqueryRoutine(
 ///   localName: 'add_one',
-///   datasetId: TfArg.ref(dataset.datasetIdRef),
+///   datasetId: dataset.ref,
 ///   routineId: TfArg.literal('add_one'),
 ///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),
 ///   definitionBody: TfArg.literal('x + 1'),
@@ -336,6 +336,55 @@ final class GoogleBigqueryRoutine extends Resource {
   /// Reference to `last_modified_time` attribute.
   TfRef<num> get lastModifiedTime =>
       TfRef.attribute<num>(this, 'last_modified_time');
+
+  /// Reference to `data_governance_type` attribute.
+  TfRef<String> get dataGovernanceTypeRef =>
+      TfRef.attribute<String>(this, 'data_governance_type');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `definition_body` attribute.
+  TfRef<String> get definitionBodyRef =>
+      TfRef.attribute<String>(this, 'definition_body');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `determinism_level` attribute.
+  TfRef<String> get determinismLevelRef =>
+      TfRef.attribute<String>(this, 'determinism_level');
+
+  /// Reference to `imported_libraries` attribute.
+  TfRef<List<String>> get importedLibrariesRef =>
+      TfRef.attribute<List<String>>(this, 'imported_libraries');
+
+  /// Reference to `language` attribute.
+  TfRef<String> get languageRef => TfRef.attribute<String>(this, 'language');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `return_table_type` attribute.
+  TfRef<String> get returnTableTypeRef =>
+      TfRef.attribute<String>(this, 'return_table_type');
+
+  /// Reference to `return_type` attribute.
+  TfRef<String> get returnTypeRef =>
+      TfRef.attribute<String>(this, 'return_type');
+
+  /// Reference to `routine_type` attribute.
+  TfRef<String> get routineTypeRef =>
+      TfRef.attribute<String>(this, 'routine_type');
+
+  /// Reference to `security_mode` attribute.
+  TfRef<String> get securityModeRef =>
+      TfRef.attribute<String>(this, 'security_mode');
 
   /// Reference to `routine_id` attribute.
   TfRef<String> get routineIdRef => TfRef.attribute<String>(this, 'routine_id');

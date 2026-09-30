@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -29,6 +30,38 @@ enum ComputeHaVpnGatewayStackType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_ha_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeHaVpnGatewayParams {
+  const ComputeHaVpnGatewayParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `vpn_interfaces` block of
+/// `google_compute_ha_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeHaVpnGatewayVpnInterfaces {
+  const ComputeHaVpnGatewayVpnInterfaces({
+    this.id,
+    this.interconnectAttachment,
+  });
+
+  final TfArg<num>? id;
+
+  final TfArg<String>? interconnectAttachment;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'interconnect_attachment': ?interconnectAttachment?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_ha_vpn_gateway`.
 ///
 /// Represents a VPN gateway running in GCP. This virtual device is managed by
@@ -47,6 +80,8 @@ final class GoogleComputeHaVpnGateway extends Resource {
     TfArg<ComputeHaVpnGatewayGatewayIpVersion>? gatewayIpVersion,
     TfArg<ComputeHaVpnGatewayStackType>? stackType,
     TfArg<Map<String, String>>? labels,
+    ComputeHaVpnGatewayParams? params,
+    List<ComputeHaVpnGatewayVpnInterfaces>? vpnInterfaces,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -63,6 +98,11 @@ final class GoogleComputeHaVpnGateway extends Resource {
            'gateway_ip_version': ?gatewayIpVersion,
            'stack_type': ?stackType,
            'labels': ?labels,
+           if (params != null) 'params': TfArg.literal(params.encode()),
+           if (vpnInterfaces != null)
+             'vpn_interfaces': TfArg.literal([
+               for (final e in vpnInterfaces) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -95,4 +135,32 @@ final class GoogleComputeHaVpnGateway extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `gateway_ip_version` attribute.
+  TfRef<String> get gatewayIpVersionRef =>
+      TfRef.attribute<String>(this, 'gateway_ip_version');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stack_type` attribute.
+  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
 }

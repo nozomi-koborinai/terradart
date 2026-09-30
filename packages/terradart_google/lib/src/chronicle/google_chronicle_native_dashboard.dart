@@ -274,4 +274,34 @@ final class GoogleChronicleNativeDashboard extends Resource {
   /// Reference to `update_user_id` attribute.
   TfRef<String> get updateUserId =>
       TfRef.attribute<String>(this, 'update_user_id');
+
+  /// Reference to `access` attribute.
+  TfRef<String> get accessRef => TfRef.attribute<String>(this, 'access');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `is_pinned` attribute.
+  TfRef<bool> get isPinnedRef => TfRef.attribute<bool>(this, 'is_pinned');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -58,4 +58,19 @@ final class DataAwsConnectSecurityProfile extends Data {
   /// Reference to `permissions` attribute.
   TfRef<List<String>> get permissions =>
       TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_profile_id` attribute.
+  TfRef<String> get securityProfileIdRef =>
+      TfRef.attribute<String>(this, 'security_profile_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -224,4 +224,45 @@ final class AwsLexBot extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `child_directed` attribute.
+  TfRef<bool> get childDirectedRef =>
+      TfRef.attribute<bool>(this, 'child_directed');
+
+  /// Reference to `create_version` attribute.
+  TfRef<bool> get createVersionRef =>
+      TfRef.attribute<bool>(this, 'create_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `detect_sentiment` attribute.
+  TfRef<bool> get detectSentimentRef =>
+      TfRef.attribute<bool>(this, 'detect_sentiment');
+
+  /// Reference to `enable_model_improvements` attribute.
+  TfRef<bool> get enableModelImprovementsRef =>
+      TfRef.attribute<bool>(this, 'enable_model_improvements');
+
+  /// Reference to `idle_session_ttl_in_seconds` attribute.
+  TfRef<num> get idleSessionTtlInSecondsRef =>
+      TfRef.attribute<num>(this, 'idle_session_ttl_in_seconds');
+
+  /// Reference to `locale` attribute.
+  TfRef<String> get localeRef => TfRef.attribute<String>(this, 'locale');
+
+  /// Reference to `nlu_intent_confidence_threshold` attribute.
+  TfRef<num> get nluIntentConfidenceThresholdRef =>
+      TfRef.attribute<num>(this, 'nlu_intent_confidence_threshold');
+
+  /// Reference to `process_behavior` attribute.
+  TfRef<String> get processBehaviorRef =>
+      TfRef.attribute<String>(this, 'process_behavior');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `voice_id` attribute.
+  TfRef<String> get voiceIdRef => TfRef.attribute<String>(this, 'voice_id');
 }

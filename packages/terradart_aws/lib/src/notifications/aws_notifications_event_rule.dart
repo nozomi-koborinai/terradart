@@ -41,4 +41,22 @@ final class AwsNotificationsEventRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `event_pattern` attribute.
+  TfRef<String> get eventPatternRef =>
+      TfRef.attribute<String>(this, 'event_pattern');
+
+  /// Reference to `event_type` attribute.
+  TfRef<String> get eventTypeRef => TfRef.attribute<String>(this, 'event_type');
+
+  /// Reference to `notification_configuration_arn` attribute.
+  TfRef<String> get notificationConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'notification_configuration_arn');
+
+  /// Reference to `regions` attribute.
+  TfRef<List<String>> get regionsRef =>
+      TfRef.attribute<List<String>>(this, 'regions');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
 }

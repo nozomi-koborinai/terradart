@@ -1,6 +1,7 @@
 outputDir: clouddeploy
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -9,4 +10,5 @@ paramOrder:
   - role
   - member
   - location
+  - condition
   - project

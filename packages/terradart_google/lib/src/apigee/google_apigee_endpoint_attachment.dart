@@ -65,6 +65,24 @@ final class GoogleApigeeEndpointAttachment extends Resource {
   /// Reference to `host` attribute.
   TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `endpoint_attachment_id` attribute.
+  TfRef<String> get endpointAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'endpoint_attachment_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `service_attachment` attribute.
+  TfRef<String> get serviceAttachmentRef =>
+      TfRef.attribute<String>(this, 'service_attachment');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

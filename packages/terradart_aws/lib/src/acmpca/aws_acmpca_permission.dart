@@ -64,4 +64,22 @@ final class AwsAcmpcaPermission extends Resource {
 
   /// Reference to `policy` attribute.
   TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `actions` attribute.
+  TfRef<List<String>> get actionsRef =>
+      TfRef.attribute<List<String>>(this, 'actions');
+
+  /// Reference to `certificate_authority_arn` attribute.
+  TfRef<String> get certificateAuthorityArnRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_arn');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_account` attribute.
+  TfRef<String> get sourceAccountRef =>
+      TfRef.attribute<String>(this, 'source_account');
 }

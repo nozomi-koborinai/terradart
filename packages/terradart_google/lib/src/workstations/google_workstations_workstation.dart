@@ -116,6 +116,44 @@ final class GoogleWorkstationsWorkstation extends Resource {
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `env` attribute.
+  TfRef<Map<String, String>> get envRef =>
+      TfRef.attribute<Map<String, String>>(this, 'env');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_workstation` attribute.
+  TfRef<String> get sourceWorkstationRef =>
+      TfRef.attribute<String>(this, 'source_workstation');
+
+  /// Reference to `workstation_cluster_id` attribute.
+  TfRef<String> get workstationClusterIdRef =>
+      TfRef.attribute<String>(this, 'workstation_cluster_id');
+
+  /// Reference to `workstation_config_id` attribute.
+  TfRef<String> get workstationConfigIdRef =>
+      TfRef.attribute<String>(this, 'workstation_config_id');
+
   /// Reference to `workstation_id` attribute.
   TfRef<String> get workstationIdRef =>
       TfRef.attribute<String>(this, 'workstation_id');

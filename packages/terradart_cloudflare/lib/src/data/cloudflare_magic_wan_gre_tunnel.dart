@@ -41,4 +41,11 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `gre_tunnel_id` attribute.
+  TfRef<String> get greTunnelIdRef =>
+      TfRef.attribute<String>(this, 'gre_tunnel_id');
 }

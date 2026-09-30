@@ -48,6 +48,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'roles',
+          dartName: 'rolesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -83,6 +93,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -171,6 +186,46 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'email',
+          dartName: 'emailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'email_verification',
+          dartName: 'emailVerificationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'password',
+          dartName: 'passwordRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'phone',
+          dartName: 'phoneRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'phone_verification',
+          dartName: 'phoneVerificationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -224,6 +279,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -297,6 +357,36 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           tfName: 'updated_at',
           dartName: 'updatedAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_id',
+          dartName: 'resourceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retention',
+          dartName: 'retentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'services',
+          dartName: 'servicesRef',
+          dartType: 'List<String>',
         ),
       ],
     ),
@@ -466,6 +556,101 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'build_specification',
+          dartName: 'buildSpecificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'commands',
+          dartName: 'commandsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deployment_retention',
+          dartName: 'deploymentRetentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'entrypoint',
+          dartName: 'entrypointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'events',
+          dartName: 'eventsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'execute',
+          dartName: 'executeRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'installation_id',
+          dartName: 'installationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'logging',
+          dartName: 'loggingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_branch',
+          dartName: 'providerBranchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_repository_id',
+          dartName: 'providerRepositoryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_root_directory',
+          dartName: 'providerRootDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_silent_mode',
+          dartName: 'providerSilentModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'runtime',
+          dartName: 'runtimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'runtime_specification',
+          dartName: 'runtimeSpecificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'timeout',
+          dartName: 'timeoutRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -544,6 +729,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -693,6 +883,72 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'activate',
+          dartName: 'activateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'code_hash',
+          dartName: 'codeHashRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'code_path',
+          dartName: 'codePathRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'commands',
+          dartName: 'commandsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entrypoint',
+          dartName: 'entrypointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'function_id',
+          dartName: 'functionIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'owner',
+          dartName: 'ownerRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reference',
+          dartName: 'referenceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'repository',
+          dartName: 'repositoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'root_directory',
+          dartName: 'rootDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source_type',
+          dartName: 'sourceTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'wait_for_ready',
+          dartName: 'waitForReadyRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -749,6 +1005,27 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'function_id',
+          dartName: 'functionIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'key', dartName: 'keyRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret',
+          dartName: 'secretRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
           dartType: 'String',
         ),
       ],
@@ -984,6 +1261,135 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_sid',
+          dartName: 'accountSidRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'api_key',
+          dartName: 'apiKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'api_secret',
+          dartName: 'apiSecretRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_key',
+          dartName: 'authKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_key_id',
+          dartName: 'authKeyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_token',
+          dartName: 'authTokenRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_tls',
+          dartName: 'autoTlsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bundle_id',
+          dartName: 'bundleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'customer_id',
+          dartName: 'customerIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'encryption',
+          dartName: 'encryptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'from', dartName: 'fromRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'from_email',
+          dartName: 'fromEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'from_name',
+          dartName: 'fromNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'is_eu_region',
+          dartName: 'isEuRegionRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'password',
+          dartName: 'passwordRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'port', dartName: 'portRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reply_to_email',
+          dartName: 'replyToEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reply_to_name',
+          dartName: 'replyToNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sandbox',
+          dartName: 'sandboxRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sender_id',
+          dartName: 'senderIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_json',
+          dartName: 'serviceAccountJsonRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'team_id',
+          dartName: 'teamIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'template_id',
+          dartName: 'templateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'username',
+          dartName: 'usernameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1026,6 +1432,21 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target_id',
+          dartName: 'targetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'topic_id',
+          dartName: 'topicIdRef',
           dartType: 'String',
         ),
       ],
@@ -1072,6 +1493,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'subscribe',
+          dartName: 'subscribeRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1112,6 +1543,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -1207,6 +1643,32 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retention',
+          dartName: 'retentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1283,6 +1745,51 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'access_key',
+          dartName: 'accessKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket',
+          dartName: 'bucketRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefix',
+          dartName: 'prefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret_key',
+          dartName: 'secretKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_provider',
+          dartName: 'storageProviderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1317,6 +1824,21 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1397,6 +1919,22 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'username',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'branch_id',
+          dartName: 'branchIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
       ],
     ),
     MigrateEntry(
@@ -1661,6 +2199,107 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'idle_timeout_minutes',
+          dartName: 'idleTimeoutMinutesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_day',
+          dartName: 'maintenanceWindowDayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_hour_utc',
+          dartName: 'maintenanceWindowHourUtcRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_idle_timeout_seconds',
+          dartName: 'networkIdleTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_ip_allowlist',
+          dartName: 'networkIpAllowlistRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'pitr', dartName: 'pitrRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'pitr_retention_days',
+          dartName: 'pitrRetentionDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'replicas',
+          dartName: 'replicasRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'specification',
+          dartName: 'specificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_allowed_statements',
+          dartName: 'sqlApiAllowedStatementsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_enabled',
+          dartName: 'sqlApiEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_bytes',
+          dartName: 'sqlApiMaxBytesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_rows',
+          dartName: 'sqlApiMaxRowsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_timeout_seconds',
+          dartName: 'sqlApiTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling',
+          dartName: 'storageAutoscalingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_max_gb',
+          dartName: 'storageAutoscalingMaxGbRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_threshold_percent',
+          dartName: 'storageAutoscalingThresholdPercentRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sync_mode',
+          dartName: 'syncModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'version',
+          dartName: 'versionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1877,6 +2516,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1952,6 +2596,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1978,6 +2632,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1995,7 +2659,13 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'appwrite_mysql_backup_policy',
@@ -2088,6 +2758,32 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retention',
+          dartName: 'retentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2164,6 +2860,51 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'access_key',
+          dartName: 'accessKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket',
+          dartName: 'bucketRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefix',
+          dartName: 'prefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret_key',
+          dartName: 'secretKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_provider',
+          dartName: 'storageProviderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2198,6 +2939,21 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2278,6 +3034,22 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'username',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'branch_id',
+          dartName: 'branchIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
       ],
     ),
     MigrateEntry(
@@ -2542,6 +3314,107 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'idle_timeout_minutes',
+          dartName: 'idleTimeoutMinutesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_day',
+          dartName: 'maintenanceWindowDayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_hour_utc',
+          dartName: 'maintenanceWindowHourUtcRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_idle_timeout_seconds',
+          dartName: 'networkIdleTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_ip_allowlist',
+          dartName: 'networkIpAllowlistRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'pitr', dartName: 'pitrRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'pitr_retention_days',
+          dartName: 'pitrRetentionDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'replicas',
+          dartName: 'replicasRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'specification',
+          dartName: 'specificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_allowed_statements',
+          dartName: 'sqlApiAllowedStatementsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_enabled',
+          dartName: 'sqlApiEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_bytes',
+          dartName: 'sqlApiMaxBytesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_rows',
+          dartName: 'sqlApiMaxRowsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_timeout_seconds',
+          dartName: 'sqlApiTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling',
+          dartName: 'storageAutoscalingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_max_gb',
+          dartName: 'storageAutoscalingMaxGbRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_threshold_percent',
+          dartName: 'storageAutoscalingThresholdPercentRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sync_mode',
+          dartName: 'syncModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'version',
+          dartName: 'versionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2758,6 +3631,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2833,6 +3711,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2859,6 +3747,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2944,6 +3842,52 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
         MigrateGetter(tfName: 'port', dartName: 'port', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_pool_size',
+          dartName: 'defaultPoolSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'max_connections',
+          dartName: 'maxConnectionsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'pooler_cpu_limit',
+          dartName: 'poolerCpuLimitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_cpu_request',
+          dartName: 'poolerCpuRequestRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_memory_limit',
+          dartName: 'poolerMemoryLimitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_memory_request',
+          dartName: 'poolerMemoryRequestRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'read_write_splitting',
+          dartName: 'readWriteSplittingRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2961,7 +3905,13 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'appwrite_postgresql_backup_policy',
@@ -3054,6 +4004,32 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retention',
+          dartName: 'retentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -3130,6 +4106,51 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'access_key',
+          dartName: 'accessKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket',
+          dartName: 'bucketRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefix',
+          dartName: 'prefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret_key',
+          dartName: 'secretKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_provider',
+          dartName: 'storageProviderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3164,6 +4185,21 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3244,6 +4280,22 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'username',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'branch_id',
+          dartName: 'branchIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
       ],
     ),
     MigrateEntry(
@@ -3508,6 +4560,107 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'idle_timeout_minutes',
+          dartName: 'idleTimeoutMinutesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_day',
+          dartName: 'maintenanceWindowDayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'maintenance_window_hour_utc',
+          dartName: 'maintenanceWindowHourUtcRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_idle_timeout_seconds',
+          dartName: 'networkIdleTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_ip_allowlist',
+          dartName: 'networkIpAllowlistRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'pitr', dartName: 'pitrRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'pitr_retention_days',
+          dartName: 'pitrRetentionDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'replicas',
+          dartName: 'replicasRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'specification',
+          dartName: 'specificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_allowed_statements',
+          dartName: 'sqlApiAllowedStatementsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_enabled',
+          dartName: 'sqlApiEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_bytes',
+          dartName: 'sqlApiMaxBytesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_max_rows',
+          dartName: 'sqlApiMaxRowsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sql_api_timeout_seconds',
+          dartName: 'sqlApiTimeoutSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling',
+          dartName: 'storageAutoscalingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_max_gb',
+          dartName: 'storageAutoscalingMaxGbRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'storage_autoscaling_threshold_percent',
+          dartName: 'storageAutoscalingThresholdPercentRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sync_mode',
+          dartName: 'syncModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'version',
+          dartName: 'versionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3724,6 +4877,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3799,6 +4957,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3825,6 +4993,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'total', dartName: 'total', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queries',
+          dartName: 'queriesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3860,6 +5038,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3895,6 +5083,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           tfName: 'installed',
           dartName: 'installed',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -3979,6 +5177,47 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'port', dartName: 'port', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_pool_size',
+          dartName: 'defaultPoolSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'pooler_cpu_limit',
+          dartName: 'poolerCpuLimitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_cpu_request',
+          dartName: 'poolerCpuRequestRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_memory_limit',
+          dartName: 'poolerMemoryLimitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pooler_memory_request',
+          dartName: 'poolerMemoryRequestRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'read_write_splitting',
+          dartName: 'readWriteSplittingRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3996,7 +5235,13 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'appwrite_project',
@@ -4043,6 +5288,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
           dartType: 'String',
         ),
       ],
@@ -4114,6 +5369,26 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'expire',
+          dartName: 'expireRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4178,6 +5453,27 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'branch',
+          dartName: 'branchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_id',
+          dartName: 'resourceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -4353,6 +5649,106 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'adapter',
+          dartName: 'adapterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'build_command',
+          dartName: 'buildCommandRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'build_runtime',
+          dartName: 'buildRuntimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'build_specification',
+          dartName: 'buildSpecificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deployment_retention',
+          dartName: 'deploymentRetentionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'fallback_file',
+          dartName: 'fallbackFileRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'framework',
+          dartName: 'frameworkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'install_command',
+          dartName: 'installCommandRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'installation_id',
+          dartName: 'installationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'logging',
+          dartName: 'loggingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'output_directory',
+          dartName: 'outputDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_branch',
+          dartName: 'providerBranchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_repository_id',
+          dartName: 'providerRepositoryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_root_directory',
+          dartName: 'providerRootDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provider_silent_mode',
+          dartName: 'providerSilentModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'runtime_specification',
+          dartName: 'runtimeSpecificationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'start_command',
+          dartName: 'startCommandRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'timeout',
+          dartName: 'timeoutRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4421,6 +5817,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -4577,6 +5978,77 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'activate',
+          dartName: 'activateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'build_command',
+          dartName: 'buildCommandRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'code_hash',
+          dartName: 'codeHashRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'code_path',
+          dartName: 'codePathRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'install_command',
+          dartName: 'installCommandRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'output_directory',
+          dartName: 'outputDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'owner',
+          dartName: 'ownerRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reference',
+          dartName: 'referenceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'repository',
+          dartName: 'repositoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'root_directory',
+          dartName: 'rootDirectoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source_type',
+          dartName: 'sourceTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'wait_for_ready',
+          dartName: 'waitForReadyRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4633,6 +6105,27 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'key', dartName: 'keyRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret',
+          dartName: 'secretRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
           dartType: 'String',
         ),
       ],
@@ -4713,6 +6206,56 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'allowed_file_extensions',
+          dartName: 'allowedFileExtensionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'antivirus',
+          dartName: 'antivirusRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'compression',
+          dartName: 'compressionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'encryption',
+          dartName: 'encryptionRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'file_security',
+          dartName: 'fileSecurityRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'maximum_file_size',
+          dartName: 'maximumFileSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'permissions',
+          dartName: 'permissionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'transformations',
+          dartName: 'transformationsRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4779,6 +6322,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -4850,6 +6398,26 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'bucket_id',
+          dartName: 'bucketIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'file_path',
+          dartName: 'filePathRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'permissions',
+          dartName: 'permissionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4894,6 +6462,16 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4930,6 +6508,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
           dartType: 'String',
         ),
       ],
@@ -5096,6 +6679,82 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(tfName: 'array', dartName: 'arrayRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default',
+          dartName: 'defaultRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'elements',
+          dartName: 'elementsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'encrypt',
+          dartName: 'encryptRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'float_max',
+          dartName: 'floatMaxRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'float_min',
+          dartName: 'floatMinRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'key', dartName: 'keyRef', dartType: 'String'),
+        MigrateGetter(tfName: 'max', dartName: 'maxRef', dartType: 'num'),
+        MigrateGetter(tfName: 'min', dartName: 'minRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'on_delete',
+          dartName: 'onDeleteRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'related_table_id',
+          dartName: 'relatedTableIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'relationship_type',
+          dartName: 'relationshipTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'required',
+          dartName: 'requiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'size', dartName: 'sizeRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'table_id',
+          dartName: 'tableIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'two_way',
+          dartName: 'twoWayRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'two_way_key',
+          dartName: 'twoWayKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5168,6 +6827,33 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'columns',
+          dartName: 'columnsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'key', dartName: 'keyRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'orders',
+          dartName: 'ordersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'table_id',
+          dartName: 'tableIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5225,6 +6911,27 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'data', dartName: 'dataRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'permissions',
+          dartName: 'permissionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'table_id',
+          dartName: 'tableIdRef',
           dartType: 'String',
         ),
       ],
@@ -5292,6 +6999,31 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           tfName: 'updated_at',
           dartName: 'updatedAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'permissions',
+          dartName: 'permissionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'row_security',
+          dartName: 'rowSecurityRef',
+          dartType: 'bool',
         ),
       ],
     ),
@@ -5373,6 +7105,33 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'auth_password',
+          dartName: 'authPasswordRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_username',
+          dartName: 'authUsernameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'events',
+          dartName: 'eventsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tls', dartName: 'tlsRef', dartType: 'bool'),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5418,6 +7177,11 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project_id',
+          dartName: 'projectIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
   ],

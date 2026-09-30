@@ -46,4 +46,20 @@ final class AwsAthenaNamedQuery extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `query` attribute.
+  TfRef<String> get queryRef => TfRef.attribute<String>(this, 'query');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workgroup` attribute.
+  TfRef<String> get workgroupRef => TfRef.attribute<String>(this, 'workgroup');
 }

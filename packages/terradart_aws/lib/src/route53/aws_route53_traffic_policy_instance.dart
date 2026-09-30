@@ -47,4 +47,19 @@ final class AwsRoute53TrafficPolicyInstance extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `hosted_zone_id` attribute.
+  TfRef<String> get hostedZoneIdRef =>
+      TfRef.attribute<String>(this, 'hosted_zone_id');
+
+  /// Reference to `traffic_policy_id` attribute.
+  TfRef<String> get trafficPolicyIdRef =>
+      TfRef.attribute<String>(this, 'traffic_policy_id');
+
+  /// Reference to `traffic_policy_version` attribute.
+  TfRef<num> get trafficPolicyVersionRef =>
+      TfRef.attribute<num>(this, 'traffic_policy_version');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
 }

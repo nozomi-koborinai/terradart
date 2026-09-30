@@ -106,4 +106,10 @@ final class DataCloudflareLoadBalancerPool extends Data {
   /// Reference to `notification_email` attribute.
   TfRef<String> get notificationEmail =>
       TfRef.attribute<String>(this, 'notification_email');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `pool_id` attribute.
+  TfRef<String> get poolIdRef => TfRef.attribute<String>(this, 'pool_id');
 }

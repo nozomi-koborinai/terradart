@@ -95,4 +95,35 @@ final class AwsS3vectorsIndex extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `data_type` attribute.
+  TfRef<String> get dataTypeRef => TfRef.attribute<String>(this, 'data_type');
+
+  /// Reference to `dimension` attribute.
+  TfRef<num> get dimensionRef => TfRef.attribute<num>(this, 'dimension');
+
+  /// Reference to `distance_metric` attribute.
+  TfRef<String> get distanceMetricRef =>
+      TfRef.attribute<String>(this, 'distance_metric');
+
+  /// Reference to `encryption_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get encryptionConfigurationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'encryption_configuration',
+      );
+
+  /// Reference to `index_name` attribute.
+  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vector_bucket_name` attribute.
+  TfRef<String> get vectorBucketNameRef =>
+      TfRef.attribute<String>(this, 'vector_bucket_name');
 }

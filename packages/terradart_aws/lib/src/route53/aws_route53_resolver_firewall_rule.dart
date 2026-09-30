@@ -135,4 +135,52 @@ final class AwsRoute53ResolverFirewallRule extends Resource {
   /// Reference to `firewall_threat_protection_id` attribute.
   TfRef<String> get firewallThreatProtectionId =>
       TfRef.attribute<String>(this, 'firewall_threat_protection_id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `block_override_dns_type` attribute.
+  TfRef<String> get blockOverrideDnsTypeRef =>
+      TfRef.attribute<String>(this, 'block_override_dns_type');
+
+  /// Reference to `block_override_domain` attribute.
+  TfRef<String> get blockOverrideDomainRef =>
+      TfRef.attribute<String>(this, 'block_override_domain');
+
+  /// Reference to `block_override_ttl` attribute.
+  TfRef<num> get blockOverrideTtlRef =>
+      TfRef.attribute<num>(this, 'block_override_ttl');
+
+  /// Reference to `block_response` attribute.
+  TfRef<String> get blockResponseRef =>
+      TfRef.attribute<String>(this, 'block_response');
+
+  /// Reference to `confidence_threshold` attribute.
+  TfRef<String> get confidenceThresholdRef =>
+      TfRef.attribute<String>(this, 'confidence_threshold');
+
+  /// Reference to `dns_threat_protection` attribute.
+  TfRef<String> get dnsThreatProtectionRef =>
+      TfRef.attribute<String>(this, 'dns_threat_protection');
+
+  /// Reference to `firewall_domain_list_id` attribute.
+  TfRef<String> get firewallDomainListIdRef =>
+      TfRef.attribute<String>(this, 'firewall_domain_list_id');
+
+  /// Reference to `firewall_domain_redirection_action` attribute.
+  TfRef<String> get firewallDomainRedirectionActionRef =>
+      TfRef.attribute<String>(this, 'firewall_domain_redirection_action');
+
+  /// Reference to `firewall_rule_group_id` attribute.
+  TfRef<String> get firewallRuleGroupIdRef =>
+      TfRef.attribute<String>(this, 'firewall_rule_group_id');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `q_type` attribute.
+  TfRef<String> get qTypeRef => TfRef.attribute<String>(this, 'q_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

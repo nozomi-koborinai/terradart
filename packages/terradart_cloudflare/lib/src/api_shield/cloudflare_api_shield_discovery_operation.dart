@@ -54,4 +54,14 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `operation_id` attribute.
+  TfRef<String> get operationIdRef =>
+      TfRef.attribute<String>(this, 'operation_id');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

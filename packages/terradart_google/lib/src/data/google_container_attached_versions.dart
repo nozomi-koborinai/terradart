@@ -33,4 +33,10 @@ final class DataGoogleContainerAttachedVersions extends Data {
   /// Reference to `valid_versions` attribute.
   TfRef<List<String>> get validVersions =>
       TfRef.attribute<List<String>>(this, 'valid_versions');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

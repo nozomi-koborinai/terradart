@@ -16,9 +16,13 @@ export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
         DataprocAutoscalingPolicyWorkerConfig,
         GoogleDataprocAutoscalingPolicy;
 export 'src/dataproc/google_dataproc_autoscaling_policy_iam_binding.dart'
-    show GoogleDataprocAutoscalingPolicyIamBinding;
+    show
+        DataprocAutoscalingPolicyIamBindingCondition,
+        GoogleDataprocAutoscalingPolicyIamBinding;
 export 'src/dataproc/google_dataproc_autoscaling_policy_iam_member.dart'
-    show GoogleDataprocAutoscalingPolicyIamMember;
+    show
+        DataprocAutoscalingPolicyIamMemberCondition,
+        GoogleDataprocAutoscalingPolicyIamMember;
 export 'src/dataproc/google_dataproc_autoscaling_policy_iam_policy.dart'
     show GoogleDataprocAutoscalingPolicyIamPolicy;
 export 'src/dataproc/google_dataproc_batch.dart'
@@ -103,9 +107,9 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig,
         GoogleDataprocCluster;
 export 'src/dataproc/google_dataproc_cluster_iam_binding.dart'
-    show GoogleDataprocClusterIamBinding;
+    show DataprocClusterIamBindingCondition, GoogleDataprocClusterIamBinding;
 export 'src/dataproc/google_dataproc_cluster_iam_member.dart'
-    show GoogleDataprocClusterIamMember;
+    show DataprocClusterIamMemberCondition, GoogleDataprocClusterIamMember;
 export 'src/dataproc/google_dataproc_cluster_iam_policy.dart'
     show GoogleDataprocClusterIamPolicy;
 export 'src/dataproc/google_dataproc_gdc_application_environment.dart'
@@ -149,15 +153,19 @@ export 'src/dataproc/google_dataproc_job.dart'
         DataprocJobSparksqlConfigLoggingConfig,
         GoogleDataprocJob;
 export 'src/dataproc/google_dataproc_job_iam_binding.dart'
-    show GoogleDataprocJobIamBinding;
+    show DataprocJobIamBindingCondition, GoogleDataprocJobIamBinding;
 export 'src/dataproc/google_dataproc_job_iam_member.dart'
-    show GoogleDataprocJobIamMember;
+    show DataprocJobIamMemberCondition, GoogleDataprocJobIamMember;
 export 'src/dataproc/google_dataproc_job_iam_policy.dart'
     show GoogleDataprocJobIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_database_iam_binding.dart'
-    show GoogleDataprocMetastoreDatabaseIamBinding;
+    show
+        DataprocMetastoreDatabaseIamBindingCondition,
+        GoogleDataprocMetastoreDatabaseIamBinding;
 export 'src/dataproc/google_dataproc_metastore_database_iam_member.dart'
-    show GoogleDataprocMetastoreDatabaseIamMember;
+    show
+        DataprocMetastoreDatabaseIamMemberCondition,
+        GoogleDataprocMetastoreDatabaseIamMember;
 export 'src/dataproc/google_dataproc_metastore_database_iam_policy.dart'
     show GoogleDataprocMetastoreDatabaseIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
@@ -167,9 +175,13 @@ export 'src/dataproc/google_dataproc_metastore_federation.dart'
         DataprocMetastoreFederationDeletionPolicy,
         GoogleDataprocMetastoreFederation;
 export 'src/dataproc/google_dataproc_metastore_federation_iam_binding.dart'
-    show GoogleDataprocMetastoreFederationIamBinding;
+    show
+        DataprocMetastoreFederationIamBindingCondition,
+        GoogleDataprocMetastoreFederationIamBinding;
 export 'src/dataproc/google_dataproc_metastore_federation_iam_member.dart'
-    show GoogleDataprocMetastoreFederationIamMember;
+    show
+        DataprocMetastoreFederationIamMemberCondition,
+        GoogleDataprocMetastoreFederationIamMember;
 export 'src/dataproc/google_dataproc_metastore_federation_iam_policy.dart'
     show GoogleDataprocMetastoreFederationIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_service.dart'
@@ -205,15 +217,23 @@ export 'src/dataproc/google_dataproc_metastore_service.dart'
         DataprocMetastoreServiceTier,
         GoogleDataprocMetastoreService;
 export 'src/dataproc/google_dataproc_metastore_service_iam_binding.dart'
-    show GoogleDataprocMetastoreServiceIamBinding;
+    show
+        DataprocMetastoreServiceIamBindingCondition,
+        GoogleDataprocMetastoreServiceIamBinding;
 export 'src/dataproc/google_dataproc_metastore_service_iam_member.dart'
-    show GoogleDataprocMetastoreServiceIamMember;
+    show
+        DataprocMetastoreServiceIamMemberCondition,
+        GoogleDataprocMetastoreServiceIamMember;
 export 'src/dataproc/google_dataproc_metastore_service_iam_policy.dart'
     show GoogleDataprocMetastoreServiceIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_table_iam_binding.dart'
-    show GoogleDataprocMetastoreTableIamBinding;
+    show
+        DataprocMetastoreTableIamBindingCondition,
+        GoogleDataprocMetastoreTableIamBinding;
 export 'src/dataproc/google_dataproc_metastore_table_iam_member.dart'
-    show GoogleDataprocMetastoreTableIamMember;
+    show
+        DataprocMetastoreTableIamMemberCondition,
+        GoogleDataprocMetastoreTableIamMember;
 export 'src/dataproc/google_dataproc_metastore_table_iam_policy.dart'
     show GoogleDataprocMetastoreTableIamPolicy;
 export 'src/dataproc/google_dataproc_session_template.dart'

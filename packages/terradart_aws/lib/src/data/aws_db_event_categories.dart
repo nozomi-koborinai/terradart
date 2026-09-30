@@ -30,4 +30,11 @@ final class DataAwsDbEventCategories extends Data {
   /// Reference to `event_categories` attribute.
   TfRef<List<String>> get eventCategories =>
       TfRef.attribute<List<String>>(this, 'event_categories');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_type` attribute.
+  TfRef<String> get sourceTypeRef =>
+      TfRef.attribute<String>(this, 'source_type');
 }

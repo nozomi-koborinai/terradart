@@ -92,4 +92,19 @@ final class AwsSesv2ContactList extends Resource {
   /// Reference to `last_updated_timestamp` attribute.
   TfRef<String> get lastUpdatedTimestamp =>
       TfRef.attribute<String>(this, 'last_updated_timestamp');
+
+  /// Reference to `contact_list_name` attribute.
+  TfRef<String> get contactListNameRef =>
+      TfRef.attribute<String>(this, 'contact_list_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

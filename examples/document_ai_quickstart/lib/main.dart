@@ -9,7 +9,7 @@
 /// the sibling processor removes it.
 ///
 /// Exports the processor display name as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -22,6 +22,7 @@ final class DocAiStack extends Stack {
   DocAiStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/doc_ai_stack.app.dart'),
       ) {
     final apiDocumentAi = add(
       GoogleProjectService(
@@ -65,14 +66,9 @@ final class DocAiStack extends Stack {
     );
 
     // Literal processor display name -- emitted as a Dart constant at synth.
-    addExport('OCR_PROCESSOR_DISPLAY_NAME', StringExport('terradart-ocr'));
+    addConstant('ocrProcessorDisplayName', .ref(ocr.displayNameRef));
 
     // Full processor resource id -- Terraform output only (computed).
-    addExport(
-      'OCR_PROCESSOR_ID',
-      ResourceIdExport(ocr.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/doc_ai_stack.app.dart');
+    addOutput('ocr_processor_id', .ref(ocr.id));
   }
 }

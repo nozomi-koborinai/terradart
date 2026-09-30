@@ -58,4 +58,15 @@ final class AwsVpclatticeDomainVerification extends Resource {
   /// Reference to `txt_record_value` attribute.
   TfRef<String> get txtRecordValue =>
       TfRef.attribute<String>(this, 'txt_record_value');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

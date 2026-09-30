@@ -71,4 +71,19 @@ final class DataAwsQuicksightAnalysis extends Data {
 
   /// Reference to `theme_arn` attribute.
   TfRef<String> get themeArn => TfRef.attribute<String>(this, 'theme_arn');
+
+  /// Reference to `analysis_id` attribute.
+  TfRef<String> get analysisIdRef =>
+      TfRef.attribute<String>(this, 'analysis_id');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

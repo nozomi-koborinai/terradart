@@ -428,4 +428,21 @@ final class CloudflareNotificationPolicy extends Resource {
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `alert_interval` attribute.
+  TfRef<String> get alertIntervalRef =>
+      TfRef.attribute<String>(this, 'alert_interval');
+
+  /// Reference to `alert_type` attribute.
+  TfRef<String> get alertTypeRef => TfRef.attribute<String>(this, 'alert_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
 }

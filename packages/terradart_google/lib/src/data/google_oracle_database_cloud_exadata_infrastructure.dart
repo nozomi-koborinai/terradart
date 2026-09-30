@@ -85,4 +85,14 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `cloud_exadata_infrastructure_id` attribute.
+  TfRef<String> get cloudExadataInfrastructureIdRef =>
+      TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

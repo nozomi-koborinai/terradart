@@ -477,4 +477,27 @@ final class AwsMskconnectConnector extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `connector_configuration` attribute.
+  TfRef<Map<String, String>> get connectorConfigurationRef =>
+      TfRef.attribute<Map<String, String>>(this, 'connector_configuration');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kafkaconnect_version` attribute.
+  TfRef<String> get kafkaconnectVersionRef =>
+      TfRef.attribute<String>(this, 'kafkaconnect_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_execution_role_arn` attribute.
+  TfRef<String> get serviceExecutionRoleArnRef =>
+      TfRef.attribute<String>(this, 'service_execution_role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -70,4 +70,15 @@ final class DataAwsApiGatewayAuthorizer extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `authorizer_id` attribute.
+  TfRef<String> get authorizerIdRef =>
+      TfRef.attribute<String>(this, 'authorizer_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
 }

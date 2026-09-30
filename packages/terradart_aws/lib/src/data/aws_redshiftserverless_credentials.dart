@@ -44,4 +44,18 @@ final class DataAwsRedshiftserverlessCredentials extends Data {
 
   /// Reference to `expiration` attribute.
   TfRef<String> get expiration => TfRef.attribute<String>(this, 'expiration');
+
+  /// Reference to `db_name` attribute.
+  TfRef<String> get dbNameRef => TfRef.attribute<String>(this, 'db_name');
+
+  /// Reference to `duration_seconds` attribute.
+  TfRef<num> get durationSecondsRef =>
+      TfRef.attribute<num>(this, 'duration_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workgroup_name` attribute.
+  TfRef<String> get workgroupNameRef =>
+      TfRef.attribute<String>(this, 'workgroup_name');
 }

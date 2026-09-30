@@ -131,4 +131,14 @@ final class DataGoogleStorageInsightsDatasetConfig extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `dataset_config_id` attribute.
+  TfRef<String> get datasetConfigIdRef =>
+      TfRef.attribute<String>(this, 'dataset_config_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

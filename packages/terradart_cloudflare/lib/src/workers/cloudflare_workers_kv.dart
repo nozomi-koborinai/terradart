@@ -51,4 +51,27 @@ final class CloudflareWorkersKv extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `expiration` attribute.
+  TfRef<num> get expirationRef => TfRef.attribute<num>(this, 'expiration');
+
+  /// Reference to `expiration_ttl` attribute.
+  TfRef<num> get expirationTtlRef =>
+      TfRef.attribute<num>(this, 'expiration_ttl');
+
+  /// Reference to `key_name` attribute.
+  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+
+  /// Reference to `metadata` attribute.
+  TfRef<String> get metadataRef => TfRef.attribute<String>(this, 'metadata');
+
+  /// Reference to `namespace_id` attribute.
+  TfRef<String> get namespaceIdRef =>
+      TfRef.attribute<String>(this, 'namespace_id');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

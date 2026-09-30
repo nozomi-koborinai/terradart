@@ -482,7 +482,7 @@ enum MemorystoreInstanceZoneDistributionConfigMode implements TerraformEnum {
 ///   nodeType: TfArg.literal('SHARED_CORE_NANO'),
 ///   desiredAutoCreatedEndpoints: [
 ///     MemorystoreInstanceDesiredAutoCreatedEndpoints(
-///       network: TfArg.ref(network.id),
+///       network: network.ref,
 ///       projectId: TfArg.literal(projectId),
 ///     ),
 ///   ],
@@ -648,6 +648,70 @@ final class GoogleMemorystoreInstance extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `acl_policy` attribute.
+  TfRef<String> get aclPolicyRef => TfRef.attribute<String>(this, 'acl_policy');
+
+  /// Reference to `authorization_mode` attribute.
+  TfRef<String> get authorizationModeRef =>
+      TfRef.attribute<String>(this, 'authorization_mode');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection_enabled` attribute.
+  TfRef<bool> get deletionProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection_enabled');
+
+  /// Reference to `engine_configs` attribute.
+  TfRef<Map<String, String>> get engineConfigsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'engine_configs');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `maintenance_version` attribute.
+  TfRef<String> get maintenanceVersionRef =>
+      TfRef.attribute<String>(this, 'maintenance_version');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `replica_count` attribute.
+  TfRef<num> get replicaCountRef => TfRef.attribute<num>(this, 'replica_count');
+
+  /// Reference to `server_ca_mode` attribute.
+  TfRef<String> get serverCaModeRef =>
+      TfRef.attribute<String>(this, 'server_ca_mode');
+
+  /// Reference to `server_ca_pool` attribute.
+  TfRef<String> get serverCaPoolRef =>
+      TfRef.attribute<String>(this, 'server_ca_pool');
+
+  /// Reference to `shard_count` attribute.
+  TfRef<num> get shardCountRef => TfRef.attribute<num>(this, 'shard_count');
+
+  /// Reference to `transit_encryption_mode` attribute.
+  TfRef<String> get transitEncryptionModeRef =>
+      TfRef.attribute<String>(this, 'transit_encryption_mode');
 
   /// Reference to `instance_id` attribute.
   TfRef<String> get instanceIdRef =>

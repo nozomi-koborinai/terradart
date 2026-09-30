@@ -37,4 +37,15 @@ final class AwsSsmPatchGroup extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `baseline_id` attribute.
+  TfRef<String> get baselineIdRef =>
+      TfRef.attribute<String>(this, 'baseline_id');
+
+  /// Reference to `patch_group` attribute.
+  TfRef<String> get patchGroupRef =>
+      TfRef.attribute<String>(this, 'patch_group');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -5142,4 +5142,25 @@ final class AwsMedialiveChannel extends Resource {
 
   /// Reference to `channel_id` attribute.
   TfRef<String> get channelId => TfRef.attribute<String>(this, 'channel_id');
+
+  /// Reference to `channel_class` attribute.
+  TfRef<String> get channelClassRef =>
+      TfRef.attribute<String>(this, 'channel_class');
+
+  /// Reference to `log_level` attribute.
+  TfRef<String> get logLevelRef => TfRef.attribute<String>(this, 'log_level');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `start_channel` attribute.
+  TfRef<bool> get startChannelRef =>
+      TfRef.attribute<bool>(this, 'start_channel');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

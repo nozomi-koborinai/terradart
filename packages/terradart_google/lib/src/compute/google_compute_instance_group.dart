@@ -1,12 +1,29 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_instance_group`.
 const Set<String> _googleComputeInstanceGroupSensitive = <String>{};
+
+/// Typed helper for the `named_port` block of
+/// `google_compute_instance_group` (derived from provider schema).
+@immutable
+final class ComputeInstanceGroupNamedPort {
+  const ComputeInstanceGroupNamedPort({required this.name, required this.port});
+
+  final TfArg<String> name;
+
+  final TfArg<num> port;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'port': port.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_instance_group`.
 ///
@@ -33,7 +50,7 @@ final class GoogleComputeInstanceGroup extends Resource {
     TfArg<String>? zone,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? instances,
-    TfArg<List<Map<String, dynamic>>>? namedPort,
+    List<ComputeInstanceGroupNamedPort>? namedPort,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -48,7 +65,10 @@ final class GoogleComputeInstanceGroup extends Resource {
            'zone': ?zone,
            'network': ?network?.encodeAs('id'),
            'instances': ?instances,
-           'named_port': ?namedPort,
+           if (namedPort != null)
+             'named_port': TfArg.literal([
+               for (final e in namedPort) e.encode(),
+             ]),
            'description': ?description,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
@@ -67,6 +87,27 @@ final class GoogleComputeInstanceGroup extends Resource {
 
   /// Reference to `size` attribute.
   TfRef<num> get size => TfRef.attribute<num>(this, 'size');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instances` attribute.
+  TfRef<List<String>> get instancesRef =>
+      TfRef.attribute<List<String>>(this, 'instances');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

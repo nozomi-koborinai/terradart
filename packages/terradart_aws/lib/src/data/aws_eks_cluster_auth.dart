@@ -29,4 +29,7 @@ final class DataAwsEksClusterAuth extends Data {
 
   /// Reference to `token` attribute.
   TfRef<String> get token => TfRef.attribute<String>(this, 'token');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

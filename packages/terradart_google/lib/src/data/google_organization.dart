@@ -46,4 +46,11 @@ final class DataGoogleOrganization extends Data {
 
   /// Reference to `org_id` attribute.
   TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
 }

@@ -68,4 +68,26 @@ final class AwsVpclatticeService extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `auth_type` attribute.
+  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+
+  /// Reference to `certificate_arn` attribute.
+  TfRef<String> get certificateArnRef =>
+      TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `custom_domain_name` attribute.
+  TfRef<String> get customDomainNameRef =>
+      TfRef.attribute<String>(this, 'custom_domain_name');
+
+  /// Reference to `idle_timeout_seconds` attribute.
+  TfRef<num> get idleTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'idle_timeout_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

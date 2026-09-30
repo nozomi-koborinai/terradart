@@ -34,4 +34,14 @@ final class AwsResiliencehubv2Assertion extends Resource {
   /// Reference to `assertion_id` attribute.
   TfRef<String> get assertionId =>
       TfRef.attribute<String>(this, 'assertion_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_arn` attribute.
+  TfRef<String> get serviceArnRef =>
+      TfRef.attribute<String>(this, 'service_arn');
+
+  /// Reference to `text` attribute.
+  TfRef<String> get textRef => TfRef.attribute<String>(this, 'text');
 }

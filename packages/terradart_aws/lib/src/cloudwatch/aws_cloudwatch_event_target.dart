@@ -611,4 +611,33 @@ final class AwsCloudwatchEventTarget extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `event_bus_name` attribute.
+  TfRef<String> get eventBusNameRef =>
+      TfRef.attribute<String>(this, 'event_bus_name');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `input` attribute.
+  TfRef<String> get inputRef => TfRef.attribute<String>(this, 'input');
+
+  /// Reference to `input_path` attribute.
+  TfRef<String> get inputPathRef => TfRef.attribute<String>(this, 'input_path');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `rule` attribute.
+  TfRef<String> get ruleRef => TfRef.attribute<String>(this, 'rule');
+
+  /// Reference to `target_id` attribute.
+  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
 }

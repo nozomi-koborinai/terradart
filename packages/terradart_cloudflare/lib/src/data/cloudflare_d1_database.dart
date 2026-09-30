@@ -78,4 +78,15 @@ final class DataCloudflareD1Database extends Data {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `fields` attribute.
+  TfRef<List<String>> get fieldsRef =>
+      TfRef.attribute<List<String>>(this, 'fields');
 }

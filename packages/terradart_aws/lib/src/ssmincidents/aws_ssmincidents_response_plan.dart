@@ -218,4 +218,23 @@ final class AwsSsmincidentsResponsePlan extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `chat_channel` attribute.
+  TfRef<List<String>> get chatChannelRef =>
+      TfRef.attribute<List<String>>(this, 'chat_channel');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `engagements` attribute.
+  TfRef<List<String>> get engagementsRef =>
+      TfRef.attribute<List<String>>(this, 'engagements');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

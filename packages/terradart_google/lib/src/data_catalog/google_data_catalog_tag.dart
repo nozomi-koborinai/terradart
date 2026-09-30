@@ -185,4 +185,17 @@ final class GoogleDataCatalogTag extends Resource {
   /// Reference to `template_displayname` attribute.
   TfRef<String> get templateDisplayname =>
       TfRef.attribute<String>(this, 'template_displayname');
+
+  /// Reference to `column` attribute.
+  TfRef<String> get columnRef => TfRef.attribute<String>(this, 'column');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `template` attribute.
+  TfRef<String> get templateRef => TfRef.attribute<String>(this, 'template');
 }

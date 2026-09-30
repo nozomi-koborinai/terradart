@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_data_catalog_entry_group_iam_binding`.
 const Set<String> _googleDataCatalogEntryGroupIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_data_catalog_entry_group_iam_binding` (derived from provider schema).
+@immutable
+final class DataCatalogEntryGroupIamBindingCondition {
+  const DataCatalogEntryGroupIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_data_catalog_entry_group_iam_binding`.
 ///
@@ -22,7 +46,7 @@ final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
     required TfArg<String> entryGroup,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    DataCatalogEntryGroupIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,
     super.lifecycle,
@@ -35,7 +59,8 @@ final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
            'entry_group': entryGroup,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'region': ?region,
            'project': ?project,
          },
@@ -54,4 +79,21 @@ final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `entry_group` attribute.
+  TfRef<String> get entryGroupRef =>
+      TfRef.attribute<String>(this, 'entry_group');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

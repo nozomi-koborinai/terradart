@@ -75,4 +75,15 @@ final class DataAwsDmsCertificate extends Data {
   /// Reference to `valid_to_date` attribute.
   TfRef<String> get validToDate =>
       TfRef.attribute<String>(this, 'valid_to_date');
+
+  /// Reference to `certificate_id` attribute.
+  TfRef<String> get certificateIdRef =>
+      TfRef.attribute<String>(this, 'certificate_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

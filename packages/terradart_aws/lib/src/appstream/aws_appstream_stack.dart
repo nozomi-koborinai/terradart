@@ -236,4 +236,31 @@ final class AwsAppstreamStack extends Resource {
   /// Reference to `created_time` attribute.
   TfRef<String> get createdTime =>
       TfRef.attribute<String>(this, 'created_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `embed_host_domains` attribute.
+  TfRef<List<String>> get embedHostDomainsRef =>
+      TfRef.attribute<List<String>>(this, 'embed_host_domains');
+
+  /// Reference to `feedback_url` attribute.
+  TfRef<String> get feedbackUrlRef =>
+      TfRef.attribute<String>(this, 'feedback_url');
+
+  /// Reference to `redirect_url` attribute.
+  TfRef<String> get redirectUrlRef =>
+      TfRef.attribute<String>(this, 'redirect_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -109,4 +109,10 @@ final class CloudflareZoneSubscription extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `frequency` attribute.
+  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

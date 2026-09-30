@@ -82,4 +82,14 @@ final class AwsChimeVoiceConnectorOrigination extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `voice_connector_id` attribute.
+  TfRef<String> get voiceConnectorIdRef =>
+      TfRef.attribute<String>(this, 'voice_connector_id');
 }

@@ -225,6 +225,39 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `gcp_oracle_zone` attribute.
+  TfRef<String> get gcpOracleZoneRef =>
+      TfRef.attribute<String>(this, 'gcp_oracle_zone');
+
+  /// Reference to `goldengate_deployment_id` attribute.
+  TfRef<String> get goldengateDeploymentIdRef =>
+      TfRef.attribute<String>(this, 'goldengate_deployment_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `odb_network` attribute.
+  TfRef<String> get odbNetworkRef =>
+      TfRef.attribute<String>(this, 'odb_network');
+
+  /// Reference to `odb_subnet` attribute.
+  TfRef<String> get odbSubnetRef => TfRef.attribute<String>(this, 'odb_subnet');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

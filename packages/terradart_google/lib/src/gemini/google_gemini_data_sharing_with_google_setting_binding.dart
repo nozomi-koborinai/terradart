@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_data_sharing_with_google_setting.dart'
+    show GoogleGeminiDataSharingWithGoogleSetting;
+
 /// Sensitive field paths for `google_gemini_data_sharing_with_google_setting_binding`.
 const Set<String> _googleGeminiDataSharingWithGoogleSettingBindingSensitive =
     <String>{};
@@ -41,7 +44,8 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
 
   GoogleGeminiDataSharingWithGoogleSettingBinding({
     required super.localName,
-    required TfArg<String> dataSharingWithGoogleSettingId,
+    required RefTo<GoogleGeminiDataSharingWithGoogleSetting>
+    dataSharingWithGoogleSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -56,8 +60,8 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_sharing_with_google_setting_id':
-               dataSharingWithGoogleSettingId,
+           'data_sharing_with_google_setting_id': dataSharingWithGoogleSettingId
+               .encodeAs('data_sharing_with_google_setting_id'),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,
@@ -93,6 +97,34 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `data_sharing_with_google_setting_id` attribute.
+  TfRef<String> get dataSharingWithGoogleSettingIdRef =>
+      TfRef.attribute<String>(this, 'data_sharing_with_google_setting_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `product` attribute.
+  TfRef<String> get productRef => TfRef.attribute<String>(this, 'product');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `setting_binding_id` attribute.
+  TfRef<String> get settingBindingIdRef =>
+      TfRef.attribute<String>(this, 'setting_binding_id');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

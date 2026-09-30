@@ -87,4 +87,17 @@ final class DataAwsAvailabilityZone extends Data {
 
   /// Reference to `zone_type` attribute.
   TfRef<String> get zoneType => TfRef.attribute<String>(this, 'zone_type');
+
+  /// Reference to `all_availability_zones` attribute.
+  TfRef<bool> get allAvailabilityZonesRef =>
+      TfRef.attribute<bool>(this, 'all_availability_zones');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

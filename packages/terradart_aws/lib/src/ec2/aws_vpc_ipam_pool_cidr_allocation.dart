@@ -119,4 +119,30 @@ final class AwsVpcIpamPoolCidrAllocation extends Resource {
   /// Reference to `resource_type` attribute.
   TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
+
+  /// Reference to `cidr` attribute.
+  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disallowed_cidrs` attribute.
+  TfRef<List<String>> get disallowedCidrsRef =>
+      TfRef.attribute<List<String>>(this, 'disallowed_cidrs');
+
+  /// Reference to `ipam_pool_id` attribute.
+  TfRef<String> get ipamPoolIdRef =>
+      TfRef.attribute<String>(this, 'ipam_pool_id');
+
+  /// Reference to `netmask_length` attribute.
+  TfRef<num> get netmaskLengthRef =>
+      TfRef.attribute<num>(this, 'netmask_length');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -75,4 +75,15 @@ final class GoogleComputeProjectCloudArmorTier extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cloud_armor_tier` attribute.
+  TfRef<String> get cloudArmorTierRef =>
+      TfRef.attribute<String>(this, 'cloud_armor_tier');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

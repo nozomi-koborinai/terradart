@@ -119,4 +119,24 @@ final class AwsS3AccessPoint extends Resource {
   /// Reference to `network_origin` attribute.
   TfRef<String> get networkOrigin =>
       TfRef.attribute<String>(this, 'network_origin');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `bucket_account_id` attribute.
+  TfRef<String> get bucketAccountIdRef =>
+      TfRef.attribute<String>(this, 'bucket_account_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

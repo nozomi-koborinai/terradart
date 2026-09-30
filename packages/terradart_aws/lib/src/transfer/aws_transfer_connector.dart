@@ -212,4 +212,26 @@ final class AwsTransferConnector extends Resource {
   /// Reference to `connector_id` attribute.
   TfRef<String> get connectorId =>
       TfRef.attribute<String>(this, 'connector_id');
+
+  /// Reference to `access_role` attribute.
+  TfRef<String> get accessRoleRef =>
+      TfRef.attribute<String>(this, 'access_role');
+
+  /// Reference to `logging_role` attribute.
+  TfRef<String> get loggingRoleRef =>
+      TfRef.attribute<String>(this, 'logging_role');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_policy_name` attribute.
+  TfRef<String> get securityPolicyNameRef =>
+      TfRef.attribute<String>(this, 'security_policy_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

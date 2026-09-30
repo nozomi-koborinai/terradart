@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../observability/google_observability_bucket.dart'
+    show GoogleObservabilityBucket;
+
 /// Sensitive field paths for `google_observability_link`.
 const Set<String> _googleObservabilityLinkSensitive = <String>{};
 
@@ -16,7 +19,7 @@ final class GoogleObservabilityLink extends Resource {
     required super.localName,
     required TfArg<String> linkId,
     required TfArg<String> location,
-    required TfArg<String> bucket,
+    required RefTo<GoogleObservabilityBucket> bucket,
     required TfArg<String> dataset,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -31,7 +34,7 @@ final class GoogleObservabilityLink extends Resource {
          argMap: {
            'link_id': linkId,
            'location': location,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('bucket_id'),
            'dataset': dataset,
            'display_name': ?displayName,
            'description': ?description,
@@ -55,4 +58,31 @@ final class GoogleObservabilityLink extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `link_id` attribute.
+  TfRef<String> get linkIdRef => TfRef.attribute<String>(this, 'link_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

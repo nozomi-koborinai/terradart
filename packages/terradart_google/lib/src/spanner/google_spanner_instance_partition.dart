@@ -355,6 +355,30 @@ final class GoogleSpannerInstancePartition extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `config` attribute.
+  TfRef<String> get configRef => TfRef.attribute<String>(this, 'config');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `processing_units` attribute.
+  TfRef<num> get processingUnitsRef =>
+      TfRef.attribute<num>(this, 'processing_units');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

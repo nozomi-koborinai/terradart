@@ -58,4 +58,18 @@ final class DataAwsWafv2ManagedRuleGroup extends Data {
   /// Reference to `sns_topic_arn` attribute.
   TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+
+  /// Reference to `vendor_name` attribute.
+  TfRef<String> get vendorNameRef =>
+      TfRef.attribute<String>(this, 'vendor_name');
+
+  /// Reference to `version_name` attribute.
+  TfRef<String> get versionNameRef =>
+      TfRef.attribute<String>(this, 'version_name');
 }

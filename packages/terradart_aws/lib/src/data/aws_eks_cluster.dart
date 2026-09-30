@@ -150,4 +150,11 @@ final class DataAwsEksCluster extends Data {
   /// Reference to `zonal_shift_config` attribute.
   TfRef<List<Map<String, Object?>>> get zonalShiftConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'zonal_shift_config');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

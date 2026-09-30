@@ -11,7 +11,9 @@ export 'src/container_analysis/google_container_analysis_note.dart'
         ContainerAnalysisNoteRelatedUrl,
         GoogleContainerAnalysisNote;
 export 'src/container_analysis/google_container_analysis_note_iam_binding.dart'
-    show GoogleContainerAnalysisNoteIamBinding;
+    show
+        ContainerAnalysisNoteIamBindingCondition,
+        GoogleContainerAnalysisNoteIamBinding;
 export 'src/container_analysis/google_container_analysis_note_iam_member.dart'
     show
         ContainerAnalysisNoteIamMemberCondition,

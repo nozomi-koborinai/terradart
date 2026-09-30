@@ -528,4 +528,42 @@ final class AwsWorkspacesDirectory extends Resource {
   /// Reference to `workspace_security_group_id` attribute.
   TfRef<String> get workspaceSecurityGroupId =>
       TfRef.attribute<String>(this, 'workspace_security_group_id');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `ip_group_ids` attribute.
+  TfRef<List<String>> get ipGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'ip_group_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tenancy` attribute.
+  TfRef<String> get tenancyRef => TfRef.attribute<String>(this, 'tenancy');
+
+  /// Reference to `user_identity_type` attribute.
+  TfRef<String> get userIdentityTypeRef =>
+      TfRef.attribute<String>(this, 'user_identity_type');
+
+  /// Reference to `workspace_directory_description` attribute.
+  TfRef<String> get workspaceDirectoryDescriptionRef =>
+      TfRef.attribute<String>(this, 'workspace_directory_description');
+
+  /// Reference to `workspace_directory_name` attribute.
+  TfRef<String> get workspaceDirectoryNameRef =>
+      TfRef.attribute<String>(this, 'workspace_directory_name');
+
+  /// Reference to `workspace_type` attribute.
+  TfRef<String> get workspaceTypeRef =>
+      TfRef.attribute<String>(this, 'workspace_type');
 }

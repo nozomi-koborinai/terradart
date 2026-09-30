@@ -50,13 +50,13 @@ final class KmsCryptoKeyVersionExternalProtectionLevelOptions {
 /// Destroying a cryptoKeyVersion will not delete the resource from the project.
 ///
 /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).
-/// Pass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.
+/// Pass `cryptoKey` as the parent key (`key.ref`) or its id path.
 ///
 /// Example:
 /// ```dart
 /// GoogleKmsCryptoKeyVersion(
 ///   localName: 'v1',
-///   cryptoKey: TfArg.ref(ringKey.id),
+///   cryptoKey: ringKey.ref,
 /// );
 /// ```
 final class GoogleKmsCryptoKeyVersion extends Resource {
@@ -111,6 +111,16 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   /// Reference to `protection_level` attribute.
   TfRef<String> get protectionLevel =>
       TfRef.attribute<String>(this, 'protection_level');
+
+  /// Reference to `crypto_key` attribute.
+  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
 
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

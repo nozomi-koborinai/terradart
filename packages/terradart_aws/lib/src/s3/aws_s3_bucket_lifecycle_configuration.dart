@@ -350,4 +350,18 @@ final class AwsS3BucketLifecycleConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `expected_bucket_owner` attribute.
+  TfRef<String> get expectedBucketOwnerRef =>
+      TfRef.attribute<String>(this, 'expected_bucket_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `transition_default_minimum_object_size` attribute.
+  TfRef<String> get transitionDefaultMinimumObjectSizeRef =>
+      TfRef.attribute<String>(this, 'transition_default_minimum_object_size');
 }

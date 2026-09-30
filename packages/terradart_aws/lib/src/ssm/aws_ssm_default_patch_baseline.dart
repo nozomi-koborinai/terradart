@@ -60,4 +60,15 @@ final class AwsSsmDefaultPatchBaseline extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `baseline_id` attribute.
+  TfRef<String> get baselineIdRef =>
+      TfRef.attribute<String>(this, 'baseline_id');
+
+  /// Reference to `operating_system` attribute.
+  TfRef<String> get operatingSystemRef =>
+      TfRef.attribute<String>(this, 'operating_system');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

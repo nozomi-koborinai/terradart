@@ -84,4 +84,12 @@ final class AwsGlobalacceleratorCrossAccountAttachment extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `principals` attribute.
+  TfRef<List<String>> get principalsRef =>
+      TfRef.attribute<List<String>>(this, 'principals');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

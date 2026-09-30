@@ -40,4 +40,15 @@ final class AwsCodecommitApprovalRuleTemplateAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `approval_rule_template_name` attribute.
+  TfRef<String> get approvalRuleTemplateNameRef =>
+      TfRef.attribute<String>(this, 'approval_rule_template_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `repository_name` attribute.
+  TfRef<String> get repositoryNameRef =>
+      TfRef.attribute<String>(this, 'repository_name');
 }

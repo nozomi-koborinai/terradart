@@ -37,4 +37,10 @@ final class AwsConfigConfigurationRecorderStatus extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `is_enabled` attribute.
+  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

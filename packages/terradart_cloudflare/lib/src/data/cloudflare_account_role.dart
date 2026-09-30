@@ -37,4 +37,10 @@ final class DataCloudflareAccountRole extends Data {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `role_id` attribute.
+  TfRef<String> get roleIdRef => TfRef.attribute<String>(this, 'role_id');
 }

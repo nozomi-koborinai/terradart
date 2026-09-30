@@ -67,4 +67,15 @@ final class DataAwsInternetGateway extends Data {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `internet_gateway_id` attribute.
+  TfRef<String> get internetGatewayIdRef =>
+      TfRef.attribute<String>(this, 'internet_gateway_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

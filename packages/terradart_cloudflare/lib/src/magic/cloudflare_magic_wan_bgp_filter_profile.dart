@@ -67,4 +67,19 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `match_action` attribute.
+  TfRef<String> get matchActionRef =>
+      TfRef.attribute<String>(this, 'match_action');
+
+  /// Reference to `targets` attribute.
+  TfRef<List<String>> get targetsRef =>
+      TfRef.attribute<List<String>>(this, 'targets');
 }

@@ -39,4 +39,20 @@ final class DataGoogleServiceAccountIdToken extends Data {
 
   /// Reference to `id_token` attribute.
   TfRef<String> get idToken => TfRef.attribute<String>(this, 'id_token');
+
+  /// Reference to `delegates` attribute.
+  TfRef<List<String>> get delegatesRef =>
+      TfRef.attribute<List<String>>(this, 'delegates');
+
+  /// Reference to `include_email` attribute.
+  TfRef<bool> get includeEmailRef =>
+      TfRef.attribute<bool>(this, 'include_email');
+
+  /// Reference to `target_audience` attribute.
+  TfRef<String> get targetAudienceRef =>
+      TfRef.attribute<String>(this, 'target_audience');
+
+  /// Reference to `target_service_account` attribute.
+  TfRef<String> get targetServiceAccountRef =>
+      TfRef.attribute<String>(this, 'target_service_account');
 }

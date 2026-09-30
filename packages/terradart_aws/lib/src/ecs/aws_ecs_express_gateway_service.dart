@@ -178,4 +178,55 @@ final class AwsEcsExpressGatewayService extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `cpu` attribute.
+  TfRef<String> get cpuRef => TfRef.attribute<String>(this, 'cpu');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `health_check_path` attribute.
+  TfRef<String> get healthCheckPathRef =>
+      TfRef.attribute<String>(this, 'health_check_path');
+
+  /// Reference to `infrastructure_role_arn` attribute.
+  TfRef<String> get infrastructureRoleArnRef =>
+      TfRef.attribute<String>(this, 'infrastructure_role_arn');
+
+  /// Reference to `memory` attribute.
+  TfRef<String> get memoryRef => TfRef.attribute<String>(this, 'memory');
+
+  /// Reference to `network_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get networkConfigurationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'network_configuration',
+      );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scaling_target` attribute.
+  TfRef<List<Map<String, Object?>>> get scalingTargetRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'scaling_target');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `task_role_arn` attribute.
+  TfRef<String> get taskRoleArnRef =>
+      TfRef.attribute<String>(this, 'task_role_arn');
+
+  /// Reference to `wait_for_steady_state` attribute.
+  TfRef<bool> get waitForSteadyStateRef =>
+      TfRef.attribute<bool>(this, 'wait_for_steady_state');
 }

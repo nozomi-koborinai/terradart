@@ -11,7 +11,7 @@
 /// otherwise-applyable example require `-var` at apply time.
 ///
 /// Exports the global parameter id as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -24,6 +24,7 @@ final class ParamsStack extends Stack {
   ParamsStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/params_stack.app.dart'),
       ) {
     final apiParams = add(
       GoogleProjectService(
@@ -55,14 +56,9 @@ final class ParamsStack extends Stack {
     );
 
     // Literal parameter id -- emitted as a Dart constant at synth time.
-    addExport('APP_CONFIG_PARAMETER_ID', StringExport('terradart-app-config'));
+    addConstant('appConfigParameterId', .ref(appConfig.parameterIdRef));
 
     // Full parameter resource name -- Terraform output only (computed).
-    addExport(
-      'APP_CONFIG_PARAMETER_NAME',
-      ResourceIdExport(appConfig.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/params_stack.app.dart');
+    addOutput('app_config_parameter_name', .ref(appConfig.id));
   }
 }

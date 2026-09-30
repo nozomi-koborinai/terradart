@@ -47,4 +47,28 @@ final class DataAwsRedshiftClusterCredentials extends Data {
 
   /// Reference to `expiration` attribute.
   TfRef<String> get expiration => TfRef.attribute<String>(this, 'expiration');
+
+  /// Reference to `auto_create` attribute.
+  TfRef<bool> get autoCreateRef => TfRef.attribute<bool>(this, 'auto_create');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `db_groups` attribute.
+  TfRef<List<String>> get dbGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'db_groups');
+
+  /// Reference to `db_name` attribute.
+  TfRef<String> get dbNameRef => TfRef.attribute<String>(this, 'db_name');
+
+  /// Reference to `db_user` attribute.
+  TfRef<String> get dbUserRef => TfRef.attribute<String>(this, 'db_user');
+
+  /// Reference to `duration_seconds` attribute.
+  TfRef<num> get durationSecondsRef =>
+      TfRef.attribute<num>(this, 'duration_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

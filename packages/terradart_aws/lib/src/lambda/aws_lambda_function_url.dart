@@ -119,4 +119,22 @@ final class AwsLambdaFunctionUrl extends Resource {
 
   /// Reference to `url_id` attribute.
   TfRef<String> get urlId => TfRef.attribute<String>(this, 'url_id');
+
+  /// Reference to `authorization_type` attribute.
+  TfRef<String> get authorizationTypeRef =>
+      TfRef.attribute<String>(this, 'authorization_type');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `invoke_mode` attribute.
+  TfRef<String> get invokeModeRef =>
+      TfRef.attribute<String>(this, 'invoke_mode');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

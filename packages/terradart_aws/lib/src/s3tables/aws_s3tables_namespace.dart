@@ -44,4 +44,14 @@ final class AwsS3tablesNamespace extends Resource {
   /// Reference to `owner_account_id` attribute.
   TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_bucket_arn` attribute.
+  TfRef<String> get tableBucketArnRef =>
+      TfRef.attribute<String>(this, 'table_bucket_arn');
 }

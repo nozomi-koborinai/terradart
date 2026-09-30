@@ -283,6 +283,42 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `failover_origin` attribute.
+  TfRef<String> get failoverOriginRef =>
+      TfRef.attribute<String>(this, 'failover_origin');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `max_attempts` attribute.
+  TfRef<num> get maxAttemptsRef => TfRef.attribute<num>(this, 'max_attempts');
+
+  /// Reference to `origin_address` attribute.
+  TfRef<String> get originAddressRef =>
+      TfRef.attribute<String>(this, 'origin_address');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `protocol` attribute.
+  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+
+  /// Reference to `retry_conditions` attribute.
+  TfRef<List<String>> get retryConditionsRef =>
+      TfRef.attribute<List<String>>(this, 'retry_conditions');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

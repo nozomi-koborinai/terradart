@@ -70,4 +70,27 @@ final class AwsEksFargateProfile extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `fargate_profile_name` attribute.
+  TfRef<String> get fargateProfileNameRef =>
+      TfRef.attribute<String>(this, 'fargate_profile_name');
+
+  /// Reference to `pod_execution_role_arn` attribute.
+  TfRef<String> get podExecutionRoleArnRef =>
+      TfRef.attribute<String>(this, 'pod_execution_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

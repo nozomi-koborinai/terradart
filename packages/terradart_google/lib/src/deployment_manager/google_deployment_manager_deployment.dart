@@ -154,4 +154,26 @@ final class GoogleDeploymentManagerDeployment extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `create_policy` attribute.
+  TfRef<String> get createPolicyRef =>
+      TfRef.attribute<String>(this, 'create_policy');
+
+  /// Reference to `delete_policy` attribute.
+  TfRef<String> get deletePolicyRef =>
+      TfRef.attribute<String>(this, 'delete_policy');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `preview` attribute.
+  TfRef<bool> get previewRef => TfRef.attribute<bool>(this, 'preview');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

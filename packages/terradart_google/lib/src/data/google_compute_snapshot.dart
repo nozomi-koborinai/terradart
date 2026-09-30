@@ -127,4 +127,13 @@ final class DataGoogleComputeSnapshot extends Data {
 
   /// Reference to `zone` attribute.
   TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

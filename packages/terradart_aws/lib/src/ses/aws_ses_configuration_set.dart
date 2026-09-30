@@ -90,4 +90,15 @@ final class AwsSesConfigurationSet extends Resource {
   /// Reference to `last_fresh_start` attribute.
   TfRef<String> get lastFreshStart =>
       TfRef.attribute<String>(this, 'last_fresh_start');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reputation_metrics_enabled` attribute.
+  TfRef<bool> get reputationMetricsEnabledRef =>
+      TfRef.attribute<bool>(this, 'reputation_metrics_enabled');
+
+  /// Reference to `sending_enabled` attribute.
+  TfRef<bool> get sendingEnabledRef =>
+      TfRef.attribute<bool>(this, 'sending_enabled');
 }

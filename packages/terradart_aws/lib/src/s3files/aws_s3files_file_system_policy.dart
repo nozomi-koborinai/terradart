@@ -34,4 +34,14 @@ final class AwsS3filesFileSystemPolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsS3filesFileSystemPolicy>`.
   RefTo<AwsS3filesFileSystemPolicy> get ref => RefTo.of(this);
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

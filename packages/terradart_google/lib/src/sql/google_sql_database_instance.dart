@@ -1250,4 +1250,76 @@ final class GoogleSqlDatabaseInstance extends Resource {
   /// Reference to `service_account_email_address` attribute.
   TfRef<String> get serviceAccountEmailAddress =>
       TfRef.attribute<String>(this, 'service_account_email_address');
+
+  /// Reference to `backupdr_backup` attribute.
+  TfRef<String> get backupdrBackupRef =>
+      TfRef.attribute<String>(this, 'backupdr_backup');
+
+  /// Reference to `database_version` attribute.
+  TfRef<String> get databaseVersionRef =>
+      TfRef.attribute<String>(this, 'database_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `encryption_key_name` attribute.
+  TfRef<String> get encryptionKeyNameRef =>
+      TfRef.attribute<String>(this, 'encryption_key_name');
+
+  /// Reference to `enforce_new_sql_network_architecture` attribute.
+  TfRef<bool> get enforceNewSqlNetworkArchitectureRef =>
+      TfRef.attribute<bool>(this, 'enforce_new_sql_network_architecture');
+
+  /// Reference to `final_backup_description` attribute.
+  TfRef<String> get finalBackupDescriptionRef =>
+      TfRef.attribute<String>(this, 'final_backup_description');
+
+  /// Reference to `include_replicas_for_major_version_upgrade` attribute.
+  TfRef<bool> get includeReplicasForMajorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'include_replicas_for_major_version_upgrade');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `maintenance_version` attribute.
+  TfRef<String> get maintenanceVersionRef =>
+      TfRef.attribute<String>(this, 'maintenance_version');
+
+  /// Reference to `master_instance_name` attribute.
+  TfRef<String> get masterInstanceNameRef =>
+      TfRef.attribute<String>(this, 'master_instance_name');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replica_names` attribute.
+  TfRef<List<String>> get replicaNamesRef =>
+      TfRef.attribute<List<String>>(this, 'replica_names');
+
+  /// Reference to `root_password` attribute.
+  TfRef<String> get rootPasswordRef =>
+      TfRef.attribute<String>(this, 'root_password');
+
+  /// Reference to `root_password_wo_version` attribute.
+  TfRef<String> get rootPasswordWoVersionRef =>
+      TfRef.attribute<String>(this, 'root_password_wo_version');
+
+  /// Reference to `switch_transaction_logs_to_cloud_storage_enabled` attribute.
+  TfRef<bool> get switchTransactionLogsToCloudStorageEnabledRef =>
+      TfRef.attribute<bool>(
+        this,
+        'switch_transaction_logs_to_cloud_storage_enabled',
+      );
 }

@@ -33,6 +33,7 @@ final class DeployStack extends Stack {
   DeployStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/deploy_stack.app.dart'),
       ) {
     final current = addData(GoogleProject(localName: 'current'));
 
@@ -75,11 +76,14 @@ final class DeployStack extends Stack {
         name: .literal('terradart-pipeline'),
         location: .literal('us-central1'),
         description: .literal('App delivery pipeline'),
-        serialPipeline: .literal(<String, Object?>{
-          'stages': [
-            {'target_id': 'terradart-run-target', 'profiles': <String>[]},
+        serialPipeline: ClouddeployDeliveryPipelineSerialPipeline(
+          stages: [
+            ClouddeployDeliveryPipelineSerialPipelineStages(
+              targetId: .literal('terradart-run-target'),
+              profiles: .literal([]),
+            ),
           ],
-        }),
+        ),
         dependsOn: [
           ResourceDependency(apiClouddeploy),
           ResourceDependency(runTarget),
@@ -230,14 +234,9 @@ final class DeployStack extends Stack {
     );
 
     // Literal pipeline name -- emitted as a Dart constant at synth time.
-    addExport('PIPELINE_NAME', StringExport('terradart-pipeline'));
+    addConstant('pipelineName', .ref(pipeline.nameRef));
 
     // Full target resource id -- Terraform output only (computed).
-    addExport(
-      'RUN_TARGET_ID',
-      ResourceIdExport(runTarget.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/deploy_stack.app.dart');
+    addOutput('run_target_id', .ref(runTarget.id));
   }
 }

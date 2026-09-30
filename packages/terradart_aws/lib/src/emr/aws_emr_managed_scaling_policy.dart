@@ -97,4 +97,18 @@ final class AwsEmrManagedScalingPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scaling_strategy` attribute.
+  TfRef<String> get scalingStrategyRef =>
+      TfRef.attribute<String>(this, 'scaling_strategy');
+
+  /// Reference to `utilization_performance_index` attribute.
+  TfRef<num> get utilizationPerformanceIndexRef =>
+      TfRef.attribute<num>(this, 'utilization_performance_index');
 }

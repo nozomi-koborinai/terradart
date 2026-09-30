@@ -44,4 +44,18 @@ final class AwsAppCookieStickinessPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cookie_name` attribute.
+  TfRef<String> get cookieNameRef =>
+      TfRef.attribute<String>(this, 'cookie_name');
+
+  /// Reference to `lb_port` attribute.
+  TfRef<num> get lbPortRef => TfRef.attribute<num>(this, 'lb_port');
+
+  /// Reference to `load_balancer` attribute.
+  TfRef<String> get loadBalancerRef =>
+      TfRef.attribute<String>(this, 'load_balancer');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

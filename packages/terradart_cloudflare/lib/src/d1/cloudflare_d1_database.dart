@@ -133,4 +133,19 @@ final class CloudflareD1Database extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `fields` attribute.
+  TfRef<List<String>> get fieldsRef =>
+      TfRef.attribute<List<String>>(this, 'fields');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdictionRef =>
+      TfRef.attribute<String>(this, 'jurisdiction');
+
+  /// Reference to `primary_location_hint` attribute.
+  TfRef<String> get primaryLocationHintRef =>
+      TfRef.attribute<String>(this, 'primary_location_hint');
 }

@@ -89,4 +89,8 @@ final class AwsCloudfrontMonitoringSubscription extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `distribution_id` attribute.
+  TfRef<String> get distributionIdRef =>
+      TfRef.attribute<String>(this, 'distribution_id');
 }

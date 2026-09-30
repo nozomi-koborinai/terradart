@@ -64,4 +64,24 @@ final class DataGoogleArtifactRegistryFile extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `file_id` attribute.
+  TfRef<String> get fileIdRef => TfRef.attribute<String>(this, 'file_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `output_path` attribute.
+  TfRef<String> get outputPathRef =>
+      TfRef.attribute<String>(this, 'output_path');
+
+  /// Reference to `overwrite` attribute.
+  TfRef<bool> get overwriteRef => TfRef.attribute<bool>(this, 'overwrite');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
 }

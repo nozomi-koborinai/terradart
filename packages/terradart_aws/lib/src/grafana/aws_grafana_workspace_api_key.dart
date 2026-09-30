@@ -55,4 +55,21 @@ final class AwsGrafanaWorkspaceApiKey extends Resource {
 
   /// Reference to `key` attribute.
   TfRef<String> get key => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `key_name` attribute.
+  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+
+  /// Reference to `key_role` attribute.
+  TfRef<String> get keyRoleRef => TfRef.attribute<String>(this, 'key_role');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `seconds_to_live` attribute.
+  TfRef<num> get secondsToLiveRef =>
+      TfRef.attribute<num>(this, 'seconds_to_live');
+
+  /// Reference to `workspace_id` attribute.
+  TfRef<String> get workspaceIdRef =>
+      TfRef.attribute<String>(this, 'workspace_id');
 }

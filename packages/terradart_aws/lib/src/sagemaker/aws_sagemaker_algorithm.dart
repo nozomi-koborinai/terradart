@@ -2751,4 +2751,23 @@ final class AwsSagemakerAlgorithm extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `algorithm_description` attribute.
+  TfRef<String> get algorithmDescriptionRef =>
+      TfRef.attribute<String>(this, 'algorithm_description');
+
+  /// Reference to `algorithm_name` attribute.
+  TfRef<String> get algorithmNameRef =>
+      TfRef.attribute<String>(this, 'algorithm_name');
+
+  /// Reference to `certify_for_marketplace` attribute.
+  TfRef<bool> get certifyForMarketplaceRef =>
+      TfRef.attribute<bool>(this, 'certify_for_marketplace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

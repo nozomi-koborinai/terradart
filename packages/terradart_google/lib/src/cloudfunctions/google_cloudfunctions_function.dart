@@ -281,4 +281,105 @@ final class GoogleCloudfunctionsFunction extends Resource {
 
   /// Reference to `version_id` attribute.
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
+
+  /// Reference to `available_memory_mb` attribute.
+  TfRef<num> get availableMemoryMbRef =>
+      TfRef.attribute<num>(this, 'available_memory_mb');
+
+  /// Reference to `build_environment_variables` attribute.
+  TfRef<Map<String, String>> get buildEnvironmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'build_environment_variables');
+
+  /// Reference to `build_service_account` attribute.
+  TfRef<String> get buildServiceAccountRef =>
+      TfRef.attribute<String>(this, 'build_service_account');
+
+  /// Reference to `build_worker_pool` attribute.
+  TfRef<String> get buildWorkerPoolRef =>
+      TfRef.attribute<String>(this, 'build_worker_pool');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `docker_registry` attribute.
+  TfRef<String> get dockerRegistryRef =>
+      TfRef.attribute<String>(this, 'docker_registry');
+
+  /// Reference to `docker_repository` attribute.
+  TfRef<String> get dockerRepositoryRef =>
+      TfRef.attribute<String>(this, 'docker_repository');
+
+  /// Reference to `entry_point` attribute.
+  TfRef<String> get entryPointRef =>
+      TfRef.attribute<String>(this, 'entry_point');
+
+  /// Reference to `environment_variables` attribute.
+  TfRef<Map<String, String>> get environmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment_variables');
+
+  /// Reference to `https_trigger_security_level` attribute.
+  TfRef<String> get httpsTriggerSecurityLevelRef =>
+      TfRef.attribute<String>(this, 'https_trigger_security_level');
+
+  /// Reference to `https_trigger_url` attribute.
+  TfRef<String> get httpsTriggerUrlRef =>
+      TfRef.attribute<String>(this, 'https_trigger_url');
+
+  /// Reference to `ingress_settings` attribute.
+  TfRef<String> get ingressSettingsRef =>
+      TfRef.attribute<String>(this, 'ingress_settings');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `max_instances` attribute.
+  TfRef<num> get maxInstancesRef => TfRef.attribute<num>(this, 'max_instances');
+
+  /// Reference to `min_instances` attribute.
+  TfRef<num> get minInstancesRef => TfRef.attribute<num>(this, 'min_instances');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `runtime` attribute.
+  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
+
+  /// Reference to `source_archive_bucket` attribute.
+  TfRef<String> get sourceArchiveBucketRef =>
+      TfRef.attribute<String>(this, 'source_archive_bucket');
+
+  /// Reference to `source_archive_object` attribute.
+  TfRef<String> get sourceArchiveObjectRef =>
+      TfRef.attribute<String>(this, 'source_archive_object');
+
+  /// Reference to `timeout` attribute.
+  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+
+  /// Reference to `trigger_http` attribute.
+  TfRef<bool> get triggerHttpRef => TfRef.attribute<bool>(this, 'trigger_http');
+
+  /// Reference to `vpc_connector` attribute.
+  TfRef<String> get vpcConnectorRef =>
+      TfRef.attribute<String>(this, 'vpc_connector');
+
+  /// Reference to `vpc_connector_egress_settings` attribute.
+  TfRef<String> get vpcConnectorEgressSettingsRef =>
+      TfRef.attribute<String>(this, 'vpc_connector_egress_settings');
 }

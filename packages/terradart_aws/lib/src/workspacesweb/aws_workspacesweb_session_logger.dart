@@ -230,4 +230,26 @@ final class AwsWorkspaceswebSessionLogger extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `additional_encryption_context` attribute.
+  TfRef<Map<String, String>> get additionalEncryptionContextRef =>
+      TfRef.attribute<Map<String, String>>(
+        this,
+        'additional_encryption_context',
+      );
+
+  /// Reference to `customer_managed_key` attribute.
+  TfRef<String> get customerManagedKeyRef =>
+      TfRef.attribute<String>(this, 'customer_managed_key');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

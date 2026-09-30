@@ -184,4 +184,10 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
   /// Reference to `s3_access_point_arn` attribute.
   TfRef<String> get s3AccessPointArn =>
       TfRef.attribute<String>(this, 's3_access_point_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -65,4 +65,10 @@ final class DataAwsAuditmanagerControl extends Data {
   /// Reference to `testing_information` attribute.
   TfRef<String> get testingInformation =>
       TfRef.attribute<String>(this, 'testing_information');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

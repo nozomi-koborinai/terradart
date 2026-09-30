@@ -168,4 +168,42 @@ final class AwsLakeformationDataLakeSettings extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `admins` attribute.
+  TfRef<List<String>> get adminsRef =>
+      TfRef.attribute<List<String>>(this, 'admins');
+
+  /// Reference to `allow_external_data_filtering` attribute.
+  TfRef<bool> get allowExternalDataFilteringRef =>
+      TfRef.attribute<bool>(this, 'allow_external_data_filtering');
+
+  /// Reference to `allow_full_table_external_data_access` attribute.
+  TfRef<bool> get allowFullTableExternalDataAccessRef =>
+      TfRef.attribute<bool>(this, 'allow_full_table_external_data_access');
+
+  /// Reference to `authorized_session_tag_value_list` attribute.
+  TfRef<List<String>> get authorizedSessionTagValueListRef =>
+      TfRef.attribute<List<String>>(this, 'authorized_session_tag_value_list');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `external_data_filtering_allow_list` attribute.
+  TfRef<List<String>> get externalDataFilteringAllowListRef =>
+      TfRef.attribute<List<String>>(this, 'external_data_filtering_allow_list');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `read_only_admins` attribute.
+  TfRef<List<String>> get readOnlyAdminsRef =>
+      TfRef.attribute<List<String>>(this, 'read_only_admins');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `trusted_resource_owners` attribute.
+  TfRef<List<String>> get trustedResourceOwnersRef =>
+      TfRef.attribute<List<String>>(this, 'trusted_resource_owners');
 }

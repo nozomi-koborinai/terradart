@@ -268,4 +268,34 @@ final class AwsGlueConnection extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `athena_properties` attribute.
+  TfRef<Map<String, String>> get athenaPropertiesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'athena_properties');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `connection_properties` attribute.
+  TfRef<Map<String, String>> get connectionPropertiesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'connection_properties');
+
+  /// Reference to `connection_type` attribute.
+  TfRef<String> get connectionTypeRef =>
+      TfRef.attribute<String>(this, 'connection_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `match_criteria` attribute.
+  TfRef<List<String>> get matchCriteriaRef =>
+      TfRef.attribute<List<String>>(this, 'match_criteria');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

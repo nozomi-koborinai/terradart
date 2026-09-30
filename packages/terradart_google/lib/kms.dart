@@ -12,9 +12,9 @@ export 'src/kms/google_kms_crypto_key.dart'
         KmsKeyPurpose,
         KmsProtectionLevel;
 export 'src/kms/google_kms_crypto_key_iam_binding.dart'
-    show GoogleKmsCryptoKeyIamBinding;
+    show GoogleKmsCryptoKeyIamBinding, KmsCryptoKeyIamBindingCondition;
 export 'src/kms/google_kms_crypto_key_iam_member.dart'
-    show GoogleKmsCryptoKeyIamMember;
+    show GoogleKmsCryptoKeyIamMember, KmsCryptoKeyIamMemberCondition;
 export 'src/kms/google_kms_crypto_key_iam_policy.dart'
     show GoogleKmsCryptoKeyIamPolicy;
 export 'src/kms/google_kms_crypto_key_version.dart'
@@ -29,17 +29,17 @@ export 'src/kms/google_kms_ekm_connection.dart'
         KmsEkmConnectionServiceResolvers,
         KmsEkmConnectionServiceResolversServerCertificates;
 export 'src/kms/google_kms_ekm_connection_iam_binding.dart'
-    show GoogleKmsEkmConnectionIamBinding;
+    show GoogleKmsEkmConnectionIamBinding, KmsEkmConnectionIamBindingCondition;
 export 'src/kms/google_kms_ekm_connection_iam_member.dart'
-    show GoogleKmsEkmConnectionIamMember;
+    show GoogleKmsEkmConnectionIamMember, KmsEkmConnectionIamMemberCondition;
 export 'src/kms/google_kms_ekm_connection_iam_policy.dart'
     show GoogleKmsEkmConnectionIamPolicy;
 export 'src/kms/google_kms_key_handle.dart' show GoogleKmsKeyHandle;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/kms/google_kms_key_ring_iam_binding.dart'
-    show GoogleKmsKeyRingIamBinding;
+    show GoogleKmsKeyRingIamBinding, KmsKeyRingIamBindingCondition;
 export 'src/kms/google_kms_key_ring_iam_member.dart'
-    show GoogleKmsKeyRingIamMember;
+    show GoogleKmsKeyRingIamMember, KmsKeyRingIamMemberCondition;
 export 'src/kms/google_kms_key_ring_iam_policy.dart'
     show GoogleKmsKeyRingIamPolicy;
 export 'src/kms/google_kms_key_ring_import_job.dart'

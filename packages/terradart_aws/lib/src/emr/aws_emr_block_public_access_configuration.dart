@@ -65,4 +65,11 @@ final class AwsEmrBlockPublicAccessConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `block_public_security_group_rules` attribute.
+  TfRef<bool> get blockPublicSecurityGroupRulesRef =>
+      TfRef.attribute<bool>(this, 'block_public_security_group_rules');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -30,4 +30,11 @@ final class DataAwsControltowerControls extends Data {
   /// Reference to `enabled_controls` attribute.
   TfRef<List<String>> get enabledControls =>
       TfRef.attribute<List<String>>(this, 'enabled_controls');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_identifier` attribute.
+  TfRef<String> get targetIdentifierRef =>
+      TfRef.attribute<String>(this, 'target_identifier');
 }

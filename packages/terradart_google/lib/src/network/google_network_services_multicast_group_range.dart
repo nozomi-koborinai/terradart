@@ -110,6 +110,48 @@ final class GoogleNetworkServicesMulticastGroupRange extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `consumer_accept_list` attribute.
+  TfRef<List<String>> get consumerAcceptListRef =>
+      TfRef.attribute<List<String>>(this, 'consumer_accept_list');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `distribution_scope` attribute.
+  TfRef<String> get distributionScopeRef =>
+      TfRef.attribute<String>(this, 'distribution_scope');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `multicast_domain` attribute.
+  TfRef<String> get multicastDomainRef =>
+      TfRef.attribute<String>(this, 'multicast_domain');
+
+  /// Reference to `multicast_group_range_id` attribute.
+  TfRef<String> get multicastGroupRangeIdRef =>
+      TfRef.attribute<String>(this, 'multicast_group_range_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `require_explicit_accept` attribute.
+  TfRef<bool> get requireExplicitAcceptRef =>
+      TfRef.attribute<bool>(this, 'require_explicit_accept');
+
+  /// Reference to `reserved_internal_range` attribute.
+  TfRef<String> get reservedInternalRangeRef =>
+      TfRef.attribute<String>(this, 'reserved_internal_range');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

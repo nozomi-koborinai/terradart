@@ -26,4 +26,7 @@ final class DataAwsIotRegistrationCode extends Data {
   /// Reference to `registration_code` attribute.
   TfRef<String> get registrationCode =>
       TfRef.attribute<String>(this, 'registration_code');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

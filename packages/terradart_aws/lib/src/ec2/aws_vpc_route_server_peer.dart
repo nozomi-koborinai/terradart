@@ -102,4 +102,19 @@ final class AwsVpcRouteServerPeer extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `peer_address` attribute.
+  TfRef<String> get peerAddressRef =>
+      TfRef.attribute<String>(this, 'peer_address');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_server_endpoint_id` attribute.
+  TfRef<String> get routeServerEndpointIdRef =>
+      TfRef.attribute<String>(this, 'route_server_endpoint_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

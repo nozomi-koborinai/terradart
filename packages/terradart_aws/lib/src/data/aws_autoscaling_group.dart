@@ -149,4 +149,7 @@ final class DataAwsAutoscalingGroup extends Data {
 
   /// Reference to `warm_pool_size` attribute.
   TfRef<num> get warmPoolSize => TfRef.attribute<num>(this, 'warm_pool_size');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -56,4 +56,11 @@ final class DataAwsSsmParameter extends Data {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `with_decryption` attribute.
+  TfRef<bool> get withDecryptionRef =>
+      TfRef.attribute<bool>(this, 'with_decryption');
 }

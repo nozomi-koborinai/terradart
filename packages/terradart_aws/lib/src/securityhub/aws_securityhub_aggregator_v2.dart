@@ -47,4 +47,19 @@ final class AwsSecurityhubAggregatorV2 extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `linked_regions` attribute.
+  TfRef<List<String>> get linkedRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'linked_regions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `region_linking_mode` attribute.
+  TfRef<String> get regionLinkingModeRef =>
+      TfRef.attribute<String>(this, 'region_linking_mode');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

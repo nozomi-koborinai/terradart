@@ -262,4 +262,201 @@ final class AwsDmsS3Endpoint extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `add_column_name` attribute.
+  TfRef<bool> get addColumnNameRef =>
+      TfRef.attribute<bool>(this, 'add_column_name');
+
+  /// Reference to `add_trailing_padding_character` attribute.
+  TfRef<bool> get addTrailingPaddingCharacterRef =>
+      TfRef.attribute<bool>(this, 'add_trailing_padding_character');
+
+  /// Reference to `bucket_folder` attribute.
+  TfRef<String> get bucketFolderRef =>
+      TfRef.attribute<String>(this, 'bucket_folder');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `canned_acl_for_objects` attribute.
+  TfRef<String> get cannedAclForObjectsRef =>
+      TfRef.attribute<String>(this, 'canned_acl_for_objects');
+
+  /// Reference to `cdc_inserts_and_updates` attribute.
+  TfRef<bool> get cdcInsertsAndUpdatesRef =>
+      TfRef.attribute<bool>(this, 'cdc_inserts_and_updates');
+
+  /// Reference to `cdc_inserts_only` attribute.
+  TfRef<bool> get cdcInsertsOnlyRef =>
+      TfRef.attribute<bool>(this, 'cdc_inserts_only');
+
+  /// Reference to `cdc_max_batch_interval` attribute.
+  TfRef<num> get cdcMaxBatchIntervalRef =>
+      TfRef.attribute<num>(this, 'cdc_max_batch_interval');
+
+  /// Reference to `cdc_min_file_size` attribute.
+  TfRef<num> get cdcMinFileSizeRef =>
+      TfRef.attribute<num>(this, 'cdc_min_file_size');
+
+  /// Reference to `cdc_path` attribute.
+  TfRef<String> get cdcPathRef => TfRef.attribute<String>(this, 'cdc_path');
+
+  /// Reference to `certificate_arn` attribute.
+  TfRef<String> get certificateArnRef =>
+      TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `compression_type` attribute.
+  TfRef<String> get compressionTypeRef =>
+      TfRef.attribute<String>(this, 'compression_type');
+
+  /// Reference to `csv_delimiter` attribute.
+  TfRef<String> get csvDelimiterRef =>
+      TfRef.attribute<String>(this, 'csv_delimiter');
+
+  /// Reference to `csv_no_sup_value` attribute.
+  TfRef<String> get csvNoSupValueRef =>
+      TfRef.attribute<String>(this, 'csv_no_sup_value');
+
+  /// Reference to `csv_null_value` attribute.
+  TfRef<String> get csvNullValueRef =>
+      TfRef.attribute<String>(this, 'csv_null_value');
+
+  /// Reference to `csv_row_delimiter` attribute.
+  TfRef<String> get csvRowDelimiterRef =>
+      TfRef.attribute<String>(this, 'csv_row_delimiter');
+
+  /// Reference to `data_format` attribute.
+  TfRef<String> get dataFormatRef =>
+      TfRef.attribute<String>(this, 'data_format');
+
+  /// Reference to `data_page_size` attribute.
+  TfRef<num> get dataPageSizeRef =>
+      TfRef.attribute<num>(this, 'data_page_size');
+
+  /// Reference to `date_partition_delimiter` attribute.
+  TfRef<String> get datePartitionDelimiterRef =>
+      TfRef.attribute<String>(this, 'date_partition_delimiter');
+
+  /// Reference to `date_partition_enabled` attribute.
+  TfRef<bool> get datePartitionEnabledRef =>
+      TfRef.attribute<bool>(this, 'date_partition_enabled');
+
+  /// Reference to `date_partition_sequence` attribute.
+  TfRef<String> get datePartitionSequenceRef =>
+      TfRef.attribute<String>(this, 'date_partition_sequence');
+
+  /// Reference to `date_partition_timezone` attribute.
+  TfRef<String> get datePartitionTimezoneRef =>
+      TfRef.attribute<String>(this, 'date_partition_timezone');
+
+  /// Reference to `detach_target_on_lob_lookup_failure_parquet` attribute.
+  TfRef<bool> get detachTargetOnLobLookupFailureParquetRef =>
+      TfRef.attribute<bool>(
+        this,
+        'detach_target_on_lob_lookup_failure_parquet',
+      );
+
+  /// Reference to `dict_page_size_limit` attribute.
+  TfRef<num> get dictPageSizeLimitRef =>
+      TfRef.attribute<num>(this, 'dict_page_size_limit');
+
+  /// Reference to `enable_statistics` attribute.
+  TfRef<bool> get enableStatisticsRef =>
+      TfRef.attribute<bool>(this, 'enable_statistics');
+
+  /// Reference to `encoding_type` attribute.
+  TfRef<String> get encodingTypeRef =>
+      TfRef.attribute<String>(this, 'encoding_type');
+
+  /// Reference to `encryption_mode` attribute.
+  TfRef<String> get encryptionModeRef =>
+      TfRef.attribute<String>(this, 'encryption_mode');
+
+  /// Reference to `endpoint_id` attribute.
+  TfRef<String> get endpointIdRef =>
+      TfRef.attribute<String>(this, 'endpoint_id');
+
+  /// Reference to `endpoint_type` attribute.
+  TfRef<String> get endpointTypeRef =>
+      TfRef.attribute<String>(this, 'endpoint_type');
+
+  /// Reference to `expected_bucket_owner` attribute.
+  TfRef<String> get expectedBucketOwnerRef =>
+      TfRef.attribute<String>(this, 'expected_bucket_owner');
+
+  /// Reference to `external_table_definition` attribute.
+  TfRef<String> get externalTableDefinitionRef =>
+      TfRef.attribute<String>(this, 'external_table_definition');
+
+  /// Reference to `glue_catalog_generation` attribute.
+  TfRef<bool> get glueCatalogGenerationRef =>
+      TfRef.attribute<bool>(this, 'glue_catalog_generation');
+
+  /// Reference to `ignore_header_rows` attribute.
+  TfRef<num> get ignoreHeaderRowsRef =>
+      TfRef.attribute<num>(this, 'ignore_header_rows');
+
+  /// Reference to `include_op_for_full_load` attribute.
+  TfRef<bool> get includeOpForFullLoadRef =>
+      TfRef.attribute<bool>(this, 'include_op_for_full_load');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `max_file_size` attribute.
+  TfRef<num> get maxFileSizeRef => TfRef.attribute<num>(this, 'max_file_size');
+
+  /// Reference to `parquet_timestamp_in_millisecond` attribute.
+  TfRef<bool> get parquetTimestampInMillisecondRef =>
+      TfRef.attribute<bool>(this, 'parquet_timestamp_in_millisecond');
+
+  /// Reference to `parquet_version` attribute.
+  TfRef<String> get parquetVersionRef =>
+      TfRef.attribute<String>(this, 'parquet_version');
+
+  /// Reference to `preserve_transactions` attribute.
+  TfRef<bool> get preserveTransactionsRef =>
+      TfRef.attribute<bool>(this, 'preserve_transactions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rfc_4180` attribute.
+  TfRef<bool> get rfc4180Ref => TfRef.attribute<bool>(this, 'rfc_4180');
+
+  /// Reference to `row_group_length` attribute.
+  TfRef<num> get rowGroupLengthRef =>
+      TfRef.attribute<num>(this, 'row_group_length');
+
+  /// Reference to `server_side_encryption_kms_key_id` attribute.
+  TfRef<String> get serverSideEncryptionKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'server_side_encryption_kms_key_id');
+
+  /// Reference to `service_access_role_arn` attribute.
+  TfRef<String> get serviceAccessRoleArnRef =>
+      TfRef.attribute<String>(this, 'service_access_role_arn');
+
+  /// Reference to `ssl_mode` attribute.
+  TfRef<String> get sslModeRef => TfRef.attribute<String>(this, 'ssl_mode');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timestamp_column_name` attribute.
+  TfRef<String> get timestampColumnNameRef =>
+      TfRef.attribute<String>(this, 'timestamp_column_name');
+
+  /// Reference to `use_csv_no_sup_value` attribute.
+  TfRef<bool> get useCsvNoSupValueRef =>
+      TfRef.attribute<bool>(this, 'use_csv_no_sup_value');
+
+  /// Reference to `use_task_start_time_for_full_load_timestamp` attribute.
+  TfRef<bool> get useTaskStartTimeForFullLoadTimestampRef =>
+      TfRef.attribute<bool>(
+        this,
+        'use_task_start_time_for_full_load_timestamp',
+      );
 }

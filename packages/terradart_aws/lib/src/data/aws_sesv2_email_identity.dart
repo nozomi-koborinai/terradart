@@ -63,4 +63,15 @@ final class DataAwsSesv2EmailIdentity extends Data {
   /// Reference to `verified_for_sending_status` attribute.
   TfRef<bool> get verifiedForSendingStatus =>
       TfRef.attribute<bool>(this, 'verified_for_sending_status');
+
+  /// Reference to `email_identity` attribute.
+  TfRef<String> get emailIdentityRef =>
+      TfRef.attribute<String>(this, 'email_identity');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -48,4 +48,15 @@ final class AwsWorkspaceswebUserAccessLoggingSettings extends Resource {
   /// Reference to `user_access_logging_settings_arn` attribute.
   TfRef<String> get userAccessLoggingSettingsArn =>
       TfRef.attribute<String>(this, 'user_access_logging_settings_arn');
+
+  /// Reference to `kinesis_stream_arn` attribute.
+  TfRef<String> get kinesisStreamArnRef =>
+      TfRef.attribute<String>(this, 'kinesis_stream_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

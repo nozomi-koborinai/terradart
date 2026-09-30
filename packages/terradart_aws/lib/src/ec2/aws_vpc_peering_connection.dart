@@ -83,4 +83,29 @@ final class AwsVpcPeeringConnection extends Resource {
   /// Reference to `accept_status` attribute.
   TfRef<String> get acceptStatus =>
       TfRef.attribute<String>(this, 'accept_status');
+
+  /// Reference to `auto_accept` attribute.
+  TfRef<bool> get autoAcceptRef => TfRef.attribute<bool>(this, 'auto_accept');
+
+  /// Reference to `peer_owner_id` attribute.
+  TfRef<String> get peerOwnerIdRef =>
+      TfRef.attribute<String>(this, 'peer_owner_id');
+
+  /// Reference to `peer_region` attribute.
+  TfRef<String> get peerRegionRef =>
+      TfRef.attribute<String>(this, 'peer_region');
+
+  /// Reference to `peer_vpc_id` attribute.
+  TfRef<String> get peerVpcIdRef =>
+      TfRef.attribute<String>(this, 'peer_vpc_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

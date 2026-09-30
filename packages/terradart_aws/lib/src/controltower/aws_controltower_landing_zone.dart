@@ -64,4 +64,22 @@ final class AwsControltowerLandingZone extends Resource {
   /// Reference to `latest_available_version` attribute.
   TfRef<String> get latestAvailableVersion =>
       TfRef.attribute<String>(this, 'latest_available_version');
+
+  /// Reference to `manifest_json` attribute.
+  TfRef<String> get manifestJsonRef =>
+      TfRef.attribute<String>(this, 'manifest_json');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remediation_types` attribute.
+  TfRef<List<String>> get remediationTypesRef =>
+      TfRef.attribute<List<String>>(this, 'remediation_types');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

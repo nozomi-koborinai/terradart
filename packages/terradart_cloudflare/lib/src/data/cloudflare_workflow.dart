@@ -81,4 +81,11 @@ final class DataCloudflareWorkflow extends Data {
   /// Reference to `triggered_on` attribute.
   TfRef<String> get triggeredOn =>
       TfRef.attribute<String>(this, 'triggered_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `workflow_name` attribute.
+  TfRef<String> get workflowNameRef =>
+      TfRef.attribute<String>(this, 'workflow_name');
 }

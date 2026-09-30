@@ -47,4 +47,25 @@ final class GoogleEssentialContactsContact extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `language_tag` attribute.
+  TfRef<String> get languageTagRef =>
+      TfRef.attribute<String>(this, 'language_tag');
+
+  /// Reference to `notification_category_subscriptions` attribute.
+  TfRef<List<String>> get notificationCategorySubscriptionsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'notification_category_subscriptions',
+      );
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

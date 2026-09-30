@@ -23,9 +23,9 @@ export 'src/dns/google_dns_managed_zone.dart'
         ForwardingPath,
         GoogleDnsManagedZone;
 export 'src/dns/google_dns_managed_zone_iam_binding.dart'
-    show GoogleDnsManagedZoneIamBinding;
+    show DnsManagedZoneIamBindingCondition, GoogleDnsManagedZoneIamBinding;
 export 'src/dns/google_dns_managed_zone_iam_member.dart'
-    show GoogleDnsManagedZoneIamMember;
+    show DnsManagedZoneIamMemberCondition, GoogleDnsManagedZoneIamMember;
 export 'src/dns/google_dns_managed_zone_iam_policy.dart'
     show GoogleDnsManagedZoneIamPolicy;
 export 'src/dns/google_dns_policy.dart'
@@ -48,7 +48,11 @@ export 'src/dns/google_dns_record_set.dart'
         DnsRecordSetRoutingPolicyWrrRouting,
         DnsRecordSetType,
         GoogleDnsRecordSet;
-export 'src/dns/google_dns_response_policy.dart' show GoogleDnsResponsePolicy;
+export 'src/dns/google_dns_response_policy.dart'
+    show
+        DnsResponsePolicyGkeClusters,
+        DnsResponsePolicyNetworks,
+        GoogleDnsResponsePolicy;
 export 'src/dns/google_dns_response_policy_rule.dart'
     show
         DnsResponsePolicyRuleLocalData,

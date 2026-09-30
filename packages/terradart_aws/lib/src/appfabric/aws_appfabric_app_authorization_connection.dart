@@ -70,4 +70,15 @@ final class AwsAppfabricAppAuthorizationConnection extends Resource {
   /// Reference to `tenant` attribute.
   TfRef<List<Map<String, Object?>>> get tenant =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'tenant');
+
+  /// Reference to `app_authorization_arn` attribute.
+  TfRef<String> get appAuthorizationArnRef =>
+      TfRef.attribute<String>(this, 'app_authorization_arn');
+
+  /// Reference to `app_bundle_arn` attribute.
+  TfRef<String> get appBundleArnRef =>
+      TfRef.attribute<String>(this, 'app_bundle_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -33,4 +33,10 @@ final class DataCloudflareFieldExtractor extends Data {
   /// arguments typed `RefTo<CloudflareFieldExtractor>`.
   RefTo<CloudflareFieldExtractor> get ref =>
       RefTo.read(this); // ignore: invalid_use_of_internal_member
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `extractor` attribute.
+  TfRef<String> get extractorRef => TfRef.attribute<String>(this, 'extractor');
 }

@@ -129,4 +129,18 @@ final class AwsMailmanagerRelay extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_name` attribute.
+  TfRef<String> get serverNameRef =>
+      TfRef.attribute<String>(this, 'server_name');
+
+  /// Reference to `server_port` attribute.
+  TfRef<num> get serverPortRef => TfRef.attribute<num>(this, 'server_port');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

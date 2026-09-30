@@ -54,4 +54,21 @@ final class AwsRedshiftEndpointAuthorization extends Resource {
 
   /// Reference to `grantor` attribute.
   TfRef<String> get grantor => TfRef.attribute<String>(this, 'grantor');
+
+  /// Reference to `account` attribute.
+  TfRef<String> get accountRef => TfRef.attribute<String>(this, 'account');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_ids` attribute.
+  TfRef<List<String>> get vpcIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_ids');
 }

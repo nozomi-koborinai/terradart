@@ -43,4 +43,19 @@ final class DataAwsConnectInstanceStorageConfig extends Data {
   /// Reference to `storage_config` attribute.
   TfRef<List<Map<String, Object?>>> get storageConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'storage_config');
+
+  /// Reference to `association_id` attribute.
+  TfRef<String> get associationIdRef =>
+      TfRef.attribute<String>(this, 'association_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
 }

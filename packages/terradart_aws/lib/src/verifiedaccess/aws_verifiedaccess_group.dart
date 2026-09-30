@@ -89,4 +89,23 @@ final class AwsVerifiedaccessGroup extends Resource {
   /// Reference to `verifiedaccess_group_id` attribute.
   TfRef<String> get verifiedaccessGroupId =>
       TfRef.attribute<String>(this, 'verifiedaccess_group_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `verifiedaccess_instance_id` attribute.
+  TfRef<String> get verifiedaccessInstanceIdRef =>
+      TfRef.attribute<String>(this, 'verifiedaccess_instance_id');
 }

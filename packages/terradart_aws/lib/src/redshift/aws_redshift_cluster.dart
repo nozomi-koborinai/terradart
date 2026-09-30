@@ -314,4 +314,157 @@ final class AwsRedshiftCluster extends Resource {
   /// Reference to `master_password_secret_arn` attribute.
   TfRef<String> get masterPasswordSecretArn =>
       TfRef.attribute<String>(this, 'master_password_secret_arn');
+
+  /// Reference to `allow_version_upgrade` attribute.
+  TfRef<bool> get allowVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'allow_version_upgrade');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `aqua_configuration_status` attribute.
+  TfRef<String> get aquaConfigurationStatusRef =>
+      TfRef.attribute<String>(this, 'aqua_configuration_status');
+
+  /// Reference to `automated_snapshot_retention_period` attribute.
+  TfRef<num> get automatedSnapshotRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'automated_snapshot_retention_period');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `availability_zone_relocation_enabled` attribute.
+  TfRef<bool> get availabilityZoneRelocationEnabledRef =>
+      TfRef.attribute<bool>(this, 'availability_zone_relocation_enabled');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `cluster_parameter_group_name` attribute.
+  TfRef<String> get clusterParameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'cluster_parameter_group_name');
+
+  /// Reference to `cluster_subnet_group_name` attribute.
+  TfRef<String> get clusterSubnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'cluster_subnet_group_name');
+
+  /// Reference to `cluster_type` attribute.
+  TfRef<String> get clusterTypeRef =>
+      TfRef.attribute<String>(this, 'cluster_type');
+
+  /// Reference to `cluster_version` attribute.
+  TfRef<String> get clusterVersionRef =>
+      TfRef.attribute<String>(this, 'cluster_version');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `default_iam_role_arn` attribute.
+  TfRef<String> get defaultIamRoleArnRef =>
+      TfRef.attribute<String>(this, 'default_iam_role_arn');
+
+  /// Reference to `elastic_ip` attribute.
+  TfRef<String> get elasticIpRef => TfRef.attribute<String>(this, 'elastic_ip');
+
+  /// Reference to `encrypted` attribute.
+  TfRef<String> get encryptedRef => TfRef.attribute<String>(this, 'encrypted');
+
+  /// Reference to `enhanced_vpc_routing` attribute.
+  TfRef<bool> get enhancedVpcRoutingRef =>
+      TfRef.attribute<bool>(this, 'enhanced_vpc_routing');
+
+  /// Reference to `final_snapshot_identifier` attribute.
+  TfRef<String> get finalSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'final_snapshot_identifier');
+
+  /// Reference to `iam_roles` attribute.
+  TfRef<List<String>> get iamRolesRef =>
+      TfRef.attribute<List<String>>(this, 'iam_roles');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `maintenance_track_name` attribute.
+  TfRef<String> get maintenanceTrackNameRef =>
+      TfRef.attribute<String>(this, 'maintenance_track_name');
+
+  /// Reference to `manage_master_password` attribute.
+  TfRef<bool> get manageMasterPasswordRef =>
+      TfRef.attribute<bool>(this, 'manage_master_password');
+
+  /// Reference to `manual_snapshot_retention_period` attribute.
+  TfRef<num> get manualSnapshotRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'manual_snapshot_retention_period');
+
+  /// Reference to `master_password` attribute.
+  TfRef<String> get masterPasswordRef =>
+      TfRef.attribute<String>(this, 'master_password');
+
+  /// Reference to `master_password_secret_kms_key_id` attribute.
+  TfRef<String> get masterPasswordSecretKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'master_password_secret_kms_key_id');
+
+  /// Reference to `master_password_wo_version` attribute.
+  TfRef<num> get masterPasswordWoVersionRef =>
+      TfRef.attribute<num>(this, 'master_password_wo_version');
+
+  /// Reference to `master_username` attribute.
+  TfRef<String> get masterUsernameRef =>
+      TfRef.attribute<String>(this, 'master_username');
+
+  /// Reference to `multi_az` attribute.
+  TfRef<bool> get multiAzRef => TfRef.attribute<bool>(this, 'multi_az');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `number_of_nodes` attribute.
+  TfRef<num> get numberOfNodesRef =>
+      TfRef.attribute<num>(this, 'number_of_nodes');
+
+  /// Reference to `owner_account` attribute.
+  TfRef<String> get ownerAccountRef =>
+      TfRef.attribute<String>(this, 'owner_account');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `preferred_maintenance_window` attribute.
+  TfRef<String> get preferredMaintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessibleRef =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_final_snapshot` attribute.
+  TfRef<bool> get skipFinalSnapshotRef =>
+      TfRef.attribute<bool>(this, 'skip_final_snapshot');
+
+  /// Reference to `snapshot_arn` attribute.
+  TfRef<String> get snapshotArnRef =>
+      TfRef.attribute<String>(this, 'snapshot_arn');
+
+  /// Reference to `snapshot_cluster_identifier` attribute.
+  TfRef<String> get snapshotClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'snapshot_cluster_identifier');
+
+  /// Reference to `snapshot_identifier` attribute.
+  TfRef<String> get snapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'snapshot_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

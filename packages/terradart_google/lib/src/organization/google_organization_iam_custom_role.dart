@@ -58,4 +58,28 @@ final class GoogleOrganizationIamCustomRole extends Resource {
 
   /// Reference to `deleted` attribute.
   TfRef<bool> get deleted => TfRef.attribute<bool>(this, 'deleted');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `permissions` attribute.
+  TfRef<List<String>> get permissionsRef =>
+      TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `role_id` attribute.
+  TfRef<String> get roleIdRef => TfRef.attribute<String>(this, 'role_id');
+
+  /// Reference to `stage` attribute.
+  TfRef<String> get stageRef => TfRef.attribute<String>(this, 'stage');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
 }

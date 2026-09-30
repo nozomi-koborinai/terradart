@@ -41,4 +41,12 @@ final class GoogleHealthcareHl7V2StoreIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `hl7_v2_store_id` attribute.
+  TfRef<String> get hl7V2StoreIdRef =>
+      TfRef.attribute<String>(this, 'hl7_v2_store_id');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
 }

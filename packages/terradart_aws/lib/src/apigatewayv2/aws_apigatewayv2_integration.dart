@@ -168,4 +168,70 @@ final class AwsApigatewayv2Integration extends Resource {
         this,
         'integration_response_selection_expression',
       );
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `connection_type` attribute.
+  TfRef<String> get connectionTypeRef =>
+      TfRef.attribute<String>(this, 'connection_type');
+
+  /// Reference to `content_handling_strategy` attribute.
+  TfRef<String> get contentHandlingStrategyRef =>
+      TfRef.attribute<String>(this, 'content_handling_strategy');
+
+  /// Reference to `credentials_arn` attribute.
+  TfRef<String> get credentialsArnRef =>
+      TfRef.attribute<String>(this, 'credentials_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `integration_method` attribute.
+  TfRef<String> get integrationMethodRef =>
+      TfRef.attribute<String>(this, 'integration_method');
+
+  /// Reference to `integration_subtype` attribute.
+  TfRef<String> get integrationSubtypeRef =>
+      TfRef.attribute<String>(this, 'integration_subtype');
+
+  /// Reference to `integration_type` attribute.
+  TfRef<String> get integrationTypeRef =>
+      TfRef.attribute<String>(this, 'integration_type');
+
+  /// Reference to `integration_uri` attribute.
+  TfRef<String> get integrationUriRef =>
+      TfRef.attribute<String>(this, 'integration_uri');
+
+  /// Reference to `passthrough_behavior` attribute.
+  TfRef<String> get passthroughBehaviorRef =>
+      TfRef.attribute<String>(this, 'passthrough_behavior');
+
+  /// Reference to `payload_format_version` attribute.
+  TfRef<String> get payloadFormatVersionRef =>
+      TfRef.attribute<String>(this, 'payload_format_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_parameters` attribute.
+  TfRef<Map<String, String>> get requestParametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'request_parameters');
+
+  /// Reference to `request_templates` attribute.
+  TfRef<Map<String, String>> get requestTemplatesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'request_templates');
+
+  /// Reference to `template_selection_expression` attribute.
+  TfRef<String> get templateSelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'template_selection_expression');
+
+  /// Reference to `timeout_milliseconds` attribute.
+  TfRef<num> get timeoutMillisecondsRef =>
+      TfRef.attribute<num>(this, 'timeout_milliseconds');
 }

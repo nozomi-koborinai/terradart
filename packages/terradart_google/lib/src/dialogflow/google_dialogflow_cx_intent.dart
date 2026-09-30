@@ -147,6 +147,43 @@ final class GoogleDialogflowCxIntent extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `is_default_negative_intent` attribute.
+  TfRef<bool> get isDefaultNegativeIntentRef =>
+      TfRef.attribute<bool>(this, 'is_default_negative_intent');
+
+  /// Reference to `is_default_welcome_intent` attribute.
+  TfRef<bool> get isDefaultWelcomeIntentRef =>
+      TfRef.attribute<bool>(this, 'is_default_welcome_intent');
+
+  /// Reference to `is_fallback` attribute.
+  TfRef<bool> get isFallbackRef => TfRef.attribute<bool>(this, 'is_fallback');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `language_code` attribute.
+  TfRef<String> get languageCodeRef =>
+      TfRef.attribute<String>(this, 'language_code');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

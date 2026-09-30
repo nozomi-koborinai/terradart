@@ -576,25 +576,10 @@ final class IamShowcaseStack extends Stack {
 
     // The seam: export each resource path so the application side has
     // typed lookup keys for all four resources.
-    addExport(
-      'TOPIC_ID',
-      ResourceIdExport(topic.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'SUBSCRIPTION_ID',
-      ResourceIdExport(subscription.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'QUEUE_ID',
-      ResourceIdExport(queue.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'SECRET_ID',
-      ResourceIdExport(secret.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CUSTOM_ROLE_NAME',
-      ResourceIdExport(customRole.nameRef, emitTerraformOutput: true),
-    );
+    addOutput('topic_id', .ref(topic.id));
+    addOutput('subscription_id', .ref(subscription.id));
+    addOutput('queue_id', .ref(queue.id));
+    addOutput('secret_id', .ref(secret.id));
+    addOutput('custom_role_name', .ref(customRole.nameRef));
   }
 }

@@ -83,4 +83,34 @@ final class AwsQuicksightUser extends Resource {
   /// Reference to `user_invitation_url` attribute.
   TfRef<String> get userInvitationUrl =>
       TfRef.attribute<String>(this, 'user_invitation_url');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `iam_arn` attribute.
+  TfRef<String> get iamArnRef => TfRef.attribute<String>(this, 'iam_arn');
+
+  /// Reference to `identity_type` attribute.
+  TfRef<String> get identityTypeRef =>
+      TfRef.attribute<String>(this, 'identity_type');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `session_name` attribute.
+  TfRef<String> get sessionNameRef =>
+      TfRef.attribute<String>(this, 'session_name');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+
+  /// Reference to `user_role` attribute.
+  TfRef<String> get userRoleRef => TfRef.attribute<String>(this, 'user_role');
 }

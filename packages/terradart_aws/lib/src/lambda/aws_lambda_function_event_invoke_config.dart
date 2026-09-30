@@ -93,4 +93,22 @@ final class AwsLambdaFunctionEventInvokeConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `maximum_event_age_in_seconds` attribute.
+  TfRef<num> get maximumEventAgeInSecondsRef =>
+      TfRef.attribute<num>(this, 'maximum_event_age_in_seconds');
+
+  /// Reference to `maximum_retry_attempts` attribute.
+  TfRef<num> get maximumRetryAttemptsRef =>
+      TfRef.attribute<num>(this, 'maximum_retry_attempts');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -236,4 +236,15 @@ final class AwsVerifiedpermissionsIdentitySource extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `policy_store_id` attribute.
+  TfRef<String> get policyStoreIdRef =>
+      TfRef.attribute<String>(this, 'policy_store_id');
+
+  /// Reference to `principal_entity_type` attribute.
+  TfRef<String> get principalEntityTypeRef =>
+      TfRef.attribute<String>(this, 'principal_entity_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

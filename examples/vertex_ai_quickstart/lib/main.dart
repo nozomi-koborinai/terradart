@@ -14,7 +14,7 @@
 /// project.
 ///
 /// Exports the feature group name as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'dart:convert';
@@ -30,6 +30,7 @@ final class FeatureStack extends Stack {
   FeatureStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/feature_stack.app.dart'),
       ) {
     final apiVertex = add(
       GoogleProjectService(
@@ -81,12 +82,12 @@ final class FeatureStack extends Stack {
         name: .literal('terradart_customer_features'),
         region: .literal('us-central1'),
         description: .literal('Customer features backed by BigQuery'),
-        bigQuery: .literal(<String, Object?>{
-          'big_query_source': {
-            'input_uri': 'bq://$projectId.vertex_features.entities',
-          },
-          'entity_id_columns': ['entity_id'],
-        }),
+        bigQuery: VertexAiFeatureGroupBigQuery(
+          bigQuerySource: VertexAiFeatureGroupBigQueryBigQuerySource(
+            inputUri: .literal('bq://$projectId.vertex_features.entities'),
+          ),
+          entityIdColumns: .literal(['entity_id']),
+        ),
         dependsOn: [ResourceDependency(apiVertex), ResourceDependency(table)],
       ),
     );
@@ -195,17 +196,9 @@ final class FeatureStack extends Stack {
     );
 
     // Literal feature-group name -- emitted as a Dart constant at synth time.
-    addExport(
-      'FEATURE_GROUP_NAME',
-      StringExport('terradart_customer_features'),
-    );
+    addConstant('featureGroupName', .ref(featureGroup.nameRef));
 
     // Full feature-group resource id -- Terraform output only (computed).
-    addExport(
-      'FEATURE_GROUP_ID',
-      ResourceIdExport(featureGroup.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/feature_stack.app.dart');
+    addOutput('feature_group_id', .ref(featureGroup.id));
   }
 }

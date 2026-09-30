@@ -33,9 +33,13 @@ export 'src/network/google_network_connectivity_group.dart'
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
 export 'src/network/google_network_connectivity_hub_iam_binding.dart'
-    show GoogleNetworkConnectivityHubIamBinding;
+    show
+        GoogleNetworkConnectivityHubIamBinding,
+        NetworkConnectivityHubIamBindingCondition;
 export 'src/network/google_network_connectivity_hub_iam_member.dart'
-    show GoogleNetworkConnectivityHubIamMember;
+    show
+        GoogleNetworkConnectivityHubIamMember,
+        NetworkConnectivityHubIamMemberCondition;
 export 'src/network/google_network_connectivity_hub_iam_policy.dart'
     show GoogleNetworkConnectivityHubIamPolicy;
 export 'src/network/google_network_connectivity_internal_range.dart'
@@ -120,9 +124,13 @@ export 'src/network/google_network_management_vpc_flow_logs_config.dart'
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
 export 'src/network/google_network_security_address_group_iam_binding.dart'
-    show GoogleNetworkSecurityAddressGroupIamBinding;
+    show
+        GoogleNetworkSecurityAddressGroupIamBinding,
+        NetworkSecurityAddressGroupIamBindingCondition;
 export 'src/network/google_network_security_address_group_iam_member.dart'
-    show GoogleNetworkSecurityAddressGroupIamMember;
+    show
+        GoogleNetworkSecurityAddressGroupIamMember,
+        NetworkSecurityAddressGroupIamMemberCondition;
 export 'src/network/google_network_security_address_group_iam_policy.dart'
     show GoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/network/google_network_security_authz_policy.dart'

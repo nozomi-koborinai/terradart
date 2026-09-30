@@ -39,4 +39,7 @@ final class DataCloudflareLogpullRetention extends Data {
 
   /// Reference to `flag` attribute.
   TfRef<bool> get flag => TfRef.attribute<bool>(this, 'flag');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

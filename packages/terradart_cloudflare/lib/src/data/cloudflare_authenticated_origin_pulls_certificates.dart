@@ -27,4 +27,10 @@ final class DataCloudflareAuthenticatedOriginPullsCertificates extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareAuthenticatedOriginPullsCertificatesSensitive;
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

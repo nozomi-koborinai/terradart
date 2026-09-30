@@ -63,4 +63,49 @@ final class DataCloudflarePageShieldCookiesList extends Data {
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `export` attribute.
+  TfRef<String> get exportRef => TfRef.attribute<String>(this, 'export');
+
+  /// Reference to `hosts` attribute.
+  TfRef<String> get hostsRef => TfRef.attribute<String>(this, 'hosts');
+
+  /// Reference to `http_only` attribute.
+  TfRef<bool> get httpOnlyRef => TfRef.attribute<bool>(this, 'http_only');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order_by` attribute.
+  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+
+  /// Reference to `page` attribute.
+  TfRef<String> get pageRef => TfRef.attribute<String>(this, 'page');
+
+  /// Reference to `page_url` attribute.
+  TfRef<String> get pageUrlRef => TfRef.attribute<String>(this, 'page_url');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `per_page` attribute.
+  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+
+  /// Reference to `same_site` attribute.
+  TfRef<String> get sameSiteRef => TfRef.attribute<String>(this, 'same_site');
+
+  /// Reference to `secure` attribute.
+  TfRef<bool> get secureRef => TfRef.attribute<bool>(this, 'secure');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -30,4 +30,11 @@ final class DataAwsLocationTrackerAssociations extends Data {
   /// Reference to `consumer_arns` attribute.
   TfRef<List<String>> get consumerArns =>
       TfRef.attribute<List<String>>(this, 'consumer_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tracker_name` attribute.
+  TfRef<String> get trackerNameRef =>
+      TfRef.attribute<String>(this, 'tracker_name');
 }

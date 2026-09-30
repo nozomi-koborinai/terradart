@@ -112,4 +112,7 @@ final class DataGooglePubsubSubscription extends Data {
 
   /// Reference to `topic` attribute.
   TfRef<String> get topic => TfRef.attribute<String>(this, 'topic');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -70,6 +70,33 @@ final class GoogleChronicleSoarNetwork extends Resource {
   TfRef<String> get soarNetworkId =>
       TfRef.attribute<String>(this, 'soar_network_id');
 
+  /// Reference to `address` attribute.
+  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `environments_json` attribute.
+  TfRef<String> get environmentsJsonRef =>
+      TfRef.attribute<String>(this, 'environments_json');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

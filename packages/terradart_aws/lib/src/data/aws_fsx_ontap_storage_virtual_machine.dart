@@ -100,4 +100,11 @@ final class DataAwsFsxOntapStorageVirtualMachine extends Data {
 
   /// Reference to `uuid` attribute.
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

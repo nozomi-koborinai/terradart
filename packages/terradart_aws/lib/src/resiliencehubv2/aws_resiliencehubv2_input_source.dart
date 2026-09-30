@@ -114,4 +114,11 @@ final class AwsResiliencehubv2InputSource extends Resource {
   /// Reference to `input_source_id` attribute.
   TfRef<String> get inputSourceId =>
       TfRef.attribute<String>(this, 'input_source_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_arn` attribute.
+  TfRef<String> get serviceArnRef =>
+      TfRef.attribute<String>(this, 'service_arn');
 }

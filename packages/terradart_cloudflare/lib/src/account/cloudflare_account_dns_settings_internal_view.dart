@@ -56,4 +56,11 @@ final class CloudflareAccountDnsSettingsInternalView extends Resource {
   /// Reference to `modified_time` attribute.
   TfRef<String> get modifiedTime =>
       TfRef.attribute<String>(this, 'modified_time');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `zones` attribute.
+  TfRef<List<String>> get zonesRef =>
+      TfRef.attribute<List<String>>(this, 'zones');
 }

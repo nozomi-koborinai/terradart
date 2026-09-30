@@ -39,4 +39,7 @@ final class DataCloudflareOriginTlsComplianceModes extends Data {
 
   /// Reference to `value` attribute.
   TfRef<List<String>> get value => TfRef.attribute<List<String>>(this, 'value');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

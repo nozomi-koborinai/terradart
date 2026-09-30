@@ -39,4 +39,19 @@ final class AwsConnectPhoneNumberContactFlowAssociation extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsConnectPhoneNumberContactFlowAssociation>`.
   RefTo<AwsConnectPhoneNumberContactFlowAssociation> get ref => RefTo.of(this);
+
+  /// Reference to `contact_flow_id` attribute.
+  TfRef<String> get contactFlowIdRef =>
+      TfRef.attribute<String>(this, 'contact_flow_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `phone_number_id` attribute.
+  TfRef<String> get phoneNumberIdRef =>
+      TfRef.attribute<String>(this, 'phone_number_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -184,4 +184,33 @@ final class AwsApigatewayv2Stage extends Resource {
 
   /// Reference to `invoke_url` attribute.
   TfRef<String> get invokeUrl => TfRef.attribute<String>(this, 'invoke_url');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `auto_deploy` attribute.
+  TfRef<bool> get autoDeployRef => TfRef.attribute<bool>(this, 'auto_deploy');
+
+  /// Reference to `client_certificate_id` attribute.
+  TfRef<String> get clientCertificateIdRef =>
+      TfRef.attribute<String>(this, 'client_certificate_id');
+
+  /// Reference to `deployment_id` attribute.
+  TfRef<String> get deploymentIdRef =>
+      TfRef.attribute<String>(this, 'deployment_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stage_variables` attribute.
+  TfRef<Map<String, String>> get stageVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'stage_variables');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

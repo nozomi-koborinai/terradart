@@ -93,4 +93,19 @@ final class DataCloudflareLoadBalancer extends Data {
 
   /// Reference to `ttl` attribute.
   TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `load_balancer_id` attribute.
+  TfRef<String> get loadBalancerIdRef =>
+      TfRef.attribute<String>(this, 'load_balancer_id');
+
+  /// Reference to `pop_pools` attribute.
+  TfRef<Map<String, List<String>>> get popPoolsRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'pop_pools');
+
+  /// Reference to `region_pools` attribute.
+  TfRef<Map<String, List<String>>> get regionPoolsRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'region_pools');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

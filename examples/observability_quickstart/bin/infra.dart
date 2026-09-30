@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/observability_stack.app.dart`
-/// (literal exports such as `TRACE_SCOPE_ID`). Computed exports like
-/// `TRACE_SCOPE_NAME` appear as Terraform outputs only.
+/// (with `ObservabilityStackConstants.traceScopeId`). Computed values such as
+/// `trace_scope_name` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

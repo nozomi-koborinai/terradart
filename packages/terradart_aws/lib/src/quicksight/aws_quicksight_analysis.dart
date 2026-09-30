@@ -11640,4 +11640,26 @@ final class AwsQuicksightAnalysis extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `analysis_id` attribute.
+  TfRef<String> get analysisIdRef =>
+      TfRef.attribute<String>(this, 'analysis_id');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `recovery_window_in_days` attribute.
+  TfRef<num> get recoveryWindowInDaysRef =>
+      TfRef.attribute<num>(this, 'recovery_window_in_days');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `theme_arn` attribute.
+  TfRef<String> get themeArnRef => TfRef.attribute<String>(this, 'theme_arn');
 }

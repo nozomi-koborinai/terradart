@@ -52,4 +52,18 @@ final class GoogleFirebaseWebApp extends Resource {
   /// Reference to `app_urls` attribute.
   TfRef<List<String>> get appUrls =>
       TfRef.attribute<List<String>>(this, 'app_urls');
+
+  /// Reference to `api_key_id` attribute.
+  TfRef<String> get apiKeyIdRef => TfRef.attribute<String>(this, 'api_key_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -41,4 +41,14 @@ final class AwsVpcSecurityGroupVpcAssociation extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_id` attribute.
+  TfRef<String> get securityGroupIdRef =>
+      TfRef.attribute<String>(this, 'security_group_id');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

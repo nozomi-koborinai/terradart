@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Wrappers with `deriveOutputGetters: true` derive a `<name>Ref` getter for every input attribute (`scope_id` → `TfRef<String> get scopeIdRef`, `optional + computed` included; enum inputs are `TfRef<String>`, their Terraform value). Write-only inputs, `tags_all`, a name a computed-only getter already has, and a name a hand-written `extraGetters` getter declares are skipped. Data-source wrappers now also let a hand-written `extraGetters` getter shadow a derived one.
 - Nested helper classes type a list or set of strings, numbers or booleans by its element type (`TfArg<List<String>>`, `List<num>`, `List<bool>`), as `writeDartType` does at the top level, instead of `TfArg<List<Object?>>`; lists of objects stay `List<Object?>`.
 - The Magic Modules parser pairs every `write_only: true` field with its generated `<field>_wo` sibling: the sibling joins each `exactly_one_of` / `at_least_one_of` group the field is in, the pair is a `conflicts` set (the provider rejects both), and a required write-only field makes the pair an `exactly_one_of` group — so `password` / `password_wo` wrap as one sealed argument.
 - Override axes `exactlyOneOf` / `atMostOneOf`: lists of comma-separated dotted member paths (`"template.volumes.gcs, template.volumes.secret"`) for an exclusive group no group source declares — an API rule the provider leaves to the service. `wrap` seals them like the source's groups (`sealedNames` names them) and fails (E406) on an entry that names no input or that the source already declares.

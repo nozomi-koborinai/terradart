@@ -104,6 +104,47 @@ final class GoogleApigeeDeveloperApp extends Resource {
   TfRef<String> get lastModifiedAt =>
       TfRef.attribute<String>(this, 'last_modified_at');
 
+  /// Reference to `api_products` attribute.
+  TfRef<List<String>> get apiProductsRef =>
+      TfRef.attribute<List<String>>(this, 'api_products');
+
+  /// Reference to `app_family` attribute.
+  TfRef<String> get appFamilyRef => TfRef.attribute<String>(this, 'app_family');
+
+  /// Reference to `callback_url` attribute.
+  TfRef<String> get callbackUrlRef =>
+      TfRef.attribute<String>(this, 'callback_url');
+
+  /// Reference to `consumer_key` attribute.
+  TfRef<String> get consumerKeyRef =>
+      TfRef.attribute<String>(this, 'consumer_key');
+
+  /// Reference to `consumer_secret` attribute.
+  TfRef<String> get consumerSecretRef =>
+      TfRef.attribute<String>(this, 'consumer_secret');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `developer_email` attribute.
+  TfRef<String> get developerEmailRef =>
+      TfRef.attribute<String>(this, 'developer_email');
+
+  /// Reference to `key_expires_in` attribute.
+  TfRef<String> get keyExpiresInRef =>
+      TfRef.attribute<String>(this, 'key_expires_in');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

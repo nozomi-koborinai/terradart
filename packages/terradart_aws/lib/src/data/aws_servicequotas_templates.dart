@@ -30,4 +30,10 @@ final class DataAwsServicequotasTemplates extends Data {
   /// Reference to `templates` attribute.
   TfRef<List<Map<String, Object?>>> get templates =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'templates');
+
+  /// Reference to `aws_region` attribute.
+  TfRef<String> get awsRegionRef => TfRef.attribute<String>(this, 'aws_region');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

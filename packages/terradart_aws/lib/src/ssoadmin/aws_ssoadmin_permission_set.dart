@@ -55,4 +55,27 @@ final class AwsSsoadminPermissionSet extends Resource {
   /// Reference to `created_date` attribute.
   TfRef<String> get createdDate =>
       TfRef.attribute<String>(this, 'created_date');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `relay_state` attribute.
+  TfRef<String> get relayStateRef =>
+      TfRef.attribute<String>(this, 'relay_state');
+
+  /// Reference to `session_duration` attribute.
+  TfRef<String> get sessionDurationRef =>
+      TfRef.attribute<String>(this, 'session_duration');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

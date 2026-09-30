@@ -60,4 +60,18 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
 
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `associated_hostnames` attribute.
+  TfRef<List<String>> get associatedHostnamesRef =>
+      TfRef.attribute<List<String>>(this, 'associated_hostnames');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

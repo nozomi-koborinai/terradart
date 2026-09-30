@@ -67,4 +67,19 @@ final class GoogleComputeNetworkFirewallPolicy extends Resource {
   /// Reference to `self_link_with_id` attribute.
   TfRef<String> get selfLinkWithId =>
       TfRef.attribute<String>(this, 'self_link_with_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `policy_type` attribute.
+  TfRef<String> get policyTypeRef =>
+      TfRef.attribute<String>(this, 'policy_type');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

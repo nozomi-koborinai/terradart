@@ -108,4 +108,31 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `country` attribute.
+  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `ncc_gateway` attribute.
+  TfRef<String> get nccGatewayRef =>
+      TfRef.attribute<String>(this, 'ncc_gateway');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `sac_realm` attribute.
+  TfRef<String> get sacRealmRef => TfRef.attribute<String>(this, 'sac_realm');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

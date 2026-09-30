@@ -168,4 +168,26 @@ final class DataAwsIamPolicyDocument extends Data {
   /// Reference to `minified_json` attribute.
   TfRef<String> get minifiedJson =>
       TfRef.attribute<String>(this, 'minified_json');
+
+  /// Reference to `override_json` attribute.
+  TfRef<String> get overrideJsonRef =>
+      TfRef.attribute<String>(this, 'override_json');
+
+  /// Reference to `override_policy_documents` attribute.
+  TfRef<List<String>> get overridePolicyDocumentsRef =>
+      TfRef.attribute<List<String>>(this, 'override_policy_documents');
+
+  /// Reference to `policy_id` attribute.
+  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `source_json` attribute.
+  TfRef<String> get sourceJsonRef =>
+      TfRef.attribute<String>(this, 'source_json');
+
+  /// Reference to `source_policy_documents` attribute.
+  TfRef<List<String>> get sourcePolicyDocumentsRef =>
+      TfRef.attribute<List<String>>(this, 'source_policy_documents');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

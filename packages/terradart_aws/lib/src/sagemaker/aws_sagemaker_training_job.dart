@@ -1785,4 +1785,46 @@ final class AwsSagemakerTrainingJob extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `delete_model_packages_on_destroy` attribute.
+  TfRef<bool> get deleteModelPackagesOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'delete_model_packages_on_destroy');
+
+  /// Reference to `delete_vpc_enis_on_destroy` attribute.
+  TfRef<bool> get deleteVpcEnisOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'delete_vpc_enis_on_destroy');
+
+  /// Reference to `enable_inter_container_traffic_encryption` attribute.
+  TfRef<bool> get enableInterContainerTrafficEncryptionRef =>
+      TfRef.attribute<bool>(this, 'enable_inter_container_traffic_encryption');
+
+  /// Reference to `enable_managed_spot_training` attribute.
+  TfRef<bool> get enableManagedSpotTrainingRef =>
+      TfRef.attribute<bool>(this, 'enable_managed_spot_training');
+
+  /// Reference to `enable_network_isolation` attribute.
+  TfRef<bool> get enableNetworkIsolationRef =>
+      TfRef.attribute<bool>(this, 'enable_network_isolation');
+
+  /// Reference to `environment` attribute.
+  TfRef<Map<String, String>> get environmentRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment');
+
+  /// Reference to `hyper_parameters` attribute.
+  TfRef<Map<String, String>> get hyperParametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'hyper_parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `training_job_name` attribute.
+  TfRef<String> get trainingJobNameRef =>
+      TfRef.attribute<String>(this, 'training_job_name');
 }

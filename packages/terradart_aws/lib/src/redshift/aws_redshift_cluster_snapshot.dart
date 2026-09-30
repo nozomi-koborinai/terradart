@@ -51,4 +51,23 @@ final class AwsRedshiftClusterSnapshot extends Resource {
   /// Reference to `owner_account` attribute.
   TfRef<String> get ownerAccount =>
       TfRef.attribute<String>(this, 'owner_account');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `manual_snapshot_retention_period` attribute.
+  TfRef<num> get manualSnapshotRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'manual_snapshot_retention_period');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_identifier` attribute.
+  TfRef<String> get snapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'snapshot_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

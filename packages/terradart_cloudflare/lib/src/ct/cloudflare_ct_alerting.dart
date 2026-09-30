@@ -47,4 +47,14 @@ final class CloudflareCtAlerting extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `emails` attribute.
+  TfRef<List<String>> get emailsRef =>
+      TfRef.attribute<List<String>>(this, 'emails');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

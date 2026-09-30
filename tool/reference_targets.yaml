@@ -112,13 +112,14 @@ hashicorp/google:
       - google_oracle_database_goldengate_connection.properties.iceberg_connection_properties.storage.amazon_s3_iceberg_storage.bucket
       - google_storage_transfer_job.transfer_spec.aws_s3_compatible_data_source.bucket_name
       - google_storage_transfer_job.transfer_spec.aws_s3_data_source.bucket_name
-      # Cloud Logging and Observability buckets.
+      # Cloud Logging buckets.
       - google_logging_linked_dataset.bucket
       - google_logging_log_view.bucket
       - google_logging_log_view_iam_binding.bucket
       - google_logging_log_view_iam_member.bucket
       - google_logging_log_view_iam_policy.bucket
       - google_logging_metric.bucket_name
+      # An Observability bucket (the rule below).
       - google_observability_link.bucket
       # A bucket the resource creates.
       - google_hypercomputecluster_cluster.storage_resources.config.new_bucket.bucket
@@ -145,6 +146,48 @@ hashicorp/google:
       - google_healthcare_dataset_iam_binding.dataset_id
       - google_healthcare_dataset_iam_member.dataset_id
       - google_healthcare_dataset_iam_policy.dataset_id
+  - target: google_observability_bucket
+    attribute: bucket_id
+    slots: '^bucket$'
+    types: '^google_observability_link$'
+  # Each Gemini setting binding names its parent setting by the setting's
+  # own id input, which the setting resource also has.
+  - target: google_gemini_code_tools_setting
+    attribute: code_tools_setting_id
+    slots: '^code_tools_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_data_sharing_with_google_setting
+    attribute: data_sharing_with_google_setting_id
+    slots: '^data_sharing_with_google_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_gda_observability_setting
+    attribute: gda_observability_setting_id
+    slots: '^gda_observability_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_gemini_gcp_enablement_setting
+    attribute: gemini_gcp_enablement_setting_id
+    slots: '^gemini_gcp_enablement_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_gibq_observability_setting
+    attribute: gibq_observability_setting_id
+    slots: '^gibq_observability_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_logging_setting
+    attribute: logging_setting_id
+    slots: '^logging_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_release_channel_setting
+    attribute: release_channel_setting_id
+    slots: '^release_channel_setting_id$'
+    types: '_binding$'
+  - target: google_gemini_code_repository_index
+    attribute: code_repository_index_id
+    slots: '^code_repository_index$'
+    types: '^google_gemini_repository_group'
+  - target: google_gemini_repository_group
+    attribute: repository_group_id
+    slots: '^repository_group_id$'
+    types: '^google_gemini_repository_group_iam_'
 
 hashicorp/aws:
   - target: aws_iam_role

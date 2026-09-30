@@ -54,4 +54,38 @@ final class AwsAutoscalingSchedule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `autoscaling_group_name` attribute.
+  TfRef<String> get autoscalingGroupNameRef =>
+      TfRef.attribute<String>(this, 'autoscaling_group_name');
+
+  /// Reference to `desired_capacity` attribute.
+  TfRef<num> get desiredCapacityRef =>
+      TfRef.attribute<num>(this, 'desired_capacity');
+
+  /// Reference to `end_time` attribute.
+  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+
+  /// Reference to `max_size` attribute.
+  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+
+  /// Reference to `min_size` attribute.
+  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+
+  /// Reference to `recurrence` attribute.
+  TfRef<String> get recurrenceRef =>
+      TfRef.attribute<String>(this, 'recurrence');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scheduled_action_name` attribute.
+  TfRef<String> get scheduledActionNameRef =>
+      TfRef.attribute<String>(this, 'scheduled_action_name');
+
+  /// Reference to `start_time` attribute.
+  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

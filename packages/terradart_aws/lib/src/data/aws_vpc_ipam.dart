@@ -93,4 +93,7 @@ final class DataAwsVpcIpam extends Data {
 
   /// Reference to `tier` attribute.
   TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

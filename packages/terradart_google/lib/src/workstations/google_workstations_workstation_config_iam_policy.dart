@@ -54,4 +54,22 @@ final class GoogleWorkstationsWorkstationConfigIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workstation_cluster_id` attribute.
+  TfRef<String> get workstationClusterIdRef =>
+      TfRef.attribute<String>(this, 'workstation_cluster_id');
+
+  /// Reference to `workstation_config_id` attribute.
+  TfRef<String> get workstationConfigIdRef =>
+      TfRef.attribute<String>(this, 'workstation_config_id');
 }

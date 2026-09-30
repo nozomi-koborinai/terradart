@@ -53,7 +53,7 @@ final class SccV2ProjectNotificationConfigStreamingConfig {
 ///   localName: 'findings_export',
 ///   configId: TfArg.literal('terradart-findings'),
 ///   description: TfArg.literal('Export ACTIVE findings to Pub/Sub'),
-///   pubsubTopic: TfArg.ref(topic.id),
+///   pubsubTopic: topic.ref,
 ///   streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(
 ///     filter: TfArg.literal('state = "ACTIVE"'),
 ///   ),
@@ -105,4 +105,25 @@ final class GoogleSccV2ProjectNotificationConfig extends Resource {
   /// Reference to `service_account` attribute.
   TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `config_id` attribute.
+  TfRef<String> get configIdRef => TfRef.attribute<String>(this, 'config_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `pubsub_topic` attribute.
+  TfRef<String> get pubsubTopicRef =>
+      TfRef.attribute<String>(this, 'pubsub_topic');
 }

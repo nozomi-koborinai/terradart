@@ -130,4 +130,17 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
         this,
         'user_defined_access_urls',
       );
+
+  /// Reference to `certificate_authority_id` attribute.
+  TfRef<String> get certificateAuthorityIdRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `pool` attribute.
+  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

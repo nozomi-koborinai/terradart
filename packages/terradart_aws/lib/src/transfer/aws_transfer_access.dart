@@ -108,4 +108,28 @@ final class AwsTransferAccess extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `external_id` attribute.
+  TfRef<String> get externalIdRef =>
+      TfRef.attribute<String>(this, 'external_id');
+
+  /// Reference to `home_directory` attribute.
+  TfRef<String> get homeDirectoryRef =>
+      TfRef.attribute<String>(this, 'home_directory');
+
+  /// Reference to `home_directory_type` attribute.
+  TfRef<String> get homeDirectoryTypeRef =>
+      TfRef.attribute<String>(this, 'home_directory_type');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `server_id` attribute.
+  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
 }

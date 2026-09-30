@@ -62,4 +62,11 @@ final class DataCloudflareMtlsCertificate extends Data {
 
   /// Reference to `uploaded_on` attribute.
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `mtls_certificate_id` attribute.
+  TfRef<String> get mtlsCertificateIdRef =>
+      TfRef.attribute<String>(this, 'mtls_certificate_id');
 }

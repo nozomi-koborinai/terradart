@@ -63,4 +63,10 @@ final class AwsOpensearchVpcEndpoint extends Resource {
 
   /// Reference to `endpoint` attribute.
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
+
+  /// Reference to `domain_arn` attribute.
+  TfRef<String> get domainArnRef => TfRef.attribute<String>(this, 'domain_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

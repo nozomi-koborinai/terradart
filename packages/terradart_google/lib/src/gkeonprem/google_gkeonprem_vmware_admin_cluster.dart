@@ -757,6 +757,35 @@ final class GoogleGkeonpremVmwareAdminCluster extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `bootstrap_cluster_membership` attribute.
+  TfRef<String> get bootstrapClusterMembershipRef =>
+      TfRef.attribute<String>(this, 'bootstrap_cluster_membership');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_advanced_cluster` attribute.
+  TfRef<bool> get enableAdvancedClusterRef =>
+      TfRef.attribute<bool>(this, 'enable_advanced_cluster');
+
+  /// Reference to `image_type` attribute.
+  TfRef<String> get imageTypeRef => TfRef.attribute<String>(this, 'image_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `on_prem_version` attribute.
+  TfRef<String> get onPremVersionRef =>
+      TfRef.attribute<String>(this, 'on_prem_version');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

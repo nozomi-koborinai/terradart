@@ -28,11 +28,13 @@ final class ApiSecurityStack extends Stack {
         localName: 'maps_browser',
         name: .literal('maps-browser-key'),
         displayName: .literal('Browser Maps API key'),
-        restrictions: .literal({
-          'api_targets': [
-            {'service': 'maps-backend.googleapis.com'},
+        restrictions: ApikeysKeyRestrictions(
+          apiTargets: [
+            ApikeysKeyRestrictionsApiTargets(
+              service: .literal('maps-backend.googleapis.com'),
+            ),
           ],
-        }),
+        ),
         dependsOn: apiDeps,
       ),
     );

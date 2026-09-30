@@ -57,4 +57,16 @@ final class DataAwsNetworkmanagerConnection extends Data {
 
   /// Reference to `link_id` attribute.
   TfRef<String> get linkId => TfRef.attribute<String>(this, 'link_id');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

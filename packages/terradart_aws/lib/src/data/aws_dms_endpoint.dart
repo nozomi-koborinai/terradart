@@ -125,4 +125,15 @@ final class DataAwsDmsEndpoint extends Data {
 
   /// Reference to `username` attribute.
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
+
+  /// Reference to `endpoint_id` attribute.
+  TfRef<String> get endpointIdRef =>
+      TfRef.attribute<String>(this, 'endpoint_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

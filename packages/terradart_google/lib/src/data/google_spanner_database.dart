@@ -73,4 +73,10 @@ final class DataGoogleSpannerDatabase extends Data {
   /// Reference to `version_retention_period` attribute.
   TfRef<String> get versionRetentionPeriod =>
       TfRef.attribute<String>(this, 'version_retention_period');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

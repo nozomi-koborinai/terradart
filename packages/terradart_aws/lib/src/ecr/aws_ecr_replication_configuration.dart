@@ -135,4 +135,7 @@ final class AwsEcrReplicationConfiguration extends Resource {
 
   /// Reference to `registry_id` attribute.
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

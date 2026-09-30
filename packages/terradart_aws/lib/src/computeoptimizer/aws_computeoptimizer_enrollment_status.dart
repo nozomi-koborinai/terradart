@@ -52,4 +52,14 @@ final class AwsComputeoptimizerEnrollmentStatus extends Resource {
   /// Reference to `number_of_member_accounts_opted_in` attribute.
   TfRef<num> get numberOfMemberAccountsOptedIn =>
       TfRef.attribute<num>(this, 'number_of_member_accounts_opted_in');
+
+  /// Reference to `include_member_accounts` attribute.
+  TfRef<bool> get includeMemberAccountsRef =>
+      TfRef.attribute<bool>(this, 'include_member_accounts');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

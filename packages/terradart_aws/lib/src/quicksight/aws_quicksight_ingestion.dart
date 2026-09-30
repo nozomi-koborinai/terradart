@@ -58,4 +58,23 @@ final class AwsQuicksightIngestion extends Resource {
   /// Reference to `ingestion_status` attribute.
   TfRef<String> get ingestionStatus =>
       TfRef.attribute<String>(this, 'ingestion_status');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `ingestion_id` attribute.
+  TfRef<String> get ingestionIdRef =>
+      TfRef.attribute<String>(this, 'ingestion_id');
+
+  /// Reference to `ingestion_type` attribute.
+  TfRef<String> get ingestionTypeRef =>
+      TfRef.attribute<String>(this, 'ingestion_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

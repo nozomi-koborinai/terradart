@@ -74,4 +74,10 @@ final class DataCloudflarePipelineStream extends Data {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `stream_id` attribute.
+  TfRef<String> get streamIdRef => TfRef.attribute<String>(this, 'stream_id');
 }

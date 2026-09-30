@@ -133,6 +133,35 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination_ports` attribute.
+  TfRef<List<String>> get destinationPortsRef =>
+      TfRef.attribute<List<String>>(this, 'destination_ports');
+
+  /// Reference to `ip_protocol` attribute.
+  TfRef<String> get ipProtocolRef =>
+      TfRef.attribute<String>(this, 'ip_protocol');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `source_ports` attribute.
+  TfRef<List<String>> get sourcePortsRef =>
+      TfRef.attribute<List<String>>(this, 'source_ports');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -353,4 +353,55 @@ final class AwsLaunchConfiguration extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `associate_public_ip_address` attribute.
+  TfRef<bool> get associatePublicIpAddressRef =>
+      TfRef.attribute<bool>(this, 'associate_public_ip_address');
+
+  /// Reference to `ebs_optimized` attribute.
+  TfRef<bool> get ebsOptimizedRef =>
+      TfRef.attribute<bool>(this, 'ebs_optimized');
+
+  /// Reference to `enable_monitoring` attribute.
+  TfRef<bool> get enableMonitoringRef =>
+      TfRef.attribute<bool>(this, 'enable_monitoring');
+
+  /// Reference to `iam_instance_profile` attribute.
+  TfRef<String> get iamInstanceProfileRef =>
+      TfRef.attribute<String>(this, 'iam_instance_profile');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `key_name` attribute.
+  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `placement_tenancy` attribute.
+  TfRef<String> get placementTenancyRef =>
+      TfRef.attribute<String>(this, 'placement_tenancy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `spot_price` attribute.
+  TfRef<String> get spotPriceRef => TfRef.attribute<String>(this, 'spot_price');
+
+  /// Reference to `user_data` attribute.
+  TfRef<String> get userDataRef => TfRef.attribute<String>(this, 'user_data');
+
+  /// Reference to `user_data_base64` attribute.
+  TfRef<String> get userDataBase64Ref =>
+      TfRef.attribute<String>(this, 'user_data_base64');
 }

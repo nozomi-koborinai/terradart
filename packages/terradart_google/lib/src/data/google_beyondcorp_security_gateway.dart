@@ -88,4 +88,11 @@ final class DataGoogleBeyondcorpSecurityGateway extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `security_gateway_id` attribute.
+  TfRef<String> get securityGatewayIdRef =>
+      TfRef.attribute<String>(this, 'security_gateway_id');
 }

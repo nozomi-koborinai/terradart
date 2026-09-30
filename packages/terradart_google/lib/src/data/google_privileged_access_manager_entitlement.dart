@@ -91,4 +91,14 @@ final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `entitlement_id` attribute.
+  TfRef<String> get entitlementIdRef =>
+      TfRef.attribute<String>(this, 'entitlement_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

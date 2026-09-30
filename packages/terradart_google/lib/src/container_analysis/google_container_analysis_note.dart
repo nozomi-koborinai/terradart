@@ -132,4 +132,27 @@ final class GoogleContainerAnalysisNote extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `expiration_time` attribute.
+  TfRef<String> get expirationTimeRef =>
+      TfRef.attribute<String>(this, 'expiration_time');
+
+  /// Reference to `long_description` attribute.
+  TfRef<String> get longDescriptionRef =>
+      TfRef.attribute<String>(this, 'long_description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `related_note_names` attribute.
+  TfRef<List<String>> get relatedNoteNamesRef =>
+      TfRef.attribute<List<String>>(this, 'related_note_names');
+
+  /// Reference to `short_description` attribute.
+  TfRef<String> get shortDescriptionRef =>
+      TfRef.attribute<String>(this, 'short_description');
 }

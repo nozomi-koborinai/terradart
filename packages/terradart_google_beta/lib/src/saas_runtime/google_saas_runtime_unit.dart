@@ -143,4 +143,35 @@ final class GoogleSaasRuntimeUnit extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `management_mode` attribute.
+  TfRef<String> get managementModeRef =>
+      TfRef.attribute<String>(this, 'management_mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `tenant` attribute.
+  TfRef<String> get tenantRef => TfRef.attribute<String>(this, 'tenant');
+
+  /// Reference to `unit_id` attribute.
+  TfRef<String> get unitIdRef => TfRef.attribute<String>(this, 'unit_id');
+
+  /// Reference to `unit_kind` attribute.
+  TfRef<String> get unitKindRef => TfRef.attribute<String>(this, 'unit_kind');
 }

@@ -51,4 +51,10 @@ final class DataGoogleMonitoringAppEngineService extends Data {
   /// Reference to `user_labels` attribute.
   TfRef<Map<String, String>> get userLabels =>
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
+
+  /// Reference to `module_id` attribute.
+  TfRef<String> get moduleIdRef => TfRef.attribute<String>(this, 'module_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

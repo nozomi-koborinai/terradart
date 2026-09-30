@@ -54,9 +54,9 @@ export 'src/storage/google_storage_bucket_access_control.dart'
     show GoogleStorageBucketAccessControl, StorageBucketAccessControlRole;
 export 'src/storage/google_storage_bucket_acl.dart' show GoogleStorageBucketAcl;
 export 'src/storage/google_storage_bucket_iam_binding.dart'
-    show GoogleStorageBucketIamBinding;
+    show GoogleStorageBucketIamBinding, StorageBucketIamBindingCondition;
 export 'src/storage/google_storage_bucket_iam_member.dart'
-    show GoogleStorageBucketIamMember;
+    show GoogleStorageBucketIamMember, StorageBucketIamMemberCondition;
 export 'src/storage/google_storage_bucket_iam_policy.dart'
     show GoogleStorageBucketIamPolicy;
 export 'src/storage/google_storage_bucket_object.dart'
@@ -134,9 +134,13 @@ export 'src/storage/google_storage_insights_report_config.dart'
 export 'src/storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_managed_folder_iam_binding.dart'
-    show GoogleStorageManagedFolderIamBinding;
+    show
+        GoogleStorageManagedFolderIamBinding,
+        StorageManagedFolderIamBindingCondition;
 export 'src/storage/google_storage_managed_folder_iam_member.dart'
-    show GoogleStorageManagedFolderIamMember;
+    show
+        GoogleStorageManagedFolderIamMember,
+        StorageManagedFolderIamMemberCondition;
 export 'src/storage/google_storage_managed_folder_iam_policy.dart'
     show GoogleStorageManagedFolderIamPolicy;
 export 'src/storage/google_storage_notification.dart'

@@ -42,4 +42,17 @@ final class AwsKmsKeyPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bypass_policy_lockout_safety_check` attribute.
+  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+      TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

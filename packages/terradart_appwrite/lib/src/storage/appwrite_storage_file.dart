@@ -65,4 +65,17 @@ final class AppwriteStorageFile extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `bucket_id` attribute.
+  TfRef<String> get bucketIdRef => TfRef.attribute<String>(this, 'bucket_id');
+
+  /// Reference to `file_path` attribute.
+  TfRef<String> get filePathRef => TfRef.attribute<String>(this, 'file_path');
+
+  /// Reference to `permissions` attribute.
+  TfRef<List<String>> get permissionsRef =>
+      TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

@@ -45,4 +45,15 @@ final class GoogleTagsTagBindingCollection extends Resource {
   /// Reference to `active_tags` attribute.
   TfRef<Map<String, String>> get activeTags =>
       TfRef.attribute<Map<String, String>>(this, 'active_tags');
+
+  /// Reference to `full_resource_name` attribute.
+  TfRef<String> get fullResourceNameRef =>
+      TfRef.attribute<String>(this, 'full_resource_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

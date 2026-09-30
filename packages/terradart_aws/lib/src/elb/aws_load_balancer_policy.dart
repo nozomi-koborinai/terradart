@@ -61,4 +61,19 @@ final class AwsLoadBalancerPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `load_balancer_name` attribute.
+  TfRef<String> get loadBalancerNameRef =>
+      TfRef.attribute<String>(this, 'load_balancer_name');
+
+  /// Reference to `policy_name` attribute.
+  TfRef<String> get policyNameRef =>
+      TfRef.attribute<String>(this, 'policy_name');
+
+  /// Reference to `policy_type_name` attribute.
+  TfRef<String> get policyTypeNameRef =>
+      TfRef.attribute<String>(this, 'policy_type_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

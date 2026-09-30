@@ -110,4 +110,11 @@ final class GoogleComputePreviewFeature extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `activation_status` attribute.
+  TfRef<String> get activationStatusRef =>
+      TfRef.attribute<String>(this, 'activation_status');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

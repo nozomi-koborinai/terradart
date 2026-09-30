@@ -80,4 +80,15 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `validation_default_mitigation_action` attribute.
+  TfRef<String> get validationDefaultMitigationActionRef =>
+      TfRef.attribute<String>(this, 'validation_default_mitigation_action');
+
+  /// Reference to `validation_override_mitigation_action` attribute.
+  TfRef<String> get validationOverrideMitigationActionRef =>
+      TfRef.attribute<String>(this, 'validation_override_mitigation_action');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

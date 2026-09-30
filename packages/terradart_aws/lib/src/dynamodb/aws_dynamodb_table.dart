@@ -714,4 +714,64 @@ final class AwsDynamodbTable extends Resource {
   /// Reference to `stream_label` attribute.
   TfRef<String> get streamLabel =>
       TfRef.attribute<String>(this, 'stream_label');
+
+  /// Reference to `billing_mode` attribute.
+  TfRef<String> get billingModeRef =>
+      TfRef.attribute<String>(this, 'billing_mode');
+
+  /// Reference to `deletion_protection_enabled` attribute.
+  TfRef<bool> get deletionProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection_enabled');
+
+  /// Reference to `hash_key` attribute.
+  TfRef<String> get hashKeyRef => TfRef.attribute<String>(this, 'hash_key');
+
+  /// Reference to `range_key` attribute.
+  TfRef<String> get rangeKeyRef => TfRef.attribute<String>(this, 'range_key');
+
+  /// Reference to `read_capacity` attribute.
+  TfRef<num> get readCapacityRef => TfRef.attribute<num>(this, 'read_capacity');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `restore_backup_arn` attribute.
+  TfRef<String> get restoreBackupArnRef =>
+      TfRef.attribute<String>(this, 'restore_backup_arn');
+
+  /// Reference to `restore_date_time` attribute.
+  TfRef<String> get restoreDateTimeRef =>
+      TfRef.attribute<String>(this, 'restore_date_time');
+
+  /// Reference to `restore_source_name` attribute.
+  TfRef<String> get restoreSourceNameRef =>
+      TfRef.attribute<String>(this, 'restore_source_name');
+
+  /// Reference to `restore_source_table_arn` attribute.
+  TfRef<String> get restoreSourceTableArnRef =>
+      TfRef.attribute<String>(this, 'restore_source_table_arn');
+
+  /// Reference to `restore_to_latest_time` attribute.
+  TfRef<bool> get restoreToLatestTimeRef =>
+      TfRef.attribute<bool>(this, 'restore_to_latest_time');
+
+  /// Reference to `stream_enabled` attribute.
+  TfRef<bool> get streamEnabledRef =>
+      TfRef.attribute<bool>(this, 'stream_enabled');
+
+  /// Reference to `stream_view_type` attribute.
+  TfRef<String> get streamViewTypeRef =>
+      TfRef.attribute<String>(this, 'stream_view_type');
+
+  /// Reference to `table_class` attribute.
+  TfRef<String> get tableClassRef =>
+      TfRef.attribute<String>(this, 'table_class');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `write_capacity` attribute.
+  TfRef<num> get writeCapacityRef =>
+      TfRef.attribute<num>(this, 'write_capacity');
 }

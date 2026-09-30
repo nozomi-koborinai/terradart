@@ -75,4 +75,29 @@ final class AwsServicecatalogConstraint extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parameters` attribute.
+  TfRef<String> get parametersRef =>
+      TfRef.attribute<String>(this, 'parameters');
+
+  /// Reference to `portfolio_id` attribute.
+  TfRef<String> get portfolioIdRef =>
+      TfRef.attribute<String>(this, 'portfolio_id');
+
+  /// Reference to `product_id` attribute.
+  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

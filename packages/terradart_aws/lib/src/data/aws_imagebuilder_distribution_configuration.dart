@@ -53,4 +53,14 @@ final class DataAwsImagebuilderDistributionConfiguration extends Data {
   /// Reference to `distribution` attribute.
   TfRef<List<Map<String, Object?>>> get distribution =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'distribution');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

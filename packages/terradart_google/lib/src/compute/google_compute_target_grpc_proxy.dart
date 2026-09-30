@@ -65,6 +65,24 @@ final class GoogleComputeTargetGrpcProxy extends Resource {
   TfRef<String> get selfLinkWithId =>
       TfRef.attribute<String>(this, 'self_link_with_id');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `url_map` attribute.
+  TfRef<String> get urlMapRef => TfRef.attribute<String>(this, 'url_map');
+
+  /// Reference to `validate_for_proxyless` attribute.
+  TfRef<bool> get validateForProxylessRef =>
+      TfRef.attribute<bool>(this, 'validate_for_proxyless');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

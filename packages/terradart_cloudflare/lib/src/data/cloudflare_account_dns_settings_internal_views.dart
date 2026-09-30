@@ -74,4 +74,25 @@ final class DataCloudflareAccountDnsSettingsInternalViews extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareAccountDnsSettingsInternalViewsSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `match` attribute.
+  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+
+  /// Reference to `zone_name` attribute.
+  TfRef<String> get zoneNameRef => TfRef.attribute<String>(this, 'zone_name');
 }

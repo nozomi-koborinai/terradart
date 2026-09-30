@@ -17,9 +17,13 @@ export 'src/secure/google_secure_source_manager_instance.dart'
         SecureSourceManagerInstanceStateNote,
         SecureSourceManagerInstanceWorkforceIdentityFederationConfig;
 export 'src/secure/google_secure_source_manager_instance_iam_binding.dart'
-    show GoogleSecureSourceManagerInstanceIamBinding;
+    show
+        GoogleSecureSourceManagerInstanceIamBinding,
+        SecureSourceManagerInstanceIamBindingCondition;
 export 'src/secure/google_secure_source_manager_instance_iam_member.dart'
-    show GoogleSecureSourceManagerInstanceIamMember;
+    show
+        GoogleSecureSourceManagerInstanceIamMember,
+        SecureSourceManagerInstanceIamMemberCondition;
 export 'src/secure/google_secure_source_manager_instance_iam_policy.dart'
     show GoogleSecureSourceManagerInstanceIamPolicy;
 export 'src/secure/google_secure_source_manager_repository.dart'
@@ -29,8 +33,12 @@ export 'src/secure/google_secure_source_manager_repository.dart'
         SecureSourceManagerRepositoryScanConfig,
         SecureSourceManagerRepositoryScanConfigSecretScanConfig;
 export 'src/secure/google_secure_source_manager_repository_iam_binding.dart'
-    show GoogleSecureSourceManagerRepositoryIamBinding;
+    show
+        GoogleSecureSourceManagerRepositoryIamBinding,
+        SecureSourceManagerRepositoryIamBindingCondition;
 export 'src/secure/google_secure_source_manager_repository_iam_member.dart'
-    show GoogleSecureSourceManagerRepositoryIamMember;
+    show
+        GoogleSecureSourceManagerRepositoryIamMember,
+        SecureSourceManagerRepositoryIamMemberCondition;
 export 'src/secure/google_secure_source_manager_repository_iam_policy.dart'
     show GoogleSecureSourceManagerRepositoryIamPolicy;

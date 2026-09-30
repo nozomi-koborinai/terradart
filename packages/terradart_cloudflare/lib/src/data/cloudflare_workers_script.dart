@@ -57,4 +57,11 @@ final class DataCloudflareWorkersScript extends Data {
 
   /// Reference to `script` attribute.
   TfRef<String> get script => TfRef.attribute<String>(this, 'script');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
 }

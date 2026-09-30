@@ -49,4 +49,14 @@ final class AwsWafv2ApiKey extends Resource {
 
   /// Reference to `api_key` attribute.
   TfRef<String> get apiKey => TfRef.attribute<String>(this, 'api_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+
+  /// Reference to `token_domains` attribute.
+  TfRef<List<String>> get tokenDomainsRef =>
+      TfRef.attribute<List<String>>(this, 'token_domains');
 }

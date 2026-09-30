@@ -55,4 +55,7 @@ final class DataAwsRdsClusters extends Data {
   /// Reference to `cluster_identifiers` attribute.
   TfRef<List<String>> get clusterIdentifiers =>
       TfRef.attribute<List<String>>(this, 'cluster_identifiers');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

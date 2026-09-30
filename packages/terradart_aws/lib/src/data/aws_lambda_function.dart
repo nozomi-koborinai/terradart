@@ -170,4 +170,18 @@ final class DataAwsLambdaFunction extends Data {
   /// Reference to `vpc_config` attribute.
   TfRef<List<Map<String, Object?>>> get vpcConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_config');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

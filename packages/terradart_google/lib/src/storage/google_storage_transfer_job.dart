@@ -867,10 +867,10 @@ final class StorageTransferJobTransferSpecTransferOptionsMetadataOptions {
 ///   status: TfArg.literal('DISABLED'),
 ///   transferSpec: StorageTransferJobTransferSpec(
 ///     gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
-///       bucketName: TfArg.ref(src.nameRef),
+///       bucketName: src.ref,
 ///     ),
 ///     gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
-///       bucketName: TfArg.ref(dst.nameRef),
+///       bucketName: dst.ref,
 ///     ),
 ///   ),
 /// );
@@ -940,6 +940,24 @@ final class GoogleStorageTransferJob extends Resource {
   /// Reference to `last_modification_time` attribute.
   TfRef<String> get lastModificationTime =>
       TfRef.attribute<String>(this, 'last_modification_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

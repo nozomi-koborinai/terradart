@@ -80,4 +80,20 @@ final class CloudflareApiShieldSchema extends Resource {
 
   /// Reference to `source` attribute.
   TfRef<String> get source => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `file` attribute.
+  TfRef<String> get fileRef => TfRef.attribute<String>(this, 'file');
+
+  /// Reference to `omit_source` attribute.
+  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+
+  /// Reference to `schema_id` attribute.
+  TfRef<String> get schemaIdRef => TfRef.attribute<String>(this, 'schema_id');
+
+  /// Reference to `validation_enabled` attribute.
+  TfRef<String> get validationEnabledRef =>
+      TfRef.attribute<String>(this, 'validation_enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

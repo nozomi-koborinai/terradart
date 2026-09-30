@@ -65,4 +65,13 @@ final class AwsS3controlMultiRegionAccessPointRoutes extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsS3controlMultiRegionAccessPointRoutes>`.
   RefTo<AwsS3controlMultiRegionAccessPointRoutes> get ref => RefTo.of(this);
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `mrap` attribute.
+  TfRef<String> get mrapRef => TfRef.attribute<String>(this, 'mrap');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

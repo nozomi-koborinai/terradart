@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_vpn_tunnel`.
@@ -139,6 +140,85 @@ final class ComputeVpnTunnelPeerGcpGateway extends ComputeVpnTunnelPeer {
   };
 }
 
+/// Typed helper for the `cipher_suite` block of
+/// `google_compute_vpn_tunnel` (derived from provider schema).
+@immutable
+final class ComputeVpnTunnelCipherSuite {
+  const ComputeVpnTunnelCipherSuite({this.phase1, this.phase2});
+
+  final ComputeVpnTunnelCipherSuitePhase1? phase1;
+
+  final ComputeVpnTunnelCipherSuitePhase2? phase2;
+
+  Map<String, Object?> encode() => {
+    'phase1': ?phase1?.encode(),
+    'phase2': ?phase2?.encode(),
+  };
+}
+
+/// Typed helper for the `cipher_suite.phase1` block of
+/// `google_compute_vpn_tunnel` (derived from provider schema).
+@immutable
+final class ComputeVpnTunnelCipherSuitePhase1 {
+  const ComputeVpnTunnelCipherSuitePhase1({
+    this.dh,
+    this.encryption,
+    this.integrity,
+    this.prf,
+  });
+
+  final TfArg<List<String>>? dh;
+
+  final TfArg<List<String>>? encryption;
+
+  final TfArg<List<String>>? integrity;
+
+  final TfArg<List<String>>? prf;
+
+  Map<String, Object?> encode() => {
+    'dh': ?dh?.toTfJson(),
+    'encryption': ?encryption?.toTfJson(),
+    'integrity': ?integrity?.toTfJson(),
+    'prf': ?prf?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `cipher_suite.phase2` block of
+/// `google_compute_vpn_tunnel` (derived from provider schema).
+@immutable
+final class ComputeVpnTunnelCipherSuitePhase2 {
+  const ComputeVpnTunnelCipherSuitePhase2({
+    this.encryption,
+    this.integrity,
+    this.pfs,
+  });
+
+  final TfArg<List<String>>? encryption;
+
+  final TfArg<List<String>>? integrity;
+
+  final TfArg<List<String>>? pfs;
+
+  Map<String, Object?> encode() => {
+    'encryption': ?encryption?.toTfJson(),
+    'integrity': ?integrity?.toTfJson(),
+    'pfs': ?pfs?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_vpn_tunnel` (derived from provider schema).
+@immutable
+final class ComputeVpnTunnelParams {
+  const ComputeVpnTunnelParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_vpn_tunnel`.
 ///
 /// VPN tunnel resource.
@@ -166,6 +246,8 @@ final class GoogleComputeVpnTunnel extends Resource {
     TfArg<List<String>>? localTrafficSelector,
     TfArg<List<String>>? remoteTrafficSelector,
     TfArg<Map<String, String>>? labels,
+    ComputeVpnTunnelCipherSuite? cipherSuite,
+    ComputeVpnTunnelParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -191,6 +273,9 @@ final class GoogleComputeVpnTunnel extends Resource {
            'local_traffic_selector': ?localTrafficSelector,
            'remote_traffic_selector': ?remoteTrafficSelector,
            'labels': ?labels,
+           if (cipherSuite != null)
+             'cipher_suite': TfArg.literal(cipherSuite.encode()),
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -238,4 +323,71 @@ final class GoogleComputeVpnTunnel extends Resource {
 
   /// Reference to `tunnel_id` attribute.
   TfRef<String> get tunnelId => TfRef.attribute<String>(this, 'tunnel_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ike_version` attribute.
+  TfRef<num> get ikeVersionRef => TfRef.attribute<num>(this, 'ike_version');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `local_traffic_selector` attribute.
+  TfRef<List<String>> get localTrafficSelectorRef =>
+      TfRef.attribute<List<String>>(this, 'local_traffic_selector');
+
+  /// Reference to `peer_external_gateway` attribute.
+  TfRef<String> get peerExternalGatewayRef =>
+      TfRef.attribute<String>(this, 'peer_external_gateway');
+
+  /// Reference to `peer_external_gateway_interface` attribute.
+  TfRef<num> get peerExternalGatewayInterfaceRef =>
+      TfRef.attribute<num>(this, 'peer_external_gateway_interface');
+
+  /// Reference to `peer_gcp_gateway` attribute.
+  TfRef<String> get peerGcpGatewayRef =>
+      TfRef.attribute<String>(this, 'peer_gcp_gateway');
+
+  /// Reference to `peer_ip` attribute.
+  TfRef<String> get peerIpRef => TfRef.attribute<String>(this, 'peer_ip');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remote_traffic_selector` attribute.
+  TfRef<List<String>> get remoteTrafficSelectorRef =>
+      TfRef.attribute<List<String>>(this, 'remote_traffic_selector');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+
+  /// Reference to `shared_secret` attribute.
+  TfRef<String> get sharedSecretRef =>
+      TfRef.attribute<String>(this, 'shared_secret');
+
+  /// Reference to `shared_secret_wo_version` attribute.
+  TfRef<String> get sharedSecretWoVersionRef =>
+      TfRef.attribute<String>(this, 'shared_secret_wo_version');
+
+  /// Reference to `target_vpn_gateway` attribute.
+  TfRef<String> get targetVpnGatewayRef =>
+      TfRef.attribute<String>(this, 'target_vpn_gateway');
+
+  /// Reference to `vpn_gateway` attribute.
+  TfRef<String> get vpnGatewayRef =>
+      TfRef.attribute<String>(this, 'vpn_gateway');
+
+  /// Reference to `vpn_gateway_interface` attribute.
+  TfRef<num> get vpnGatewayInterfaceRef =>
+      TfRef.attribute<num>(this, 'vpn_gateway_interface');
 }

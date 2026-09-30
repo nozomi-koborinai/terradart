@@ -45,4 +45,10 @@ final class DataAwsAthenaNamedQuery extends Data {
 
   /// Reference to `querystring` attribute.
   TfRef<String> get querystring => TfRef.attribute<String>(this, 'querystring');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workgroup` attribute.
+  TfRef<String> get workgroupRef => TfRef.attribute<String>(this, 'workgroup');
 }

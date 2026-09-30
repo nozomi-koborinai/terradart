@@ -38,4 +38,16 @@ final class DataGoogleIamTestablePermissions extends Data {
   /// Reference to `permissions` attribute.
   TfRef<List<Map<String, Object?>>> get permissions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'permissions');
+
+  /// Reference to `custom_support_level` attribute.
+  TfRef<String> get customSupportLevelRef =>
+      TfRef.attribute<String>(this, 'custom_support_level');
+
+  /// Reference to `full_resource_name` attribute.
+  TfRef<String> get fullResourceNameRef =>
+      TfRef.attribute<String>(this, 'full_resource_name');
+
+  /// Reference to `stages` attribute.
+  TfRef<List<String>> get stagesRef =>
+      TfRef.attribute<List<String>>(this, 'stages');
 }

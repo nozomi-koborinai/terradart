@@ -390,4 +390,98 @@ final class AwsMwaaEnvironment extends Resource {
   /// Reference to `webserver_vpc_endpoint_service` attribute.
   TfRef<String> get webserverVpcEndpointService =>
       TfRef.attribute<String>(this, 'webserver_vpc_endpoint_service');
+
+  /// Reference to `airflow_configuration_options` attribute.
+  TfRef<Map<String, String>> get airflowConfigurationOptionsRef =>
+      TfRef.attribute<Map<String, String>>(
+        this,
+        'airflow_configuration_options',
+      );
+
+  /// Reference to `airflow_version` attribute.
+  TfRef<String> get airflowVersionRef =>
+      TfRef.attribute<String>(this, 'airflow_version');
+
+  /// Reference to `dag_s3_path` attribute.
+  TfRef<String> get dagS3PathRef =>
+      TfRef.attribute<String>(this, 'dag_s3_path');
+
+  /// Reference to `endpoint_management` attribute.
+  TfRef<String> get endpointManagementRef =>
+      TfRef.attribute<String>(this, 'endpoint_management');
+
+  /// Reference to `environment_class` attribute.
+  TfRef<String> get environmentClassRef =>
+      TfRef.attribute<String>(this, 'environment_class');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `max_webservers` attribute.
+  TfRef<num> get maxWebserversRef =>
+      TfRef.attribute<num>(this, 'max_webservers');
+
+  /// Reference to `max_workers` attribute.
+  TfRef<num> get maxWorkersRef => TfRef.attribute<num>(this, 'max_workers');
+
+  /// Reference to `min_webservers` attribute.
+  TfRef<num> get minWebserversRef =>
+      TfRef.attribute<num>(this, 'min_webservers');
+
+  /// Reference to `min_workers` attribute.
+  TfRef<num> get minWorkersRef => TfRef.attribute<num>(this, 'min_workers');
+
+  /// Reference to `plugins_s3_object_version` attribute.
+  TfRef<String> get pluginsS3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 'plugins_s3_object_version');
+
+  /// Reference to `plugins_s3_path` attribute.
+  TfRef<String> get pluginsS3PathRef =>
+      TfRef.attribute<String>(this, 'plugins_s3_path');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `requirements_s3_object_version` attribute.
+  TfRef<String> get requirementsS3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 'requirements_s3_object_version');
+
+  /// Reference to `requirements_s3_path` attribute.
+  TfRef<String> get requirementsS3PathRef =>
+      TfRef.attribute<String>(this, 'requirements_s3_path');
+
+  /// Reference to `schedulers` attribute.
+  TfRef<num> get schedulersRef => TfRef.attribute<num>(this, 'schedulers');
+
+  /// Reference to `source_bucket_arn` attribute.
+  TfRef<String> get sourceBucketArnRef =>
+      TfRef.attribute<String>(this, 'source_bucket_arn');
+
+  /// Reference to `startup_script_s3_object_version` attribute.
+  TfRef<String> get startupScriptS3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 'startup_script_s3_object_version');
+
+  /// Reference to `startup_script_s3_path` attribute.
+  TfRef<String> get startupScriptS3PathRef =>
+      TfRef.attribute<String>(this, 'startup_script_s3_path');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `webserver_access_mode` attribute.
+  TfRef<String> get webserverAccessModeRef =>
+      TfRef.attribute<String>(this, 'webserver_access_mode');
+
+  /// Reference to `weekly_maintenance_window_start` attribute.
+  TfRef<String> get weeklyMaintenanceWindowStartRef =>
+      TfRef.attribute<String>(this, 'weekly_maintenance_window_start');
+
+  /// Reference to `worker_replacement_strategy` attribute.
+  TfRef<String> get workerReplacementStrategyRef =>
+      TfRef.attribute<String>(this, 'worker_replacement_strategy');
 }

@@ -130,4 +130,10 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
   /// Reference to `pattern_type` attribute.
   TfRef<String> get patternType =>
       TfRef.attribute<String>(this, 'pattern_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `pattern_id` attribute.
+  TfRef<String> get patternIdRef => TfRef.attribute<String>(this, 'pattern_id');
 }

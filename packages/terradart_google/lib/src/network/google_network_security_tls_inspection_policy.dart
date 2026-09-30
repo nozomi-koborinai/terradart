@@ -109,6 +109,43 @@ final class GoogleNetworkSecurityTlsInspectionPolicy extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `ca_pool` attribute.
+  TfRef<String> get caPoolRef => TfRef.attribute<String>(this, 'ca_pool');
+
+  /// Reference to `custom_tls_features` attribute.
+  TfRef<List<String>> get customTlsFeaturesRef =>
+      TfRef.attribute<List<String>>(this, 'custom_tls_features');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `exclude_public_ca_set` attribute.
+  TfRef<bool> get excludePublicCaSetRef =>
+      TfRef.attribute<bool>(this, 'exclude_public_ca_set');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `min_tls_version` attribute.
+  TfRef<String> get minTlsVersionRef =>
+      TfRef.attribute<String>(this, 'min_tls_version');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `tls_feature_profile` attribute.
+  TfRef<String> get tlsFeatureProfileRef =>
+      TfRef.attribute<String>(this, 'tls_feature_profile');
+
+  /// Reference to `trust_config` attribute.
+  TfRef<String> get trustConfigRef =>
+      TfRef.attribute<String>(this, 'trust_config');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

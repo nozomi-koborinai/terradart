@@ -1,16 +1,14 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/src/stack.dart';
-import 'package:terradart_core/src/synth/dart_constants_emitter.dart';
+import 'package:terradart_core/src/synth/app_exports_emitter.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
-import 'package:terradart_core/src/synth/literal_resolver.dart';
-import 'package:terradart_core/src/synth/output_emitter.dart';
 
 /// Bundle returned by [StackSynth.synth].
 class SynthResult {
   const SynthResult({
     required this.tfJson,
-    required this.dartConstants,
-    required this.dartConstantsPath,
+    required this.dartSource,
+    required this.dartSourcePath,
   });
 
   /// JSON-serialisable map suitable for `dart:convert`'s `JsonEncoder`.
@@ -18,24 +16,21 @@ class SynthResult {
   /// `${...}` interpolation strings.
   final Map<String, dynamic> tfJson;
 
-  /// Generated Dart source for the `<stack>.app.dart` constants file.
-  /// Rendered whenever [Stack.appExportsOutputPath] is set (an empty class
-  /// when no export resolved to a constant); otherwise `null` unless some
-  /// export produced a constant.
-  final String? dartConstants;
+  /// Generated Dart source of the [Stack.appExports] file, rendered in full
+  /// (an empty class when the Stack declares no constants); `null` when the
+  /// Stack has no such file.
+  final String? dartSource;
 
-  /// Output path hint for the Dart constants file (read from
-  /// [Stack.appExportsOutputPath]). `null` when unset — the caller's
-  /// `main()` is responsible for supplying a default in that case.
-  final String? dartConstantsPath;
+  /// [AppExports.path] of [Stack.appExports], or `null`.
+  final String? dartSourcePath;
 }
 
 /// Synth entry point: convert a [Stack] into the JSON map for
-/// `main.tf.json` plus the Dart source for `<stack>.app.dart`.
+/// `main.tf.json` plus the Dart source of the `Stack.appExports` file.
 ///
 /// This is a thin orchestrator over the building blocks in `synth/`:
-/// [LiteralResolver] (Pass 1) → [OutputEmitter] (Pass 2) → assemble
-/// JSON via [TfJsonEncoder], render Dart via [DartConstantsEmitter].
+/// JSON via [TfJsonEncoder], outputs and the Dart file via
+/// [AppExportsEmitter].
 ///
 /// Internal: callers should use [Stack.synth] (in-memory) or
 /// [Stack.writeTo] (file write) — the public surface routes through
@@ -43,12 +38,7 @@ class SynthResult {
 @internal
 class StackSynth {
   /// Synthesise [stack] into a [SynthResult].
-  ///
-  /// `stackName` is used to derive the generated Dart class name
-  /// (`<PascalCaseStackName>Exports`). Defaults to the runtime type name
-  /// of the `Stack` subclass — e.g. `class OrdersStack extends Stack` →
-  /// `OrdersStackExports`.
-  static SynthResult synth(Stack stack, {String? stackName}) {
+  static SynthResult synth(Stack stack) {
     // 1. Top-level terraform block (required).
     final terraform = TfJsonEncoder.terraformBlock(stack);
 
@@ -63,10 +53,8 @@ class StackSynth {
     final modules = TfJsonEncoder.moduleGroup(stack);
     final moved = TfJsonEncoder.movedBlock(stack);
 
-    // 4. Two-pass app exports.
-    final resolver = LiteralResolver.fromStack(stack);
-    final pass2 = OutputEmitter.run(stack: stack, resolver: resolver);
-    final outputs = TfJsonEncoder.outputBlock(pass2.terraformOutputs);
+    // 4. Outputs.
+    final outputs = AppExportsEmitter.outputBlock(stack);
 
     // 5. Assemble tf.json (key order is stable for golden tests).
     final tfJson = <String, dynamic>{'terraform': terraform};
@@ -78,35 +66,11 @@ class StackSynth {
     if (moved != null) tfJson['moved'] = moved;
     if (outputs != null) tfJson['output'] = outputs;
 
-    // 6. Dart constants file. With an output path set it is rendered even
-    // when empty, so a constant that stopped resolving to a literal leaves
-    // no stale value behind for the app to compile against.
-    String? dartConstants;
-    if (pass2.dartConstants.isNotEmpty || stack.appExportsOutputPath != null) {
-      final resolvedName = stackName ?? _stackClassName(stack);
-      dartConstants = DartConstantsEmitter.emit(
-        stackName: _toPascalCase(resolvedName),
-        constants: pass2.dartConstants,
-      );
-    }
-
+    // 6. The app's Dart file.
     return SynthResult(
       tfJson: tfJson,
-      dartConstants: dartConstants,
-      dartConstantsPath: stack.appExportsOutputPath,
+      dartSource: AppExportsEmitter.dartSource(stack),
+      dartSourcePath: stack.appExports?.path,
     );
-  }
-
-  /// Falls back to runtime type name when no explicit `stackName` is
-  /// given. v0.0.x does not strip a trailing `Stack` suffix — a class
-  /// literally named `OrdersStack` produces `OrdersStackExports`.
-  static String _stackClassName(Stack stack) => stack.runtimeType.toString();
-
-  static String _toPascalCase(String name) {
-    if (name.isEmpty) return name;
-    final parts = name.split(RegExp(r'[_\-\s]+'));
-    return parts
-        .map((p) => p.isEmpty ? '' : p[0].toUpperCase() + p.substring(1))
-        .join();
   }
 }

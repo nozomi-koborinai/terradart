@@ -1,10 +1,24 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_instant_snapshot`.
 const Set<String> _googleComputeInstantSnapshotSensitive = <String>{};
+
+/// Typed helper for the `params` block of
+/// `google_compute_instant_snapshot` (derived from provider schema).
+@immutable
+final class ComputeInstantSnapshotParams {
+  const ComputeInstantSnapshotParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_instant_snapshot`.
 ///
@@ -26,6 +40,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
     required TfArg<String> sourceDisk,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
+    ComputeInstantSnapshotParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
     TfArg<String>? project,
@@ -40,6 +55,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
            'source_disk': sourceDisk,
            'description': ?description,
            'labels': ?labels,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'zone': ?zone,
            'project': ?project,
@@ -78,6 +94,28 @@ final class GoogleComputeInstantSnapshot extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_disk` attribute.
+  TfRef<String> get sourceDiskRef =>
+      TfRef.attribute<String>(this, 'source_disk');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

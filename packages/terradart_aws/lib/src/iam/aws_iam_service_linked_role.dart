@@ -54,4 +54,20 @@ final class AwsIamServiceLinkedRole extends Resource {
 
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
+
+  /// Reference to `aws_service_name` attribute.
+  TfRef<String> get awsServiceNameRef =>
+      TfRef.attribute<String>(this, 'aws_service_name');
+
+  /// Reference to `custom_suffix` attribute.
+  TfRef<String> get customSuffixRef =>
+      TfRef.attribute<String>(this, 'custom_suffix');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

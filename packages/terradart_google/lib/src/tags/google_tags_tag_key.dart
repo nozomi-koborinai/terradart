@@ -70,4 +70,29 @@ final class GoogleTagsTagKey extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `allowed_values_regex` attribute.
+  TfRef<String> get allowedValuesRegexRef =>
+      TfRef.attribute<String>(this, 'allowed_values_regex');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `purpose` attribute.
+  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+
+  /// Reference to `purpose_data` attribute.
+  TfRef<Map<String, String>> get purposeDataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'purpose_data');
+
+  /// Reference to `short_name` attribute.
+  TfRef<String> get shortNameRef => TfRef.attribute<String>(this, 'short_name');
 }

@@ -100,4 +100,19 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `delivery_destination_type` attribute.
+  TfRef<String> get deliveryDestinationTypeRef =>
+      TfRef.attribute<String>(this, 'delivery_destination_type');
+
+  /// Reference to `output_format` attribute.
+  TfRef<String> get outputFormatRef =>
+      TfRef.attribute<String>(this, 'output_format');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

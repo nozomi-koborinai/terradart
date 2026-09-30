@@ -1,10 +1,27 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_biglake_database`.
 const Set<String> _googleBiglakeDatabaseSensitive = <String>{};
+
+/// Typed helper for the `hive_options` block of
+/// `google_biglake_database` (derived from provider schema).
+@immutable
+final class BiglakeDatabaseHiveOptions {
+  const BiglakeDatabaseHiveOptions({this.locationUri, this.parameters});
+
+  final TfArg<String>? locationUri;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  Map<String, Object?> encode() => {
+    'location_uri': ?locationUri?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_biglake_database`.
 ///
@@ -17,7 +34,7 @@ final class GoogleBiglakeDatabase extends Resource {
     required TfArg<String> name,
     required TfArg<String> catalog,
     required TfArg<String> type,
-    required TfArg<Map<String, dynamic>> hiveOptions,
+    required BiglakeDatabaseHiveOptions hiveOptions,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -29,7 +46,7 @@ final class GoogleBiglakeDatabase extends Resource {
            'name': name,
            'catalog': catalog,
            'type': type,
-           'hive_options': hiveOptions,
+           'hive_options': TfArg.literal(hiveOptions.encode()),
            'deletion_policy': ?deletionPolicy,
          },
        );
@@ -58,4 +75,14 @@ final class GoogleBiglakeDatabase extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

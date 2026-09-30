@@ -30,4 +30,11 @@ final class AwsIamGroupPolicyAttachmentsExclusive extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsIamGroupPolicyAttachmentsExclusive>`.
   RefTo<AwsIamGroupPolicyAttachmentsExclusive> get ref => RefTo.of(this);
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `policy_arns` attribute.
+  TfRef<List<String>> get policyArnsRef =>
+      TfRef.attribute<List<String>>(this, 'policy_arns');
 }

@@ -36,4 +36,16 @@ final class DataCloudflareCustomSsls extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCustomSslsSensitive;
+
+  /// Reference to `match` attribute.
+  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

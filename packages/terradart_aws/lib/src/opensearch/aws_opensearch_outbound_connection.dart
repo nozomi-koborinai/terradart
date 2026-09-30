@@ -140,4 +140,19 @@ final class AwsOpensearchOutboundConnection extends Resource {
   /// Reference to `connection_status` attribute.
   TfRef<String> get connectionStatus =>
       TfRef.attribute<String>(this, 'connection_status');
+
+  /// Reference to `accept_connection` attribute.
+  TfRef<bool> get acceptConnectionRef =>
+      TfRef.attribute<bool>(this, 'accept_connection');
+
+  /// Reference to `connection_alias` attribute.
+  TfRef<String> get connectionAliasRef =>
+      TfRef.attribute<String>(this, 'connection_alias');
+
+  /// Reference to `connection_mode` attribute.
+  TfRef<String> get connectionModeRef =>
+      TfRef.attribute<String>(this, 'connection_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

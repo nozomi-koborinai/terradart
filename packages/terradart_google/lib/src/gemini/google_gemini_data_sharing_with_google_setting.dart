@@ -85,4 +85,30 @@ final class GoogleGeminiDataSharingWithGoogleSetting extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `data_sharing_with_google_setting_id` attribute.
+  TfRef<String> get dataSharingWithGoogleSettingIdRef =>
+      TfRef.attribute<String>(this, 'data_sharing_with_google_setting_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_data_sharing` attribute.
+  TfRef<bool> get enableDataSharingRef =>
+      TfRef.attribute<bool>(this, 'enable_data_sharing');
+
+  /// Reference to `enable_preview_data_sharing` attribute.
+  TfRef<bool> get enablePreviewDataSharingRef =>
+      TfRef.attribute<bool>(this, 'enable_preview_data_sharing');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

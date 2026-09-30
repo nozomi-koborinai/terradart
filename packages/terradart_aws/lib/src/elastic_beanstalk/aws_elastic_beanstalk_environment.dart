@@ -225,4 +225,50 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
   /// Reference to `triggers` attribute.
   TfRef<List<String>> get triggers =>
       TfRef.attribute<List<String>>(this, 'triggers');
+
+  /// Reference to `application` attribute.
+  TfRef<String> get applicationRef =>
+      TfRef.attribute<String>(this, 'application');
+
+  /// Reference to `cname_prefix` attribute.
+  TfRef<String> get cnamePrefixRef =>
+      TfRef.attribute<String>(this, 'cname_prefix');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `platform_arn` attribute.
+  TfRef<String> get platformArnRef =>
+      TfRef.attribute<String>(this, 'platform_arn');
+
+  /// Reference to `poll_interval` attribute.
+  TfRef<String> get pollIntervalRef =>
+      TfRef.attribute<String>(this, 'poll_interval');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `solution_stack_name` attribute.
+  TfRef<String> get solutionStackNameRef =>
+      TfRef.attribute<String>(this, 'solution_stack_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `template_name` attribute.
+  TfRef<String> get templateNameRef =>
+      TfRef.attribute<String>(this, 'template_name');
+
+  /// Reference to `tier` attribute.
+  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+
+  /// Reference to `version_label` attribute.
+  TfRef<String> get versionLabelRef =>
+      TfRef.attribute<String>(this, 'version_label');
+
+  /// Reference to `wait_for_ready_timeout` attribute.
+  TfRef<String> get waitForReadyTimeoutRef =>
+      TfRef.attribute<String>(this, 'wait_for_ready_timeout');
 }

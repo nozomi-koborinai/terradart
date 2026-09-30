@@ -57,4 +57,7 @@ final class DataCloudflareZoneHold extends Data {
   /// Reference to `include_subdomains` attribute.
   TfRef<String> get includeSubdomains =>
       TfRef.attribute<String>(this, 'include_subdomains');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

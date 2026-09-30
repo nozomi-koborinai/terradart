@@ -199,4 +199,45 @@ final class GoogleMemcacheInstance extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `authorized_network` attribute.
+  TfRef<String> get authorizedNetworkRef =>
+      TfRef.attribute<String>(this, 'authorized_network');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `memcache_version` attribute.
+  TfRef<String> get memcacheVersionRef =>
+      TfRef.attribute<String>(this, 'memcache_version');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reserved_ip_range_id` attribute.
+  TfRef<List<String>> get reservedIpRangeIdRef =>
+      TfRef.attribute<List<String>>(this, 'reserved_ip_range_id');
+
+  /// Reference to `zones` attribute.
+  TfRef<List<String>> get zonesRef =>
+      TfRef.attribute<List<String>>(this, 'zones');
 }

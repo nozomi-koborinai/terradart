@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_entry_type`.
 const Set<String> _googleDataplexEntryTypeSensitive = <String>{};
+
+/// Typed helper for the `required_aspects` block of
+/// `google_dataplex_entry_type` (derived from provider schema).
+@immutable
+final class DataplexEntryTypeRequiredAspects {
+  const DataplexEntryTypeRequiredAspects({this.type});
+
+  final TfArg<String>? type;
+
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
 
 /// Factory wrapper for `google_dataplex_entry_type`.
 ///
@@ -21,6 +33,7 @@ final class GoogleDataplexEntryType extends Resource {
     TfArg<String>? platform,
     TfArg<String>? system,
     TfArg<List<String>>? typeAliases,
+    List<DataplexEntryTypeRequiredAspects>? requiredAspects,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -37,6 +50,10 @@ final class GoogleDataplexEntryType extends Resource {
            'platform': ?platform,
            'system': ?system,
            'type_aliases': ?typeAliases,
+           if (requiredAspects != null)
+             'required_aspects': TfArg.literal([
+               for (final e in requiredAspects) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -71,4 +88,40 @@ final class GoogleDataplexEntryType extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `entry_type_id` attribute.
+  TfRef<String> get entryTypeIdRef =>
+      TfRef.attribute<String>(this, 'entry_type_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `platform` attribute.
+  TfRef<String> get platformRef => TfRef.attribute<String>(this, 'platform');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `system` attribute.
+  TfRef<String> get systemRef => TfRef.attribute<String>(this, 'system');
+
+  /// Reference to `type_aliases` attribute.
+  TfRef<List<String>> get typeAliasesRef =>
+      TfRef.attribute<List<String>>(this, 'type_aliases');
 }

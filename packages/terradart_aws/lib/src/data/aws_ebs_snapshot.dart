@@ -107,4 +107,26 @@ final class DataAwsEbsSnapshot extends Data {
 
   /// Reference to `volume_size` attribute.
   TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `owners` attribute.
+  TfRef<List<String>> get ownersRef =>
+      TfRef.attribute<List<String>>(this, 'owners');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `restorable_by_user_ids` attribute.
+  TfRef<List<String>> get restorableByUserIdsRef =>
+      TfRef.attribute<List<String>>(this, 'restorable_by_user_ids');
+
+  /// Reference to `snapshot_ids` attribute.
+  TfRef<List<String>> get snapshotIdsRef =>
+      TfRef.attribute<List<String>>(this, 'snapshot_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

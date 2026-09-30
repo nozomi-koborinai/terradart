@@ -901,4 +901,44 @@ final class AwsS3Bucket extends Resource {
   /// Reference to `website_endpoint` attribute.
   TfRef<String> get websiteEndpoint =>
       TfRef.attribute<String>(this, 'website_endpoint');
+
+  /// Reference to `acceleration_status` attribute.
+  TfRef<String> get accelerationStatusRef =>
+      TfRef.attribute<String>(this, 'acceleration_status');
+
+  /// Reference to `acl` attribute.
+  TfRef<String> get aclRef => TfRef.attribute<String>(this, 'acl');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `bucket_namespace` attribute.
+  TfRef<String> get bucketNamespaceRef =>
+      TfRef.attribute<String>(this, 'bucket_namespace');
+
+  /// Reference to `bucket_prefix` attribute.
+  TfRef<String> get bucketPrefixRef =>
+      TfRef.attribute<String>(this, 'bucket_prefix');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `object_lock_enabled` attribute.
+  TfRef<bool> get objectLockEnabledRef =>
+      TfRef.attribute<bool>(this, 'object_lock_enabled');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_payer` attribute.
+  TfRef<String> get requestPayerRef =>
+      TfRef.attribute<String>(this, 'request_payer');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

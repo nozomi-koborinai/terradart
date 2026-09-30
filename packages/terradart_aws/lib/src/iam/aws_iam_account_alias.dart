@@ -28,4 +28,8 @@ final class AwsIamAccountAlias extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_alias` attribute.
+  TfRef<String> get accountAliasRef =>
+      TfRef.attribute<String>(this, 'account_alias');
 }

@@ -67,4 +67,11 @@ final class DataCloudflareEmailSendingSubdomain extends Data {
 
   /// Reference to `tag` attribute.
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
+
+  /// Reference to `subdomain_id` attribute.
+  TfRef<String> get subdomainIdRef =>
+      TfRef.attribute<String>(this, 'subdomain_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -64,4 +64,23 @@ final class GoogleDataCatalogPolicyTag extends Resource {
   /// Reference to `child_policy_tags` attribute.
   TfRef<List<String>> get childPolicyTags =>
       TfRef.attribute<List<String>>(this, 'child_policy_tags');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `parent_policy_tag` attribute.
+  TfRef<String> get parentPolicyTagRef =>
+      TfRef.attribute<String>(this, 'parent_policy_tag');
+
+  /// Reference to `taxonomy` attribute.
+  TfRef<String> get taxonomyRef => TfRef.attribute<String>(this, 'taxonomy');
 }

@@ -47,4 +47,7 @@ final class DataCloudflareTotalTls extends Data {
   /// Reference to `validity_period` attribute.
   TfRef<num> get validityPeriod =>
       TfRef.attribute<num>(this, 'validity_period');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

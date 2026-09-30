@@ -52,4 +52,18 @@ final class AwsSesv2DedicatedIpPool extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `pool_name` attribute.
+  TfRef<String> get poolNameRef => TfRef.attribute<String>(this, 'pool_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scaling_mode` attribute.
+  TfRef<String> get scalingModeRef =>
+      TfRef.attribute<String>(this, 'scaling_mode');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

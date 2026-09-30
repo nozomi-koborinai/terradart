@@ -93,4 +93,16 @@ final class DataCloudflareWorkerVersion extends Data {
 
   /// Reference to `usage_model` attribute.
   TfRef<String> get usageModel => TfRef.attribute<String>(this, 'usage_model');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `include` attribute.
+  TfRef<String> get includeRef => TfRef.attribute<String>(this, 'include');
+
+  /// Reference to `version_id` attribute.
+  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
+
+  /// Reference to `worker_id` attribute.
+  TfRef<String> get workerIdRef => TfRef.attribute<String>(this, 'worker_id');
 }

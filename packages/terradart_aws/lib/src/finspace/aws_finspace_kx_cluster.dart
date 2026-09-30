@@ -417,4 +417,45 @@ final class AwsFinspaceKxCluster extends Resource {
   /// Reference to `status_reason` attribute.
   TfRef<String> get statusReason =>
       TfRef.attribute<String>(this, 'status_reason');
+
+  /// Reference to `availability_zone_id` attribute.
+  TfRef<String> get availabilityZoneIdRef =>
+      TfRef.attribute<String>(this, 'availability_zone_id');
+
+  /// Reference to `az_mode` attribute.
+  TfRef<String> get azModeRef => TfRef.attribute<String>(this, 'az_mode');
+
+  /// Reference to `command_line_arguments` attribute.
+  TfRef<Map<String, String>> get commandLineArgumentsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'command_line_arguments');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `execution_role` attribute.
+  TfRef<String> get executionRoleRef =>
+      TfRef.attribute<String>(this, 'execution_role');
+
+  /// Reference to `initialization_script` attribute.
+  TfRef<String> get initializationScriptRef =>
+      TfRef.attribute<String>(this, 'initialization_script');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_label` attribute.
+  TfRef<String> get releaseLabelRef =>
+      TfRef.attribute<String>(this, 'release_label');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

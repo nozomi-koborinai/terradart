@@ -95,4 +95,30 @@ final class GoogleMigrationCenterImportJob extends Resource {
   /// Reference to `validation_report` attribute.
   TfRef<List<Map<String, Object?>>> get validationReport =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_report');
+
+  /// Reference to `asset_source` attribute.
+  TfRef<String> get assetSourceRef =>
+      TfRef.attribute<String>(this, 'asset_source');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `import_job_id` attribute.
+  TfRef<String> get importJobIdRef =>
+      TfRef.attribute<String>(this, 'import_job_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

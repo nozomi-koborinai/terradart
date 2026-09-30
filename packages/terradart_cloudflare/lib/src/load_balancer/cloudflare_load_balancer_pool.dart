@@ -301,4 +301,43 @@ final class CloudflareLoadBalancerPool extends Resource {
   /// Reference to `networks` attribute.
   TfRef<List<String>> get networks =>
       TfRef.attribute<List<String>>(this, 'networks');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `check_regions` attribute.
+  TfRef<List<String>> get checkRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'check_regions');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `health_sources` attribute.
+  TfRef<List<String>> get healthSourcesRef =>
+      TfRef.attribute<List<String>>(this, 'health_sources');
+
+  /// Reference to `latitude` attribute.
+  TfRef<num> get latitudeRef => TfRef.attribute<num>(this, 'latitude');
+
+  /// Reference to `longitude` attribute.
+  TfRef<num> get longitudeRef => TfRef.attribute<num>(this, 'longitude');
+
+  /// Reference to `minimum_origins` attribute.
+  TfRef<num> get minimumOriginsRef =>
+      TfRef.attribute<num>(this, 'minimum_origins');
+
+  /// Reference to `monitor` attribute.
+  TfRef<String> get monitorRef => TfRef.attribute<String>(this, 'monitor');
+
+  /// Reference to `monitor_group` attribute.
+  TfRef<String> get monitorGroupRef =>
+      TfRef.attribute<String>(this, 'monitor_group');
+
+  /// Reference to `notification_email` attribute.
+  TfRef<String> get notificationEmailRef =>
+      TfRef.attribute<String>(this, 'notification_email');
 }

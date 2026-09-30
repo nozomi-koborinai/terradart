@@ -223,4 +223,34 @@ final class AwsImagebuilderImageRecipe extends Resource {
 
   /// Reference to `platform` attribute.
   TfRef<String> get platform => TfRef.attribute<String>(this, 'platform');
+
+  /// Reference to `ami_tags` attribute.
+  TfRef<Map<String, String>> get amiTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'ami_tags');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parent_image` attribute.
+  TfRef<String> get parentImageRef =>
+      TfRef.attribute<String>(this, 'parent_image');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_data_base64` attribute.
+  TfRef<String> get userDataBase64Ref =>
+      TfRef.attribute<String>(this, 'user_data_base64');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `working_directory` attribute.
+  TfRef<String> get workingDirectoryRef =>
+      TfRef.attribute<String>(this, 'working_directory');
 }

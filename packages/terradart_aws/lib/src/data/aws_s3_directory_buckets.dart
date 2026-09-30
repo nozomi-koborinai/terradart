@@ -29,4 +29,7 @@ final class DataAwsS3DirectoryBuckets extends Data {
   /// Reference to `buckets` attribute.
   TfRef<List<String>> get buckets =>
       TfRef.attribute<List<String>>(this, 'buckets');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

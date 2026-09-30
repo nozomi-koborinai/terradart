@@ -46,4 +46,7 @@ final class DataAwsTimestreamwriteDatabase extends Data {
 
   /// Reference to `table_count` attribute.
   TfRef<num> get tableCount => TfRef.attribute<num>(this, 'table_count');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

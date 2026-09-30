@@ -55,4 +55,18 @@ final class AwsWorkmailGroup extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `hidden_from_global_address_list` attribute.
+  TfRef<bool> get hiddenFromGlobalAddressListRef =>
+      TfRef.attribute<bool>(this, 'hidden_from_global_address_list');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

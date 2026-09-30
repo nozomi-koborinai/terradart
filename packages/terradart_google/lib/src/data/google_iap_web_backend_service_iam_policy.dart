@@ -45,4 +45,11 @@ final class DataGoogleIapWebBackendServiceIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `web_backend_service` attribute.
+  TfRef<String> get webBackendServiceRef =>
+      TfRef.attribute<String>(this, 'web_backend_service');
 }

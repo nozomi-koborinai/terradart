@@ -149,4 +149,18 @@ final class GoogleComputeManagedSslCertificate extends Resource {
   /// Reference to `subject_alternative_names` attribute.
   TfRef<List<String>> get subjectAlternativeNames =>
       TfRef.attribute<List<String>>(this, 'subject_alternative_names');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -53,4 +53,15 @@ final class DataAwsKmsCustomKeyStore extends Data {
   /// Reference to `trust_anchor_certificate` attribute.
   TfRef<String> get trustAnchorCertificate =>
       TfRef.attribute<String>(this, 'trust_anchor_certificate');
+
+  /// Reference to `custom_key_store_id` attribute.
+  TfRef<String> get customKeyStoreIdRef =>
+      TfRef.attribute<String>(this, 'custom_key_store_id');
+
+  /// Reference to `custom_key_store_name` attribute.
+  TfRef<String> get customKeyStoreNameRef =>
+      TfRef.attribute<String>(this, 'custom_key_store_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

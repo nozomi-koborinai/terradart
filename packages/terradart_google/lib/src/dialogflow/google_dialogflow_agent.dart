@@ -111,4 +111,51 @@ final class GoogleDialogflowAgent extends Resource {
   /// Reference to `avatar_uri_backend` attribute.
   TfRef<String> get avatarUriBackend =>
       TfRef.attribute<String>(this, 'avatar_uri_backend');
+
+  /// Reference to `api_version` attribute.
+  TfRef<String> get apiVersionRef =>
+      TfRef.attribute<String>(this, 'api_version');
+
+  /// Reference to `avatar_uri` attribute.
+  TfRef<String> get avatarUriRef => TfRef.attribute<String>(this, 'avatar_uri');
+
+  /// Reference to `classification_threshold` attribute.
+  TfRef<num> get classificationThresholdRef =>
+      TfRef.attribute<num>(this, 'classification_threshold');
+
+  /// Reference to `default_language_code` attribute.
+  TfRef<String> get defaultLanguageCodeRef =>
+      TfRef.attribute<String>(this, 'default_language_code');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_logging` attribute.
+  TfRef<bool> get enableLoggingRef =>
+      TfRef.attribute<bool>(this, 'enable_logging');
+
+  /// Reference to `match_mode` attribute.
+  TfRef<String> get matchModeRef => TfRef.attribute<String>(this, 'match_mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `supported_language_codes` attribute.
+  TfRef<List<String>> get supportedLanguageCodesRef =>
+      TfRef.attribute<List<String>>(this, 'supported_language_codes');
+
+  /// Reference to `tier` attribute.
+  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

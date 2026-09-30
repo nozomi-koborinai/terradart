@@ -41,4 +41,21 @@ final class AwsGlacierVaultLock extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `complete_lock` attribute.
+  TfRef<bool> get completeLockRef =>
+      TfRef.attribute<bool>(this, 'complete_lock');
+
+  /// Reference to `ignore_deletion_error` attribute.
+  TfRef<bool> get ignoreDeletionErrorRef =>
+      TfRef.attribute<bool>(this, 'ignore_deletion_error');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vault_name` attribute.
+  TfRef<String> get vaultNameRef => TfRef.attribute<String>(this, 'vault_name');
 }

@@ -101,4 +101,21 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `condition_id` attribute.
+  TfRef<String> get conditionIdRef =>
+      TfRef.attribute<String>(this, 'condition_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `profile` attribute.
+  TfRef<String> get profileRef => TfRef.attribute<String>(this, 'profile');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
 }
