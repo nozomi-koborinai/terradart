@@ -23,7 +23,7 @@ const Set<String> _googleStorageDefaultObjectAclSensitive = <String>{};
 /// ```dart
 /// GoogleStorageDefaultObjectAcl(
 ///   localName: 'legacy_default',
-///   bucket: TfArg.ref(legacy.nameRef),
+///   bucket: legacy.ref,
 ///   roleEntity: TfArg.literal([
 ///     'OWNER:project-owners-\${current.number}',
 ///   ]),

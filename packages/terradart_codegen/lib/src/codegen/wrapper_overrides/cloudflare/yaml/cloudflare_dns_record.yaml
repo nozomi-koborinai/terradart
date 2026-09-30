@@ -10,7 +10,7 @@ curatedDoc: |-
   /// backend (e.g. a `CNAME` for `api.example.com` toward Cloud Run's
   /// `ghs.googlehosted.com`).
   ///
-  /// Reference the parent zone with `zoneId: TfArg.ref(zone.id)`.
+  /// Reference the parent zone with `zoneId: zone.ref`.
   /// `ttl: 1` means
   /// "automatic" in Cloudflare's API; proxied records always use it.
   /// Structured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]

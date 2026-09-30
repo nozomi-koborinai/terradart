@@ -223,7 +223,7 @@ class BigqueryRoutineSparkOptions {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_bigquery_routine.`).
 /// - `datasetId`: parent BigQuery dataset id. Typically
-///   `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a
+///   `dataset.ref` where `dataset` is a
 ///   `GoogleBigqueryDataset`.
 /// - `routineId`: routine id. Letters/digits/underscores only, up to 256
 ///   chars. Immutable after create.
@@ -252,7 +252,7 @@ class BigqueryRoutineSparkOptions {
 /// ```dart
 /// final addOne = GoogleBigqueryRoutine(
 ///   localName: 'add_one',
-///   datasetId: TfArg.ref(dataset.datasetIdRef),
+///   datasetId: dataset.ref,
 ///   routineId: TfArg.literal('add_one'),
 ///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),
 ///   definitionBody: TfArg.literal('x + 1'),

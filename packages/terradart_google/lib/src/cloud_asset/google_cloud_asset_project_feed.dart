@@ -92,7 +92,7 @@ final class CloudAssetProjectFeedFeedOutputConfigPubsubDestination {
 ///
 /// [feedOutputConfig] `pubsub_destination.topic` must be the **full**
 /// topic path (`projects/{project}/topics/{name}`). Pass
-/// `TfArg.ref(topic.id)` against a sibling [GooglePubsubTopic].
+/// `topic.ref` against a sibling [GooglePubsubTopic]; it emits the topic `id`.
 ///
 /// Grant `roles/pubsub.publisher` on that topic to
 /// `service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`
@@ -113,7 +113,7 @@ final class CloudAssetProjectFeedFeedOutputConfigPubsubDestination {
 ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
 ///   feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
 ///     pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
-///       topic: TfArg.ref(topic.id),
+///       topic: topic.ref,
 ///     ),
 ///   ),
 /// );

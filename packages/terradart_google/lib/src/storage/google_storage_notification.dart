@@ -66,8 +66,8 @@ enum StorageNotificationEventType implements TerraformEnum {
 ///
 /// `topic` must be a **fully-qualified** Pub/Sub topic resource path
 /// `'projects/{project_id}/topics/{topic_name}'`. The provider rejects
-/// a bare topic name. Pass `TfArg.ref(topic.id)` against a sibling
-/// `GooglePubsubTopic` (the `id` getter exposes the full path), or
+/// a bare topic name. Pass `topic.ref` against a sibling
+/// `GooglePubsubTopic` (it emits the topic `id`, the full path), or
 /// build the literal yourself.
 ///
 /// ### Example — full-fidelity notifications on a sibling bucket,
@@ -84,12 +84,10 @@ enum StorageNotificationEventType implements TerraformEnum {
 /// );
 /// final notif = GoogleStorageNotification(
 ///   localName: 'assets_ingest',
-///   bucket: TfArg.ref(assets.nameRef),
-///   // `ingestTopic.id` resolves to
-///   // `projects/{project}/topics/gcs-ingest` — the full path the API
-///   // expects. Passing `ingestTopic.nameRef` (just `gcs-ingest`)
-///   // would fail at apply.
-///   topic: TfArg.ref(ingestTopic.id),
+///   bucket: assets.ref,
+///   // Emits the topic `id`, `projects/{project}/topics/gcs-ingest` —
+///   // the full path the API expects.
+///   topic: ingestTopic.ref,
 ///   payloadFormat: TfArg.literal(
 ///     StorageNotificationPayloadFormat.jsonApiV1,
 ///   ),

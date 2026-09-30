@@ -32,7 +32,7 @@ enum StorageHmacKeyState implements TerraformEnum {
 /// ```dart
 /// GoogleStorageHmacKey(
 ///   localName: 'backup_hmac',
-///   serviceAccountEmail: TfArg.ref(sa.emailRef),
+///   serviceAccountEmail: sa.ref,
 /// );
 /// ```
 final class GoogleStorageHmacKey extends Resource {
