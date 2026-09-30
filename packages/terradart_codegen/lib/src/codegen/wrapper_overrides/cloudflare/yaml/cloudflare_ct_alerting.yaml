@@ -4,3 +4,13 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Certificate Transparency alerting for a zone: Cloudflare emails the
+  /// listed addresses (up to 100) when a certificate for one of the zone's
+  /// hostnames appears in a public CT log.
+
+paramOrder:
+  - zone_id
+  - enabled
+  - emails

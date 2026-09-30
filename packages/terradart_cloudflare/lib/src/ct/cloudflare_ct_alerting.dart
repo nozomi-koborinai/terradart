@@ -13,14 +13,18 @@ const Set<String> _cloudflareCtAlertingSensitive = <String>{};
 /// Accepted Permissions
 ///
 /// - `SSL and Certificates Read` - `SSL and Certificates Write`
+///
+/// Certificate Transparency alerting for a zone: Cloudflare emails the
+/// listed addresses (up to 100) when a certificate for one of the zone's
+/// hostnames appears in a public CT log.
 final class CloudflareCtAlerting extends Resource {
   static const String tfType = 'cloudflare_ct_alerting';
 
   CloudflareCtAlerting({
     required super.localName,
-    TfArg<List<String>>? emails,
-    required TfArg<bool> enabled,
     required RefTo<CloudflareZone> zoneId,
+    required TfArg<bool> enabled,
+    TfArg<List<String>>? emails,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,9 +32,9 @@ final class CloudflareCtAlerting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'emails': ?emails,
-           'enabled': enabled,
            'zone_id': zoneId.encodeAs('id'),
+           'enabled': enabled,
+           'emails': ?emails,
          },
        );
 

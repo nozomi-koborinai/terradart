@@ -4,3 +4,21 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// CASB policy: runs [ZeroTrustCasbPolicyActions] (webhooks and at most
+  /// one remediation) when a finding of `findingTypeId` is raised.
+  ///
+  /// Set `appliesToAllIntegrations: .literal(true)`, or `false` together
+  /// with `integrationIds` — the provider requires the list when the flag
+  /// is false.
+
+paramOrder:
+  - account_id
+  - display_name
+  - finding_type_id
+  - enabled
+  - applies_to_all_integrations
+  - integration_ids
+  - actions
+  - description

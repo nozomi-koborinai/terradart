@@ -25,6 +25,10 @@ final class NelSettingValue {
 /// Accepted Permissions
 ///
 /// - `Zone Settings Read` - `Zone Settings Write`
+///
+/// Network Error Logging for a zone: when `value.enabled` is true,
+/// browsers report network errors for the zone to Cloudflare's NEL
+/// endpoint.
 final class CloudflareNelSetting extends Resource {
   static const String tfType = 'cloudflare_nel_setting';
 
