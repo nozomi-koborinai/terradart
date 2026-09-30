@@ -84,7 +84,7 @@ class FirebaseAppHostingBackendAppHostingBackendCodebase {
 ///   backendId: TfArg.literal('web-backend'),
 ///   location: TfArg.literal('us-central1'),
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
-///   serviceAccount: TfArg.ref(sa.email),
+///   serviceAccount: sa.ref,
 ///   servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),
 ///   codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(
 ///     repository: TfArg.literal(

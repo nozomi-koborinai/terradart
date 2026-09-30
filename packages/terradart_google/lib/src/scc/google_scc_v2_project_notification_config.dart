@@ -53,7 +53,7 @@ final class SccV2ProjectNotificationConfigStreamingConfig {
 ///   localName: 'findings_export',
 ///   configId: TfArg.literal('terradart-findings'),
 ///   description: TfArg.literal('Export ACTIVE findings to Pub/Sub'),
-///   pubsubTopic: TfArg.ref(topic.id),
+///   pubsubTopic: topic.ref,
 ///   streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(
 ///     filter: TfArg.literal('state = "ACTIVE"'),
 ///   ),

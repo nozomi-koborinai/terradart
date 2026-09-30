@@ -244,7 +244,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 /// GoogleNetworkConnectivityPolicyBasedRoute(
 ///   localName: 'default_pbr',
 ///   name: TfArg.literal('terradart-pbr'),
-///   network: TfArg.ref(vpc.id),
+///   network: vpc.ref,
 ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
 ///     protocolVersion: TfArg.literal(
 ///       NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,

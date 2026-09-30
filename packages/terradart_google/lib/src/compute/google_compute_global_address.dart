@@ -79,7 +79,7 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 ///   addressType: TfArg.literal(GlobalAddressType.internal),
 ///   purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
 ///   prefixLength: TfArg.literal(16),
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 /// );
 /// ```
 ///

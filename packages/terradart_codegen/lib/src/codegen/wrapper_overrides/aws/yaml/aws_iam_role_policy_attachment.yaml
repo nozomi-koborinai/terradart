@@ -9,6 +9,6 @@ curatedDoc: |-
   /// Attaches one managed IAM policy to an [AwsIamRole]. Additive: other
   /// attachments on the role are left alone.
   ///
-  /// `role` takes the role **name** (`TfArg.ref(role.nameRef)`), not its ARN.
+  /// `role` takes the role (`role.ref`) and emits its **name**, not its ARN.
   /// AWS-managed policies use ARNs such as
   /// `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.

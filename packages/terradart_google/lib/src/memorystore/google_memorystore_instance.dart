@@ -482,7 +482,7 @@ enum MemorystoreInstanceZoneDistributionConfigMode implements TerraformEnum {
 ///   nodeType: TfArg.literal('SHARED_CORE_NANO'),
 ///   desiredAutoCreatedEndpoints: [
 ///     MemorystoreInstanceDesiredAutoCreatedEndpoints(
-///       network: TfArg.ref(network.id),
+///       network: network.ref,
 ///       projectId: TfArg.literal(projectId),
 ///     ),
 ///   ],

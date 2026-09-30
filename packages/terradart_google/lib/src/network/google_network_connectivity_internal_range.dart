@@ -78,7 +78,7 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
 /// GoogleNetworkConnectivityInternalRange(
 ///   localName: 'reserved',
 ///   name: TfArg.literal('terradart-ir'),
-///   network: TfArg.ref(vpc.id),
+///   network: vpc.ref,
 ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
 ///   peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
 ///   ipCidrRange: TfArg.literal('10.9.0.0/24'),
