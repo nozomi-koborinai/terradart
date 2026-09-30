@@ -79,8 +79,8 @@ final class ArtifactRegistryRuleCondition {
 ///   repositoryId: TfArg.literal('terradart-docker'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   ruleId: TfArg.literal('deny-all-downloads'),
-///   action: ArtifactRegistryRuleAction.deny,
-///   operation: ArtifactRegistryRuleOperation.download,
+///   action: TfArg.literal(ArtifactRegistryRuleAction.deny),
+///   operation: TfArg.literal(ArtifactRegistryRuleOperation.download),
 /// );
 /// ```
 final class GoogleArtifactRegistryRule extends Resource {

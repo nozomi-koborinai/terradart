@@ -27,16 +27,16 @@ curatedDoc: |-
   ///
   /// Default target (highest fallback):
   /// - `default_service`: self-link to the **backend** consulted when no
-  ///   [hostRules] / [pathMatchers] match the incoming request. The link
+  ///   [hostRule] / [pathMatcher] match the incoming request. The link
   ///   accepts either a
   ///   [GoogleComputeRegionBackendService]
   ///   (`.../regions/<region>/backendServices/<name>`) **or** a
   ///   [GoogleComputeBackendBucket] (`.../backendBuckets/<name>` -- backend
   ///   buckets are a global resource and are also valid targets for a
   ///   regional URL map). The GCP API distinguishes by URL segment, not by
-  ///   a separate field. Mutually exclusive with [defaultUrlRedirect] --
-  ///   exactly one of the two must be set when no [pathMatchers] are
-  ///   present.
+  ///   a separate field. Mutually exclusive with
+  ///   `defaultAction: .defaultUrlRedirect(...)` -- exactly one of the two
+  ///   must be set when no [pathMatcher] entries are present.
   ///
   /// Matching pipeline (request flow):
   ///
@@ -67,51 +67,51 @@ curatedDoc: |-
   ///   name: TfArg.literal('regionurlmap-prod'),
   ///   region: TfArg.literal('us-central1'),
   ///   defaultService: TfArg.ref(login.selfLink),
-  ///   hostRules: const [
+  ///   hostRule: [
   ///     ComputeRegionUrlMapHostRule(
-  ///       hosts: ['mysite.com', 'myothersite.com'],
-  ///       pathMatcher: 'allpaths',
+  ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
+  ///       pathMatcher: TfArg.literal('allpaths'),
   ///     ),
   ///   ],
-  ///   pathMatchers: [
+  ///   pathMatcher: [
   ///     ComputeRegionUrlMapPathMatcher(
-  ///       name: 'allpaths',
+  ///       name: TfArg.literal('allpaths'),
   ///       defaultService: TfArg.ref(login.selfLink),
-  ///       pathRules: [
+  ///       pathRule: [
   ///         ComputeRegionUrlMapPathMatcherPathRule(
-  ///           paths: const ['/home'],
+  ///           paths: TfArg.literal(const ['/home']),
   ///           service: TfArg.ref(login.selfLink),
   ///         ),
   ///         ComputeRegionUrlMapPathMatcherPathRule(
-  ///           paths: const ['/static'],
+  ///           paths: TfArg.literal(const ['/static']),
   ///           service: TfArg.ref(staticBucket.selfLink),
   ///         ),
   ///       ],
   ///     ),
   ///   ],
-  ///   tests: const [
-  ///     ComputeRegionUrlMapTest(host: 'mysite.com', path: '/home'),
+  ///   test: [
+  ///     ComputeRegionUrlMapTest(
+  ///       host: TfArg.literal('mysite.com'),
+  ///       path: TfArg.literal('/home'),
+  ///       service: TfArg.ref(login.selfLink),
+  ///     ),
   ///   ],
   /// );
   /// ```
   ///
   /// Naming convention: ALL nested helper types in this resource are prefixed
-  /// `RegionUrlMap...` (e.g. [ComputeRegionUrlMapHostRule], [ComputeRegionUrlMapPathMatcher],
+  /// `ComputeRegionUrlMap...` (e.g. [ComputeRegionUrlMapHostRule], [ComputeRegionUrlMapPathMatcher],
   /// [ComputeRegionUrlMapDefaultUrlRedirect]) to avoid colliding with the
   /// similarly-shaped helpers in the global `google_compute_url_map` wrapper
-  /// (which uses the `UrlMap...` prefix) and with other sibling
+  /// (which uses the `ComputeUrlMap...` prefix) and with other sibling
   /// load-balancer resources.
   ///
-  /// Deeply nested traffic-policy sub-blocks (`default_route_action`,
-  /// `path_matcher.default_route_action`, `path_rule.route_action`,
-  /// `route_rules.route_action`, `default_custom_error_response_policy`) are
-  /// not modeled as typed helpers -- they form a sprawling Envoy-style config
-  /// (cache_policy, cors_policy, fault_injection_policy, retry_policy,
-  /// url_rewrite, weighted_backend_services, ...) that would dominate the
-  /// curated surface for little common-case win. Pass a raw
-  /// `Map<String, Object?>` via [ComputeRegionUrlMapPathMatcher.advancedExtra] etc.
-  /// keyed by the Terraform block name when you need them; see the per-class
-  /// doc for the exact escape-hatch key.
+  /// Traffic-policy sub-blocks (`path_matcher.default_route_action`,
+  /// `path_rule.route_action`, `route_rules.route_action`, ...) are typed
+  /// helpers too (e.g. [ComputeRegionUrlMapPathMatcherPathRuleRouteAction]); the top-level
+  /// `default_url_redirect` / `default_route_action` pair is the sealed
+  /// [defaultAction] argument (`.defaultUrlRedirect(...)` /
+  /// `.defaultRouteAction(...)`).
   ///
   /// Composition pattern: extends `Resource` for
   /// runtime behavior.

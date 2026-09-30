@@ -169,8 +169,9 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 ///
-/// Set either [target] (manually pin which build gets traffic),
-/// [rolloutPolicy] (automatic builds on commits to a branch), or both.
+/// The required [routing] argument picks exactly one of
+/// `.target(...)` (manually pin which build gets traffic) or
+/// `.rolloutPolicy(...)` (automatic builds on commits to a branch).
 ///
 /// Example (manual pin: 100% to one build):
 /// ```dart
@@ -178,13 +179,15 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   localName: 'main',
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
-///   target: FirebaseAppHostingTrafficAppHostingTrafficTarget(
-///     splits: [
-///       FirebaseAppHostingTrafficAppHostingTrafficSplit(
-///         build: TfArg.ref(build.buildIdRef),
-///         percent: TfArg.literal(100),
-///       ),
-///     ],
+///   routing: .target(
+///     FirebaseAppHostingTrafficAppHostingTrafficTarget(
+///       splits: [
+///         FirebaseAppHostingTrafficAppHostingTrafficSplit(
+///           build: TfArg.ref(build.buildIdRef),
+///           percent: TfArg.literal(100),
+///         ),
+///       ],
+///     ),
 ///   ),
 /// );
 /// ```
@@ -195,8 +198,10 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   localName: 'main',
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
-///   rolloutPolicy: FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy(
-///     codebaseBranch: TfArg.literal('main'),
+///   routing: .rolloutPolicy(
+///     FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy(
+///       codebaseBranch: TfArg.literal('main'),
+///     ),
 ///   ),
 /// );
 /// ```

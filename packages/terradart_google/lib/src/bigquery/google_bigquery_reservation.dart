@@ -84,7 +84,7 @@ class BigqueryReservationAutoscale {
 ///   location: TfArg.literal('US'),
 ///   slotCapacity: TfArg.literal(500),
 ///   ignoreIdleSlots: TfArg.literal(false),
-///   edition: BigqueryReservationEdition.enterprise,
+///   edition: .literal(BigqueryReservationEdition.enterprise),
 ///   autoscale: const BigqueryReservationAutoscale(
 ///     maxSlots: TfArgLiteral(1000),
 ///   ),

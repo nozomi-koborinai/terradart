@@ -281,19 +281,19 @@ class ComputeBackendBucketBackendBucketParams {
 /// final assets = GoogleComputeBackendBucket(
 ///   localName: 'static_assets',
 ///   name: TfArg.literal('static-assets'),
-///   bucketName: TfArg.literal('my-static-assets'),
+///   bucketName: .literal('my-static-assets'),
 ///   enableCdn: TfArg.literal(true),
-///   cdnPolicy: const ComputeBackendBucketBackendBucketCdnPolicy(
+///   cdnPolicy: ComputeBackendBucketBackendBucketCdnPolicy(
 ///     cacheMode: BackendBucketCacheMode.cacheAllStatic,
-///     defaultTtl: 3600,
-///     maxTtl: 86400,
-///     clientTtl: 3600,
-///     negativeCaching: true,
+///     defaultTtl: .literal(3600),
+///     maxTtl: .literal(86400),
+///     clientTtl: .literal(3600),
+///     negativeCaching: .literal(true),
 ///     negativeCachingPolicy: [
-///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 404, ttl: 120),
-///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 410, ttl: 120),
+///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: .literal(404), ttl: .literal(120)),
+///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: .literal(410), ttl: .literal(120)),
 ///     ],
-///     serveWhileStale: 60,
+///     serveWhileStale: .literal(60),
 ///   ),
 ///   customResponseHeaders: TfArg.literal([
 ///     'X-Cache: \$(cache_status)',
@@ -308,7 +308,7 @@ class ComputeBackendBucketBackendBucketParams {
 /// final secured = GoogleComputeBackendBucket(
 ///   localName: 'secured_assets',
 ///   name: TfArg.literal('secured-assets'),
-///   bucketName: TfArg.literal('private-static-assets'),
+///   bucketName: .literal('private-static-assets'),
 ///   enableCdn: TfArg.literal(true),
 ///   edgeSecurityPolicy: TfArg.literal(
 ///     // var.security_policy_id — a CLOUD_ARMOR_EDGE-typed

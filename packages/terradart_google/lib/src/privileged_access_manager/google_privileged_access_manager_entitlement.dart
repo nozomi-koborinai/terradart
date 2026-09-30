@@ -322,8 +322,9 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstru
 ///   ),
 ///   requesterJustificationConfig:
 ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-///     unstructured:
-///         const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+///     requirement: .unstructured(
+///       const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+///     ),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );

@@ -347,7 +347,7 @@ final class BigqueryDatasetAccessGranteeRoutine
 ///   localName: 'analysts_reader',
 ///   datasetId: dataset.ref,
 ///   role: .literal('READER'),
-///   groupByEmail: .literal('analysts@example.com'),
+///   grantee: .groupByEmail(.literal('analysts@example.com')),
 /// );
 /// ```
 final class GoogleBigqueryDatasetAccess extends Resource {

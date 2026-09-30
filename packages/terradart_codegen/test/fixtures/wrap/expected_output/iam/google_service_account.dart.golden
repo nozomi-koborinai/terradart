@@ -49,7 +49,7 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 /// // — pass it directly without manually prefixing `serviceAccount:`.
 /// GooglePubsubTopicIamMember(
 ///   localName: 'orders_publisher_binding',
-///   topic: TfArg.ref(orders.nameRef),
+///   topic: orders.ref,
 ///   role: TfArg.literal('roles/pubsub.publisher'),
 ///   member: TfArg.ref(sa.member),
 /// );

@@ -26,28 +26,26 @@ curatedDoc: |-
   ///   in `aws-us-east-1`; Azure connections in `azure-eastus2`. Schema
   ///   marks `location` optional — set it for any non-default deployment.
   ///
-  /// **Connection-type one-of**: pick **at most one** of [cloudSql],
-  /// [cloudSpanner], [aws], [azure], [cloudResource], [spark], or
-  /// [configuration]. Supplying more than one errors at apply time. Use
-  /// case per variant:
-  /// - [cloudSql] — federated queries against Cloud SQL Postgres / MySQL
-  ///   (the most common BigQuery federation pattern). Credentials live
-  ///   inside the [BigqueryConnectionCloudSqlCredential] block.
-  /// - [cloudSpanner] — federated reads against a Cloud Spanner database,
-  ///   optionally via Spanner Data Boost / independent compute.
-  /// - [aws] — BigQuery Omni federation into Amazon S3 / Glue (BigLake
-  ///   on AWS). The Google-side identity (output-only) trusts a
+  /// **Connection type**: the required [backend] argument picks exactly
+  /// one variant of [BigqueryConnectionBackend]. Use case per variant:
+  /// - `.cloudSql(...)` — federated queries against Cloud SQL Postgres /
+  ///   MySQL (the most common BigQuery federation pattern). Credentials
+  ///   live inside the [BigqueryConnectionCloudSqlCredential] block.
+  /// - `.cloudSpanner(...)` — federated reads against a Cloud Spanner
+  ///   database, optionally via Spanner Data Boost / independent compute.
+  /// - `.aws(...)` — BigQuery Omni federation into Amazon S3 / Glue
+  ///   (BigLake on AWS). The Google-side identity (output-only) trusts a
   ///   customer-owned IAM role.
-  /// - [azure] — BigQuery Omni federation into Azure Data Lake Storage.
-  ///   Uses Azure AD federation; most fields are computed and consumed by
-  ///   the Azure side of the bridge.
-  /// - [cloudResource] — generic GCP delegation. Surfaces an output-only
-  ///   service account id that the connection acts as for cross-project
-  ///   reads (e.g. BigLake tables over Cloud Storage in a different
-  ///   project).
-  /// - [spark] — stored procedures for Apache Spark on BigQuery. Optional
-  ///   wiring to a Dataproc Metastore and Spark History Server.
-  /// - [configuration] — the BigQuery Connector framework (AlloyDB,
+  /// - `.azure(...)` — BigQuery Omni federation into Azure Data Lake
+  ///   Storage. Uses Azure AD federation; most fields are computed and
+  ///   consumed by the Azure side of the bridge.
+  /// - `.cloudResource()` — generic GCP delegation. Surfaces an
+  ///   output-only service account id that the connection acts as for
+  ///   cross-project reads (e.g. BigLake tables over Cloud Storage in a
+  ///   different project).
+  /// - `.spark(...)` — stored procedures for Apache Spark on BigQuery.
+  ///   Optional wiring to a Dataproc Metastore and Spark History Server.
+  /// - `.configuration(...)` — the BigQuery Connector framework (AlloyDB,
   ///   `google-cloudsql-mysql`, `google-cloudsql-postgres`, and other
   ///   connector ids). Includes its own nested asset / authentication /
   ///   endpoint / network configuration.
@@ -64,7 +62,7 @@ curatedDoc: |-
   ///   connectionId: TfArg.literal('analytics-pg'),
   ///   location: TfArg.literal('US'),
   ///   friendlyName: TfArg.literal('Analytics Postgres (read-replica)'),
-  ///   cloudSql: BigqueryConnectionCloudSql(
+  ///   backend: .cloudSql(
   ///     instanceId: TfArg.literal('my-project:us-central1:analytics-ro'),
   ///     database: TfArg.literal('analytics'),
   ///     type: BigqueryConnectionCloudSqlType.postgres,
@@ -82,7 +80,7 @@ curatedDoc: |-
   ///   localName: 'biglake_s3',
   ///   connectionId: TfArg.literal('biglake-s3'),
   ///   location: TfArg.literal('aws-us-east-1'),
-  ///   aws: BigqueryConnectionAws(
+  ///   backend: .aws(
   ///     accessRole: BigqueryConnectionAwsAccessRole(
   ///       iamRoleId:
   ///           TfArg.literal('arn:aws:iam::111122223333:role/biglake-bq'),

@@ -183,7 +183,7 @@ final class VpcAccessConnectorMaxCapacityMaxThroughput
 ///   name: TfArg.literal('run-vpc'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   ipCidrRange: TfArg.literal('10.8.0.0/28'),
-///   network: TfArg.literal('default'),
+///   network: .literal('default'),
 /// );
 /// ```
 final class GoogleVpcAccessConnector extends Resource {

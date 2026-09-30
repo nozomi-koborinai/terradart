@@ -460,13 +460,13 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 /// source, and register webhooks — every `google_cloudbuildv2_repository`
 /// (see [GoogleCloudbuildv2Repository]) hangs off exactly one connection.
 ///
-/// **SCM one-of**: pick **at most one** of [githubConfig],
-/// [githubEnterpriseConfig], [gitlabConfig], [bitbucketDataCenterConfig],
-/// or [bitbucketCloudConfig]. The provider treats them as mutually
-/// exclusive (`conflicts` in the upstream MagicModules definition);
-/// supplying more than one errors at apply time. Omit them all to create
-/// an unconfigured connection (rare — usually a placeholder during
-/// staged setup).
+/// **SCM one-of**: the optional [host] argument picks at most one of
+/// `.githubConfig(...)`, `.githubEnterpriseConfig(...)`,
+/// `.gitlabConfig(...)`, `.bitbucketDataCenterConfig(...)`, or
+/// `.bitbucketCloudConfig(...)` — the provider treats them as mutually
+/// exclusive (`conflicts` in the upstream MagicModules definition). Omit
+/// [host] to create an unconfigured connection (rare — usually a
+/// placeholder during staged setup).
 ///
 /// **Secret references**: every `*_secret_version` field on the nested
 /// SCM configs takes the self-link of a
@@ -482,10 +482,13 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///   localName: 'github',
 ///   name: TfArg.literal('repo-github'),
 ///   location: TfArg.literal('us-central1'),
-///   githubConfig: Cloudbuildv2ConnectionGithubConfig(
-///     appInstallationId: TfArg.literal(123456),
-///     authorizerCredential: Cloudbuildv2ConnectionGithubAuthorizerCredential(
-///       oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
+///   host: .githubConfig(
+///     Cloudbuildv2ConnectionGithubConfig(
+///       appInstallationId: TfArg.literal(123456),
+///       authorizerCredential:
+///           Cloudbuildv2ConnectionGithubAuthorizerCredential(
+///             oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
+///           ),
 ///     ),
 ///   ),
 /// );

@@ -73,7 +73,7 @@ enum NetworkManagementVpcFlowLogsConfigState implements TerraformEnum {
 ///   localName: 'vpc_logs',
 ///   vpcFlowLogsConfigId: TfArg.literal('terradart-vpc-flow'),
 ///   location: TfArg.literal('global'),
-///   network: TfArg.literal(
+///   network: .literal(
 ///     'projects/123456789/global/networks/terradart-vpc',
 ///   ),
 ///   flowSampling: TfArg.literal(0.5),

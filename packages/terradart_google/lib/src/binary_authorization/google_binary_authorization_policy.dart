@@ -145,10 +145,10 @@ enum BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
 ///   localName: 'project_policy',
 ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
 ///     evaluationMode: TfArg.literal(
-///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
+///       BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode.alwaysAllow,
 ///     ),
 ///     enforcementMode: TfArg.literal(
-///       BinaryAuthorizationPolicyEnforcementMode.enforced,
+///       BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode.enforcedBlockAndAuditLog,
 ///     ),
 ///   ),
 /// );

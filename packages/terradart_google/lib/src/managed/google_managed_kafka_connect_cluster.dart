@@ -98,8 +98,8 @@ final class ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs {
 ///   kafkaCluster: TfArg.ref(cluster.nameRef),
 ///   location: TfArg.literal('us-central1'),
 ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
-///     vcpuCount: TfArg.literal(3),
-///     memoryBytes: TfArg.literal(3221225472),
+///     vcpuCount: TfArg.literal('3'),
+///     memoryBytes: TfArg.literal('3221225472'),
 ///   ),
 ///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
 ///     accessConfig: ManagedKafkaConnectClusterGcpConfigAccessConfig(

@@ -54,8 +54,8 @@ curatedDoc: |-
   /// ```dart
   /// final notif = GoogleStorageNotification(
   ///   localName: 'audit',
-  ///   bucket: TfArg.literal('my-bucket'),
-  ///   topic: TfArg.literal('projects/my-proj/topics/my-topic'),
+  ///   bucket: RefTo.literal('my-bucket'),
+  ///   topic: RefTo.literal('projects/my-proj/topics/my-topic'),
   ///   payloadFormat: TfArg.literal(
   ///     StorageNotificationPayloadFormat.jsonApiV1,
   ///   ),
