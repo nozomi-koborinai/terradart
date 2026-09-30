@@ -4,267 +4,225 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_connectivity_spoke`.
 const Set<String> _googleNetworkConnectivitySpokeSensitive = <String>{};
 
-// ===========================================================================
-// NetworkConnectivitySpokeAttachment — sealed (exactly one link / gateway)
-// ===========================================================================
-
-/// Exactly one spoke attachment kind (provider `conflicts` across linked_* /
-/// `gateway` blocks).
+/// Exactly one of `gateway`, `linked_interconnect_attachments`, `linked_producer_vpc_network`, `linked_router_appliance_instances`, `linked_vpc_network`, `linked_vpn_tunnels` on `google_network_connectivity_spoke`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.gateway(...)`.
 sealed class NetworkConnectivitySpokeAttachment {
   const NetworkConnectivitySpokeAttachment();
 
-  /// `linked_vpc_network` — attach a consumer VPC to the hub.
-  const factory NetworkConnectivitySpokeAttachment.linkedVpcNetwork({
-    required TfArg<String> uri,
-    TfArg<List<String>>? includeExportRanges,
-    TfArg<List<String>>? excludeExportRanges,
-  }) = NetworkConnectivitySpokeLinkedVpcNetwork;
+  /// Sets `gateway`.
+  const factory NetworkConnectivitySpokeAttachment.gateway(
+    NetworkConnectivitySpokeGateway gateway,
+  ) = NetworkConnectivitySpokeAttachmentGateway;
 
-  /// `linked_vpn_tunnels` — attach HA VPN tunnels.
-  const factory NetworkConnectivitySpokeAttachment.linkedVpnTunnels({
-    required TfArg<List<String>> uris,
-    required TfArg<bool> siteToSiteDataTransfer,
-    TfArg<List<String>>? includeExportRanges,
-    TfArg<List<String>>? excludeExportRanges,
-    TfArg<List<String>>? includeImportRanges,
-    TfArg<List<String>>? excludeImportRanges,
-  }) = NetworkConnectivitySpokeLinkedVpnTunnels;
+  /// Sets `linked_interconnect_attachments`.
+  const factory NetworkConnectivitySpokeAttachment.linkedInterconnectAttachments(
+    NetworkConnectivitySpokeLinkedInterconnectAttachments
+    linkedInterconnectAttachments,
+  ) = NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments;
 
-  /// `linked_interconnect_attachments` — attach VLAN attachments.
-  const factory NetworkConnectivitySpokeAttachment.linkedInterconnectAttachments({
-    required TfArg<List<String>> uris,
-    required TfArg<bool> siteToSiteDataTransfer,
-    TfArg<List<String>>? includeExportRanges,
-    TfArg<List<String>>? excludeExportRanges,
-    TfArg<List<String>>? includeImportRanges,
-    TfArg<List<String>>? excludeImportRanges,
-  }) = NetworkConnectivitySpokeLinkedInterconnectAttachments;
+  /// Sets `linked_producer_vpc_network`.
+  const factory NetworkConnectivitySpokeAttachment.linkedProducerVpcNetwork(
+    NetworkConnectivitySpokeLinkedProducerVpcNetwork linkedProducerVpcNetwork,
+  ) = NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork;
 
-  /// `linked_router_appliance_instances` — attach router appliance VMs.
-  const factory NetworkConnectivitySpokeAttachment.linkedRouterApplianceInstances({
-    required List<NetworkConnectivitySpokeRouterApplianceInstance> instances,
-    required TfArg<bool> siteToSiteDataTransfer,
-    TfArg<List<String>>? includeExportRanges,
-    TfArg<List<String>>? excludeExportRanges,
-    TfArg<List<String>>? includeImportRanges,
-    TfArg<List<String>>? excludeImportRanges,
-  }) = NetworkConnectivitySpokeLinkedRouterApplianceInstances;
+  /// Sets `linked_router_appliance_instances`.
+  const factory NetworkConnectivitySpokeAttachment.linkedRouterApplianceInstances(
+    NetworkConnectivitySpokeLinkedRouterApplianceInstances
+    linkedRouterApplianceInstances,
+  ) = NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances;
 
-  /// `linked_producer_vpc_network` — attach a producer VPC via peering.
-  const factory NetworkConnectivitySpokeAttachment.linkedProducerVpcNetwork({
-    required TfArg<String> network,
-    required TfArg<String> peering,
-    TfArg<List<String>>? includeExportRanges,
-    TfArg<List<String>>? excludeExportRanges,
-  }) = NetworkConnectivitySpokeLinkedProducerVpcNetwork;
+  /// Sets `linked_vpc_network`.
+  const factory NetworkConnectivitySpokeAttachment.linkedVpcNetwork(
+    NetworkConnectivitySpokeLinkedVpcNetwork linkedVpcNetwork,
+  ) = NetworkConnectivitySpokeAttachmentLinkedVpcNetwork;
 
-  /// `gateway` — NCC gateway spoke (capacity-billed; never apply-smoke).
-  const factory NetworkConnectivitySpokeAttachment.gateway({
-    required TfArg<NetworkConnectivitySpokeGatewayCapacity> capacity,
-    required List<NetworkConnectivitySpokeGatewayIpRangeReservation>
-    ipRangeReservations,
-  }) = NetworkConnectivitySpokeGateway;
+  /// Sets `linked_vpn_tunnels`.
+  const factory NetworkConnectivitySpokeAttachment.linkedVpnTunnels(
+    NetworkConnectivitySpokeLinkedVpnTunnels linkedVpnTunnels,
+  ) = NetworkConnectivitySpokeAttachmentLinkedVpnTunnels;
 
-  /// argMap key for this variant.
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// Nested block payload (list-wrapped by the factory).
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `linked_vpc_network` — attach a consumer VPC to the hub.
-@immutable
-final class NetworkConnectivitySpokeLinkedVpcNetwork
+/// The [NetworkConnectivitySpokeAttachment.gateway] choice: sets `gateway`.
+final class NetworkConnectivitySpokeAttachmentGateway
     extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeLinkedVpcNetwork({
-    required this.uri,
-    this.includeExportRanges,
-    this.excludeExportRanges,
-  });
+  const NetworkConnectivitySpokeAttachmentGateway(this.gateway);
 
-  final TfArg<String> uri;
-  final TfArg<List<String>>? includeExportRanges;
-  final TfArg<List<String>>? excludeExportRanges;
+  final NetworkConnectivitySpokeGateway gateway;
 
   @override
-  String get blockKey => 'linked_vpc_network';
+  String get blockKey => 'gateway';
 
   @override
-  Map<String, Object?> encode() => {
-    'uri': uri.toTfJson(),
-    if (includeExportRanges != null)
-      'include_export_ranges': includeExportRanges!.toTfJson(),
-    if (excludeExportRanges != null)
-      'exclude_export_ranges': excludeExportRanges!.toTfJson(),
+  Map<String, Object?> encode() => {'gateway': gateway.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gateway': TfArg.literal(gateway.encode()),
   };
 }
 
-/// `linked_vpn_tunnels` — attach HA VPN tunnels.
-@immutable
-final class NetworkConnectivitySpokeLinkedVpnTunnels
+/// The [NetworkConnectivitySpokeAttachment.linkedInterconnectAttachments] choice: sets `linked_interconnect_attachments`.
+final class NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments
     extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeLinkedVpnTunnels({
-    required this.uris,
-    required this.siteToSiteDataTransfer,
-    this.includeExportRanges,
-    this.excludeExportRanges,
-    this.includeImportRanges,
-    this.excludeImportRanges,
-  });
+  const NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments(
+    this.linkedInterconnectAttachments,
+  );
 
-  final TfArg<List<String>> uris;
-  final TfArg<bool> siteToSiteDataTransfer;
-  final TfArg<List<String>>? includeExportRanges;
-  final TfArg<List<String>>? excludeExportRanges;
-  final TfArg<List<String>>? includeImportRanges;
-  final TfArg<List<String>>? excludeImportRanges;
-
-  @override
-  String get blockKey => 'linked_vpn_tunnels';
-
-  @override
-  Map<String, Object?> encode() => {
-    'uris': uris.toTfJson(),
-    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
-    if (includeExportRanges != null)
-      'include_export_ranges': includeExportRanges!.toTfJson(),
-    if (excludeExportRanges != null)
-      'exclude_export_ranges': excludeExportRanges!.toTfJson(),
-    if (includeImportRanges != null)
-      'include_import_ranges': includeImportRanges!.toTfJson(),
-    if (excludeImportRanges != null)
-      'exclude_import_ranges': excludeImportRanges!.toTfJson(),
-  };
-}
-
-/// `linked_interconnect_attachments` — attach VLAN attachments.
-@immutable
-final class NetworkConnectivitySpokeLinkedInterconnectAttachments
-    extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeLinkedInterconnectAttachments({
-    required this.uris,
-    required this.siteToSiteDataTransfer,
-    this.includeExportRanges,
-    this.excludeExportRanges,
-    this.includeImportRanges,
-    this.excludeImportRanges,
-  });
-
-  final TfArg<List<String>> uris;
-  final TfArg<bool> siteToSiteDataTransfer;
-  final TfArg<List<String>>? includeExportRanges;
-  final TfArg<List<String>>? excludeExportRanges;
-  final TfArg<List<String>>? includeImportRanges;
-  final TfArg<List<String>>? excludeImportRanges;
+  final NetworkConnectivitySpokeLinkedInterconnectAttachments
+  linkedInterconnectAttachments;
 
   @override
   String get blockKey => 'linked_interconnect_attachments';
 
   @override
   Map<String, Object?> encode() => {
-    'uris': uris.toTfJson(),
-    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
-    if (includeExportRanges != null)
-      'include_export_ranges': includeExportRanges!.toTfJson(),
-    if (excludeExportRanges != null)
-      'exclude_export_ranges': excludeExportRanges!.toTfJson(),
-    if (includeImportRanges != null)
-      'include_import_ranges': includeImportRanges!.toTfJson(),
-    if (excludeImportRanges != null)
-      'exclude_import_ranges': excludeImportRanges!.toTfJson(),
+    'linked_interconnect_attachments': linkedInterconnectAttachments.encode(),
   };
-}
-
-/// One router-appliance VM inside
-/// [NetworkConnectivitySpokeLinkedRouterApplianceInstances].
-@immutable
-final class NetworkConnectivitySpokeRouterApplianceInstance {
-  const NetworkConnectivitySpokeRouterApplianceInstance({
-    required this.virtualMachine,
-    required this.ipAddress,
-  });
-
-  final TfArg<String> virtualMachine;
-  final TfArg<String> ipAddress;
-
-  Map<String, Object?> encode() => {
-    'virtual_machine': virtualMachine.toTfJson(),
-    'ip_address': ipAddress.toTfJson(),
-  };
-}
-
-/// `linked_router_appliance_instances` — attach router appliance VMs.
-@immutable
-final class NetworkConnectivitySpokeLinkedRouterApplianceInstances
-    extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeLinkedRouterApplianceInstances({
-    required this.instances,
-    required this.siteToSiteDataTransfer,
-    this.includeExportRanges,
-    this.excludeExportRanges,
-    this.includeImportRanges,
-    this.excludeImportRanges,
-  });
-
-  final List<NetworkConnectivitySpokeRouterApplianceInstance> instances;
-  final TfArg<bool> siteToSiteDataTransfer;
-  final TfArg<List<String>>? includeExportRanges;
-  final TfArg<List<String>>? excludeExportRanges;
-  final TfArg<List<String>>? includeImportRanges;
-  final TfArg<List<String>>? excludeImportRanges;
 
   @override
-  String get blockKey => 'linked_router_appliance_instances';
-
-  @override
-  Map<String, Object?> encode() => {
-    'instances': [for (final i in instances) i.encode()],
-    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
-    if (includeExportRanges != null)
-      'include_export_ranges': includeExportRanges!.toTfJson(),
-    if (excludeExportRanges != null)
-      'exclude_export_ranges': excludeExportRanges!.toTfJson(),
-    if (includeImportRanges != null)
-      'include_import_ranges': includeImportRanges!.toTfJson(),
-    if (excludeImportRanges != null)
-      'exclude_import_ranges': excludeImportRanges!.toTfJson(),
+  Map<String, TfArg<Object?>> get argMap => {
+    'linked_interconnect_attachments': TfArg.literal(
+      linkedInterconnectAttachments.encode(),
+    ),
   };
 }
 
-/// `linked_producer_vpc_network` — attach a producer VPC via peering.
-@immutable
-final class NetworkConnectivitySpokeLinkedProducerVpcNetwork
+/// The [NetworkConnectivitySpokeAttachment.linkedProducerVpcNetwork] choice: sets `linked_producer_vpc_network`.
+final class NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork
     extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeLinkedProducerVpcNetwork({
-    required this.network,
-    required this.peering,
-    this.includeExportRanges,
-    this.excludeExportRanges,
-  });
+  const NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork(
+    this.linkedProducerVpcNetwork,
+  );
 
-  final TfArg<String> network;
-  final TfArg<String> peering;
-  final TfArg<List<String>>? includeExportRanges;
-  final TfArg<List<String>>? excludeExportRanges;
+  final NetworkConnectivitySpokeLinkedProducerVpcNetwork
+  linkedProducerVpcNetwork;
 
   @override
   String get blockKey => 'linked_producer_vpc_network';
 
   @override
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
-    'peering': peering.toTfJson(),
-    if (includeExportRanges != null)
-      'include_export_ranges': includeExportRanges!.toTfJson(),
-    if (excludeExportRanges != null)
-      'exclude_export_ranges': excludeExportRanges!.toTfJson(),
+    'linked_producer_vpc_network': linkedProducerVpcNetwork.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'linked_producer_vpc_network': TfArg.literal(
+      linkedProducerVpcNetwork.encode(),
+    ),
   };
 }
 
-/// Capacity for an NCC gateway spoke.
+/// The [NetworkConnectivitySpokeAttachment.linkedRouterApplianceInstances] choice: sets `linked_router_appliance_instances`.
+final class NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances
+    extends NetworkConnectivitySpokeAttachment {
+  const NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances(
+    this.linkedRouterApplianceInstances,
+  );
+
+  final NetworkConnectivitySpokeLinkedRouterApplianceInstances
+  linkedRouterApplianceInstances;
+
+  @override
+  String get blockKey => 'linked_router_appliance_instances';
+
+  @override
+  Map<String, Object?> encode() => {
+    'linked_router_appliance_instances': linkedRouterApplianceInstances
+        .encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'linked_router_appliance_instances': TfArg.literal(
+      linkedRouterApplianceInstances.encode(),
+    ),
+  };
+}
+
+/// The [NetworkConnectivitySpokeAttachment.linkedVpcNetwork] choice: sets `linked_vpc_network`.
+final class NetworkConnectivitySpokeAttachmentLinkedVpcNetwork
+    extends NetworkConnectivitySpokeAttachment {
+  const NetworkConnectivitySpokeAttachmentLinkedVpcNetwork(
+    this.linkedVpcNetwork,
+  );
+
+  final NetworkConnectivitySpokeLinkedVpcNetwork linkedVpcNetwork;
+
+  @override
+  String get blockKey => 'linked_vpc_network';
+
+  @override
+  Map<String, Object?> encode() => {
+    'linked_vpc_network': linkedVpcNetwork.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'linked_vpc_network': TfArg.literal(linkedVpcNetwork.encode()),
+  };
+}
+
+/// The [NetworkConnectivitySpokeAttachment.linkedVpnTunnels] choice: sets `linked_vpn_tunnels`.
+final class NetworkConnectivitySpokeAttachmentLinkedVpnTunnels
+    extends NetworkConnectivitySpokeAttachment {
+  const NetworkConnectivitySpokeAttachmentLinkedVpnTunnels(
+    this.linkedVpnTunnels,
+  );
+
+  final NetworkConnectivitySpokeLinkedVpnTunnels linkedVpnTunnels;
+
+  @override
+  String get blockKey => 'linked_vpn_tunnels';
+
+  @override
+  Map<String, Object?> encode() => {
+    'linked_vpn_tunnels': linkedVpnTunnels.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'linked_vpn_tunnels': TfArg.literal(linkedVpnTunnels.encode()),
+  };
+}
+
+/// Typed helper for the `gateway` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeGateway {
+  const NetworkConnectivitySpokeGateway({
+    required this.capacity,
+    required this.ipRangeReservations,
+  });
+
+  final TfArg<NetworkConnectivitySpokeGatewayCapacity> capacity;
+
+  final List<NetworkConnectivitySpokeGatewayIpRangeReservations>
+  ipRangeReservations;
+
+  Map<String, Object?> encode() => {
+    'capacity': capacity.toTfJson(),
+    'ip_range_reservations': [for (final e in ipRangeReservations) e.encode()],
+  };
+}
+
+/// `capacity` — derived from the provider schema description.
 enum NetworkConnectivitySpokeGatewayCapacity implements TerraformEnum {
   capacity1Gbps('CAPACITY_1_GBPS'),
   capacity10Gbps('CAPACITY_10_GBPS'),
@@ -275,10 +233,11 @@ enum NetworkConnectivitySpokeGatewayCapacity implements TerraformEnum {
   final String terraformValue;
 }
 
-/// One `/23` reservation inside [NetworkConnectivitySpokeGateway].
+/// Typed helper for the `gateway.ip_range_reservations` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
 @immutable
-final class NetworkConnectivitySpokeGatewayIpRangeReservation {
-  const NetworkConnectivitySpokeGatewayIpRangeReservation({
+final class NetworkConnectivitySpokeGatewayIpRangeReservations {
+  const NetworkConnectivitySpokeGatewayIpRangeReservations({
     required this.ipRange,
   });
 
@@ -287,26 +246,178 @@ final class NetworkConnectivitySpokeGatewayIpRangeReservation {
   Map<String, Object?> encode() => {'ip_range': ipRange.toTfJson()};
 }
 
-/// `gateway` — NCC gateway spoke (capacity-billed; never apply-smoke).
+/// Typed helper for the `linked_interconnect_attachments` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
 @immutable
-final class NetworkConnectivitySpokeGateway
-    extends NetworkConnectivitySpokeAttachment {
-  const NetworkConnectivitySpokeGateway({
-    required this.capacity,
-    required this.ipRangeReservations,
+final class NetworkConnectivitySpokeLinkedInterconnectAttachments {
+  const NetworkConnectivitySpokeLinkedInterconnectAttachments({
+    this.excludeExportRanges,
+    this.excludeImportRanges,
+    this.includeExportRanges,
+    this.includeImportRanges,
+    required this.siteToSiteDataTransfer,
+    required this.uris,
   });
 
-  final TfArg<NetworkConnectivitySpokeGatewayCapacity> capacity;
-  final List<NetworkConnectivitySpokeGatewayIpRangeReservation>
-  ipRangeReservations;
+  final TfArg<List<String>>? excludeExportRanges;
 
-  @override
-  String get blockKey => 'gateway';
+  final TfArg<List<String>>? excludeImportRanges;
 
-  @override
+  final TfArg<List<String>>? includeExportRanges;
+
+  final TfArg<List<String>>? includeImportRanges;
+
+  final TfArg<bool> siteToSiteDataTransfer;
+
+  final TfArg<List<String>> uris;
+
   Map<String, Object?> encode() => {
-    'capacity': capacity.toTfJson(),
-    'ip_range_reservations': [for (final r in ipRangeReservations) r.encode()],
+    'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
+    'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),
+    'include_export_ranges': ?includeExportRanges?.toTfJson(),
+    'include_import_ranges': ?includeImportRanges?.toTfJson(),
+    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
+    'uris': uris.toTfJson(),
+  };
+}
+
+/// Typed helper for the `linked_producer_vpc_network` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeLinkedProducerVpcNetwork {
+  const NetworkConnectivitySpokeLinkedProducerVpcNetwork({
+    this.excludeExportRanges,
+    this.includeExportRanges,
+    required this.network,
+    required this.peering,
+  });
+
+  final TfArg<List<String>>? excludeExportRanges;
+
+  final TfArg<List<String>>? includeExportRanges;
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  final TfArg<String> peering;
+
+  Map<String, Object?> encode() => {
+    'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
+    'include_export_ranges': ?includeExportRanges?.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
+    'peering': peering.toTfJson(),
+  };
+}
+
+/// Typed helper for the `linked_router_appliance_instances` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeLinkedRouterApplianceInstances {
+  const NetworkConnectivitySpokeLinkedRouterApplianceInstances({
+    this.excludeExportRanges,
+    this.excludeImportRanges,
+    this.includeExportRanges,
+    this.includeImportRanges,
+    required this.siteToSiteDataTransfer,
+    required this.instances,
+  });
+
+  final TfArg<List<String>>? excludeExportRanges;
+
+  final TfArg<List<String>>? excludeImportRanges;
+
+  final TfArg<List<String>>? includeExportRanges;
+
+  final TfArg<List<String>>? includeImportRanges;
+
+  final TfArg<bool> siteToSiteDataTransfer;
+
+  final List<NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances>
+  instances;
+
+  Map<String, Object?> encode() => {
+    'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
+    'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),
+    'include_export_ranges': ?includeExportRanges?.toTfJson(),
+    'include_import_ranges': ?includeImportRanges?.toTfJson(),
+    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
+    'instances': [for (final e in instances) e.encode()],
+  };
+}
+
+/// Typed helper for the `linked_router_appliance_instances.instances` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances {
+  const NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances({
+    required this.ipAddress,
+    required this.virtualMachine,
+  });
+
+  final TfArg<String> ipAddress;
+
+  final TfArg<String> virtualMachine;
+
+  Map<String, Object?> encode() => {
+    'ip_address': ipAddress.toTfJson(),
+    'virtual_machine': virtualMachine.toTfJson(),
+  };
+}
+
+/// Typed helper for the `linked_vpc_network` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeLinkedVpcNetwork {
+  const NetworkConnectivitySpokeLinkedVpcNetwork({
+    this.excludeExportRanges,
+    this.includeExportRanges,
+    required this.uri,
+  });
+
+  final TfArg<List<String>>? excludeExportRanges;
+
+  final TfArg<List<String>>? includeExportRanges;
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> encode() => {
+    'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
+    'include_export_ranges': ?includeExportRanges?.toTfJson(),
+    'uri': uri.toTfJson(),
+  };
+}
+
+/// Typed helper for the `linked_vpn_tunnels` block of
+/// `google_network_connectivity_spoke` (derived from provider schema).
+@immutable
+final class NetworkConnectivitySpokeLinkedVpnTunnels {
+  const NetworkConnectivitySpokeLinkedVpnTunnels({
+    this.excludeExportRanges,
+    this.excludeImportRanges,
+    this.includeExportRanges,
+    this.includeImportRanges,
+    required this.siteToSiteDataTransfer,
+    required this.uris,
+  });
+
+  final TfArg<List<String>>? excludeExportRanges;
+
+  final TfArg<List<String>>? excludeImportRanges;
+
+  final TfArg<List<String>>? includeExportRanges;
+
+  final TfArg<List<String>>? includeImportRanges;
+
+  final TfArg<bool> siteToSiteDataTransfer;
+
+  final TfArg<List<String>> uris;
+
+  Map<String, Object?> encode() => {
+    'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
+    'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),
+    'include_export_ranges': ?includeExportRanges?.toTfJson(),
+    'include_import_ranges': ?includeImportRanges?.toTfJson(),
+    'site_to_site_data_transfer': siteToSiteDataTransfer.toTfJson(),
+    'uris': uris.toTfJson(),
   };
 }
 
@@ -323,11 +434,11 @@ final class NetworkConnectivitySpokeGateway
 /// ```dart
 /// GoogleNetworkConnectivitySpoke(
 ///   localName: 'vpc_spoke',
-///   name: TfArg.literal('vpc-spoke'),
-///   location: TfArg.literal('global'),
-///   hub: TfArg.ref(hub.id),
-///   attachment: NetworkConnectivitySpokeLinkedVpcNetwork(
-///     uri: TfArg.ref(vpc.id),
+///   name: .literal('vpc-spoke'),
+///   location: .literal('global'),
+///   hub: .ref(hub.id),
+///   attachment: .linkedVpcNetwork(
+///     NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)),
 ///   ),
 /// );
 /// ```
@@ -355,7 +466,7 @@ final class GoogleNetworkConnectivitySpoke extends Resource {
            'name': name,
            'location': location,
            'hub': hub,
-           attachment.blockKey: TfArg.literal([attachment.encode()]),
+           ...attachment.argMap,
            'group': ?group,
            'description': ?description,
            'labels': ?labels,

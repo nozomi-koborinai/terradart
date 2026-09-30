@@ -11,7 +11,10 @@ export 'src/edgecontainer/google_edgecontainer_cluster.dart'
         EdgecontainerClusterControlPlane,
         EdgecontainerClusterControlPlaneEncryption,
         EdgecontainerClusterControlPlaneLocal,
+        EdgecontainerClusterControlPlaneLocalChoice,
+        EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy,
         EdgecontainerClusterControlPlaneRemote,
+        EdgecontainerClusterControlPlaneRemoteChoice,
         EdgecontainerClusterFleet,
         EdgecontainerClusterMaintenancePolicy,
         EdgecontainerClusterMaintenancePolicyMaintenanceExclusions,
@@ -21,7 +24,6 @@ export 'src/edgecontainer/google_edgecontainer_cluster.dart'
         EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow,
         EdgecontainerClusterNetworking,
         EdgecontainerClusterReleaseChannel,
-        EdgecontainerClusterSharedDeploymentPolicy,
         EdgecontainerClusterSystemAddonsConfig,
         EdgecontainerClusterSystemAddonsConfigIngress,
         GoogleEdgecontainerCluster;
