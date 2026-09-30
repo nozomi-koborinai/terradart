@@ -167,7 +167,11 @@ final class AssetsStack extends Stack {
         serverId: .literal('assets-sftp'),
         location: .literal('asia-northeast1'),
         accessType: .literal(.external),
-        config: .external(allowedCidrBlocks: .literal(['203.0.113.0/24'])),
+        config: .externalConfig(
+          StorageFtpServerExternalConfig(
+            allowedCidrBlocks: .literal(['203.0.113.0/24']),
+          ),
+        ),
       ),
     );
 
