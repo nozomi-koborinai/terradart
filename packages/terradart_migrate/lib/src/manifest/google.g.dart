@@ -47057,6 +47057,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'source_disk': 'ComputeImageSourceDisk',
             'source_image': 'ComputeImageSourceImage',
             'source_snapshot': 'ComputeImageSourceSnapshot',
+            'raw_disk': 'ComputeImageSourceRawDisk',
           },
         ),
         MigrateSlot(
@@ -47124,14 +47125,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'ComputeImageParams',
-        ),
-        MigrateSlot(
-          tfName: 'raw_disk',
-          dartName: 'rawDisk',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ComputeImageRawDisk',
         ),
         MigrateSlot(
           tfName: 'shielded_instance_initial_state',
@@ -226493,6 +226486,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeImageSourceRawDisk': MigrateHelper(
+      className: 'ComputeImageSourceRawDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'raw_disk',
+          dartName: 'rawDisk',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeImageRawDisk',
+        ),
+      ],
+      shorthand: 'rawDisk',
     ),
     'ComputeImageSourceSnapshot': MigrateHelper(
       className: 'ComputeImageSourceSnapshot',

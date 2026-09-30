@@ -261,6 +261,7 @@ export 'src/compute/google_compute_image.dart'
         ComputeImageSourceDiskEncryptionKey,
         ComputeImageSourceImage,
         ComputeImageSourceImageEncryptionKey,
+        ComputeImageSourceRawDisk,
         ComputeImageSourceSnapshot,
         ComputeImageSourceSnapshotEncryptionKey,
         GoogleComputeImage;

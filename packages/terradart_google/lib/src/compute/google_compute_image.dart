@@ -19,8 +19,8 @@ const Set<String> _googleComputeImageSensitive = <String>{
 };
 
 /// Image source for [GoogleComputeImage]. Sealed so callers pick exactly
-/// one of `source_disk` / `source_image` / `source_snapshot` at the type
-/// level (MM documents mutual exclusion in prose; there is no
+/// one of `source_disk` / `source_image` / `source_snapshot` / `raw_disk`
+/// at the type level (MM documents mutual exclusion in prose; there is no
 /// `exactly_one_of` metadata on this resource).
 sealed class ComputeImageSource {
   const ComputeImageSource();
@@ -38,12 +38,16 @@ sealed class ComputeImageSource {
     required TfArg<String> sourceSnapshot,
   }) = ComputeImageSourceSnapshot;
 
-  /// Terraform attribute name (`source_disk`, `source_image`, or
-  /// `source_snapshot`).
+  /// Import the image from a tarball in Cloud Storage (`raw_disk`).
+  const factory ComputeImageSource.rawDisk(ComputeImageRawDisk rawDisk) =
+      ComputeImageSourceRawDisk;
+
+  /// Terraform attribute name (`source_disk`, `source_image`,
+  /// `source_snapshot`, or `raw_disk`).
   String get blockKey;
 
-  /// Scalar value written under [blockKey].
-  TfArg<String> get value;
+  /// Value written under [blockKey].
+  TfArg<Object?> get value;
 
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
@@ -88,6 +92,20 @@ final class ComputeImageSourceSnapshot extends ComputeImageSource {
 
   @override
   TfArg<String> get value => sourceSnapshot;
+}
+
+/// Import the image from a tarball in Cloud Storage (`raw_disk`).
+@immutable
+final class ComputeImageSourceRawDisk extends ComputeImageSource {
+  const ComputeImageSourceRawDisk(this.rawDisk);
+
+  final ComputeImageRawDisk rawDisk;
+
+  @override
+  String get blockKey => 'raw_disk';
+
+  @override
+  TfArg<Object?> get value => TfArg.literal(rawDisk.encode());
 }
 
 /// Typed helper for the `guest_os_features` block of
@@ -390,11 +408,9 @@ final class ComputeImageSourceSnapshotEncryptionKey {
 /// instance.
 ///
 /// An Image must have exactly one [ComputeImageSource]:
-/// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
-/// [ComputeImageSourceSnapshot].
-///
-/// GCS `raw_disk` import is not modeled yet — use the Terraform provider
-/// directly (or request curation) when importing a tarball from Cloud Storage.
+/// [ComputeImageSourceDisk], [ComputeImageSourceImage],
+/// [ComputeImageSourceSnapshot], or [ComputeImageSourceRawDisk] (a tarball
+/// imported from Cloud Storage).
 ///
 /// Prefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a
 /// reusable image; use [ComputeImageSourceDisk] for a live disk.
@@ -414,7 +430,6 @@ final class GoogleComputeImage extends Resource {
     TfArg<String>? deletionPolicy,
     List<ComputeImageGuestOsFeatures>? guestOsFeatures,
     ComputeImageParams? params,
-    ComputeImageRawDisk? rawDisk,
     ComputeImageShieldedInstanceInitialState? shieldedInstanceInitialState,
     TfArg<String>? project,
     ComputeImageImageEncryptionKey? imageEncryptionKey,
@@ -441,7 +456,6 @@ final class GoogleComputeImage extends Resource {
                for (final e in guestOsFeatures) e.encode(),
              ]),
            if (params != null) 'params': TfArg.literal(params.encode()),
-           if (rawDisk != null) 'raw_disk': TfArg.literal(rawDisk.encode()),
            if (shieldedInstanceInitialState != null)
              'shielded_instance_initial_state': TfArg.literal(
                shieldedInstanceInitialState.encode(),

@@ -16,14 +16,15 @@ Per-package changelogs live alongside each package and are the system of record 
   Firebase App Check and App Hosting factories,
   `GoogleComputeZoneVmExtensionPolicy`), `priority` on
   `GoogleComputeZoneVmExtensionPolicy`, and 13 blocks that take derived
-  helpers: `GoogleComputeImage` `guestOsFeatures` / `params` / `rawDisk`
-  / `shieldedInstanceInitialState`, `GoogleGkeHubFeature` `spec` /
+  helpers: `GoogleComputeImage` `guestOsFeatures` / `params` /
+  `shieldedInstanceInitialState` and a `.rawDisk(...)` `source` variant
+  for a Cloud Storage tarball, `GoogleGkeHubFeature` `spec` /
   `fleetDefaultMemberConfig`, `GoogleIdentityPlatformTenant.client`,
   `GoogleMigrationCenterPreferenceSet.virtualMachinePreferences`,
   `GoogleDialogflowGenerator.inferenceParameter`, and the Contact Center
   AI Insights analysis rule `annotatorSelector` and QA question
   `predefinedQuestionConfig` / `qaQuestionDataOptions` /
-  `tuningMetadata`. Every parameter is optional; synth output is
+  `tuningMetadata`. Every new parameter is optional; synth output is
   unchanged.
 - **A reference getter for every input** (`terradart_codegen`,
   `terradart_google`, `terradart_google_beta`, `terradart_aws`,

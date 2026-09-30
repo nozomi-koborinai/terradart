@@ -12198,7 +12198,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'guestOsFeatures',
       'params',
-      'rawDisk',
       'shieldedInstanceInitialState',
       'project',
       'imageEncryptionKey',
@@ -12211,6 +12210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeImageSourceDisk',
       'ComputeImageSourceImage',
       'ComputeImageSourceSnapshot',
+      'ComputeImageSourceRawDisk',
       'ComputeImageGuestOsFeatures',
       'ComputeImageGuestOsFeaturesType',
       'ComputeImageImageEncryptionKey',
@@ -12236,7 +12236,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'source_snapshot_encryption_key.rsa_encrypted_key',
     ],
     docComment:
-        'Factory wrapper for `google_compute_image`.\n\nRepresents an Image resource.\n\nGoogle Compute Engine uses operating system images to create the root\npersistent disks for your instances. You specify an image when you create an\ninstance. Images contain a boot loader, an operating system, and a root file\nsystem. Linux operating system images are also capable of running containers\non Compute Engine.\n\nImages can be either public or custom.\n\nPublic images are provided and maintained by Google, open-source\ncommunities, and third-party vendors. By default, all projects have access\nto these images and can use them to create instances. Custom images are\navailable only to your project. You can create a custom image from root\npersistent disks and other images. Then, use the custom image to create an\ninstance.\n\nAn Image must have exactly one [ComputeImageSource]:\n[ComputeImageSourceDisk], [ComputeImageSourceImage], or\n[ComputeImageSourceSnapshot].\n\nGCS `raw_disk` import is not modeled yet — use the Terraform provider\ndirectly (or request curation) when importing a tarball from Cloud Storage.\n\nPrefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a\nreusable image; use [ComputeImageSourceDisk] for a live disk.',
+        'Factory wrapper for `google_compute_image`.\n\nRepresents an Image resource.\n\nGoogle Compute Engine uses operating system images to create the root\npersistent disks for your instances. You specify an image when you create an\ninstance. Images contain a boot loader, an operating system, and a root file\nsystem. Linux operating system images are also capable of running containers\non Compute Engine.\n\nImages can be either public or custom.\n\nPublic images are provided and maintained by Google, open-source\ncommunities, and third-party vendors. By default, all projects have access\nto these images and can use them to create instances. Custom images are\navailable only to your project. You can create a custom image from root\npersistent disks and other images. Then, use the custom image to create an\ninstance.\n\nAn Image must have exactly one [ComputeImageSource]:\n[ComputeImageSourceDisk], [ComputeImageSourceImage],\n[ComputeImageSourceSnapshot], or [ComputeImageSourceRawDisk] (a tarball\nimported from Cloud Storage).\n\nPrefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a\nreusable image; use [ComputeImageSourceDisk] for a live disk.',
   ),
   CatalogEntry(
     tfType: 'google_compute_image',
