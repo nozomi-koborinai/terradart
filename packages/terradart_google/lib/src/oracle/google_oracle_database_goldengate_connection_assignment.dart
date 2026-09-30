@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_oracle_database_goldengate_connection_assignment`.
@@ -21,6 +22,25 @@ enum OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy
   final String terraformValue;
 }
 
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_goldengate_connection_assignment` (derived from provider schema).
+@immutable
+final class OracleDatabaseGoldengateConnectionAssignmentProperties {
+  const OracleDatabaseGoldengateConnectionAssignmentProperties({
+    required this.goldengateConnection,
+    required this.goldengateDeployment,
+  });
+
+  final TfArg<String> goldengateConnection;
+
+  final TfArg<String> goldengateDeployment;
+
+  Map<String, Object?> encode() => {
+    'goldengate_connection': goldengateConnection.toTfJson(),
+    'goldengate_deployment': goldengateDeployment.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_oracle_database_goldengate_connection_assignment`.
 ///
 /// This resource helps to assign a GoldengateConnection to a
@@ -39,7 +59,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> goldengateConnectionAssignmentId,
-    required TfArg<Map<String, dynamic>> properties,
+    required OracleDatabaseGoldengateConnectionAssignmentProperties properties,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy>?
@@ -56,7 +76,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
            'location': location,
            'goldengate_connection_assignment_id':
                goldengateConnectionAssignmentId,
-           'properties': properties,
+           'properties': TfArg.literal(properties.encode()),
            'display_name': ?displayName,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

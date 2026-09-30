@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_biglake_iceberg_catalog`.
@@ -27,6 +28,153 @@ enum BiglakeIcebergCatalogCredentialMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `federated_catalog_options` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptions {
+  const BiglakeIcebergCatalogFederatedCatalogOptions({
+    this.secretName,
+    this.serviceDirectoryName,
+    this.glueCatalogInfo,
+    this.refreshOptions,
+    this.unityCatalogInfo,
+  });
+
+  final TfArg<String>? secretName;
+
+  final TfArg<String>? serviceDirectoryName;
+
+  final BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo?
+  glueCatalogInfo;
+
+  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions?
+  refreshOptions;
+
+  final BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo?
+  unityCatalogInfo;
+
+  Map<String, Object?> encode() => {
+    'secret_name': ?secretName?.toTfJson(),
+    'service_directory_name': ?serviceDirectoryName?.toTfJson(),
+    'glue_catalog_info': ?glueCatalogInfo?.encode(),
+    'refresh_options': ?refreshOptions?.encode(),
+    'unity_catalog_info': ?unityCatalogInfo?.encode(),
+  };
+}
+
+/// Typed helper for the `federated_catalog_options.glue_catalog_info` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo {
+  const BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo({
+    required this.awsRegion,
+    required this.awsRoleArn,
+    required this.warehouse,
+  });
+
+  final TfArg<String> awsRegion;
+
+  final TfArg<String> awsRoleArn;
+
+  final TfArg<String> warehouse;
+
+  Map<String, Object?> encode() => {
+    'aws_region': awsRegion.toTfJson(),
+    'aws_role_arn': awsRoleArn.toTfJson(),
+    'warehouse': warehouse.toTfJson(),
+  };
+}
+
+/// Typed helper for the `federated_catalog_options.refresh_options` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions {
+  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions({
+    this.refreshSchedule,
+    this.refreshScope,
+  });
+
+  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule?
+  refreshSchedule;
+
+  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope?
+  refreshScope;
+
+  Map<String, Object?> encode() => {
+    'refresh_schedule': ?refreshSchedule?.encode(),
+    'refresh_scope': ?refreshScope?.encode(),
+  };
+}
+
+/// Typed helper for the `federated_catalog_options.refresh_options.refresh_schedule` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule {
+  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule({
+    this.refreshInterval,
+  });
+
+  final TfArg<String>? refreshInterval;
+
+  Map<String, Object?> encode() => {
+    'refresh_interval': ?refreshInterval?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `federated_catalog_options.refresh_options.refresh_scope` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope {
+  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope({
+    this.namespaceFilters,
+  });
+
+  final TfArg<List<String>>? namespaceFilters;
+
+  Map<String, Object?> encode() => {
+    'namespace_filters': ?namespaceFilters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `federated_catalog_options.unity_catalog_info` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo {
+  const BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo({
+    required this.catalogName,
+    required this.instanceName,
+    this.servicePrincipalApplicationId,
+  });
+
+  final TfArg<String> catalogName;
+
+  final TfArg<String> instanceName;
+
+  final TfArg<String>? servicePrincipalApplicationId;
+
+  Map<String, Object?> encode() => {
+    'catalog_name': catalogName.toTfJson(),
+    'instance_name': instanceName.toTfJson(),
+    'service_principal_application_id': ?servicePrincipalApplicationId
+        ?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restricted_locations_config` block of
+/// `google_biglake_iceberg_catalog` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogRestrictedLocationsConfig {
+  const BiglakeIcebergCatalogRestrictedLocationsConfig({
+    this.restrictedLocations,
+  });
+
+  final TfArg<List<String>>? restrictedLocations;
+
+  Map<String, Object?> encode() => {
+    'restricted_locations': ?restrictedLocations?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_biglake_iceberg_catalog`.
 ///
 /// IcebergCatalogs are top-level containers for Apache Iceberg REST Catalog
@@ -49,6 +197,8 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
     TfArg<BiglakeIcebergCatalogCredentialMode>? credentialMode,
     TfArg<String>? primaryLocation,
     TfArg<String>? defaultLocation,
+    BiglakeIcebergCatalogFederatedCatalogOptions? federatedCatalogOptions,
+    BiglakeIcebergCatalogRestrictedLocationsConfig? restrictedLocationsConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -63,6 +213,14 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
            'credential_mode': ?credentialMode,
            'primary_location': ?primaryLocation,
            'default_location': ?defaultLocation,
+           if (federatedCatalogOptions != null)
+             'federated_catalog_options': TfArg.literal(
+               federatedCatalogOptions.encode(),
+             ),
+           if (restrictedLocationsConfig != null)
+             'restricted_locations_config': TfArg.literal(
+               restrictedLocationsConfig.encode(),
+             ),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

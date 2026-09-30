@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_network`.
@@ -53,6 +54,19 @@ enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_network` (derived from provider schema).
+@immutable
+final class ComputeNetworkParams {
+  const ComputeNetworkParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_network`.
 ///
 /// Manages a VPC network or legacy network resource on GCP.
@@ -91,6 +105,7 @@ final class GoogleComputeNetwork extends Resource {
     TfArg<BgpBestPathSelectionMode>? bgpBestPathSelectionMode,
     TfArg<BgpInterRegionCost>? bgpInterRegionCost,
     TfArg<String>? internalIpv6Range,
+    ComputeNetworkParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -114,6 +129,7 @@ final class GoogleComputeNetwork extends Resource {
            'bgp_best_path_selection_mode': ?bgpBestPathSelectionMode,
            'bgp_inter_region_cost': ?bgpInterRegionCost,
            'internal_ipv6_range': ?internalIpv6Range,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
          },
        );

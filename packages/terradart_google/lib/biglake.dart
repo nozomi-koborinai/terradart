@@ -45,6 +45,13 @@ export 'src/biglake/google_biglake_iceberg_catalog.dart'
     show
         BiglakeIcebergCatalogCatalogType,
         BiglakeIcebergCatalogCredentialMode,
+        BiglakeIcebergCatalogFederatedCatalogOptions,
+        BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo,
+        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions,
+        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule,
+        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope,
+        BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo,
+        BiglakeIcebergCatalogRestrictedLocationsConfig,
         GoogleBiglakeIcebergCatalog;
 export 'src/biglake/google_biglake_iceberg_catalog_iam_binding.dart'
     show GoogleBiglakeIcebergCatalogIamBinding;

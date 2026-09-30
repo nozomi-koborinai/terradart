@@ -46,6 +46,7 @@ paramOrder:
   - labels
   - project
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 extraGetters: |2
     /// Reference to `service_id` -- the stable user-chosen segment

@@ -1,6 +1,7 @@
 outputDir: network
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 # Schema docs list Possible values space-separated (no commas / brackets), so

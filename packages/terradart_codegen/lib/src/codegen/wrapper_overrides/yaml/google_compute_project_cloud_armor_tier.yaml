@@ -2,6 +2,7 @@ outputDir: compute
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 # Hand-write the enum so the factory type name stays
 # `ComputeProjectCloudArmorTier` (deriveEnums would emit the awkward

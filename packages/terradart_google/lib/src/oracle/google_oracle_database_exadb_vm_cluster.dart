@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_oracle_database_exadb_vm_cluster`.
@@ -15,6 +16,129 @@ enum OracleDatabaseExadbVmClusterDeletionPolicy implements TerraformEnum {
   const OracleDatabaseExadbVmClusterDeletionPolicy(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseExadbVmClusterProperties {
+  const OracleDatabaseExadbVmClusterProperties({
+    this.additionalEcpuCountPerNode,
+    this.clusterName,
+    required this.enabledEcpuCountPerNode,
+    required this.exascaleDbStorageVault,
+    required this.gridImageId,
+    required this.hostnamePrefix,
+    this.licenseModel,
+    required this.nodeCount,
+    this.scanListenerPortTcp,
+    required this.shapeAttribute,
+    required this.sshPublicKeys,
+    this.dataCollectionOptions,
+    this.timeZone,
+    required this.vmFileSystemStorage,
+  });
+
+  final TfArg<num>? additionalEcpuCountPerNode;
+
+  final TfArg<String>? clusterName;
+
+  final TfArg<num> enabledEcpuCountPerNode;
+
+  final TfArg<String> exascaleDbStorageVault;
+
+  final TfArg<String> gridImageId;
+
+  final TfArg<String> hostnamePrefix;
+
+  final TfArg<String>? licenseModel;
+
+  final TfArg<num> nodeCount;
+
+  final TfArg<num>? scanListenerPortTcp;
+
+  final TfArg<String> shapeAttribute;
+
+  final TfArg<List<String>> sshPublicKeys;
+
+  final OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions?
+  dataCollectionOptions;
+
+  final OracleDatabaseExadbVmClusterPropertiesTimeZone? timeZone;
+
+  final OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage
+  vmFileSystemStorage;
+
+  Map<String, Object?> encode() => {
+    'additional_ecpu_count_per_node': ?additionalEcpuCountPerNode?.toTfJson(),
+    'cluster_name': ?clusterName?.toTfJson(),
+    'enabled_ecpu_count_per_node': enabledEcpuCountPerNode.toTfJson(),
+    'exascale_db_storage_vault': exascaleDbStorageVault.toTfJson(),
+    'grid_image_id': gridImageId.toTfJson(),
+    'hostname_prefix': hostnamePrefix.toTfJson(),
+    'license_model': ?licenseModel?.toTfJson(),
+    'node_count': nodeCount.toTfJson(),
+    'scan_listener_port_tcp': ?scanListenerPortTcp?.toTfJson(),
+    'shape_attribute': shapeAttribute.toTfJson(),
+    'ssh_public_keys': sshPublicKeys.toTfJson(),
+    'data_collection_options': ?dataCollectionOptions?.encode(),
+    'time_zone': ?timeZone?.encode(),
+    'vm_file_system_storage': vmFileSystemStorage.encode(),
+  };
+}
+
+/// Typed helper for the `properties.data_collection_options` block of
+/// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions {
+  const OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions({
+    this.isDiagnosticsEventsEnabled,
+    this.isHealthMonitoringEnabled,
+    this.isIncidentLogsEnabled,
+  });
+
+  final TfArg<bool>? isDiagnosticsEventsEnabled;
+
+  final TfArg<bool>? isHealthMonitoringEnabled;
+
+  final TfArg<bool>? isIncidentLogsEnabled;
+
+  Map<String, Object?> encode() => {
+    'is_diagnostics_events_enabled': ?isDiagnosticsEventsEnabled?.toTfJson(),
+    'is_health_monitoring_enabled': ?isHealthMonitoringEnabled?.toTfJson(),
+    'is_incident_logs_enabled': ?isIncidentLogsEnabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `properties.time_zone` block of
+/// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseExadbVmClusterPropertiesTimeZone {
+  const OracleDatabaseExadbVmClusterPropertiesTimeZone({this.id, this.version});
+
+  final TfArg<String>? id;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `properties.vm_file_system_storage` block of
+/// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage {
+  const OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage({
+    required this.sizeInGbsPerNode,
+  });
+
+  final TfArg<num> sizeInGbsPerNode;
+
+  Map<String, Object?> encode() => {
+    'size_in_gbs_per_node': sizeInGbsPerNode.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_oracle_database_exadb_vm_cluster`.
@@ -37,7 +161,7 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
     required TfArg<String> odbSubnet,
     required TfArg<String> backupOdbSubnet,
     TfArg<String>? odbNetwork,
-    required TfArg<Map<String, dynamic>> properties,
+    required OracleDatabaseExadbVmClusterProperties properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseExadbVmClusterDeletionPolicy>? deletionPolicy,
     TfArg<bool>? deletionProtection,
@@ -55,7 +179,7 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
            'odb_subnet': odbSubnet,
            'backup_odb_subnet': backupOdbSubnet,
            'odb_network': ?odbNetwork,
-           'properties': properties,
+           'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,

@@ -1,6 +1,7 @@
 outputDir: logging
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_oracle_database_exascale_db_storage_vault`.
@@ -17,6 +18,62 @@ enum OracleDatabaseExascaleDbStorageVaultDeletionPolicy
   const OracleDatabaseExascaleDbStorageVaultDeletionPolicy(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_exascale_db_storage_vault` (derived from provider schema).
+@immutable
+final class OracleDatabaseExascaleDbStorageVaultProperties {
+  const OracleDatabaseExascaleDbStorageVaultProperties({
+    this.additionalFlashCachePercent,
+    required this.exascaleDbStorageDetails,
+    this.timeZone,
+  });
+
+  final TfArg<num>? additionalFlashCachePercent;
+
+  final OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails
+  exascaleDbStorageDetails;
+
+  final OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone? timeZone;
+
+  Map<String, Object?> encode() => {
+    'additional_flash_cache_percent': ?additionalFlashCachePercent?.toTfJson(),
+    'exascale_db_storage_details': exascaleDbStorageDetails.encode(),
+    'time_zone': ?timeZone?.encode(),
+  };
+}
+
+/// Typed helper for the `properties.exascale_db_storage_details` block of
+/// `google_oracle_database_exascale_db_storage_vault` (derived from provider schema).
+@immutable
+final class OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails {
+  const OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails({
+    required this.totalSizeGbs,
+  });
+
+  final TfArg<num> totalSizeGbs;
+
+  Map<String, Object?> encode() => {'total_size_gbs': totalSizeGbs.toTfJson()};
+}
+
+/// Typed helper for the `properties.time_zone` block of
+/// `google_oracle_database_exascale_db_storage_vault` (derived from provider schema).
+@immutable
+final class OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone {
+  const OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone({
+    this.id,
+    this.version,
+  });
+
+  final TfArg<String>? id;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_oracle_database_exascale_db_storage_vault`.
@@ -36,7 +93,7 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
     required TfArg<String> location,
     required TfArg<String> exascaleDbStorageVaultId,
     required TfArg<String> displayName,
-    required TfArg<Map<String, dynamic>> properties,
+    required OracleDatabaseExascaleDbStorageVaultProperties properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseExascaleDbStorageVaultDeletionPolicy>? deletionPolicy,
     TfArg<bool>? deletionProtection,
@@ -51,7 +108,7 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
            'location': location,
            'exascale_db_storage_vault_id': exascaleDbStorageVaultId,
            'display_name': displayName,
-           'properties': properties,
+           'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,

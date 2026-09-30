@@ -7,6 +7,7 @@ export 'src/memcache/google_memcache_instance.dart'
     show
         GoogleMemcacheInstance,
         MemcacheInstanceMaintenancePolicy,
+        MemcacheInstanceMemcacheParameters,
         MemcacheInstanceNodeConfig,
         MemcacheInstanceVersion,
         MemcacheInstanceWeeklyMaintenanceDay,

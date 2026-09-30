@@ -53,6 +53,7 @@ paramOrder:
   - disabled
   - enable_logging
   - description
+  - params
   - project
 
 argMapOrder:
@@ -70,9 +71,11 @@ argMapOrder:
   - disabled
   - enable_logging
   - description
+  - params
   - project
   - rule_policy
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraImports:

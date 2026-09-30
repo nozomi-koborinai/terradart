@@ -37,6 +37,7 @@ curatedDoc: |-
   /// );
   /// ```
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:
@@ -60,6 +61,7 @@ paramOrder:
   - send_secondary_ip_range_if_empty
   - allow_subnet_cidr_routes_overlap
   - description
+  - params
   - project
 
 dartTypeOverrides:

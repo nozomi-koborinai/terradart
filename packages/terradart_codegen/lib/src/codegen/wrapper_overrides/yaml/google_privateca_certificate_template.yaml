@@ -2,6 +2,7 @@ outputDir: privateca
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:
@@ -11,6 +12,8 @@ paramOrder:
   - description
   - maximum_lifetime
   - labels
+  - passthrough_extensions
+  - predefined_values
 
 curatedDoc: |-
   /// Certificate Authority Service (CAS) certificate template — reusable X.509

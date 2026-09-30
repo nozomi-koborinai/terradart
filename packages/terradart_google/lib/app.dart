@@ -7,6 +7,8 @@ library;
 
 export 'src/app/google_app_engine_application.dart'
     show
+        AppEngineApplicationFeatureSettings,
+        AppEngineApplicationIap,
         AppEngineDatabaseType,
         AppEngineServingStatus,
         GoogleAppEngineApplication;

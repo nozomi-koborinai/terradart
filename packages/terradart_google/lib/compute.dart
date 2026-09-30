@@ -126,11 +126,14 @@ export 'src/compute/google_compute_external_vpn_gateway.dart'
         GoogleComputeExternalVpnGateway;
 export 'src/compute/google_compute_firewall.dart'
     show
+        ComputeFirewallAllow,
         ComputeFirewallAllowPolicy,
+        ComputeFirewallDeny,
         ComputeFirewallDenyPolicy,
         ComputeFirewallFirewallAllowRule,
         ComputeFirewallFirewallDenyRule,
         ComputeFirewallFirewallLogConfig,
+        ComputeFirewallParams,
         ComputeFirewallRulePolicy,
         FirewallDirection,
         FirewallLogMetadata,
@@ -440,6 +443,7 @@ export 'src/compute/google_compute_network.dart'
     show
         BgpBestPathSelectionMode,
         BgpInterRegionCost,
+        ComputeNetworkParams,
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
@@ -838,6 +842,8 @@ export 'src/compute/google_compute_region_security_policy_rule.dart'
     show
         ComputeRegionSecurityPolicyRuleMatch,
         ComputeRegionSecurityPolicyRuleMatchConfig,
+        ComputeRegionSecurityPolicyRuleNetworkMatch,
+        ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields,
         ComputeRegionSecurityPolicyRulePreconfiguredWafConfig,
         ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion,
         ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch,
@@ -1030,15 +1036,18 @@ export 'src/compute/google_compute_route.dart'
         ComputeRouteInstanceNextHop,
         ComputeRouteIpNextHop,
         ComputeRouteNextHop,
+        ComputeRouteParams,
         ComputeRouteVpnTunnelNextHop,
         GoogleComputeRoute;
 export 'src/compute/google_compute_router.dart'
     show
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
+        ComputeRouterMd5AuthenticationKeys,
         ComputeRouterNetwork,
         ComputeRouterNetworkChoice,
         ComputeRouterNetworkNccGateway,
+        ComputeRouterParams,
         GoogleComputeRouter;
 export 'src/compute/google_compute_router_interface.dart'
     show GoogleComputeRouterInterface;
@@ -1108,6 +1117,8 @@ export 'src/compute/google_compute_security_policy.dart'
         SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_security_policy_rule.dart'
     show
+        ComputeSecurityPolicyRuleHeaderAction,
+        ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds,
         ComputeSecurityPolicyRuleMatch,
         ComputeSecurityPolicyRuleMatchConfig,
         ComputeSecurityPolicyRulePreconfiguredWafConfig,
@@ -1115,9 +1126,13 @@ export 'src/compute/google_compute_security_policy_rule.dart'
         ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch,
         ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig,
         ComputeSecurityPolicyRuleRateLimitOptions,
+        ComputeSecurityPolicyRuleRedirectOptions,
         GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
-    show GoogleComputeServiceAttachment, ServiceAttachmentConnectionPreference;
+    show
+        ComputeServiceAttachmentConsumerAcceptLists,
+        GoogleComputeServiceAttachment,
+        ServiceAttachmentConnectionPreference;
 export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
@@ -1166,6 +1181,7 @@ export 'src/compute/google_compute_storage_pool_iam_policy.dart'
     show GoogleComputeStoragePoolIamPolicy;
 export 'src/compute/google_compute_subnetwork.dart'
     show
+        ComputeSubnetworkParams,
         ComputeSubnetworkSecondaryIpRange,
         ComputeSubnetworkSubnetworkLogConfig,
         GoogleComputeSubnetwork,

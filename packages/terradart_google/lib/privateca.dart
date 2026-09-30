@@ -68,7 +68,19 @@ export 'src/privateca/google_privateca_certificate_template.dart'
     show
         GooglePrivatecaCertificateTemplate,
         PrivatecaCertificateTemplateCelExpression,
-        PrivatecaCertificateTemplateIdentityConstraints;
+        PrivatecaCertificateTemplateIdentityConstraints,
+        PrivatecaCertificateTemplatePassthroughExtensions,
+        PrivatecaCertificateTemplatePassthroughExtensionsAdditionalExtensions,
+        PrivatecaCertificateTemplatePredefinedValues,
+        PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions,
+        PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObjectId,
+        PrivatecaCertificateTemplatePredefinedValuesCaOptions,
+        PrivatecaCertificateTemplatePredefinedValuesKeyUsage,
+        PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage,
+        PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage,
+        PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedKeyUsages,
+        PrivatecaCertificateTemplatePredefinedValuesNameConstraints,
+        PrivatecaCertificateTemplatePredefinedValuesPolicyIds;
 export 'src/privateca/google_privateca_certificate_template_iam_binding.dart'
     show GooglePrivatecaCertificateTemplateIamBinding;
 export 'src/privateca/google_privateca_certificate_template_iam_member.dart'

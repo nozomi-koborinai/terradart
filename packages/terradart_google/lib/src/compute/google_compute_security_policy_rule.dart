@@ -129,6 +129,58 @@ class ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch {
   };
 }
 
+/// Typed helper for the `header_action` block of
+/// `google_compute_security_policy_rule` (derived from provider schema).
+@immutable
+final class ComputeSecurityPolicyRuleHeaderAction {
+  const ComputeSecurityPolicyRuleHeaderAction({this.requestHeadersToAdds});
+
+  final List<ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds>?
+  requestHeadersToAdds;
+
+  Map<String, Object?> encode() => {
+    if (requestHeadersToAdds != null)
+      'request_headers_to_adds': [
+        for (final e in requestHeadersToAdds!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `header_action.request_headers_to_adds` block of
+/// `google_compute_security_policy_rule` (derived from provider schema).
+@immutable
+final class ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds {
+  const ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds({
+    this.headerName,
+    this.headerValue,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `redirect_options` block of
+/// `google_compute_security_policy_rule` (derived from provider schema).
+@immutable
+final class ComputeSecurityPolicyRuleRedirectOptions {
+  const ComputeSecurityPolicyRuleRedirectOptions({this.target, this.type});
+
+  final TfArg<String>? target;
+
+  final TfArg<String>? type;
+
+  Map<String, Object?> encode() => {
+    'target': ?target?.toTfJson(),
+    'type': ?type?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_security_policy_rule`.
 ///
 /// A rule for the SecurityPolicy.
@@ -143,11 +195,11 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
     required TfArg<num> priority,
     TfArg<String>? project,
     required TfArg<String> securityPolicy,
-    TfArg<Map<String, dynamic>>? headerAction,
+    ComputeSecurityPolicyRuleHeaderAction? headerAction,
     ComputeSecurityPolicyRuleMatch? match,
     ComputeSecurityPolicyRulePreconfiguredWafConfig? preconfiguredWafConfig,
     ComputeSecurityPolicyRuleRateLimitOptions? rateLimitOptions,
-    TfArg<Map<String, dynamic>>? redirectOptions,
+    ComputeSecurityPolicyRuleRedirectOptions? redirectOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -161,7 +213,8 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
            'priority': priority,
            'project': ?project,
            'security_policy': securityPolicy,
-           'header_action': ?headerAction,
+           if (headerAction != null)
+             'header_action': TfArg.literal(headerAction.encode()),
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
            if (preconfiguredWafConfig != null)
              'preconfigured_waf_config': TfArg.literal([
@@ -169,7 +222,8 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
              ]),
            if (rateLimitOptions != null)
              'rate_limit_options': TfArg.literal([rateLimitOptions.toArgMap()]),
-           'redirect_options': ?redirectOptions,
+           if (redirectOptions != null)
+             'redirect_options': TfArg.literal(redirectOptions.encode()),
          },
        );
 

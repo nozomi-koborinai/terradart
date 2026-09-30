@@ -9,11 +9,17 @@ export 'src/oracle/google_oracle_database_autonomous_database.dart'
         GoogleOracleDatabaseAutonomousDatabase,
         OracleDatabaseAutonomousDatabaseDbWorkload,
         OracleDatabaseAutonomousDatabaseDeletionPolicy,
-        OracleDatabaseAutonomousDatabaseLicenseType;
+        OracleDatabaseAutonomousDatabaseLicenseType,
+        OracleDatabaseAutonomousDatabaseProperties,
+        OracleDatabaseAutonomousDatabasePropertiesCustomerContacts,
+        OracleDatabaseAutonomousDatabaseSourceConfig;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
     show
         GoogleOracleDatabaseCloudExadataInfrastructure,
-        OracleDatabaseCloudExadataInfrastructureDeletionPolicy;
+        OracleDatabaseCloudExadataInfrastructureDeletionPolicy,
+        OracleDatabaseCloudExadataInfrastructureProperties,
+        OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts,
+        OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure_exascale_config.dart'
     show GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig;
 export 'src/oracle/google_oracle_database_cloud_vm_cluster.dart'
@@ -28,15 +34,31 @@ export 'src/oracle/google_oracle_database_db_system.dart'
         GoogleOracleDatabaseDbSystem,
         OracleDatabaseDbSystemDatabaseEdition,
         OracleDatabaseDbSystemDeletionPolicy,
-        OracleDatabaseDbSystemLicenseModel;
+        OracleDatabaseDbSystemLicenseModel,
+        OracleDatabaseDbSystemProperties,
+        OracleDatabaseDbSystemPropertiesDataCollectionOptions,
+        OracleDatabaseDbSystemPropertiesDbHome,
+        OracleDatabaseDbSystemPropertiesDbHomeDatabase,
+        OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties,
+        OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig,
+        OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails,
+        OracleDatabaseDbSystemPropertiesDbSystemOptions,
+        OracleDatabaseDbSystemPropertiesTimeZone;
 export 'src/oracle/google_oracle_database_exadb_vm_cluster.dart'
     show
         GoogleOracleDatabaseExadbVmCluster,
-        OracleDatabaseExadbVmClusterDeletionPolicy;
+        OracleDatabaseExadbVmClusterDeletionPolicy,
+        OracleDatabaseExadbVmClusterProperties,
+        OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions,
+        OracleDatabaseExadbVmClusterPropertiesTimeZone,
+        OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage;
 export 'src/oracle/google_oracle_database_exascale_db_storage_vault.dart'
     show
         GoogleOracleDatabaseExascaleDbStorageVault,
-        OracleDatabaseExascaleDbStorageVaultDeletionPolicy;
+        OracleDatabaseExascaleDbStorageVaultDeletionPolicy,
+        OracleDatabaseExascaleDbStorageVaultProperties,
+        OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails,
+        OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone;
 export 'src/oracle/google_oracle_database_goldengate_connection.dart'
     show
         GoogleOracleDatabaseGoldengateConnection,
@@ -88,11 +110,16 @@ export 'src/oracle/google_oracle_database_goldengate_connection.dart'
 export 'src/oracle/google_oracle_database_goldengate_connection_assignment.dart'
     show
         GoogleOracleDatabaseGoldengateConnectionAssignment,
-        OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy;
+        OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy,
+        OracleDatabaseGoldengateConnectionAssignmentProperties;
 export 'src/oracle/google_oracle_database_goldengate_deployment.dart'
     show
         GoogleOracleDatabaseGoldengateDeployment,
-        OracleDatabaseGoldengateDeploymentDeletionPolicy;
+        OracleDatabaseGoldengateDeploymentDeletionPolicy,
+        OracleDatabaseGoldengateDeploymentProperties,
+        OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig,
+        OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow,
+        OracleDatabaseGoldengateDeploymentPropertiesOggData;
 export 'src/oracle/google_oracle_database_odb_network.dart'
     show GoogleOracleDatabaseOdbNetwork, OracleDatabaseOdbNetworkDeletionPolicy;
 export 'src/oracle/google_oracle_database_odb_subnet.dart'

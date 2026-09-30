@@ -2304,7 +2304,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'iap',
       'project',
     ],
-    nestedTypes: <String>['AppEngineDatabaseType', 'AppEngineServingStatus'],
+    nestedTypes: <String>[
+      'AppEngineDatabaseType',
+      'AppEngineServingStatus',
+      'AppEngineApplicationFeatureSettings',
+      'AppEngineApplicationIap',
+    ],
     sensitiveFields: <String>[
       'iap.oauth2_client_secret',
       'iap.oauth2_client_secret_sha256',
@@ -4282,12 +4287,21 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'credentialMode',
       'primaryLocation',
       'defaultLocation',
+      'federatedCatalogOptions',
+      'restrictedLocationsConfig',
       'deletionPolicy',
       'project',
     ],
     nestedTypes: <String>[
       'BiglakeIcebergCatalogCatalogType',
       'BiglakeIcebergCatalogCredentialMode',
+      'BiglakeIcebergCatalogFederatedCatalogOptions',
+      'BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo',
+      'BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions',
+      'BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule',
+      'BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope',
+      'BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo',
+      'BiglakeIcebergCatalogRestrictedLocationsConfig',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -6172,12 +6186,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'instanceName',
       'name',
       'columnFamily',
+      'automatedBackupPolicy',
       'deletionPolicy',
       'deletionProtection',
       'changeStreamRetention',
       'project',
     ],
-    nestedTypes: <String>['BigtableTableColumnFamily'],
+    nestedTypes: <String>[
+      'BigtableTableColumnFamily',
+      'BigtableTableAutomatedBackupPolicy',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigtable_table`.\n\nCloud Bigtable table within an instance.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [instanceName]: parent instance ID — pass `TfArg.ref(instance.nameRef)`.\n- [name]: table ID (1-50 chars, hyphens, underscores, letters).\n- [columnFamily]: at least one [BigtableTableColumnFamily].\n\nExample:\n```dart\nGoogleBigtableTable(\n  localName: \'events\',\n  instanceName: TfArg.ref(instance.nameRef),\n  name: TfArg.literal(\'events\'),\n  columnFamily: [\n    BigtableTableColumnFamily(family: TfArg.literal(\'cf1\')),\n  ],\n);\n```',
@@ -7958,6 +7976,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ChronicleNativeDashboardFilterOperator',
       'ChronicleNativeDashboardFilterOperatorAndFieldValue',
       'ChronicleNativeDashboardFilter',
+      'ChronicleNativeDashboardCharts',
+      'ChronicleNativeDashboardChartsChartLayout',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -11512,6 +11532,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'disabled',
       'enableLogging',
       'description',
+      'params',
       'project',
     ],
     nestedTypes: <String>[
@@ -11523,6 +11544,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeFirewallFirewallLogConfig',
       'ComputeFirewallAllowPolicy',
       'ComputeFirewallDenyPolicy',
+      'ComputeFirewallAllow',
+      'ComputeFirewallDeny',
+      'ComputeFirewallParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -13167,6 +13191,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'bgpBestPathSelectionMode',
       'bgpInterRegionCost',
       'internalIpv6Range',
+      'params',
       'project',
     ],
     nestedTypes: <String>[
@@ -13174,6 +13199,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'BgpBestPathSelectionMode',
       'BgpInterRegionCost',
       'NetworkFirewallPolicyEnforcementOrder',
+      'ComputeNetworkParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -15046,6 +15072,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRegionSecurityPolicyRulePreconfiguredWafConfig',
       'ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion',
       'ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
+      'ComputeRegionSecurityPolicyRuleNetworkMatch',
+      'ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -15583,6 +15611,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'priority',
       'nextHopInstanceZone',
       'tags',
+      'params',
       'project',
     ],
     nestedTypes: <String>[
@@ -15592,6 +15621,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRouteInstanceNextHop',
       'ComputeRouteIlbNextHop',
       'ComputeRouteVpnTunnelNextHop',
+      'ComputeRouteParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -15621,6 +15651,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRouterNetwork',
       'ComputeRouterNetworkChoice',
       'ComputeRouterNetworkNccGateway',
+      'ComputeRouterMd5AuthenticationKeys',
+      'ComputeRouterParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -15970,6 +16002,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeSecurityPolicyRulePreconfiguredWafConfig',
       'ComputeSecurityPolicyRulePreconfiguredWafExclusion',
       'ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch',
+      'ComputeSecurityPolicyRuleHeaderAction',
+      'ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds',
+      'ComputeSecurityPolicyRuleRedirectOptions',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -15999,7 +16034,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'targetService',
       'consumerAcceptLists',
     ],
-    nestedTypes: <String>['ServiceAttachmentConnectionPreference'],
+    nestedTypes: <String>[
+      'ServiceAttachmentConnectionPreference',
+      'ComputeServiceAttachmentConsumerAcceptLists',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_service_attachment`.\n\nRepresents a ServiceAttachment resource.',
@@ -16413,6 +16451,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sendSecondaryIpRangeIfEmpty',
       'allowSubnetCidrRoutesOverlap',
       'description',
+      'params',
       'project',
     ],
     nestedTypes: <String>[
@@ -16425,6 +16464,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'SubnetworkResolveSubnetMask',
       'ComputeSubnetworkSecondaryIpRange',
       'ComputeSubnetworkSubnetworkLogConfig',
+      'ComputeSubnetworkParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -24172,6 +24212,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'DnsPolicyAlternativeNameServerTargetNameServer',
       'DnsPolicyAlternativeNameServerConfig',
+      'DnsPolicyDns64Config',
+      'DnsPolicyDns64ConfigScope',
+      'DnsPolicyNetworks',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -30610,8 +30653,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'kms',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_kms_crypto_key_version`.',
-    constructorParams: <String>['localName', 'cryptoKey', 'state'],
-    nestedTypes: <String>['KmsCryptoKeyVersionState'],
+    constructorParams: <String>[
+      'localName',
+      'cryptoKey',
+      'state',
+      'externalProtectionLevelOptions',
+    ],
+    nestedTypes: <String>[
+      'KmsCryptoKeyVersionState',
+      'KmsCryptoKeyVersionExternalProtectionLevelOptions',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_crypto_key_version`.\n\nA `CryptoKeyVersion` represents an individual cryptographic key, and the\nassociated key material.\n\nDestroying a cryptoKeyVersion will not delete the resource from the project.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
@@ -31853,6 +31904,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maintenancePolicy',
       'labels',
       'deletionProtection',
+      'memcacheParameters',
     ],
     nestedTypes: <String>[
       'MemcacheInstanceVersion',
@@ -31860,6 +31912,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'MemcacheInstanceWeeklyMaintenanceWindow',
       'MemcacheInstanceNodeConfig',
       'MemcacheInstanceMaintenancePolicy',
+      'MemcacheInstanceMemcacheParameters',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -32036,6 +32089,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'MigrationCenterAssetsExportJobDeletionPolicy',
       'MigrationCenterAssetsExportJobFileFormat',
+      'MigrationCenterAssetsExportJobCondition',
+      'MigrationCenterAssetsExportJobPerformanceData',
+      'MigrationCenterAssetsExportJobSignedUriDestination',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -33307,6 +33363,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'targetCidrRange',
       'overlaps',
       'labels',
+      'migration',
       'project',
     ],
     nestedTypes: <String>[
@@ -33314,6 +33371,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'NetworkConnectivityInternalRangePeering',
       'NetworkConnectivityInternalRangeAllocationStrategy',
       'NetworkConnectivityInternalRangeAllocationOptions',
+      'NetworkConnectivityInternalRangeMigration',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -35425,6 +35483,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'network',
       'cidr',
       'labels',
+      'sourceConfig',
       'deletionPolicy',
       'deletionProtection',
       'project',
@@ -35433,6 +35492,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'OracleDatabaseAutonomousDatabaseDeletionPolicy',
       'OracleDatabaseAutonomousDatabaseDbWorkload',
       'OracleDatabaseAutonomousDatabaseLicenseType',
+      'OracleDatabaseAutonomousDatabaseProperties',
+      'OracleDatabaseAutonomousDatabasePropertiesCustomerContacts',
+      'OracleDatabaseAutonomousDatabaseSourceConfig',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -35489,6 +35551,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'OracleDatabaseCloudExadataInfrastructureDeletionPolicy',
+      'OracleDatabaseCloudExadataInfrastructureProperties',
+      'OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts',
+      'OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -35668,6 +35733,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'OracleDatabaseDbSystemDeletionPolicy',
       'OracleDatabaseDbSystemDatabaseEdition',
       'OracleDatabaseDbSystemLicenseModel',
+      'OracleDatabaseDbSystemProperties',
+      'OracleDatabaseDbSystemPropertiesDataCollectionOptions',
+      'OracleDatabaseDbSystemPropertiesDbHome',
+      'OracleDatabaseDbSystemPropertiesDbHomeDatabase',
+      'OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties',
+      'OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig',
+      'OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails',
+      'OracleDatabaseDbSystemPropertiesDbSystemOptions',
+      'OracleDatabaseDbSystemPropertiesTimeZone',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -35693,7 +35767,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionProtection',
       'project',
     ],
-    nestedTypes: <String>['OracleDatabaseExadbVmClusterDeletionPolicy'],
+    nestedTypes: <String>[
+      'OracleDatabaseExadbVmClusterDeletionPolicy',
+      'OracleDatabaseExadbVmClusterProperties',
+      'OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions',
+      'OracleDatabaseExadbVmClusterPropertiesTimeZone',
+      'OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_oracle_database_exadb_vm_cluster`.\n\nDescription\n\nOracle Exadata VM cluster (ExaDB) on Oracle Database@Google Cloud.\n\nEnable `oracledatabase.googleapis.com` before apply. Requires client and\nbackup [odb_subnet] refs plus [properties] with Exascale vault wiring,\n`shape_attribute`, and SSH public keys.',
@@ -35716,7 +35796,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionProtection',
       'project',
     ],
-    nestedTypes: <String>['OracleDatabaseExascaleDbStorageVaultDeletionPolicy'],
+    nestedTypes: <String>[
+      'OracleDatabaseExascaleDbStorageVaultDeletionPolicy',
+      'OracleDatabaseExascaleDbStorageVaultProperties',
+      'OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails',
+      'OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_oracle_database_exascale_db_storage_vault`.\n\nAn Exascale Storage Vault Resource\n\nOracle Exascale DB storage vault on Oracle Database@Google Cloud.\n\nEnable `oracledatabase.googleapis.com` before apply. Pair with\n[GoogleOracleDatabaseExadbVmCluster] via `properties.exascale_db_storage_vault`.',
@@ -35843,6 +35928,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy',
+      'OracleDatabaseGoldengateConnectionAssignmentProperties',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -35881,7 +35967,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['OracleDatabaseGoldengateDeploymentDeletionPolicy'],
+    nestedTypes: <String>[
+      'OracleDatabaseGoldengateDeploymentDeletionPolicy',
+      'OracleDatabaseGoldengateDeploymentProperties',
+      'OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig',
+      'OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow',
+      'OracleDatabaseGoldengateDeploymentPropertiesOggData',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_oracle_database_goldengate_deployment`.\n\nThis resource helps to create a GoldengateDeployment which enables running\nOracle GoldenGate in Google Cloud.\n\nOracle GoldenGate deployment on Oracle Database@Google Cloud.\n\nEnable `oracledatabase.googleapis.com` before apply. Requires an\n[odb_subnet] in the target region and [properties] with deployment type\nand OGG admin credentials.',
@@ -37107,10 +37199,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'description',
       'maximumLifetime',
       'labels',
+      'passthroughExtensions',
+      'predefinedValues',
     ],
     nestedTypes: <String>[
       'PrivatecaCertificateTemplateCelExpression',
       'PrivatecaCertificateTemplateIdentityConstraints',
+      'PrivatecaCertificateTemplatePassthroughExtensions',
+      'PrivatecaCertificateTemplatePassthroughExtensionsAdditionalExtensions',
+      'PrivatecaCertificateTemplatePredefinedValues',
+      'PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions',
+      'PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObjectId',
+      'PrivatecaCertificateTemplatePredefinedValuesCaOptions',
+      'PrivatecaCertificateTemplatePredefinedValuesKeyUsage',
+      'PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage',
+      'PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage',
+      'PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedKeyUsages',
+      'PrivatecaCertificateTemplatePredefinedValuesNameConstraints',
+      'PrivatecaCertificateTemplatePredefinedValuesPolicyIds',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -40967,10 +41073,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'passwordWoVersion',
       'host',
       'databaseRoles',
+      'passwordPolicy',
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['SqlUserDeletionPolicy', 'SqlUserType'],
+    nestedTypes: <String>[
+      'SqlUserDeletionPolicy',
+      'SqlUserType',
+      'SqlUserPasswordPolicy',
+    ],
     sensitiveFields: <String>['password'],
     docComment:
         'Factory wrapper for `google_sql_user`.\n\nRepresents a database user inside a Cloud SQL instance. The exact\nsemantics depend on the parent instance\'s `database_version` (MySQL,\nPostgreSQL, SQL Server) and the user\'s [type] — a built-in DB user,\na Cloud IAM user, a Cloud IAM service account, or a Cloud IAM group.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_sql_user.`).\n- `instance`: parent Cloud SQL instance name. Typically\n  `TfArg.ref(sqlInstance.nameRef)`. Immutable.\n- `name`: database username. Immutable.\n\nOptional knobs:\n- [type]: authentication mechanism. Defaults to the database\'s built-in\n  user when omitted.\n- [password] / [passwordWo]: only for [SqlUserType.builtIn] users on\n  MySQL / SQL Server, and required for PostgreSQL built-ins. Cloud IAM\n  users authenticate via IAM tokens — leave both `null`.\n  * `password` is sensitive in the schema and round-trips through\n    state; the generated `sensitiveFields` set masks it at synth time.\n  * `password_wo` is the write-only variant (TF 1.11+). Write-only\n    fields never enter Terraform state, so the wrapper\'s\n    `sensitiveFields` set masks only the state-stored `password` —\n    `password_wo` does not need to appear there. Bump\n    `passwordWoVersion` to force a rotation.\n- [host]: MySQL-only — restricts which client hosts may authenticate\n  with these credentials. Ignored on Postgres / SQL Server.\n\nExample (built-in PostgreSQL user):\n```dart\nfinal appUser = GoogleSqlUser(\n  localName: \'app\',\n  instance: TfArg.ref(primary.nameRef),\n  name: TfArg.literal(\'app\'),\n  type: TfArg.literal(SqlUserType.builtIn),\n  password: TfArg.literal(Platform.environment[\'DB_PASSWORD\']!),\n);\n```\n\nExample (Cloud IAM service-account user, no password):\n```dart\nfinal ciUser = GoogleSqlUser(\n  localName: \'ci\',\n  instance: TfArg.ref(primary.nameRef),\n  name: TfArg.literal(\'ci-runner@my-project.iam.gserviceaccount.com\'),\n  type: TfArg.literal(SqlUserType.cloudIamServiceAccount),\n);\n```',
@@ -41225,6 +41336,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'forceEmptyContentType',
       'detectMd5hash',
       'sourceMd5hash',
+      'contexts',
       'deletionPolicy',
       'customerEncryption',
       'retention',
@@ -41236,6 +41348,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'BucketObjectStorageClass',
       'StorageBucketObjectCustomerEncryption',
       'StorageBucketObjectBucketObjectRetention',
+      'StorageBucketObjectContexts',
+      'StorageBucketObjectContextsCustom',
     ],
     sensitiveFields: <String>['content', 'customer_encryption.encryption_key'],
     docComment:

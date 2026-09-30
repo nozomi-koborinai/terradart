@@ -75,6 +75,7 @@ paramOrder:
   - description
   - project
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraGetters: |2

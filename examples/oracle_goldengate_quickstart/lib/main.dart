@@ -64,14 +64,14 @@ final class OracleGoldengateStack extends Stack {
       displayName: .literal('TerraDart GoldenGate deployment'),
       odbSubnet: .ref(odbSubnet.nameRef),
       odbNetwork: .ref(odbNetwork.nameRef),
-      properties: .literal({
-        'deployment_type': 'DATA_REPLICATION',
-        'ogg_data': {
-          'admin_username': 'admin',
-          'deployment': 'terradart-ogg',
-          'admin_password': 'placeholder-password',
-        },
-      }),
+      properties: OracleDatabaseGoldengateDeploymentProperties(
+        deploymentType: .literal('DATA_REPLICATION'),
+        oggData: OracleDatabaseGoldengateDeploymentPropertiesOggData(
+          adminUsername: .literal('admin'),
+          deployment: .literal('terradart-ogg'),
+          adminPassword: .literal('placeholder-password'),
+        ),
+      ),
       deletionPolicy: .literal(.delete),
       dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
     );
@@ -99,10 +99,10 @@ final class OracleGoldengateStack extends Stack {
         localName: 'bind',
         location: .literal(location),
         goldengateConnectionAssignmentId: .literal(assignmentId),
-        properties: .literal({
-          'goldengate_connection': TfArg.ref(connection.nameRef),
-          'goldengate_deployment': TfArg.ref(deployment.nameRef),
-        }),
+        properties: OracleDatabaseGoldengateConnectionAssignmentProperties(
+          goldengateConnection: .ref(connection.nameRef),
+          goldengateDeployment: .ref(deployment.nameRef),
+        ),
         displayName: .literal('TerraDart connection assignment'),
         dependsOn: [
           ...apiDeps,

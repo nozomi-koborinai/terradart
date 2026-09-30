@@ -2,6 +2,7 @@ outputDir: dataproc
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraImports:

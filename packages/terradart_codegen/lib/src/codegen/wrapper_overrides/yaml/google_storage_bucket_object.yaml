@@ -1,6 +1,7 @@
 outputDir: storage
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -70,6 +71,7 @@ paramOrder:
   - force_empty_content_type
   - detect_md5hash
   - source_md5hash
+  - contexts
   - deletion_policy
   - customer_encryption
   - retention
@@ -94,6 +96,7 @@ argMapOrder:
   - force_empty_content_type
   - detect_md5hash
   - source_md5hash
+  - contexts
   - deletion_policy
   - customer_encryption
   - retention
