@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_access_context_manager_access_policy_iam_binding`.
 const Set<String> _googleAccessContextManagerAccessPolicyIamBindingSensitive =
     <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_access_context_manager_access_policy_iam_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerAccessPolicyIamBindingCondition {
+  const AccessContextManagerAccessPolicyIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.
 ///
@@ -23,7 +47,7 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
     required TfArg<String> name,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    AccessContextManagerAccessPolicyIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,7 +58,8 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
            'name': name,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

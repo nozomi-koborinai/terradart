@@ -189,7 +189,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'AccessContextManagerAccessPolicyIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an Access Context\nManager access policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for additive grants.',
@@ -208,7 +210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['AccessContextManagerAccessPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
@@ -2282,7 +2284,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'serviceAccountEmail',
       'checkExistingUsage',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ApikeysKeyRestrictions',
+      'ApikeysKeyRestrictionsAndroidKeyRestrictions',
+      'ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications',
+      'ApikeysKeyRestrictionsApiTargets',
+      'ApikeysKeyRestrictionsBrowserKeyRestrictions',
+      'ApikeysKeyRestrictionsIosKeyRestrictions',
+      'ApikeysKeyRestrictionsServerKeyRestrictions',
+    ],
     sensitiveFields: <String>['key_string'],
     docComment:
         'Factory wrapper for `google_apikeys_key`.\n\nAPI Keys key — restricts which Google Cloud APIs can be called with a\ngenerated API key.\n\nEnable `apikeys.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApikeysKey(\n  localName: \'maps_browser\',\n  name: TfArg.literal(\'maps-browser-key\'),\n  displayName: TfArg.literal(\'Browser Maps key\'),\n);\n```',
@@ -3805,7 +3815,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BeyondcorpSecurityGatewayApplicationIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_application_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BeyondCorp Security Gateway application.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayApplicationIamMember] for additive grants.',
@@ -3826,7 +3838,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BeyondcorpSecurityGatewayApplicationIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_application_iam_member`.',
@@ -3884,7 +3898,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BeyondcorpSecurityGatewayIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BeyondCorp Security Gateway.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayIamMember] for additive grants.',
@@ -3905,7 +3919,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BeyondcorpSecurityGatewayIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_iam_member`.',
@@ -6287,7 +6301,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BillingAccountIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_billing_account_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Billing account.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBillingAccountIamMember] for additive grants.',
@@ -6305,7 +6319,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BillingAccountIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_billing_account_iam_member`.',
   ),
@@ -6418,7 +6432,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BinaryAuthorizationAttestorAttestationAuthorityNote',
+      'BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys',
+      'BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor`.\n\nAn attestor that attests to container image artifacts.\n\nBinary Authorization attestor — a trusted authority that signs container\nimages for admission decisions.\n\nEnable `binaryauthorization.googleapis.com` before apply. The\n`attestation_authority_note` block holds the PGP public key material\n(or a Container Analysis note reference) used to verify signatures.\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestor(\n  localName: \'ci_attestor\',\n  name: TfArg.literal(\'ci-attestor\'),\n  attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(\n    noteReference: TfArg.literal(\n      \'projects/\$projectId/notes/ci-attestor\',\n    ),\n  ),\n);\n```',
@@ -6438,7 +6456,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BinaryAuthorizationAttestorIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Binary Authorization\nattestor.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBinaryAuthorizationAttestorIamMember] for additive grants.',
@@ -6458,7 +6476,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BinaryAuthorizationAttestorIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor_iam_member`.\n\nIAM member on a Binary Authorization attestor (`roles/binaryauthorization.attestorViewer`\nor `roles/binaryauthorization.attestorEditor`).\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestorIamMember(\n  localName: \'attestor_viewer\',\n  attestor: TfArg.ref(attestor.nameRef),\n  role: TfArg.literal(\'roles/binaryauthorization.attestorViewer\'),\n  member: TfArg.literal(\'serviceAccount:ci@\$projectId.iam.gserviceaccount.com\'),\n);\n```',
@@ -25750,7 +25768,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FolderIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_folder_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP folder.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleFolderIamMember] for additive grants.',
@@ -25768,7 +25786,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FolderIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_folder_iam_member`.',
   ),
@@ -28266,7 +28284,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkforcePoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workforce_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Workforce Identity Federation pool.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIamWorkforcePoolIamMember] for additive grants.',
@@ -28285,7 +28303,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkforcePoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iam_workforce_pool_iam_member`.',
   ),
@@ -28515,7 +28533,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkloadIdentityPoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Workload Identity Federation pool.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIamWorkloadIdentityPoolIamMember] for additive grants.',
@@ -28535,7 +28553,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkloadIdentityPoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_iam_member`.',
@@ -28593,7 +28611,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IamWorkloadIdentityPoolManagedIdentityAttestationRules',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_managed_identity`.\n\nRepresents a managed identity for a workload identity pool namespace.\n\nWorkload Identity Federation **managed identity** — a named identity\nunder a [GoogleIamWorkloadIdentityPoolNamespace] in a trust-domain\npool. Optional `attestationRules` are structured maps (resource\nnames of Compute / GKE workloads allowed to receive this identity).\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload\nIdentity Federation managed identities after list_services /\nlist_skus. billing-behavior: identity metadata is free config;\ncreating one does not issue tokens or attach compute.\n\nExample:\n```dart\nGoogleIamWorkloadIdentityPoolManagedIdentity(\n  localName: \'runner\',\n  workloadIdentityPoolId: TfArg.literal(\'terradart-trust\'),\n  workloadIdentityPoolNamespaceId: TfArg.literal(\'terradart-apps\'),\n  workloadIdentityPoolManagedIdentityId:\n      TfArg.literal(\'terradart-runner\'),\n);\n```',
@@ -28703,7 +28723,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryAgentIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_agent_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**agent**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryAgentIamMember] for additive grants. Deferred\nwith the Agent Identity registry agent parent (skip-noted).',
@@ -28724,7 +28744,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryAgentIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_agent_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**agent**.\n\nRequires an Agent Identity registry agent parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -28777,7 +28797,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryEndpointIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_endpoint_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**endpoint**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryEndpointIamMember] for additive grants. Deferred\nwith the Agent Identity registry endpoint parent (skip-noted).',
@@ -28798,7 +28818,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryEndpointIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_endpoint_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**endpoint**.\n\nRequires an Agent Identity registry endpoint parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -28854,7 +28874,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on the Identity-Aware\nProxy **Agent Registry** at a regional location.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryIamMember] for additive grants.',
@@ -28873,7 +28893,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on the **Agent\nRegistry** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAgentRegistryIamMember(\n  localName: \'agent_registry_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -28923,7 +28943,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryMcpServerIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**MCP server**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryMcpServerIamMember] for additive grants. Deferred\nwith the Agent Identity registry MCP server parent (skip-noted).',
@@ -28944,7 +28964,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryMcpServerIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**MCP server**.\n\nRequires an Agent Identity registry MCP server parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -29001,7 +29021,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineServiceIamMember] for additive grants.',
@@ -29021,7 +29041,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_service_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**service**.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAppEngineServiceIamMember(\n  localName: \'default_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29072,7 +29092,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineVersionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nversion.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineVersionIamMember] for additive grants.',
@@ -29093,7 +29113,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineVersionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**version** within a service.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [versionId]: version ID within the service (e.g. `\'v1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapAppEngineVersionIamMember(\n  localName: \'v1_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  versionId: TfArg.literal(\'v1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29149,7 +29169,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapLocationWebIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_location_web_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP **web resources**\nat a regional location.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapLocationWebIamMember] for additive grants.',
@@ -29168,7 +29188,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapLocationWebIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29274,7 +29294,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelDestGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_dest_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a IAP TCP-forwarding destination group.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for additive grants.',
@@ -29294,7 +29314,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelDestGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_dest_group_iam_member`.',
@@ -29342,7 +29362,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP TCP forwarding\nat **project scope** (`iap.tunnel`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelIamMember] for additive grants.',
@@ -29360,7 +29380,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_tunnel_iam_member`.',
   ),
@@ -29403,7 +29423,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP TCP forwarding to a\nCompute Engine instance (`iap.tunnel.instances.<instance>`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelInstanceIamMember] for additive grants.',
@@ -29423,7 +29443,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_tunnel_instance_iam_member`.',
   ),
@@ -29472,7 +29492,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an **external HTTPS\nload balancer backend service** protected by Identity-Aware Proxy (IAP).\n\nGrants `roles/iap.httpsResourceAccessor` (or another IAP role) to the\nlisted `members` and **replaces** the entire member list for that role\non the backend service. Prefer [GoogleIapWebBackendServiceIamMember]\nwhen you only need to add one principal without touching existing\nbindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `webBackendService`: short backend service name (e.g.\n  `\'koborin-ai-dev-backend\'`). Pass `TfArg.ref(backend.nameRef)` from\n  [GoogleComputeBackendService].\n- `role`: typically `\'roles/iap.httpsResourceAccessor\'`.\n- `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nPair with IAP enabled on the backend service itself via\n[GoogleComputeBackendService]\'s `iap` block (OAuth client ID/secret).',
@@ -29491,7 +29511,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'webBackendService',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_backend_service_iam_member`.',
@@ -29541,7 +29561,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebCloudRunServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_cloud_run_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nCloud Run service (`iap.web.services.<service>`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for additive grants.',
@@ -29562,7 +29582,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebCloudRunServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_cloud_run_service_iam_member`.',
@@ -29619,7 +29639,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebForwardingRuleServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nglobal/regional forwarding rule service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebForwardingRuleServiceIamMember] for additive grants.',
@@ -29639,7 +29659,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebForwardingRuleServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_member`.',
@@ -29692,7 +29712,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP-protected HTTPS\nresources at **project scope** (`iap.web`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebIamMember] for additive grants.',
@@ -29710,7 +29730,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_web_iam_member`.',
   ),
@@ -29754,7 +29774,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebRegionBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nregional backend service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionBackendServiceIamMember] for additive grants.',
@@ -29775,7 +29795,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebRegionBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_backend_service_iam_member`.',
@@ -29833,7 +29853,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IapWebRegionForwardingRuleServiceIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_forwarding_rule_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nregional forwarding rule service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionForwardingRuleServiceIamMember] for additive grants.',
@@ -29854,7 +29876,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IapWebRegionForwardingRuleServiceIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_forwarding_rule_service_iam_member`.',
@@ -29911,7 +29935,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeAppEngineIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_app_engine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP App Engine at\nproject scope (all services/versions).\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapWebTypeAppEngineIamMember] for additive grants.',
@@ -29930,7 +29954,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeAppEngineIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_app_engine_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access to the App Engine\napplication at **project scope** (all services/versions).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapWebTypeAppEngineIamMember(\n  localName: \'app_invoker\',\n  appId: TfArg.literal(projectId),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29972,7 +29996,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeComputeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_compute_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP Compute Engine\nbackends at **project scope** (`iap.web.type.compute`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebTypeComputeIamMember] for additive grants.',
@@ -29990,7 +30014,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeComputeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_web_type_compute_iam_member`.',
   ),
@@ -30518,7 +30542,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsCryptoKeyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_crypto_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS crypto key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsCryptoKeyIamMember] for additive grants.',
@@ -30536,7 +30560,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsCryptoKeyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_crypto_key_iam_member`.',
   ),
@@ -30664,7 +30688,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsEkmConnectionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_ekm_connection_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS EKM\nconnection.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsEkmConnectionIamMember] for additive grants.',
@@ -30684,7 +30708,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsEkmConnectionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_ekm_connection_iam_member`.',
   ),
@@ -30802,7 +30826,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsKeyRingIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_key_ring_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS key ring.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsKeyRingIamMember] for additive grants.',
@@ -30820,7 +30844,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsKeyRingIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
   ),
@@ -36087,7 +36111,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['OrganizationIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_organization_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP organization.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleOrganizationIamMember] for additive grants.',
@@ -36150,7 +36174,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['OrganizationIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_organization_iam_member`.',
   ),
@@ -36898,7 +36922,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCaPoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_ca_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Private CA pool.\n\nReplaces the entire member list for that role. Prefer\n[GooglePrivatecaCaPoolIamMember] for additive grants.',
@@ -36916,7 +36940,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCaPoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_ca_pool_iam_member`.\n\nAdditive IAM member on a [GooglePrivatecaCaPool] (Certificate Authority Service).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [role]: CAS role (e.g. `roles/privateca.auditor`).\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGooglePrivatecaCaPoolIamMember(\n  localName: \'pool_auditor\',\n  caPool: TfArg.ref(caPool.id),\n  role: TfArg.literal(\'roles/privateca.auditor\'),\n  member: TfArg.literal(\'group:security@example.com\'),\n);\n```',
@@ -37098,7 +37122,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCertificateTemplateIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_certificate_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Private CA certificate template.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GooglePrivatecaCertificateTemplateIamMember] for additive grants.',
@@ -37119,7 +37143,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCertificateTemplateIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_certificate_template_iam_member`.',
@@ -37314,7 +37338,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ProjectIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP project.\n\nReplaces the entire member list for that role on the project. Prefer\n[GoogleProjectIamMember] for additive grants.',
@@ -37376,7 +37400,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ProjectIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding on a GCP project. This\nis the **safe additive** form: it adds the tuple without touching any\nother bindings on the project.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  (including ones created out-of-band).\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the resource\'s whole IAM policy. Will erase **all** existing\n  bindings on the project. Use only when you intend to fully own the\n  policy from Terraform.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_iam_member.`).\n- `project`: target project (ID or number).\n- `role`: role name, e.g. `\'roles/storage.objectViewer\'` or the full\n  path to a project-level custom role (`projects/<id>/roles/<role_id>`).\n- `member`: principal in IAM v1 string form, e.g.\n  `\'serviceAccount:foo@<project>.iam.gserviceaccount.com\'`,\n  `\'user:alice@example.com\'`, `\'group:eng@example.com\'`. The\n  `serviceAccount:` prefix is best sourced from\n  [GoogleServiceAccount.member] to avoid manual concatenation.\n\nOptional `condition` is a single IAM Condition block (CEL `expression`,\n`title`, optional `description`). Conditioned bindings count as a\ndistinct tuple from the same role+member without the condition — the\ntwo coexist.',
@@ -38618,7 +38642,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccSourceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_source_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Security Command Center source.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSccSourceIamMember] for additive grants.',
@@ -38637,7 +38661,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccSourceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_scc_source_iam_member`.',
   ),
@@ -38854,7 +38878,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccV2OrganizationSourceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_v2_organization_source_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Security Command Center v2 organization source.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSccV2OrganizationSourceIamMember] for additive grants.',
@@ -38874,7 +38898,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccV2OrganizationSourceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_v2_organization_source_iam_member`.',
@@ -39036,7 +39060,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerRegionalSecretIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional Secret\nManager secret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerRegionalSecretIamMember] for additive grants.',
@@ -39057,7 +39081,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerRegionalSecretIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_iam_member`.',
@@ -39231,7 +39255,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerSecretIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secret Manager\nsecret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerSecretIamMember] for additive grants.',
@@ -39250,7 +39274,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerSecretIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_iam_member`.',
@@ -39454,7 +39478,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\ninstance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerInstanceIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
@@ -39475,7 +39499,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_instance_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager instance.\n\n[instanceId] is the short instance id (path segment), not the full\nresource name.',
@@ -39560,7 +39584,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerRepositoryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\nrepository.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerRepositoryIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
@@ -39581,7 +39605,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerRepositoryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_repository_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager repository.\n\n[repositoryId] is the short repository id (path segment). Location and\nproject identify the parent when not taken from the provider default.',
@@ -39756,7 +39780,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ServiceAccountIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_account_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a service account\nresource (who can impersonate / mint tokens for this SA).\n\nReplaces the entire member list for that role. Prefer\n[GoogleServiceAccountIamMember] for additive grants.',
@@ -39774,7 +39798,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ServiceAccountIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_account_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a service\naccount resource** — i.e. who can impersonate / generate tokens / sign\nblobs for this SA. This is distinct from `google_project_iam_member`\n(which grants the SA *itself* a role on a project).\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this service account.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the SA\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the **fully-qualified resource path** of the\n  target SA, i.e. `projects/{project}/serviceAccounts/{email}`. Pass\n  `TfArg.ref(sa.id)` (or `sa.name`, same value) rather than the bare\n  email — short forms are rejected by the API.\n- `role`: role name, typically `\'roles/iam.serviceAccountUser\'`\n  (impersonation) or `\'roles/iam.serviceAccountTokenCreator\'`\n  (generate access tokens).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
@@ -42090,7 +42114,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagKeyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_tags_tag_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagKeyIamMember] for additive grants.',
@@ -42108,7 +42132,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagKeyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_key_iam_member`.',
   ),
@@ -42191,7 +42215,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagValueIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_tags_tag_value_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag value.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagValueIamMember] for additive grants.',
@@ -42209,7 +42233,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagValueIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_value_iam_member`.',
   ),

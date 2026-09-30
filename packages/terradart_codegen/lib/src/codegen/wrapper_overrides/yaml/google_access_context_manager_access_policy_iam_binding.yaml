@@ -1,6 +1,7 @@
 outputDir: access_context_manager
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 

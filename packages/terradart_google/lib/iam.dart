@@ -75,9 +75,9 @@ export 'src/iam/google_iam_workforce_pool.dart'
         IamWorkforcePoolAccessRestrictions,
         IamWorkforcePoolAccessRestrictionsAllowedServices;
 export 'src/iam/google_iam_workforce_pool_iam_binding.dart'
-    show GoogleIamWorkforcePoolIamBinding;
+    show GoogleIamWorkforcePoolIamBinding, IamWorkforcePoolIamBindingCondition;
 export 'src/iam/google_iam_workforce_pool_iam_member.dart'
-    show GoogleIamWorkforcePoolIamMember;
+    show GoogleIamWorkforcePoolIamMember, IamWorkforcePoolIamMemberCondition;
 export 'src/iam/google_iam_workforce_pool_iam_policy.dart'
     show GoogleIamWorkforcePoolIamPolicy;
 export 'src/iam/google_iam_workforce_pool_provider.dart'
@@ -135,13 +135,19 @@ export 'src/iam/google_iam_workload_identity_pool.dart'
         IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundlesTrustAnchors,
         WorkloadIdentityPoolMode;
 export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'
-    show GoogleIamWorkloadIdentityPoolIamBinding;
+    show
+        GoogleIamWorkloadIdentityPoolIamBinding,
+        IamWorkloadIdentityPoolIamBindingCondition;
 export 'src/iam/google_iam_workload_identity_pool_iam_member.dart'
-    show GoogleIamWorkloadIdentityPoolIamMember;
+    show
+        GoogleIamWorkloadIdentityPoolIamMember,
+        IamWorkloadIdentityPoolIamMemberCondition;
 export 'src/iam/google_iam_workload_identity_pool_iam_policy.dart'
     show GoogleIamWorkloadIdentityPoolIamPolicy;
 export 'src/iam/google_iam_workload_identity_pool_managed_identity.dart'
-    show GoogleIamWorkloadIdentityPoolManagedIdentity;
+    show
+        GoogleIamWorkloadIdentityPoolManagedIdentity,
+        IamWorkloadIdentityPoolManagedIdentityAttestationRules;
 export 'src/iam/google_iam_workload_identity_pool_namespace.dart'
     show GoogleIamWorkloadIdentityPoolNamespace;
 export 'src/iam/google_iam_workload_identity_pool_provider.dart'
@@ -166,18 +172,20 @@ export 'src/iam/google_project_iam_audit_config.dart'
         GoogleProjectIamAuditConfig,
         ProjectIamAuditConfigAuditLogConfig,
         ProjectIamAuditConfigAuditLogConfigLogType;
-export 'src/iam/google_project_iam_binding.dart' show GoogleProjectIamBinding;
+export 'src/iam/google_project_iam_binding.dart'
+    show GoogleProjectIamBinding, ProjectIamBindingCondition;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;
-export 'src/iam/google_project_iam_member.dart' show GoogleProjectIamMember;
+export 'src/iam/google_project_iam_member.dart'
+    show GoogleProjectIamMember, ProjectIamMemberCondition;
 export 'src/iam/google_project_iam_member_remove.dart'
     show GoogleProjectIamMemberRemove;
 export 'src/iam/google_project_iam_policy.dart' show GoogleProjectIamPolicy;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
 export 'src/iam/google_service_account_iam_binding.dart'
-    show GoogleServiceAccountIamBinding;
+    show GoogleServiceAccountIamBinding, ServiceAccountIamBindingCondition;
 export 'src/iam/google_service_account_iam_member.dart'
-    show GoogleServiceAccountIamMember;
+    show GoogleServiceAccountIamMember, ServiceAccountIamMemberCondition;
 export 'src/iam/google_service_account_iam_policy.dart'
     show GoogleServiceAccountIamPolicy;
 export 'src/iam/google_service_account_key.dart'
