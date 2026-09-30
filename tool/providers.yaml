@@ -98,6 +98,12 @@
 #                    same version inside this lane's bump (google-beta)
 #     exampleGenerator: (optional) a tool/ script the bump reruns after a
 #                    regenerate (the lane's leftover example)
+#     exampleCovers: (optional, needs exampleGenerator) which new factories
+#                    that example covers, so tool/bump_new_factories.dart
+#                    record writes `awaiting-example:` for the rest:
+#                    all         — every new factory (default)
+#                    dataSources — new data sources only; each new resource
+#                                  still lands as `awaiting-example:`
 
 providers:
   google:
@@ -121,6 +127,8 @@ providers:
       dataSources: true
       scaffold: wrap-init
       rideAlong: google-beta
+      exampleGenerator: tool/generate_data_source_leftover_example.dart
+      exampleCovers: dataSources
   google-beta:
     source: hashicorp/google-beta
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta

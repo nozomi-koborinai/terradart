@@ -616,15 +616,34 @@ String buildNewResourceSection(ReportInputs i) {
       ..writeln('```')
       ..writeln();
   }
-  final coveredByGenerator =
+  final hasGenerator =
       (i.newFactories?['example_generator'] as String?)?.isNotEmpty ?? false;
+  final covered = [
+    for (final f
+        in ((i.newFactories?['factories'] as List?) ?? const [])
+            .cast<Map<String, dynamic>>())
+      f['example_covered'] as bool? ?? hasGenerator,
+  ];
+  final coveredCount = covered.where((c) => c).length;
+  const byGenerator =
+      'the lane\'s leftover example generator covers it in an example';
+  const byDebt =
+      'an `awaiting-example:` line in `tool/example_debt.yaml` holds its '
+      'example coverage';
+  final coverage = covered.isEmpty
+      ? (hasGenerator ? byGenerator : byDebt)
+      : coveredCount == 0
+      ? byDebt
+      : coveredCount == covered.length
+      ? byGenerator
+      : 'the lane\'s leftover example generator covers $coveredCount of them '
+            'in an example, and for the other '
+            '${covered.length - coveredCount} $byDebt';
   b.writeln(
     'New types do not block auto-merge. Each generated factory has a '
     'default override (review it later) and a `tool/curation_backlog.yaml` '
-    'entry for API polish; ${coveredByGenerator ? 'the lane\'s leftover '
-              'example generator covers it in an example' : 'an `awaiting-example:` '
-              'line in `tool/example_debt.yaml` holds its example coverage'}. Types '
-    'without a factory are in the backlog only.',
+    'entry for API polish; $coverage. Types without a factory are in the '
+    'backlog only.',
   );
   return b.toString().trimRight();
 }
