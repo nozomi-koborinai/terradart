@@ -76,7 +76,10 @@ abstract interface class StackProvider {
 ///
 /// Coordination surface for synth and concrete providers:
 ///
-/// - `addOutput(...)` / `outputs` — `output "<name>" { ... }` blocks.
+/// - `addOutput(...)` / `outputs` — `output "<name>" { ... }` blocks, and
+///   the getters of the generated `<name>Outputs` reader in the
+///   [appExports] file, which the app builds from `terraform output -json`
+///   (`fromTerraformJson`) or its environment (`fromEnvironment`).
 /// - `addConstant(...)` / `constants` — `static const` values of the
 ///   generated `<name>Constants` class, written to the [appExports] file.
 /// - `setRequiredVersion(...)` / `requiredVersion` — overrides the default
@@ -192,9 +195,17 @@ abstract base class Stack {
   /// addOutput('db_password', .ref(secret.secretDataRef), sensitive: true);
   /// ```
   ///
+  /// With [appExports] set, a non-sensitive output is also a getter of the
+  /// generated `<name>Outputs` reader, named in lowerCamelCase
+  /// (`ordersTopicId`) and read from the environment variable in
+  /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`). A sensitive output has no
+  /// getter: read a secret from its secret store instead.
+  ///
   /// Throws [ArgumentError] when [name] is not a Terraform identifier, is already
   /// registered, or [value] reads a sensitive field and [sensitive] is
-  /// `false` (Terraform rejects that output at plan).
+  /// `false` (Terraform rejects that output at plan); and, with [appExports]
+  /// set, when its getter is not a Dart identifier or its getter or
+  /// environment variable is another output's.
   void addOutput<T>(
     String name,
     TfArg<T> value, {
@@ -227,11 +238,54 @@ abstract base class Stack {
         );
       }
     }
+    if (appExports != null && !sensitive) _checkReaderNames(name);
     _outputs[name] = TfOutput<T>(
       value,
       description: description,
       sensitive: sensitive,
     );
+  }
+
+  /// Members every generated reader has, which no getter may shadow.
+  static const _readerMembers = {
+    'hashCode',
+    'runtimeType',
+    'toString',
+    'noSuchMethod',
+  };
+
+  /// Throws when the output [name] would not map to its own getter and
+  /// environment variable in the generated reader.
+  void _checkReaderNames(String name) {
+    final getter = outputGetterName(name);
+    if (!isDartIdentifier(getter) || _readerMembers.contains(getter)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Output "$name" would be the reader getter "$getter", which is not a '
+            'usable Dart identifier; rename the output, e.g. "${name}_value".',
+      );
+    }
+    final variable = outputEnvironmentName(name);
+    for (final MapEntry(key: other, value: o) in _outputs.entries) {
+      if (o.sensitive) continue;
+      if (outputGetterName(other) == getter) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be the reader getter '
+              '"$getter"; rename one.',
+        );
+      }
+      if (outputEnvironmentName(other) == variable) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be read from the '
+              'environment variable $variable; rename one.',
+        );
+      }
+    }
   }
 
   /// `owner.attr` when [value] references a field its owner marks
