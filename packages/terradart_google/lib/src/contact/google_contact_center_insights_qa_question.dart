@@ -42,6 +42,72 @@ final class ContactCenterInsightsQaQuestionAnswerChoices {
   };
 }
 
+/// Typed helper for the `predefined_question_config` block of
+/// `google_contact_center_insights_qa_question` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsQaQuestionPredefinedQuestionConfig {
+  const ContactCenterInsightsQaQuestionPredefinedQuestionConfig({this.type});
+
+  final TfArg<String>? type;
+
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
+
+/// Typed helper for the `qa_question_data_options` block of
+/// `google_contact_center_insights_qa_question` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsQaQuestionQaQuestionDataOptions {
+  const ContactCenterInsightsQaQuestionQaQuestionDataOptions({
+    this.conversationDataOptions,
+  });
+
+  final ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions?
+  conversationDataOptions;
+
+  Map<String, Object?> encode() => {
+    'conversation_data_options': ?conversationDataOptions?.encode(),
+  };
+}
+
+/// Typed helper for the `qa_question_data_options.conversation_data_options` block of
+/// `google_contact_center_insights_qa_question` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions {
+  const ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions({
+    this.includeDialogflowInteractionData,
+  });
+
+  final TfArg<bool>? includeDialogflowInteractionData;
+
+  Map<String, Object?> encode() => {
+    'include_dialogflow_interaction_data': ?includeDialogflowInteractionData
+        ?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `tuning_metadata` block of
+/// `google_contact_center_insights_qa_question` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsQaQuestionTuningMetadata {
+  const ContactCenterInsightsQaQuestionTuningMetadata({
+    this.datasetValidationWarnings,
+    this.totalValidLabelCount,
+    this.tuningError,
+  });
+
+  final TfArg<List<String>>? datasetValidationWarnings;
+
+  final TfArg<String>? totalValidLabelCount;
+
+  final TfArg<String>? tuningError;
+
+  Map<String, Object?> encode() => {
+    'dataset_validation_warnings': ?datasetValidationWarnings?.toTfJson(),
+    'total_valid_label_count': ?totalValidLabelCount?.toTfJson(),
+    'tuning_error': ?tuningError?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_contact_center_insights_qa_question`.
 ///
 /// A single question to be scored by the Insights QA feature.
@@ -67,6 +133,10 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
     List<ContactCenterInsightsQaQuestionAnswerChoices>? answerChoices,
     TfArg<num>? order,
     TfArg<List<String>>? tags,
+    ContactCenterInsightsQaQuestionPredefinedQuestionConfig?
+    predefinedQuestionConfig,
+    ContactCenterInsightsQaQuestionQaQuestionDataOptions? qaQuestionDataOptions,
+    ContactCenterInsightsQaQuestionTuningMetadata? tuningMetadata,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -89,6 +159,16 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
              ]),
            'order': ?order,
            'tags': ?tags,
+           if (predefinedQuestionConfig != null)
+             'predefined_question_config': TfArg.literal(
+               predefinedQuestionConfig.encode(),
+             ),
+           if (qaQuestionDataOptions != null)
+             'qa_question_data_options': TfArg.literal(
+               qaQuestionDataOptions.encode(),
+             ),
+           if (tuningMetadata != null)
+             'tuning_metadata': TfArg.literal(tuningMetadata.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
          },

@@ -116,6 +116,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? labels,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -135,6 +136,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
            'display_name': ?displayName,
            'annotations': ?annotations,
            'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

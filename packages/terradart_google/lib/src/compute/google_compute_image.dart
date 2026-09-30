@@ -19,8 +19,8 @@ const Set<String> _googleComputeImageSensitive = <String>{
 };
 
 /// Image source for [GoogleComputeImage]. Sealed so callers pick exactly
-/// one of `source_disk` / `source_image` / `source_snapshot` at the type
-/// level (MM documents mutual exclusion in prose; there is no
+/// one of `source_disk` / `source_image` / `source_snapshot` / `raw_disk`
+/// at the type level (MM documents mutual exclusion in prose; there is no
 /// `exactly_one_of` metadata on this resource).
 sealed class ComputeImageSource {
   const ComputeImageSource();
@@ -38,12 +38,16 @@ sealed class ComputeImageSource {
     required TfArg<String> sourceSnapshot,
   }) = ComputeImageSourceSnapshot;
 
-  /// Terraform attribute name (`source_disk`, `source_image`, or
-  /// `source_snapshot`).
+  /// Import the image from a tarball in Cloud Storage (`raw_disk`).
+  const factory ComputeImageSource.rawDisk(ComputeImageRawDisk rawDisk) =
+      ComputeImageSourceRawDisk;
+
+  /// Terraform attribute name (`source_disk`, `source_image`,
+  /// `source_snapshot`, or `raw_disk`).
   String get blockKey;
 
-  /// Scalar value written under [blockKey].
-  TfArg<String> get value;
+  /// Value written under [blockKey].
+  TfArg<Object?> get value;
 
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
@@ -90,6 +94,53 @@ final class ComputeImageSourceSnapshot extends ComputeImageSource {
   TfArg<String> get value => sourceSnapshot;
 }
 
+/// Import the image from a tarball in Cloud Storage (`raw_disk`).
+@immutable
+final class ComputeImageSourceRawDisk extends ComputeImageSource {
+  const ComputeImageSourceRawDisk(this.rawDisk);
+
+  final ComputeImageRawDisk rawDisk;
+
+  @override
+  String get blockKey => 'raw_disk';
+
+  @override
+  TfArg<Object?> get value => TfArg.literal(rawDisk.encode());
+}
+
+/// Typed helper for the `guest_os_features` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageGuestOsFeatures {
+  const ComputeImageGuestOsFeatures({required this.type});
+
+  final TfArg<ComputeImageGuestOsFeaturesType> type;
+
+  Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum ComputeImageGuestOsFeaturesType implements TerraformEnum {
+  multiIpSubnet('MULTI_IP_SUBNET'),
+  secureBoot('SECURE_BOOT'),
+  sevCapable('SEV_CAPABLE'),
+  uefiCompatible('UEFI_COMPATIBLE'),
+  virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
+  windows('WINDOWS'),
+  gvnic('GVNIC'),
+  idpf('IDPF'),
+  sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
+  sevSnpCapable('SEV_SNP_CAPABLE'),
+  suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
+  tdxCapable('TDX_CAPABLE'),
+  sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2'),
+  snpSvsmCapable('SNP_SVSM_CAPABLE');
+
+  const ComputeImageGuestOsFeaturesType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `image_encryption_key` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
@@ -114,6 +165,145 @@ final class ComputeImageImageEncryptionKey {
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
     'raw_key': ?rawKey?.toTfJson(),
     'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageParams {
+  const ComputeImageParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `raw_disk` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageRawDisk {
+  const ComputeImageRawDisk({
+    this.containerType,
+    this.sha1,
+    required this.source,
+  });
+
+  final TfArg<String>? containerType;
+
+  final TfArg<String>? sha1;
+
+  final TfArg<String> source;
+
+  Map<String, Object?> encode() => {
+    'container_type': ?containerType?.toTfJson(),
+    'sha1': ?sha1?.toTfJson(),
+    'source': source.toTfJson(),
+  };
+}
+
+/// Typed helper for the `shielded_instance_initial_state` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageShieldedInstanceInitialState {
+  const ComputeImageShieldedInstanceInitialState({
+    this.dbs,
+    this.dbxs,
+    this.keks,
+    this.pk,
+  });
+
+  final List<ComputeImageShieldedInstanceInitialStateDbs>? dbs;
+
+  final List<ComputeImageShieldedInstanceInitialStateDbxs>? dbxs;
+
+  final List<ComputeImageShieldedInstanceInitialStateKeks>? keks;
+
+  final ComputeImageShieldedInstanceInitialStatePk? pk;
+
+  Map<String, Object?> encode() => {
+    if (dbs != null) 'dbs': [for (final e in dbs!) e.encode()],
+    if (dbxs != null) 'dbxs': [for (final e in dbxs!) e.encode()],
+    if (keks != null) 'keks': [for (final e in keks!) e.encode()],
+    'pk': ?pk?.encode(),
+  };
+}
+
+/// Typed helper for the `shielded_instance_initial_state.dbs` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageShieldedInstanceInitialStateDbs {
+  const ComputeImageShieldedInstanceInitialStateDbs({
+    required this.content,
+    this.fileType,
+  });
+
+  final TfArg<String> content;
+
+  final TfArg<String>? fileType;
+
+  Map<String, Object?> encode() => {
+    'content': content.toTfJson(),
+    'file_type': ?fileType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `shielded_instance_initial_state.dbxs` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageShieldedInstanceInitialStateDbxs {
+  const ComputeImageShieldedInstanceInitialStateDbxs({
+    required this.content,
+    this.fileType,
+  });
+
+  final TfArg<String> content;
+
+  final TfArg<String>? fileType;
+
+  Map<String, Object?> encode() => {
+    'content': content.toTfJson(),
+    'file_type': ?fileType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `shielded_instance_initial_state.keks` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageShieldedInstanceInitialStateKeks {
+  const ComputeImageShieldedInstanceInitialStateKeks({
+    required this.content,
+    this.fileType,
+  });
+
+  final TfArg<String> content;
+
+  final TfArg<String>? fileType;
+
+  Map<String, Object?> encode() => {
+    'content': content.toTfJson(),
+    'file_type': ?fileType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `shielded_instance_initial_state.pk` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageShieldedInstanceInitialStatePk {
+  const ComputeImageShieldedInstanceInitialStatePk({
+    required this.content,
+    this.fileType,
+  });
+
+  final TfArg<String> content;
+
+  final TfArg<String>? fileType;
+
+  Map<String, Object?> encode() => {
+    'content': content.toTfJson(),
+    'file_type': ?fileType?.toTfJson(),
   };
 }
 
@@ -218,11 +408,9 @@ final class ComputeImageSourceSnapshotEncryptionKey {
 /// instance.
 ///
 /// An Image must have exactly one [ComputeImageSource]:
-/// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
-/// [ComputeImageSourceSnapshot].
-///
-/// GCS `raw_disk` import is not modeled yet — use the Terraform provider
-/// directly (or request curation) when importing a tarball from Cloud Storage.
+/// [ComputeImageSourceDisk], [ComputeImageSourceImage],
+/// [ComputeImageSourceSnapshot], or [ComputeImageSourceRawDisk] (a tarball
+/// imported from Cloud Storage).
 ///
 /// Prefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a
 /// reusable image; use [ComputeImageSourceDisk] for a live disk.
@@ -240,6 +428,9 @@ final class GoogleComputeImage extends Resource {
     TfArg<List<String>>? storageLocations,
     TfArg<num>? diskSizeGb,
     TfArg<String>? deletionPolicy,
+    List<ComputeImageGuestOsFeatures>? guestOsFeatures,
+    ComputeImageParams? params,
+    ComputeImageShieldedInstanceInitialState? shieldedInstanceInitialState,
     TfArg<String>? project,
     ComputeImageImageEncryptionKey? imageEncryptionKey,
     ComputeImageSourceDiskEncryptionKey? sourceDiskEncryptionKey,
@@ -260,6 +451,15 @@ final class GoogleComputeImage extends Resource {
            'storage_locations': ?storageLocations,
            'disk_size_gb': ?diskSizeGb,
            'deletion_policy': ?deletionPolicy,
+           if (guestOsFeatures != null)
+             'guest_os_features': TfArg.literal([
+               for (final e in guestOsFeatures) e.encode(),
+             ]),
+           if (params != null) 'params': TfArg.literal(params.encode()),
+           if (shieldedInstanceInitialState != null)
+             'shielded_instance_initial_state': TfArg.literal(
+               shieldedInstanceInitialState.encode(),
+             ),
            'project': ?project,
            source.blockKey: source.value,
            if (imageEncryptionKey != null)

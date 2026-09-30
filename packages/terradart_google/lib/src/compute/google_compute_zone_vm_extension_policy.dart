@@ -69,6 +69,8 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
     extensionPolicies,
     TfArg<String>? description,
     List<ComputeZoneVmExtensionPolicyInstanceSelectors>? instanceSelectors,
+    TfArg<String>? deletionPolicy,
+    TfArg<num>? priority,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -87,6 +89,8 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
              'instance_selectors': TfArg.literal([
                for (final e in instanceSelectors) e.encode(),
              ]),
+           'deletion_policy': ?deletionPolicy,
+           'priority': ?priority,
            'project': ?project,
          },
        );

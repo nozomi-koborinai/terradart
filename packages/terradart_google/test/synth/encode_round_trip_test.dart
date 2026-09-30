@@ -217,7 +217,7 @@ final Map<String, Object Function()> _syntheticInstances = {
     ),
   ),
 
-  // --- ComputeImageSource (3) — compute_image ------------------------------
+  // --- ComputeImageSource (4) — compute_image ------------------------------
   'ComputeImageSourceDisk': () => ComputeImageSourceDisk(
     sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
   ),
@@ -226,6 +226,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   ),
   'ComputeImageSourceSnapshot': () => ComputeImageSourceSnapshot(
     sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
+  ),
+  'ComputeImageSourceRawDisk': () => ComputeImageSourceRawDisk(
+    ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),
 
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------

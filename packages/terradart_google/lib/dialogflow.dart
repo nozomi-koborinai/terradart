@@ -362,6 +362,7 @@ export 'src/dialogflow/google_dialogflow_fulfillment.dart'
         GoogleDialogflowFulfillment;
 export 'src/dialogflow/google_dialogflow_generator.dart'
     show
+        DialogflowGeneratorInferenceParameter,
         DialogflowGeneratorSummarizationContext,
         DialogflowGeneratorTriggerEvent,
         GoogleDialogflowGenerator;

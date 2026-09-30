@@ -58,7 +58,11 @@ export 'src/identity/google_identity_platform_oauth_idp_config.dart'
         GoogleIdentityPlatformOauthIdpConfig,
         IdentityPlatformOauthIdpConfigResponseType;
 export 'src/identity/google_identity_platform_tenant.dart'
-    show GoogleIdentityPlatformTenant, IdentityPlatformTenantDeletionPolicy;
+    show
+        GoogleIdentityPlatformTenant,
+        IdentityPlatformTenantClient,
+        IdentityPlatformTenantClientPermissions,
+        IdentityPlatformTenantDeletionPolicy;
 export 'src/identity/google_identity_platform_tenant_default_supported_idp_config.dart'
     show GoogleIdentityPlatformTenantDefaultSupportedIdpConfig;
 export 'src/identity/google_identity_platform_tenant_inbound_saml_config.dart'
