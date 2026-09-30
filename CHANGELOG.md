@@ -140,6 +140,17 @@ Per-package changelogs live alongside each package and are the system of record 
   renamed the same way (`StorageBucketObjectBody`, `ComputeImageSource*`,
   …). `tool/sealed_type_names_test.dart` fails on any sealed type or
   variant that says a segment twice across a join. See `MIGRATING.md`.
+- **`terradart_google` nested blocks use derived helper types**
+  (**breaking**) — the Compute, data and storage, serverless, security and
+  operations, and GKE factories that still took hand-written helper
+  classes or `TfArg<Map>` blocks set `deriveNestedTypes`: their nested
+  blocks are helpers derived from the provider schema, the Magic Modules
+  groups inside them are sealed types, the reference inputs inside them
+  take `RefTo<R>`, and inputs a hand `paramOrder` hid are exposed.
+  `GoogleContainerCluster` and `GoogleContainerNodePool` take
+  `ContainerCluster*` / `ContainerNodePool*` helpers for every block.
+  A `max_items = 1` block a hand helper emitted as a one-element list is an
+  object. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets

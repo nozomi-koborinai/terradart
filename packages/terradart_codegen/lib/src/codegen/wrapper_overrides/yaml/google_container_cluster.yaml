@@ -2,6 +2,7 @@ outputDir: container
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -26,9 +27,12 @@ paramOrder:
   - autopilot_privileged_admission
   - cluster_ipv4_cidr
   - datapath_provider
+  - dataplane_optimization_mode
   - default_max_pods_per_node
+  - deletion_policy
   - deletion_protection
   - description
+  - desired_emulated_version
   - disable_l4_lb_firewall_reconciliation
   - enable_autopilot
   - enable_cilium_clusterwide_network_policy
@@ -40,6 +44,7 @@ paramOrder:
   - enable_multi_networking
   - enable_shielded_nodes
   - enable_tpu
+  - ignore_node_count_changes
   - in_transit_encryption_config
   - initial_node_count
   - location
@@ -55,6 +60,7 @@ paramOrder:
   - project
   - remove_default_node_pool
   - resource_labels
+  - skip_node_pool_refresh
   - subnetwork
   - addons_config
   - anonymous_authentication_config
@@ -84,6 +90,7 @@ paramOrder:
   - network_performance_config
   - network_policy
   - node_config
+  - node_creation_config
   - node_pool
   - node_pool_auto_config
   - node_pool_defaults
@@ -93,7 +100,9 @@ paramOrder:
   - rbac_binding_config
   - release_channel
   - resource_usage_export_config
+  - rollback_safe_upgrade
   - secret_manager_config
+  - secret_sync_config
   - security_posture_config
   - service_external_ips_config
   - user_managed_keys_config

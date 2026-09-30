@@ -1463,6 +1463,30 @@ provider schema. Synth output is unchanged.
 | `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: .literal({'logging_enabled': true}))` | `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: GeminiGdaObservabilitySettingConversationalAnalyticsSetting(loggingEnabled: .literal(true)))` |
 | `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: .literal({...}))` | `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: GeminiGibqObservabilitySettingConversationalAnalyticsSetting(...))` |
 
+### GKE nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — `GoogleContainerCluster` and
+`GoogleContainerNodePool` take a derived helper for every nested block
+instead of `TfArg<Map>` (a repeated block is a `List` of helpers). Helpers
+are named `ContainerCluster<BlockPath>` / `ContainerNodePool<BlockPath>`,
+and their fields are `TfArg<T>`. The references inside them are typed:
+`network` / `subnetwork` in `network_config`, `service_account` in
+`node_config` and the autoprovisioning defaults, the
+`database_encryption` key, the notification Pub/Sub topic and the usage
+export dataset take `RefTo<R>`.
+
+| Before | After |
+|--------|-------|
+| `workloadIdentityConfig: .literal({'workload_pool': TfArg.literal(pool)})` | `workloadIdentityConfig: ContainerClusterWorkloadIdentityConfig(workloadPool: .literal(pool))` |
+| `addonsConfig: .literal({'gke_backup_agent_config': {'enabled': TfArg.literal(true)}})` | `addonsConfig: ContainerClusterAddonsConfig(gkeBackupAgentConfig: ContainerClusterAddonsConfigGkeBackupAgentConfig(enabled: .literal(true)))` |
+| `nodeConfig: .literal({'machine_type': TfArg.literal('e2-medium')})` | `nodeConfig: ContainerNodePoolNodeConfig(machineType: .literal('e2-medium'))` |
+
+Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
+`deletionPolicy`, `desiredEmulatedVersion`, `ignoreNodeCountChanges`,
+`skipNodePoolRefresh`, `nodeCreationConfig`, `rollbackSafeUpgrade`,
+`secretSyncConfig`; `GoogleContainerNodePool` `deletionPolicy`,
+`ignoreNodeCountChanges`, `maintenancePolicy`.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
