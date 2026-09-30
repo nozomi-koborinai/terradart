@@ -151,6 +151,20 @@ Per-package changelogs live alongside each package and are the system of record 
   `ContainerCluster*` / `ContainerNodePool*` helpers for every block.
   A `max_items = 1` block a hand helper emitted as a one-element list is an
   object. See `MIGRATING.md`.
+- **The last hand-written Google sealed helpers are derived**
+  (**breaking**; `terradart_google`) — `GoogleConfigDeployment`,
+  `GoogleEdgecontainerCluster`, `GoogleFirebaseAppHostingBuild`,
+  `GoogleGkeBackupRestorePlan`, `GoogleVertexAiRagEngineConfig` and
+  `GoogleNetworkConnectivitySpoke` take derived helpers, so their groups
+  are sealed by the generator and the spoke's producer VPC `network` takes
+  `RefTo<GoogleComputeNetwork>`. An override's `exactlyOneOf` entry now
+  tightens a Magic Modules `conflicts` group to exactly one, which keeps
+  the spoke's `attachment` required. `GoogleIamWorkforcePoolProvider`'s
+  `extendedAttributesOauth2Client` / `scimUsage` are one nullable sealed
+  `groupSource`. The Magic Modules parser treats an object whose fields
+  are all output as output, so `GoogleChronicleFeed` no longer derives a
+  helper for `failure_details` and `GoogleCesApp` no longer takes the
+  output-only `dataStoreSettings`. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets
