@@ -49,6 +49,7 @@ final class MigrateEntryInput {
     this.exactlyOneGroups = const {},
     this.atMostOneGroups = const {},
     this.references = const {},
+    this.reservedTypeNames = const {},
   });
 
   final String tfType;
@@ -79,6 +80,10 @@ final class MigrateEntryInput {
 
   /// The type's reference inputs the wrapper emitter typed, by dotted path.
   final Map<String, ResolvedReference> references;
+
+  /// The names no derived helper may take
+  /// (`ProviderEnums.rootSealedNames`), as the wrapper emitter passed them.
+  final Set<String> reservedTypeNames;
 }
 
 /// Builds every factory's recipe against one package-wide symbol table.
@@ -126,6 +131,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         exactlyOneGroups: inputs[i].exactlyOneGroups,
         atMostOneGroups: inputs[i].atMostOneGroups,
         references: inputs[i].references,
+        reservedTypeNames: inputs[i].reservedTypeNames,
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
@@ -149,6 +155,7 @@ MigrateEntryBuild buildMigrateEntry({
   Map<String, List<List<String>>> exactlyOneGroups = const {},
   Map<String, List<List<String>>> atMostOneGroups = const {},
   Map<String, ResolvedReference> references = const {},
+  Set<String> reservedTypeNames = const {},
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
@@ -197,6 +204,7 @@ MigrateEntryBuild buildMigrateEntry({
       sealedNames: override.sealedNames,
       references: (path) => references[path.join('.')],
       typeOverrides: override.nestedDartTypeOverrides,
+      reserved: reservedTypeNames,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

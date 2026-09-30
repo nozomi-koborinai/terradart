@@ -73,7 +73,7 @@ void main() {
     expect(sslManagementType.enumValues, ['AUTOMATIC', 'MANUAL']);
     expect(
       sslManagementType.dartType,
-      'AppEngineDomainMappingSslSettingsSslManagementType',
+      'AppEngineDomainMappingSslManagementType',
     );
 
     final certificateId = sslSettings.attrs.firstWhere(
@@ -239,10 +239,7 @@ void main() {
       (c) => c.tfName == 'windows_update',
     );
     expect(windowsUpdate.path, ['patch_config', 'windows_update']);
-    expect(
-      windowsUpdate.className,
-      'OsConfigPatchDeploymentPatchConfigWindowsUpdate',
-    );
+    expect(windowsUpdate.className, 'OsConfigPatchDeploymentWindowsUpdate');
 
     // `classifications` is `["list", "string"]` with a "Possible values:
     // [...]" description — schema type AND description agree it's a
@@ -265,10 +262,7 @@ void main() {
       'UPDATE_ROLLUP',
       'UPDATE',
     ]);
-    expect(
-      classifications.dartType,
-      'OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications',
-    );
+    expect(classifications.dartType, 'OsConfigPatchDeploymentClassifications');
   });
 
   test('google_access_context_manager_access_level: both device_policy '
@@ -291,7 +285,7 @@ void main() {
     );
     expect(
       devicePolicy.className,
-      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy',
+      'AccessContextManagerAccessLevelDevicePolicy',
     );
 
     final managementLevels = devicePolicy.attrs.firstWhere(
@@ -306,8 +300,7 @@ void main() {
     ]);
     expect(
       managementLevels.dartType,
-      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy'
-      'AllowedDeviceManagementLevels',
+      'AccessContextManagerAccessLevelAllowedDeviceManagementLevels',
     );
 
     final encryptionStatuses = devicePolicy.attrs.firstWhere(
@@ -322,8 +315,7 @@ void main() {
     ]);
     expect(
       encryptionStatuses.dartType,
-      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy'
-      'AllowedEncryptionStatuses',
+      'AccessContextManagerAccessLevelAllowedEncryptionStatuses',
     );
 
     // A plain list(string) with NO enum description is a typed string
@@ -551,18 +543,16 @@ void main() {
     }
 
     test('two identical sibling blocks and a deeper copy emit one helper', () {
-      expect(renderedClasses(true), ['ResAlpha', 'ResAlphaLeaf', 'ResOuter']);
+      expect(renderedClasses(true), ['ResAlpha', 'ResLeaf', 'ResOuter']);
     });
 
-    test('is off by default: every path keeps its own helper', () {
+    test('is off by default: only same-named copies share a helper', () {
       expect(renderedClasses(false), [
         'ResAlpha',
-        'ResAlphaLeaf',
+        'ResLeaf',
         'ResBeta',
-        'ResBetaLeaf',
         'ResOuter',
-        'ResOuterDeep',
-        'ResOuterDeepLeaf',
+        'ResDeep',
       ]);
     });
 
@@ -581,7 +571,7 @@ void main() {
       final deep = byName['outer']!.children.single;
       expect(deep.tfName, 'deep');
       expect(deep.className, 'ResAlpha');
-      expect(deep.children.single.className, 'ResAlphaLeaf');
+      expect(deep.children.single.className, 'ResLeaf');
       expect(byName['outer']!.shared, isFalse);
     });
   });

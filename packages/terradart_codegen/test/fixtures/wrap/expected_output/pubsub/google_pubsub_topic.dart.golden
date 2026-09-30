@@ -43,18 +43,17 @@ final class PubsubTopicIngestionDataSourceSettings {
     this.platformLogsSettings,
   });
 
-  final PubsubTopicIngestionDataSourceSettingsAwsKinesis? awsKinesis;
+  final PubsubTopicAwsKinesis? awsKinesis;
 
-  final PubsubTopicIngestionDataSourceSettingsAwsMsk? awsMsk;
+  final PubsubTopicAwsMsk? awsMsk;
 
-  final PubsubTopicIngestionDataSourceSettingsAzureEventHubs? azureEventHubs;
+  final PubsubTopicAzureEventHubs? azureEventHubs;
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorage? cloudStorage;
+  final PubsubTopicCloudStorage? cloudStorage;
 
-  final PubsubTopicIngestionDataSourceSettingsConfluentCloud? confluentCloud;
+  final PubsubTopicConfluentCloud? confluentCloud;
 
-  final PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings?
-  platformLogsSettings;
+  final PubsubTopicPlatformLogsSettings? platformLogsSettings;
 
   Map<String, Object?> encode() => {
     'aws_kinesis': ?awsKinesis?.encode(),
@@ -69,8 +68,8 @@ final class PubsubTopicIngestionDataSourceSettings {
 /// Typed helper for the `ingestion_data_source_settings.aws_kinesis` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAwsKinesis {
-  const PubsubTopicIngestionDataSourceSettingsAwsKinesis({
+final class PubsubTopicAwsKinesis {
+  const PubsubTopicAwsKinesis({
     required this.awsRoleArn,
     required this.consumerArn,
     required this.gcpServiceAccount,
@@ -96,8 +95,8 @@ final class PubsubTopicIngestionDataSourceSettingsAwsKinesis {
 /// Typed helper for the `ingestion_data_source_settings.aws_msk` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAwsMsk {
-  const PubsubTopicIngestionDataSourceSettingsAwsMsk({
+final class PubsubTopicAwsMsk {
+  const PubsubTopicAwsMsk({
     required this.awsRoleArn,
     required this.clusterArn,
     required this.gcpServiceAccount,
@@ -123,8 +122,8 @@ final class PubsubTopicIngestionDataSourceSettingsAwsMsk {
 /// Typed helper for the `ingestion_data_source_settings.azure_event_hubs` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAzureEventHubs {
-  const PubsubTopicIngestionDataSourceSettingsAzureEventHubs({
+final class PubsubTopicAzureEventHubs {
+  const PubsubTopicAzureEventHubs({
     this.clientId,
     this.eventHub,
     this.gcpServiceAccount,
@@ -162,8 +161,8 @@ final class PubsubTopicIngestionDataSourceSettingsAzureEventHubs {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorage({
+final class PubsubTopicCloudStorage {
+  const PubsubTopicCloudStorage({
     required this.bucket,
     this.matchGlob,
     this.minimumObjectCreateTime,
@@ -178,14 +177,11 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
 
   final TfArg<String>? minimumObjectCreateTime;
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat?
-  avroFormat;
+  final PubsubTopicAvroFormat? avroFormat;
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat?
-  pubsubAvroFormat;
+  final PubsubTopicPubsubAvroFormat? pubsubAvroFormat;
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat?
-  textFormat;
+  final PubsubTopicTextFormat? textFormat;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
@@ -200,8 +196,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.avro_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat();
+final class PubsubTopicAvroFormat {
+  const PubsubTopicAvroFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -209,8 +205,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.pubsub_avro_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat();
+final class PubsubTopicPubsubAvroFormat {
+  const PubsubTopicPubsubAvroFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -218,10 +214,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.text_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat({
-    this.delimiter,
-  });
+final class PubsubTopicTextFormat {
+  const PubsubTopicTextFormat({this.delimiter});
 
   final TfArg<String>? delimiter;
 
@@ -231,8 +225,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat {
 /// Typed helper for the `ingestion_data_source_settings.confluent_cloud` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsConfluentCloud {
-  const PubsubTopicIngestionDataSourceSettingsConfluentCloud({
+final class PubsubTopicConfluentCloud {
+  const PubsubTopicConfluentCloud({
     required this.bootstrapServer,
     this.clusterId,
     required this.gcpServiceAccount,
@@ -262,10 +256,8 @@ final class PubsubTopicIngestionDataSourceSettingsConfluentCloud {
 /// Typed helper for the `ingestion_data_source_settings.platform_logs_settings` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings {
-  const PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings({
-    this.severity,
-  });
+final class PubsubTopicPlatformLogsSettings {
+  const PubsubTopicPlatformLogsSettings({this.severity});
 
   final TfArg<PubsubTopicPlatformLogsSeverity>? severity;
 
@@ -303,9 +295,9 @@ final class PubsubTopicMessageTransforms {
 
   final TfArg<bool>? disabled;
 
-  final PubsubTopicMessageTransformsAiInference? aiInference;
+  final PubsubTopicAiInference? aiInference;
 
-  final PubsubTopicMessageTransformsJavascriptUdf? javascriptUdf;
+  final PubsubTopicJavascriptUdf? javascriptUdf;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
@@ -317,8 +309,8 @@ final class PubsubTopicMessageTransforms {
 /// Typed helper for the `message_transforms.ai_inference` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsAiInference {
-  const PubsubTopicMessageTransformsAiInference({
+final class PubsubTopicAiInference {
+  const PubsubTopicAiInference({
     required this.endpoint,
     this.serviceAccountEmail,
     this.unstructuredInference,
@@ -328,8 +320,7 @@ final class PubsubTopicMessageTransformsAiInference {
 
   final TfArg<String>? serviceAccountEmail;
 
-  final PubsubTopicMessageTransformsAiInferenceUnstructuredInference?
-  unstructuredInference;
+  final PubsubTopicUnstructuredInference? unstructuredInference;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -341,10 +332,8 @@ final class PubsubTopicMessageTransformsAiInference {
 /// Typed helper for the `message_transforms.ai_inference.unstructured_inference` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsAiInferenceUnstructuredInference {
-  const PubsubTopicMessageTransformsAiInferenceUnstructuredInference({
-    this.parameters,
-  });
+final class PubsubTopicUnstructuredInference {
+  const PubsubTopicUnstructuredInference({this.parameters});
 
   final TfArg<Map<String, String>>? parameters;
 
@@ -354,8 +343,8 @@ final class PubsubTopicMessageTransformsAiInferenceUnstructuredInference {
 /// Typed helper for the `message_transforms.javascript_udf` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsJavascriptUdf {
-  const PubsubTopicMessageTransformsJavascriptUdf({
+final class PubsubTopicJavascriptUdf {
+  const PubsubTopicJavascriptUdf({
     required this.code,
     required this.functionName,
   });

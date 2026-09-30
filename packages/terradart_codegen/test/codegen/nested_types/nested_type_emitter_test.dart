@@ -72,7 +72,7 @@ void main() {
           final sslManagementType = const NestedAttrSpec(
             tfName: 'ssl_management_type',
             dartName: 'sslManagementType',
-            dartType: 'AppEngineDomainMappingSslSettingsSslManagementType',
+            dartType: 'AppEngineDomainMappingSslManagementType',
             required: false,
             enumValues: ['AUTOMATIC', 'MANUAL'],
           );
@@ -106,7 +106,7 @@ final class AppEngineDomainMappingSslSettings {
 
   final TfArg<String>? certificateId;
 
-  final TfArg<AppEngineDomainMappingSslSettingsSslManagementType>?
+  final TfArg<AppEngineDomainMappingSslManagementType>?
       sslManagementType;
 
   Map<String, Object?> encode() => {
@@ -116,11 +116,11 @@ final class AppEngineDomainMappingSslSettings {
 }
 
 /// `ssl_management_type` — derived from the provider schema description.
-enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum {
+enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
   automatic('AUTOMATIC'),
   manual('MANUAL');
 
-  const AppEngineDomainMappingSslSettingsSslManagementType(this.terraformValue);
+  const AppEngineDomainMappingSslManagementType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -157,7 +157,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         expect(formatted, contains('required this.sslManagementType'));
         expect(
           formatted,
-          contains('TfArg<AppEngineDomainMappingSslSettingsSslManagementType>'),
+          contains('TfArg<AppEngineDomainMappingSslManagementType>'),
         );
         expect(
           formatted,
@@ -201,7 +201,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(
         formatted,
         contains(
-          'final List<AccessContextManagerAccessLevelBasicConditions> '
+          'final List<AccessContextManagerAccessLevelConditions> '
           'conditions;',
         ),
       );
@@ -214,9 +214,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       // Depth-first: the child's own class is rendered too.
       expect(
         formatted,
-        contains(
-          'final class AccessContextManagerAccessLevelBasicConditions {',
-        ),
+        contains('final class AccessContextManagerAccessLevelConditions {'),
       );
     });
   });
