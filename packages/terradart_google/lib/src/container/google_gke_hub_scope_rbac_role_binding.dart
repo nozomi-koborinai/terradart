@@ -6,6 +6,65 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gke_hub_scope_rbac_role_binding`.
 const Set<String> _googleGkeHubScopeRbacRoleBindingSensitive = <String>{};
 
+/// Exactly one of `user`, `group` on `google_gke_hub_scope_rbac_role_binding`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.user(...)`.
+sealed class GkeHubScopeRbacRoleBindingPrincipal {
+  const GkeHubScopeRbacRoleBindingPrincipal();
+
+  /// Sets `user`.
+  const factory GkeHubScopeRbacRoleBindingPrincipal.user(TfArg<String> user) =
+      GkeHubScopeRbacRoleBindingPrincipalUser;
+
+  /// Sets `group`.
+  const factory GkeHubScopeRbacRoleBindingPrincipal.group(TfArg<String> group) =
+      GkeHubScopeRbacRoleBindingPrincipalGroup;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [GkeHubScopeRbacRoleBindingPrincipal.user] choice: sets `user`.
+final class GkeHubScopeRbacRoleBindingPrincipalUser
+    extends GkeHubScopeRbacRoleBindingPrincipal {
+  const GkeHubScopeRbacRoleBindingPrincipalUser(this.user);
+
+  final TfArg<String> user;
+
+  @override
+  String get blockKey => 'user';
+
+  @override
+  Map<String, Object?> encode() => {'user': user.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'user': user};
+}
+
+/// The [GkeHubScopeRbacRoleBindingPrincipal.group] choice: sets `group`.
+final class GkeHubScopeRbacRoleBindingPrincipalGroup
+    extends GkeHubScopeRbacRoleBindingPrincipal {
+  const GkeHubScopeRbacRoleBindingPrincipalGroup(this.group);
+
+  final TfArg<String> group;
+
+  @override
+  String get blockKey => 'group';
+
+  @override
+  Map<String, Object?> encode() => {'group': group.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'group': group};
+}
+
 /// Exactly one of `predefined_role`, `custom_role` on the `role` block of `google_gke_hub_scope_rbac_role_binding`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -78,10 +137,8 @@ enum GkeHubScopeRbacRoleBindingRolePredefinedRole implements TerraformEnum {
 /// GKE Hub **scope RBAC role binding** — a fleet-wide Kubernetes RBAC
 /// binding on a [GoogleGkeHubScope] (no cluster membership required).
 ///
-/// Pass [user] as a Kubernetes principal (`alice@example.com`). [group]
-/// is the other half of the MM `exactly_one_of` and is omitted from this
-/// constructor — use [user] (a Google Group cannot be created via
-/// Terraform). [role] must set either `predefinedRole` (`VIEW` / `EDIT`
+/// [principal] is exactly one Kubernetes principal: `.user(...)`
+/// (`alice@example.com`) or `.group(...)` (a Google Group email). [role] must set either `predefinedRole` (`VIEW` / `EDIT`
 /// / `ADMIN`) or `customRole` (needs the `rbacrolebindingactuation`
 /// feature). Prefer `VIEW` for smoke stacks.
 ///
@@ -95,12 +152,8 @@ enum GkeHubScopeRbacRoleBindingRolePredefinedRole implements TerraformEnum {
 ///   localName: 'team_view',
 ///   scopeId: TfArg.literal('terradart-scope'),
 ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
-///   user: TfArg.literal('terradart-fleet-rbac@example.com'),
-///   role: GkeHubScopeRbacRoleBindingRole(
-///     predefinedRole: TfArg.literal(
-///       GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
-///     ),
-///   ),
+///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
+///   role: .predefinedRole(.literal(.view)),
 /// );
 /// ```
 final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
@@ -110,7 +163,7 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
     required super.localName,
     required TfArg<String> scopeId,
     required TfArg<String> scopeRbacRoleBindingId,
-    TfArg<String>? user,
+    required GkeHubScopeRbacRoleBindingPrincipal principal,
     required GkeHubScopeRbacRoleBindingRole role,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
@@ -124,7 +177,7 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
          argMap: {
            'scope_id': scopeId,
            'scope_rbac_role_binding_id': scopeRbacRoleBindingId,
-           'user': ?user,
+           ...principal.argMap,
            'role': TfArg.literal(role.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
