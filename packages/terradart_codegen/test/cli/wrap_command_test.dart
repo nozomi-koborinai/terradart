@@ -420,22 +420,28 @@ hashicorp/google:
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('refs_untyped_');
         try {
-          File(p.join(_libSrcOut(tmpOut), 'iam', 'google_service_account.dart'))
+          File(
+              p.join(
+                _libSrcOut(tmpOut),
+                'compute',
+                'google_compute_network.dart',
+              ),
+            )
             ..createSync(recursive: true)
             ..writeAsStringSync(generatedOrphan);
           final ledger = File(p.join(tmpOut.path, 'refs.yaml'))
             ..writeAsStringSync('''
 hashicorp/google:
-  - target: google_service_account
-    attribute: email
-    slots: '(^|\\.)service_account\$'
+  - target: google_compute_network
+    attribute: id
+    slots: '(^|\\.)network\$'
 ''');
           final err = StringBuffer();
           final code = await IOOverrides.runZoned(
             () => buildCliRunner().run(
               wrapArgs(tmpOut, [
                 '--only',
-                'google_container_cluster',
+                'google_network_connectivity_spoke',
                 '--reference-targets',
                 ledger.path,
                 '--typed-references',
@@ -447,8 +453,8 @@ hashicorp/google:
           expect(
             err.toString(),
             contains(
-              'reference input not typed: google_container_cluster'
-              '.node_config.service_account',
+              'reference input not typed: google_network_connectivity_spoke'
+              '.linked_producer_vpc_network.network',
             ),
           );
         } finally {
