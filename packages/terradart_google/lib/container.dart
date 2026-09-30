@@ -325,9 +325,9 @@ export 'src/container/google_container_registry.dart'
     show GoogleContainerRegistry;
 export 'src/container/google_gke_hub_feature.dart' show GoogleGkeHubFeature;
 export 'src/container/google_gke_hub_feature_iam_binding.dart'
-    show GoogleGkeHubFeatureIamBinding;
+    show GkeHubFeatureIamBindingCondition, GoogleGkeHubFeatureIamBinding;
 export 'src/container/google_gke_hub_feature_iam_member.dart'
-    show GoogleGkeHubFeatureIamMember;
+    show GkeHubFeatureIamMemberCondition, GoogleGkeHubFeatureIamMember;
 export 'src/container/google_gke_hub_feature_iam_policy.dart'
     show GoogleGkeHubFeatureIamPolicy;
 export 'src/container/google_gke_hub_feature_membership.dart'
@@ -369,23 +369,33 @@ export 'src/container/google_gke_hub_fleet.dart'
         GkeHubFleetSecurityPostureVulnerabilityMode,
         GoogleGkeHubFleet;
 export 'src/container/google_gke_hub_membership.dart'
-    show GoogleGkeHubMembership;
+    show
+        GkeHubMembershipAuthority,
+        GkeHubMembershipEndpoint,
+        GkeHubMembershipEndpointGkeCluster,
+        GoogleGkeHubMembership;
 export 'src/container/google_gke_hub_membership_binding.dart'
     show GoogleGkeHubMembershipBinding;
 export 'src/container/google_gke_hub_membership_iam_binding.dart'
-    show GoogleGkeHubMembershipIamBinding;
+    show GkeHubMembershipIamBindingCondition, GoogleGkeHubMembershipIamBinding;
 export 'src/container/google_gke_hub_membership_iam_member.dart'
-    show GoogleGkeHubMembershipIamMember;
+    show GkeHubMembershipIamMemberCondition, GoogleGkeHubMembershipIamMember;
 export 'src/container/google_gke_hub_membership_iam_policy.dart'
     show GoogleGkeHubMembershipIamPolicy;
 export 'src/container/google_gke_hub_namespace.dart' show GoogleGkeHubNamespace;
 export 'src/container/google_gke_hub_rollout_sequence.dart'
-    show GoogleGkeHubRolloutSequence;
+    show
+        GkeHubRolloutSequenceAutoUpgradeConfig,
+        GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope,
+        GkeHubRolloutSequenceIgnoredClustersSelector,
+        GkeHubRolloutSequenceStages,
+        GkeHubRolloutSequenceStagesClusterSelector,
+        GoogleGkeHubRolloutSequence;
 export 'src/container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
 export 'src/container/google_gke_hub_scope_iam_binding.dart'
-    show GoogleGkeHubScopeIamBinding;
+    show GkeHubScopeIamBindingCondition, GoogleGkeHubScopeIamBinding;
 export 'src/container/google_gke_hub_scope_iam_member.dart'
-    show GoogleGkeHubScopeIamMember;
+    show GkeHubScopeIamMemberCondition, GoogleGkeHubScopeIamMember;
 export 'src/container/google_gke_hub_scope_iam_policy.dart'
     show GoogleGkeHubScopeIamPolicy;
 export 'src/container/google_gke_hub_scope_rbac_role_binding.dart'

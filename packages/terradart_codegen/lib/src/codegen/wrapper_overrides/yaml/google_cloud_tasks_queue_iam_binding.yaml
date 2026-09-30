@@ -1,6 +1,7 @@
 outputDir: cloud_tasks
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 

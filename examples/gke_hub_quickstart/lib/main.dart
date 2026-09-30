@@ -74,15 +74,15 @@ final class FleetStack extends Stack {
       GoogleGkeHubRolloutSequence(
         localName: 'upgrade_sequence',
         rolloutSequenceId: .literal('terradart-rollout'),
-        stages: .literal([
-          {
-            'fleet_projects': ['projects/$projectId'],
+        stages: [
+          GkeHubRolloutSequenceStages(
+            fleetProjects: .literal(['projects/$projectId']),
             // The API requires a soak duration per stage even though the
             // schema marks it optional ("rollout sequence stage must have
             // a soak duration").
-            'soak_duration': '60s',
-          },
-        ]),
+            soakDuration: .literal('60s'),
+          ),
+        ],
         displayName: .literal('TerraDart upgrade sequence'),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),

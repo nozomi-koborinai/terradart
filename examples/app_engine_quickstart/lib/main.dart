@@ -121,9 +121,13 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineApplicationUrlDispatchRules(
         localName: 'dispatch',
-        dispatchRules: .literal(<Map<String, dynamic>>[
-          <String, dynamic>{'domain': '*', 'path': '/*', 'service': 'default'},
-        ]),
+        dispatchRules: [
+          AppEngineApplicationUrlDispatchRulesDispatchRules(
+            domain: .literal('*'),
+            path: .literal('/*'),
+            service: .literal('default'),
+          ),
+        ],
         dependsOn: [ResourceDependency(app)],
       ),
     );

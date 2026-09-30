@@ -9,14 +9,18 @@ library;
 export 'src/endpoints/google_endpoints_service.dart'
     show GoogleEndpointsService;
 export 'src/endpoints/google_endpoints_service_consumers_iam_binding.dart'
-    show GoogleEndpointsServiceConsumersIamBinding;
+    show
+        EndpointsServiceConsumersIamBindingCondition,
+        GoogleEndpointsServiceConsumersIamBinding;
 export 'src/endpoints/google_endpoints_service_consumers_iam_member.dart'
-    show GoogleEndpointsServiceConsumersIamMember;
+    show
+        EndpointsServiceConsumersIamMemberCondition,
+        GoogleEndpointsServiceConsumersIamMember;
 export 'src/endpoints/google_endpoints_service_consumers_iam_policy.dart'
     show GoogleEndpointsServiceConsumersIamPolicy;
 export 'src/endpoints/google_endpoints_service_iam_binding.dart'
-    show GoogleEndpointsServiceIamBinding;
+    show EndpointsServiceIamBindingCondition, GoogleEndpointsServiceIamBinding;
 export 'src/endpoints/google_endpoints_service_iam_member.dart'
-    show GoogleEndpointsServiceIamMember;
+    show EndpointsServiceIamMemberCondition, GoogleEndpointsServiceIamMember;
 export 'src/endpoints/google_endpoints_service_iam_policy.dart'
     show GoogleEndpointsServiceIamPolicy;

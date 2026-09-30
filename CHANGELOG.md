@@ -259,6 +259,13 @@ Per-package changelogs live alongside each package and are the system of record 
   `deriveNestedTypes` set it: 87 `TfArg<Map>` inputs on 87 factories
   (mostly IAM `condition`) take derived helpers. Synth output is
   unchanged. See `MIGRATING.md`.
+- **Remaining platform, serverless and operations blocks use derived
+  helper types** (**breaking**; `terradart_google`) — the last 118
+  Google overrides without hand-written helpers or `deriveNestedTypes`
+  set it: 68 `TfArg<Map>` inputs on 65 factories (mostly IAM `condition`)
+  take derived helpers, and 4 inputs a hand `paramOrder` hid are exposed
+  (`GoogleMonitoringCustomService.telemetry` and the Cloud Deploy IAM
+  members' `condition`). Synth output is unchanged. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets

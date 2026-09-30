@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../gemini/google_gemini_code_repository_index.dart'
@@ -10,6 +11,29 @@ import '../gemini/google_gemini_repository_group.dart'
 
 /// Sensitive field paths for `google_gemini_repository_group_iam_member`.
 const Set<String> _googleGeminiRepositoryGroupIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_gemini_repository_group_iam_member` (derived from provider schema).
+@immutable
+final class GeminiRepositoryGroupIamMemberCondition {
+  const GeminiRepositoryGroupIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_gemini_repository_group_iam_member`.
 final class GoogleGeminiRepositoryGroupIamMember extends Resource {
@@ -21,7 +45,7 @@ final class GoogleGeminiRepositoryGroupIamMember extends Resource {
     required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    GeminiRepositoryGroupIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,
     super.lifecycle,
@@ -39,7 +63,8 @@ final class GoogleGeminiRepositoryGroupIamMember extends Resource {
            ),
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'location': ?location,
            'project': ?project,
          },

@@ -30,9 +30,13 @@ export 'src/gke_backup/google_gke_backup_backup_plan.dart'
         GkeBackupBackupPlanRpoConfig,
         GoogleGkeBackupBackupPlan;
 export 'src/gke_backup/google_gke_backup_backup_plan_iam_binding.dart'
-    show GoogleGkeBackupBackupPlanIamBinding;
+    show
+        GkeBackupBackupPlanIamBindingCondition,
+        GoogleGkeBackupBackupPlanIamBinding;
 export 'src/gke_backup/google_gke_backup_backup_plan_iam_member.dart'
-    show GoogleGkeBackupBackupPlanIamMember;
+    show
+        GkeBackupBackupPlanIamMemberCondition,
+        GoogleGkeBackupBackupPlanIamMember;
 export 'src/gke_backup/google_gke_backup_backup_plan_iam_policy.dart'
     show GoogleGkeBackupBackupPlanIamPolicy;
 export 'src/gke_backup/google_gke_backup_restore_channel.dart'
@@ -73,8 +77,12 @@ export 'src/gke_backup/google_gke_backup_restore_plan.dart'
         GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindingsPolicy,
         GoogleGkeBackupRestorePlan;
 export 'src/gke_backup/google_gke_backup_restore_plan_iam_binding.dart'
-    show GoogleGkeBackupRestorePlanIamBinding;
+    show
+        GkeBackupRestorePlanIamBindingCondition,
+        GoogleGkeBackupRestorePlanIamBinding;
 export 'src/gke_backup/google_gke_backup_restore_plan_iam_member.dart'
-    show GoogleGkeBackupRestorePlanIamMember;
+    show
+        GkeBackupRestorePlanIamMemberCondition,
+        GoogleGkeBackupRestorePlanIamMember;
 export 'src/gke_backup/google_gke_backup_restore_plan_iam_policy.dart'
     show GoogleGkeBackupRestorePlanIamPolicy;

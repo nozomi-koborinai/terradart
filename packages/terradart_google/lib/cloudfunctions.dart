@@ -16,8 +16,12 @@ export 'src/cloudfunctions/google_cloudfunctions_function.dart'
         CloudfunctionsFunctionSourceRepository,
         GoogleCloudfunctionsFunction;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_binding.dart'
-    show GoogleCloudfunctionsFunctionIamBinding;
+    show
+        CloudfunctionsFunctionIamBindingCondition,
+        GoogleCloudfunctionsFunctionIamBinding;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_member.dart'
-    show GoogleCloudfunctionsFunctionIamMember;
+    show
+        CloudfunctionsFunctionIamMemberCondition,
+        GoogleCloudfunctionsFunctionIamMember;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_policy.dart'
     show GoogleCloudfunctionsFunctionIamPolicy;

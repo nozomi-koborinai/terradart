@@ -34,14 +34,22 @@ export 'src/workstations/google_workstations_workstation_config.dart'
         WorkstationsWorkstationConfigPersistentDirectoriesGcePdReclaimPolicy,
         WorkstationsWorkstationConfigReadinessChecks;
 export 'src/workstations/google_workstations_workstation_config_iam_binding.dart'
-    show GoogleWorkstationsWorkstationConfigIamBinding;
+    show
+        GoogleWorkstationsWorkstationConfigIamBinding,
+        WorkstationsWorkstationConfigIamBindingCondition;
 export 'src/workstations/google_workstations_workstation_config_iam_member.dart'
-    show GoogleWorkstationsWorkstationConfigIamMember;
+    show
+        GoogleWorkstationsWorkstationConfigIamMember,
+        WorkstationsWorkstationConfigIamMemberCondition;
 export 'src/workstations/google_workstations_workstation_config_iam_policy.dart'
     show GoogleWorkstationsWorkstationConfigIamPolicy;
 export 'src/workstations/google_workstations_workstation_iam_binding.dart'
-    show GoogleWorkstationsWorkstationIamBinding;
+    show
+        GoogleWorkstationsWorkstationIamBinding,
+        WorkstationsWorkstationIamBindingCondition;
 export 'src/workstations/google_workstations_workstation_iam_member.dart'
-    show GoogleWorkstationsWorkstationIamMember;
+    show
+        GoogleWorkstationsWorkstationIamMember,
+        WorkstationsWorkstationIamMemberCondition;
 export 'src/workstations/google_workstations_workstation_iam_policy.dart'
     show GoogleWorkstationsWorkstationIamPolicy;

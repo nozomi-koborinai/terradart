@@ -48,7 +48,7 @@ export 'src/monitoring/google_monitoring_alert_policy.dart'
         NotificationPrompt,
         Reducer;
 export 'src/monitoring/google_monitoring_custom_service.dart'
-    show GoogleMonitoringCustomService;
+    show GoogleMonitoringCustomService, MonitoringCustomServiceTelemetry;
 export 'src/monitoring/google_monitoring_dashboard.dart'
     show GoogleMonitoringDashboard;
 export 'src/monitoring/google_monitoring_group.dart' show GoogleMonitoringGroup;
