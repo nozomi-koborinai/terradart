@@ -78,15 +78,15 @@ final class GoogleStorageFtpUser extends Resource {
 
   GoogleStorageFtpUser({
     required super.localName,
-    required TfArg<String> customerServiceAccount,
-    TfArg<String>? deletionPolicy,
-    TfArg<Map<String, String>>? labels,
-    required TfArg<String> location,
-    TfArg<String>? project,
     required TfArg<String> serverId,
     required TfArg<String> userId,
+    required TfArg<String> location,
+    required TfArg<String> customerServiceAccount,
     List<StorageFtpUserStorageDirectoryMappings>? storageDirectoryMappings,
     StorageFtpUserUserCredentials? userCredentials,
+    TfArg<Map<String, String>>? labels,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -94,19 +94,19 @@ final class GoogleStorageFtpUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'customer_service_account': customerServiceAccount,
-           'deletion_policy': ?deletionPolicy,
-           'labels': ?labels,
-           'location': location,
-           'project': ?project,
            'server_id': serverId,
            'user_id': userId,
+           'location': location,
+           'customer_service_account': customerServiceAccount,
            if (storageDirectoryMappings != null)
              'storage_directory_mappings': TfArg.literal([
                for (final e in storageDirectoryMappings) e.encode(),
              ]),
            if (userCredentials != null)
              'user_credentials': TfArg.literal(userCredentials.encode()),
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -116,4 +116,15 @@ final class GoogleStorageFtpUser extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleStorageFtpUser>`.
   RefTo<GoogleStorageFtpUser> get ref => RefTo.of(this);
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }
