@@ -155,7 +155,7 @@ final class SagemakerWorkforceOidcConfig {
 final class SagemakerWorkforceSourceIpConfig {
   const SagemakerWorkforceSourceIpConfig({required this.cidrs});
 
-  final TfArg<List<Object?>> cidrs;
+  final TfArg<List<String>> cidrs;
 
   Map<String, Object?> encode() => {'cidrs': cidrs.toTfJson()};
 }

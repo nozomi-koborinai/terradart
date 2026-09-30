@@ -131,9 +131,9 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis {
 
   final TfArg<bool>? isPublic;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
-  final TfArg<List<Object?>>? sharedAccounts;
+  final TfArg<List<String>>? sharedAccounts;
 
   final TfArg<Map<String, String>>? tagMap;
 

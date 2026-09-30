@@ -133,13 +133,13 @@ final class ZeroTrustDeviceDefaultProfileGlobalAcceleration {
     required this.wireguardEndpoints,
   });
 
-  final TfArg<List<Object?>> apiEndpoints;
+  final TfArg<List<String>> apiEndpoints;
 
   final TfArg<bool> enabled;
 
-  final TfArg<List<Object?>> masqueEndpoints;
+  final TfArg<List<String>> masqueEndpoints;
 
-  final TfArg<List<Object?>> wireguardEndpoints;
+  final TfArg<List<String>> wireguardEndpoints;
 
   Map<String, Object?> encode() => {
     'api_endpoints': apiEndpoints.toTfJson(),
@@ -197,7 +197,7 @@ final class ZeroTrustDeviceDefaultProfileVirtualNetworks {
     required this.defaultCase,
   });
 
-  final TfArg<List<Object?>> allowed;
+  final TfArg<List<String>> allowed;
 
   final TfArg<String> defaultCase;
 

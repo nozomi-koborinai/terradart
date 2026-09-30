@@ -202,7 +202,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -215,7 +215,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -228,7 +228,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueStringLi
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -432,7 +432,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -445,7 +445,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -458,7 +458,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -601,7 +601,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -614,7 +614,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -799,7 +799,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -812,7 +812,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1082,7 +1082,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1095,7 +1095,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1108,7 +1108,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1378,7 +1378,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1391,7 +1391,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1404,7 +1404,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -1453,7 +1453,7 @@ final class CloudSecurityComplianceCloudControlRules {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>> ruleActionTypes;
+  final TfArg<List<String>> ruleActionTypes;
 
   final CloudSecurityComplianceCloudControlRulesCelExpression? celExpression;
 
@@ -1492,7 +1492,7 @@ final class CloudSecurityComplianceCloudControlRulesCelExpressionResourceTypesVa
     required this.values,
   });
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }

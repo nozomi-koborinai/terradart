@@ -218,9 +218,9 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? algorithm;
 
-  final TfArg<List<Object?>>? allowedDestinationAddresses;
+  final TfArg<List<String>>? allowedDestinationAddresses;
 
-  final TfArg<List<Object?>>? allowedSenderAddresses;
+  final TfArg<List<String>>? allowedSenderAddresses;
 
   final TfArg<String>? appId;
 
@@ -294,7 +294,7 @@ final class WorkerVersionBindings {
 
   final TfArg<WorkerVersionBindingsType> type;
 
-  final TfArg<List<Object?>>? usages;
+  final TfArg<List<String>>? usages;
 
   final TfArg<String>? versionId;
 
@@ -644,11 +644,11 @@ final class WorkerVersionMigrations {
     this.transferredClasses,
   });
 
-  final TfArg<List<Object?>>? deletedClasses;
+  final TfArg<List<String>>? deletedClasses;
 
-  final TfArg<List<Object?>>? newClasses;
+  final TfArg<List<String>>? newClasses;
 
-  final TfArg<List<Object?>>? newSqliteClasses;
+  final TfArg<List<String>>? newSqliteClasses;
 
   final TfArg<String>? newTag;
 
@@ -702,11 +702,11 @@ final class WorkerVersionMigrationsSteps {
     this.transferredClasses,
   });
 
-  final TfArg<List<Object?>>? deletedClasses;
+  final TfArg<List<String>>? deletedClasses;
 
-  final TfArg<List<Object?>>? newClasses;
+  final TfArg<List<String>>? newClasses;
 
-  final TfArg<List<Object?>>? newSqliteClasses;
+  final TfArg<List<String>>? newSqliteClasses;
 
   final List<WorkerVersionMigrationsStepsRenamedClasses>? renamedClasses;
 

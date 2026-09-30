@@ -420,15 +420,15 @@ final class ComputeRegionBackendServiceCdnPolicyCacheKeyPolicy {
 
   final TfArg<bool>? includeHost;
 
-  final TfArg<List<Object?>>? includeNamedCookies;
+  final TfArg<List<String>>? includeNamedCookies;
 
   final TfArg<bool>? includeProtocol;
 
   final TfArg<bool>? includeQueryString;
 
-  final TfArg<List<Object?>>? queryStringBlacklist;
+  final TfArg<List<String>>? queryStringBlacklist;
 
-  final TfArg<List<Object?>>? queryStringWhitelist;
+  final TfArg<List<String>>? queryStringWhitelist;
 
   Map<String, Object?> encode() => {
     'include_host': ?includeHost?.toTfJson(),
@@ -706,7 +706,7 @@ final class ComputeRegionBackendServiceLogConfig {
 
   final TfArg<bool>? enable;
 
-  final TfArg<List<Object?>>? optionalFields;
+  final TfArg<List<String>>? optionalFields;
 
   final TfArg<RegionBackendServiceLogOptionalMode>? optionalMode;
 

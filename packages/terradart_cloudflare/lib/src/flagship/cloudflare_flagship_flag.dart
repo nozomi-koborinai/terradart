@@ -388,7 +388,7 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<List<Object?>>? clauses;
+  final TfArg<List<String>>? clauses;
 
   final TfArg<
     FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesLogicalOperator

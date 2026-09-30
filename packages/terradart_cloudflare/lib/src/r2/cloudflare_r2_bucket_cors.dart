@@ -31,7 +31,7 @@ final class R2BucketCorsRules {
     required this.allowed,
   });
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<String>? id;
 
@@ -57,11 +57,11 @@ final class R2BucketCorsRulesAllowed {
     required this.origins,
   });
 
-  final TfArg<List<Object?>>? headers;
+  final TfArg<List<String>>? headers;
 
   final List<TfArg<R2BucketCorsRulesAllowedMethods>> methods;
 
-  final TfArg<List<Object?>> origins;
+  final TfArg<List<String>> origins;
 
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),

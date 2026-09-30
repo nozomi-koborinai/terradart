@@ -110,7 +110,7 @@ final class CloudformationStackSetAutoDeployment {
     this.retainStacksOnAccountRemoval,
   });
 
-  final TfArg<List<Object?>>? dependsOnStackSets;
+  final TfArg<List<String>>? dependsOnStackSets;
 
   final TfArg<bool>? enabled;
 
@@ -154,7 +154,7 @@ final class CloudformationStackSetOperationPreferences {
   final TfArg<CloudformationStackSetOperationPreferencesRegionConcurrencyType>?
   regionConcurrencyType;
 
-  final TfArg<List<Object?>>? regionOrder;
+  final TfArg<List<String>>? regionOrder;
 
   Map<String, Object?> encode() => {
     ...?failureTolerance?.encode(),

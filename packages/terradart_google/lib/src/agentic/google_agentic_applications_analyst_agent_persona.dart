@@ -153,7 +153,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
     required this.googleCloudStorageObject,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String> googleCloudStorageObject;
 
@@ -172,7 +172,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
     this.fileReference,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String>? fileReference;
 
@@ -366,7 +366,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
     required this.googleCloudStorageObject,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String> googleCloudStorageObject;
 
@@ -385,7 +385,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
     this.fileReference,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String>? fileReference;
 
@@ -571,7 +571,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
     required this.googleCloudStorageObject,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String> googleCloudStorageObject;
 
@@ -590,7 +590,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
     this.fileReference,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String>? fileReference;
 
@@ -757,7 +757,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
     required this.googleCloudStorageObject,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String> googleCloudStorageObject;
 
@@ -776,7 +776,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
     this.fileReference,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String>? fileReference;
 
@@ -1077,7 +1077,7 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleCloudStorageRes
     required this.googleCloudStorageObject,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String> googleCloudStorageObject;
 
@@ -1096,7 +1096,7 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleDriveResource {
     this.fileReference,
   });
 
-  final TfArg<List<Object?>>? fileExtensionRestrictions;
+  final TfArg<List<String>>? fileExtensionRestrictions;
 
   final TfArg<String>? fileReference;
 

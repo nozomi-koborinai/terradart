@@ -421,11 +421,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<String> issuer;
 
-  final TfArg<List<Object?>>? responseTypes;
+  final TfArg<List<String>>? responseTypes;
 
   final TfArg<String> tokenEndpoint;
 
-  final TfArg<List<Object?>>? tokenEndpointAuthMethods;
+  final TfArg<List<String>>? tokenEndpointAuthMethods;
 
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
@@ -491,7 +491,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   >
   actorTokenContent;
 
-  final TfArg<List<Object?>>? actorTokenScopes;
+  final TfArg<List<String>>? actorTokenScopes;
 
   Map<String, Object?> encode() => {
     'actor_token_content': actorTokenContent.toTfJson(),

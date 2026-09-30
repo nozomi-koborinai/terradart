@@ -355,7 +355,7 @@ final class GkeonpremBareMetalClusterLoadBalancerBgpLbConfigAddressPools {
     required this.pool,
   });
 
-  final TfArg<List<Object?>> addresses;
+  final TfArg<List<String>> addresses;
 
   final TfArg<bool>? avoidBuggyIps;
 
@@ -383,7 +383,7 @@ final class GkeonpremBareMetalClusterLoadBalancerBgpLbConfigBgpPeerConfigs {
 
   final TfArg<num> asn;
 
-  final TfArg<List<Object?>>? controlPlaneNodes;
+  final TfArg<List<String>>? controlPlaneNodes;
 
   final TfArg<String> ipAddress;
 
@@ -576,7 +576,7 @@ final class GkeonpremBareMetalClusterLoadBalancerMetalLbConfigAddressPools {
     required this.pool,
   });
 
-  final TfArg<List<Object?>> addresses;
+  final TfArg<List<String>> addresses;
 
   final TfArg<bool>? avoidBuggyIps;
 
@@ -743,7 +743,7 @@ final class GkeonpremBareMetalClusterMaintenanceConfig {
     required this.maintenanceAddressCidrBlocks,
   });
 
-  final TfArg<List<Object?>> maintenanceAddressCidrBlocks;
+  final TfArg<List<String>> maintenanceAddressCidrBlocks;
 
   Map<String, Object?> encode() => {
     'maintenance_address_cidr_blocks': maintenanceAddressCidrBlocks.toTfJson(),
@@ -788,9 +788,9 @@ final class GkeonpremBareMetalClusterNetworkConfigIslandModeCidr {
     required this.serviceAddressCidrBlocks,
   });
 
-  final TfArg<List<Object?>> podAddressCidrBlocks;
+  final TfArg<List<String>> podAddressCidrBlocks;
 
-  final TfArg<List<Object?>> serviceAddressCidrBlocks;
+  final TfArg<List<String>> serviceAddressCidrBlocks;
 
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
@@ -888,7 +888,7 @@ final class GkeonpremBareMetalClusterOsEnvironmentConfig {
 final class GkeonpremBareMetalClusterProxy {
   const GkeonpremBareMetalClusterProxy({this.noProxy, required this.uri});
 
-  final TfArg<List<Object?>>? noProxy;
+  final TfArg<List<String>>? noProxy;
 
   final TfArg<String> uri;
 

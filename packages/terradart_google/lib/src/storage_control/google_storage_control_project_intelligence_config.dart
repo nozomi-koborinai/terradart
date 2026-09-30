@@ -180,7 +180,7 @@ final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuc
     required this.bucketIdRegexes,
   });
 
-  final TfArg<List<Object?>> bucketIdRegexes;
+  final TfArg<List<String>> bucketIdRegexes;
 
   Map<String, Object?> encode() => {
     'bucket_id_regexes': bucketIdRegexes.toTfJson(),
@@ -195,7 +195,7 @@ final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLoc
     required this.locations,
   });
 
-  final TfArg<List<Object?>> locations;
+  final TfArg<List<String>> locations;
 
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
@@ -208,7 +208,7 @@ final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuc
     required this.bucketIdRegexes,
   });
 
-  final TfArg<List<Object?>> bucketIdRegexes;
+  final TfArg<List<String>> bucketIdRegexes;
 
   Map<String, Object?> encode() => {
     'bucket_id_regexes': bucketIdRegexes.toTfJson(),
@@ -223,7 +223,7 @@ final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLoc
     required this.locations,
   });
 
-  final TfArg<List<Object?>> locations;
+  final TfArg<List<String>> locations;
 
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }

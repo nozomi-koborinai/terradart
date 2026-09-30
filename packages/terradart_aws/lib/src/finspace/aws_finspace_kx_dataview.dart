@@ -27,7 +27,7 @@ final class FinspaceKxDataviewSegmentConfigurations {
     required this.volumeName,
   });
 
-  final TfArg<List<Object?>> dbPaths;
+  final TfArg<List<String>> dbPaths;
 
   final TfArg<bool>? onDemand;
 

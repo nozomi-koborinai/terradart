@@ -279,7 +279,7 @@ final class IotIndexingConfigurationThingIndexingConfigurationFilter {
     this.namedShadowNames,
   });
 
-  final TfArg<List<Object?>>? namedShadowNames;
+  final TfArg<List<String>>? namedShadowNames;
 
   Map<String, Object?> encode() => {
     'named_shadow_names': ?namedShadowNames?.toTfJson(),

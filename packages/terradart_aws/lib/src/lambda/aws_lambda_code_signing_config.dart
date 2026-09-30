@@ -15,7 +15,7 @@ final class LambdaCodeSigningConfigAllowedPublishers {
     required this.signingProfileVersionArns,
   });
 
-  final TfArg<List<Object?>> signingProfileVersionArns;
+  final TfArg<List<String>> signingProfileVersionArns;
 
   Map<String, Object?> encode() => {
     'signing_profile_version_arns': signingProfileVersionArns.toTfJson(),

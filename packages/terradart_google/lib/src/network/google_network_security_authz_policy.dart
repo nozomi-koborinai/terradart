@@ -55,7 +55,7 @@ final class NetworkSecurityAuthzPolicyCustomProviderAuthzExtension {
     required this.resources,
   });
 
-  final TfArg<List<Object?>> resources;
+  final TfArg<List<String>> resources;
 
   Map<String, Object?> encode() => {'resources': resources.toTfJson()};
 }
@@ -308,7 +308,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueId
     this.ids,
   });
 
-  final TfArg<List<Object?>>? ids;
+  final TfArg<List<String>>? ids;
 
   Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
@@ -508,7 +508,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet
     this.ids,
   });
 
-  final TfArg<List<Object?>>? ids;
+  final TfArg<List<String>>? ids;
 
   Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
@@ -545,7 +545,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperations {
     this.paths,
   });
 
-  final TfArg<List<Object?>>? methods;
+  final TfArg<List<String>>? methods;
 
   final NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet? headerSet;
 
@@ -704,7 +704,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperations {
     this.paths,
   });
 
-  final TfArg<List<Object?>>? methods;
+  final TfArg<List<String>>? methods;
 
   final NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet? headerSet;
 
@@ -1209,7 +1209,7 @@ final class NetworkSecurityAuthzPolicyTarget {
   final TfArg<NetworkSecurityAuthzPolicyTargetLoadBalancingScheme>?
   loadBalancingScheme;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
   Map<String, Object?> encode() => {
     'load_balancing_scheme': ?loadBalancingScheme?.toTfJson(),

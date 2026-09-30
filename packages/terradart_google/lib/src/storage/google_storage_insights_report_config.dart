@@ -165,7 +165,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptions {
     this.storageFilters,
   });
 
-  final TfArg<List<Object?>> metadataFields;
+  final TfArg<List<String>> metadataFields;
 
   final StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions
   storageDestinationOptions;

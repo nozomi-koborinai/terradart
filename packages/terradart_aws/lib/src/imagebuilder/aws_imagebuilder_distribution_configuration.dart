@@ -27,7 +27,7 @@ final class ImagebuilderDistributionConfigurationDistribution {
     this.ssmParameterConfiguration,
   });
 
-  final TfArg<List<Object?>>? licenseConfigurationArns;
+  final TfArg<List<String>>? licenseConfigurationArns;
 
   final TfArg<String> region;
 
@@ -98,7 +98,7 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
 
   final TfArg<String>? name;
 
-  final TfArg<List<Object?>>? targetAccountIds;
+  final TfArg<List<String>>? targetAccountIds;
 
   final ImagebuilderDistributionConfigurationDistributionAmiDistributionConfigurationLaunchPermission?
   launchPermission;
@@ -124,13 +124,13 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
     this.userIds,
   });
 
-  final TfArg<List<Object?>>? organizationArns;
+  final TfArg<List<String>>? organizationArns;
 
-  final TfArg<List<Object?>>? organizationalUnitArns;
+  final TfArg<List<String>>? organizationalUnitArns;
 
-  final TfArg<List<Object?>>? userGroups;
+  final TfArg<List<String>>? userGroups;
 
-  final TfArg<List<Object?>>? userIds;
+  final TfArg<List<String>>? userIds;
 
   Map<String, Object?> encode() => {
     'organization_arns': ?organizationArns?.toTfJson(),
@@ -150,7 +150,7 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
     required this.targetRepository,
   });
 
-  final TfArg<List<Object?>>? containerTags;
+  final TfArg<List<String>>? containerTags;
 
   final TfArg<String>? description;
 

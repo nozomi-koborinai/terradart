@@ -102,9 +102,9 @@ final class CesToolsetConnectorToolsetConnectorActions {
 
   final TfArg<String>? connectionActionId;
 
-  final TfArg<List<Object?>>? inputFields;
+  final TfArg<List<String>>? inputFields;
 
-  final TfArg<List<Object?>>? outputFields;
+  final TfArg<List<String>>? outputFields;
 
   final CesToolsetConnectorToolsetConnectorActionsEntityOperation?
   entityOperation;
@@ -259,7 +259,7 @@ final class CesToolsetMcpToolsetApiAuthenticationOauthConfig {
 
   final TfArg<String> oauthGrantType;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String> tokenEndpoint;
 
@@ -281,7 +281,7 @@ final class CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig {
     required this.serviceAccount,
   });
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
@@ -486,7 +486,7 @@ final class CesToolsetOpenApiToolsetApiAuthenticationOauthConfig {
 
   final TfArg<String> oauthGrantType;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final TfArg<String> tokenEndpoint;
 
@@ -508,7 +508,7 @@ final class CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig {
     required this.serviceAccount,
   });
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 

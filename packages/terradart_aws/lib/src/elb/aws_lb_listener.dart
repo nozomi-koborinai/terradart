@@ -364,7 +364,7 @@ final class LbListenerDefaultActionJwtValidationAdditionalClaim {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),

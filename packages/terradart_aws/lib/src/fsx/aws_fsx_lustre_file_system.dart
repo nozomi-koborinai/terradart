@@ -163,7 +163,7 @@ final class FsxLustreFileSystemRootSquashConfiguration {
     this.rootSquash,
   });
 
-  final TfArg<List<Object?>>? noSquashNids;
+  final TfArg<List<String>>? noSquashNids;
 
   final TfArg<String>? rootSquash;
 

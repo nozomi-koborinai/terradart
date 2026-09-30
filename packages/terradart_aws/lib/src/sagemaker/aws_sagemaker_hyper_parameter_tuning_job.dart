@@ -226,7 +226,7 @@ final class SagemakerHyperParameterTuningJobConfigParameterRangesCategoricalPara
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -876,7 +876,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterR
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1579,9 +1579,9 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfig
     this.modelAccessConfig,
   });
 
-  final TfArg<List<Object?>>? attributeNames;
+  final TfArg<List<String>>? attributeNames;
 
-  final TfArg<List<Object?>>? instanceGroupNames;
+  final TfArg<List<String>>? instanceGroupNames;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataDistributionType
@@ -2660,7 +2660,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameter
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -3363,9 +3363,9 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfi
     this.modelAccessConfig,
   });
 
-  final TfArg<List<Object?>>? attributeNames;
+  final TfArg<List<String>>? attributeNames;
 
-  final TfArg<List<Object?>>? instanceGroupNames;
+  final TfArg<List<String>>? instanceGroupNames;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfigDataSourceS3DataSourceS3DataDistributionType

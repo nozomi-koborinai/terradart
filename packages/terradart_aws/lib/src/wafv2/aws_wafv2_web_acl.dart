@@ -249,7 +249,7 @@ final class Wafv2WebAclDataProtectionConfigDataProtectionField {
     required this.fieldType,
   });
 
-  final TfArg<List<Object?>>? fieldKeys;
+  final TfArg<List<String>>? fieldKeys;
 
   final TfArg<Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType>
   fieldType;

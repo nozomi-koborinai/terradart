@@ -56,7 +56,7 @@ sealed class LakeformationDataCellsFilterTableDataColumn {
 
   /// Sets `column_names`.
   const factory LakeformationDataCellsFilterTableDataColumn.columnNames(
-    TfArg<List<Object?>> columnNames,
+    TfArg<List<String>> columnNames,
   ) = LakeformationDataCellsFilterTableDataColumnNames;
 
   /// Sets `column_wildcard`.
@@ -75,7 +75,7 @@ final class LakeformationDataCellsFilterTableDataColumnNames
     extends LakeformationDataCellsFilterTableDataColumn {
   const LakeformationDataCellsFilterTableDataColumnNames(this.columnNames);
 
-  final TfArg<List<Object?>> columnNames;
+  final TfArg<List<String>> columnNames;
 
   @override
   String get blockKey => 'column_names';
@@ -111,7 +111,7 @@ final class LakeformationDataCellsFilterTableDataColumnWildcard {
     this.excludedColumnNames,
   });
 
-  final TfArg<List<Object?>>? excludedColumnNames;
+  final TfArg<List<String>>? excludedColumnNames;
 
   Map<String, Object?> encode() => {
     'excluded_column_names': ?excludedColumnNames?.toTfJson(),

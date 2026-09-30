@@ -537,9 +537,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExclude {
     this.regions,
   });
 
-  final TfArg<List<Object?>>? buckets;
+  final TfArg<List<String>>? buckets;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   Map<String, Object?> encode() => {
     'buckets': ?buckets?.toTfJson(),
@@ -723,9 +723,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationInclude {
     this.regions,
   });
 
-  final TfArg<List<Object?>>? buckets;
+  final TfArg<List<String>>? buckets;
 
-  final TfArg<List<Object?>>? regions;
+  final TfArg<List<String>>? regions;
 
   Map<String, Object?> encode() => {
     'buckets': ?buckets?.toTfJson(),

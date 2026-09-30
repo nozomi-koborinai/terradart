@@ -48,7 +48,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigu
     this.groupConfiguration,
   });
 
-  final TfArg<List<Object?>>? clientIds;
+  final TfArg<List<String>>? clientIds;
 
   final TfArg<String> userPoolArn;
 
@@ -170,7 +170,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
     this.principalIdClaim,
   });
 
-  final TfArg<List<Object?>>? audiences;
+  final TfArg<List<String>>? audiences;
 
   final TfArg<String>? principalIdClaim;
 
@@ -189,7 +189,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
     this.principalIdClaim,
   });
 
-  final TfArg<List<Object?>>? clientIds;
+  final TfArg<List<String>>? clientIds;
 
   final TfArg<String>? principalIdClaim;
 

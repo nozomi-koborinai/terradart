@@ -184,11 +184,11 @@ final class LakeformationResourceLfTagsTableWithColumns {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<List<Object?>>? columnNames;
+  final TfArg<List<String>>? columnNames;
 
   final TfArg<String> databaseName;
 
-  final TfArg<List<Object?>>? excludedColumnNames;
+  final TfArg<List<String>>? excludedColumnNames;
 
   final TfArg<String> name;
 

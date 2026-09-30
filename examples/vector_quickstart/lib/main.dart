@@ -27,7 +27,7 @@ final class VectorSearchStack extends Stack {
       ) {
     const location = 'us-central1';
     // Match collection vector_schema dimensions; zeros avoid inventing content.
-    final zeroEmbedding = List<Object?>.filled(768, 0.0);
+    final zeroEmbedding = List<num>.filled(768, 0.0);
 
     final apiVectorSearch = add(
       GoogleProjectService(

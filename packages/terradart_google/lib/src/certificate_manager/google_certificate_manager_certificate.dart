@@ -99,9 +99,9 @@ final class CertificateManagerCertificateManaged {
     this.issuanceConfig,
   });
 
-  final TfArg<List<Object?>>? dnsAuthorizations;
+  final TfArg<List<String>>? dnsAuthorizations;
 
-  final TfArg<List<Object?>>? domains;
+  final TfArg<List<String>>? domains;
 
   final TfArg<String>? issuanceConfig;
 

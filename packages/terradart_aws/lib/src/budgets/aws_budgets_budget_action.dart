@@ -107,13 +107,13 @@ final class BudgetsBudgetActionDefinitionIamActionDefinition {
     this.users,
   });
 
-  final TfArg<List<Object?>>? groups;
+  final TfArg<List<String>>? groups;
 
   final TfArg<String> policyArn;
 
   final TfArg<List<RefTo<AwsIamRole>>>? roles;
 
-  final TfArg<List<Object?>>? users;
+  final TfArg<List<String>>? users;
 
   Map<String, Object?> encode() => {
     'groups': ?groups?.toTfJson(),
@@ -134,7 +134,7 @@ final class BudgetsBudgetActionDefinitionScpActionDefinition {
 
   final TfArg<String> policyId;
 
-  final TfArg<List<Object?>> targetIds;
+  final TfArg<List<String>> targetIds;
 
   Map<String, Object?> encode() => {
     'policy_id': policyId.toTfJson(),
@@ -155,7 +155,7 @@ final class BudgetsBudgetActionDefinitionSsmActionDefinition {
   final TfArg<BudgetsBudgetActionDefinitionSsmActionDefinitionActionSubType>
   actionSubType;
 
-  final TfArg<List<Object?>> instanceIds;
+  final TfArg<List<String>> instanceIds;
 
   final TfArg<String> region;
 

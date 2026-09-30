@@ -20,7 +20,7 @@ final class AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom {
     this.sources,
   });
 
-  final TfArg<List<Object?>>? identities;
+  final TfArg<List<String>>? identities;
 
   final TfArg<
     AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
@@ -122,11 +122,11 @@ final class AccessContextManagerServicePerimeterDryRunEgressPolicyEgressTo {
     this.operations,
   });
 
-  final TfArg<List<Object?>>? externalResources;
+  final TfArg<List<String>>? externalResources;
 
-  final TfArg<List<Object?>>? resources;
+  final TfArg<List<String>>? resources;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<String>>? roles;
 
   final List<
     AccessContextManagerServicePerimeterDryRunEgressPolicyEgressToOperations

@@ -140,7 +140,7 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations {
 
   final TfArg<String>? operation;
 
-  final TfArg<List<Object?>>? operationTypes;
+  final TfArg<List<String>>? operationTypes;
 
   Map<String, Object?> encode() => {
     'operation': ?operation?.toTfJson(),
@@ -200,7 +200,7 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigs {
 
   final TfArg<String>? apiSource;
 
-  final TfArg<List<Object?>>? methods;
+  final TfArg<List<String>>? methods;
 
   final TfArg<String>? service;
 
@@ -352,7 +352,7 @@ final class ApigeeApiProductOperationGroupOperationConfigsOperations {
     this.resource,
   });
 
-  final TfArg<List<Object?>>? methods;
+  final TfArg<List<String>>? methods;
 
   final TfArg<String>? resource;
 

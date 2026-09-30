@@ -59,7 +59,7 @@ enum SaasRuntimeReleaseInputVariableDefaultsType implements TerraformEnum {
 final class SaasRuntimeReleaseReleaseRequirements {
   const SaasRuntimeReleaseReleaseRequirements({this.upgradeableFromReleases});
 
-  final TfArg<List<Object?>>? upgradeableFromReleases;
+  final TfArg<List<String>>? upgradeableFromReleases;
 
   Map<String, Object?> encode() => {
     'upgradeable_from_releases': ?upgradeableFromReleases?.toTfJson(),

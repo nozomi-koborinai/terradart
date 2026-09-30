@@ -110,11 +110,11 @@ final class CloudfrontDistributionDefaultCacheBehavior {
     this.lambdaFunctionAssociation,
   });
 
-  final TfArg<List<Object?>> allowedMethods;
+  final TfArg<List<String>> allowedMethods;
 
   final TfArg<String>? cachePolicyId;
 
-  final TfArg<List<Object?>> cachedMethods;
+  final TfArg<List<String>> cachedMethods;
 
   final TfArg<bool>? compress;
 
@@ -136,9 +136,9 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<List<Object?>>? trustedKeyGroups;
+  final TfArg<List<String>>? trustedKeyGroups;
 
-  final TfArg<List<Object?>>? trustedSigners;
+  final TfArg<List<String>>? trustedSigners;
 
   final TfArg<CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy>
   viewerProtocolPolicy;
@@ -211,11 +211,11 @@ final class CloudfrontDistributionDefaultCacheBehaviorForwardedValues {
     required this.cookies,
   });
 
-  final TfArg<List<Object?>>? headers;
+  final TfArg<List<String>>? headers;
 
   final TfArg<bool> queryString;
 
-  final TfArg<List<Object?>>? queryStringCacheKeys;
+  final TfArg<List<String>>? queryStringCacheKeys;
 
   final CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies
   cookies;
@@ -242,7 +242,7 @@ final class CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies {
   >
   forward;
 
-  final TfArg<List<Object?>>? whitelistedNames;
+  final TfArg<List<String>>? whitelistedNames;
 
   Map<String, Object?> encode() => {
     'forward': forward.toTfJson(),
@@ -404,11 +404,11 @@ final class CloudfrontDistributionOrderedCacheBehavior {
     this.lambdaFunctionAssociation,
   });
 
-  final TfArg<List<Object?>> allowedMethods;
+  final TfArg<List<String>> allowedMethods;
 
   final TfArg<String>? cachePolicyId;
 
-  final TfArg<List<Object?>> cachedMethods;
+  final TfArg<List<String>> cachedMethods;
 
   final TfArg<bool>? compress;
 
@@ -432,9 +432,9 @@ final class CloudfrontDistributionOrderedCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<List<Object?>>? trustedKeyGroups;
+  final TfArg<List<String>>? trustedKeyGroups;
 
-  final TfArg<List<Object?>>? trustedSigners;
+  final TfArg<List<String>>? trustedSigners;
 
   final TfArg<CloudfrontDistributionOrderedCacheBehaviorViewerProtocolPolicy>
   viewerProtocolPolicy;
@@ -508,11 +508,11 @@ final class CloudfrontDistributionOrderedCacheBehaviorForwardedValues {
     required this.cookies,
   });
 
-  final TfArg<List<Object?>>? headers;
+  final TfArg<List<String>>? headers;
 
   final TfArg<bool> queryString;
 
-  final TfArg<List<Object?>>? queryStringCacheKeys;
+  final TfArg<List<String>>? queryStringCacheKeys;
 
   final CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies
   cookies;
@@ -539,7 +539,7 @@ final class CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies {
   >
   forward;
 
-  final TfArg<List<Object?>>? whitelistedNames;
+  final TfArg<List<String>>? whitelistedNames;
 
   Map<String, Object?> encode() => {
     'forward': forward.toTfJson(),
@@ -930,7 +930,7 @@ final class CloudfrontDistributionOriginGroupFailoverCriteria {
     required this.statusCodes,
   });
 
-  final TfArg<List<Object?>> statusCodes;
+  final TfArg<List<num>> statusCodes;
 
   Map<String, Object?> encode() => {'status_codes': statusCodes.toTfJson()};
 }
@@ -966,7 +966,7 @@ final class CloudfrontDistributionRestrictionsGeoRestriction {
     required this.restrictionType,
   });
 
-  final TfArg<List<Object?>>? locations;
+  final TfArg<List<String>>? locations;
 
   final TfArg<CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType>
   restrictionType;

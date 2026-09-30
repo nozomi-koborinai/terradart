@@ -111,7 +111,7 @@ final class IdentityPlatformConfigMfa {
     this.providerConfigs,
   });
 
-  final TfArg<List<Object?>>? enabledProviders;
+  final TfArg<List<String>>? enabledProviders;
 
   final TfArg<IdentityPlatformConfigMfaState>? state;
 
@@ -402,7 +402,7 @@ final class IdentityPlatformConfigSmsRegionConfigAllowByDefault {
     this.disallowedRegions,
   });
 
-  final TfArg<List<Object?>>? disallowedRegions;
+  final TfArg<List<String>>? disallowedRegions;
 
   Map<String, Object?> encode() => {
     'disallowed_regions': ?disallowedRegions?.toTfJson(),
@@ -417,7 +417,7 @@ final class IdentityPlatformConfigSmsRegionConfigAllowlistOnly {
     this.allowedRegions,
   });
 
-  final TfArg<List<Object?>>? allowedRegions;
+  final TfArg<List<String>>? allowedRegions;
 
   Map<String, Object?> encode() => {
     'allowed_regions': ?allowedRegions?.toTfJson(),

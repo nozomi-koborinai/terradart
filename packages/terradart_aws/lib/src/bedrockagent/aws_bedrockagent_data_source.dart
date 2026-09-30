@@ -210,9 +210,9 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
     required this.objectType,
   });
 
-  final TfArg<List<Object?>>? exclusionFilters;
+  final TfArg<List<String>>? exclusionFilters;
 
-  final TfArg<List<Object?>>? inclusionFilters;
+  final TfArg<List<String>>? inclusionFilters;
 
   final TfArg<String> objectType;
 
@@ -499,7 +499,7 @@ final class BedrockagentDataSourceDataSourceConfigurationS3Configuration {
 
   final TfArg<String>? bucketOwnerAccountId;
 
-  final TfArg<List<Object?>>? inclusionPrefixes;
+  final TfArg<List<String>>? inclusionPrefixes;
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
@@ -613,9 +613,9 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
     required this.objectType,
   });
 
-  final TfArg<List<Object?>>? exclusionFilters;
+  final TfArg<List<String>>? exclusionFilters;
 
-  final TfArg<List<Object?>>? inclusionFilters;
+  final TfArg<List<String>>? inclusionFilters;
 
   final TfArg<String> objectType;
 
@@ -769,9 +769,9 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
     required this.objectType,
   });
 
-  final TfArg<List<Object?>>? exclusionFilters;
+  final TfArg<List<String>>? exclusionFilters;
 
-  final TfArg<List<Object?>>? inclusionFilters;
+  final TfArg<List<String>>? inclusionFilters;
 
   final TfArg<String> objectType;
 
@@ -809,7 +809,7 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
   >
   hostType;
 
-  final TfArg<List<Object?>> siteUrls;
+  final TfArg<List<String>> siteUrls;
 
   final TfArg<String>? tenantId;
 
@@ -893,9 +893,9 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
     this.crawlerLimits,
   });
 
-  final TfArg<List<Object?>>? exclusionFilters;
+  final TfArg<List<String>>? exclusionFilters;
 
-  final TfArg<List<Object?>>? inclusionFilters;
+  final TfArg<List<String>>? inclusionFilters;
 
   final TfArg<
     BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope

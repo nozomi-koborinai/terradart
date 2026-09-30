@@ -306,9 +306,9 @@ final class LambdaFunctionImageConfig {
     this.workingDirectory,
   });
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
-  final TfArg<List<Object?>>? entryPoint;
+  final TfArg<List<String>>? entryPoint;
 
   final TfArg<String>? workingDirectory;
 

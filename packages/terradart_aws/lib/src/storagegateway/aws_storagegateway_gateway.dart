@@ -163,7 +163,7 @@ final class StoragegatewayGatewaySmbActiveDirectorySettings {
     required this.username,
   });
 
-  final TfArg<List<Object?>>? domainControllers;
+  final TfArg<List<String>>? domainControllers;
 
   final TfArg<String> domainName;
 

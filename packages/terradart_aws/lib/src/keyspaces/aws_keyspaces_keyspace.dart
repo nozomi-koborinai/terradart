@@ -16,7 +16,7 @@ final class KeyspacesKeyspaceReplicationSpecification {
     this.replicationStrategy,
   });
 
-  final TfArg<List<Object?>>? regionList;
+  final TfArg<List<String>>? regionList;
 
   final TfArg<KeyspacesKeyspaceReplicationSpecificationReplicationStrategy>?
   replicationStrategy;

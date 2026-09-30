@@ -46,7 +46,7 @@ final class EcsDaemonDeploymentConfiguration {
 final class EcsDaemonDeploymentConfigurationAlarms {
   const EcsDaemonDeploymentConfigurationAlarms({this.alarmNames, this.enable});
 
-  final TfArg<List<Object?>>? alarmNames;
+  final TfArg<List<String>>? alarmNames;
 
   final TfArg<bool>? enable;
 

@@ -22,13 +22,13 @@ final class DataprocJobHadoopConfig {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? mainClass;
 
@@ -78,13 +78,13 @@ final class DataprocJobHiveConfig {
 
   final TfArg<bool>? continueOnFailure;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
   final TfArg<String>? queryFileUri;
 
-  final TfArg<List<Object?>>? queryList;
+  final TfArg<List<String>>? queryList;
 
   final TfArg<Map<String, String>>? scriptVariables;
 
@@ -114,13 +114,13 @@ final class DataprocJobPigConfig {
 
   final TfArg<bool>? continueOnFailure;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
   final TfArg<String>? queryFileUri;
 
-  final TfArg<List<Object?>>? queryList;
+  final TfArg<List<String>>? queryList;
 
   final TfArg<Map<String, String>>? scriptVariables;
 
@@ -175,7 +175,7 @@ final class DataprocJobPrestoConfig {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? clientTags;
+  final TfArg<List<String>>? clientTags;
 
   final TfArg<bool>? continueOnFailure;
 
@@ -185,7 +185,7 @@ final class DataprocJobPrestoConfig {
 
   final TfArg<String>? queryFileUri;
 
-  final TfArg<List<Object?>>? queryList;
+  final TfArg<List<String>>? queryList;
 
   final DataprocJobPrestoConfigLoggingConfig? loggingConfig;
 
@@ -228,19 +228,19 @@ final class DataprocJobPysparkConfig {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String> mainPythonFileUri;
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<List<Object?>>? pythonFileUris;
+  final TfArg<List<String>>? pythonFileUris;
 
   final DataprocJobPysparkConfigLoggingConfig? loggingConfig;
 
@@ -314,13 +314,13 @@ final class DataprocJobSparkConfig {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? mainClass;
 
@@ -368,13 +368,13 @@ final class DataprocJobSparksqlConfig {
     this.loggingConfig,
   });
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<Map<String, String>>? properties;
 
   final TfArg<String>? queryFileUri;
 
-  final TfArg<List<Object?>>? queryList;
+  final TfArg<List<String>>? queryList;
 
   final TfArg<Map<String, String>>? scriptVariables;
 

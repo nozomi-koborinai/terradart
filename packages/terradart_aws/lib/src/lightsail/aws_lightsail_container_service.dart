@@ -60,7 +60,7 @@ final class LightsailContainerServicePublicDomainNamesCertificate {
 
   final TfArg<String> certificateName;
 
-  final TfArg<List<Object?>> domainNames;
+  final TfArg<List<String>> domainNames;
 
   Map<String, Object?> encode() => {
     'certificate_name': certificateName.toTfJson(),

@@ -52,7 +52,7 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<num>? dbNodeStorageSizeGb;
 
-  final TfArg<List<Object?>>? dbServerOcids;
+  final TfArg<List<String>>? dbServerOcids;
 
   final TfArg<String>? diskRedundancy;
 
@@ -72,7 +72,7 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<bool>? sparseDiskgroupEnabled;
 
-  final TfArg<List<Object?>>? sshPublicKeys;
+  final TfArg<List<String>>? sshPublicKeys;
 
   final OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions?
   diagnosticsDataCollectionOptions;

@@ -142,7 +142,7 @@ final class CustomHostnameSslSettings {
     this.tls13,
   });
 
-  final TfArg<List<Object?>>? ciphers;
+  final TfArg<List<String>>? ciphers;
 
   final TfArg<CustomHostnameSslSettingsEarlyHints>? earlyHints;
 

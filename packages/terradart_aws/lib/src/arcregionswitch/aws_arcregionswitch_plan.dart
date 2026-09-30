@@ -683,7 +683,7 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
 
   final TfArg<String>? crossAccountRole;
 
-  final TfArg<List<Object?>> databaseClusterArns;
+  final TfArg<List<String>> databaseClusterArns;
 
   final TfArg<String>? externalId;
 
@@ -1146,7 +1146,7 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
 
   final TfArg<String>? crossAccountRole;
 
-  final TfArg<List<Object?>> databaseClusterArns;
+  final TfArg<List<String>> databaseClusterArns;
 
   final TfArg<String>? externalId;
 
@@ -1916,7 +1916,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig {
 
   final TfArg<String>? crossAccountRole;
 
-  final TfArg<List<Object?>> databaseClusterArns;
+  final TfArg<List<String>> databaseClusterArns;
 
   final TfArg<String>? externalId;
 
@@ -2389,7 +2389,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig 
 
   final TfArg<String>? crossAccountRole;
 
-  final TfArg<List<Object?>> databaseClusterArns;
+  final TfArg<List<String>> databaseClusterArns;
 
   final TfArg<String>? externalId;
 

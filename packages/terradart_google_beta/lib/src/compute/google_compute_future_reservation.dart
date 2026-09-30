@@ -230,7 +230,7 @@ final class ComputeFutureReservationShareSettings {
     this.projectMap,
   });
 
-  final TfArg<List<Object?>>? projects;
+  final TfArg<List<String>>? projects;
 
   final TfArg<ComputeFutureReservationShareSettingsShareType>? shareType;
 

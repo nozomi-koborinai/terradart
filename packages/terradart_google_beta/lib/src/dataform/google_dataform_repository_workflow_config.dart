@@ -25,7 +25,7 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
 
   final TfArg<bool>? fullyRefreshIncrementalTablesEnabled;
 
-  final TfArg<List<Object?>>? includedTags;
+  final TfArg<List<String>>? includedTags;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 

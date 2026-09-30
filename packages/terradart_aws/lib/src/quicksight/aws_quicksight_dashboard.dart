@@ -1011,7 +1011,7 @@ final class QuicksightDashboardDefinitionFilterGroupsFiltersCategoryFilterConfig
     this.selectAllOptions,
   });
 
-  final TfArg<List<Object?>>? categoryValues;
+  final TfArg<List<String>>? categoryValues;
 
   final TfArg<String> matchOperator;
 
@@ -1037,7 +1037,7 @@ final class QuicksightDashboardDefinitionFilterGroupsFiltersCategoryFilterConfig
     this.selectAllOptions,
   });
 
-  final TfArg<List<Object?>>? categoryValues;
+  final TfArg<List<String>>? categoryValues;
 
   final TfArg<String> matchOperator;
 
@@ -1564,7 +1564,7 @@ final class QuicksightDashboardDefinitionFilterGroupsScopeConfigurationSelectedS
 
   final TfArg<String> sheetId;
 
-  final TfArg<List<Object?>>? visualIds;
+  final TfArg<List<String>>? visualIds;
 
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
@@ -1643,7 +1643,7 @@ final class QuicksightDashboardDefinitionParameterDeclarationsDateTimeParameterD
     this.rollingDate,
   });
 
-  final TfArg<List<Object?>>? staticValues;
+  final TfArg<List<String>>? staticValues;
 
   final QuicksightDashboardDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
   dynamicValue;
@@ -1744,7 +1744,7 @@ final class QuicksightDashboardDefinitionParameterDeclarationsDecimalParameterDe
     this.dynamicValue,
   });
 
-  final TfArg<List<Object?>>? staticValues;
+  final TfArg<List<num>>? staticValues;
 
   final QuicksightDashboardDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
   dynamicValue;
@@ -1790,7 +1790,7 @@ final class QuicksightDashboardDefinitionParameterDeclarationsStringParameterDec
 
   final TfArg<String> parameterValueType;
 
-  final QuicksightDashboardDefinitionParameterDeclarationsDecimalParameterDeclarationDefaultValues?
+  final QuicksightDashboardDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues?
   defaultValues;
 
   final QuicksightDashboardDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset?
@@ -1801,6 +1801,26 @@ final class QuicksightDashboardDefinitionParameterDeclarationsStringParameterDec
     'parameter_value_type': parameterValueType.toTfJson(),
     'default_values': ?defaultValues?.encode(),
     'values_when_unset': ?valuesWhenUnset?.encode(),
+  };
+}
+
+/// Typed helper for the `definition.parameter_declarations.string_parameter_declaration.default_values` block of
+/// `aws_quicksight_dashboard` (derived from provider schema).
+@immutable
+final class QuicksightDashboardDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues {
+  const QuicksightDashboardDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues({
+    this.staticValues,
+    this.dynamicValue,
+  });
+
+  final TfArg<List<String>>? staticValues;
+
+  final QuicksightDashboardDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
+  dynamicValue;
+
+  Map<String, Object?> encode() => {
+    'static_values': ?staticValues?.toTfJson(),
+    'dynamic_value': ?dynamicValue?.encode(),
   };
 }
 
@@ -2172,7 +2192,7 @@ final class QuicksightDashboardDefinitionSheetsFilterControlsDropdownSelectableV
     this.values,
   });
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
@@ -2950,7 +2970,7 @@ final class QuicksightDashboardDefinitionSheetsParameterControlsDropdownSelectab
     this.linkToDataSetColumn,
   });
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   final QuicksightDashboardDefinitionColumnConfigurationsColumn?
   linkToDataSetColumn;
@@ -3412,7 +3432,7 @@ final class QuicksightDashboardDefinitionSheetsVisualsBarChartVisualActionsActio
 
   final TfArg<String>? selectedFieldOption;
 
-  final TfArg<List<Object?>>? selectedFields;
+  final TfArg<List<String>>? selectedFields;
 
   Map<String, Object?> encode() => {
     'selected_field_option': ?selectedFieldOption?.toTfJson(),
@@ -3450,7 +3470,7 @@ final class QuicksightDashboardDefinitionSheetsVisualsBarChartVisualActionsActio
 
   final TfArg<String>? targetVisualOption;
 
-  final TfArg<List<Object?>>? targetVisuals;
+  final TfArg<List<String>>? targetVisuals;
 
   Map<String, Object?> encode() => {
     'target_visual_option': ?targetVisualOption?.toTfJson(),
@@ -3595,13 +3615,13 @@ final class QuicksightDashboardDefinitionSheetsVisualsBarChartVisualActionsActio
     this.stringValues,
   });
 
-  final TfArg<List<Object?>>? dateTimeValues;
+  final TfArg<List<String>>? dateTimeValues;
 
-  final TfArg<List<Object?>>? decimalValues;
+  final TfArg<List<num>>? decimalValues;
 
-  final TfArg<List<Object?>>? integerValues;
+  final TfArg<List<num>>? integerValues;
 
-  final TfArg<List<Object?>>? stringValues;
+  final TfArg<List<String>>? stringValues;
 
   Map<String, Object?> encode() => {
     'date_time_values': ?dateTimeValues?.toTfJson(),
@@ -5297,7 +5317,7 @@ final class QuicksightDashboardDefinitionSheetsVisualsBarChartVisualColumnHierar
     required this.column,
   });
 
-  final TfArg<List<Object?>> categoryValues;
+  final TfArg<List<String>> categoryValues;
 
   final QuicksightDashboardDefinitionColumnConfigurationsColumn column;
 
@@ -9673,7 +9693,7 @@ final class QuicksightDashboardDefinitionSheetsVisualsPivotTableVisualChartConfi
     this.status,
   });
 
-  final TfArg<List<Object?>>? rowAlternateColors;
+  final TfArg<List<String>>? rowAlternateColors;
 
   final TfArg<String>? status;
 
@@ -10528,7 +10548,7 @@ final class QuicksightDashboardDefinitionSheetsVisualsTableVisualChartConfigurat
     this.selectedFieldOptions,
   });
 
-  final TfArg<List<Object?>>? order;
+  final TfArg<List<String>>? order;
 
   final List<
     QuicksightDashboardDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptions
@@ -11514,11 +11534,9 @@ final class QuicksightDashboardParameters {
   final List<QuicksightDashboardParametersDateTimeParameters>?
   dateTimeParameters;
 
-  final List<QuicksightDashboardParametersDateTimeParameters>?
-  decimalParameters;
+  final List<QuicksightDashboardParametersDecimalParameters>? decimalParameters;
 
-  final List<QuicksightDashboardParametersDateTimeParameters>?
-  integerParameters;
+  final List<QuicksightDashboardParametersDecimalParameters>? integerParameters;
 
   final List<QuicksightDashboardParametersDateTimeParameters>? stringParameters;
 
@@ -11546,7 +11564,27 @@ final class QuicksightDashboardParametersDateTimeParameters {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'values': values.toTfJson(),
+  };
+}
+
+/// Typed helper for the `parameters.decimal_parameters` block of
+/// `aws_quicksight_dashboard` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class QuicksightDashboardParametersDecimalParameters {
+  const QuicksightDashboardParametersDecimalParameters({
+    required this.name,
+    required this.values,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<List<num>> values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -11563,7 +11601,7 @@ final class QuicksightDashboardPermissions {
     required this.principal,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final TfArg<String> principal;
 

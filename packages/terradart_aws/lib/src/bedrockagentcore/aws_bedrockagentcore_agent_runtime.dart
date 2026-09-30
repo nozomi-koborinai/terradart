@@ -49,7 +49,7 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
     this.code,
   });
 
-  final TfArg<List<Object?>> entryPoint;
+  final TfArg<List<String>> entryPoint;
 
   final TfArg<
     BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
@@ -175,11 +175,11 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     this.privateEndpointOverrides,
   });
 
-  final TfArg<List<Object?>>? allowedAudience;
+  final TfArg<List<String>>? allowedAudience;
 
-  final TfArg<List<Object?>>? allowedClients;
+  final TfArg<List<String>>? allowedClients;
 
-  final TfArg<List<Object?>>? allowedScopes;
+  final TfArg<List<String>>? allowedScopes;
 
   final TfArg<String> discoveryUrl;
 
@@ -232,7 +232,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     this.hostingEnvironment,
   });
 
-  final TfArg<List<Object?>>? workloadIdentities;
+  final TfArg<List<String>>? workloadIdentities;
 
   final List<
     BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment
@@ -355,7 +355,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String>? matchValueString;
 
-  final TfArg<List<Object?>>? matchValueStringList;
+  final TfArg<List<String>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
@@ -755,7 +755,7 @@ final class BedrockagentcoreAgentRuntimeRequestHeaderConfiguration {
     this.requestHeaderAllowlist,
   });
 
-  final TfArg<List<Object?>>? requestHeaderAllowlist;
+  final TfArg<List<String>>? requestHeaderAllowlist;
 
   Map<String, Object?> encode() => {
     'request_header_allowlist': ?requestHeaderAllowlist?.toTfJson(),

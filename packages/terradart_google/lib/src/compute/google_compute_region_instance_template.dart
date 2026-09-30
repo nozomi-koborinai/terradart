@@ -115,7 +115,7 @@ final class ComputeRegionInstanceTemplateDisk {
 
   final TfArg<String>? diskType;
 
-  final TfArg<List<Object?>>? guestOsFeatures;
+  final TfArg<List<String>>? guestOsFeatures;
 
   final TfArg<String>? interface;
 
@@ -129,7 +129,7 @@ final class ComputeRegionInstanceTemplateDisk {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
-  final TfArg<List<Object?>>? resourcePolicies;
+  final TfArg<List<String>>? resourcePolicies;
 
   final TfArg<String>? source;
 
@@ -473,7 +473,7 @@ final class ComputeRegionInstanceTemplateReservationAffinitySpecificReservation 
 
   final TfArg<String> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -603,7 +603,7 @@ final class ComputeRegionInstanceTemplateSchedulingNodeAffinities {
 
   final TfArg<String> operator;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -638,7 +638,7 @@ final class ComputeRegionInstanceTemplateServiceAccount {
 
   final RefTo<GoogleServiceAccount>? email;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),

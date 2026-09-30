@@ -161,17 +161,17 @@ final class DataprocGdcSparkApplicationPysparkApplicationConfig {
     this.pythonFileUris,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String> mainPythonFileUri;
 
-  final TfArg<List<Object?>>? pythonFileUris;
+  final TfArg<List<String>>? pythonFileUris;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -196,13 +196,13 @@ final class DataprocGdcSparkApplicationSparkApplicationConfig {
     this.mainJarFileUri,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? mainClass;
 
@@ -229,11 +229,11 @@ final class DataprocGdcSparkApplicationSparkRApplicationConfig {
     required this.mainRFileUri,
   });
 
-  final TfArg<List<Object?>>? archiveUris;
+  final TfArg<List<String>>? archiveUris;
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? fileUris;
+  final TfArg<List<String>>? fileUris;
 
   final TfArg<String> mainRFileUri;
 
@@ -256,7 +256,7 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfig {
     this.queryList,
   });
 
-  final TfArg<List<Object?>>? jarFileUris;
+  final TfArg<List<String>>? jarFileUris;
 
   final TfArg<String>? queryFileUri;
 
@@ -281,7 +281,7 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfigQueryList {
     required this.queries,
   });
 
-  final TfArg<List<Object?>> queries;
+  final TfArg<List<String>> queries;
 
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }

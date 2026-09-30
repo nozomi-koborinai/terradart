@@ -19,7 +19,7 @@ final class CodecommitTriggerTrigger {
     required this.name,
   });
 
-  final TfArg<List<Object?>>? branches;
+  final TfArg<List<String>>? branches;
 
   final TfArg<String>? customData;
 

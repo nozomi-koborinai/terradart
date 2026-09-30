@@ -86,9 +86,9 @@ final class FmsPolicyResourceTypeList extends FmsPolicyResourceType {
 final class FmsPolicyExcludeMap {
   const FmsPolicyExcludeMap({this.account, this.orgunit});
 
-  final TfArg<List<Object?>>? account;
+  final TfArg<List<String>>? account;
 
-  final TfArg<List<Object?>>? orgunit;
+  final TfArg<List<String>>? orgunit;
 
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
@@ -102,9 +102,9 @@ final class FmsPolicyExcludeMap {
 final class FmsPolicyIncludeMap {
   const FmsPolicyIncludeMap({this.account, this.orgunit});
 
-  final TfArg<List<Object?>>? account;
+  final TfArg<List<String>>? account;
 
-  final TfArg<List<Object?>>? orgunit;
+  final TfArg<List<String>>? orgunit;
 
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),

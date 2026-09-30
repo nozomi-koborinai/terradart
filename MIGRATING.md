@@ -1072,7 +1072,7 @@ from 0.30.0 is replaced by the sealed argument `terradart wrap` derives from
 the Magic Modules `internal_config` / `external_config` group. The argument
 keeps its name, `config`; its variants are named after the members and take
 the derived block helpers. The consumer-list entry classes are renamed, and
-`allowedCidrBlocks` is a `TfArg<List<Object?>>`. Synth output is unchanged.
+`allowedCidrBlocks` is a `TfArg<List<String>>`. Synth output is unchanged.
 
 | Before | After |
 |--------|-------|
@@ -1495,6 +1495,33 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 |--------|-------|
 | `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
 | *(not available)* | `principal: .group(.literal('team@example.com'))` |
+
+### Value lists inside helper classes take their element type
+
+**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
+`terradart_cloudflare`)** — a list or set of strings, numbers or booleans
+inside a generated helper class is a `TfArg<List<String>>` /
+`TfArg<List<num>>` / `TfArg<List<bool>>` instead of a
+`TfArg<List<Object?>>`, as the same input already was at the top level. A
+list literal (`.literal(['10.0.0.0/8'])`) keeps compiling; a list typed
+`List<Object?>`, or one mixing element types, no longer does. Put an
+attribute of another block in the list as its interpolation string. Lists of
+objects stay `List<Object?>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(<Object?>['203.0.113.0/24']))` | `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(['203.0.113.0/24']))` |
+| `values: .literal([TfArg.ref(distribution.arn)])` (an IAM policy document condition) | `values: .literal([distribution.arn.interpolation])` |
+| `values: .literal(<Object?>[0.0, 0.0])` | `values: .literal(<num>[0.0, 0.0])` |
+
+On `terradart_aws`, the QuickSight helper classes shared by blocks of one
+shape split where the element type tells the blocks apart: the string
+parameter declaration's `defaultValues` takes
+`Quicksight{Analysis,Dashboard}DefinitionParameterDeclarationsStringParameterDeclarationDefaultValues`
+/ `QuicksightTemplateDefinitionParametersDeclarationsStringParameterDeclarationDefaultValues`
+(was the decimal declaration's class), and `parameters.decimalParameters` /
+`integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
+(was `...ParametersDateTimeParameters`).
 
 ## 0.29.x → 0.30.0
 

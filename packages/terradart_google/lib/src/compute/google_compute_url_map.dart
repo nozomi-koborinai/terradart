@@ -174,7 +174,7 @@ final class ComputeUrlMapDefaultCustomErrorResponsePolicyErrorResponseRule {
     this.path,
   });
 
-  final TfArg<List<Object?>>? matchResponseCodes;
+  final TfArg<List<String>>? matchResponseCodes;
 
   final TfArg<num>? overrideResponseCode;
 
@@ -256,7 +256,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicy {
     this.serveWhileStale,
   });
 
-  final TfArg<List<Object?>>? cacheBypassRequestHeaderNames;
+  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
   final TfArg<UrlMapCacheMode>? cacheMode;
 
@@ -319,9 +319,9 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy {
 
   final TfArg<bool>? includeQueryString;
 
-  final TfArg<List<Object?>>? includedCookieNames;
+  final TfArg<List<String>>? includedCookieNames;
 
-  final TfArg<List<Object?>>? includedHeaderNames;
+  final TfArg<List<String>>? includedHeaderNames;
 
   Map<String, Object?> encode() => {
     ...?queryParameters?.encode(),
@@ -343,12 +343,12 @@ sealed class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParame
 
   /// Sets `included_query_parameters`.
   const factory ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.includedQueryParameters(
-    TfArg<List<Object?>> includedQueryParameters,
+    TfArg<List<String>> includedQueryParameters,
   ) = ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersIncludedQueryParameters;
 
   /// Sets `excluded_query_parameters`.
   const factory ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.excludedQueryParameters(
-    TfArg<List<Object?>> excludedQueryParameters,
+    TfArg<List<String>> excludedQueryParameters,
   ) = ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersExcludedQueryParameters;
 
   /// The Terraform argument this choice sets.
@@ -365,7 +365,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParamet
     this.includedQueryParameters,
   );
 
-  final TfArg<List<Object?>> includedQueryParameters;
+  final TfArg<List<String>> includedQueryParameters;
 
   @override
   String get blockKey => 'included_query_parameters';
@@ -384,7 +384,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParamet
     this.excludedQueryParameters,
   );
 
-  final TfArg<List<Object?>> excludedQueryParameters;
+  final TfArg<List<String>> excludedQueryParameters;
 
   @override
   String get blockKey => 'excluded_query_parameters';
@@ -526,17 +526,17 @@ final class ComputeUrlMapDefaultRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -675,7 +675,7 @@ final class ComputeUrlMapDefaultRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeUrlMapDefaultRouteActionRetryPolicyPerTryTimeout? perTryTimeout;
 
@@ -775,9 +775,9 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -895,9 +895,9 @@ final class ComputeUrlMapHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<ComputeUrlMapHeaderActionRequestHeadersToAdd>? requestHeadersToAdd;
 
@@ -976,7 +976,7 @@ final class ComputeUrlMapHostRule {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>> hosts;
+  final TfArg<List<String>> hosts;
 
   final TfArg<String> pathMatcher;
 
@@ -1070,7 +1070,7 @@ final class ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicyErrorRespons
     this.path,
   });
 
-  final TfArg<List<Object?>>? matchResponseCodes;
+  final TfArg<List<String>>? matchResponseCodes;
 
   final TfArg<num>? overrideResponseCode;
 
@@ -1154,7 +1154,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy {
     this.serveWhileStale,
   });
 
-  final TfArg<List<Object?>>? cacheBypassRequestHeaderNames;
+  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
   final TfArg<UrlMapCacheMode>? cacheMode;
 
@@ -1213,7 +1213,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy 
     this.includedQueryParameters,
   });
 
-  final TfArg<List<Object?>>? excludedQueryParameters;
+  final TfArg<List<String>>? excludedQueryParameters;
 
   final TfArg<bool>? includeHost;
 
@@ -1221,11 +1221,11 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy 
 
   final TfArg<bool>? includeQueryString;
 
-  final TfArg<List<Object?>>? includedCookieNames;
+  final TfArg<List<String>>? includedCookieNames;
 
-  final TfArg<List<Object?>>? includedHeaderNames;
+  final TfArg<List<String>>? includedHeaderNames;
 
-  final TfArg<List<Object?>>? includedQueryParameters;
+  final TfArg<List<String>>? includedQueryParameters;
 
   Map<String, Object?> encode() => {
     'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
@@ -1370,17 +1370,17 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -1521,7 +1521,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -1625,9 +1625,9 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHea
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -1745,9 +1745,9 @@ final class ComputeUrlMapPathMatcherHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<ComputeUrlMapPathMatcherHeaderActionRequestHeadersToAdd>?
   requestHeadersToAdd;
@@ -1827,7 +1827,7 @@ final class ComputeUrlMapPathMatcherPathRule {
     this.urlRedirect,
   });
 
-  final TfArg<List<Object?>> paths;
+  final TfArg<List<String>> paths;
 
   final TfArg<String>? service;
 
@@ -1880,7 +1880,7 @@ final class ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicyErrorRespon
     this.path,
   });
 
-  final TfArg<List<Object?>>? matchResponseCodes;
+  final TfArg<List<String>>? matchResponseCodes;
 
   final TfArg<num>? overrideResponseCode;
 
@@ -1966,7 +1966,7 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicy {
     this.serveWhileStale,
   });
 
-  final TfArg<List<Object?>>? cacheBypassRequestHeaderNames;
+  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
   final TfArg<UrlMapCacheMode>? cacheMode;
 
@@ -2025,7 +2025,7 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyCacheKeyPolicy
     this.includedQueryParameters,
   });
 
-  final TfArg<List<Object?>>? excludedQueryParameters;
+  final TfArg<List<String>>? excludedQueryParameters;
 
   final TfArg<bool>? includeHost;
 
@@ -2033,11 +2033,11 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyCacheKeyPolicy
 
   final TfArg<bool>? includeQueryString;
 
-  final TfArg<List<Object?>>? includedCookieNames;
+  final TfArg<List<String>>? includedCookieNames;
 
-  final TfArg<List<Object?>>? includedHeaderNames;
+  final TfArg<List<String>>? includedHeaderNames;
 
-  final TfArg<List<Object?>>? includedQueryParameters;
+  final TfArg<List<String>>? includedQueryParameters;
 
   Map<String, Object?> encode() => {
     'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
@@ -2182,17 +2182,17 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool> disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -2333,7 +2333,7 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -2437,9 +2437,9 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHe
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -2620,7 +2620,7 @@ final class ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicyErrorResp
     this.path,
   });
 
-  final TfArg<List<Object?>>? matchResponseCodes;
+  final TfArg<List<String>>? matchResponseCodes;
 
   final TfArg<num>? overrideResponseCode;
 
@@ -2644,9 +2644,9 @@ final class ComputeUrlMapPathMatcherRouteRulesHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<ComputeUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd>?
   requestHeadersToAdd;
@@ -2971,7 +2971,7 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicy {
     this.serveWhileStale,
   });
 
-  final TfArg<List<Object?>>? cacheBypassRequestHeaderNames;
+  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
   final TfArg<UrlMapCacheMode>? cacheMode;
 
@@ -3030,7 +3030,7 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyCacheKeyPoli
     this.includedQueryParameters,
   });
 
-  final TfArg<List<Object?>>? excludedQueryParameters;
+  final TfArg<List<String>>? excludedQueryParameters;
 
   final TfArg<bool>? includeHost;
 
@@ -3038,11 +3038,11 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyCacheKeyPoli
 
   final TfArg<bool>? includeQueryString;
 
-  final TfArg<List<Object?>>? includedCookieNames;
+  final TfArg<List<String>>? includedCookieNames;
 
-  final TfArg<List<Object?>>? includedHeaderNames;
+  final TfArg<List<String>>? includedHeaderNames;
 
-  final TfArg<List<Object?>>? includedQueryParameters;
+  final TfArg<List<String>>? includedQueryParameters;
 
   Map<String, Object?> encode() => {
     'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
@@ -3187,17 +3187,17 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -3338,7 +3338,7 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
 
   final TfArg<num> numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -3446,9 +3446,9 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd

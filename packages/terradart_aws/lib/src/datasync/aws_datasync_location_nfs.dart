@@ -36,7 +36,7 @@ enum DatasyncLocationNfsMountOptionsVersion implements TerraformEnum {
 final class DatasyncLocationNfsOnPremConfig {
   const DatasyncLocationNfsOnPremConfig({required this.agentArns});
 
-  final TfArg<List<Object?>> agentArns;
+  final TfArg<List<String>> agentArns;
 
   Map<String, Object?> encode() => {'agent_arns': agentArns.toTfJson()};
 }

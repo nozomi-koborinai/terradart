@@ -173,7 +173,7 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauth {
 
   final TfArg<String> providerArn;
 
-  final TfArg<List<Object?>> scopes;
+  final TfArg<List<String>> scopes;
 
   Map<String, Object?> encode() => {
     'custom_parameters': ?customParameters?.toTfJson(),
@@ -208,11 +208,11 @@ final class BedrockagentcoreGatewayTargetMetadataConfiguration {
     this.allowedResponseHeaders,
   });
 
-  final TfArg<List<Object?>>? allowedQueryParameters;
+  final TfArg<List<String>>? allowedQueryParameters;
 
-  final TfArg<List<Object?>>? allowedRequestHeaders;
+  final TfArg<List<String>>? allowedRequestHeaders;
 
-  final TfArg<List<Object?>>? allowedResponseHeaders;
+  final TfArg<List<String>>? allowedResponseHeaders;
 
   Map<String, Object?> encode() => {
     'allowed_query_parameters': ?allowedQueryParameters?.toTfJson(),
@@ -632,7 +632,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStick
     this.timeout,
   });
 
-  final TfArg<List<Object?>>? compositeIdentifier;
+  final TfArg<List<String>>? compositeIdentifier;
 
   final TfArg<String> identifier;
 
@@ -1009,7 +1009,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpConnector {
     this.source,
   });
 
-  final TfArg<List<Object?>>? enabled;
+  final TfArg<List<String>>? enabled;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorConfiguration

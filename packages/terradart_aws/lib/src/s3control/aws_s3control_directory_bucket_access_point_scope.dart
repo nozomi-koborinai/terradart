@@ -20,7 +20,7 @@ final class S3controlDirectoryBucketAccessPointScopeScope {
   final List<TfArg<S3controlDirectoryBucketAccessPointScopeScopePermissions>>?
   permissions;
 
-  final TfArg<List<Object?>>? prefixes;
+  final TfArg<List<String>>? prefixes;
 
   Map<String, Object?> encode() => {
     if (permissions != null)

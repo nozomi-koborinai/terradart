@@ -326,15 +326,14 @@ void main() {
       'AllowedEncryptionStatuses',
     );
 
-    // A plain list(string) with NO enum description must still fall back
-    // to the conservative shape, not be swept up by the new repeated-enum
-    // branch.
+    // A plain list(string) with NO enum description is a typed string
+    // list, not swept up by the repeated-enum branch.
     final ipSubnetworks = conditions.attrs.firstWhere(
       (a) => a.tfName == 'ip_subnetworks',
     );
     expect(ipSubnetworks.repeated, isFalse);
     expect(ipSubnetworks.enumValues, isNull);
-    expect(ipSubnetworks.dartType, 'List<Object?>');
+    expect(ipSubnetworks.dartType, 'List<String>');
   });
 
   test('google_os_config_os_policy_assignment: an excluded child that is '

@@ -13,7 +13,7 @@ const Set<String> _awsDsqlClusterSensitive = <String>{};
 final class DsqlClusterMultiRegionProperties {
   const DsqlClusterMultiRegionProperties({this.clusters, this.witnessRegion});
 
-  final TfArg<List<Object?>>? clusters;
+  final TfArg<List<String>>? clusters;
 
   final TfArg<String>? witnessRegion;
 

@@ -60,7 +60,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatement {
     required this.operation,
   });
 
-  final TfArg<List<Object?>> dataIdentifiers;
+  final TfArg<List<String>> dataIdentifiers;
 
   final TfArg<String>? sid;
 

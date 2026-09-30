@@ -57,9 +57,9 @@ final class BackupFrameworkControlScope {
     this.tags,
   });
 
-  final TfArg<List<Object?>>? complianceResourceIds;
+  final TfArg<List<String>>? complianceResourceIds;
 
-  final TfArg<List<Object?>>? complianceResourceTypes;
+  final TfArg<List<String>>? complianceResourceTypes;
 
   final TfArg<Map<String, String>>? tags;
 

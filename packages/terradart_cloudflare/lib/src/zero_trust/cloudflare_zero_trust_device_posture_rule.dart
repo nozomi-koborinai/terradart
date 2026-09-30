@@ -96,7 +96,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<String>? certificateId;
 
-  final TfArg<List<Object?>>? checkDisks;
+  final TfArg<List<String>>? checkDisks;
 
   final TfArg<bool>? checkPrivateKey;
 
@@ -165,7 +165,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<ZeroTrustDevicePostureRuleInputState>? state;
 
-  final TfArg<List<Object?>>? subjectAlternativeNames;
+  final TfArg<List<String>>? subjectAlternativeNames;
 
   final TfArg<String>? thumbprint;
 
@@ -389,7 +389,7 @@ final class ZeroTrustDevicePostureRuleInputLocations {
     this.trustStores,
   });
 
-  final TfArg<List<Object?>>? paths;
+  final TfArg<List<String>>? paths;
 
   final List<TfArg<ZeroTrustDevicePostureRuleInputLocationsTrustStores>>?
   trustStores;

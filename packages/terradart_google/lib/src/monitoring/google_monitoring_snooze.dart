@@ -15,7 +15,7 @@ final class MonitoringSnoozeCriteria {
 
   final TfArg<String>? filter;
 
-  final TfArg<List<Object?>>? policies;
+  final TfArg<List<String>>? policies;
 
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),

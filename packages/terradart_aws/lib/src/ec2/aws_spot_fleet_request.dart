@@ -543,7 +543,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
   >?
   acceleratorTypes;
 
-  final TfArg<List<Object?>>? allowedInstanceTypes;
+  final TfArg<List<String>>? allowedInstanceTypes;
 
   final TfArg<
     SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal
@@ -562,7 +562,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
   >?
   cpuManufacturers;
 
-  final TfArg<List<Object?>>? excludedInstanceTypes;
+  final TfArg<List<String>>? excludedInstanceTypes;
 
   final List<
     TfArg<

@@ -37,7 +37,7 @@ final class ApigeeTargetServerSSlInfo {
     this.commonName,
   });
 
-  final TfArg<List<Object?>>? ciphers;
+  final TfArg<List<String>>? ciphers;
 
   final TfArg<bool>? clientAuthEnabled;
 
@@ -51,7 +51,7 @@ final class ApigeeTargetServerSSlInfo {
 
   final TfArg<String>? keyStore;
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<String>>? protocols;
 
   final TfArg<String>? trustStore;
 

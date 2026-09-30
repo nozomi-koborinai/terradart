@@ -23,7 +23,7 @@ final class VertexAiSemanticGovernancePolicyEngineGatewayConfigs {
     this.subnetwork,
   });
 
-  final TfArg<List<Object?>>? allowedProjects;
+  final TfArg<List<String>>? allowedProjects;
 
   final TfArg<String>? dnsZoneName;
 

@@ -67,7 +67,7 @@ final class SagemakerFlowDefinitionHumanLoopConfig {
 
   final TfArg<String> taskDescription;
 
-  final TfArg<List<Object?>>? taskKeywords;
+  final TfArg<List<String>>? taskKeywords;
 
   final TfArg<num>? taskTimeLimitInSeconds;
 

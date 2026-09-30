@@ -51,7 +51,7 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
-  final TfArg<List<Object?>>? networkTags;
+  final TfArg<List<String>>? networkTags;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 

@@ -326,12 +326,12 @@ sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservation
 
   /// Sets `capacity_reservation_ids`.
   const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationIds(
-    TfArg<List<Object?>> capacityReservationIds,
+    TfArg<List<String>> capacityReservationIds,
   ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIds;
 
   /// Sets `capacity_reservation_resource_group_arns`.
   const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationResourceGroupArns(
-    TfArg<List<Object?>> capacityReservationResourceGroupArns,
+    TfArg<List<String>> capacityReservationResourceGroupArns,
   ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArns;
 
   /// The Terraform argument this choice sets.
@@ -348,7 +348,7 @@ final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationT
     this.capacityReservationIds,
   );
 
-  final TfArg<List<Object?>> capacityReservationIds;
+  final TfArg<List<String>> capacityReservationIds;
 
   @override
   String get blockKey => 'capacity_reservation_ids';
@@ -367,7 +367,7 @@ final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationT
     this.capacityReservationResourceGroupArns,
   );
 
-  final TfArg<List<Object?>> capacityReservationResourceGroupArns;
+  final TfArg<List<String>> capacityReservationResourceGroupArns;
 
   @override
   String get blockKey => 'capacity_reservation_resource_group_arns';
@@ -519,7 +519,7 @@ final class AutoscalingGroupInstanceRefresh {
 
   final TfArg<AutoscalingGroupInstanceRefreshStrategy> strategy;
 
-  final TfArg<List<Object?>>? triggers;
+  final TfArg<List<String>>? triggers;
 
   final AutoscalingGroupInstanceRefreshPreferences? preferences;
 
@@ -561,7 +561,7 @@ final class AutoscalingGroupInstanceRefreshPreferences {
 
   final TfArg<String>? checkpointDelay;
 
-  final TfArg<List<Object?>>? checkpointPercentages;
+  final TfArg<List<num>>? checkpointPercentages;
 
   final TfArg<String>? instanceWarmup;
 
@@ -632,7 +632,7 @@ final class AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification {
     this.alarms,
   });
 
-  final TfArg<List<Object?>>? alarms;
+  final TfArg<List<String>>? alarms;
 
   Map<String, Object?> encode() => {'alarms': ?alarms?.toTfJson()};
 }
@@ -885,7 +885,7 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   >?
   acceleratorTypes;
 
-  final TfArg<List<Object?>>? allowedInstanceTypes;
+  final TfArg<List<String>>? allowedInstanceTypes;
 
   final TfArg<
     AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBareMetal
@@ -904,7 +904,7 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   >?
   cpuManufacturers;
 
-  final TfArg<List<Object?>>? excludedInstanceTypes;
+  final TfArg<List<String>>? excludedInstanceTypes;
 
   final List<
     TfArg<

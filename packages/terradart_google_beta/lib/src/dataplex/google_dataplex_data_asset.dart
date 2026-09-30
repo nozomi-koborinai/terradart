@@ -18,7 +18,7 @@ final class DataplexDataAssetAccessGroupConfigs {
 
   final TfArg<String> accessGroup;
 
-  final TfArg<List<Object?>>? iamRoles;
+  final TfArg<List<String>>? iamRoles;
 
   Map<String, Object?> encode() => {
     'access_group': accessGroup.toTfJson(),

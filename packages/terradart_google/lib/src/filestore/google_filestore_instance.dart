@@ -114,7 +114,7 @@ final class FilestoreInstanceDirectoryServicesLdap {
 
   final TfArg<String>? groupsOu;
 
-  final TfArg<List<Object?>> servers;
+  final TfArg<List<String>> servers;
 
   final TfArg<String>? usersOu;
 
@@ -177,7 +177,7 @@ final class FilestoreInstanceFileSharesNfsExportOptions {
 
   final TfArg<num>? anonUid;
 
-  final TfArg<List<Object?>>? ipRanges;
+  final TfArg<List<String>>? ipRanges;
 
   final RefTo<GoogleComputeNetwork>? network;
 

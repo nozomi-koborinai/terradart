@@ -49,11 +49,11 @@ final class NetworkSecurityAuthorizationPolicyRulesDestinations {
     this.httpHeaderMatch,
   });
 
-  final TfArg<List<Object?>> hosts;
+  final TfArg<List<String>> hosts;
 
-  final TfArg<List<Object?>> methods;
+  final TfArg<List<String>> methods;
 
-  final TfArg<List<Object?>> ports;
+  final TfArg<List<num>> ports;
 
   final NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch?
   httpHeaderMatch;
@@ -94,9 +94,9 @@ final class NetworkSecurityAuthorizationPolicyRulesSources {
     this.principals,
   });
 
-  final TfArg<List<Object?>>? ipBlocks;
+  final TfArg<List<String>>? ipBlocks;
 
-  final TfArg<List<Object?>>? principals;
+  final TfArg<List<String>>? principals;
 
   Map<String, Object?> encode() => {
     'ip_blocks': ?ipBlocks?.toTfJson(),

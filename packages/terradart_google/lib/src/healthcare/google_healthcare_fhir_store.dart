@@ -80,7 +80,7 @@ final class HealthcareFhirStoreStreamConfigs {
     required this.bigqueryDestination,
   });
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final TfArg<List<String>>? resourceTypes;
 
   final HealthcareFhirStoreStreamConfigsBigqueryDestination bigqueryDestination;
 
@@ -209,7 +209,7 @@ final class HealthcareFhirStoreValidationConfig {
 
   final TfArg<bool>? disableRequiredFieldValidation;
 
-  final TfArg<List<Object?>>? enabledImplementationGuides;
+  final TfArg<List<String>>? enabledImplementationGuides;
 
   Map<String, Object?> encode() => {
     'disable_fhirpath_validation': ?disableFhirpathValidation?.toTfJson(),

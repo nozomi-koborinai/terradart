@@ -123,7 +123,7 @@ final class SsmPatchBaselineApprovalRulePatchFilter {
 
   final TfArg<SsmPatchBaselineApprovalRulePatchFilterKey> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -166,7 +166,7 @@ final class SsmPatchBaselineGlobalFilter {
 
   final TfArg<SsmPatchBaselineGlobalFilterKey> key;
 
-  final TfArg<List<Object?>> values;
+  final TfArg<List<String>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -215,7 +215,7 @@ final class SsmPatchBaselineSource {
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> products;
+  final TfArg<List<String>> products;
 
   Map<String, Object?> encode() => {
     'configuration': configuration.toTfJson(),

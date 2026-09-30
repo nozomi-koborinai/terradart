@@ -593,7 +593,7 @@ final class Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final TfArg<List<Object?>>? tags;
+  final TfArg<List<String>>? tags;
 
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('name').toTfJson(),

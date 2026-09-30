@@ -198,17 +198,17 @@ final class ComputeRegionUrlMapDefaultRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -328,7 +328,7 @@ final class ComputeRegionUrlMapDefaultRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -432,9 +432,9 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAc
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -552,9 +552,9 @@ final class ComputeRegionUrlMapHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<ComputeRegionUrlMapHeaderActionRequestHeadersToAdd>?
   requestHeadersToAdd;
@@ -634,7 +634,7 @@ final class ComputeRegionUrlMapHostRule {
 
   final TfArg<String>? description;
 
-  final TfArg<List<Object?>> hosts;
+  final TfArg<List<String>> hosts;
 
   final TfArg<String> pathMatcher;
 
@@ -759,17 +759,17 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -910,7 +910,7 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -1018,9 +1018,9 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServi
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -1138,9 +1138,9 @@ final class ComputeRegionUrlMapPathMatcherHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd>?
   requestHeadersToAdd;
@@ -1219,7 +1219,7 @@ final class ComputeRegionUrlMapPathMatcherPathRule {
     this.urlRedirect,
   });
 
-  final TfArg<List<Object?>> paths;
+  final TfArg<List<String>> paths;
 
   final TfArg<String>? service;
 
@@ -1300,17 +1300,17 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool> disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -1432,7 +1432,7 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -1536,9 +1536,9 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
@@ -1692,9 +1692,9 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction {
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd
@@ -2017,17 +2017,17 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowHeaders;
+  final TfArg<List<String>>? allowHeaders;
 
-  final TfArg<List<Object?>>? allowMethods;
+  final TfArg<List<String>>? allowMethods;
 
-  final TfArg<List<Object?>>? allowOriginRegexes;
+  final TfArg<List<String>>? allowOriginRegexes;
 
-  final TfArg<List<Object?>>? allowOrigins;
+  final TfArg<List<String>>? allowOrigins;
 
   final TfArg<bool>? disabled;
 
-  final TfArg<List<Object?>>? exposeHeaders;
+  final TfArg<List<String>>? exposeHeaders;
 
   final TfArg<num>? maxAge;
 
@@ -2149,7 +2149,7 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
 
   final TfArg<num> numRetries;
 
-  final TfArg<List<Object?>>? retryConditions;
+  final TfArg<List<String>>? retryConditions;
 
   final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout?
   perTryTimeout;
@@ -2257,9 +2257,9 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendSe
     this.responseHeadersToAdd,
   });
 
-  final TfArg<List<Object?>>? requestHeadersToRemove;
+  final TfArg<List<String>>? requestHeadersToRemove;
 
-  final TfArg<List<Object?>>? responseHeadersToRemove;
+  final TfArg<List<String>>? responseHeadersToRemove;
 
   final List<
     ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd

@@ -277,7 +277,7 @@ final class TpuV2VmServiceAccount {
 
   final RefTo<GoogleServiceAccount>? email;
 
-  final TfArg<List<Object?>>? scope;
+  final TfArg<List<String>>? scope;
 
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),

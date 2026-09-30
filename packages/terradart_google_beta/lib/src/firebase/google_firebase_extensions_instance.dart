@@ -33,7 +33,7 @@ final class FirebaseExtensionsInstanceConfig {
     this.systemParams,
   });
 
-  final TfArg<List<Object?>>? allowedEventTypes;
+  final TfArg<List<String>>? allowedEventTypes;
 
   final TfArg<String>? eventarcChannel;
 

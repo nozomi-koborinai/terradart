@@ -27,7 +27,7 @@ final class ProjectIamAuditConfigAuditLogConfig {
     required this.logType,
   });
 
-  final TfArg<List<Object?>>? exemptedMembers;
+  final TfArg<List<String>>? exemptedMembers;
 
   final TfArg<String> logType;
 

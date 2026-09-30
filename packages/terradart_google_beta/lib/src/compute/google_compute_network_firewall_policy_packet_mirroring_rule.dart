@@ -31,9 +31,9 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatch {
     required this.layer4Configs,
   });
 
-  final TfArg<List<Object?>>? destIpRanges;
+  final TfArg<List<String>>? destIpRanges;
 
-  final TfArg<List<Object?>>? srcIpRanges;
+  final TfArg<List<String>>? srcIpRanges;
 
   final List<ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs>
   layer4Configs;
@@ -56,7 +56,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs {
 
   final TfArg<String> ipProtocol;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<String>>? ports;
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),

@@ -21,7 +21,7 @@ final class AgentRegistryBindingAuthProviderBinding {
 
   final TfArg<String>? continueUri;
 
-  final TfArg<List<Object?>>? scopes;
+  final TfArg<List<String>>? scopes;
 
   Map<String, Object?> encode() => {
     'auth_provider': authProvider.toTfJson(),

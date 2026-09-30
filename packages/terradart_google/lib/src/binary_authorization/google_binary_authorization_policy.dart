@@ -39,7 +39,7 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
   final TfArg<BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode>
   evaluationMode;
 
-  final TfArg<List<Object?>>? requireAttestationsBy;
+  final TfArg<List<String>>? requireAttestationsBy;
 
   Map<String, Object?> encode() => {
     'cluster': cluster.toTfJson(),
@@ -92,7 +92,7 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
   final TfArg<BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode>
   evaluationMode;
 
-  final TfArg<List<Object?>>? requireAttestationsBy;
+  final TfArg<List<String>>? requireAttestationsBy;
 
   Map<String, Object?> encode() => {
     'enforcement_mode': enforcementMode.toTfJson(),

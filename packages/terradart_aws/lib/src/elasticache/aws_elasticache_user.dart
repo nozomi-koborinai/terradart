@@ -27,7 +27,7 @@ enum ElasticacheUserEngine implements TerraformEnum {
 final class ElasticacheUserAuthenticationMode {
   const ElasticacheUserAuthenticationMode({this.passwords, required this.type});
 
-  final TfArg<List<Object?>>? passwords;
+  final TfArg<List<String>>? passwords;
 
   final TfArg<ElasticacheUserAuthenticationModeType> type;
 

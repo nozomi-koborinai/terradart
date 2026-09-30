@@ -117,9 +117,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -140,9 +140,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -163,9 +163,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -191,7 +191,7 @@ final class CeAnomalySubscriptionThresholdExpressionCostCategory {
   >?
   matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -237,7 +237,7 @@ final class CeAnomalySubscriptionThresholdExpressionDimension {
   >?
   matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -347,9 +347,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -370,9 +370,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -393,9 +393,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -439,9 +439,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -462,9 +462,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrDimension {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -485,9 +485,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final TfArg<List<String>>? matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -511,7 +511,7 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
   final List<TfArg<CeAnomalySubscriptionThresholdExpressionTagsMatchOptions>>?
   matchOptions;
 
-  final TfArg<List<Object?>>? values;
+  final TfArg<List<String>>? values;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),

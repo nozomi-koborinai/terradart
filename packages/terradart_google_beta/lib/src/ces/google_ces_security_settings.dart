@@ -16,7 +16,7 @@ final class CesSecuritySettingsEndpointControlPolicy {
     this.enforcementScope,
   });
 
-  final TfArg<List<Object?>>? allowedOrigins;
+  final TfArg<List<String>>? allowedOrigins;
 
   final TfArg<CesSecuritySettingsEndpointControlPolicyEnforcementScope>?
   enforcementScope;

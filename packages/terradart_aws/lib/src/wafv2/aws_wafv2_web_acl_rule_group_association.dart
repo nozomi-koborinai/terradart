@@ -287,7 +287,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.identifiers,
   });
 
-  final TfArg<List<Object?>> identifiers;
+  final TfArg<List<String>> identifiers;
 
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
@@ -326,7 +326,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.identifiers,
   });
 
-  final TfArg<List<Object?>> identifiers;
+  final TfArg<List<String>> identifiers;
 
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
@@ -394,9 +394,9 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successStrings,
   });
 
-  final TfArg<List<Object?>> failureStrings;
+  final TfArg<List<String>> failureStrings;
 
-  final TfArg<List<Object?>> successStrings;
+  final TfArg<List<String>> successStrings;
 
   Map<String, Object?> encode() => {
     'failure_strings': failureStrings.toTfJson(),
@@ -414,11 +414,11 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -437,11 +437,11 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> identifier;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -459,9 +459,9 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successCodes,
   });
 
-  final TfArg<List<Object?>> failureCodes;
+  final TfArg<List<num>> failureCodes;
 
-  final TfArg<List<Object?>> successCodes;
+  final TfArg<List<num>> successCodes;
 
   Map<String, Object?> encode() => {
     'failure_codes': failureCodes.toTfJson(),
@@ -697,9 +697,9 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successStrings,
   });
 
-  final TfArg<List<Object?>> failureStrings;
+  final TfArg<List<String>> failureStrings;
 
-  final TfArg<List<Object?>> successStrings;
+  final TfArg<List<String>> successStrings;
 
   Map<String, Object?> encode() => {
     'failure_strings': failureStrings.toTfJson(),
@@ -717,11 +717,11 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> name;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -740,11 +740,11 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successValues,
   });
 
-  final TfArg<List<Object?>> failureValues;
+  final TfArg<List<String>> failureValues;
 
   final TfArg<String> identifier;
 
-  final TfArg<List<Object?>> successValues;
+  final TfArg<List<String>> successValues;
 
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
@@ -762,9 +762,9 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
     required this.successCodes,
   });
 
-  final TfArg<List<Object?>> failureCodes;
+  final TfArg<List<num>> failureCodes;
 
-  final TfArg<List<Object?>> successCodes;
+  final TfArg<List<num>> successCodes;
 
   Map<String, Object?> encode() => {
     'failure_codes': failureCodes.toTfJson(),

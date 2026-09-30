@@ -22,7 +22,7 @@ final class DataZeroTrustDnsLocationFilter {
 
   final TfArg<DataZeroTrustDnsLocationFilterDirection>? direction;
 
-  final TfArg<List<Object?>>? filter;
+  final TfArg<List<String>>? filter;
 
   final TfArg<DataZeroTrustDnsLocationFilterOrderBy>? orderBy;
 

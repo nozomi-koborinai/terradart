@@ -127,7 +127,7 @@ final class GlueCatalogCreateDatabaseDefaultPermissions {
     this.principal,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final TfArg<List<String>>? permissions;
 
   final List<GlueCatalogCreateDatabaseDefaultPermissionsPrincipal>? principal;
 
@@ -162,7 +162,7 @@ final class GlueCatalogCreateTableDefaultPermissions {
     this.principal,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final TfArg<List<String>>? permissions;
 
   final List<GlueCatalogCreateTableDefaultPermissionsPrincipal>? principal;
 

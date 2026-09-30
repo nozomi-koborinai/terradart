@@ -71,7 +71,7 @@ final class Apigatewayv2RoutingRuleCondition {
 final class Apigatewayv2RoutingRuleConditionMatchBasePaths {
   const Apigatewayv2RoutingRuleConditionMatchBasePaths({required this.anyOf});
 
-  final TfArg<List<Object?>> anyOf;
+  final TfArg<List<String>> anyOf;
 
   Map<String, Object?> encode() => {'any_of': anyOf.toTfJson()};
 }

@@ -203,7 +203,7 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
 
   final TfArg<num>? maxTokens;
 
-  final TfArg<List<Object?>>? stopSequences;
+  final TfArg<List<String>>? stopSequences;
 
   final TfArg<num>? temperature;
 

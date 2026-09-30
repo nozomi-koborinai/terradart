@@ -13,7 +13,7 @@ const Set<String> _awsInvoicingInvoiceUnitSensitive = <String>{};
 final class InvoicingInvoiceUnitRule {
   const InvoicingInvoiceUnitRule({required this.linkedAccounts});
 
-  final TfArg<List<Object?>> linkedAccounts;
+  final TfArg<List<String>> linkedAccounts;
 
   Map<String, Object?> encode() => {
     'linked_accounts': linkedAccounts.toTfJson(),

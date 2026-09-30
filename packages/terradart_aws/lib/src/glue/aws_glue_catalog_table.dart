@@ -149,7 +149,7 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
     required this.fields,
   });
 
-  final TfArg<List<Object?>>? identifierFieldIds;
+  final TfArg<List<num>>? identifierFieldIds;
 
   final TfArg<num>? schemaId;
 
@@ -314,7 +314,7 @@ final class GlueCatalogTablePartitionIndex {
 
   final TfArg<String> indexName;
 
-  final TfArg<List<Object?>> keys;
+  final TfArg<List<String>> keys;
 
   Map<String, Object?> encode() => {
     'index_name': indexName.toTfJson(),
@@ -370,9 +370,9 @@ final class GlueCatalogTableStorageDescriptor {
     this.sortColumns,
   });
 
-  final TfArg<List<Object?>>? additionalLocations;
+  final TfArg<List<String>>? additionalLocations;
 
-  final TfArg<List<Object?>>? bucketColumns;
+  final TfArg<List<String>>? bucketColumns;
 
   final TfArg<bool>? compressed;
 
@@ -627,11 +627,11 @@ final class GlueCatalogTableStorageDescriptorSkewedInfo {
     this.skewedColumnValues,
   });
 
-  final TfArg<List<Object?>>? skewedColumnNames;
+  final TfArg<List<String>>? skewedColumnNames;
 
   final TfArg<Map<String, String>>? skewedColumnValueLocationMaps;
 
-  final TfArg<List<Object?>>? skewedColumnValues;
+  final TfArg<List<String>>? skewedColumnValues;
 
   Map<String, Object?> encode() => {
     'skewed_column_names': ?skewedColumnNames?.toTfJson(),
@@ -711,9 +711,9 @@ final class GlueCatalogTableViewDefinition {
 
   final TfArg<num>? refreshSeconds;
 
-  final TfArg<List<Object?>>? subObjectVersionIds;
+  final TfArg<List<num>>? subObjectVersionIds;
 
-  final TfArg<List<Object?>>? subObjects;
+  final TfArg<List<String>>? subObjects;
 
   final TfArg<num>? viewVersionId;
 

@@ -141,7 +141,7 @@ final class IamWorkloadIdentityPoolProviderOidc {
     this.jwksJson,
   });
 
-  final TfArg<List<Object?>>? allowedAudiences;
+  final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> issuerUri;
 

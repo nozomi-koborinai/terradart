@@ -65,7 +65,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
 
   final TfArg<bool>? enforce;
 
-  final TfArg<List<Object?>>? ports;
+  final TfArg<List<num>>? ports;
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate?
   certificate;
@@ -213,7 +213,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSub
     required this.exact,
   });
 
-  final TfArg<List<Object?>> exact;
+  final TfArg<List<String>> exact;
 
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
@@ -311,7 +311,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
     required this.certificateAuthorityArns,
   });
 
-  final TfArg<List<Object?>> certificateAuthorityArns;
+  final TfArg<List<String>> certificateAuthorityArns;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
@@ -673,7 +673,7 @@ final class AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeName
     required this.exact,
   });
 
-  final TfArg<List<Object?>> exact;
+  final TfArg<List<String>> exact;
 
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }

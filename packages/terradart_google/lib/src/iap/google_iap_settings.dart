@@ -24,7 +24,7 @@ final class IapSettingsAccessSettings {
     this.workforceIdentitySettings,
   });
 
-  final TfArg<List<Object?>>? identitySources;
+  final TfArg<List<String>>? identitySources;
 
   final IapSettingsAccessSettingsAllowedDomainsSettings? allowedDomainsSettings;
 
@@ -59,7 +59,7 @@ final class IapSettingsAccessSettingsAllowedDomainsSettings {
     this.enable,
   });
 
-  final TfArg<List<Object?>>? domains;
+  final TfArg<List<String>>? domains;
 
   final TfArg<bool>? enable;
 
@@ -93,7 +93,7 @@ final class IapSettingsAccessSettingsGcipSettings {
 
   final TfArg<String>? loginPageUri;
 
-  final TfArg<List<Object?>>? tenantIds;
+  final TfArg<List<String>>? tenantIds;
 
   Map<String, Object?> encode() => {
     'login_page_uri': ?loginPageUri?.toTfJson(),
@@ -118,7 +118,7 @@ final class IapSettingsAccessSettingsOauthSettings {
 
   final TfArg<String>? loginHint;
 
-  final TfArg<List<Object?>>? programmaticClients;
+  final TfArg<List<String>>? programmaticClients;
 
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
@@ -182,7 +182,7 @@ final class IapSettingsAccessSettingsWorkforceIdentitySettings {
     this.oauth2,
   });
 
-  final TfArg<List<Object?>>? workforcePools;
+  final TfArg<List<String>>? workforcePools;
 
   final IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2? oauth2;
 

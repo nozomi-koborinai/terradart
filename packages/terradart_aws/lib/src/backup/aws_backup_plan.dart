@@ -214,7 +214,7 @@ final class BackupPlanScanSetting {
 
   final TfArg<BackupPlanScanSettingMalwareScanner> malwareScanner;
 
-  final TfArg<List<Object?>> resourceTypes;
+  final TfArg<List<String>> resourceTypes;
 
   final TfArg<String> scannerRoleArn;
 

@@ -180,7 +180,7 @@ final class DataLossPreventionStoredInfoTypeDictionaryWordList {
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -358,7 +358,7 @@ final class DataLossPreventionStoredInfoTypeRegex {
     required this.pattern,
   });
 
-  final TfArg<List<Object?>>? groupIndexes;
+  final TfArg<List<num>>? groupIndexes;
 
   final TfArg<String> pattern;
 

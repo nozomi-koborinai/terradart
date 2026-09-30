@@ -66,7 +66,7 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
 
   final TfArg<num>? criticality;
 
-  final TfArg<List<Object?>>? types;
+  final TfArg<List<String>>? types;
 
   final TfArg<Map<String, String>>? userDefinedFields;
 

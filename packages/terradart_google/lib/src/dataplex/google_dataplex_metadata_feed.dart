@@ -19,11 +19,11 @@ final class DataplexMetadataFeedFilters {
     this.entryTypes,
   });
 
-  final TfArg<List<Object?>>? aspectTypes;
+  final TfArg<List<String>>? aspectTypes;
 
-  final TfArg<List<Object?>>? changeTypes;
+  final TfArg<List<String>>? changeTypes;
 
-  final TfArg<List<Object?>>? entryTypes;
+  final TfArg<List<String>>? entryTypes;
 
   Map<String, Object?> encode() => {
     'aspect_types': ?aspectTypes?.toTfJson(),
@@ -42,11 +42,11 @@ final class DataplexMetadataFeedScope {
     this.projects,
   });
 
-  final TfArg<List<Object?>>? entryGroups;
+  final TfArg<List<String>>? entryGroups;
 
   final TfArg<bool>? organizationLevel;
 
-  final TfArg<List<Object?>>? projects;
+  final TfArg<List<String>>? projects;
 
   Map<String, Object?> encode() => {
     'entry_groups': ?entryGroups?.toTfJson(),

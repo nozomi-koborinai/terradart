@@ -110,7 +110,7 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 
   final TfArg<bool>? bypassParentRule;
 
-  final TfArg<List<Object?>>? deleteHeaders;
+  final TfArg<List<String>>? deleteHeaders;
 
   final TfArg<bool>? ignoreCnameCategoryMatches;
 
@@ -122,7 +122,7 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 
   final TfArg<String>? overrideHost;
 
-  final TfArg<List<Object?>>? overrideIps;
+  final TfArg<List<String>>? overrideIps;
 
   final TfArg<bool>? resolveDnsThroughCloudflare;
 

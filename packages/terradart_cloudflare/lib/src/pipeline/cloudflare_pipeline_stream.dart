@@ -117,7 +117,7 @@ final class PipelineStreamHttp {
 final class PipelineStreamHttpCors {
   const PipelineStreamHttpCors({this.origins});
 
-  final TfArg<List<Object?>>? origins;
+  final TfArg<List<String>>? origins;
 
   Map<String, Object?> encode() => {'origins': ?origins?.toTfJson()};
 }

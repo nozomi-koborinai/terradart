@@ -166,7 +166,7 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
     this.zone,
   });
 
-  final TfArg<List<Object?>>? additionalExperiments;
+  final TfArg<List<String>>? additionalExperiments;
 
   final TfArg<Map<String, String>>? additionalUserLabels;
 
@@ -339,7 +339,7 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
     this.zone,
   });
 
-  final TfArg<List<Object?>>? additionalExperiments;
+  final TfArg<List<String>>? additionalExperiments;
 
   final TfArg<Map<String, String>>? additionalUserLabels;
 

@@ -32,7 +32,7 @@ final class DataZoneFilter {
 
   final TfArg<DataZoneFilterStatus>? status;
 
-  final TfArg<List<Object?>>? type;
+  final TfArg<List<String>>? type;
 
   final DataZoneFilterAccount? account;
 

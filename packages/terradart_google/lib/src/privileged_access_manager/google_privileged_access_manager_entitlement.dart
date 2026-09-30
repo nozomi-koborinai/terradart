@@ -17,9 +17,9 @@ final class PrivilegedAccessManagerEntitlementAdditionalNotificationTargets {
     this.requesterEmailRecipients,
   });
 
-  final TfArg<List<Object?>>? adminEmailRecipients;
+  final TfArg<List<String>>? adminEmailRecipients;
 
-  final TfArg<List<Object?>>? requesterEmailRecipients;
+  final TfArg<List<String>>? requesterEmailRecipients;
 
   Map<String, Object?> encode() => {
     'admin_email_recipients': ?adminEmailRecipients?.toTfJson(),
@@ -77,7 +77,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSte
 
   final TfArg<num>? approvalsNeeded;
 
-  final TfArg<List<Object?>>? approverEmailRecipients;
+  final TfArg<List<String>>? approverEmailRecipients;
 
   final PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsStepsApprovers
   approvers;
@@ -97,7 +97,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSte
     required this.principals,
   });
 
-  final TfArg<List<Object?>> principals;
+  final TfArg<List<String>> principals;
 
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }
@@ -110,7 +110,7 @@ final class PrivilegedAccessManagerEntitlementEligibleUsers {
     required this.principals,
   });
 
-  final TfArg<List<Object?>> principals;
+  final TfArg<List<String>> principals;
 
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }

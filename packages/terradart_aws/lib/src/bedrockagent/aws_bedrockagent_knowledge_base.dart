@@ -772,7 +772,7 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     required this.tableNames,
   });
 
-  final TfArg<List<Object?>> tableNames;
+  final TfArg<List<String>> tableNames;
 
   Map<String, Object?> encode() => {'table_names': tableNames.toTfJson()};
 }

@@ -36,7 +36,7 @@ final class IamAccessBoundaryPolicyRulesAccessBoundaryRule {
     this.availabilityCondition,
   });
 
-  final TfArg<List<Object?>>? availablePermissions;
+  final TfArg<List<String>>? availablePermissions;
 
   final TfArg<String>? availableResource;
 

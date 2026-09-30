@@ -175,7 +175,7 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettings {
 
   final TfArg<String>? builtInLifecycleConfigArn;
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsAppLifecycleManagement?
   appLifecycleManagement;
@@ -532,9 +532,9 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsEmrSettings 
     this.executionRoleArns,
   });
 
-  final TfArg<List<Object?>>? assumableRoleArns;
+  final TfArg<List<String>>? assumableRoleArns;
 
-  final TfArg<List<Object?>>? executionRoleArns;
+  final TfArg<List<String>>? executionRoleArns;
 
   Map<String, Object?> encode() => {
     'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
@@ -552,7 +552,7 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterServerAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerDomainDefaultSpaceSettingsJupyterServerAppSettingsCodeRepository
@@ -814,7 +814,7 @@ final class SagemakerDomainDefaultSpaceSettingsKernelGatewayAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerDomainDefaultSpaceSettingsKernelGatewayAppSettingsCustomImage
@@ -1557,7 +1557,7 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettings {
 
   final TfArg<String>? builtInLifecycleConfigArn;
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsAppLifecycleManagement?
   appLifecycleManagement;
@@ -1951,7 +1951,7 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettings {
 
   final TfArg<String>? builtInLifecycleConfigArn;
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsAppLifecycleManagement?
   appLifecycleManagement;
@@ -2308,9 +2308,9 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsEmrSettings {
     this.executionRoleArns,
   });
 
-  final TfArg<List<Object?>>? assumableRoleArns;
+  final TfArg<List<String>>? assumableRoleArns;
 
-  final TfArg<List<Object?>>? executionRoleArns;
+  final TfArg<List<String>>? executionRoleArns;
 
   Map<String, Object?> encode() => {
     'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
@@ -2328,7 +2328,7 @@ final class SagemakerDomainDefaultUserSettingsJupyterServerAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerDomainDefaultUserSettingsJupyterServerAppSettingsCodeRepository
@@ -2590,7 +2590,7 @@ final class SagemakerDomainDefaultUserSettingsKernelGatewayAppSettings {
     this.defaultResourceSpec,
   });
 
-  final TfArg<List<Object?>>? lifecycleConfigArns;
+  final TfArg<List<String>>? lifecycleConfigArns;
 
   final List<
     SagemakerDomainDefaultUserSettingsKernelGatewayAppSettingsCustomImage
@@ -3825,7 +3825,7 @@ final class SagemakerDomainDomainSettingsDockerSettings {
   final TfArg<SagemakerDomainDomainSettingsDockerSettingsEnableDockerAccess>?
   enableDockerAccess;
 
-  final TfArg<List<Object?>>? vpcOnlyTrustedAccounts;
+  final TfArg<List<String>>? vpcOnlyTrustedAccounts;
 
   Map<String, Object?> encode() => {
     'enable_docker_access': ?enableDockerAccess?.toTfJson(),

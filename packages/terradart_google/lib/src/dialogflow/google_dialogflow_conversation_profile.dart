@@ -72,7 +72,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
   final TfArg<bool>? disableHighLatencyFeaturesSyncDelivery;
 
-  final TfArg<List<Object?>>? generators;
+  final TfArg<List<String>>? generators;
 
   final TfArg<bool>? groupSuggestionResponses;
 
@@ -291,7 +291,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
     required this.documents,
   });
 
-  final TfArg<List<Object?>> documents;
+  final TfArg<List<String>> documents;
 
   Map<String, Object?> encode() => {'documents': documents.toTfJson()};
 }
@@ -304,7 +304,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
     required this.knowledgeBases,
   });
 
-  final TfArg<List<Object?>> knowledgeBases;
+  final TfArg<List<String>> knowledgeBases;
 
   Map<String, Object?> encode() => {
     'knowledge_bases': knowledgeBases.toTfJson(),
@@ -395,7 +395,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
 
   final TfArg<bool>? disableHighLatencyFeaturesSyncDelivery;
 
-  final TfArg<List<Object?>>? generators;
+  final TfArg<List<String>>? generators;
 
   final TfArg<bool>? groupSuggestionResponses;
 
@@ -959,7 +959,7 @@ final class DialogflowConversationProfileTtsConfig {
     this.voice,
   });
 
-  final TfArg<List<Object?>>? effectsProfileId;
+  final TfArg<List<String>>? effectsProfileId;
 
   final TfArg<num>? pitch;
 

@@ -176,7 +176,7 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSetsIpSet {
     required this.definition,
   });
 
-  final TfArg<List<Object?>> definition;
+  final TfArg<List<String>> definition;
 
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }
@@ -208,7 +208,7 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet {
     required this.definition,
   });
 
-  final TfArg<List<Object?>> definition;
+  final TfArg<List<String>> definition;
 
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }
@@ -267,7 +267,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList {
   >
   targetTypes;
 
-  final TfArg<List<Object?>> targets;
+  final TfArg<List<String>> targets;
 
   Map<String, Object?> encode() => {
     'generated_rules_type': generatedRulesType.toTfJson(),
@@ -441,7 +441,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption {
 
   final TfArg<String> keyword;
 
-  final TfArg<List<Object?>>? settings;
+  final TfArg<List<String>>? settings;
 
   Map<String, Object?> encode() => {
     'keyword': keyword.toTfJson(),
@@ -571,7 +571,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
     required this.matchAttributes,
   });
 
-  final TfArg<List<Object?>> actions;
+  final TfArg<List<String>> actions;
 
   final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributes
   matchAttributes;
@@ -595,7 +595,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
     this.tcpFlag,
   });
 
-  final TfArg<List<Object?>>? protocols;
+  final TfArg<List<num>>? protocols;
 
   final List<
     NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestination

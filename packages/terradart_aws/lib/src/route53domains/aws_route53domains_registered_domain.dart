@@ -150,7 +150,7 @@ final class Route53domainsRegisteredDomainNameServer {
     required this.name,
   });
 
-  final TfArg<List<Object?>>? glueIps;
+  final TfArg<List<String>>? glueIps;
 
   final TfArg<String> name;
 

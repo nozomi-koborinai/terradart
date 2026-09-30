@@ -109,7 +109,7 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
     required this.source,
   });
 
-  final TfArg<List<Object?>>? configs;
+  final TfArg<List<String>>? configs;
 
   final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
   source;
@@ -310,9 +310,9 @@ final class ClouddeployCustomTargetTypeTasksDeployContainer {
     required this.image,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<Map<String, String>>? env;
 
@@ -348,9 +348,9 @@ final class ClouddeployCustomTargetTypeTasksRenderContainer {
     required this.image,
   });
 
-  final TfArg<List<Object?>>? args;
+  final TfArg<List<String>>? args;
 
-  final TfArg<List<Object?>>? command;
+  final TfArg<List<String>>? command;
 
   final TfArg<Map<String, String>>? env;
 

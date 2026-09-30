@@ -313,7 +313,7 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageLocations {
     required this.locations,
   });
 
-  final TfArg<List<Object?>> locations;
+  final TfArg<List<String>> locations;
 
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
@@ -384,7 +384,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
     required this.locations,
   });
 
-  final TfArg<List<Object?>> locations;
+  final TfArg<List<String>> locations;
 
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }

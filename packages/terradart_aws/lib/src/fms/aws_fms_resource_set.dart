@@ -25,7 +25,7 @@ final class FmsResourceSetResourceSet {
 
   final TfArg<String>? resourceSetStatus;
 
-  final TfArg<List<Object?>>? resourceTypeList;
+  final TfArg<List<String>>? resourceTypeList;
 
   final TfArg<String>? updateToken;
 

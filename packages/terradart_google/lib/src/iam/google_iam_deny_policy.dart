@@ -35,13 +35,13 @@ final class IamDenyPolicyRulesDenyRule {
     this.denialCondition,
   });
 
-  final TfArg<List<Object?>>? deniedPermissions;
+  final TfArg<List<String>>? deniedPermissions;
 
-  final TfArg<List<Object?>>? deniedPrincipals;
+  final TfArg<List<String>>? deniedPrincipals;
 
-  final TfArg<List<Object?>>? exceptionPermissions;
+  final TfArg<List<String>>? exceptionPermissions;
 
-  final TfArg<List<Object?>>? exceptionPrincipals;
+  final TfArg<List<String>>? exceptionPrincipals;
 
   final IamDenyPolicyRulesDenyRuleDenialCondition? denialCondition;
 

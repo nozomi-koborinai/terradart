@@ -509,7 +509,7 @@ final class ComputeResourcePolicySnapshotSchedulePolicySnapshotProperties {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<List<Object?>>? storageLocations;
+  final TfArg<List<String>>? storageLocations;
 
   Map<String, Object?> encode() => {
     'chain_name': ?chainName?.toTfJson(),

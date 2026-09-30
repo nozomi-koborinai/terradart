@@ -1661,7 +1661,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -3400,7 +3400,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
@@ -4951,7 +4951,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     required this.words,
   });
 
-  final TfArg<List<Object?>> words;
+  final TfArg<List<String>> words;
 
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }

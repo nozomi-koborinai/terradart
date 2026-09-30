@@ -111,7 +111,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDataset {
 
   final TfArg<String> location;
 
-  final TfArg<List<Object?>>? replicaLocations;
+  final TfArg<List<String>>? replicaLocations;
 
   final BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference
   datasetReference;

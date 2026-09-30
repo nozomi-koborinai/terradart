@@ -81,7 +81,7 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 final class ComputeOrganizationSecurityPolicyRuleMatchConfig {
   const ComputeOrganizationSecurityPolicyRuleMatchConfig({this.srcIpRanges});
 
-  final TfArg<List<Object?>>? srcIpRanges;
+  final TfArg<List<String>>? srcIpRanges;
 
   Map<String, Object?> encode() => {'src_ip_ranges': ?srcIpRanges?.toTfJson()};
 }
@@ -131,7 +131,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
     this.requestUri,
   });
 
-  final TfArg<List<Object?>>? targetRuleIds;
+  final TfArg<List<String>>? targetRuleIds;
 
   final TfArg<String> targetRuleSet;
 

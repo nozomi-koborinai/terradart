@@ -77,9 +77,9 @@ final class GrafanaWorkspaceNetworkAccessControl {
     required this.vpceIds,
   });
 
-  final TfArg<List<Object?>> prefixListIds;
+  final TfArg<List<String>> prefixListIds;
 
-  final TfArg<List<Object?>> vpceIds;
+  final TfArg<List<String>> vpceIds;
 
   Map<String, Object?> encode() => {
     'prefix_list_ids': prefixListIds.toTfJson(),

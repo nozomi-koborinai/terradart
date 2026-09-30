@@ -66,9 +66,9 @@ final class NetworkServicesLbTrafficExtensionExtensionChainsExtensions {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<List<Object?>>? forwardAttributes;
+  final TfArg<List<String>>? forwardAttributes;
 
-  final TfArg<List<Object?>>? forwardHeaders;
+  final TfArg<List<String>>? forwardHeaders;
 
   final TfArg<Map<String, String>>? metadata;
 
@@ -76,7 +76,7 @@ final class NetworkServicesLbTrafficExtensionExtensionChainsExtensions {
 
   final TfArg<String> service;
 
-  final TfArg<List<Object?>>? supportedEvents;
+  final TfArg<List<String>>? supportedEvents;
 
   final TfArg<String>? timeout;
 
