@@ -3,4 +3,16 @@
 /// Managed Lustre — high-performance parallel file system instances.
 library;
 
-export 'src/lustre/google_lustre_instance.dart' show GoogleLustreInstance;
+export 'src/lustre/google_lustre_instance.dart'
+    show
+        GoogleLustreInstance,
+        LustreInstanceAccessRulesOptions,
+        LustreInstanceAccessRulesOptionsAccessRules,
+        LustreInstanceDynamicTierOptions,
+        LustreInstanceMaintenancePolicy,
+        LustreInstanceMaintenancePolicyMaintenanceExclusionWindow,
+        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate,
+        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate,
+        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime,
+        LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows,
+        LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime;

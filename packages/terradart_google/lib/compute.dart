@@ -545,7 +545,13 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
 export 'src/compute/google_compute_organization_security_policy.dart'
-    show GoogleComputeOrganizationSecurityPolicy;
+    show
+        ComputeOrganizationSecurityPolicyAdvancedOptionsConfig,
+        ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonCustomConfig,
+        ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonParsing,
+        ComputeOrganizationSecurityPolicyAdvancedOptionsConfigLogLevel,
+        ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspectionSize,
+        GoogleComputeOrganizationSecurityPolicy;
 export 'src/compute/google_compute_organization_security_policy_association.dart'
     show GoogleComputeOrganizationSecurityPolicyAssociation;
 export 'src/compute/google_compute_organization_security_policy_rule.dart'

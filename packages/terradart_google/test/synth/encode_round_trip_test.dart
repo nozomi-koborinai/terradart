@@ -30,7 +30,6 @@ import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
-import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/compute.dart';
@@ -254,16 +253,6 @@ final Map<String, Object Function()> _syntheticInstances = {
     connectorId: TfArg.literal('google-cloudsql-postgres'),
     asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
   ),
-
-  // --- DataplexDatascanSpec (4) — google_dataplex_datascan -----------------
-  'DataplexDatascanDataProfileSpec': () =>
-      const DataplexDatascanDataProfileSpec(),
-  'DataplexDatascanDataQualitySpec': () =>
-      const DataplexDatascanDataQualitySpec(),
-  'DataplexDatascanDataDiscoverySpec': () =>
-      const DataplexDatascanDataDiscoverySpec(),
-  'DataplexDatascanDataDocumentationSpec': () =>
-      const DataplexDatascanDataDocumentationSpec(),
 
   // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------
   'DataprocBatchPysparkWorkload': () => DataprocBatchPysparkWorkload(

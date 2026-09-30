@@ -525,7 +525,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'lake_discovery',
         dataScanId: .literal('terradart-lake-discovery'),
         location: .literal('us-central1'),
-        scanSpec: const .dataDiscoverySpec(),
+        scanSpec: const .dataDiscoverySpec(DataplexDatascanDataDiscoverySpec()),
         data: .resource(
           .literal(
             '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',

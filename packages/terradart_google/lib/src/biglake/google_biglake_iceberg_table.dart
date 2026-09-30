@@ -1,10 +1,141 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_biglake_iceberg_table`.
 const Set<String> _googleBiglakeIcebergTableSensitive = <String>{};
+
+/// Typed helper for the `partition_spec` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTablePartitionSpec {
+  const BiglakeIcebergTablePartitionSpec({required this.fields});
+
+  final List<BiglakeIcebergTablePartitionSpecFields> fields;
+
+  Map<String, Object?> encode() => {
+    'fields': [for (final e in fields) e.encode()],
+  };
+}
+
+/// Typed helper for the `partition_spec.fields` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTablePartitionSpecFields {
+  const BiglakeIcebergTablePartitionSpecFields({
+    required this.name,
+    required this.sourceId,
+    required this.transform,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<num> sourceId;
+
+  final TfArg<String> transform;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'source_id': sourceId.toTfJson(),
+    'transform': transform.toTfJson(),
+  };
+}
+
+/// Typed helper for the `schema` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTableSchema {
+  const BiglakeIcebergTableSchema({
+    this.identifierFieldIds,
+    this.type,
+    required this.fields,
+  });
+
+  final TfArg<List<num>>? identifierFieldIds;
+
+  final TfArg<String>? type;
+
+  final List<BiglakeIcebergTableSchemaFields> fields;
+
+  Map<String, Object?> encode() => {
+    'identifier_field_ids': ?identifierFieldIds?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'fields': [for (final e in fields) e.encode()],
+  };
+}
+
+/// Typed helper for the `schema.fields` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTableSchemaFields {
+  const BiglakeIcebergTableSchemaFields({
+    this.doc,
+    required this.id,
+    required this.name,
+    required this.required,
+    required this.type,
+  });
+
+  final TfArg<String>? doc;
+
+  final TfArg<num> id;
+
+  final TfArg<String> name;
+
+  final TfArg<bool> required;
+
+  final TfArg<String> type;
+
+  Map<String, Object?> encode() => {
+    'doc': ?doc?.toTfJson(),
+    'id': id.toTfJson(),
+    'name': name.toTfJson(),
+    'required': required.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sort_order` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTableSortOrder {
+  const BiglakeIcebergTableSortOrder({required this.fields});
+
+  final List<BiglakeIcebergTableSortOrderFields> fields;
+
+  Map<String, Object?> encode() => {
+    'fields': [for (final e in fields) e.encode()],
+  };
+}
+
+/// Typed helper for the `sort_order.fields` block of
+/// `google_biglake_iceberg_table` (derived from provider schema).
+@immutable
+final class BiglakeIcebergTableSortOrderFields {
+  const BiglakeIcebergTableSortOrderFields({
+    required this.direction,
+    required this.nullOrder,
+    required this.sourceId,
+    required this.transform,
+  });
+
+  final TfArg<String> direction;
+
+  final TfArg<String> nullOrder;
+
+  final TfArg<num> sourceId;
+
+  final TfArg<String> transform;
+
+  Map<String, Object?> encode() => {
+    'direction': direction.toTfJson(),
+    'null_order': nullOrder.toTfJson(),
+    'source_id': sourceId.toTfJson(),
+    'transform': transform.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_biglake_iceberg_table`.
 ///
@@ -25,9 +156,9 @@ final class GoogleBiglakeIcebergTable extends Resource {
     required TfArg<String> namespace,
     required TfArg<String> name,
     TfArg<String>? location,
-    required TfArg<Map<String, dynamic>> schema,
-    TfArg<Map<String, dynamic>>? partitionSpec,
-    TfArg<Map<String, dynamic>>? sortOrder,
+    required BiglakeIcebergTableSchema schema,
+    BiglakeIcebergTablePartitionSpec? partitionSpec,
+    BiglakeIcebergTableSortOrder? sortOrder,
     TfArg<Map<String, String>>? properties,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -42,9 +173,11 @@ final class GoogleBiglakeIcebergTable extends Resource {
            'namespace': namespace,
            'name': name,
            'location': ?location,
-           'schema': schema,
-           'partition_spec': ?partitionSpec,
-           'sort_order': ?sortOrder,
+           'schema': TfArg.literal(schema.encode()),
+           if (partitionSpec != null)
+             'partition_spec': TfArg.literal(partitionSpec.encode()),
+           if (sortOrder != null)
+             'sort_order': TfArg.literal(sortOrder.encode()),
            'properties': ?properties,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

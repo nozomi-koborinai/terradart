@@ -85,7 +85,14 @@ export 'src/biglake/google_biglake_iceberg_namespace_iam_member.dart'
 export 'src/biglake/google_biglake_iceberg_namespace_iam_policy.dart'
     show GoogleBiglakeIcebergNamespaceIamPolicy;
 export 'src/biglake/google_biglake_iceberg_table.dart'
-    show GoogleBiglakeIcebergTable;
+    show
+        BiglakeIcebergTablePartitionSpec,
+        BiglakeIcebergTablePartitionSpecFields,
+        BiglakeIcebergTableSchema,
+        BiglakeIcebergTableSchemaFields,
+        BiglakeIcebergTableSortOrder,
+        BiglakeIcebergTableSortOrderFields,
+        GoogleBiglakeIcebergTable;
 export 'src/biglake/google_biglake_iceberg_table_iam_binding.dart'
     show
         BiglakeIcebergTableIamBindingCondition,

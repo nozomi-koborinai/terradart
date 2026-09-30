@@ -4,12 +4,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-# schema / partition_spec / sort_order stay Map for this thin Wave.
-nestedTypeExcludes:
-  - schema
-  - partition_spec
-  - sort_order
-
 curatedDoc: |-
   /// Iceberg table under a [GoogleBiglakeIcebergNamespace].
   ///
