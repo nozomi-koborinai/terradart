@@ -23,6 +23,7 @@
 ///  14. `google_os_login_ssh_public_key`
 ///  15. `google_workload_identity_service_agent`
 ///  16. `google_iam_oauth_client`
+///  17. `google_iam_project_access_policy`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -540,6 +541,32 @@ final class IamShowcaseStack extends Stack {
         scimTokenId: .literal('terradart-scim-token'),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(scim)],
+      ),
+    );
+
+    // IAM v3 access policy on the project: an explicit ALLOW rule for the
+    // demo SA on one Eventarc permission.
+    add(
+      GoogleIamProjectAccessPolicy(
+        localName: 'project_access_policy',
+        accessPolicyId: .literal('terradart-access-policy'),
+        location: .literal('global'),
+        displayName: .literal('IAM quickstart access policy'),
+        details: IamProjectAccessPolicyDetails(
+          rules: [
+            IamProjectAccessPolicyDetailsRules(
+              effect: .literal(.allow),
+              principals: .literal([
+                'principal://iam.googleapis.com/projects/-/serviceAccounts/${sa.email.interpolation}',
+              ]),
+              operation: IamProjectAccessPolicyDetailsRulesOperation(
+                permissions: .literal([
+                  'eventarc.googleapis.com/messageBuses.publish',
+                ]),
+              ),
+            ),
+          ],
+        ),
       ),
     );
 

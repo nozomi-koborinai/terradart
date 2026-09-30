@@ -6,6 +6,7 @@
 /// - a `google_vertex_ai_feature_group` reading from that table,
 /// - a `google_vertex_ai_feature_group_feature` for the `feature_score` column,
 /// - Tensorboard experiment tracking (tensorboard + experiment + run),
+/// - a reusable LLM-based `google_vertex_ai_evaluation_metric`,
 ///
 /// The BigQuery `big_query` config is passed as a structured map (the thin
 /// curated factory exposes it as `TfArg<Map<String, dynamic>>`). All resources
@@ -15,6 +16,8 @@
 /// Exports the feature group name as a typed Dart constant via
 /// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
+
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
@@ -166,6 +169,27 @@ final class FeatureStack extends Stack {
       GoogleVertexAiCacheConfig(
         localName: 'genai_cache',
         disableCache: .literal(false),
+        dependsOn: [ResourceDependency(apiVertex)],
+      ),
+    );
+
+    // A reusable LLM-based evaluation metric; `metric` is the API's Metric
+    // message as a JSON string.
+    add(
+      GoogleVertexAiEvaluationMetric(
+        localName: 'response_quality',
+        evaluationMetricId: .literal('terradart-response-quality'),
+        region: .literal('us-central1'),
+        displayName: .literal('Response quality'),
+        metric: .literal(
+          jsonEncode({
+            'llmBasedMetricSpec': {
+              'metricPromptTemplate':
+                  'Rate the quality of the following response on a scale of '
+                  '1 to 5. Response: {response}',
+            },
+          }),
+        ),
         dependsOn: [ResourceDependency(apiVertex)],
       ),
     );

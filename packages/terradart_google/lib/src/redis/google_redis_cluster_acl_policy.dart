@@ -1,31 +1,55 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
-import '../redis/google_redis_cluster_acl_policy.dart';
 
 /// Sensitive field paths for `google_redis_cluster_acl_policy`.
 const Set<String> _googleRedisClusterAclPolicySensitive = <String>{};
 
+/// Typed helper for the `rules` block of
+/// `google_redis_cluster_acl_policy` (derived from provider schema).
+@immutable
+final class RedisClusterAclPolicyRules {
+  const RedisClusterAclPolicyRules({
+    required this.rule,
+    required this.username,
+  });
+
+  final TfArg<String> rule;
+
+  final TfArg<String> username;
+
+  Map<String, Object?> encode() => {
+    'rule': rule.toTfJson(),
+    'username': username.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_redis_cluster_acl_policy`.
 ///
-/// Read-only data source on the apply-excluded leftover path
-/// (synth + `terraform validate` only). Do not apply.
-final class DataGoogleRedisClusterAclPolicy extends Data {
+/// A Google Cloud Redis Cluster ACL policy.
+final class GoogleRedisClusterAclPolicy extends Resource {
   static const String tfType = 'google_redis_cluster_acl_policy';
 
-  DataGoogleRedisClusterAclPolicy({
+  GoogleRedisClusterAclPolicy({
     required super.localName,
     required TfArg<String> aclPolicyId,
-    TfArg<String>? location,
+    required TfArg<String> location,
+    required List<RedisClusterAclPolicyRules> rules,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            'acl_policy_id': aclPolicyId,
-           'location': ?location,
+           'location': location,
+           'rules': TfArg.literal([for (final e in rules) e.encode()]),
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );
@@ -33,10 +57,9 @@ final class DataGoogleRedisClusterAclPolicy extends Data {
   @override
   Set<String> get sensitiveFields => _googleRedisClusterAclPolicySensitive;
 
-  /// A reference to the `google_redis_cluster_acl_policy` this data source reads, for
-  /// arguments typed `RefTo<GoogleRedisClusterAclPolicy>`.
-  RefTo<GoogleRedisClusterAclPolicy> get ref =>
-      RefTo.read(this); // ignore: invalid_use_of_internal_member
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleRedisClusterAclPolicy>`.
+  RefTo<GoogleRedisClusterAclPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
@@ -44,16 +67,8 @@ final class DataGoogleRedisClusterAclPolicy extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicy =>
-      TfRef.attribute<String>(this, 'deletion_policy');
-
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
-  /// Reference to `rules` attribute.
-  TfRef<List<Map<String, Object?>>> get rules =>
-      TfRef.attribute<List<Map<String, Object?>>>(this, 'rules');
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');

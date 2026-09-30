@@ -8,7 +8,8 @@
 ///   create/destroy cycle impossible);
 /// - a composite index on the `messages` collection ordered by `user_id`
 ///   ascending then `created_at` descending (suitable for "show me a given
-///   user's most recent messages" queries).
+///   user's most recent messages" queries);
+/// - a change stream on the `messages` collection group, retained for a day.
 ///
 /// Demonstrates the typed enum coverage from `google_firestore_database`
 /// and the sealed `IndexFieldSpec` dispatch from `google_firestore_index`.
@@ -77,6 +78,22 @@ final class MessagesStack extends Stack {
         database: .ref(db.nameRef),
         retention: .literal('604800s'),
         recurrence: const .daily(),
+      ),
+    );
+
+    // ---- Change stream: real-time changes to the `messages` collection ------
+
+    add(
+      GoogleFirestoreChangeStream(
+        localName: 'messages_changes',
+        database: .ref(db.nameRef),
+        name: .literal('messages-changes'),
+        scope: .collectionGroupScope(
+          FirestoreChangeStreamCollectionGroupScope(
+            collectionGroupId: .literal('messages'),
+          ),
+        ),
+        retentionPeriod: .literal('86400s'),
       ),
     );
   }
