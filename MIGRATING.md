@@ -1683,6 +1683,29 @@ Newly exposed inputs: `params` (resource manager tags) on
 `GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
 on the two network firewall policy IAM members.
 
+### Gemini setting bindings and the Observability link take `RefTo<R>`
+
+**Breaking (`terradart_google`)** — these inputs name another resource and
+take a `RefTo<Target>` instead of a `TfArg<String>`. Each emits the
+parent's own id attribute.
+
+| Input | Target (attribute) |
+|-------|--------------------|
+| `<setting>SettingId` on the seven `GoogleGemini*SettingBinding` | the matching `GoogleGemini*Setting` (`*_setting_id`) |
+| `codeRepositoryIndex` on `GoogleGeminiRepositoryGroup` and its IAM adjuncts | `GoogleGeminiCodeRepositoryIndex` (`code_repository_index_id`) |
+| `repositoryGroupId` on the `GoogleGeminiRepositoryGroup` IAM adjuncts | `GoogleGeminiRepositoryGroup` (`repository_group_id`) |
+| `bucket` on `GoogleObservabilityLink` | `GoogleObservabilityBucket` (`bucket_id`) |
+
+| Before | After |
+|--------|-------|
+| `loggingSettingId: .literal('terradart-logging')` | `loggingSettingId: logging.ref` (or keep `.literal('terradart-logging')`) |
+| `bucket: .literal('telemetry')` beside a `GoogleObservabilityBucket` | `bucket: observabilityBucket.ref` |
+
+`.literal(...)`, `.variable(...)` and `.expression(...)` keep compiling with
+the same synth output; only code that passed a `TfArg<String>` value needs a
+change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
+attribute instead of the literal id, so Terraform orders the two.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

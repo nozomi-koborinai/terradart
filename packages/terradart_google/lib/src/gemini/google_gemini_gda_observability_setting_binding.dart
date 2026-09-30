@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_gda_observability_setting.dart'
+    show GoogleGeminiGdaObservabilitySetting;
+
 /// Sensitive field paths for `google_gemini_gda_observability_setting_binding`.
 const Set<String> _googleGeminiGdaObservabilitySettingBindingSensitive =
     <String>{};
@@ -17,7 +20,8 @@ final class GoogleGeminiGdaObservabilitySettingBinding extends Resource {
 
   GoogleGeminiGdaObservabilitySettingBinding({
     required super.localName,
-    required TfArg<String> gdaObservabilitySettingId,
+    required RefTo<GoogleGeminiGdaObservabilitySetting>
+    gdaObservabilitySettingId,
     required TfArg<String> settingBindingId,
     TfArg<String>? location,
     required TfArg<String> target,
@@ -32,7 +36,9 @@ final class GoogleGeminiGdaObservabilitySettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'gda_observability_setting_id': gdaObservabilitySettingId,
+           'gda_observability_setting_id': gdaObservabilitySettingId.encodeAs(
+             'gda_observability_setting_id',
+           ),
            'setting_binding_id': settingBindingId,
            'location': ?location,
            'target': target,
