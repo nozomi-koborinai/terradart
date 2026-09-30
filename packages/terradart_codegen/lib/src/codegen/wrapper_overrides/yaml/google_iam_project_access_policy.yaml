@@ -1,0 +1,16 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveExactlyOne: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+paramOrder:
+  - access_policy_id
+  - location
+  - display_name
+  - details
+  - annotations
+  - deletion_policy
+  - project
