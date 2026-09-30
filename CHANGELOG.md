@@ -52,7 +52,7 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`) — a list
   or set of strings, numbers or booleans in a generated helper class is a
   `TfArg<List<String>>` / `List<num>` / `List<bool>`, as at the top level,
-  instead of `TfArg<List<Object?>>` (1,005 google, 39 google-beta, 1,142
+  instead of `TfArg<List<Object?>>` (1,047 google, 39 google-beta, 1,142
   aws and 200 cloudflare fields; `GoogleStorageFtpServer`
   `allowedCidrBlocks` is a string list again). Five AWS QuickSight helpers
   split where the element type tells two block shapes apart. Synth output
