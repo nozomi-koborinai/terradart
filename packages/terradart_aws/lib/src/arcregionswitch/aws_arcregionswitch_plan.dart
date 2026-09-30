@@ -29,7 +29,7 @@ final class ArcregionswitchPlanAssociatedAlarms {
     required this.resourceIdentifier,
   });
 
-  final TfArg<ArcregionswitchPlanAssociatedAlarmsAlarmType> alarmType;
+  final TfArg<ArcregionswitchPlanAlarmType> alarmType;
 
   final TfArg<String>? crossAccountRole;
 
@@ -49,11 +49,11 @@ final class ArcregionswitchPlanAssociatedAlarms {
 }
 
 /// `alarm_type` — derived from the provider schema description.
-enum ArcregionswitchPlanAssociatedAlarmsAlarmType implements TerraformEnum {
+enum ArcregionswitchPlanAlarmType implements TerraformEnum {
   applicationhealth('applicationHealth'),
   trigger('trigger');
 
-  const ArcregionswitchPlanAssociatedAlarmsAlarmType(this.terraformValue);
+  const ArcregionswitchPlanAlarmType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -64,7 +64,7 @@ enum ArcregionswitchPlanAssociatedAlarmsAlarmType implements TerraformEnum {
 final class ArcregionswitchPlanReportConfiguration {
   const ArcregionswitchPlanReportConfiguration({this.reportOutput});
 
-  final List<ArcregionswitchPlanReportConfigurationReportOutput>? reportOutput;
+  final List<ArcregionswitchPlanReportOutput>? reportOutput;
 
   Map<String, Object?> encode() => {
     if (reportOutput != null)
@@ -75,13 +75,10 @@ final class ArcregionswitchPlanReportConfiguration {
 /// Typed helper for the `report_configuration.report_output` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanReportConfigurationReportOutput {
-  const ArcregionswitchPlanReportConfigurationReportOutput({
-    this.s3Configuration,
-  });
+final class ArcregionswitchPlanReportOutput {
+  const ArcregionswitchPlanReportOutput({this.s3Configuration});
 
-  final List<ArcregionswitchPlanReportConfigurationReportOutputS3Configuration>?
-  s3Configuration;
+  final List<ArcregionswitchPlanS3Configuration>? s3Configuration;
 
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
@@ -92,8 +89,8 @@ final class ArcregionswitchPlanReportConfigurationReportOutput {
 /// Typed helper for the `report_configuration.report_output.s3_configuration` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanReportConfigurationReportOutputS3Configuration {
-  const ArcregionswitchPlanReportConfigurationReportOutputS3Configuration({
+final class ArcregionswitchPlanS3Configuration {
+  const ArcregionswitchPlanS3Configuration({
     required this.bucketOwner,
     required this.bucketPath,
   });
@@ -120,7 +117,7 @@ final class ArcregionswitchPlanTriggers {
     this.conditions,
   });
 
-  final TfArg<ArcregionswitchPlanTriggersAction> action;
+  final TfArg<ArcregionswitchPlanAction> action;
 
   final TfArg<String>? description;
 
@@ -128,7 +125,7 @@ final class ArcregionswitchPlanTriggers {
 
   final TfArg<String> targetRegion;
 
-  final List<ArcregionswitchPlanTriggersConditions>? conditions;
+  final List<ArcregionswitchPlanConditions>? conditions;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -142,12 +139,12 @@ final class ArcregionswitchPlanTriggers {
 }
 
 /// `action` — derived from the provider schema description.
-enum ArcregionswitchPlanTriggersAction implements TerraformEnum {
+enum ArcregionswitchPlanAction implements TerraformEnum {
   activate('activate'),
   deactivate('deactivate'),
   postrecovery('postRecovery');
 
-  const ArcregionswitchPlanTriggersAction(this.terraformValue);
+  const ArcregionswitchPlanAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -155,15 +152,15 @@ enum ArcregionswitchPlanTriggersAction implements TerraformEnum {
 /// Typed helper for the `triggers.conditions` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanTriggersConditions {
-  const ArcregionswitchPlanTriggersConditions({
+final class ArcregionswitchPlanConditions {
+  const ArcregionswitchPlanConditions({
     required this.associatedAlarmName,
     required this.condition,
   });
 
   final TfArg<String> associatedAlarmName;
 
-  final TfArg<ArcregionswitchPlanTriggersConditionsCondition> condition;
+  final TfArg<ArcregionswitchPlanCondition> condition;
 
   Map<String, Object?> encode() => {
     'associated_alarm_name': associatedAlarmName.toTfJson(),
@@ -172,11 +169,11 @@ final class ArcregionswitchPlanTriggersConditions {
 }
 
 /// `condition` — derived from the provider schema description.
-enum ArcregionswitchPlanTriggersConditionsCondition implements TerraformEnum {
+enum ArcregionswitchPlanCondition implements TerraformEnum {
   red('red'),
   green('green');
 
-  const ArcregionswitchPlanTriggersConditionsCondition(this.terraformValue);
+  const ArcregionswitchPlanCondition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -194,12 +191,11 @@ final class ArcregionswitchPlanWorkflow {
 
   final TfArg<String>? workflowDescription;
 
-  final TfArg<ArcregionswitchPlanWorkflowWorkflowTargetAction>
-  workflowTargetAction;
+  final TfArg<ArcregionswitchPlanWorkflowTargetAction> workflowTargetAction;
 
   final TfArg<String>? workflowTargetRegion;
 
-  final List<ArcregionswitchPlanWorkflowStep>? step;
+  final List<ArcregionswitchPlanStep>? step;
 
   Map<String, Object?> encode() => {
     'workflow_description': ?workflowDescription?.toTfJson(),
@@ -210,12 +206,12 @@ final class ArcregionswitchPlanWorkflow {
 }
 
 /// `workflow_target_action` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowWorkflowTargetAction implements TerraformEnum {
+enum ArcregionswitchPlanWorkflowTargetAction implements TerraformEnum {
   activate('activate'),
   deactivate('deactivate'),
   postrecovery('postRecovery');
 
-  const ArcregionswitchPlanWorkflowWorkflowTargetAction(this.terraformValue);
+  const ArcregionswitchPlanWorkflowTargetAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -223,8 +219,8 @@ enum ArcregionswitchPlanWorkflowWorkflowTargetAction implements TerraformEnum {
 /// Typed helper for the `workflow.step` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanWorkflowStep {
-  const ArcregionswitchPlanWorkflowStep({
+final class ArcregionswitchPlanStep {
+  const ArcregionswitchPlanStep({
     this.description,
     required this.executionBlockType,
     required this.name,
@@ -249,60 +245,55 @@ final class ArcregionswitchPlanWorkflowStep {
 
   final TfArg<String>? description;
 
-  final TfArg<ArcregionswitchPlanWorkflowStepExecutionBlockType>
-  executionBlockType;
+  final TfArg<ArcregionswitchPlanExecutionBlockType> executionBlockType;
 
   final TfArg<String> name;
 
-  final List<ArcregionswitchPlanWorkflowStepArcRoutingControlConfig>?
+  final List<ArcregionswitchPlanArcRoutingControlConfig>?
   arcRoutingControlConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepAuroraProvisionedScalingConfig>?
+  final List<ArcregionswitchPlanAuroraProvisionedScalingConfig>?
   auroraProvisionedScalingConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepAuroraServerlessScalingConfig>?
+  final List<ArcregionswitchPlanAuroraServerlessScalingConfig>?
   auroraServerlessScalingConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig>?
+  final List<ArcregionswitchPlanCustomActionLambdaConfig>?
   customActionLambdaConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepDocumentDbConfig>? documentDbConfig;
+  final List<ArcregionswitchPlanDocumentDbConfig>? documentDbConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig>?
+  final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfig>?
   ec2AsgCapacityIncreaseConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig>?
+  final List<ArcregionswitchPlanEcsCapacityIncreaseConfig>?
   ecsCapacityIncreaseConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepEksResourceScalingConfig>?
+  final List<ArcregionswitchPlanEksResourceScalingConfig>?
   eksResourceScalingConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepExecutionApprovalConfig>?
+  final List<ArcregionswitchPlanExecutionApprovalConfig>?
   executionApprovalConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepGlobalAuroraConfig>?
-  globalAuroraConfig;
+  final List<ArcregionswitchPlanGlobalAuroraConfig>? globalAuroraConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig>?
+  final List<ArcregionswitchPlanLambdaEventSourceMappingConfig>?
   lambdaEventSourceMappingConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig>?
+  final List<ArcregionswitchPlanNeptuneGlobalDatabaseConfig>?
   neptuneGlobalDatabaseConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepParallelConfig>? parallelConfig;
+  final List<ArcregionswitchPlanParallelConfig>? parallelConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepRdsCreateCrossRegionReadReplicaConfig
-  >?
+  final List<ArcregionswitchPlanRdsCreateCrossRegionReadReplicaConfig>?
   rdsCreateCrossRegionReadReplicaConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepRdsPromoteReadReplicaConfig>?
+  final List<ArcregionswitchPlanRdsPromoteReadReplicaConfig>?
   rdsPromoteReadReplicaConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepRegionSwitchPlanConfig>?
-  regionSwitchPlanConfig;
+  final List<ArcregionswitchPlanRegionSwitchPlanConfig>? regionSwitchPlanConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig>?
+  final List<ArcregionswitchPlanRoute53HealthCheckConfig>?
   route53HealthCheckConfig;
 
   Map<String, Object?> encode() => {
@@ -375,8 +366,7 @@ final class ArcregionswitchPlanWorkflowStep {
 }
 
 /// `execution_block_type` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepExecutionBlockType
-    implements TerraformEnum {
+enum ArcregionswitchPlanExecutionBlockType implements TerraformEnum {
   customactionlambda('CustomActionLambda'),
   manualapproval('ManualApproval'),
   auroraglobaldatabase('AuroraGlobalDatabase'),
@@ -396,16 +386,17 @@ enum ArcregionswitchPlanWorkflowStepExecutionBlockType
   neptuneglobaldatabase('NeptuneGlobalDatabase'),
   rdsswitchoverreadreplica('RdsSwitchoverReadReplica');
 
-  const ArcregionswitchPlanWorkflowStepExecutionBlockType(this.terraformValue);
+  const ArcregionswitchPlanExecutionBlockType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.arc_routing_control_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfig {
-  const ArcregionswitchPlanWorkflowStepArcRoutingControlConfig({
+final class ArcregionswitchPlanArcRoutingControlConfig {
+  const ArcregionswitchPlanArcRoutingControlConfig({
     this.crossAccountRole,
     this.externalId,
     this.timeoutMinutes,
@@ -418,9 +409,7 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControls
-  >?
+  final List<ArcregionswitchPlanRegionAndRoutingControls>?
   regionAndRoutingControls;
 
   Map<String, Object?> encode() => {
@@ -436,19 +425,17 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfig {
 
 /// Typed helper for the `workflow.step.arc_routing_control_config.region_and_routing_controls` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControls {
-  const ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControls({
+final class ArcregionswitchPlanRegionAndRoutingControls {
+  const ArcregionswitchPlanRegionAndRoutingControls({
     required this.region,
     this.routingControl,
   });
 
   final TfArg<String> region;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl
-  >?
-  routingControl;
+  final List<ArcregionswitchPlanRoutingControl>? routingControl;
 
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
@@ -459,19 +446,17 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRouti
 
 /// Typed helper for the `workflow.step.arc_routing_control_config.region_and_routing_controls.routing_control` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl {
-  const ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl({
+final class ArcregionswitchPlanRoutingControl {
+  const ArcregionswitchPlanRoutingControl({
     required this.routingControlArn,
     required this.state,
   });
 
   final TfArg<String> routingControlArn;
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
-  >
-  state;
+  final TfArg<ArcregionswitchPlanState> state;
 
   Map<String, Object?> encode() => {
     'routing_control_arn': routingControlArn.toTfJson(),
@@ -480,23 +465,21 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRouti
 }
 
 /// `state` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
-    implements TerraformEnum {
+enum ArcregionswitchPlanState implements TerraformEnum {
   on('On'),
   off('Off');
 
-  const ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState(
-    this.terraformValue,
-  );
+  const ArcregionswitchPlanState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.aurora_provisioned_scaling_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepAuroraProvisionedScalingConfig {
-  const ArcregionswitchPlanWorkflowStepAuroraProvisionedScalingConfig({
+final class ArcregionswitchPlanAuroraProvisionedScalingConfig {
+  const ArcregionswitchPlanAuroraProvisionedScalingConfig({
     this.crossAccountRole,
     this.externalId,
     required this.globalClusterIdentifier,
@@ -529,9 +512,10 @@ final class ArcregionswitchPlanWorkflowStepAuroraProvisionedScalingConfig {
 
 /// Typed helper for the `workflow.step.aurora_serverless_scaling_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepAuroraServerlessScalingConfig {
-  const ArcregionswitchPlanWorkflowStepAuroraServerlessScalingConfig({
+final class ArcregionswitchPlanAuroraServerlessScalingConfig {
+  const ArcregionswitchPlanAuroraServerlessScalingConfig({
     this.crossAccountRole,
     this.externalId,
     required this.globalClusterIdentifier,
@@ -564,9 +548,10 @@ final class ArcregionswitchPlanWorkflowStepAuroraServerlessScalingConfig {
 
 /// Typed helper for the `workflow.step.custom_action_lambda_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
-  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig({
+final class ArcregionswitchPlanCustomActionLambdaConfig {
+  const ArcregionswitchPlanCustomActionLambdaConfig({
     required this.regionToRun,
     required this.retryIntervalMinutes,
     this.timeoutMinutes,
@@ -574,20 +559,15 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun
-  >
-  regionToRun;
+  final TfArg<ArcregionswitchPlanRegionToRun> regionToRun;
 
   final TfArg<num> retryIntervalMinutes;
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigLambda>?
-  lambda;
+  final List<ArcregionswitchPlanLambda>? lambda;
 
-  final List<ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngraceful>?
-  ungraceful;
+  final List<ArcregionswitchPlanCustomActionLambdaConfigUngraceful>? ungraceful;
 
   Map<String, Object?> encode() => {
     'region_to_run': regionToRun.toTfJson(),
@@ -600,25 +580,23 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
 }
 
 /// `region_to_run` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun
-    implements TerraformEnum {
+enum ArcregionswitchPlanRegionToRun implements TerraformEnum {
   activatingregion('activatingRegion'),
   deactivatingregion('deactivatingRegion'),
   activeregion('activeRegion'),
   inactiveregion('inactiveRegion');
 
-  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun(
-    this.terraformValue,
-  );
+  const ArcregionswitchPlanRegionToRun(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.custom_action_lambda_config.lambda` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigLambda {
-  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigLambda({
+final class ArcregionswitchPlanLambda {
+  const ArcregionswitchPlanLambda({
     required this.arn,
     this.crossAccountRole,
     this.externalId,
@@ -639,37 +617,33 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigLambda {
 
 /// Typed helper for the `workflow.step.custom_action_lambda_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngraceful({
+final class ArcregionswitchPlanCustomActionLambdaConfigUngraceful {
+  const ArcregionswitchPlanCustomActionLambdaConfigUngraceful({
     required this.behavior,
   });
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior
-  >
-  behavior;
+  final TfArg<ArcregionswitchPlanUngracefulBehavior> behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior
-    implements TerraformEnum {
+enum ArcregionswitchPlanUngracefulBehavior implements TerraformEnum {
   skip('skip');
 
-  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior(
-    this.terraformValue,
-  );
+  const ArcregionswitchPlanUngracefulBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.document_db_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
-  const ArcregionswitchPlanWorkflowStepDocumentDbConfig({
+final class ArcregionswitchPlanDocumentDbConfig {
+  const ArcregionswitchPlanDocumentDbConfig({
     required this.behavior,
     this.crossAccountRole,
     required this.databaseClusterArns,
@@ -679,7 +653,7 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior> behavior;
+  final TfArg<ArcregionswitchPlanBehavior> behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -691,8 +665,7 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepDocumentDbConfigUngraceful>?
-  ungraceful;
+  final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
@@ -707,51 +680,44 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior
-    implements TerraformEnum {
+enum ArcregionswitchPlanBehavior implements TerraformEnum {
   switchoveronly('switchoverOnly'),
   failover('failover');
 
-  const ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior(
-    this.terraformValue,
-  );
+  const ArcregionswitchPlanBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.document_db_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepDocumentDbConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepDocumentDbConfigUngraceful({
+final class ArcregionswitchPlanDocumentDbConfigUngraceful {
+  const ArcregionswitchPlanDocumentDbConfigUngraceful({
     required this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful
-  >
-  ungraceful;
+  final TfArg<ArcregionswitchPlanUngracefulUngraceful> ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
 }
 
 /// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful
-    implements TerraformEnum {
+enum ArcregionswitchPlanUngracefulUngraceful implements TerraformEnum {
   failover('failover');
 
-  const ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
+  const ArcregionswitchPlanUngracefulUngraceful(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
-  const ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig({
+final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfig {
+  const ArcregionswitchPlanEc2AsgCapacityIncreaseConfig({
     required this.capacityMonitoringApproach,
     this.targetPercent,
     this.timeoutMinutes,
@@ -760,7 +726,7 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
   });
 
   final TfArg<
-    ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+    ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
   >
   capacityMonitoringApproach;
 
@@ -768,12 +734,9 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigAsg>?
-  asg;
+  final List<ArcregionswitchPlanAsg>? asg;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigUngraceful
-  >?
+  final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
   Map<String, Object?> encode() => {
@@ -787,12 +750,12 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+enum ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
     implements TerraformEnum {
   sampledmaxinlast24hours('sampledMaxInLast24Hours'),
   autoscalingmaxinlast24hours('autoscalingMaxInLast24Hours');
 
-  const ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
+  const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
     this.terraformValue,
   );
   @override
@@ -801,9 +764,10 @@ enum ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitori
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config.asg` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigAsg {
-  const ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigAsg({
+final class ArcregionswitchPlanAsg {
+  const ArcregionswitchPlanAsg({
     required this.arn,
     this.crossAccountRole,
     this.externalId,
@@ -824,9 +788,10 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigAsg {
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigUngraceful({
+final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful {
+  const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful({
     required this.minimumSuccessPercentage,
   });
 
@@ -839,9 +804,10 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigUngracefu
 
 /// Typed helper for the `workflow.step.ecs_capacity_increase_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
-  const ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig({
+final class ArcregionswitchPlanEcsCapacityIncreaseConfig {
+  const ArcregionswitchPlanEcsCapacityIncreaseConfig({
     required this.capacityMonitoringApproach,
     this.targetPercent,
     this.timeoutMinutes,
@@ -850,7 +816,7 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
   });
 
   final TfArg<
-    ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+    ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
   >
   capacityMonitoringApproach;
 
@@ -858,12 +824,9 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigService>?
-  service;
+  final List<ArcregionswitchPlanService>? service;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigUngraceful
-  >?
+  final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
   Map<String, Object?> encode() => {
@@ -877,12 +840,12 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+enum ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
     implements TerraformEnum {
   sampledmaxinlast24hours('sampledMaxInLast24Hours'),
   containerinsightsmaxinlast24hours('containerInsightsMaxInLast24Hours');
 
-  const ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach(
+  const ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach(
     this.terraformValue,
   );
   @override
@@ -891,9 +854,10 @@ enum ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringA
 
 /// Typed helper for the `workflow.step.ecs_capacity_increase_config.service` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigService {
-  const ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigService({
+final class ArcregionswitchPlanService {
+  const ArcregionswitchPlanService({
     required this.clusterArn,
     this.crossAccountRole,
     this.externalId,
@@ -916,26 +880,12 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigService {
   };
 }
 
-/// Typed helper for the `workflow.step.ecs_capacity_increase_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigUngraceful({
-    required this.minimumSuccessPercentage,
-  });
-
-  final TfArg<num> minimumSuccessPercentage;
-
-  Map<String, Object?> encode() => {
-    'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
-  };
-}
-
 /// Typed helper for the `workflow.step.eks_resource_scaling_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfig({
+final class ArcregionswitchPlanEksResourceScalingConfig {
+  const ArcregionswitchPlanEksResourceScalingConfig({
     required this.capacityMonitoringApproach,
     required this.targetPercent,
     this.timeoutMinutes,
@@ -946,7 +896,7 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
   });
 
   final TfArg<
-    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach
+    ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
   >
   capacityMonitoringApproach;
 
@@ -954,22 +904,13 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigEksClusters
-  >?
-  eksClusters;
+  final List<ArcregionswitchPlanEksClusters>? eksClusters;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigKubernetesResourceType
-  >?
-  kubernetesResourceType;
+  final List<ArcregionswitchPlanKubernetesResourceType>? kubernetesResourceType;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResources
-  >?
-  scalingResources;
+  final List<ArcregionswitchPlanScalingResources>? scalingResources;
 
-  final List<ArcregionswitchPlanWorkflowStepEksResourceScalingConfigUngraceful>?
+  final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
   Map<String, Object?> encode() => {
@@ -990,11 +931,11 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach
+enum ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
     implements TerraformEnum {
   sampledmaxinlast24hours('sampledMaxInLast24Hours');
 
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach(
+  const ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach(
     this.terraformValue,
   );
   @override
@@ -1003,9 +944,10 @@ enum ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringAp
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.eks_clusters` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigEksClusters {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigEksClusters({
+final class ArcregionswitchPlanEksClusters {
+  const ArcregionswitchPlanEksClusters({
     required this.clusterArn,
     this.crossAccountRole,
     this.externalId,
@@ -1026,9 +968,10 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigEksClusters {
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.kubernetes_resource_type` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigKubernetesResourceType {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigKubernetesResourceType({
+final class ArcregionswitchPlanKubernetesResourceType {
+  const ArcregionswitchPlanKubernetesResourceType({
     required this.apiVersion,
     required this.kind,
   });
@@ -1045,19 +988,17 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigKubernetesRes
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.scaling_resources` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResources {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResources({
+final class ArcregionswitchPlanScalingResources {
+  const ArcregionswitchPlanScalingResources({
     required this.namespace,
     this.resources,
   });
 
   final TfArg<String> namespace;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResourcesResources
-  >?
-  resources;
+  final List<ArcregionswitchPlanResources>? resources;
 
   Map<String, Object?> encode() => {
     'namespace': namespace.toTfJson(),
@@ -1068,9 +1009,10 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResour
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.scaling_resources.resources` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResourcesResources {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResourcesResources({
+final class ArcregionswitchPlanResources {
+  const ArcregionswitchPlanResources({
     this.hpaName,
     required this.name,
     required this.namespace,
@@ -1093,26 +1035,12 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResour
   };
 }
 
-/// Typed helper for the `workflow.step.eks_resource_scaling_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigUngraceful({
-    required this.minimumSuccessPercentage,
-  });
-
-  final TfArg<num> minimumSuccessPercentage;
-
-  Map<String, Object?> encode() => {
-    'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
-  };
-}
-
 /// Typed helper for the `workflow.step.execution_approval_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepExecutionApprovalConfig {
-  const ArcregionswitchPlanWorkflowStepExecutionApprovalConfig({
+final class ArcregionswitchPlanExecutionApprovalConfig {
+  const ArcregionswitchPlanExecutionApprovalConfig({
     required this.approvalRole,
     this.timeoutMinutes,
   });
@@ -1129,9 +1057,10 @@ final class ArcregionswitchPlanWorkflowStepExecutionApprovalConfig {
 
 /// Typed helper for the `workflow.step.global_aurora_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
-  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfig({
+final class ArcregionswitchPlanGlobalAuroraConfig {
+  const ArcregionswitchPlanGlobalAuroraConfig({
     required this.behavior,
     this.crossAccountRole,
     required this.databaseClusterArns,
@@ -1141,8 +1070,7 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior>
-  behavior;
+  final TfArg<ArcregionswitchPlanBehavior> behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1154,8 +1082,7 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngraceful>?
-  ungraceful;
+  final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
@@ -1169,74 +1096,26 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
   };
 }
 
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior
-    implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.global_aurora_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngraceful({
-    required this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful
-  >
-  ungraceful;
-
-  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
-}
-
-/// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful
-    implements TerraformEnum {
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `workflow.step.lambda_event_source_mapping_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig {
-  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig({
+final class ArcregionswitchPlanLambdaEventSourceMappingConfig {
+  const ArcregionswitchPlanLambdaEventSourceMappingConfig({
     required this.action,
     this.timeoutMinutes,
     this.regionEventSourceMapping,
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction
-  >
-  action;
+  final TfArg<ArcregionswitchPlanLambdaEventSourceMappingConfigAction> action;
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigRegionEventSourceMapping
-  >?
+  final List<ArcregionswitchPlanRegionEventSourceMapping>?
   regionEventSourceMapping;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngraceful
-  >?
-  ungraceful;
+  final List<ArcregionswitchPlanCustomActionLambdaConfigUngraceful>? ungraceful;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -1251,12 +1130,12 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig {
 }
 
 /// `action` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction
+enum ArcregionswitchPlanLambdaEventSourceMappingConfigAction
     implements TerraformEnum {
   enable('enable'),
   disable('disable');
 
-  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction(
+  const ArcregionswitchPlanLambdaEventSourceMappingConfigAction(
     this.terraformValue,
   );
   @override
@@ -1265,9 +1144,10 @@ enum ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction
 
 /// Typed helper for the `workflow.step.lambda_event_source_mapping_config.region_event_source_mapping` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigRegionEventSourceMapping {
-  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigRegionEventSourceMapping({
+final class ArcregionswitchPlanRegionEventSourceMapping {
+  const ArcregionswitchPlanRegionEventSourceMapping({
     required this.arn,
     this.crossAccountRole,
     this.externalId,
@@ -1290,39 +1170,12 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigRegionE
   };
 }
 
-/// Typed helper for the `workflow.step.lambda_event_source_mapping_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngraceful({
-    required this.behavior,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior
-  >
-  behavior;
-
-  Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior
-    implements TerraformEnum {
-  skip('skip');
-
-  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `workflow.step.neptune_global_database_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
-  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig({
+final class ArcregionswitchPlanNeptuneGlobalDatabaseConfig {
+  const ArcregionswitchPlanNeptuneGlobalDatabaseConfig({
     required this.behavior,
     this.crossAccountRole,
     this.externalId,
@@ -1332,10 +1185,7 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior
-  >
-  behavior;
+  final TfArg<ArcregionswitchPlanBehavior> behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1347,10 +1197,7 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngraceful
-  >?
-  ungraceful;
+  final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
@@ -1364,54 +1211,13 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
   };
 }
 
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior
-    implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.neptune_global_database_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngraceful({
-    required this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
-  >
-  ungraceful;
-
-  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
-}
-
-/// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
-    implements TerraformEnum {
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `workflow.step.parallel_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfig({this.step});
+final class ArcregionswitchPlanParallelConfig {
+  const ArcregionswitchPlanParallelConfig({this.step});
 
-  final List<ArcregionswitchPlanWorkflowStepParallelConfigStep>? step;
+  final List<ArcregionswitchPlanParallelConfigStep>? step;
 
   Map<String, Object?> encode() => {
     if (step != null) 'step': [for (final e in step!) e.encode()],
@@ -1421,8 +1227,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfig {
 /// Typed helper for the `workflow.step.parallel_config.step` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStep({
+final class ArcregionswitchPlanParallelConfigStep {
+  const ArcregionswitchPlanParallelConfigStep({
     this.description,
     required this.executionBlockType,
     required this.name,
@@ -1446,89 +1252,53 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
 
   final TfArg<String>? description;
 
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType
-  >
-  executionBlockType;
+  final TfArg<ArcregionswitchPlanExecutionBlockType> executionBlockType;
 
   final TfArg<String> name;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfig
-  >?
+  final List<ArcregionswitchPlanArcRoutingControlConfig>?
   arcRoutingControlConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraProvisionedScalingConfig
-  >?
+  final List<ArcregionswitchPlanAuroraProvisionedScalingConfig>?
   auroraProvisionedScalingConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraServerlessScalingConfig
-  >?
+  final List<ArcregionswitchPlanAuroraServerlessScalingConfig>?
   auroraServerlessScalingConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfig
-  >?
+  final List<ArcregionswitchPlanCustomActionLambdaConfig>?
   customActionLambdaConfig;
 
-  final List<ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig>?
-  documentDbConfig;
+  final List<ArcregionswitchPlanDocumentDbConfig>? documentDbConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfig
-  >?
+  final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfig>?
   ec2AsgCapacityIncreaseConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfig
-  >?
+  final List<ArcregionswitchPlanEcsCapacityIncreaseConfig>?
   ecsCapacityIncreaseConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfig
-  >?
+  final List<ArcregionswitchPlanEksResourceScalingConfig>?
   eksResourceScalingConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionApprovalConfig
-  >?
+  final List<ArcregionswitchPlanExecutionApprovalConfig>?
   executionApprovalConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig
-  >?
-  globalAuroraConfig;
+  final List<ArcregionswitchPlanGlobalAuroraConfig>? globalAuroraConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfig
-  >?
+  final List<ArcregionswitchPlanLambdaEventSourceMappingConfig>?
   lambdaEventSourceMappingConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfig
-  >?
+  final List<ArcregionswitchPlanNeptuneGlobalDatabaseConfig>?
   neptuneGlobalDatabaseConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepRdsCreateCrossRegionReadReplicaConfig
-  >?
+  final List<ArcregionswitchPlanRdsCreateCrossRegionReadReplicaConfig>?
   rdsCreateCrossRegionReadReplicaConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepRdsPromoteReadReplicaConfig
-  >?
+  final List<ArcregionswitchPlanRdsPromoteReadReplicaConfig>?
   rdsPromoteReadReplicaConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepRegionSwitchPlanConfig
-  >?
-  regionSwitchPlanConfig;
+  final List<ArcregionswitchPlanRegionSwitchPlanConfig>? regionSwitchPlanConfig;
 
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfig
-  >?
+  final List<ArcregionswitchPlanRoute53HealthCheckConfig>?
   route53HealthCheckConfig;
 
   Map<String, Object?> encode() => {
@@ -1598,1198 +1368,12 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
   };
 }
 
-/// `execution_block_type` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType
-    implements TerraformEnum {
-  customactionlambda('CustomActionLambda'),
-  manualapproval('ManualApproval'),
-  auroraglobaldatabase('AuroraGlobalDatabase'),
-  ec2autoscaling('EC2AutoScaling'),
-  arcroutingcontrol('ARCRoutingControl'),
-  arcregionswitchplan('ARCRegionSwitchPlan'),
-  parallel('Parallel'),
-  ecsservicescaling('ECSServiceScaling'),
-  eksresourcescaling('EKSResourceScaling'),
-  route53healthcheck('Route53HealthCheck'),
-  documentdb('DocumentDb'),
-  rdspromotereadreplica('RdsPromoteReadReplica'),
-  rdscreatecrossregionreplica('RdsCreateCrossRegionReplica'),
-  lambdaeventsourcemapping('LambdaEventSourceMapping'),
-  auroraserverlessscaling('AuroraServerlessScaling'),
-  auroraprovisionedscaling('AuroraProvisionedScaling'),
-  neptuneglobaldatabase('NeptuneGlobalDatabase'),
-  rdsswitchoverreadreplica('RdsSwitchoverReadReplica');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.arc_routing_control_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfig({
-    this.crossAccountRole,
-    this.externalId,
-    this.timeoutMinutes,
-    this.regionAndRoutingControls,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControls
-  >?
-  regionAndRoutingControls;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (regionAndRoutingControls != null)
-      'region_and_routing_controls': [
-        for (final e in regionAndRoutingControls!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.arc_routing_control_config.region_and_routing_controls` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControls {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControls({
-    required this.region,
-    this.routingControl,
-  });
-
-  final TfArg<String> region;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl
-  >?
-  routingControl;
-
-  Map<String, Object?> encode() => {
-    'region': region.toTfJson(),
-    if (routingControl != null)
-      'routing_control': [for (final e in routingControl!) e.encode()],
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.arc_routing_control_config.region_and_routing_controls.routing_control` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControl({
-    required this.routingControlArn,
-    required this.state,
-  });
-
-  final TfArg<String> routingControlArn;
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
-  >
-  state;
-
-  Map<String, Object?> encode() => {
-    'routing_control_arn': routingControlArn.toTfJson(),
-    'state': state.toTfJson(),
-  };
-}
-
-/// `state` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
-    implements TerraformEnum {
-  on('On'),
-  off('Off');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.aurora_provisioned_scaling_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraProvisionedScalingConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraProvisionedScalingConfig({
-    this.crossAccountRole,
-    this.externalId,
-    required this.globalClusterIdentifier,
-    required this.instanceArns,
-    required this.regionDatabaseClusterArns,
-    this.timeoutMinutes,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> globalClusterIdentifier;
-
-  final TfArg<Map<String, String>> instanceArns;
-
-  final TfArg<Map<String, String>> regionDatabaseClusterArns;
-
-  final TfArg<num>? timeoutMinutes;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    'instance_arns': instanceArns.toTfJson(),
-    'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.aurora_serverless_scaling_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraServerlessScalingConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraServerlessScalingConfig({
-    this.crossAccountRole,
-    this.externalId,
-    required this.globalClusterIdentifier,
-    required this.regionDatabaseClusterArns,
-    this.targetPercent,
-    this.timeoutMinutes,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> globalClusterIdentifier;
-
-  final TfArg<Map<String, String>> regionDatabaseClusterArns;
-
-  final TfArg<num>? targetPercent;
-
-  final TfArg<num>? timeoutMinutes;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    'target_percent': ?targetPercent?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.custom_action_lambda_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfig({
-    required this.regionToRun,
-    required this.retryIntervalMinutes,
-    this.timeoutMinutes,
-    this.lambda,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun
-  >
-  regionToRun;
-
-  final TfArg<num> retryIntervalMinutes;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigLambda
-  >?
-  lambda;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'region_to_run': regionToRun.toTfJson(),
-    'retry_interval_minutes': retryIntervalMinutes.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (lambda != null) 'lambda': [for (final e in lambda!) e.encode()],
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `region_to_run` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun
-    implements TerraformEnum {
-  activatingregion('activatingRegion'),
-  deactivatingregion('deactivatingRegion'),
-  activeregion('activeRegion'),
-  inactiveregion('inactiveRegion');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.custom_action_lambda_config.lambda` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigLambda {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigLambda({
-    required this.arn,
-    this.crossAccountRole,
-    this.externalId,
-  });
-
-  final TfArg<String> arn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  Map<String, Object?> encode() => {
-    'arn': arn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.custom_action_lambda_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngraceful({
-    required this.behavior,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior
-  >
-  behavior;
-
-  Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior
-    implements TerraformEnum {
-  skip('skip');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.document_db_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig({
-    required this.behavior,
-    this.crossAccountRole,
-    required this.databaseClusterArns,
-    this.externalId,
-    required this.globalClusterIdentifier,
-    this.timeoutMinutes,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior
-  >
-  behavior;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<List<String>> databaseClusterArns;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> globalClusterIdentifier;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'behavior': behavior.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'database_cluster_arns': databaseClusterArns.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior
-    implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.document_db_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngraceful({
-    required this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful
-  >
-  ungraceful;
-
-  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
-}
-
-/// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful
-    implements TerraformEnum {
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ec2_asg_capacity_increase_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfig({
-    required this.capacityMonitoringApproach,
-    this.targetPercent,
-    this.timeoutMinutes,
-    this.asg,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
-  >
-  capacityMonitoringApproach;
-
-  final TfArg<num>? targetPercent;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigAsg
-  >?
-  asg;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    'target_percent': ?targetPercent?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (asg != null) 'asg': [for (final e in asg!) e.encode()],
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
-  autoscalingmaxinlast24hours('autoscalingMaxInLast24Hours');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ec2_asg_capacity_increase_config.asg` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigAsg {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigAsg({
-    required this.arn,
-    this.crossAccountRole,
-    this.externalId,
-  });
-
-  final TfArg<String> arn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  Map<String, Object?> encode() => {
-    'arn': arn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ec2_asg_capacity_increase_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigUngraceful({
-    required this.minimumSuccessPercentage,
-  });
-
-  final TfArg<num> minimumSuccessPercentage;
-
-  Map<String, Object?> encode() => {
-    'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ecs_capacity_increase_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfig({
-    required this.capacityMonitoringApproach,
-    this.targetPercent,
-    this.timeoutMinutes,
-    this.service,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
-  >
-  capacityMonitoringApproach;
-
-  final TfArg<num>? targetPercent;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigService
-  >?
-  service;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    'target_percent': ?targetPercent?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (service != null) 'service': [for (final e in service!) e.encode()],
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
-  containerinsightsmaxinlast24hours('containerInsightsMaxInLast24Hours');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ecs_capacity_increase_config.service` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigService {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigService({
-    required this.clusterArn,
-    this.crossAccountRole,
-    this.externalId,
-    required this.serviceArn,
-  });
-
-  final TfArg<String> clusterArn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> serviceArn;
-
-  Map<String, Object?> encode() => {
-    'cluster_arn': clusterArn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'service_arn': serviceArn.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.ecs_capacity_increase_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigUngraceful({
-    required this.minimumSuccessPercentage,
-  });
-
-  final TfArg<num> minimumSuccessPercentage;
-
-  Map<String, Object?> encode() => {
-    'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfig({
-    required this.capacityMonitoringApproach,
-    required this.targetPercent,
-    this.timeoutMinutes,
-    this.eksClusters,
-    this.kubernetesResourceType,
-    this.scalingResources,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach
-  >
-  capacityMonitoringApproach;
-
-  final TfArg<num> targetPercent;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigEksClusters
-  >?
-  eksClusters;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigKubernetesResourceType
-  >?
-  kubernetesResourceType;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResources
-  >?
-  scalingResources;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    'target_percent': targetPercent.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (eksClusters != null)
-      'eks_clusters': [for (final e in eksClusters!) e.encode()],
-    if (kubernetesResourceType != null)
-      'kubernetes_resource_type': [
-        for (final e in kubernetesResourceType!) e.encode(),
-      ],
-    if (scalingResources != null)
-      'scaling_resources': [for (final e in scalingResources!) e.encode()],
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.eks_clusters` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigEksClusters {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigEksClusters({
-    required this.clusterArn,
-    this.crossAccountRole,
-    this.externalId,
-  });
-
-  final TfArg<String> clusterArn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  Map<String, Object?> encode() => {
-    'cluster_arn': clusterArn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.kubernetes_resource_type` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigKubernetesResourceType {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigKubernetesResourceType({
-    required this.apiVersion,
-    required this.kind,
-  });
-
-  final TfArg<String> apiVersion;
-
-  final TfArg<String> kind;
-
-  Map<String, Object?> encode() => {
-    'api_version': apiVersion.toTfJson(),
-    'kind': kind.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.scaling_resources` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResources {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResources({
-    required this.namespace,
-    this.resources,
-  });
-
-  final TfArg<String> namespace;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResourcesResources
-  >?
-  resources;
-
-  Map<String, Object?> encode() => {
-    'namespace': namespace.toTfJson(),
-    if (resources != null)
-      'resources': [for (final e in resources!) e.encode()],
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.scaling_resources.resources` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResourcesResources {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigScalingResourcesResources({
-    this.hpaName,
-    required this.name,
-    required this.namespace,
-    required this.resourceName,
-  });
-
-  final TfArg<String>? hpaName;
-
-  final TfArg<String> name;
-
-  final TfArg<String> namespace;
-
-  final TfArg<String> resourceName;
-
-  Map<String, Object?> encode() => {
-    'hpa_name': ?hpaName?.toTfJson(),
-    'name': name.toTfJson(),
-    'namespace': namespace.toTfJson(),
-    'resource_name': resourceName.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigUngraceful({
-    required this.minimumSuccessPercentage,
-  });
-
-  final TfArg<num> minimumSuccessPercentage;
-
-  Map<String, Object?> encode() => {
-    'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.execution_approval_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionApprovalConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionApprovalConfig({
-    required this.approvalRole,
-    this.timeoutMinutes,
-  });
-
-  final TfArg<String> approvalRole;
-
-  final TfArg<num>? timeoutMinutes;
-
-  Map<String, Object?> encode() => {
-    'approval_role': approvalRole.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.global_aurora_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig({
-    required this.behavior,
-    this.crossAccountRole,
-    required this.databaseClusterArns,
-    this.externalId,
-    required this.globalClusterIdentifier,
-    this.timeoutMinutes,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior
-  >
-  behavior;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<List<String>> databaseClusterArns;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> globalClusterIdentifier;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'behavior': behavior.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'database_cluster_arns': databaseClusterArns.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior
-    implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.global_aurora_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngraceful({
-    required this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful
-  >
-  ungraceful;
-
-  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
-}
-
-/// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful
-    implements TerraformEnum {
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.lambda_event_source_mapping_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfig({
-    required this.action,
-    this.timeoutMinutes,
-    this.regionEventSourceMapping,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction
-  >
-  action;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigRegionEventSourceMapping
-  >?
-  regionEventSourceMapping;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'action': action.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (regionEventSourceMapping != null)
-      'region_event_source_mapping': [
-        for (final e in regionEventSourceMapping!) e.encode(),
-      ],
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `action` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.lambda_event_source_mapping_config.region_event_source_mapping` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigRegionEventSourceMapping {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigRegionEventSourceMapping({
-    required this.arn,
-    this.crossAccountRole,
-    this.externalId,
-    required this.region,
-  });
-
-  final TfArg<String> arn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> region;
-
-  Map<String, Object?> encode() => {
-    'arn': arn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'region': region.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.lambda_event_source_mapping_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngraceful({
-    required this.behavior,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior
-  >
-  behavior;
-
-  Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior
-    implements TerraformEnum {
-  skip('skip');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.neptune_global_database_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfig({
-    required this.behavior,
-    this.crossAccountRole,
-    this.externalId,
-    required this.globalClusterIdentifier,
-    required this.regionDatabaseClusterArns,
-    this.timeoutMinutes,
-    this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior
-  >
-  behavior;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> globalClusterIdentifier;
-
-  final TfArg<Map<String, String>> regionDatabaseClusterArns;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngraceful
-  >?
-  ungraceful;
-
-  Map<String, Object?> encode() => {
-    'behavior': behavior.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (ungraceful != null)
-      'ungraceful': [for (final e in ungraceful!) e.encode()],
-  };
-}
-
-/// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior
-    implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.neptune_global_database_config.ungraceful` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngraceful {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngraceful({
-    required this.ungraceful,
-  });
-
-  final TfArg<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
-  >
-  ungraceful;
-
-  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
-}
-
-/// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
-    implements TerraformEnum {
-  failover('failover');
-
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.rds_create_cross_region_read_replica_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepRdsCreateCrossRegionReadReplicaConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepRdsCreateCrossRegionReadReplicaConfig({
-    this.crossAccountRole,
-    required this.dbInstanceArnMap,
-    this.externalId,
-    this.timeoutMinutes,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<Map<String, String>> dbInstanceArnMap;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<num>? timeoutMinutes;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.rds_promote_read_replica_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepRdsPromoteReadReplicaConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepRdsPromoteReadReplicaConfig({
-    this.crossAccountRole,
-    required this.dbInstanceArnMap,
-    this.externalId,
-    this.timeoutMinutes,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<Map<String, String>> dbInstanceArnMap;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<num>? timeoutMinutes;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.region_switch_plan_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepRegionSwitchPlanConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepRegionSwitchPlanConfig({
-    required this.arn,
-    this.crossAccountRole,
-    this.externalId,
-  });
-
-  final TfArg<String> arn;
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  Map<String, Object?> encode() => {
-    'arn': arn.toTfJson(),
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.route53_health_check_config` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfig {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfig({
-    this.crossAccountRole,
-    this.externalId,
-    required this.hostedZoneId,
-    required this.recordName,
-    this.timeoutMinutes,
-    this.recordSet,
-  });
-
-  final TfArg<String>? crossAccountRole;
-
-  final TfArg<String>? externalId;
-
-  final TfArg<String> hostedZoneId;
-
-  final TfArg<String> recordName;
-
-  final TfArg<num>? timeoutMinutes;
-
-  final List<
-    ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfigRecordSet
-  >?
-  recordSet;
-
-  Map<String, Object?> encode() => {
-    'cross_account_role': ?crossAccountRole?.toTfJson(),
-    'external_id': ?externalId?.toTfJson(),
-    'hosted_zone_id': hostedZoneId.toTfJson(),
-    'record_name': recordName.toTfJson(),
-    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
-    if (recordSet != null)
-      'record_set': [for (final e in recordSet!) e.encode()],
-  };
-}
-
-/// Typed helper for the `workflow.step.parallel_config.step.route53_health_check_config.record_set` block of
-/// `aws_arcregionswitch_plan` (derived from provider schema).
-@immutable
-final class ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfigRecordSet {
-  const ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckConfigRecordSet({
-    required this.recordSetIdentifier,
-    required this.region,
-  });
-
-  final TfArg<String> recordSetIdentifier;
-
-  final TfArg<String> region;
-
-  Map<String, Object?> encode() => {
-    'record_set_identifier': recordSetIdentifier.toTfJson(),
-    'region': region.toTfJson(),
-  };
-}
-
 /// Typed helper for the `workflow.step.rds_create_cross_region_read_replica_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepRdsCreateCrossRegionReadReplicaConfig {
-  const ArcregionswitchPlanWorkflowStepRdsCreateCrossRegionReadReplicaConfig({
+final class ArcregionswitchPlanRdsCreateCrossRegionReadReplicaConfig {
+  const ArcregionswitchPlanRdsCreateCrossRegionReadReplicaConfig({
     this.crossAccountRole,
     required this.dbInstanceArnMap,
     this.externalId,
@@ -2814,9 +1398,10 @@ final class ArcregionswitchPlanWorkflowStepRdsCreateCrossRegionReadReplicaConfig
 
 /// Typed helper for the `workflow.step.rds_promote_read_replica_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepRdsPromoteReadReplicaConfig {
-  const ArcregionswitchPlanWorkflowStepRdsPromoteReadReplicaConfig({
+final class ArcregionswitchPlanRdsPromoteReadReplicaConfig {
+  const ArcregionswitchPlanRdsPromoteReadReplicaConfig({
     this.crossAccountRole,
     required this.dbInstanceArnMap,
     this.externalId,
@@ -2841,9 +1426,10 @@ final class ArcregionswitchPlanWorkflowStepRdsPromoteReadReplicaConfig {
 
 /// Typed helper for the `workflow.step.region_switch_plan_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepRegionSwitchPlanConfig {
-  const ArcregionswitchPlanWorkflowStepRegionSwitchPlanConfig({
+final class ArcregionswitchPlanRegionSwitchPlanConfig {
+  const ArcregionswitchPlanRegionSwitchPlanConfig({
     required this.arn,
     this.crossAccountRole,
     this.externalId,
@@ -2864,9 +1450,10 @@ final class ArcregionswitchPlanWorkflowStepRegionSwitchPlanConfig {
 
 /// Typed helper for the `workflow.step.route53_health_check_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig {
-  const ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig({
+final class ArcregionswitchPlanRoute53HealthCheckConfig {
+  const ArcregionswitchPlanRoute53HealthCheckConfig({
     this.crossAccountRole,
     this.externalId,
     required this.hostedZoneId,
@@ -2885,8 +1472,7 @@ final class ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig {
 
   final TfArg<num>? timeoutMinutes;
 
-  final List<ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfigRecordSet>?
-  recordSet;
+  final List<ArcregionswitchPlanRecordSet>? recordSet;
 
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -2901,9 +1487,10 @@ final class ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig {
 
 /// Typed helper for the `workflow.step.route53_health_check_config.record_set` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfigRecordSet {
-  const ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfigRecordSet({
+final class ArcregionswitchPlanRecordSet {
+  const ArcregionswitchPlanRecordSet({
     required this.recordSetIdentifier,
     required this.region,
   });

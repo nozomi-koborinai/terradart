@@ -20,13 +20,11 @@ final class ClouddomainsRegistrationContactSettings {
 
   final TfArg<String> privacy;
 
-  final ClouddomainsRegistrationContactSettingsAdminContact adminContact;
+  final ClouddomainsRegistrationAdminContact adminContact;
 
-  final ClouddomainsRegistrationContactSettingsRegistrantContact
-  registrantContact;
+  final ClouddomainsRegistrationRegistrantContact registrantContact;
 
-  final ClouddomainsRegistrationContactSettingsTechnicalContact
-  technicalContact;
+  final ClouddomainsRegistrationTechnicalContact technicalContact;
 
   Map<String, Object?> encode() => {
     'privacy': privacy.toTfJson(),
@@ -39,8 +37,8 @@ final class ClouddomainsRegistrationContactSettings {
 /// Typed helper for the `contact_settings.admin_contact` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationContactSettingsAdminContact {
-  const ClouddomainsRegistrationContactSettingsAdminContact({
+final class ClouddomainsRegistrationAdminContact {
+  const ClouddomainsRegistrationAdminContact({
     required this.email,
     this.faxNumber,
     required this.phoneNumber,
@@ -53,8 +51,7 @@ final class ClouddomainsRegistrationContactSettingsAdminContact {
 
   final TfArg<String> phoneNumber;
 
-  final ClouddomainsRegistrationContactSettingsAdminContactPostalAddress
-  postalAddress;
+  final ClouddomainsRegistrationPostalAddress postalAddress;
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
@@ -66,9 +63,10 @@ final class ClouddomainsRegistrationContactSettingsAdminContact {
 
 /// Typed helper for the `contact_settings.admin_contact.postal_address` block of
 /// `google_clouddomains_registration` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddomainsRegistrationContactSettingsAdminContactPostalAddress {
-  const ClouddomainsRegistrationContactSettingsAdminContactPostalAddress({
+final class ClouddomainsRegistrationPostalAddress {
+  const ClouddomainsRegistrationPostalAddress({
     this.addressLines,
     this.administrativeArea,
     this.locality,
@@ -106,8 +104,8 @@ final class ClouddomainsRegistrationContactSettingsAdminContactPostalAddress {
 /// Typed helper for the `contact_settings.registrant_contact` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationContactSettingsRegistrantContact {
-  const ClouddomainsRegistrationContactSettingsRegistrantContact({
+final class ClouddomainsRegistrationRegistrantContact {
+  const ClouddomainsRegistrationRegistrantContact({
     required this.email,
     this.faxNumber,
     required this.phoneNumber,
@@ -120,61 +118,21 @@ final class ClouddomainsRegistrationContactSettingsRegistrantContact {
 
   final TfArg<String> phoneNumber;
 
-  final ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress
-  postalAddress;
+  final ClouddomainsRegistrationPostalAddress postalAddress;
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'fax_number': ?faxNumber?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
     'postal_address': postalAddress.encode(),
-  };
-}
-
-/// Typed helper for the `contact_settings.registrant_contact.postal_address` block of
-/// `google_clouddomains_registration` (derived from provider schema).
-@immutable
-final class ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress {
-  const ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress({
-    this.addressLines,
-    this.administrativeArea,
-    this.locality,
-    this.organization,
-    this.postalCode,
-    this.recipients,
-    required this.regionCode,
-  });
-
-  final TfArg<List<String>>? addressLines;
-
-  final TfArg<String>? administrativeArea;
-
-  final TfArg<String>? locality;
-
-  final TfArg<String>? organization;
-
-  final TfArg<String>? postalCode;
-
-  final TfArg<List<String>>? recipients;
-
-  final TfArg<String> regionCode;
-
-  Map<String, Object?> encode() => {
-    'address_lines': ?addressLines?.toTfJson(),
-    'administrative_area': ?administrativeArea?.toTfJson(),
-    'locality': ?locality?.toTfJson(),
-    'organization': ?organization?.toTfJson(),
-    'postal_code': ?postalCode?.toTfJson(),
-    'recipients': ?recipients?.toTfJson(),
-    'region_code': regionCode.toTfJson(),
   };
 }
 
 /// Typed helper for the `contact_settings.technical_contact` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationContactSettingsTechnicalContact {
-  const ClouddomainsRegistrationContactSettingsTechnicalContact({
+final class ClouddomainsRegistrationTechnicalContact {
+  const ClouddomainsRegistrationTechnicalContact({
     required this.email,
     this.faxNumber,
     required this.phoneNumber,
@@ -187,53 +145,13 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContact {
 
   final TfArg<String> phoneNumber;
 
-  final ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress
-  postalAddress;
+  final ClouddomainsRegistrationPostalAddress postalAddress;
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'fax_number': ?faxNumber?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
     'postal_address': postalAddress.encode(),
-  };
-}
-
-/// Typed helper for the `contact_settings.technical_contact.postal_address` block of
-/// `google_clouddomains_registration` (derived from provider schema).
-@immutable
-final class ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress {
-  const ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress({
-    this.addressLines,
-    this.administrativeArea,
-    this.locality,
-    this.organization,
-    this.postalCode,
-    this.recipients,
-    required this.regionCode,
-  });
-
-  final TfArg<List<String>>? addressLines;
-
-  final TfArg<String>? administrativeArea;
-
-  final TfArg<String>? locality;
-
-  final TfArg<String>? organization;
-
-  final TfArg<String>? postalCode;
-
-  final TfArg<List<String>>? recipients;
-
-  final TfArg<String> regionCode;
-
-  Map<String, Object?> encode() => {
-    'address_lines': ?addressLines?.toTfJson(),
-    'administrative_area': ?administrativeArea?.toTfJson(),
-    'locality': ?locality?.toTfJson(),
-    'organization': ?organization?.toTfJson(),
-    'postal_code': ?postalCode?.toTfJson(),
-    'recipients': ?recipients?.toTfJson(),
-    'region_code': regionCode.toTfJson(),
   };
 }
 
@@ -243,9 +161,9 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress
 final class ClouddomainsRegistrationDnsSettings {
   const ClouddomainsRegistrationDnsSettings({this.customDns, this.glueRecords});
 
-  final ClouddomainsRegistrationDnsSettingsCustomDns? customDns;
+  final ClouddomainsRegistrationCustomDns? customDns;
 
-  final List<ClouddomainsRegistrationDnsSettingsGlueRecords>? glueRecords;
+  final List<ClouddomainsRegistrationGlueRecords>? glueRecords;
 
   Map<String, Object?> encode() => {
     'custom_dns': ?customDns?.encode(),
@@ -257,15 +175,15 @@ final class ClouddomainsRegistrationDnsSettings {
 /// Typed helper for the `dns_settings.custom_dns` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationDnsSettingsCustomDns {
-  const ClouddomainsRegistrationDnsSettingsCustomDns({
+final class ClouddomainsRegistrationCustomDns {
+  const ClouddomainsRegistrationCustomDns({
     required this.nameServers,
     this.dsRecords,
   });
 
   final TfArg<List<String>> nameServers;
 
-  final List<ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords>? dsRecords;
+  final List<ClouddomainsRegistrationDsRecords>? dsRecords;
 
   Map<String, Object?> encode() => {
     'name_servers': nameServers.toTfJson(),
@@ -277,8 +195,8 @@ final class ClouddomainsRegistrationDnsSettingsCustomDns {
 /// Typed helper for the `dns_settings.custom_dns.ds_records` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords {
-  const ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords({
+final class ClouddomainsRegistrationDsRecords {
+  const ClouddomainsRegistrationDsRecords({
     this.algorithm,
     this.digest,
     this.digestType,
@@ -304,8 +222,8 @@ final class ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords {
 /// Typed helper for the `dns_settings.glue_records` block of
 /// `google_clouddomains_registration` (derived from provider schema).
 @immutable
-final class ClouddomainsRegistrationDnsSettingsGlueRecords {
-  const ClouddomainsRegistrationDnsSettingsGlueRecords({
+final class ClouddomainsRegistrationGlueRecords {
+  const ClouddomainsRegistrationGlueRecords({
     required this.hostName,
     this.ipv4Addresses,
     this.ipv6Addresses,

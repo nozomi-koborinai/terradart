@@ -37,27 +37,19 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 
   final TfArg<bool>? apiEnableDebug;
 
-  final TfArg<
-    BlockchainNodeEngineBlockchainNodesEthereumDetailsConsensusClient
-  >?
+  final TfArg<BlockchainNodeEngineBlockchainNodesConsensusClient>?
   consensusClient;
 
-  final TfArg<
-    BlockchainNodeEngineBlockchainNodesEthereumDetailsExecutionClient
-  >?
+  final TfArg<BlockchainNodeEngineBlockchainNodesExecutionClient>?
   executionClient;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesEthereumDetailsNetwork>?
-  network;
+  final TfArg<BlockchainNodeEngineBlockchainNodesNetwork>? network;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesEthereumDetailsNodeType>?
-  nodeType;
+  final TfArg<BlockchainNodeEngineBlockchainNodesNodeType>? nodeType;
 
-  final BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails?
-  gethDetails;
+  final BlockchainNodeEngineBlockchainNodesGethDetails? gethDetails;
 
-  final BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig?
-  validatorConfig;
+  final BlockchainNodeEngineBlockchainNodesValidatorConfig? validatorConfig;
 
   Map<String, Object?> encode() => {
     'api_enable_admin': ?apiEnableAdmin?.toTfJson(),
@@ -72,56 +64,46 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 }
 
 /// `consensus_client` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesEthereumDetailsConsensusClient
+enum BlockchainNodeEngineBlockchainNodesConsensusClient
     implements TerraformEnum {
   consensusClientUnspecified('CONSENSUS_CLIENT_UNSPECIFIED'),
   lighthouse('LIGHTHOUSE');
 
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsConsensusClient(
-    this.terraformValue,
-  );
+  const BlockchainNodeEngineBlockchainNodesConsensusClient(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `execution_client` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesEthereumDetailsExecutionClient
+enum BlockchainNodeEngineBlockchainNodesExecutionClient
     implements TerraformEnum {
   executionClientUnspecified('EXECUTION_CLIENT_UNSPECIFIED'),
   geth('GETH'),
   erigon('ERIGON');
 
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsExecutionClient(
-    this.terraformValue,
-  );
+  const BlockchainNodeEngineBlockchainNodesExecutionClient(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `network` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesEthereumDetailsNetwork
-    implements TerraformEnum {
+enum BlockchainNodeEngineBlockchainNodesNetwork implements TerraformEnum {
   mainnet('MAINNET'),
   testnetGoerliPrater('TESTNET_GOERLI_PRATER'),
   testnetSepolia('TESTNET_SEPOLIA');
 
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsNetwork(
-    this.terraformValue,
-  );
+  const BlockchainNodeEngineBlockchainNodesNetwork(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `node_type` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesEthereumDetailsNodeType
-    implements TerraformEnum {
+enum BlockchainNodeEngineBlockchainNodesNodeType implements TerraformEnum {
   light('LIGHT'),
   full('FULL'),
   archive('ARCHIVE');
 
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsNodeType(
-    this.terraformValue,
-  );
+  const BlockchainNodeEngineBlockchainNodesNodeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -129,14 +111,12 @@ enum BlockchainNodeEngineBlockchainNodesEthereumDetailsNodeType
 /// Typed helper for the `ethereum_details.geth_details` block of
 /// `google_blockchain_node_engine_blockchain_nodes` (derived from provider schema).
 @immutable
-final class BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails {
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails({
+final class BlockchainNodeEngineBlockchainNodesGethDetails {
+  const BlockchainNodeEngineBlockchainNodesGethDetails({
     this.garbageCollectionMode,
   });
 
-  final TfArg<
-    BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetailsGarbageCollectionMode
-  >?
+  final TfArg<BlockchainNodeEngineBlockchainNodesGarbageCollectionMode>?
   garbageCollectionMode;
 
   Map<String, Object?> encode() => {
@@ -145,12 +125,12 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails {
 }
 
 /// `garbage_collection_mode` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetailsGarbageCollectionMode
+enum BlockchainNodeEngineBlockchainNodesGarbageCollectionMode
     implements TerraformEnum {
   full('FULL'),
   archive('ARCHIVE');
 
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetailsGarbageCollectionMode(
+  const BlockchainNodeEngineBlockchainNodesGarbageCollectionMode(
     this.terraformValue,
   );
   @override
@@ -160,8 +140,8 @@ enum BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetailsGarbageCollect
 /// Typed helper for the `ethereum_details.validator_config` block of
 /// `google_blockchain_node_engine_blockchain_nodes` (derived from provider schema).
 @immutable
-final class BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig {
-  const BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig({
+final class BlockchainNodeEngineBlockchainNodesValidatorConfig {
+  const BlockchainNodeEngineBlockchainNodesValidatorConfig({
     this.beaconFeeRecipient,
     this.mevRelayUrls,
   });

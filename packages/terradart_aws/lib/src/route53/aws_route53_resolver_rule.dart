@@ -36,7 +36,7 @@ final class Route53ResolverRuleTargetIp {
 
   final TfArg<num>? port;
 
-  final TfArg<Route53ResolverRuleTargetIpProtocol>? protocol;
+  final TfArg<Route53ResolverRuleProtocol>? protocol;
 
   Map<String, Object?> encode() => {
     'ip': ?ip?.toTfJson(),
@@ -47,12 +47,12 @@ final class Route53ResolverRuleTargetIp {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum Route53ResolverRuleTargetIpProtocol implements TerraformEnum {
+enum Route53ResolverRuleProtocol implements TerraformEnum {
   doh('DoH'),
   do53('Do53'),
   dohFips('DoH-FIPS');
 
-  const Route53ResolverRuleTargetIpProtocol(this.terraformValue);
+  const Route53ResolverRuleProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

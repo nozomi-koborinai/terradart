@@ -13,7 +13,7 @@ const Set<String> _googleChronicleWatchlistSensitive = <String>{};
 final class ChronicleWatchlistEntityPopulationMechanism {
   const ChronicleWatchlistEntityPopulationMechanism({this.manual});
 
-  final ChronicleWatchlistEntityPopulationMechanismManual? manual;
+  final ChronicleWatchlistManual? manual;
 
   Map<String, Object?> encode() => {'manual': ?manual?.encode()};
 }
@@ -21,8 +21,8 @@ final class ChronicleWatchlistEntityPopulationMechanism {
 /// Typed helper for the `entity_population_mechanism.manual` block of
 /// `google_chronicle_watchlist` (derived from provider schema).
 @immutable
-final class ChronicleWatchlistEntityPopulationMechanismManual {
-  const ChronicleWatchlistEntityPopulationMechanismManual();
+final class ChronicleWatchlistManual {
+  const ChronicleWatchlistManual();
 
   Map<String, Object?> encode() => {};
 }
@@ -30,8 +30,8 @@ final class ChronicleWatchlistEntityPopulationMechanismManual {
 /// Typed helper for the `watchlist_user_preferences` block of
 /// `google_chronicle_watchlist` (derived from provider schema).
 @immutable
-final class ChronicleWatchlistWatchlistUserPreferences {
-  const ChronicleWatchlistWatchlistUserPreferences({this.pinned});
+final class ChronicleWatchlistUserPreferences {
+  const ChronicleWatchlistUserPreferences({this.pinned});
 
   final TfArg<bool>? pinned;
 
@@ -68,7 +68,7 @@ final class GoogleChronicleWatchlist extends Resource {
     TfArg<String>? watchlistId,
     TfArg<String>? description,
     TfArg<num>? multiplyingFactor,
-    ChronicleWatchlistWatchlistUserPreferences? watchlistUserPreferences,
+    ChronicleWatchlistUserPreferences? watchlistUserPreferences,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

@@ -16,9 +16,9 @@ final class ComputeSnapshotSettingsStorageLocation {
     this.locations,
   });
 
-  final TfArg<ComputeSnapshotSettingsStorageLocationPolicy> policy;
+  final TfArg<ComputeSnapshotSettingsPolicy> policy;
 
-  final List<ComputeSnapshotSettingsStorageLocationLocations>? locations;
+  final List<ComputeSnapshotSettingsLocations>? locations;
 
   Map<String, Object?> encode() => {
     'policy': policy.toTfJson(),
@@ -28,12 +28,12 @@ final class ComputeSnapshotSettingsStorageLocation {
 }
 
 /// `policy` — derived from the provider schema description.
-enum ComputeSnapshotSettingsStorageLocationPolicy implements TerraformEnum {
+enum ComputeSnapshotSettingsPolicy implements TerraformEnum {
   nearestMultiRegion('NEAREST_MULTI_REGION'),
   localRegion('LOCAL_REGION'),
   specificLocations('SPECIFIC_LOCATIONS');
 
-  const ComputeSnapshotSettingsStorageLocationPolicy(this.terraformValue);
+  const ComputeSnapshotSettingsPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -41,8 +41,8 @@ enum ComputeSnapshotSettingsStorageLocationPolicy implements TerraformEnum {
 /// Typed helper for the `storage_location.locations` block of
 /// `google_compute_snapshot_settings` (derived from provider schema).
 @immutable
-final class ComputeSnapshotSettingsStorageLocationLocations {
-  const ComputeSnapshotSettingsStorageLocationLocations({
+final class ComputeSnapshotSettingsLocations {
+  const ComputeSnapshotSettingsLocations({
     required this.location,
     required this.name,
   });
@@ -67,7 +67,7 @@ final class ComputeSnapshotSettingsStorageLocationLocations {
 ///
 /// Terraform create/update use `PATCH`; destroy is a state-only remove
 /// (`exclude_delete` upstream) and leaves the GCP settings in place.
-/// Prefer [ComputeSnapshotSettingsStorageLocationPolicy.localRegion] for
+/// Prefer [ComputeSnapshotSettingsPolicy.localRegion] for
 /// cheap, region-local defaults in smoke stacks.
 ///
 /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
@@ -78,7 +78,7 @@ final class ComputeSnapshotSettingsStorageLocationLocations {
 ///   localName: 'defaults',
 ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
 ///     policy: TfArg.literal(
-///       ComputeSnapshotSettingsStorageLocationPolicy.localRegion,
+///       ComputeSnapshotSettingsPolicy.localRegion,
 ///     ),
 ///   ),
 /// );

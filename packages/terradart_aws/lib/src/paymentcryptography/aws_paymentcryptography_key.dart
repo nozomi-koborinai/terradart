@@ -22,21 +22,21 @@ enum PaymentcryptographyKeyKeyCheckValueAlgorithm implements TerraformEnum {
 /// Typed helper for the `key_attributes` block of
 /// `aws_paymentcryptography_key` (derived from provider schema).
 @immutable
-final class PaymentcryptographyKeyKeyAttributes {
-  const PaymentcryptographyKeyKeyAttributes({
+final class PaymentcryptographyKeyAttributes {
+  const PaymentcryptographyKeyAttributes({
     required this.keyAlgorithm,
     required this.keyClass,
     required this.keyUsage,
     this.keyModesOfUse,
   });
 
-  final TfArg<PaymentcryptographyKeyKeyAttributesKeyAlgorithm> keyAlgorithm;
+  final TfArg<PaymentcryptographyKeyAlgorithm> keyAlgorithm;
 
-  final TfArg<PaymentcryptographyKeyKeyAttributesKeyClass> keyClass;
+  final TfArg<PaymentcryptographyKeyClass> keyClass;
 
-  final TfArg<PaymentcryptographyKeyKeyAttributesKeyUsage> keyUsage;
+  final TfArg<PaymentcryptographyKeyUsage> keyUsage;
 
-  final List<PaymentcryptographyKeyKeyAttributesKeyModesOfUse>? keyModesOfUse;
+  final List<PaymentcryptographyKeyModesOfUse>? keyModesOfUse;
 
   Map<String, Object?> encode() => {
     'key_algorithm': keyAlgorithm.toTfJson(),
@@ -48,7 +48,7 @@ final class PaymentcryptographyKeyKeyAttributes {
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum PaymentcryptographyKeyKeyAttributesKeyAlgorithm implements TerraformEnum {
+enum PaymentcryptographyKeyAlgorithm implements TerraformEnum {
   tdes2key('TDES_2KEY'),
   tdes3key('TDES_3KEY'),
   aes128('AES_128'),
@@ -65,25 +65,25 @@ enum PaymentcryptographyKeyKeyAttributesKeyAlgorithm implements TerraformEnum {
   eccNistP384('ECC_NIST_P384'),
   eccNistP521('ECC_NIST_P521');
 
-  const PaymentcryptographyKeyKeyAttributesKeyAlgorithm(this.terraformValue);
+  const PaymentcryptographyKeyAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `key_class` — derived from the provider schema description.
-enum PaymentcryptographyKeyKeyAttributesKeyClass implements TerraformEnum {
+enum PaymentcryptographyKeyClass implements TerraformEnum {
   symmetricKey('SYMMETRIC_KEY'),
   asymmetricKeyPair('ASYMMETRIC_KEY_PAIR'),
   privateKey('PRIVATE_KEY'),
   publicKey('PUBLIC_KEY');
 
-  const PaymentcryptographyKeyKeyAttributesKeyClass(this.terraformValue);
+  const PaymentcryptographyKeyClass(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `key_usage` — derived from the provider schema description.
-enum PaymentcryptographyKeyKeyAttributesKeyUsage implements TerraformEnum {
+enum PaymentcryptographyKeyUsage implements TerraformEnum {
   tr31B0BaseDerivationKey('TR31_B0_BASE_DERIVATION_KEY'),
   tr31C0CardVerificationKey('TR31_C0_CARD_VERIFICATION_KEY'),
   tr31D0SymmetricDataEncryptionKey('TR31_D0_SYMMETRIC_DATA_ENCRYPTION_KEY'),
@@ -115,7 +115,7 @@ enum PaymentcryptographyKeyKeyAttributesKeyUsage implements TerraformEnum {
   tr31V2VisaPinVerificationKey('TR31_V2_VISA_PIN_VERIFICATION_KEY'),
   tr31K2Tr34AsymmetricKey('TR31_K2_TR34_ASYMMETRIC_KEY');
 
-  const PaymentcryptographyKeyKeyAttributesKeyUsage(this.terraformValue);
+  const PaymentcryptographyKeyUsage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -123,8 +123,8 @@ enum PaymentcryptographyKeyKeyAttributesKeyUsage implements TerraformEnum {
 /// Typed helper for the `key_attributes.key_modes_of_use` block of
 /// `aws_paymentcryptography_key` (derived from provider schema).
 @immutable
-final class PaymentcryptographyKeyKeyAttributesKeyModesOfUse {
-  const PaymentcryptographyKeyKeyAttributesKeyModesOfUse({
+final class PaymentcryptographyKeyModesOfUse {
+  const PaymentcryptographyKeyModesOfUse({
     this.decrypt,
     this.deriveKey,
     this.encrypt,
@@ -179,7 +179,7 @@ final class AwsPaymentcryptographyKey extends Resource {
     TfArg<PaymentcryptographyKeyKeyCheckValueAlgorithm>? keyCheckValueAlgorithm,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<PaymentcryptographyKeyKeyAttributes>? keyAttributes,
+    List<PaymentcryptographyKeyAttributes>? keyAttributes,
     super.lifecycle,
     super.dependsOn,
     super.provider,

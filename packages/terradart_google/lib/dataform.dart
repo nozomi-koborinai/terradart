@@ -8,12 +8,12 @@ library;
 export 'src/dataform/google_dataform_folder.dart' show GoogleDataformFolder;
 export 'src/dataform/google_dataform_repository.dart'
     show
+        DataformRepositoryAuthentication,
+        DataformRepositoryAuthenticationGitRepositoryLink,
+        DataformRepositoryAuthenticationSshAuthenticationConfig,
+        DataformRepositoryAuthenticationTokenSecretVersion,
         DataformRepositoryGitRemoteSettings,
-        DataformRepositoryGitRemoteSettingsAuthentication,
-        DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink,
-        DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig,
-        DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion,
-        DataformRepositoryGitRemoteSettingsSshAuthenticationConfig,
+        DataformRepositorySshAuthenticationConfig,
         DataformRepositoryWorkspaceCompilationOverrides,
         GoogleDataformRepository;
 export 'src/dataform/google_dataform_repository_iam_binding.dart'

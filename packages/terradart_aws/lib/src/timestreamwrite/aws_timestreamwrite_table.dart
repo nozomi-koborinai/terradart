@@ -21,7 +21,7 @@ final class TimestreamwriteTableMagneticStoreWriteProperties {
 
   final TfArg<bool>? enableMagneticStoreWrites;
 
-  final TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocation?
+  final TimestreamwriteTableMagneticStoreRejectedDataLocation?
   magneticStoreRejectedDataLocation;
 
   Map<String, Object?> encode() => {
@@ -34,13 +34,12 @@ final class TimestreamwriteTableMagneticStoreWriteProperties {
 /// Typed helper for the `magnetic_store_write_properties.magnetic_store_rejected_data_location` block of
 /// `aws_timestreamwrite_table` (derived from provider schema).
 @immutable
-final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocation {
-  const TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocation({
+final class TimestreamwriteTableMagneticStoreRejectedDataLocation {
+  const TimestreamwriteTableMagneticStoreRejectedDataLocation({
     this.s3Configuration,
   });
 
-  final TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3Configuration?
-  s3Configuration;
+  final TimestreamwriteTableS3Configuration? s3Configuration;
 
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
@@ -50,8 +49,8 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
 /// Typed helper for the `magnetic_store_write_properties.magnetic_store_rejected_data_location.s3_configuration` block of
 /// `aws_timestreamwrite_table` (derived from provider schema).
 @immutable
-final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3Configuration {
-  const TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3Configuration({
+final class TimestreamwriteTableS3Configuration {
+  const TimestreamwriteTableS3Configuration({
     this.bucketName,
     this.encryptionOption,
     this.kmsKeyId,
@@ -60,10 +59,7 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
 
   final RefTo<AwsS3Bucket>? bucketName;
 
-  final TfArg<
-    TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption
-  >?
-  encryptionOption;
+  final TfArg<TimestreamwriteTableEncryptionOption>? encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -78,14 +74,11 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption
-    implements TerraformEnum {
+enum TimestreamwriteTableEncryptionOption implements TerraformEnum {
   sseS3('SSE_S3'),
   sseKms('SSE_KMS');
 
-  const TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption(
-    this.terraformValue,
-  );
+  const TimestreamwriteTableEncryptionOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -117,7 +110,7 @@ final class TimestreamwriteTableRetentionProperties {
 final class TimestreamwriteTableSchema {
   const TimestreamwriteTableSchema({this.compositePartitionKey});
 
-  final TimestreamwriteTableSchemaCompositePartitionKey? compositePartitionKey;
+  final TimestreamwriteTableCompositePartitionKey? compositePartitionKey;
 
   Map<String, Object?> encode() => {
     'composite_partition_key': ?compositePartitionKey?.encode(),
@@ -127,21 +120,18 @@ final class TimestreamwriteTableSchema {
 /// Typed helper for the `schema.composite_partition_key` block of
 /// `aws_timestreamwrite_table` (derived from provider schema).
 @immutable
-final class TimestreamwriteTableSchemaCompositePartitionKey {
-  const TimestreamwriteTableSchemaCompositePartitionKey({
+final class TimestreamwriteTableCompositePartitionKey {
+  const TimestreamwriteTableCompositePartitionKey({
     this.enforcementInRecord,
     this.name,
     required this.type,
   });
 
-  final TfArg<
-    TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord
-  >?
-  enforcementInRecord;
+  final TfArg<TimestreamwriteTableEnforcementInRecord>? enforcementInRecord;
 
   final TfArg<String>? name;
 
-  final TfArg<TimestreamwriteTableSchemaCompositePartitionKeyType> type;
+  final TfArg<TimestreamwriteTableType> type;
 
   Map<String, Object?> encode() => {
     'enforcement_in_record': ?enforcementInRecord?.toTfJson(),
@@ -151,27 +141,21 @@ final class TimestreamwriteTableSchemaCompositePartitionKey {
 }
 
 /// `enforcement_in_record` — derived from the provider schema description.
-enum TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord
-    implements TerraformEnum {
+enum TimestreamwriteTableEnforcementInRecord implements TerraformEnum {
   required('REQUIRED'),
   optional('OPTIONAL');
 
-  const TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord(
-    this.terraformValue,
-  );
+  const TimestreamwriteTableEnforcementInRecord(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum TimestreamwriteTableSchemaCompositePartitionKeyType
-    implements TerraformEnum {
+enum TimestreamwriteTableType implements TerraformEnum {
   dimension('DIMENSION'),
   measure('MEASURE');
 
-  const TimestreamwriteTableSchemaCompositePartitionKeyType(
-    this.terraformValue,
-  );
+  const TimestreamwriteTableType(this.terraformValue);
   @override
   final String terraformValue;
 }

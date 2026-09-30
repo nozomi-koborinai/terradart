@@ -49,9 +49,9 @@ final class DeploymentManagerDeploymentLabels {
 final class DeploymentManagerDeploymentTarget {
   const DeploymentManagerDeploymentTarget({required this.config, this.imports});
 
-  final DeploymentManagerDeploymentTargetConfig config;
+  final DeploymentManagerDeploymentConfig config;
 
-  final List<DeploymentManagerDeploymentTargetImports>? imports;
+  final List<DeploymentManagerDeploymentImports>? imports;
 
   Map<String, Object?> encode() => {
     'config': config.encode(),
@@ -62,8 +62,8 @@ final class DeploymentManagerDeploymentTarget {
 /// Typed helper for the `target.config` block of
 /// `google_deployment_manager_deployment` (derived from provider schema).
 @immutable
-final class DeploymentManagerDeploymentTargetConfig {
-  const DeploymentManagerDeploymentTargetConfig({required this.content});
+final class DeploymentManagerDeploymentConfig {
+  const DeploymentManagerDeploymentConfig({required this.content});
 
   final TfArg<String> content;
 
@@ -73,8 +73,8 @@ final class DeploymentManagerDeploymentTargetConfig {
 /// Typed helper for the `target.imports` block of
 /// `google_deployment_manager_deployment` (derived from provider schema).
 @immutable
-final class DeploymentManagerDeploymentTargetImports {
-  const DeploymentManagerDeploymentTargetImports({this.content, this.name});
+final class DeploymentManagerDeploymentImports {
+  const DeploymentManagerDeploymentImports({this.content, this.name});
 
   final TfArg<String>? content;
 

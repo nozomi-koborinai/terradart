@@ -31,15 +31,15 @@ final class ApphubApplicationAttributes {
     this.operatorOwners,
   });
 
-  final List<ApphubApplicationAttributesBusinessOwners>? businessOwners;
+  final List<ApphubApplicationBusinessOwners>? businessOwners;
 
-  final ApphubApplicationAttributesCriticality? criticality;
+  final ApphubApplicationCriticality? criticality;
 
-  final List<ApphubApplicationAttributesDeveloperOwners>? developerOwners;
+  final List<ApphubApplicationDeveloperOwners>? developerOwners;
 
-  final ApphubApplicationAttributesEnvironment? environment;
+  final ApphubApplicationEnvironment? environment;
 
-  final List<ApphubApplicationAttributesOperatorOwners>? operatorOwners;
+  final List<ApphubApplicationOperatorOwners>? operatorOwners;
 
   Map<String, Object?> encode() => {
     if (businessOwners != null)
@@ -56,8 +56,8 @@ final class ApphubApplicationAttributes {
 /// Typed helper for the `attributes.business_owners` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable
-final class ApphubApplicationAttributesBusinessOwners {
-  const ApphubApplicationAttributesBusinessOwners({
+final class ApphubApplicationBusinessOwners {
+  const ApphubApplicationBusinessOwners({
     this.displayName,
     required this.email,
   });
@@ -75,22 +75,22 @@ final class ApphubApplicationAttributesBusinessOwners {
 /// Typed helper for the `attributes.criticality` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable
-final class ApphubApplicationAttributesCriticality {
-  const ApphubApplicationAttributesCriticality({required this.type});
+final class ApphubApplicationCriticality {
+  const ApphubApplicationCriticality({required this.type});
 
-  final TfArg<ApphubApplicationAttributesCriticalityType> type;
+  final TfArg<ApphubApplicationCriticalityType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationAttributesCriticalityType implements TerraformEnum {
+enum ApphubApplicationCriticalityType implements TerraformEnum {
   missionCritical('MISSION_CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const ApphubApplicationAttributesCriticalityType(this.terraformValue);
+  const ApphubApplicationCriticalityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -98,8 +98,8 @@ enum ApphubApplicationAttributesCriticalityType implements TerraformEnum {
 /// Typed helper for the `attributes.developer_owners` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable
-final class ApphubApplicationAttributesDeveloperOwners {
-  const ApphubApplicationAttributesDeveloperOwners({
+final class ApphubApplicationDeveloperOwners {
+  const ApphubApplicationDeveloperOwners({
     this.displayName,
     required this.email,
   });
@@ -117,22 +117,22 @@ final class ApphubApplicationAttributesDeveloperOwners {
 /// Typed helper for the `attributes.environment` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable
-final class ApphubApplicationAttributesEnvironment {
-  const ApphubApplicationAttributesEnvironment({required this.type});
+final class ApphubApplicationEnvironment {
+  const ApphubApplicationEnvironment({required this.type});
 
-  final TfArg<ApphubApplicationAttributesEnvironmentType> type;
+  final TfArg<ApphubApplicationEnvironmentType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationAttributesEnvironmentType implements TerraformEnum {
+enum ApphubApplicationEnvironmentType implements TerraformEnum {
   production('PRODUCTION'),
   staging('STAGING'),
   test('TEST'),
   development('DEVELOPMENT');
 
-  const ApphubApplicationAttributesEnvironmentType(this.terraformValue);
+  const ApphubApplicationEnvironmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -140,8 +140,8 @@ enum ApphubApplicationAttributesEnvironmentType implements TerraformEnum {
 /// Typed helper for the `attributes.operator_owners` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable
-final class ApphubApplicationAttributesOperatorOwners {
-  const ApphubApplicationAttributesOperatorOwners({
+final class ApphubApplicationOperatorOwners {
+  const ApphubApplicationOperatorOwners({
     this.displayName,
     required this.email,
   });
@@ -162,17 +162,17 @@ final class ApphubApplicationAttributesOperatorOwners {
 final class ApphubApplicationScope {
   const ApphubApplicationScope({required this.type});
 
-  final TfArg<ApphubApplicationScopeType> type;
+  final TfArg<ApphubApplicationType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationScopeType implements TerraformEnum {
+enum ApphubApplicationType implements TerraformEnum {
   regional('REGIONAL'),
   global('GLOBAL');
 
-  const ApphubApplicationScopeType(this.terraformValue);
+  const ApphubApplicationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -195,7 +195,7 @@ enum ApphubApplicationScopeType implements TerraformEnum {
 ///   location: TfArg.literal('us-central1'),
 ///   applicationId: TfArg.literal('terradart-orders'),
 ///   scope: ApphubApplicationScope(
-///     type: TfArg.literal(ApphubApplicationScopeType.regional),
+///     type: TfArg.literal(ApphubApplicationType.regional),
 ///   ),
 /// );
 /// ```

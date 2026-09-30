@@ -8,19 +8,19 @@ library;
 
 export 'src/agent/google_agent_identity_auth_provider.dart'
     show
-        AgentIdentityAuthProviderAuthProviderTypeParams,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKey,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice,
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth,
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoice,
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret,
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice,
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo,
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth,
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice,
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret,
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice,
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo,
+        AgentIdentityAuthProviderApiKey,
+        AgentIdentityAuthProviderThreeLeggedOauth,
+        AgentIdentityAuthProviderThreeLeggedOauthClientSecret,
+        AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice,
+        AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo,
+        AgentIdentityAuthProviderTwoLeggedOauth,
+        AgentIdentityAuthProviderTwoLeggedOauthClientSecret,
+        AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice,
+        AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo,
+        AgentIdentityAuthProviderTypeParams,
+        AgentIdentityAuthProviderTypeParamsApiKey,
+        AgentIdentityAuthProviderTypeParamsThreeLeggedOauth,
+        AgentIdentityAuthProviderTypeParamsTwoLeggedOauth,
         GoogleAgentIdentityAuthProvider;
 export 'src/agent/google_agent_registry_binding.dart'
     show

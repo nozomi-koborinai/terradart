@@ -6,10 +6,10 @@ library;
 
 export 'src/deployment_manager/google_deployment_manager_deployment.dart'
     show
+        DeploymentManagerDeploymentConfig,
         DeploymentManagerDeploymentCreatePolicy,
         DeploymentManagerDeploymentDeletePolicy,
+        DeploymentManagerDeploymentImports,
         DeploymentManagerDeploymentLabels,
         DeploymentManagerDeploymentTarget,
-        DeploymentManagerDeploymentTargetConfig,
-        DeploymentManagerDeploymentTargetImports,
         GoogleDeploymentManagerDeployment;

@@ -24,12 +24,12 @@ final class S3controlBucketLifecycleConfigurationRule {
 
   final TfArg<String>? status;
 
-  final S3controlBucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload?
+  final S3controlBucketLifecycleConfigurationAbortIncompleteMultipartUpload?
   abortIncompleteMultipartUpload;
 
-  final S3controlBucketLifecycleConfigurationRuleExpiration? expiration;
+  final S3controlBucketLifecycleConfigurationExpiration? expiration;
 
-  final S3controlBucketLifecycleConfigurationRuleFilter? filter;
+  final S3controlBucketLifecycleConfigurationFilter? filter;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -44,8 +44,8 @@ final class S3controlBucketLifecycleConfigurationRule {
 /// Typed helper for the `rule.abort_incomplete_multipart_upload` block of
 /// `aws_s3control_bucket_lifecycle_configuration` (derived from provider schema).
 @immutable
-final class S3controlBucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload {
-  const S3controlBucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload({
+final class S3controlBucketLifecycleConfigurationAbortIncompleteMultipartUpload {
+  const S3controlBucketLifecycleConfigurationAbortIncompleteMultipartUpload({
     required this.daysAfterInitiation,
   });
 
@@ -59,8 +59,8 @@ final class S3controlBucketLifecycleConfigurationRuleAbortIncompleteMultipartUpl
 /// Typed helper for the `rule.expiration` block of
 /// `aws_s3control_bucket_lifecycle_configuration` (derived from provider schema).
 @immutable
-final class S3controlBucketLifecycleConfigurationRuleExpiration {
-  const S3controlBucketLifecycleConfigurationRuleExpiration({
+final class S3controlBucketLifecycleConfigurationExpiration {
+  const S3controlBucketLifecycleConfigurationExpiration({
     this.date,
     this.days,
     this.expiredObjectDeleteMarker,
@@ -82,11 +82,8 @@ final class S3controlBucketLifecycleConfigurationRuleExpiration {
 /// Typed helper for the `rule.filter` block of
 /// `aws_s3control_bucket_lifecycle_configuration` (derived from provider schema).
 @immutable
-final class S3controlBucketLifecycleConfigurationRuleFilter {
-  const S3controlBucketLifecycleConfigurationRuleFilter({
-    this.prefix,
-    this.tags,
-  });
+final class S3controlBucketLifecycleConfigurationFilter {
+  const S3controlBucketLifecycleConfigurationFilter({this.prefix, this.tags});
 
   final TfArg<String>? prefix;
 

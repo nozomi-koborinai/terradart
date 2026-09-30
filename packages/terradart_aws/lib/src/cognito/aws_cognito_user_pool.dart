@@ -155,8 +155,7 @@ final class CognitoUserPoolSignInAttributesUsernameAttributes
 final class CognitoUserPoolAccountRecoverySetting {
   const CognitoUserPoolAccountRecoverySetting({this.recoveryMechanism});
 
-  final List<CognitoUserPoolAccountRecoverySettingRecoveryMechanism>?
-  recoveryMechanism;
+  final List<CognitoUserPoolRecoveryMechanism>? recoveryMechanism;
 
   Map<String, Object?> encode() => {
     if (recoveryMechanism != null)
@@ -167,13 +166,13 @@ final class CognitoUserPoolAccountRecoverySetting {
 /// Typed helper for the `account_recovery_setting.recovery_mechanism` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolAccountRecoverySettingRecoveryMechanism {
-  const CognitoUserPoolAccountRecoverySettingRecoveryMechanism({
+final class CognitoUserPoolRecoveryMechanism {
+  const CognitoUserPoolRecoveryMechanism({
     required this.name,
     required this.priority,
   });
 
-  final TfArg<CognitoUserPoolAccountRecoverySettingRecoveryMechanismName> name;
+  final TfArg<CognitoUserPoolRecoveryMechanismName> name;
 
   final TfArg<num> priority;
 
@@ -184,15 +183,12 @@ final class CognitoUserPoolAccountRecoverySettingRecoveryMechanism {
 }
 
 /// `name` — derived from the provider schema description.
-enum CognitoUserPoolAccountRecoverySettingRecoveryMechanismName
-    implements TerraformEnum {
+enum CognitoUserPoolRecoveryMechanismName implements TerraformEnum {
   verifiedEmail('verified_email'),
   verifiedPhoneNumber('verified_phone_number'),
   adminOnly('admin_only');
 
-  const CognitoUserPoolAccountRecoverySettingRecoveryMechanismName(
-    this.terraformValue,
-  );
+  const CognitoUserPoolRecoveryMechanismName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -208,8 +204,7 @@ final class CognitoUserPoolAdminCreateUserConfig {
 
   final TfArg<bool>? allowAdminCreateUserOnly;
 
-  final CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate?
-  inviteMessageTemplate;
+  final CognitoUserPoolInviteMessageTemplate? inviteMessageTemplate;
 
   Map<String, Object?> encode() => {
     'allow_admin_create_user_only': ?allowAdminCreateUserOnly?.toTfJson(),
@@ -220,8 +215,8 @@ final class CognitoUserPoolAdminCreateUserConfig {
 /// Typed helper for the `admin_create_user_config.invite_message_template` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate {
-  const CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate({
+final class CognitoUserPoolInviteMessageTemplate {
+  const CognitoUserPoolInviteMessageTemplate({
     this.emailMessage,
     this.emailSubject,
     this.smsMessage,
@@ -275,8 +270,7 @@ final class CognitoUserPoolEmailConfiguration {
 
   final TfArg<String>? configurationSet;
 
-  final TfArg<CognitoUserPoolEmailConfigurationEmailSendingAccount>?
-  emailSendingAccount;
+  final TfArg<CognitoUserPoolEmailSendingAccount>? emailSendingAccount;
 
   final TfArg<String>? fromEmailAddress;
 
@@ -294,14 +288,11 @@ final class CognitoUserPoolEmailConfiguration {
 }
 
 /// `email_sending_account` — derived from the provider schema description.
-enum CognitoUserPoolEmailConfigurationEmailSendingAccount
-    implements TerraformEnum {
+enum CognitoUserPoolEmailSendingAccount implements TerraformEnum {
   cognitoDefault('COGNITO_DEFAULT'),
   developer('DEVELOPER');
 
-  const CognitoUserPoolEmailConfigurationEmailSendingAccount(
-    this.terraformValue,
-  );
+  const CognitoUserPoolEmailSendingAccount(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -365,12 +356,11 @@ final class CognitoUserPoolLambdaConfig {
 
   final TfArg<String>? verifyAuthChallengeResponse;
 
-  final CognitoUserPoolLambdaConfigCustomEmailSender? customEmailSender;
+  final CognitoUserPoolCustomEmailSender? customEmailSender;
 
-  final CognitoUserPoolLambdaConfigCustomSmsSender? customSmsSender;
+  final CognitoUserPoolCustomSmsSender? customSmsSender;
 
-  final CognitoUserPoolLambdaConfigPreTokenGenerationConfig?
-  preTokenGenerationConfig;
+  final CognitoUserPoolPreTokenGenerationConfig? preTokenGenerationConfig;
 
   Map<String, Object?> encode() => {
     'create_auth_challenge': ?createAuthChallenge?.toTfJson(),
@@ -393,16 +383,15 @@ final class CognitoUserPoolLambdaConfig {
 /// Typed helper for the `lambda_config.custom_email_sender` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolLambdaConfigCustomEmailSender {
-  const CognitoUserPoolLambdaConfigCustomEmailSender({
+final class CognitoUserPoolCustomEmailSender {
+  const CognitoUserPoolCustomEmailSender({
     required this.lambdaArn,
     required this.lambdaVersion,
   });
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
-  final TfArg<CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion>
-  lambdaVersion;
+  final TfArg<CognitoUserPoolCustomEmailSenderLambdaVersion> lambdaVersion;
 
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
@@ -411,13 +400,10 @@ final class CognitoUserPoolLambdaConfigCustomEmailSender {
 }
 
 /// `lambda_version` — derived from the provider schema description.
-enum CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion
-    implements TerraformEnum {
+enum CognitoUserPoolCustomEmailSenderLambdaVersion implements TerraformEnum {
   v10('V1_0');
 
-  const CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion(
-    this.terraformValue,
-  );
+  const CognitoUserPoolCustomEmailSenderLambdaVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -425,47 +411,34 @@ enum CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion
 /// Typed helper for the `lambda_config.custom_sms_sender` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolLambdaConfigCustomSmsSender {
-  const CognitoUserPoolLambdaConfigCustomSmsSender({
+final class CognitoUserPoolCustomSmsSender {
+  const CognitoUserPoolCustomSmsSender({
     required this.lambdaArn,
     required this.lambdaVersion,
   });
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
-  final TfArg<CognitoUserPoolLambdaConfigCustomSmsSenderLambdaVersion>
-  lambdaVersion;
+  final TfArg<CognitoUserPoolCustomEmailSenderLambdaVersion> lambdaVersion;
 
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
   };
-}
-
-/// `lambda_version` — derived from the provider schema description.
-enum CognitoUserPoolLambdaConfigCustomSmsSenderLambdaVersion
-    implements TerraformEnum {
-  v10('V1_0');
-
-  const CognitoUserPoolLambdaConfigCustomSmsSenderLambdaVersion(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `lambda_config.pre_token_generation_config` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolLambdaConfigPreTokenGenerationConfig {
-  const CognitoUserPoolLambdaConfigPreTokenGenerationConfig({
+final class CognitoUserPoolPreTokenGenerationConfig {
+  const CognitoUserPoolPreTokenGenerationConfig({
     required this.lambdaArn,
     required this.lambdaVersion,
   });
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
-  final TfArg<CognitoUserPoolLambdaConfigPreTokenGenerationConfigLambdaVersion>
+  final TfArg<CognitoUserPoolPreTokenGenerationConfigLambdaVersion>
   lambdaVersion;
 
   Map<String, Object?> encode() => {
@@ -475,13 +448,13 @@ final class CognitoUserPoolLambdaConfigPreTokenGenerationConfig {
 }
 
 /// `lambda_version` — derived from the provider schema description.
-enum CognitoUserPoolLambdaConfigPreTokenGenerationConfigLambdaVersion
+enum CognitoUserPoolPreTokenGenerationConfigLambdaVersion
     implements TerraformEnum {
   v10('V1_0'),
   v20('V2_0'),
   v30('V3_0');
 
-  const CognitoUserPoolLambdaConfigPreTokenGenerationConfigLambdaVersion(
+  const CognitoUserPoolPreTokenGenerationConfigLambdaVersion(
     this.terraformValue,
   );
   @override
@@ -542,7 +515,7 @@ final class CognitoUserPoolSchema {
     this.stringAttributeConstraints,
   });
 
-  final TfArg<CognitoUserPoolSchemaAttributeDataType> attributeDataType;
+  final TfArg<CognitoUserPoolAttributeDataType> attributeDataType;
 
   final TfArg<bool>? developerOnlyAttribute;
 
@@ -552,11 +525,9 @@ final class CognitoUserPoolSchema {
 
   final TfArg<bool>? required;
 
-  final CognitoUserPoolSchemaNumberAttributeConstraints?
-  numberAttributeConstraints;
+  final CognitoUserPoolNumberAttributeConstraints? numberAttributeConstraints;
 
-  final CognitoUserPoolSchemaStringAttributeConstraints?
-  stringAttributeConstraints;
+  final CognitoUserPoolStringAttributeConstraints? stringAttributeConstraints;
 
   Map<String, Object?> encode() => {
     'attribute_data_type': attributeDataType.toTfJson(),
@@ -570,13 +541,13 @@ final class CognitoUserPoolSchema {
 }
 
 /// `attribute_data_type` — derived from the provider schema description.
-enum CognitoUserPoolSchemaAttributeDataType implements TerraformEnum {
+enum CognitoUserPoolAttributeDataType implements TerraformEnum {
   string('String'),
   number('Number'),
   datetime('DateTime'),
   boolean('Boolean');
 
-  const CognitoUserPoolSchemaAttributeDataType(this.terraformValue);
+  const CognitoUserPoolAttributeDataType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -584,8 +555,8 @@ enum CognitoUserPoolSchemaAttributeDataType implements TerraformEnum {
 /// Typed helper for the `schema.number_attribute_constraints` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolSchemaNumberAttributeConstraints {
-  const CognitoUserPoolSchemaNumberAttributeConstraints({
+final class CognitoUserPoolNumberAttributeConstraints {
+  const CognitoUserPoolNumberAttributeConstraints({
     this.maxValue,
     this.minValue,
   });
@@ -603,8 +574,8 @@ final class CognitoUserPoolSchemaNumberAttributeConstraints {
 /// Typed helper for the `schema.string_attribute_constraints` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolSchemaStringAttributeConstraints {
-  const CognitoUserPoolSchemaStringAttributeConstraints({
+final class CognitoUserPoolStringAttributeConstraints {
+  const CognitoUserPoolStringAttributeConstraints({
     this.maxLength,
     this.minLength,
   });
@@ -625,7 +596,7 @@ final class CognitoUserPoolSchemaStringAttributeConstraints {
 final class CognitoUserPoolSignInPolicy {
   const CognitoUserPoolSignInPolicy({this.allowedFirstAuthFactors});
 
-  final List<TfArg<CognitoUserPoolSignInPolicyAllowedFirstAuthFactors>>?
+  final List<TfArg<CognitoUserPoolAllowedFirstAuthFactors>>?
   allowedFirstAuthFactors;
 
   Map<String, Object?> encode() => {
@@ -637,15 +608,14 @@ final class CognitoUserPoolSignInPolicy {
 }
 
 /// `allowed_first_auth_factors` — derived from the provider schema description.
-enum CognitoUserPoolSignInPolicyAllowedFirstAuthFactors
-    implements TerraformEnum {
+enum CognitoUserPoolAllowedFirstAuthFactors implements TerraformEnum {
   password('PASSWORD'),
   emailOtp('EMAIL_OTP'),
   smsOtp('SMS_OTP'),
   webAuthn('WEB_AUTHN'),
   softwareToken('SOFTWARE_TOKEN');
 
-  const CognitoUserPoolSignInPolicyAllowedFirstAuthFactors(this.terraformValue);
+  const CognitoUserPoolAllowedFirstAuthFactors(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -692,11 +662,7 @@ final class CognitoUserPoolUserAttributeUpdateSettings {
     required this.attributesRequireVerificationBeforeUpdate,
   });
 
-  final List<
-    TfArg<
-      CognitoUserPoolUserAttributeUpdateSettingsAttributesRequireVerificationBeforeUpdate
-    >
-  >
+  final List<TfArg<CognitoUserPoolAttributesRequireVerificationBeforeUpdate>>
   attributesRequireVerificationBeforeUpdate;
 
   Map<String, Object?> encode() => {
@@ -707,12 +673,12 @@ final class CognitoUserPoolUserAttributeUpdateSettings {
 }
 
 /// `attributes_require_verification_before_update` — derived from the provider schema description.
-enum CognitoUserPoolUserAttributeUpdateSettingsAttributesRequireVerificationBeforeUpdate
+enum CognitoUserPoolAttributesRequireVerificationBeforeUpdate
     implements TerraformEnum {
   phoneNumber('phone_number'),
   email('email');
 
-  const CognitoUserPoolUserAttributeUpdateSettingsAttributesRequireVerificationBeforeUpdate(
+  const CognitoUserPoolAttributesRequireVerificationBeforeUpdate(
     this.terraformValue,
   );
   @override
@@ -722,16 +688,15 @@ enum CognitoUserPoolUserAttributeUpdateSettingsAttributesRequireVerificationBefo
 /// Typed helper for the `user_pool_add_ons` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolUserPoolAddOns {
-  const CognitoUserPoolUserPoolAddOns({
+final class CognitoUserPoolAddOns {
+  const CognitoUserPoolAddOns({
     required this.advancedSecurityMode,
     this.advancedSecurityAdditionalFlows,
   });
 
-  final TfArg<CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode>
-  advancedSecurityMode;
+  final TfArg<CognitoUserPoolAdvancedSecurityMode> advancedSecurityMode;
 
-  final CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows?
+  final CognitoUserPoolAdvancedSecurityAdditionalFlows?
   advancedSecurityAdditionalFlows;
 
   Map<String, Object?> encode() => {
@@ -742,13 +707,12 @@ final class CognitoUserPoolUserPoolAddOns {
 }
 
 /// `advanced_security_mode` — derived from the provider schema description.
-enum CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode
-    implements TerraformEnum {
+enum CognitoUserPoolAdvancedSecurityMode implements TerraformEnum {
   off('OFF'),
   audit('AUDIT'),
   enforced('ENFORCED');
 
-  const CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode(this.terraformValue);
+  const CognitoUserPoolAdvancedSecurityMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -756,15 +720,10 @@ enum CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode
 /// Typed helper for the `user_pool_add_ons.advanced_security_additional_flows` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
-final class CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows {
-  const CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows({
-    this.customAuthMode,
-  });
+final class CognitoUserPoolAdvancedSecurityAdditionalFlows {
+  const CognitoUserPoolAdvancedSecurityAdditionalFlows({this.customAuthMode});
 
-  final TfArg<
-    CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlowsCustomAuthMode
-  >?
-  customAuthMode;
+  final TfArg<CognitoUserPoolCustomAuthMode>? customAuthMode;
 
   Map<String, Object?> encode() => {
     'custom_auth_mode': ?customAuthMode?.toTfJson(),
@@ -772,14 +731,11 @@ final class CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows {
 }
 
 /// `custom_auth_mode` — derived from the provider schema description.
-enum CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlowsCustomAuthMode
-    implements TerraformEnum {
+enum CognitoUserPoolCustomAuthMode implements TerraformEnum {
   audit('AUDIT'),
   enforced('ENFORCED');
 
-  const CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlowsCustomAuthMode(
-    this.terraformValue,
-  );
+  const CognitoUserPoolCustomAuthMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -810,8 +766,7 @@ final class CognitoUserPoolVerificationMessageTemplate {
     this.smsMessage,
   });
 
-  final TfArg<CognitoUserPoolVerificationMessageTemplateDefaultEmailOption>?
-  defaultEmailOption;
+  final TfArg<CognitoUserPoolDefaultEmailOption>? defaultEmailOption;
 
   final TfArg<String>? emailMessage;
 
@@ -834,14 +789,11 @@ final class CognitoUserPoolVerificationMessageTemplate {
 }
 
 /// `default_email_option` — derived from the provider schema description.
-enum CognitoUserPoolVerificationMessageTemplateDefaultEmailOption
-    implements TerraformEnum {
+enum CognitoUserPoolDefaultEmailOption implements TerraformEnum {
   confirmWithLink('CONFIRM_WITH_LINK'),
   confirmWithCode('CONFIRM_WITH_CODE');
 
-  const CognitoUserPoolVerificationMessageTemplateDefaultEmailOption(
-    this.terraformValue,
-  );
+  const CognitoUserPoolDefaultEmailOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -857,8 +809,7 @@ final class CognitoUserPoolWebAuthnConfiguration {
 
   final TfArg<String>? relyingPartyId;
 
-  final TfArg<CognitoUserPoolWebAuthnConfigurationUserVerification>?
-  userVerification;
+  final TfArg<CognitoUserPoolUserVerification>? userVerification;
 
   Map<String, Object?> encode() => {
     'relying_party_id': ?relyingPartyId?.toTfJson(),
@@ -867,14 +818,11 @@ final class CognitoUserPoolWebAuthnConfiguration {
 }
 
 /// `user_verification` — derived from the provider schema description.
-enum CognitoUserPoolWebAuthnConfigurationUserVerification
-    implements TerraformEnum {
+enum CognitoUserPoolUserVerification implements TerraformEnum {
   required('required'),
   preferred('preferred');
 
-  const CognitoUserPoolWebAuthnConfigurationUserVerification(
-    this.terraformValue,
-  );
+  const CognitoUserPoolUserVerification(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -909,7 +857,7 @@ final class AwsCognitoUserPool extends Resource {
     CognitoUserPoolSmsConfiguration? smsConfiguration,
     CognitoUserPoolSoftwareTokenMfaConfiguration? softwareTokenMfaConfiguration,
     CognitoUserPoolUserAttributeUpdateSettings? userAttributeUpdateSettings,
-    CognitoUserPoolUserPoolAddOns? userPoolAddOns,
+    CognitoUserPoolAddOns? userPoolAddOns,
     CognitoUserPoolUsernameConfiguration? usernameConfiguration,
     CognitoUserPoolVerificationMessageTemplate? verificationMessageTemplate,
     CognitoUserPoolWebAuthnConfiguration? webAuthnConfiguration,

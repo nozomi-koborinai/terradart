@@ -20,8 +20,7 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 
   final TfArg<String>? certificateAuthorityArn;
 
-  final TfArg<AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus>?
-  status;
+  final TfArg<AppstreamDirectoryConfigStatus>? status;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
@@ -30,15 +29,12 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 }
 
 /// `status` — derived from the provider schema description.
-enum AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus
-    implements TerraformEnum {
+enum AppstreamDirectoryConfigStatus implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED'),
   enabledNoDirectoryLoginFallback('ENABLED_NO_DIRECTORY_LOGIN_FALLBACK');
 
-  const AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus(
-    this.terraformValue,
-  );
+  const AppstreamDirectoryConfigStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -76,8 +76,7 @@ final class DataEcsTaskExecutionOverrides {
 
   final RefTo<AwsIamRole>? taskRoleArn;
 
-  final List<DataEcsTaskExecutionOverridesContainerOverrides>?
-  containerOverrides;
+  final List<DataEcsTaskExecutionContainerOverrides>? containerOverrides;
 
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
@@ -92,8 +91,8 @@ final class DataEcsTaskExecutionOverrides {
 /// Typed helper for the `overrides.container_overrides` block of
 /// `aws_ecs_task_execution` (derived from provider schema).
 @immutable
-final class DataEcsTaskExecutionOverridesContainerOverrides {
-  const DataEcsTaskExecutionOverridesContainerOverrides({
+final class DataEcsTaskExecutionContainerOverrides {
+  const DataEcsTaskExecutionContainerOverrides({
     this.command,
     this.cpu,
     this.memory,
@@ -113,13 +112,9 @@ final class DataEcsTaskExecutionOverridesContainerOverrides {
 
   final TfArg<String> name;
 
-  final List<DataEcsTaskExecutionOverridesContainerOverridesEnvironment>?
-  environment;
+  final List<DataEcsTaskExecutionEnvironment>? environment;
 
-  final List<
-    DataEcsTaskExecutionOverridesContainerOverridesResourceRequirements
-  >?
-  resourceRequirements;
+  final List<DataEcsTaskExecutionResourceRequirements>? resourceRequirements;
 
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
@@ -139,8 +134,8 @@ final class DataEcsTaskExecutionOverridesContainerOverrides {
 /// Typed helper for the `overrides.container_overrides.environment` block of
 /// `aws_ecs_task_execution` (derived from provider schema).
 @immutable
-final class DataEcsTaskExecutionOverridesContainerOverridesEnvironment {
-  const DataEcsTaskExecutionOverridesContainerOverridesEnvironment({
+final class DataEcsTaskExecutionEnvironment {
+  const DataEcsTaskExecutionEnvironment({
     required this.key,
     required this.value,
   });
@@ -158,8 +153,8 @@ final class DataEcsTaskExecutionOverridesContainerOverridesEnvironment {
 /// Typed helper for the `overrides.container_overrides.resource_requirements` block of
 /// `aws_ecs_task_execution` (derived from provider schema).
 @immutable
-final class DataEcsTaskExecutionOverridesContainerOverridesResourceRequirements {
-  const DataEcsTaskExecutionOverridesContainerOverridesResourceRequirements({
+final class DataEcsTaskExecutionResourceRequirements {
+  const DataEcsTaskExecutionResourceRequirements({
     required this.type,
     required this.value,
   });

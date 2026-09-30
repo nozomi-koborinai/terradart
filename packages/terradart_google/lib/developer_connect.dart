@@ -8,42 +8,33 @@ library;
 export 'src/developer_connect/google_developer_connect_account_connector.dart'
     show
         DeveloperConnectAccountConnectorCustomOauthConfig,
-        DeveloperConnectAccountConnectorCustomOauthConfigServiceDirectoryConfig,
         DeveloperConnectAccountConnectorProviderOauthConfig,
         DeveloperConnectAccountConnectorProxyConfig,
+        DeveloperConnectAccountConnectorServiceDirectoryConfig,
         GoogleDeveloperConnectAccountConnector;
 export 'src/developer_connect/google_developer_connect_connection.dart'
     show
+        DeveloperConnectConnectionBasicAuthentication,
+        DeveloperConnectConnectionBearerTokenAuthentication,
         DeveloperConnectConnectionBitbucketCloudConfig,
         DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential,
-        DeveloperConnectConnectionBitbucketCloudConfigReadAuthorizerCredential,
         DeveloperConnectConnectionBitbucketDataCenterConfig,
-        DeveloperConnectConnectionBitbucketDataCenterConfigAuthorizerCredential,
-        DeveloperConnectConnectionBitbucketDataCenterConfigReadAuthorizerCredential,
-        DeveloperConnectConnectionBitbucketDataCenterConfigServiceDirectoryConfig,
         DeveloperConnectConnectionCryptoKeyConfig,
         DeveloperConnectConnectionGithubConfig,
         DeveloperConnectConnectionGithubConfigAuthorizerCredential,
         DeveloperConnectConnectionGithubEnterpriseConfig,
-        DeveloperConnectConnectionGithubEnterpriseConfigServiceDirectoryConfig,
         DeveloperConnectConnectionGitlabConfig,
-        DeveloperConnectConnectionGitlabConfigAuthorizerCredential,
-        DeveloperConnectConnectionGitlabConfigReadAuthorizerCredential,
         DeveloperConnectConnectionGitlabEnterpriseConfig,
-        DeveloperConnectConnectionGitlabEnterpriseConfigAuthorizerCredential,
-        DeveloperConnectConnectionGitlabEnterpriseConfigReadAuthorizerCredential,
-        DeveloperConnectConnectionGitlabEnterpriseConfigServiceDirectoryConfig,
         DeveloperConnectConnectionHttpConfig,
-        DeveloperConnectConnectionHttpConfigBasicAuthentication,
-        DeveloperConnectConnectionHttpConfigBearerTokenAuthentication,
-        DeveloperConnectConnectionHttpConfigServiceDirectoryConfig,
+        DeveloperConnectConnectionReadAuthorizerCredential,
+        DeveloperConnectConnectionServiceDirectoryConfig,
         GoogleDeveloperConnectConnection;
 export 'src/developer_connect/google_developer_connect_git_repository_link.dart'
     show GoogleDeveloperConnectGitRepositoryLink;
 export 'src/developer_connect/google_developer_connect_insights_config.dart'
     show
         DeveloperConnectInsightsConfigArtifactConfigs,
-        DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactAnalysis,
-        DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactRegistry,
+        DeveloperConnectInsightsConfigGoogleArtifactAnalysis,
+        DeveloperConnectInsightsConfigGoogleArtifactRegistry,
         DeveloperConnectInsightsConfigTargetProjects,
         GoogleDeveloperConnectInsightsConfig;

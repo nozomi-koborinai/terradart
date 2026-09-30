@@ -48,11 +48,11 @@ final class QueueConsumerSettings {
 
   final TfArg<num>? visibilityTimeoutMs;
 
-  final List<QueueConsumerSettingsEmail>? email;
+  final List<QueueConsumerEmail>? email;
 
-  final List<QueueConsumerSettingsPagerduty>? pagerduty;
+  final List<QueueConsumerPagerduty>? pagerduty;
 
-  final List<QueueConsumerSettingsWebhooks>? webhooks;
+  final List<QueueConsumerWebhooks>? webhooks;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -71,8 +71,8 @@ final class QueueConsumerSettings {
 /// Typed helper for the `settings.email` block of
 /// `cloudflare_queue_consumer` (derived from provider schema).
 @immutable
-final class QueueConsumerSettingsEmail {
-  const QueueConsumerSettingsEmail({required this.id});
+final class QueueConsumerEmail {
+  const QueueConsumerEmail({required this.id});
 
   final TfArg<String> id;
 
@@ -82,8 +82,8 @@ final class QueueConsumerSettingsEmail {
 /// Typed helper for the `settings.pagerduty` block of
 /// `cloudflare_queue_consumer` (derived from provider schema).
 @immutable
-final class QueueConsumerSettingsPagerduty {
-  const QueueConsumerSettingsPagerduty({required this.id});
+final class QueueConsumerPagerduty {
+  const QueueConsumerPagerduty({required this.id});
 
   final TfArg<String> id;
 
@@ -93,8 +93,8 @@ final class QueueConsumerSettingsPagerduty {
 /// Typed helper for the `settings.webhooks` block of
 /// `cloudflare_queue_consumer` (derived from provider schema).
 @immutable
-final class QueueConsumerSettingsWebhooks {
-  const QueueConsumerSettingsWebhooks({required this.id});
+final class QueueConsumerWebhooks {
+  const QueueConsumerWebhooks({required this.id});
 
   final TfArg<String> id;
 

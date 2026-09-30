@@ -21,13 +21,13 @@ sealed class MskconnectConnectorCapacity {
 
   /// Sets `autoscaling`.
   const factory MskconnectConnectorCapacity.autoscaling(
-    MskconnectConnectorCapacityAutoscaling autoscaling,
-  ) = MskconnectConnectorCapacityAutoscalingChoice;
+    MskconnectConnectorAutoscaling autoscaling,
+  ) = MskconnectConnectorCapacityAutoscaling;
 
   /// Sets `provisioned_capacity`.
   const factory MskconnectConnectorCapacity.provisionedCapacity(
-    MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity,
-  ) = MskconnectConnectorCapacityProvisionedCapacityChoice;
+    MskconnectConnectorProvisionedCapacity provisionedCapacity,
+  ) = MskconnectConnectorProvisionedCapacityChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,11 +36,11 @@ sealed class MskconnectConnectorCapacity {
 }
 
 /// The [MskconnectConnectorCapacity.autoscaling] choice: sets `autoscaling`.
-final class MskconnectConnectorCapacityAutoscalingChoice
+final class MskconnectConnectorCapacityAutoscaling
     extends MskconnectConnectorCapacity {
-  const MskconnectConnectorCapacityAutoscalingChoice(this.autoscaling);
+  const MskconnectConnectorCapacityAutoscaling(this.autoscaling);
 
-  final MskconnectConnectorCapacityAutoscaling autoscaling;
+  final MskconnectConnectorAutoscaling autoscaling;
 
   @override
   String get blockKey => 'autoscaling';
@@ -50,13 +50,11 @@ final class MskconnectConnectorCapacityAutoscalingChoice
 }
 
 /// The [MskconnectConnectorCapacity.provisionedCapacity] choice: sets `provisioned_capacity`.
-final class MskconnectConnectorCapacityProvisionedCapacityChoice
+final class MskconnectConnectorProvisionedCapacityChoice
     extends MskconnectConnectorCapacity {
-  const MskconnectConnectorCapacityProvisionedCapacityChoice(
-    this.provisionedCapacity,
-  );
+  const MskconnectConnectorProvisionedCapacityChoice(this.provisionedCapacity);
 
-  final MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity;
+  final MskconnectConnectorProvisionedCapacity provisionedCapacity;
 
   @override
   String get blockKey => 'provisioned_capacity';
@@ -70,8 +68,8 @@ final class MskconnectConnectorCapacityProvisionedCapacityChoice
 /// Typed helper for the `capacity.autoscaling` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorCapacityAutoscaling {
-  const MskconnectConnectorCapacityAutoscaling({
+final class MskconnectConnectorAutoscaling {
+  const MskconnectConnectorAutoscaling({
     required this.maxWorkerCount,
     this.mcuCount,
     required this.minWorkerCount,
@@ -85,9 +83,9 @@ final class MskconnectConnectorCapacityAutoscaling {
 
   final TfArg<num> minWorkerCount;
 
-  final MskconnectConnectorCapacityAutoscalingScaleInPolicy? scaleInPolicy;
+  final MskconnectConnectorScaleInPolicy? scaleInPolicy;
 
-  final MskconnectConnectorCapacityAutoscalingScaleOutPolicy? scaleOutPolicy;
+  final MskconnectConnectorScaleOutPolicy? scaleOutPolicy;
 
   Map<String, Object?> encode() => {
     'max_worker_count': maxWorkerCount.toTfJson(),
@@ -101,10 +99,8 @@ final class MskconnectConnectorCapacityAutoscaling {
 /// Typed helper for the `capacity.autoscaling.scale_in_policy` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorCapacityAutoscalingScaleInPolicy {
-  const MskconnectConnectorCapacityAutoscalingScaleInPolicy({
-    this.cpuUtilizationPercentage,
-  });
+final class MskconnectConnectorScaleInPolicy {
+  const MskconnectConnectorScaleInPolicy({this.cpuUtilizationPercentage});
 
   final TfArg<num>? cpuUtilizationPercentage;
 
@@ -116,10 +112,8 @@ final class MskconnectConnectorCapacityAutoscalingScaleInPolicy {
 /// Typed helper for the `capacity.autoscaling.scale_out_policy` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorCapacityAutoscalingScaleOutPolicy {
-  const MskconnectConnectorCapacityAutoscalingScaleOutPolicy({
-    this.cpuUtilizationPercentage,
-  });
+final class MskconnectConnectorScaleOutPolicy {
+  const MskconnectConnectorScaleOutPolicy({this.cpuUtilizationPercentage});
 
   final TfArg<num>? cpuUtilizationPercentage;
 
@@ -131,8 +125,8 @@ final class MskconnectConnectorCapacityAutoscalingScaleOutPolicy {
 /// Typed helper for the `capacity.provisioned_capacity` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorCapacityProvisionedCapacity {
-  const MskconnectConnectorCapacityProvisionedCapacity({
+final class MskconnectConnectorProvisionedCapacity {
+  const MskconnectConnectorProvisionedCapacity({
     this.mcuCount,
     required this.workerCount,
   });
@@ -153,7 +147,7 @@ final class MskconnectConnectorCapacityProvisionedCapacity {
 final class MskconnectConnectorKafkaCluster {
   const MskconnectConnectorKafkaCluster({required this.apacheKafkaCluster});
 
-  final MskconnectConnectorKafkaClusterApacheKafkaCluster apacheKafkaCluster;
+  final MskconnectConnectorApacheKafkaCluster apacheKafkaCluster;
 
   Map<String, Object?> encode() => {
     'apache_kafka_cluster': apacheKafkaCluster.encode(),
@@ -163,15 +157,15 @@ final class MskconnectConnectorKafkaCluster {
 /// Typed helper for the `kafka_cluster.apache_kafka_cluster` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorKafkaClusterApacheKafkaCluster {
-  const MskconnectConnectorKafkaClusterApacheKafkaCluster({
+final class MskconnectConnectorApacheKafkaCluster {
+  const MskconnectConnectorApacheKafkaCluster({
     required this.bootstrapServers,
     required this.vpc,
   });
 
   final TfArg<String> bootstrapServers;
 
-  final MskconnectConnectorKafkaClusterApacheKafkaClusterVpc vpc;
+  final MskconnectConnectorVpc vpc;
 
   Map<String, Object?> encode() => {
     'bootstrap_servers': bootstrapServers.toTfJson(),
@@ -182,8 +176,8 @@ final class MskconnectConnectorKafkaClusterApacheKafkaCluster {
 /// Typed helper for the `kafka_cluster.apache_kafka_cluster.vpc` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorKafkaClusterApacheKafkaClusterVpc {
-  const MskconnectConnectorKafkaClusterApacheKafkaClusterVpc({
+final class MskconnectConnectorVpc {
+  const MskconnectConnectorVpc({
     required this.securityGroups,
     required this.subnets,
   });
@@ -206,10 +200,7 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
     this.authenticationType,
   });
 
-  final TfArg<
-    MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType
-  >?
-  authenticationType;
+  final TfArg<MskconnectConnectorAuthenticationType>? authenticationType;
 
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
@@ -217,14 +208,11 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
 }
 
 /// `authentication_type` — derived from the provider schema description.
-enum MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType
-    implements TerraformEnum {
+enum MskconnectConnectorAuthenticationType implements TerraformEnum {
   none('NONE'),
   iam('IAM');
 
-  const MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType(
-    this.terraformValue,
-  );
+  const MskconnectConnectorAuthenticationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -237,8 +225,7 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
     this.encryptionType,
   });
 
-  final TfArg<MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType>?
-  encryptionType;
+  final TfArg<MskconnectConnectorEncryptionType>? encryptionType;
 
   Map<String, Object?> encode() => {
     'encryption_type': ?encryptionType?.toTfJson(),
@@ -246,14 +233,11 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType
-    implements TerraformEnum {
+enum MskconnectConnectorEncryptionType implements TerraformEnum {
   plaintext('PLAINTEXT'),
   tls('TLS');
 
-  const MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType(
-    this.terraformValue,
-  );
+  const MskconnectConnectorEncryptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -264,7 +248,7 @@ enum MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType
 final class MskconnectConnectorLogDelivery {
   const MskconnectConnectorLogDelivery({required this.workerLogDelivery});
 
-  final MskconnectConnectorLogDeliveryWorkerLogDelivery workerLogDelivery;
+  final MskconnectConnectorWorkerLogDelivery workerLogDelivery;
 
   Map<String, Object?> encode() => {
     'worker_log_delivery': workerLogDelivery.encode(),
@@ -274,19 +258,18 @@ final class MskconnectConnectorLogDelivery {
 /// Typed helper for the `log_delivery.worker_log_delivery` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorLogDeliveryWorkerLogDelivery {
-  const MskconnectConnectorLogDeliveryWorkerLogDelivery({
+final class MskconnectConnectorWorkerLogDelivery {
+  const MskconnectConnectorWorkerLogDelivery({
     this.cloudwatchLogs,
     this.firehose,
     this.s3,
   });
 
-  final MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs?
-  cloudwatchLogs;
+  final MskconnectConnectorCloudwatchLogs? cloudwatchLogs;
 
-  final MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose? firehose;
+  final MskconnectConnectorFirehose? firehose;
 
-  final MskconnectConnectorLogDeliveryWorkerLogDeliveryS3? s3;
+  final MskconnectConnectorS3? s3;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -298,8 +281,8 @@ final class MskconnectConnectorLogDeliveryWorkerLogDelivery {
 /// Typed helper for the `log_delivery.worker_log_delivery.cloudwatch_logs` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs {
-  const MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs({
+final class MskconnectConnectorCloudwatchLogs {
+  const MskconnectConnectorCloudwatchLogs({
     required this.enabled,
     this.logGroup,
   });
@@ -317,8 +300,8 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs {
 /// Typed helper for the `log_delivery.worker_log_delivery.firehose` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose {
-  const MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose({
+final class MskconnectConnectorFirehose {
+  const MskconnectConnectorFirehose({
     this.deliveryStream,
     required this.enabled,
   });
@@ -336,8 +319,8 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose {
 /// Typed helper for the `log_delivery.worker_log_delivery.s3` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorLogDeliveryWorkerLogDeliveryS3 {
-  const MskconnectConnectorLogDeliveryWorkerLogDeliveryS3({
+final class MskconnectConnectorS3 {
+  const MskconnectConnectorS3({
     this.bucket,
     required this.enabled,
     this.prefix,
@@ -362,7 +345,7 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryS3 {
 final class MskconnectConnectorPlugin {
   const MskconnectConnectorPlugin({required this.customPlugin});
 
-  final MskconnectConnectorPluginCustomPlugin customPlugin;
+  final MskconnectConnectorCustomPlugin customPlugin;
 
   Map<String, Object?> encode() => {'custom_plugin': customPlugin.encode()};
 }
@@ -370,8 +353,8 @@ final class MskconnectConnectorPlugin {
 /// Typed helper for the `plugin.custom_plugin` block of
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
-final class MskconnectConnectorPluginCustomPlugin {
-  const MskconnectConnectorPluginCustomPlugin({
+final class MskconnectConnectorCustomPlugin {
+  const MskconnectConnectorCustomPlugin({
     required this.arn,
     required this.revision,
   });

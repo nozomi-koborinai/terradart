@@ -16,8 +16,7 @@ const Set<String> _googleRedisClusterUserCreatedConnectionsSensitive =
 final class RedisClusterUserCreatedConnectionsClusterEndpoints {
   const RedisClusterUserCreatedConnectionsClusterEndpoints({this.connections});
 
-  final List<RedisClusterUserCreatedConnectionsClusterEndpointsConnections>?
-  connections;
+  final List<RedisClusterUserCreatedConnectionsConnections>? connections;
 
   Map<String, Object?> encode() => {
     if (connections != null)
@@ -28,13 +27,10 @@ final class RedisClusterUserCreatedConnectionsClusterEndpoints {
 /// Typed helper for the `cluster_endpoints.connections` block of
 /// `google_redis_cluster_user_created_connections` (derived from provider schema).
 @immutable
-final class RedisClusterUserCreatedConnectionsClusterEndpointsConnections {
-  const RedisClusterUserCreatedConnectionsClusterEndpointsConnections({
-    this.pscConnection,
-  });
+final class RedisClusterUserCreatedConnectionsConnections {
+  const RedisClusterUserCreatedConnectionsConnections({this.pscConnection});
 
-  final RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConnection?
-  pscConnection;
+  final RedisClusterUserCreatedConnectionsPscConnection? pscConnection;
 
   Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
 }
@@ -42,8 +38,8 @@ final class RedisClusterUserCreatedConnectionsClusterEndpointsConnections {
 /// Typed helper for the `cluster_endpoints.connections.psc_connection` block of
 /// `google_redis_cluster_user_created_connections` (derived from provider schema).
 @immutable
-final class RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConnection {
-  const RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConnection({
+final class RedisClusterUserCreatedConnectionsPscConnection {
+  const RedisClusterUserCreatedConnectionsPscConnection({
     required this.address,
     required this.forwardingRule,
     required this.network,

@@ -59,8 +59,8 @@ final class ComputeDiskAsyncPrimaryDisk {
 /// Typed helper for the `disk_encryption_key` block of
 /// `google_compute_disk` (derived from provider schema).
 @immutable
-final class ComputeDiskDiskEncryptionKey {
-  const ComputeDiskDiskEncryptionKey({
+final class ComputeDiskEncryptionKey {
+  const ComputeDiskEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -174,7 +174,7 @@ final class GoogleComputeDisk extends Resource {
     TfArg<Map<String, String>>? labels,
     List<ComputeDiskGuestOsFeature>? guestOsFeatures,
     TfArg<String>? project,
-    ComputeDiskDiskEncryptionKey? diskEncryptionKey,
+    ComputeDiskEncryptionKey? diskEncryptionKey,
     ComputeDiskSourceImageEncryptionKey? sourceImageEncryptionKey,
     ComputeDiskSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,
     ComputeDiskAsyncPrimaryDisk? asyncPrimaryDisk,

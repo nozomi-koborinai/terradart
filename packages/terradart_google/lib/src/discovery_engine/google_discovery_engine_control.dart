@@ -29,27 +29,27 @@ sealed class DiscoveryEngineControlAction {
   /// Sets `boost_action`.
   const factory DiscoveryEngineControlAction.boostAction(
     DiscoveryEngineControlBoostAction boostAction,
-  ) = DiscoveryEngineControlActionBoostAction;
+  ) = DiscoveryEngineControlBoostActionChoice;
 
   /// Sets `filter_action`.
   const factory DiscoveryEngineControlAction.filterAction(
     DiscoveryEngineControlFilterAction filterAction,
-  ) = DiscoveryEngineControlActionFilterAction;
+  ) = DiscoveryEngineControlFilterActionChoice;
 
   /// Sets `redirect_action`.
   const factory DiscoveryEngineControlAction.redirectAction(
     DiscoveryEngineControlRedirectAction redirectAction,
-  ) = DiscoveryEngineControlActionRedirectAction;
+  ) = DiscoveryEngineControlRedirectActionChoice;
 
   /// Sets `synonyms_action`.
   const factory DiscoveryEngineControlAction.synonymsAction(
     DiscoveryEngineControlSynonymsAction synonymsAction,
-  ) = DiscoveryEngineControlActionSynonymsAction;
+  ) = DiscoveryEngineControlSynonymsActionChoice;
 
   /// Sets `promote_action`.
   const factory DiscoveryEngineControlAction.promoteAction(
     DiscoveryEngineControlPromoteAction promoteAction,
-  ) = DiscoveryEngineControlActionPromoteAction;
+  ) = DiscoveryEngineControlPromoteActionChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,9 +62,9 @@ sealed class DiscoveryEngineControlAction {
 }
 
 /// The [DiscoveryEngineControlAction.boostAction] choice: sets `boost_action`.
-final class DiscoveryEngineControlActionBoostAction
+final class DiscoveryEngineControlBoostActionChoice
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlActionBoostAction(this.boostAction);
+  const DiscoveryEngineControlBoostActionChoice(this.boostAction);
 
   final DiscoveryEngineControlBoostAction boostAction;
 
@@ -81,9 +81,9 @@ final class DiscoveryEngineControlActionBoostAction
 }
 
 /// The [DiscoveryEngineControlAction.filterAction] choice: sets `filter_action`.
-final class DiscoveryEngineControlActionFilterAction
+final class DiscoveryEngineControlFilterActionChoice
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlActionFilterAction(this.filterAction);
+  const DiscoveryEngineControlFilterActionChoice(this.filterAction);
 
   final DiscoveryEngineControlFilterAction filterAction;
 
@@ -100,9 +100,9 @@ final class DiscoveryEngineControlActionFilterAction
 }
 
 /// The [DiscoveryEngineControlAction.redirectAction] choice: sets `redirect_action`.
-final class DiscoveryEngineControlActionRedirectAction
+final class DiscoveryEngineControlRedirectActionChoice
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlActionRedirectAction(this.redirectAction);
+  const DiscoveryEngineControlRedirectActionChoice(this.redirectAction);
 
   final DiscoveryEngineControlRedirectAction redirectAction;
 
@@ -119,9 +119,9 @@ final class DiscoveryEngineControlActionRedirectAction
 }
 
 /// The [DiscoveryEngineControlAction.synonymsAction] choice: sets `synonyms_action`.
-final class DiscoveryEngineControlActionSynonymsAction
+final class DiscoveryEngineControlSynonymsActionChoice
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlActionSynonymsAction(this.synonymsAction);
+  const DiscoveryEngineControlSynonymsActionChoice(this.synonymsAction);
 
   final DiscoveryEngineControlSynonymsAction synonymsAction;
 
@@ -138,9 +138,9 @@ final class DiscoveryEngineControlActionSynonymsAction
 }
 
 /// The [DiscoveryEngineControlAction.promoteAction] choice: sets `promote_action`.
-final class DiscoveryEngineControlActionPromoteAction
+final class DiscoveryEngineControlPromoteActionChoice
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlActionPromoteAction(this.promoteAction);
+  const DiscoveryEngineControlPromoteActionChoice(this.promoteAction);
 
   final DiscoveryEngineControlPromoteAction promoteAction;
 
@@ -170,7 +170,7 @@ final class DiscoveryEngineControlBoostAction {
 
   final TfArg<String> filter;
 
-  final DiscoveryEngineControlBoostActionBoost boost;
+  final DiscoveryEngineControlBoost boost;
 
   Map<String, Object?> encode() => {
     'data_store': dataStore.toTfJson(),
@@ -183,19 +183,17 @@ final class DiscoveryEngineControlBoostAction {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixedBoost(...)`.
-sealed class DiscoveryEngineControlBoostActionBoost {
-  const DiscoveryEngineControlBoostActionBoost();
+sealed class DiscoveryEngineControlBoost {
+  const DiscoveryEngineControlBoost();
 
   /// Sets `fixed_boost`.
-  const factory DiscoveryEngineControlBoostActionBoost.fixedBoost(
-    TfArg<num> fixedBoost,
-  ) = DiscoveryEngineControlBoostActionBoostFixedBoost;
+  const factory DiscoveryEngineControlBoost.fixedBoost(TfArg<num> fixedBoost) =
+      DiscoveryEngineControlFixedBoost;
 
   /// Sets `interpolation_boost_spec`.
-  const factory DiscoveryEngineControlBoostActionBoost.interpolationBoostSpec(
-    DiscoveryEngineControlBoostActionInterpolationBoostSpec
-    interpolationBoostSpec,
-  ) = DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec;
+  const factory DiscoveryEngineControlBoost.interpolationBoostSpec(
+    DiscoveryEngineControlInterpolationBoostSpec interpolationBoostSpec,
+  ) = DiscoveryEngineControlBoostInterpolationBoostSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -203,10 +201,10 @@ sealed class DiscoveryEngineControlBoostActionBoost {
   Map<String, Object?> encode();
 }
 
-/// The [DiscoveryEngineControlBoostActionBoost.fixedBoost] choice: sets `fixed_boost`.
-final class DiscoveryEngineControlBoostActionBoostFixedBoost
-    extends DiscoveryEngineControlBoostActionBoost {
-  const DiscoveryEngineControlBoostActionBoostFixedBoost(this.fixedBoost);
+/// The [DiscoveryEngineControlBoost.fixedBoost] choice: sets `fixed_boost`.
+final class DiscoveryEngineControlFixedBoost
+    extends DiscoveryEngineControlBoost {
+  const DiscoveryEngineControlFixedBoost(this.fixedBoost);
 
   final TfArg<num> fixedBoost;
 
@@ -217,15 +215,14 @@ final class DiscoveryEngineControlBoostActionBoostFixedBoost
   Map<String, Object?> encode() => {'fixed_boost': fixedBoost.toTfJson()};
 }
 
-/// The [DiscoveryEngineControlBoostActionBoost.interpolationBoostSpec] choice: sets `interpolation_boost_spec`.
-final class DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec
-    extends DiscoveryEngineControlBoostActionBoost {
-  const DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec(
+/// The [DiscoveryEngineControlBoost.interpolationBoostSpec] choice: sets `interpolation_boost_spec`.
+final class DiscoveryEngineControlBoostInterpolationBoostSpec
+    extends DiscoveryEngineControlBoost {
+  const DiscoveryEngineControlBoostInterpolationBoostSpec(
     this.interpolationBoostSpec,
   );
 
-  final DiscoveryEngineControlBoostActionInterpolationBoostSpec
-  interpolationBoostSpec;
+  final DiscoveryEngineControlInterpolationBoostSpec interpolationBoostSpec;
 
   @override
   String get blockKey => 'interpolation_boost_spec';
@@ -239,25 +236,21 @@ final class DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec
 /// Typed helper for the `boost_action.interpolation_boost_spec` block of
 /// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlBoostActionInterpolationBoostSpec {
-  const DiscoveryEngineControlBoostActionInterpolationBoostSpec({
+final class DiscoveryEngineControlInterpolationBoostSpec {
+  const DiscoveryEngineControlInterpolationBoostSpec({
     this.attributeType,
     this.fieldName,
     this.interpolationType,
     this.controlPoint,
   });
 
-  final TfArg<
-    DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType
-  >?
-  attributeType;
+  final TfArg<DiscoveryEngineControlAttributeType>? attributeType;
 
   final TfArg<String>? fieldName;
 
   final TfArg<String>? interpolationType;
 
-  final DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint?
-  controlPoint;
+  final DiscoveryEngineControlPoint? controlPoint;
 
   Map<String, Object?> encode() => {
     'attribute_type': ?attributeType?.toTfJson(),
@@ -268,14 +261,11 @@ final class DiscoveryEngineControlBoostActionInterpolationBoostSpec {
 }
 
 /// `attribute_type` — derived from the provider schema description.
-enum DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType
-    implements TerraformEnum {
+enum DiscoveryEngineControlAttributeType implements TerraformEnum {
   numerical('NUMERICAL'),
   freshness('FRESHNESS');
 
-  const DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType(
-    this.terraformValue,
-  );
+  const DiscoveryEngineControlAttributeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -283,11 +273,8 @@ enum DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType
 /// Typed helper for the `boost_action.interpolation_boost_spec.control_point` block of
 /// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint {
-  const DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint({
-    this.attributeValue,
-    this.boostAmount,
-  });
+final class DiscoveryEngineControlPoint {
+  const DiscoveryEngineControlPoint({this.attributeValue, this.boostAmount});
 
   final TfArg<String>? attributeValue;
 
@@ -311,9 +298,9 @@ final class DiscoveryEngineControlConditions {
 
   final TfArg<String>? queryRegex;
 
-  final List<DiscoveryEngineControlConditionsActiveTimeRange>? activeTimeRange;
+  final List<DiscoveryEngineControlActiveTimeRange>? activeTimeRange;
 
-  final List<DiscoveryEngineControlConditionsQueryTerms>? queryTerms;
+  final List<DiscoveryEngineControlQueryTerms>? queryTerms;
 
   Map<String, Object?> encode() => {
     'query_regex': ?queryRegex?.toTfJson(),
@@ -327,11 +314,8 @@ final class DiscoveryEngineControlConditions {
 /// Typed helper for the `conditions.active_time_range` block of
 /// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlConditionsActiveTimeRange {
-  const DiscoveryEngineControlConditionsActiveTimeRange({
-    this.endTime,
-    this.startTime,
-  });
+final class DiscoveryEngineControlActiveTimeRange {
+  const DiscoveryEngineControlActiveTimeRange({this.endTime, this.startTime});
 
   final TfArg<String>? endTime;
 
@@ -346,11 +330,8 @@ final class DiscoveryEngineControlConditionsActiveTimeRange {
 /// Typed helper for the `conditions.query_terms` block of
 /// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlConditionsQueryTerms {
-  const DiscoveryEngineControlConditionsQueryTerms({
-    this.fullMatch,
-    this.value,
-  });
+final class DiscoveryEngineControlQueryTerms {
+  const DiscoveryEngineControlQueryTerms({this.fullMatch, this.value});
 
   final TfArg<bool>? fullMatch;
 
@@ -392,8 +373,7 @@ final class DiscoveryEngineControlPromoteAction {
 
   final TfArg<String> dataStore;
 
-  final DiscoveryEngineControlPromoteActionSearchLinkPromotion
-  searchLinkPromotion;
+  final DiscoveryEngineControlSearchLinkPromotion searchLinkPromotion;
 
   Map<String, Object?> encode() => {
     'data_store': dataStore.toTfJson(),
@@ -404,8 +384,8 @@ final class DiscoveryEngineControlPromoteAction {
 /// Typed helper for the `promote_action.search_link_promotion` block of
 /// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlPromoteActionSearchLinkPromotion {
-  const DiscoveryEngineControlPromoteActionSearchLinkPromotion({
+final class DiscoveryEngineControlSearchLinkPromotion {
+  const DiscoveryEngineControlSearchLinkPromotion({
     this.description,
     this.document,
     this.enabled,

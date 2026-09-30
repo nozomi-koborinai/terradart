@@ -32,8 +32,7 @@ enum QuicksightDataSetUseAs implements TerraformEnum {
 final class QuicksightDataSetColumnGroups {
   const QuicksightDataSetColumnGroups({this.geoSpatialColumnGroup});
 
-  final QuicksightDataSetColumnGroupsGeoSpatialColumnGroup?
-  geoSpatialColumnGroup;
+  final QuicksightDataSetGeoSpatialColumnGroup? geoSpatialColumnGroup;
 
   Map<String, Object?> encode() => {
     'geo_spatial_column_group': ?geoSpatialColumnGroup?.encode(),
@@ -43,8 +42,8 @@ final class QuicksightDataSetColumnGroups {
 /// Typed helper for the `column_groups.geo_spatial_column_group` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetColumnGroupsGeoSpatialColumnGroup {
-  const QuicksightDataSetColumnGroupsGeoSpatialColumnGroup({
+final class QuicksightDataSetGeoSpatialColumnGroup {
+  const QuicksightDataSetGeoSpatialColumnGroup({
     required this.columns,
     required this.countryCode,
     required this.name,
@@ -85,8 +84,8 @@ final class QuicksightDataSetColumnLevelPermissionRules {
 /// Typed helper for the `data_set_usage_configuration` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetDataSetUsageConfiguration {
-  const QuicksightDataSetDataSetUsageConfiguration({
+final class QuicksightDataSetUsageConfiguration {
+  const QuicksightDataSetUsageConfiguration({
     this.disableUseAsDirectQuerySource,
     this.disableUseAsImportedSource,
   });
@@ -140,9 +139,9 @@ final class QuicksightDataSetLogicalTableMap {
 
   final TfArg<String> logicalTableMapId;
 
-  final List<QuicksightDataSetLogicalTableMapDataTransforms>? dataTransforms;
+  final List<QuicksightDataSetDataTransforms>? dataTransforms;
 
-  final QuicksightDataSetLogicalTableMapSource source;
+  final QuicksightDataSetSource source;
 
   Map<String, Object?> encode() => {
     'alias': alias.toTfJson(),
@@ -156,8 +155,8 @@ final class QuicksightDataSetLogicalTableMap {
 /// Typed helper for the `logical_table_map.data_transforms` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransforms {
-  const QuicksightDataSetLogicalTableMapDataTransforms({
+final class QuicksightDataSetDataTransforms {
+  const QuicksightDataSetDataTransforms({
     this.castColumnTypeOperation,
     this.createColumnsOperation,
     this.filterOperation,
@@ -167,26 +166,19 @@ final class QuicksightDataSetLogicalTableMapDataTransforms {
     this.untagColumnOperation,
   });
 
-  final QuicksightDataSetLogicalTableMapDataTransformsCastColumnTypeOperation?
-  castColumnTypeOperation;
+  final QuicksightDataSetCastColumnTypeOperation? castColumnTypeOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperation?
-  createColumnsOperation;
+  final QuicksightDataSetCreateColumnsOperation? createColumnsOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsFilterOperation?
-  filterOperation;
+  final QuicksightDataSetFilterOperation? filterOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsProjectOperation?
-  projectOperation;
+  final QuicksightDataSetProjectOperation? projectOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsRenameColumnOperation?
-  renameColumnOperation;
+  final QuicksightDataSetRenameColumnOperation? renameColumnOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperation?
-  tagColumnOperation;
+  final QuicksightDataSetTagColumnOperation? tagColumnOperation;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsUntagColumnOperation?
-  untagColumnOperation;
+  final QuicksightDataSetUntagColumnOperation? untagColumnOperation;
 
   Map<String, Object?> encode() => {
     'cast_column_type_operation': ?castColumnTypeOperation?.encode(),
@@ -202,8 +194,8 @@ final class QuicksightDataSetLogicalTableMapDataTransforms {
 /// Typed helper for the `logical_table_map.data_transforms.cast_column_type_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsCastColumnTypeOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsCastColumnTypeOperation({
+final class QuicksightDataSetCastColumnTypeOperation {
+  const QuicksightDataSetCastColumnTypeOperation({
     required this.columnName,
     this.format,
     required this.newColumnType,
@@ -225,15 +217,10 @@ final class QuicksightDataSetLogicalTableMapDataTransformsCastColumnTypeOperatio
 /// Typed helper for the `logical_table_map.data_transforms.create_columns_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperation({
-    required this.columns,
-  });
+final class QuicksightDataSetCreateColumnsOperation {
+  const QuicksightDataSetCreateColumnsOperation({required this.columns});
 
-  final List<
-    QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperationColumns
-  >
-  columns;
+  final List<QuicksightDataSetCreateColumnsOperationColumns> columns;
 
   Map<String, Object?> encode() => {
     'columns': [for (final e in columns) e.encode()],
@@ -243,8 +230,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperation
 /// Typed helper for the `logical_table_map.data_transforms.create_columns_operation.columns` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperationColumns {
-  const QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperationColumns({
+final class QuicksightDataSetCreateColumnsOperationColumns {
+  const QuicksightDataSetCreateColumnsOperationColumns({
     required this.columnId,
     required this.columnName,
     required this.expression,
@@ -266,10 +253,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsCreateColumnsOperation
 /// Typed helper for the `logical_table_map.data_transforms.filter_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsFilterOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsFilterOperation({
-    required this.conditionExpression,
-  });
+final class QuicksightDataSetFilterOperation {
+  const QuicksightDataSetFilterOperation({required this.conditionExpression});
 
   final TfArg<String> conditionExpression;
 
@@ -281,10 +266,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsFilterOperation {
 /// Typed helper for the `logical_table_map.data_transforms.project_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsProjectOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsProjectOperation({
-    required this.projectedColumns,
-  });
+final class QuicksightDataSetProjectOperation {
+  const QuicksightDataSetProjectOperation({required this.projectedColumns});
 
   final TfArg<List<String>> projectedColumns;
 
@@ -296,8 +279,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsProjectOperation {
 /// Typed helper for the `logical_table_map.data_transforms.rename_column_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsRenameColumnOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsRenameColumnOperation({
+final class QuicksightDataSetRenameColumnOperation {
+  const QuicksightDataSetRenameColumnOperation({
     required this.columnName,
     required this.newColumnName,
   });
@@ -315,18 +298,15 @@ final class QuicksightDataSetLogicalTableMapDataTransformsRenameColumnOperation 
 /// Typed helper for the `logical_table_map.data_transforms.tag_column_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperation({
+final class QuicksightDataSetTagColumnOperation {
+  const QuicksightDataSetTagColumnOperation({
     required this.columnName,
     required this.tags,
   });
 
   final TfArg<String> columnName;
 
-  final List<
-    QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags
-  >
-  tags;
+  final List<QuicksightDataSetTagColumnOperationTags> tags;
 
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
@@ -337,16 +317,15 @@ final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperation {
 /// Typed helper for the `logical_table_map.data_transforms.tag_column_operation.tags` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags {
-  const QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags({
+final class QuicksightDataSetTagColumnOperationTags {
+  const QuicksightDataSetTagColumnOperationTags({
     this.columnGeographicRole,
     this.columnDescription,
   });
 
   final TfArg<String>? columnGeographicRole;
 
-  final QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTagsColumnDescription?
-  columnDescription;
+  final QuicksightDataSetColumnDescription? columnDescription;
 
   Map<String, Object?> encode() => {
     'column_geographic_role': ?columnGeographicRole?.toTfJson(),
@@ -357,10 +336,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags
 /// Typed helper for the `logical_table_map.data_transforms.tag_column_operation.tags.column_description` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTagsColumnDescription {
-  const QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTagsColumnDescription({
-    this.text,
-  });
+final class QuicksightDataSetColumnDescription {
+  const QuicksightDataSetColumnDescription({this.text});
 
   final TfArg<String>? text;
 
@@ -370,8 +347,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags
 /// Typed helper for the `logical_table_map.data_transforms.untag_column_operation` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapDataTransformsUntagColumnOperation {
-  const QuicksightDataSetLogicalTableMapDataTransformsUntagColumnOperation({
+final class QuicksightDataSetUntagColumnOperation {
+  const QuicksightDataSetUntagColumnOperation({
     required this.columnName,
     required this.tagNames,
   });
@@ -389,8 +366,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsUntagColumnOperation {
 /// Typed helper for the `logical_table_map.source` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapSource {
-  const QuicksightDataSetLogicalTableMapSource({
+final class QuicksightDataSetSource {
+  const QuicksightDataSetSource({
     this.dataSetArn,
     this.physicalTableId,
     this.joinInstruction,
@@ -400,7 +377,7 @@ final class QuicksightDataSetLogicalTableMapSource {
 
   final TfArg<String>? physicalTableId;
 
-  final QuicksightDataSetLogicalTableMapSourceJoinInstruction? joinInstruction;
+  final QuicksightDataSetJoinInstruction? joinInstruction;
 
   Map<String, Object?> encode() => {
     'data_set_arn': ?dataSetArn?.toTfJson(),
@@ -412,8 +389,8 @@ final class QuicksightDataSetLogicalTableMapSource {
 /// Typed helper for the `logical_table_map.source.join_instruction` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapSourceJoinInstruction {
-  const QuicksightDataSetLogicalTableMapSourceJoinInstruction({
+final class QuicksightDataSetJoinInstruction {
+  const QuicksightDataSetJoinInstruction({
     required this.leftOperand,
     required this.onClause,
     required this.rightOperand,
@@ -430,11 +407,9 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstruction {
 
   final TfArg<String> type;
 
-  final QuicksightDataSetLogicalTableMapSourceJoinInstructionLeftJoinKeyProperties?
-  leftJoinKeyProperties;
+  final QuicksightDataSetLeftJoinKeyProperties? leftJoinKeyProperties;
 
-  final QuicksightDataSetLogicalTableMapSourceJoinInstructionRightJoinKeyProperties?
-  rightJoinKeyProperties;
+  final QuicksightDataSetRightJoinKeyProperties? rightJoinKeyProperties;
 
   Map<String, Object?> encode() => {
     'left_operand': leftOperand.toTfJson(),
@@ -449,10 +424,8 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstruction {
 /// Typed helper for the `logical_table_map.source.join_instruction.left_join_key_properties` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapSourceJoinInstructionLeftJoinKeyProperties {
-  const QuicksightDataSetLogicalTableMapSourceJoinInstructionLeftJoinKeyProperties({
-    this.uniqueKey,
-  });
+final class QuicksightDataSetLeftJoinKeyProperties {
+  const QuicksightDataSetLeftJoinKeyProperties({this.uniqueKey});
 
   final TfArg<bool>? uniqueKey;
 
@@ -462,10 +435,8 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstructionLeftJoinKeyProp
 /// Typed helper for the `logical_table_map.source.join_instruction.right_join_key_properties` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetLogicalTableMapSourceJoinInstructionRightJoinKeyProperties {
-  const QuicksightDataSetLogicalTableMapSourceJoinInstructionRightJoinKeyProperties({
-    this.uniqueKey,
-  });
+final class QuicksightDataSetRightJoinKeyProperties {
+  const QuicksightDataSetRightJoinKeyProperties({this.uniqueKey});
 
   final TfArg<bool>? uniqueKey;
 
@@ -504,11 +475,11 @@ final class QuicksightDataSetPhysicalTableMap {
 
   final TfArg<String> physicalTableMapId;
 
-  final QuicksightDataSetPhysicalTableMapCustomSql? customSql;
+  final QuicksightDataSetCustomSql? customSql;
 
-  final QuicksightDataSetPhysicalTableMapRelationalTable? relationalTable;
+  final QuicksightDataSetRelationalTable? relationalTable;
 
-  final QuicksightDataSetPhysicalTableMapS3Source? s3Source;
+  final QuicksightDataSetS3Source? s3Source;
 
   Map<String, Object?> encode() => {
     'physical_table_map_id': physicalTableMapId.toTfJson(),
@@ -521,8 +492,8 @@ final class QuicksightDataSetPhysicalTableMap {
 /// Typed helper for the `physical_table_map.custom_sql` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetPhysicalTableMapCustomSql {
-  const QuicksightDataSetPhysicalTableMapCustomSql({
+final class QuicksightDataSetCustomSql {
+  const QuicksightDataSetCustomSql({
     required this.dataSourceArn,
     required this.name,
     required this.sqlQuery,
@@ -535,7 +506,7 @@ final class QuicksightDataSetPhysicalTableMapCustomSql {
 
   final TfArg<String> sqlQuery;
 
-  final List<QuicksightDataSetPhysicalTableMapCustomSqlColumns>? columns;
+  final List<QuicksightDataSetColumns>? columns;
 
   Map<String, Object?> encode() => {
     'data_source_arn': dataSourceArn.toTfJson(),
@@ -548,11 +519,8 @@ final class QuicksightDataSetPhysicalTableMapCustomSql {
 /// Typed helper for the `physical_table_map.custom_sql.columns` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetPhysicalTableMapCustomSqlColumns {
-  const QuicksightDataSetPhysicalTableMapCustomSqlColumns({
-    required this.name,
-    required this.type,
-  });
+final class QuicksightDataSetColumns {
+  const QuicksightDataSetColumns({required this.name, required this.type});
 
   final TfArg<String> name;
 
@@ -567,8 +535,8 @@ final class QuicksightDataSetPhysicalTableMapCustomSqlColumns {
 /// Typed helper for the `physical_table_map.relational_table` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetPhysicalTableMapRelationalTable {
-  const QuicksightDataSetPhysicalTableMapRelationalTable({
+final class QuicksightDataSetRelationalTable {
+  const QuicksightDataSetRelationalTable({
     this.catalog,
     required this.dataSourceArn,
     required this.name,
@@ -584,8 +552,7 @@ final class QuicksightDataSetPhysicalTableMapRelationalTable {
 
   final TfArg<String>? schema;
 
-  final List<QuicksightDataSetPhysicalTableMapRelationalTableInputColumns>
-  inputColumns;
+  final List<QuicksightDataSetInputColumns> inputColumns;
 
   Map<String, Object?> encode() => {
     'catalog': ?catalog?.toTfJson(),
@@ -598,12 +565,10 @@ final class QuicksightDataSetPhysicalTableMapRelationalTable {
 
 /// Typed helper for the `physical_table_map.relational_table.input_columns` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightDataSetPhysicalTableMapRelationalTableInputColumns {
-  const QuicksightDataSetPhysicalTableMapRelationalTableInputColumns({
-    required this.name,
-    required this.type,
-  });
+final class QuicksightDataSetInputColumns {
+  const QuicksightDataSetInputColumns({required this.name, required this.type});
 
   final TfArg<String> name;
 
@@ -618,8 +583,8 @@ final class QuicksightDataSetPhysicalTableMapRelationalTableInputColumns {
 /// Typed helper for the `physical_table_map.s3_source` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetPhysicalTableMapS3Source {
-  const QuicksightDataSetPhysicalTableMapS3Source({
+final class QuicksightDataSetS3Source {
+  const QuicksightDataSetS3Source({
     required this.dataSourceArn,
     required this.inputColumns,
     required this.uploadSettings,
@@ -627,10 +592,9 @@ final class QuicksightDataSetPhysicalTableMapS3Source {
 
   final TfArg<String> dataSourceArn;
 
-  final List<QuicksightDataSetPhysicalTableMapS3SourceInputColumns>
-  inputColumns;
+  final List<QuicksightDataSetInputColumns> inputColumns;
 
-  final QuicksightDataSetPhysicalTableMapS3SourceUploadSettings uploadSettings;
+  final QuicksightDataSetUploadSettings uploadSettings;
 
   Map<String, Object?> encode() => {
     'data_source_arn': dataSourceArn.toTfJson(),
@@ -639,30 +603,11 @@ final class QuicksightDataSetPhysicalTableMapS3Source {
   };
 }
 
-/// Typed helper for the `physical_table_map.s3_source.input_columns` block of
-/// `aws_quicksight_data_set` (derived from provider schema).
-@immutable
-final class QuicksightDataSetPhysicalTableMapS3SourceInputColumns {
-  const QuicksightDataSetPhysicalTableMapS3SourceInputColumns({
-    required this.name,
-    required this.type,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String> type;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
 /// Typed helper for the `physical_table_map.s3_source.upload_settings` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetPhysicalTableMapS3SourceUploadSettings {
-  const QuicksightDataSetPhysicalTableMapS3SourceUploadSettings({
+final class QuicksightDataSetUploadSettings {
+  const QuicksightDataSetUploadSettings({
     this.containsHeader,
     this.delimiter,
     this.format,
@@ -697,8 +642,7 @@ final class QuicksightDataSetRefreshProperties {
     required this.refreshConfiguration,
   });
 
-  final QuicksightDataSetRefreshPropertiesRefreshConfiguration
-  refreshConfiguration;
+  final QuicksightDataSetRefreshConfiguration refreshConfiguration;
 
   Map<String, Object?> encode() => {
     'refresh_configuration': refreshConfiguration.encode(),
@@ -708,13 +652,12 @@ final class QuicksightDataSetRefreshProperties {
 /// Typed helper for the `refresh_properties.refresh_configuration` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetRefreshPropertiesRefreshConfiguration {
-  const QuicksightDataSetRefreshPropertiesRefreshConfiguration({
+final class QuicksightDataSetRefreshConfiguration {
+  const QuicksightDataSetRefreshConfiguration({
     required this.incrementalRefresh,
   });
 
-  final QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefresh
-  incrementalRefresh;
+  final QuicksightDataSetIncrementalRefresh incrementalRefresh;
 
   Map<String, Object?> encode() => {
     'incremental_refresh': incrementalRefresh.encode(),
@@ -724,13 +667,10 @@ final class QuicksightDataSetRefreshPropertiesRefreshConfiguration {
 /// Typed helper for the `refresh_properties.refresh_configuration.incremental_refresh` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefresh {
-  const QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefresh({
-    required this.lookbackWindow,
-  });
+final class QuicksightDataSetIncrementalRefresh {
+  const QuicksightDataSetIncrementalRefresh({required this.lookbackWindow});
 
-  final QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefreshLookbackWindow
-  lookbackWindow;
+  final QuicksightDataSetLookbackWindow lookbackWindow;
 
   Map<String, Object?> encode() => {'lookback_window': lookbackWindow.encode()};
 }
@@ -738,8 +678,8 @@ final class QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRef
 /// Typed helper for the `refresh_properties.refresh_configuration.incremental_refresh.lookback_window` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefreshLookbackWindow {
-  const QuicksightDataSetRefreshPropertiesRefreshConfigurationIncrementalRefreshLookbackWindow({
+final class QuicksightDataSetLookbackWindow {
+  const QuicksightDataSetLookbackWindow({
     required this.columnName,
     required this.size,
     required this.sizeUnit,
@@ -800,8 +740,7 @@ final class QuicksightDataSetRowLevelPermissionTagConfiguration {
 
   final TfArg<String>? status;
 
-  final List<QuicksightDataSetRowLevelPermissionTagConfigurationTagRules>
-  tagRules;
+  final List<QuicksightDataSetTagRules> tagRules;
 
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
@@ -812,8 +751,8 @@ final class QuicksightDataSetRowLevelPermissionTagConfiguration {
 /// Typed helper for the `row_level_permission_tag_configuration.tag_rules` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
-final class QuicksightDataSetRowLevelPermissionTagConfigurationTagRules {
-  const QuicksightDataSetRowLevelPermissionTagConfigurationTagRules({
+final class QuicksightDataSetTagRules {
+  const QuicksightDataSetTagRules({
     required this.columnName,
     this.matchAllValue,
     required this.tagKey,
@@ -852,7 +791,7 @@ final class AwsQuicksightDataSet extends Resource {
     List<QuicksightDataSetColumnGroups>? columnGroups,
     List<QuicksightDataSetColumnLevelPermissionRules>?
     columnLevelPermissionRules,
-    QuicksightDataSetDataSetUsageConfiguration? dataSetUsageConfiguration,
+    QuicksightDataSetUsageConfiguration? dataSetUsageConfiguration,
     List<QuicksightDataSetFieldFolders>? fieldFolders,
     List<QuicksightDataSetLogicalTableMap>? logicalTableMap,
     List<QuicksightDataSetPermissions>? permissions,

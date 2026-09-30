@@ -15,7 +15,7 @@ final class ApihubCurationEndpoint {
     required this.applicationIntegrationEndpointDetails,
   });
 
-  final ApihubCurationEndpointApplicationIntegrationEndpointDetails
+  final ApihubCurationApplicationIntegrationEndpointDetails
   applicationIntegrationEndpointDetails;
 
   Map<String, Object?> encode() => {
@@ -27,8 +27,8 @@ final class ApihubCurationEndpoint {
 /// Typed helper for the `endpoint.application_integration_endpoint_details` block of
 /// `google_apihub_curation` (derived from provider schema).
 @immutable
-final class ApihubCurationEndpointApplicationIntegrationEndpointDetails {
-  const ApihubCurationEndpointApplicationIntegrationEndpointDetails({
+final class ApihubCurationApplicationIntegrationEndpointDetails {
+  const ApihubCurationApplicationIntegrationEndpointDetails({
     required this.triggerId,
     required this.uri,
   });

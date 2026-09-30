@@ -17,11 +17,11 @@ final class CesGuardrailAction {
     this.transferAgent,
   });
 
-  final CesGuardrailActionGenerativeAnswer? generativeAnswer;
+  final CesGuardrailGenerativeAnswer? generativeAnswer;
 
-  final CesGuardrailActionRespondImmediately? respondImmediately;
+  final CesGuardrailRespondImmediately? respondImmediately;
 
-  final CesGuardrailActionTransferAgent? transferAgent;
+  final CesGuardrailTransferAgent? transferAgent;
 
   Map<String, Object?> encode() => {
     'generative_answer': ?generativeAnswer?.encode(),
@@ -33,8 +33,8 @@ final class CesGuardrailAction {
 /// Typed helper for the `action.generative_answer` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailActionGenerativeAnswer {
-  const CesGuardrailActionGenerativeAnswer({required this.prompt});
+final class CesGuardrailGenerativeAnswer {
+  const CesGuardrailGenerativeAnswer({required this.prompt});
 
   final TfArg<String> prompt;
 
@@ -44,10 +44,10 @@ final class CesGuardrailActionGenerativeAnswer {
 /// Typed helper for the `action.respond_immediately` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailActionRespondImmediately {
-  const CesGuardrailActionRespondImmediately({required this.responses});
+final class CesGuardrailRespondImmediately {
+  const CesGuardrailRespondImmediately({required this.responses});
 
-  final List<CesGuardrailActionRespondImmediatelyResponses> responses;
+  final List<CesGuardrailResponses> responses;
 
   Map<String, Object?> encode() => {
     'responses': [for (final e in responses) e.encode()],
@@ -57,11 +57,8 @@ final class CesGuardrailActionRespondImmediately {
 /// Typed helper for the `action.respond_immediately.responses` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailActionRespondImmediatelyResponses {
-  const CesGuardrailActionRespondImmediatelyResponses({
-    this.disabled,
-    required this.text,
-  });
+final class CesGuardrailResponses {
+  const CesGuardrailResponses({this.disabled, required this.text});
 
   final TfArg<bool>? disabled;
 
@@ -76,8 +73,8 @@ final class CesGuardrailActionRespondImmediatelyResponses {
 /// Typed helper for the `action.transfer_agent` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailActionTransferAgent {
-  const CesGuardrailActionTransferAgent({required this.agent});
+final class CesGuardrailTransferAgent {
+  const CesGuardrailTransferAgent({required this.agent});
 
   final TfArg<String> agent;
 
@@ -95,13 +92,13 @@ final class CesGuardrailCodeCallback {
     this.beforeModelCallback,
   });
 
-  final CesGuardrailCodeCallbackAfterAgentCallback? afterAgentCallback;
+  final CesGuardrailAfterAgentCallback? afterAgentCallback;
 
-  final CesGuardrailCodeCallbackAfterModelCallback? afterModelCallback;
+  final CesGuardrailAfterModelCallback? afterModelCallback;
 
-  final CesGuardrailCodeCallbackBeforeAgentCallback? beforeAgentCallback;
+  final CesGuardrailBeforeAgentCallback? beforeAgentCallback;
 
-  final CesGuardrailCodeCallbackBeforeModelCallback? beforeModelCallback;
+  final CesGuardrailBeforeModelCallback? beforeModelCallback;
 
   Map<String, Object?> encode() => {
     'after_agent_callback': ?afterAgentCallback?.encode(),
@@ -114,8 +111,8 @@ final class CesGuardrailCodeCallback {
 /// Typed helper for the `code_callback.after_agent_callback` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailCodeCallbackAfterAgentCallback {
-  const CesGuardrailCodeCallbackAfterAgentCallback({
+final class CesGuardrailAfterAgentCallback {
+  const CesGuardrailAfterAgentCallback({
     this.description,
     this.disabled,
     this.proactiveExecutionEnabled,
@@ -141,8 +138,8 @@ final class CesGuardrailCodeCallbackAfterAgentCallback {
 /// Typed helper for the `code_callback.after_model_callback` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailCodeCallbackAfterModelCallback {
-  const CesGuardrailCodeCallbackAfterModelCallback({
+final class CesGuardrailAfterModelCallback {
+  const CesGuardrailAfterModelCallback({
     this.description,
     this.disabled,
     this.proactiveExecutionEnabled,
@@ -168,8 +165,8 @@ final class CesGuardrailCodeCallbackAfterModelCallback {
 /// Typed helper for the `code_callback.before_agent_callback` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailCodeCallbackBeforeAgentCallback {
-  const CesGuardrailCodeCallbackBeforeAgentCallback({
+final class CesGuardrailBeforeAgentCallback {
+  const CesGuardrailBeforeAgentCallback({
     this.description,
     this.disabled,
     this.proactiveExecutionEnabled,
@@ -195,8 +192,8 @@ final class CesGuardrailCodeCallbackBeforeAgentCallback {
 /// Typed helper for the `code_callback.before_model_callback` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailCodeCallbackBeforeModelCallback {
-  const CesGuardrailCodeCallbackBeforeModelCallback({
+final class CesGuardrailBeforeModelCallback {
+  const CesGuardrailBeforeModelCallback({
     this.description,
     this.disabled,
     this.proactiveExecutionEnabled,
@@ -270,11 +267,11 @@ final class CesGuardrailLlmPolicy {
 
   final TfArg<num>? maxConversationMessages;
 
-  final TfArg<CesGuardrailLlmPolicyPolicyScope> policyScope;
+  final TfArg<CesGuardrailPolicyScope> policyScope;
 
   final TfArg<String> prompt;
 
-  final CesGuardrailLlmPolicyModelSettings? modelSettings;
+  final CesGuardrailModelSettings? modelSettings;
 
   Map<String, Object?> encode() => {
     'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
@@ -287,21 +284,22 @@ final class CesGuardrailLlmPolicy {
 }
 
 /// `policy_scope` — derived from the provider schema description.
-enum CesGuardrailLlmPolicyPolicyScope implements TerraformEnum {
+enum CesGuardrailPolicyScope implements TerraformEnum {
   userQuery('USER_QUERY'),
   agentResponse('AGENT_RESPONSE'),
   userQueryAndAgentResponse('USER_QUERY_AND_AGENT_RESPONSE');
 
-  const CesGuardrailLlmPolicyPolicyScope(this.terraformValue);
+  const CesGuardrailPolicyScope(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `llm_policy.model_settings` block of
 /// `google_ces_guardrail` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesGuardrailLlmPolicyModelSettings {
-  const CesGuardrailLlmPolicyModelSettings({this.model, this.temperature});
+final class CesGuardrailModelSettings {
+  const CesGuardrailModelSettings({this.model, this.temperature});
 
   final TfArg<String>? model;
 
@@ -325,9 +323,9 @@ final class CesGuardrailLlmPromptSecurity {
 
   final TfArg<bool>? failOpen;
 
-  final CesGuardrailLlmPromptSecurityCustomPolicy? customPolicy;
+  final CesGuardrailCustomPolicy? customPolicy;
 
-  final CesGuardrailLlmPromptSecurityDefaultSettings? defaultSettings;
+  final CesGuardrailDefaultSettings? defaultSettings;
 
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
@@ -339,8 +337,8 @@ final class CesGuardrailLlmPromptSecurity {
 /// Typed helper for the `llm_prompt_security.custom_policy` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailLlmPromptSecurityCustomPolicy {
-  const CesGuardrailLlmPromptSecurityCustomPolicy({
+final class CesGuardrailCustomPolicy {
+  const CesGuardrailCustomPolicy({
     this.allowShortUtterance,
     this.failOpen,
     this.maxConversationMessages,
@@ -359,7 +357,7 @@ final class CesGuardrailLlmPromptSecurityCustomPolicy {
 
   final TfArg<String> prompt;
 
-  final CesGuardrailLlmPromptSecurityCustomPolicyModelSettings? modelSettings;
+  final CesGuardrailModelSettings? modelSettings;
 
   Map<String, Object?> encode() => {
     'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
@@ -371,30 +369,11 @@ final class CesGuardrailLlmPromptSecurityCustomPolicy {
   };
 }
 
-/// Typed helper for the `llm_prompt_security.custom_policy.model_settings` block of
-/// `google_ces_guardrail` (derived from provider schema).
-@immutable
-final class CesGuardrailLlmPromptSecurityCustomPolicyModelSettings {
-  const CesGuardrailLlmPromptSecurityCustomPolicyModelSettings({
-    this.model,
-    this.temperature,
-  });
-
-  final TfArg<String>? model;
-
-  final TfArg<num>? temperature;
-
-  Map<String, Object?> encode() => {
-    'model': ?model?.toTfJson(),
-    'temperature': ?temperature?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `llm_prompt_security.default_settings` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailLlmPromptSecurityDefaultSettings {
-  const CesGuardrailLlmPromptSecurityDefaultSettings();
+final class CesGuardrailDefaultSettings {
+  const CesGuardrailDefaultSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -405,7 +384,7 @@ final class CesGuardrailLlmPromptSecurityDefaultSettings {
 final class CesGuardrailModelSafety {
   const CesGuardrailModelSafety({required this.safetySettings});
 
-  final List<CesGuardrailModelSafetySafetySettings> safetySettings;
+  final List<CesGuardrailSafetySettings> safetySettings;
 
   Map<String, Object?> encode() => {
     'safety_settings': [for (final e in safetySettings) e.encode()],
@@ -415,15 +394,15 @@ final class CesGuardrailModelSafety {
 /// Typed helper for the `model_safety.safety_settings` block of
 /// `google_ces_guardrail` (derived from provider schema).
 @immutable
-final class CesGuardrailModelSafetySafetySettings {
-  const CesGuardrailModelSafetySafetySettings({
+final class CesGuardrailSafetySettings {
+  const CesGuardrailSafetySettings({
     required this.category,
     required this.threshold,
   });
 
-  final TfArg<CesGuardrailModelSafetySafetySettingsCategory> category;
+  final TfArg<CesGuardrailCategory> category;
 
-  final TfArg<CesGuardrailModelSafetySafetySettingsThreshold> threshold;
+  final TfArg<CesGuardrailThreshold> threshold;
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
@@ -432,26 +411,26 @@ final class CesGuardrailModelSafetySafetySettings {
 }
 
 /// `category` — derived from the provider schema description.
-enum CesGuardrailModelSafetySafetySettingsCategory implements TerraformEnum {
+enum CesGuardrailCategory implements TerraformEnum {
   harmCategoryHateSpeech('HARM_CATEGORY_HATE_SPEECH'),
   harmCategoryDangerousContent('HARM_CATEGORY_DANGEROUS_CONTENT'),
   harmCategoryHarassment('HARM_CATEGORY_HARASSMENT'),
   harmCategorySexuallyExplicit('HARM_CATEGORY_SEXUALLY_EXPLICIT');
 
-  const CesGuardrailModelSafetySafetySettingsCategory(this.terraformValue);
+  const CesGuardrailCategory(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `threshold` — derived from the provider schema description.
-enum CesGuardrailModelSafetySafetySettingsThreshold implements TerraformEnum {
+enum CesGuardrailThreshold implements TerraformEnum {
   blockLowAndAbove('BLOCK_LOW_AND_ABOVE'),
   blockMediumAndAbove('BLOCK_MEDIUM_AND_ABOVE'),
   blockOnlyHigh('BLOCK_ONLY_HIGH'),
   blockNone('BLOCK_NONE'),
   off('OFF');
 
-  const CesGuardrailModelSafetySafetySettingsThreshold(this.terraformValue);
+  const CesGuardrailThreshold(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -482,13 +461,13 @@ enum CesGuardrailModelSafetySafetySettingsThreshold implements TerraformEnum {
 ///   enabled: TfArg.literal(true),
 ///   modelSafety: CesGuardrailModelSafety(
 ///     safetySettings: [
-///       CesGuardrailModelSafetySafetySettings(
+///       CesGuardrailSafetySettings(
 ///         category: TfArg.literal(
-///           CesGuardrailModelSafetySafetySettingsCategory
+///           CesGuardrailCategory
 ///               .harmCategoryHateSpeech,
 ///         ),
 ///         threshold: TfArg.literal(
-///           CesGuardrailModelSafetySafetySettingsThreshold.blockNone,
+///           CesGuardrailThreshold.blockNone,
 ///         ),
 ///       ),
 ///     ],

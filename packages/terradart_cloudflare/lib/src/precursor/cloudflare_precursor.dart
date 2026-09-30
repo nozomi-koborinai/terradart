@@ -37,7 +37,7 @@ final class PrecursorEnforcementRules {
 
   final TfArg<String> expression;
 
-  final TfArg<PrecursorEnforcementRulesMode> mode;
+  final TfArg<PrecursorMode> mode;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -48,11 +48,11 @@ final class PrecursorEnforcementRules {
 }
 
 /// `mode` — derived from the provider schema description.
-enum PrecursorEnforcementRulesMode implements TerraformEnum {
+enum PrecursorMode implements TerraformEnum {
   minFriction('min-friction'),
   maxSecurity('max-security');
 
-  const PrecursorEnforcementRulesMode(this.terraformValue);
+  const PrecursorMode(this.terraformValue);
   @override
   final String terraformValue;
 }

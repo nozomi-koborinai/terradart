@@ -12,16 +12,15 @@ const Set<String> _awsAuditmanagerAssessmentSensitive = <String>{};
 /// Typed helper for the `assessment_reports_destination` block of
 /// `aws_auditmanager_assessment` (derived from provider schema).
 @immutable
-final class AuditmanagerAssessmentAssessmentReportsDestination {
-  const AuditmanagerAssessmentAssessmentReportsDestination({
+final class AuditmanagerAssessmentReportsDestination {
+  const AuditmanagerAssessmentReportsDestination({
     required this.destination,
     required this.destinationType,
   });
 
   final TfArg<String> destination;
 
-  final TfArg<AuditmanagerAssessmentAssessmentReportsDestinationDestinationType>
-  destinationType;
+  final TfArg<AuditmanagerAssessmentDestinationType> destinationType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -30,13 +29,10 @@ final class AuditmanagerAssessmentAssessmentReportsDestination {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum AuditmanagerAssessmentAssessmentReportsDestinationDestinationType
-    implements TerraformEnum {
+enum AuditmanagerAssessmentDestinationType implements TerraformEnum {
   s3('S3');
 
-  const AuditmanagerAssessmentAssessmentReportsDestinationDestinationType(
-    this.terraformValue,
-  );
+  const AuditmanagerAssessmentDestinationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,7 +48,7 @@ final class AuditmanagerAssessmentRoles {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<AuditmanagerAssessmentRolesRoleType> roleType;
+  final TfArg<AuditmanagerAssessmentRoleType> roleType;
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -61,11 +57,11 @@ final class AuditmanagerAssessmentRoles {
 }
 
 /// `role_type` — derived from the provider schema description.
-enum AuditmanagerAssessmentRolesRoleType implements TerraformEnum {
+enum AuditmanagerAssessmentRoleType implements TerraformEnum {
   processOwner('PROCESS_OWNER'),
   resourceOwner('RESOURCE_OWNER');
 
-  const AuditmanagerAssessmentRolesRoleType(this.terraformValue);
+  const AuditmanagerAssessmentRoleType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -76,9 +72,9 @@ enum AuditmanagerAssessmentRolesRoleType implements TerraformEnum {
 final class AuditmanagerAssessmentScope {
   const AuditmanagerAssessmentScope({this.awsAccounts, this.awsServices});
 
-  final List<AuditmanagerAssessmentScopeAwsAccounts>? awsAccounts;
+  final List<AuditmanagerAssessmentAwsAccounts>? awsAccounts;
 
-  final List<AuditmanagerAssessmentScopeAwsServices>? awsServices;
+  final List<AuditmanagerAssessmentAwsServices>? awsServices;
 
   Map<String, Object?> encode() => {
     if (awsAccounts != null)
@@ -91,8 +87,8 @@ final class AuditmanagerAssessmentScope {
 /// Typed helper for the `scope.aws_accounts` block of
 /// `aws_auditmanager_assessment` (derived from provider schema).
 @immutable
-final class AuditmanagerAssessmentScopeAwsAccounts {
-  const AuditmanagerAssessmentScopeAwsAccounts({required this.id});
+final class AuditmanagerAssessmentAwsAccounts {
+  const AuditmanagerAssessmentAwsAccounts({required this.id});
 
   final TfArg<String> id;
 
@@ -102,8 +98,8 @@ final class AuditmanagerAssessmentScopeAwsAccounts {
 /// Typed helper for the `scope.aws_services` block of
 /// `aws_auditmanager_assessment` (derived from provider schema).
 @immutable
-final class AuditmanagerAssessmentScopeAwsServices {
-  const AuditmanagerAssessmentScopeAwsServices({required this.serviceName});
+final class AuditmanagerAssessmentAwsServices {
+  const AuditmanagerAssessmentAwsServices({required this.serviceName});
 
   final TfArg<String> serviceName;
 
@@ -121,7 +117,7 @@ final class AwsAuditmanagerAssessment extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<AuditmanagerAssessmentAssessmentReportsDestination>?
+    List<AuditmanagerAssessmentReportsDestination>?
     assessmentReportsDestination,
     List<AuditmanagerAssessmentRoles>? roles,
     List<AuditmanagerAssessmentScope>? scope,

@@ -19,7 +19,7 @@ final class LightsailInstanceAddOn {
 
   final TfArg<String> snapshotTime;
 
-  final TfArg<LightsailInstanceAddOnStatus> status;
+  final TfArg<LightsailInstanceStatus> status;
 
   final TfArg<String> type;
 
@@ -31,11 +31,11 @@ final class LightsailInstanceAddOn {
 }
 
 /// `status` — derived from the provider schema description.
-enum LightsailInstanceAddOnStatus implements TerraformEnum {
+enum LightsailInstanceStatus implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const LightsailInstanceAddOnStatus(this.terraformValue);
+  const LightsailInstanceStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

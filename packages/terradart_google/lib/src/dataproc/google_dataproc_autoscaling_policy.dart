@@ -18,7 +18,7 @@ final class DataprocAutoscalingPolicyBasicAlgorithm {
 
   final TfArg<String>? cooldownPeriod;
 
-  final DataprocAutoscalingPolicyBasicAlgorithmYarnConfig yarnConfig;
+  final DataprocAutoscalingPolicyYarnConfig yarnConfig;
 
   Map<String, Object?> encode() => {
     'cooldown_period': ?cooldownPeriod?.toTfJson(),
@@ -29,8 +29,8 @@ final class DataprocAutoscalingPolicyBasicAlgorithm {
 /// Typed helper for the `basic_algorithm.yarn_config` block of
 /// `google_dataproc_autoscaling_policy` (derived from provider schema).
 @immutable
-final class DataprocAutoscalingPolicyBasicAlgorithmYarnConfig {
-  const DataprocAutoscalingPolicyBasicAlgorithmYarnConfig({
+final class DataprocAutoscalingPolicyYarnConfig {
+  const DataprocAutoscalingPolicyYarnConfig({
     required this.gracefulDecommissionTimeout,
     required this.scaleDownFactor,
     this.scaleDownMinWorkerFraction,
@@ -126,7 +126,7 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 ///     maxInstances: TfArg.literal(3),
 ///   ),
 ///   basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(
-///     yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(
+///     yarnConfig: DataprocAutoscalingPolicyYarnConfig(
 ///       gracefulDecommissionTimeout: TfArg.literal('30s'),
 ///       scaleUpFactor: TfArg.literal(0.5),
 ///       scaleDownFactor: TfArg.literal(0.5),

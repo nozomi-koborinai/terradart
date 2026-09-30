@@ -243,7 +243,7 @@ final class ApigeeSecurityActionDeny {
 final class ApigeeSecurityActionFlag {
   const ApigeeSecurityActionFlag({this.headers});
 
-  final List<ApigeeSecurityActionFlagHeaders>? headers;
+  final List<ApigeeSecurityActionHeaders>? headers;
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
@@ -253,8 +253,8 @@ final class ApigeeSecurityActionFlag {
 /// Typed helper for the `flag.headers` block of
 /// `google_apigee_security_action` (derived from provider schema).
 @immutable
-final class ApigeeSecurityActionFlagHeaders {
-  const ApigeeSecurityActionFlagHeaders({this.name, this.value});
+final class ApigeeSecurityActionHeaders {
+  const ApigeeSecurityActionHeaders({this.name, this.value});
 
   final TfArg<String>? name;
 

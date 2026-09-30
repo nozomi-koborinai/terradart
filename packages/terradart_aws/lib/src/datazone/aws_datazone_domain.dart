@@ -28,7 +28,7 @@ final class DatazoneDomainSingleSignOn {
 
   final TfArg<String>? type;
 
-  final TfArg<DatazoneDomainSingleSignOnUserAssignment>? userAssignment;
+  final TfArg<DatazoneDomainUserAssignment>? userAssignment;
 
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
@@ -37,11 +37,11 @@ final class DatazoneDomainSingleSignOn {
 }
 
 /// `user_assignment` — derived from the provider schema description.
-enum DatazoneDomainSingleSignOnUserAssignment implements TerraformEnum {
+enum DatazoneDomainUserAssignment implements TerraformEnum {
   automatic('AUTOMATIC'),
   manual('MANUAL');
 
-  const DatazoneDomainSingleSignOnUserAssignment(this.terraformValue);
+  const DatazoneDomainUserAssignment(this.terraformValue);
   @override
   final String terraformValue;
 }

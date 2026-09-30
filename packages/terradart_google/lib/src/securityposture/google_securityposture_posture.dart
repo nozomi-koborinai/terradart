@@ -32,7 +32,7 @@ final class SecurityposturePosturePolicySets {
 
   final TfArg<String> policySetId;
 
-  final List<SecurityposturePosturePolicySetsPolicies> policies;
+  final List<SecurityposturePosturePolicies> policies;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -44,8 +44,8 @@ final class SecurityposturePosturePolicySets {
 /// Typed helper for the `policy_sets.policies` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPolicies {
-  const SecurityposturePosturePolicySetsPolicies({
+final class SecurityposturePosturePolicies {
+  const SecurityposturePosturePolicies({
     this.description,
     required this.policyId,
     this.complianceStandards,
@@ -56,10 +56,9 @@ final class SecurityposturePosturePolicySetsPolicies {
 
   final TfArg<String> policyId;
 
-  final List<SecurityposturePosturePolicySetsPoliciesComplianceStandards>?
-  complianceStandards;
+  final List<SecurityposturePostureComplianceStandards>? complianceStandards;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraint constraint;
+  final SecurityposturePostureConstraint constraint;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -75,8 +74,8 @@ final class SecurityposturePosturePolicySetsPolicies {
 /// Typed helper for the `policy_sets.policies.compliance_standards` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesComplianceStandards {
-  const SecurityposturePosturePolicySetsPoliciesComplianceStandards({
+final class SecurityposturePostureComplianceStandards {
+  const SecurityposturePostureComplianceStandards({
     this.control,
     this.standard,
   });
@@ -94,24 +93,23 @@ final class SecurityposturePosturePolicySetsPoliciesComplianceStandards {
 /// Typed helper for the `policy_sets.policies.constraint` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraint {
-  const SecurityposturePosturePolicySetsPoliciesConstraint({
+final class SecurityposturePostureConstraint {
+  const SecurityposturePostureConstraint({
     this.orgPolicyConstraint,
     this.orgPolicyConstraintCustom,
     this.securityHealthAnalyticsCustomModule,
     this.securityHealthAnalyticsModule,
   });
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraint?
-  orgPolicyConstraint;
+  final SecurityposturePostureOrgPolicyConstraint? orgPolicyConstraint;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustom?
+  final SecurityposturePostureOrgPolicyConstraintCustom?
   orgPolicyConstraintCustom;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModule?
+  final SecurityposturePostureSecurityHealthAnalyticsCustomModule?
   securityHealthAnalyticsCustomModule;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModule?
+  final SecurityposturePostureSecurityHealthAnalyticsModule?
   securityHealthAnalyticsModule;
 
   Map<String, Object?> encode() => {
@@ -127,18 +125,15 @@ final class SecurityposturePosturePolicySetsPoliciesConstraint {
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraint {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraint({
+final class SecurityposturePostureOrgPolicyConstraint {
+  const SecurityposturePostureOrgPolicyConstraint({
     required this.cannedConstraintId,
     required this.policyRules,
   });
 
   final TfArg<String> cannedConstraintId;
 
-  final List<
-    SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRules
-  >
-  policyRules;
+  final List<SecurityposturePosturePolicyRules> policyRules;
 
   Map<String, Object?> encode() => {
     'canned_constraint_id': cannedConstraintId.toTfJson(),
@@ -148,9 +143,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint.policy_rules` block of
 /// `google_securityposture_posture` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRules {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRules({
+final class SecurityposturePosturePolicyRules {
+  const SecurityposturePosturePolicyRules({
     this.allowAll,
     this.denyAll,
     this.enforce,
@@ -164,11 +160,9 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 
   final TfArg<bool>? enforce;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesCondition?
-  condition;
+  final SecurityposturePostureCondition? condition;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesValues?
-  values;
+  final SecurityposturePostureValues? values;
 
   Map<String, Object?> encode() => {
     'allow_all': ?allowAll?.toTfJson(),
@@ -181,9 +175,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint.policy_rules.condition` block of
 /// `google_securityposture_posture` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesCondition {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesCondition({
+final class SecurityposturePostureCondition {
+  const SecurityposturePostureCondition({
     this.description,
     required this.expression,
     this.location,
@@ -208,12 +203,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint.policy_rules.values` block of
 /// `google_securityposture_posture` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesValues {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintPolicyRulesValues({
-    this.allowedValues,
-    this.deniedValues,
-  });
+final class SecurityposturePostureValues {
+  const SecurityposturePostureValues({this.allowedValues, this.deniedValues});
 
   final TfArg<List<String>>? allowedValues;
 
@@ -228,19 +221,15 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint_custom` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustom {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustom({
+final class SecurityposturePostureOrgPolicyConstraintCustom {
+  const SecurityposturePostureOrgPolicyConstraintCustom({
     this.customConstraint,
     required this.policyRules,
   });
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraint?
-  customConstraint;
+  final SecurityposturePostureCustomConstraint? customConstraint;
 
-  final List<
-    SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRules
-  >
-  policyRules;
+  final List<SecurityposturePosturePolicyRules> policyRules;
 
   Map<String, Object?> encode() => {
     'custom_constraint': ?customConstraint?.encode(),
@@ -251,8 +240,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 /// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint_custom.custom_constraint` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraint {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraint({
+final class SecurityposturePostureCustomConstraint {
+  const SecurityposturePostureCustomConstraint({
     required this.actionType,
     required this.condition,
     this.description,
@@ -262,10 +251,7 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
     required this.resourceTypes,
   });
 
-  final TfArg<
-    SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraintActionType
-  >
-  actionType;
+  final TfArg<SecurityposturePostureActionType> actionType;
 
   final TfArg<String> condition;
 
@@ -291,102 +277,20 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
 }
 
 /// `action_type` — derived from the provider schema description.
-enum SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraintActionType
-    implements TerraformEnum {
+enum SecurityposturePostureActionType implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomCustomConstraintActionType(
-    this.terraformValue,
-  );
+  const SecurityposturePostureActionType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint_custom.policy_rules` block of
-/// `google_securityposture_posture` (derived from provider schema).
-@immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRules {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRules({
-    this.allowAll,
-    this.denyAll,
-    this.enforce,
-    this.condition,
-    this.values,
-  });
-
-  final TfArg<bool>? allowAll;
-
-  final TfArg<bool>? denyAll;
-
-  final TfArg<bool>? enforce;
-
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesCondition?
-  condition;
-
-  final SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesValues?
-  values;
-
-  Map<String, Object?> encode() => {
-    'allow_all': ?allowAll?.toTfJson(),
-    'deny_all': ?denyAll?.toTfJson(),
-    'enforce': ?enforce?.toTfJson(),
-    'condition': ?condition?.encode(),
-    'values': ?values?.encode(),
-  };
-}
-
-/// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint_custom.policy_rules.condition` block of
-/// `google_securityposture_posture` (derived from provider schema).
-@immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesCondition {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesCondition({
-    this.description,
-    required this.expression,
-    this.location,
-    this.title,
-  });
-
-  final TfArg<String>? description;
-
-  final TfArg<String> expression;
-
-  final TfArg<String>? location;
-
-  final TfArg<String>? title;
-
-  Map<String, Object?> encode() => {
-    'description': ?description?.toTfJson(),
-    'expression': expression.toTfJson(),
-    'location': ?location?.toTfJson(),
-    'title': ?title?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policy_sets.policies.constraint.org_policy_constraint_custom.policy_rules.values` block of
-/// `google_securityposture_posture` (derived from provider schema).
-@immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesValues {
-  const SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstraintCustomPolicyRulesValues({
-    this.allowedValues,
-    this.deniedValues,
-  });
-
-  final TfArg<List<String>>? allowedValues;
-
-  final TfArg<List<String>>? deniedValues;
-
-  Map<String, Object?> encode() => {
-    'allowed_values': ?allowedValues?.toTfJson(),
-    'denied_values': ?deniedValues?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModule {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModule({
+final class SecurityposturePostureSecurityHealthAnalyticsCustomModule {
+  const SecurityposturePostureSecurityHealthAnalyticsCustomModule({
     this.displayName,
     this.moduleEnablementState,
     required this.config,
@@ -394,13 +298,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 
   final TfArg<String>? displayName;
 
-  final TfArg<
-    SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleModuleEnablementState
-  >?
+  final TfArg<SecurityposturePostureModuleEnablementState>?
   moduleEnablementState;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfig
-  config;
+  final SecurityposturePostureConfig config;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -410,15 +311,12 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 }
 
 /// `module_enablement_state` — derived from the provider schema description.
-enum SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleModuleEnablementState
-    implements TerraformEnum {
+enum SecurityposturePostureModuleEnablementState implements TerraformEnum {
   enablementStateUnspecified('ENABLEMENT_STATE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleModuleEnablementState(
-    this.terraformValue,
-  );
+  const SecurityposturePostureModuleEnablementState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -426,8 +324,8 @@ enum SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCu
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfig {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfig({
+final class SecurityposturePostureConfig {
+  const SecurityposturePostureConfig({
     this.description,
     this.recommendation,
     required this.severity,
@@ -440,19 +338,13 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 
   final TfArg<String>? recommendation;
 
-  final TfArg<
-    SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigSeverity
-  >
-  severity;
+  final TfArg<SecurityposturePostureSeverity> severity;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutput?
-  customOutput;
+  final SecurityposturePostureCustomOutput? customOutput;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigPredicate
-  predicate;
+  final SecurityposturePosturePredicate predicate;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigResourceSelector
-  resourceSelector;
+  final SecurityposturePostureResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -465,17 +357,14 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 }
 
 /// `severity` — derived from the provider schema description.
-enum SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigSeverity
-    implements TerraformEnum {
+enum SecurityposturePostureSeverity implements TerraformEnum {
   severityUnspecified('SEVERITY_UNSPECIFIED'),
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigSeverity(
-    this.terraformValue,
-  );
+  const SecurityposturePostureSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -483,15 +372,10 @@ enum SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCu
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.custom_output` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutput {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutput({
-    this.properties,
-  });
+final class SecurityposturePostureCustomOutput {
+  const SecurityposturePostureCustomOutput({this.properties});
 
-  final List<
-    SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputProperties
-  >?
-  properties;
+  final List<SecurityposturePostureProperties>? properties;
 
   Map<String, Object?> encode() => {
     if (properties != null)
@@ -502,16 +386,15 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.custom_output.properties` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputProperties {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputProperties({
+final class SecurityposturePostureProperties {
+  const SecurityposturePostureProperties({
     required this.name,
     this.valueExpression,
   });
 
   final TfArg<String> name;
 
-  final SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputPropertiesValueExpression?
-  valueExpression;
+  final SecurityposturePostureValueExpression? valueExpression;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -522,8 +405,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.custom_output.properties.value_expression` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputPropertiesValueExpression {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigCustomOutputPropertiesValueExpression({
+final class SecurityposturePostureValueExpression {
+  const SecurityposturePostureValueExpression({
     this.description,
     required this.expression,
     this.location,
@@ -549,8 +432,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.predicate` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigPredicate {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigPredicate({
+final class SecurityposturePosturePredicate {
+  const SecurityposturePosturePredicate({
     this.description,
     required this.expression,
     this.location,
@@ -576,10 +459,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.resource_selector` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigResourceSelector {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsCustomModuleConfigResourceSelector({
-    required this.resourceTypes,
-  });
+final class SecurityposturePostureResourceSelector {
+  const SecurityposturePostureResourceSelector({required this.resourceTypes});
 
   final TfArg<List<String>> resourceTypes;
 
@@ -589,15 +470,13 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_module` block of
 /// `google_securityposture_posture` (derived from provider schema).
 @immutable
-final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModule {
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModule({
+final class SecurityposturePostureSecurityHealthAnalyticsModule {
+  const SecurityposturePostureSecurityHealthAnalyticsModule({
     this.moduleEnablementState,
     required this.moduleName,
   });
 
-  final TfArg<
-    SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModuleModuleEnablementState
-  >?
+  final TfArg<SecurityposturePostureModuleEnablementState>?
   moduleEnablementState;
 
   final TfArg<String> moduleName;
@@ -606,20 +485,6 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
     'module_enablement_state': ?moduleEnablementState?.toTfJson(),
     'module_name': moduleName.toTfJson(),
   };
-}
-
-/// `module_enablement_state` — derived from the provider schema description.
-enum SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModuleModuleEnablementState
-    implements TerraformEnum {
-  enablementStateUnspecified('ENABLEMENT_STATE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnalyticsModuleModuleEnablementState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_securityposture_posture`.

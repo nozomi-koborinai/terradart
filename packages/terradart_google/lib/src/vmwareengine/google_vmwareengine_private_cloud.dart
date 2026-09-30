@@ -45,14 +45,11 @@ final class VmwareenginePrivateCloudManagementCluster {
 
   final TfArg<String> clusterId;
 
-  final VmwareenginePrivateCloudManagementClusterAutoscalingSettings?
-  autoscalingSettings;
+  final VmwareenginePrivateCloudAutoscalingSettings? autoscalingSettings;
 
-  final List<VmwareenginePrivateCloudManagementClusterNodeTypeConfigs>?
-  nodeTypeConfigs;
+  final List<VmwareenginePrivateCloudNodeTypeConfigs>? nodeTypeConfigs;
 
-  final VmwareenginePrivateCloudManagementClusterStretchedClusterConfig?
-  stretchedClusterConfig;
+  final VmwareenginePrivateCloudStretchedClusterConfig? stretchedClusterConfig;
 
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
@@ -66,8 +63,8 @@ final class VmwareenginePrivateCloudManagementCluster {
 /// Typed helper for the `management_cluster.autoscaling_settings` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterAutoscalingSettings {
-  const VmwareenginePrivateCloudManagementClusterAutoscalingSettings({
+final class VmwareenginePrivateCloudAutoscalingSettings {
+  const VmwareenginePrivateCloudAutoscalingSettings({
     this.coolDownPeriod,
     this.maxClusterNodeCount,
     this.minClusterNodeCount,
@@ -80,10 +77,7 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettings {
 
   final TfArg<num>? minClusterNodeCount;
 
-  final List<
-    VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPolicies
-  >
-  autoscalingPolicies;
+  final List<VmwareenginePrivateCloudAutoscalingPolicies> autoscalingPolicies;
 
   Map<String, Object?> encode() => {
     'cool_down_period': ?coolDownPeriod?.toTfJson(),
@@ -96,8 +90,8 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettings {
 /// Typed helper for the `management_cluster.autoscaling_settings.autoscaling_policies` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPolicies {
-  const VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPolicies({
+final class VmwareenginePrivateCloudAutoscalingPolicies {
+  const VmwareenginePrivateCloudAutoscalingPolicies({
     required this.autoscalePolicyId,
     required this.nodeTypeId,
     required this.scaleOutSize,
@@ -112,14 +106,12 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
 
   final TfArg<num> scaleOutSize;
 
-  final VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds?
+  final VmwareenginePrivateCloudConsumedMemoryThresholds?
   consumedMemoryThresholds;
 
-  final VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds?
-  cpuThresholds;
+  final VmwareenginePrivateCloudCpuThresholds? cpuThresholds;
 
-  final VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds?
-  storageThresholds;
+  final VmwareenginePrivateCloudStorageThresholds? storageThresholds;
 
   Map<String, Object?> encode() => {
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
@@ -134,8 +126,8 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
 /// Typed helper for the `management_cluster.autoscaling_settings.autoscaling_policies.consumed_memory_thresholds` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds {
-  const VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds({
+final class VmwareenginePrivateCloudConsumedMemoryThresholds {
+  const VmwareenginePrivateCloudConsumedMemoryThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -153,8 +145,8 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
 /// Typed helper for the `management_cluster.autoscaling_settings.autoscaling_policies.cpu_thresholds` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds {
-  const VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds({
+final class VmwareenginePrivateCloudCpuThresholds {
+  const VmwareenginePrivateCloudCpuThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -172,8 +164,8 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
 /// Typed helper for the `management_cluster.autoscaling_settings.autoscaling_policies.storage_thresholds` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds {
-  const VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds({
+final class VmwareenginePrivateCloudStorageThresholds {
+  const VmwareenginePrivateCloudStorageThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -191,8 +183,8 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
 /// Typed helper for the `management_cluster.node_type_configs` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterNodeTypeConfigs {
-  const VmwareenginePrivateCloudManagementClusterNodeTypeConfigs({
+final class VmwareenginePrivateCloudNodeTypeConfigs {
+  const VmwareenginePrivateCloudNodeTypeConfigs({
     this.customCoreCount,
     required this.nodeCount,
     required this.nodeTypeId,
@@ -214,8 +206,8 @@ final class VmwareenginePrivateCloudManagementClusterNodeTypeConfigs {
 /// Typed helper for the `management_cluster.stretched_cluster_config` block of
 /// `google_vmwareengine_private_cloud` (derived from provider schema).
 @immutable
-final class VmwareenginePrivateCloudManagementClusterStretchedClusterConfig {
-  const VmwareenginePrivateCloudManagementClusterStretchedClusterConfig({
+final class VmwareenginePrivateCloudStretchedClusterConfig {
+  const VmwareenginePrivateCloudStretchedClusterConfig({
     this.preferredLocation,
     this.secondaryLocation,
   });

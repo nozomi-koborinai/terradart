@@ -24,13 +24,13 @@ final class SsmcontactsRotationRecurrence {
 
   final TfArg<num> recurrenceMultiplier;
 
-  final List<SsmcontactsRotationRecurrenceDailySettings>? dailySettings;
+  final List<SsmcontactsRotationDailySettings>? dailySettings;
 
-  final List<SsmcontactsRotationRecurrenceMonthlySettings>? monthlySettings;
+  final List<SsmcontactsRotationMonthlySettings>? monthlySettings;
 
-  final List<SsmcontactsRotationRecurrenceShiftCoverages>? shiftCoverages;
+  final List<SsmcontactsRotationShiftCoverages>? shiftCoverages;
 
-  final List<SsmcontactsRotationRecurrenceWeeklySettings>? weeklySettings;
+  final List<SsmcontactsRotationWeeklySettings>? weeklySettings;
 
   Map<String, Object?> encode() => {
     'number_of_on_calls': numberOfOnCalls.toTfJson(),
@@ -49,8 +49,8 @@ final class SsmcontactsRotationRecurrence {
 /// Typed helper for the `recurrence.daily_settings` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceDailySettings {
-  const SsmcontactsRotationRecurrenceDailySettings({
+final class SsmcontactsRotationDailySettings {
+  const SsmcontactsRotationDailySettings({
     required this.hourOfDay,
     required this.minuteOfHour,
   });
@@ -68,16 +68,15 @@ final class SsmcontactsRotationRecurrenceDailySettings {
 /// Typed helper for the `recurrence.monthly_settings` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceMonthlySettings {
-  const SsmcontactsRotationRecurrenceMonthlySettings({
+final class SsmcontactsRotationMonthlySettings {
+  const SsmcontactsRotationMonthlySettings({
     required this.dayOfMonth,
     this.handOffTime,
   });
 
   final TfArg<num> dayOfMonth;
 
-  final List<SsmcontactsRotationRecurrenceMonthlySettingsHandOffTime>?
-  handOffTime;
+  final List<SsmcontactsRotationHandOffTime>? handOffTime;
 
   Map<String, Object?> encode() => {
     'day_of_month': dayOfMonth.toTfJson(),
@@ -88,9 +87,10 @@ final class SsmcontactsRotationRecurrenceMonthlySettings {
 
 /// Typed helper for the `recurrence.monthly_settings.hand_off_time` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SsmcontactsRotationRecurrenceMonthlySettingsHandOffTime {
-  const SsmcontactsRotationRecurrenceMonthlySettingsHandOffTime({
+final class SsmcontactsRotationHandOffTime {
+  const SsmcontactsRotationHandOffTime({
     required this.hourOfDay,
     required this.minuteOfHour,
   });
@@ -108,17 +108,15 @@ final class SsmcontactsRotationRecurrenceMonthlySettingsHandOffTime {
 /// Typed helper for the `recurrence.shift_coverages` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceShiftCoverages {
-  const SsmcontactsRotationRecurrenceShiftCoverages({
+final class SsmcontactsRotationShiftCoverages {
+  const SsmcontactsRotationShiftCoverages({
     required this.mapBlockKey,
     this.coverageTimes,
   });
 
-  final TfArg<SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey>
-  mapBlockKey;
+  final TfArg<SsmcontactsRotationMapBlockKey> mapBlockKey;
 
-  final List<SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes>?
-  coverageTimes;
+  final List<SsmcontactsRotationCoverageTimes>? coverageTimes;
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
@@ -128,8 +126,7 @@ final class SsmcontactsRotationRecurrenceShiftCoverages {
 }
 
 /// `map_block_key` — derived from the provider schema description.
-enum SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey
-    implements TerraformEnum {
+enum SsmcontactsRotationMapBlockKey implements TerraformEnum {
   mon('MON'),
   tue('TUE'),
   wed('WED'),
@@ -138,9 +135,7 @@ enum SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey
   sat('SAT'),
   sun('SUN');
 
-  const SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey(
-    this.terraformValue,
-  );
+  const SsmcontactsRotationMapBlockKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -148,16 +143,12 @@ enum SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey
 /// Typed helper for the `recurrence.shift_coverages.coverage_times` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes {
-  const SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes({
-    this.end,
-    this.start,
-  });
+final class SsmcontactsRotationCoverageTimes {
+  const SsmcontactsRotationCoverageTimes({this.end, this.start});
 
-  final List<SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd>? end;
+  final List<SsmcontactsRotationEnd>? end;
 
-  final List<SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart>?
-  start;
+  final List<SsmcontactsRotationStart>? start;
 
   Map<String, Object?> encode() => {
     if (end != null) 'end': [for (final e in end!) e.encode()],
@@ -168,8 +159,8 @@ final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes {
 /// Typed helper for the `recurrence.shift_coverages.coverage_times.end` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd {
-  const SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd({
+final class SsmcontactsRotationEnd {
+  const SsmcontactsRotationEnd({
     required this.hourOfDay,
     required this.minuteOfHour,
   });
@@ -187,8 +178,8 @@ final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd {
 /// Typed helper for the `recurrence.shift_coverages.coverage_times.start` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart {
-  const SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart({
+final class SsmcontactsRotationStart {
+  const SsmcontactsRotationStart({
     required this.hourOfDay,
     required this.minuteOfHour,
   });
@@ -206,16 +197,15 @@ final class SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart {
 /// Typed helper for the `recurrence.weekly_settings` block of
 /// `aws_ssmcontacts_rotation` (derived from provider schema).
 @immutable
-final class SsmcontactsRotationRecurrenceWeeklySettings {
-  const SsmcontactsRotationRecurrenceWeeklySettings({
+final class SsmcontactsRotationWeeklySettings {
+  const SsmcontactsRotationWeeklySettings({
     required this.dayOfWeek,
     this.handOffTime,
   });
 
-  final TfArg<SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek> dayOfWeek;
+  final TfArg<SsmcontactsRotationDayOfWeek> dayOfWeek;
 
-  final List<SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime>?
-  handOffTime;
+  final List<SsmcontactsRotationHandOffTime>? handOffTime;
 
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
@@ -225,8 +215,7 @@ final class SsmcontactsRotationRecurrenceWeeklySettings {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek
-    implements TerraformEnum {
+enum SsmcontactsRotationDayOfWeek implements TerraformEnum {
   mon('MON'),
   tue('TUE'),
   wed('WED'),
@@ -235,30 +224,9 @@ enum SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek
   sat('SAT'),
   sun('SUN');
 
-  const SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek(
-    this.terraformValue,
-  );
+  const SsmcontactsRotationDayOfWeek(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `recurrence.weekly_settings.hand_off_time` block of
-/// `aws_ssmcontacts_rotation` (derived from provider schema).
-@immutable
-final class SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime {
-  const SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime({
-    required this.hourOfDay,
-    required this.minuteOfHour,
-  });
-
-  final TfArg<num> hourOfDay;
-
-  final TfArg<num> minuteOfHour;
-
-  Map<String, Object?> encode() => {
-    'hour_of_day': hourOfDay.toTfJson(),
-    'minute_of_hour': minuteOfHour.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `aws_ssmcontacts_rotation`.

@@ -20,10 +20,7 @@ final class TimestreamqueryScheduledQueryErrorReportConfiguration {
     this.s3Configuration,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
-  >?
-  s3Configuration;
+  final List<TimestreamqueryScheduledQueryS3Configuration>? s3Configuration;
 
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
@@ -34,8 +31,8 @@ final class TimestreamqueryScheduledQueryErrorReportConfiguration {
 /// Typed helper for the `error_report_configuration.s3_configuration` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration {
-  const TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration({
+final class TimestreamqueryScheduledQueryS3Configuration {
+  const TimestreamqueryScheduledQueryS3Configuration({
     required this.bucketName,
     this.encryptionOption,
     this.objectKeyPrefix,
@@ -43,10 +40,7 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
 
   final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<
-    TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption
-  >?
-  encryptionOption;
+  final TfArg<TimestreamqueryScheduledQueryEncryptionOption>? encryptionOption;
 
   final TfArg<String>? objectKeyPrefix;
 
@@ -58,14 +52,11 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption
-    implements TerraformEnum {
+enum TimestreamqueryScheduledQueryEncryptionOption implements TerraformEnum {
   sseS3('SSE_S3'),
   sseKms('SSE_KMS');
 
-  const TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption(
-    this.terraformValue,
-  );
+  const TimestreamqueryScheduledQueryEncryptionOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -80,13 +71,12 @@ final class TimestreamqueryScheduledQueryLastRunSummary {
     this.queryInsightsResponse,
   });
 
-  final List<TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocation>?
+  final List<TimestreamqueryScheduledQueryErrorReportLocation>?
   errorReportLocation;
 
-  final List<TimestreamqueryScheduledQueryLastRunSummaryExecutionStats>?
-  executionStats;
+  final List<TimestreamqueryScheduledQueryExecutionStats>? executionStats;
 
-  final List<TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponse>?
+  final List<TimestreamqueryScheduledQueryInsightsResponse>?
   queryInsightsResponse;
 
   Map<String, Object?> encode() => {
@@ -105,16 +95,14 @@ final class TimestreamqueryScheduledQueryLastRunSummary {
 
 /// Typed helper for the `last_run_summary.error_report_location` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocation {
-  const TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocation({
+final class TimestreamqueryScheduledQueryErrorReportLocation {
+  const TimestreamqueryScheduledQueryErrorReportLocation({
     this.s3ReportLocation,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocationS3ReportLocation
-  >?
-  s3ReportLocation;
+  final List<TimestreamqueryScheduledQueryS3ReportLocation>? s3ReportLocation;
 
   Map<String, Object?> encode() => {
     if (s3ReportLocation != null)
@@ -124,40 +112,38 @@ final class TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocation {
 
 /// Typed helper for the `last_run_summary.error_report_location.s3_report_location` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocationS3ReportLocation {
-  const TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocationS3ReportLocation();
+final class TimestreamqueryScheduledQueryS3ReportLocation {
+  const TimestreamqueryScheduledQueryS3ReportLocation();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `last_run_summary.execution_stats` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryExecutionStats {
-  const TimestreamqueryScheduledQueryLastRunSummaryExecutionStats();
+final class TimestreamqueryScheduledQueryExecutionStats {
+  const TimestreamqueryScheduledQueryExecutionStats();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `last_run_summary.query_insights_response` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponse {
-  const TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponse({
+final class TimestreamqueryScheduledQueryInsightsResponse {
+  const TimestreamqueryScheduledQueryInsightsResponse({
     this.querySpatialCoverage,
     this.queryTemporalRange,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverage
-  >?
+  final List<TimestreamqueryScheduledQuerySpatialCoverage>?
   querySpatialCoverage;
 
-  final List<
-    TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRange
-  >?
-  queryTemporalRange;
+  final List<TimestreamqueryScheduledQueryTemporalRange>? queryTemporalRange;
 
   Map<String, Object?> encode() => {
     if (querySpatialCoverage != null)
@@ -171,16 +157,12 @@ final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponse {
 
 /// Typed helper for the `last_run_summary.query_insights_response.query_spatial_coverage` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverage {
-  const TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverage({
-    this.max,
-  });
+final class TimestreamqueryScheduledQuerySpatialCoverage {
+  const TimestreamqueryScheduledQuerySpatialCoverage({this.max});
 
-  final List<
-    TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverageMax
-  >?
-  max;
+  final List<TimestreamqueryScheduledQueryMax>? max;
 
   Map<String, Object?> encode() => {
     if (max != null) 'max': [for (final e in max!) e.encode()],
@@ -189,38 +171,26 @@ final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuer
 
 /// Typed helper for the `last_run_summary.query_insights_response.query_spatial_coverage.max` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverageMax {
-  const TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQuerySpatialCoverageMax();
+final class TimestreamqueryScheduledQueryMax {
+  const TimestreamqueryScheduledQueryMax();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `last_run_summary.query_insights_response.query_temporal_range` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRange {
-  const TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRange({
-    this.max,
-  });
+final class TimestreamqueryScheduledQueryTemporalRange {
+  const TimestreamqueryScheduledQueryTemporalRange({this.max});
 
-  final List<
-    TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRangeMax
-  >?
-  max;
+  final List<TimestreamqueryScheduledQueryMax>? max;
 
   Map<String, Object?> encode() => {
     if (max != null) 'max': [for (final e in max!) e.encode()],
   };
-}
-
-/// Typed helper for the `last_run_summary.query_insights_response.query_temporal_range.max` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRangeMax {
-  const TimestreamqueryScheduledQueryLastRunSummaryQueryInsightsResponseQueryTemporalRangeMax();
-
-  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `notification_configuration` block of
@@ -231,10 +201,7 @@ final class TimestreamqueryScheduledQueryNotificationConfiguration {
     this.snsConfiguration,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryNotificationConfigurationSnsConfiguration
-  >?
-  snsConfiguration;
+  final List<TimestreamqueryScheduledQuerySnsConfiguration>? snsConfiguration;
 
   Map<String, Object?> encode() => {
     if (snsConfiguration != null)
@@ -245,10 +212,8 @@ final class TimestreamqueryScheduledQueryNotificationConfiguration {
 /// Typed helper for the `notification_configuration.sns_configuration` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryNotificationConfigurationSnsConfiguration {
-  const TimestreamqueryScheduledQueryNotificationConfigurationSnsConfiguration({
-    required this.topicArn,
-  });
+final class TimestreamqueryScheduledQuerySnsConfiguration {
+  const TimestreamqueryScheduledQuerySnsConfiguration({required this.topicArn});
 
   final RefTo<AwsSnsTopic> topicArn;
 
@@ -267,17 +232,12 @@ final class TimestreamqueryScheduledQueryRecentlyFailedRuns {
     this.queryInsightsResponse,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocation
-  >?
+  final List<TimestreamqueryScheduledQueryErrorReportLocation>?
   errorReportLocation;
 
-  final List<TimestreamqueryScheduledQueryRecentlyFailedRunsExecutionStats>?
-  executionStats;
+  final List<TimestreamqueryScheduledQueryExecutionStats>? executionStats;
 
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponse
-  >?
+  final List<TimestreamqueryScheduledQueryInsightsResponse>?
   queryInsightsResponse;
 
   Map<String, Object?> encode() => {
@@ -292,126 +252,6 @@ final class TimestreamqueryScheduledQueryRecentlyFailedRuns {
         for (final e in queryInsightsResponse!) e.encode(),
       ],
   };
-}
-
-/// Typed helper for the `recently_failed_runs.error_report_location` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocation {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocation({
-    this.s3ReportLocation,
-  });
-
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocationS3ReportLocation
-  >?
-  s3ReportLocation;
-
-  Map<String, Object?> encode() => {
-    if (s3ReportLocation != null)
-      's3_report_location': [for (final e in s3ReportLocation!) e.encode()],
-  };
-}
-
-/// Typed helper for the `recently_failed_runs.error_report_location.s3_report_location` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocationS3ReportLocation {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsErrorReportLocationS3ReportLocation();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `recently_failed_runs.execution_stats` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsExecutionStats {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsExecutionStats();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `recently_failed_runs.query_insights_response` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponse {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponse({
-    this.querySpatialCoverage,
-    this.queryTemporalRange,
-  });
-
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverage
-  >?
-  querySpatialCoverage;
-
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRange
-  >?
-  queryTemporalRange;
-
-  Map<String, Object?> encode() => {
-    if (querySpatialCoverage != null)
-      'query_spatial_coverage': [
-        for (final e in querySpatialCoverage!) e.encode(),
-      ],
-    if (queryTemporalRange != null)
-      'query_temporal_range': [for (final e in queryTemporalRange!) e.encode()],
-  };
-}
-
-/// Typed helper for the `recently_failed_runs.query_insights_response.query_spatial_coverage` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverage {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverage({
-    this.max,
-  });
-
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverageMax
-  >?
-  max;
-
-  Map<String, Object?> encode() => {
-    if (max != null) 'max': [for (final e in max!) e.encode()],
-  };
-}
-
-/// Typed helper for the `recently_failed_runs.query_insights_response.query_spatial_coverage.max` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverageMax {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQuerySpatialCoverageMax();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `recently_failed_runs.query_insights_response.query_temporal_range` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRange {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRange({
-    this.max,
-  });
-
-  final List<
-    TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRangeMax
-  >?
-  max;
-
-  Map<String, Object?> encode() => {
-    if (max != null) 'max': [for (final e in max!) e.encode()],
-  };
-}
-
-/// Typed helper for the `recently_failed_runs.query_insights_response.query_temporal_range.max` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRangeMax {
-  const TimestreamqueryScheduledQueryRecentlyFailedRunsQueryInsightsResponseQueryTemporalRangeMax();
-
-  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `schedule_configuration` block of
@@ -437,9 +277,7 @@ final class TimestreamqueryScheduledQueryTargetConfiguration {
     this.timestreamConfiguration,
   });
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration
-  >?
+  final List<TimestreamqueryScheduledQueryTimestreamConfiguration>?
   timestreamConfiguration;
 
   Map<String, Object?> encode() => {
@@ -453,8 +291,8 @@ final class TimestreamqueryScheduledQueryTargetConfiguration {
 /// Typed helper for the `target_configuration.timestream_configuration` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration({
+final class TimestreamqueryScheduledQueryTimestreamConfiguration {
+  const TimestreamqueryScheduledQueryTimestreamConfiguration({
     required this.databaseName,
     this.measureNameColumn,
     required this.tableName,
@@ -472,19 +310,12 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 
   final TfArg<String> timeColumn;
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMapping
-  >?
-  dimensionMapping;
+  final List<TimestreamqueryScheduledQueryDimensionMapping>? dimensionMapping;
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMapping
-  >?
+  final List<TimestreamqueryScheduledQueryMixedMeasureMapping>?
   mixedMeasureMapping;
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappings
-  >?
+  final List<TimestreamqueryScheduledQueryMultiMeasureMappings>?
   multiMeasureMappings;
 
   Map<String, Object?> encode() => {
@@ -508,15 +339,13 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 /// Typed helper for the `target_configuration.timestream_configuration.dimension_mapping` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMapping {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMapping({
+final class TimestreamqueryScheduledQueryDimensionMapping {
+  const TimestreamqueryScheduledQueryDimensionMapping({
     required this.dimensionValueType,
     required this.name,
   });
 
-  final TfArg<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType
-  >
+  final TfArg<TimestreamqueryScheduledQueryDimensionValueType>
   dimensionValueType;
 
   final TfArg<String> name;
@@ -528,13 +357,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 }
 
 /// `dimension_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType
-    implements TerraformEnum {
+enum TimestreamqueryScheduledQueryDimensionValueType implements TerraformEnum {
   varchar('VARCHAR');
 
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType(
-    this.terraformValue,
-  );
+  const TimestreamqueryScheduledQueryDimensionValueType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -542,8 +368,8 @@ enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDime
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMapping {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMapping({
+final class TimestreamqueryScheduledQueryMixedMeasureMapping {
+  const TimestreamqueryScheduledQueryMixedMeasureMapping({
     this.measureName,
     required this.measureValueType,
     this.sourceColumn,
@@ -553,18 +379,13 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 
   final TfArg<String>? measureName;
 
-  final TfArg<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType
-  >
-  measureValueType;
+  final TfArg<TimestreamqueryScheduledQueryMeasureValueType> measureValueType;
 
   final TfArg<String>? sourceColumn;
 
   final TfArg<String>? targetMeasureName;
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMapping
-  >?
+  final List<TimestreamqueryScheduledQueryMultiMeasureAttributeMapping>?
   multiMeasureAttributeMapping;
 
   Map<String, Object?> encode() => {
@@ -580,33 +401,31 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 }
 
 /// `measure_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType
-    implements TerraformEnum {
+enum TimestreamqueryScheduledQueryMeasureValueType implements TerraformEnum {
   bigint('BIGINT'),
   boolean('BOOLEAN'),
   double('DOUBLE'),
   varchar('VARCHAR'),
   multi('MULTI');
 
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType(
-    this.terraformValue,
-  );
+  const TimestreamqueryScheduledQueryMeasureValueType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping.multi_measure_attribute_mapping` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMapping {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMapping({
+final class TimestreamqueryScheduledQueryMultiMeasureAttributeMapping {
+  const TimestreamqueryScheduledQueryMultiMeasureAttributeMapping({
     required this.measureValueType,
     required this.sourceColumn,
     this.targetMultiMeasureAttributeName,
   });
 
   final TfArg<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType
+    TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
   >
   measureValueType;
 
@@ -623,7 +442,7 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 }
 
 /// `measure_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType
+enum TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
     implements TerraformEnum {
   bigint('BIGINT'),
   boolean('BOOLEAN'),
@@ -631,7 +450,7 @@ enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixe
   varchar('VARCHAR'),
   timestamp('TIMESTAMP');
 
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType(
+  const TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType(
     this.terraformValue,
   );
   @override
@@ -641,17 +460,15 @@ enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixe
 /// Typed helper for the `target_configuration.timestream_configuration.multi_measure_mappings` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappings {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappings({
+final class TimestreamqueryScheduledQueryMultiMeasureMappings {
+  const TimestreamqueryScheduledQueryMultiMeasureMappings({
     this.targetMultiMeasureName,
     this.multiMeasureAttributeMapping,
   });
 
   final TfArg<String>? targetMultiMeasureName;
 
-  final List<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMapping
-  >?
+  final List<TimestreamqueryScheduledQueryMultiMeasureAttributeMapping>?
   multiMeasureAttributeMapping;
 
   Map<String, Object?> encode() => {
@@ -661,49 +478,6 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
         for (final e in multiMeasureAttributeMapping!) e.encode(),
       ],
   };
-}
-
-/// Typed helper for the `target_configuration.timestream_configuration.multi_measure_mappings.multi_measure_attribute_mapping` block of
-/// `aws_timestreamquery_scheduled_query` (derived from provider schema).
-@immutable
-final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMapping {
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMapping({
-    required this.measureValueType,
-    required this.sourceColumn,
-    this.targetMultiMeasureAttributeName,
-  });
-
-  final TfArg<
-    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType
-  >
-  measureValueType;
-
-  final TfArg<String> sourceColumn;
-
-  final TfArg<String>? targetMultiMeasureAttributeName;
-
-  Map<String, Object?> encode() => {
-    'measure_value_type': measureValueType.toTfJson(),
-    'source_column': sourceColumn.toTfJson(),
-    'target_multi_measure_attribute_name': ?targetMultiMeasureAttributeName
-        ?.toTfJson(),
-  };
-}
-
-/// `measure_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType
-    implements TerraformEnum {
-  bigint('BIGINT'),
-  boolean('BOOLEAN'),
-  double('DOUBLE'),
-  varchar('VARCHAR'),
-  timestamp('TIMESTAMP');
-
-  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_timestreamquery_scheduled_query`.

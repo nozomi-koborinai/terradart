@@ -29,18 +29,18 @@ sealed class OpensearchserverlessSecurityConfigOptions {
   const factory OpensearchserverlessSecurityConfigOptions.iamFederationOptions(
     List<OpensearchserverlessSecurityConfigIamFederationOptions>
     iamFederationOptions,
-  ) = OpensearchserverlessSecurityConfigOptionsIamFederationOptions;
+  ) = OpensearchserverlessSecurityConfigIamFederationOptionsChoice;
 
   /// Sets `iam_identity_center_options`.
   const factory OpensearchserverlessSecurityConfigOptions.iamIdentityCenterOptions(
     List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>
     iamIdentityCenterOptions,
-  ) = OpensearchserverlessSecurityConfigOptionsIamIdentityCenterOptions;
+  ) = OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice;
 
   /// Sets `saml_options`.
   const factory OpensearchserverlessSecurityConfigOptions.samlOptions(
     List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions,
-  ) = OpensearchserverlessSecurityConfigOptionsSamlOptions;
+  ) = OpensearchserverlessSecurityConfigSamlOptionsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,9 +53,9 @@ sealed class OpensearchserverlessSecurityConfigOptions {
 }
 
 /// The [OpensearchserverlessSecurityConfigOptions.iamFederationOptions] choice: sets `iam_federation_options`.
-final class OpensearchserverlessSecurityConfigOptionsIamFederationOptions
+final class OpensearchserverlessSecurityConfigIamFederationOptionsChoice
     extends OpensearchserverlessSecurityConfigOptions {
-  const OpensearchserverlessSecurityConfigOptionsIamFederationOptions(
+  const OpensearchserverlessSecurityConfigIamFederationOptionsChoice(
     this.iamFederationOptions,
   );
 
@@ -81,9 +81,9 @@ final class OpensearchserverlessSecurityConfigOptionsIamFederationOptions
 }
 
 /// The [OpensearchserverlessSecurityConfigOptions.iamIdentityCenterOptions] choice: sets `iam_identity_center_options`.
-final class OpensearchserverlessSecurityConfigOptionsIamIdentityCenterOptions
+final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice
     extends OpensearchserverlessSecurityConfigOptions {
-  const OpensearchserverlessSecurityConfigOptionsIamIdentityCenterOptions(
+  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice(
     this.iamIdentityCenterOptions,
   );
 
@@ -109,9 +109,9 @@ final class OpensearchserverlessSecurityConfigOptionsIamIdentityCenterOptions
 }
 
 /// The [OpensearchserverlessSecurityConfigOptions.samlOptions] choice: sets `saml_options`.
-final class OpensearchserverlessSecurityConfigOptionsSamlOptions
+final class OpensearchserverlessSecurityConfigSamlOptionsChoice
     extends OpensearchserverlessSecurityConfigOptions {
-  const OpensearchserverlessSecurityConfigOptionsSamlOptions(this.samlOptions);
+  const OpensearchserverlessSecurityConfigSamlOptionsChoice(this.samlOptions);
 
   final List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions;
 
@@ -158,17 +158,11 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
     this.userAttribute,
   });
 
-  final TfArg<
-    OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute
-  >?
-  groupAttribute;
+  final TfArg<OpensearchserverlessSecurityConfigGroupAttribute>? groupAttribute;
 
   final TfArg<String> instanceArn;
 
-  final TfArg<
-    OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute
-  >?
-  userAttribute;
+  final TfArg<OpensearchserverlessSecurityConfigUserAttribute>? userAttribute;
 
   Map<String, Object?> encode() => {
     'group_attribute': ?groupAttribute?.toTfJson(),
@@ -178,28 +172,22 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
 }
 
 /// `group_attribute` — derived from the provider schema description.
-enum OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute
-    implements TerraformEnum {
+enum OpensearchserverlessSecurityConfigGroupAttribute implements TerraformEnum {
   groupid('GroupId'),
   groupname('GroupName');
 
-  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute(
-    this.terraformValue,
-  );
+  const OpensearchserverlessSecurityConfigGroupAttribute(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `user_attribute` — derived from the provider schema description.
-enum OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute
-    implements TerraformEnum {
+enum OpensearchserverlessSecurityConfigUserAttribute implements TerraformEnum {
   userid('UserId'),
   username('UserName'),
   email('Email');
 
-  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute(
-    this.terraformValue,
-  );
+  const OpensearchserverlessSecurityConfigUserAttribute(this.terraformValue);
   @override
   final String terraformValue;
 }

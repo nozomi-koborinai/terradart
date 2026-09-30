@@ -13,7 +13,7 @@ const Set<String> _googleClouddeployDeployPolicySensitive = <String>{};
 final class ClouddeployDeployPolicyRules {
   const ClouddeployDeployPolicyRules({this.rolloutRestriction});
 
-  final ClouddeployDeployPolicyRulesRolloutRestriction? rolloutRestriction;
+  final ClouddeployDeployPolicyRolloutRestriction? rolloutRestriction;
 
   Map<String, Object?> encode() => {
     'rollout_restriction': ?rolloutRestriction?.encode(),
@@ -23,23 +23,21 @@ final class ClouddeployDeployPolicyRules {
 /// Typed helper for the `rules.rollout_restriction` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestriction {
-  const ClouddeployDeployPolicyRulesRolloutRestriction({
+final class ClouddeployDeployPolicyRolloutRestriction {
+  const ClouddeployDeployPolicyRolloutRestriction({
     this.actions,
     required this.id,
     this.invokers,
     this.timeWindows,
   });
 
-  final List<TfArg<ClouddeployDeployPolicyRulesRolloutRestrictionActions>>?
-  actions;
+  final List<TfArg<ClouddeployDeployPolicyActions>>? actions;
 
   final TfArg<String> id;
 
-  final List<TfArg<ClouddeployDeployPolicyRulesRolloutRestrictionInvokers>>?
-  invokers;
+  final List<TfArg<ClouddeployDeployPolicyInvokers>>? invokers;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows? timeWindows;
+  final ClouddeployDeployPolicyTimeWindows? timeWindows;
 
   Map<String, Object?> encode() => {
     if (actions != null) 'actions': [for (final e in actions!) e.toTfJson()],
@@ -50,8 +48,7 @@ final class ClouddeployDeployPolicyRulesRolloutRestriction {
 }
 
 /// `actions` — derived from the provider schema description.
-enum ClouddeployDeployPolicyRulesRolloutRestrictionActions
-    implements TerraformEnum {
+enum ClouddeployDeployPolicyActions implements TerraformEnum {
   advance('ADVANCE'),
   approve('APPROVE'),
   cancel('CANCEL'),
@@ -61,22 +58,17 @@ enum ClouddeployDeployPolicyRulesRolloutRestrictionActions
   rollback('ROLLBACK'),
   terminateJobrun('TERMINATE_JOBRUN');
 
-  const ClouddeployDeployPolicyRulesRolloutRestrictionActions(
-    this.terraformValue,
-  );
+  const ClouddeployDeployPolicyActions(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `invokers` — derived from the provider schema description.
-enum ClouddeployDeployPolicyRulesRolloutRestrictionInvokers
-    implements TerraformEnum {
+enum ClouddeployDeployPolicyInvokers implements TerraformEnum {
   user('USER'),
   deployAutomation('DEPLOY_AUTOMATION');
 
-  const ClouddeployDeployPolicyRulesRolloutRestrictionInvokers(
-    this.terraformValue,
-  );
+  const ClouddeployDeployPolicyInvokers(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -84,8 +76,8 @@ enum ClouddeployDeployPolicyRulesRolloutRestrictionInvokers
 /// Typed helper for the `rules.rollout_restriction.time_windows` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows({
+final class ClouddeployDeployPolicyTimeWindows {
+  const ClouddeployDeployPolicyTimeWindows({
     required this.timeZone,
     this.oneTimeWindows,
     this.weeklyWindows,
@@ -93,15 +85,9 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows {
 
   final TfArg<String> timeZone;
 
-  final List<
-    ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindows
-  >?
-  oneTimeWindows;
+  final List<ClouddeployDeployPolicyOneTimeWindows>? oneTimeWindows;
 
-  final List<
-    ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindows
-  >?
-  weeklyWindows;
+  final List<ClouddeployDeployPolicyWeeklyWindows>? weeklyWindows;
 
   Map<String, Object?> encode() => {
     'time_zone': timeZone.toTfJson(),
@@ -115,25 +101,21 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows {
 /// Typed helper for the `rules.rollout_restriction.time_windows.one_time_windows` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindows {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindows({
+final class ClouddeployDeployPolicyOneTimeWindows {
+  const ClouddeployDeployPolicyOneTimeWindows({
     required this.endDate,
     required this.endTime,
     required this.startDate,
     required this.startTime,
   });
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndDate
-  endDate;
+  final ClouddeployDeployPolicyEndDate endDate;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndTime
-  endTime;
+  final ClouddeployDeployPolicyEndTime endTime;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartDate
-  startDate;
+  final ClouddeployDeployPolicyStartDate startDate;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartTime
-  startTime;
+  final ClouddeployDeployPolicyStartTime startTime;
 
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
@@ -146,12 +128,8 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWind
 /// Typed helper for the `rules.rollout_restriction.time_windows.one_time_windows.end_date` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndDate {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class ClouddeployDeployPolicyEndDate {
+  const ClouddeployDeployPolicyEndDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -168,9 +146,10 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWind
 
 /// Typed helper for the `rules.rollout_restriction.time_windows.one_time_windows.end_time` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndTime {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndTime({
+final class ClouddeployDeployPolicyEndTime {
+  const ClouddeployDeployPolicyEndTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -196,12 +175,8 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWind
 /// Typed helper for the `rules.rollout_restriction.time_windows.one_time_windows.start_date` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartDate {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class ClouddeployDeployPolicyStartDate {
+  const ClouddeployDeployPolicyStartDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -218,9 +193,10 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWind
 
 /// Typed helper for the `rules.rollout_restriction.time_windows.one_time_windows.start_time` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartTime {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartTime({
+final class ClouddeployDeployPolicyStartTime {
+  const ClouddeployDeployPolicyStartTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -246,25 +222,18 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWind
 /// Typed helper for the `rules.rollout_restriction.time_windows.weekly_windows` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindows {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindows({
+final class ClouddeployDeployPolicyWeeklyWindows {
+  const ClouddeployDeployPolicyWeeklyWindows({
     this.daysOfWeek,
     this.endTime,
     this.startTime,
   });
 
-  final List<
-    TfArg<
-      ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsDaysOfWeek
-    >
-  >?
-  daysOfWeek;
+  final List<TfArg<ClouddeployDeployPolicyDaysOfWeek>>? daysOfWeek;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsEndTime?
-  endTime;
+  final ClouddeployDeployPolicyEndTime? endTime;
 
-  final ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsStartTime?
-  startTime;
+  final ClouddeployDeployPolicyStartTime? startTime;
 
   Map<String, Object?> encode() => {
     if (daysOfWeek != null)
@@ -275,8 +244,7 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindo
 }
 
 /// `days_of_week` — derived from the provider schema description.
-enum ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsDaysOfWeek
-    implements TerraformEnum {
+enum ClouddeployDeployPolicyDaysOfWeek implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -285,65 +253,9 @@ enum ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsDaysO
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsDaysOfWeek(
-    this.terraformValue,
-  );
+  const ClouddeployDeployPolicyDaysOfWeek(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `rules.rollout_restriction.time_windows.weekly_windows.end_time` block of
-/// `google_clouddeploy_deploy_policy` (derived from provider schema).
-@immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsEndTime {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsEndTime({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rules.rollout_restriction.time_windows.weekly_windows.start_time` block of
-/// `google_clouddeploy_deploy_policy` (derived from provider schema).
-@immutable
-final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsStartTime {
-  const ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsStartTime({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `selectors` block of
@@ -352,9 +264,9 @@ final class ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindo
 final class ClouddeployDeployPolicySelectors {
   const ClouddeployDeployPolicySelectors({this.deliveryPipeline, this.target});
 
-  final ClouddeployDeployPolicySelectorsDeliveryPipeline? deliveryPipeline;
+  final ClouddeployDeployPolicyDeliveryPipeline? deliveryPipeline;
 
-  final ClouddeployDeployPolicySelectorsTarget? target;
+  final ClouddeployDeployPolicyTarget? target;
 
   Map<String, Object?> encode() => {
     'delivery_pipeline': ?deliveryPipeline?.encode(),
@@ -365,11 +277,8 @@ final class ClouddeployDeployPolicySelectors {
 /// Typed helper for the `selectors.delivery_pipeline` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicySelectorsDeliveryPipeline {
-  const ClouddeployDeployPolicySelectorsDeliveryPipeline({
-    this.id,
-    this.labels,
-  });
+final class ClouddeployDeployPolicyDeliveryPipeline {
+  const ClouddeployDeployPolicyDeliveryPipeline({this.id, this.labels});
 
   final TfArg<String>? id;
 
@@ -384,8 +293,8 @@ final class ClouddeployDeployPolicySelectorsDeliveryPipeline {
 /// Typed helper for the `selectors.target` block of
 /// `google_clouddeploy_deploy_policy` (derived from provider schema).
 @immutable
-final class ClouddeployDeployPolicySelectorsTarget {
-  const ClouddeployDeployPolicySelectorsTarget({this.id, this.labels});
+final class ClouddeployDeployPolicyTarget {
+  const ClouddeployDeployPolicyTarget({this.id, this.labels});
 
   final TfArg<String>? id;
 
@@ -420,14 +329,14 @@ final class ClouddeployDeployPolicySelectorsTarget {
 ///   location: TfArg.literal('us-central1'),
 ///   selectors: [
 ///     ClouddeployDeployPolicySelectors(
-///       deliveryPipeline: ClouddeployDeployPolicySelectorsDeliveryPipeline(
+///       deliveryPipeline: ClouddeployDeployPolicyDeliveryPipeline(
 ///         id: TfArg.literal('terradart-pipeline'),
 ///       ),
 ///     ),
 ///   ],
 ///   rules: [
 ///     ClouddeployDeployPolicyRules(
-///       rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(
+///       rolloutRestriction: ClouddeployDeployPolicyRolloutRestriction(
 ///         id: TfArg.literal('no-automation'),
 ///         invokers: [TfArg.literal(.deployAutomation)],
 ///       ),

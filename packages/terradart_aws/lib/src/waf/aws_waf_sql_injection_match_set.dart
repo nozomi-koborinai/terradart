@@ -18,7 +18,7 @@ final class WafSqlInjectionMatchSetSqlInjectionMatchTuples {
 
   final TfArg<String> textTransformation;
 
-  final WafSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch fieldToMatch;
+  final WafSqlInjectionMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'text_transformation': textTransformation.toTfJson(),
@@ -29,11 +29,8 @@ final class WafSqlInjectionMatchSetSqlInjectionMatchTuples {
 /// Typed helper for the `sql_injection_match_tuples.field_to_match` block of
 /// `aws_waf_sql_injection_match_set` (derived from provider schema).
 @immutable
-final class WafSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch {
-  const WafSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafSqlInjectionMatchSetFieldToMatch {
+  const WafSqlInjectionMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 

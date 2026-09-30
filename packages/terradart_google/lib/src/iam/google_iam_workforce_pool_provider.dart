@@ -178,11 +178,9 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
 
   final TfArg<String> issuerUri;
 
-  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret
-  clientSecret;
+  final IamWorkforcePoolProviderClientSecret clientSecret;
 
-  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters?
-  queryParameters;
+  final IamWorkforcePoolProviderQueryParameters? queryParameters;
 
   Map<String, Object?> encode() => {
     'attributes_type': attributesType.toTfJson(),
@@ -195,29 +193,27 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
 
 /// Typed helper for the `extended_attributes_oauth2_client.client_secret` block of
 /// `google_iam_workforce_pool_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret({
-    this.value,
-  });
+final class IamWorkforcePoolProviderClientSecret {
+  const IamWorkforcePoolProviderClientSecret({this.value});
 
-  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue?
-  value;
+  final IamWorkforcePoolProviderValue? value;
 
   Map<String, Object?> encode() => {'value': ?value?.encode()};
 }
 
 /// Typed helper for the `extended_attributes_oauth2_client.client_secret.value` block of
 /// `google_iam_workforce_pool_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue({
+final class IamWorkforcePoolProviderValue {
+  const IamWorkforcePoolProviderValue({
     required this.plainText,
     this.plainTextWoVersion,
   });
 
-  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText
-  plainText;
+  final IamWorkforcePoolProviderPlainText plainText;
 
   final TfArg<String>? plainTextWoVersion;
 
@@ -231,18 +227,18 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretVa
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.plainText(...)`.
-sealed class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText();
+sealed class IamWorkforcePoolProviderPlainText {
+  const IamWorkforcePoolProviderPlainText();
 
   /// Sets `plain_text`.
-  const factory IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText.plainText(
+  const factory IamWorkforcePoolProviderPlainText.plainText(
     TfArg<String> plainText,
-  ) = IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextChoice;
+  ) = IamWorkforcePoolProviderPlainTextChoice;
 
   /// Sets `plain_text_wo`.
-  const factory IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText.plainTextWo(
+  const factory IamWorkforcePoolProviderPlainText.plainTextWo(
     TfArg<String> plainTextWo,
-  ) = IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextWo;
+  ) = IamWorkforcePoolProviderPlainTextWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -250,13 +246,10 @@ sealed class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretV
   Map<String, Object?> encode();
 }
 
-/// The [IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText.plainText] choice: sets `plain_text`.
-final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextChoice
-    extends
-        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextChoice(
-    this.plainText,
-  );
+/// The [IamWorkforcePoolProviderPlainText.plainText] choice: sets `plain_text`.
+final class IamWorkforcePoolProviderPlainTextChoice
+    extends IamWorkforcePoolProviderPlainText {
+  const IamWorkforcePoolProviderPlainTextChoice(this.plainText);
 
   final TfArg<String> plainText;
 
@@ -267,13 +260,10 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretVa
   Map<String, Object?> encode() => {'plain_text': plainText.toTfJson()};
 }
 
-/// The [IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText.plainTextWo] choice: sets `plain_text_wo`.
-final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextWo
-    extends
-        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextWo(
-    this.plainTextWo,
-  );
+/// The [IamWorkforcePoolProviderPlainText.plainTextWo] choice: sets `plain_text_wo`.
+final class IamWorkforcePoolProviderPlainTextWo
+    extends IamWorkforcePoolProviderPlainText {
+  const IamWorkforcePoolProviderPlainTextWo(this.plainTextWo);
 
   final TfArg<String> plainTextWo;
 
@@ -286,11 +276,10 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretVa
 
 /// Typed helper for the `extended_attributes_oauth2_client.query_parameters` block of
 /// `google_iam_workforce_pool_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters {
-  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters({
-    this.filter,
-  });
+final class IamWorkforcePoolProviderQueryParameters {
+  const IamWorkforcePoolProviderQueryParameters({this.filter});
 
   final TfArg<String>? filter;
 
@@ -309,18 +298,15 @@ final class IamWorkforcePoolProviderExtraAttributesOauth2Client {
     this.queryParameters,
   });
 
-  final TfArg<IamWorkforcePoolProviderExtraAttributesOauth2ClientAttributesType>
-  attributesType;
+  final TfArg<IamWorkforcePoolProviderAttributesType> attributesType;
 
   final TfArg<String> clientId;
 
   final TfArg<String> issuerUri;
 
-  final IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecret
-  clientSecret;
+  final IamWorkforcePoolProviderClientSecret clientSecret;
 
-  final IamWorkforcePoolProviderExtraAttributesOauth2ClientQueryParameters?
-  queryParameters;
+  final IamWorkforcePoolProviderQueryParameters? queryParameters;
 
   Map<String, Object?> encode() => {
     'attributes_type': attributesType.toTfJson(),
@@ -332,121 +318,14 @@ final class IamWorkforcePoolProviderExtraAttributesOauth2Client {
 }
 
 /// `attributes_type` — derived from the provider schema description.
-enum IamWorkforcePoolProviderExtraAttributesOauth2ClientAttributesType
-    implements TerraformEnum {
+enum IamWorkforcePoolProviderAttributesType implements TerraformEnum {
   azureAdGroupsMail('AZURE_AD_GROUPS_MAIL'),
   azureAdGroupsId('AZURE_AD_GROUPS_ID'),
   azureAdGroupsDisplayName('AZURE_AD_GROUPS_DISPLAY_NAME');
 
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientAttributesType(
-    this.terraformValue,
-  );
+  const IamWorkforcePoolProviderAttributesType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `extra_attributes_oauth2_client.client_secret` block of
-/// `google_iam_workforce_pool_provider` (derived from provider schema).
-@immutable
-final class IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecret {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecret({
-    this.value,
-  });
-
-  final IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValue?
-  value;
-
-  Map<String, Object?> encode() => {'value': ?value?.encode()};
-}
-
-/// Typed helper for the `extra_attributes_oauth2_client.client_secret.value` block of
-/// `google_iam_workforce_pool_provider` (derived from provider schema).
-@immutable
-final class IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValue {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValue({
-    required this.plainText,
-    this.plainTextWoVersion,
-  });
-
-  final IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText
-  plainText;
-
-  final TfArg<String>? plainTextWoVersion;
-
-  Map<String, Object?> encode() => {
-    ...plainText.encode(),
-    'plain_text_wo_version': ?plainTextWoVersion?.toTfJson(),
-  };
-}
-
-/// Exactly one of `plain_text`, `plain_text_wo` on the `extra_attributes_oauth2_client.client_secret.value` block of `google_iam_workforce_pool_provider`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.plainText(...)`.
-sealed class IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText();
-
-  /// Sets `plain_text`.
-  const factory IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText.plainText(
-    TfArg<String> plainText,
-  ) = IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextChoice;
-
-  /// Sets `plain_text_wo`.
-  const factory IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText.plainTextWo(
-    TfArg<String> plainTextWo,
-  ) = IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextWo;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText.plainText] choice: sets `plain_text`.
-final class IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextChoice
-    extends
-        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextChoice(
-    this.plainText,
-  );
-
-  final TfArg<String> plainText;
-
-  @override
-  String get blockKey => 'plain_text';
-
-  @override
-  Map<String, Object?> encode() => {'plain_text': plainText.toTfJson()};
-}
-
-/// The [IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText.plainTextWo] choice: sets `plain_text_wo`.
-final class IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextWo
-    extends
-        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextWo(
-    this.plainTextWo,
-  );
-
-  final TfArg<String> plainTextWo;
-
-  @override
-  String get blockKey => 'plain_text_wo';
-
-  @override
-  Map<String, Object?> encode() => {'plain_text_wo': plainTextWo.toTfJson()};
-}
-
-/// Typed helper for the `extra_attributes_oauth2_client.query_parameters` block of
-/// `google_iam_workforce_pool_provider` (derived from provider schema).
-@immutable
-final class IamWorkforcePoolProviderExtraAttributesOauth2ClientQueryParameters {
-  const IamWorkforcePoolProviderExtraAttributesOauth2ClientQueryParameters({
-    this.filter,
-  });
-
-  final TfArg<String>? filter;
-
-  Map<String, Object?> encode() => {'filter': ?filter?.toTfJson()};
 }
 
 /// Typed helper for the `oidc` block of
@@ -467,9 +346,9 @@ final class IamWorkforcePoolProviderOidc {
 
   final TfArg<String>? jwksJson;
 
-  final IamWorkforcePoolProviderOidcClientSecret? clientSecret;
+  final IamWorkforcePoolProviderClientSecret? clientSecret;
 
-  final IamWorkforcePoolProviderOidcWebSsoConfig? webSsoConfig;
+  final IamWorkforcePoolProviderWebSsoConfig? webSsoConfig;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
@@ -480,96 +359,11 @@ final class IamWorkforcePoolProviderOidc {
   };
 }
 
-/// Typed helper for the `oidc.client_secret` block of
-/// `google_iam_workforce_pool_provider` (derived from provider schema).
-@immutable
-final class IamWorkforcePoolProviderOidcClientSecret {
-  const IamWorkforcePoolProviderOidcClientSecret({this.value});
-
-  final IamWorkforcePoolProviderOidcClientSecretValue? value;
-
-  Map<String, Object?> encode() => {'value': ?value?.encode()};
-}
-
-/// Typed helper for the `oidc.client_secret.value` block of
-/// `google_iam_workforce_pool_provider` (derived from provider schema).
-@immutable
-final class IamWorkforcePoolProviderOidcClientSecretValue {
-  const IamWorkforcePoolProviderOidcClientSecretValue({
-    required this.plainText,
-    this.plainTextWoVersion,
-  });
-
-  final IamWorkforcePoolProviderOidcClientSecretValuePlainText plainText;
-
-  final TfArg<String>? plainTextWoVersion;
-
-  Map<String, Object?> encode() => {
-    ...plainText.encode(),
-    'plain_text_wo_version': ?plainTextWoVersion?.toTfJson(),
-  };
-}
-
-/// Exactly one of `plain_text`, `plain_text_wo` on the `oidc.client_secret.value` block of `google_iam_workforce_pool_provider`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.plainText(...)`.
-sealed class IamWorkforcePoolProviderOidcClientSecretValuePlainText {
-  const IamWorkforcePoolProviderOidcClientSecretValuePlainText();
-
-  /// Sets `plain_text`.
-  const factory IamWorkforcePoolProviderOidcClientSecretValuePlainText.plainText(
-    TfArg<String> plainText,
-  ) = IamWorkforcePoolProviderOidcClientSecretValuePlainTextChoice;
-
-  /// Sets `plain_text_wo`.
-  const factory IamWorkforcePoolProviderOidcClientSecretValuePlainText.plainTextWo(
-    TfArg<String> plainTextWo,
-  ) = IamWorkforcePoolProviderOidcClientSecretValuePlainTextWo;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [IamWorkforcePoolProviderOidcClientSecretValuePlainText.plainText] choice: sets `plain_text`.
-final class IamWorkforcePoolProviderOidcClientSecretValuePlainTextChoice
-    extends IamWorkforcePoolProviderOidcClientSecretValuePlainText {
-  const IamWorkforcePoolProviderOidcClientSecretValuePlainTextChoice(
-    this.plainText,
-  );
-
-  final TfArg<String> plainText;
-
-  @override
-  String get blockKey => 'plain_text';
-
-  @override
-  Map<String, Object?> encode() => {'plain_text': plainText.toTfJson()};
-}
-
-/// The [IamWorkforcePoolProviderOidcClientSecretValuePlainText.plainTextWo] choice: sets `plain_text_wo`.
-final class IamWorkforcePoolProviderOidcClientSecretValuePlainTextWo
-    extends IamWorkforcePoolProviderOidcClientSecretValuePlainText {
-  const IamWorkforcePoolProviderOidcClientSecretValuePlainTextWo(
-    this.plainTextWo,
-  );
-
-  final TfArg<String> plainTextWo;
-
-  @override
-  String get blockKey => 'plain_text_wo';
-
-  @override
-  Map<String, Object?> encode() => {'plain_text_wo': plainTextWo.toTfJson()};
-}
-
 /// Typed helper for the `oidc.web_sso_config` block of
 /// `google_iam_workforce_pool_provider` (derived from provider schema).
 @immutable
-final class IamWorkforcePoolProviderOidcWebSsoConfig {
-  const IamWorkforcePoolProviderOidcWebSsoConfig({
+final class IamWorkforcePoolProviderWebSsoConfig {
+  const IamWorkforcePoolProviderWebSsoConfig({
     this.additionalScopes,
     required this.assertionClaimsBehavior,
     required this.responseType,
@@ -577,11 +371,10 @@ final class IamWorkforcePoolProviderOidcWebSsoConfig {
 
   final TfArg<List<String>>? additionalScopes;
 
-  final TfArg<IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior>
+  final TfArg<IamWorkforcePoolProviderAssertionClaimsBehavior>
   assertionClaimsBehavior;
 
-  final TfArg<IamWorkforcePoolProviderOidcWebSsoConfigResponseType>
-  responseType;
+  final TfArg<IamWorkforcePoolProviderResponseType> responseType;
 
   Map<String, Object?> encode() => {
     'additional_scopes': ?additionalScopes?.toTfJson(),
@@ -591,27 +384,21 @@ final class IamWorkforcePoolProviderOidcWebSsoConfig {
 }
 
 /// `assertion_claims_behavior` — derived from the provider schema description.
-enum IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior
-    implements TerraformEnum {
+enum IamWorkforcePoolProviderAssertionClaimsBehavior implements TerraformEnum {
   mergeUserInfoOverIdTokenClaims('MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS'),
   onlyIdTokenClaims('ONLY_ID_TOKEN_CLAIMS');
 
-  const IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior(
-    this.terraformValue,
-  );
+  const IamWorkforcePoolProviderAssertionClaimsBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `response_type` — derived from the provider schema description.
-enum IamWorkforcePoolProviderOidcWebSsoConfigResponseType
-    implements TerraformEnum {
+enum IamWorkforcePoolProviderResponseType implements TerraformEnum {
   code('CODE'),
   idToken('ID_TOKEN');
 
-  const IamWorkforcePoolProviderOidcWebSsoConfigResponseType(
-    this.terraformValue,
-  );
+  const IamWorkforcePoolProviderResponseType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -54,7 +54,7 @@ curatedDoc: |-
   ///         'GROUP BY user_id',
   ///       ),
   ///       useLegacySql: .literal(false),
-  ///       destinationTable: BigqueryJobQueryDestinationTable(
+  ///       destinationTable: BigqueryJobDestinationTable(
   ///         datasetId: analyticsProd.ref,
   ///         tableId: .literal('daily_user_events'),
   ///       ),
@@ -77,7 +77,7 @@ curatedDoc: |-
   ///       sourceUris: .literal([
   ///         'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
   ///       ]),
-  ///       destinationTable: BigqueryJobLoadDestinationTable(
+  ///       destinationTable: BigqueryJobDestinationTable(
   ///         datasetId: staging.ref,
   ///         tableId: .literal('users_raw'),
   ///       ),

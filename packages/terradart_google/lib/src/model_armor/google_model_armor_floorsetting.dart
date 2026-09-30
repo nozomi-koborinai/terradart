@@ -41,15 +41,15 @@ final class ModelArmorFloorsettingFilterConfig {
     this.sdpSettings,
   });
 
-  final ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings?
+  final ModelArmorFloorsettingMaliciousUriFilterSettings?
   maliciousUriFilterSettings;
 
-  final ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings?
+  final ModelArmorFloorsettingPiAndJailbreakFilterSettings?
   piAndJailbreakFilterSettings;
 
-  final ModelArmorFloorsettingFilterConfigRaiSettings? raiSettings;
+  final ModelArmorFloorsettingRaiSettings? raiSettings;
 
-  final ModelArmorFloorsettingFilterConfigSdpSettings? sdpSettings;
+  final ModelArmorFloorsettingSdpSettings? sdpSettings;
 
   Map<String, Object?> encode() => {
     'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
@@ -62,8 +62,8 @@ final class ModelArmorFloorsettingFilterConfig {
 /// Typed helper for the `filter_config.malicious_uri_filter_settings` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings {
-  const ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings({
+final class ModelArmorFloorsettingMaliciousUriFilterSettings {
+  const ModelArmorFloorsettingMaliciousUriFilterSettings({
     this.filterEnforcement,
   });
 
@@ -77,8 +77,8 @@ final class ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings {
 /// Typed helper for the `filter_config.pi_and_jailbreak_filter_settings` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings {
-  const ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings({
+final class ModelArmorFloorsettingPiAndJailbreakFilterSettings {
+  const ModelArmorFloorsettingPiAndJailbreakFilterSettings({
     this.confidenceLevel,
     this.filterEnforcement,
   });
@@ -96,13 +96,10 @@ final class ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings {
 /// Typed helper for the `filter_config.rai_settings` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigRaiSettings {
-  const ModelArmorFloorsettingFilterConfigRaiSettings({
-    required this.raiFilters,
-  });
+final class ModelArmorFloorsettingRaiSettings {
+  const ModelArmorFloorsettingRaiSettings({required this.raiFilters});
 
-  final List<ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters>
-  raiFilters;
+  final List<ModelArmorFloorsettingRaiFilters> raiFilters;
 
   Map<String, Object?> encode() => {
     'rai_filters': [for (final e in raiFilters) e.encode()],
@@ -112,8 +109,8 @@ final class ModelArmorFloorsettingFilterConfigRaiSettings {
 /// Typed helper for the `filter_config.rai_settings.rai_filters` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters {
-  const ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters({
+final class ModelArmorFloorsettingRaiFilters {
+  const ModelArmorFloorsettingRaiFilters({
     this.confidenceLevel,
     required this.filterType,
   });
@@ -131,16 +128,15 @@ final class ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters {
 /// Typed helper for the `filter_config.sdp_settings` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigSdpSettings {
-  const ModelArmorFloorsettingFilterConfigSdpSettings({
+final class ModelArmorFloorsettingSdpSettings {
+  const ModelArmorFloorsettingSdpSettings({
     this.advancedConfig,
     this.basicConfig,
   });
 
-  final ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig?
-  advancedConfig;
+  final ModelArmorFloorsettingAdvancedConfig? advancedConfig;
 
-  final ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig? basicConfig;
+  final ModelArmorFloorsettingBasicConfig? basicConfig;
 
   Map<String, Object?> encode() => {
     'advanced_config': ?advancedConfig?.encode(),
@@ -151,8 +147,8 @@ final class ModelArmorFloorsettingFilterConfigSdpSettings {
 /// Typed helper for the `filter_config.sdp_settings.advanced_config` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig {
-  const ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig({
+final class ModelArmorFloorsettingAdvancedConfig {
+  const ModelArmorFloorsettingAdvancedConfig({
     this.deidentifyTemplate,
     this.inspectTemplate,
   });
@@ -170,10 +166,8 @@ final class ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig {
 /// Typed helper for the `filter_config.sdp_settings.basic_config` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig {
-  const ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig({
-    this.filterEnforcement,
-  });
+final class ModelArmorFloorsettingBasicConfig {
+  const ModelArmorFloorsettingBasicConfig({this.filterEnforcement});
 
   final TfArg<String>? filterEnforcement;
 
@@ -190,8 +184,7 @@ final class ModelArmorFloorsettingFloorSettingMetadata {
     this.multiLanguageDetection,
   });
 
-  final ModelArmorFloorsettingFloorSettingMetadataMultiLanguageDetection?
-  multiLanguageDetection;
+  final ModelArmorFloorsettingMultiLanguageDetection? multiLanguageDetection;
 
   Map<String, Object?> encode() => {
     'multi_language_detection': ?multiLanguageDetection?.encode(),
@@ -201,8 +194,8 @@ final class ModelArmorFloorsettingFloorSettingMetadata {
 /// Typed helper for the `floor_setting_metadata.multi_language_detection` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
-final class ModelArmorFloorsettingFloorSettingMetadataMultiLanguageDetection {
-  const ModelArmorFloorsettingFloorSettingMetadataMultiLanguageDetection({
+final class ModelArmorFloorsettingMultiLanguageDetection {
+  const ModelArmorFloorsettingMultiLanguageDetection({
     required this.enableMultiLanguageDetection,
   });
 

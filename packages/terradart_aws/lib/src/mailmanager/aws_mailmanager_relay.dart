@@ -16,8 +16,8 @@ sealed class MailmanagerRelayAuthentication {
 
   /// Sets `no_authentication`.
   const factory MailmanagerRelayAuthentication.noAuthentication(
-    List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication,
-  ) = MailmanagerRelayAuthenticationNoAuthenticationChoice;
+    List<MailmanagerRelayNoAuthentication> noAuthentication,
+  ) = MailmanagerRelayNoAuthenticationChoice;
 
   /// Sets `secret_arn`.
   const factory MailmanagerRelayAuthentication.secretArn(
@@ -31,13 +31,11 @@ sealed class MailmanagerRelayAuthentication {
 }
 
 /// The [MailmanagerRelayAuthentication.noAuthentication] choice: sets `no_authentication`.
-final class MailmanagerRelayAuthenticationNoAuthenticationChoice
+final class MailmanagerRelayNoAuthenticationChoice
     extends MailmanagerRelayAuthentication {
-  const MailmanagerRelayAuthenticationNoAuthenticationChoice(
-    this.noAuthentication,
-  );
+  const MailmanagerRelayNoAuthenticationChoice(this.noAuthentication);
 
-  final List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication;
+  final List<MailmanagerRelayNoAuthentication> noAuthentication;
 
   @override
   String get blockKey => 'no_authentication';
@@ -65,8 +63,8 @@ final class MailmanagerRelayAuthenticationSecretArn
 /// Typed helper for the `authentication.no_authentication` block of
 /// `aws_mailmanager_relay` (derived from provider schema).
 @immutable
-final class MailmanagerRelayAuthenticationNoAuthentication {
-  const MailmanagerRelayAuthenticationNoAuthentication();
+final class MailmanagerRelayNoAuthentication {
+  const MailmanagerRelayNoAuthentication();
 
   Map<String, Object?> encode() => {};
 }

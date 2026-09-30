@@ -20,11 +20,9 @@ final class DataprocSessionTemplateEnvironmentConfig {
     this.peripheralsConfig,
   });
 
-  final DataprocSessionTemplateEnvironmentConfigExecutionConfig?
-  executionConfig;
+  final DataprocSessionTemplateExecutionConfig? executionConfig;
 
-  final DataprocSessionTemplateEnvironmentConfigPeripheralsConfig?
-  peripheralsConfig;
+  final DataprocSessionTemplatePeripheralsConfig? peripheralsConfig;
 
   Map<String, Object?> encode() => {
     'execution_config': ?executionConfig?.encode(),
@@ -35,8 +33,8 @@ final class DataprocSessionTemplateEnvironmentConfig {
 /// Typed helper for the `environment_config.execution_config` block of
 /// `google_dataproc_session_template` (derived from provider schema).
 @immutable
-final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
-  const DataprocSessionTemplateEnvironmentConfigExecutionConfig({
+final class DataprocSessionTemplateExecutionConfig {
+  const DataprocSessionTemplateExecutionConfig({
     this.idleTtl,
     this.kmsKey,
     this.networkTags,
@@ -61,8 +59,7 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
 
   final TfArg<String>? ttl;
 
-  final DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfig?
-  authenticationConfig;
+  final DataprocSessionTemplateAuthenticationConfig? authenticationConfig;
 
   Map<String, Object?> encode() => {
     'idle_ttl': ?idleTtl?.toTfJson(),
@@ -79,14 +76,12 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
 /// Typed helper for the `environment_config.execution_config.authentication_config` block of
 /// `google_dataproc_session_template` (derived from provider schema).
 @immutable
-final class DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfig {
-  const DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfig({
+final class DataprocSessionTemplateAuthenticationConfig {
+  const DataprocSessionTemplateAuthenticationConfig({
     this.userWorkloadAuthenticationType,
   });
 
-  final TfArg<
-    DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType
-  >?
+  final TfArg<DataprocSessionTemplateUserWorkloadAuthenticationType>?
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
@@ -96,12 +91,12 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticatio
 }
 
 /// `user_workload_authentication_type` — derived from the provider schema description.
-enum DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType
+enum DataprocSessionTemplateUserWorkloadAuthenticationType
     implements TerraformEnum {
   serviceAccount('SERVICE_ACCOUNT'),
   endUserCredentials('END_USER_CREDENTIALS');
 
-  const DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType(
+  const DataprocSessionTemplateUserWorkloadAuthenticationType(
     this.terraformValue,
   );
   @override
@@ -111,15 +106,15 @@ enum DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfig
 /// Typed helper for the `environment_config.peripherals_config` block of
 /// `google_dataproc_session_template` (derived from provider schema).
 @immutable
-final class DataprocSessionTemplateEnvironmentConfigPeripheralsConfig {
-  const DataprocSessionTemplateEnvironmentConfigPeripheralsConfig({
+final class DataprocSessionTemplatePeripheralsConfig {
+  const DataprocSessionTemplatePeripheralsConfig({
     this.metastoreService,
     this.sparkHistoryServerConfig,
   });
 
   final TfArg<String>? metastoreService;
 
-  final DataprocSessionTemplateEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig?
+  final DataprocSessionTemplateSparkHistoryServerConfig?
   sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
@@ -131,10 +126,8 @@ final class DataprocSessionTemplateEnvironmentConfigPeripheralsConfig {
 /// Typed helper for the `environment_config.peripherals_config.spark_history_server_config` block of
 /// `google_dataproc_session_template` (derived from provider schema).
 @immutable
-final class DataprocSessionTemplateEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig {
-  const DataprocSessionTemplateEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig({
-    this.dataprocCluster,
-  });
+final class DataprocSessionTemplateSparkHistoryServerConfig {
+  const DataprocSessionTemplateSparkHistoryServerConfig({this.dataprocCluster});
 
   final TfArg<String>? dataprocCluster;
 
@@ -151,7 +144,7 @@ final class DataprocSessionTemplateJupyterSession {
 
   final TfArg<String>? displayName;
 
-  final TfArg<DataprocSessionTemplateJupyterSessionKernel>? kernel;
+  final TfArg<DataprocSessionTemplateKernel>? kernel;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -160,11 +153,11 @@ final class DataprocSessionTemplateJupyterSession {
 }
 
 /// `kernel` — derived from the provider schema description.
-enum DataprocSessionTemplateJupyterSessionKernel implements TerraformEnum {
+enum DataprocSessionTemplateKernel implements TerraformEnum {
   python('PYTHON'),
   scala('SCALA');
 
-  const DataprocSessionTemplateJupyterSessionKernel(this.terraformValue);
+  const DataprocSessionTemplateKernel(this.terraformValue);
   @override
   final String terraformValue;
 }

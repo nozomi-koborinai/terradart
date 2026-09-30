@@ -21,8 +21,8 @@ enum CloudIdentityGroupInitialGroupConfig implements TerraformEnum {
 /// Typed helper for the `group_key` block of
 /// `google_cloud_identity_group` (derived from provider schema).
 @immutable
-final class CloudIdentityGroupGroupKey {
-  const CloudIdentityGroupGroupKey({required this.id, this.namespace});
+final class CloudIdentityGroupKey {
+  const CloudIdentityGroupKey({required this.id, this.namespace});
 
   final TfArg<String> id;
 
@@ -55,7 +55,7 @@ final class GoogleCloudIdentityGroup extends Resource {
     TfArg<CloudIdentityGroupInitialGroupConfig>? initialGroupConfig,
     required TfArg<Map<String, String>> labels,
     required TfArg<String> parent,
-    required CloudIdentityGroupGroupKey groupKey,
+    required CloudIdentityGroupKey groupKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,

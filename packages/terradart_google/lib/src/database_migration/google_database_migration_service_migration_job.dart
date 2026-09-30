@@ -64,19 +64,19 @@ sealed class DatabaseMigrationServiceMigrationJobConnectivity {
   const factory DatabaseMigrationServiceMigrationJobConnectivity.staticIpConnectivity(
     DatabaseMigrationServiceMigrationJobStaticIpConnectivity
     staticIpConnectivity,
-  ) = DatabaseMigrationServiceMigrationJobConnectivityStaticIpConnectivity;
+  ) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice;
 
   /// Sets `reverse_ssh_connectivity`.
   const factory DatabaseMigrationServiceMigrationJobConnectivity.reverseSshConnectivity(
     DatabaseMigrationServiceMigrationJobReverseSshConnectivity
     reverseSshConnectivity,
-  ) = DatabaseMigrationServiceMigrationJobConnectivityReverseSshConnectivity;
+  ) = DatabaseMigrationServiceMigrationJobReverseSshConnectivityChoice;
 
   /// Sets `vpc_peering_connectivity`.
   const factory DatabaseMigrationServiceMigrationJobConnectivity.vpcPeeringConnectivity(
     DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity
     vpcPeeringConnectivity,
-  ) = DatabaseMigrationServiceMigrationJobConnectivityVpcPeeringConnectivity;
+  ) = DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -89,9 +89,9 @@ sealed class DatabaseMigrationServiceMigrationJobConnectivity {
 }
 
 /// The [DatabaseMigrationServiceMigrationJobConnectivity.staticIpConnectivity] choice: sets `static_ip_connectivity`.
-final class DatabaseMigrationServiceMigrationJobConnectivityStaticIpConnectivity
+final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice
     extends DatabaseMigrationServiceMigrationJobConnectivity {
-  const DatabaseMigrationServiceMigrationJobConnectivityStaticIpConnectivity(
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice(
     this.staticIpConnectivity,
   );
 
@@ -113,9 +113,9 @@ final class DatabaseMigrationServiceMigrationJobConnectivityStaticIpConnectivity
 }
 
 /// The [DatabaseMigrationServiceMigrationJobConnectivity.reverseSshConnectivity] choice: sets `reverse_ssh_connectivity`.
-final class DatabaseMigrationServiceMigrationJobConnectivityReverseSshConnectivity
+final class DatabaseMigrationServiceMigrationJobReverseSshConnectivityChoice
     extends DatabaseMigrationServiceMigrationJobConnectivity {
-  const DatabaseMigrationServiceMigrationJobConnectivityReverseSshConnectivity(
+  const DatabaseMigrationServiceMigrationJobReverseSshConnectivityChoice(
     this.reverseSshConnectivity,
   );
 
@@ -137,9 +137,9 @@ final class DatabaseMigrationServiceMigrationJobConnectivityReverseSshConnectivi
 }
 
 /// The [DatabaseMigrationServiceMigrationJobConnectivity.vpcPeeringConnectivity] choice: sets `vpc_peering_connectivity`.
-final class DatabaseMigrationServiceMigrationJobConnectivityVpcPeeringConnectivity
+final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityChoice
     extends DatabaseMigrationServiceMigrationJobConnectivity {
-  const DatabaseMigrationServiceMigrationJobConnectivityVpcPeeringConnectivity(
+  const DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityChoice(
     this.vpcPeeringConnectivity,
   );
 
@@ -201,7 +201,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfig {
     this.sourceObjectsConfig,
   });
 
-  final DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig?
+  final DatabaseMigrationServiceMigrationJobSourceObjectsConfig?
   sourceObjectsConfig;
 
   Map<String, Object?> encode() => {
@@ -212,21 +212,16 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfig {
 /// Typed helper for the `objects_config.source_objects_config` block of
 /// `google_database_migration_service_migration_job` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig {
-  const DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig({
+final class DatabaseMigrationServiceMigrationJobSourceObjectsConfig {
+  const DatabaseMigrationServiceMigrationJobSourceObjectsConfig({
     this.objectsSelectionType,
     this.objectConfigs,
   });
 
-  final TfArg<
-    DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectsSelectionType
-  >?
+  final TfArg<DatabaseMigrationServiceMigrationJobObjectsSelectionType>?
   objectsSelectionType;
 
-  final List<
-    DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigs
-  >?
-  objectConfigs;
+  final List<DatabaseMigrationServiceMigrationJobObjectConfigs>? objectConfigs;
 
   Map<String, Object?> encode() => {
     'objects_selection_type': ?objectsSelectionType?.toTfJson(),
@@ -236,12 +231,12 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
 }
 
 /// `objects_selection_type` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectsSelectionType
+enum DatabaseMigrationServiceMigrationJobObjectsSelectionType
     implements TerraformEnum {
   allObjects('ALL_OBJECTS'),
   specifiedObjects('SPECIFIED_OBJECTS');
 
-  const DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectsSelectionType(
+  const DatabaseMigrationServiceMigrationJobObjectsSelectionType(
     this.terraformValue,
   );
   @override
@@ -251,13 +246,12 @@ enum DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjects
 /// Typed helper for the `objects_config.source_objects_config.object_configs` block of
 /// `google_database_migration_service_migration_job` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigs {
-  const DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigs({
+final class DatabaseMigrationServiceMigrationJobObjectConfigs {
+  const DatabaseMigrationServiceMigrationJobObjectConfigs({
     this.objectIdentifier,
   });
 
-  final DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifier?
-  objectIdentifier;
+  final DatabaseMigrationServiceMigrationJobObjectIdentifier? objectIdentifier;
 
   Map<String, Object?> encode() => {
     'object_identifier': ?objectIdentifier?.encode(),
@@ -267,8 +261,8 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
 /// Typed helper for the `objects_config.source_objects_config.object_configs.object_identifier` block of
 /// `google_database_migration_service_migration_job` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifier {
-  const DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifier({
+final class DatabaseMigrationServiceMigrationJobObjectIdentifier {
+  const DatabaseMigrationServiceMigrationJobObjectIdentifier({
     this.database,
     this.schema,
     this.table,
@@ -281,10 +275,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
 
   final TfArg<String>? table;
 
-  final TfArg<
-    DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifierType
-  >
-  type;
+  final TfArg<DatabaseMigrationServiceMigrationJobObjectIdentifierType> type;
 
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
@@ -295,13 +286,13 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
 }
 
 /// `type` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifierType
+enum DatabaseMigrationServiceMigrationJobObjectIdentifierType
     implements TerraformEnum {
   database('DATABASE'),
   schema('SCHEMA'),
   table('TABLE');
 
-  const DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfigObjectConfigsObjectIdentifierType(
+  const DatabaseMigrationServiceMigrationJobObjectIdentifierType(
     this.terraformValue,
   );
   @override
@@ -316,9 +307,7 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
     this.dumpParallelLevel,
   });
 
-  final TfArg<
-    DatabaseMigrationServiceMigrationJobPerformanceConfigDumpParallelLevel
-  >?
+  final TfArg<DatabaseMigrationServiceMigrationJobDumpParallelLevel>?
   dumpParallelLevel;
 
   Map<String, Object?> encode() => {
@@ -327,13 +316,13 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
 }
 
 /// `dump_parallel_level` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobPerformanceConfigDumpParallelLevel
+enum DatabaseMigrationServiceMigrationJobDumpParallelLevel
     implements TerraformEnum {
   min('MIN'),
   optimal('OPTIMAL'),
   max('MAX');
 
-  const DatabaseMigrationServiceMigrationJobPerformanceConfigDumpParallelLevel(
+  const DatabaseMigrationServiceMigrationJobDumpParallelLevel(
     this.terraformValue,
   );
   @override

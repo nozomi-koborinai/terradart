@@ -57,17 +57,17 @@ enum D1DatabasePrimaryLocationHint implements TerraformEnum {
 final class D1DatabaseReadReplication {
   const D1DatabaseReadReplication({required this.mode});
 
-  final TfArg<D1DatabaseReadReplicationMode> mode;
+  final TfArg<D1DatabaseMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum D1DatabaseReadReplicationMode implements TerraformEnum {
+enum D1DatabaseMode implements TerraformEnum {
   auto('auto'),
   disabled('disabled');
 
-  const D1DatabaseReadReplicationMode(this.terraformValue);
+  const D1DatabaseMode(this.terraformValue);
   @override
   final String terraformValue;
 }

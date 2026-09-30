@@ -13,13 +13,13 @@ export 'src/scc/google_scc_folder_custom_module.dart'
     show
         GoogleSccFolderCustomModule,
         SccFolderCustomModuleCustomConfig,
-        SccFolderCustomModuleCustomConfigCustomOutput,
-        SccFolderCustomModuleCustomConfigCustomOutputProperties,
-        SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccFolderCustomModuleCustomConfigPredicate,
-        SccFolderCustomModuleCustomConfigResourceSelector,
-        SccFolderCustomModuleCustomConfigSeverity,
-        SccFolderCustomModuleEnablementState;
+        SccFolderCustomModuleCustomOutput,
+        SccFolderCustomModuleEnablementState,
+        SccFolderCustomModulePredicate,
+        SccFolderCustomModuleProperties,
+        SccFolderCustomModuleResourceSelector,
+        SccFolderCustomModuleSeverity,
+        SccFolderCustomModuleValueExpression;
 export 'src/scc/google_scc_folder_notification_config.dart'
     show
         GoogleSccFolderNotificationConfig,
@@ -30,13 +30,13 @@ export 'src/scc/google_scc_management_folder_security_health_analytics_custom_mo
     show
         GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule,
         SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState;
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomOutput,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState,
+        SccManagementFolderSecurityHealthAnalyticsCustomModulePredicate,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleProperties,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleResourceSelector,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleValueExpression;
 export 'src/scc/google_scc_management_organization_event_threat_detection_custom_module.dart'
     show
         GoogleSccManagementOrganizationEventThreatDetectionCustomModule,
@@ -45,24 +45,24 @@ export 'src/scc/google_scc_management_organization_security_health_analytics_cus
     show
         GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule,
         SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfig,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState;
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomOutput,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModulePredicate,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleProperties,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleResourceSelector,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleValueExpression;
 export 'src/scc/google_scc_management_project_security_health_analytics_custom_module.dart'
     show
         GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule,
         SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfig,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState;
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomOutput,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState,
+        SccManagementProjectSecurityHealthAnalyticsCustomModulePredicate,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleProperties,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleResourceSelector,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleSeverity,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleValueExpression;
 export 'src/scc/google_scc_mute_config.dart'
     show GoogleSccMuteConfig, SccMuteConfigType;
 export 'src/scc/google_scc_notification_config.dart'
@@ -73,26 +73,26 @@ export 'src/scc/google_scc_organization_custom_module.dart'
     show
         GoogleSccOrganizationCustomModule,
         SccOrganizationCustomModuleCustomConfig,
-        SccOrganizationCustomModuleCustomConfigCustomOutput,
-        SccOrganizationCustomModuleCustomConfigCustomOutputProperties,
-        SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccOrganizationCustomModuleCustomConfigPredicate,
-        SccOrganizationCustomModuleCustomConfigResourceSelector,
-        SccOrganizationCustomModuleCustomConfigSeverity,
-        SccOrganizationCustomModuleEnablementState;
+        SccOrganizationCustomModuleCustomOutput,
+        SccOrganizationCustomModuleEnablementState,
+        SccOrganizationCustomModulePredicate,
+        SccOrganizationCustomModuleProperties,
+        SccOrganizationCustomModuleResourceSelector,
+        SccOrganizationCustomModuleSeverity,
+        SccOrganizationCustomModuleValueExpression;
 export 'src/scc/google_scc_organization_scc_big_query_export.dart'
     show GoogleSccOrganizationSccBigQueryExport;
 export 'src/scc/google_scc_project_custom_module.dart'
     show
         GoogleSccProjectCustomModule,
         SccProjectCustomModuleCustomConfig,
-        SccProjectCustomModuleCustomConfigCustomOutput,
-        SccProjectCustomModuleCustomConfigCustomOutputProperties,
-        SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
-        SccProjectCustomModuleCustomConfigPredicate,
-        SccProjectCustomModuleCustomConfigResourceSelector,
-        SccProjectCustomModuleCustomConfigSeverity,
-        SccProjectCustomModuleEnablementState;
+        SccProjectCustomModuleCustomOutput,
+        SccProjectCustomModuleEnablementState,
+        SccProjectCustomModulePredicate,
+        SccProjectCustomModuleProperties,
+        SccProjectCustomModuleResourceSelector,
+        SccProjectCustomModuleSeverity,
+        SccProjectCustomModuleValueExpression;
 export 'src/scc/google_scc_project_notification_config.dart'
     show
         GoogleSccProjectNotificationConfig,

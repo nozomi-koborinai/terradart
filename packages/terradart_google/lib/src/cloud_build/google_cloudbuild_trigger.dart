@@ -204,6 +204,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigEventPush
 
 /// Typed helper for the `bitbucket_server_trigger_config.pull_request` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
   const CloudbuildTriggerBitbucketServerTriggerConfigPullRequest({
@@ -214,10 +215,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
 
   final TfArg<String> branch;
 
-  final TfArg<
-    CloudbuildTriggerBitbucketServerTriggerConfigPullRequestCommentControl
-  >?
-  commentControl;
+  final TfArg<CloudbuildTriggerCommentControl>? commentControl;
 
   final TfArg<bool>? invertRegex;
 
@@ -229,23 +227,21 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
 }
 
 /// `comment_control` — derived from the provider schema description.
-enum CloudbuildTriggerBitbucketServerTriggerConfigPullRequestCommentControl
-    implements TerraformEnum {
+enum CloudbuildTriggerCommentControl implements TerraformEnum {
   commentsDisabled('COMMENTS_DISABLED'),
   commentsEnabled('COMMENTS_ENABLED'),
   commentsEnabledForExternalContributorsOnly(
     'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
   );
 
-  const CloudbuildTriggerBitbucketServerTriggerConfigPullRequestCommentControl(
-    this.terraformValue,
-  );
+  const CloudbuildTriggerCommentControl(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `bitbucket_server_trigger_config.push` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
   const CloudbuildTriggerBitbucketServerTriggerConfigPush({
@@ -253,7 +249,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
     this.invertRegex,
   });
 
-  final CloudbuildTriggerBitbucketServerTriggerConfigPushRevision revision;
+  final CloudbuildTriggerPushRevision revision;
 
   final TfArg<bool>? invertRegex;
 
@@ -267,18 +263,16 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.branch(...)`.
-sealed class CloudbuildTriggerBitbucketServerTriggerConfigPushRevision {
-  const CloudbuildTriggerBitbucketServerTriggerConfigPushRevision();
+sealed class CloudbuildTriggerPushRevision {
+  const CloudbuildTriggerPushRevision();
 
   /// Sets `branch`.
-  const factory CloudbuildTriggerBitbucketServerTriggerConfigPushRevision.branch(
-    TfArg<String> branch,
-  ) = CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionBranch;
+  const factory CloudbuildTriggerPushRevision.branch(TfArg<String> branch) =
+      CloudbuildTriggerPushRevisionBranch;
 
   /// Sets `tag`.
-  const factory CloudbuildTriggerBitbucketServerTriggerConfigPushRevision.tag(
-    TfArg<String> tag,
-  ) = CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionTag;
+  const factory CloudbuildTriggerPushRevision.tag(TfArg<String> tag) =
+      CloudbuildTriggerPushRevisionTag;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -286,12 +280,10 @@ sealed class CloudbuildTriggerBitbucketServerTriggerConfigPushRevision {
   Map<String, Object?> encode();
 }
 
-/// The [CloudbuildTriggerBitbucketServerTriggerConfigPushRevision.branch] choice: sets `branch`.
-final class CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionBranch
-    extends CloudbuildTriggerBitbucketServerTriggerConfigPushRevision {
-  const CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionBranch(
-    this.branch,
-  );
+/// The [CloudbuildTriggerPushRevision.branch] choice: sets `branch`.
+final class CloudbuildTriggerPushRevisionBranch
+    extends CloudbuildTriggerPushRevision {
+  const CloudbuildTriggerPushRevisionBranch(this.branch);
 
   final TfArg<String> branch;
 
@@ -302,10 +294,10 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionBranch
   Map<String, Object?> encode() => {'branch': branch.toTfJson()};
 }
 
-/// The [CloudbuildTriggerBitbucketServerTriggerConfigPushRevision.tag] choice: sets `tag`.
-final class CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionTag
-    extends CloudbuildTriggerBitbucketServerTriggerConfigPushRevision {
-  const CloudbuildTriggerBitbucketServerTriggerConfigPushRevisionTag(this.tag);
+/// The [CloudbuildTriggerPushRevision.tag] choice: sets `tag`.
+final class CloudbuildTriggerPushRevisionTag
+    extends CloudbuildTriggerPushRevision {
+  const CloudbuildTriggerPushRevisionTag(this.tag);
 
   final TfArg<String> tag;
 
@@ -347,17 +339,17 @@ final class CloudbuildTriggerBuild {
 
   final TfArg<String>? timeout;
 
-  final CloudbuildTriggerBuildArtifacts? artifacts;
+  final CloudbuildTriggerArtifacts? artifacts;
 
-  final CloudbuildTriggerBuildAvailableSecrets? availableSecrets;
+  final CloudbuildTriggerAvailableSecrets? availableSecrets;
 
-  final CloudbuildTriggerBuildOptions? options;
+  final CloudbuildTriggerOptions? options;
 
-  final List<CloudbuildTriggerBuildSecret>? secret;
+  final List<CloudbuildTriggerSecret>? secret;
 
-  final CloudbuildTriggerBuildSource? source;
+  final CloudbuildTriggerSource? source;
 
-  final List<CloudbuildTriggerBuildStep> step;
+  final List<CloudbuildTriggerStep> step;
 
   Map<String, Object?> encode() => {
     'images': ?images?.toTfJson(),
@@ -378,8 +370,8 @@ final class CloudbuildTriggerBuild {
 /// Typed helper for the `build.artifacts` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildArtifacts {
-  const CloudbuildTriggerBuildArtifacts({
+final class CloudbuildTriggerArtifacts {
+  const CloudbuildTriggerArtifacts({
     this.images,
     this.mavenArtifacts,
     this.npmPackages,
@@ -389,13 +381,13 @@ final class CloudbuildTriggerBuildArtifacts {
 
   final TfArg<List<String>>? images;
 
-  final List<CloudbuildTriggerBuildArtifactsMavenArtifacts>? mavenArtifacts;
+  final List<CloudbuildTriggerMavenArtifacts>? mavenArtifacts;
 
-  final List<CloudbuildTriggerBuildArtifactsNpmPackages>? npmPackages;
+  final List<CloudbuildTriggerNpmPackages>? npmPackages;
 
-  final CloudbuildTriggerBuildArtifactsObjects? objects;
+  final CloudbuildTriggerObjects? objects;
 
-  final List<CloudbuildTriggerBuildArtifactsPythonPackages>? pythonPackages;
+  final List<CloudbuildTriggerPythonPackages>? pythonPackages;
 
   Map<String, Object?> encode() => {
     'images': ?images?.toTfJson(),
@@ -412,8 +404,8 @@ final class CloudbuildTriggerBuildArtifacts {
 /// Typed helper for the `build.artifacts.maven_artifacts` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildArtifactsMavenArtifacts {
-  const CloudbuildTriggerBuildArtifactsMavenArtifacts({
+final class CloudbuildTriggerMavenArtifacts {
+  const CloudbuildTriggerMavenArtifacts({
     this.artifactId,
     this.groupId,
     this.path,
@@ -443,11 +435,8 @@ final class CloudbuildTriggerBuildArtifactsMavenArtifacts {
 /// Typed helper for the `build.artifacts.npm_packages` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildArtifactsNpmPackages {
-  const CloudbuildTriggerBuildArtifactsNpmPackages({
-    this.packagePath,
-    this.repository,
-  });
+final class CloudbuildTriggerNpmPackages {
+  const CloudbuildTriggerNpmPackages({this.packagePath, this.repository});
 
   final TfArg<String>? packagePath;
 
@@ -462,8 +451,8 @@ final class CloudbuildTriggerBuildArtifactsNpmPackages {
 /// Typed helper for the `build.artifacts.objects` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildArtifactsObjects {
-  const CloudbuildTriggerBuildArtifactsObjects({this.location, this.paths});
+final class CloudbuildTriggerObjects {
+  const CloudbuildTriggerObjects({this.location, this.paths});
 
   final TfArg<String>? location;
 
@@ -478,11 +467,8 @@ final class CloudbuildTriggerBuildArtifactsObjects {
 /// Typed helper for the `build.artifacts.python_packages` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildArtifactsPythonPackages {
-  const CloudbuildTriggerBuildArtifactsPythonPackages({
-    this.paths,
-    this.repository,
-  });
+final class CloudbuildTriggerPythonPackages {
+  const CloudbuildTriggerPythonPackages({this.paths, this.repository});
 
   final TfArg<List<String>>? paths;
 
@@ -497,10 +483,10 @@ final class CloudbuildTriggerBuildArtifactsPythonPackages {
 /// Typed helper for the `build.available_secrets` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildAvailableSecrets {
-  const CloudbuildTriggerBuildAvailableSecrets({required this.secretManager});
+final class CloudbuildTriggerAvailableSecrets {
+  const CloudbuildTriggerAvailableSecrets({required this.secretManager});
 
-  final List<CloudbuildTriggerBuildAvailableSecretsSecretManager> secretManager;
+  final List<CloudbuildTriggerSecretManager> secretManager;
 
   Map<String, Object?> encode() => {
     'secret_manager': [for (final e in secretManager) e.encode()],
@@ -510,8 +496,8 @@ final class CloudbuildTriggerBuildAvailableSecrets {
 /// Typed helper for the `build.available_secrets.secret_manager` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildAvailableSecretsSecretManager {
-  const CloudbuildTriggerBuildAvailableSecretsSecretManager({
+final class CloudbuildTriggerSecretManager {
+  const CloudbuildTriggerSecretManager({
     required this.env,
     required this.versionName,
   });
@@ -529,8 +515,8 @@ final class CloudbuildTriggerBuildAvailableSecretsSecretManager {
 /// Typed helper for the `build.options` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildOptions {
-  const CloudbuildTriggerBuildOptions({
+final class CloudbuildTriggerOptions {
+  const CloudbuildTriggerOptions({
     this.diskSizeGb,
     this.dynamicSubstitutions,
     this.env,
@@ -551,27 +537,24 @@ final class CloudbuildTriggerBuildOptions {
 
   final TfArg<List<String>>? env;
 
-  final TfArg<CloudbuildTriggerBuildOptionsLogStreamingOption>?
-  logStreamingOption;
+  final TfArg<CloudbuildTriggerLogStreamingOption>? logStreamingOption;
 
-  final TfArg<CloudbuildTriggerBuildOptionsLogging>? logging;
+  final TfArg<CloudbuildTriggerLogging>? logging;
 
   final TfArg<String>? machineType;
 
-  final TfArg<CloudbuildTriggerBuildOptionsRequestedVerifyOption>?
-  requestedVerifyOption;
+  final TfArg<CloudbuildTriggerRequestedVerifyOption>? requestedVerifyOption;
 
   final TfArg<List<String>>? secretEnv;
 
-  final List<TfArg<CloudbuildTriggerBuildOptionsSourceProvenanceHash>>?
+  final List<TfArg<CloudbuildTriggerSourceProvenanceHash>>?
   sourceProvenanceHash;
 
-  final TfArg<CloudbuildTriggerBuildOptionsSubstitutionOption>?
-  substitutionOption;
+  final TfArg<CloudbuildTriggerSubstitutionOption>? substitutionOption;
 
   final TfArg<String>? workerPool;
 
-  final List<CloudbuildTriggerBuildOptionsVolumes>? volumes;
+  final List<CloudbuildTriggerOptionsVolumes>? volumes;
 
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -593,18 +576,18 @@ final class CloudbuildTriggerBuildOptions {
 }
 
 /// `log_streaming_option` — derived from the provider schema description.
-enum CloudbuildTriggerBuildOptionsLogStreamingOption implements TerraformEnum {
+enum CloudbuildTriggerLogStreamingOption implements TerraformEnum {
   streamDefault('STREAM_DEFAULT'),
   streamOn('STREAM_ON'),
   streamOff('STREAM_OFF');
 
-  const CloudbuildTriggerBuildOptionsLogStreamingOption(this.terraformValue);
+  const CloudbuildTriggerLogStreamingOption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `logging` — derived from the provider schema description.
-enum CloudbuildTriggerBuildOptionsLogging implements TerraformEnum {
+enum CloudbuildTriggerLogging implements TerraformEnum {
   loggingUnspecified('LOGGING_UNSPECIFIED'),
   legacy('LEGACY'),
   gcsOnly('GCS_ONLY'),
@@ -612,40 +595,38 @@ enum CloudbuildTriggerBuildOptionsLogging implements TerraformEnum {
   cloudLoggingOnly('CLOUD_LOGGING_ONLY'),
   none('NONE');
 
-  const CloudbuildTriggerBuildOptionsLogging(this.terraformValue);
+  const CloudbuildTriggerLogging(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `requested_verify_option` — derived from the provider schema description.
-enum CloudbuildTriggerBuildOptionsRequestedVerifyOption
-    implements TerraformEnum {
+enum CloudbuildTriggerRequestedVerifyOption implements TerraformEnum {
   notVerified('NOT_VERIFIED'),
   verified('VERIFIED');
 
-  const CloudbuildTriggerBuildOptionsRequestedVerifyOption(this.terraformValue);
+  const CloudbuildTriggerRequestedVerifyOption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `source_provenance_hash` — derived from the provider schema description.
-enum CloudbuildTriggerBuildOptionsSourceProvenanceHash
-    implements TerraformEnum {
+enum CloudbuildTriggerSourceProvenanceHash implements TerraformEnum {
   none('NONE'),
   sha256('SHA256'),
   md5('MD5');
 
-  const CloudbuildTriggerBuildOptionsSourceProvenanceHash(this.terraformValue);
+  const CloudbuildTriggerSourceProvenanceHash(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `substitution_option` — derived from the provider schema description.
-enum CloudbuildTriggerBuildOptionsSubstitutionOption implements TerraformEnum {
+enum CloudbuildTriggerSubstitutionOption implements TerraformEnum {
   mustMatch('MUST_MATCH'),
   allowLoose('ALLOW_LOOSE');
 
-  const CloudbuildTriggerBuildOptionsSubstitutionOption(this.terraformValue);
+  const CloudbuildTriggerSubstitutionOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -653,8 +634,8 @@ enum CloudbuildTriggerBuildOptionsSubstitutionOption implements TerraformEnum {
 /// Typed helper for the `build.options.volumes` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildOptionsVolumes {
-  const CloudbuildTriggerBuildOptionsVolumes({this.name, this.path});
+final class CloudbuildTriggerOptionsVolumes {
+  const CloudbuildTriggerOptionsVolumes({this.name, this.path});
 
   final TfArg<String>? name;
 
@@ -669,11 +650,8 @@ final class CloudbuildTriggerBuildOptionsVolumes {
 /// Typed helper for the `build.secret` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildSecret {
-  const CloudbuildTriggerBuildSecret({
-    required this.kmsKeyName,
-    this.secretEnv,
-  });
+final class CloudbuildTriggerSecret {
+  const CloudbuildTriggerSecret({required this.kmsKeyName, this.secretEnv});
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -688,12 +666,12 @@ final class CloudbuildTriggerBuildSecret {
 /// Typed helper for the `build.source` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildSource {
-  const CloudbuildTriggerBuildSource({this.repoSource, this.storageSource});
+final class CloudbuildTriggerSource {
+  const CloudbuildTriggerSource({this.repoSource, this.storageSource});
 
-  final CloudbuildTriggerBuildSourceRepoSource? repoSource;
+  final CloudbuildTriggerRepoSource? repoSource;
 
-  final CloudbuildTriggerBuildSourceStorageSource? storageSource;
+  final CloudbuildTriggerStorageSource? storageSource;
 
   Map<String, Object?> encode() => {
     'repo_source': ?repoSource?.encode(),
@@ -704,8 +682,8 @@ final class CloudbuildTriggerBuildSource {
 /// Typed helper for the `build.source.repo_source` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildSourceRepoSource {
-  const CloudbuildTriggerBuildSourceRepoSource({
+final class CloudbuildTriggerRepoSource {
+  const CloudbuildTriggerRepoSource({
     required this.revision,
     this.dir,
     this.invertRegex,
@@ -714,7 +692,7 @@ final class CloudbuildTriggerBuildSourceRepoSource {
     this.substitutions,
   });
 
-  final CloudbuildTriggerBuildSourceRepoSourceRevision revision;
+  final CloudbuildTriggerRepoSourceRevision revision;
 
   final TfArg<String>? dir;
 
@@ -740,23 +718,23 @@ final class CloudbuildTriggerBuildSourceRepoSource {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.branchName(...)`.
-sealed class CloudbuildTriggerBuildSourceRepoSourceRevision {
-  const CloudbuildTriggerBuildSourceRepoSourceRevision();
+sealed class CloudbuildTriggerRepoSourceRevision {
+  const CloudbuildTriggerRepoSourceRevision();
 
   /// Sets `branch_name`.
-  const factory CloudbuildTriggerBuildSourceRepoSourceRevision.branchName(
+  const factory CloudbuildTriggerRepoSourceRevision.branchName(
     TfArg<String> branchName,
-  ) = CloudbuildTriggerBuildSourceRepoSourceRevisionBranchName;
+  ) = CloudbuildTriggerRepoSourceRevisionBranchName;
 
   /// Sets `commit_sha`.
-  const factory CloudbuildTriggerBuildSourceRepoSourceRevision.commitSha(
+  const factory CloudbuildTriggerRepoSourceRevision.commitSha(
     TfArg<String> commitSha,
-  ) = CloudbuildTriggerBuildSourceRepoSourceRevisionCommitSha;
+  ) = CloudbuildTriggerRepoSourceRevisionCommitSha;
 
   /// Sets `tag_name`.
-  const factory CloudbuildTriggerBuildSourceRepoSourceRevision.tagName(
+  const factory CloudbuildTriggerRepoSourceRevision.tagName(
     TfArg<String> tagName,
-  ) = CloudbuildTriggerBuildSourceRepoSourceRevisionTagName;
+  ) = CloudbuildTriggerRepoSourceRevisionTagName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -764,12 +742,10 @@ sealed class CloudbuildTriggerBuildSourceRepoSourceRevision {
   Map<String, Object?> encode();
 }
 
-/// The [CloudbuildTriggerBuildSourceRepoSourceRevision.branchName] choice: sets `branch_name`.
-final class CloudbuildTriggerBuildSourceRepoSourceRevisionBranchName
-    extends CloudbuildTriggerBuildSourceRepoSourceRevision {
-  const CloudbuildTriggerBuildSourceRepoSourceRevisionBranchName(
-    this.branchName,
-  );
+/// The [CloudbuildTriggerRepoSourceRevision.branchName] choice: sets `branch_name`.
+final class CloudbuildTriggerRepoSourceRevisionBranchName
+    extends CloudbuildTriggerRepoSourceRevision {
+  const CloudbuildTriggerRepoSourceRevisionBranchName(this.branchName);
 
   final TfArg<String> branchName;
 
@@ -780,10 +756,10 @@ final class CloudbuildTriggerBuildSourceRepoSourceRevisionBranchName
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
 
-/// The [CloudbuildTriggerBuildSourceRepoSourceRevision.commitSha] choice: sets `commit_sha`.
-final class CloudbuildTriggerBuildSourceRepoSourceRevisionCommitSha
-    extends CloudbuildTriggerBuildSourceRepoSourceRevision {
-  const CloudbuildTriggerBuildSourceRepoSourceRevisionCommitSha(this.commitSha);
+/// The [CloudbuildTriggerRepoSourceRevision.commitSha] choice: sets `commit_sha`.
+final class CloudbuildTriggerRepoSourceRevisionCommitSha
+    extends CloudbuildTriggerRepoSourceRevision {
+  const CloudbuildTriggerRepoSourceRevisionCommitSha(this.commitSha);
 
   final TfArg<String> commitSha;
 
@@ -794,10 +770,10 @@ final class CloudbuildTriggerBuildSourceRepoSourceRevisionCommitSha
   Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
 }
 
-/// The [CloudbuildTriggerBuildSourceRepoSourceRevision.tagName] choice: sets `tag_name`.
-final class CloudbuildTriggerBuildSourceRepoSourceRevisionTagName
-    extends CloudbuildTriggerBuildSourceRepoSourceRevision {
-  const CloudbuildTriggerBuildSourceRepoSourceRevisionTagName(this.tagName);
+/// The [CloudbuildTriggerRepoSourceRevision.tagName] choice: sets `tag_name`.
+final class CloudbuildTriggerRepoSourceRevisionTagName
+    extends CloudbuildTriggerRepoSourceRevision {
+  const CloudbuildTriggerRepoSourceRevisionTagName(this.tagName);
 
   final TfArg<String> tagName;
 
@@ -811,8 +787,8 @@ final class CloudbuildTriggerBuildSourceRepoSourceRevisionTagName
 /// Typed helper for the `build.source.storage_source` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildSourceStorageSource {
-  const CloudbuildTriggerBuildSourceStorageSource({
+final class CloudbuildTriggerStorageSource {
+  const CloudbuildTriggerStorageSource({
     required this.bucket,
     this.generation,
     required this.object,
@@ -834,8 +810,8 @@ final class CloudbuildTriggerBuildSourceStorageSource {
 /// Typed helper for the `build.step` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildStep {
-  const CloudbuildTriggerBuildStep({
+final class CloudbuildTriggerStep {
+  const CloudbuildTriggerStep({
     this.allowExitCodes,
     this.allowFailure,
     this.args,
@@ -878,7 +854,7 @@ final class CloudbuildTriggerBuildStep {
 
   final TfArg<List<String>>? waitFor;
 
-  final List<CloudbuildTriggerBuildStepVolumes>? volumes;
+  final List<CloudbuildTriggerStepVolumes>? volumes;
 
   Map<String, Object?> encode() => {
     'allow_exit_codes': ?allowExitCodes?.toTfJson(),
@@ -901,11 +877,8 @@ final class CloudbuildTriggerBuildStep {
 /// Typed helper for the `build.step.volumes` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerBuildStepVolumes {
-  const CloudbuildTriggerBuildStepVolumes({
-    required this.name,
-    required this.path,
-  });
+final class CloudbuildTriggerStepVolumes {
+  const CloudbuildTriggerStepVolumes({required this.name, required this.path});
 
   final TfArg<String> name;
 
@@ -942,6 +915,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfig {
 
 /// Typed helper for the `developer_connect_event_config.pull_request` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
   const CloudbuildTriggerDeveloperConnectEventConfigPullRequest({
@@ -952,10 +926,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
 
   final TfArg<String>? branch;
 
-  final TfArg<
-    CloudbuildTriggerDeveloperConnectEventConfigPullRequestCommentControl
-  >?
-  commentControl;
+  final TfArg<CloudbuildTriggerCommentControl>? commentControl;
 
   final TfArg<bool>? invertRegex;
 
@@ -964,22 +935,6 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
     'comment_control': ?commentControl?.toTfJson(),
     'invert_regex': ?invertRegex?.toTfJson(),
   };
-}
-
-/// `comment_control` — derived from the provider schema description.
-enum CloudbuildTriggerDeveloperConnectEventConfigPullRequestCommentControl
-    implements TerraformEnum {
-  commentsDisabled('COMMENTS_DISABLED'),
-  commentsEnabled('COMMENTS_ENABLED'),
-  commentsEnabledForExternalContributorsOnly(
-    'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
-  );
-
-  const CloudbuildTriggerDeveloperConnectEventConfigPullRequestCommentControl(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `developer_connect_event_config.push` block of
@@ -1025,7 +980,7 @@ final class CloudbuildTriggerGitFileSource {
 
   final TfArg<String> path;
 
-  final TfArg<CloudbuildTriggerGitFileSourceRepoType> repoType;
+  final TfArg<CloudbuildTriggerRepoType> repoType;
 
   final TfArg<String>? repository;
 
@@ -1045,13 +1000,13 @@ final class CloudbuildTriggerGitFileSource {
 }
 
 /// `repo_type` — derived from the provider schema description.
-enum CloudbuildTriggerGitFileSourceRepoType implements TerraformEnum {
+enum CloudbuildTriggerRepoType implements TerraformEnum {
   unknown('UNKNOWN'),
   cloudSourceRepositories('CLOUD_SOURCE_REPOSITORIES'),
   github('GITHUB'),
   bitbucketServer('BITBUCKET_SERVER');
 
-  const CloudbuildTriggerGitFileSourceRepoType(this.terraformValue);
+  const CloudbuildTriggerRepoType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1093,12 +1048,12 @@ sealed class CloudbuildTriggerGithubEvent {
 
   /// Sets `pull_request`.
   const factory CloudbuildTriggerGithubEvent.pullRequest(
-    CloudbuildTriggerGithubPullRequest pullRequest,
+    CloudbuildTriggerBitbucketServerTriggerConfigPullRequest pullRequest,
   ) = CloudbuildTriggerGithubEventPullRequest;
 
   /// Sets `push`.
   const factory CloudbuildTriggerGithubEvent.push(
-    CloudbuildTriggerGithubPush push,
+    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
   ) = CloudbuildTriggerGithubEventPush;
 
   /// The Terraform argument this choice sets.
@@ -1112,7 +1067,7 @@ final class CloudbuildTriggerGithubEventPullRequest
     extends CloudbuildTriggerGithubEvent {
   const CloudbuildTriggerGithubEventPullRequest(this.pullRequest);
 
-  final CloudbuildTriggerGithubPullRequest pullRequest;
+  final CloudbuildTriggerBitbucketServerTriggerConfigPullRequest pullRequest;
 
   @override
   String get blockKey => 'pull_request';
@@ -1126,115 +1081,13 @@ final class CloudbuildTriggerGithubEventPush
     extends CloudbuildTriggerGithubEvent {
   const CloudbuildTriggerGithubEventPush(this.push);
 
-  final CloudbuildTriggerGithubPush push;
+  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
   @override
   String get blockKey => 'push';
 
   @override
   Map<String, Object?> encode() => {'push': push.encode()};
-}
-
-/// Typed helper for the `github.pull_request` block of
-/// `google_cloudbuild_trigger` (derived from provider schema).
-@immutable
-final class CloudbuildTriggerGithubPullRequest {
-  const CloudbuildTriggerGithubPullRequest({
-    required this.branch,
-    this.commentControl,
-    this.invertRegex,
-  });
-
-  final TfArg<String> branch;
-
-  final TfArg<CloudbuildTriggerGithubPullRequestCommentControl>? commentControl;
-
-  final TfArg<bool>? invertRegex;
-
-  Map<String, Object?> encode() => {
-    'branch': branch.toTfJson(),
-    'comment_control': ?commentControl?.toTfJson(),
-    'invert_regex': ?invertRegex?.toTfJson(),
-  };
-}
-
-/// `comment_control` — derived from the provider schema description.
-enum CloudbuildTriggerGithubPullRequestCommentControl implements TerraformEnum {
-  commentsDisabled('COMMENTS_DISABLED'),
-  commentsEnabled('COMMENTS_ENABLED'),
-  commentsEnabledForExternalContributorsOnly(
-    'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
-  );
-
-  const CloudbuildTriggerGithubPullRequestCommentControl(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `github.push` block of
-/// `google_cloudbuild_trigger` (derived from provider schema).
-@immutable
-final class CloudbuildTriggerGithubPush {
-  const CloudbuildTriggerGithubPush({required this.revision, this.invertRegex});
-
-  final CloudbuildTriggerGithubPushRevision revision;
-
-  final TfArg<bool>? invertRegex;
-
-  Map<String, Object?> encode() => {
-    ...revision.encode(),
-    'invert_regex': ?invertRegex?.toTfJson(),
-  };
-}
-
-/// Exactly one of `branch`, `tag` on the `github.push` block of `google_cloudbuild_trigger`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.branch(...)`.
-sealed class CloudbuildTriggerGithubPushRevision {
-  const CloudbuildTriggerGithubPushRevision();
-
-  /// Sets `branch`.
-  const factory CloudbuildTriggerGithubPushRevision.branch(
-    TfArg<String> branch,
-  ) = CloudbuildTriggerGithubPushRevisionBranch;
-
-  /// Sets `tag`.
-  const factory CloudbuildTriggerGithubPushRevision.tag(TfArg<String> tag) =
-      CloudbuildTriggerGithubPushRevisionTag;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [CloudbuildTriggerGithubPushRevision.branch] choice: sets `branch`.
-final class CloudbuildTriggerGithubPushRevisionBranch
-    extends CloudbuildTriggerGithubPushRevision {
-  const CloudbuildTriggerGithubPushRevisionBranch(this.branch);
-
-  final TfArg<String> branch;
-
-  @override
-  String get blockKey => 'branch';
-
-  @override
-  Map<String, Object?> encode() => {'branch': branch.toTfJson()};
-}
-
-/// The [CloudbuildTriggerGithubPushRevision.tag] choice: sets `tag`.
-final class CloudbuildTriggerGithubPushRevisionTag
-    extends CloudbuildTriggerGithubPushRevision {
-  const CloudbuildTriggerGithubPushRevisionTag(this.tag);
-
-  final TfArg<String> tag;
-
-  @override
-  String get blockKey => 'tag';
-
-  @override
-  Map<String, Object?> encode() => {'tag': tag.toTfJson()};
 }
 
 /// Typed helper for the `pubsub_config` block of
@@ -1284,12 +1137,12 @@ sealed class CloudbuildTriggerRepositoryEventConfigEvent {
 
   /// Sets `pull_request`.
   const factory CloudbuildTriggerRepositoryEventConfigEvent.pullRequest(
-    CloudbuildTriggerRepositoryEventConfigPullRequest pullRequest,
+    CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest,
   ) = CloudbuildTriggerRepositoryEventConfigEventPullRequest;
 
   /// Sets `push`.
   const factory CloudbuildTriggerRepositoryEventConfigEvent.push(
-    CloudbuildTriggerRepositoryEventConfigPush push,
+    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
   ) = CloudbuildTriggerRepositoryEventConfigEventPush;
 
   /// The Terraform argument this choice sets.
@@ -1305,7 +1158,7 @@ final class CloudbuildTriggerRepositoryEventConfigEventPullRequest
     this.pullRequest,
   );
 
-  final CloudbuildTriggerRepositoryEventConfigPullRequest pullRequest;
+  final CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest;
 
   @override
   String get blockKey => 'pull_request';
@@ -1319,123 +1172,13 @@ final class CloudbuildTriggerRepositoryEventConfigEventPush
     extends CloudbuildTriggerRepositoryEventConfigEvent {
   const CloudbuildTriggerRepositoryEventConfigEventPush(this.push);
 
-  final CloudbuildTriggerRepositoryEventConfigPush push;
+  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
   @override
   String get blockKey => 'push';
 
   @override
   Map<String, Object?> encode() => {'push': push.encode()};
-}
-
-/// Typed helper for the `repository_event_config.pull_request` block of
-/// `google_cloudbuild_trigger` (derived from provider schema).
-@immutable
-final class CloudbuildTriggerRepositoryEventConfigPullRequest {
-  const CloudbuildTriggerRepositoryEventConfigPullRequest({
-    this.branch,
-    this.commentControl,
-    this.invertRegex,
-  });
-
-  final TfArg<String>? branch;
-
-  final TfArg<CloudbuildTriggerRepositoryEventConfigPullRequestCommentControl>?
-  commentControl;
-
-  final TfArg<bool>? invertRegex;
-
-  Map<String, Object?> encode() => {
-    'branch': ?branch?.toTfJson(),
-    'comment_control': ?commentControl?.toTfJson(),
-    'invert_regex': ?invertRegex?.toTfJson(),
-  };
-}
-
-/// `comment_control` — derived from the provider schema description.
-enum CloudbuildTriggerRepositoryEventConfigPullRequestCommentControl
-    implements TerraformEnum {
-  commentsDisabled('COMMENTS_DISABLED'),
-  commentsEnabled('COMMENTS_ENABLED'),
-  commentsEnabledForExternalContributorsOnly(
-    'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
-  );
-
-  const CloudbuildTriggerRepositoryEventConfigPullRequestCommentControl(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `repository_event_config.push` block of
-/// `google_cloudbuild_trigger` (derived from provider schema).
-@immutable
-final class CloudbuildTriggerRepositoryEventConfigPush {
-  const CloudbuildTriggerRepositoryEventConfigPush({
-    required this.revision,
-    this.invertRegex,
-  });
-
-  final CloudbuildTriggerRepositoryEventConfigPushRevision revision;
-
-  final TfArg<bool>? invertRegex;
-
-  Map<String, Object?> encode() => {
-    ...revision.encode(),
-    'invert_regex': ?invertRegex?.toTfJson(),
-  };
-}
-
-/// Exactly one of `branch`, `tag` on the `repository_event_config.push` block of `google_cloudbuild_trigger`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.branch(...)`.
-sealed class CloudbuildTriggerRepositoryEventConfigPushRevision {
-  const CloudbuildTriggerRepositoryEventConfigPushRevision();
-
-  /// Sets `branch`.
-  const factory CloudbuildTriggerRepositoryEventConfigPushRevision.branch(
-    TfArg<String> branch,
-  ) = CloudbuildTriggerRepositoryEventConfigPushRevisionBranch;
-
-  /// Sets `tag`.
-  const factory CloudbuildTriggerRepositoryEventConfigPushRevision.tag(
-    TfArg<String> tag,
-  ) = CloudbuildTriggerRepositoryEventConfigPushRevisionTag;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [CloudbuildTriggerRepositoryEventConfigPushRevision.branch] choice: sets `branch`.
-final class CloudbuildTriggerRepositoryEventConfigPushRevisionBranch
-    extends CloudbuildTriggerRepositoryEventConfigPushRevision {
-  const CloudbuildTriggerRepositoryEventConfigPushRevisionBranch(this.branch);
-
-  final TfArg<String> branch;
-
-  @override
-  String get blockKey => 'branch';
-
-  @override
-  Map<String, Object?> encode() => {'branch': branch.toTfJson()};
-}
-
-/// The [CloudbuildTriggerRepositoryEventConfigPushRevision.tag] choice: sets `tag`.
-final class CloudbuildTriggerRepositoryEventConfigPushRevisionTag
-    extends CloudbuildTriggerRepositoryEventConfigPushRevision {
-  const CloudbuildTriggerRepositoryEventConfigPushRevisionTag(this.tag);
-
-  final TfArg<String> tag;
-
-  @override
-  String get blockKey => 'tag';
-
-  @override
-  Map<String, Object?> encode() => {'tag': tag.toTfJson()};
 }
 
 /// Typed helper for the `source_to_build` block of
@@ -1457,7 +1200,7 @@ final class CloudbuildTriggerSourceToBuild {
 
   final TfArg<String> ref;
 
-  final TfArg<CloudbuildTriggerSourceToBuildRepoType> repoType;
+  final TfArg<CloudbuildTriggerRepoType> repoType;
 
   final TfArg<String>? repository;
 
@@ -1473,23 +1216,11 @@ final class CloudbuildTriggerSourceToBuild {
   };
 }
 
-/// `repo_type` — derived from the provider schema description.
-enum CloudbuildTriggerSourceToBuildRepoType implements TerraformEnum {
-  unknown('UNKNOWN'),
-  cloudSourceRepositories('CLOUD_SOURCE_REPOSITORIES'),
-  github('GITHUB'),
-  bitbucketServer('BITBUCKET_SERVER');
-
-  const CloudbuildTriggerSourceToBuildRepoType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `trigger_template` block of
 /// `google_cloudbuild_trigger` (derived from provider schema).
 @immutable
-final class CloudbuildTriggerTriggerTemplate {
-  const CloudbuildTriggerTriggerTemplate({
+final class CloudbuildTriggerTemplate {
+  const CloudbuildTriggerTemplate({
     required this.revision,
     this.dir,
     this.invertRegex,
@@ -1497,7 +1228,7 @@ final class CloudbuildTriggerTriggerTemplate {
     this.repoName,
   });
 
-  final CloudbuildTriggerTriggerTemplateRevision revision;
+  final CloudbuildTriggerRevision revision;
 
   final TfArg<String>? dir;
 
@@ -1520,23 +1251,20 @@ final class CloudbuildTriggerTriggerTemplate {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.branchName(...)`.
-sealed class CloudbuildTriggerTriggerTemplateRevision {
-  const CloudbuildTriggerTriggerTemplateRevision();
+sealed class CloudbuildTriggerRevision {
+  const CloudbuildTriggerRevision();
 
   /// Sets `branch_name`.
-  const factory CloudbuildTriggerTriggerTemplateRevision.branchName(
-    TfArg<String> branchName,
-  ) = CloudbuildTriggerTriggerTemplateRevisionBranchName;
+  const factory CloudbuildTriggerRevision.branchName(TfArg<String> branchName) =
+      CloudbuildTriggerRevisionBranchName;
 
   /// Sets `tag_name`.
-  const factory CloudbuildTriggerTriggerTemplateRevision.tagName(
-    TfArg<String> tagName,
-  ) = CloudbuildTriggerTriggerTemplateRevisionTagName;
+  const factory CloudbuildTriggerRevision.tagName(TfArg<String> tagName) =
+      CloudbuildTriggerRevisionTagName;
 
   /// Sets `commit_sha`.
-  const factory CloudbuildTriggerTriggerTemplateRevision.commitSha(
-    TfArg<String> commitSha,
-  ) = CloudbuildTriggerTriggerTemplateRevisionCommitSha;
+  const factory CloudbuildTriggerRevision.commitSha(TfArg<String> commitSha) =
+      CloudbuildTriggerRevisionCommitSha;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1544,10 +1272,10 @@ sealed class CloudbuildTriggerTriggerTemplateRevision {
   Map<String, Object?> encode();
 }
 
-/// The [CloudbuildTriggerTriggerTemplateRevision.branchName] choice: sets `branch_name`.
-final class CloudbuildTriggerTriggerTemplateRevisionBranchName
-    extends CloudbuildTriggerTriggerTemplateRevision {
-  const CloudbuildTriggerTriggerTemplateRevisionBranchName(this.branchName);
+/// The [CloudbuildTriggerRevision.branchName] choice: sets `branch_name`.
+final class CloudbuildTriggerRevisionBranchName
+    extends CloudbuildTriggerRevision {
+  const CloudbuildTriggerRevisionBranchName(this.branchName);
 
   final TfArg<String> branchName;
 
@@ -1558,10 +1286,9 @@ final class CloudbuildTriggerTriggerTemplateRevisionBranchName
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
 
-/// The [CloudbuildTriggerTriggerTemplateRevision.tagName] choice: sets `tag_name`.
-final class CloudbuildTriggerTriggerTemplateRevisionTagName
-    extends CloudbuildTriggerTriggerTemplateRevision {
-  const CloudbuildTriggerTriggerTemplateRevisionTagName(this.tagName);
+/// The [CloudbuildTriggerRevision.tagName] choice: sets `tag_name`.
+final class CloudbuildTriggerRevisionTagName extends CloudbuildTriggerRevision {
+  const CloudbuildTriggerRevisionTagName(this.tagName);
 
   final TfArg<String> tagName;
 
@@ -1572,10 +1299,10 @@ final class CloudbuildTriggerTriggerTemplateRevisionTagName
   Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
 }
 
-/// The [CloudbuildTriggerTriggerTemplateRevision.commitSha] choice: sets `commit_sha`.
-final class CloudbuildTriggerTriggerTemplateRevisionCommitSha
-    extends CloudbuildTriggerTriggerTemplateRevision {
-  const CloudbuildTriggerTriggerTemplateRevisionCommitSha(this.commitSha);
+/// The [CloudbuildTriggerRevision.commitSha] choice: sets `commit_sha`.
+final class CloudbuildTriggerRevisionCommitSha
+    extends CloudbuildTriggerRevision {
+  const CloudbuildTriggerRevisionCommitSha(this.commitSha);
 
   final TfArg<String> commitSha;
 
@@ -1655,7 +1382,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///     owner: .literal('myorg'),
 ///     name: .literal('my-repo'),
 ///     event: .push(
-///       CloudbuildTriggerGithubPush(revision: .branch(.literal(r'^main$'))),
+///       CloudbuildTriggerBitbucketServerTriggerConfigPush(revision: .branch(.literal(r'^main$'))),
 ///     ),
 ///   ),
 /// );
@@ -1673,7 +1400,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
 ///     repository: .ref(repository.id),
 ///     event: .pullRequest(
-///       CloudbuildTriggerRepositoryEventConfigPullRequest(
+///       CloudbuildTriggerDeveloperConnectEventConfigPullRequest(
 ///         branch: .literal(r'^main$'),
 ///         commentControl: .literal(.commentsEnabled),
 ///       ),
@@ -1704,7 +1431,7 @@ final class GoogleCloudbuildTrigger extends Resource {
     TfArg<List<String>>? ignoredFiles,
     required CloudbuildTriggerBuildSpec buildSpec,
     CloudbuildTriggerSourceToBuild? sourceToBuild,
-    CloudbuildTriggerTriggerTemplate? triggerTemplate,
+    CloudbuildTriggerTemplate? triggerTemplate,
     CloudbuildTriggerGithub? github,
     CloudbuildTriggerBitbucketServerTriggerConfig? bitbucketServerTriggerConfig,
     CloudbuildTriggerRepositoryEventConfig? repositoryEventConfig,

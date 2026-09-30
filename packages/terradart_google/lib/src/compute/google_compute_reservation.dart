@@ -39,11 +39,10 @@ final class ComputeReservationParams {
 /// Typed helper for the `reservation_sharing_policy` block of
 /// `google_compute_reservation` (derived from provider schema).
 @immutable
-final class ComputeReservationReservationSharingPolicy {
-  const ComputeReservationReservationSharingPolicy({this.serviceShareType});
+final class ComputeReservationSharingPolicy {
+  const ComputeReservationSharingPolicy({this.serviceShareType});
 
-  final TfArg<ComputeReservationReservationSharingPolicyServiceShareType>?
-  serviceShareType;
+  final TfArg<ComputeReservationServiceShareType>? serviceShareType;
 
   Map<String, Object?> encode() => {
     'service_share_type': ?serviceShareType?.toTfJson(),
@@ -51,14 +50,11 @@ final class ComputeReservationReservationSharingPolicy {
 }
 
 /// `service_share_type` — derived from the provider schema description.
-enum ComputeReservationReservationSharingPolicyServiceShareType
-    implements TerraformEnum {
+enum ComputeReservationServiceShareType implements TerraformEnum {
   allowAll('ALLOW_ALL'),
   disallowAll('DISALLOW_ALL');
 
-  const ComputeReservationReservationSharingPolicyServiceShareType(
-    this.terraformValue,
-  );
+  const ComputeReservationServiceShareType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,9 +65,9 @@ enum ComputeReservationReservationSharingPolicyServiceShareType
 final class ComputeReservationShareSettings {
   const ComputeReservationShareSettings({this.shareType, this.projectMap});
 
-  final TfArg<ComputeReservationShareSettingsShareType>? shareType;
+  final TfArg<ComputeReservationShareType>? shareType;
 
-  final List<ComputeReservationShareSettingsProjectMap>? projectMap;
+  final List<ComputeReservationProjectMap>? projectMap;
 
   Map<String, Object?> encode() => {
     'share_type': ?shareType?.toTfJson(),
@@ -81,11 +77,11 @@ final class ComputeReservationShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeReservationShareSettingsShareType implements TerraformEnum {
+enum ComputeReservationShareType implements TerraformEnum {
   local('LOCAL'),
   specificProjects('SPECIFIC_PROJECTS');
 
-  const ComputeReservationShareSettingsShareType(this.terraformValue);
+  const ComputeReservationShareType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -93,11 +89,8 @@ enum ComputeReservationShareSettingsShareType implements TerraformEnum {
 /// Typed helper for the `share_settings.project_map` block of
 /// `google_compute_reservation` (derived from provider schema).
 @immutable
-final class ComputeReservationShareSettingsProjectMap {
-  const ComputeReservationShareSettingsProjectMap({
-    required this.id,
-    this.projectId,
-  });
+final class ComputeReservationProjectMap {
+  const ComputeReservationProjectMap({required this.id, this.projectId});
 
   final TfArg<String> id;
 
@@ -120,7 +113,7 @@ final class ComputeReservationSpecificReservation {
 
   final TfArg<num> count;
 
-  final ComputeReservationSpecificReservationInstanceSpec instanceSpec;
+  final ComputeReservationInstanceSpec instanceSpec;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
@@ -132,18 +125,18 @@ final class ComputeReservationSpecificReservation {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.instanceProperties(...)`.
-sealed class ComputeReservationSpecificReservationInstanceSpec {
-  const ComputeReservationSpecificReservationInstanceSpec();
+sealed class ComputeReservationInstanceSpec {
+  const ComputeReservationInstanceSpec();
 
   /// Sets `instance_properties`.
-  const factory ComputeReservationSpecificReservationInstanceSpec.instanceProperties(
-    ComputeReservationSpecificReservationInstanceProperties instanceProperties,
-  ) = ComputeReservationSpecificReservationInstanceSpecInstanceProperties;
+  const factory ComputeReservationInstanceSpec.instanceProperties(
+    ComputeReservationInstanceProperties instanceProperties,
+  ) = ComputeReservationInstanceSpecInstanceProperties;
 
   /// Sets `source_instance_template`.
-  const factory ComputeReservationSpecificReservationInstanceSpec.sourceInstanceTemplate(
+  const factory ComputeReservationInstanceSpec.sourceInstanceTemplate(
     TfArg<String> sourceInstanceTemplate,
-  ) = ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate;
+  ) = ComputeReservationInstanceSpecSourceInstanceTemplate;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -151,15 +144,14 @@ sealed class ComputeReservationSpecificReservationInstanceSpec {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeReservationSpecificReservationInstanceSpec.instanceProperties] choice: sets `instance_properties`.
-final class ComputeReservationSpecificReservationInstanceSpecInstanceProperties
-    extends ComputeReservationSpecificReservationInstanceSpec {
-  const ComputeReservationSpecificReservationInstanceSpecInstanceProperties(
+/// The [ComputeReservationInstanceSpec.instanceProperties] choice: sets `instance_properties`.
+final class ComputeReservationInstanceSpecInstanceProperties
+    extends ComputeReservationInstanceSpec {
+  const ComputeReservationInstanceSpecInstanceProperties(
     this.instanceProperties,
   );
 
-  final ComputeReservationSpecificReservationInstanceProperties
-  instanceProperties;
+  final ComputeReservationInstanceProperties instanceProperties;
 
   @override
   String get blockKey => 'instance_properties';
@@ -170,10 +162,10 @@ final class ComputeReservationSpecificReservationInstanceSpecInstanceProperties
   };
 }
 
-/// The [ComputeReservationSpecificReservationInstanceSpec.sourceInstanceTemplate] choice: sets `source_instance_template`.
-final class ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate
-    extends ComputeReservationSpecificReservationInstanceSpec {
-  const ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate(
+/// The [ComputeReservationInstanceSpec.sourceInstanceTemplate] choice: sets `source_instance_template`.
+final class ComputeReservationInstanceSpecSourceInstanceTemplate
+    extends ComputeReservationInstanceSpec {
+  const ComputeReservationInstanceSpecSourceInstanceTemplate(
     this.sourceInstanceTemplate,
   );
 
@@ -191,8 +183,8 @@ final class ComputeReservationSpecificReservationInstanceSpecSourceInstanceTempl
 /// Typed helper for the `specific_reservation.instance_properties` block of
 /// `google_compute_reservation` (derived from provider schema).
 @immutable
-final class ComputeReservationSpecificReservationInstanceProperties {
-  const ComputeReservationSpecificReservationInstanceProperties({
+final class ComputeReservationInstanceProperties {
+  const ComputeReservationInstanceProperties({
     required this.machineType,
     this.minCpuPlatform,
     this.guestAccelerators,
@@ -203,13 +195,9 @@ final class ComputeReservationSpecificReservationInstanceProperties {
 
   final TfArg<String>? minCpuPlatform;
 
-  final List<
-    ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators
-  >?
-  guestAccelerators;
+  final List<ComputeReservationGuestAccelerators>? guestAccelerators;
 
-  final List<ComputeReservationSpecificReservationInstancePropertiesLocalSsds>?
-  localSsds;
+  final List<ComputeReservationLocalSsds>? localSsds;
 
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
@@ -224,8 +212,8 @@ final class ComputeReservationSpecificReservationInstanceProperties {
 /// Typed helper for the `specific_reservation.instance_properties.guest_accelerators` block of
 /// `google_compute_reservation` (derived from provider schema).
 @immutable
-final class ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators {
-  const ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators({
+final class ComputeReservationGuestAccelerators {
+  const ComputeReservationGuestAccelerators({
     required this.acceleratorCount,
     required this.acceleratorType,
   });
@@ -243,18 +231,12 @@ final class ComputeReservationSpecificReservationInstancePropertiesGuestAccelera
 /// Typed helper for the `specific_reservation.instance_properties.local_ssds` block of
 /// `google_compute_reservation` (derived from provider schema).
 @immutable
-final class ComputeReservationSpecificReservationInstancePropertiesLocalSsds {
-  const ComputeReservationSpecificReservationInstancePropertiesLocalSsds({
-    required this.diskSizeGb,
-    this.interface,
-  });
+final class ComputeReservationLocalSsds {
+  const ComputeReservationLocalSsds({required this.diskSizeGb, this.interface});
 
   final TfArg<num> diskSizeGb;
 
-  final TfArg<
-    ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface
-  >?
-  interface;
+  final TfArg<ComputeReservationInterface>? interface;
 
   Map<String, Object?> encode() => {
     'disk_size_gb': diskSizeGb.toTfJson(),
@@ -263,14 +245,11 @@ final class ComputeReservationSpecificReservationInstancePropertiesLocalSsds {
 }
 
 /// `interface` — derived from the provider schema description.
-enum ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface
-    implements TerraformEnum {
+enum ComputeReservationInterface implements TerraformEnum {
   scsi('SCSI'),
   nvme('NVME');
 
-  const ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface(
-    this.terraformValue,
-  );
+  const ComputeReservationInterface(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -310,7 +289,7 @@ final class GoogleComputeReservation extends Resource {
     TfArg<String>? description,
     TfArg<bool>? specificReservationRequired,
     ComputeReservationShareSettings? shareSettings,
-    ComputeReservationReservationSharingPolicy? reservationSharingPolicy,
+    ComputeReservationSharingPolicy? reservationSharingPolicy,
     ComputeReservationParams? params,
     TfArg<String>? deleteAtTime,
     ComputeReservationDeleteAfterDuration? deleteAfterDuration,

@@ -119,11 +119,9 @@ final class SpannerInstancePartitionAutoscalingConfig {
     this.autoscalingTargets,
   });
 
-  final SpannerInstancePartitionAutoscalingConfigAutoscalingLimits?
-  autoscalingLimits;
+  final SpannerInstancePartitionAutoscalingLimits? autoscalingLimits;
 
-  final SpannerInstancePartitionAutoscalingConfigAutoscalingTargets?
-  autoscalingTargets;
+  final SpannerInstancePartitionAutoscalingTargets? autoscalingTargets;
 
   Map<String, Object?> encode() => {
     'autoscaling_limits': ?autoscalingLimits?.encode(),
@@ -134,17 +132,15 @@ final class SpannerInstancePartitionAutoscalingConfig {
 /// Typed helper for the `autoscaling_config.autoscaling_limits` block of
 /// `google_spanner_instance_partition` (derived from provider schema).
 @immutable
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimits {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimits({
+final class SpannerInstancePartitionAutoscalingLimits {
+  const SpannerInstancePartitionAutoscalingLimits({
     required this.maxCapacity,
     required this.minCapacity,
   });
 
-  final SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity
-  maxCapacity;
+  final SpannerInstancePartitionMaxCapacity maxCapacity;
 
-  final SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity
-  minCapacity;
+  final SpannerInstancePartitionMinCapacity minCapacity;
 
   Map<String, Object?> encode() => {
     ...maxCapacity.encode(),
@@ -156,18 +152,18 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimits {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.minProcessingUnits(...)`.
-sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity();
+sealed class SpannerInstancePartitionMinCapacity {
+  const SpannerInstancePartitionMinCapacity();
 
   /// Sets `min_processing_units`.
-  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity.minProcessingUnits(
+  const factory SpannerInstancePartitionMinCapacity.minProcessingUnits(
     TfArg<num> minProcessingUnits,
-  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits;
+  ) = SpannerInstancePartitionMinCapacityMinProcessingUnits;
 
   /// Sets `min_nodes`.
-  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity.minNodes(
+  const factory SpannerInstancePartitionMinCapacity.minNodes(
     TfArg<num> minNodes,
-  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes;
+  ) = SpannerInstancePartitionMinCapacityMinNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -175,11 +171,10 @@ sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapaci
   Map<String, Object?> encode();
 }
 
-/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits
-    extends
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits(
+/// The [SpannerInstancePartitionMinCapacity.minProcessingUnits] choice: sets `min_processing_units`.
+final class SpannerInstancePartitionMinCapacityMinProcessingUnits
+    extends SpannerInstancePartitionMinCapacity {
+  const SpannerInstancePartitionMinCapacityMinProcessingUnits(
     this.minProcessingUnits,
   );
 
@@ -194,13 +189,10 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacit
   };
 }
 
-/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity.minNodes] choice: sets `min_nodes`.
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes
-    extends
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes(
-    this.minNodes,
-  );
+/// The [SpannerInstancePartitionMinCapacity.minNodes] choice: sets `min_nodes`.
+final class SpannerInstancePartitionMinCapacityMinNodes
+    extends SpannerInstancePartitionMinCapacity {
+  const SpannerInstancePartitionMinCapacityMinNodes(this.minNodes);
 
   final TfArg<num> minNodes;
 
@@ -215,18 +207,18 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacit
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.maxProcessingUnits(...)`.
-sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity();
+sealed class SpannerInstancePartitionMaxCapacity {
+  const SpannerInstancePartitionMaxCapacity();
 
   /// Sets `max_processing_units`.
-  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity.maxProcessingUnits(
+  const factory SpannerInstancePartitionMaxCapacity.maxProcessingUnits(
     TfArg<num> maxProcessingUnits,
-  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits;
+  ) = SpannerInstancePartitionMaxCapacityMaxProcessingUnits;
 
   /// Sets `max_nodes`.
-  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity.maxNodes(
+  const factory SpannerInstancePartitionMaxCapacity.maxNodes(
     TfArg<num> maxNodes,
-  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes;
+  ) = SpannerInstancePartitionMaxCapacityMaxNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -234,11 +226,10 @@ sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapaci
   Map<String, Object?> encode();
 }
 
-/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits
-    extends
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits(
+/// The [SpannerInstancePartitionMaxCapacity.maxProcessingUnits] choice: sets `max_processing_units`.
+final class SpannerInstancePartitionMaxCapacityMaxProcessingUnits
+    extends SpannerInstancePartitionMaxCapacity {
+  const SpannerInstancePartitionMaxCapacityMaxProcessingUnits(
     this.maxProcessingUnits,
   );
 
@@ -253,13 +244,10 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacit
   };
 }
 
-/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes
-    extends
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes(
-    this.maxNodes,
-  );
+/// The [SpannerInstancePartitionMaxCapacity.maxNodes] choice: sets `max_nodes`.
+final class SpannerInstancePartitionMaxCapacityMaxNodes
+    extends SpannerInstancePartitionMaxCapacity {
+  const SpannerInstancePartitionMaxCapacityMaxNodes(this.maxNodes);
 
   final TfArg<num> maxNodes;
 
@@ -273,8 +261,8 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacit
 /// Typed helper for the `autoscaling_config.autoscaling_targets` block of
 /// `google_spanner_instance_partition` (derived from provider schema).
 @immutable
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingTargets {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingTargets({
+final class SpannerInstancePartitionAutoscalingTargets {
+  const SpannerInstancePartitionAutoscalingTargets({
     this.highPriorityCpuUtilizationPercent,
     this.storageUtilizationPercent,
     this.totalCpuUtilizationPercent,

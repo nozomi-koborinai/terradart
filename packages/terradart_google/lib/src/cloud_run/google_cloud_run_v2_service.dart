@@ -46,7 +46,7 @@ enum LaunchStage implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Egress policy for [CloudRunV2ServiceTemplateVpcAccess.egress] (`template.vpc_access.egress`).
+/// Egress policy for [CloudRunV2ServiceVpcAccess.egress] (`template.vpc_access.egress`).
 /// `allTraffic` routes every outbound request through the connector or
 /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
 /// inside the VPC and bypasses it for the public internet.
@@ -84,7 +84,7 @@ enum ExecutionEnvironment implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Identity a revision runs as ([CloudRunV2ServiceTemplateWorkloadIdentityConfig.identityType]).
+/// Identity a revision runs as ([CloudRunV2ServiceWorkloadIdentityConfig.identityType]).
 enum CloudRunV2ServiceWorkloadIdentityType implements TerraformEnum {
   serviceAccount('IDENTITY_TYPE_SERVICE_ACCOUNT'),
   workloadIdentity('IDENTITY_TYPE_WORKLOAD_IDENTITY'),
@@ -153,7 +153,7 @@ final class CloudRunV2ServiceBinaryAuthorization {
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2ServiceBinaryAuthorizationPolicy? policy;
+  final CloudRunV2ServicePolicy? policy;
 
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
@@ -166,18 +166,16 @@ final class CloudRunV2ServiceBinaryAuthorization {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2ServiceBinaryAuthorizationPolicy {
-  const CloudRunV2ServiceBinaryAuthorizationPolicy();
+sealed class CloudRunV2ServicePolicy {
+  const CloudRunV2ServicePolicy();
 
   /// Sets `use_default`.
-  const factory CloudRunV2ServiceBinaryAuthorizationPolicy.useDefault(
-    TfArg<bool> useDefault,
-  ) = CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault;
+  const factory CloudRunV2ServicePolicy.useDefault(TfArg<bool> useDefault) =
+      CloudRunV2ServicePolicyUseDefault;
 
   /// Sets `policy`.
-  const factory CloudRunV2ServiceBinaryAuthorizationPolicy.policy(
-    TfArg<String> policy,
-  ) = CloudRunV2ServiceBinaryAuthorizationPolicyChoice;
+  const factory CloudRunV2ServicePolicy.policy(TfArg<String> policy) =
+      CloudRunV2ServicePolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -185,10 +183,9 @@ sealed class CloudRunV2ServiceBinaryAuthorizationPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2ServiceBinaryAuthorizationPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault
-    extends CloudRunV2ServiceBinaryAuthorizationPolicy {
-  const CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault(this.useDefault);
+/// The [CloudRunV2ServicePolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2ServicePolicyUseDefault extends CloudRunV2ServicePolicy {
+  const CloudRunV2ServicePolicyUseDefault(this.useDefault);
 
   final TfArg<bool> useDefault;
 
@@ -199,10 +196,9 @@ final class CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
 
-/// The [CloudRunV2ServiceBinaryAuthorizationPolicy.policy] choice: sets `policy`.
-final class CloudRunV2ServiceBinaryAuthorizationPolicyChoice
-    extends CloudRunV2ServiceBinaryAuthorizationPolicy {
-  const CloudRunV2ServiceBinaryAuthorizationPolicyChoice(this.policy);
+/// The [CloudRunV2ServicePolicy.policy] choice: sets `policy`.
+final class CloudRunV2ServicePolicyChoice extends CloudRunV2ServicePolicy {
+  const CloudRunV2ServicePolicyChoice(this.policy);
 
   final TfArg<String> policy;
 
@@ -341,19 +337,19 @@ final class CloudRunV2ServiceTemplate {
 
   final TfArg<String>? timeout;
 
-  final List<CloudRunV2ServiceTemplateContainers>? containers;
+  final List<CloudRunV2ServiceContainers>? containers;
 
-  final CloudRunV2ServiceTemplateNodeSelector? nodeSelector;
+  final CloudRunV2ServiceNodeSelector? nodeSelector;
 
-  final CloudRunV2ServiceTemplateSandboxes? sandboxes;
+  final CloudRunV2ServiceSandboxes? sandboxes;
 
   final CloudRunV2ServiceTemplateScaling? scaling;
 
-  final List<CloudRunV2ServiceTemplateVolumes>? volumes;
+  final List<CloudRunV2ServiceVolumes>? volumes;
 
-  final CloudRunV2ServiceTemplateVpcAccess? vpcAccess;
+  final CloudRunV2ServiceVpcAccess? vpcAccess;
 
-  final CloudRunV2ServiceTemplateWorkloadIdentityConfig? workloadIdentityConfig;
+  final CloudRunV2ServiceWorkloadIdentityConfig? workloadIdentityConfig;
 
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
@@ -382,8 +378,8 @@ final class CloudRunV2ServiceTemplate {
 /// Typed helper for the `template.containers` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainers {
-  const CloudRunV2ServiceTemplateContainers({
+final class CloudRunV2ServiceContainers {
+  const CloudRunV2ServiceContainers({
     this.args,
     this.baseImageUri,
     this.command,
@@ -417,19 +413,19 @@ final class CloudRunV2ServiceTemplateContainers {
 
   final TfArg<String>? workingDir;
 
-  final List<CloudRunV2ServiceTemplateContainersEnv>? env;
+  final List<CloudRunV2ServiceEnv>? env;
 
-  final CloudRunV2ServiceTemplateContainersLivenessProbe? livenessProbe;
+  final CloudRunV2ServiceLivenessProbe? livenessProbe;
 
-  final CloudRunV2ServiceTemplateContainersPorts? ports;
+  final CloudRunV2ServicePorts? ports;
 
-  final CloudRunV2ServiceTemplateContainersReadinessProbe? readinessProbe;
+  final CloudRunV2ServiceReadinessProbe? readinessProbe;
 
-  final CloudRunV2ServiceTemplateContainersResources? resources;
+  final CloudRunV2ServiceResources? resources;
 
-  final CloudRunV2ServiceTemplateContainersStartupProbe? startupProbe;
+  final CloudRunV2ServiceStartupProbe? startupProbe;
 
-  final List<CloudRunV2ServiceTemplateContainersVolumeMounts>? volumeMounts;
+  final List<CloudRunV2ServiceVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -454,15 +450,12 @@ final class CloudRunV2ServiceTemplateContainers {
 /// Typed helper for the `template.containers.env` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersEnv {
-  const CloudRunV2ServiceTemplateContainersEnv({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2ServiceEnv {
+  const CloudRunV2ServiceEnv({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2ServiceTemplateContainersEnvSource source;
+  final CloudRunV2ServiceEnvSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -474,18 +467,17 @@ final class CloudRunV2ServiceTemplateContainersEnv {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class CloudRunV2ServiceTemplateContainersEnvSource {
-  const CloudRunV2ServiceTemplateContainersEnvSource();
+sealed class CloudRunV2ServiceEnvSource {
+  const CloudRunV2ServiceEnvSource();
 
   /// Sets `value`.
-  const factory CloudRunV2ServiceTemplateContainersEnvSource.value(
-    TfArg<String> value,
-  ) = CloudRunV2ServiceTemplateContainersEnvSourceValue;
+  const factory CloudRunV2ServiceEnvSource.value(TfArg<String> value) =
+      CloudRunV2ServiceEnvSourceValue;
 
   /// Sets `value_source`.
-  const factory CloudRunV2ServiceTemplateContainersEnvSource.valueSource(
-    CloudRunV2ServiceTemplateContainersEnvValueSource valueSource,
-  ) = CloudRunV2ServiceTemplateContainersEnvSourceValueSource;
+  const factory CloudRunV2ServiceEnvSource.valueSource(
+    CloudRunV2ServiceValueSource valueSource,
+  ) = CloudRunV2ServiceEnvValueSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -493,10 +485,9 @@ sealed class CloudRunV2ServiceTemplateContainersEnvSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2ServiceTemplateContainersEnvSource.value] choice: sets `value`.
-final class CloudRunV2ServiceTemplateContainersEnvSourceValue
-    extends CloudRunV2ServiceTemplateContainersEnvSource {
-  const CloudRunV2ServiceTemplateContainersEnvSourceValue(this.value);
+/// The [CloudRunV2ServiceEnvSource.value] choice: sets `value`.
+final class CloudRunV2ServiceEnvSourceValue extends CloudRunV2ServiceEnvSource {
+  const CloudRunV2ServiceEnvSourceValue(this.value);
 
   final TfArg<String> value;
 
@@ -507,14 +498,11 @@ final class CloudRunV2ServiceTemplateContainersEnvSourceValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [CloudRunV2ServiceTemplateContainersEnvSource.valueSource] choice: sets `value_source`.
-final class CloudRunV2ServiceTemplateContainersEnvSourceValueSource
-    extends CloudRunV2ServiceTemplateContainersEnvSource {
-  const CloudRunV2ServiceTemplateContainersEnvSourceValueSource(
-    this.valueSource,
-  );
+/// The [CloudRunV2ServiceEnvSource.valueSource] choice: sets `value_source`.
+final class CloudRunV2ServiceEnvValueSource extends CloudRunV2ServiceEnvSource {
+  const CloudRunV2ServiceEnvValueSource(this.valueSource);
 
-  final CloudRunV2ServiceTemplateContainersEnvValueSource valueSource;
+  final CloudRunV2ServiceValueSource valueSource;
 
   @override
   String get blockKey => 'value_source';
@@ -526,11 +514,10 @@ final class CloudRunV2ServiceTemplateContainersEnvSourceValueSource
 /// Typed helper for the `template.containers.env.value_source` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersEnvValueSource {
-  const CloudRunV2ServiceTemplateContainersEnvValueSource({this.secretKeyRef});
+final class CloudRunV2ServiceValueSource {
+  const CloudRunV2ServiceValueSource({this.secretKeyRef});
 
-  final CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef?
-  secretKeyRef;
+  final CloudRunV2ServiceSecretKeyRef? secretKeyRef;
 
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
@@ -538,11 +525,8 @@ final class CloudRunV2ServiceTemplateContainersEnvValueSource {
 /// Typed helper for the `template.containers.env.value_source.secret_key_ref` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef {
-  const CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef({
-    required this.secret,
-    this.version,
-  });
+final class CloudRunV2ServiceSecretKeyRef {
+  const CloudRunV2ServiceSecretKeyRef({required this.secret, this.version});
 
   final TfArg<String> secret;
 
@@ -557,8 +541,8 @@ final class CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef {
 /// Typed helper for the `template.containers.liveness_probe` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersLivenessProbe {
-  const CloudRunV2ServiceTemplateContainersLivenessProbe({
+final class CloudRunV2ServiceLivenessProbe {
+  const CloudRunV2ServiceLivenessProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -576,11 +560,11 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2ServiceTemplateContainersLivenessProbeGrpc? grpc;
+  final CloudRunV2ServiceGrpc? grpc;
 
-  final CloudRunV2ServiceTemplateContainersLivenessProbeHttpGet? httpGet;
+  final CloudRunV2ServiceLivenessProbeHttpGet? httpGet;
 
-  final CloudRunV2ServiceTemplateContainersLivenessProbeTcpSocket? tcpSocket;
+  final CloudRunV2ServiceLivenessProbeTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -595,12 +579,10 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbe {
 
 /// Typed helper for the `template.containers.liveness_probe.grpc` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2ServiceTemplateContainersLivenessProbeGrpc {
-  const CloudRunV2ServiceTemplateContainersLivenessProbeGrpc({
-    this.port,
-    this.service,
-  });
+final class CloudRunV2ServiceGrpc {
+  const CloudRunV2ServiceGrpc({this.port, this.service});
 
   final TfArg<num>? port;
 
@@ -614,9 +596,10 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbeGrpc {
 
 /// Typed helper for the `template.containers.liveness_probe.http_get` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2ServiceTemplateContainersLivenessProbeHttpGet {
-  const CloudRunV2ServiceTemplateContainersLivenessProbeHttpGet({
+final class CloudRunV2ServiceLivenessProbeHttpGet {
+  const CloudRunV2ServiceLivenessProbeHttpGet({
     this.path,
     this.port,
     this.httpHeaders,
@@ -626,10 +609,7 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbeHttpGet {
 
   final TfArg<num>? port;
 
-  final List<
-    CloudRunV2ServiceTemplateContainersLivenessProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
+  final List<CloudRunV2ServiceHttpHeaders>? httpHeaders;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -641,12 +621,10 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbeHttpGet {
 
 /// Typed helper for the `template.containers.liveness_probe.http_get.http_headers` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2ServiceTemplateContainersLivenessProbeHttpGetHttpHeaders {
-  const CloudRunV2ServiceTemplateContainersLivenessProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
+final class CloudRunV2ServiceHttpHeaders {
+  const CloudRunV2ServiceHttpHeaders({required this.name, this.value});
 
   final TfArg<String> name;
 
@@ -661,10 +639,8 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbeHttpGetHttpHeaders {
 /// Typed helper for the `template.containers.liveness_probe.tcp_socket` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersLivenessProbeTcpSocket {
-  const CloudRunV2ServiceTemplateContainersLivenessProbeTcpSocket({
-    required this.port,
-  });
+final class CloudRunV2ServiceLivenessProbeTcpSocket {
+  const CloudRunV2ServiceLivenessProbeTcpSocket({required this.port});
 
   final TfArg<num> port;
 
@@ -674,11 +650,8 @@ final class CloudRunV2ServiceTemplateContainersLivenessProbeTcpSocket {
 /// Typed helper for the `template.containers.ports` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersPorts {
-  const CloudRunV2ServiceTemplateContainersPorts({
-    this.containerPort,
-    this.name,
-  });
+final class CloudRunV2ServicePorts {
+  const CloudRunV2ServicePorts({this.containerPort, this.name});
 
   final TfArg<num>? containerPort;
 
@@ -693,8 +666,8 @@ final class CloudRunV2ServiceTemplateContainersPorts {
 /// Typed helper for the `template.containers.readiness_probe` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersReadinessProbe {
-  const CloudRunV2ServiceTemplateContainersReadinessProbe({
+final class CloudRunV2ServiceReadinessProbe {
+  const CloudRunV2ServiceReadinessProbe({
     this.failureThreshold,
     this.periodSeconds,
     this.successThreshold,
@@ -711,9 +684,9 @@ final class CloudRunV2ServiceTemplateContainersReadinessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2ServiceTemplateContainersReadinessProbeGrpc? grpc;
+  final CloudRunV2ServiceGrpc? grpc;
 
-  final CloudRunV2ServiceTemplateContainersReadinessProbeHttpGet? httpGet;
+  final CloudRunV2ServiceReadinessProbeHttpGet? httpGet;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -725,33 +698,11 @@ final class CloudRunV2ServiceTemplateContainersReadinessProbe {
   };
 }
 
-/// Typed helper for the `template.containers.readiness_probe.grpc` block of
-/// `google_cloud_run_v2_service` (derived from provider schema).
-@immutable
-final class CloudRunV2ServiceTemplateContainersReadinessProbeGrpc {
-  const CloudRunV2ServiceTemplateContainersReadinessProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `template.containers.readiness_probe.http_get` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersReadinessProbeHttpGet {
-  const CloudRunV2ServiceTemplateContainersReadinessProbeHttpGet({
-    this.path,
-    this.port,
-  });
+final class CloudRunV2ServiceReadinessProbeHttpGet {
+  const CloudRunV2ServiceReadinessProbeHttpGet({this.path, this.port});
 
   final TfArg<String>? path;
 
@@ -766,8 +717,8 @@ final class CloudRunV2ServiceTemplateContainersReadinessProbeHttpGet {
 /// Typed helper for the `template.containers.resources` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersResources {
-  const CloudRunV2ServiceTemplateContainersResources({
+final class CloudRunV2ServiceResources {
+  const CloudRunV2ServiceResources({
     this.cpuIdle,
     this.limits,
     this.startupCpuBoost,
@@ -789,8 +740,8 @@ final class CloudRunV2ServiceTemplateContainersResources {
 /// Typed helper for the `template.containers.startup_probe` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersStartupProbe {
-  const CloudRunV2ServiceTemplateContainersStartupProbe({
+final class CloudRunV2ServiceStartupProbe {
+  const CloudRunV2ServiceStartupProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -808,11 +759,11 @@ final class CloudRunV2ServiceTemplateContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2ServiceTemplateContainersStartupProbeGrpc? grpc;
+  final CloudRunV2ServiceGrpc? grpc;
 
-  final CloudRunV2ServiceTemplateContainersStartupProbeHttpGet? httpGet;
+  final CloudRunV2ServiceLivenessProbeHttpGet? httpGet;
 
-  final CloudRunV2ServiceTemplateContainersStartupProbeTcpSocket? tcpSocket;
+  final CloudRunV2ServiceStartupProbeTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -825,74 +776,11 @@ final class CloudRunV2ServiceTemplateContainersStartupProbe {
   };
 }
 
-/// Typed helper for the `template.containers.startup_probe.grpc` block of
-/// `google_cloud_run_v2_service` (derived from provider schema).
-@immutable
-final class CloudRunV2ServiceTemplateContainersStartupProbeGrpc {
-  const CloudRunV2ServiceTemplateContainersStartupProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `template.containers.startup_probe.http_get` block of
-/// `google_cloud_run_v2_service` (derived from provider schema).
-@immutable
-final class CloudRunV2ServiceTemplateContainersStartupProbeHttpGet {
-  const CloudRunV2ServiceTemplateContainersStartupProbeHttpGet({
-    this.path,
-    this.port,
-    this.httpHeaders,
-  });
-
-  final TfArg<String>? path;
-
-  final TfArg<num>? port;
-
-  final List<CloudRunV2ServiceTemplateContainersStartupProbeHttpGetHttpHeaders>?
-  httpHeaders;
-
-  Map<String, Object?> encode() => {
-    'path': ?path?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': [for (final e in httpHeaders!) e.encode()],
-  };
-}
-
-/// Typed helper for the `template.containers.startup_probe.http_get.http_headers` block of
-/// `google_cloud_run_v2_service` (derived from provider schema).
-@immutable
-final class CloudRunV2ServiceTemplateContainersStartupProbeHttpGetHttpHeaders {
-  const CloudRunV2ServiceTemplateContainersStartupProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `template.containers.startup_probe.tcp_socket` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateContainersStartupProbeTcpSocket {
-  const CloudRunV2ServiceTemplateContainersStartupProbeTcpSocket({this.port});
+final class CloudRunV2ServiceStartupProbeTcpSocket {
+  const CloudRunV2ServiceStartupProbeTcpSocket({this.port});
 
   final TfArg<num>? port;
 
@@ -901,9 +789,10 @@ final class CloudRunV2ServiceTemplateContainersStartupProbeTcpSocket {
 
 /// Typed helper for the `template.containers.volume_mounts` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2ServiceTemplateContainersVolumeMounts {
-  const CloudRunV2ServiceTemplateContainersVolumeMounts({
+final class CloudRunV2ServiceVolumeMounts {
+  const CloudRunV2ServiceVolumeMounts({
     required this.mountPath,
     required this.name,
     this.subPath,
@@ -925,8 +814,8 @@ final class CloudRunV2ServiceTemplateContainersVolumeMounts {
 /// Typed helper for the `template.node_selector` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateNodeSelector {
-  const CloudRunV2ServiceTemplateNodeSelector({required this.accelerator});
+final class CloudRunV2ServiceNodeSelector {
+  const CloudRunV2ServiceNodeSelector({required this.accelerator});
 
   final TfArg<String> accelerator;
 
@@ -936,10 +825,10 @@ final class CloudRunV2ServiceTemplateNodeSelector {
 /// Typed helper for the `template.sandboxes` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateSandboxes {
-  const CloudRunV2ServiceTemplateSandboxes({this.templates});
+final class CloudRunV2ServiceSandboxes {
+  const CloudRunV2ServiceSandboxes({this.templates});
 
-  final List<CloudRunV2ServiceTemplateSandboxesTemplates>? templates;
+  final List<CloudRunV2ServiceTemplates>? templates;
 
   Map<String, Object?> encode() => {
     if (templates != null)
@@ -950,8 +839,8 @@ final class CloudRunV2ServiceTemplateSandboxes {
 /// Typed helper for the `template.sandboxes.templates` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateSandboxesTemplates {
-  const CloudRunV2ServiceTemplateSandboxesTemplates({
+final class CloudRunV2ServiceTemplates {
+  const CloudRunV2ServiceTemplates({
     this.args,
     this.command,
     required this.image,
@@ -971,10 +860,9 @@ final class CloudRunV2ServiceTemplateSandboxesTemplates {
 
   final TfArg<String>? workingDir;
 
-  final List<CloudRunV2ServiceTemplateSandboxesTemplatesEnv>? env;
+  final List<CloudRunV2ServiceTemplatesEnv>? env;
 
-  final List<CloudRunV2ServiceTemplateSandboxesTemplatesVolumeMounts>?
-  volumeMounts;
+  final List<CloudRunV2ServiceVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -991,11 +879,8 @@ final class CloudRunV2ServiceTemplateSandboxesTemplates {
 /// Typed helper for the `template.sandboxes.templates.env` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateSandboxesTemplatesEnv {
-  const CloudRunV2ServiceTemplateSandboxesTemplatesEnv({
-    required this.name,
-    this.value,
-  });
+final class CloudRunV2ServiceTemplatesEnv {
+  const CloudRunV2ServiceTemplatesEnv({required this.name, this.value});
 
   final TfArg<String> name;
 
@@ -1004,29 +889,6 @@ final class CloudRunV2ServiceTemplateSandboxesTemplatesEnv {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `template.sandboxes.templates.volume_mounts` block of
-/// `google_cloud_run_v2_service` (derived from provider schema).
-@immutable
-final class CloudRunV2ServiceTemplateSandboxesTemplatesVolumeMounts {
-  const CloudRunV2ServiceTemplateSandboxesTemplatesVolumeMounts({
-    required this.mountPath,
-    required this.name,
-    this.subPath,
-  });
-
-  final TfArg<String> mountPath;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? subPath;
-
-  Map<String, Object?> encode() => {
-    'mount_path': mountPath.toTfJson(),
-    'name': name.toTfJson(),
-    'sub_path': ?subPath?.toTfJson(),
   };
 }
 
@@ -1052,15 +914,12 @@ final class CloudRunV2ServiceTemplateScaling {
 /// Typed helper for the `template.volumes` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumes {
-  const CloudRunV2ServiceTemplateVolumes({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2ServiceVolumes {
+  const CloudRunV2ServiceVolumes({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2ServiceTemplateVolumesSource source;
+  final CloudRunV2ServiceSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1072,33 +931,30 @@ final class CloudRunV2ServiceTemplateVolumes {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudSqlInstance(...)`.
-sealed class CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSource();
+sealed class CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSource();
 
   /// Sets `cloud_sql_instance`.
-  const factory CloudRunV2ServiceTemplateVolumesSource.cloudSqlInstance(
-    CloudRunV2ServiceTemplateVolumesCloudSqlInstance cloudSqlInstance,
-  ) = CloudRunV2ServiceTemplateVolumesSourceCloudSqlInstance;
+  const factory CloudRunV2ServiceSource.cloudSqlInstance(
+    CloudRunV2ServiceCloudSqlInstance cloudSqlInstance,
+  ) = CloudRunV2ServiceSourceCloudSqlInstance;
 
   /// Sets `empty_dir`.
-  const factory CloudRunV2ServiceTemplateVolumesSource.emptyDir(
-    CloudRunV2ServiceTemplateVolumesEmptyDir emptyDir,
-  ) = CloudRunV2ServiceTemplateVolumesSourceEmptyDir;
+  const factory CloudRunV2ServiceSource.emptyDir(
+    CloudRunV2ServiceEmptyDir emptyDir,
+  ) = CloudRunV2ServiceSourceEmptyDir;
 
   /// Sets `gcs`.
-  const factory CloudRunV2ServiceTemplateVolumesSource.gcs(
-    CloudRunV2ServiceTemplateVolumesGcs gcs,
-  ) = CloudRunV2ServiceTemplateVolumesSourceGcs;
+  const factory CloudRunV2ServiceSource.gcs(CloudRunV2ServiceGcs gcs) =
+      CloudRunV2ServiceSourceGcs;
 
   /// Sets `nfs`.
-  const factory CloudRunV2ServiceTemplateVolumesSource.nfs(
-    CloudRunV2ServiceTemplateVolumesNfs nfs,
-  ) = CloudRunV2ServiceTemplateVolumesSourceNfs;
+  const factory CloudRunV2ServiceSource.nfs(CloudRunV2ServiceNfs nfs) =
+      CloudRunV2ServiceSourceNfs;
 
   /// Sets `secret`.
-  const factory CloudRunV2ServiceTemplateVolumesSource.secret(
-    CloudRunV2ServiceTemplateVolumesSecret secret,
-  ) = CloudRunV2ServiceTemplateVolumesSourceSecret;
+  const factory CloudRunV2ServiceSource.secret(CloudRunV2ServiceSecret secret) =
+      CloudRunV2ServiceSourceSecret;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1106,14 +962,12 @@ sealed class CloudRunV2ServiceTemplateVolumesSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2ServiceTemplateVolumesSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
-final class CloudRunV2ServiceTemplateVolumesSourceCloudSqlInstance
-    extends CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSourceCloudSqlInstance(
-    this.cloudSqlInstance,
-  );
+/// The [CloudRunV2ServiceSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
+final class CloudRunV2ServiceSourceCloudSqlInstance
+    extends CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSourceCloudSqlInstance(this.cloudSqlInstance);
 
-  final CloudRunV2ServiceTemplateVolumesCloudSqlInstance cloudSqlInstance;
+  final CloudRunV2ServiceCloudSqlInstance cloudSqlInstance;
 
   @override
   String get blockKey => 'cloud_sql_instance';
@@ -1124,12 +978,11 @@ final class CloudRunV2ServiceTemplateVolumesSourceCloudSqlInstance
   };
 }
 
-/// The [CloudRunV2ServiceTemplateVolumesSource.emptyDir] choice: sets `empty_dir`.
-final class CloudRunV2ServiceTemplateVolumesSourceEmptyDir
-    extends CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSourceEmptyDir(this.emptyDir);
+/// The [CloudRunV2ServiceSource.emptyDir] choice: sets `empty_dir`.
+final class CloudRunV2ServiceSourceEmptyDir extends CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSourceEmptyDir(this.emptyDir);
 
-  final CloudRunV2ServiceTemplateVolumesEmptyDir emptyDir;
+  final CloudRunV2ServiceEmptyDir emptyDir;
 
   @override
   String get blockKey => 'empty_dir';
@@ -1138,12 +991,11 @@ final class CloudRunV2ServiceTemplateVolumesSourceEmptyDir
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
 
-/// The [CloudRunV2ServiceTemplateVolumesSource.gcs] choice: sets `gcs`.
-final class CloudRunV2ServiceTemplateVolumesSourceGcs
-    extends CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSourceGcs(this.gcs);
+/// The [CloudRunV2ServiceSource.gcs] choice: sets `gcs`.
+final class CloudRunV2ServiceSourceGcs extends CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSourceGcs(this.gcs);
 
-  final CloudRunV2ServiceTemplateVolumesGcs gcs;
+  final CloudRunV2ServiceGcs gcs;
 
   @override
   String get blockKey => 'gcs';
@@ -1152,12 +1004,11 @@ final class CloudRunV2ServiceTemplateVolumesSourceGcs
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
 
-/// The [CloudRunV2ServiceTemplateVolumesSource.nfs] choice: sets `nfs`.
-final class CloudRunV2ServiceTemplateVolumesSourceNfs
-    extends CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSourceNfs(this.nfs);
+/// The [CloudRunV2ServiceSource.nfs] choice: sets `nfs`.
+final class CloudRunV2ServiceSourceNfs extends CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSourceNfs(this.nfs);
 
-  final CloudRunV2ServiceTemplateVolumesNfs nfs;
+  final CloudRunV2ServiceNfs nfs;
 
   @override
   String get blockKey => 'nfs';
@@ -1166,12 +1017,11 @@ final class CloudRunV2ServiceTemplateVolumesSourceNfs
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
-/// The [CloudRunV2ServiceTemplateVolumesSource.secret] choice: sets `secret`.
-final class CloudRunV2ServiceTemplateVolumesSourceSecret
-    extends CloudRunV2ServiceTemplateVolumesSource {
-  const CloudRunV2ServiceTemplateVolumesSourceSecret(this.secret);
+/// The [CloudRunV2ServiceSource.secret] choice: sets `secret`.
+final class CloudRunV2ServiceSourceSecret extends CloudRunV2ServiceSource {
+  const CloudRunV2ServiceSourceSecret(this.secret);
 
-  final CloudRunV2ServiceTemplateVolumesSecret secret;
+  final CloudRunV2ServiceSecret secret;
 
   @override
   String get blockKey => 'secret';
@@ -1183,8 +1033,8 @@ final class CloudRunV2ServiceTemplateVolumesSourceSecret
 /// Typed helper for the `template.volumes.cloud_sql_instance` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesCloudSqlInstance {
-  const CloudRunV2ServiceTemplateVolumesCloudSqlInstance({this.instances});
+final class CloudRunV2ServiceCloudSqlInstance {
+  const CloudRunV2ServiceCloudSqlInstance({this.instances});
 
   final TfArg<List<String>>? instances;
 
@@ -1194,8 +1044,8 @@ final class CloudRunV2ServiceTemplateVolumesCloudSqlInstance {
 /// Typed helper for the `template.volumes.empty_dir` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesEmptyDir {
-  const CloudRunV2ServiceTemplateVolumesEmptyDir({this.medium, this.sizeLimit});
+final class CloudRunV2ServiceEmptyDir {
+  const CloudRunV2ServiceEmptyDir({this.medium, this.sizeLimit});
 
   final TfArg<EmptyDirMedium>? medium;
 
@@ -1210,8 +1060,8 @@ final class CloudRunV2ServiceTemplateVolumesEmptyDir {
 /// Typed helper for the `template.volumes.gcs` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesGcs {
-  const CloudRunV2ServiceTemplateVolumesGcs({
+final class CloudRunV2ServiceGcs {
+  const CloudRunV2ServiceGcs({
     required this.bucket,
     this.mountOptions,
     this.readOnly,
@@ -1233,8 +1083,8 @@ final class CloudRunV2ServiceTemplateVolumesGcs {
 /// Typed helper for the `template.volumes.nfs` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesNfs {
-  const CloudRunV2ServiceTemplateVolumesNfs({
+final class CloudRunV2ServiceNfs {
+  const CloudRunV2ServiceNfs({
     required this.path,
     this.readOnly,
     required this.server,
@@ -1256,8 +1106,8 @@ final class CloudRunV2ServiceTemplateVolumesNfs {
 /// Typed helper for the `template.volumes.secret` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesSecret {
-  const CloudRunV2ServiceTemplateVolumesSecret({
+final class CloudRunV2ServiceSecret {
+  const CloudRunV2ServiceSecret({
     this.defaultMode,
     required this.secret,
     this.items,
@@ -1267,7 +1117,7 @@ final class CloudRunV2ServiceTemplateVolumesSecret {
 
   final TfArg<String> secret;
 
-  final List<CloudRunV2ServiceTemplateVolumesSecretItems>? items;
+  final List<CloudRunV2ServiceItems>? items;
 
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
@@ -1279,12 +1129,8 @@ final class CloudRunV2ServiceTemplateVolumesSecret {
 /// Typed helper for the `template.volumes.secret.items` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVolumesSecretItems {
-  const CloudRunV2ServiceTemplateVolumesSecretItems({
-    this.mode,
-    required this.path,
-    this.version,
-  });
+final class CloudRunV2ServiceItems {
+  const CloudRunV2ServiceItems({this.mode, required this.path, this.version});
 
   final TfArg<num>? mode;
 
@@ -1302,10 +1148,10 @@ final class CloudRunV2ServiceTemplateVolumesSecretItems {
 /// Typed helper for the `template.vpc_access` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVpcAccess {
-  const CloudRunV2ServiceTemplateVpcAccess({this.connection, this.egress});
+final class CloudRunV2ServiceVpcAccess {
+  const CloudRunV2ServiceVpcAccess({this.connection, this.egress});
 
-  final CloudRunV2ServiceTemplateVpcAccessConnection? connection;
+  final CloudRunV2ServiceConnection? connection;
 
   final TfArg<VpcAccessEgress>? egress;
 
@@ -1320,18 +1166,17 @@ final class CloudRunV2ServiceTemplateVpcAccess {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.connector(...)`.
-sealed class CloudRunV2ServiceTemplateVpcAccessConnection {
-  const CloudRunV2ServiceTemplateVpcAccessConnection();
+sealed class CloudRunV2ServiceConnection {
+  const CloudRunV2ServiceConnection();
 
   /// Sets `connector`.
-  const factory CloudRunV2ServiceTemplateVpcAccessConnection.connector(
-    TfArg<String> connector,
-  ) = CloudRunV2ServiceTemplateVpcAccessConnectionConnector;
+  const factory CloudRunV2ServiceConnection.connector(TfArg<String> connector) =
+      CloudRunV2ServiceConnectionConnector;
 
   /// Sets `network_interfaces`.
-  const factory CloudRunV2ServiceTemplateVpcAccessConnection.networkInterfaces(
-    List<CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces> networkInterfaces,
-  ) = CloudRunV2ServiceTemplateVpcAccessConnectionNetworkInterfaces;
+  const factory CloudRunV2ServiceConnection.networkInterfaces(
+    List<CloudRunV2ServiceNetworkInterfaces> networkInterfaces,
+  ) = CloudRunV2ServiceConnectionNetworkInterfaces;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1339,10 +1184,10 @@ sealed class CloudRunV2ServiceTemplateVpcAccessConnection {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2ServiceTemplateVpcAccessConnection.connector] choice: sets `connector`.
-final class CloudRunV2ServiceTemplateVpcAccessConnectionConnector
-    extends CloudRunV2ServiceTemplateVpcAccessConnection {
-  const CloudRunV2ServiceTemplateVpcAccessConnectionConnector(this.connector);
+/// The [CloudRunV2ServiceConnection.connector] choice: sets `connector`.
+final class CloudRunV2ServiceConnectionConnector
+    extends CloudRunV2ServiceConnection {
+  const CloudRunV2ServiceConnectionConnector(this.connector);
 
   final TfArg<String> connector;
 
@@ -1353,15 +1198,12 @@ final class CloudRunV2ServiceTemplateVpcAccessConnectionConnector
   Map<String, Object?> encode() => {'connector': connector.toTfJson()};
 }
 
-/// The [CloudRunV2ServiceTemplateVpcAccessConnection.networkInterfaces] choice: sets `network_interfaces`.
-final class CloudRunV2ServiceTemplateVpcAccessConnectionNetworkInterfaces
-    extends CloudRunV2ServiceTemplateVpcAccessConnection {
-  const CloudRunV2ServiceTemplateVpcAccessConnectionNetworkInterfaces(
-    this.networkInterfaces,
-  );
+/// The [CloudRunV2ServiceConnection.networkInterfaces] choice: sets `network_interfaces`.
+final class CloudRunV2ServiceConnectionNetworkInterfaces
+    extends CloudRunV2ServiceConnection {
+  const CloudRunV2ServiceConnectionNetworkInterfaces(this.networkInterfaces);
 
-  final List<CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces>
-  networkInterfaces;
+  final List<CloudRunV2ServiceNetworkInterfaces> networkInterfaces;
 
   @override
   String get blockKey => 'network_interfaces';
@@ -1375,8 +1217,8 @@ final class CloudRunV2ServiceTemplateVpcAccessConnectionNetworkInterfaces
 /// Typed helper for the `template.vpc_access.network_interfaces` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces {
-  const CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces({
+final class CloudRunV2ServiceNetworkInterfaces {
+  const CloudRunV2ServiceNetworkInterfaces({
     this.network,
     this.subnetwork,
     this.tags,
@@ -1398,8 +1240,8 @@ final class CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces {
 /// Typed helper for the `template.workload_identity_config` block of
 /// `google_cloud_run_v2_service` (derived from provider schema).
 @immutable
-final class CloudRunV2ServiceTemplateWorkloadIdentityConfig {
-  const CloudRunV2ServiceTemplateWorkloadIdentityConfig({
+final class CloudRunV2ServiceWorkloadIdentityConfig {
+  const CloudRunV2ServiceWorkloadIdentityConfig({
     this.identity,
     this.identityCertificateEnabled,
     this.identityType,
@@ -1461,9 +1303,9 @@ final class CloudRunV2ServiceTraffic {
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
 ///     containers: [
-///       CloudRunV2ServiceTemplateContainers(
+///       CloudRunV2ServiceContainers(
 ///         image: .literal('gcr.io/cloudrun/hello'),
-///         ports: CloudRunV2ServiceTemplateContainersPorts(
+///         ports: CloudRunV2ServicePorts(
 ///           containerPort: .literal(8080),
 ///         ),
 ///       ),
@@ -1481,15 +1323,15 @@ final class CloudRunV2ServiceTraffic {
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
 ///     containers: [
-///       CloudRunV2ServiceTemplateContainers(
+///       CloudRunV2ServiceContainers(
 ///         image: .literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
 ///         env: [
-///           CloudRunV2ServiceTemplateContainersEnv(
+///           CloudRunV2ServiceEnv(
 ///             name: .literal('DATABASE_URL'),
 ///             source: .valueSource(
-///               CloudRunV2ServiceTemplateContainersEnvValueSource(
+///               CloudRunV2ServiceValueSource(
 ///                 secretKeyRef:
-///                     CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
+///                     CloudRunV2ServiceSecretKeyRef(
 ///                       secret: .literal('db-url'),
 ///                       version: .literal('latest'),
 ///                     ),
@@ -1498,7 +1340,7 @@ final class CloudRunV2ServiceTraffic {
 ///           ),
 ///         ],
 ///         volumeMounts: [
-///           CloudRunV2ServiceTemplateContainersVolumeMounts(
+///           CloudRunV2ServiceVolumeMounts(
 ///             name: .literal('cache'),
 ///             mountPath: .literal('/var/cache'),
 ///           ),
@@ -1506,10 +1348,10 @@ final class CloudRunV2ServiceTraffic {
 ///       ),
 ///     ],
 ///     volumes: [
-///       CloudRunV2ServiceTemplateVolumes(
+///       CloudRunV2ServiceVolumes(
 ///         name: .literal('cache'),
 ///         source: .gcs(
-///           CloudRunV2ServiceTemplateVolumesGcs(bucket: .of(bucket)),
+///           CloudRunV2ServiceGcs(bucket: .of(bucket)),
 ///         ),
 ///       ),
 ///     ],

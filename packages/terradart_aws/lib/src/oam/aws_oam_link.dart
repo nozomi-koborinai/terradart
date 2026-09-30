@@ -27,15 +27,15 @@ enum OamLinkResourceTypes implements TerraformEnum {
 /// Typed helper for the `link_configuration` block of
 /// `aws_oam_link` (derived from provider schema).
 @immutable
-final class OamLinkLinkConfiguration {
-  const OamLinkLinkConfiguration({
+final class OamLinkConfiguration {
+  const OamLinkConfiguration({
     this.logGroupConfiguration,
     this.metricConfiguration,
   });
 
-  final OamLinkLinkConfigurationLogGroupConfiguration? logGroupConfiguration;
+  final OamLinkLogGroupConfiguration? logGroupConfiguration;
 
-  final OamLinkLinkConfigurationMetricConfiguration? metricConfiguration;
+  final OamLinkMetricConfiguration? metricConfiguration;
 
   Map<String, Object?> encode() => {
     'log_group_configuration': ?logGroupConfiguration?.encode(),
@@ -46,8 +46,8 @@ final class OamLinkLinkConfiguration {
 /// Typed helper for the `link_configuration.log_group_configuration` block of
 /// `aws_oam_link` (derived from provider schema).
 @immutable
-final class OamLinkLinkConfigurationLogGroupConfiguration {
-  const OamLinkLinkConfigurationLogGroupConfiguration({required this.filter});
+final class OamLinkLogGroupConfiguration {
+  const OamLinkLogGroupConfiguration({required this.filter});
 
   final TfArg<String> filter;
 
@@ -57,8 +57,8 @@ final class OamLinkLinkConfigurationLogGroupConfiguration {
 /// Typed helper for the `link_configuration.metric_configuration` block of
 /// `aws_oam_link` (derived from provider schema).
 @immutable
-final class OamLinkLinkConfigurationMetricConfiguration {
-  const OamLinkLinkConfigurationMetricConfiguration({required this.filter});
+final class OamLinkMetricConfiguration {
+  const OamLinkMetricConfiguration({required this.filter});
 
   final TfArg<String> filter;
 
@@ -76,7 +76,7 @@ final class AwsOamLink extends Resource {
     required List<TfArg<OamLinkResourceTypes>> resourceTypes,
     required TfArg<String> sinkIdentifier,
     TfArg<Map<String, String>>? tags,
-    OamLinkLinkConfiguration? linkConfiguration,
+    OamLinkConfiguration? linkConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

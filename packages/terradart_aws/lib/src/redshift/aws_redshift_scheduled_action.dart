@@ -16,18 +16,18 @@ sealed class RedshiftScheduledActionTargetAction {
 
   /// Sets `pause_cluster`.
   const factory RedshiftScheduledActionTargetAction.pauseCluster(
-    RedshiftScheduledActionTargetActionPauseCluster pauseCluster,
-  ) = RedshiftScheduledActionTargetActionPauseClusterChoice;
+    RedshiftScheduledActionPauseCluster pauseCluster,
+  ) = RedshiftScheduledActionTargetActionPauseCluster;
 
   /// Sets `resize_cluster`.
   const factory RedshiftScheduledActionTargetAction.resizeCluster(
-    RedshiftScheduledActionTargetActionResizeCluster resizeCluster,
-  ) = RedshiftScheduledActionTargetActionResizeClusterChoice;
+    RedshiftScheduledActionResizeCluster resizeCluster,
+  ) = RedshiftScheduledActionTargetActionResizeCluster;
 
   /// Sets `resume_cluster`.
   const factory RedshiftScheduledActionTargetAction.resumeCluster(
-    RedshiftScheduledActionTargetActionResumeCluster resumeCluster,
-  ) = RedshiftScheduledActionTargetActionResumeClusterChoice;
+    RedshiftScheduledActionResumeCluster resumeCluster,
+  ) = RedshiftScheduledActionTargetActionResumeCluster;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,13 +36,11 @@ sealed class RedshiftScheduledActionTargetAction {
 }
 
 /// The [RedshiftScheduledActionTargetAction.pauseCluster] choice: sets `pause_cluster`.
-final class RedshiftScheduledActionTargetActionPauseClusterChoice
+final class RedshiftScheduledActionTargetActionPauseCluster
     extends RedshiftScheduledActionTargetAction {
-  const RedshiftScheduledActionTargetActionPauseClusterChoice(
-    this.pauseCluster,
-  );
+  const RedshiftScheduledActionTargetActionPauseCluster(this.pauseCluster);
 
-  final RedshiftScheduledActionTargetActionPauseCluster pauseCluster;
+  final RedshiftScheduledActionPauseCluster pauseCluster;
 
   @override
   String get blockKey => 'pause_cluster';
@@ -52,13 +50,11 @@ final class RedshiftScheduledActionTargetActionPauseClusterChoice
 }
 
 /// The [RedshiftScheduledActionTargetAction.resizeCluster] choice: sets `resize_cluster`.
-final class RedshiftScheduledActionTargetActionResizeClusterChoice
+final class RedshiftScheduledActionTargetActionResizeCluster
     extends RedshiftScheduledActionTargetAction {
-  const RedshiftScheduledActionTargetActionResizeClusterChoice(
-    this.resizeCluster,
-  );
+  const RedshiftScheduledActionTargetActionResizeCluster(this.resizeCluster);
 
-  final RedshiftScheduledActionTargetActionResizeCluster resizeCluster;
+  final RedshiftScheduledActionResizeCluster resizeCluster;
 
   @override
   String get blockKey => 'resize_cluster';
@@ -68,13 +64,11 @@ final class RedshiftScheduledActionTargetActionResizeClusterChoice
 }
 
 /// The [RedshiftScheduledActionTargetAction.resumeCluster] choice: sets `resume_cluster`.
-final class RedshiftScheduledActionTargetActionResumeClusterChoice
+final class RedshiftScheduledActionTargetActionResumeCluster
     extends RedshiftScheduledActionTargetAction {
-  const RedshiftScheduledActionTargetActionResumeClusterChoice(
-    this.resumeCluster,
-  );
+  const RedshiftScheduledActionTargetActionResumeCluster(this.resumeCluster);
 
-  final RedshiftScheduledActionTargetActionResumeCluster resumeCluster;
+  final RedshiftScheduledActionResumeCluster resumeCluster;
 
   @override
   String get blockKey => 'resume_cluster';
@@ -86,10 +80,8 @@ final class RedshiftScheduledActionTargetActionResumeClusterChoice
 /// Typed helper for the `target_action.pause_cluster` block of
 /// `aws_redshift_scheduled_action` (derived from provider schema).
 @immutable
-final class RedshiftScheduledActionTargetActionPauseCluster {
-  const RedshiftScheduledActionTargetActionPauseCluster({
-    required this.clusterIdentifier,
-  });
+final class RedshiftScheduledActionPauseCluster {
+  const RedshiftScheduledActionPauseCluster({required this.clusterIdentifier});
 
   final TfArg<String> clusterIdentifier;
 
@@ -101,8 +93,8 @@ final class RedshiftScheduledActionTargetActionPauseCluster {
 /// Typed helper for the `target_action.resize_cluster` block of
 /// `aws_redshift_scheduled_action` (derived from provider schema).
 @immutable
-final class RedshiftScheduledActionTargetActionResizeCluster {
-  const RedshiftScheduledActionTargetActionResizeCluster({
+final class RedshiftScheduledActionResizeCluster {
+  const RedshiftScheduledActionResizeCluster({
     this.classic,
     required this.clusterIdentifier,
     this.clusterType,
@@ -132,10 +124,8 @@ final class RedshiftScheduledActionTargetActionResizeCluster {
 /// Typed helper for the `target_action.resume_cluster` block of
 /// `aws_redshift_scheduled_action` (derived from provider schema).
 @immutable
-final class RedshiftScheduledActionTargetActionResumeCluster {
-  const RedshiftScheduledActionTargetActionResumeCluster({
-    required this.clusterIdentifier,
-  });
+final class RedshiftScheduledActionResumeCluster {
+  const RedshiftScheduledActionResumeCluster({required this.clusterIdentifier});
 
   final TfArg<String> clusterIdentifier;
 

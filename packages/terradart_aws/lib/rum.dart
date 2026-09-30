@@ -6,12 +6,12 @@ library;
 export 'src/rum/aws_rum_app_monitor.dart'
     show
         AwsRumAppMonitor,
-        RumAppMonitorAppMonitorConfiguration,
-        RumAppMonitorAppMonitorConfigurationTelemetries,
+        RumAppMonitorConfiguration,
         RumAppMonitorCustomEvents,
-        RumAppMonitorCustomEventsStatus,
         RumAppMonitorDomain,
         RumAppMonitorDomainChoice,
-        RumAppMonitorDomainList;
+        RumAppMonitorDomainList,
+        RumAppMonitorStatus,
+        RumAppMonitorTelemetries;
 export 'src/rum/aws_rum_metrics_destination.dart'
     show AwsRumMetricsDestination, RumMetricsDestinationDestination;

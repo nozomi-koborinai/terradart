@@ -25,17 +25,15 @@ enum ElasticacheServerlessCacheNetworkType implements TerraformEnum {
 /// Typed helper for the `cache_usage_limits` block of
 /// `aws_elasticache_serverless_cache` (derived from provider schema).
 @immutable
-final class ElasticacheServerlessCacheCacheUsageLimits {
-  const ElasticacheServerlessCacheCacheUsageLimits({
+final class ElasticacheServerlessCacheUsageLimits {
+  const ElasticacheServerlessCacheUsageLimits({
     this.dataStorage,
     this.ecpuPerSecond,
   });
 
-  final List<ElasticacheServerlessCacheCacheUsageLimitsDataStorage>?
-  dataStorage;
+  final List<ElasticacheServerlessCacheDataStorage>? dataStorage;
 
-  final List<ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond>?
-  ecpuPerSecond;
+  final List<ElasticacheServerlessCacheEcpuPerSecond>? ecpuPerSecond;
 
   Map<String, Object?> encode() => {
     if (dataStorage != null)
@@ -48,8 +46,8 @@ final class ElasticacheServerlessCacheCacheUsageLimits {
 /// Typed helper for the `cache_usage_limits.data_storage` block of
 /// `aws_elasticache_serverless_cache` (derived from provider schema).
 @immutable
-final class ElasticacheServerlessCacheCacheUsageLimitsDataStorage {
-  const ElasticacheServerlessCacheCacheUsageLimitsDataStorage({
+final class ElasticacheServerlessCacheDataStorage {
+  const ElasticacheServerlessCacheDataStorage({
     this.maximum,
     this.minimum,
     required this.unit,
@@ -59,7 +57,7 @@ final class ElasticacheServerlessCacheCacheUsageLimitsDataStorage {
 
   final TfArg<num>? minimum;
 
-  final TfArg<ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit> unit;
+  final TfArg<ElasticacheServerlessCacheUnit> unit;
 
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
@@ -69,13 +67,10 @@ final class ElasticacheServerlessCacheCacheUsageLimitsDataStorage {
 }
 
 /// `unit` — derived from the provider schema description.
-enum ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit
-    implements TerraformEnum {
+enum ElasticacheServerlessCacheUnit implements TerraformEnum {
   gb('GB');
 
-  const ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit(
-    this.terraformValue,
-  );
+  const ElasticacheServerlessCacheUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -83,11 +78,8 @@ enum ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit
 /// Typed helper for the `cache_usage_limits.ecpu_per_second` block of
 /// `aws_elasticache_serverless_cache` (derived from provider schema).
 @immutable
-final class ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond {
-  const ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond({
-    this.maximum,
-    this.minimum,
-  });
+final class ElasticacheServerlessCacheEcpuPerSecond {
+  const ElasticacheServerlessCacheEcpuPerSecond({this.maximum, this.minimum});
 
   final TfArg<num>? maximum;
 
@@ -119,7 +111,7 @@ final class AwsElasticacheServerlessCache extends Resource {
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userGroupId,
-    List<ElasticacheServerlessCacheCacheUsageLimits>? cacheUsageLimits,
+    List<ElasticacheServerlessCacheUsageLimits>? cacheUsageLimits,
     super.lifecycle,
     super.dependsOn,
     super.provider,

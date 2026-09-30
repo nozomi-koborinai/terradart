@@ -37,7 +37,7 @@ final class R2BucketLockRules {
 
   final TfArg<String>? prefix;
 
-  final R2BucketLockRulesCondition condition;
+  final R2BucketLockCondition condition;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -50,8 +50,8 @@ final class R2BucketLockRules {
 /// Typed helper for the `rules.condition` block of
 /// `cloudflare_r2_bucket_lock` (derived from provider schema).
 @immutable
-final class R2BucketLockRulesCondition {
-  const R2BucketLockRulesCondition({
+final class R2BucketLockCondition {
+  const R2BucketLockCondition({
     this.date,
     this.maxAgeSeconds,
     required this.type,
@@ -61,7 +61,7 @@ final class R2BucketLockRulesCondition {
 
   final TfArg<num>? maxAgeSeconds;
 
-  final TfArg<R2BucketLockRulesConditionType> type;
+  final TfArg<R2BucketLockType> type;
 
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
@@ -71,12 +71,12 @@ final class R2BucketLockRulesCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLockRulesConditionType implements TerraformEnum {
+enum R2BucketLockType implements TerraformEnum {
   age('Age'),
   date('Date'),
   indefinite('Indefinite');
 
-  const R2BucketLockRulesConditionType(this.terraformValue);
+  const R2BucketLockType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -18,12 +18,12 @@ sealed class Route53recoverycontrolconfigSafetyRuleControls {
   /// Sets `asserted_controls`.
   const factory Route53recoverycontrolconfigSafetyRuleControls.assertedControls(
     TfArg<List<String>> assertedControls,
-  ) = Route53recoverycontrolconfigSafetyRuleControlsAssertedControls;
+  ) = Route53recoverycontrolconfigSafetyRuleAssertedControls;
 
   /// Sets `gating_controls`.
   const factory Route53recoverycontrolconfigSafetyRuleControls.gatingControls(
     TfArg<List<String>> gatingControls,
-  ) = Route53recoverycontrolconfigSafetyRuleControlsGatingControls;
+  ) = Route53recoverycontrolconfigSafetyRuleGatingControls;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,9 +36,9 @@ sealed class Route53recoverycontrolconfigSafetyRuleControls {
 }
 
 /// The [Route53recoverycontrolconfigSafetyRuleControls.assertedControls] choice: sets `asserted_controls`.
-final class Route53recoverycontrolconfigSafetyRuleControlsAssertedControls
+final class Route53recoverycontrolconfigSafetyRuleAssertedControls
     extends Route53recoverycontrolconfigSafetyRuleControls {
-  const Route53recoverycontrolconfigSafetyRuleControlsAssertedControls(
+  const Route53recoverycontrolconfigSafetyRuleAssertedControls(
     this.assertedControls,
   );
 
@@ -59,9 +59,9 @@ final class Route53recoverycontrolconfigSafetyRuleControlsAssertedControls
 }
 
 /// The [Route53recoverycontrolconfigSafetyRuleControls.gatingControls] choice: sets `gating_controls`.
-final class Route53recoverycontrolconfigSafetyRuleControlsGatingControls
+final class Route53recoverycontrolconfigSafetyRuleGatingControls
     extends Route53recoverycontrolconfigSafetyRuleControls {
-  const Route53recoverycontrolconfigSafetyRuleControlsGatingControls(
+  const Route53recoverycontrolconfigSafetyRuleGatingControls(
     this.gatingControls,
   );
 
@@ -82,8 +82,8 @@ final class Route53recoverycontrolconfigSafetyRuleControlsGatingControls
 /// Typed helper for the `rule_config` block of
 /// `aws_route53recoverycontrolconfig_safety_rule` (derived from provider schema).
 @immutable
-final class Route53recoverycontrolconfigSafetyRuleRuleConfig {
-  const Route53recoverycontrolconfigSafetyRuleRuleConfig({
+final class Route53recoverycontrolconfigSafetyRuleConfig {
+  const Route53recoverycontrolconfigSafetyRuleConfig({
     required this.inverted,
     required this.threshold,
     required this.type,
@@ -93,7 +93,7 @@ final class Route53recoverycontrolconfigSafetyRuleRuleConfig {
 
   final TfArg<num> threshold;
 
-  final TfArg<Route53recoverycontrolconfigSafetyRuleRuleConfigType> type;
+  final TfArg<Route53recoverycontrolconfigSafetyRuleType> type;
 
   Map<String, Object?> encode() => {
     'inverted': inverted.toTfJson(),
@@ -103,15 +103,12 @@ final class Route53recoverycontrolconfigSafetyRuleRuleConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum Route53recoverycontrolconfigSafetyRuleRuleConfigType
-    implements TerraformEnum {
+enum Route53recoverycontrolconfigSafetyRuleType implements TerraformEnum {
   atleast('ATLEAST'),
   and('AND'),
   or('OR');
 
-  const Route53recoverycontrolconfigSafetyRuleRuleConfigType(
-    this.terraformValue,
-  );
+  const Route53recoverycontrolconfigSafetyRuleType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,7 +125,7 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? targetControls,
     required TfArg<num> waitPeriodMs,
-    required Route53recoverycontrolconfigSafetyRuleRuleConfig ruleConfig,
+    required Route53recoverycontrolconfigSafetyRuleConfig ruleConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

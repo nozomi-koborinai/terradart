@@ -21,9 +21,9 @@ final class DataEmailSecurityBlockSenderFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityBlockSenderFilterDirection>? direction;
+  final TfArg<DataEmailSecurityBlockSenderDirection>? direction;
 
-  final TfArg<DataEmailSecurityBlockSenderFilterOrder>? order;
+  final TfArg<DataEmailSecurityBlockSenderOrder>? order;
 
   final TfArg<String>? pattern;
 
@@ -41,21 +41,21 @@ final class DataEmailSecurityBlockSenderFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityBlockSenderFilterDirection implements TerraformEnum {
+enum DataEmailSecurityBlockSenderDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailSecurityBlockSenderFilterDirection(this.terraformValue);
+  const DataEmailSecurityBlockSenderDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityBlockSenderFilterOrder implements TerraformEnum {
+enum DataEmailSecurityBlockSenderOrder implements TerraformEnum {
   pattern('pattern'),
   createdAt('created_at');
 
-  const DataEmailSecurityBlockSenderFilterOrder(this.terraformValue);
+  const DataEmailSecurityBlockSenderOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

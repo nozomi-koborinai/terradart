@@ -18,8 +18,7 @@ final class CesSecuritySettingsEndpointControlPolicy {
 
   final TfArg<List<String>>? allowedOrigins;
 
-  final TfArg<CesSecuritySettingsEndpointControlPolicyEnforcementScope>?
-  enforcementScope;
+  final TfArg<CesSecuritySettingsEnforcementScope>? enforcementScope;
 
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
@@ -28,15 +27,12 @@ final class CesSecuritySettingsEndpointControlPolicy {
 }
 
 /// `enforcement_scope` — derived from the provider schema description.
-enum CesSecuritySettingsEndpointControlPolicyEnforcementScope
-    implements TerraformEnum {
+enum CesSecuritySettingsEnforcementScope implements TerraformEnum {
   enforcementScopeUnspecified('ENFORCEMENT_SCOPE_UNSPECIFIED'),
   vpcscOnly('VPCSC_ONLY'),
   always('ALWAYS');
 
-  const CesSecuritySettingsEndpointControlPolicyEnforcementScope(
-    this.terraformValue,
-  );
+  const CesSecuritySettingsEnforcementScope(this.terraformValue);
   @override
   final String terraformValue;
 }

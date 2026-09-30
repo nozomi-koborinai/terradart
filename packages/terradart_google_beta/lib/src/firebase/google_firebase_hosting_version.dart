@@ -17,11 +17,11 @@ final class FirebaseHostingVersionConfig {
     this.rewrites,
   });
 
-  final List<FirebaseHostingVersionConfigHeaders>? headers;
+  final List<FirebaseHostingVersionHeaders>? headers;
 
-  final List<FirebaseHostingVersionConfigRedirects>? redirects;
+  final List<FirebaseHostingVersionRedirects>? redirects;
 
-  final List<FirebaseHostingVersionConfigRewrites>? rewrites;
+  final List<FirebaseHostingVersionRewrites>? rewrites;
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
@@ -34,8 +34,8 @@ final class FirebaseHostingVersionConfig {
 /// Typed helper for the `config.headers` block of
 /// `google_firebase_hosting_version` (derived from provider schema).
 @immutable
-final class FirebaseHostingVersionConfigHeaders {
-  const FirebaseHostingVersionConfigHeaders({
+final class FirebaseHostingVersionHeaders {
+  const FirebaseHostingVersionHeaders({
     this.glob,
     required this.headers,
     this.regex,
@@ -57,8 +57,8 @@ final class FirebaseHostingVersionConfigHeaders {
 /// Typed helper for the `config.redirects` block of
 /// `google_firebase_hosting_version` (derived from provider schema).
 @immutable
-final class FirebaseHostingVersionConfigRedirects {
-  const FirebaseHostingVersionConfigRedirects({
+final class FirebaseHostingVersionRedirects {
+  const FirebaseHostingVersionRedirects({
     this.glob,
     required this.location,
     this.regex,
@@ -84,8 +84,8 @@ final class FirebaseHostingVersionConfigRedirects {
 /// Typed helper for the `config.rewrites` block of
 /// `google_firebase_hosting_version` (derived from provider schema).
 @immutable
-final class FirebaseHostingVersionConfigRewrites {
-  const FirebaseHostingVersionConfigRewrites({
+final class FirebaseHostingVersionRewrites {
+  const FirebaseHostingVersionRewrites({
     this.function,
     this.glob,
     this.path,
@@ -101,7 +101,7 @@ final class FirebaseHostingVersionConfigRewrites {
 
   final TfArg<String>? regex;
 
-  final FirebaseHostingVersionConfigRewritesRun? run;
+  final FirebaseHostingVersionRun? run;
 
   Map<String, Object?> encode() => {
     'function': ?function?.toTfJson(),
@@ -115,11 +115,8 @@ final class FirebaseHostingVersionConfigRewrites {
 /// Typed helper for the `config.rewrites.run` block of
 /// `google_firebase_hosting_version` (derived from provider schema).
 @immutable
-final class FirebaseHostingVersionConfigRewritesRun {
-  const FirebaseHostingVersionConfigRewritesRun({
-    this.region,
-    required this.serviceId,
-  });
+final class FirebaseHostingVersionRun {
+  const FirebaseHostingVersionRun({this.region, required this.serviceId});
 
   final TfArg<String>? region;
 

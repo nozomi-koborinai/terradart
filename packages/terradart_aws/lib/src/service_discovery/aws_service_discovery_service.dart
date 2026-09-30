@@ -28,9 +28,9 @@ final class ServiceDiscoveryServiceDnsConfig {
 
   final TfArg<String> namespaceId;
 
-  final TfArg<ServiceDiscoveryServiceDnsConfigRoutingPolicy>? routingPolicy;
+  final TfArg<ServiceDiscoveryServiceRoutingPolicy>? routingPolicy;
 
-  final List<ServiceDiscoveryServiceDnsConfigDnsRecords> dnsRecords;
+  final List<ServiceDiscoveryServiceDnsRecords> dnsRecords;
 
   Map<String, Object?> encode() => {
     'namespace_id': namespaceId.toTfJson(),
@@ -40,11 +40,11 @@ final class ServiceDiscoveryServiceDnsConfig {
 }
 
 /// `routing_policy` — derived from the provider schema description.
-enum ServiceDiscoveryServiceDnsConfigRoutingPolicy implements TerraformEnum {
+enum ServiceDiscoveryServiceRoutingPolicy implements TerraformEnum {
   multivalue('MULTIVALUE'),
   weighted('WEIGHTED');
 
-  const ServiceDiscoveryServiceDnsConfigRoutingPolicy(this.terraformValue);
+  const ServiceDiscoveryServiceRoutingPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,15 +52,15 @@ enum ServiceDiscoveryServiceDnsConfigRoutingPolicy implements TerraformEnum {
 /// Typed helper for the `dns_config.dns_records` block of
 /// `aws_service_discovery_service` (derived from provider schema).
 @immutable
-final class ServiceDiscoveryServiceDnsConfigDnsRecords {
-  const ServiceDiscoveryServiceDnsConfigDnsRecords({
+final class ServiceDiscoveryServiceDnsRecords {
+  const ServiceDiscoveryServiceDnsRecords({
     required this.ttl,
     required this.type,
   });
 
   final TfArg<num> ttl;
 
-  final TfArg<ServiceDiscoveryServiceDnsConfigDnsRecordsType> type;
+  final TfArg<ServiceDiscoveryServiceDnsRecordsType> type;
 
   Map<String, Object?> encode() => {
     'ttl': ttl.toTfJson(),
@@ -69,13 +69,13 @@ final class ServiceDiscoveryServiceDnsConfigDnsRecords {
 }
 
 /// `type` — derived from the provider schema description.
-enum ServiceDiscoveryServiceDnsConfigDnsRecordsType implements TerraformEnum {
+enum ServiceDiscoveryServiceDnsRecordsType implements TerraformEnum {
   srv('SRV'),
   a('A'),
   aaaa('AAAA'),
   cname('CNAME');
 
-  const ServiceDiscoveryServiceDnsConfigDnsRecordsType(this.terraformValue);
+  const ServiceDiscoveryServiceDnsRecordsType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -77,7 +77,7 @@ enum SpectrumApplicationDnsType implements TerraformEnum {
 final class SpectrumApplicationEdgeIps {
   const SpectrumApplicationEdgeIps({this.connectivity, this.ips, this.type});
 
-  final TfArg<SpectrumApplicationEdgeIpsConnectivity>? connectivity;
+  final TfArg<SpectrumApplicationConnectivity>? connectivity;
 
   final TfArg<List<String>>? ips;
 
@@ -91,12 +91,12 @@ final class SpectrumApplicationEdgeIps {
 }
 
 /// `connectivity` — derived from the provider schema description.
-enum SpectrumApplicationEdgeIpsConnectivity implements TerraformEnum {
+enum SpectrumApplicationConnectivity implements TerraformEnum {
   all('all'),
   ipv4('ipv4'),
   ipv6('ipv6');
 
-  const SpectrumApplicationEdgeIpsConnectivity(this.terraformValue);
+  const SpectrumApplicationConnectivity(this.terraformValue);
   @override
   final String terraformValue;
 }

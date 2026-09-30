@@ -19,17 +19,15 @@ final class ApigeeAddonsConfigAddonsConfig {
     this.monetizationConfig,
   });
 
-  final ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig?
-  advancedApiOpsConfig;
+  final ApigeeAddonsConfigAdvancedApiOpsConfig? advancedApiOpsConfig;
 
-  final ApigeeAddonsConfigAddonsConfigApiSecurityConfig? apiSecurityConfig;
+  final ApigeeAddonsConfigApiSecurityConfig? apiSecurityConfig;
 
-  final ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig?
-  connectorsPlatformConfig;
+  final ApigeeAddonsConfigConnectorsPlatformConfig? connectorsPlatformConfig;
 
-  final ApigeeAddonsConfigAddonsConfigIntegrationConfig? integrationConfig;
+  final ApigeeAddonsConfigIntegrationConfig? integrationConfig;
 
-  final ApigeeAddonsConfigAddonsConfigMonetizationConfig? monetizationConfig;
+  final ApigeeAddonsConfigMonetizationConfig? monetizationConfig;
 
   Map<String, Object?> encode() => {
     'advanced_api_ops_config': ?advancedApiOpsConfig?.encode(),
@@ -43,8 +41,8 @@ final class ApigeeAddonsConfigAddonsConfig {
 /// Typed helper for the `addons_config.advanced_api_ops_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig {
-  const ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig({this.enabled});
+final class ApigeeAddonsConfigAdvancedApiOpsConfig {
+  const ApigeeAddonsConfigAdvancedApiOpsConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -54,8 +52,8 @@ final class ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig {
 /// Typed helper for the `addons_config.api_security_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfigApiSecurityConfig {
-  const ApigeeAddonsConfigAddonsConfigApiSecurityConfig({this.enabled});
+final class ApigeeAddonsConfigApiSecurityConfig {
+  const ApigeeAddonsConfigApiSecurityConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -65,8 +63,8 @@ final class ApigeeAddonsConfigAddonsConfigApiSecurityConfig {
 /// Typed helper for the `addons_config.connectors_platform_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig {
-  const ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig({this.enabled});
+final class ApigeeAddonsConfigConnectorsPlatformConfig {
+  const ApigeeAddonsConfigConnectorsPlatformConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -76,8 +74,8 @@ final class ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig {
 /// Typed helper for the `addons_config.integration_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfigIntegrationConfig {
-  const ApigeeAddonsConfigAddonsConfigIntegrationConfig({this.enabled});
+final class ApigeeAddonsConfigIntegrationConfig {
+  const ApigeeAddonsConfigIntegrationConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -87,8 +85,8 @@ final class ApigeeAddonsConfigAddonsConfigIntegrationConfig {
 /// Typed helper for the `addons_config.monetization_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfigMonetizationConfig {
-  const ApigeeAddonsConfigAddonsConfigMonetizationConfig({this.enabled});
+final class ApigeeAddonsConfigMonetizationConfig {
+  const ApigeeAddonsConfigMonetizationConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 

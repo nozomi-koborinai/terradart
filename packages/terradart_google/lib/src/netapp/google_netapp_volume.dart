@@ -54,7 +54,7 @@ final class NetappVolumeBlockDevices {
 
   final TfArg<String>? name;
 
-  final TfArg<NetappVolumeBlockDevicesOsType> osType;
+  final TfArg<NetappVolumeOsType> osType;
 
   Map<String, Object?> encode() => {
     'host_groups': ?hostGroups?.toTfJson(),
@@ -64,12 +64,12 @@ final class NetappVolumeBlockDevices {
 }
 
 /// `os_type` — derived from the provider schema description.
-enum NetappVolumeBlockDevicesOsType implements TerraformEnum {
+enum NetappVolumeOsType implements TerraformEnum {
   linux('LINUX'),
   windows('WINDOWS'),
   esxi('ESXI');
 
-  const NetappVolumeBlockDevicesOsType(this.terraformValue);
+  const NetappVolumeOsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -100,7 +100,7 @@ final class NetappVolumeCacheParameters {
 
   final TfArg<String>? peeringCommandExpiryTime;
 
-  final NetappVolumeCacheParametersCacheConfig? cacheConfig;
+  final NetappVolumeCacheConfig? cacheConfig;
 
   Map<String, Object?> encode() => {
     'enable_global_file_lock': ?enableGlobalFileLock?.toTfJson(),
@@ -116,8 +116,8 @@ final class NetappVolumeCacheParameters {
 /// Typed helper for the `cache_parameters.cache_config` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeCacheParametersCacheConfig {
-  const NetappVolumeCacheParametersCacheConfig({this.cifsChangeNotifyEnabled});
+final class NetappVolumeCacheConfig {
+  const NetappVolumeCacheConfig({this.cifsChangeNotifyEnabled});
 
   final TfArg<bool>? cifsChangeNotifyEnabled;
 
@@ -132,7 +132,7 @@ final class NetappVolumeCacheParametersCacheConfig {
 final class NetappVolumeExportPolicy {
   const NetappVolumeExportPolicy({required this.rules});
 
-  final List<NetappVolumeExportPolicyRules> rules;
+  final List<NetappVolumeRules> rules;
 
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
@@ -142,8 +142,8 @@ final class NetappVolumeExportPolicy {
 /// Typed helper for the `export_policy.rules` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeExportPolicyRules {
-  const NetappVolumeExportPolicyRules({
+final class NetappVolumeRules {
+  const NetappVolumeRules({
     this.accessType,
     this.allowedClients,
     this.anonUid,
@@ -159,7 +159,7 @@ final class NetappVolumeExportPolicyRules {
     this.squashMode,
   });
 
-  final TfArg<NetappVolumeExportPolicyRulesAccessType>? accessType;
+  final TfArg<NetappVolumeAccessType>? accessType;
 
   final TfArg<String>? allowedClients;
 
@@ -183,7 +183,7 @@ final class NetappVolumeExportPolicyRules {
 
   final TfArg<bool>? nfsv4;
 
-  final TfArg<NetappVolumeExportPolicyRulesSquashMode>? squashMode;
+  final TfArg<NetappVolumeSquashMode>? squashMode;
 
   Map<String, Object?> encode() => {
     'access_type': ?accessType?.toTfJson(),
@@ -203,24 +203,24 @@ final class NetappVolumeExportPolicyRules {
 }
 
 /// `access_type` — derived from the provider schema description.
-enum NetappVolumeExportPolicyRulesAccessType implements TerraformEnum {
+enum NetappVolumeAccessType implements TerraformEnum {
   readOnly('READ_ONLY'),
   readWrite('READ_WRITE'),
   readNone('READ_NONE');
 
-  const NetappVolumeExportPolicyRulesAccessType(this.terraformValue);
+  const NetappVolumeAccessType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `squash_mode` — derived from the provider schema description.
-enum NetappVolumeExportPolicyRulesSquashMode implements TerraformEnum {
+enum NetappVolumeSquashMode implements TerraformEnum {
   squashModeUnspecified('SQUASH_MODE_UNSPECIFIED'),
   noRootSquash('NO_ROOT_SQUASH'),
   rootSquash('ROOT_SQUASH'),
   allSquash('ALL_SQUASH');
 
-  const NetappVolumeExportPolicyRulesSquashMode(this.terraformValue);
+  const NetappVolumeSquashMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -247,8 +247,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final TfArg<String>? description;
 
-  final TfArg<NetappVolumeHybridReplicationParametersHybridReplicationType>?
-  hybridReplicationType;
+  final TfArg<NetappVolumeHybridReplicationType>? hybridReplicationType;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -264,8 +263,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final TfArg<String>? replication;
 
-  final TfArg<NetappVolumeHybridReplicationParametersReplicationSchedule>?
-  replicationSchedule;
+  final TfArg<NetappVolumeReplicationSchedule>? replicationSchedule;
 
   Map<String, Object?> encode() => {
     'cluster_location': ?clusterLocation?.toTfJson(),
@@ -283,30 +281,24 @@ final class NetappVolumeHybridReplicationParameters {
 }
 
 /// `hybrid_replication_type` — derived from the provider schema description.
-enum NetappVolumeHybridReplicationParametersHybridReplicationType
-    implements TerraformEnum {
+enum NetappVolumeHybridReplicationType implements TerraformEnum {
   migration('MIGRATION'),
   continuousReplication('CONTINUOUS_REPLICATION'),
   onpremReplication('ONPREM_REPLICATION'),
   reverseOnpremReplication('REVERSE_ONPREM_REPLICATION');
 
-  const NetappVolumeHybridReplicationParametersHybridReplicationType(
-    this.terraformValue,
-  );
+  const NetappVolumeHybridReplicationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `replication_schedule` — derived from the provider schema description.
-enum NetappVolumeHybridReplicationParametersReplicationSchedule
-    implements TerraformEnum {
+enum NetappVolumeReplicationSchedule implements TerraformEnum {
   every10Minutes('EVERY_10_MINUTES'),
   hourly('HOURLY'),
   daily('DAILY');
 
-  const NetappVolumeHybridReplicationParametersReplicationSchedule(
-    this.terraformValue,
-  );
+  const NetappVolumeReplicationSchedule(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -391,13 +383,13 @@ final class NetappVolumeSnapshotPolicy {
 
   final TfArg<bool>? enabled;
 
-  final NetappVolumeSnapshotPolicyDailySchedule? dailySchedule;
+  final NetappVolumeDailySchedule? dailySchedule;
 
-  final NetappVolumeSnapshotPolicyHourlySchedule? hourlySchedule;
+  final NetappVolumeHourlySchedule? hourlySchedule;
 
-  final NetappVolumeSnapshotPolicyMonthlySchedule? monthlySchedule;
+  final NetappVolumeMonthlySchedule? monthlySchedule;
 
-  final NetappVolumeSnapshotPolicyWeeklySchedule? weeklySchedule;
+  final NetappVolumeWeeklySchedule? weeklySchedule;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -411,8 +403,8 @@ final class NetappVolumeSnapshotPolicy {
 /// Typed helper for the `snapshot_policy.daily_schedule` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeSnapshotPolicyDailySchedule {
-  const NetappVolumeSnapshotPolicyDailySchedule({
+final class NetappVolumeDailySchedule {
+  const NetappVolumeDailySchedule({
     this.hour,
     this.minute,
     required this.snapshotsToKeep,
@@ -434,8 +426,8 @@ final class NetappVolumeSnapshotPolicyDailySchedule {
 /// Typed helper for the `snapshot_policy.hourly_schedule` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeSnapshotPolicyHourlySchedule {
-  const NetappVolumeSnapshotPolicyHourlySchedule({
+final class NetappVolumeHourlySchedule {
+  const NetappVolumeHourlySchedule({
     this.minute,
     required this.snapshotsToKeep,
   });
@@ -453,8 +445,8 @@ final class NetappVolumeSnapshotPolicyHourlySchedule {
 /// Typed helper for the `snapshot_policy.monthly_schedule` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeSnapshotPolicyMonthlySchedule {
-  const NetappVolumeSnapshotPolicyMonthlySchedule({
+final class NetappVolumeMonthlySchedule {
+  const NetappVolumeMonthlySchedule({
     this.daysOfMonth,
     this.hour,
     this.minute,
@@ -480,8 +472,8 @@ final class NetappVolumeSnapshotPolicyMonthlySchedule {
 /// Typed helper for the `snapshot_policy.weekly_schedule` block of
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
-final class NetappVolumeSnapshotPolicyWeeklySchedule {
-  const NetappVolumeSnapshotPolicyWeeklySchedule({
+final class NetappVolumeWeeklySchedule {
+  const NetappVolumeWeeklySchedule({
     this.day,
     this.hour,
     this.minute,
@@ -518,7 +510,7 @@ final class NetappVolumeTieringPolicy {
 
   final TfArg<bool>? hotTierBypassModeEnabled;
 
-  final TfArg<NetappVolumeTieringPolicyTierAction>? tierAction;
+  final TfArg<NetappVolumeTierAction>? tierAction;
 
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
@@ -528,11 +520,11 @@ final class NetappVolumeTieringPolicy {
 }
 
 /// `tier_action` — derived from the provider schema description.
-enum NetappVolumeTieringPolicyTierAction implements TerraformEnum {
+enum NetappVolumeTierAction implements TerraformEnum {
   enabled('ENABLED'),
   paused('PAUSED');
 
-  const NetappVolumeTieringPolicyTierAction(this.terraformValue);
+  const NetappVolumeTierAction(this.terraformValue);
   @override
   final String terraformValue;
 }

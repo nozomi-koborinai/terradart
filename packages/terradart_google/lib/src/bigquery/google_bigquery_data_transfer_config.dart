@@ -73,8 +73,7 @@ final class BigqueryDataTransferConfigSensitiveParams {
     this.secretAccessKeyWoVersion,
   });
 
-  final BigqueryDataTransferConfigSensitiveParamsSecretAccessKey
-  secretAccessKey;
+  final BigqueryDataTransferConfigSecretAccessKey secretAccessKey;
 
   final TfArg<String>? secretAccessKeyWoVersion;
 
@@ -88,18 +87,18 @@ final class BigqueryDataTransferConfigSensitiveParams {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.secretAccessKey(...)`.
-sealed class BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
-  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKey();
+sealed class BigqueryDataTransferConfigSecretAccessKey {
+  const BigqueryDataTransferConfigSecretAccessKey();
 
   /// Sets `secret_access_key`.
-  const factory BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKey(
+  const factory BigqueryDataTransferConfigSecretAccessKey.secretAccessKey(
     TfArg<String> secretAccessKey,
-  ) = BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice;
+  ) = BigqueryDataTransferConfigSecretAccessKeyChoice;
 
   /// Sets `secret_access_key_wo`.
-  const factory BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKeyWo(
+  const factory BigqueryDataTransferConfigSecretAccessKey.secretAccessKeyWo(
     TfArg<String> secretAccessKeyWo,
-  ) = BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo;
+  ) = BigqueryDataTransferConfigSecretAccessKeyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -107,12 +106,10 @@ sealed class BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
   Map<String, Object?> encode();
 }
 
-/// The [BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKey] choice: sets `secret_access_key`.
-final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice
-    extends BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
-  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice(
-    this.secretAccessKey,
-  );
+/// The [BigqueryDataTransferConfigSecretAccessKey.secretAccessKey] choice: sets `secret_access_key`.
+final class BigqueryDataTransferConfigSecretAccessKeyChoice
+    extends BigqueryDataTransferConfigSecretAccessKey {
+  const BigqueryDataTransferConfigSecretAccessKeyChoice(this.secretAccessKey);
 
   final TfArg<String> secretAccessKey;
 
@@ -125,12 +122,10 @@ final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice
   };
 }
 
-/// The [BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKeyWo] choice: sets `secret_access_key_wo`.
-final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo
-    extends BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
-  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo(
-    this.secretAccessKeyWo,
-  );
+/// The [BigqueryDataTransferConfigSecretAccessKey.secretAccessKeyWo] choice: sets `secret_access_key_wo`.
+final class BigqueryDataTransferConfigSecretAccessKeyWo
+    extends BigqueryDataTransferConfigSecretAccessKey {
+  const BigqueryDataTransferConfigSecretAccessKeyWo(this.secretAccessKeyWo);
 
   final TfArg<String> secretAccessKeyWo;
 

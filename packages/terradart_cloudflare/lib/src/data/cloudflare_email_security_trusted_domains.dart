@@ -22,13 +22,13 @@ final class DataEmailSecurityTrustedDomainsFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityTrustedDomainsFilterDirection>? direction;
+  final TfArg<DataEmailSecurityTrustedDomainsDirection>? direction;
 
   final TfArg<bool>? isRecent;
 
   final TfArg<bool>? isSimilarity;
 
-  final TfArg<DataEmailSecurityTrustedDomainsFilterOrder>? order;
+  final TfArg<DataEmailSecurityTrustedDomainsOrder>? order;
 
   final TfArg<String>? pattern;
 
@@ -45,21 +45,21 @@ final class DataEmailSecurityTrustedDomainsFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityTrustedDomainsFilterDirection implements TerraformEnum {
+enum DataEmailSecurityTrustedDomainsDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailSecurityTrustedDomainsFilterDirection(this.terraformValue);
+  const DataEmailSecurityTrustedDomainsDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityTrustedDomainsFilterOrder implements TerraformEnum {
+enum DataEmailSecurityTrustedDomainsOrder implements TerraformEnum {
   pattern('pattern'),
   createdAt('created_at');
 
-  const DataEmailSecurityTrustedDomainsFilterOrder(this.terraformValue);
+  const DataEmailSecurityTrustedDomainsOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

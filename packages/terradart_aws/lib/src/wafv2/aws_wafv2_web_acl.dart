@@ -81,7 +81,7 @@ final class Wafv2WebAclNamePrefix extends Wafv2WebAclName {
 final class Wafv2WebAclAssociationConfig {
   const Wafv2WebAclAssociationConfig({this.requestBody});
 
-  final List<Wafv2WebAclAssociationConfigRequestBody>? requestBody;
+  final List<Wafv2WebAclRequestBody>? requestBody;
 
   Map<String, Object?> encode() => {
     if (requestBody != null)
@@ -92,8 +92,8 @@ final class Wafv2WebAclAssociationConfig {
 /// Typed helper for the `association_config.request_body` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclAssociationConfigRequestBody {
-  const Wafv2WebAclAssociationConfigRequestBody({
+final class Wafv2WebAclRequestBody {
+  const Wafv2WebAclRequestBody({
     this.apiGateway,
     this.appRunnerService,
     this.cloudfront,
@@ -101,16 +101,15 @@ final class Wafv2WebAclAssociationConfigRequestBody {
     this.verifiedAccessInstance,
   });
 
-  final Wafv2WebAclAssociationConfigRequestBodyApiGateway? apiGateway;
+  final Wafv2WebAclApiGateway? apiGateway;
 
-  final Wafv2WebAclAssociationConfigRequestBodyApiGateway? appRunnerService;
+  final Wafv2WebAclApiGateway? appRunnerService;
 
-  final Wafv2WebAclAssociationConfigRequestBodyApiGateway? cloudfront;
+  final Wafv2WebAclApiGateway? cloudfront;
 
-  final Wafv2WebAclAssociationConfigRequestBodyApiGateway? cognitoUserPool;
+  final Wafv2WebAclApiGateway? cognitoUserPool;
 
-  final Wafv2WebAclAssociationConfigRequestBodyApiGateway?
-  verifiedAccessInstance;
+  final Wafv2WebAclApiGateway? verifiedAccessInstance;
 
   Map<String, Object?> encode() => {
     'api_gateway': ?apiGateway?.encode(),
@@ -125,10 +124,8 @@ final class Wafv2WebAclAssociationConfigRequestBody {
 /// `aws_wafv2_web_acl` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclAssociationConfigRequestBodyApiGateway {
-  const Wafv2WebAclAssociationConfigRequestBodyApiGateway({
-    required this.defaultSizeInspectionLimit,
-  });
+final class Wafv2WebAclApiGateway {
+  const Wafv2WebAclApiGateway({required this.defaultSizeInspectionLimit});
 
   final TfArg<String> defaultSizeInspectionLimit;
 
@@ -144,7 +141,7 @@ final class Wafv2WebAclAssociationConfigRequestBodyApiGateway {
 final class Wafv2WebAclCaptchaConfig {
   const Wafv2WebAclCaptchaConfig({this.immunityTimeProperty});
 
-  final Wafv2WebAclCaptchaConfigImmunityTimeProperty? immunityTimeProperty;
+  final Wafv2WebAclImmunityTimeProperty? immunityTimeProperty;
 
   Map<String, Object?> encode() => {
     'immunity_time_property': ?immunityTimeProperty?.encode(),
@@ -155,8 +152,8 @@ final class Wafv2WebAclCaptchaConfig {
 /// `aws_wafv2_web_acl` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclCaptchaConfigImmunityTimeProperty {
-  const Wafv2WebAclCaptchaConfigImmunityTimeProperty({this.immunityTime});
+final class Wafv2WebAclImmunityTimeProperty {
+  const Wafv2WebAclImmunityTimeProperty({this.immunityTime});
 
   final TfArg<num>? immunityTime;
 
@@ -192,7 +189,7 @@ final class Wafv2WebAclCustomResponseBody {
 final class Wafv2WebAclDataProtectionConfig {
   const Wafv2WebAclDataProtectionConfig({this.dataProtection});
 
-  final List<Wafv2WebAclDataProtectionConfigDataProtection>? dataProtection;
+  final List<Wafv2WebAclDataProtection>? dataProtection;
 
   Map<String, Object?> encode() => {
     if (dataProtection != null)
@@ -203,21 +200,21 @@ final class Wafv2WebAclDataProtectionConfig {
 /// Typed helper for the `data_protection_config.data_protection` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDataProtectionConfigDataProtection {
-  const Wafv2WebAclDataProtectionConfigDataProtection({
+final class Wafv2WebAclDataProtection {
+  const Wafv2WebAclDataProtection({
     required this.action,
     this.excludeRateBasedDetails,
     this.excludeRuleMatchDetails,
     required this.field,
   });
 
-  final TfArg<Wafv2WebAclDataProtectionConfigDataProtectionAction> action;
+  final TfArg<Wafv2WebAclAction> action;
 
   final TfArg<bool>? excludeRateBasedDetails;
 
   final TfArg<bool>? excludeRuleMatchDetails;
 
-  final Wafv2WebAclDataProtectionConfigDataProtectionField field;
+  final Wafv2WebAclField field;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -228,14 +225,11 @@ final class Wafv2WebAclDataProtectionConfigDataProtection {
 }
 
 /// `action` — derived from the provider schema description.
-enum Wafv2WebAclDataProtectionConfigDataProtectionAction
-    implements TerraformEnum {
+enum Wafv2WebAclAction implements TerraformEnum {
   substitution('SUBSTITUTION'),
   hash('HASH');
 
-  const Wafv2WebAclDataProtectionConfigDataProtectionAction(
-    this.terraformValue,
-  );
+  const Wafv2WebAclAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -243,16 +237,12 @@ enum Wafv2WebAclDataProtectionConfigDataProtectionAction
 /// Typed helper for the `data_protection_config.data_protection.field` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDataProtectionConfigDataProtectionField {
-  const Wafv2WebAclDataProtectionConfigDataProtectionField({
-    this.fieldKeys,
-    required this.fieldType,
-  });
+final class Wafv2WebAclField {
+  const Wafv2WebAclField({this.fieldKeys, required this.fieldType});
 
   final TfArg<List<String>>? fieldKeys;
 
-  final TfArg<Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType>
-  fieldType;
+  final TfArg<Wafv2WebAclFieldType> fieldType;
 
   Map<String, Object?> encode() => {
     'field_keys': ?fieldKeys?.toTfJson(),
@@ -261,17 +251,14 @@ final class Wafv2WebAclDataProtectionConfigDataProtectionField {
 }
 
 /// `field_type` — derived from the provider schema description.
-enum Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType
-    implements TerraformEnum {
+enum Wafv2WebAclFieldType implements TerraformEnum {
   singleHeader('SINGLE_HEADER'),
   singleCookie('SINGLE_COOKIE'),
   singleQueryArgument('SINGLE_QUERY_ARGUMENT'),
   queryString('QUERY_STRING'),
   body('BODY');
 
-  const Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType(
-    this.terraformValue,
-  );
+  const Wafv2WebAclFieldType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -282,9 +269,9 @@ enum Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType
 final class Wafv2WebAclDefaultAction {
   const Wafv2WebAclDefaultAction({this.allow, this.block});
 
-  final Wafv2WebAclDefaultActionAllow? allow;
+  final Wafv2WebAclAllow? allow;
 
-  final Wafv2WebAclDefaultActionBlock? block;
+  final Wafv2WebAclBlock? block;
 
   Map<String, Object?> encode() => {
     'allow': ?allow?.encode(),
@@ -295,11 +282,10 @@ final class Wafv2WebAclDefaultAction {
 /// Typed helper for the `default_action.allow` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDefaultActionAllow {
-  const Wafv2WebAclDefaultActionAllow({this.customRequestHandling});
+final class Wafv2WebAclAllow {
+  const Wafv2WebAclAllow({this.customRequestHandling});
 
-  final Wafv2WebAclDefaultActionAllowCustomRequestHandling?
-  customRequestHandling;
+  final Wafv2WebAclCustomRequestHandling? customRequestHandling;
 
   Map<String, Object?> encode() => {
     'custom_request_handling': ?customRequestHandling?.encode(),
@@ -309,13 +295,10 @@ final class Wafv2WebAclDefaultActionAllow {
 /// Typed helper for the `default_action.allow.custom_request_handling` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDefaultActionAllowCustomRequestHandling {
-  const Wafv2WebAclDefaultActionAllowCustomRequestHandling({
-    required this.insertHeader,
-  });
+final class Wafv2WebAclCustomRequestHandling {
+  const Wafv2WebAclCustomRequestHandling({required this.insertHeader});
 
-  final List<Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader>
-  insertHeader;
+  final List<Wafv2WebAclInsertHeader> insertHeader;
 
   Map<String, Object?> encode() => {
     'insert_header': [for (final e in insertHeader) e.encode()],
@@ -326,11 +309,8 @@ final class Wafv2WebAclDefaultActionAllowCustomRequestHandling {
 /// `aws_wafv2_web_acl` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader {
-  const Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader({
-    required this.name,
-    required this.value,
-  });
+final class Wafv2WebAclInsertHeader {
+  const Wafv2WebAclInsertHeader({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -345,10 +325,10 @@ final class Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader {
 /// Typed helper for the `default_action.block` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDefaultActionBlock {
-  const Wafv2WebAclDefaultActionBlock({this.customResponse});
+final class Wafv2WebAclBlock {
+  const Wafv2WebAclBlock({this.customResponse});
 
-  final Wafv2WebAclDefaultActionBlockCustomResponse? customResponse;
+  final Wafv2WebAclCustomResponse? customResponse;
 
   Map<String, Object?> encode() => {
     'custom_response': ?customResponse?.encode(),
@@ -358,8 +338,8 @@ final class Wafv2WebAclDefaultActionBlock {
 /// Typed helper for the `default_action.block.custom_response` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
-final class Wafv2WebAclDefaultActionBlockCustomResponse {
-  const Wafv2WebAclDefaultActionBlockCustomResponse({
+final class Wafv2WebAclCustomResponse {
+  const Wafv2WebAclCustomResponse({
     this.customResponseBodyKey,
     required this.responseCode,
     this.responseHeader,
@@ -369,8 +349,7 @@ final class Wafv2WebAclDefaultActionBlockCustomResponse {
 
   final TfArg<num> responseCode;
 
-  final List<Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader>?
-  responseHeader;
+  final List<Wafv2WebAclInsertHeader>? responseHeader;
 
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),

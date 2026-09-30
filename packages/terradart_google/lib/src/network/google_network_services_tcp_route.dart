@@ -13,9 +13,9 @@ const Set<String> _googleNetworkServicesTcpRouteSensitive = <String>{};
 final class NetworkServicesTcpRouteRules {
   const NetworkServicesTcpRouteRules({required this.action, this.matches});
 
-  final NetworkServicesTcpRouteRulesAction action;
+  final NetworkServicesTcpRouteAction action;
 
-  final List<NetworkServicesTcpRouteRulesMatches>? matches;
+  final List<NetworkServicesTcpRouteMatches>? matches;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -26,8 +26,8 @@ final class NetworkServicesTcpRouteRules {
 /// Typed helper for the `rules.action` block of
 /// `google_network_services_tcp_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTcpRouteRulesAction {
-  const NetworkServicesTcpRouteRulesAction({
+final class NetworkServicesTcpRouteAction {
+  const NetworkServicesTcpRouteAction({
     this.idleTimeout,
     this.originalDestination,
     this.destinations,
@@ -37,7 +37,7 @@ final class NetworkServicesTcpRouteRulesAction {
 
   final TfArg<bool>? originalDestination;
 
-  final List<NetworkServicesTcpRouteRulesActionDestinations>? destinations;
+  final List<NetworkServicesTcpRouteDestinations>? destinations;
 
   Map<String, Object?> encode() => {
     'idle_timeout': ?idleTimeout?.toTfJson(),
@@ -50,11 +50,8 @@ final class NetworkServicesTcpRouteRulesAction {
 /// Typed helper for the `rules.action.destinations` block of
 /// `google_network_services_tcp_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTcpRouteRulesActionDestinations {
-  const NetworkServicesTcpRouteRulesActionDestinations({
-    this.serviceName,
-    this.weight,
-  });
+final class NetworkServicesTcpRouteDestinations {
+  const NetworkServicesTcpRouteDestinations({this.serviceName, this.weight});
 
   final TfArg<String>? serviceName;
 
@@ -69,8 +66,8 @@ final class NetworkServicesTcpRouteRulesActionDestinations {
 /// Typed helper for the `rules.matches` block of
 /// `google_network_services_tcp_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTcpRouteRulesMatches {
-  const NetworkServicesTcpRouteRulesMatches({
+final class NetworkServicesTcpRouteMatches {
+  const NetworkServicesTcpRouteMatches({
     required this.address,
     required this.port,
   });

@@ -26,7 +26,7 @@ enum S3BucketObjectLockConfigurationObjectLockEnabled implements TerraformEnum {
 final class S3BucketObjectLockConfigurationRule {
   const S3BucketObjectLockConfigurationRule({required this.defaultRetention});
 
-  final S3BucketObjectLockConfigurationRuleDefaultRetention defaultRetention;
+  final S3BucketObjectLockConfigurationDefaultRetention defaultRetention;
 
   Map<String, Object?> encode() => {
     'default_retention': defaultRetention.encode(),
@@ -36,15 +36,15 @@ final class S3BucketObjectLockConfigurationRule {
 /// Typed helper for the `rule.default_retention` block of
 /// `aws_s3_bucket_object_lock_configuration` (derived from provider schema).
 @immutable
-final class S3BucketObjectLockConfigurationRuleDefaultRetention {
-  const S3BucketObjectLockConfigurationRuleDefaultRetention({
+final class S3BucketObjectLockConfigurationDefaultRetention {
+  const S3BucketObjectLockConfigurationDefaultRetention({
     this.period,
     this.mode,
   });
 
-  final S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod? period;
+  final S3BucketObjectLockConfigurationPeriod? period;
 
-  final TfArg<S3BucketObjectLockConfigurationRuleDefaultRetentionMode>? mode;
+  final TfArg<S3BucketObjectLockConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
     ...?period?.encode(),
@@ -57,18 +57,16 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.days(...)`.
-sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod();
+sealed class S3BucketObjectLockConfigurationPeriod {
+  const S3BucketObjectLockConfigurationPeriod();
 
   /// Sets `days`.
-  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.days(
-    TfArg<num> days,
-  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays;
+  const factory S3BucketObjectLockConfigurationPeriod.days(TfArg<num> days) =
+      S3BucketObjectLockConfigurationPeriodDays;
 
   /// Sets `years`.
-  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.years(
-    TfArg<num> years,
-  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears;
+  const factory S3BucketObjectLockConfigurationPeriod.years(TfArg<num> years) =
+      S3BucketObjectLockConfigurationPeriodYears;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -76,12 +74,10 @@ sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
   Map<String, Object?> encode();
 }
 
-/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.days] choice: sets `days`.
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays
-    extends S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays(
-    this.days,
-  );
+/// The [S3BucketObjectLockConfigurationPeriod.days] choice: sets `days`.
+final class S3BucketObjectLockConfigurationPeriodDays
+    extends S3BucketObjectLockConfigurationPeriod {
+  const S3BucketObjectLockConfigurationPeriodDays(this.days);
 
   final TfArg<num> days;
 
@@ -92,12 +88,10 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays
   Map<String, Object?> encode() => {'days': days.toTfJson()};
 }
 
-/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.years] choice: sets `years`.
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears
-    extends S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears(
-    this.years,
-  );
+/// The [S3BucketObjectLockConfigurationPeriod.years] choice: sets `years`.
+final class S3BucketObjectLockConfigurationPeriodYears
+    extends S3BucketObjectLockConfigurationPeriod {
+  const S3BucketObjectLockConfigurationPeriodYears(this.years);
 
   final TfArg<num> years;
 
@@ -109,14 +103,11 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears
 }
 
 /// `mode` — derived from the provider schema description.
-enum S3BucketObjectLockConfigurationRuleDefaultRetentionMode
-    implements TerraformEnum {
+enum S3BucketObjectLockConfigurationMode implements TerraformEnum {
   governance('GOVERNANCE'),
   compliance('COMPLIANCE');
 
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionMode(
-    this.terraformValue,
-  );
+  const S3BucketObjectLockConfigurationMode(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -53,8 +53,7 @@ final class LightsailContainerServiceDeploymentVersionPublicEndpoint {
 
   final TfArg<num> containerPort;
 
-  final LightsailContainerServiceDeploymentVersionPublicEndpointHealthCheck
-  healthCheck;
+  final LightsailContainerServiceDeploymentVersionHealthCheck healthCheck;
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
@@ -66,8 +65,8 @@ final class LightsailContainerServiceDeploymentVersionPublicEndpoint {
 /// Typed helper for the `public_endpoint.health_check` block of
 /// `aws_lightsail_container_service_deployment_version` (derived from provider schema).
 @immutable
-final class LightsailContainerServiceDeploymentVersionPublicEndpointHealthCheck {
-  const LightsailContainerServiceDeploymentVersionPublicEndpointHealthCheck({
+final class LightsailContainerServiceDeploymentVersionHealthCheck {
+  const LightsailContainerServiceDeploymentVersionHealthCheck({
     this.healthyThreshold,
     this.intervalSeconds,
     this.path,

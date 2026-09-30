@@ -32,13 +32,13 @@ enum ApigeeSecurityFeedbackReason implements TerraformEnum {
 /// Typed helper for the `feedback_contexts` block of
 /// `google_apigee_security_feedback` (derived from provider schema).
 @immutable
-final class ApigeeSecurityFeedbackFeedbackContexts {
-  const ApigeeSecurityFeedbackFeedbackContexts({
+final class ApigeeSecurityFeedbackContexts {
+  const ApigeeSecurityFeedbackContexts({
     required this.attribute,
     required this.values,
   });
 
-  final TfArg<ApigeeSecurityFeedbackFeedbackContextsAttribute> attribute;
+  final TfArg<ApigeeSecurityFeedbackAttribute> attribute;
 
   final TfArg<List<String>> values;
 
@@ -49,11 +49,11 @@ final class ApigeeSecurityFeedbackFeedbackContexts {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum ApigeeSecurityFeedbackFeedbackContextsAttribute implements TerraformEnum {
+enum ApigeeSecurityFeedbackAttribute implements TerraformEnum {
   attributeEnvironments('ATTRIBUTE_ENVIRONMENTS'),
   attributeIpAddressRanges('ATTRIBUTE_IP_ADDRESS_RANGES');
 
-  const ApigeeSecurityFeedbackFeedbackContextsAttribute(this.terraformValue);
+  const ApigeeSecurityFeedbackAttribute(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -82,7 +82,7 @@ final class GoogleApigeeSecurityFeedback extends Resource {
     TfArg<ApigeeSecurityFeedbackReason>? reason,
     TfArg<String>? comment,
     TfArg<String>? displayName,
-    required List<ApigeeSecurityFeedbackFeedbackContexts> feedbackContexts,
+    required List<ApigeeSecurityFeedbackContexts> feedbackContexts,
     super.lifecycle,
     super.dependsOn,
     super.provider,

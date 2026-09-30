@@ -36,14 +36,14 @@ curatedDoc: |-
   ///   format: const StorageInsightsReportConfigCsvFormat(),
   ///   frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
   ///     frequency: TfArg.literal(
-  ///       StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,
+  ///       StorageInsightsReportConfigFrequency.weekly,
   ///     ),
-  ///     startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(
+  ///     startDate: StorageInsightsReportConfigStartDate(
   ///       year: TfArg.literal(2099),
   ///       month: TfArg.literal(1),
   ///       day: TfArg.literal(1),
   ///     ),
-  ///     endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(
+  ///     endDate: StorageInsightsReportConfigEndDate(
   ///       year: TfArg.literal(2099),
   ///       month: TfArg.literal(12),
   ///       day: TfArg.literal(31),
@@ -53,11 +53,11 @@ curatedDoc: |-
   ///       StorageInsightsReportConfigObjectMetadataReportOptions(
   ///     metadataFields: TfArg.literal(['name', 'size']),
   ///     storageDestinationOptions:
-  ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
+  ///         StorageInsightsReportConfigStorageDestinationOptions(
   ///       bucket: reports.ref,
   ///     ),
   ///     storageFilters:
-  ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
+  ///         StorageInsightsReportConfigStorageFilters(
   ///       bucket: source.ref,
   ///     ),
   ///   ),

@@ -98,8 +98,7 @@ final class ZeroTrustDeviceCustomProfileBrowserExtensionConfig {
     required this.proxyEnabled,
   });
 
-  final TfArg<ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl>
-  proxyControl;
+  final TfArg<ZeroTrustDeviceCustomProfileProxyControl> proxyControl;
 
   final TfArg<bool> proxyEnabled;
 
@@ -110,14 +109,11 @@ final class ZeroTrustDeviceCustomProfileBrowserExtensionConfig {
 }
 
 /// `proxy_control` — derived from the provider schema description.
-enum ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl
-    implements TerraformEnum {
+enum ZeroTrustDeviceCustomProfileProxyControl implements TerraformEnum {
   unlocked('unlocked'),
   locked('locked');
 
-  const ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl(
-    this.terraformValue,
-  );
+  const ZeroTrustDeviceCustomProfileProxyControl(this.terraformValue);
   @override
   final String terraformValue;
 }

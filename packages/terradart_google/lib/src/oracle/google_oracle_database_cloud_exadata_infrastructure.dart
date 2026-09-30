@@ -43,12 +43,10 @@ final class OracleDatabaseCloudExadataInfrastructureProperties {
 
   final TfArg<num>? totalStorageSizeGb;
 
-  final List<
-    OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts
-  >?
+  final List<OracleDatabaseCloudExadataInfrastructureCustomerContacts>?
   customerContacts;
 
-  final OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow?
+  final OracleDatabaseCloudExadataInfrastructureMaintenanceWindow?
   maintenanceWindow;
 
   Map<String, Object?> encode() => {
@@ -65,8 +63,8 @@ final class OracleDatabaseCloudExadataInfrastructureProperties {
 /// Typed helper for the `properties.customer_contacts` block of
 /// `google_oracle_database_cloud_exadata_infrastructure` (derived from provider schema).
 @immutable
-final class OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts {
-  const OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts({
+final class OracleDatabaseCloudExadataInfrastructureCustomerContacts {
+  const OracleDatabaseCloudExadataInfrastructureCustomerContacts({
     required this.email,
   });
 
@@ -78,8 +76,8 @@ final class OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts {
 /// Typed helper for the `properties.maintenance_window` block of
 /// `google_oracle_database_cloud_exadata_infrastructure` (derived from provider schema).
 @immutable
-final class OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow {
-  const OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow({
+final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
+  const OracleDatabaseCloudExadataInfrastructureMaintenanceWindow({
     this.customActionTimeoutMins,
     this.daysOfWeek,
     this.hoursOfDay,

@@ -104,48 +104,46 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig {
   });
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderAtlassianOauth2ProviderConfig
   >?
   atlassianOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig
   >?
   customOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig
   >?
   githubOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig
   >?
   googleOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderIncludedOauth2ProviderConfig
   >?
   includedOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderLinkedinOauth2ProviderConfig
   >?
   linkedinOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderMicrosoftOauth2ProviderConfig
   >?
   microsoftOauth2ProviderConfig;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfig
+    BedrockagentcoreOauth2CredentialProviderSalesforceOauth2ProviderConfig
   >?
   salesforceOauth2ProviderConfig;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig>?
   slackOauth2ProviderConfig;
 
   Map<String, Object?> encode() => {
@@ -191,8 +189,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig {
 /// Typed helper for the `oauth2_provider_config.atlassian_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderAtlassianOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderAtlassianOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -214,9 +212,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassia
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -233,9 +229,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassia
 
 /// Typed helper for the `oauth2_provider_config.atlassian_oauth2_provider_config.client_secret_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfigClientSecretConfig({
+final class BedrockagentcoreOauth2CredentialProviderClientSecretConfig {
+  const BedrockagentcoreOauth2CredentialProviderClientSecretConfig({
     required this.jsonKey,
     required this.secretId,
   });
@@ -253,8 +250,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassia
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig({
     this.clientAuthenticationMethod,
     this.clientCredentialsWoVersion,
     this.clientId,
@@ -271,7 +268,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   });
 
   final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod
+    BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod
   >?
   clientAuthenticationMethod;
 
@@ -287,34 +284,24 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscovery
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderOauthDiscovery>?
   oauthDiscovery;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfig
+    BedrockagentcoreOauth2CredentialProviderOnBehalfOfTokenExchangeConfig
   >?
   onBehalfOfTokenExchangeConfig;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpoint
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderPrivateEndpoint>?
   privateEndpoint;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverride
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderPrivateEndpointOverride>?
   privateEndpointOverride;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig>?
   privateKeyJwtConfig;
 
   Map<String, Object?> encode() => {
@@ -347,44 +334,25 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 }
 
 /// `client_authentication_method` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod
+enum BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod
     implements TerraformEnum {
   clientSecretBasic('CLIENT_SECRET_BASIC'),
   clientSecretPost('CLIENT_SECRET_POST'),
   awsIamIdTokenJwt('AWS_IAM_ID_TOKEN_JWT'),
   privateKeyJwt('PRIVATE_KEY_JWT');
 
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod(
+  const BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod(
     this.terraformValue,
   );
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.oauth_discovery` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscovery {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscovery({
+final class BedrockagentcoreOauth2CredentialProviderOauthDiscovery {
+  const BedrockagentcoreOauth2CredentialProviderOauthDiscovery({
     this.discoveryUrl,
     this.authorizationServerMetadata,
   });
@@ -392,7 +360,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   final TfArg<String>? discoveryUrl;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscoveryAuthorizationServerMetadata
+    BedrockagentcoreOauth2CredentialProviderAuthorizationServerMetadata
   >?
   authorizationServerMetadata;
 
@@ -408,8 +376,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.oauth_discovery.authorization_server_metadata` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscoveryAuthorizationServerMetadata {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscoveryAuthorizationServerMetadata({
+final class BedrockagentcoreOauth2CredentialProviderAuthorizationServerMetadata {
+  const BedrockagentcoreOauth2CredentialProviderAuthorizationServerMetadata({
     required this.authorizationEndpoint,
     required this.issuer,
     this.responseTypes,
@@ -439,19 +407,16 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.on_behalf_of_token_exchange_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfig({
+final class BedrockagentcoreOauth2CredentialProviderOnBehalfOfTokenExchangeConfig {
+  const BedrockagentcoreOauth2CredentialProviderOnBehalfOfTokenExchangeConfig({
     required this.grantType,
     this.tokenExchangeGrantTypeConfig,
   });
 
-  final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType
-  >
-  grantType;
+  final TfArg<BedrockagentcoreOauth2CredentialProviderGrantType> grantType;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfig
+    BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig
   >?
   tokenExchangeGrantTypeConfig;
 
@@ -465,14 +430,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 }
 
 /// `grant_type` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType
+enum BedrockagentcoreOauth2CredentialProviderGrantType
     implements TerraformEnum {
   tokenExchange('TOKEN_EXCHANGE'),
   jwtAuthorizationGrant('JWT_AUTHORIZATION_GRANT');
 
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreOauth2CredentialProviderGrantType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -480,15 +443,13 @@ enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2Pro
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.on_behalf_of_token_exchange_config.token_exchange_grant_type_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfig({
+final class BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig {
+  const BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig({
     required this.actorTokenContent,
     this.actorTokenScopes,
   });
 
-  final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent
-  >
+  final TfArg<BedrockagentcoreOauth2CredentialProviderActorTokenContent>
   actorTokenContent;
 
   final TfArg<List<String>>? actorTokenScopes;
@@ -500,13 +461,13 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 }
 
 /// `actor_token_content` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent
+enum BedrockagentcoreOauth2CredentialProviderActorTokenContent
     implements TerraformEnum {
   none('NONE'),
   m2m('M2M'),
   awsIamIdTokenJwt('AWS_IAM_ID_TOKEN_JWT');
 
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent(
+  const BedrockagentcoreOauth2CredentialProviderActorTokenContent(
     this.terraformValue,
   );
   @override
@@ -515,20 +476,19 @@ enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2Pro
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpoint {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpoint({
+final class BedrockagentcoreOauth2CredentialProviderPrivateEndpoint {
+  const BedrockagentcoreOauth2CredentialProviderPrivateEndpoint({
     this.managedVpcResource,
     this.selfManagedLatticeResource,
   });
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResource
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderManagedVpcResource>?
   managedVpcResource;
 
   final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointSelfManagedLatticeResource
+    BedrockagentcoreOauth2CredentialProviderSelfManagedLatticeResource
   >?
   selfManagedLatticeResource;
 
@@ -544,9 +504,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint.managed_vpc_resource` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResource({
+final class BedrockagentcoreOauth2CredentialProviderManagedVpcResource {
+  const BedrockagentcoreOauth2CredentialProviderManagedVpcResource({
     required this.endpointIpAddressType,
     this.routingDomain,
     this.securityGroupIds,
@@ -555,9 +516,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     required this.vpcIdentifier,
   });
 
-  final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
+  final TfArg<BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType>
   endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
@@ -581,12 +540,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType
+enum BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType
     implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+  const BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType(
     this.terraformValue,
   );
   @override
@@ -595,9 +554,10 @@ enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2Pro
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint.self_managed_lattice_resource` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointSelfManagedLatticeResource({
+final class BedrockagentcoreOauth2CredentialProviderSelfManagedLatticeResource {
+  const BedrockagentcoreOauth2CredentialProviderSelfManagedLatticeResource({
     this.resourceConfigurationIdentifier,
   });
 
@@ -612,17 +572,15 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint_override` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverride {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverride({
+final class BedrockagentcoreOauth2CredentialProviderPrivateEndpointOverride {
+  const BedrockagentcoreOauth2CredentialProviderPrivateEndpointOverride({
     required this.domain,
     this.privateEndpoint,
   });
 
   final TfArg<String> domain;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpoint
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderPrivateEndpoint>?
   privateEndpoint;
 
   Map<String, Object?> encode() => {
@@ -632,107 +590,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   };
 }
 
-/// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint_override.private_endpoint` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpoint {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpoint({
-    this.managedVpcResource,
-    this.selfManagedLatticeResource,
-  });
-
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
-
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource
-  >?
-  selfManagedLatticeResource;
-
-  Map<String, Object?> encode() => {
-    if (managedVpcResource != null)
-      'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
-    if (selfManagedLatticeResource != null)
-      'self_managed_lattice_resource': [
-        for (final e in selfManagedLatticeResource!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint_override.private_endpoint.managed_vpc_resource` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResource({
-    required this.endpointIpAddressType,
-    this.routingDomain,
-    this.securityGroupIds,
-    required this.subnetIds,
-    this.tags,
-    required this.vpcIdentifier,
-  });
-
-  final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
-
-  final TfArg<String>? routingDomain;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  final TfArg<Map<String, String>>? tags;
-
-  final TfArg<String> vpcIdentifier;
-
-  Map<String, Object?> encode() => {
-    'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    'routing_domain': ?routingDomain?.toTfJson(),
-    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'vpc_identifier': vpcIdentifier.toTfJson(),
-  };
-}
-
-/// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
-
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint_override.private_endpoint.self_managed_lattice_resource` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource({
-    this.resourceConfigurationIdentifier,
-  });
-
-  final TfArg<String>? resourceConfigurationIdentifier;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_identifier': ?resourceConfigurationIdentifier
-        ?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_key_jwt_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfig({
+final class BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig {
+  const BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig({
     this.additionalHeaderClaims,
     this.additionalPayloadClaims,
     this.signingAlgorithm,
@@ -743,14 +605,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<Map<String, String>>? additionalPayloadClaims;
 
-  final TfArg<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm
-  >?
+  final TfArg<BedrockagentcoreOauth2CredentialProviderSigningAlgorithm>?
   signingAlgorithm;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySource
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderPrivateKeySource>?
   privateKeySource;
 
   Map<String, Object?> encode() => {
@@ -763,13 +621,13 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 }
 
 /// `signing_algorithm` — derived from the provider schema description.
-enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm
+enum BedrockagentcoreOauth2CredentialProviderSigningAlgorithm
     implements TerraformEnum {
   rs256('RS256'),
   ps256('PS256'),
   es256('ES256');
 
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm(
+  const BedrockagentcoreOauth2CredentialProviderSigningAlgorithm(
     this.terraformValue,
   );
   @override
@@ -779,14 +637,12 @@ enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2Pro
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_key_jwt_config.private_key_source` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySource({
+final class BedrockagentcoreOauth2CredentialProviderPrivateKeySource {
+  const BedrockagentcoreOauth2CredentialProviderPrivateKeySource({
     this.kmsKeySource,
   });
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySourceKmsKeySource
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderKmsKeySource>?
   kmsKeySource;
 
   Map<String, Object?> encode() => {
@@ -798,8 +654,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_key_jwt_config.private_key_source.kms_key_source` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySourceKmsKeySource {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySourceKmsKeySource({
+final class BedrockagentcoreOauth2CredentialProviderKmsKeySource {
+  const BedrockagentcoreOauth2CredentialProviderKmsKeySource({
     required this.kmsKeyArn,
   });
 
@@ -813,8 +669,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 /// Typed helper for the `oauth2_provider_config.github_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -836,9 +692,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOa
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -850,33 +704,14 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOa
     'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `oauth2_provider_config.github_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
   };
 }
 
 /// Typed helper for the `oauth2_provider_config.google_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -898,9 +733,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOa
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -915,30 +748,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOa
   };
 }
 
-/// Typed helper for the `oauth2_provider_config.google_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.included_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderIncludedOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderIncludedOauth2ProviderConfig({
     this.authorizationEndpoint,
     this.clientCredentialsWoVersion,
     this.clientId,
@@ -969,9 +783,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncluded
 
   final TfArg<String>? tokenEndpoint;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -989,30 +801,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncluded
   };
 }
 
-/// Typed helper for the `oauth2_provider_config.included_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncludedOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.linkedin_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderLinkedinOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderLinkedinOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -1034,9 +827,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedin
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -1051,30 +842,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedin
   };
 }
 
-/// Typed helper for the `oauth2_provider_config.linkedin_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedinOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.microsoft_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderMicrosoftOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderMicrosoftOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -1098,14 +870,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 
   final TfArg<String>? clientSecretWo;
 
-  final BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId?
-  tenantId;
+  final BedrockagentcoreOauth2CredentialProviderTenantId? tenantId;
 
   final TfArg<num>? tenantIdWoVersion;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -1127,18 +896,18 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.tenantId(...)`.
-sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId();
+sealed class BedrockagentcoreOauth2CredentialProviderTenantId {
+  const BedrockagentcoreOauth2CredentialProviderTenantId();
 
   /// Sets `tenant_id`.
-  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId(
+  const factory BedrockagentcoreOauth2CredentialProviderTenantId.tenantId(
     TfArg<String> tenantId,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice;
+  ) = BedrockagentcoreOauth2CredentialProviderTenantIdChoice;
 
   /// Sets `tenant_id_wo`.
-  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo(
+  const factory BedrockagentcoreOauth2CredentialProviderTenantId.tenantIdWo(
     TfArg<String> tenantIdWo,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo;
+  ) = BedrockagentcoreOauth2CredentialProviderTenantIdWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1146,13 +915,10 @@ sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicroso
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId] choice: sets `tenant_id`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice
-    extends
-        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice(
-    this.tenantId,
-  );
+/// The [BedrockagentcoreOauth2CredentialProviderTenantId.tenantId] choice: sets `tenant_id`.
+final class BedrockagentcoreOauth2CredentialProviderTenantIdChoice
+    extends BedrockagentcoreOauth2CredentialProviderTenantId {
+  const BedrockagentcoreOauth2CredentialProviderTenantIdChoice(this.tenantId);
 
   final TfArg<String> tenantId;
 
@@ -1163,13 +929,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
   Map<String, Object?> encode() => {'tenant_id': tenantId.toTfJson()};
 }
 
-/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo] choice: sets `tenant_id_wo`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo
-    extends
-        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo(
-    this.tenantIdWo,
-  );
+/// The [BedrockagentcoreOauth2CredentialProviderTenantId.tenantIdWo] choice: sets `tenant_id_wo`.
+final class BedrockagentcoreOauth2CredentialProviderTenantIdWo
+    extends BedrockagentcoreOauth2CredentialProviderTenantId {
+  const BedrockagentcoreOauth2CredentialProviderTenantIdWo(this.tenantIdWo);
 
   final TfArg<String> tenantIdWo;
 
@@ -1180,30 +943,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
   Map<String, Object?> encode() => {'tenant_id_wo': tenantIdWo.toTfJson()};
 }
 
-/// Typed helper for the `oauth2_provider_config.microsoft_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `oauth2_provider_config.salesforce_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderSalesforceOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderSalesforceOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -1225,9 +969,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesfor
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -1239,33 +981,14 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesfor
     'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `oauth2_provider_config.salesforce_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesforceOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
   };
 }
 
 /// Typed helper for the `oauth2_provider_config.slack_oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfig({
+final class BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig {
+  const BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig({
     this.clientCredentialsWoVersion,
     this.clientId,
     this.clientIdWo,
@@ -1287,9 +1010,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOau
 
   final TfArg<String>? clientSecretWo;
 
-  final List<
-    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfigClientSecretConfig
-  >?
+  final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
@@ -1301,25 +1022,6 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOau
     'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `oauth2_provider_config.slack_oauth2_provider_config.client_secret_config` block of
-/// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
-@immutable
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfigClientSecretConfig {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOauth2ProviderConfigClientSecretConfig({
-    required this.jsonKey,
-    required this.secretId,
-  });
-
-  final TfArg<String> jsonKey;
-
-  final TfArg<String> secretId;
-
-  Map<String, Object?> encode() => {
-    'json_key': jsonKey.toTfJson(),
-    'secret_id': secretId.toTfJson(),
   };
 }
 

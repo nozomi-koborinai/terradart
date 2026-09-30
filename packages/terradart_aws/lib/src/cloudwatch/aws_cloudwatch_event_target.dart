@@ -173,11 +173,11 @@ final class CloudwatchEventTargetEcsTarget {
 
   final TfArg<String>? group;
 
-  final TfArg<CloudwatchEventTargetEcsTargetLaunchType>? launchType;
+  final TfArg<CloudwatchEventTargetLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<CloudwatchEventTargetEcsTargetPropagateTags>? propagateTags;
+  final TfArg<CloudwatchEventTargetPropagateTags>? propagateTags;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -185,17 +185,15 @@ final class CloudwatchEventTargetEcsTarget {
 
   final TfArg<String> taskDefinitionArn;
 
-  final List<CloudwatchEventTargetEcsTargetCapacityProviderStrategy>?
+  final List<CloudwatchEventTargetCapacityProviderStrategy>?
   capacityProviderStrategy;
 
-  final CloudwatchEventTargetEcsTargetNetworkConfiguration?
-  networkConfiguration;
+  final CloudwatchEventTargetNetworkConfiguration? networkConfiguration;
 
-  final List<CloudwatchEventTargetEcsTargetOrderedPlacementStrategy>?
+  final List<CloudwatchEventTargetOrderedPlacementStrategy>?
   orderedPlacementStrategy;
 
-  final List<CloudwatchEventTargetEcsTargetPlacementConstraint>?
-  placementConstraint;
+  final List<CloudwatchEventTargetPlacementConstraint>? placementConstraint;
 
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
@@ -224,21 +222,21 @@ final class CloudwatchEventTargetEcsTarget {
 }
 
 /// `launch_type` — derived from the provider schema description.
-enum CloudwatchEventTargetEcsTargetLaunchType implements TerraformEnum {
+enum CloudwatchEventTargetLaunchType implements TerraformEnum {
   ec2('EC2'),
   fargate('FARGATE'),
   external('EXTERNAL');
 
-  const CloudwatchEventTargetEcsTargetLaunchType(this.terraformValue);
+  const CloudwatchEventTargetLaunchType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum CloudwatchEventTargetEcsTargetPropagateTags implements TerraformEnum {
+enum CloudwatchEventTargetPropagateTags implements TerraformEnum {
   taskDefinition('TASK_DEFINITION');
 
-  const CloudwatchEventTargetEcsTargetPropagateTags(this.terraformValue);
+  const CloudwatchEventTargetPropagateTags(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -246,8 +244,8 @@ enum CloudwatchEventTargetEcsTargetPropagateTags implements TerraformEnum {
 /// Typed helper for the `ecs_target.capacity_provider_strategy` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
-final class CloudwatchEventTargetEcsTargetCapacityProviderStrategy {
-  const CloudwatchEventTargetEcsTargetCapacityProviderStrategy({
+final class CloudwatchEventTargetCapacityProviderStrategy {
+  const CloudwatchEventTargetCapacityProviderStrategy({
     this.base,
     required this.capacityProvider,
     this.weight,
@@ -269,8 +267,8 @@ final class CloudwatchEventTargetEcsTargetCapacityProviderStrategy {
 /// Typed helper for the `ecs_target.network_configuration` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
-final class CloudwatchEventTargetEcsTargetNetworkConfiguration {
-  const CloudwatchEventTargetEcsTargetNetworkConfiguration({
+final class CloudwatchEventTargetNetworkConfiguration {
+  const CloudwatchEventTargetNetworkConfiguration({
     this.assignPublicIp,
     this.securityGroups,
     required this.subnets,
@@ -292,15 +290,15 @@ final class CloudwatchEventTargetEcsTargetNetworkConfiguration {
 /// Typed helper for the `ecs_target.ordered_placement_strategy` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
-final class CloudwatchEventTargetEcsTargetOrderedPlacementStrategy {
-  const CloudwatchEventTargetEcsTargetOrderedPlacementStrategy({
+final class CloudwatchEventTargetOrderedPlacementStrategy {
+  const CloudwatchEventTargetOrderedPlacementStrategy({
     this.field,
     required this.type,
   });
 
   final TfArg<String>? field;
 
-  final TfArg<CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType> type;
+  final TfArg<CloudwatchEventTargetOrderedPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -309,15 +307,13 @@ final class CloudwatchEventTargetEcsTargetOrderedPlacementStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType
+enum CloudwatchEventTargetOrderedPlacementStrategyType
     implements TerraformEnum {
   random('random'),
   spread('spread'),
   binpack('binpack');
 
-  const CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType(
-    this.terraformValue,
-  );
+  const CloudwatchEventTargetOrderedPlacementStrategyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -325,15 +321,15 @@ enum CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType
 /// Typed helper for the `ecs_target.placement_constraint` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
-final class CloudwatchEventTargetEcsTargetPlacementConstraint {
-  const CloudwatchEventTargetEcsTargetPlacementConstraint({
+final class CloudwatchEventTargetPlacementConstraint {
+  const CloudwatchEventTargetPlacementConstraint({
     this.expression,
     required this.type,
   });
 
   final TfArg<String>? expression;
 
-  final TfArg<CloudwatchEventTargetEcsTargetPlacementConstraintType> type;
+  final TfArg<CloudwatchEventTargetPlacementConstraintType> type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -342,14 +338,11 @@ final class CloudwatchEventTargetEcsTargetPlacementConstraint {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchEventTargetEcsTargetPlacementConstraintType
-    implements TerraformEnum {
+enum CloudwatchEventTargetPlacementConstraintType implements TerraformEnum {
   distinctinstance('distinctInstance'),
   memberof('memberOf');
 
-  const CloudwatchEventTargetEcsTargetPlacementConstraintType(
-    this.terraformValue,
-  );
+  const CloudwatchEventTargetPlacementConstraintType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -490,8 +483,7 @@ final class CloudwatchEventTargetSagemakerPipelineTarget {
     this.pipelineParameterList,
   });
 
-  final List<CloudwatchEventTargetSagemakerPipelineTargetPipelineParameterList>?
-  pipelineParameterList;
+  final List<CloudwatchEventTargetPipelineParameterList>? pipelineParameterList;
 
   Map<String, Object?> encode() => {
     if (pipelineParameterList != null)
@@ -504,8 +496,8 @@ final class CloudwatchEventTargetSagemakerPipelineTarget {
 /// Typed helper for the `sagemaker_pipeline_target.pipeline_parameter_list` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
-final class CloudwatchEventTargetSagemakerPipelineTargetPipelineParameterList {
-  const CloudwatchEventTargetSagemakerPipelineTargetPipelineParameterList({
+final class CloudwatchEventTargetPipelineParameterList {
+  const CloudwatchEventTargetPipelineParameterList({
     required this.name,
     required this.value,
   });

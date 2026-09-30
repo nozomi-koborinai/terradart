@@ -30,9 +30,9 @@ final class CustomHostnameSsl {
     this.settings,
   });
 
-  final TfArg<CustomHostnameSslBundleMethod>? bundleMethod;
+  final TfArg<CustomHostnameBundleMethod>? bundleMethod;
 
-  final TfArg<CustomHostnameSslCertificateAuthority>? certificateAuthority;
+  final TfArg<CustomHostnameCertificateAuthority>? certificateAuthority;
 
   final TfArg<bool>? cloudflareBranding;
 
@@ -42,15 +42,15 @@ final class CustomHostnameSsl {
 
   final TfArg<String>? customKey;
 
-  final TfArg<CustomHostnameSslMethod>? method;
+  final TfArg<CustomHostnameMethod>? method;
 
-  final TfArg<CustomHostnameSslType>? type;
+  final TfArg<CustomHostnameType>? type;
 
   final TfArg<bool>? wildcard;
 
-  final List<CustomHostnameSslCustomCertBundle>? customCertBundle;
+  final List<CustomHostnameCustomCertBundle>? customCertBundle;
 
-  final CustomHostnameSslSettings? settings;
+  final CustomHostnameSettings? settings;
 
   Map<String, Object?> encode() => {
     'bundle_method': ?bundleMethod?.toTfJson(),
@@ -69,44 +69,44 @@ final class CustomHostnameSsl {
 }
 
 /// `bundle_method` — derived from the provider schema description.
-enum CustomHostnameSslBundleMethod implements TerraformEnum {
+enum CustomHostnameBundleMethod implements TerraformEnum {
   ubiquitous('ubiquitous'),
   optimal('optimal'),
   force('force');
 
-  const CustomHostnameSslBundleMethod(this.terraformValue);
+  const CustomHostnameBundleMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `certificate_authority` — derived from the provider schema description.
-enum CustomHostnameSslCertificateAuthority implements TerraformEnum {
+enum CustomHostnameCertificateAuthority implements TerraformEnum {
   digicert('digicert'),
   google('google'),
   letsEncrypt('lets_encrypt'),
   sslCom('ssl_com');
 
-  const CustomHostnameSslCertificateAuthority(this.terraformValue);
+  const CustomHostnameCertificateAuthority(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `method` — derived from the provider schema description.
-enum CustomHostnameSslMethod implements TerraformEnum {
+enum CustomHostnameMethod implements TerraformEnum {
   http('http'),
   txt('txt'),
   email('email');
 
-  const CustomHostnameSslMethod(this.terraformValue);
+  const CustomHostnameMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum CustomHostnameSslType implements TerraformEnum {
+enum CustomHostnameType implements TerraformEnum {
   dv('dv');
 
-  const CustomHostnameSslType(this.terraformValue);
+  const CustomHostnameType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -114,8 +114,8 @@ enum CustomHostnameSslType implements TerraformEnum {
 /// Typed helper for the `ssl.custom_cert_bundle` block of
 /// `cloudflare_custom_hostname` (derived from provider schema).
 @immutable
-final class CustomHostnameSslCustomCertBundle {
-  const CustomHostnameSslCustomCertBundle({
+final class CustomHostnameCustomCertBundle {
+  const CustomHostnameCustomCertBundle({
     required this.customCertificate,
     required this.customKey,
   });
@@ -133,8 +133,8 @@ final class CustomHostnameSslCustomCertBundle {
 /// Typed helper for the `ssl.settings` block of
 /// `cloudflare_custom_hostname` (derived from provider schema).
 @immutable
-final class CustomHostnameSslSettings {
-  const CustomHostnameSslSettings({
+final class CustomHostnameSettings {
+  const CustomHostnameSettings({
     this.ciphers,
     this.earlyHints,
     this.http2,
@@ -144,13 +144,13 @@ final class CustomHostnameSslSettings {
 
   final TfArg<List<String>>? ciphers;
 
-  final TfArg<CustomHostnameSslSettingsEarlyHints>? earlyHints;
+  final TfArg<CustomHostnameEarlyHints>? earlyHints;
 
-  final TfArg<CustomHostnameSslSettingsHttp2>? http2;
+  final TfArg<CustomHostnameHttp2>? http2;
 
-  final TfArg<CustomHostnameSslSettingsMinTlsVersion>? minTlsVersion;
+  final TfArg<CustomHostnameMinTlsVersion>? minTlsVersion;
 
-  final TfArg<CustomHostnameSslSettingsTls13>? tls13;
+  final TfArg<CustomHostnameTls13>? tls13;
 
   Map<String, Object?> encode() => {
     'ciphers': ?ciphers?.toTfJson(),
@@ -162,43 +162,43 @@ final class CustomHostnameSslSettings {
 }
 
 /// `early_hints` — derived from the provider schema description.
-enum CustomHostnameSslSettingsEarlyHints implements TerraformEnum {
+enum CustomHostnameEarlyHints implements TerraformEnum {
   on('on'),
   off('off');
 
-  const CustomHostnameSslSettingsEarlyHints(this.terraformValue);
+  const CustomHostnameEarlyHints(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `http2` — derived from the provider schema description.
-enum CustomHostnameSslSettingsHttp2 implements TerraformEnum {
+enum CustomHostnameHttp2 implements TerraformEnum {
   on('on'),
   off('off');
 
-  const CustomHostnameSslSettingsHttp2(this.terraformValue);
+  const CustomHostnameHttp2(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `min_tls_version` — derived from the provider schema description.
-enum CustomHostnameSslSettingsMinTlsVersion implements TerraformEnum {
+enum CustomHostnameMinTlsVersion implements TerraformEnum {
   v1p0('1.0'),
   v1p1('1.1'),
   v1p2('1.2'),
   v1p3('1.3');
 
-  const CustomHostnameSslSettingsMinTlsVersion(this.terraformValue);
+  const CustomHostnameMinTlsVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `tls_1_3` — derived from the provider schema description.
-enum CustomHostnameSslSettingsTls13 implements TerraformEnum {
+enum CustomHostnameTls13 implements TerraformEnum {
   on('on'),
   off('off');
 
-  const CustomHostnameSslSettingsTls13(this.terraformValue);
+  const CustomHostnameTls13(this.terraformValue);
   @override
   final String terraformValue;
 }

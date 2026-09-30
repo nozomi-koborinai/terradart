@@ -163,8 +163,8 @@ final class SagemakerWorkforceSourceIpConfig {
 /// Typed helper for the `workforce_vpc_config` block of
 /// `aws_sagemaker_workforce` (derived from provider schema).
 @immutable
-final class SagemakerWorkforceWorkforceVpcConfig {
-  const SagemakerWorkforceWorkforceVpcConfig({
+final class SagemakerWorkforceVpcConfig {
+  const SagemakerWorkforceVpcConfig({
     this.securityGroupIds,
     this.subnets,
     this.vpcId,
@@ -193,7 +193,7 @@ final class AwsSagemakerWorkforce extends Resource {
     required TfArg<String> workforceName,
     required SagemakerWorkforceIdentityProvider identityProvider,
     SagemakerWorkforceSourceIpConfig? sourceIpConfig,
-    SagemakerWorkforceWorkforceVpcConfig? workforceVpcConfig,
+    SagemakerWorkforceVpcConfig? workforceVpcConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

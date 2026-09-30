@@ -18,11 +18,11 @@ final class CeCostCategoryRule {
     this.rule,
   });
 
-  final TfArg<CeCostCategoryRuleType>? type;
+  final TfArg<CeCostCategoryType>? type;
 
   final TfArg<String>? value;
 
-  final CeCostCategoryRuleInheritedValue? inheritedValue;
+  final CeCostCategoryInheritedValue? inheritedValue;
 
   final CeCostCategoryRuleRule? rule;
 
@@ -35,11 +35,11 @@ final class CeCostCategoryRule {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeCostCategoryRuleType implements TerraformEnum {
+enum CeCostCategoryType implements TerraformEnum {
   regular('REGULAR'),
   inheritedValue('INHERITED_VALUE');
 
-  const CeCostCategoryRuleType(this.terraformValue);
+  const CeCostCategoryType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,15 +47,12 @@ enum CeCostCategoryRuleType implements TerraformEnum {
 /// Typed helper for the `rule.inherited_value` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleInheritedValue {
-  const CeCostCategoryRuleInheritedValue({
-    this.dimensionKey,
-    this.dimensionName,
-  });
+final class CeCostCategoryInheritedValue {
+  const CeCostCategoryInheritedValue({this.dimensionKey, this.dimensionName});
 
   final TfArg<String>? dimensionKey;
 
-  final TfArg<CeCostCategoryRuleInheritedValueDimensionName>? dimensionName;
+  final TfArg<CeCostCategoryDimensionName>? dimensionName;
 
   Map<String, Object?> encode() => {
     'dimension_key': ?dimensionKey?.toTfJson(),
@@ -64,11 +61,11 @@ final class CeCostCategoryRuleInheritedValue {
 }
 
 /// `dimension_name` — derived from the provider schema description.
-enum CeCostCategoryRuleInheritedValueDimensionName implements TerraformEnum {
+enum CeCostCategoryDimensionName implements TerraformEnum {
   linkedAccountName('LINKED_ACCOUNT_NAME'),
   tag('TAG');
 
-  const CeCostCategoryRuleInheritedValueDimensionName(this.terraformValue);
+  const CeCostCategoryDimensionName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,17 +83,17 @@ final class CeCostCategoryRuleRule {
     this.tags,
   });
 
-  final List<CeCostCategoryRuleRuleAnd>? and;
+  final List<CeCostCategoryAnd>? and;
 
-  final CeCostCategoryRuleRuleCostCategory? costCategory;
+  final CeCostCategoryCostCategory? costCategory;
 
-  final CeCostCategoryRuleRuleDimension? dimension;
+  final CeCostCategoryDimension? dimension;
 
-  final CeCostCategoryRuleRuleNot? not;
+  final CeCostCategoryNot? not;
 
-  final List<CeCostCategoryRuleRuleOr>? or;
+  final List<CeCostCategoryOr>? or;
 
-  final CeCostCategoryRuleRuleTags? tags;
+  final CeCostCategoryRuleTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -111,8 +108,8 @@ final class CeCostCategoryRuleRule {
 /// Typed helper for the `rule.rule.and` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleAnd {
-  const CeCostCategoryRuleRuleAnd({
+final class CeCostCategoryAnd {
+  const CeCostCategoryAnd({
     this.and,
     this.costCategory,
     this.dimension,
@@ -121,17 +118,17 @@ final class CeCostCategoryRuleRuleAnd {
     this.tags,
   });
 
-  final List<CeCostCategoryRuleRuleAndAnd>? and;
+  final List<CeCostCategoryAndAnd>? and;
 
-  final CeCostCategoryRuleRuleAndCostCategory? costCategory;
+  final CeCostCategoryAndCostCategory? costCategory;
 
-  final CeCostCategoryRuleRuleAndDimension? dimension;
+  final CeCostCategoryAndDimension? dimension;
 
-  final CeCostCategoryRuleRuleAndNot? not;
+  final CeCostCategoryAndNot? not;
 
-  final List<CeCostCategoryRuleRuleAndOr>? or;
+  final List<CeCostCategoryAndOr>? or;
 
-  final CeCostCategoryRuleRuleAndTags? tags;
+  final CeCostCategoryAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -145,19 +142,16 @@ final class CeCostCategoryRuleRuleAnd {
 
 /// Typed helper for the `rule.rule.and.and` block of
 /// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeCostCategoryRuleRuleAndAnd {
-  const CeCostCategoryRuleRuleAndAnd({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
+final class CeCostCategoryAndAnd {
+  const CeCostCategoryAndAnd({this.costCategory, this.dimension, this.tags});
 
-  final CeCostCategoryRuleRuleAndAndCostCategory? costCategory;
+  final CeCostCategoryAndCostCategory? costCategory;
 
-  final CeCostCategoryRuleRuleAndAndDimension? dimension;
+  final CeCostCategoryAndDimension? dimension;
 
-  final CeCostCategoryRuleRuleAndAndTags? tags;
+  final CeCostCategoryAndTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
@@ -166,80 +160,12 @@ final class CeCostCategoryRuleRuleAndAnd {
   };
 }
 
-/// Typed helper for the `rule.rule.and.and.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndAndCostCategory {
-  const CeCostCategoryRuleRuleAndAndCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.and.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndAndDimension {
-  const CeCostCategoryRuleRuleAndAndDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.and.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndAndTags {
-  const CeCostCategoryRuleRuleAndAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `rule.rule.and.cost_category` block of
 /// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeCostCategoryRuleRuleAndCostCategory {
-  const CeCostCategoryRuleRuleAndCostCategory({
+final class CeCostCategoryAndCostCategory {
+  const CeCostCategoryAndCostCategory({
     this.key,
     this.matchOptions,
     this.values,
@@ -260,197 +186,10 @@ final class CeCostCategoryRuleRuleAndCostCategory {
 
 /// Typed helper for the `rule.rule.and.dimension` block of
 /// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeCostCategoryRuleRuleAndDimension {
-  const CeCostCategoryRuleRuleAndDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.not` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndNot {
-  const CeCostCategoryRuleRuleAndNot({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleAndNotCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleAndNotDimension? dimension;
-
-  final CeCostCategoryRuleRuleAndNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.not.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndNotCostCategory {
-  const CeCostCategoryRuleRuleAndNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.not.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndNotDimension {
-  const CeCostCategoryRuleRuleAndNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.not.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndNotTags {
-  const CeCostCategoryRuleRuleAndNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.or` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndOr {
-  const CeCostCategoryRuleRuleAndOr({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleAndOrCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleAndOrDimension? dimension;
-
-  final CeCostCategoryRuleRuleAndOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.or.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndOrCostCategory {
-  const CeCostCategoryRuleRuleAndOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.or.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndOrDimension {
-  const CeCostCategoryRuleRuleAndOrDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.and.or.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleAndOrTags {
-  const CeCostCategoryRuleRuleAndOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class CeCostCategoryAndDimension {
+  const CeCostCategoryAndDimension({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
@@ -467,13 +206,10 @@ final class CeCostCategoryRuleRuleAndOrTags {
 
 /// Typed helper for the `rule.rule.and.tags` block of
 /// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeCostCategoryRuleRuleAndTags {
-  const CeCostCategoryRuleRuleAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class CeCostCategoryAndTags {
+  const CeCostCategoryAndTags({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
@@ -488,20 +224,55 @@ final class CeCostCategoryRuleRuleAndTags {
   };
 }
 
+/// Typed helper for the `rule.rule.and.not` block of
+/// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class CeCostCategoryAndNot {
+  const CeCostCategoryAndNot({this.costCategory, this.dimension, this.tags});
+
+  final CeCostCategoryAndCostCategory? costCategory;
+
+  final CeCostCategoryAndDimension? dimension;
+
+  final CeCostCategoryAndTags? tags;
+
+  Map<String, Object?> encode() => {
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
+  };
+}
+
+/// Typed helper for the `rule.rule.and.or` block of
+/// `aws_ce_cost_category` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class CeCostCategoryAndOr {
+  const CeCostCategoryAndOr({this.costCategory, this.dimension, this.tags});
+
+  final CeCostCategoryAndCostCategory? costCategory;
+
+  final CeCostCategoryAndDimension? dimension;
+
+  final CeCostCategoryAndTags? tags;
+
+  Map<String, Object?> encode() => {
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
+  };
+}
+
 /// Typed helper for the `rule.rule.cost_category` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleCostCategory {
-  const CeCostCategoryRuleRuleCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class CeCostCategoryCostCategory {
+  const CeCostCategoryCostCategory({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeCostCategoryRuleRuleCostCategoryMatchOptions>>?
-  matchOptions;
+  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -514,7 +285,7 @@ final class CeCostCategoryRuleRuleCostCategory {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum CeCostCategoryRuleRuleCostCategoryMatchOptions implements TerraformEnum {
+enum CeCostCategoryMatchOptions implements TerraformEnum {
   equals('EQUALS'),
   absent('ABSENT'),
   startsWith('STARTS_WITH'),
@@ -524,7 +295,7 @@ enum CeCostCategoryRuleRuleCostCategoryMatchOptions implements TerraformEnum {
   caseInsensitive('CASE_INSENSITIVE'),
   greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
 
-  const CeCostCategoryRuleRuleCostCategoryMatchOptions(this.terraformValue);
+  const CeCostCategoryMatchOptions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -532,16 +303,12 @@ enum CeCostCategoryRuleRuleCostCategoryMatchOptions implements TerraformEnum {
 /// Typed helper for the `rule.rule.dimension` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleDimension {
-  const CeCostCategoryRuleRuleDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class CeCostCategoryDimension {
+  const CeCostCategoryDimension({this.key, this.matchOptions, this.values});
 
-  final TfArg<CeCostCategoryRuleRuleDimensionKey>? key;
+  final TfArg<CeCostCategoryKey>? key;
 
-  final List<TfArg<CeCostCategoryRuleRuleDimensionMatchOptions>>? matchOptions;
+  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -554,7 +321,7 @@ final class CeCostCategoryRuleRuleDimension {
 }
 
 /// `key` — derived from the provider schema description.
-enum CeCostCategoryRuleRuleDimensionKey implements TerraformEnum {
+enum CeCostCategoryKey implements TerraformEnum {
   az('AZ'),
   instanceType('INSTANCE_TYPE'),
   linkedAccount('LINKED_ACCOUNT'),
@@ -591,23 +358,7 @@ enum CeCostCategoryRuleRuleDimensionKey implements TerraformEnum {
   anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
   anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
 
-  const CeCostCategoryRuleRuleDimensionKey(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `match_options` — derived from the provider schema description.
-enum CeCostCategoryRuleRuleDimensionMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
-
-  const CeCostCategoryRuleRuleDimensionMatchOptions(this.terraformValue);
+  const CeCostCategoryKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -615,8 +366,8 @@ enum CeCostCategoryRuleRuleDimensionMatchOptions implements TerraformEnum {
 /// Typed helper for the `rule.rule.not` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleNot {
-  const CeCostCategoryRuleRuleNot({
+final class CeCostCategoryNot {
+  const CeCostCategoryNot({
     this.and,
     this.costCategory,
     this.dimension,
@@ -625,17 +376,17 @@ final class CeCostCategoryRuleRuleNot {
     this.tags,
   });
 
-  final List<CeCostCategoryRuleRuleNotAnd>? and;
+  final List<CeCostCategoryAndAnd>? and;
 
-  final CeCostCategoryRuleRuleNotCostCategory? costCategory;
+  final CeCostCategoryAndCostCategory? costCategory;
 
-  final CeCostCategoryRuleRuleNotDimension? dimension;
+  final CeCostCategoryAndDimension? dimension;
 
-  final CeCostCategoryRuleRuleNotNot? not;
+  final CeCostCategoryAndNot? not;
 
-  final List<CeCostCategoryRuleRuleNotOr>? or;
+  final List<CeCostCategoryAndOr>? or;
 
-  final CeCostCategoryRuleRuleNotTags? tags;
+  final CeCostCategoryAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -644,359 +395,14 @@ final class CeCostCategoryRuleRuleNot {
     'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.and` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotAnd {
-  const CeCostCategoryRuleRuleNotAnd({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleNotAndCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleNotAndDimension? dimension;
-
-  final CeCostCategoryRuleRuleNotAndTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.and.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotAndCostCategory {
-  const CeCostCategoryRuleRuleNotAndCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.and.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotAndDimension {
-  const CeCostCategoryRuleRuleNotAndDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.and.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotAndTags {
-  const CeCostCategoryRuleRuleNotAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotCostCategory {
-  const CeCostCategoryRuleRuleNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotDimension {
-  const CeCostCategoryRuleRuleNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.not` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotNot {
-  const CeCostCategoryRuleRuleNotNot({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleNotNotCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleNotNotDimension? dimension;
-
-  final CeCostCategoryRuleRuleNotNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.not.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotNotCostCategory {
-  const CeCostCategoryRuleRuleNotNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.not.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotNotDimension {
-  const CeCostCategoryRuleRuleNotNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.not.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotNotTags {
-  const CeCostCategoryRuleRuleNotNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.or` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotOr {
-  const CeCostCategoryRuleRuleNotOr({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleNotOrCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleNotOrDimension? dimension;
-
-  final CeCostCategoryRuleRuleNotOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.or.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotOrCostCategory {
-  const CeCostCategoryRuleRuleNotOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.or.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotOrDimension {
-  const CeCostCategoryRuleRuleNotOrDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.or.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotOrTags {
-  const CeCostCategoryRuleRuleNotOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.not.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleNotTags {
-  const CeCostCategoryRuleRuleNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
 /// Typed helper for the `rule.rule.or` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleOr {
-  const CeCostCategoryRuleRuleOr({
+final class CeCostCategoryOr {
+  const CeCostCategoryOr({
     this.and,
     this.costCategory,
     this.dimension,
@@ -1005,17 +411,17 @@ final class CeCostCategoryRuleRuleOr {
     this.tags,
   });
 
-  final List<CeCostCategoryRuleRuleOrAnd>? and;
+  final List<CeCostCategoryAndAnd>? and;
 
-  final CeCostCategoryRuleRuleOrCostCategory? costCategory;
+  final CeCostCategoryAndCostCategory? costCategory;
 
-  final CeCostCategoryRuleRuleOrDimension? dimension;
+  final CeCostCategoryAndDimension? dimension;
 
-  final CeCostCategoryRuleRuleOrNot? not;
+  final CeCostCategoryAndNot? not;
 
-  final List<CeCostCategoryRuleRuleOrOr>? or;
+  final List<CeCostCategoryAndOr>? or;
 
-  final CeCostCategoryRuleRuleOrTags? tags;
+  final CeCostCategoryAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -1027,360 +433,15 @@ final class CeCostCategoryRuleRuleOr {
   };
 }
 
-/// Typed helper for the `rule.rule.or.and` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrAnd {
-  const CeCostCategoryRuleRuleOrAnd({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleOrAndCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleOrAndDimension? dimension;
-
-  final CeCostCategoryRuleRuleOrAndTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.and.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrAndCostCategory {
-  const CeCostCategoryRuleRuleOrAndCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.and.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrAndDimension {
-  const CeCostCategoryRuleRuleOrAndDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.and.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrAndTags {
-  const CeCostCategoryRuleRuleOrAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrCostCategory {
-  const CeCostCategoryRuleRuleOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrDimension {
-  const CeCostCategoryRuleRuleOrDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.not` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrNot {
-  const CeCostCategoryRuleRuleOrNot({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleOrNotCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleOrNotDimension? dimension;
-
-  final CeCostCategoryRuleRuleOrNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.not.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrNotCostCategory {
-  const CeCostCategoryRuleRuleOrNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.not.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrNotDimension {
-  const CeCostCategoryRuleRuleOrNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.not.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrNotTags {
-  const CeCostCategoryRuleRuleOrNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.or` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrOr {
-  const CeCostCategoryRuleRuleOrOr({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
-
-  final CeCostCategoryRuleRuleOrOrCostCategory? costCategory;
-
-  final CeCostCategoryRuleRuleOrOrDimension? dimension;
-
-  final CeCostCategoryRuleRuleOrOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_category': ?costCategory?.encode(),
-    'dimension': ?dimension?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.or.cost_category` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrOrCostCategory {
-  const CeCostCategoryRuleRuleOrOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.or.dimension` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrOrDimension {
-  const CeCostCategoryRuleRuleOrOrDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.or.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrOrTags {
-  const CeCostCategoryRuleRuleOrOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rule.rule.or.tags` block of
-/// `aws_ce_cost_category` (derived from provider schema).
-@immutable
-final class CeCostCategoryRuleRuleOrTags {
-  const CeCostCategoryRuleRuleOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `rule.rule.tags` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryRuleRuleTags {
-  const CeCostCategoryRuleRuleTags({this.key, this.matchOptions, this.values});
+final class CeCostCategoryRuleTags {
+  const CeCostCategoryRuleTags({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeCostCategoryRuleRuleTagsMatchOptions>>? matchOptions;
+  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -1390,22 +451,6 @@ final class CeCostCategoryRuleRuleTags {
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
-}
-
-/// `match_options` — derived from the provider schema description.
-enum CeCostCategoryRuleRuleTagsMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
-
-  const CeCostCategoryRuleRuleTagsMatchOptions(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `split_charge_rule` block of
@@ -1419,13 +464,13 @@ final class CeCostCategorySplitChargeRule {
     this.parameter,
   });
 
-  final TfArg<CeCostCategorySplitChargeRuleMethod> method;
+  final TfArg<CeCostCategoryMethod> method;
 
   final TfArg<String> source;
 
   final TfArg<List<String>> targets;
 
-  final List<CeCostCategorySplitChargeRuleParameter>? parameter;
+  final List<CeCostCategoryParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'method': method.toTfJson(),
@@ -1437,12 +482,12 @@ final class CeCostCategorySplitChargeRule {
 }
 
 /// `method` — derived from the provider schema description.
-enum CeCostCategorySplitChargeRuleMethod implements TerraformEnum {
+enum CeCostCategoryMethod implements TerraformEnum {
   fixed('FIXED'),
   proportional('PROPORTIONAL'),
   even('EVEN');
 
-  const CeCostCategorySplitChargeRuleMethod(this.terraformValue);
+  const CeCostCategoryMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1450,10 +495,10 @@ enum CeCostCategorySplitChargeRuleMethod implements TerraformEnum {
 /// Typed helper for the `split_charge_rule.parameter` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategorySplitChargeRuleParameter {
-  const CeCostCategorySplitChargeRuleParameter({this.type, this.values});
+final class CeCostCategoryParameter {
+  const CeCostCategoryParameter({this.type, this.values});
 
-  final TfArg<CeCostCategorySplitChargeRuleParameterType>? type;
+  final TfArg<CeCostCategoryParameterType>? type;
 
   final TfArg<List<String>>? values;
 
@@ -1464,10 +509,10 @@ final class CeCostCategorySplitChargeRuleParameter {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeCostCategorySplitChargeRuleParameterType implements TerraformEnum {
+enum CeCostCategoryParameterType implements TerraformEnum {
   allocationPercentages('ALLOCATION_PERCENTAGES');
 
-  const CeCostCategorySplitChargeRuleParameterType(this.terraformValue);
+  const CeCostCategoryParameterType(this.terraformValue);
   @override
   final String terraformValue;
 }

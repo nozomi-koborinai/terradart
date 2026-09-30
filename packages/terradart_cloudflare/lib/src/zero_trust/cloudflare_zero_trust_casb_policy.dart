@@ -18,9 +18,9 @@ final class ZeroTrustCasbPolicyActions {
     this.webhookConfigs,
   });
 
-  final List<ZeroTrustCasbPolicyActionsRemediationTypes>? remediationTypes;
+  final List<ZeroTrustCasbPolicyRemediationTypes>? remediationTypes;
 
-  final List<ZeroTrustCasbPolicyActionsWebhookConfigs>? webhookConfigs;
+  final List<ZeroTrustCasbPolicyWebhookConfigs>? webhookConfigs;
 
   Map<String, Object?> encode() => {
     if (remediationTypes != null)
@@ -33,10 +33,8 @@ final class ZeroTrustCasbPolicyActions {
 /// Typed helper for the `actions.remediation_types` block of
 /// `cloudflare_zero_trust_casb_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustCasbPolicyActionsRemediationTypes {
-  const ZeroTrustCasbPolicyActionsRemediationTypes({
-    required this.remediationTypeId,
-  });
+final class ZeroTrustCasbPolicyRemediationTypes {
+  const ZeroTrustCasbPolicyRemediationTypes({required this.remediationTypeId});
 
   final TfArg<String> remediationTypeId;
 
@@ -48,10 +46,8 @@ final class ZeroTrustCasbPolicyActionsRemediationTypes {
 /// Typed helper for the `actions.webhook_configs` block of
 /// `cloudflare_zero_trust_casb_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustCasbPolicyActionsWebhookConfigs {
-  const ZeroTrustCasbPolicyActionsWebhookConfigs({
-    required this.webhookConfigId,
-  });
+final class ZeroTrustCasbPolicyWebhookConfigs {
+  const ZeroTrustCasbPolicyWebhookConfigs({required this.webhookConfigId});
 
   final TfArg<String> webhookConfigId;
 

@@ -19,7 +19,7 @@ final class SsoadminInstanceAccessControlAttributesAttribute {
 
   final TfArg<String> key;
 
-  final List<SsoadminInstanceAccessControlAttributesAttributeValue> value;
+  final List<SsoadminInstanceAccessControlAttributesValue> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -30,10 +30,8 @@ final class SsoadminInstanceAccessControlAttributesAttribute {
 /// Typed helper for the `attribute.value` block of
 /// `aws_ssoadmin_instance_access_control_attributes` (derived from provider schema).
 @immutable
-final class SsoadminInstanceAccessControlAttributesAttributeValue {
-  const SsoadminInstanceAccessControlAttributesAttributeValue({
-    required this.source,
-  });
+final class SsoadminInstanceAccessControlAttributesValue {
+  const SsoadminInstanceAccessControlAttributesValue({required this.source});
 
   final TfArg<List<String>> source;
 

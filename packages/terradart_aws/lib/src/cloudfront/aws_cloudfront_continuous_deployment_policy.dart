@@ -37,16 +37,12 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
     this.singleWeightConfig,
   });
 
-  final TfArg<CloudfrontContinuousDeploymentPolicyTrafficConfigType> type;
+  final TfArg<CloudfrontContinuousDeploymentPolicyType> type;
 
-  final List<
-    CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig
-  >?
+  final List<CloudfrontContinuousDeploymentPolicySingleHeaderConfig>?
   singleHeaderConfig;
 
-  final List<
-    CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfig
-  >?
+  final List<CloudfrontContinuousDeploymentPolicySingleWeightConfig>?
   singleWeightConfig;
 
   Map<String, Object?> encode() => {
@@ -59,14 +55,11 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudfrontContinuousDeploymentPolicyTrafficConfigType
-    implements TerraformEnum {
+enum CloudfrontContinuousDeploymentPolicyType implements TerraformEnum {
   singleweight('SingleWeight'),
   singleheader('SingleHeader');
 
-  const CloudfrontContinuousDeploymentPolicyTrafficConfigType(
-    this.terraformValue,
-  );
+  const CloudfrontContinuousDeploymentPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -74,8 +67,8 @@ enum CloudfrontContinuousDeploymentPolicyTrafficConfigType
 /// Typed helper for the `traffic_config.single_header_config` block of
 /// `aws_cloudfront_continuous_deployment_policy` (derived from provider schema).
 @immutable
-final class CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig {
-  const CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig({
+final class CloudfrontContinuousDeploymentPolicySingleHeaderConfig {
+  const CloudfrontContinuousDeploymentPolicySingleHeaderConfig({
     required this.header,
     required this.value,
   });
@@ -93,17 +86,15 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig 
 /// Typed helper for the `traffic_config.single_weight_config` block of
 /// `aws_cloudfront_continuous_deployment_policy` (derived from provider schema).
 @immutable
-final class CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfig {
-  const CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfig({
+final class CloudfrontContinuousDeploymentPolicySingleWeightConfig {
+  const CloudfrontContinuousDeploymentPolicySingleWeightConfig({
     required this.weight,
     this.sessionStickinessConfig,
   });
 
   final TfArg<num> weight;
 
-  final List<
-    CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfigSessionStickinessConfig
-  >?
+  final List<CloudfrontContinuousDeploymentPolicySessionStickinessConfig>?
   sessionStickinessConfig;
 
   Map<String, Object?> encode() => {
@@ -118,8 +109,8 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfig 
 /// Typed helper for the `traffic_config.single_weight_config.session_stickiness_config` block of
 /// `aws_cloudfront_continuous_deployment_policy` (derived from provider schema).
 @immutable
-final class CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfigSessionStickinessConfig {
-  const CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfigSessionStickinessConfig({
+final class CloudfrontContinuousDeploymentPolicySessionStickinessConfig {
+  const CloudfrontContinuousDeploymentPolicySessionStickinessConfig({
     required this.idleTtl,
     required this.maximumTtl,
   });

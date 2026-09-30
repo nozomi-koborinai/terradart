@@ -18,13 +18,13 @@ sealed class VertexAiFeatureOnlineStoreFeatureviewSource {
   /// Sets `big_query_source`.
   const factory VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource(
     VertexAiFeatureOnlineStoreFeatureviewBigQuerySource bigQuerySource,
-  ) = VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource;
+  ) = VertexAiFeatureOnlineStoreFeatureviewBigQuerySourceChoice;
 
   /// Sets `feature_registry_source`.
   const factory VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource(
     VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource
     featureRegistrySource,
-  ) = VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource;
+  ) = VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,9 +37,9 @@ sealed class VertexAiFeatureOnlineStoreFeatureviewSource {
 }
 
 /// The [VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource] choice: sets `big_query_source`.
-final class VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource
+final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySourceChoice
     extends VertexAiFeatureOnlineStoreFeatureviewSource {
-  const VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource(
+  const VertexAiFeatureOnlineStoreFeatureviewBigQuerySourceChoice(
     this.bigQuerySource,
   );
 
@@ -60,9 +60,9 @@ final class VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource
 }
 
 /// The [VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource] choice: sets `feature_registry_source`.
-final class VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource
+final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceChoice
     extends VertexAiFeatureOnlineStoreFeatureviewSource {
-  const VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource(
+  const VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceChoice(
     this.featureRegistrySource,
   );
 
@@ -113,10 +113,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource {
 
   final TfArg<String>? projectNumber;
 
-  final List<
-    VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups
-  >
-  featureGroups;
+  final List<VertexAiFeatureOnlineStoreFeatureviewFeatureGroups> featureGroups;
 
   Map<String, Object?> encode() => {
     'project_number': ?projectNumber?.toTfJson(),
@@ -127,8 +124,8 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource {
 /// Typed helper for the `feature_registry_source.feature_groups` block of
 /// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
 @immutable
-final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups {
-  const VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups({
+final class VertexAiFeatureOnlineStoreFeatureviewFeatureGroups {
+  const VertexAiFeatureOnlineStoreFeatureviewFeatureGroups({
     required this.featureGroupId,
     required this.featureIds,
   });
@@ -227,7 +224,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 ///   source: .featureRegistrySource(
 ///     VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
 ///       featureGroups: [
-///         VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups(
+///         VertexAiFeatureOnlineStoreFeatureviewFeatureGroups(
 ///           featureGroupId: .literal('terradart_customer_features'),
 ///           featureIds: .literal(['feature_score']),
 ///         ),

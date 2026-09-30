@@ -10,8 +10,8 @@ const Set<String> _awsSagemakerHumanTaskUiSensitive = <String>{};
 /// Typed helper for the `ui_template` block of
 /// `aws_sagemaker_human_task_ui` (derived from provider schema).
 @immutable
-final class SagemakerHumanTaskUiUiTemplate {
-  const SagemakerHumanTaskUiUiTemplate({this.content});
+final class SagemakerHumanTaskUiTemplate {
+  const SagemakerHumanTaskUiTemplate({this.content});
 
   final TfArg<String>? content;
 
@@ -27,7 +27,7 @@ final class AwsSagemakerHumanTaskUi extends Resource {
     required TfArg<String> humanTaskUiName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required SagemakerHumanTaskUiUiTemplate uiTemplate,
+    required SagemakerHumanTaskUiTemplate uiTemplate,
     super.lifecycle,
     super.dependsOn,
     super.provider,

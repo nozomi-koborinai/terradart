@@ -15,8 +15,8 @@ const Set<String> _awsSagemakerMonitoringScheduleSensitive = <String>{};
 /// Typed helper for the `monitoring_schedule_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfig({
+final class SagemakerMonitoringScheduleConfig {
+  const SagemakerMonitoringScheduleConfig({
     this.monitoringJobDefinitionName,
     required this.monitoringType,
     this.monitoringJobDefinition,
@@ -25,14 +25,12 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfig {
 
   final TfArg<String>? monitoringJobDefinitionName;
 
-  final TfArg<SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType>
-  monitoringType;
+  final TfArg<SagemakerMonitoringScheduleMonitoringType> monitoringType;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinition?
+  final SagemakerMonitoringScheduleMonitoringJobDefinition?
   monitoringJobDefinition;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigScheduleConfig?
-  scheduleConfig;
+  final SagemakerMonitoringScheduleScheduleConfig? scheduleConfig;
 
   Map<String, Object?> encode() => {
     'monitoring_job_definition_name': ?monitoringJobDefinitionName?.toTfJson(),
@@ -43,16 +41,13 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfig {
 }
 
 /// `monitoring_type` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType
-    implements TerraformEnum {
+enum SagemakerMonitoringScheduleMonitoringType implements TerraformEnum {
   dataquality('DataQuality'),
   modelquality('ModelQuality'),
   modelbias('ModelBias'),
   modelexplainability('ModelExplainability');
 
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType(
-    this.terraformValue,
-  );
+  const SagemakerMonitoringScheduleMonitoringType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -60,8 +55,8 @@ enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinition {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinition({
+final class SagemakerMonitoringScheduleMonitoringJobDefinition {
+  const SagemakerMonitoringScheduleMonitoringJobDefinition({
     this.environment,
     required this.roleArn,
     this.baseline,
@@ -77,28 +72,21 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final RefTo<AwsIamRole> roleArn;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaseline?
-  baseline;
+  final SagemakerMonitoringScheduleBaseline? baseline;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringAppSpecification
+  final SagemakerMonitoringScheduleMonitoringAppSpecification
   monitoringAppSpecification;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputs
-  monitoringInputs;
+  final SagemakerMonitoringScheduleMonitoringInputs monitoringInputs;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfig
+  final SagemakerMonitoringScheduleMonitoringOutputConfig
   monitoringOutputConfig;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResources
-  monitoringResources;
+  final SagemakerMonitoringScheduleMonitoringResources monitoringResources;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfig?
-  networkConfig;
+  final SagemakerMonitoringScheduleNetworkConfig? networkConfig;
 
-  final List<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionStoppingCondition
-  >?
-  stoppingCondition;
+  final List<SagemakerMonitoringScheduleStoppingCondition>? stoppingCondition;
 
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
@@ -117,8 +105,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.baseline` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaseline {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaseline({
+final class SagemakerMonitoringScheduleBaseline {
+  const SagemakerMonitoringScheduleBaseline({
     this.baseliningJobName,
     this.constraintsResource,
     this.statisticsResource,
@@ -126,11 +114,9 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<String>? baseliningJobName;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineConstraintsResource?
-  constraintsResource;
+  final SagemakerMonitoringScheduleConstraintsResource? constraintsResource;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineStatisticsResource?
-  statisticsResource;
+  final SagemakerMonitoringScheduleStatisticsResource? statisticsResource;
 
   Map<String, Object?> encode() => {
     'baselining_job_name': ?baseliningJobName?.toTfJson(),
@@ -142,10 +128,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.baseline.constraints_resource` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineConstraintsResource {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineConstraintsResource({
-    this.s3Uri,
-  });
+final class SagemakerMonitoringScheduleConstraintsResource {
+  const SagemakerMonitoringScheduleConstraintsResource({this.s3Uri});
 
   final TfArg<String>? s3Uri;
 
@@ -155,10 +139,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.baseline.statistics_resource` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineStatisticsResource {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaselineStatisticsResource({
-    this.s3Uri,
-  });
+final class SagemakerMonitoringScheduleStatisticsResource {
+  const SagemakerMonitoringScheduleStatisticsResource({this.s3Uri});
 
   final TfArg<String>? s3Uri;
 
@@ -168,8 +150,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_app_specification` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringAppSpecification {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringAppSpecification({
+final class SagemakerMonitoringScheduleMonitoringAppSpecification {
+  const SagemakerMonitoringScheduleMonitoringAppSpecification({
     this.containerArguments,
     this.containerEntrypoint,
     required this.imageUri,
@@ -200,17 +182,15 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputs {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputs({
+final class SagemakerMonitoringScheduleMonitoringInputs {
+  const SagemakerMonitoringScheduleMonitoringInputs({
     this.batchTransformInput,
     this.endpointInput,
   });
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInput?
-  batchTransformInput;
+  final SagemakerMonitoringScheduleBatchTransformInput? batchTransformInput;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInput?
-  endpointInput;
+  final SagemakerMonitoringScheduleEndpointInput? endpointInput;
 
   Map<String, Object?> encode() => {
     'batch_transform_input': ?batchTransformInput?.encode(),
@@ -221,8 +201,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInput {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInput({
+final class SagemakerMonitoringScheduleBatchTransformInput {
+  const SagemakerMonitoringScheduleBatchTransformInput({
     required this.dataCapturedDestinationS3Uri,
     this.endTimeOffset,
     this.excludeFeaturesAttribute,
@@ -253,20 +233,14 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType
-  >?
+  final TfArg<SagemakerMonitoringScheduleS3DataDistributionType>?
   s3DataDistributionType;
 
-  final TfArg<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode
-  >?
-  s3InputMode;
+  final TfArg<SagemakerMonitoringScheduleS3InputMode>? s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormat
-  datasetFormat;
+  final SagemakerMonitoringScheduleDatasetFormat datasetFormat;
 
   Map<String, Object?> encode() => {
     'data_captured_destination_s3_uri': dataCapturedDestinationS3Uri.toTfJson(),
@@ -286,27 +260,22 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType
+enum SagemakerMonitoringScheduleS3DataDistributionType
     implements TerraformEnum {
   fullyreplicated('FullyReplicated'),
   shardedbys3key('ShardedByS3Key');
 
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType(
-    this.terraformValue,
-  );
+  const SagemakerMonitoringScheduleS3DataDistributionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `s3_input_mode` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode
-    implements TerraformEnum {
+enum SagemakerMonitoringScheduleS3InputMode implements TerraformEnum {
   pipe('Pipe'),
   file('File');
 
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode(
-    this.terraformValue,
-  );
+  const SagemakerMonitoringScheduleS3InputMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -314,17 +283,12 @@ enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionM
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input.dataset_format` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormat {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormat({
-    this.csv,
-    this.json,
-  });
+final class SagemakerMonitoringScheduleDatasetFormat {
+  const SagemakerMonitoringScheduleDatasetFormat({this.csv, this.json});
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatCsv?
-  csv;
+  final SagemakerMonitoringScheduleCsv? csv;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatJson?
-  json;
+  final SagemakerMonitoringScheduleJson? json;
 
   Map<String, Object?> encode() => {
     'csv': ?csv?.encode(),
@@ -335,10 +299,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input.dataset_format.csv` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatCsv {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatCsv({
-    this.header,
-  });
+final class SagemakerMonitoringScheduleCsv {
+  const SagemakerMonitoringScheduleCsv({this.header});
 
   final TfArg<bool>? header;
 
@@ -348,10 +310,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input.dataset_format.json` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatJson {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputDatasetFormatJson({
-    this.line,
-  });
+final class SagemakerMonitoringScheduleJson {
+  const SagemakerMonitoringScheduleJson({this.line});
 
   final TfArg<bool>? line;
 
@@ -361,8 +321,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.endpoint_input` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInput {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInput({
+final class SagemakerMonitoringScheduleEndpointInput {
+  const SagemakerMonitoringScheduleEndpointInput({
     this.endTimeOffset,
     required this.endpointName,
     this.excludeFeaturesAttribute,
@@ -392,15 +352,10 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType
-  >?
+  final TfArg<SagemakerMonitoringScheduleS3DataDistributionType>?
   s3DataDistributionType;
 
-  final TfArg<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode
-  >?
-  s3InputMode;
+  final TfArg<SagemakerMonitoringScheduleS3InputMode>? s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
@@ -420,45 +375,18 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
   };
 }
 
-/// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType
-    implements TerraformEnum {
-  fullyreplicated('FullyReplicated'),
-  shardedbys3key('ShardedByS3Key');
-
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_input_mode` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode
-    implements TerraformEnum {
-  pipe('Pipe'),
-  file('File');
-
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_output_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfig({
+final class SagemakerMonitoringScheduleMonitoringOutputConfig {
+  const SagemakerMonitoringScheduleMonitoringOutputConfig({
     this.kmsKeyId,
     required this.monitoringOutputs,
   });
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputs
-  monitoringOutputs;
+  final SagemakerMonitoringScheduleMonitoringOutputs monitoringOutputs;
 
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -469,13 +397,10 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_output_config.monitoring_outputs` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputs {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputs({
-    required this.s3Output,
-  });
+final class SagemakerMonitoringScheduleMonitoringOutputs {
+  const SagemakerMonitoringScheduleMonitoringOutputs({required this.s3Output});
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3Output
-  s3Output;
+  final SagemakerMonitoringScheduleS3Output s3Output;
 
   Map<String, Object?> encode() => {'s3_output': s3Output.encode()};
 }
@@ -483,8 +408,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_output_config.monitoring_outputs.s3_output` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3Output {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3Output({
+final class SagemakerMonitoringScheduleS3Output {
+  const SagemakerMonitoringScheduleS3Output({
     required this.localPath,
     this.s3UploadMode,
     required this.s3Uri,
@@ -492,10 +417,7 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<String> localPath;
 
-  final TfArg<
-    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode
-  >?
-  s3UploadMode;
+  final TfArg<SagemakerMonitoringScheduleS3UploadMode>? s3UploadMode;
 
   final TfArg<String> s3Uri;
 
@@ -507,14 +429,11 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 }
 
 /// `s3_upload_mode` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode
-    implements TerraformEnum {
+enum SagemakerMonitoringScheduleS3UploadMode implements TerraformEnum {
   continuous('Continuous'),
   endofjob('EndOfJob');
 
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode(
-    this.terraformValue,
-  );
+  const SagemakerMonitoringScheduleS3UploadMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -522,13 +441,12 @@ enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionM
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_resources` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResources {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResources({
+final class SagemakerMonitoringScheduleMonitoringResources {
+  const SagemakerMonitoringScheduleMonitoringResources({
     required this.clusterConfig,
   });
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResourcesClusterConfig
-  clusterConfig;
+  final SagemakerMonitoringScheduleClusterConfig clusterConfig;
 
   Map<String, Object?> encode() => {'cluster_config': clusterConfig.encode()};
 }
@@ -536,8 +454,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_resources.cluster_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResourcesClusterConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringResourcesClusterConfig({
+final class SagemakerMonitoringScheduleClusterConfig {
+  const SagemakerMonitoringScheduleClusterConfig({
     required this.instanceCount,
     required this.instanceType,
     this.volumeKmsKeyId,
@@ -563,8 +481,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.network_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfig({
+final class SagemakerMonitoringScheduleNetworkConfig {
+  const SagemakerMonitoringScheduleNetworkConfig({
     this.enableInterContainerTrafficEncryption,
     this.enableNetworkIsolation,
     this.vpcConfig,
@@ -574,8 +492,7 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<bool>? enableNetworkIsolation;
 
-  final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfigVpcConfig?
-  vpcConfig;
+  final SagemakerMonitoringScheduleVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'enable_inter_container_traffic_encryption':
@@ -588,8 +505,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.network_config.vpc_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfigVpcConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionNetworkConfigVpcConfig({
+final class SagemakerMonitoringScheduleVpcConfig {
+  const SagemakerMonitoringScheduleVpcConfig({
     required this.securityGroupIds,
     required this.subnets,
   });
@@ -607,8 +524,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.stopping_condition` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionStoppingCondition {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionStoppingCondition({
+final class SagemakerMonitoringScheduleStoppingCondition {
+  const SagemakerMonitoringScheduleStoppingCondition({
     this.maxRuntimeInSeconds,
   });
 
@@ -622,8 +539,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 /// Typed helper for the `monitoring_schedule_config.schedule_config` block of
 /// `aws_sagemaker_monitoring_schedule` (derived from provider schema).
 @immutable
-final class SagemakerMonitoringScheduleMonitoringScheduleConfigScheduleConfig {
-  const SagemakerMonitoringScheduleMonitoringScheduleConfigScheduleConfig({
+final class SagemakerMonitoringScheduleScheduleConfig {
+  const SagemakerMonitoringScheduleScheduleConfig({
     required this.scheduleExpression,
   });
 
@@ -643,8 +560,7 @@ final class AwsSagemakerMonitoringSchedule extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required SagemakerMonitoringScheduleMonitoringScheduleConfig
-    monitoringScheduleConfig,
+    required SagemakerMonitoringScheduleConfig monitoringScheduleConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

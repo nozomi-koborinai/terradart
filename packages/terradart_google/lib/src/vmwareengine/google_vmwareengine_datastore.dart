@@ -18,10 +18,9 @@ final class VmwareengineDatastoreNfsDatastore {
     this.thirdPartyFileService,
   });
 
-  final VmwareengineDatastoreNfsDatastoreGoogleFileService? googleFileService;
+  final VmwareengineDatastoreGoogleFileService? googleFileService;
 
-  final VmwareengineDatastoreNfsDatastoreThirdPartyFileService?
-  thirdPartyFileService;
+  final VmwareengineDatastoreThirdPartyFileService? thirdPartyFileService;
 
   Map<String, Object?> encode() => {
     'google_file_service': ?googleFileService?.encode(),
@@ -32,8 +31,8 @@ final class VmwareengineDatastoreNfsDatastore {
 /// Typed helper for the `nfs_datastore.google_file_service` block of
 /// `google_vmwareengine_datastore` (derived from provider schema).
 @immutable
-final class VmwareengineDatastoreNfsDatastoreGoogleFileService {
-  const VmwareengineDatastoreNfsDatastoreGoogleFileService({
+final class VmwareengineDatastoreGoogleFileService {
+  const VmwareengineDatastoreGoogleFileService({
     this.filestoreInstance,
     this.netappVolume,
   });
@@ -51,8 +50,8 @@ final class VmwareengineDatastoreNfsDatastoreGoogleFileService {
 /// Typed helper for the `nfs_datastore.third_party_file_service` block of
 /// `google_vmwareengine_datastore` (derived from provider schema).
 @immutable
-final class VmwareengineDatastoreNfsDatastoreThirdPartyFileService {
-  const VmwareengineDatastoreNfsDatastoreThirdPartyFileService({
+final class VmwareengineDatastoreThirdPartyFileService {
+  const VmwareengineDatastoreThirdPartyFileService({
     required this.fileShare,
     required this.network,
     required this.servers,

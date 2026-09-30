@@ -16,9 +16,9 @@ const Set<String> _cloudflareZeroTrustAccessInfrastructureTargetSensitive =
 final class ZeroTrustAccessInfrastructureTargetIp {
   const ZeroTrustAccessInfrastructureTargetIp({this.ipv4, this.ipv6});
 
-  final ZeroTrustAccessInfrastructureTargetIpIpv4? ipv4;
+  final ZeroTrustAccessInfrastructureTargetIpv4? ipv4;
 
-  final ZeroTrustAccessInfrastructureTargetIpIpv6? ipv6;
+  final ZeroTrustAccessInfrastructureTargetIpv6? ipv6;
 
   Map<String, Object?> encode() => {
     'ipv4': ?ipv4?.encode(),
@@ -29,8 +29,8 @@ final class ZeroTrustAccessInfrastructureTargetIp {
 /// Typed helper for the `ip.ipv4` block of
 /// `cloudflare_zero_trust_access_infrastructure_target` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessInfrastructureTargetIpIpv4 {
-  const ZeroTrustAccessInfrastructureTargetIpIpv4({
+final class ZeroTrustAccessInfrastructureTargetIpv4 {
+  const ZeroTrustAccessInfrastructureTargetIpv4({
     this.ipAddr,
     this.virtualNetworkId,
   });
@@ -48,8 +48,8 @@ final class ZeroTrustAccessInfrastructureTargetIpIpv4 {
 /// Typed helper for the `ip.ipv6` block of
 /// `cloudflare_zero_trust_access_infrastructure_target` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessInfrastructureTargetIpIpv6 {
-  const ZeroTrustAccessInfrastructureTargetIpIpv6({
+final class ZeroTrustAccessInfrastructureTargetIpv6 {
+  const ZeroTrustAccessInfrastructureTargetIpv6({
     this.ipAddr,
     this.virtualNetworkId,
   });

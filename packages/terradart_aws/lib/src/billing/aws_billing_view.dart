@@ -17,11 +17,11 @@ final class BillingViewDataFilterExpression {
     this.timeRange,
   });
 
-  final List<BillingViewDataFilterExpressionDimensions>? dimensions;
+  final List<BillingViewDimensions>? dimensions;
 
   final List<BillingViewDataFilterExpressionTags>? tags;
 
-  final List<BillingViewDataFilterExpressionTimeRange>? timeRange;
+  final List<BillingViewTimeRange>? timeRange;
 
   Map<String, Object?> encode() => {
     if (dimensions != null)
@@ -35,13 +35,10 @@ final class BillingViewDataFilterExpression {
 /// Typed helper for the `data_filter_expression.dimensions` block of
 /// `aws_billing_view` (derived from provider schema).
 @immutable
-final class BillingViewDataFilterExpressionDimensions {
-  const BillingViewDataFilterExpressionDimensions({
-    required this.key,
-    required this.values,
-  });
+final class BillingViewDimensions {
+  const BillingViewDimensions({required this.key, required this.values});
 
-  final TfArg<BillingViewDataFilterExpressionDimensionsKey> key;
+  final TfArg<BillingViewKey> key;
 
   final TfArg<List<String>> values;
 
@@ -52,10 +49,10 @@ final class BillingViewDataFilterExpressionDimensions {
 }
 
 /// `key` — derived from the provider schema description.
-enum BillingViewDataFilterExpressionDimensionsKey implements TerraformEnum {
+enum BillingViewKey implements TerraformEnum {
   linkedAccount('LINKED_ACCOUNT');
 
-  const BillingViewDataFilterExpressionDimensionsKey(this.terraformValue);
+  const BillingViewKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -82,8 +79,8 @@ final class BillingViewDataFilterExpressionTags {
 /// Typed helper for the `data_filter_expression.time_range` block of
 /// `aws_billing_view` (derived from provider schema).
 @immutable
-final class BillingViewDataFilterExpressionTimeRange {
-  const BillingViewDataFilterExpressionTimeRange({
+final class BillingViewTimeRange {
+  const BillingViewTimeRange({
     required this.beginDateInclusive,
     required this.endDateInclusive,
   });

@@ -31,13 +31,13 @@ final class EventarcPipelineDestinations {
 
   final TfArg<String>? workflow;
 
-  final EventarcPipelineDestinationsAuthenticationConfig? authenticationConfig;
+  final EventarcPipelineAuthenticationConfig? authenticationConfig;
 
-  final EventarcPipelineDestinationsHttpEndpoint? httpEndpoint;
+  final EventarcPipelineHttpEndpoint? httpEndpoint;
 
-  final EventarcPipelineDestinationsNetworkConfig? networkConfig;
+  final EventarcPipelineNetworkConfig? networkConfig;
 
-  final EventarcPipelineDestinationsOutputPayloadFormat? outputPayloadFormat;
+  final EventarcPipelineOutputPayloadFormat? outputPayloadFormat;
 
   Map<String, Object?> encode() => {
     'message_bus': ?messageBus?.toTfJson(),
@@ -53,15 +53,15 @@ final class EventarcPipelineDestinations {
 /// Typed helper for the `destinations.authentication_config` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsAuthenticationConfig {
-  const EventarcPipelineDestinationsAuthenticationConfig({
+final class EventarcPipelineAuthenticationConfig {
+  const EventarcPipelineAuthenticationConfig({
     this.googleOidc,
     this.oauthToken,
   });
 
-  final EventarcPipelineDestinationsAuthenticationConfigGoogleOidc? googleOidc;
+  final EventarcPipelineGoogleOidc? googleOidc;
 
-  final EventarcPipelineDestinationsAuthenticationConfigOauthToken? oauthToken;
+  final EventarcPipelineOauthToken? oauthToken;
 
   Map<String, Object?> encode() => {
     'google_oidc': ?googleOidc?.encode(),
@@ -72,8 +72,8 @@ final class EventarcPipelineDestinationsAuthenticationConfig {
 /// Typed helper for the `destinations.authentication_config.google_oidc` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsAuthenticationConfigGoogleOidc {
-  const EventarcPipelineDestinationsAuthenticationConfigGoogleOidc({
+final class EventarcPipelineGoogleOidc {
+  const EventarcPipelineGoogleOidc({
     this.audience,
     required this.serviceAccount,
   });
@@ -91,11 +91,8 @@ final class EventarcPipelineDestinationsAuthenticationConfigGoogleOidc {
 /// Typed helper for the `destinations.authentication_config.oauth_token` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsAuthenticationConfigOauthToken {
-  const EventarcPipelineDestinationsAuthenticationConfigOauthToken({
-    this.scope,
-    required this.serviceAccount,
-  });
+final class EventarcPipelineOauthToken {
+  const EventarcPipelineOauthToken({this.scope, required this.serviceAccount});
 
   final TfArg<String>? scope;
 
@@ -110,8 +107,8 @@ final class EventarcPipelineDestinationsAuthenticationConfigOauthToken {
 /// Typed helper for the `destinations.http_endpoint` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsHttpEndpoint {
-  const EventarcPipelineDestinationsHttpEndpoint({
+final class EventarcPipelineHttpEndpoint {
+  const EventarcPipelineHttpEndpoint({
     this.messageBindingTemplate,
     required this.uri,
   });
@@ -129,8 +126,8 @@ final class EventarcPipelineDestinationsHttpEndpoint {
 /// Typed helper for the `destinations.network_config` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsNetworkConfig {
-  const EventarcPipelineDestinationsNetworkConfig({this.networkAttachment});
+final class EventarcPipelineNetworkConfig {
+  const EventarcPipelineNetworkConfig({this.networkAttachment});
 
   final TfArg<String>? networkAttachment;
 
@@ -142,18 +139,18 @@ final class EventarcPipelineDestinationsNetworkConfig {
 /// Typed helper for the `destinations.output_payload_format` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineDestinationsOutputPayloadFormat {
-  const EventarcPipelineDestinationsOutputPayloadFormat({
+final class EventarcPipelineOutputPayloadFormat {
+  const EventarcPipelineOutputPayloadFormat({
     this.avro,
     this.json,
     this.protobuf,
   });
 
-  final EventarcPipelineDestinationsOutputPayloadFormatAvro? avro;
+  final EventarcPipelineAvro? avro;
 
-  final EventarcPipelineDestinationsOutputPayloadFormatJson? json;
+  final EventarcPipelineJson? json;
 
-  final EventarcPipelineDestinationsOutputPayloadFormatProtobuf? protobuf;
+  final EventarcPipelineProtobuf? protobuf;
 
   Map<String, Object?> encode() => {
     'avro': ?avro?.encode(),
@@ -162,13 +159,12 @@ final class EventarcPipelineDestinationsOutputPayloadFormat {
   };
 }
 
-/// Typed helper for the `destinations.output_payload_format.avro` block of
+/// Typed helper for the `input_payload_format.avro` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EventarcPipelineDestinationsOutputPayloadFormatAvro {
-  const EventarcPipelineDestinationsOutputPayloadFormatAvro({
-    this.schemaDefinition,
-  });
+final class EventarcPipelineAvro {
+  const EventarcPipelineAvro({this.schemaDefinition});
 
   final TfArg<String>? schemaDefinition;
 
@@ -177,22 +173,22 @@ final class EventarcPipelineDestinationsOutputPayloadFormatAvro {
   };
 }
 
-/// Typed helper for the `destinations.output_payload_format.json` block of
+/// Typed helper for the `input_payload_format.json` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EventarcPipelineDestinationsOutputPayloadFormatJson {
-  const EventarcPipelineDestinationsOutputPayloadFormatJson();
+final class EventarcPipelineJson {
+  const EventarcPipelineJson();
 
   Map<String, Object?> encode() => {};
 }
 
-/// Typed helper for the `destinations.output_payload_format.protobuf` block of
+/// Typed helper for the `input_payload_format.protobuf` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EventarcPipelineDestinationsOutputPayloadFormatProtobuf {
-  const EventarcPipelineDestinationsOutputPayloadFormatProtobuf({
-    this.schemaDefinition,
-  });
+final class EventarcPipelineProtobuf {
+  const EventarcPipelineProtobuf({this.schemaDefinition});
 
   final TfArg<String>? schemaDefinition;
 
@@ -211,51 +207,16 @@ final class EventarcPipelineInputPayloadFormat {
     this.protobuf,
   });
 
-  final EventarcPipelineInputPayloadFormatAvro? avro;
+  final EventarcPipelineAvro? avro;
 
-  final EventarcPipelineInputPayloadFormatJson? json;
+  final EventarcPipelineJson? json;
 
-  final EventarcPipelineInputPayloadFormatProtobuf? protobuf;
+  final EventarcPipelineProtobuf? protobuf;
 
   Map<String, Object?> encode() => {
     'avro': ?avro?.encode(),
     'json': ?json?.encode(),
     'protobuf': ?protobuf?.encode(),
-  };
-}
-
-/// Typed helper for the `input_payload_format.avro` block of
-/// `google_eventarc_pipeline` (derived from provider schema).
-@immutable
-final class EventarcPipelineInputPayloadFormatAvro {
-  const EventarcPipelineInputPayloadFormatAvro({this.schemaDefinition});
-
-  final TfArg<String>? schemaDefinition;
-
-  Map<String, Object?> encode() => {
-    'schema_definition': ?schemaDefinition?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `input_payload_format.json` block of
-/// `google_eventarc_pipeline` (derived from provider schema).
-@immutable
-final class EventarcPipelineInputPayloadFormatJson {
-  const EventarcPipelineInputPayloadFormatJson();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `input_payload_format.protobuf` block of
-/// `google_eventarc_pipeline` (derived from provider schema).
-@immutable
-final class EventarcPipelineInputPayloadFormatProtobuf {
-  const EventarcPipelineInputPayloadFormatProtobuf({this.schemaDefinition});
-
-  final TfArg<String>? schemaDefinition;
-
-  Map<String, Object?> encode() => {
-    'schema_definition': ?schemaDefinition?.toTfJson(),
   };
 }
 
@@ -265,13 +226,13 @@ final class EventarcPipelineInputPayloadFormatProtobuf {
 final class EventarcPipelineLoggingConfig {
   const EventarcPipelineLoggingConfig({this.logSeverity});
 
-  final TfArg<EventarcPipelineLoggingConfigLogSeverity>? logSeverity;
+  final TfArg<EventarcPipelineLogSeverity>? logSeverity;
 
   Map<String, Object?> encode() => {'log_severity': ?logSeverity?.toTfJson()};
 }
 
 /// `log_severity` — derived from the provider schema description.
-enum EventarcPipelineLoggingConfigLogSeverity implements TerraformEnum {
+enum EventarcPipelineLogSeverity implements TerraformEnum {
   none('NONE'),
   debug('DEBUG'),
   info('INFO'),
@@ -282,7 +243,7 @@ enum EventarcPipelineLoggingConfigLogSeverity implements TerraformEnum {
   alert('ALERT'),
   emergency('EMERGENCY');
 
-  const EventarcPipelineLoggingConfigLogSeverity(this.terraformValue);
+  const EventarcPipelineLogSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -293,7 +254,7 @@ enum EventarcPipelineLoggingConfigLogSeverity implements TerraformEnum {
 final class EventarcPipelineMediations {
   const EventarcPipelineMediations({this.transformation});
 
-  final EventarcPipelineMediationsTransformation? transformation;
+  final EventarcPipelineTransformation? transformation;
 
   Map<String, Object?> encode() => {
     'transformation': ?transformation?.encode(),
@@ -303,8 +264,8 @@ final class EventarcPipelineMediations {
 /// Typed helper for the `mediations.transformation` block of
 /// `google_eventarc_pipeline` (derived from provider schema).
 @immutable
-final class EventarcPipelineMediationsTransformation {
-  const EventarcPipelineMediationsTransformation({this.transformationTemplate});
+final class EventarcPipelineTransformation {
+  const EventarcPipelineTransformation({this.transformationTemplate});
 
   final TfArg<String>? transformationTemplate;
 

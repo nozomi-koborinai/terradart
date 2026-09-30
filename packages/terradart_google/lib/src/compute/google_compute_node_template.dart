@@ -146,17 +146,17 @@ final class ComputeNodeTemplateNodeTypeFlexibility {
 final class ComputeNodeTemplateServerBinding {
   const ComputeNodeTemplateServerBinding({required this.type});
 
-  final TfArg<ComputeNodeTemplateServerBindingType> type;
+  final TfArg<ComputeNodeTemplateType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeNodeTemplateServerBindingType implements TerraformEnum {
+enum ComputeNodeTemplateType implements TerraformEnum {
   restartNodeOnAnyServer('RESTART_NODE_ON_ANY_SERVER'),
   restartNodeOnMinimalServers('RESTART_NODE_ON_MINIMAL_SERVERS');
 
-  const ComputeNodeTemplateServerBindingType(this.terraformValue);
+  const ComputeNodeTemplateType(this.terraformValue);
   @override
   final String terraformValue;
 }

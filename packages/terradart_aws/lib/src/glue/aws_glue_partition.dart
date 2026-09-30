@@ -45,13 +45,13 @@ final class GluePartitionStorageDescriptor {
 
   final TfArg<bool>? storedAsSubDirectories;
 
-  final List<GluePartitionStorageDescriptorColumns>? columns;
+  final List<GluePartitionColumns>? columns;
 
-  final GluePartitionStorageDescriptorSerDeInfo? serDeInfo;
+  final GluePartitionSerDeInfo? serDeInfo;
 
-  final GluePartitionStorageDescriptorSkewedInfo? skewedInfo;
+  final GluePartitionSkewedInfo? skewedInfo;
 
-  final List<GluePartitionStorageDescriptorSortColumns>? sortColumns;
+  final List<GluePartitionSortColumns>? sortColumns;
 
   Map<String, Object?> encode() => {
     'additional_locations': ?additionalLocations?.toTfJson(),
@@ -74,12 +74,8 @@ final class GluePartitionStorageDescriptor {
 /// Typed helper for the `storage_descriptor.columns` block of
 /// `aws_glue_partition` (derived from provider schema).
 @immutable
-final class GluePartitionStorageDescriptorColumns {
-  const GluePartitionStorageDescriptorColumns({
-    this.comment,
-    required this.name,
-    this.type,
-  });
+final class GluePartitionColumns {
+  const GluePartitionColumns({this.comment, required this.name, this.type});
 
   final TfArg<String>? comment;
 
@@ -97,8 +93,8 @@ final class GluePartitionStorageDescriptorColumns {
 /// Typed helper for the `storage_descriptor.ser_de_info` block of
 /// `aws_glue_partition` (derived from provider schema).
 @immutable
-final class GluePartitionStorageDescriptorSerDeInfo {
-  const GluePartitionStorageDescriptorSerDeInfo({
+final class GluePartitionSerDeInfo {
+  const GluePartitionSerDeInfo({
     this.name,
     this.parameters,
     this.serializationLibrary,
@@ -120,8 +116,8 @@ final class GluePartitionStorageDescriptorSerDeInfo {
 /// Typed helper for the `storage_descriptor.skewed_info` block of
 /// `aws_glue_partition` (derived from provider schema).
 @immutable
-final class GluePartitionStorageDescriptorSkewedInfo {
-  const GluePartitionStorageDescriptorSkewedInfo({
+final class GluePartitionSkewedInfo {
+  const GluePartitionSkewedInfo({
     this.skewedColumnNames,
     this.skewedColumnValueLocationMaps,
     this.skewedColumnValues,
@@ -144,8 +140,8 @@ final class GluePartitionStorageDescriptorSkewedInfo {
 /// Typed helper for the `storage_descriptor.sort_columns` block of
 /// `aws_glue_partition` (derived from provider schema).
 @immutable
-final class GluePartitionStorageDescriptorSortColumns {
-  const GluePartitionStorageDescriptorSortColumns({
+final class GluePartitionSortColumns {
+  const GluePartitionSortColumns({
     required this.column,
     required this.sortOrder,
   });

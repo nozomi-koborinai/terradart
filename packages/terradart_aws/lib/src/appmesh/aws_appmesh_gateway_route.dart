@@ -15,7 +15,7 @@ final class AppmeshGatewayRouteSpec {
 
   final TfArg<num>? priority;
 
-  final AppmeshGatewayRouteSpecRoute route;
+  final AppmeshGatewayRouteRoute route;
 
   Map<String, Object?> encode() => {
     'priority': ?priority?.toTfJson(),
@@ -27,23 +27,23 @@ final class AppmeshGatewayRouteSpec {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.grpcRoute(...)`.
-sealed class AppmeshGatewayRouteSpecRoute {
-  const AppmeshGatewayRouteSpecRoute();
+sealed class AppmeshGatewayRouteRoute {
+  const AppmeshGatewayRouteRoute();
 
   /// Sets `grpc_route`.
-  const factory AppmeshGatewayRouteSpecRoute.grpcRoute(
-    AppmeshGatewayRouteSpecGrpcRoute grpcRoute,
-  ) = AppmeshGatewayRouteSpecRouteGrpcRoute;
+  const factory AppmeshGatewayRouteRoute.grpcRoute(
+    AppmeshGatewayRouteGrpcRoute grpcRoute,
+  ) = AppmeshGatewayRouteGrpcRouteChoice;
 
   /// Sets `http2_route`.
-  const factory AppmeshGatewayRouteSpecRoute.http2Route(
-    AppmeshGatewayRouteSpecHttp2Route http2Route,
-  ) = AppmeshGatewayRouteSpecRouteHttp2Route;
+  const factory AppmeshGatewayRouteRoute.http2Route(
+    AppmeshGatewayRouteHttp2Route http2Route,
+  ) = AppmeshGatewayRouteHttp2RouteChoice;
 
   /// Sets `http_route`.
-  const factory AppmeshGatewayRouteSpecRoute.httpRoute(
-    AppmeshGatewayRouteSpecHttpRoute httpRoute,
-  ) = AppmeshGatewayRouteSpecRouteHttpRoute;
+  const factory AppmeshGatewayRouteRoute.httpRoute(
+    AppmeshGatewayRouteHttpRoute httpRoute,
+  ) = AppmeshGatewayRouteHttpRouteChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -51,12 +51,12 @@ sealed class AppmeshGatewayRouteSpecRoute {
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshGatewayRouteSpecRoute.grpcRoute] choice: sets `grpc_route`.
-final class AppmeshGatewayRouteSpecRouteGrpcRoute
-    extends AppmeshGatewayRouteSpecRoute {
-  const AppmeshGatewayRouteSpecRouteGrpcRoute(this.grpcRoute);
+/// The [AppmeshGatewayRouteRoute.grpcRoute] choice: sets `grpc_route`.
+final class AppmeshGatewayRouteGrpcRouteChoice
+    extends AppmeshGatewayRouteRoute {
+  const AppmeshGatewayRouteGrpcRouteChoice(this.grpcRoute);
 
-  final AppmeshGatewayRouteSpecGrpcRoute grpcRoute;
+  final AppmeshGatewayRouteGrpcRoute grpcRoute;
 
   @override
   String get blockKey => 'grpc_route';
@@ -65,12 +65,12 @@ final class AppmeshGatewayRouteSpecRouteGrpcRoute
   Map<String, Object?> encode() => {'grpc_route': grpcRoute.encode()};
 }
 
-/// The [AppmeshGatewayRouteSpecRoute.http2Route] choice: sets `http2_route`.
-final class AppmeshGatewayRouteSpecRouteHttp2Route
-    extends AppmeshGatewayRouteSpecRoute {
-  const AppmeshGatewayRouteSpecRouteHttp2Route(this.http2Route);
+/// The [AppmeshGatewayRouteRoute.http2Route] choice: sets `http2_route`.
+final class AppmeshGatewayRouteHttp2RouteChoice
+    extends AppmeshGatewayRouteRoute {
+  const AppmeshGatewayRouteHttp2RouteChoice(this.http2Route);
 
-  final AppmeshGatewayRouteSpecHttp2Route http2Route;
+  final AppmeshGatewayRouteHttp2Route http2Route;
 
   @override
   String get blockKey => 'http2_route';
@@ -79,12 +79,12 @@ final class AppmeshGatewayRouteSpecRouteHttp2Route
   Map<String, Object?> encode() => {'http2_route': http2Route.encode()};
 }
 
-/// The [AppmeshGatewayRouteSpecRoute.httpRoute] choice: sets `http_route`.
-final class AppmeshGatewayRouteSpecRouteHttpRoute
-    extends AppmeshGatewayRouteSpecRoute {
-  const AppmeshGatewayRouteSpecRouteHttpRoute(this.httpRoute);
+/// The [AppmeshGatewayRouteRoute.httpRoute] choice: sets `http_route`.
+final class AppmeshGatewayRouteHttpRouteChoice
+    extends AppmeshGatewayRouteRoute {
+  const AppmeshGatewayRouteHttpRouteChoice(this.httpRoute);
 
-  final AppmeshGatewayRouteSpecHttpRoute httpRoute;
+  final AppmeshGatewayRouteHttpRoute httpRoute;
 
   @override
   String get blockKey => 'http_route';
@@ -96,15 +96,15 @@ final class AppmeshGatewayRouteSpecRouteHttpRoute
 /// Typed helper for the `spec.grpc_route` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
 @immutable
-final class AppmeshGatewayRouteSpecGrpcRoute {
-  const AppmeshGatewayRouteSpecGrpcRoute({
+final class AppmeshGatewayRouteGrpcRoute {
+  const AppmeshGatewayRouteGrpcRoute({
     required this.action,
     required this.match,
   });
 
-  final AppmeshGatewayRouteSpecGrpcRouteAction action;
+  final AppmeshGatewayRouteGrpcRouteAction action;
 
-  final AppmeshGatewayRouteSpecGrpcRouteMatch match;
+  final AppmeshGatewayRouteGrpcRouteMatch match;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -115,27 +115,24 @@ final class AppmeshGatewayRouteSpecGrpcRoute {
 /// Typed helper for the `spec.grpc_route.action` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
 @immutable
-final class AppmeshGatewayRouteSpecGrpcRouteAction {
-  const AppmeshGatewayRouteSpecGrpcRouteAction({required this.target});
+final class AppmeshGatewayRouteGrpcRouteAction {
+  const AppmeshGatewayRouteGrpcRouteAction({required this.target});
 
-  final AppmeshGatewayRouteSpecGrpcRouteActionTarget target;
+  final AppmeshGatewayRouteTarget target;
 
   Map<String, Object?> encode() => {'target': target.encode()};
 }
 
 /// Typed helper for the `spec.grpc_route.action.target` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecGrpcRouteActionTarget {
-  const AppmeshGatewayRouteSpecGrpcRouteActionTarget({
-    this.port,
-    required this.virtualService,
-  });
+final class AppmeshGatewayRouteTarget {
+  const AppmeshGatewayRouteTarget({this.port, required this.virtualService});
 
   final TfArg<num>? port;
 
-  final AppmeshGatewayRouteSpecGrpcRouteActionTargetVirtualService
-  virtualService;
+  final AppmeshGatewayRouteVirtualService virtualService;
 
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
@@ -145,11 +142,10 @@ final class AppmeshGatewayRouteSpecGrpcRouteActionTarget {
 
 /// Typed helper for the `spec.grpc_route.action.target.virtual_service` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecGrpcRouteActionTargetVirtualService {
-  const AppmeshGatewayRouteSpecGrpcRouteActionTargetVirtualService({
-    required this.virtualServiceName,
-  });
+final class AppmeshGatewayRouteVirtualService {
+  const AppmeshGatewayRouteVirtualService({required this.virtualServiceName});
 
   final TfArg<String> virtualServiceName;
 
@@ -161,8 +157,8 @@ final class AppmeshGatewayRouteSpecGrpcRouteActionTargetVirtualService {
 /// Typed helper for the `spec.grpc_route.match` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
 @immutable
-final class AppmeshGatewayRouteSpecGrpcRouteMatch {
-  const AppmeshGatewayRouteSpecGrpcRouteMatch({
+final class AppmeshGatewayRouteGrpcRouteMatch {
+  const AppmeshGatewayRouteGrpcRouteMatch({
     this.port,
     required this.serviceName,
   });
@@ -180,15 +176,15 @@ final class AppmeshGatewayRouteSpecGrpcRouteMatch {
 /// Typed helper for the `spec.http2_route` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
 @immutable
-final class AppmeshGatewayRouteSpecHttp2Route {
-  const AppmeshGatewayRouteSpecHttp2Route({
+final class AppmeshGatewayRouteHttp2Route {
+  const AppmeshGatewayRouteHttp2Route({
     required this.action,
     required this.match,
   });
 
-  final AppmeshGatewayRouteSpecHttp2RouteAction action;
+  final AppmeshGatewayRouteHttp2RouteAction action;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatch match;
+  final AppmeshGatewayRouteHttp2RouteMatch match;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -198,16 +194,17 @@ final class AppmeshGatewayRouteSpecHttp2Route {
 
 /// Typed helper for the `spec.http2_route.action` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteAction {
-  const AppmeshGatewayRouteSpecHttp2RouteAction({
+final class AppmeshGatewayRouteHttp2RouteAction {
+  const AppmeshGatewayRouteHttp2RouteAction({
     this.rewrite,
     required this.target,
   });
 
-  final AppmeshGatewayRouteSpecHttp2RouteActionRewrite? rewrite;
+  final AppmeshGatewayRouteRewrite? rewrite;
 
-  final AppmeshGatewayRouteSpecHttp2RouteActionTarget target;
+  final AppmeshGatewayRouteTarget target;
 
   Map<String, Object?> encode() => {
     'rewrite': ?rewrite?.encode(),
@@ -217,19 +214,16 @@ final class AppmeshGatewayRouteSpecHttp2RouteAction {
 
 /// Typed helper for the `spec.http2_route.action.rewrite` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionRewrite {
-  const AppmeshGatewayRouteSpecHttp2RouteActionRewrite({
-    this.hostname,
-    this.path,
-    this.prefix,
-  });
+final class AppmeshGatewayRouteRewrite {
+  const AppmeshGatewayRouteRewrite({this.hostname, this.path, this.prefix});
 
-  final AppmeshGatewayRouteSpecHttp2RouteActionRewriteHostname? hostname;
+  final AppmeshGatewayRouteRewriteHostname? hostname;
 
-  final AppmeshGatewayRouteSpecHttp2RouteActionRewritePath? path;
+  final AppmeshGatewayRouteRewritePath? path;
 
-  final AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix? prefix;
+  final AppmeshGatewayRoutePrefix? prefix;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.encode(),
@@ -240,9 +234,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewrite {
 
 /// Typed helper for the `spec.http2_route.action.rewrite.hostname` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionRewriteHostname {
-  const AppmeshGatewayRouteSpecHttp2RouteActionRewriteHostname({
+final class AppmeshGatewayRouteRewriteHostname {
+  const AppmeshGatewayRouteRewriteHostname({
     required this.defaultTargetHostname,
   });
 
@@ -255,11 +250,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewriteHostname {
 
 /// Typed helper for the `spec.http2_route.action.rewrite.path` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionRewritePath {
-  const AppmeshGatewayRouteSpecHttp2RouteActionRewritePath({
-    required this.exact,
-  });
+final class AppmeshGatewayRouteRewritePath {
+  const AppmeshGatewayRouteRewritePath({required this.exact});
 
   final TfArg<String> exact;
 
@@ -268,12 +262,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewritePath {
 
 /// Typed helper for the `spec.http2_route.action.rewrite.prefix` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix {
-  const AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix({
-    this.defaultPrefix,
-    this.value,
-  });
+final class AppmeshGatewayRoutePrefix {
+  const AppmeshGatewayRoutePrefix({this.defaultPrefix, this.value});
 
   final TfArg<String>? defaultPrefix;
 
@@ -285,46 +277,12 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix {
   };
 }
 
-/// Typed helper for the `spec.http2_route.action.target` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionTarget {
-  const AppmeshGatewayRouteSpecHttp2RouteActionTarget({
-    this.port,
-    required this.virtualService,
-  });
-
-  final TfArg<num>? port;
-
-  final AppmeshGatewayRouteSpecHttp2RouteActionTargetVirtualService
-  virtualService;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'virtual_service': virtualService.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http2_route.action.target.virtual_service` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttp2RouteActionTargetVirtualService {
-  const AppmeshGatewayRouteSpecHttp2RouteActionTargetVirtualService({
-    required this.virtualServiceName,
-  });
-
-  final TfArg<String> virtualServiceName;
-
-  Map<String, Object?> encode() => {
-    'virtual_service_name': virtualServiceName.toTfJson(),
-  };
-}
-
 /// Typed helper for the `spec.http2_route.match` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatch {
-  const AppmeshGatewayRouteSpecHttp2RouteMatch({
+final class AppmeshGatewayRouteHttp2RouteMatch {
+  const AppmeshGatewayRouteHttp2RouteMatch({
     this.port,
     this.prefix,
     this.header,
@@ -337,14 +295,13 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatch {
 
   final TfArg<String>? prefix;
 
-  final List<AppmeshGatewayRouteSpecHttp2RouteMatchHeader>? header;
+  final List<AppmeshGatewayRouteHeader>? header;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatchHostname? hostname;
+  final AppmeshGatewayRouteHostname? hostname;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatchPath? path;
+  final AppmeshGatewayRoutePath? path;
 
-  final List<AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameter>?
-  queryParameter;
+  final List<AppmeshGatewayRouteQueryParameter>? queryParameter;
 
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
@@ -359,9 +316,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatch {
 
 /// Typed helper for the `spec.http2_route.match.header` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchHeader {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchHeader({
+final class AppmeshGatewayRouteHeader {
+  const AppmeshGatewayRouteHeader({
     this.invert,
     required this.name,
     this.match,
@@ -371,7 +329,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeader {
 
   final TfArg<String> name;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch? match;
+  final AppmeshGatewayRouteHeaderMatch? match;
 
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
@@ -382,9 +340,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeader {
 
 /// Typed helper for the `spec.http2_route.match.header.match` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch({
+final class AppmeshGatewayRouteHeaderMatch {
+  const AppmeshGatewayRouteHeaderMatch({
     this.exact,
     this.prefix,
     this.regex,
@@ -400,7 +359,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch {
 
   final TfArg<String>? suffix;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatchRange? range;
+  final AppmeshGatewayRouteRange? range;
 
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
@@ -413,12 +372,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch {
 
 /// Typed helper for the `spec.http2_route.match.header.match.range` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatchRange {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatchRange({
-    required this.end,
-    required this.start,
-  });
+final class AppmeshGatewayRouteRange {
+  const AppmeshGatewayRouteRange({required this.end, required this.start});
 
   final TfArg<num> end;
 
@@ -432,12 +389,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatchRange {
 
 /// Typed helper for the `spec.http2_route.match.hostname` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchHostname {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchHostname({
-    this.exact,
-    this.suffix,
-  });
+final class AppmeshGatewayRouteHostname {
+  const AppmeshGatewayRouteHostname({this.exact, this.suffix});
 
   final TfArg<String>? exact;
 
@@ -451,9 +406,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHostname {
 
 /// Typed helper for the `spec.http2_route.match.path` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchPath {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchPath({this.exact, this.regex});
+final class AppmeshGatewayRoutePath {
+  const AppmeshGatewayRoutePath({this.exact, this.regex});
 
   final TfArg<String>? exact;
 
@@ -467,16 +423,14 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchPath {
 
 /// Typed helper for the `spec.http2_route.match.query_parameter` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameter {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameter({
-    required this.name,
-    this.match,
-  });
+final class AppmeshGatewayRouteQueryParameter {
+  const AppmeshGatewayRouteQueryParameter({required this.name, this.match});
 
   final TfArg<String> name;
 
-  final AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameterMatch? match;
+  final AppmeshGatewayRouteQueryParameterMatch? match;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -486,9 +440,10 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameter {
 
 /// Typed helper for the `spec.http2_route.match.query_parameter.match` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameterMatch {
-  const AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameterMatch({this.exact});
+final class AppmeshGatewayRouteQueryParameterMatch {
+  const AppmeshGatewayRouteQueryParameterMatch({this.exact});
 
   final TfArg<String>? exact;
 
@@ -498,319 +453,20 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameterMatch {
 /// Typed helper for the `spec.http_route` block of
 /// `aws_appmesh_gateway_route` (derived from provider schema).
 @immutable
-final class AppmeshGatewayRouteSpecHttpRoute {
-  const AppmeshGatewayRouteSpecHttpRoute({
+final class AppmeshGatewayRouteHttpRoute {
+  const AppmeshGatewayRouteHttpRoute({
     required this.action,
     required this.match,
   });
 
-  final AppmeshGatewayRouteSpecHttpRouteAction action;
+  final AppmeshGatewayRouteHttp2RouteAction action;
 
-  final AppmeshGatewayRouteSpecHttpRouteMatch match;
+  final AppmeshGatewayRouteHttp2RouteMatch match;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
   };
-}
-
-/// Typed helper for the `spec.http_route.action` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteAction {
-  const AppmeshGatewayRouteSpecHttpRouteAction({
-    this.rewrite,
-    required this.target,
-  });
-
-  final AppmeshGatewayRouteSpecHttpRouteActionRewrite? rewrite;
-
-  final AppmeshGatewayRouteSpecHttpRouteActionTarget target;
-
-  Map<String, Object?> encode() => {
-    'rewrite': ?rewrite?.encode(),
-    'target': target.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.rewrite` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionRewrite {
-  const AppmeshGatewayRouteSpecHttpRouteActionRewrite({
-    this.hostname,
-    this.path,
-    this.prefix,
-  });
-
-  final AppmeshGatewayRouteSpecHttpRouteActionRewriteHostname? hostname;
-
-  final AppmeshGatewayRouteSpecHttpRouteActionRewritePath? path;
-
-  final AppmeshGatewayRouteSpecHttpRouteActionRewritePrefix? prefix;
-
-  Map<String, Object?> encode() => {
-    'hostname': ?hostname?.encode(),
-    'path': ?path?.encode(),
-    'prefix': ?prefix?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.rewrite.hostname` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionRewriteHostname {
-  const AppmeshGatewayRouteSpecHttpRouteActionRewriteHostname({
-    required this.defaultTargetHostname,
-  });
-
-  final TfArg<String> defaultTargetHostname;
-
-  Map<String, Object?> encode() => {
-    'default_target_hostname': defaultTargetHostname.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.rewrite.path` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionRewritePath {
-  const AppmeshGatewayRouteSpecHttpRouteActionRewritePath({
-    required this.exact,
-  });
-
-  final TfArg<String> exact;
-
-  Map<String, Object?> encode() => {'exact': exact.toTfJson()};
-}
-
-/// Typed helper for the `spec.http_route.action.rewrite.prefix` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionRewritePrefix {
-  const AppmeshGatewayRouteSpecHttpRouteActionRewritePrefix({
-    this.defaultPrefix,
-    this.value,
-  });
-
-  final TfArg<String>? defaultPrefix;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'default_prefix': ?defaultPrefix?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.target` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionTarget {
-  const AppmeshGatewayRouteSpecHttpRouteActionTarget({
-    this.port,
-    required this.virtualService,
-  });
-
-  final TfArg<num>? port;
-
-  final AppmeshGatewayRouteSpecHttpRouteActionTargetVirtualService
-  virtualService;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'virtual_service': virtualService.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.target.virtual_service` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteActionTargetVirtualService {
-  const AppmeshGatewayRouteSpecHttpRouteActionTargetVirtualService({
-    required this.virtualServiceName,
-  });
-
-  final TfArg<String> virtualServiceName;
-
-  Map<String, Object?> encode() => {
-    'virtual_service_name': virtualServiceName.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatch {
-  const AppmeshGatewayRouteSpecHttpRouteMatch({
-    this.port,
-    this.prefix,
-    this.header,
-    this.hostname,
-    this.path,
-    this.queryParameter,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? prefix;
-
-  final List<AppmeshGatewayRouteSpecHttpRouteMatchHeader>? header;
-
-  final AppmeshGatewayRouteSpecHttpRouteMatchHostname? hostname;
-
-  final AppmeshGatewayRouteSpecHttpRouteMatchPath? path;
-
-  final List<AppmeshGatewayRouteSpecHttpRouteMatchQueryParameter>?
-  queryParameter;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    if (header != null) 'header': [for (final e in header!) e.encode()],
-    'hostname': ?hostname?.encode(),
-    'path': ?path?.encode(),
-    if (queryParameter != null)
-      'query_parameter': [for (final e in queryParameter!) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchHeader {
-  const AppmeshGatewayRouteSpecHttpRouteMatchHeader({
-    this.invert,
-    required this.name,
-    this.match,
-  });
-
-  final TfArg<bool>? invert;
-
-  final TfArg<String> name;
-
-  final AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatch? match;
-
-  Map<String, Object?> encode() => {
-    'invert': ?invert?.toTfJson(),
-    'name': name.toTfJson(),
-    'match': ?match?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header.match` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatch {
-  const AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatch({
-    this.exact,
-    this.prefix,
-    this.regex,
-    this.suffix,
-    this.range,
-  });
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? regex;
-
-  final TfArg<String>? suffix;
-
-  final AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatchRange? range;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'regex': ?regex?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-    'range': ?range?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header.match.range` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatchRange {
-  const AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatchRange({
-    required this.end,
-    required this.start,
-  });
-
-  final TfArg<num> end;
-
-  final TfArg<num> start;
-
-  Map<String, Object?> encode() => {
-    'end': end.toTfJson(),
-    'start': start.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.hostname` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchHostname {
-  const AppmeshGatewayRouteSpecHttpRouteMatchHostname({
-    this.exact,
-    this.suffix,
-  });
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.path` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchPath {
-  const AppmeshGatewayRouteSpecHttpRouteMatchPath({this.exact, this.regex});
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? regex;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'regex': ?regex?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.query_parameter` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchQueryParameter {
-  const AppmeshGatewayRouteSpecHttpRouteMatchQueryParameter({
-    required this.name,
-    this.match,
-  });
-
-  final TfArg<String> name;
-
-  final AppmeshGatewayRouteSpecHttpRouteMatchQueryParameterMatch? match;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'match': ?match?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.query_parameter.match` block of
-/// `aws_appmesh_gateway_route` (derived from provider schema).
-@immutable
-final class AppmeshGatewayRouteSpecHttpRouteMatchQueryParameterMatch {
-  const AppmeshGatewayRouteSpecHttpRouteMatchQueryParameterMatch({this.exact});
-
-  final TfArg<String>? exact;
-
-  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_appmesh_gateway_route`.

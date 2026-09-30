@@ -24,7 +24,7 @@ final class WafSizeConstraintSetSizeConstraints {
 
   final TfArg<String> textTransformation;
 
-  final WafSizeConstraintSetSizeConstraintsFieldToMatch fieldToMatch;
+  final WafSizeConstraintSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -37,11 +37,8 @@ final class WafSizeConstraintSetSizeConstraints {
 /// Typed helper for the `size_constraints.field_to_match` block of
 /// `aws_waf_size_constraint_set` (derived from provider schema).
 @immutable
-final class WafSizeConstraintSetSizeConstraintsFieldToMatch {
-  const WafSizeConstraintSetSizeConstraintsFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafSizeConstraintSetFieldToMatch {
+  const WafSizeConstraintSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 

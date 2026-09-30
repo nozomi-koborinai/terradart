@@ -6,13 +6,13 @@ library;
 export 'src/lustre/google_lustre_instance.dart'
     show
         GoogleLustreInstance,
+        LustreInstanceAccessRules,
         LustreInstanceAccessRulesOptions,
-        LustreInstanceAccessRulesOptionsAccessRules,
         LustreInstanceDynamicTierOptions,
+        LustreInstanceEndDate,
+        LustreInstanceMaintenanceExclusionWindow,
         LustreInstanceMaintenancePolicy,
-        LustreInstanceMaintenancePolicyMaintenanceExclusionWindow,
-        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate,
-        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate,
-        LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime,
-        LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows,
-        LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime;
+        LustreInstanceStartDate,
+        LustreInstanceStartTime,
+        LustreInstanceTime,
+        LustreInstanceWeeklyMaintenanceWindows;

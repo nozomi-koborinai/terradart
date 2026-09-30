@@ -27,11 +27,10 @@ final class ConfigConfigurationRecorderRecordingGroup {
 
   final TfArg<List<String>>? resourceTypes;
 
-  final List<ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes>?
+  final List<ConfigConfigurationRecorderExclusionByResourceTypes>?
   exclusionByResourceTypes;
 
-  final List<ConfigConfigurationRecorderRecordingGroupRecordingStrategy>?
-  recordingStrategy;
+  final List<ConfigConfigurationRecorderRecordingStrategy>? recordingStrategy;
 
   Map<String, Object?> encode() => {
     'all_supported': ?allSupported?.toTfJson(),
@@ -49,8 +48,8 @@ final class ConfigConfigurationRecorderRecordingGroup {
 /// Typed helper for the `recording_group.exclusion_by_resource_types` block of
 /// `aws_config_configuration_recorder` (derived from provider schema).
 @immutable
-final class ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes {
-  const ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes({
+final class ConfigConfigurationRecorderExclusionByResourceTypes {
+  const ConfigConfigurationRecorderExclusionByResourceTypes({
     this.resourceTypes,
   });
 
@@ -64,29 +63,21 @@ final class ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes {
 /// Typed helper for the `recording_group.recording_strategy` block of
 /// `aws_config_configuration_recorder` (derived from provider schema).
 @immutable
-final class ConfigConfigurationRecorderRecordingGroupRecordingStrategy {
-  const ConfigConfigurationRecorderRecordingGroupRecordingStrategy({
-    this.useOnly,
-  });
+final class ConfigConfigurationRecorderRecordingStrategy {
+  const ConfigConfigurationRecorderRecordingStrategy({this.useOnly});
 
-  final TfArg<
-    ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly
-  >?
-  useOnly;
+  final TfArg<ConfigConfigurationRecorderUseOnly>? useOnly;
 
   Map<String, Object?> encode() => {'use_only': ?useOnly?.toTfJson()};
 }
 
 /// `use_only` — derived from the provider schema description.
-enum ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly
-    implements TerraformEnum {
+enum ConfigConfigurationRecorderUseOnly implements TerraformEnum {
   allSupportedResourceTypes('ALL_SUPPORTED_RESOURCE_TYPES'),
   inclusionByResourceTypes('INCLUSION_BY_RESOURCE_TYPES'),
   exclusionByResourceTypes('EXCLUSION_BY_RESOURCE_TYPES');
 
-  const ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly(
-    this.terraformValue,
-  );
+  const ConfigConfigurationRecorderUseOnly(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -100,11 +91,10 @@ final class ConfigConfigurationRecorderRecordingMode {
     this.recordingModeOverride,
   });
 
-  final TfArg<ConfigConfigurationRecorderRecordingModeRecordingFrequency>?
+  final TfArg<ConfigConfigurationRecorderRecordingFrequency>?
   recordingFrequency;
 
-  final ConfigConfigurationRecorderRecordingModeRecordingModeOverride?
-  recordingModeOverride;
+  final ConfigConfigurationRecorderRecordingModeOverride? recordingModeOverride;
 
   Map<String, Object?> encode() => {
     'recording_frequency': ?recordingFrequency?.toTfJson(),
@@ -113,14 +103,11 @@ final class ConfigConfigurationRecorderRecordingMode {
 }
 
 /// `recording_frequency` — derived from the provider schema description.
-enum ConfigConfigurationRecorderRecordingModeRecordingFrequency
-    implements TerraformEnum {
+enum ConfigConfigurationRecorderRecordingFrequency implements TerraformEnum {
   continuous('CONTINUOUS'),
   daily('DAILY');
 
-  const ConfigConfigurationRecorderRecordingModeRecordingFrequency(
-    this.terraformValue,
-  );
+  const ConfigConfigurationRecorderRecordingFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,8 +115,8 @@ enum ConfigConfigurationRecorderRecordingModeRecordingFrequency
 /// Typed helper for the `recording_mode.recording_mode_override` block of
 /// `aws_config_configuration_recorder` (derived from provider schema).
 @immutable
-final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
-  const ConfigConfigurationRecorderRecordingModeRecordingModeOverride({
+final class ConfigConfigurationRecorderRecordingModeOverride {
+  const ConfigConfigurationRecorderRecordingModeOverride({
     this.description,
     required this.recordingFrequency,
     required this.resourceTypes,
@@ -137,10 +124,7 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
 
   final TfArg<String>? description;
 
-  final TfArg<
-    ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency
-  >
-  recordingFrequency;
+  final TfArg<ConfigConfigurationRecorderRecordingFrequency> recordingFrequency;
 
   final TfArg<List<String>> resourceTypes;
 
@@ -149,19 +133,6 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
     'recording_frequency': recordingFrequency.toTfJson(),
     'resource_types': resourceTypes.toTfJson(),
   };
-}
-
-/// `recording_frequency` — derived from the provider schema description.
-enum ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency
-    implements TerraformEnum {
-  continuous('CONTINUOUS'),
-  daily('DAILY');
-
-  const ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_config_configuration_recorder`.

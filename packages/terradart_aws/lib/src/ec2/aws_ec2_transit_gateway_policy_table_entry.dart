@@ -30,7 +30,7 @@ final class Ec2TransitGatewayPolicyTableEntryPolicyRule {
 
   final TfArg<String>? sourcePortRange;
 
-  final List<Ec2TransitGatewayPolicyTableEntryPolicyRuleMetadata>? metadata;
+  final List<Ec2TransitGatewayPolicyTableEntryMetadata>? metadata;
 
   Map<String, Object?> encode() => {
     'destination_cidr_block': ?destinationCidrBlock?.toTfJson(),
@@ -45,11 +45,8 @@ final class Ec2TransitGatewayPolicyTableEntryPolicyRule {
 /// Typed helper for the `policy_rule.metadata` block of
 /// `aws_ec2_transit_gateway_policy_table_entry` (derived from provider schema).
 @immutable
-final class Ec2TransitGatewayPolicyTableEntryPolicyRuleMetadata {
-  const Ec2TransitGatewayPolicyTableEntryPolicyRuleMetadata({
-    this.key,
-    this.value,
-  });
+final class Ec2TransitGatewayPolicyTableEntryMetadata {
+  const Ec2TransitGatewayPolicyTableEntryMetadata({this.key, this.value});
 
   final TfArg<String>? key;
 

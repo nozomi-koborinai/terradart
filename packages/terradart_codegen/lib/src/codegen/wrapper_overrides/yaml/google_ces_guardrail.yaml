@@ -32,13 +32,13 @@ curatedDoc: |-
   ///   enabled: TfArg.literal(true),
   ///   modelSafety: CesGuardrailModelSafety(
   ///     safetySettings: [
-  ///       CesGuardrailModelSafetySafetySettings(
+  ///       CesGuardrailSafetySettings(
   ///         category: TfArg.literal(
-  ///           CesGuardrailModelSafetySafetySettingsCategory
+  ///           CesGuardrailCategory
   ///               .harmCategoryHateSpeech,
   ///         ),
   ///         threshold: TfArg.literal(
-  ///           CesGuardrailModelSafetySafetySettingsThreshold.blockNone,
+  ///           CesGuardrailThreshold.blockNone,
   ///         ),
   ///       ),
   ///     ],

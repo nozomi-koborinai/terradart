@@ -25,7 +25,7 @@ final class CodecommitTriggerTrigger {
 
   final TfArg<String> destinationArn;
 
-  final List<TfArg<CodecommitTriggerTriggerEvents>> events;
+  final List<TfArg<CodecommitTriggerEvents>> events;
 
   final TfArg<String> name;
 
@@ -39,13 +39,13 @@ final class CodecommitTriggerTrigger {
 }
 
 /// `events` — derived from the provider schema description.
-enum CodecommitTriggerTriggerEvents implements TerraformEnum {
+enum CodecommitTriggerEvents implements TerraformEnum {
   all('all'),
   updatereference('updateReference'),
   createreference('createReference'),
   deletereference('deleteReference');
 
-  const CodecommitTriggerTriggerEvents(this.terraformValue);
+  const CodecommitTriggerEvents(this.terraformValue);
   @override
   final String terraformValue;
 }

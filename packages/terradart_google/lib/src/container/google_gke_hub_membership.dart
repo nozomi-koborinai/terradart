@@ -24,7 +24,7 @@ final class GkeHubMembershipAuthority {
 final class GkeHubMembershipEndpoint {
   const GkeHubMembershipEndpoint({this.gkeCluster});
 
-  final GkeHubMembershipEndpointGkeCluster? gkeCluster;
+  final GkeHubMembershipGkeCluster? gkeCluster;
 
   Map<String, Object?> encode() => {'gke_cluster': ?gkeCluster?.encode()};
 }
@@ -32,8 +32,8 @@ final class GkeHubMembershipEndpoint {
 /// Typed helper for the `endpoint.gke_cluster` block of
 /// `google_gke_hub_membership` (derived from provider schema).
 @immutable
-final class GkeHubMembershipEndpointGkeCluster {
-  const GkeHubMembershipEndpointGkeCluster({required this.resourceLink});
+final class GkeHubMembershipGkeCluster {
+  const GkeHubMembershipGkeCluster({required this.resourceLink});
 
   final TfArg<String> resourceLink;
 
@@ -63,7 +63,7 @@ final class GkeHubMembershipEndpointGkeCluster {
 ///   localName: 'main',
 ///   membershipId: TfArg.literal('main-cluster'),
 ///   endpoint: GkeHubMembershipEndpoint(
-///     gkeCluster: GkeHubMembershipEndpointGkeCluster(
+///     gkeCluster: GkeHubMembershipGkeCluster(
 ///       resourceLink: TfArg.ref(cluster.id),
 ///     ),
 ///   ),

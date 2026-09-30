@@ -116,13 +116,13 @@ sealed class StorageInsightsDatasetConfigCloudStorageLocations {
   const factory StorageInsightsDatasetConfigCloudStorageLocations.includeCloudStorageLocations(
     StorageInsightsDatasetConfigIncludeCloudStorageLocations
     includeCloudStorageLocations,
-  ) = StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations;
+  ) = StorageInsightsDatasetConfigIncludeCloudStorageLocationsChoice;
 
   /// Sets `exclude_cloud_storage_locations`.
   const factory StorageInsightsDatasetConfigCloudStorageLocations.excludeCloudStorageLocations(
     StorageInsightsDatasetConfigExcludeCloudStorageLocations
     excludeCloudStorageLocations,
-  ) = StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations;
+  ) = StorageInsightsDatasetConfigExcludeCloudStorageLocationsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -135,9 +135,9 @@ sealed class StorageInsightsDatasetConfigCloudStorageLocations {
 }
 
 /// The [StorageInsightsDatasetConfigCloudStorageLocations.includeCloudStorageLocations] choice: sets `include_cloud_storage_locations`.
-final class StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations
+final class StorageInsightsDatasetConfigIncludeCloudStorageLocationsChoice
     extends StorageInsightsDatasetConfigCloudStorageLocations {
-  const StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations(
+  const StorageInsightsDatasetConfigIncludeCloudStorageLocationsChoice(
     this.includeCloudStorageLocations,
   );
 
@@ -161,9 +161,9 @@ final class StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorage
 }
 
 /// The [StorageInsightsDatasetConfigCloudStorageLocations.excludeCloudStorageLocations] choice: sets `exclude_cloud_storage_locations`.
-final class StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations
+final class StorageInsightsDatasetConfigExcludeCloudStorageLocationsChoice
     extends StorageInsightsDatasetConfigCloudStorageLocations {
-  const StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations(
+  const StorageInsightsDatasetConfigExcludeCloudStorageLocationsChoice(
     this.excludeCloudStorageLocations,
   );
 
@@ -198,13 +198,13 @@ sealed class StorageInsightsDatasetConfigCloudStorageBuckets {
   const factory StorageInsightsDatasetConfigCloudStorageBuckets.includeCloudStorageBuckets(
     StorageInsightsDatasetConfigIncludeCloudStorageBuckets
     includeCloudStorageBuckets,
-  ) = StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets;
+  ) = StorageInsightsDatasetConfigIncludeCloudStorageBucketsChoice;
 
   /// Sets `exclude_cloud_storage_buckets`.
   const factory StorageInsightsDatasetConfigCloudStorageBuckets.excludeCloudStorageBuckets(
     StorageInsightsDatasetConfigExcludeCloudStorageBuckets
     excludeCloudStorageBuckets,
-  ) = StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets;
+  ) = StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -217,9 +217,9 @@ sealed class StorageInsightsDatasetConfigCloudStorageBuckets {
 }
 
 /// The [StorageInsightsDatasetConfigCloudStorageBuckets.includeCloudStorageBuckets] choice: sets `include_cloud_storage_buckets`.
-final class StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets
+final class StorageInsightsDatasetConfigIncludeCloudStorageBucketsChoice
     extends StorageInsightsDatasetConfigCloudStorageBuckets {
-  const StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets(
+  const StorageInsightsDatasetConfigIncludeCloudStorageBucketsChoice(
     this.includeCloudStorageBuckets,
   );
 
@@ -243,9 +243,9 @@ final class StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBu
 }
 
 /// The [StorageInsightsDatasetConfigCloudStorageBuckets.excludeCloudStorageBuckets] choice: sets `exclude_cloud_storage_buckets`.
-final class StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets
+final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice
     extends StorageInsightsDatasetConfigCloudStorageBuckets {
-  const StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets(
+  const StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice(
     this.excludeCloudStorageBuckets,
   );
 
@@ -288,6 +288,7 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBuckets {
 
 /// Typed helper for the `exclude_cloud_storage_buckets.cloud_storage_buckets` block of
 /// `google_storage_insights_dataset_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets {
   const StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets({
@@ -324,17 +325,17 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageLocations {
 final class StorageInsightsDatasetConfigIdentity {
   const StorageInsightsDatasetConfigIdentity({required this.type});
 
-  final TfArg<StorageInsightsDatasetConfigIdentityType> type;
+  final TfArg<StorageInsightsDatasetConfigType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum StorageInsightsDatasetConfigIdentityType implements TerraformEnum {
+enum StorageInsightsDatasetConfigType implements TerraformEnum {
   identityTypePerConfig('IDENTITY_TYPE_PER_CONFIG'),
   identityTypePerProject('IDENTITY_TYPE_PER_PROJECT');
 
-  const StorageInsightsDatasetConfigIdentityType(this.terraformValue);
+  const StorageInsightsDatasetConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -348,31 +349,12 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageBuckets {
   });
 
   final List<
-    StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBuckets
+    StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets
   >
   cloudStorageBuckets;
 
   Map<String, Object?> encode() => {
     'cloud_storage_buckets': [for (final e in cloudStorageBuckets) e.encode()],
-  };
-}
-
-/// Typed helper for the `include_cloud_storage_buckets.cloud_storage_buckets` block of
-/// `google_storage_insights_dataset_config` (derived from provider schema).
-@immutable
-final class StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBuckets {
-  const StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBuckets({
-    this.bucketName,
-    this.bucketPrefixRegex,
-  });
-
-  final RefTo<GoogleStorageBucket>? bucketName;
-
-  final TfArg<String>? bucketPrefixRegex;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
-    'bucket_prefix_regex': ?bucketPrefixRegex?.toTfJson(),
   };
 }
 
@@ -413,7 +395,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///   retentionPeriodDays: TfArg.literal(1),
 ///   identity: StorageInsightsDatasetConfigIdentity(
 ///     type: TfArg.literal(
-///       StorageInsightsDatasetConfigIdentityType.identityTypePerConfig,
+///       StorageInsightsDatasetConfigType.identityTypePerConfig,
 ///     ),
 ///   ),
 ///   source: StorageInsightsDatasetConfigSourceProjects(

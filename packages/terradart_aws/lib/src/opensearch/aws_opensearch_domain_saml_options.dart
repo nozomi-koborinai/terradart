@@ -35,7 +35,7 @@ final class OpensearchDomainSamlOptionsSamlOptions {
 
   final TfArg<String>? subjectKey;
 
-  final OpensearchDomainSamlOptionsSamlOptionsIdp? idp;
+  final OpensearchDomainSamlOptionsIdp? idp;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -51,8 +51,8 @@ final class OpensearchDomainSamlOptionsSamlOptions {
 /// Typed helper for the `saml_options.idp` block of
 /// `aws_opensearch_domain_saml_options` (derived from provider schema).
 @immutable
-final class OpensearchDomainSamlOptionsSamlOptionsIdp {
-  const OpensearchDomainSamlOptionsSamlOptionsIdp({
+final class OpensearchDomainSamlOptionsIdp {
+  const OpensearchDomainSamlOptionsIdp({
     required this.entityId,
     required this.metadataContent,
   });

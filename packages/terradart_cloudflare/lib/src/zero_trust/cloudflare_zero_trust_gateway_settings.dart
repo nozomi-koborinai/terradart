@@ -33,34 +33,33 @@ final class ZeroTrustGatewaySettingsSettings {
 
   final TfArg<num>? maxTtlSecs;
 
-  final ZeroTrustGatewaySettingsSettingsActivityLog? activityLog;
+  final ZeroTrustGatewaySettingsActivityLog? activityLog;
 
-  final ZeroTrustGatewaySettingsSettingsAntivirus? antivirus;
+  final ZeroTrustGatewaySettingsAntivirus? antivirus;
 
-  final ZeroTrustGatewaySettingsSettingsBlockPage? blockPage;
+  final ZeroTrustGatewaySettingsBlockPage? blockPage;
 
-  final ZeroTrustGatewaySettingsSettingsBodyScanning? bodyScanning;
+  final ZeroTrustGatewaySettingsBodyScanning? bodyScanning;
 
-  final ZeroTrustGatewaySettingsSettingsBrowserIsolation? browserIsolation;
+  final ZeroTrustGatewaySettingsBrowserIsolation? browserIsolation;
 
-  final ZeroTrustGatewaySettingsSettingsCertificate? certificate;
+  final ZeroTrustGatewaySettingsCertificate? certificate;
 
-  final ZeroTrustGatewaySettingsSettingsCustomCertificate? customCertificate;
+  final ZeroTrustGatewaySettingsCustomCertificate? customCertificate;
 
-  final ZeroTrustGatewaySettingsSettingsExtendedEmailMatching?
-  extendedEmailMatching;
+  final ZeroTrustGatewaySettingsExtendedEmailMatching? extendedEmailMatching;
 
-  final ZeroTrustGatewaySettingsSettingsFips? fips;
+  final ZeroTrustGatewaySettingsFips? fips;
 
-  final ZeroTrustGatewaySettingsSettingsHostSelector? hostSelector;
+  final ZeroTrustGatewaySettingsHostSelector? hostSelector;
 
-  final ZeroTrustGatewaySettingsSettingsInspection? inspection;
+  final ZeroTrustGatewaySettingsInspection? inspection;
 
-  final ZeroTrustGatewaySettingsSettingsProtocolDetection? protocolDetection;
+  final ZeroTrustGatewaySettingsProtocolDetection? protocolDetection;
 
-  final ZeroTrustGatewaySettingsSettingsSandbox? sandbox;
+  final ZeroTrustGatewaySettingsSandbox? sandbox;
 
-  final ZeroTrustGatewaySettingsSettingsTlsDecrypt? tlsDecrypt;
+  final ZeroTrustGatewaySettingsTlsDecrypt? tlsDecrypt;
 
   Map<String, Object?> encode() => {
     'max_ttl_secs': ?maxTtlSecs?.toTfJson(),
@@ -84,8 +83,8 @@ final class ZeroTrustGatewaySettingsSettings {
 /// Typed helper for the `settings.activity_log` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsActivityLog {
-  const ZeroTrustGatewaySettingsSettingsActivityLog({this.enabled});
+final class ZeroTrustGatewaySettingsActivityLog {
+  const ZeroTrustGatewaySettingsActivityLog({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -95,8 +94,8 @@ final class ZeroTrustGatewaySettingsSettingsActivityLog {
 /// Typed helper for the `settings.antivirus` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsAntivirus {
-  const ZeroTrustGatewaySettingsSettingsAntivirus({
+final class ZeroTrustGatewaySettingsAntivirus {
+  const ZeroTrustGatewaySettingsAntivirus({
     this.enabledDownloadPhase,
     this.enabledUploadPhase,
     this.failClosed,
@@ -109,8 +108,7 @@ final class ZeroTrustGatewaySettingsSettingsAntivirus {
 
   final TfArg<bool>? failClosed;
 
-  final ZeroTrustGatewaySettingsSettingsAntivirusNotificationSettings?
-  notificationSettings;
+  final ZeroTrustGatewaySettingsNotificationSettings? notificationSettings;
 
   Map<String, Object?> encode() => {
     'enabled_download_phase': ?enabledDownloadPhase?.toTfJson(),
@@ -123,8 +121,8 @@ final class ZeroTrustGatewaySettingsSettingsAntivirus {
 /// Typed helper for the `settings.antivirus.notification_settings` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsAntivirusNotificationSettings {
-  const ZeroTrustGatewaySettingsSettingsAntivirusNotificationSettings({
+final class ZeroTrustGatewaySettingsNotificationSettings {
+  const ZeroTrustGatewaySettingsNotificationSettings({
     this.enabled,
     this.includeContext,
     this.msg,
@@ -150,8 +148,8 @@ final class ZeroTrustGatewaySettingsSettingsAntivirusNotificationSettings {
 /// Typed helper for the `settings.block_page` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsBlockPage {
-  const ZeroTrustGatewaySettingsSettingsBlockPage({
+final class ZeroTrustGatewaySettingsBlockPage {
+  const ZeroTrustGatewaySettingsBlockPage({
     this.backgroundColor,
     this.enabled,
     this.footerText,
@@ -185,7 +183,7 @@ final class ZeroTrustGatewaySettingsSettingsBlockPage {
 
   final TfArg<String>? mailtoSubject;
 
-  final TfArg<ZeroTrustGatewaySettingsSettingsBlockPageMode>? mode;
+  final TfArg<ZeroTrustGatewaySettingsBlockPageMode>? mode;
 
   final TfArg<String>? name;
 
@@ -219,12 +217,12 @@ final class ZeroTrustGatewaySettingsSettingsBlockPage {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsSettingsBlockPageMode implements TerraformEnum {
+enum ZeroTrustGatewaySettingsBlockPageMode implements TerraformEnum {
   empty(''),
   customizedBlockPage('customized_block_page'),
   redirectUri('redirect_uri');
 
-  const ZeroTrustGatewaySettingsSettingsBlockPageMode(this.terraformValue);
+  const ZeroTrustGatewaySettingsBlockPageMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -232,10 +230,10 @@ enum ZeroTrustGatewaySettingsSettingsBlockPageMode implements TerraformEnum {
 /// Typed helper for the `settings.body_scanning` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsBodyScanning {
-  const ZeroTrustGatewaySettingsSettingsBodyScanning({this.inspectionMode});
+final class ZeroTrustGatewaySettingsBodyScanning {
+  const ZeroTrustGatewaySettingsBodyScanning({this.inspectionMode});
 
-  final TfArg<ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode>?
+  final TfArg<ZeroTrustGatewaySettingsBodyScanningInspectionMode>?
   inspectionMode;
 
   Map<String, Object?> encode() => {
@@ -244,14 +242,12 @@ final class ZeroTrustGatewaySettingsSettingsBodyScanning {
 }
 
 /// `inspection_mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode
+enum ZeroTrustGatewaySettingsBodyScanningInspectionMode
     implements TerraformEnum {
   deep('deep'),
   shallow('shallow');
 
-  const ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewaySettingsBodyScanningInspectionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -259,8 +255,8 @@ enum ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode
 /// Typed helper for the `settings.browser_isolation` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsBrowserIsolation {
-  const ZeroTrustGatewaySettingsSettingsBrowserIsolation({
+final class ZeroTrustGatewaySettingsBrowserIsolation {
+  const ZeroTrustGatewaySettingsBrowserIsolation({
     this.nonIdentityEnabled,
     this.urlBrowserIsolationEnabled,
   });
@@ -278,8 +274,8 @@ final class ZeroTrustGatewaySettingsSettingsBrowserIsolation {
 /// Typed helper for the `settings.certificate` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsCertificate {
-  const ZeroTrustGatewaySettingsSettingsCertificate({required this.id});
+final class ZeroTrustGatewaySettingsCertificate {
+  const ZeroTrustGatewaySettingsCertificate({required this.id});
 
   final TfArg<String> id;
 
@@ -289,8 +285,8 @@ final class ZeroTrustGatewaySettingsSettingsCertificate {
 /// Typed helper for the `settings.custom_certificate` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsCustomCertificate {
-  const ZeroTrustGatewaySettingsSettingsCustomCertificate({
+final class ZeroTrustGatewaySettingsCustomCertificate {
+  const ZeroTrustGatewaySettingsCustomCertificate({
     this.bindingStatus,
     required this.enabled,
     this.id,
@@ -316,8 +312,8 @@ final class ZeroTrustGatewaySettingsSettingsCustomCertificate {
 /// Typed helper for the `settings.extended_email_matching` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsExtendedEmailMatching {
-  const ZeroTrustGatewaySettingsSettingsExtendedEmailMatching({this.enabled});
+final class ZeroTrustGatewaySettingsExtendedEmailMatching {
+  const ZeroTrustGatewaySettingsExtendedEmailMatching({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -327,8 +323,8 @@ final class ZeroTrustGatewaySettingsSettingsExtendedEmailMatching {
 /// Typed helper for the `settings.fips` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsFips {
-  const ZeroTrustGatewaySettingsSettingsFips({this.tls});
+final class ZeroTrustGatewaySettingsFips {
+  const ZeroTrustGatewaySettingsFips({this.tls});
 
   final TfArg<bool>? tls;
 
@@ -338,8 +334,8 @@ final class ZeroTrustGatewaySettingsSettingsFips {
 /// Typed helper for the `settings.host_selector` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsHostSelector {
-  const ZeroTrustGatewaySettingsSettingsHostSelector({this.enabled});
+final class ZeroTrustGatewaySettingsHostSelector {
+  const ZeroTrustGatewaySettingsHostSelector({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -349,20 +345,20 @@ final class ZeroTrustGatewaySettingsSettingsHostSelector {
 /// Typed helper for the `settings.inspection` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsInspection {
-  const ZeroTrustGatewaySettingsSettingsInspection({this.mode});
+final class ZeroTrustGatewaySettingsInspection {
+  const ZeroTrustGatewaySettingsInspection({this.mode});
 
-  final TfArg<ZeroTrustGatewaySettingsSettingsInspectionMode>? mode;
+  final TfArg<ZeroTrustGatewaySettingsSettingsMode>? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsSettingsInspectionMode implements TerraformEnum {
+enum ZeroTrustGatewaySettingsSettingsMode implements TerraformEnum {
   static('static'),
   dynamic('dynamic');
 
-  const ZeroTrustGatewaySettingsSettingsInspectionMode(this.terraformValue);
+  const ZeroTrustGatewaySettingsSettingsMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -370,8 +366,8 @@ enum ZeroTrustGatewaySettingsSettingsInspectionMode implements TerraformEnum {
 /// Typed helper for the `settings.protocol_detection` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsProtocolDetection {
-  const ZeroTrustGatewaySettingsSettingsProtocolDetection({this.enabled});
+final class ZeroTrustGatewaySettingsProtocolDetection {
+  const ZeroTrustGatewaySettingsProtocolDetection({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -381,16 +377,12 @@ final class ZeroTrustGatewaySettingsSettingsProtocolDetection {
 /// Typed helper for the `settings.sandbox` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsSandbox {
-  const ZeroTrustGatewaySettingsSettingsSandbox({
-    this.enabled,
-    this.fallbackAction,
-  });
+final class ZeroTrustGatewaySettingsSandbox {
+  const ZeroTrustGatewaySettingsSandbox({this.enabled, this.fallbackAction});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ZeroTrustGatewaySettingsSettingsSandboxFallbackAction>?
-  fallbackAction;
+  final TfArg<ZeroTrustGatewaySettingsFallbackAction>? fallbackAction;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -399,14 +391,11 @@ final class ZeroTrustGatewaySettingsSettingsSandbox {
 }
 
 /// `fallback_action` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsSettingsSandboxFallbackAction
-    implements TerraformEnum {
+enum ZeroTrustGatewaySettingsFallbackAction implements TerraformEnum {
   allow('allow'),
   block('block');
 
-  const ZeroTrustGatewaySettingsSettingsSandboxFallbackAction(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewaySettingsFallbackAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -414,8 +403,8 @@ enum ZeroTrustGatewaySettingsSettingsSandboxFallbackAction
 /// Typed helper for the `settings.tls_decrypt` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettingsTlsDecrypt {
-  const ZeroTrustGatewaySettingsSettingsTlsDecrypt({this.enabled});
+final class ZeroTrustGatewaySettingsTlsDecrypt {
+  const ZeroTrustGatewaySettingsTlsDecrypt({this.enabled});
 
   final TfArg<bool>? enabled;
 

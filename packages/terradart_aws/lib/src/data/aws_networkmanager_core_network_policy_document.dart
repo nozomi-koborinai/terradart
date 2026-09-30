@@ -193,9 +193,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration 
 
   final TfArg<bool>? vpnEcmpSupport;
 
-  final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEdgeLocations
-  >
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations>
   edgeLocations;
 
   Map<String, Object?> encode() => {
@@ -212,8 +210,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration 
 /// Typed helper for the `core_network_configuration.edge_locations` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEdgeLocations {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEdgeLocations({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations({
     this.asn,
     this.insideCidrBlocks,
     required this.location,
@@ -275,9 +273,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies {
 
   final TfArg<num> routingPolicyNumber;
 
-  final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRules
-  >
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules>
   routingPolicyRules;
 
   Map<String, Object?> encode() => {
@@ -292,15 +288,15 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies {
 /// Typed helper for the `routing_policies.routing_policy_rules` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRules {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRules({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules({
     required this.ruleNumber,
     required this.ruleDefinition,
   });
 
   final TfArg<num> ruleNumber;
 
-  final DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinition
+  final DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition
   ruleDefinition;
 
   Map<String, Object?> encode() => {
@@ -312,8 +308,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
 /// Typed helper for the `routing_policies.routing_policy_rules.rule_definition` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinition {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinition({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition({
     this.conditionLogic,
     required this.action,
     this.matchConditions,
@@ -321,12 +317,9 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
 
   final TfArg<String>? conditionLogic;
 
-  final DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionAction
-  action;
+  final DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction action;
 
-  final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionMatchConditions
-  >?
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions>?
   matchConditions;
 
   Map<String, Object?> encode() => {
@@ -340,8 +333,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
 /// Typed helper for the `routing_policies.routing_policy_rules.rule_definition.action` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionAction {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionAction({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction({
     required this.type,
     this.value,
   });
@@ -359,8 +352,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
 /// Typed helper for the `routing_policies.routing_policy_rules.rule_definition.match_conditions` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionMatchConditions {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionMatchConditions({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions({
     required this.type,
     required this.value,
   });
@@ -412,13 +405,12 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions {
 
   final TfArg<List<String>>? shareWithExcept;
 
-  final DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocationAssociation?
+  final DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation?
   edgeLocationAssociation;
 
-  final DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia? via;
+  final DataNetworkmanagerCoreNetworkPolicyDocumentVia? via;
 
-  final DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo?
-  whenSentTo;
+  final DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo? whenSentTo;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -439,8 +431,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions {
 /// Typed helper for the `segment_actions.edge_location_association` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocationAssociation {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocationAssociation({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation({
     required this.edgeLocation,
     required this.peerEdgeLocation,
     required this.routingPolicyNames,
@@ -462,17 +454,15 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocatio
 /// Typed helper for the `segment_actions.via` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentVia {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentVia({
     this.networkFunctionGroups,
     this.withEdgeOverride,
   });
 
   final TfArg<List<String>>? networkFunctionGroups;
 
-  final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdgeOverride
-  >?
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride>?
   withEdgeOverride;
 
   Map<String, Object?> encode() => {
@@ -485,8 +475,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia {
 /// Typed helper for the `segment_actions.via.with_edge_override` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdgeOverride {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdgeOverride({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride({
     this.edgeSets,
     this.useEdge,
     this.useEdgeLocation,
@@ -508,10 +498,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdge
 /// Typed helper for the `segment_actions.when_sent_to` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo({
-    this.segments,
-  });
+final class DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo({this.segments});
 
   final TfArg<List<String>>? segments;
 

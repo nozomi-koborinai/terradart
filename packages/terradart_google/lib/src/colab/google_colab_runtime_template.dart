@@ -134,12 +134,11 @@ final class ColabRuntimeTemplateSoftwareConfig {
     this.postStartupScriptConfig,
   });
 
-  final ColabRuntimeTemplateSoftwareConfigColabImage? colabImage;
+  final ColabRuntimeTemplateColabImage? colabImage;
 
-  final List<ColabRuntimeTemplateSoftwareConfigEnv>? env;
+  final List<ColabRuntimeTemplateEnv>? env;
 
-  final ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig?
-  postStartupScriptConfig;
+  final ColabRuntimeTemplatePostStartupScriptConfig? postStartupScriptConfig;
 
   Map<String, Object?> encode() => {
     'colab_image': ?colabImage?.encode(),
@@ -151,8 +150,8 @@ final class ColabRuntimeTemplateSoftwareConfig {
 /// Typed helper for the `software_config.colab_image` block of
 /// `google_colab_runtime_template` (derived from provider schema).
 @immutable
-final class ColabRuntimeTemplateSoftwareConfigColabImage {
-  const ColabRuntimeTemplateSoftwareConfigColabImage({this.releaseName});
+final class ColabRuntimeTemplateColabImage {
+  const ColabRuntimeTemplateColabImage({this.releaseName});
 
   final TfArg<String>? releaseName;
 
@@ -162,8 +161,8 @@ final class ColabRuntimeTemplateSoftwareConfigColabImage {
 /// Typed helper for the `software_config.env` block of
 /// `google_colab_runtime_template` (derived from provider schema).
 @immutable
-final class ColabRuntimeTemplateSoftwareConfigEnv {
-  const ColabRuntimeTemplateSoftwareConfigEnv({this.name, this.value});
+final class ColabRuntimeTemplateEnv {
+  const ColabRuntimeTemplateEnv({this.name, this.value});
 
   final TfArg<String>? name;
 
@@ -178,8 +177,8 @@ final class ColabRuntimeTemplateSoftwareConfigEnv {
 /// Typed helper for the `software_config.post_startup_script_config` block of
 /// `google_colab_runtime_template` (derived from provider schema).
 @immutable
-final class ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig {
-  const ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig({
+final class ColabRuntimeTemplatePostStartupScriptConfig {
+  const ColabRuntimeTemplatePostStartupScriptConfig({
     this.postStartupScript,
     this.postStartupScriptBehavior,
     this.postStartupScriptUrl,
@@ -187,9 +186,7 @@ final class ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig {
 
   final TfArg<String>? postStartupScript;
 
-  final TfArg<
-    ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfigPostStartupScriptBehavior
-  >?
+  final TfArg<ColabRuntimeTemplatePostStartupScriptBehavior>?
   postStartupScriptBehavior;
 
   final TfArg<String>? postStartupScriptUrl;
@@ -202,15 +199,12 @@ final class ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig {
 }
 
 /// `post_startup_script_behavior` — derived from the provider schema description.
-enum ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfigPostStartupScriptBehavior
-    implements TerraformEnum {
+enum ColabRuntimeTemplatePostStartupScriptBehavior implements TerraformEnum {
   runOnce('RUN_ONCE'),
   runEveryStart('RUN_EVERY_START'),
   downloadAndRunEveryStart('DOWNLOAD_AND_RUN_EVERY_START');
 
-  const ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfigPostStartupScriptBehavior(
-    this.terraformValue,
-  );
+  const ColabRuntimeTemplatePostStartupScriptBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }

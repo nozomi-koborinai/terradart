@@ -35,10 +35,10 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 
   final TfArg<List<String>>? marketplaceProductCodes;
 
-  final List<Ec2AllowedImagesSettingsImageCriterionCreationDateCondition>?
+  final List<Ec2AllowedImagesSettingsCreationDateCondition>?
   creationDateCondition;
 
-  final List<Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition>?
+  final List<Ec2AllowedImagesSettingsDeprecationTimeCondition>?
   deprecationTimeCondition;
 
   Map<String, Object?> encode() => {
@@ -59,8 +59,8 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 /// Typed helper for the `image_criterion.creation_date_condition` block of
 /// `aws_ec2_allowed_images_settings` (derived from provider schema).
 @immutable
-final class Ec2AllowedImagesSettingsImageCriterionCreationDateCondition {
-  const Ec2AllowedImagesSettingsImageCriterionCreationDateCondition({
+final class Ec2AllowedImagesSettingsCreationDateCondition {
+  const Ec2AllowedImagesSettingsCreationDateCondition({
     this.maximumDaysSinceCreated,
   });
 
@@ -74,8 +74,8 @@ final class Ec2AllowedImagesSettingsImageCriterionCreationDateCondition {
 /// Typed helper for the `image_criterion.deprecation_time_condition` block of
 /// `aws_ec2_allowed_images_settings` (derived from provider schema).
 @immutable
-final class Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition {
-  const Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition({
+final class Ec2AllowedImagesSettingsDeprecationTimeCondition {
+  const Ec2AllowedImagesSettingsDeprecationTimeCondition({
     this.maximumDaysSinceDeprecated,
   });
 

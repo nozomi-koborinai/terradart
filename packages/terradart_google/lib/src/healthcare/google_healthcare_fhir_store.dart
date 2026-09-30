@@ -82,7 +82,7 @@ final class HealthcareFhirStoreStreamConfigs {
 
   final TfArg<List<String>>? resourceTypes;
 
-  final HealthcareFhirStoreStreamConfigsBigqueryDestination bigqueryDestination;
+  final HealthcareFhirStoreBigqueryDestination bigqueryDestination;
 
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -93,16 +93,15 @@ final class HealthcareFhirStoreStreamConfigs {
 /// Typed helper for the `stream_configs.bigquery_destination` block of
 /// `google_healthcare_fhir_store` (derived from provider schema).
 @immutable
-final class HealthcareFhirStoreStreamConfigsBigqueryDestination {
-  const HealthcareFhirStoreStreamConfigsBigqueryDestination({
+final class HealthcareFhirStoreBigqueryDestination {
+  const HealthcareFhirStoreBigqueryDestination({
     required this.datasetUri,
     required this.schemaConfig,
   });
 
   final TfArg<String> datasetUri;
 
-  final HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig
-  schemaConfig;
+  final HealthcareFhirStoreSchemaConfig schemaConfig;
 
   Map<String, Object?> encode() => {
     'dataset_uri': datasetUri.toTfJson(),
@@ -113,8 +112,8 @@ final class HealthcareFhirStoreStreamConfigsBigqueryDestination {
 /// Typed helper for the `stream_configs.bigquery_destination.schema_config` block of
 /// `google_healthcare_fhir_store` (derived from provider schema).
 @immutable
-final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig {
-  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig({
+final class HealthcareFhirStoreSchemaConfig {
+  const HealthcareFhirStoreSchemaConfig({
     required this.recursiveStructureDepth,
     this.schemaType,
     this.lastUpdatedPartitionConfig,
@@ -122,12 +121,9 @@ final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig {
 
   final TfArg<num> recursiveStructureDepth;
 
-  final TfArg<
-    HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType
-  >?
-  schemaType;
+  final TfArg<HealthcareFhirStoreSchemaType>? schemaType;
 
-  final HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig?
+  final HealthcareFhirStoreLastUpdatedPartitionConfig?
   lastUpdatedPartitionConfig;
 
   Map<String, Object?> encode() => {
@@ -138,15 +134,12 @@ final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig {
 }
 
 /// `schema_type` — derived from the provider schema description.
-enum HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType
-    implements TerraformEnum {
+enum HealthcareFhirStoreSchemaType implements TerraformEnum {
   analytics('ANALYTICS'),
   analyticsV2('ANALYTICS_V2'),
   lossless('LOSSLESS');
 
-  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType(
-    this.terraformValue,
-  );
+  const HealthcareFhirStoreSchemaType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -154,18 +147,15 @@ enum HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType
 /// Typed helper for the `stream_configs.bigquery_destination.schema_config.last_updated_partition_config` block of
 /// `google_healthcare_fhir_store` (derived from provider schema).
 @immutable
-final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig {
-  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig({
+final class HealthcareFhirStoreLastUpdatedPartitionConfig {
+  const HealthcareFhirStoreLastUpdatedPartitionConfig({
     this.expirationMs,
     required this.type,
   });
 
   final TfArg<String>? expirationMs;
 
-  final TfArg<
-    HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType
-  >
-  type;
+  final TfArg<HealthcareFhirStoreType> type;
 
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
@@ -174,17 +164,14 @@ final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastU
 }
 
 /// `type` — derived from the provider schema description.
-enum HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType
-    implements TerraformEnum {
+enum HealthcareFhirStoreType implements TerraformEnum {
   partitionTypeUnspecified('PARTITION_TYPE_UNSPECIFIED'),
   hour('HOUR'),
   day('DAY'),
   month('MONTH'),
   year('YEAR');
 
-  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType(
-    this.terraformValue,
-  );
+  const HealthcareFhirStoreType(this.terraformValue);
   @override
   final String terraformValue;
 }

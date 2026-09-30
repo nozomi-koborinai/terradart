@@ -21,7 +21,7 @@ final class ApiGatewayUsagePlanApiStages {
 
   final TfArg<String> stage;
 
-  final List<ApiGatewayUsagePlanApiStagesThrottle>? throttle;
+  final List<ApiGatewayUsagePlanThrottle>? throttle;
 
   Map<String, Object?> encode() => {
     'api_id': apiId.toTfJson(),
@@ -33,8 +33,8 @@ final class ApiGatewayUsagePlanApiStages {
 /// Typed helper for the `api_stages.throttle` block of
 /// `aws_api_gateway_usage_plan` (derived from provider schema).
 @immutable
-final class ApiGatewayUsagePlanApiStagesThrottle {
-  const ApiGatewayUsagePlanApiStagesThrottle({
+final class ApiGatewayUsagePlanThrottle {
+  const ApiGatewayUsagePlanThrottle({
     this.burstLimit,
     required this.path,
     this.rateLimit,
@@ -67,7 +67,7 @@ final class ApiGatewayUsagePlanQuotaSettings {
 
   final TfArg<num>? offset;
 
-  final TfArg<ApiGatewayUsagePlanQuotaSettingsPeriod> period;
+  final TfArg<ApiGatewayUsagePlanPeriod> period;
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
@@ -77,12 +77,12 @@ final class ApiGatewayUsagePlanQuotaSettings {
 }
 
 /// `period` — derived from the provider schema description.
-enum ApiGatewayUsagePlanQuotaSettingsPeriod implements TerraformEnum {
+enum ApiGatewayUsagePlanPeriod implements TerraformEnum {
   day('DAY'),
   week('WEEK'),
   month('MONTH');
 
-  const ApiGatewayUsagePlanQuotaSettingsPeriod(this.terraformValue);
+  const ApiGatewayUsagePlanPeriod(this.terraformValue);
   @override
   final String terraformValue;
 }

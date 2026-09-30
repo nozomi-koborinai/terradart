@@ -150,21 +150,19 @@ final class ComputeRegionUrlMapDefaultRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeRegionUrlMapDefaultRouteActionCorsPolicy? corsPolicy;
+  final ComputeRegionUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeRegionUrlMapFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeRegionUrlMapRequestMirrorPolicy? requestMirrorPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionRetryPolicy? retryPolicy;
+  final ComputeRegionUrlMapRetryPolicy? retryPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionTimeout? timeout;
+  final ComputeRegionUrlMapTimeout? timeout;
 
-  final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
+  final ComputeRegionUrlMapUrlRewrite? urlRewrite;
 
-  final List<ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices>?
+  final List<ComputeRegionUrlMapWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -183,9 +181,10 @@ final class ComputeRegionUrlMapDefaultRouteAction {
 
 /// Typed helper for the `default_route_action.cors_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionCorsPolicy {
-  const ComputeRegionUrlMapDefaultRouteActionCorsPolicy({
+final class ComputeRegionUrlMapCorsPolicy {
+  const ComputeRegionUrlMapCorsPolicy({
     this.allowCredentials,
     this.allowHeaders,
     this.allowMethods,
@@ -226,16 +225,14 @@ final class ComputeRegionUrlMapDefaultRouteActionCorsPolicy {
 
 /// Typed helper for the `default_route_action.fault_injection_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy {
-  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
+final class ComputeRegionUrlMapFaultInjectionPolicy {
+  const ComputeRegionUrlMapFaultInjectionPolicy({this.abort, this.delay});
 
-  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort? abort;
+  final ComputeRegionUrlMapAbort? abort;
 
-  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay? delay;
+  final ComputeRegionUrlMapDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -245,12 +242,10 @@ final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.abort` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort {
-  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
+final class ComputeRegionUrlMapAbort {
+  const ComputeRegionUrlMapAbort({this.httpStatus, this.percentage});
 
   final TfArg<num>? httpStatus;
 
@@ -264,17 +259,14 @@ final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.delay` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay {
-  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
+final class ComputeRegionUrlMapDelay {
+  const ComputeRegionUrlMapDelay({this.percentage, this.fixedDelay});
 
   final TfArg<num>? percentage;
 
-  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
+  final ComputeRegionUrlMapFixedDelay? fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
@@ -284,12 +276,10 @@ final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.delay.fixed_delay` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    this.seconds,
-  });
+final class ComputeRegionUrlMapFixedDelay {
+  const ComputeRegionUrlMapFixedDelay({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -304,10 +294,8 @@ final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedD
 /// Typed helper for the `default_route_action.request_mirror_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
-  const ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy({
-    this.backendService,
-  });
+final class ComputeRegionUrlMapRequestMirrorPolicy {
+  const ComputeRegionUrlMapRequestMirrorPolicy({this.backendService});
 
   final TfArg<String>? backendService;
 
@@ -318,9 +306,10 @@ final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
 
 /// Typed helper for the `default_route_action.retry_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionRetryPolicy {
-  const ComputeRegionUrlMapDefaultRouteActionRetryPolicy({
+final class ComputeRegionUrlMapRetryPolicy {
+  const ComputeRegionUrlMapRetryPolicy({
     this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -330,8 +319,7 @@ final class ComputeRegionUrlMapDefaultRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
+  final ComputeRegionUrlMapPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -342,12 +330,10 @@ final class ComputeRegionUrlMapDefaultRouteActionRetryPolicy {
 
 /// Typed helper for the `default_route_action.retry_policy.per_try_timeout` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout {
-  const ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    this.seconds,
-  });
+final class ComputeRegionUrlMapPerTryTimeout {
+  const ComputeRegionUrlMapPerTryTimeout({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -361,12 +347,10 @@ final class ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout {
 
 /// Typed helper for the `default_route_action.timeout` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionTimeout {
-  const ComputeRegionUrlMapDefaultRouteActionTimeout({
-    this.nanos,
-    this.seconds,
-  });
+final class ComputeRegionUrlMapTimeout {
+  const ComputeRegionUrlMapTimeout({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -380,9 +364,10 @@ final class ComputeRegionUrlMapDefaultRouteActionTimeout {
 
 /// Typed helper for the `default_route_action.url_rewrite` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
-  const ComputeRegionUrlMapDefaultRouteActionUrlRewrite({
+final class ComputeRegionUrlMapUrlRewrite {
+  const ComputeRegionUrlMapUrlRewrite({
     this.hostRewrite,
     this.pathPrefixRewrite,
   });
@@ -399,9 +384,10 @@ final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
 
 /// Typed helper for the `default_route_action.weighted_backend_services` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
-  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices({
+final class ComputeRegionUrlMapWeightedBackendServices {
+  const ComputeRegionUrlMapWeightedBackendServices({
     this.backendService,
     this.weight,
     this.headerAction,
@@ -411,8 +397,7 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
 
   final TfArg<num>? weight;
 
-  final ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
+  final ComputeRegionUrlMapHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.toTfJson(),
@@ -421,11 +406,12 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
   };
 }
 
-/// Typed helper for the `default_route_action.weighted_backend_services.header_action` block of
+/// Typed helper for the `header_action` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction({
+final class ComputeRegionUrlMapHeaderAction {
+  const ComputeRegionUrlMapHeaderAction({
     this.requestHeadersToRemove,
     this.responseHeadersToRemove,
     this.requestHeadersToAdd,
@@ -436,15 +422,9 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAc
 
   final TfArg<List<String>>? responseHeadersToRemove;
 
-  final List<
-    ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
+  final List<ComputeRegionUrlMapRequestHeadersToAdd>? requestHeadersToAdd;
 
-  final List<
-    ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
+  final List<ComputeRegionUrlMapResponseHeadersToAdd>? responseHeadersToAdd;
 
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
@@ -460,11 +440,12 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAc
   };
 }
 
-/// Typed helper for the `default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// Typed helper for the `header_action.request_headers_to_add` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+final class ComputeRegionUrlMapRequestHeadersToAdd {
+  const ComputeRegionUrlMapRequestHeadersToAdd({
     this.headerName,
     this.headerValue,
     this.replace,
@@ -483,11 +464,12 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAc
   };
 }
 
-/// Typed helper for the `default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// Typed helper for the `header_action.response_headers_to_add` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+final class ComputeRegionUrlMapResponseHeadersToAdd {
+  const ComputeRegionUrlMapResponseHeadersToAdd({
     this.headerName,
     this.headerValue,
     this.replace,
@@ -508,6 +490,7 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAc
 
 /// Typed helper for the `default_url_redirect` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeRegionUrlMapDefaultUrlRedirect {
   const ComputeRegionUrlMapDefaultUrlRedirect({
@@ -538,87 +521,6 @@ final class ComputeRegionUrlMapDefaultUrlRedirect {
     'prefix_redirect': ?prefixRedirect?.toTfJson(),
     'redirect_response_code': ?redirectResponseCode?.toTfJson(),
     'strip_query': stripQuery.toTfJson(),
-  };
-}
-
-/// Typed helper for the `header_action` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapHeaderAction {
-  const ComputeRegionUrlMapHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<ComputeRegionUrlMapHeaderActionRequestHeadersToAdd>?
-  requestHeadersToAdd;
-
-  final List<ComputeRegionUrlMapHeaderActionResponseHeadersToAdd>?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `header_action.request_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapHeaderActionRequestHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `header_action.response_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapHeaderActionResponseHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
   };
 }
 
@@ -668,13 +570,13 @@ final class ComputeRegionUrlMapPathMatcher {
 
   final ComputeRegionUrlMapPathMatcherDefaultRouteAction? defaultRouteAction;
 
-  final ComputeRegionUrlMapPathMatcherDefaultUrlRedirect? defaultUrlRedirect;
+  final ComputeRegionUrlMapDefaultUrlRedirect? defaultUrlRedirect;
 
-  final ComputeRegionUrlMapPathMatcherHeaderAction? headerAction;
+  final ComputeRegionUrlMapHeaderAction? headerAction;
 
-  final List<ComputeRegionUrlMapPathMatcherPathRule>? pathRule;
+  final List<ComputeRegionUrlMapPathRule>? pathRule;
 
-  final List<ComputeRegionUrlMapPathMatcherRouteRules>? routeRules;
+  final List<ComputeRegionUrlMapRouteRules>? routeRules;
 
   Map<String, Object?> encode() => {
     'default_service': ?defaultService?.toTfJson(),
@@ -704,27 +606,22 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy? corsPolicy;
+  final ComputeRegionUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeRegionUrlMapFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration?
-  maxStreamDuration;
+  final ComputeRegionUrlMapMaxStreamDuration? maxStreamDuration;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy?
+  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
   requestMirrorPolicy;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy?
-  retryPolicy;
+  final ComputeRegionUrlMapRetryPolicy? retryPolicy;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout? timeout;
+  final ComputeRegionUrlMapTimeout? timeout;
 
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite? urlRewrite;
+  final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices
-  >?
+  final List<ComputeRegionUrlMapWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -742,133 +639,11 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteAction {
   };
 }
 
-/// Typed helper for the `path_matcher.default_route_action.cors_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy({
-    this.allowCredentials,
-    this.allowHeaders,
-    this.allowMethods,
-    this.allowOriginRegexes,
-    this.allowOrigins,
-    this.disabled,
-    this.exposeHeaders,
-    this.maxAge,
-  });
-
-  final TfArg<bool>? allowCredentials;
-
-  final TfArg<List<String>>? allowHeaders;
-
-  final TfArg<List<String>>? allowMethods;
-
-  final TfArg<List<String>>? allowOriginRegexes;
-
-  final TfArg<List<String>>? allowOrigins;
-
-  final TfArg<bool>? disabled;
-
-  final TfArg<List<String>>? exposeHeaders;
-
-  final TfArg<num>? maxAge;
-
-  Map<String, Object?> encode() => {
-    'allow_credentials': ?allowCredentials?.toTfJson(),
-    'allow_headers': ?allowHeaders?.toTfJson(),
-    'allow_methods': ?allowMethods?.toTfJson(),
-    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
-    'allow_origins': ?allowOrigins?.toTfJson(),
-    'disabled': ?disabled?.toTfJson(),
-    'expose_headers': ?exposeHeaders?.toTfJson(),
-    'max_age': ?maxAge?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
-
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort?
-  abort;
-
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay?
-  delay;
-
-  Map<String, Object?> encode() => {
-    'abort': ?abort?.encode(),
-    'delay': ?delay?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.abort` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
-
-  final TfArg<num>? httpStatus;
-
-  final TfArg<num>? percentage;
-
-  Map<String, Object?> encode() => {
-    'http_status': ?httpStatus?.toTfJson(),
-    'percentage': ?percentage?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
-
-  final TfArg<num>? percentage;
-
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
-
-  Map<String, Object?> encode() => {
-    'percentage': ?percentage?.toTfJson(),
-    'fixed_delay': ?fixedDelay?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay.fixed_delay` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.default_route_action.max_stream_duration` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration({
+final class ComputeRegionUrlMapMaxStreamDuration {
+  const ComputeRegionUrlMapMaxStreamDuration({
     this.nanos,
     required this.seconds,
   });
@@ -885,9 +660,10 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration {
 
 /// Typed helper for the `path_matcher.default_route_action.request_mirror_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy({
+final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy({
     required this.backendService,
   });
 
@@ -898,73 +674,12 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy 
   };
 }
 
-/// Typed helper for the `path_matcher.default_route_action.retry_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy({
-    this.numRetries,
-    this.retryConditions,
-    this.perTryTimeout,
-  });
-
-  final TfArg<num>? numRetries;
-
-  final TfArg<List<String>>? retryConditions;
-
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
-
-  Map<String, Object?> encode() => {
-    'num_retries': ?numRetries?.toTfJson(),
-    'retry_conditions': ?retryConditions?.toTfJson(),
-    'per_try_timeout': ?perTryTimeout?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.retry_policy.per_try_timeout` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.timeout` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.default_route_action.url_rewrite` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite({
+final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
+  const ComputeRegionUrlMapDefaultRouteActionUrlRewrite({
     this.hostRewrite,
     this.pathPrefixRewrite,
     this.pathTemplateRewrite,
@@ -983,236 +698,11 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite {
   };
 }
 
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices({
-    this.backendService,
-    this.weight,
-    this.headerAction,
-  });
-
-  final TfArg<String>? backendService;
-
-  final TfArg<num>? weight;
-
-  final ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
-
-  Map<String, Object?> encode() => {
-    'backend_service': ?backendService?.toTfJson(),
-    'weight': ?weight?.toTfJson(),
-    'header_action': ?headerAction?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_url_redirect` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherDefaultUrlRedirect {
-  const ComputeRegionUrlMapPathMatcherDefaultUrlRedirect({
-    this.hostRedirect,
-    this.httpsRedirect,
-    this.pathRedirect,
-    this.prefixRedirect,
-    this.redirectResponseCode,
-    required this.stripQuery,
-  });
-
-  final TfArg<String>? hostRedirect;
-
-  final TfArg<bool>? httpsRedirect;
-
-  final TfArg<String>? pathRedirect;
-
-  final TfArg<String>? prefixRedirect;
-
-  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
-
-  final TfArg<bool> stripQuery;
-
-  Map<String, Object?> encode() => {
-    'host_redirect': ?hostRedirect?.toTfJson(),
-    'https_redirect': ?httpsRedirect?.toTfJson(),
-    'path_redirect': ?pathRedirect?.toTfJson(),
-    'prefix_redirect': ?prefixRedirect?.toTfJson(),
-    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
-    'strip_query': stripQuery.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherHeaderAction {
-  const ComputeRegionUrlMapPathMatcherHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd>?
-  requestHeadersToAdd;
-
-  final List<ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd>?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action.request_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action.response_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRule {
-  const ComputeRegionUrlMapPathMatcherPathRule({
+final class ComputeRegionUrlMapPathRule {
+  const ComputeRegionUrlMapPathRule({
     required this.paths,
     this.service,
     this.routeAction,
@@ -1223,9 +713,9 @@ final class ComputeRegionUrlMapPathMatcherPathRule {
 
   final TfArg<String>? service;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteAction? routeAction;
+  final ComputeRegionUrlMapPathRuleRouteAction? routeAction;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect? urlRedirect;
+  final ComputeRegionUrlMapPathRuleUrlRedirect? urlRedirect;
 
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
@@ -1238,8 +728,8 @@ final class ComputeRegionUrlMapPathMatcherPathRule {
 /// Typed helper for the `path_matcher.path_rule.route_action` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteAction {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteAction({
+final class ComputeRegionUrlMapPathRuleRouteAction {
+  const ComputeRegionUrlMapPathRuleRouteAction({
     this.corsPolicy,
     this.faultInjectionPolicy,
     this.requestMirrorPolicy,
@@ -1249,24 +739,20 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy? corsPolicy;
+  final ComputeRegionUrlMapRouteActionCorsPolicy? corsPolicy;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeRegionUrlMapPathRuleFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy?
+  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
   requestMirrorPolicy;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy?
-  retryPolicy;
+  final ComputeRegionUrlMapPathRuleRetryPolicy? retryPolicy;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout? timeout;
+  final ComputeRegionUrlMapRouteActionTimeout? timeout;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite? urlRewrite;
+  final ComputeRegionUrlMapUrlRewrite? urlRewrite;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices
-  >?
+  final List<ComputeRegionUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -1286,8 +772,8 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteAction {
 /// Typed helper for the `path_matcher.path_rule.route_action.cors_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy({
+final class ComputeRegionUrlMapRouteActionCorsPolicy {
+  const ComputeRegionUrlMapRouteActionCorsPolicy({
     this.allowCredentials,
     this.allowHeaders,
     this.allowMethods,
@@ -1329,17 +815,15 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy({
+final class ComputeRegionUrlMapPathRuleFaultInjectionPolicy {
+  const ComputeRegionUrlMapPathRuleFaultInjectionPolicy({
     this.abort,
     this.delay,
   });
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort?
-  abort;
+  final ComputeRegionUrlMapFaultInjectionPolicyAbort? abort;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay?
-  delay;
+  final ComputeRegionUrlMapPathRuleDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -1350,8 +834,8 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolic
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.abort` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort({
+final class ComputeRegionUrlMapFaultInjectionPolicyAbort {
+  const ComputeRegionUrlMapFaultInjectionPolicyAbort({
     required this.httpStatus,
     required this.percentage,
   });
@@ -1369,16 +853,15 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolic
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay({
+final class ComputeRegionUrlMapPathRuleDelay {
+  const ComputeRegionUrlMapPathRuleDelay({
     required this.percentage,
     required this.fixedDelay,
   });
 
   final TfArg<num> percentage;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay
-  fixedDelay;
+  final ComputeRegionUrlMapDelayFixedDelay fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
@@ -1388,12 +871,10 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolic
 
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay.fixed_delay` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeRegionUrlMapDelayFixedDelay {
+  const ComputeRegionUrlMapDelayFixedDelay({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -1405,26 +886,11 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolic
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.request_mirror_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
-
-  final TfArg<String> backendService;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.route_action.retry_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy({
+final class ComputeRegionUrlMapPathRuleRetryPolicy {
+  const ComputeRegionUrlMapPathRuleRetryPolicy({
     this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -1434,8 +900,7 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
+  final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -1446,9 +911,10 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
 /// Typed helper for the `path_matcher.path_rule.route_action.retry_policy.per_try_timeout` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout({
+final class ComputeRegionUrlMapRetryPolicyPerTryTimeout {
+  const ComputeRegionUrlMapRetryPolicyPerTryTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -1465,9 +931,10 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTi
 
 /// Typed helper for the `path_matcher.path_rule.route_action.timeout` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout({
+final class ComputeRegionUrlMapRouteActionTimeout {
+  const ComputeRegionUrlMapRouteActionTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -1482,30 +949,12 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout {
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.url_rewrite` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite({
-    this.hostRewrite,
-    this.pathPrefixRewrite,
-  });
-
-  final TfArg<String>? hostRewrite;
-
-  final TfArg<String>? pathPrefixRewrite;
-
-  Map<String, Object?> encode() => {
-    'host_rewrite': ?hostRewrite?.toTfJson(),
-    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices({
+final class ComputeRegionUrlMapRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapRouteActionWeightedBackendServices({
     required this.backendService,
     required this.weight,
     this.headerAction,
@@ -1515,8 +964,7 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
 
   final TfArg<num> weight;
 
-  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
+  final ComputeRegionUrlMapRouteRulesHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
     'backend_service': backendService.toTfJson(),
@@ -1525,11 +973,12 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action` block of
+/// Typed helper for the `path_matcher.route_rules.header_action` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction({
+final class ComputeRegionUrlMapRouteRulesHeaderAction {
+  const ComputeRegionUrlMapRouteRulesHeaderAction({
     this.requestHeadersToRemove,
     this.responseHeadersToRemove,
     this.requestHeadersToAdd,
@@ -1540,14 +989,10 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
 
   final TfArg<List<String>>? responseHeadersToRemove;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
+  final List<ComputeRegionUrlMapHeaderActionRequestHeadersToAdd>?
   requestHeadersToAdd;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
+  final List<ComputeRegionUrlMapHeaderActionResponseHeadersToAdd>?
   responseHeadersToAdd;
 
   Map<String, Object?> encode() => {
@@ -1564,11 +1009,12 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// Typed helper for the `path_matcher.route_rules.header_action.request_headers_to_add` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+final class ComputeRegionUrlMapHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapHeaderActionRequestHeadersToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -1587,11 +1033,12 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// Typed helper for the `path_matcher.route_rules.header_action.response_headers_to_add` block of
 /// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+final class ComputeRegionUrlMapHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapHeaderActionResponseHeadersToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -1613,8 +1060,8 @@ final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServ
 /// Typed helper for the `path_matcher.path_rule.url_redirect` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect {
-  const ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect({
+final class ComputeRegionUrlMapPathRuleUrlRedirect {
+  const ComputeRegionUrlMapPathRuleUrlRedirect({
     this.hostRedirect,
     this.httpsRedirect,
     this.pathRedirect,
@@ -1648,8 +1095,8 @@ final class ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect {
 /// Typed helper for the `path_matcher.route_rules` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRules {
-  const ComputeRegionUrlMapPathMatcherRouteRules({
+final class ComputeRegionUrlMapRouteRules {
+  const ComputeRegionUrlMapRouteRules({
     required this.priority,
     this.service,
     this.headerAction,
@@ -1662,13 +1109,13 @@ final class ComputeRegionUrlMapPathMatcherRouteRules {
 
   final TfArg<String>? service;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction? headerAction;
+  final ComputeRegionUrlMapRouteRulesHeaderAction? headerAction;
 
-  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRules>? matchRules;
+  final List<ComputeRegionUrlMapMatchRules>? matchRules;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteAction? routeAction;
+  final ComputeRegionUrlMapRouteRulesRouteAction? routeAction;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect? urlRedirect;
+  final ComputeRegionUrlMapRouteRulesUrlRedirect? urlRedirect;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -1681,96 +1128,11 @@ final class ComputeRegionUrlMapPathMatcherRouteRules {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.header_action` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction {
-  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.header_action.request_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.header_action.response_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.match_rules` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRules {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRules({
+final class ComputeRegionUrlMapMatchRules {
+  const ComputeRegionUrlMapMatchRules({
     this.fullPathMatch,
     this.ignoreCase,
     this.pathTemplateMatch,
@@ -1791,16 +1153,11 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRules {
 
   final TfArg<String>? regexMatch;
 
-  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches>?
-  headerMatches;
+  final List<ComputeRegionUrlMapHeaderMatches>? headerMatches;
 
-  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters>?
-  metadataFilters;
+  final List<ComputeRegionUrlMapMetadataFilters>? metadataFilters;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches
-  >?
-  queryParameterMatches;
+  final List<ComputeRegionUrlMapQueryParameterMatches>? queryParameterMatches;
 
   Map<String, Object?> encode() => {
     'full_path_match': ?fullPathMatch?.toTfJson(),
@@ -1822,8 +1179,8 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRules {
 /// Typed helper for the `path_matcher.route_rules.match_rules.header_matches` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches({
+final class ComputeRegionUrlMapHeaderMatches {
+  const ComputeRegionUrlMapHeaderMatches({
     this.exactMatch,
     required this.headerName,
     this.invertMatch,
@@ -1848,8 +1205,7 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
 
   final TfArg<String>? suffixMatch;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch?
-  rangeMatch;
+  final ComputeRegionUrlMapRangeMatch? rangeMatch;
 
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
@@ -1866,8 +1222,8 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
 /// Typed helper for the `path_matcher.route_rules.match_rules.header_matches.range_match` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch({
+final class ComputeRegionUrlMapRangeMatch {
+  const ComputeRegionUrlMapRangeMatch({
     required this.rangeEnd,
     required this.rangeStart,
   });
@@ -1885,18 +1241,15 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRange
 /// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters({
+final class ComputeRegionUrlMapMetadataFilters {
+  const ComputeRegionUrlMapMetadataFilters({
     required this.filterMatchCriteria,
     required this.filterLabels,
   });
 
   final TfArg<RegionUrlMapMetadataFilterMatchCriteria> filterMatchCriteria;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels
-  >
-  filterLabels;
+  final List<ComputeRegionUrlMapFilterLabels> filterLabels;
 
   Map<String, Object?> encode() => {
     'filter_match_criteria': filterMatchCriteria.toTfJson(),
@@ -1907,8 +1260,8 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters {
 /// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters.filter_labels` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels({
+final class ComputeRegionUrlMapFilterLabels {
+  const ComputeRegionUrlMapFilterLabels({
     required this.name,
     required this.value,
   });
@@ -1926,8 +1279,8 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFil
 /// Typed helper for the `path_matcher.route_rules.match_rules.query_parameter_matches` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches {
-  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches({
+final class ComputeRegionUrlMapQueryParameterMatches {
+  const ComputeRegionUrlMapQueryParameterMatches({
     this.exactMatch,
     required this.name,
     this.presentMatch,
@@ -1953,8 +1306,8 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatc
 /// Typed helper for the `path_matcher.route_rules.route_action` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteAction {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteAction({
+final class ComputeRegionUrlMapRouteRulesRouteAction {
+  const ComputeRegionUrlMapRouteRulesRouteAction({
     this.corsPolicy,
     this.faultInjectionPolicy,
     this.requestMirrorPolicy,
@@ -1964,26 +1317,20 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy?
-  corsPolicy;
+  final ComputeRegionUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeRegionUrlMapRouteRulesFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy?
+  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
   requestMirrorPolicy;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy?
-  retryPolicy;
+  final ComputeRegionUrlMapRouteRulesRetryPolicy? retryPolicy;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout? timeout;
+  final ComputeRegionUrlMapRouteActionTimeout? timeout;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite?
-  urlRewrite;
+  final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
 
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices
-  >?
+  final List<ComputeRegionUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -2000,63 +1347,18 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteAction {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.cors_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy({
-    this.allowCredentials,
-    this.allowHeaders,
-    this.allowMethods,
-    this.allowOriginRegexes,
-    this.allowOrigins,
-    this.disabled,
-    this.exposeHeaders,
-    this.maxAge,
-  });
-
-  final TfArg<bool>? allowCredentials;
-
-  final TfArg<List<String>>? allowHeaders;
-
-  final TfArg<List<String>>? allowMethods;
-
-  final TfArg<List<String>>? allowOriginRegexes;
-
-  final TfArg<List<String>>? allowOrigins;
-
-  final TfArg<bool>? disabled;
-
-  final TfArg<List<String>>? exposeHeaders;
-
-  final TfArg<num>? maxAge;
-
-  Map<String, Object?> encode() => {
-    'allow_credentials': ?allowCredentials?.toTfJson(),
-    'allow_headers': ?allowHeaders?.toTfJson(),
-    'allow_methods': ?allowMethods?.toTfJson(),
-    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
-    'allow_origins': ?allowOrigins?.toTfJson(),
-    'disabled': ?disabled?.toTfJson(),
-    'expose_headers': ?exposeHeaders?.toTfJson(),
-    'max_age': ?maxAge?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy({
+final class ComputeRegionUrlMapRouteRulesFaultInjectionPolicy {
+  const ComputeRegionUrlMapRouteRulesFaultInjectionPolicy({
     this.abort,
     this.delay,
   });
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort?
-  abort;
+  final ComputeRegionUrlMapAbort? abort;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay?
-  delay;
+  final ComputeRegionUrlMapRouteRulesDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -2064,38 +1366,15 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPol
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.abort` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
-
-  final TfArg<num>? httpStatus;
-
-  final TfArg<num>? percentage;
-
-  Map<String, Object?> encode() => {
-    'http_status': ?httpStatus?.toTfJson(),
-    'percentage': ?percentage?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
+final class ComputeRegionUrlMapRouteRulesDelay {
+  const ComputeRegionUrlMapRouteRulesDelay({this.percentage, this.fixedDelay});
 
   final TfArg<num>? percentage;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
+  final ComputeRegionUrlMapDelayFixedDelay? fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
@@ -2103,45 +1382,11 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPol
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay.fixed_delay` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.request_mirror_policy` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
-
-  final TfArg<String> backendService;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.retry_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy({
+final class ComputeRegionUrlMapRouteRulesRetryPolicy {
+  const ComputeRegionUrlMapRouteRulesRetryPolicy({
     required this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -2151,8 +1396,7 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
+  final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
@@ -2161,181 +1405,11 @@ final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.retry_policy.per_try_timeout` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.timeout` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite({
-    this.hostRewrite,
-    this.pathPrefixRewrite,
-    this.pathTemplateRewrite,
-  });
-
-  final TfArg<String>? hostRewrite;
-
-  final TfArg<String>? pathPrefixRewrite;
-
-  final TfArg<String>? pathTemplateRewrite;
-
-  Map<String, Object?> encode() => {
-    'host_rewrite': ?hostRewrite?.toTfJson(),
-    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
-    'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices({
-    required this.backendService,
-    required this.weight,
-    this.headerAction,
-  });
-
-  final TfArg<String> backendService;
-
-  final TfArg<num> weight;
-
-  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-    'weight': weight.toTfJson(),
-    'header_action': ?headerAction?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
-/// `google_compute_region_url_map` (derived from provider schema).
-@immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.url_redirect` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
-final class ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect {
-  const ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect({
+final class ComputeRegionUrlMapRouteRulesUrlRedirect {
+  const ComputeRegionUrlMapRouteRulesUrlRedirect({
     this.hostRedirect,
     this.httpsRedirect,
     this.pathRedirect,
@@ -2471,11 +1545,11 @@ final class ComputeRegionUrlMapTest {
 ///       name: TfArg.literal('allpaths'),
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRule: [
-///         ComputeRegionUrlMapPathMatcherPathRule(
+///         ComputeRegionUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/home']),
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         ComputeRegionUrlMapPathMatcherPathRule(
+///         ComputeRegionUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/static']),
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
@@ -2501,7 +1575,7 @@ final class ComputeRegionUrlMapTest {
 ///
 /// Traffic-policy sub-blocks (`path_matcher.default_route_action`,
 /// `path_rule.route_action`, `route_rules.route_action`, ...) are typed
-/// helpers too (e.g. [ComputeRegionUrlMapPathMatcherPathRuleRouteAction]); the top-level
+/// helpers too (e.g. [ComputeRegionUrlMapPathRuleRouteAction]); the top-level
 /// `default_url_redirect` / `default_route_action` pair is the sealed
 /// [defaultAction] argument (`.defaultUrlRedirect(...)` /
 /// `.defaultRouteAction(...)`).

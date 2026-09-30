@@ -30,15 +30,12 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
     required this.metricSpecification,
   });
 
-  final TfArg<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior
-  >?
+  final TfArg<AppautoscalingPolicyMaxCapacityBreachBehavior>?
   maxCapacityBreachBehavior;
 
   final TfArg<num>? maxCapacityBuffer;
 
-  final TfArg<AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode>?
-  mode;
+  final TfArg<AppautoscalingPolicyMode>? mode;
 
   final TfArg<num>? schedulingBufferTime;
 
@@ -57,27 +54,21 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
 }
 
 /// `max_capacity_breach_behavior` — derived from the provider schema description.
-enum AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior
-    implements TerraformEnum {
+enum AppautoscalingPolicyMaxCapacityBreachBehavior implements TerraformEnum {
   honormaxcapacity('HonorMaxCapacity'),
   increasemaxcapacity('IncreaseMaxCapacity');
 
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior(
-    this.terraformValue,
-  );
+  const AppautoscalingPolicyMaxCapacityBreachBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mode` — derived from the provider schema description.
-enum AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode
-    implements TerraformEnum {
+enum AppautoscalingPolicyMode implements TerraformEnum {
   forecastonly('ForecastOnly'),
   forecastandscale('ForecastAndScale');
 
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode(
-    this.terraformValue,
-  );
+  const AppautoscalingPolicyMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -98,22 +89,22 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   final TfArg<String> targetValue;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecification?
+  final AppautoscalingPolicyCustomizedCapacityMetricSpecification?
   customizedCapacityMetricSpecification;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecification?
+  final AppautoscalingPolicyCustomizedLoadMetricSpecification?
   customizedLoadMetricSpecification;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecification?
+  final AppautoscalingPolicyCustomizedScalingMetricSpecification?
   customizedScalingMetricSpecification;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedLoadMetricSpecification?
+  final AppautoscalingPolicyPredefinedLoadMetricSpecification?
   predefinedLoadMetricSpecification;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedMetricPairSpecification?
+  final AppautoscalingPolicyPredefinedMetricPairSpecification?
   predefinedMetricPairSpecification;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedScalingMetricSpecification?
+  final AppautoscalingPolicyPredefinedScalingMetricSpecification?
   predefinedScalingMetricSpecification;
 
   Map<String, Object?> encode() => {
@@ -136,15 +127,12 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_capacity_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecification({
+final class AppautoscalingPolicyCustomizedCapacityMetricSpecification {
+  const AppautoscalingPolicyCustomizedCapacityMetricSpecification({
     required this.metricDataQuery,
   });
 
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQuery
-  >
-  metricDataQuery;
+  final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
@@ -153,9 +141,10 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_capacity_metric_specification.metric_data_query` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQuery {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQuery({
+final class AppautoscalingPolicyMetricDataQuery {
+  const AppautoscalingPolicyMetricDataQuery({
     this.expression,
     required this.id,
     this.label,
@@ -171,8 +160,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   final TfArg<bool>? returnData;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStat?
-  metricStat;
+  final AppautoscalingPolicyMetricDataQueryMetricStat? metricStat;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -185,9 +173,10 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_capacity_metric_specification.metric_data_query.metric_stat` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStat {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStat({
+final class AppautoscalingPolicyMetricDataQueryMetricStat {
+  const AppautoscalingPolicyMetricDataQueryMetricStat({
     required this.stat,
     this.unit,
     required this.metric,
@@ -197,8 +186,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   final TfArg<String>? unit;
 
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetric
-  metric;
+  final AppautoscalingPolicyMetricStatMetric metric;
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
@@ -209,9 +197,10 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_capacity_metric_specification.metric_data_query.metric_stat.metric` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetric {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetric({
+final class AppautoscalingPolicyMetricStatMetric {
+  const AppautoscalingPolicyMetricStatMetric({
     this.metricName,
     this.namespace,
     this.dimension,
@@ -221,10 +210,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   final TfArg<String>? namespace;
 
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetricDimension
-  >?
-  dimension;
+  final List<AppautoscalingPolicyDimension>? dimension;
 
   Map<String, Object?> encode() => {
     'metric_name': ?metricName?.toTfJson(),
@@ -236,9 +222,10 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_capacity_metric_specification.metric_data_query.metric_stat.metric.dimension` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetricDimension {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueryMetricStatMetricDimension({
+final class AppautoscalingPolicyDimension {
+  const AppautoscalingPolicyDimension({
     required this.name,
     required this.value,
   });
@@ -256,248 +243,38 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_load_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecification({
+final class AppautoscalingPolicyCustomizedLoadMetricSpecification {
+  const AppautoscalingPolicyCustomizedLoadMetricSpecification({
     required this.metricDataQuery,
   });
 
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQuery
-  >
-  metricDataQuery;
+  final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_load_metric_specification.metric_data_query` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQuery {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQuery({
-    this.expression,
-    required this.id,
-    this.label,
-    this.returnData,
-    this.metricStat,
-  });
-
-  final TfArg<String>? expression;
-
-  final TfArg<String> id;
-
-  final TfArg<String>? label;
-
-  final TfArg<bool>? returnData;
-
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStat?
-  metricStat;
-
-  Map<String, Object?> encode() => {
-    'expression': ?expression?.toTfJson(),
-    'id': id.toTfJson(),
-    'label': ?label?.toTfJson(),
-    'return_data': ?returnData?.toTfJson(),
-    'metric_stat': ?metricStat?.encode(),
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_load_metric_specification.metric_data_query.metric_stat` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStat {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStat({
-    required this.stat,
-    this.unit,
-    required this.metric,
-  });
-
-  final TfArg<String> stat;
-
-  final TfArg<String>? unit;
-
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetric
-  metric;
-
-  Map<String, Object?> encode() => {
-    'stat': stat.toTfJson(),
-    'unit': ?unit?.toTfJson(),
-    'metric': metric.encode(),
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_load_metric_specification.metric_data_query.metric_stat.metric` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetric {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetric({
-    this.metricName,
-    this.namespace,
-    this.dimension,
-  });
-
-  final TfArg<String>? metricName;
-
-  final TfArg<String>? namespace;
-
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetricDimension
-  >?
-  dimension;
-
-  Map<String, Object?> encode() => {
-    'metric_name': ?metricName?.toTfJson(),
-    'namespace': ?namespace?.toTfJson(),
-    if (dimension != null)
-      'dimension': [for (final e in dimension!) e.encode()],
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_load_metric_specification.metric_data_query.metric_stat.metric.dimension` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetricDimension {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedLoadMetricSpecificationMetricDataQueryMetricStatMetricDimension({
-    required this.name,
-    required this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': value.toTfJson(),
   };
 }
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_scaling_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecification({
+final class AppautoscalingPolicyCustomizedScalingMetricSpecification {
+  const AppautoscalingPolicyCustomizedScalingMetricSpecification({
     required this.metricDataQuery,
   });
 
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQuery
-  >
-  metricDataQuery;
+  final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
   };
 }
 
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_scaling_metric_specification.metric_data_query` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQuery {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQuery({
-    this.expression,
-    required this.id,
-    this.label,
-    this.returnData,
-    this.metricStat,
-  });
-
-  final TfArg<String>? expression;
-
-  final TfArg<String> id;
-
-  final TfArg<String>? label;
-
-  final TfArg<bool>? returnData;
-
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStat?
-  metricStat;
-
-  Map<String, Object?> encode() => {
-    'expression': ?expression?.toTfJson(),
-    'id': id.toTfJson(),
-    'label': ?label?.toTfJson(),
-    'return_data': ?returnData?.toTfJson(),
-    'metric_stat': ?metricStat?.encode(),
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_scaling_metric_specification.metric_data_query.metric_stat` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStat {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStat({
-    required this.stat,
-    this.unit,
-    required this.metric,
-  });
-
-  final TfArg<String> stat;
-
-  final TfArg<String>? unit;
-
-  final AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetric
-  metric;
-
-  Map<String, Object?> encode() => {
-    'stat': stat.toTfJson(),
-    'unit': ?unit?.toTfJson(),
-    'metric': metric.encode(),
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_scaling_metric_specification.metric_data_query.metric_stat.metric` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetric {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetric({
-    this.metricName,
-    this.namespace,
-    this.dimension,
-  });
-
-  final TfArg<String>? metricName;
-
-  final TfArg<String>? namespace;
-
-  final List<
-    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetricDimension
-  >?
-  dimension;
-
-  Map<String, Object?> encode() => {
-    'metric_name': ?metricName?.toTfJson(),
-    'namespace': ?namespace?.toTfJson(),
-    if (dimension != null)
-      'dimension': [for (final e in dimension!) e.encode()],
-  };
-}
-
-/// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.customized_scaling_metric_specification.metric_data_query.metric_stat.metric.dimension` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetricDimension {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueryMetricStatMetricDimension({
-    required this.name,
-    required this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.predefined_load_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedLoadMetricSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedLoadMetricSpecification({
+final class AppautoscalingPolicyPredefinedLoadMetricSpecification {
+  const AppautoscalingPolicyPredefinedLoadMetricSpecification({
     required this.predefinedMetricType,
     this.resourceLabel,
   });
@@ -515,8 +292,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.predefined_metric_pair_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedMetricPairSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedMetricPairSpecification({
+final class AppautoscalingPolicyPredefinedMetricPairSpecification {
+  const AppautoscalingPolicyPredefinedMetricPairSpecification({
     required this.predefinedMetricType,
     this.resourceLabel,
   });
@@ -534,8 +311,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification.predefined_scaling_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedScalingMetricSpecification {
-  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecificationPredefinedScalingMetricSpecification({
+final class AppautoscalingPolicyPredefinedScalingMetricSpecification {
+  const AppautoscalingPolicyPredefinedScalingMetricSpecification({
     required this.predefinedMetricType,
     this.resourceLabel,
   });
@@ -562,20 +339,15 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
     this.stepAdjustment,
   });
 
-  final TfArg<AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType>?
-  adjustmentType;
+  final TfArg<AppautoscalingPolicyAdjustmentType>? adjustmentType;
 
   final TfArg<num>? cooldown;
 
-  final TfArg<
-    AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType
-  >?
-  metricAggregationType;
+  final TfArg<AppautoscalingPolicyMetricAggregationType>? metricAggregationType;
 
   final TfArg<num>? minAdjustmentMagnitude;
 
-  final List<AppautoscalingPolicyStepScalingPolicyConfigurationStepAdjustment>?
-  stepAdjustment;
+  final List<AppautoscalingPolicyStepAdjustment>? stepAdjustment;
 
   Map<String, Object?> encode() => {
     'adjustment_type': ?adjustmentType?.toTfJson(),
@@ -588,29 +360,23 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
 }
 
 /// `adjustment_type` — derived from the provider schema description.
-enum AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType
-    implements TerraformEnum {
+enum AppautoscalingPolicyAdjustmentType implements TerraformEnum {
   changeincapacity('ChangeInCapacity'),
   percentchangeincapacity('PercentChangeInCapacity'),
   exactcapacity('ExactCapacity');
 
-  const AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType(
-    this.terraformValue,
-  );
+  const AppautoscalingPolicyAdjustmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `metric_aggregation_type` — derived from the provider schema description.
-enum AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType
-    implements TerraformEnum {
+enum AppautoscalingPolicyMetricAggregationType implements TerraformEnum {
   average('Average'),
   minimum('Minimum'),
   maximum('Maximum');
 
-  const AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType(
-    this.terraformValue,
-  );
+  const AppautoscalingPolicyMetricAggregationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -618,8 +384,8 @@ enum AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType
 /// Typed helper for the `step_scaling_policy_configuration.step_adjustment` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyStepScalingPolicyConfigurationStepAdjustment {
-  const AppautoscalingPolicyStepScalingPolicyConfigurationStepAdjustment({
+final class AppautoscalingPolicyStepAdjustment {
+  const AppautoscalingPolicyStepAdjustment({
     this.metricIntervalLowerBound,
     this.metricIntervalUpperBound,
     required this.scalingAdjustment,
@@ -680,15 +446,15 @@ sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricS
 
   /// Sets `customized_metric_specification`.
   const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.customizedMetricSpecification(
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
+    AppautoscalingPolicyCustomizedMetricSpecification
     customizedMetricSpecification,
-  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification;
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification;
 
   /// Sets `predefined_metric_specification`.
   const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.predefinedMetricSpecification(
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
+    AppautoscalingPolicyPredefinedMetricSpecification
     predefinedMetricSpecification,
-  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification;
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -697,14 +463,14 @@ sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricS
 }
 
 /// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
     extends
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification(
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification(
     this.customizedMetricSpecification,
   );
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
+  final AppautoscalingPolicyCustomizedMetricSpecification
   customizedMetricSpecification;
 
   @override
@@ -717,14 +483,14 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSp
 }
 
 /// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
     extends
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification(
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification(
     this.predefinedMetricSpecification,
   );
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
+  final AppautoscalingPolicyPredefinedMetricSpecification
   predefinedMetricSpecification;
 
   @override
@@ -739,8 +505,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSp
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification({
+final class AppautoscalingPolicyCustomizedMetricSpecification {
+  const AppautoscalingPolicyCustomizedMetricSpecification({
     this.metricName,
     this.namespace,
     this.statistic,
@@ -753,22 +519,13 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   final TfArg<String>? namespace;
 
-  final TfArg<
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic
-  >?
-  statistic;
+  final TfArg<AppautoscalingPolicyStatistic>? statistic;
 
   final TfArg<String>? unit;
 
-  final List<
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimensions
-  >?
-  dimensions;
+  final List<AppautoscalingPolicyDimensions>? dimensions;
 
-  final List<
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetrics
-  >?
-  metrics;
+  final List<AppautoscalingPolicyMetrics>? metrics;
 
   Map<String, Object?> encode() => {
     'metric_name': ?metricName?.toTfJson(),
@@ -782,26 +539,24 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 }
 
 /// `statistic` — derived from the provider schema description.
-enum AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic
-    implements TerraformEnum {
+enum AppautoscalingPolicyStatistic implements TerraformEnum {
   average('Average'),
   minimum('Minimum'),
   maximum('Maximum'),
   samplecount('SampleCount'),
   sum('Sum');
 
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic(
-    this.terraformValue,
-  );
+  const AppautoscalingPolicyStatistic(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.dimensions` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimensions {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimensions({
+final class AppautoscalingPolicyDimensions {
+  const AppautoscalingPolicyDimensions({
     required this.name,
     required this.value,
   });
@@ -819,8 +574,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.metrics` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetrics {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetrics({
+final class AppautoscalingPolicyMetrics {
+  const AppautoscalingPolicyMetrics({
     this.expression,
     required this.id,
     this.label,
@@ -836,8 +591,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   final TfArg<bool>? returnData;
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStat?
-  metricStat;
+  final AppautoscalingPolicyMetricStat? metricStat;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -851,8 +605,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.metrics.metric_stat` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStat {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStat({
+final class AppautoscalingPolicyMetricStat {
+  const AppautoscalingPolicyMetricStat({
     required this.stat,
     this.unit,
     required this.metric,
@@ -862,8 +616,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   final TfArg<String>? unit;
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetric
-  metric;
+  final AppautoscalingPolicyMetric metric;
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
@@ -875,8 +628,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.metrics.metric_stat.metric` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetric {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetric({
+final class AppautoscalingPolicyMetric {
+  const AppautoscalingPolicyMetric({
     required this.metricName,
     required this.namespace,
     this.dimensions,
@@ -886,10 +639,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   final TfArg<String> namespace;
 
-  final List<
-    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetricDimensions
-  >?
-  dimensions;
+  final List<AppautoscalingPolicyDimensions>? dimensions;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -899,30 +649,11 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   };
 }
 
-/// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.metrics.metric_stat.metric.dimensions` block of
-/// `aws_appautoscaling_policy` (derived from provider schema).
-@immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetricDimensions {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetricDimensions({
-    required this.name,
-    required this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `target_tracking_scaling_policy_configuration.predefined_metric_specification` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification({
+final class AppautoscalingPolicyPredefinedMetricSpecification {
+  const AppautoscalingPolicyPredefinedMetricSpecification({
     required this.predefinedMetricType,
     this.resourceLabel,
   });

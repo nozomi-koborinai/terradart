@@ -17,11 +17,11 @@ final class AppmeshVirtualGatewaySpec {
     this.logging,
   });
 
-  final AppmeshVirtualGatewaySpecBackendDefaults? backendDefaults;
+  final AppmeshVirtualGatewayBackendDefaults? backendDefaults;
 
-  final List<AppmeshVirtualGatewaySpecListener> listener;
+  final List<AppmeshVirtualGatewayListener> listener;
 
-  final AppmeshVirtualGatewaySpecLogging? logging;
+  final AppmeshVirtualGatewayLogging? logging;
 
   Map<String, Object?> encode() => {
     'backend_defaults': ?backendDefaults?.encode(),
@@ -33,10 +33,10 @@ final class AppmeshVirtualGatewaySpec {
 /// Typed helper for the `spec.backend_defaults` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaults {
-  const AppmeshVirtualGatewaySpecBackendDefaults({this.clientPolicy});
+final class AppmeshVirtualGatewayBackendDefaults {
+  const AppmeshVirtualGatewayBackendDefaults({this.clientPolicy});
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy? clientPolicy;
+  final AppmeshVirtualGatewayClientPolicy? clientPolicy;
 
   Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
@@ -44,10 +44,10 @@ final class AppmeshVirtualGatewaySpecBackendDefaults {
 /// Typed helper for the `spec.backend_defaults.client_policy` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy({this.tls});
+final class AppmeshVirtualGatewayClientPolicy {
+  const AppmeshVirtualGatewayClientPolicy({this.tls});
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls? tls;
+  final AppmeshVirtualGatewayClientPolicyTls? tls;
 
   Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
@@ -55,8 +55,8 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy {
 /// Typed helper for the `spec.backend_defaults.client_policy.tls` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls({
+final class AppmeshVirtualGatewayClientPolicyTls {
+  const AppmeshVirtualGatewayClientPolicyTls({
     this.enforce,
     this.ports,
     this.certificate,
@@ -67,11 +67,9 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
 
   final TfArg<List<num>>? ports;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate?
-  certificate;
+  final AppmeshVirtualGatewayTlsCertificate? certificate;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidation
-  validation;
+  final AppmeshVirtualGatewayTlsValidation validation;
 
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.toTfJson(),
@@ -85,18 +83,18 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.file(...)`.
-sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate();
+sealed class AppmeshVirtualGatewayTlsCertificate {
+  const AppmeshVirtualGatewayTlsCertificate();
 
   /// Sets `file`.
-  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate.file(
-    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile file,
-  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileChoice;
+  const factory AppmeshVirtualGatewayTlsCertificate.file(
+    AppmeshVirtualGatewayCertificateFile file,
+  ) = AppmeshVirtualGatewayTlsCertificateFile;
 
   /// Sets `sds`.
-  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate.sds(
-    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds sds,
-  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsChoice;
+  const factory AppmeshVirtualGatewayTlsCertificate.sds(
+    AppmeshVirtualGatewaySds sds,
+  ) = AppmeshVirtualGatewayTlsCertificateSds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -104,15 +102,12 @@ sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate 
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate.file] choice: sets `file`.
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileChoice
-    extends AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileChoice(
-    this.file,
-  );
+/// The [AppmeshVirtualGatewayTlsCertificate.file] choice: sets `file`.
+final class AppmeshVirtualGatewayTlsCertificateFile
+    extends AppmeshVirtualGatewayTlsCertificate {
+  const AppmeshVirtualGatewayTlsCertificateFile(this.file);
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile
-  file;
+  final AppmeshVirtualGatewayCertificateFile file;
 
   @override
   String get blockKey => 'file';
@@ -121,15 +116,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFi
   Map<String, Object?> encode() => {'file': file.encode()};
 }
 
-/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate.sds] choice: sets `sds`.
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsChoice
-    extends AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsChoice(
-    this.sds,
-  );
+/// The [AppmeshVirtualGatewayTlsCertificate.sds] choice: sets `sds`.
+final class AppmeshVirtualGatewayTlsCertificateSds
+    extends AppmeshVirtualGatewayTlsCertificate {
+  const AppmeshVirtualGatewayTlsCertificateSds(this.sds);
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds
-  sds;
+  final AppmeshVirtualGatewaySds sds;
 
   @override
   String get blockKey => 'sds';
@@ -138,11 +130,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSd
   Map<String, Object?> encode() => {'sds': sds.encode()};
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate.file` block of
+/// Typed helper for the `spec.listener.tls.certificate.file` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile({
+final class AppmeshVirtualGatewayCertificateFile {
+  const AppmeshVirtualGatewayCertificateFile({
     required this.certificateChain,
     required this.privateKey,
   });
@@ -157,13 +150,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFi
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate.sds` block of
+/// Typed helper for the `spec.listener.tls.certificate.sds` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds({
-    required this.secretName,
-  });
+final class AppmeshVirtualGatewaySds {
+  const AppmeshVirtualGatewaySds({required this.secretName});
 
   final TfArg<String> secretName;
 
@@ -173,17 +165,15 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSd
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidation {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidation({
+final class AppmeshVirtualGatewayTlsValidation {
+  const AppmeshVirtualGatewayTlsValidation({
     this.subjectAlternativeNames,
     required this.trust,
   });
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames?
-  subjectAlternativeNames;
+  final AppmeshVirtualGatewaySubjectAlternativeNames? subjectAlternativeNames;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust
-  trust;
+  final AppmeshVirtualGatewayValidationTrust trust;
 
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
@@ -191,27 +181,24 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidation {
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names` block of
+/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames({
-    required this.match,
-  });
+final class AppmeshVirtualGatewaySubjectAlternativeNames {
+  const AppmeshVirtualGatewaySubjectAlternativeNames({required this.match});
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch
-  match;
+  final AppmeshVirtualGatewayMatch match;
 
   Map<String, Object?> encode() => {'match': match.encode()};
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.match` block of
+/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names.match` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch({
-    required this.exact,
-  });
+final class AppmeshVirtualGatewayMatch {
+  const AppmeshVirtualGatewayMatch({required this.exact});
 
   final TfArg<List<String>> exact;
 
@@ -222,26 +209,23 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSub
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.acm(...)`.
-sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust();
+sealed class AppmeshVirtualGatewayValidationTrust {
+  const AppmeshVirtualGatewayValidationTrust();
 
   /// Sets `acm`.
-  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.acm(
-    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm
-    acm,
-  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmChoice;
+  const factory AppmeshVirtualGatewayValidationTrust.acm(
+    AppmeshVirtualGatewayTrustAcm acm,
+  ) = AppmeshVirtualGatewayValidationTrustAcm;
 
   /// Sets `file`.
-  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.file(
-    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile
-    file,
-  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileChoice;
+  const factory AppmeshVirtualGatewayValidationTrust.file(
+    AppmeshVirtualGatewayTrustFile file,
+  ) = AppmeshVirtualGatewayValidationTrustFile;
 
   /// Sets `sds`.
-  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.sds(
-    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds
-    sds,
-  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsChoice;
+  const factory AppmeshVirtualGatewayValidationTrust.sds(
+    AppmeshVirtualGatewaySds sds,
+  ) = AppmeshVirtualGatewayValidationTrustSds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -249,16 +233,12 @@ sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTr
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.acm] choice: sets `acm`.
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmChoice
-    extends
-        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmChoice(
-    this.acm,
-  );
+/// The [AppmeshVirtualGatewayValidationTrust.acm] choice: sets `acm`.
+final class AppmeshVirtualGatewayValidationTrustAcm
+    extends AppmeshVirtualGatewayValidationTrust {
+  const AppmeshVirtualGatewayValidationTrustAcm(this.acm);
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm
-  acm;
+  final AppmeshVirtualGatewayTrustAcm acm;
 
   @override
   String get blockKey => 'acm';
@@ -267,16 +247,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   Map<String, Object?> encode() => {'acm': acm.encode()};
 }
 
-/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.file] choice: sets `file`.
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileChoice
-    extends
-        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileChoice(
-    this.file,
-  );
+/// The [AppmeshVirtualGatewayValidationTrust.file] choice: sets `file`.
+final class AppmeshVirtualGatewayValidationTrustFile
+    extends AppmeshVirtualGatewayValidationTrust {
+  const AppmeshVirtualGatewayValidationTrustFile(this.file);
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile
-  file;
+  final AppmeshVirtualGatewayTrustFile file;
 
   @override
   String get blockKey => 'file';
@@ -285,16 +261,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   Map<String, Object?> encode() => {'file': file.encode()};
 }
 
-/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust.sds] choice: sets `sds`.
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsChoice
-    extends
-        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsChoice(
-    this.sds,
-  );
+/// The [AppmeshVirtualGatewayValidationTrust.sds] choice: sets `sds`.
+final class AppmeshVirtualGatewayValidationTrustSds
+    extends AppmeshVirtualGatewayValidationTrust {
+  const AppmeshVirtualGatewayValidationTrustSds(this.sds);
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds
-  sds;
+  final AppmeshVirtualGatewaySds sds;
 
   @override
   String get blockKey => 'sds';
@@ -306,10 +278,8 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.acm` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm({
-    required this.certificateAuthorityArns,
-  });
+final class AppmeshVirtualGatewayTrustAcm {
+  const AppmeshVirtualGatewayTrustAcm({required this.certificateAuthorityArns});
 
   final TfArg<List<String>> certificateAuthorityArns;
 
@@ -318,13 +288,12 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.file` block of
+/// Typed helper for the `spec.listener.tls.validation.trust.file` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile({
-    required this.certificateChain,
-  });
+final class AppmeshVirtualGatewayTrustFile {
+  const AppmeshVirtualGatewayTrustFile({required this.certificateChain});
 
   final TfArg<String> certificateChain;
 
@@ -333,37 +302,24 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.sds` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
 /// Typed helper for the `spec.listener` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListener {
-  const AppmeshVirtualGatewaySpecListener({
+final class AppmeshVirtualGatewayListener {
+  const AppmeshVirtualGatewayListener({
     this.connectionPool,
     this.healthCheck,
     required this.portMapping,
     this.tls,
   });
 
-  final AppmeshVirtualGatewaySpecListenerConnectionPool? connectionPool;
+  final AppmeshVirtualGatewayConnectionPool? connectionPool;
 
-  final AppmeshVirtualGatewaySpecListenerHealthCheck? healthCheck;
+  final AppmeshVirtualGatewayHealthCheck? healthCheck;
 
-  final AppmeshVirtualGatewaySpecListenerPortMapping portMapping;
+  final AppmeshVirtualGatewayPortMapping portMapping;
 
-  final AppmeshVirtualGatewaySpecListenerTls? tls;
+  final AppmeshVirtualGatewayTls? tls;
 
   Map<String, Object?> encode() => {
     'connection_pool': ?connectionPool?.encode(),
@@ -376,18 +332,14 @@ final class AppmeshVirtualGatewaySpecListener {
 /// Typed helper for the `spec.listener.connection_pool` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerConnectionPool {
-  const AppmeshVirtualGatewaySpecListenerConnectionPool({
-    this.grpc,
-    this.http,
-    this.http2,
-  });
+final class AppmeshVirtualGatewayConnectionPool {
+  const AppmeshVirtualGatewayConnectionPool({this.grpc, this.http, this.http2});
 
-  final AppmeshVirtualGatewaySpecListenerConnectionPoolGrpc? grpc;
+  final AppmeshVirtualGatewayGrpc? grpc;
 
-  final AppmeshVirtualGatewaySpecListenerConnectionPoolHttp? http;
+  final AppmeshVirtualGatewayHttp? http;
 
-  final AppmeshVirtualGatewaySpecListenerConnectionPoolHttp2? http2;
+  final AppmeshVirtualGatewayHttp2? http2;
 
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
@@ -399,10 +351,8 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPool {
 /// Typed helper for the `spec.listener.connection_pool.grpc` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerConnectionPoolGrpc {
-  const AppmeshVirtualGatewaySpecListenerConnectionPoolGrpc({
-    required this.maxRequests,
-  });
+final class AppmeshVirtualGatewayGrpc {
+  const AppmeshVirtualGatewayGrpc({required this.maxRequests});
 
   final TfArg<num> maxRequests;
 
@@ -412,8 +362,8 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPoolGrpc {
 /// Typed helper for the `spec.listener.connection_pool.http` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerConnectionPoolHttp {
-  const AppmeshVirtualGatewaySpecListenerConnectionPoolHttp({
+final class AppmeshVirtualGatewayHttp {
+  const AppmeshVirtualGatewayHttp({
     required this.maxConnections,
     this.maxPendingRequests,
   });
@@ -431,10 +381,8 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPoolHttp {
 /// Typed helper for the `spec.listener.connection_pool.http2` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerConnectionPoolHttp2 {
-  const AppmeshVirtualGatewaySpecListenerConnectionPoolHttp2({
-    required this.maxRequests,
-  });
+final class AppmeshVirtualGatewayHttp2 {
+  const AppmeshVirtualGatewayHttp2({required this.maxRequests});
 
   final TfArg<num> maxRequests;
 
@@ -444,8 +392,8 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPoolHttp2 {
 /// Typed helper for the `spec.listener.health_check` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerHealthCheck {
-  const AppmeshVirtualGatewaySpecListenerHealthCheck({
+final class AppmeshVirtualGatewayHealthCheck {
+  const AppmeshVirtualGatewayHealthCheck({
     required this.healthyThreshold,
     required this.intervalMillis,
     this.path,
@@ -463,7 +411,7 @@ final class AppmeshVirtualGatewaySpecListenerHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<AppmeshVirtualGatewaySpecListenerHealthCheckProtocol> protocol;
+  final TfArg<AppmeshVirtualGatewayProtocol> protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -481,15 +429,12 @@ final class AppmeshVirtualGatewaySpecListenerHealthCheck {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualGatewaySpecListenerHealthCheckProtocol
-    implements TerraformEnum {
+enum AppmeshVirtualGatewayProtocol implements TerraformEnum {
   http('http'),
   http2('http2'),
   grpc('grpc');
 
-  const AppmeshVirtualGatewaySpecListenerHealthCheckProtocol(
-    this.terraformValue,
-  );
+  const AppmeshVirtualGatewayProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -497,15 +442,15 @@ enum AppmeshVirtualGatewaySpecListenerHealthCheckProtocol
 /// Typed helper for the `spec.listener.port_mapping` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerPortMapping {
-  const AppmeshVirtualGatewaySpecListenerPortMapping({
+final class AppmeshVirtualGatewayPortMapping {
+  const AppmeshVirtualGatewayPortMapping({
     required this.port,
     required this.protocol,
   });
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualGatewaySpecListenerPortMappingProtocol> protocol;
+  final TfArg<AppmeshVirtualGatewayProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -513,35 +458,21 @@ final class AppmeshVirtualGatewaySpecListenerPortMapping {
   };
 }
 
-/// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualGatewaySpecListenerPortMappingProtocol
-    implements TerraformEnum {
-  http('http'),
-  http2('http2'),
-  grpc('grpc');
-
-  const AppmeshVirtualGatewaySpecListenerPortMappingProtocol(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `spec.listener.tls` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerTls {
-  const AppmeshVirtualGatewaySpecListenerTls({
+final class AppmeshVirtualGatewayTls {
+  const AppmeshVirtualGatewayTls({
     required this.mode,
     required this.certificate,
     this.validation,
   });
 
-  final TfArg<AppmeshVirtualGatewaySpecListenerTlsMode> mode;
+  final TfArg<AppmeshVirtualGatewayMode> mode;
 
-  final AppmeshVirtualGatewaySpecListenerTlsCertificate certificate;
+  final AppmeshVirtualGatewayCertificate certificate;
 
-  final AppmeshVirtualGatewaySpecListenerTlsValidation? validation;
+  final AppmeshVirtualGatewayValidation? validation;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
@@ -551,12 +482,12 @@ final class AppmeshVirtualGatewaySpecListenerTls {
 }
 
 /// `mode` — derived from the provider schema description.
-enum AppmeshVirtualGatewaySpecListenerTlsMode implements TerraformEnum {
+enum AppmeshVirtualGatewayMode implements TerraformEnum {
   strict('STRICT'),
   permissive('PERMISSIVE'),
   disabled('DISABLED');
 
-  const AppmeshVirtualGatewaySpecListenerTlsMode(this.terraformValue);
+  const AppmeshVirtualGatewayMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -564,18 +495,14 @@ enum AppmeshVirtualGatewaySpecListenerTlsMode implements TerraformEnum {
 /// Typed helper for the `spec.listener.tls.certificate` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerTlsCertificate {
-  const AppmeshVirtualGatewaySpecListenerTlsCertificate({
-    this.acm,
-    this.file,
-    this.sds,
-  });
+final class AppmeshVirtualGatewayCertificate {
+  const AppmeshVirtualGatewayCertificate({this.acm, this.file, this.sds});
 
-  final AppmeshVirtualGatewaySpecListenerTlsCertificateAcm? acm;
+  final AppmeshVirtualGatewayAcm? acm;
 
-  final AppmeshVirtualGatewaySpecListenerTlsCertificateFile? file;
+  final AppmeshVirtualGatewayCertificateFile? file;
 
-  final AppmeshVirtualGatewaySpecListenerTlsCertificateSds? sds;
+  final AppmeshVirtualGatewaySds? sds;
 
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
@@ -587,10 +514,8 @@ final class AppmeshVirtualGatewaySpecListenerTlsCertificate {
 /// Typed helper for the `spec.listener.tls.certificate.acm` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerTlsCertificateAcm {
-  const AppmeshVirtualGatewaySpecListenerTlsCertificateAcm({
-    required this.certificateArn,
-  });
+final class AppmeshVirtualGatewayAcm {
+  const AppmeshVirtualGatewayAcm({required this.certificateArn});
 
   final TfArg<String> certificateArn;
 
@@ -599,51 +524,18 @@ final class AppmeshVirtualGatewaySpecListenerTlsCertificateAcm {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.certificate.file` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsCertificateFile {
-  const AppmeshVirtualGatewaySpecListenerTlsCertificateFile({
-    required this.certificateChain,
-    required this.privateKey,
-  });
-
-  final TfArg<String> certificateChain;
-
-  final TfArg<String> privateKey;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-    'private_key': privateKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.listener.tls.certificate.sds` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsCertificateSds {
-  const AppmeshVirtualGatewaySpecListenerTlsCertificateSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
 /// Typed helper for the `spec.listener.tls.validation` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidation {
-  const AppmeshVirtualGatewaySpecListenerTlsValidation({
+final class AppmeshVirtualGatewayValidation {
+  const AppmeshVirtualGatewayValidation({
     this.subjectAlternativeNames,
     required this.trust,
   });
 
-  final AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNames?
-  subjectAlternativeNames;
+  final AppmeshVirtualGatewaySubjectAlternativeNames? subjectAlternativeNames;
 
-  final AppmeshVirtualGatewaySpecListenerTlsValidationTrust trust;
+  final AppmeshVirtualGatewayTrust trust;
 
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
@@ -651,45 +543,15 @@ final class AppmeshVirtualGatewaySpecListenerTlsValidation {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNames {
-  const AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNames({
-    required this.match,
-  });
-
-  final AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNamesMatch
-  match;
-
-  Map<String, Object?> encode() => {'match': match.encode()};
-}
-
-/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names.match` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNamesMatch {
-  const AppmeshVirtualGatewaySpecListenerTlsValidationSubjectAlternativeNamesMatch({
-    required this.exact,
-  });
-
-  final TfArg<List<String>> exact;
-
-  Map<String, Object?> encode() => {'exact': exact.toTfJson()};
-}
-
 /// Typed helper for the `spec.listener.tls.validation.trust` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidationTrust {
-  const AppmeshVirtualGatewaySpecListenerTlsValidationTrust({
-    this.file,
-    this.sds,
-  });
+final class AppmeshVirtualGatewayTrust {
+  const AppmeshVirtualGatewayTrust({this.file, this.sds});
 
-  final AppmeshVirtualGatewaySpecListenerTlsValidationTrustFile? file;
+  final AppmeshVirtualGatewayTrustFile? file;
 
-  final AppmeshVirtualGatewaySpecListenerTlsValidationTrustSds? sds;
+  final AppmeshVirtualGatewaySds? sds;
 
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
@@ -697,41 +559,13 @@ final class AppmeshVirtualGatewaySpecListenerTlsValidationTrust {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.validation.trust.file` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidationTrustFile {
-  const AppmeshVirtualGatewaySpecListenerTlsValidationTrustFile({
-    required this.certificateChain,
-  });
-
-  final TfArg<String> certificateChain;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.listener.tls.validation.trust.sds` block of
-/// `aws_appmesh_virtual_gateway` (derived from provider schema).
-@immutable
-final class AppmeshVirtualGatewaySpecListenerTlsValidationTrustSds {
-  const AppmeshVirtualGatewaySpecListenerTlsValidationTrustSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
 /// Typed helper for the `spec.logging` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecLogging {
-  const AppmeshVirtualGatewaySpecLogging({this.accessLog});
+final class AppmeshVirtualGatewayLogging {
+  const AppmeshVirtualGatewayLogging({this.accessLog});
 
-  final AppmeshVirtualGatewaySpecLoggingAccessLog? accessLog;
+  final AppmeshVirtualGatewayAccessLog? accessLog;
 
   Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
@@ -739,10 +573,10 @@ final class AppmeshVirtualGatewaySpecLogging {
 /// Typed helper for the `spec.logging.access_log` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecLoggingAccessLog {
-  const AppmeshVirtualGatewaySpecLoggingAccessLog({this.file});
+final class AppmeshVirtualGatewayAccessLog {
+  const AppmeshVirtualGatewayAccessLog({this.file});
 
-  final AppmeshVirtualGatewaySpecLoggingAccessLogFile? file;
+  final AppmeshVirtualGatewayFile? file;
 
   Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
@@ -750,15 +584,12 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLog {
 /// Typed helper for the `spec.logging.access_log.file` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecLoggingAccessLogFile {
-  const AppmeshVirtualGatewaySpecLoggingAccessLogFile({
-    required this.path,
-    this.format,
-  });
+final class AppmeshVirtualGatewayFile {
+  const AppmeshVirtualGatewayFile({required this.path, this.format});
 
   final TfArg<String> path;
 
-  final AppmeshVirtualGatewaySpecLoggingAccessLogFileFormat? format;
+  final AppmeshVirtualGatewayFormat? format;
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
@@ -769,15 +600,12 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLogFile {
 /// Typed helper for the `spec.logging.access_log.file.format` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecLoggingAccessLogFileFormat {
-  const AppmeshVirtualGatewaySpecLoggingAccessLogFileFormat({
-    this.text,
-    this.json,
-  });
+final class AppmeshVirtualGatewayFormat {
+  const AppmeshVirtualGatewayFormat({this.text, this.json});
 
   final TfArg<String>? text;
 
-  final List<AppmeshVirtualGatewaySpecLoggingAccessLogFileFormatJson>? json;
+  final List<AppmeshVirtualGatewayJson>? json;
 
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
@@ -788,11 +616,8 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLogFileFormat {
 /// Typed helper for the `spec.logging.access_log.file.format.json` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
-final class AppmeshVirtualGatewaySpecLoggingAccessLogFileFormatJson {
-  const AppmeshVirtualGatewaySpecLoggingAccessLogFileFormatJson({
-    required this.key,
-    required this.value,
-  });
+final class AppmeshVirtualGatewayJson {
+  const AppmeshVirtualGatewayJson({required this.key, required this.value});
 
   final TfArg<String> key;
 

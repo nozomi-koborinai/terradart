@@ -15,8 +15,8 @@ const Set<String> _googleDataprocClusterSensitive = <String>{};
 /// Typed helper for the `cluster_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfig {
-  const DataprocClusterClusterConfig({
+final class DataprocClusterConfig {
+  const DataprocClusterConfig({
     this.clusterTier,
     this.clusterType,
     this.engine,
@@ -48,36 +48,33 @@ final class DataprocClusterClusterConfig {
 
   final TfArg<String>? tempBucket;
 
-  final DataprocClusterClusterConfigAutoscalingConfig? autoscalingConfig;
+  final DataprocClusterAutoscalingConfig? autoscalingConfig;
 
-  final List<DataprocClusterClusterConfigAuxiliaryNodeGroups>?
-  auxiliaryNodeGroups;
+  final List<DataprocClusterAuxiliaryNodeGroups>? auxiliaryNodeGroups;
 
-  final DataprocClusterClusterConfigDataprocMetricConfig? dataprocMetricConfig;
+  final DataprocClusterDataprocMetricConfig? dataprocMetricConfig;
 
-  final DataprocClusterClusterConfigEncryptionConfig? encryptionConfig;
+  final DataprocClusterEncryptionConfig? encryptionConfig;
 
-  final DataprocClusterClusterConfigEndpointConfig? endpointConfig;
+  final DataprocClusterEndpointConfig? endpointConfig;
 
-  final DataprocClusterClusterConfigGceClusterConfig? gceClusterConfig;
+  final DataprocClusterGceClusterConfig? gceClusterConfig;
 
-  final List<DataprocClusterClusterConfigInitializationAction>?
-  initializationAction;
+  final List<DataprocClusterInitializationAction>? initializationAction;
 
-  final DataprocClusterClusterConfigLifecycleConfig? lifecycleConfig;
+  final DataprocClusterLifecycleConfig? lifecycleConfig;
 
-  final DataprocClusterClusterConfigMasterConfig? masterConfig;
+  final DataprocClusterMasterConfig? masterConfig;
 
-  final DataprocClusterClusterConfigMetastoreConfig? metastoreConfig;
+  final DataprocClusterMetastoreConfig? metastoreConfig;
 
-  final DataprocClusterClusterConfigPreemptibleWorkerConfig?
-  preemptibleWorkerConfig;
+  final DataprocClusterPreemptibleWorkerConfig? preemptibleWorkerConfig;
 
-  final DataprocClusterClusterConfigSecurityConfig? securityConfig;
+  final DataprocClusterSecurityConfig? securityConfig;
 
-  final DataprocClusterClusterConfigSoftwareConfig? softwareConfig;
+  final DataprocClusterSoftwareConfig? softwareConfig;
 
-  final DataprocClusterClusterConfigWorkerConfig? workerConfig;
+  final DataprocClusterWorkerConfig? workerConfig;
 
   Map<String, Object?> encode() => {
     'cluster_tier': ?clusterTier?.toTfJson(),
@@ -111,10 +108,8 @@ final class DataprocClusterClusterConfig {
 /// Typed helper for the `cluster_config.autoscaling_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigAutoscalingConfig {
-  const DataprocClusterClusterConfigAutoscalingConfig({
-    required this.policyUri,
-  });
+final class DataprocClusterAutoscalingConfig {
+  const DataprocClusterAutoscalingConfig({required this.policyUri});
 
   final TfArg<String> policyUri;
 
@@ -124,16 +119,15 @@ final class DataprocClusterClusterConfigAutoscalingConfig {
 /// Typed helper for the `cluster_config.auxiliary_node_groups` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigAuxiliaryNodeGroups {
-  const DataprocClusterClusterConfigAuxiliaryNodeGroups({
+final class DataprocClusterAuxiliaryNodeGroups {
+  const DataprocClusterAuxiliaryNodeGroups({
     this.nodeGroupId,
     required this.nodeGroup,
   });
 
   final TfArg<String>? nodeGroupId;
 
-  final List<DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup>
-  nodeGroup;
+  final List<DataprocClusterNodeGroup> nodeGroup;
 
   Map<String, Object?> encode() => {
     'node_group_id': ?nodeGroupId?.toTfJson(),
@@ -144,16 +138,12 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroups {
 /// Typed helper for the `cluster_config.auxiliary_node_groups.node_group` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup {
-  const DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup({
-    required this.roles,
-    this.nodeGroupConfig,
-  });
+final class DataprocClusterNodeGroup {
+  const DataprocClusterNodeGroup({required this.roles, this.nodeGroupConfig});
 
   final TfArg<List<String>> roles;
 
-  final DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfig?
-  nodeGroupConfig;
+  final DataprocClusterNodeGroupConfig? nodeGroupConfig;
 
   Map<String, Object?> encode() => {
     'roles': roles.toTfJson(),
@@ -164,8 +154,8 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup {
 /// Typed helper for the `cluster_config.auxiliary_node_groups.node_group.node_group_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfig {
-  const DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfig({
+final class DataprocClusterNodeGroupConfig {
+  const DataprocClusterNodeGroupConfig({
     this.machineType,
     this.minCpuPlatform,
     this.numInstances,
@@ -179,13 +169,9 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
 
   final TfArg<num>? numInstances;
 
-  final List<
-    DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigAccelerators
-  >?
-  accelerators;
+  final List<DataprocClusterAccelerators>? accelerators;
 
-  final DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigDiskConfig?
-  diskConfig;
+  final DataprocClusterNodeGroupConfigDiskConfig? diskConfig;
 
   Map<String, Object?> encode() => {
     'machine_type': ?machineType?.toTfJson(),
@@ -197,11 +183,12 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
   };
 }
 
-/// Typed helper for the `cluster_config.auxiliary_node_groups.node_group.node_group_config.accelerators` block of
+/// Typed helper for the `cluster_config.master_config.accelerators` block of
 /// `google_dataproc_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigAccelerators {
-  const DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigAccelerators({
+final class DataprocClusterAccelerators {
+  const DataprocClusterAccelerators({
     required this.acceleratorCount,
     required this.acceleratorType,
   });
@@ -219,8 +206,8 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
 /// Typed helper for the `cluster_config.auxiliary_node_groups.node_group.node_group_config.disk_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigDiskConfig {
-  const DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigDiskConfig({
+final class DataprocClusterNodeGroupConfigDiskConfig {
+  const DataprocClusterNodeGroupConfigDiskConfig({
     this.bootDiskProvisionedIops,
     this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
@@ -255,12 +242,10 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
 /// Typed helper for the `cluster_config.dataproc_metric_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigDataprocMetricConfig {
-  const DataprocClusterClusterConfigDataprocMetricConfig({
-    required this.metrics,
-  });
+final class DataprocClusterDataprocMetricConfig {
+  const DataprocClusterDataprocMetricConfig({required this.metrics});
 
-  final List<DataprocClusterClusterConfigDataprocMetricConfigMetrics> metrics;
+  final List<DataprocClusterMetrics> metrics;
 
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.encode()],
@@ -270,8 +255,8 @@ final class DataprocClusterClusterConfigDataprocMetricConfig {
 /// Typed helper for the `cluster_config.dataproc_metric_config.metrics` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigDataprocMetricConfigMetrics {
-  const DataprocClusterClusterConfigDataprocMetricConfigMetrics({
+final class DataprocClusterMetrics {
+  const DataprocClusterMetrics({
     this.metricOverrides,
     required this.metricSource,
   });
@@ -289,10 +274,8 @@ final class DataprocClusterClusterConfigDataprocMetricConfigMetrics {
 /// Typed helper for the `cluster_config.encryption_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigEncryptionConfig {
-  const DataprocClusterClusterConfigEncryptionConfig({
-    required this.kmsKeyName,
-  });
+final class DataprocClusterEncryptionConfig {
+  const DataprocClusterEncryptionConfig({required this.kmsKeyName});
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -304,10 +287,8 @@ final class DataprocClusterClusterConfigEncryptionConfig {
 /// Typed helper for the `cluster_config.endpoint_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigEndpointConfig {
-  const DataprocClusterClusterConfigEndpointConfig({
-    required this.enableHttpPortAccess,
-  });
+final class DataprocClusterEndpointConfig {
+  const DataprocClusterEndpointConfig({required this.enableHttpPortAccess});
 
   final TfArg<bool> enableHttpPortAccess;
 
@@ -319,8 +300,8 @@ final class DataprocClusterClusterConfigEndpointConfig {
 /// Typed helper for the `cluster_config.gce_cluster_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigGceClusterConfig {
-  const DataprocClusterClusterConfigGceClusterConfig({
+final class DataprocClusterGceClusterConfig {
+  const DataprocClusterGceClusterConfig({
     this.internalIpOnly,
     this.metadata,
     this.network,
@@ -354,17 +335,13 @@ final class DataprocClusterClusterConfigGceClusterConfig {
 
   final TfArg<String>? zone;
 
-  final DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig?
-  confidentialInstanceConfig;
+  final DataprocClusterConfidentialInstanceConfig? confidentialInstanceConfig;
 
-  final DataprocClusterClusterConfigGceClusterConfigNodeGroupAffinity?
-  nodeGroupAffinity;
+  final DataprocClusterNodeGroupAffinity? nodeGroupAffinity;
 
-  final DataprocClusterClusterConfigGceClusterConfigReservationAffinity?
-  reservationAffinity;
+  final DataprocClusterReservationAffinity? reservationAffinity;
 
-  final DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final DataprocClusterShieldedInstanceConfig? shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
     'internal_ip_only': ?internalIpOnly?.toTfJson(),
@@ -386,8 +363,8 @@ final class DataprocClusterClusterConfigGceClusterConfig {
 /// Typed helper for the `cluster_config.gce_cluster_config.confidential_instance_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig {
-  const DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig({
+final class DataprocClusterConfidentialInstanceConfig {
+  const DataprocClusterConfidentialInstanceConfig({
     this.confidentialInstanceType,
     this.enableConfidentialCompute,
   });
@@ -405,10 +382,8 @@ final class DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConf
 /// Typed helper for the `cluster_config.gce_cluster_config.node_group_affinity` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigGceClusterConfigNodeGroupAffinity {
-  const DataprocClusterClusterConfigGceClusterConfigNodeGroupAffinity({
-    required this.nodeGroupUri,
-  });
+final class DataprocClusterNodeGroupAffinity {
+  const DataprocClusterNodeGroupAffinity({required this.nodeGroupUri});
 
   final TfArg<String> nodeGroupUri;
 
@@ -418,8 +393,8 @@ final class DataprocClusterClusterConfigGceClusterConfigNodeGroupAffinity {
 /// Typed helper for the `cluster_config.gce_cluster_config.reservation_affinity` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigGceClusterConfigReservationAffinity {
-  const DataprocClusterClusterConfigGceClusterConfigReservationAffinity({
+final class DataprocClusterReservationAffinity {
+  const DataprocClusterReservationAffinity({
     this.consumeReservationType,
     this.key,
     this.values,
@@ -441,8 +416,8 @@ final class DataprocClusterClusterConfigGceClusterConfigReservationAffinity {
 /// Typed helper for the `cluster_config.gce_cluster_config.shielded_instance_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig {
-  const DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig({
+final class DataprocClusterShieldedInstanceConfig {
+  const DataprocClusterShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -464,8 +439,8 @@ final class DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig {
 /// Typed helper for the `cluster_config.initialization_action` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigInitializationAction {
-  const DataprocClusterClusterConfigInitializationAction({
+final class DataprocClusterInitializationAction {
+  const DataprocClusterInitializationAction({
     required this.script,
     this.timeoutSec,
   });
@@ -483,8 +458,8 @@ final class DataprocClusterClusterConfigInitializationAction {
 /// Typed helper for the `cluster_config.lifecycle_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigLifecycleConfig {
-  const DataprocClusterClusterConfigLifecycleConfig({
+final class DataprocClusterLifecycleConfig {
+  const DataprocClusterLifecycleConfig({
     this.autoDeleteTime,
     this.autoStopTime,
     this.idleDeleteTtl,
@@ -510,8 +485,8 @@ final class DataprocClusterClusterConfigLifecycleConfig {
 /// Typed helper for the `cluster_config.master_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigMasterConfig {
-  const DataprocClusterClusterConfigMasterConfig({
+final class DataprocClusterMasterConfig {
+  const DataprocClusterMasterConfig({
     this.imageUri,
     this.machineType,
     this.minCpuPlatform,
@@ -529,12 +504,11 @@ final class DataprocClusterClusterConfigMasterConfig {
 
   final TfArg<num>? numInstances;
 
-  final List<DataprocClusterClusterConfigMasterConfigAccelerators>?
-  accelerators;
+  final List<DataprocClusterAccelerators>? accelerators;
 
-  final DataprocClusterClusterConfigMasterConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
-  final DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicy?
+  final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -549,30 +523,12 @@ final class DataprocClusterClusterConfigMasterConfig {
   };
 }
 
-/// Typed helper for the `cluster_config.master_config.accelerators` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigMasterConfigAccelerators {
-  const DataprocClusterClusterConfigMasterConfigAccelerators({
-    required this.acceleratorCount,
-    required this.acceleratorType,
-  });
-
-  final TfArg<num> acceleratorCount;
-
-  final TfArg<String> acceleratorType;
-
-  Map<String, Object?> encode() => {
-    'accelerator_count': acceleratorCount.toTfJson(),
-    'accelerator_type': acceleratorType.toTfJson(),
-  };
-}
-
 /// Typed helper for the `cluster_config.master_config.disk_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterClusterConfigMasterConfigDiskConfig {
-  const DataprocClusterClusterConfigMasterConfigDiskConfig({
+final class DataprocClusterDiskConfig {
+  const DataprocClusterDiskConfig({
     this.bootDiskProvisionedIops,
     this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
@@ -594,10 +550,7 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
-  final List<
-    DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
+  final List<DataprocClusterAttachedDiskConfig>? attachedDiskConfig;
 
   Map<String, Object?> encode() => {
     'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
@@ -614,9 +567,10 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
 
 /// Typed helper for the `cluster_config.master_config.disk_config.attached_disk_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig({
+final class DataprocClusterAttachedDiskConfig {
+  const DataprocClusterAttachedDiskConfig({
     this.diskSizeGb,
     this.diskType,
     this.provisionedIops,
@@ -641,16 +595,14 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig
 
 /// Typed helper for the `cluster_config.master_config.instance_flexibility_policy` block of
 /// `google_dataproc_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicy {
-  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicy({
+final class DataprocClusterMasterConfigInstanceFlexibilityPolicy {
+  const DataprocClusterMasterConfigInstanceFlexibilityPolicy({
     this.instanceSelectionList,
   });
 
-  final List<
-    DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
-  instanceSelectionList;
+  final List<DataprocClusterInstanceSelectionList>? instanceSelectionList;
 
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
@@ -662,9 +614,10 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicy {
 
 /// Typed helper for the `cluster_config.master_config.instance_flexibility_policy.instance_selection_list` block of
 /// `google_dataproc_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList({
+final class DataprocClusterInstanceSelectionList {
+  const DataprocClusterInstanceSelectionList({
     this.machineTypes,
     this.rank,
     this.diskConfig,
@@ -674,8 +627,7 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
 
   final TfArg<num>? rank;
 
-  final DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
   Map<String, Object?> encode() => {
     'machine_types': ?machineTypes?.toTfJson(),
@@ -684,82 +636,11 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
   };
 }
 
-/// Typed helper for the `cluster_config.master_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `cluster_config.metastore_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigMetastoreConfig {
-  const DataprocClusterClusterConfigMetastoreConfig({
+final class DataprocClusterMetastoreConfig {
+  const DataprocClusterMetastoreConfig({
     required this.dataprocMetastoreService,
   });
 
@@ -773,8 +654,8 @@ final class DataprocClusterClusterConfigMetastoreConfig {
 /// Typed helper for the `cluster_config.preemptible_worker_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfig {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfig({
+final class DataprocClusterPreemptibleWorkerConfig {
+  const DataprocClusterPreemptibleWorkerConfig({
     this.numInstances,
     this.preemptibility,
     this.diskConfig,
@@ -785,10 +666,9 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfig {
 
   final TfArg<String>? preemptibility;
 
-  final DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig?
-  diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
-  final DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicy?
+  final DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -799,93 +679,18 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfig {
   };
 }
 
-/// Typed helper for the `cluster_config.preemptible_worker_config.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.preemptible_worker_config.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicy {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicy({
+final class DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy {
+  const DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy({
     this.instanceSelectionList,
     this.provisioningModelMix,
   });
 
-  final List<
-    DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
-  instanceSelectionList;
+  final List<DataprocClusterInstanceSelectionList>? instanceSelectionList;
 
-  final DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix?
-  provisioningModelMix;
+  final DataprocClusterProvisioningModelMix? provisioningModelMix;
 
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
@@ -896,106 +701,11 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   };
 }
 
-/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
-    this.machineTypes,
-    this.rank,
-    this.diskConfig,
-  });
-
-  final TfArg<List<String>>? machineTypes;
-
-  final TfArg<num>? rank;
-
-  final DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
-
-  Map<String, Object?> encode() => {
-    'machine_types': ?machineTypes?.toTfJson(),
-    'rank': ?rank?.toTfJson(),
-    'disk_config': ?diskConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.provisioning_model_mix` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix {
-  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix({
+final class DataprocClusterProvisioningModelMix {
+  const DataprocClusterProvisioningModelMix({
     this.standardCapacityBase,
     this.standardCapacityPercentAboveBase,
   });
@@ -1014,17 +724,15 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
 /// Typed helper for the `cluster_config.security_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigSecurityConfig {
-  const DataprocClusterClusterConfigSecurityConfig({
+final class DataprocClusterSecurityConfig {
+  const DataprocClusterSecurityConfig({
     this.identityConfig,
     this.kerberosConfig,
   });
 
-  final DataprocClusterClusterConfigSecurityConfigIdentityConfig?
-  identityConfig;
+  final DataprocClusterIdentityConfig? identityConfig;
 
-  final DataprocClusterClusterConfigSecurityConfigKerberosConfig?
-  kerberosConfig;
+  final DataprocClusterKerberosConfig? kerberosConfig;
 
   Map<String, Object?> encode() => {
     'identity_config': ?identityConfig?.encode(),
@@ -1035,8 +743,8 @@ final class DataprocClusterClusterConfigSecurityConfig {
 /// Typed helper for the `cluster_config.security_config.identity_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigSecurityConfigIdentityConfig {
-  const DataprocClusterClusterConfigSecurityConfigIdentityConfig({
+final class DataprocClusterIdentityConfig {
+  const DataprocClusterIdentityConfig({
     required this.userServiceAccountMapping,
   });
 
@@ -1050,8 +758,8 @@ final class DataprocClusterClusterConfigSecurityConfigIdentityConfig {
 /// Typed helper for the `cluster_config.security_config.kerberos_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigSecurityConfigKerberosConfig {
-  const DataprocClusterClusterConfigSecurityConfigKerberosConfig({
+final class DataprocClusterKerberosConfig {
+  const DataprocClusterKerberosConfig({
     this.crossRealmTrustAdminServer,
     this.crossRealmTrustKdc,
     this.crossRealmTrustRealm,
@@ -1122,8 +830,8 @@ final class DataprocClusterClusterConfigSecurityConfigKerberosConfig {
 /// Typed helper for the `cluster_config.software_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigSoftwareConfig {
-  const DataprocClusterClusterConfigSoftwareConfig({
+final class DataprocClusterSoftwareConfig {
+  const DataprocClusterSoftwareConfig({
     this.imageVersion,
     this.optionalComponents,
     this.overrideProperties,
@@ -1145,8 +853,8 @@ final class DataprocClusterClusterConfigSoftwareConfig {
 /// Typed helper for the `cluster_config.worker_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterClusterConfigWorkerConfig {
-  const DataprocClusterClusterConfigWorkerConfig({
+final class DataprocClusterWorkerConfig {
+  const DataprocClusterWorkerConfig({
     this.imageUri,
     this.machineType,
     this.minCpuPlatform,
@@ -1167,12 +875,11 @@ final class DataprocClusterClusterConfigWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final List<DataprocClusterClusterConfigWorkerConfigAccelerators>?
-  accelerators;
+  final List<DataprocClusterAccelerators>? accelerators;
 
-  final DataprocClusterClusterConfigWorkerConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
-  final DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicy?
+  final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -1188,212 +895,6 @@ final class DataprocClusterClusterConfigWorkerConfig {
   };
 }
 
-/// Typed helper for the `cluster_config.worker_config.accelerators` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigAccelerators {
-  const DataprocClusterClusterConfigWorkerConfigAccelerators({
-    required this.acceleratorCount,
-    required this.acceleratorType,
-  });
-
-  final TfArg<num> acceleratorCount;
-
-  final TfArg<String> acceleratorType;
-
-  Map<String, Object?> encode() => {
-    'accelerator_count': acceleratorCount.toTfJson(),
-    'accelerator_type': acceleratorType.toTfJson(),
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigDiskConfig {
-  const DataprocClusterClusterConfigWorkerConfigDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicy {
-  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicy({
-    this.instanceSelectionList,
-  });
-
-  final List<
-    DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
-  instanceSelectionList;
-
-  Map<String, Object?> encode() => {
-    if (instanceSelectionList != null)
-      'instance_selection_list': [
-        for (final e in instanceSelectionList!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy.instance_selection_list` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
-    this.machineTypes,
-    this.rank,
-    this.diskConfig,
-  });
-
-  final TfArg<List<String>>? machineTypes;
-
-  final TfArg<num>? rank;
-
-  final DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
-
-  Map<String, Object?> encode() => {
-    'machine_types': ?machineTypes?.toTfJson(),
-    'rank': ?rank?.toTfJson(),
-    'disk_config': ?diskConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `virtual_cluster_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
@@ -1406,11 +907,9 @@ final class DataprocClusterVirtualClusterConfig {
 
   final TfArg<String>? stagingBucket;
 
-  final DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig?
-  auxiliaryServicesConfig;
+  final DataprocClusterAuxiliaryServicesConfig? auxiliaryServicesConfig;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfig?
-  kubernetesClusterConfig;
+  final DataprocClusterKubernetesClusterConfig? kubernetesClusterConfig;
 
   Map<String, Object?> encode() => {
     'staging_bucket': ?stagingBucket?.toTfJson(),
@@ -1422,17 +921,15 @@ final class DataprocClusterVirtualClusterConfig {
 /// Typed helper for the `virtual_cluster_config.auxiliary_services_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig {
-  const DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig({
+final class DataprocClusterAuxiliaryServicesConfig {
+  const DataprocClusterAuxiliaryServicesConfig({
     this.metastoreConfig,
     this.sparkHistoryServerConfig,
   });
 
-  final DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreConfig?
-  metastoreConfig;
+  final DataprocClusterAuxiliaryServicesConfigMetastoreConfig? metastoreConfig;
 
-  final DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHistoryServerConfig?
-  sparkHistoryServerConfig;
+  final DataprocClusterSparkHistoryServerConfig? sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
     'metastore_config': ?metastoreConfig?.encode(),
@@ -1443,8 +940,8 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig {
 /// Typed helper for the `virtual_cluster_config.auxiliary_services_config.metastore_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreConfig {
-  const DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreConfig({
+final class DataprocClusterAuxiliaryServicesConfigMetastoreConfig {
+  const DataprocClusterAuxiliaryServicesConfigMetastoreConfig({
     this.dataprocMetastoreService,
   });
 
@@ -1458,10 +955,8 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreC
 /// Typed helper for the `virtual_cluster_config.auxiliary_services_config.spark_history_server_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHistoryServerConfig {
-  const DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHistoryServerConfig({
-    this.dataprocCluster,
-  });
+final class DataprocClusterSparkHistoryServerConfig {
+  const DataprocClusterSparkHistoryServerConfig({this.dataprocCluster});
 
   final TfArg<String>? dataprocCluster;
 
@@ -1473,8 +968,8 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHisto
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfig {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfig({
+final class DataprocClusterKubernetesClusterConfig {
+  const DataprocClusterKubernetesClusterConfig({
     this.kubernetesNamespace,
     required this.gkeClusterConfig,
     required this.kubernetesSoftwareConfig,
@@ -1482,11 +977,9 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfig {
 
   final TfArg<String>? kubernetesNamespace;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfig
-  gkeClusterConfig;
+  final DataprocClusterGkeClusterConfig gkeClusterConfig;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig
-  kubernetesSoftwareConfig;
+  final DataprocClusterKubernetesSoftwareConfig kubernetesSoftwareConfig;
 
   Map<String, Object?> encode() => {
     'kubernetes_namespace': ?kubernetesNamespace?.toTfJson(),
@@ -1498,18 +991,15 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfig {
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfig {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfig({
+final class DataprocClusterGkeClusterConfig {
+  const DataprocClusterGkeClusterConfig({
     this.gkeClusterTarget,
     this.nodePoolTarget,
   });
 
   final TfArg<String>? gkeClusterTarget;
 
-  final List<
-    DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTarget
-  >?
-  nodePoolTarget;
+  final List<DataprocClusterNodePoolTarget>? nodePoolTarget;
 
   Map<String, Object?> encode() => {
     'gke_cluster_target': ?gkeClusterTarget?.toTfJson(),
@@ -1521,8 +1011,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config.node_pool_target` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTarget {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTarget({
+final class DataprocClusterNodePoolTarget {
+  const DataprocClusterNodePoolTarget({
     required this.nodePool,
     required this.roles,
     this.nodePoolConfig,
@@ -1532,8 +1022,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 
   final TfArg<List<String>> roles;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfig?
-  nodePoolConfig;
+  final DataprocClusterNodePoolConfig? nodePoolConfig;
 
   Map<String, Object?> encode() => {
     'node_pool': nodePool.toTfJson(),
@@ -1545,8 +1034,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config.node_pool_target.node_pool_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfig {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfig({
+final class DataprocClusterNodePoolConfig {
+  const DataprocClusterNodePoolConfig({
     required this.locations,
     this.autoscaling,
     this.config,
@@ -1554,11 +1043,9 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 
   final TfArg<List<String>> locations;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigAutoscaling?
-  autoscaling;
+  final DataprocClusterAutoscaling? autoscaling;
 
-  final DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigConfig?
-  config;
+  final DataprocClusterNodePoolConfigConfig? config;
 
   Map<String, Object?> encode() => {
     'locations': locations.toTfJson(),
@@ -1570,11 +1057,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config.node_pool_target.node_pool_config.autoscaling` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigAutoscaling {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigAutoscaling({
-    this.maxNodeCount,
-    this.minNodeCount,
-  });
+final class DataprocClusterAutoscaling {
+  const DataprocClusterAutoscaling({this.maxNodeCount, this.minNodeCount});
 
   final TfArg<num>? maxNodeCount;
 
@@ -1589,8 +1073,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config.node_pool_target.node_pool_config.config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigConfig {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigConfig({
+final class DataprocClusterNodePoolConfigConfig {
+  const DataprocClusterNodePoolConfigConfig({
     this.localSsdCount,
     this.machineType,
     this.minCpuPlatform,
@@ -1620,8 +1104,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.kubernetes_software_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
-final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig {
-  const DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig({
+final class DataprocClusterKubernetesSoftwareConfig {
+  const DataprocClusterKubernetesSoftwareConfig({
     required this.componentVersion,
     this.properties,
   });
@@ -1660,12 +1144,12 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetes
 ///   localName: 'spark',
 ///   name: TfArg.literal('terradart-dataproc'),
 ///   region: TfArg.literal('us-central1'),
-///   clusterConfig: DataprocClusterClusterConfig(
-///     masterConfig: DataprocClusterClusterConfigMasterConfig(
+///   clusterConfig: DataprocClusterConfig(
+///     masterConfig: DataprocClusterMasterConfig(
 ///       numInstances: TfArg.literal(1),
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///     ),
-///     workerConfig: DataprocClusterClusterConfigWorkerConfig(
+///     workerConfig: DataprocClusterWorkerConfig(
 ///       numInstances: TfArg.literal(2),
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///     ),
@@ -1679,7 +1163,7 @@ final class GoogleDataprocCluster extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    DataprocClusterClusterConfig? clusterConfig,
+    DataprocClusterConfig? clusterConfig,
     DataprocClusterVirtualClusterConfig? virtualClusterConfig,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? gracefulDecommissionTimeout,

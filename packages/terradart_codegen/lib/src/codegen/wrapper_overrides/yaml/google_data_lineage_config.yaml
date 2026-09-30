@@ -27,13 +27,13 @@ curatedDoc: |-
   ///   location: TfArg.literal('global'),
   ///   ingestion: DataLineageConfigIngestion(
   ///     rule: [
-  ///       DataLineageConfigIngestionRule(
-  ///         integrationSelector: DataLineageConfigIngestionRuleIntegrationSelector(
+  ///       DataLineageConfigRule(
+  ///         integrationSelector: DataLineageConfigIntegrationSelector(
   ///           integration: TfArg.literal(
-  ///             DataLineageConfigIngestionRuleIntegrationSelectorIntegration.dataproc,
+  ///             DataLineageConfigIntegration.dataproc,
   ///           ),
   ///         ),
-  ///         lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(
+  ///         lineageEnablement: DataLineageConfigLineageEnablement(
   ///           enabled: TfArg.literal(true),
   ///         ),
   ///       ),

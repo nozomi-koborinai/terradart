@@ -18,8 +18,7 @@ final class BinaryAuthorizationAttestorAttestationAuthorityNote {
 
   final TfArg<String> noteReference;
 
-  final List<BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys>?
-  publicKeys;
+  final List<BinaryAuthorizationAttestorPublicKeys>? publicKeys;
 
   Map<String, Object?> encode() => {
     'note_reference': noteReference.toTfJson(),
@@ -31,8 +30,8 @@ final class BinaryAuthorizationAttestorAttestationAuthorityNote {
 /// Typed helper for the `attestation_authority_note.public_keys` block of
 /// `google_binary_authorization_attestor` (derived from provider schema).
 @immutable
-final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys {
-  const BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys({
+final class BinaryAuthorizationAttestorPublicKeys {
+  const BinaryAuthorizationAttestorPublicKeys({
     this.asciiArmoredPgpPublicKey,
     this.comment,
     this.id,
@@ -45,8 +44,7 @@ final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys {
 
   final TfArg<String>? id;
 
-  final BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey?
-  pkixPublicKey;
+  final BinaryAuthorizationAttestorPkixPublicKey? pkixPublicKey;
 
   Map<String, Object?> encode() => {
     'ascii_armored_pgp_public_key': ?asciiArmoredPgpPublicKey?.toTfJson(),
@@ -59,8 +57,8 @@ final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys {
 /// Typed helper for the `attestation_authority_note.public_keys.pkix_public_key` block of
 /// `google_binary_authorization_attestor` (derived from provider schema).
 @immutable
-final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey {
-  const BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey({
+final class BinaryAuthorizationAttestorPkixPublicKey {
+  const BinaryAuthorizationAttestorPkixPublicKey({
     this.publicKeyPem,
     this.signatureAlgorithm,
   });

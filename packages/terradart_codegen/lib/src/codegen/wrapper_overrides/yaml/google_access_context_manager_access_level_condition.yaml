@@ -39,9 +39,9 @@ curatedDoc: |-
   ///     requireAdminApproval: TfArg.literal(false),
   ///     requireCorpOwned: TfArg.literal(true),
   ///     osConstraints: [
-  ///       AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
+  ///       AccessContextManagerAccessLevelConditionOsConstraints(
   ///         osType: TfArg.literal(
-  ///           AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
+  ///           AccessContextManagerAccessLevelConditionOsType
   ///               .desktopChromeOs,
   ///         ),
   ///       ),

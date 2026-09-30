@@ -29,11 +29,11 @@ final class DataDnsRecordFilter {
     this.tag,
   });
 
-  final TfArg<DataDnsRecordFilterDirection>? direction;
+  final TfArg<DataDnsRecordDirection>? direction;
 
-  final TfArg<DataDnsRecordFilterMatch>? match;
+  final TfArg<DataDnsRecordMatch>? match;
 
-  final TfArg<DataDnsRecordFilterOrder>? order;
+  final TfArg<DataDnsRecordOrder>? order;
 
   final TfArg<bool>? proxied;
 
@@ -43,7 +43,7 @@ final class DataDnsRecordFilter {
 
   final TfArg<String>? shadowingName;
 
-  final TfArg<DataDnsRecordFilterTagMatch>? tagMatch;
+  final TfArg<DataDnsRecordTagMatch>? tagMatch;
 
   final TfArg<DataDnsRecordFilterType>? type;
 
@@ -53,7 +53,7 @@ final class DataDnsRecordFilter {
 
   final DataDnsRecordFilterName? name;
 
-  final DataDnsRecordFilterTag? tag;
+  final DataDnsRecordTag? tag;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -73,44 +73,44 @@ final class DataDnsRecordFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataDnsRecordFilterDirection implements TerraformEnum {
+enum DataDnsRecordDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataDnsRecordFilterDirection(this.terraformValue);
+  const DataDnsRecordDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `match` — derived from the provider schema description.
-enum DataDnsRecordFilterMatch implements TerraformEnum {
+enum DataDnsRecordMatch implements TerraformEnum {
   any('any'),
   all('all');
 
-  const DataDnsRecordFilterMatch(this.terraformValue);
+  const DataDnsRecordMatch(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataDnsRecordFilterOrder implements TerraformEnum {
+enum DataDnsRecordOrder implements TerraformEnum {
   type('type'),
   name('name'),
   content('content'),
   ttl('ttl'),
   proxied('proxied');
 
-  const DataDnsRecordFilterOrder(this.terraformValue);
+  const DataDnsRecordOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `tag_match` — derived from the provider schema description.
-enum DataDnsRecordFilterTagMatch implements TerraformEnum {
+enum DataDnsRecordTagMatch implements TerraformEnum {
   any('any'),
   all('all');
 
-  const DataDnsRecordFilterTagMatch(this.terraformValue);
+  const DataDnsRecordTagMatch(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -236,8 +236,8 @@ final class DataDnsRecordFilterName {
 /// Typed helper for the `filter.tag` block of
 /// `cloudflare_dns_record` (derived from provider schema).
 @immutable
-final class DataDnsRecordFilterTag {
-  const DataDnsRecordFilterTag({
+final class DataDnsRecordTag {
+  const DataDnsRecordTag({
     this.absent,
     this.contains,
     this.endswith,

@@ -31,8 +31,7 @@ final class CleanroomsMembershipDefaultResultConfiguration {
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final List<CleanroomsMembershipDefaultResultConfigurationOutputConfiguration>?
-  outputConfiguration;
+  final List<CleanroomsMembershipOutputConfiguration>? outputConfiguration;
 
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
@@ -46,15 +45,10 @@ final class CleanroomsMembershipDefaultResultConfiguration {
 /// Typed helper for the `default_result_configuration.output_configuration` block of
 /// `aws_cleanrooms_membership` (derived from provider schema).
 @immutable
-final class CleanroomsMembershipDefaultResultConfigurationOutputConfiguration {
-  const CleanroomsMembershipDefaultResultConfigurationOutputConfiguration({
-    this.s3,
-  });
+final class CleanroomsMembershipOutputConfiguration {
+  const CleanroomsMembershipOutputConfiguration({this.s3});
 
-  final List<
-    CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3
-  >?
-  s3;
+  final List<CleanroomsMembershipS3>? s3;
 
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
@@ -64,8 +58,8 @@ final class CleanroomsMembershipDefaultResultConfigurationOutputConfiguration {
 /// Typed helper for the `default_result_configuration.output_configuration.s3` block of
 /// `aws_cleanrooms_membership` (derived from provider schema).
 @immutable
-final class CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3 {
-  const CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3({
+final class CleanroomsMembershipS3 {
+  const CleanroomsMembershipS3({
     required this.bucket,
     this.keyPrefix,
     required this.resultFormat,
@@ -90,8 +84,7 @@ final class CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3 
 final class CleanroomsMembershipPaymentConfiguration {
   const CleanroomsMembershipPaymentConfiguration({this.queryCompute});
 
-  final List<CleanroomsMembershipPaymentConfigurationQueryCompute>?
-  queryCompute;
+  final List<CleanroomsMembershipQueryCompute>? queryCompute;
 
   Map<String, Object?> encode() => {
     if (queryCompute != null)
@@ -102,10 +95,8 @@ final class CleanroomsMembershipPaymentConfiguration {
 /// Typed helper for the `payment_configuration.query_compute` block of
 /// `aws_cleanrooms_membership` (derived from provider schema).
 @immutable
-final class CleanroomsMembershipPaymentConfigurationQueryCompute {
-  const CleanroomsMembershipPaymentConfigurationQueryCompute({
-    required this.isResponsible,
-  });
+final class CleanroomsMembershipQueryCompute {
+  const CleanroomsMembershipQueryCompute({required this.isResponsible});
 
   final TfArg<bool> isResponsible;
 

@@ -31,7 +31,7 @@ export 'src/ssl/cloudflare_custom_ssl.dart'
         CustomSslBundleMethod,
         CustomSslDeploy,
         CustomSslGeoRestrictions,
-        CustomSslGeoRestrictionsLabel,
+        CustomSslLabel,
         CustomSslType;
 export 'src/ssl/cloudflare_hostname_tls_setting.dart'
     show CloudflareHostnameTlsSetting, HostnameTlsSettingSettingId;

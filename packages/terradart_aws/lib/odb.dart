@@ -7,13 +7,13 @@ export 'src/odb/aws_odb_cloud_autonomous_vm_cluster.dart'
     show
         AwsOdbCloudAutonomousVmCluster,
         OdbCloudAutonomousVmClusterMaintenanceWindow,
-        OdbCloudAutonomousVmClusterMaintenanceWindowPreference;
+        OdbCloudAutonomousVmClusterPreference;
 export 'src/odb/aws_odb_cloud_exadata_infrastructure.dart'
     show
         AwsOdbCloudExadataInfrastructure,
         OdbCloudExadataInfrastructureMaintenanceWindow,
-        OdbCloudExadataInfrastructureMaintenanceWindowPatchingMode,
-        OdbCloudExadataInfrastructureMaintenanceWindowPreference;
+        OdbCloudExadataInfrastructurePatchingMode,
+        OdbCloudExadataInfrastructurePreference;
 export 'src/odb/aws_odb_cloud_vm_cluster.dart'
     show AwsOdbCloudVmCluster, OdbCloudVmClusterDataCollectionOptions;
 export 'src/odb/aws_odb_iam_role_association.dart'

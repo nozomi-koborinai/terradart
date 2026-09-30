@@ -29,9 +29,9 @@ final class ComputeRouterRoutePolicyTerms {
 
   final TfArg<num> priority;
 
-  final List<ComputeRouterRoutePolicyTermsActions>? actions;
+  final List<ComputeRouterRoutePolicyActions>? actions;
 
-  final ComputeRouterRoutePolicyTermsMatch match;
+  final ComputeRouterRoutePolicyMatch match;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -43,8 +43,8 @@ final class ComputeRouterRoutePolicyTerms {
 /// Typed helper for the `terms.actions` block of
 /// `google_compute_router_route_policy` (derived from provider schema).
 @immutable
-final class ComputeRouterRoutePolicyTermsActions {
-  const ComputeRouterRoutePolicyTermsActions({
+final class ComputeRouterRoutePolicyActions {
+  const ComputeRouterRoutePolicyActions({
     this.description,
     required this.expression,
     this.location,
@@ -70,8 +70,8 @@ final class ComputeRouterRoutePolicyTermsActions {
 /// Typed helper for the `terms.match` block of
 /// `google_compute_router_route_policy` (derived from provider schema).
 @immutable
-final class ComputeRouterRoutePolicyTermsMatch {
-  const ComputeRouterRoutePolicyTermsMatch({
+final class ComputeRouterRoutePolicyMatch {
+  const ComputeRouterRoutePolicyMatch({
     this.description,
     required this.expression,
     this.location,

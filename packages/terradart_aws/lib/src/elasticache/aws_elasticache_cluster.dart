@@ -137,12 +137,11 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<ElasticacheClusterLogDeliveryConfigurationDestinationType>
-  destinationType;
+  final TfArg<ElasticacheClusterDestinationType> destinationType;
 
-  final TfArg<ElasticacheClusterLogDeliveryConfigurationLogFormat> logFormat;
+  final TfArg<ElasticacheClusterLogFormat> logFormat;
 
-  final TfArg<ElasticacheClusterLogDeliveryConfigurationLogType> logType;
+  final TfArg<ElasticacheClusterLogType> logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -153,38 +152,31 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ElasticacheClusterLogDeliveryConfigurationDestinationType
-    implements TerraformEnum {
+enum ElasticacheClusterDestinationType implements TerraformEnum {
   cloudwatchLogs('cloudwatch-logs'),
   kinesisFirehose('kinesis-firehose');
 
-  const ElasticacheClusterLogDeliveryConfigurationDestinationType(
-    this.terraformValue,
-  );
+  const ElasticacheClusterDestinationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_format` — derived from the provider schema description.
-enum ElasticacheClusterLogDeliveryConfigurationLogFormat
-    implements TerraformEnum {
+enum ElasticacheClusterLogFormat implements TerraformEnum {
   text('text'),
   json('json');
 
-  const ElasticacheClusterLogDeliveryConfigurationLogFormat(
-    this.terraformValue,
-  );
+  const ElasticacheClusterLogFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticacheClusterLogDeliveryConfigurationLogType
-    implements TerraformEnum {
+enum ElasticacheClusterLogType implements TerraformEnum {
   slowLog('slow-log'),
   engineLog('engine-log');
 
-  const ElasticacheClusterLogDeliveryConfigurationLogType(this.terraformValue);
+  const ElasticacheClusterLogType(this.terraformValue);
   @override
   final String terraformValue;
 }

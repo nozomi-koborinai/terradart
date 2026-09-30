@@ -27,9 +27,7 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 
   final TfArg<num>? maxIdleConnectionsPercent;
 
-  final List<
-    TfArg<DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters>
-  >?
+  final List<TfArg<DbProxyDefaultTargetGroupSessionPinningFilters>>?
   sessionPinningFilters;
 
   Map<String, Object?> encode() => {
@@ -45,13 +43,10 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 }
 
 /// `session_pinning_filters` — derived from the provider schema description.
-enum DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters
-    implements TerraformEnum {
+enum DbProxyDefaultTargetGroupSessionPinningFilters implements TerraformEnum {
   excludeVariableSets('EXCLUDE_VARIABLE_SETS');
 
-  const DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters(
-    this.terraformValue,
-  );
+  const DbProxyDefaultTargetGroupSessionPinningFilters(this.terraformValue);
   @override
   final String terraformValue;
 }

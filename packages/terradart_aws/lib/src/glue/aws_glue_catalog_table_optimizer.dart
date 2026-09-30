@@ -36,15 +36,13 @@ final class GlueCatalogTableOptimizerConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final List<GlueCatalogTableOptimizerConfigurationCompactionConfiguration>?
+  final List<GlueCatalogTableOptimizerCompactionConfiguration>?
   compactionConfiguration;
 
-  final List<
-    GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguration
-  >?
+  final List<GlueCatalogTableOptimizerOrphanFileDeletionConfiguration>?
   orphanFileDeletionConfiguration;
 
-  final List<GlueCatalogTableOptimizerConfigurationRetentionConfiguration>?
+  final List<GlueCatalogTableOptimizerRetentionConfiguration>?
   retentionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -68,13 +66,13 @@ final class GlueCatalogTableOptimizerConfiguration {
 /// Typed helper for the `configuration.compaction_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationCompactionConfiguration {
-  const GlueCatalogTableOptimizerConfigurationCompactionConfiguration({
+final class GlueCatalogTableOptimizerCompactionConfiguration {
+  const GlueCatalogTableOptimizerCompactionConfiguration({
     this.icebergConfiguration,
   });
 
   final List<
-    GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfiguration
+    GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration
   >?
   icebergConfiguration;
 
@@ -89,8 +87,8 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfiguration {
 /// Typed helper for the `configuration.compaction_configuration.iceberg_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfiguration {
-  const GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfiguration({
+final class GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration {
+  const GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration({
     this.deleteFileThreshold,
     this.minInputFiles,
     this.strategy,
@@ -100,10 +98,7 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIceberg
 
   final TfArg<num>? minInputFiles;
 
-  final TfArg<
-    GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy
-  >?
-  strategy;
+  final TfArg<GlueCatalogTableOptimizerStrategy>? strategy;
 
   Map<String, Object?> encode() => {
     'delete_file_threshold': ?deleteFileThreshold?.toTfJson(),
@@ -113,15 +108,12 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIceberg
 }
 
 /// `strategy` — derived from the provider schema description.
-enum GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy
-    implements TerraformEnum {
+enum GlueCatalogTableOptimizerStrategy implements TerraformEnum {
   binpack('binpack'),
   sort('sort'),
   zOrder('z-order');
 
-  const GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy(
-    this.terraformValue,
-  );
+  const GlueCatalogTableOptimizerStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -129,13 +121,13 @@ enum GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigu
 /// Typed helper for the `configuration.orphan_file_deletion_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguration {
-  const GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguration({
+final class GlueCatalogTableOptimizerOrphanFileDeletionConfiguration {
+  const GlueCatalogTableOptimizerOrphanFileDeletionConfiguration({
     this.icebergConfiguration,
   });
 
   final List<
-    GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfigurationIcebergConfiguration
+    GlueCatalogTableOptimizerOrphanFileDeletionConfigurationIcebergConfiguration
   >?
   icebergConfiguration;
 
@@ -150,8 +142,8 @@ final class GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguratio
 /// Typed helper for the `configuration.orphan_file_deletion_configuration.iceberg_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfigurationIcebergConfiguration {
-  const GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfigurationIcebergConfiguration({
+final class GlueCatalogTableOptimizerOrphanFileDeletionConfigurationIcebergConfiguration {
+  const GlueCatalogTableOptimizerOrphanFileDeletionConfigurationIcebergConfiguration({
     this.location,
     this.orphanFileRetentionPeriodInDays,
     this.runRateInHours,
@@ -174,13 +166,13 @@ final class GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguratio
 /// Typed helper for the `configuration.retention_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationRetentionConfiguration {
-  const GlueCatalogTableOptimizerConfigurationRetentionConfiguration({
+final class GlueCatalogTableOptimizerRetentionConfiguration {
+  const GlueCatalogTableOptimizerRetentionConfiguration({
     this.icebergConfiguration,
   });
 
   final List<
-    GlueCatalogTableOptimizerConfigurationRetentionConfigurationIcebergConfiguration
+    GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration
   >?
   icebergConfiguration;
 
@@ -195,8 +187,8 @@ final class GlueCatalogTableOptimizerConfigurationRetentionConfiguration {
 /// Typed helper for the `configuration.retention_configuration.iceberg_configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOptimizerConfigurationRetentionConfigurationIcebergConfiguration {
-  const GlueCatalogTableOptimizerConfigurationRetentionConfigurationIcebergConfiguration({
+final class GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration {
+  const GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration({
     this.cleanExpiredFiles,
     this.numberOfSnapshotsToRetain,
     this.runRateInHours,

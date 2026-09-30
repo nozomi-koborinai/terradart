@@ -11,11 +11,11 @@ export 'src/ssoadmin/aws_ssoadmin_account_assignment.dart'
 export 'src/ssoadmin/aws_ssoadmin_application.dart'
     show
         AwsSsoadminApplication,
+        SsoadminApplicationOrigin,
         SsoadminApplicationPortalOptions,
-        SsoadminApplicationPortalOptionsSignInOptions,
-        SsoadminApplicationPortalOptionsSignInOptionsOrigin,
-        SsoadminApplicationPortalOptionsVisibility,
-        SsoadminApplicationStatus;
+        SsoadminApplicationSignInOptions,
+        SsoadminApplicationStatus,
+        SsoadminApplicationVisibility;
 export 'src/ssoadmin/aws_ssoadmin_application_access_scope.dart'
     show AwsSsoadminApplicationAccessScope;
 export 'src/ssoadmin/aws_ssoadmin_application_assignment.dart'
@@ -36,7 +36,7 @@ export 'src/ssoadmin/aws_ssoadmin_instance_access_control_attributes.dart'
     show
         AwsSsoadminInstanceAccessControlAttributes,
         SsoadminInstanceAccessControlAttributesAttribute,
-        SsoadminInstanceAccessControlAttributesAttributeValue;
+        SsoadminInstanceAccessControlAttributesValue;
 export 'src/ssoadmin/aws_ssoadmin_managed_policy_attachment.dart'
     show AwsSsoadminManagedPolicyAttachment;
 export 'src/ssoadmin/aws_ssoadmin_managed_policy_attachments_exclusive.dart'
@@ -48,13 +48,13 @@ export 'src/ssoadmin/aws_ssoadmin_permission_set_inline_policy.dart'
 export 'src/ssoadmin/aws_ssoadmin_permissions_boundary_attachment.dart'
     show
         AwsSsoadminPermissionsBoundaryAttachment,
-        SsoadminPermissionsBoundaryAttachmentPermissionsBoundary,
-        SsoadminPermissionsBoundaryAttachmentPermissionsBoundaryCustomerManagedPolicyReference;
+        SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference,
+        SsoadminPermissionsBoundaryAttachmentPermissionsBoundary;
 export 'src/ssoadmin/aws_ssoadmin_region.dart' show AwsSsoadminRegion;
 export 'src/ssoadmin/aws_ssoadmin_trusted_token_issuer.dart'
     show
         AwsSsoadminTrustedTokenIssuer,
-        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration,
-        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration,
-        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption,
+        SsoadminTrustedTokenIssuerConfiguration,
+        SsoadminTrustedTokenIssuerJwksRetrievalOption,
+        SsoadminTrustedTokenIssuerOidcJwtConfiguration,
         SsoadminTrustedTokenIssuerTrustedTokenIssuerType;

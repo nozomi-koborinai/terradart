@@ -24,21 +24,21 @@ sealed class DataLossPreventionDeidentifyTemplateDeidentifyConfig {
 
   /// Sets `info_type_transformations`.
   const factory DataLossPreventionDeidentifyTemplateDeidentifyConfig.infoTypeTransformations(
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
+    DataLossPreventionDeidentifyTemplateInfoTypeTransformations
     infoTypeTransformations,
-  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations;
 
   /// Sets `record_transformations`.
   const factory DataLossPreventionDeidentifyTemplateDeidentifyConfig.recordTransformations(
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations
+    DataLossPreventionDeidentifyTemplateRecordTransformations
     recordTransformations,
-  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations;
 
   /// Sets `image_transformations`.
   const factory DataLossPreventionDeidentifyTemplateDeidentifyConfig.imageTransformations(
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations
+    DataLossPreventionDeidentifyTemplateImageTransformations
     imageTransformations,
-  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,13 +47,13 @@ sealed class DataLossPreventionDeidentifyTemplateDeidentifyConfig {
 }
 
 /// The [DataLossPreventionDeidentifyTemplateDeidentifyConfig.infoTypeTransformations] choice: sets `info_type_transformations`.
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsChoice
+final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
     extends DataLossPreventionDeidentifyTemplateDeidentifyConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsChoice(
+  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations(
     this.infoTypeTransformations,
   );
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
+  final DataLossPreventionDeidentifyTemplateInfoTypeTransformations
   infoTypeTransformations;
 
   @override
@@ -66,13 +66,13 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 }
 
 /// The [DataLossPreventionDeidentifyTemplateDeidentifyConfig.recordTransformations] choice: sets `record_transformations`.
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsChoice
+final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations
     extends DataLossPreventionDeidentifyTemplateDeidentifyConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsChoice(
+  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations(
     this.recordTransformations,
   );
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations
+  final DataLossPreventionDeidentifyTemplateRecordTransformations
   recordTransformations;
 
   @override
@@ -85,13 +85,13 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 }
 
 /// The [DataLossPreventionDeidentifyTemplateDeidentifyConfig.imageTransformations] choice: sets `image_transformations`.
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsChoice
+final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations
     extends DataLossPreventionDeidentifyTemplateDeidentifyConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsChoice(
+  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations(
     this.imageTransformations,
   );
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations
+  final DataLossPreventionDeidentifyTemplateImageTransformations
   imageTransformations;
 
   @override
@@ -106,15 +106,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations({
+final class DataLossPreventionDeidentifyTemplateImageTransformations {
+  const DataLossPreventionDeidentifyTemplateImageTransformations({
     required this.transforms,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransforms
-  >
-  transforms;
+  final List<DataLossPreventionDeidentifyTemplateTransforms> transforms;
 
   Map<String, Object?> encode() => {
     'transforms': [for (final e in transforms) e.encode()],
@@ -124,24 +121,21 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations.transforms` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransforms {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransforms({
+final class DataLossPreventionDeidentifyTemplateTransforms {
+  const DataLossPreventionDeidentifyTemplateTransforms({
     this.allInfoTypes,
     this.allText,
     this.redactionColor,
     this.selectedInfoTypes,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllInfoTypes?
-  allInfoTypes;
+  final DataLossPreventionDeidentifyTemplateAllInfoTypes? allInfoTypes;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllText?
-  allText;
+  final DataLossPreventionDeidentifyTemplateAllText? allText;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsRedactionColor?
-  redactionColor;
+  final DataLossPreventionDeidentifyTemplateRedactionColor? redactionColor;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypes?
+  final DataLossPreventionDeidentifyTemplateSelectedInfoTypes?
   selectedInfoTypes;
 
   Map<String, Object?> encode() => {
@@ -155,8 +149,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations.transforms.all_info_types` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllInfoTypes {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllInfoTypes();
+final class DataLossPreventionDeidentifyTemplateAllInfoTypes {
+  const DataLossPreventionDeidentifyTemplateAllInfoTypes();
 
   Map<String, Object?> encode() => {};
 }
@@ -164,8 +158,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations.transforms.all_text` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllText {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsAllText();
+final class DataLossPreventionDeidentifyTemplateAllText {
+  const DataLossPreventionDeidentifyTemplateAllText();
 
   Map<String, Object?> encode() => {};
 }
@@ -173,8 +167,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations.transforms.redaction_color` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsRedactionColor {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsRedactionColor({
+final class DataLossPreventionDeidentifyTemplateRedactionColor {
+  const DataLossPreventionDeidentifyTemplateRedactionColor({
     this.blue,
     this.green,
     this.red,
@@ -196,122 +190,24 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
 /// Typed helper for the `deidentify_config.image_transformations.transforms.selected_info_types` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypes {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypes({
+final class DataLossPreventionDeidentifyTemplateSelectedInfoTypes {
+  const DataLossPreventionDeidentifyTemplateSelectedInfoTypes({
     required this.infoTypes,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypes
-  >
-  infoTypes;
+  final List<DataLossPreventionDeidentifyTemplateInfoTypes> infoTypes;
 
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
 }
 
-/// Typed helper for the `deidentify_config.image_transformations.transforms.selected_info_types.info_types` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypes {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.image_transformations.transforms.selected_info_types.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformationsTransformsSelectedInfoTypesInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations({
-    required this.transformations,
-  });
-
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformations
-  >
-  transformations;
-
-  Map<String, Object?> encode() => {
-    'transformations': [for (final e in transformations) e.encode()],
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformations({
-    this.infoTypes,
-    required this.primitiveTransformation,
-  });
-
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypes
-  >?
-  infoTypes;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformation
-  primitiveTransformation;
-
-  Map<String, Object?> encode() => {
-    if (infoTypes != null)
-      'info_types': [for (final e in infoTypes!) e.encode()],
-    'primitive_transformation': primitiveTransformation.encode(),
-  };
-}
-
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.info_types` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypes {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypes({
+final class DataLossPreventionDeidentifyTemplateInfoTypes {
+  const DataLossPreventionDeidentifyTemplateInfoTypes({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -321,8 +217,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? version;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -333,39 +228,71 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.info_types.sensitivity_score` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScore({
+final class DataLossPreventionDeidentifyTemplateSensitivityScore {
+  const DataLossPreventionDeidentifyTemplateSensitivityScore({
     required this.score,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore
-  >
-  score;
+  final TfArg<DataLossPreventionDeidentifyTemplateScore> score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
+enum DataLossPreventionDeidentifyTemplateScore implements TerraformEnum {
   sensitivityLow('SENSITIVITY_LOW'),
   sensitivityModerate('SENSITIVITY_MODERATE'),
   sensitivityHigh('SENSITIVITY_HIGH');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionDeidentifyTemplateScore(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `deidentify_config.info_type_transformations` block of
+/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionDeidentifyTemplateInfoTypeTransformations {
+  const DataLossPreventionDeidentifyTemplateInfoTypeTransformations({
+    required this.transformations,
+  });
+
+  final List<DataLossPreventionDeidentifyTemplateTransformations>
+  transformations;
+
+  Map<String, Object?> encode() => {
+    'transformations': [for (final e in transformations) e.encode()],
+  };
+}
+
+/// Typed helper for the `deidentify_config.info_type_transformations.transformations` block of
+/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionDeidentifyTemplateTransformations {
+  const DataLossPreventionDeidentifyTemplateTransformations({
+    this.infoTypes,
+    required this.primitiveTransformation,
+  });
+
+  final List<DataLossPreventionDeidentifyTemplateInfoTypes>? infoTypes;
+
+  final DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation
+  primitiveTransformation;
+
+  Map<String, Object?> encode() => {
+    if (infoTypes != null)
+      'info_types': [for (final e in infoTypes!) e.encode()],
+    'primitive_transformation': primitiveTransformation.encode(),
+  };
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformation {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformation({
+final class DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation {
+  const DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation({
     this.replaceWithInfoTypeConfig,
     this.bucketingConfig,
     this.characterMaskConfig,
@@ -382,38 +309,35 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<bool>? replaceWithInfoTypeConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig?
   bucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig?
+  final DataLossPreventionDeidentifyTemplateCharacterMaskConfig?
   characterMaskConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfig?
   cryptoDeterministicConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig?
-  cryptoHashConfig;
+  final DataLossPreventionDeidentifyTemplateCryptoHashConfig? cryptoHashConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig?
+  final DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig?
   cryptoReplaceFfxFpeConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig?
   dateShiftConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsFixedSizeBucketingConfig?
   fixedSizeBucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig?
-  redactConfig;
+  final DataLossPreventionDeidentifyTemplateRedactConfig? redactConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsReplaceConfig?
   replaceConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsReplaceDictionaryConfig?
   replaceDictionaryConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig?
-  timePartConfig;
+  final DataLossPreventionDeidentifyTemplateTimePartConfig? timePartConfig;
 
   Map<String, Object?> encode() => {
     'replace_with_info_type_config': ?replaceWithInfoTypeConfig?.toTfJson(),
@@ -434,14 +358,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig({
+final class DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig {
+  const DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig({
     this.buckets,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets
-  >?
+  final List<DataLossPreventionDeidentifyTemplateTransformationsBuckets>?
   buckets;
 
   Map<String, Object?> encode() => {
@@ -451,21 +373,20 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets({
+final class DataLossPreventionDeidentifyTemplateTransformationsBuckets {
+  const DataLossPreventionDeidentifyTemplateTransformationsBuckets({
     this.max,
     this.min,
     required this.replacementValue,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax?
-  max;
+  final DataLossPreventionDeidentifyTemplateTransformationsMax? max;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin?
-  min;
+  final DataLossPreventionDeidentifyTemplateTransformationsMin? min;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue
+  final DataLossPreventionDeidentifyTemplateTransformationsReplacementValue
   replacementValue;
 
   Map<String, Object?> encode() => {
@@ -477,9 +398,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax({
+final class DataLossPreventionDeidentifyTemplateTransformationsMax {
+  const DataLossPreventionDeidentifyTemplateTransformationsMax({
     this.dayOfWeekValue,
     this.floatValue,
     this.integerValue,
@@ -489,9 +411,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     this.timeValue,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -502,11 +422,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -520,7 +438,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 }
 
 /// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
+enum DataLossPreventionDeidentifyTemplateDayOfWeekValue
     implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -530,18 +448,17 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue(
-    this.terraformValue,
-  );
+  const DataLossPreventionDeidentifyTemplateDayOfWeekValue(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max.date_value` block of
+/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.date_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue({
+final class DataLossPreventionDeidentifyTemplateDateValue {
+  const DataLossPreventionDeidentifyTemplateDateValue({
     this.day,
     this.month,
     this.year,
@@ -560,11 +477,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
   };
 }
 
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max.time_value` block of
+/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.time_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue({
+final class DataLossPreventionDeidentifyTemplateTimeValue {
+  const DataLossPreventionDeidentifyTemplateTimeValue({
     this.hours,
     this.minutes,
     this.nanos,
@@ -589,9 +507,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin({
+final class DataLossPreventionDeidentifyTemplateTransformationsMin {
+  const DataLossPreventionDeidentifyTemplateTransformationsMin({
     this.dayOfWeekValue,
     this.floatValue,
     this.integerValue,
@@ -601,9 +520,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     this.timeValue,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -614,11 +531,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -628,82 +543,15 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     'timestamp_value': ?timestampValue?.toTfJson(),
     'date_value': ?dateValue?.encode(),
     'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue({
+final class DataLossPreventionDeidentifyTemplateTransformationsReplacementValue {
+  const DataLossPreventionDeidentifyTemplateTransformationsReplacementValue({
     this.dayOfWeekValue,
     this.floatValue,
     this.integerValue,
@@ -713,9 +561,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     this.timeValue,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -726,11 +572,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -743,79 +587,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
   };
 }
 
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.character_mask_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig({
+final class DataLossPreventionDeidentifyTemplateCharacterMaskConfig {
+  const DataLossPreventionDeidentifyTemplateCharacterMaskConfig({
     this.maskingCharacter,
     this.numberToMask,
     this.reverseOrder,
@@ -828,9 +605,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<bool>? reverseOrder;
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore
-  >?
+  final List<DataLossPreventionDeidentifyTemplateCharactersToIgnore>?
   charactersToIgnore;
 
   Map<String, Object?> encode() => {
@@ -844,18 +619,17 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.character_mask_config.characters_to_ignore` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore({
+final class DataLossPreventionDeidentifyTemplateCharactersToIgnore {
+  const DataLossPreventionDeidentifyTemplateCharactersToIgnore({
     this.charactersToSkip,
     this.commonCharactersToIgnore,
   });
 
   final TfArg<String>? charactersToSkip;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore>?
   commonCharactersToIgnore;
 
   Map<String, Object?> encode() => {
@@ -865,7 +639,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 }
 
 /// `common_characters_to_ignore` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
+enum DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore
     implements TerraformEnum {
   numeric('NUMERIC'),
   alphaUpperCase('ALPHA_UPPER_CASE'),
@@ -873,7 +647,7 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
   punctuation('PUNCTUATION'),
   whitespace('WHITESPACE');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore(
+  const DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore(
     this.terraformValue,
   );
   @override
@@ -882,21 +656,21 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig({
+final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfig {
+  const DataLossPreventionDeidentifyTemplateCryptoDeterministicConfig({
     this.context,
     this.cryptoKey,
     this.surrogateInfoType,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext?
   context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey?
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType?
+  final DataLossPreventionDeidentifyTemplateSurrogateInfoType?
   surrogateInfoType;
 
   Map<String, Object?> encode() => {
@@ -908,9 +682,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.context` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext({
+final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext {
+  const DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext({
     this.name,
   });
 
@@ -921,22 +696,20 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey({
+final class DataLossPreventionDeidentifyTemplateCryptoKey {
+  const DataLossPreventionDeidentifyTemplateCryptoKey({
     this.kmsWrapped,
     this.transient,
     this.unwrapped,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
+  final DataLossPreventionDeidentifyTemplateKmsWrapped? kmsWrapped;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient?
-  transient;
+  final DataLossPreventionDeidentifyTemplateTransient? transient;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped?
-  unwrapped;
+  final DataLossPreventionDeidentifyTemplateUnwrapped? unwrapped;
 
   Map<String, Object?> encode() => {
     'kms_wrapped': ?kmsWrapped?.encode(),
@@ -947,9 +720,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.kms_wrapped` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped({
+final class DataLossPreventionDeidentifyTemplateKmsWrapped {
+  const DataLossPreventionDeidentifyTemplateKmsWrapped({
     required this.cryptoKeyName,
     required this.wrappedKey,
   });
@@ -966,11 +740,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.transient` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient({
-    required this.name,
-  });
+final class DataLossPreventionDeidentifyTemplateTransient {
+  const DataLossPreventionDeidentifyTemplateTransient({required this.name});
 
   final TfArg<String> name;
 
@@ -979,11 +752,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.unwrapped` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
+final class DataLossPreventionDeidentifyTemplateUnwrapped {
+  const DataLossPreventionDeidentifyTemplateUnwrapped({required this.key});
 
   final TfArg<String> key;
 
@@ -992,9 +764,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType({
+final class DataLossPreventionDeidentifyTemplateSurrogateInfoType {
+  const DataLossPreventionDeidentifyTemplateSurrogateInfoType({
     this.name,
     this.version,
     this.sensitivityScore,
@@ -1004,8 +777,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? version;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -1014,126 +786,24 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
   };
 }
 
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_hash_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig({
-    this.cryptoKey,
-  });
+final class DataLossPreventionDeidentifyTemplateCryptoHashConfig {
+  const DataLossPreventionDeidentifyTemplateCryptoHashConfig({this.cryptoKey});
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey?
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
   Map<String, Object?> encode() => {'crypto_key': ?cryptoKey?.encode()};
 }
 
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig({
+final class DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig {
+  const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig({
     this.commonAlphabet,
     this.customAlphabet,
     this.radix,
@@ -1142,22 +812,19 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
     this.surrogateInfoType,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateCommonAlphabet>?
   commonAlphabet;
 
   final TfArg<String>? customAlphabet;
 
   final TfArg<num>? radix;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext?
   context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey?
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType?
+  final DataLossPreventionDeidentifyTemplateSurrogateInfoType?
   surrogateInfoType;
 
   Map<String, Object?> encode() => {
@@ -1171,7 +838,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 }
 
 /// `common_alphabet` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
+enum DataLossPreventionDeidentifyTemplateCommonAlphabet
     implements TerraformEnum {
   ffxCommonNativeAlphabetUnspecified('FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED'),
   numeric('NUMERIC'),
@@ -1179,156 +846,17 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
   upperCaseAlphaNumeric('UPPER_CASE_ALPHA_NUMERIC'),
   alphaNumeric('ALPHA_NUMERIC');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType({
-    this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionDeidentifyTemplateCommonAlphabet(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig({
+final class DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig {
+  const DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig({
     required this.lowerBoundDays,
     required this.upperBoundDays,
     this.context,
@@ -1339,11 +867,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<num> upperBoundDays;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext?
-  context;
+  final DataLossPreventionDeidentifyTemplateDateShiftConfigContext? context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey?
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
   Map<String, Object?> encode() => {
     'lower_bound_days': lowerBoundDays.toTfJson(),
@@ -1355,93 +881,24 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config.context` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext({
+final class DataLossPreventionDeidentifyTemplateDateShiftConfigContext {
+  const DataLossPreventionDeidentifyTemplateDateShiftConfigContext({
     required this.name,
   });
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig({
+final class DataLossPreventionDeidentifyTemplateTransformationsFixedSizeBucketingConfig {
+  const DataLossPreventionDeidentifyTemplateTransformationsFixedSizeBucketingConfig({
     required this.bucketSize,
     required this.lowerBound,
     required this.upperBound,
@@ -1449,10 +906,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<num> bucketSize;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound
+  final DataLossPreventionDeidentifyTemplateTransformationsLowerBound
   lowerBound;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound
+  final DataLossPreventionDeidentifyTemplateTransformationsUpperBound
   upperBound;
 
   Map<String, Object?> encode() => {
@@ -1464,9 +921,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config.lower_bound` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound({
+final class DataLossPreventionDeidentifyTemplateTransformationsLowerBound {
+  const DataLossPreventionDeidentifyTemplateTransformationsLowerBound({
     this.floatValue,
     this.integerValue,
   });
@@ -1483,9 +941,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config.upper_bound` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound({
+final class DataLossPreventionDeidentifyTemplateTransformationsUpperBound {
+  const DataLossPreventionDeidentifyTemplateTransformationsUpperBound({
     this.floatValue,
     this.integerValue,
   });
@@ -1502,9 +961,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.redact_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig();
+final class DataLossPreventionDeidentifyTemplateRedactConfig {
+  const DataLossPreventionDeidentifyTemplateRedactConfig();
 
   Map<String, Object?> encode() => {};
 }
@@ -1512,13 +972,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig({
+final class DataLossPreventionDeidentifyTemplateTransformationsReplaceConfig {
+  const DataLossPreventionDeidentifyTemplateTransformationsReplaceConfig({
     required this.newValue,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue
-  newValue;
+  final DataLossPreventionDeidentifyTemplateTransformationsNewValue newValue;
 
   Map<String, Object?> encode() => {'new_value': newValue.encode()};
 }
@@ -1526,8 +985,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue({
+final class DataLossPreventionDeidentifyTemplateTransformationsNewValue {
+  const DataLossPreventionDeidentifyTemplateTransformationsNewValue({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -1540,9 +999,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -1553,11 +1010,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -1571,95 +1026,26 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
   };
 }
 
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_dictionary_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig({
+final class DataLossPreventionDeidentifyTemplateTransformationsReplaceDictionaryConfig {
+  const DataLossPreventionDeidentifyTemplateTransformationsReplaceDictionaryConfig({
     required this.wordList,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList
-  wordList;
+  final DataLossPreventionDeidentifyTemplateWordList wordList;
 
   Map<String, Object?> encode() => {'word_list': wordList.encode()};
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_dictionary_config.word_list` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList({
-    required this.words,
-  });
+final class DataLossPreventionDeidentifyTemplateWordList {
+  const DataLossPreventionDeidentifyTemplateWordList({required this.words});
 
   final TfArg<List<String>> words;
 
@@ -1668,16 +1054,14 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.time_part_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig({
+final class DataLossPreventionDeidentifyTemplateTimePartConfig {
+  const DataLossPreventionDeidentifyTemplateTimePartConfig({
     this.partToExtract,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract
-  >?
-  partToExtract;
+  final TfArg<DataLossPreventionDeidentifyTemplatePartToExtract>? partToExtract;
 
   Map<String, Object?> encode() => {
     'part_to_extract': ?partToExtract?.toTfJson(),
@@ -1685,7 +1069,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
 }
 
 /// `part_to_extract` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract
+enum DataLossPreventionDeidentifyTemplatePartToExtract
     implements TerraformEnum {
   year('YEAR'),
   month('MONTH'),
@@ -1694,9 +1078,7 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
   weekOfYear('WEEK_OF_YEAR'),
   hourOfDay('HOUR_OF_DAY');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract(
-    this.terraformValue,
-  );
+  const DataLossPreventionDeidentifyTemplatePartToExtract(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1704,20 +1086,16 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations
 /// Typed helper for the `deidentify_config.record_transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformations({
+final class DataLossPreventionDeidentifyTemplateRecordTransformations {
+  const DataLossPreventionDeidentifyTemplateRecordTransformations({
     this.fieldTransformations,
     this.recordSuppressions,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformations
-  >?
+  final List<DataLossPreventionDeidentifyTemplateFieldTransformations>?
   fieldTransformations;
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressions
-  >?
+  final List<DataLossPreventionDeidentifyTemplateRecordSuppressions>?
   recordSuppressions;
 
   Map<String, Object?> encode() => {
@@ -1733,26 +1111,22 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformations({
+final class DataLossPreventionDeidentifyTemplateFieldTransformations {
+  const DataLossPreventionDeidentifyTemplateFieldTransformations({
     this.condition,
     required this.fields,
     this.infoTypeTransformations,
     this.primitiveTransformation,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsCondition?
-  condition;
+  final DataLossPreventionDeidentifyTemplateCondition? condition;
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsFields
-  >
-  fields;
+  final List<DataLossPreventionDeidentifyTemplateFields> fields;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformations?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTransformations?
   infoTypeTransformations;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformation?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsPrimitiveTransformation?
   primitiveTransformation;
 
   Map<String, Object?> encode() => {
@@ -1765,31 +1139,29 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsCondition {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsCondition({
-    this.expressions,
-  });
+final class DataLossPreventionDeidentifyTemplateCondition {
+  const DataLossPreventionDeidentifyTemplateCondition({this.expressions});
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressions?
-  expressions;
+  final DataLossPreventionDeidentifyTemplateExpressions? expressions;
 
   Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressions({
+final class DataLossPreventionDeidentifyTemplateExpressions {
+  const DataLossPreventionDeidentifyTemplateExpressions({
     this.logicalOperator,
     this.conditions,
   });
 
   final TfArg<String>? logicalOperator;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditions?
-  conditions;
+  final DataLossPreventionDeidentifyTemplateConditions? conditions;
 
   Map<String, Object?> encode() => {
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -1799,15 +1171,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditions({
-    this.conditions,
-  });
+final class DataLossPreventionDeidentifyTemplateConditions {
+  const DataLossPreventionDeidentifyTemplateConditions({this.conditions});
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditions
-  >?
+  final List<DataLossPreventionDeidentifyTemplateConditionsConditions>?
   conditions;
 
   Map<String, Object?> encode() => {
@@ -1818,24 +1187,20 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditions({
+final class DataLossPreventionDeidentifyTemplateConditionsConditions {
+  const DataLossPreventionDeidentifyTemplateConditionsConditions({
     required this.operator,
     required this.field,
     this.value,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsOperator
-  >
-  operator;
+  final TfArg<DataLossPreventionDeidentifyTemplateOperator> operator;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsField
-  field;
+  final DataLossPreventionDeidentifyTemplateField field;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValue?
-  value;
+  final DataLossPreventionDeidentifyTemplateValue? value;
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
@@ -1845,8 +1210,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 }
 
 /// `operator` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsOperator
-    implements TerraformEnum {
+enum DataLossPreventionDeidentifyTemplateOperator implements TerraformEnum {
   equalTo('EQUAL_TO'),
   notEqualTo('NOT_EQUAL_TO'),
   greaterThan('GREATER_THAN'),
@@ -1855,20 +1219,17 @@ enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFi
   lessThanOrEquals('LESS_THAN_OR_EQUALS'),
   exists('EXISTS');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsOperator(
-    this.terraformValue,
-  );
+  const DataLossPreventionDeidentifyTemplateOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions.field` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsField {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsField({
-    this.name,
-  });
+final class DataLossPreventionDeidentifyTemplateField {
+  const DataLossPreventionDeidentifyTemplateField({this.name});
 
   final TfArg<String>? name;
 
@@ -1877,9 +1238,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions.value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValue({
+final class DataLossPreventionDeidentifyTemplateValue {
+  const DataLossPreventionDeidentifyTemplateValue({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -1892,9 +1254,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -1905,11 +1265,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -1923,81 +1281,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions.value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions.value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsConditionExpressionsConditionsConditionsValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.fields` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsFields {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsFields({
-    this.name,
-  });
+final class DataLossPreventionDeidentifyTemplateFields {
+  const DataLossPreventionDeidentifyTemplateFields({this.name});
 
   final TfArg<String>? name;
 
@@ -2007,13 +1295,13 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformations({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTransformations {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTransformations({
     required this.transformations,
   });
 
   final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformations
+    DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations
   >
   transformations;
 
@@ -2025,18 +1313,15 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformations {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformations({
+final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations {
+  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations({
     this.infoTypes,
     required this.primitiveTransformation,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypes
-  >?
-  infoTypes;
+  final List<DataLossPreventionDeidentifyTemplateInfoTypes>? infoTypes;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformation
+  final DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation
   primitiveTransformation;
 
   Map<String, Object?> encode() => {
@@ -2046,65 +1331,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.info_types` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypes {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformation {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformation({
+final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation {
+  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation({
     this.bucketingConfig,
     this.characterMaskConfig,
     this.cryptoDeterministicConfig,
@@ -2119,40 +1350,39 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     this.timePartConfig,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig?
   bucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig?
+  final DataLossPreventionDeidentifyTemplateCharacterMaskConfig?
   characterMaskConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig?
+  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig?
   cryptoDeterministicConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig?
+  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig?
   cryptoHashConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig?
+  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig?
   cryptoReplaceFfxFpeConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig?
   dateShiftConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsFixedSizeBucketingConfig?
   fixedSizeBucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig?
-  redactConfig;
+  final DataLossPreventionDeidentifyTemplateRedactConfig? redactConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfig?
   replaceConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig?
+  final DataLossPreventionDeidentifyTemplateTransformationsReplaceDictionaryConfig?
   replaceDictionaryConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceWithInfoTypeConfig?
+  final DataLossPreventionDeidentifyTemplateReplaceWithInfoTypeConfig?
   replaceWithInfoTypeConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig?
+  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartConfig?
   timePartConfig;
 
   Map<String, Object?> encode() => {
@@ -2174,14 +1404,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfig({
+final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig {
+  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig({
     required this.buckets,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets
-  >
+  final List<DataLossPreventionDeidentifyTemplateTransformationsBuckets>
   buckets;
 
   Map<String, Object?> encode() => {
@@ -2189,454 +1417,21 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBuckets({
-    this.max,
-    this.min,
-    required this.replacementValue,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax?
-  max;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin?
-  min;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue
-  replacementValue;
-
-  Map<String, Object?> encode() => {
-    'max': ?max?.encode(),
-    'min': ?min?.encode(),
-    'replacement_value': replacementValue.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMax({
-    this.dayOfWeekValue,
-    this.floatValue,
-    this.integerValue,
-    this.stringValue,
-    this.timestampValue,
-    this.dateValue,
-    this.timeValue,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
-  >?
-  dayOfWeekValue;
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  final TfArg<String>? stringValue;
-
-  final TfArg<String>? timestampValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue?
-  dateValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue?
-  timeValue;
-
-  Map<String, Object?> encode() => {
-    'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'timestamp_value': ?timestampValue?.toTfJson(),
-    'date_value': ?dateValue?.encode(),
-    'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.max.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMin({
-    this.dayOfWeekValue,
-    this.floatValue,
-    this.integerValue,
-    this.stringValue,
-    this.timestampValue,
-    this.dateValue,
-    this.timeValue,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-  >?
-  dayOfWeekValue;
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  final TfArg<String>? stringValue;
-
-  final TfArg<String>? timestampValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue?
-  dateValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue?
-  timeValue;
-
-  Map<String, Object?> encode() => {
-    'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'timestamp_value': ?timestampValue?.toTfJson(),
-    'date_value': ?dateValue?.encode(),
-    'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.min.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue({
-    this.dayOfWeekValue,
-    this.floatValue,
-    this.integerValue,
-    this.stringValue,
-    this.timestampValue,
-    this.dateValue,
-    this.timeValue,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-  >?
-  dayOfWeekValue;
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  final TfArg<String>? stringValue;
-
-  final TfArg<String>? timestampValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue?
-  dateValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue?
-  timeValue;
-
-  Map<String, Object?> encode() => {
-    'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'timestamp_value': ?timestampValue?.toTfJson(),
-    'date_value': ?dateValue?.encode(),
-    'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.bucketing_config.buckets.replacement_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.character_mask_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfig({
-    this.maskingCharacter,
-    this.numberToMask,
-    this.reverseOrder,
-    this.charactersToIgnore,
-  });
-
-  final TfArg<String>? maskingCharacter;
-
-  final TfArg<num>? numberToMask;
-
-  final TfArg<bool>? reverseOrder;
-
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore
-  >?
-  charactersToIgnore;
-
-  Map<String, Object?> encode() => {
-    'masking_character': ?maskingCharacter?.toTfJson(),
-    'number_to_mask': ?numberToMask?.toTfJson(),
-    'reverse_order': ?reverseOrder?.toTfJson(),
-    if (charactersToIgnore != null)
-      'characters_to_ignore': [for (final e in charactersToIgnore!) e.encode()],
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.character_mask_config.characters_to_ignore` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore({
-    this.charactersToSkip,
-    this.commonCharactersToIgnore,
-  });
-
-  final TfArg<String>? charactersToSkip;
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
-  >?
-  commonCharactersToIgnore;
-
-  Map<String, Object?> encode() => {
-    'characters_to_skip': ?charactersToSkip?.toTfJson(),
-    'common_characters_to_ignore': ?commonCharactersToIgnore?.toTfJson(),
-  };
-}
-
-/// `common_characters_to_ignore` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
-    implements TerraformEnum {
-  numeric('NUMERIC'),
-  alphaUpperCase('ALPHA_UPPER_CASE'),
-  alphaLowerCase('ALPHA_LOWER_CASE'),
-  punctuation('PUNCTUATION'),
-  whitespace('WHITESPACE');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfig({
+final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig {
+  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig({
     this.context,
     required this.cryptoKey,
     required this.surrogateInfoType,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext?
-  context;
+  final DataLossPreventionDeidentifyTemplateDateShiftConfigContext? context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey cryptoKey;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType
   surrogateInfoType;
 
   Map<String, Object?> encode() => {
@@ -2646,95 +1441,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigContext({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType({
+final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType {
+  const DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -2744,8 +1456,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? version;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -2754,126 +1465,24 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_hash_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfig({
+final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig {
+  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig({
     required this.cryptoKey,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey cryptoKey;
 
   Map<String, Object?> encode() => {'crypto_key': cryptoKey.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_hash_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig({
+final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig {
+  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig({
     this.commonAlphabet,
     this.customAlphabet,
     this.radix,
@@ -2883,7 +1492,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   });
 
   final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
+    DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet
   >?
   commonAlphabet;
 
@@ -2891,13 +1500,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<num>? radix;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext?
-  context;
+  final DataLossPreventionDeidentifyTemplateDateShiftConfigContext? context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey cryptoKey;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType?
   surrogateInfoType;
 
   Map<String, Object?> encode() => {
@@ -2911,362 +1518,41 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 }
 
 /// `common_alphabet` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
+enum DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet
     implements TerraformEnum {
   numeric('NUMERIC'),
   hexadecimal('HEXADECIMAL'),
   upperCaseAlphaNumeric('UPPER_CASE_ALPHA_NUMERIC'),
   alphaNumeric('ALPHA_NUMERIC');
 
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet(
+  const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet(
     this.terraformValue,
   );
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.context` block of
+/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfig({
-    required this.lowerBoundDays,
-    required this.upperBoundDays,
-    this.context,
-    this.cryptoKey,
-  });
-
-  final TfArg<num> lowerBoundDays;
-
-  final TfArg<num> upperBoundDays;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext?
-  context;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey?
-  cryptoKey;
-
-  Map<String, Object?> encode() => {
-    'lower_bound_days': lowerBoundDays.toTfJson(),
-    'upper_bound_days': upperBoundDays.toTfJson(),
-    'context': ?context?.encode(),
-    'crypto_key': ?cryptoKey?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigContext({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.date_shift_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfig({
-    required this.bucketSize,
-    required this.lowerBound,
-    required this.upperBound,
-  });
-
-  final TfArg<num> bucketSize;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound
-  lowerBound;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound
-  upperBound;
-
-  Map<String, Object?> encode() => {
-    'bucket_size': bucketSize.toTfJson(),
-    'lower_bound': lowerBound.encode(),
-    'upper_bound': upperBound.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config.lower_bound` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound({
-    this.floatValue,
-    this.integerValue,
-  });
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  Map<String, Object?> encode() => {
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.fixed_size_bucketing_config.upper_bound` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound({
-    this.floatValue,
-    this.integerValue,
-  });
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  Map<String, Object?> encode() => {
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.redact_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationRedactConfig();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfig({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfig {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfig({
     required this.newValue,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue
   newValue;
 
   Map<String, Object?> encode() => {'new_value': newValue.encode()};
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_config.new_value` block of
+/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config.new_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValue({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -3279,9 +1565,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -3292,11 +1576,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -3310,106 +1592,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_dictionary_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfig({
-    required this.wordList,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList
-  wordList;
-
-  Map<String, Object?> encode() => {'word_list': wordList.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_dictionary_config.word_list` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList({
-    required this.words,
-  });
-
-  final TfArg<List<String>> words;
-
-  Map<String, Object?> encode() => {'words': words.toTfJson()};
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.replace_with_info_type_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceWithInfoTypeConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationReplaceWithInfoTypeConfig();
+final class DataLossPreventionDeidentifyTemplateReplaceWithInfoTypeConfig {
+  const DataLossPreventionDeidentifyTemplateReplaceWithInfoTypeConfig();
 
   Map<String, Object?> encode() => {};
 }
@@ -3417,43 +1604,23 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.time_part_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfig({
+final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartConfig {
+  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartConfig({
     required this.partToExtract,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract
-  >
-  partToExtract;
+  final TfArg<DataLossPreventionDeidentifyTemplatePartToExtract> partToExtract;
 
   Map<String, Object?> encode() => {
     'part_to_extract': partToExtract.toTfJson(),
   };
 }
 
-/// `part_to_extract` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract
-    implements TerraformEnum {
-  year('YEAR'),
-  month('MONTH'),
-  dayOfMonth('DAY_OF_MONTH'),
-  dayOfWeek('DAY_OF_WEEK'),
-  weekOfYear('WEEK_OF_YEAR'),
-  hourOfDay('HOUR_OF_DAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsInfoTypeTransformationsTransformationsPrimitiveTransformationTimePartConfigPartToExtract(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformation {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformation({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsPrimitiveTransformation {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsPrimitiveTransformation({
     this.bucketingConfig,
     this.characterMaskConfig,
     this.cryptoDeterministicConfig,
@@ -3467,38 +1634,35 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     this.timePartConfig,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsBucketingConfig?
   bucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfig?
+  final DataLossPreventionDeidentifyTemplateCharacterMaskConfig?
   characterMaskConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfig?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfig?
   cryptoDeterministicConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfig?
-  cryptoHashConfig;
+  final DataLossPreventionDeidentifyTemplateCryptoHashConfig? cryptoHashConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig?
+  final DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig?
   cryptoReplaceFfxFpeConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsDateShiftConfig?
   dateShiftConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsFixedSizeBucketingConfig?
   fixedSizeBucketingConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationRedactConfig?
-  redactConfig;
+  final DataLossPreventionDeidentifyTemplateRedactConfig? redactConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfig?
   replaceConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfig?
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceDictionaryConfig?
   replaceDictionaryConfig;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfig?
-  timePartConfig;
+  final DataLossPreventionDeidentifyTemplateTimePartConfig? timePartConfig;
 
   Map<String, Object?> encode() => {
     'bucketing_config': ?bucketingConfig?.encode(),
@@ -3518,14 +1682,12 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfig({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsBucketingConfig {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsBucketingConfig({
     this.buckets,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBuckets
-  >?
+  final List<DataLossPreventionDeidentifyTemplateFieldTransformationsBuckets>?
   buckets;
 
   Map<String, Object?> encode() => {
@@ -3536,20 +1698,18 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBuckets {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBuckets({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsBuckets {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsBuckets({
     this.max,
     this.min,
     required this.replacementValue,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMax?
-  max;
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsMax? max;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMin?
-  min;
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsMin? min;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementValue
   replacementValue;
 
   Map<String, Object?> encode() => {
@@ -3562,8 +1722,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.max` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMax {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMax({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsMax {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsMax({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -3576,9 +1736,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -3589,11 +1747,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -3604,82 +1760,14 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     'timestamp_value': ?timestampValue?.toTfJson(),
     'date_value': ?dateValue?.encode(),
     'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.max.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.max.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMaxTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.min` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMin {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMin({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsMin {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsMin({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -3692,9 +1780,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -3705,11 +1791,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -3720,82 +1804,14 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     'timestamp_value': ?timestampValue?.toTfJson(),
     'date_value': ?dateValue?.encode(),
     'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.min.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.min.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsMinTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.replacement_value` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValue({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementValue {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementValue({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -3808,9 +1824,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -3821,11 +1835,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -3839,592 +1851,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.replacement_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.bucketing_config.buckets.replacement_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationBucketingConfigBucketsReplacementValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.character_mask_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfig({
-    this.maskingCharacter,
-    this.numberToMask,
-    this.reverseOrder,
-    this.charactersToIgnore,
-  });
-
-  final TfArg<String>? maskingCharacter;
-
-  final TfArg<num>? numberToMask;
-
-  final TfArg<bool>? reverseOrder;
-
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore
-  >?
-  charactersToIgnore;
-
-  Map<String, Object?> encode() => {
-    'masking_character': ?maskingCharacter?.toTfJson(),
-    'number_to_mask': ?numberToMask?.toTfJson(),
-    'reverse_order': ?reverseOrder?.toTfJson(),
-    if (charactersToIgnore != null)
-      'characters_to_ignore': [for (final e in charactersToIgnore!) e.encode()],
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.character_mask_config.characters_to_ignore` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnore({
-    this.charactersToSkip,
-    this.commonCharactersToIgnore,
-  });
-
-  final TfArg<String>? charactersToSkip;
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
-  >?
-  commonCharactersToIgnore;
-
-  Map<String, Object?> encode() => {
-    'characters_to_skip': ?charactersToSkip?.toTfJson(),
-    'common_characters_to_ignore': ?commonCharactersToIgnore?.toTfJson(),
-  };
-}
-
-/// `common_characters_to_ignore` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore
-    implements TerraformEnum {
-  numeric('NUMERIC'),
-  alphaUpperCase('ALPHA_UPPER_CASE'),
-  alphaLowerCase('ALPHA_LOWER_CASE'),
-  punctuation('PUNCTUATION'),
-  whitespace('WHITESPACE');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCharacterMaskConfigCharactersToIgnoreCommonCharactersToIgnore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfig({
-    this.context,
-    this.cryptoKey,
-    this.surrogateInfoType,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigContext?
-  context;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey?
-  cryptoKey;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType?
-  surrogateInfoType;
-
-  Map<String, Object?> encode() => {
-    'context': ?context?.encode(),
-    'crypto_key': ?cryptoKey?.encode(),
-    'surrogate_info_type': ?surrogateInfoType?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigContext({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoType({
-    this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoDeterministicConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_hash_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfig({
-    this.cryptoKey,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey?
-  cryptoKey;
-
-  Map<String, Object?> encode() => {'crypto_key': ?cryptoKey?.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_hash_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_hash_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_hash_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_hash_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoHashConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfig({
-    this.commonAlphabet,
-    this.customAlphabet,
-    this.radix,
-    this.context,
-    this.cryptoKey,
-    this.surrogateInfoType,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
-  >?
-  commonAlphabet;
-
-  final TfArg<String>? customAlphabet;
-
-  final TfArg<num>? radix;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext?
-  context;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey?
-  cryptoKey;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType?
-  surrogateInfoType;
-
-  Map<String, Object?> encode() => {
-    'common_alphabet': ?commonAlphabet?.toTfJson(),
-    'custom_alphabet': ?customAlphabet?.toTfJson(),
-    'radix': ?radix?.toTfJson(),
-    'context': ?context?.encode(),
-    'crypto_key': ?cryptoKey?.encode(),
-    'surrogate_info_type': ?surrogateInfoType?.encode(),
-  };
-}
-
-/// `common_alphabet` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet
-    implements TerraformEnum {
-  ffxCommonNativeAlphabetUnspecified('FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED'),
-  numeric('NUMERIC'),
-  hexadecimal('HEXADECIMAL'),
-  upperCaseAlphaNumeric('UPPER_CASE_ALPHA_NUMERIC'),
-  alphaNumeric('ALPHA_NUMERIC');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCommonAlphabet(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigContext({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoType({
-    this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationCryptoReplaceFfxFpeConfigSurrogateInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfig({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsDateShiftConfig {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsDateShiftConfig({
     required this.lowerBoundDays,
     required this.upperBoundDays,
     this.context,
@@ -4435,11 +1866,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<num> upperBoundDays;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigContext?
+  final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext?
   context;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKey?
-  cryptoKey;
+  final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
   Map<String, Object?> encode() => {
     'lower_bound_days': lowerBoundDays.toTfJson(),
@@ -4449,95 +1879,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   };
 }
 
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config.context` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigContext {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigContext({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config.crypto_key` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKey {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKey({
-    this.kmsWrapped,
-    this.transient,
-    this.unwrapped,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped?
-  kmsWrapped;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient?
-  transient;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped?
-  unwrapped;
-
-  Map<String, Object?> encode() => {
-    'kms_wrapped': ?kmsWrapped?.encode(),
-    'transient': ?transient?.encode(),
-    'unwrapped': ?unwrapped?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config.crypto_key.kms_wrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyKmsWrapped({
-    required this.cryptoKeyName,
-    required this.wrappedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
-
-  final TfArg<String> wrappedKey;
-
-  Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
-    'wrapped_key': wrappedKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config.crypto_key.transient` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyTransient({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.date_shift_config.crypto_key.unwrapped` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationDateShiftConfigCryptoKeyUnwrapped({
-    required this.key,
-  });
-
-  final TfArg<String> key;
-
-  Map<String, Object?> encode() => {'key': key.toTfJson()};
-}
-
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfig({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsFixedSizeBucketingConfig {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsFixedSizeBucketingConfig({
     required this.bucketSize,
     required this.lowerBound,
     required this.upperBound,
@@ -4545,10 +1891,10 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<num> bucketSize;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsLowerBound
   lowerBound;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound
+  final DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound
   upperBound;
 
   Map<String, Object?> encode() => {
@@ -4561,8 +1907,8 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.lower_bound` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBound({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsLowerBound {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsLowerBound({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -4575,9 +1921,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -4588,11 +1932,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -4603,82 +1945,14 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     'timestamp_value': ?timestampValue?.toTfJson(),
     'date_value': ?dateValue?.encode(),
     'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.lower_bound.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.lower_bound.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigLowerBoundTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.upper_bound` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBound({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound({
     this.booleanValue,
     this.dayOfWeekValue,
     this.floatValue,
@@ -4691,9 +1965,7 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDayOfWeekValue
-  >?
+  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
   dayOfWeekValue;
 
   final TfArg<num>? floatValue;
@@ -4704,11 +1976,9 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
 
   final TfArg<String>? timestampValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDateValue?
-  dateValue;
+  final DataLossPreventionDeidentifyTemplateDateValue? dateValue;
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundTimeValue?
-  timeValue;
+  final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -4719,518 +1989,33 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
     'timestamp_value': ?timestampValue?.toTfJson(),
     'date_value': ?dateValue?.encode(),
     'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.upper_bound.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.fixed_size_bucketing_config.upper_bound.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationFixedSizeBucketingConfigUpperBoundTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.redact_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationRedactConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationRedactConfig();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfig({
-    required this.newValue,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValue
-  newValue;
-
-  Map<String, Object?> encode() => {'new_value': newValue.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config.new_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValue({
-    this.booleanValue,
-    this.dayOfWeekValue,
-    this.floatValue,
-    this.integerValue,
-    this.stringValue,
-    this.timestampValue,
-    this.dateValue,
-    this.timeValue,
-  });
-
-  final TfArg<bool>? booleanValue;
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-  >?
-  dayOfWeekValue;
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  final TfArg<String>? stringValue;
-
-  final TfArg<String>? timestampValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue?
-  dateValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue?
-  timeValue;
-
-  Map<String, Object?> encode() => {
-    'boolean_value': ?booleanValue?.toTfJson(),
-    'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'timestamp_value': ?timestampValue?.toTfJson(),
-    'date_value': ?dateValue?.encode(),
-    'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config.new_value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config.new_value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceConfigNewValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_dictionary_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfig({
+final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceDictionaryConfig {
+  const DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceDictionaryConfig({
     this.wordList,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList?
-  wordList;
+  final DataLossPreventionDeidentifyTemplateWordList? wordList;
 
   Map<String, Object?> encode() => {'word_list': ?wordList?.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_dictionary_config.word_list` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationReplaceDictionaryConfigWordList({
-    required this.words,
-  });
-
-  final TfArg<List<String>> words;
-
-  Map<String, Object?> encode() => {'words': words.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.time_part_config` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfig {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfig({
-    this.partToExtract,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfigPartToExtract
-  >?
-  partToExtract;
-
-  Map<String, Object?> encode() => {
-    'part_to_extract': ?partToExtract?.toTfJson(),
-  };
-}
-
-/// `part_to_extract` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfigPartToExtract
-    implements TerraformEnum {
-  year('YEAR'),
-  month('MONTH'),
-  dayOfMonth('DAY_OF_MONTH'),
-  dayOfWeek('DAY_OF_WEEK'),
-  weekOfYear('WEEK_OF_YEAR'),
-  hourOfDay('HOUR_OF_DAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsFieldTransformationsPrimitiveTransformationTimePartConfigPartToExtract(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.record_suppressions` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressions({
+final class DataLossPreventionDeidentifyTemplateRecordSuppressions {
+  const DataLossPreventionDeidentifyTemplateRecordSuppressions({
     this.condition,
   });
 
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsCondition?
-  condition;
+  final DataLossPreventionDeidentifyTemplateCondition? condition;
 
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsCondition {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsCondition({
-    this.expressions,
-  });
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressions?
-  expressions;
-
-  Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressions({
-    this.logicalOperator,
-    this.conditions,
-  });
-
-  final TfArg<String>? logicalOperator;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditions?
-  conditions;
-
-  Map<String, Object?> encode() => {
-    'logical_operator': ?logicalOperator?.toTfJson(),
-    'conditions': ?conditions?.encode(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditions({
-    this.conditions,
-  });
-
-  final List<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditions
-  >?
-  conditions;
-
-  Map<String, Object?> encode() => {
-    if (conditions != null)
-      'conditions': [for (final e in conditions!) e.encode()],
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions.conditions` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditions {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditions({
-    required this.operator,
-    required this.field,
-    this.value,
-  });
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsOperator
-  >
-  operator;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsField
-  field;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValue?
-  value;
-
-  Map<String, Object?> encode() => {
-    'operator': operator.toTfJson(),
-    'field': field.encode(),
-    'value': ?value?.encode(),
-  };
-}
-
-/// `operator` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsOperator
-    implements TerraformEnum {
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  greaterThan('GREATER_THAN'),
-  lessThan('LESS_THAN'),
-  greaterThanOrEquals('GREATER_THAN_OR_EQUALS'),
-  lessThanOrEquals('LESS_THAN_OR_EQUALS'),
-  exists('EXISTS');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions.conditions.field` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsField {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsField({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions.conditions.value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValue({
-    this.booleanValue,
-    this.dayOfWeekValue,
-    this.floatValue,
-    this.integerValue,
-    this.stringValue,
-    this.timestampValue,
-    this.dateValue,
-    this.timeValue,
-  });
-
-  final TfArg<bool>? booleanValue;
-
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDayOfWeekValue
-  >?
-  dayOfWeekValue;
-
-  final TfArg<num>? floatValue;
-
-  final TfArg<String>? integerValue;
-
-  final TfArg<String>? stringValue;
-
-  final TfArg<String>? timestampValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDateValue?
-  dateValue;
-
-  final DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueTimeValue?
-  timeValue;
-
-  Map<String, Object?> encode() => {
-    'boolean_value': ?booleanValue?.toTfJson(),
-    'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
-    'float_value': ?floatValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'timestamp_value': ?timestampValue?.toTfJson(),
-    'date_value': ?dateValue?.encode(),
-    'time_value': ?timeValue?.encode(),
-  };
-}
-
-/// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDayOfWeekValue(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions.conditions.value.date_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDateValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueDateValue({
-    this.day,
-    this.month,
-    this.year,
-  });
-
-  final TfArg<num>? day;
-
-  final TfArg<num>? month;
-
-  final TfArg<num>? year;
-
-  Map<String, Object?> encode() => {
-    'day': ?day?.toTfJson(),
-    'month': ?month?.toTfJson(),
-    'year': ?year?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deidentify_config.record_transformations.record_suppressions.condition.expressions.conditions.conditions.value.time_value` block of
-/// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
-@immutable
-final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueTimeValue {
-  const DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransformationsRecordSuppressionsConditionExpressionsConditionsConditionsValueTimeValue({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `google_data_loss_prevention_deidentify_template`.

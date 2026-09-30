@@ -45,33 +45,23 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
     required this.type,
   });
 
-  final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigInputAction>?
-  inputAction;
+  final TfArg<BedrockGuardrailFiltersConfigInputAction>? inputAction;
 
   final TfArg<bool>? inputEnabled;
 
-  final List<
-    TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigInputModalities>
-  >?
-  inputModalities;
+  final List<TfArg<BedrockGuardrailInputModalities>>? inputModalities;
 
-  final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigInputStrength>
-  inputStrength;
+  final TfArg<BedrockGuardrailInputStrength> inputStrength;
 
-  final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigOutputAction>?
-  outputAction;
+  final TfArg<BedrockGuardrailFiltersConfigOutputAction>? outputAction;
 
   final TfArg<bool>? outputEnabled;
 
-  final List<
-    TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigOutputModalities>
-  >?
-  outputModalities;
+  final List<TfArg<BedrockGuardrailOutputModalities>>? outputModalities;
 
-  final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigOutputStrength>
-  outputStrength;
+  final TfArg<BedrockGuardrailOutputStrength> outputStrength;
 
-  final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigType> type;
+  final TfArg<BedrockGuardrailContentPolicyConfigType> type;
 
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
@@ -89,90 +79,71 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
 }
 
 /// `input_action` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigInputAction
-    implements TerraformEnum {
+enum BedrockGuardrailFiltersConfigInputAction implements TerraformEnum {
   block('BLOCK'),
   none('NONE');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigInputAction(
-    this.terraformValue,
-  );
+  const BedrockGuardrailFiltersConfigInputAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_modalities` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigInputModalities
-    implements TerraformEnum {
+enum BedrockGuardrailInputModalities implements TerraformEnum {
   text('TEXT'),
   image('IMAGE');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigInputModalities(
-    this.terraformValue,
-  );
+  const BedrockGuardrailInputModalities(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_strength` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigInputStrength
-    implements TerraformEnum {
+enum BedrockGuardrailInputStrength implements TerraformEnum {
   none('NONE'),
   low('LOW'),
   medium('MEDIUM'),
   high('HIGH');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigInputStrength(
-    this.terraformValue,
-  );
+  const BedrockGuardrailInputStrength(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `output_action` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigOutputAction
-    implements TerraformEnum {
+enum BedrockGuardrailFiltersConfigOutputAction implements TerraformEnum {
   block('BLOCK'),
   none('NONE');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigOutputAction(
-    this.terraformValue,
-  );
+  const BedrockGuardrailFiltersConfigOutputAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `output_modalities` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigOutputModalities
-    implements TerraformEnum {
+enum BedrockGuardrailOutputModalities implements TerraformEnum {
   text('TEXT'),
   image('IMAGE');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigOutputModalities(
-    this.terraformValue,
-  );
+  const BedrockGuardrailOutputModalities(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `output_strength` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigOutputStrength
-    implements TerraformEnum {
+enum BedrockGuardrailOutputStrength implements TerraformEnum {
   none('NONE'),
   low('LOW'),
   medium('MEDIUM'),
   high('HIGH');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigOutputStrength(
-    this.terraformValue,
-  );
+  const BedrockGuardrailOutputStrength(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockGuardrailContentPolicyConfigFiltersConfigType
-    implements TerraformEnum {
+enum BedrockGuardrailContentPolicyConfigType implements TerraformEnum {
   sexual('SEXUAL'),
   violence('VIOLENCE'),
   hate('HATE'),
@@ -180,9 +151,7 @@ enum BedrockGuardrailContentPolicyConfigFiltersConfigType
   misconduct('MISCONDUCT'),
   promptAttack('PROMPT_ATTACK');
 
-  const BedrockGuardrailContentPolicyConfigFiltersConfigType(
-    this.terraformValue,
-  );
+  const BedrockGuardrailContentPolicyConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -213,8 +182,7 @@ final class BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig {
 
   final TfArg<num> threshold;
 
-  final TfArg<BedrockGuardrailContextualGroundingPolicyConfigFiltersConfigType>
-  type;
+  final TfArg<BedrockGuardrailContextualGroundingPolicyConfigType> type;
 
   Map<String, Object?> encode() => {
     'threshold': threshold.toTfJson(),
@@ -223,12 +191,12 @@ final class BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockGuardrailContextualGroundingPolicyConfigFiltersConfigType
+enum BedrockGuardrailContextualGroundingPolicyConfigType
     implements TerraformEnum {
   grounding('GROUNDING'),
   relevance('RELEVANCE');
 
-  const BedrockGuardrailContextualGroundingPolicyConfigFiltersConfigType(
+  const BedrockGuardrailContextualGroundingPolicyConfigType(
     this.terraformValue,
   );
   @override
@@ -259,11 +227,9 @@ final class BedrockGuardrailSensitiveInformationPolicyConfig {
     this.regexesConfig,
   });
 
-  final List<BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig>?
-  piiEntitiesConfig;
+  final List<BedrockGuardrailPiiEntitiesConfig>? piiEntitiesConfig;
 
-  final List<BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig>?
-  regexesConfig;
+  final List<BedrockGuardrailRegexesConfig>? regexesConfig;
 
   Map<String, Object?> encode() => {
     if (piiEntitiesConfig != null)
@@ -276,8 +242,8 @@ final class BedrockGuardrailSensitiveInformationPolicyConfig {
 /// Typed helper for the `sensitive_information_policy_config.pii_entities_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
-final class BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig {
-  const BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig({
+final class BedrockGuardrailPiiEntitiesConfig {
+  const BedrockGuardrailPiiEntitiesConfig({
     required this.action,
     this.inputAction,
     this.inputEnabled,
@@ -286,29 +252,17 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig {
     required this.type,
   });
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigAction
-  >
-  action;
+  final TfArg<BedrockGuardrailAction> action;
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigInputAction
-  >?
-  inputAction;
+  final TfArg<BedrockGuardrailPiiEntitiesConfigInputAction>? inputAction;
 
   final TfArg<bool>? inputEnabled;
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigOutputAction
-  >?
-  outputAction;
+  final TfArg<BedrockGuardrailPiiEntitiesConfigOutputAction>? outputAction;
 
   final TfArg<bool>? outputEnabled;
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType
-  >
-  type;
+  final TfArg<BedrockGuardrailPiiEntitiesConfigType> type;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -321,50 +275,40 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig {
 }
 
 /// `action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigAction
-    implements TerraformEnum {
+enum BedrockGuardrailAction implements TerraformEnum {
   block('BLOCK'),
   anonymize('ANONYMIZE'),
   none('NONE');
 
-  const BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigAction(
-    this.terraformValue,
-  );
+  const BedrockGuardrailAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigInputAction
-    implements TerraformEnum {
+enum BedrockGuardrailPiiEntitiesConfigInputAction implements TerraformEnum {
   block('BLOCK'),
   anonymize('ANONYMIZE'),
   none('NONE');
 
-  const BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigInputAction(
-    this.terraformValue,
-  );
+  const BedrockGuardrailPiiEntitiesConfigInputAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `output_action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigOutputAction
-    implements TerraformEnum {
+enum BedrockGuardrailPiiEntitiesConfigOutputAction implements TerraformEnum {
   block('BLOCK'),
   anonymize('ANONYMIZE'),
   none('NONE');
 
-  const BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigOutputAction(
-    this.terraformValue,
-  );
+  const BedrockGuardrailPiiEntitiesConfigOutputAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType
-    implements TerraformEnum {
+enum BedrockGuardrailPiiEntitiesConfigType implements TerraformEnum {
   address('ADDRESS'),
   age('AGE'),
   awsAccessKey('AWS_ACCESS_KEY'),
@@ -399,9 +343,7 @@ enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType
   usSocialSecurityNumber('US_SOCIAL_SECURITY_NUMBER'),
   vehicleIdentificationNumber('VEHICLE_IDENTIFICATION_NUMBER');
 
-  const BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType(
-    this.terraformValue,
-  );
+  const BedrockGuardrailPiiEntitiesConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -409,8 +351,8 @@ enum BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType
 /// Typed helper for the `sensitive_information_policy_config.regexes_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
-final class BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig {
-  const BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig({
+final class BedrockGuardrailRegexesConfig {
+  const BedrockGuardrailRegexesConfig({
     required this.action,
     this.description,
     this.inputAction,
@@ -421,26 +363,17 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig {
     required this.pattern,
   });
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigAction
-  >
-  action;
+  final TfArg<BedrockGuardrailAction> action;
 
   final TfArg<String>? description;
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigInputAction
-  >?
-  inputAction;
+  final TfArg<BedrockGuardrailPiiEntitiesConfigInputAction>? inputAction;
 
   final TfArg<bool>? inputEnabled;
 
   final TfArg<String> name;
 
-  final TfArg<
-    BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigOutputAction
-  >?
-  outputAction;
+  final TfArg<BedrockGuardrailPiiEntitiesConfigOutputAction>? outputAction;
 
   final TfArg<bool>? outputEnabled;
 
@@ -458,48 +391,6 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig {
   };
 }
 
-/// `action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  anonymize('ANONYMIZE'),
-  none('NONE');
-
-  const BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `input_action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigInputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  anonymize('ANONYMIZE'),
-  none('NONE');
-
-  const BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigInputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `output_action` — derived from the provider schema description.
-enum BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigOutputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  anonymize('ANONYMIZE'),
-  none('NONE');
-
-  const BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigOutputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `topic_policy_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
@@ -508,7 +399,7 @@ final class BedrockGuardrailTopicPolicyConfig {
 
   final TfArg<List<Object?>>? tierConfig;
 
-  final List<BedrockGuardrailTopicPolicyConfigTopicsConfig>? topicsConfig;
+  final List<BedrockGuardrailTopicsConfig>? topicsConfig;
 
   Map<String, Object?> encode() => {
     'tier_config': ?tierConfig?.toTfJson(),
@@ -520,8 +411,8 @@ final class BedrockGuardrailTopicPolicyConfig {
 /// Typed helper for the `topic_policy_config.topics_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
-final class BedrockGuardrailTopicPolicyConfigTopicsConfig {
-  const BedrockGuardrailTopicPolicyConfigTopicsConfig({
+final class BedrockGuardrailTopicsConfig {
+  const BedrockGuardrailTopicsConfig({
     required this.definition,
     this.examples,
     required this.name,
@@ -534,7 +425,7 @@ final class BedrockGuardrailTopicPolicyConfigTopicsConfig {
 
   final TfArg<String> name;
 
-  final TfArg<BedrockGuardrailTopicPolicyConfigTopicsConfigType> type;
+  final TfArg<BedrockGuardrailTopicsConfigType> type;
 
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
@@ -545,11 +436,10 @@ final class BedrockGuardrailTopicPolicyConfigTopicsConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockGuardrailTopicPolicyConfigTopicsConfigType
-    implements TerraformEnum {
+enum BedrockGuardrailTopicsConfigType implements TerraformEnum {
   deny('DENY');
 
-  const BedrockGuardrailTopicPolicyConfigTopicsConfigType(this.terraformValue);
+  const BedrockGuardrailTopicsConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -563,10 +453,9 @@ final class BedrockGuardrailWordPolicyConfig {
     this.wordsConfig,
   });
 
-  final List<BedrockGuardrailWordPolicyConfigManagedWordListsConfig>?
-  managedWordListsConfig;
+  final List<BedrockGuardrailManagedWordListsConfig>? managedWordListsConfig;
 
-  final List<BedrockGuardrailWordPolicyConfigWordsConfig>? wordsConfig;
+  final List<BedrockGuardrailWordsConfig>? wordsConfig;
 
   Map<String, Object?> encode() => {
     if (managedWordListsConfig != null)
@@ -581,8 +470,8 @@ final class BedrockGuardrailWordPolicyConfig {
 /// Typed helper for the `word_policy_config.managed_word_lists_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
-final class BedrockGuardrailWordPolicyConfigManagedWordListsConfig {
-  const BedrockGuardrailWordPolicyConfigManagedWordListsConfig({
+final class BedrockGuardrailManagedWordListsConfig {
+  const BedrockGuardrailManagedWordListsConfig({
     this.inputAction,
     this.inputEnabled,
     this.outputAction,
@@ -590,21 +479,15 @@ final class BedrockGuardrailWordPolicyConfigManagedWordListsConfig {
     required this.type,
   });
 
-  final TfArg<
-    BedrockGuardrailWordPolicyConfigManagedWordListsConfigInputAction
-  >?
-  inputAction;
+  final TfArg<BedrockGuardrailFiltersConfigInputAction>? inputAction;
 
   final TfArg<bool>? inputEnabled;
 
-  final TfArg<
-    BedrockGuardrailWordPolicyConfigManagedWordListsConfigOutputAction
-  >?
-  outputAction;
+  final TfArg<BedrockGuardrailFiltersConfigOutputAction>? outputAction;
 
   final TfArg<bool>? outputEnabled;
 
-  final TfArg<BedrockGuardrailWordPolicyConfigManagedWordListsConfigType> type;
+  final TfArg<BedrockGuardrailManagedWordListsConfigType> type;
 
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
@@ -615,40 +498,11 @@ final class BedrockGuardrailWordPolicyConfigManagedWordListsConfig {
   };
 }
 
-/// `input_action` — derived from the provider schema description.
-enum BedrockGuardrailWordPolicyConfigManagedWordListsConfigInputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  none('NONE');
-
-  const BedrockGuardrailWordPolicyConfigManagedWordListsConfigInputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `output_action` — derived from the provider schema description.
-enum BedrockGuardrailWordPolicyConfigManagedWordListsConfigOutputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  none('NONE');
-
-  const BedrockGuardrailWordPolicyConfigManagedWordListsConfigOutputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `type` — derived from the provider schema description.
-enum BedrockGuardrailWordPolicyConfigManagedWordListsConfigType
-    implements TerraformEnum {
+enum BedrockGuardrailManagedWordListsConfigType implements TerraformEnum {
   profanity('PROFANITY');
 
-  const BedrockGuardrailWordPolicyConfigManagedWordListsConfigType(
-    this.terraformValue,
-  );
+  const BedrockGuardrailManagedWordListsConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -656,8 +510,8 @@ enum BedrockGuardrailWordPolicyConfigManagedWordListsConfigType
 /// Typed helper for the `word_policy_config.words_config` block of
 /// `aws_bedrock_guardrail` (derived from provider schema).
 @immutable
-final class BedrockGuardrailWordPolicyConfigWordsConfig {
-  const BedrockGuardrailWordPolicyConfigWordsConfig({
+final class BedrockGuardrailWordsConfig {
+  const BedrockGuardrailWordsConfig({
     this.inputAction,
     this.inputEnabled,
     this.outputAction,
@@ -665,13 +519,11 @@ final class BedrockGuardrailWordPolicyConfigWordsConfig {
     required this.text,
   });
 
-  final TfArg<BedrockGuardrailWordPolicyConfigWordsConfigInputAction>?
-  inputAction;
+  final TfArg<BedrockGuardrailFiltersConfigInputAction>? inputAction;
 
   final TfArg<bool>? inputEnabled;
 
-  final TfArg<BedrockGuardrailWordPolicyConfigWordsConfigOutputAction>?
-  outputAction;
+  final TfArg<BedrockGuardrailFiltersConfigOutputAction>? outputAction;
 
   final TfArg<bool>? outputEnabled;
 
@@ -684,32 +536,6 @@ final class BedrockGuardrailWordPolicyConfigWordsConfig {
     'output_enabled': ?outputEnabled?.toTfJson(),
     'text': text.toTfJson(),
   };
-}
-
-/// `input_action` — derived from the provider schema description.
-enum BedrockGuardrailWordPolicyConfigWordsConfigInputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  none('NONE');
-
-  const BedrockGuardrailWordPolicyConfigWordsConfigInputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `output_action` — derived from the provider schema description.
-enum BedrockGuardrailWordPolicyConfigWordsConfigOutputAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  none('NONE');
-
-  const BedrockGuardrailWordPolicyConfigWordsConfigOutputAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bedrock_guardrail`.

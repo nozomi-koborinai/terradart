@@ -22,11 +22,11 @@ final class CustomerprofilesDomainMatching {
 
   final TfArg<bool> enabled;
 
-  final CustomerprofilesDomainMatchingAutoMerging? autoMerging;
+  final CustomerprofilesDomainAutoMerging? autoMerging;
 
-  final CustomerprofilesDomainMatchingExportingConfig? exportingConfig;
+  final CustomerprofilesDomainExportingConfig? exportingConfig;
 
-  final CustomerprofilesDomainMatchingJobSchedule? jobSchedule;
+  final CustomerprofilesDomainJobSchedule? jobSchedule;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -39,8 +39,8 @@ final class CustomerprofilesDomainMatching {
 /// Typed helper for the `matching.auto_merging` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
-final class CustomerprofilesDomainMatchingAutoMerging {
-  const CustomerprofilesDomainMatchingAutoMerging({
+final class CustomerprofilesDomainAutoMerging {
+  const CustomerprofilesDomainAutoMerging({
     required this.enabled,
     this.minAllowedConfidenceScoreForMerging,
     this.conflictResolution,
@@ -51,10 +51,9 @@ final class CustomerprofilesDomainMatchingAutoMerging {
 
   final TfArg<num>? minAllowedConfidenceScoreForMerging;
 
-  final CustomerprofilesDomainMatchingAutoMergingConflictResolution?
-  conflictResolution;
+  final CustomerprofilesDomainConflictResolution? conflictResolution;
 
-  final CustomerprofilesDomainMatchingAutoMergingConsolidation? consolidation;
+  final CustomerprofilesDomainConsolidation? consolidation;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -65,18 +64,17 @@ final class CustomerprofilesDomainMatchingAutoMerging {
   };
 }
 
-/// Typed helper for the `matching.auto_merging.conflict_resolution` block of
+/// Typed helper for the `rule_based_matching.conflict_resolution` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CustomerprofilesDomainMatchingAutoMergingConflictResolution {
-  const CustomerprofilesDomainMatchingAutoMergingConflictResolution({
+final class CustomerprofilesDomainConflictResolution {
+  const CustomerprofilesDomainConflictResolution({
     required this.conflictResolvingModel,
     this.sourceName,
   });
 
-  final TfArg<
-    CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel
-  >
+  final TfArg<CustomerprofilesDomainConflictResolvingModel>
   conflictResolvingModel;
 
   final TfArg<String>? sourceName;
@@ -88,14 +86,11 @@ final class CustomerprofilesDomainMatchingAutoMergingConflictResolution {
 }
 
 /// `conflict_resolving_model` — derived from the provider schema description.
-enum CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel
-    implements TerraformEnum {
+enum CustomerprofilesDomainConflictResolvingModel implements TerraformEnum {
   recency('RECENCY'),
   source('SOURCE');
 
-  const CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel(
-    this.terraformValue,
-  );
+  const CustomerprofilesDomainConflictResolvingModel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -103,8 +98,8 @@ enum CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvin
 /// Typed helper for the `matching.auto_merging.consolidation` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
-final class CustomerprofilesDomainMatchingAutoMergingConsolidation {
-  const CustomerprofilesDomainMatchingAutoMergingConsolidation({
+final class CustomerprofilesDomainConsolidation {
+  const CustomerprofilesDomainConsolidation({
     required this.matchingAttributesList,
   });
 
@@ -117,20 +112,22 @@ final class CustomerprofilesDomainMatchingAutoMergingConsolidation {
 
 /// Typed helper for the `matching.exporting_config` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CustomerprofilesDomainMatchingExportingConfig {
-  const CustomerprofilesDomainMatchingExportingConfig({this.s3Exporting});
+final class CustomerprofilesDomainExportingConfig {
+  const CustomerprofilesDomainExportingConfig({this.s3Exporting});
 
-  final CustomerprofilesDomainMatchingExportingConfigS3Exporting? s3Exporting;
+  final CustomerprofilesDomainS3Exporting? s3Exporting;
 
   Map<String, Object?> encode() => {'s3_exporting': ?s3Exporting?.encode()};
 }
 
 /// Typed helper for the `matching.exporting_config.s3_exporting` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CustomerprofilesDomainMatchingExportingConfigS3Exporting {
-  const CustomerprofilesDomainMatchingExportingConfigS3Exporting({
+final class CustomerprofilesDomainS3Exporting {
+  const CustomerprofilesDomainS3Exporting({
     required this.s3BucketName,
     this.s3KeyName,
   });
@@ -148,14 +145,13 @@ final class CustomerprofilesDomainMatchingExportingConfigS3Exporting {
 /// Typed helper for the `matching.job_schedule` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
-final class CustomerprofilesDomainMatchingJobSchedule {
-  const CustomerprofilesDomainMatchingJobSchedule({
+final class CustomerprofilesDomainJobSchedule {
+  const CustomerprofilesDomainJobSchedule({
     required this.dayOfTheWeek,
     required this.time,
   });
 
-  final TfArg<CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek>
-  dayOfTheWeek;
+  final TfArg<CustomerprofilesDomainDayOfTheWeek> dayOfTheWeek;
 
   final TfArg<String> time;
 
@@ -166,8 +162,7 @@ final class CustomerprofilesDomainMatchingJobSchedule {
 }
 
 /// `day_of_the_week` — derived from the provider schema description.
-enum CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek
-    implements TerraformEnum {
+enum CustomerprofilesDomainDayOfTheWeek implements TerraformEnum {
   sunday('SUNDAY'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -176,9 +171,7 @@ enum CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek
   friday('FRIDAY'),
   saturday('SATURDAY');
 
-  const CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek(
-    this.terraformValue,
-  );
+  const CustomerprofilesDomainDayOfTheWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -204,18 +197,15 @@ final class CustomerprofilesDomainRuleBasedMatching {
 
   final TfArg<num>? maxAllowedRuleLevelForMerging;
 
-  final TfArg<CustomerprofilesDomainRuleBasedMatchingStatus>? status;
+  final TfArg<CustomerprofilesDomainStatus>? status;
 
-  final CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector?
-  attributeTypesSelector;
+  final CustomerprofilesDomainAttributeTypesSelector? attributeTypesSelector;
 
-  final CustomerprofilesDomainRuleBasedMatchingConflictResolution?
-  conflictResolution;
+  final CustomerprofilesDomainConflictResolution? conflictResolution;
 
-  final CustomerprofilesDomainRuleBasedMatchingExportingConfig? exportingConfig;
+  final CustomerprofilesDomainExportingConfig? exportingConfig;
 
-  final List<CustomerprofilesDomainRuleBasedMatchingMatchingRules>?
-  matchingRules;
+  final List<CustomerprofilesDomainMatchingRules>? matchingRules;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -233,12 +223,12 @@ final class CustomerprofilesDomainRuleBasedMatching {
 }
 
 /// `status` — derived from the provider schema description.
-enum CustomerprofilesDomainRuleBasedMatchingStatus implements TerraformEnum {
+enum CustomerprofilesDomainStatus implements TerraformEnum {
   pending('PENDING'),
   inProgress('IN_PROGRESS'),
   active('ACTIVE');
 
-  const CustomerprofilesDomainRuleBasedMatchingStatus(this.terraformValue);
+  const CustomerprofilesDomainStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -246,8 +236,8 @@ enum CustomerprofilesDomainRuleBasedMatchingStatus implements TerraformEnum {
 /// Typed helper for the `rule_based_matching.attribute_types_selector` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
-final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
-  const CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector({
+final class CustomerprofilesDomainAttributeTypesSelector {
+  const CustomerprofilesDomainAttributeTypesSelector({
     this.address,
     required this.attributeMatchingModel,
     this.emailAddress,
@@ -256,9 +246,7 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
 
   final TfArg<List<String>>? address;
 
-  final TfArg<
-    CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel
-  >
+  final TfArg<CustomerprofilesDomainAttributeMatchingModel>
   attributeMatchingModel;
 
   final TfArg<List<String>>? emailAddress;
@@ -274,93 +262,20 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
 }
 
 /// `attribute_matching_model` — derived from the provider schema description.
-enum CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel
-    implements TerraformEnum {
+enum CustomerprofilesDomainAttributeMatchingModel implements TerraformEnum {
   oneToOne('ONE_TO_ONE'),
   manyToMany('MANY_TO_MANY');
 
-  const CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel(
-    this.terraformValue,
-  );
+  const CustomerprofilesDomainAttributeMatchingModel(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `rule_based_matching.conflict_resolution` block of
-/// `aws_customerprofiles_domain` (derived from provider schema).
-@immutable
-final class CustomerprofilesDomainRuleBasedMatchingConflictResolution {
-  const CustomerprofilesDomainRuleBasedMatchingConflictResolution({
-    required this.conflictResolvingModel,
-    this.sourceName,
-  });
-
-  final TfArg<
-    CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel
-  >
-  conflictResolvingModel;
-
-  final TfArg<String>? sourceName;
-
-  Map<String, Object?> encode() => {
-    'conflict_resolving_model': conflictResolvingModel.toTfJson(),
-    'source_name': ?sourceName?.toTfJson(),
-  };
-}
-
-/// `conflict_resolving_model` — derived from the provider schema description.
-enum CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel
-    implements TerraformEnum {
-  recency('RECENCY'),
-  source('SOURCE');
-
-  const CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `rule_based_matching.exporting_config` block of
-/// `aws_customerprofiles_domain` (derived from provider schema).
-@immutable
-final class CustomerprofilesDomainRuleBasedMatchingExportingConfig {
-  const CustomerprofilesDomainRuleBasedMatchingExportingConfig({
-    this.s3Exporting,
-  });
-
-  final CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting?
-  s3Exporting;
-
-  Map<String, Object?> encode() => {'s3_exporting': ?s3Exporting?.encode()};
-}
-
-/// Typed helper for the `rule_based_matching.exporting_config.s3_exporting` block of
-/// `aws_customerprofiles_domain` (derived from provider schema).
-@immutable
-final class CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting {
-  const CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting({
-    required this.s3BucketName,
-    this.s3KeyName,
-  });
-
-  final RefTo<AwsS3Bucket> s3BucketName;
-
-  final TfArg<String>? s3KeyName;
-
-  Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    's3_key_name': ?s3KeyName?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `rule_based_matching.matching_rules` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
-final class CustomerprofilesDomainRuleBasedMatchingMatchingRules {
-  const CustomerprofilesDomainRuleBasedMatchingMatchingRules({
-    required this.rule,
-  });
+final class CustomerprofilesDomainMatchingRules {
+  const CustomerprofilesDomainMatchingRules({required this.rule});
 
   final TfArg<List<String>> rule;
 

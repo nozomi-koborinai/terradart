@@ -57,13 +57,10 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
     this.isolationMode,
   });
 
-  final TfArg<
-    NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity
-  >?
+  final TfArg<NetworkServicesServiceLbPoliciesIsolationGranularity>?
   isolationGranularity;
 
-  final TfArg<NetworkServicesServiceLbPoliciesIsolationConfigIsolationMode>?
-  isolationMode;
+  final TfArg<NetworkServicesServiceLbPoliciesIsolationMode>? isolationMode;
 
   Map<String, Object?> encode() => {
     'isolation_granularity': ?isolationGranularity?.toTfJson(),
@@ -72,12 +69,12 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
 }
 
 /// `isolation_granularity` — derived from the provider schema description.
-enum NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity
+enum NetworkServicesServiceLbPoliciesIsolationGranularity
     implements TerraformEnum {
   isolationGranularityUnspecified('ISOLATION_GRANULARITY_UNSPECIFIED'),
   region('REGION');
 
-  const NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity(
+  const NetworkServicesServiceLbPoliciesIsolationGranularity(
     this.terraformValue,
   );
   @override
@@ -85,15 +82,12 @@ enum NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity
 }
 
 /// `isolation_mode` — derived from the provider schema description.
-enum NetworkServicesServiceLbPoliciesIsolationConfigIsolationMode
-    implements TerraformEnum {
+enum NetworkServicesServiceLbPoliciesIsolationMode implements TerraformEnum {
   isolationModeUnspecified('ISOLATION_MODE_UNSPECIFIED'),
   nearest('NEAREST'),
   strict('STRICT');
 
-  const NetworkServicesServiceLbPoliciesIsolationConfigIsolationMode(
-    this.terraformValue,
-  );
+  const NetworkServicesServiceLbPoliciesIsolationMode(this.terraformValue);
   @override
   final String terraformValue;
 }

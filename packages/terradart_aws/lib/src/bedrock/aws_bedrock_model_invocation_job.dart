@@ -17,8 +17,7 @@ const Set<String> _awsBedrockModelInvocationJobSensitive = <String>{};
 final class BedrockModelInvocationJobInputDataConfig {
   const BedrockModelInvocationJobInputDataConfig({this.s3InputDataConfig});
 
-  final List<BedrockModelInvocationJobInputDataConfigS3InputDataConfig>?
-  s3InputDataConfig;
+  final List<BedrockModelInvocationJobS3InputDataConfig>? s3InputDataConfig;
 
   Map<String, Object?> encode() => {
     if (s3InputDataConfig != null)
@@ -29,8 +28,8 @@ final class BedrockModelInvocationJobInputDataConfig {
 /// Typed helper for the `input_data_config.s3_input_data_config` block of
 /// `aws_bedrock_model_invocation_job` (derived from provider schema).
 @immutable
-final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
-  const BedrockModelInvocationJobInputDataConfigS3InputDataConfig({
+final class BedrockModelInvocationJobS3InputDataConfig {
+  const BedrockModelInvocationJobS3InputDataConfig({
     this.s3BucketOwner,
     this.s3InputFormat,
     required this.s3Uri,
@@ -38,10 +37,7 @@ final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
 
   final TfArg<String>? s3BucketOwner;
 
-  final TfArg<
-    BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat
-  >?
-  s3InputFormat;
+  final TfArg<BedrockModelInvocationJobS3InputFormat>? s3InputFormat;
 
   final TfArg<String> s3Uri;
 
@@ -53,13 +49,10 @@ final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
 }
 
 /// `s3_input_format` — derived from the provider schema description.
-enum BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat
-    implements TerraformEnum {
+enum BedrockModelInvocationJobS3InputFormat implements TerraformEnum {
   jsonl('JSONL');
 
-  const BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat(
-    this.terraformValue,
-  );
+  const BedrockModelInvocationJobS3InputFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -70,8 +63,7 @@ enum BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat
 final class BedrockModelInvocationJobOutputDataConfig {
   const BedrockModelInvocationJobOutputDataConfig({this.s3OutputDataConfig});
 
-  final List<BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig>?
-  s3OutputDataConfig;
+  final List<BedrockModelInvocationJobS3OutputDataConfig>? s3OutputDataConfig;
 
   Map<String, Object?> encode() => {
     if (s3OutputDataConfig != null)
@@ -84,8 +76,8 @@ final class BedrockModelInvocationJobOutputDataConfig {
 /// Typed helper for the `output_data_config.s3_output_data_config` block of
 /// `aws_bedrock_model_invocation_job` (derived from provider schema).
 @immutable
-final class BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig {
-  const BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig({
+final class BedrockModelInvocationJobS3OutputDataConfig {
+  const BedrockModelInvocationJobS3OutputDataConfig({
     this.s3BucketOwner,
     this.s3EncryptionKeyId,
     required this.s3Uri,

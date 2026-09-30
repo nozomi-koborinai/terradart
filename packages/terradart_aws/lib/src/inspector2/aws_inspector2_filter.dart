@@ -20,8 +20,8 @@ enum Inspector2FilterAction implements TerraformEnum {
 /// Typed helper for the `filter_criteria` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteria {
-  const Inspector2FilterFilterCriteria({
+final class Inspector2FilterCriteria {
+  const Inspector2FilterCriteria({
     this.awsAccountId,
     this.codeRepositoryProjectName,
     this.codeRepositoryProviderType,
@@ -70,116 +70,104 @@ final class Inspector2FilterFilterCriteria {
     this.vulnerablePackages,
   });
 
-  final List<Inspector2FilterFilterCriteriaAwsAccountId>? awsAccountId;
+  final List<Inspector2FilterAwsAccountId>? awsAccountId;
 
-  final List<Inspector2FilterFilterCriteriaCodeRepositoryProjectName>?
+  final List<Inspector2FilterCodeRepositoryProjectName>?
   codeRepositoryProjectName;
 
-  final List<Inspector2FilterFilterCriteriaCodeRepositoryProviderType>?
+  final List<Inspector2FilterCodeRepositoryProviderType>?
   codeRepositoryProviderType;
 
-  final List<Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName>?
+  final List<Inspector2FilterCodeVulnerabilityDetectorName>?
   codeVulnerabilityDetectorName;
 
-  final List<Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags>?
+  final List<Inspector2FilterCodeVulnerabilityDetectorTags>?
   codeVulnerabilityDetectorTags;
 
-  final List<Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath>?
+  final List<Inspector2FilterCodeVulnerabilityFilePath>?
   codeVulnerabilityFilePath;
 
-  final List<Inspector2FilterFilterCriteriaComponentId>? componentId;
+  final List<Inspector2FilterComponentId>? componentId;
 
-  final List<Inspector2FilterFilterCriteriaComponentType>? componentType;
+  final List<Inspector2FilterComponentType>? componentType;
 
-  final List<Inspector2FilterFilterCriteriaEc2InstanceImageId>?
-  ec2InstanceImageId;
+  final List<Inspector2FilterEc2InstanceImageId>? ec2InstanceImageId;
 
-  final List<Inspector2FilterFilterCriteriaEc2InstanceSubnetId>?
-  ec2InstanceSubnetId;
+  final List<Inspector2FilterEc2InstanceSubnetId>? ec2InstanceSubnetId;
 
-  final List<Inspector2FilterFilterCriteriaEc2InstanceVpcId>? ec2InstanceVpcId;
+  final List<Inspector2FilterEc2InstanceVpcId>? ec2InstanceVpcId;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageArchitecture>?
-  ecrImageArchitecture;
+  final List<Inspector2FilterEcrImageArchitecture>? ecrImageArchitecture;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageHash>? ecrImageHash;
+  final List<Inspector2FilterEcrImageHash>? ecrImageHash;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageInUseCount>?
-  ecrImageInUseCount;
+  final List<Inspector2FilterEcrImageInUseCount>? ecrImageInUseCount;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageLastInUseAt>?
-  ecrImageLastInUseAt;
+  final List<Inspector2FilterEcrImageLastInUseAt>? ecrImageLastInUseAt;
 
-  final List<Inspector2FilterFilterCriteriaEcrImagePushedAt>? ecrImagePushedAt;
+  final List<Inspector2FilterEcrImagePushedAt>? ecrImagePushedAt;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageRegistry>? ecrImageRegistry;
+  final List<Inspector2FilterEcrImageRegistry>? ecrImageRegistry;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageRepositoryName>?
-  ecrImageRepositoryName;
+  final List<Inspector2FilterEcrImageRepositoryName>? ecrImageRepositoryName;
 
-  final List<Inspector2FilterFilterCriteriaEcrImageTags>? ecrImageTags;
+  final List<Inspector2FilterEcrImageTags>? ecrImageTags;
 
-  final List<Inspector2FilterFilterCriteriaEpssScore>? epssScore;
+  final List<Inspector2FilterEpssScore>? epssScore;
 
-  final List<Inspector2FilterFilterCriteriaExploitAvailable>? exploitAvailable;
+  final List<Inspector2FilterExploitAvailable>? exploitAvailable;
 
-  final List<Inspector2FilterFilterCriteriaFindingArn>? findingArn;
+  final List<Inspector2FilterFindingArn>? findingArn;
 
-  final List<Inspector2FilterFilterCriteriaFindingStatus>? findingStatus;
+  final List<Inspector2FilterFindingStatus>? findingStatus;
 
-  final List<Inspector2FilterFilterCriteriaFindingType>? findingType;
+  final List<Inspector2FilterFindingType>? findingType;
 
-  final List<Inspector2FilterFilterCriteriaFirstObservedAt>? firstObservedAt;
+  final List<Inspector2FilterFirstObservedAt>? firstObservedAt;
 
-  final List<Inspector2FilterFilterCriteriaFixAvailable>? fixAvailable;
+  final List<Inspector2FilterFixAvailable>? fixAvailable;
 
-  final List<Inspector2FilterFilterCriteriaInspectorScore>? inspectorScore;
+  final List<Inspector2FilterInspectorScore>? inspectorScore;
 
-  final List<Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn>?
+  final List<Inspector2FilterLambdaFunctionExecutionRoleArn>?
   lambdaFunctionExecutionRoleArn;
 
-  final List<Inspector2FilterFilterCriteriaLambdaFunctionLastModifiedAt>?
+  final List<Inspector2FilterLambdaFunctionLastModifiedAt>?
   lambdaFunctionLastModifiedAt;
 
-  final List<Inspector2FilterFilterCriteriaLambdaFunctionLayers>?
-  lambdaFunctionLayers;
+  final List<Inspector2FilterLambdaFunctionLayers>? lambdaFunctionLayers;
 
-  final List<Inspector2FilterFilterCriteriaLambdaFunctionName>?
-  lambdaFunctionName;
+  final List<Inspector2FilterLambdaFunctionName>? lambdaFunctionName;
 
-  final List<Inspector2FilterFilterCriteriaLambdaFunctionRuntime>?
-  lambdaFunctionRuntime;
+  final List<Inspector2FilterLambdaFunctionRuntime>? lambdaFunctionRuntime;
 
-  final List<Inspector2FilterFilterCriteriaLastObservedAt>? lastObservedAt;
+  final List<Inspector2FilterLastObservedAt>? lastObservedAt;
 
-  final List<Inspector2FilterFilterCriteriaNetworkProtocol>? networkProtocol;
+  final List<Inspector2FilterNetworkProtocol>? networkProtocol;
 
-  final List<Inspector2FilterFilterCriteriaPortRange>? portRange;
+  final List<Inspector2FilterPortRange>? portRange;
 
-  final List<Inspector2FilterFilterCriteriaRelatedVulnerabilities>?
-  relatedVulnerabilities;
+  final List<Inspector2FilterRelatedVulnerabilities>? relatedVulnerabilities;
 
-  final List<Inspector2FilterFilterCriteriaResourceId>? resourceId;
+  final List<Inspector2FilterResourceId>? resourceId;
 
-  final List<Inspector2FilterFilterCriteriaResourceTags>? resourceTags;
+  final List<Inspector2FilterResourceTags>? resourceTags;
 
-  final List<Inspector2FilterFilterCriteriaResourceType>? resourceType;
+  final List<Inspector2FilterResourceType>? resourceType;
 
-  final List<Inspector2FilterFilterCriteriaSeverity>? severity;
+  final List<Inspector2FilterSeverity>? severity;
 
-  final List<Inspector2FilterFilterCriteriaTitle>? title;
+  final List<Inspector2FilterTitle>? title;
 
-  final List<Inspector2FilterFilterCriteriaUpdatedAt>? updatedAt;
+  final List<Inspector2FilterUpdatedAt>? updatedAt;
 
-  final List<Inspector2FilterFilterCriteriaVendorSeverity>? vendorSeverity;
+  final List<Inspector2FilterVendorSeverity>? vendorSeverity;
 
-  final List<Inspector2FilterFilterCriteriaVulnerabilityId>? vulnerabilityId;
+  final List<Inspector2FilterVulnerabilityId>? vulnerabilityId;
 
-  final List<Inspector2FilterFilterCriteriaVulnerabilitySource>?
-  vulnerabilitySource;
+  final List<Inspector2FilterVulnerabilitySource>? vulnerabilitySource;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackages>?
-  vulnerablePackages;
+  final List<Inspector2FilterVulnerablePackages>? vulnerablePackages;
 
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
@@ -312,13 +300,13 @@ final class Inspector2FilterFilterCriteria {
 /// Typed helper for the `filter_criteria.aws_account_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaAwsAccountId {
-  const Inspector2FilterFilterCriteriaAwsAccountId({
+final class Inspector2FilterAwsAccountId {
+  const Inspector2FilterAwsAccountId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaAwsAccountIdComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -329,15 +317,12 @@ final class Inspector2FilterFilterCriteriaAwsAccountId {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaAwsAccountIdComparison
-    implements TerraformEnum {
+enum Inspector2FilterAwsAccountIdComparison implements TerraformEnum {
   equals('EQUALS'),
   prefix('PREFIX'),
   notEquals('NOT_EQUALS');
 
-  const Inspector2FilterFilterCriteriaAwsAccountIdComparison(
-    this.terraformValue,
-  );
+  const Inspector2FilterAwsAccountIdComparison(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -345,14 +330,13 @@ enum Inspector2FilterFilterCriteriaAwsAccountIdComparison
 /// Typed helper for the `filter_criteria.code_repository_project_name` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaCodeRepositoryProjectName {
-  const Inspector2FilterFilterCriteriaCodeRepositoryProjectName({
+final class Inspector2FilterCodeRepositoryProjectName {
+  const Inspector2FilterCodeRepositoryProjectName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -360,35 +344,18 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProjectName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_repository_provider_type` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaCodeRepositoryProviderType {
-  const Inspector2FilterFilterCriteriaCodeRepositoryProviderType({
+final class Inspector2FilterCodeRepositoryProviderType {
+  const Inspector2FilterCodeRepositoryProviderType({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -396,35 +363,18 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProviderType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_detector_name` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName {
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName({
+final class Inspector2FilterCodeVulnerabilityDetectorName {
+  const Inspector2FilterCodeVulnerabilityDetectorName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -432,35 +382,18 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_detector_tags` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags {
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags({
+final class Inspector2FilterCodeVulnerabilityDetectorTags {
+  const Inspector2FilterCodeVulnerabilityDetectorTags({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -468,33 +401,18 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_file_path` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath {
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath({
+final class Inspector2FilterCodeVulnerabilityFilePath {
+  const Inspector2FilterCodeVulnerabilityFilePath({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -502,32 +420,18 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.component_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaComponentId {
-  const Inspector2FilterFilterCriteriaComponentId({
+final class Inspector2FilterComponentId {
+  const Inspector2FilterComponentId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaComponentIdComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -535,32 +439,18 @@ final class Inspector2FilterFilterCriteriaComponentId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaComponentIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaComponentIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.component_type` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaComponentType {
-  const Inspector2FilterFilterCriteriaComponentType({
+final class Inspector2FilterComponentType {
+  const Inspector2FilterComponentType({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaComponentTypeComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -568,33 +458,18 @@ final class Inspector2FilterFilterCriteriaComponentType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaComponentTypeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaComponentTypeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_image_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEc2InstanceImageId {
-  const Inspector2FilterFilterCriteriaEc2InstanceImageId({
+final class Inspector2FilterEc2InstanceImageId {
+  const Inspector2FilterEc2InstanceImageId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -602,33 +477,18 @@ final class Inspector2FilterFilterCriteriaEc2InstanceImageId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_subnet_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEc2InstanceSubnetId {
-  const Inspector2FilterFilterCriteriaEc2InstanceSubnetId({
+final class Inspector2FilterEc2InstanceSubnetId {
+  const Inspector2FilterEc2InstanceSubnetId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -636,33 +496,18 @@ final class Inspector2FilterFilterCriteriaEc2InstanceSubnetId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_vpc_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEc2InstanceVpcId {
-  const Inspector2FilterFilterCriteriaEc2InstanceVpcId({
+final class Inspector2FilterEc2InstanceVpcId {
+  const Inspector2FilterEc2InstanceVpcId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -670,33 +515,18 @@ final class Inspector2FilterFilterCriteriaEc2InstanceVpcId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_architecture` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageArchitecture {
-  const Inspector2FilterFilterCriteriaEcrImageArchitecture({
+final class Inspector2FilterEcrImageArchitecture {
+  const Inspector2FilterEcrImageArchitecture({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEcrImageArchitectureComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -704,32 +534,18 @@ final class Inspector2FilterFilterCriteriaEcrImageArchitecture {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEcrImageArchitectureComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEcrImageArchitectureComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_hash` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageHash {
-  const Inspector2FilterFilterCriteriaEcrImageHash({
+final class Inspector2FilterEcrImageHash {
+  const Inspector2FilterEcrImageHash({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEcrImageHashComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -739,25 +555,11 @@ final class Inspector2FilterFilterCriteriaEcrImageHash {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEcrImageHashComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEcrImageHashComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.ecr_image_in_use_count` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageInUseCount {
-  const Inspector2FilterFilterCriteriaEcrImageInUseCount({
+final class Inspector2FilterEcrImageInUseCount {
+  const Inspector2FilterEcrImageInUseCount({
     required this.lowerInclusive,
     required this.upperInclusive,
   });
@@ -775,8 +577,8 @@ final class Inspector2FilterFilterCriteriaEcrImageInUseCount {
 /// Typed helper for the `filter_criteria.ecr_image_last_in_use_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageLastInUseAt {
-  const Inspector2FilterFilterCriteriaEcrImageLastInUseAt({
+final class Inspector2FilterEcrImageLastInUseAt {
+  const Inspector2FilterEcrImageLastInUseAt({
     this.endInclusive,
     this.startInclusive,
   });
@@ -794,8 +596,8 @@ final class Inspector2FilterFilterCriteriaEcrImageLastInUseAt {
 /// Typed helper for the `filter_criteria.ecr_image_pushed_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImagePushedAt {
-  const Inspector2FilterFilterCriteriaEcrImagePushedAt({
+final class Inspector2FilterEcrImagePushedAt {
+  const Inspector2FilterEcrImagePushedAt({
     this.endInclusive,
     this.startInclusive,
   });
@@ -813,14 +615,13 @@ final class Inspector2FilterFilterCriteriaEcrImagePushedAt {
 /// Typed helper for the `filter_criteria.ecr_image_registry` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageRegistry {
-  const Inspector2FilterFilterCriteriaEcrImageRegistry({
+final class Inspector2FilterEcrImageRegistry {
+  const Inspector2FilterEcrImageRegistry({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEcrImageRegistryComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -828,33 +629,18 @@ final class Inspector2FilterFilterCriteriaEcrImageRegistry {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEcrImageRegistryComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEcrImageRegistryComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_repository_name` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageRepositoryName {
-  const Inspector2FilterFilterCriteriaEcrImageRepositoryName({
+final class Inspector2FilterEcrImageRepositoryName {
+  const Inspector2FilterEcrImageRepositoryName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -862,32 +648,18 @@ final class Inspector2FilterFilterCriteriaEcrImageRepositoryName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_tags` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEcrImageTags {
-  const Inspector2FilterFilterCriteriaEcrImageTags({
+final class Inspector2FilterEcrImageTags {
+  const Inspector2FilterEcrImageTags({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaEcrImageTagsComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -897,25 +669,11 @@ final class Inspector2FilterFilterCriteriaEcrImageTags {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaEcrImageTagsComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaEcrImageTagsComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.epss_score` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaEpssScore {
-  const Inspector2FilterFilterCriteriaEpssScore({
+final class Inspector2FilterEpssScore {
+  const Inspector2FilterEpssScore({
     required this.lowerInclusive,
     required this.upperInclusive,
   });
@@ -933,14 +691,13 @@ final class Inspector2FilterFilterCriteriaEpssScore {
 /// Typed helper for the `filter_criteria.exploit_available` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaExploitAvailable {
-  const Inspector2FilterFilterCriteriaExploitAvailable({
+final class Inspector2FilterExploitAvailable {
+  const Inspector2FilterExploitAvailable({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaExploitAvailableComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -948,32 +705,18 @@ final class Inspector2FilterFilterCriteriaExploitAvailable {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaExploitAvailableComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaExploitAvailableComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_arn` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaFindingArn {
-  const Inspector2FilterFilterCriteriaFindingArn({
+final class Inspector2FilterFindingArn {
+  const Inspector2FilterFindingArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaFindingArnComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -981,30 +724,18 @@ final class Inspector2FilterFilterCriteriaFindingArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaFindingArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaFindingArnComparison(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_status` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaFindingStatus {
-  const Inspector2FilterFilterCriteriaFindingStatus({
+final class Inspector2FilterFindingStatus {
+  const Inspector2FilterFindingStatus({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaFindingStatusComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1012,32 +743,18 @@ final class Inspector2FilterFilterCriteriaFindingStatus {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaFindingStatusComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaFindingStatusComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_type` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaFindingType {
-  const Inspector2FilterFilterCriteriaFindingType({
+final class Inspector2FilterFindingType {
+  const Inspector2FilterFindingType({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaFindingTypeComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1047,25 +764,11 @@ final class Inspector2FilterFilterCriteriaFindingType {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaFindingTypeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaFindingTypeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.first_observed_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaFirstObservedAt {
-  const Inspector2FilterFilterCriteriaFirstObservedAt({
+final class Inspector2FilterFirstObservedAt {
+  const Inspector2FilterFirstObservedAt({
     this.endInclusive,
     this.startInclusive,
   });
@@ -1083,13 +786,13 @@ final class Inspector2FilterFilterCriteriaFirstObservedAt {
 /// Typed helper for the `filter_criteria.fix_available` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaFixAvailable {
-  const Inspector2FilterFilterCriteriaFixAvailable({
+final class Inspector2FilterFixAvailable {
+  const Inspector2FilterFixAvailable({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaFixAvailableComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1099,25 +802,11 @@ final class Inspector2FilterFilterCriteriaFixAvailable {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaFixAvailableComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaFixAvailableComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.inspector_score` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaInspectorScore {
-  const Inspector2FilterFilterCriteriaInspectorScore({
+final class Inspector2FilterInspectorScore {
+  const Inspector2FilterInspectorScore({
     required this.lowerInclusive,
     required this.upperInclusive,
   });
@@ -1135,16 +824,13 @@ final class Inspector2FilterFilterCriteriaInspectorScore {
 /// Typed helper for the `filter_criteria.lambda_function_execution_role_arn` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn {
-  const Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn({
+final class Inspector2FilterLambdaFunctionExecutionRoleArn {
+  const Inspector2FilterLambdaFunctionExecutionRoleArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1154,25 +840,11 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.lambda_function_last_modified_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLambdaFunctionLastModifiedAt {
-  const Inspector2FilterFilterCriteriaLambdaFunctionLastModifiedAt({
+final class Inspector2FilterLambdaFunctionLastModifiedAt {
+  const Inspector2FilterLambdaFunctionLastModifiedAt({
     this.endInclusive,
     this.startInclusive,
   });
@@ -1190,14 +862,13 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionLastModifiedAt {
 /// Typed helper for the `filter_criteria.lambda_function_layers` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLambdaFunctionLayers {
-  const Inspector2FilterFilterCriteriaLambdaFunctionLayers({
+final class Inspector2FilterLambdaFunctionLayers {
+  const Inspector2FilterLambdaFunctionLayers({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1205,33 +876,18 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionLayers {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.lambda_function_name` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLambdaFunctionName {
-  const Inspector2FilterFilterCriteriaLambdaFunctionName({
+final class Inspector2FilterLambdaFunctionName {
+  const Inspector2FilterLambdaFunctionName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionNameComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1239,33 +895,18 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaLambdaFunctionNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaLambdaFunctionNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.lambda_function_runtime` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLambdaFunctionRuntime {
-  const Inspector2FilterFilterCriteriaLambdaFunctionRuntime({
+final class Inspector2FilterLambdaFunctionRuntime {
+  const Inspector2FilterLambdaFunctionRuntime({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1275,25 +916,11 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionRuntime {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.last_observed_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaLastObservedAt {
-  const Inspector2FilterFilterCriteriaLastObservedAt({
+final class Inspector2FilterLastObservedAt {
+  const Inspector2FilterLastObservedAt({
     this.endInclusive,
     this.startInclusive,
   });
@@ -1311,14 +938,13 @@ final class Inspector2FilterFilterCriteriaLastObservedAt {
 /// Typed helper for the `filter_criteria.network_protocol` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaNetworkProtocol {
-  const Inspector2FilterFilterCriteriaNetworkProtocol({
+final class Inspector2FilterNetworkProtocol {
+  const Inspector2FilterNetworkProtocol({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaNetworkProtocolComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1328,25 +954,11 @@ final class Inspector2FilterFilterCriteriaNetworkProtocol {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaNetworkProtocolComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaNetworkProtocolComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.port_range` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaPortRange {
-  const Inspector2FilterFilterCriteriaPortRange({
+final class Inspector2FilterPortRange {
+  const Inspector2FilterPortRange({
     required this.beginInclusive,
     required this.endInclusive,
   });
@@ -1364,14 +976,13 @@ final class Inspector2FilterFilterCriteriaPortRange {
 /// Typed helper for the `filter_criteria.related_vulnerabilities` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaRelatedVulnerabilities {
-  const Inspector2FilterFilterCriteriaRelatedVulnerabilities({
+final class Inspector2FilterRelatedVulnerabilities {
+  const Inspector2FilterRelatedVulnerabilities({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1379,32 +990,18 @@ final class Inspector2FilterFilterCriteriaRelatedVulnerabilities {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.resource_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaResourceId {
-  const Inspector2FilterFilterCriteriaResourceId({
+final class Inspector2FilterResourceId {
+  const Inspector2FilterResourceId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaResourceIdComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1414,29 +1011,17 @@ final class Inspector2FilterFilterCriteriaResourceId {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaResourceIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaResourceIdComparison(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.resource_tags` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaResourceTags {
-  const Inspector2FilterFilterCriteriaResourceTags({
+final class Inspector2FilterResourceTags {
+  const Inspector2FilterResourceTags({
     required this.comparison,
     required this.key,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaResourceTagsComparison> comparison;
+  final TfArg<Inspector2FilterResourceTagsComparison> comparison;
 
   final TfArg<String> key;
 
@@ -1450,13 +1035,10 @@ final class Inspector2FilterFilterCriteriaResourceTags {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaResourceTagsComparison
-    implements TerraformEnum {
+enum Inspector2FilterResourceTagsComparison implements TerraformEnum {
   equals('EQUALS');
 
-  const Inspector2FilterFilterCriteriaResourceTagsComparison(
-    this.terraformValue,
-  );
+  const Inspector2FilterResourceTagsComparison(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1464,13 +1046,13 @@ enum Inspector2FilterFilterCriteriaResourceTagsComparison
 /// Typed helper for the `filter_criteria.resource_type` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaResourceType {
-  const Inspector2FilterFilterCriteriaResourceType({
+final class Inspector2FilterResourceType {
+  const Inspector2FilterResourceType({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaResourceTypeComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1478,32 +1060,18 @@ final class Inspector2FilterFilterCriteriaResourceType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaResourceTypeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaResourceTypeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.severity` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaSeverity {
-  const Inspector2FilterFilterCriteriaSeverity({
+final class Inspector2FilterSeverity {
+  const Inspector2FilterSeverity({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaSeverityComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1511,29 +1079,15 @@ final class Inspector2FilterFilterCriteriaSeverity {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaSeverityComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaSeverityComparison(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.title` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaTitle {
-  const Inspector2FilterFilterCriteriaTitle({
-    required this.comparison,
-    required this.value,
-  });
+final class Inspector2FilterTitle {
+  const Inspector2FilterTitle({required this.comparison, required this.value});
 
-  final TfArg<Inspector2FilterFilterCriteriaTitleComparison> comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1543,25 +1097,11 @@ final class Inspector2FilterFilterCriteriaTitle {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaTitleComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaTitleComparison(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.updated_at` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaUpdatedAt {
-  const Inspector2FilterFilterCriteriaUpdatedAt({
-    this.endInclusive,
-    this.startInclusive,
-  });
+final class Inspector2FilterUpdatedAt {
+  const Inspector2FilterUpdatedAt({this.endInclusive, this.startInclusive});
 
   final TfArg<String>? endInclusive;
 
@@ -1576,14 +1116,13 @@ final class Inspector2FilterFilterCriteriaUpdatedAt {
 /// Typed helper for the `filter_criteria.vendor_severity` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVendorSeverity {
-  const Inspector2FilterFilterCriteriaVendorSeverity({
+final class Inspector2FilterVendorSeverity {
+  const Inspector2FilterVendorSeverity({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVendorSeverityComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1591,33 +1130,18 @@ final class Inspector2FilterFilterCriteriaVendorSeverity {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVendorSeverityComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVendorSeverityComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerability_id` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerabilityId {
-  const Inspector2FilterFilterCriteriaVulnerabilityId({
+final class Inspector2FilterVulnerabilityId {
+  const Inspector2FilterVulnerabilityId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVulnerabilityIdComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1625,33 +1149,18 @@ final class Inspector2FilterFilterCriteriaVulnerabilityId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerabilityIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerabilityIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerability_source` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerabilitySource {
-  const Inspector2FilterFilterCriteriaVulnerabilitySource({
+final class Inspector2FilterVulnerabilitySource {
+  const Inspector2FilterVulnerabilitySource({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVulnerabilitySourceComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1661,25 +1170,11 @@ final class Inspector2FilterFilterCriteriaVulnerabilitySource {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerabilitySourceComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerabilitySourceComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.vulnerable_packages` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackages {
-  const Inspector2FilterFilterCriteriaVulnerablePackages({
+final class Inspector2FilterVulnerablePackages {
+  const Inspector2FilterVulnerablePackages({
     this.architecture,
     this.epoch,
     this.filePath,
@@ -1690,27 +1185,21 @@ final class Inspector2FilterFilterCriteriaVulnerablePackages {
     this.version,
   });
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture>?
-  architecture;
+  final List<Inspector2FilterArchitecture>? architecture;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesEpoch>? epoch;
+  final List<Inspector2FilterEpoch>? epoch;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesFilePath>?
-  filePath;
+  final List<Inspector2FilterFilePath>? filePath;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesName>? name;
+  final List<Inspector2FilterVulnerablePackagesName>? name;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesRelease>? release;
+  final List<Inspector2FilterRelease>? release;
 
-  final List<
-    Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn
-  >?
-  sourceLambdaLayerArn;
+  final List<Inspector2FilterSourceLambdaLayerArn>? sourceLambdaLayerArn;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash>?
-  sourceLayerHash;
+  final List<Inspector2FilterSourceLayerHash>? sourceLayerHash;
 
-  final List<Inspector2FilterFilterCriteriaVulnerablePackagesVersion>? version;
+  final List<Inspector2FilterVersion>? version;
 
   Map<String, Object?> encode() => {
     if (architecture != null)
@@ -1732,16 +1221,13 @@ final class Inspector2FilterFilterCriteriaVulnerablePackages {
 /// Typed helper for the `filter_criteria.vulnerable_packages.architecture` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture({
+final class Inspector2FilterArchitecture {
+  const Inspector2FilterArchitecture({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1751,25 +1237,11 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `filter_criteria.vulnerable_packages.epoch` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesEpoch {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesEpoch({
+final class Inspector2FilterEpoch {
+  const Inspector2FilterEpoch({
     required this.lowerInclusive,
     required this.upperInclusive,
   });
@@ -1787,16 +1259,13 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesEpoch {
 /// Typed helper for the `filter_criteria.vulnerable_packages.file_path` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesFilePath {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesFilePath({
+final class Inspector2FilterFilePath {
+  const Inspector2FilterFilePath({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1804,33 +1273,18 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesFilePath {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.name` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesName {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesName({
+final class Inspector2FilterVulnerablePackagesName {
+  const Inspector2FilterVulnerablePackagesName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1838,33 +1292,18 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.release` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesRelease {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesRelease({
+final class Inspector2FilterRelease {
+  const Inspector2FilterRelease({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1872,35 +1311,18 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesRelease {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.source_lambda_layer_arn` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn({
+final class Inspector2FilterSourceLambdaLayerArn {
+  const Inspector2FilterSourceLambdaLayerArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1908,35 +1330,18 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.source_layer_hash` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash({
+final class Inspector2FilterSourceLayerHash {
+  const Inspector2FilterSourceLayerHash({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison
-  >
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1944,33 +1349,18 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.version` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
-final class Inspector2FilterFilterCriteriaVulnerablePackagesVersion {
-  const Inspector2FilterFilterCriteriaVulnerablePackagesVersion({
+final class Inspector2FilterVersion {
+  const Inspector2FilterVersion({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison>
-  comparison;
+  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1978,20 +1368,6 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesVersion {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
-
-  const Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_inspector2_filter`.
@@ -2006,7 +1382,7 @@ final class AwsInspector2Filter extends Resource {
     TfArg<String>? reason,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<Inspector2FilterFilterCriteria>? filterCriteria,
+    List<Inspector2FilterCriteria>? filterCriteria,
     super.lifecycle,
     super.dependsOn,
     super.provider,

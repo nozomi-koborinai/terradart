@@ -10,7 +10,7 @@ export 'src/datazone/aws_datazone_domain.dart'
         AwsDatazoneDomain,
         DatazoneDomainDomainVersion,
         DatazoneDomainSingleSignOn,
-        DatazoneDomainSingleSignOnUserAssignment;
+        DatazoneDomainUserAssignment;
 export 'src/datazone/aws_datazone_environment.dart'
     show AwsDatazoneEnvironment, DatazoneEnvironmentUserParameters;
 export 'src/datazone/aws_datazone_environment_blueprint_configuration.dart'
@@ -26,38 +26,38 @@ export 'src/datazone/aws_datazone_glossary.dart'
 export 'src/datazone/aws_datazone_glossary_term.dart'
     show
         AwsDatazoneGlossaryTerm,
-        DatazoneGlossaryTermStatus,
-        DatazoneGlossaryTermTermRelations;
+        DatazoneGlossaryTermRelations,
+        DatazoneGlossaryTermStatus;
 export 'src/datazone/aws_datazone_policy_grant.dart'
     show
         AwsDatazonePolicyGrant,
+        DatazonePolicyGrantAddToProjectMemberPool,
+        DatazonePolicyGrantAllDomainUnitsGrantFilter,
+        DatazonePolicyGrantAllUsersGrantFilter,
+        DatazonePolicyGrantCreateAssetType,
+        DatazonePolicyGrantCreateDomainUnit,
+        DatazonePolicyGrantCreateEnvironment,
+        DatazonePolicyGrantCreateEnvironmentFromBlueprint,
+        DatazonePolicyGrantCreateEnvironmentProfile,
+        DatazonePolicyGrantCreateFormType,
+        DatazonePolicyGrantCreateGlossary,
+        DatazonePolicyGrantCreateProject,
+        DatazonePolicyGrantCreateProjectFromProjectProfile,
+        DatazonePolicyGrantDelegateCreateEnvironmentProfile,
         DatazonePolicyGrantDetail,
-        DatazonePolicyGrantDetailAddToProjectMemberPool,
-        DatazonePolicyGrantDetailCreateAssetType,
-        DatazonePolicyGrantDetailCreateDomainUnit,
-        DatazonePolicyGrantDetailCreateEnvironment,
-        DatazonePolicyGrantDetailCreateEnvironmentFromBlueprint,
-        DatazonePolicyGrantDetailCreateEnvironmentProfile,
-        DatazonePolicyGrantDetailCreateFormType,
-        DatazonePolicyGrantDetailCreateGlossary,
-        DatazonePolicyGrantDetailCreateProject,
-        DatazonePolicyGrantDetailCreateProjectFromProjectProfile,
-        DatazonePolicyGrantDetailDelegateCreateEnvironmentProfile,
-        DatazonePolicyGrantDetailOverrideDomainUnitOwners,
-        DatazonePolicyGrantDetailOverrideProjectOwners,
-        DatazonePolicyGrantDetailUseAssetType,
+        DatazonePolicyGrantDomainUnit,
+        DatazonePolicyGrantDomainUnitDesignation,
+        DatazonePolicyGrantDomainUnitFilter,
         DatazonePolicyGrantEntityType,
+        DatazonePolicyGrantGroup,
+        DatazonePolicyGrantOverrideDomainUnitOwners,
+        DatazonePolicyGrantOverrideProjectOwners,
         DatazonePolicyGrantPolicyType,
         DatazonePolicyGrantPrincipal,
-        DatazonePolicyGrantPrincipalDomainUnit,
-        DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter,
-        DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation,
-        DatazonePolicyGrantPrincipalGroup,
-        DatazonePolicyGrantPrincipalProject,
-        DatazonePolicyGrantPrincipalProjectDomainUnitFilter,
-        DatazonePolicyGrantPrincipalProjectProjectDesignation,
-        DatazonePolicyGrantPrincipalUser,
-        DatazonePolicyGrantPrincipalUserAllUsersGrantFilter;
+        DatazonePolicyGrantProject,
+        DatazonePolicyGrantProjectDesignation,
+        DatazonePolicyGrantUseAssetType,
+        DatazonePolicyGrantUser;
 export 'src/datazone/aws_datazone_project.dart' show AwsDatazoneProject;
 export 'src/datazone/aws_datazone_user_profile.dart'
     show

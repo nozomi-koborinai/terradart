@@ -8,10 +8,10 @@ library;
 export 'src/dataplex/google_data_lineage_config.dart'
     show
         DataLineageConfigIngestion,
-        DataLineageConfigIngestionRule,
-        DataLineageConfigIngestionRuleIntegrationSelector,
-        DataLineageConfigIngestionRuleIntegrationSelectorIntegration,
-        DataLineageConfigIngestionRuleLineageEnablement,
+        DataLineageConfigIntegration,
+        DataLineageConfigIntegrationSelector,
+        DataLineageConfigLineageEnablement,
+        DataLineageConfigRule,
         GoogleDataLineageConfig;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
@@ -27,12 +27,12 @@ export 'src/dataplex/google_dataplex_aspect_type_iam_policy.dart'
     show GoogleDataplexAspectTypeIamPolicy;
 export 'src/dataplex/google_dataplex_asset.dart'
     show
+        DataplexAssetCsvOptions,
         DataplexAssetDiscoverySpec,
-        DataplexAssetDiscoverySpecCsvOptions,
-        DataplexAssetDiscoverySpecJsonOptions,
+        DataplexAssetJsonOptions,
+        DataplexAssetReadAccessMode,
         DataplexAssetResourceSpec,
-        DataplexAssetResourceSpecReadAccessMode,
-        DataplexAssetResourceSpecType,
+        DataplexAssetType,
         GoogleDataplexAsset;
 export 'src/dataplex/google_dataplex_asset_iam_binding.dart'
     show DataplexAssetIamBindingCondition, GoogleDataplexAssetIamBinding;
@@ -44,7 +44,7 @@ export 'src/dataplex/google_dataplex_data_product.dart'
     show
         DataplexDataProductAccessApprovalConfig,
         DataplexDataProductAccessGroups,
-        DataplexDataProductAccessGroupsPrincipal,
+        DataplexDataProductPrincipal,
         GoogleDataplexDataProduct;
 export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
     show
@@ -62,65 +62,64 @@ export 'src/dataplex/google_dataplex_data_product_iam_policy.dart'
     show GoogleDataplexDataProductIamPolicy;
 export 'src/dataplex/google_dataplex_datascan.dart'
     show
+        DataplexDatascanBigqueryExport,
+        DataplexDatascanBigqueryPublishingConfig,
+        DataplexDatascanCsvOptions,
         DataplexDatascanData,
         DataplexDatascanDataDiscoverySpec,
-        DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig,
-        DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType,
-        DataplexDatascanDataDiscoverySpecStorageConfig,
-        DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions,
-        DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions,
         DataplexDatascanDataDocumentationSpec,
-        DataplexDatascanDataDocumentationSpecSqlDialect,
         DataplexDatascanDataEntity,
         DataplexDatascanDataProfileSpec,
-        DataplexDatascanDataProfileSpecExcludeFields,
-        DataplexDatascanDataProfileSpecIncludeFields,
         DataplexDatascanDataProfileSpecPostScanActions,
-        DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport,
         DataplexDatascanDataQualitySpec,
         DataplexDatascanDataQualitySpecPostScanActions,
-        DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport,
-        DataplexDatascanDataQualitySpecPostScanActionsNotificationReport,
-        DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger,
-        DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger,
-        DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients,
-        DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger,
-        DataplexDatascanDataQualitySpecRules,
-        DataplexDatascanDataQualitySpecRulesNonNullExpectation,
-        DataplexDatascanDataQualitySpecRulesRangeExpectation,
-        DataplexDatascanDataQualitySpecRulesRegexExpectation,
-        DataplexDatascanDataQualitySpecRulesRowConditionExpectation,
-        DataplexDatascanDataQualitySpecRulesSetExpectation,
-        DataplexDatascanDataQualitySpecRulesSqlAssertion,
-        DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation,
-        DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic,
-        DataplexDatascanDataQualitySpecRulesTableConditionExpectation,
-        DataplexDatascanDataQualitySpecRulesTemplateReference,
-        DataplexDatascanDataQualitySpecRulesTemplateReferenceValues,
-        DataplexDatascanDataQualitySpecRulesUniquenessExpectation,
         DataplexDatascanDataResource,
+        DataplexDatascanDataplexServiceAgent,
+        DataplexDatascanExcludeFields,
         DataplexDatascanExecutionIdentity,
         DataplexDatascanExecutionIdentityDataplexServiceAgent,
-        DataplexDatascanExecutionIdentityDataplexServiceAgentChoice,
         DataplexDatascanExecutionIdentityServiceAccount,
-        DataplexDatascanExecutionIdentityServiceAccountChoice,
         DataplexDatascanExecutionIdentityUserCredential,
-        DataplexDatascanExecutionIdentityUserCredentialChoice,
         DataplexDatascanExecutionSpec,
-        DataplexDatascanExecutionSpecTrigger,
-        DataplexDatascanExecutionSpecTriggerOnDemand,
-        DataplexDatascanExecutionSpecTriggerOnDemandChoice,
-        DataplexDatascanExecutionSpecTriggerOneTime,
-        DataplexDatascanExecutionSpecTriggerOneTimeChoice,
-        DataplexDatascanExecutionSpecTriggerSchedule,
-        DataplexDatascanExecutionSpecTriggerScheduleChoice,
+        DataplexDatascanIncludeFields,
+        DataplexDatascanJobEndTrigger,
+        DataplexDatascanJobFailureTrigger,
+        DataplexDatascanJsonOptions,
+        DataplexDatascanNonNullExpectation,
+        DataplexDatascanNotificationReport,
+        DataplexDatascanOnDemand,
+        DataplexDatascanOneTime,
+        DataplexDatascanRangeExpectation,
+        DataplexDatascanRecipients,
+        DataplexDatascanRegexExpectation,
+        DataplexDatascanRowConditionExpectation,
+        DataplexDatascanRules,
         DataplexDatascanScanSpec,
         DataplexDatascanScanSpecDataDiscoverySpec,
         DataplexDatascanScanSpecDataDocumentationSpec,
         DataplexDatascanScanSpecDataProfileSpec,
         DataplexDatascanScanSpecDataQualitySpec,
+        DataplexDatascanSchedule,
+        DataplexDatascanScoreThresholdTrigger,
+        DataplexDatascanServiceAccount,
+        DataplexDatascanSetExpectation,
+        DataplexDatascanSqlAssertion,
+        DataplexDatascanSqlDialect,
         DataplexDatascanState,
+        DataplexDatascanStatistic,
+        DataplexDatascanStatisticRangeExpectation,
+        DataplexDatascanStorageConfig,
+        DataplexDatascanTableConditionExpectation,
+        DataplexDatascanTableType,
+        DataplexDatascanTemplateReference,
+        DataplexDatascanTrigger,
+        DataplexDatascanTriggerOnDemand,
+        DataplexDatascanTriggerOneTime,
+        DataplexDatascanTriggerSchedule,
         DataplexDatascanType,
+        DataplexDatascanUniquenessExpectation,
+        DataplexDatascanUserCredential,
+        DataplexDatascanValues,
         GoogleDataplexDatascan;
 export 'src/dataplex/google_dataplex_datascan_iam_binding.dart'
     show DataplexDatascanIamBindingCondition, GoogleDataplexDatascanIamBinding;
@@ -130,10 +129,10 @@ export 'src/dataplex/google_dataplex_datascan_iam_policy.dart'
     show GoogleDataplexDatascanIamPolicy;
 export 'src/dataplex/google_dataplex_entry.dart'
     show
+        DataplexEntryAncestors,
+        DataplexEntryAspect,
         DataplexEntryAspects,
-        DataplexEntryAspectsAspect,
-        DataplexEntryEntrySource,
-        DataplexEntryEntrySourceAncestors,
+        DataplexEntrySource,
         GoogleDataplexEntry;
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
@@ -149,10 +148,10 @@ export 'src/dataplex/google_dataplex_entry_group_iam_policy.dart'
     show GoogleDataplexEntryGroupIamPolicy;
 export 'src/dataplex/google_dataplex_entry_link.dart'
     show
+        DataplexEntryLinkAspect,
         DataplexEntryLinkAspects,
-        DataplexEntryLinkAspectsAspect,
         DataplexEntryLinkEntryReferences,
-        DataplexEntryLinkEntryReferencesType,
+        DataplexEntryLinkType,
         GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show DataplexEntryTypeRequiredAspects, GoogleDataplexEntryType;
@@ -190,31 +189,24 @@ export 'src/dataplex/google_dataplex_metadata_feed.dart'
         GoogleDataplexMetadataFeed;
 export 'src/dataplex/google_dataplex_task.dart'
     show
+        DataplexTaskBatch,
+        DataplexTaskContainerImage,
+        DataplexTaskDriver,
+        DataplexTaskDriverMainClass,
+        DataplexTaskDriverMainJarFileUri,
+        DataplexTaskDriverPythonScriptFile,
+        DataplexTaskDriverSqlScript,
+        DataplexTaskDriverSqlScriptFile,
         DataplexTaskExecutionSpec,
+        DataplexTaskInfrastructureSpec,
         DataplexTaskNotebook,
-        DataplexTaskNotebookInfrastructureSpec,
-        DataplexTaskNotebookInfrastructureSpecBatch,
-        DataplexTaskNotebookInfrastructureSpecContainerImage,
-        DataplexTaskNotebookInfrastructureSpecVpcNetwork,
-        DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget,
-        DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetNetwork,
-        DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetSubNetwork,
         DataplexTaskSpark,
-        DataplexTaskSparkDriver,
-        DataplexTaskSparkDriverMainClass,
-        DataplexTaskSparkDriverMainJarFileUri,
-        DataplexTaskSparkDriverPythonScriptFile,
-        DataplexTaskSparkDriverSqlScript,
-        DataplexTaskSparkDriverSqlScriptFile,
-        DataplexTaskSparkInfrastructureSpec,
-        DataplexTaskSparkInfrastructureSpecBatch,
-        DataplexTaskSparkInfrastructureSpecContainerImage,
-        DataplexTaskSparkInfrastructureSpecVpcNetwork,
-        DataplexTaskSparkInfrastructureSpecVpcNetworkTarget,
-        DataplexTaskSparkInfrastructureSpecVpcNetworkTargetNetwork,
-        DataplexTaskSparkInfrastructureSpecVpcNetworkTargetSubNetwork,
+        DataplexTaskTarget,
+        DataplexTaskTargetNetwork,
+        DataplexTaskTargetSubNetwork,
         DataplexTaskTriggerSpec,
-        DataplexTaskTriggerSpecType,
+        DataplexTaskType,
+        DataplexTaskVpcNetwork,
         DataplexTaskWorkload,
         DataplexTaskWorkloadNotebook,
         DataplexTaskWorkloadSpark,
@@ -227,11 +219,11 @@ export 'src/dataplex/google_dataplex_task_iam_policy.dart'
     show GoogleDataplexTaskIamPolicy;
 export 'src/dataplex/google_dataplex_zone.dart'
     show
+        DataplexZoneCsvOptions,
         DataplexZoneDiscoverySpec,
-        DataplexZoneDiscoverySpecCsvOptions,
-        DataplexZoneDiscoverySpecJsonOptions,
+        DataplexZoneJsonOptions,
+        DataplexZoneLocationType,
         DataplexZoneResourceSpec,
-        DataplexZoneResourceSpecLocationType,
         DataplexZoneType,
         GoogleDataplexZone;
 export 'src/dataplex/google_dataplex_zone_iam_binding.dart'

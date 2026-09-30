@@ -28,11 +28,11 @@ final class GuarddutyDetectorDatasources {
     this.s3Logs,
   });
 
-  final GuarddutyDetectorDatasourcesKubernetes? kubernetes;
+  final GuarddutyDetectorKubernetes? kubernetes;
 
-  final GuarddutyDetectorDatasourcesMalwareProtection? malwareProtection;
+  final GuarddutyDetectorMalwareProtection? malwareProtection;
 
-  final GuarddutyDetectorDatasourcesS3Logs? s3Logs;
+  final GuarddutyDetectorS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
     'kubernetes': ?kubernetes?.encode(),
@@ -44,10 +44,10 @@ final class GuarddutyDetectorDatasources {
 /// Typed helper for the `datasources.kubernetes` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesKubernetes {
-  const GuarddutyDetectorDatasourcesKubernetes({required this.auditLogs});
+final class GuarddutyDetectorKubernetes {
+  const GuarddutyDetectorKubernetes({required this.auditLogs});
 
-  final GuarddutyDetectorDatasourcesKubernetesAuditLogs auditLogs;
+  final GuarddutyDetectorAuditLogs auditLogs;
 
   Map<String, Object?> encode() => {'audit_logs': auditLogs.encode()};
 }
@@ -55,8 +55,8 @@ final class GuarddutyDetectorDatasourcesKubernetes {
 /// Typed helper for the `datasources.kubernetes.audit_logs` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesKubernetesAuditLogs {
-  const GuarddutyDetectorDatasourcesKubernetesAuditLogs({required this.enable});
+final class GuarddutyDetectorAuditLogs {
+  const GuarddutyDetectorAuditLogs({required this.enable});
 
   final TfArg<bool> enable;
 
@@ -66,12 +66,12 @@ final class GuarddutyDetectorDatasourcesKubernetesAuditLogs {
 /// Typed helper for the `datasources.malware_protection` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesMalwareProtection {
-  const GuarddutyDetectorDatasourcesMalwareProtection({
+final class GuarddutyDetectorMalwareProtection {
+  const GuarddutyDetectorMalwareProtection({
     required this.scanEc2InstanceWithFindings,
   });
 
-  final GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindings
+  final GuarddutyDetectorScanEc2InstanceWithFindings
   scanEc2InstanceWithFindings;
 
   Map<String, Object?> encode() => {
@@ -82,13 +82,12 @@ final class GuarddutyDetectorDatasourcesMalwareProtection {
 /// Typed helper for the `datasources.malware_protection.scan_ec2_instance_with_findings` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindings {
-  const GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindings({
+final class GuarddutyDetectorScanEc2InstanceWithFindings {
+  const GuarddutyDetectorScanEc2InstanceWithFindings({
     required this.ebsVolumes,
   });
 
-  final GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes
-  ebsVolumes;
+  final GuarddutyDetectorEbsVolumes ebsVolumes;
 
   Map<String, Object?> encode() => {'ebs_volumes': ebsVolumes.encode()};
 }
@@ -96,10 +95,8 @@ final class GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFind
 /// Typed helper for the `datasources.malware_protection.scan_ec2_instance_with_findings.ebs_volumes` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes {
-  const GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes({
-    required this.enable,
-  });
+final class GuarddutyDetectorEbsVolumes {
+  const GuarddutyDetectorEbsVolumes({required this.enable});
 
   final TfArg<bool> enable;
 
@@ -109,8 +106,8 @@ final class GuarddutyDetectorDatasourcesMalwareProtectionScanEc2InstanceWithFind
 /// Typed helper for the `datasources.s3_logs` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
-final class GuarddutyDetectorDatasourcesS3Logs {
-  const GuarddutyDetectorDatasourcesS3Logs({required this.enable});
+final class GuarddutyDetectorS3Logs {
+  const GuarddutyDetectorS3Logs({required this.enable});
 
   final TfArg<bool> enable;
 

@@ -16,10 +16,9 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
     this.cookies,
   });
 
-  final TfArg<CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior>
-  cookieBehavior;
+  final TfArg<CloudfrontOriginRequestPolicyCookieBehavior> cookieBehavior;
 
-  final CloudfrontOriginRequestPolicyCookiesConfigCookies? cookies;
+  final CloudfrontOriginRequestPolicyCookies? cookies;
 
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
@@ -28,16 +27,13 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
 }
 
 /// `cookie_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior
-    implements TerraformEnum {
+enum CloudfrontOriginRequestPolicyCookieBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   all('all'),
   allexcept('allExcept');
 
-  const CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontOriginRequestPolicyCookieBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -45,8 +41,8 @@ enum CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior
 /// Typed helper for the `cookies_config.cookies` block of
 /// `aws_cloudfront_origin_request_policy` (derived from provider schema).
 @immutable
-final class CloudfrontOriginRequestPolicyCookiesConfigCookies {
-  const CloudfrontOriginRequestPolicyCookiesConfigCookies({this.items});
+final class CloudfrontOriginRequestPolicyCookies {
+  const CloudfrontOriginRequestPolicyCookies({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -62,10 +58,9 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
     this.headers,
   });
 
-  final TfArg<CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior>?
-  headerBehavior;
+  final TfArg<CloudfrontOriginRequestPolicyHeaderBehavior>? headerBehavior;
 
-  final CloudfrontOriginRequestPolicyHeadersConfigHeaders? headers;
+  final CloudfrontOriginRequestPolicyHeaders? headers;
 
   Map<String, Object?> encode() => {
     'header_behavior': ?headerBehavior?.toTfJson(),
@@ -74,17 +69,14 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
 }
 
 /// `header_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior
-    implements TerraformEnum {
+enum CloudfrontOriginRequestPolicyHeaderBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   allviewer('allViewer'),
   allviewerandwhitelistcloudfront('allViewerAndWhitelistCloudFront'),
   allexcept('allExcept');
 
-  const CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontOriginRequestPolicyHeaderBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -92,8 +84,8 @@ enum CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior
 /// Typed helper for the `headers_config.headers` block of
 /// `aws_cloudfront_origin_request_policy` (derived from provider schema).
 @immutable
-final class CloudfrontOriginRequestPolicyHeadersConfigHeaders {
-  const CloudfrontOriginRequestPolicyHeadersConfigHeaders({this.items});
+final class CloudfrontOriginRequestPolicyHeaders {
+  const CloudfrontOriginRequestPolicyHeaders({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -109,13 +101,10 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
     this.queryStrings,
   });
 
-  final TfArg<
-    CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior
-  >
+  final TfArg<CloudfrontOriginRequestPolicyQueryStringBehavior>
   queryStringBehavior;
 
-  final CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings?
-  queryStrings;
+  final CloudfrontOriginRequestPolicyQueryStrings? queryStrings;
 
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
@@ -124,16 +113,13 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
 }
 
 /// `query_string_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior
-    implements TerraformEnum {
+enum CloudfrontOriginRequestPolicyQueryStringBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   all('all'),
   allexcept('allExcept');
 
-  const CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontOriginRequestPolicyQueryStringBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -141,10 +127,8 @@ enum CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior
 /// Typed helper for the `query_strings_config.query_strings` block of
 /// `aws_cloudfront_origin_request_policy` (derived from provider schema).
 @immutable
-final class CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings {
-  const CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings({
-    this.items,
-  });
+final class CloudfrontOriginRequestPolicyQueryStrings {
+  const CloudfrontOriginRequestPolicyQueryStrings({this.items});
 
   final TfArg<List<String>>? items;
 

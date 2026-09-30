@@ -48,13 +48,11 @@ final class KendraDataSourceConfiguration {
     this.webCrawlerConfiguration,
   });
 
-  final KendraDataSourceConfigurationS3Configuration? s3Configuration;
+  final KendraDataSourceS3Configuration? s3Configuration;
 
-  final KendraDataSourceConfigurationTemplateConfiguration?
-  templateConfiguration;
+  final KendraDataSourceTemplateConfiguration? templateConfiguration;
 
-  final KendraDataSourceConfigurationWebCrawlerConfiguration?
-  webCrawlerConfiguration;
+  final KendraDataSourceWebCrawlerConfiguration? webCrawlerConfiguration;
 
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
@@ -66,8 +64,8 @@ final class KendraDataSourceConfiguration {
 /// Typed helper for the `configuration.s3_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationS3Configuration {
-  const KendraDataSourceConfigurationS3Configuration({
+final class KendraDataSourceS3Configuration {
+  const KendraDataSourceS3Configuration({
     required this.bucketName,
     this.exclusionPatterns,
     this.inclusionPatterns,
@@ -84,10 +82,10 @@ final class KendraDataSourceConfigurationS3Configuration {
 
   final TfArg<List<String>>? inclusionPrefixes;
 
-  final KendraDataSourceConfigurationS3ConfigurationAccessControlListConfiguration?
+  final KendraDataSourceAccessControlListConfiguration?
   accessControlListConfiguration;
 
-  final KendraDataSourceConfigurationS3ConfigurationDocumentsMetadataConfiguration?
+  final KendraDataSourceDocumentsMetadataConfiguration?
   documentsMetadataConfiguration;
 
   Map<String, Object?> encode() => {
@@ -105,10 +103,8 @@ final class KendraDataSourceConfigurationS3Configuration {
 /// Typed helper for the `configuration.s3_configuration.access_control_list_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationS3ConfigurationAccessControlListConfiguration {
-  const KendraDataSourceConfigurationS3ConfigurationAccessControlListConfiguration({
-    this.keyPath,
-  });
+final class KendraDataSourceAccessControlListConfiguration {
+  const KendraDataSourceAccessControlListConfiguration({this.keyPath});
 
   final TfArg<String>? keyPath;
 
@@ -118,10 +114,8 @@ final class KendraDataSourceConfigurationS3ConfigurationAccessControlListConfigu
 /// Typed helper for the `configuration.s3_configuration.documents_metadata_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationS3ConfigurationDocumentsMetadataConfiguration {
-  const KendraDataSourceConfigurationS3ConfigurationDocumentsMetadataConfiguration({
-    this.s3Prefix,
-  });
+final class KendraDataSourceDocumentsMetadataConfiguration {
+  const KendraDataSourceDocumentsMetadataConfiguration({this.s3Prefix});
 
   final TfArg<String>? s3Prefix;
 
@@ -131,10 +125,8 @@ final class KendraDataSourceConfigurationS3ConfigurationDocumentsMetadataConfigu
 /// Typed helper for the `configuration.template_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationTemplateConfiguration {
-  const KendraDataSourceConfigurationTemplateConfiguration({
-    required this.template,
-  });
+final class KendraDataSourceTemplateConfiguration {
+  const KendraDataSourceTemplateConfiguration({required this.template});
 
   final TfArg<String> template;
 
@@ -144,8 +136,8 @@ final class KendraDataSourceConfigurationTemplateConfiguration {
 /// Typed helper for the `configuration.web_crawler_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfiguration {
-  const KendraDataSourceConfigurationWebCrawlerConfiguration({
+final class KendraDataSourceWebCrawlerConfiguration {
+  const KendraDataSourceWebCrawlerConfiguration({
     this.crawlDepth,
     this.maxContentSizePerPageInMegaBytes,
     this.maxLinksPerPage,
@@ -169,13 +161,12 @@ final class KendraDataSourceConfigurationWebCrawlerConfiguration {
 
   final TfArg<List<String>>? urlInclusionPatterns;
 
-  final KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfiguration?
+  final KendraDataSourceAuthenticationConfiguration?
   authenticationConfiguration;
 
-  final KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfiguration?
-  proxyConfiguration;
+  final KendraDataSourceProxyConfiguration? proxyConfiguration;
 
-  final KendraDataSourceConfigurationWebCrawlerConfigurationUrls urls;
+  final KendraDataSourceUrls urls;
 
   Map<String, Object?> encode() => {
     'crawl_depth': ?crawlDepth?.toTfJson(),
@@ -194,15 +185,10 @@ final class KendraDataSourceConfigurationWebCrawlerConfiguration {
 /// Typed helper for the `configuration.web_crawler_configuration.authentication_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfiguration {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfiguration({
-    this.basicAuthentication,
-  });
+final class KendraDataSourceAuthenticationConfiguration {
+  const KendraDataSourceAuthenticationConfiguration({this.basicAuthentication});
 
-  final List<
-    KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfigurationBasicAuthentication
-  >?
-  basicAuthentication;
+  final List<KendraDataSourceBasicAuthentication>? basicAuthentication;
 
   Map<String, Object?> encode() => {
     if (basicAuthentication != null)
@@ -215,8 +201,8 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationCo
 /// Typed helper for the `configuration.web_crawler_configuration.authentication_configuration.basic_authentication` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfigurationBasicAuthentication {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationConfigurationBasicAuthentication({
+final class KendraDataSourceBasicAuthentication {
+  const KendraDataSourceBasicAuthentication({
     required this.credentials,
     required this.host,
     required this.port,
@@ -238,8 +224,8 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationAuthenticationCo
 /// Typed helper for the `configuration.web_crawler_configuration.proxy_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfiguration {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfiguration({
+final class KendraDataSourceProxyConfiguration {
+  const KendraDataSourceProxyConfiguration({
     this.credentials,
     required this.host,
     required this.port,
@@ -261,17 +247,15 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfigurati
 /// Typed helper for the `configuration.web_crawler_configuration.urls` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationUrls {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationUrls({
+final class KendraDataSourceUrls {
+  const KendraDataSourceUrls({
     this.seedUrlConfiguration,
     this.siteMapsConfiguration,
   });
 
-  final KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfiguration?
-  seedUrlConfiguration;
+  final KendraDataSourceSeedUrlConfiguration? seedUrlConfiguration;
 
-  final KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSiteMapsConfiguration?
-  siteMapsConfiguration;
+  final KendraDataSourceSiteMapsConfiguration? siteMapsConfiguration;
 
   Map<String, Object?> encode() => {
     'seed_url_configuration': ?seedUrlConfiguration?.encode(),
@@ -282,18 +266,15 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrls {
 /// Typed helper for the `configuration.web_crawler_configuration.urls.seed_url_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfiguration {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfiguration({
+final class KendraDataSourceSeedUrlConfiguration {
+  const KendraDataSourceSeedUrlConfiguration({
     required this.seedUrls,
     this.webCrawlerMode,
   });
 
   final TfArg<List<String>> seedUrls;
 
-  final TfArg<
-    KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode
-  >?
-  webCrawlerMode;
+  final TfArg<KendraDataSourceWebCrawlerMode>? webCrawlerMode;
 
   Map<String, Object?> encode() => {
     'seed_urls': seedUrls.toTfJson(),
@@ -302,15 +283,12 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfi
 }
 
 /// `web_crawler_mode` — derived from the provider schema description.
-enum KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode
-    implements TerraformEnum {
+enum KendraDataSourceWebCrawlerMode implements TerraformEnum {
   hostOnly('HOST_ONLY'),
   subdomains('SUBDOMAINS'),
   everything('EVERYTHING');
 
-  const KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode(
-    this.terraformValue,
-  );
+  const KendraDataSourceWebCrawlerMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -318,10 +296,8 @@ enum KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfiguratio
 /// Typed helper for the `configuration.web_crawler_configuration.urls.site_maps_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSiteMapsConfiguration {
-  const KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSiteMapsConfiguration({
-    required this.siteMaps,
-  });
+final class KendraDataSourceSiteMapsConfiguration {
+  const KendraDataSourceSiteMapsConfiguration({required this.siteMaps});
 
   final TfArg<List<String>> siteMaps;
 
@@ -341,15 +317,12 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final List<
-    KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurations
-  >?
-  inlineConfigurations;
+  final List<KendraDataSourceInlineConfigurations>? inlineConfigurations;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfiguration?
+  final KendraDataSourcePostExtractionHookConfiguration?
   postExtractionHookConfiguration;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfiguration?
+  final KendraDataSourcePreExtractionHookConfiguration?
   preExtractionHookConfiguration;
 
   Map<String, Object?> encode() => {
@@ -368,8 +341,8 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
 /// Typed helper for the `custom_document_enrichment_configuration.inline_configurations` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurations {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurations({
+final class KendraDataSourceInlineConfigurations {
+  const KendraDataSourceInlineConfigurations({
     this.documentContentDeletion,
     this.condition,
     this.target,
@@ -377,11 +350,9 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
   final TfArg<bool>? documentContentDeletion;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsCondition?
-  condition;
+  final KendraDataSourceCondition? condition;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTarget?
-  target;
+  final KendraDataSourceTarget? target;
 
   Map<String, Object?> encode() => {
     'document_content_deletion': ?documentContentDeletion?.toTfJson(),
@@ -393,8 +364,8 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 /// Typed helper for the `custom_document_enrichment_configuration.inline_configurations.condition` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsCondition {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsCondition({
+final class KendraDataSourceCondition {
+  const KendraDataSourceCondition({
     required this.conditionDocumentAttributeKey,
     required this.operator,
     this.conditionOnValue,
@@ -404,8 +375,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
   final TfArg<String> operator;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsConditionConditionOnValue?
-  conditionOnValue;
+  final KendraDataSourceConditionOnValue? conditionOnValue;
 
   Map<String, Object?> encode() => {
     'condition_document_attribute_key': conditionDocumentAttributeKey
@@ -417,9 +387,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
 /// Typed helper for the `custom_document_enrichment_configuration.inline_configurations.condition.condition_on_value` block of
 /// `aws_kendra_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsConditionConditionOnValue {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsConditionConditionOnValue({
+final class KendraDataSourceConditionOnValue {
+  const KendraDataSourceConditionOnValue({
     this.dateValue,
     this.longValue,
     this.stringListValue,
@@ -445,8 +416,8 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 /// Typed helper for the `custom_document_enrichment_configuration.inline_configurations.target` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTarget {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTarget({
+final class KendraDataSourceTarget {
+  const KendraDataSourceTarget({
     this.targetDocumentAttributeKey,
     this.targetDocumentAttributeValueDeletion,
     this.targetDocumentAttributeValue,
@@ -456,7 +427,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 
   final TfArg<bool>? targetDocumentAttributeValueDeletion;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTargetTargetDocumentAttributeValue?
+  final KendraDataSourceTargetDocumentAttributeValue?
   targetDocumentAttributeValue;
 
   Map<String, Object?> encode() => {
@@ -470,8 +441,8 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 /// Typed helper for the `custom_document_enrichment_configuration.inline_configurations.target.target_document_attribute_value` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTargetTargetDocumentAttributeValue {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurationsTargetTargetDocumentAttributeValue({
+final class KendraDataSourceTargetDocumentAttributeValue {
+  const KendraDataSourceTargetDocumentAttributeValue({
     this.dateValue,
     this.longValue,
     this.stringListValue,
@@ -497,8 +468,8 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
 /// Typed helper for the `custom_document_enrichment_configuration.post_extraction_hook_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfiguration {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfiguration({
+final class KendraDataSourcePostExtractionHookConfiguration {
+  const KendraDataSourcePostExtractionHookConfiguration({
     required this.lambdaArn,
     required this.s3Bucket,
     this.invocationCondition,
@@ -508,8 +479,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
 
   final RefTo<AwsS3Bucket> s3Bucket;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationCondition?
-  invocationCondition;
+  final KendraDataSourceInvocationCondition? invocationCondition;
 
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
@@ -520,9 +490,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
 
 /// Typed helper for the `custom_document_enrichment_configuration.post_extraction_hook_configuration.invocation_condition` block of
 /// `aws_kendra_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationCondition {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationCondition({
+final class KendraDataSourceInvocationCondition {
+  const KendraDataSourceInvocationCondition({
     required this.conditionDocumentAttributeKey,
     required this.operator,
     this.conditionOnValue,
@@ -532,8 +503,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
 
   final TfArg<String> operator;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationConditionConditionOnValue?
-  conditionOnValue;
+  final KendraDataSourceConditionOnValue? conditionOnValue;
 
   Map<String, Object?> encode() => {
     'condition_document_attribute_key': conditionDocumentAttributeKey
@@ -543,38 +513,11 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
   };
 }
 
-/// Typed helper for the `custom_document_enrichment_configuration.post_extraction_hook_configuration.invocation_condition.condition_on_value` block of
-/// `aws_kendra_data_source` (derived from provider schema).
-@immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationConditionConditionOnValue {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationConditionConditionOnValue({
-    this.dateValue,
-    this.longValue,
-    this.stringListValue,
-    this.stringValue,
-  });
-
-  final TfArg<String>? dateValue;
-
-  final TfArg<num>? longValue;
-
-  final TfArg<List<String>>? stringListValue;
-
-  final TfArg<String>? stringValue;
-
-  Map<String, Object?> encode() => {
-    'date_value': ?dateValue?.toTfJson(),
-    'long_value': ?longValue?.toTfJson(),
-    'string_list_value': ?stringListValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `custom_document_enrichment_configuration.pre_extraction_hook_configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfiguration {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfiguration({
+final class KendraDataSourcePreExtractionHookConfiguration {
+  const KendraDataSourcePreExtractionHookConfiguration({
     required this.lambdaArn,
     required this.s3Bucket,
     this.invocationCondition,
@@ -584,65 +527,12 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
 
   final RefTo<AwsS3Bucket> s3Bucket;
 
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationCondition?
-  invocationCondition;
+  final KendraDataSourceInvocationCondition? invocationCondition;
 
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     'invocation_condition': ?invocationCondition?.encode(),
-  };
-}
-
-/// Typed helper for the `custom_document_enrichment_configuration.pre_extraction_hook_configuration.invocation_condition` block of
-/// `aws_kendra_data_source` (derived from provider schema).
-@immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationCondition {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationCondition({
-    required this.conditionDocumentAttributeKey,
-    required this.operator,
-    this.conditionOnValue,
-  });
-
-  final TfArg<String> conditionDocumentAttributeKey;
-
-  final TfArg<String> operator;
-
-  final KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationConditionConditionOnValue?
-  conditionOnValue;
-
-  Map<String, Object?> encode() => {
-    'condition_document_attribute_key': conditionDocumentAttributeKey
-        .toTfJson(),
-    'operator': operator.toTfJson(),
-    'condition_on_value': ?conditionOnValue?.encode(),
-  };
-}
-
-/// Typed helper for the `custom_document_enrichment_configuration.pre_extraction_hook_configuration.invocation_condition.condition_on_value` block of
-/// `aws_kendra_data_source` (derived from provider schema).
-@immutable
-final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationConditionConditionOnValue {
-  const KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationConditionConditionOnValue({
-    this.dateValue,
-    this.longValue,
-    this.stringListValue,
-    this.stringValue,
-  });
-
-  final TfArg<String>? dateValue;
-
-  final TfArg<num>? longValue;
-
-  final TfArg<List<String>>? stringListValue;
-
-  final TfArg<String>? stringValue;
-
-  Map<String, Object?> encode() => {
-    'date_value': ?dateValue?.toTfJson(),
-    'long_value': ?longValue?.toTfJson(),
-    'string_list_value': ?stringListValue?.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
   };
 }
 

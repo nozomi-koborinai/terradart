@@ -17,12 +17,11 @@ final class ConnectRoutingProfileMediaConcurrencies {
     this.crossChannelBehavior,
   });
 
-  final TfArg<ConnectRoutingProfileMediaConcurrenciesChannel> channel;
+  final TfArg<ConnectRoutingProfileChannel> channel;
 
   final TfArg<num> concurrency;
 
-  final ConnectRoutingProfileMediaConcurrenciesCrossChannelBehavior?
-  crossChannelBehavior;
+  final ConnectRoutingProfileCrossChannelBehavior? crossChannelBehavior;
 
   Map<String, Object?> encode() => {
     'channel': channel.toTfJson(),
@@ -32,13 +31,13 @@ final class ConnectRoutingProfileMediaConcurrencies {
 }
 
 /// `channel` — derived from the provider schema description.
-enum ConnectRoutingProfileMediaConcurrenciesChannel implements TerraformEnum {
+enum ConnectRoutingProfileChannel implements TerraformEnum {
   voice('VOICE'),
   chat('CHAT'),
   task('TASK'),
   email('EMAIL');
 
-  const ConnectRoutingProfileMediaConcurrenciesChannel(this.terraformValue);
+  const ConnectRoutingProfileChannel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -46,28 +45,20 @@ enum ConnectRoutingProfileMediaConcurrenciesChannel implements TerraformEnum {
 /// Typed helper for the `media_concurrencies.cross_channel_behavior` block of
 /// `aws_connect_routing_profile` (derived from provider schema).
 @immutable
-final class ConnectRoutingProfileMediaConcurrenciesCrossChannelBehavior {
-  const ConnectRoutingProfileMediaConcurrenciesCrossChannelBehavior({
-    required this.behaviorType,
-  });
+final class ConnectRoutingProfileCrossChannelBehavior {
+  const ConnectRoutingProfileCrossChannelBehavior({required this.behaviorType});
 
-  final TfArg<
-    ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType
-  >
-  behaviorType;
+  final TfArg<ConnectRoutingProfileBehaviorType> behaviorType;
 
   Map<String, Object?> encode() => {'behavior_type': behaviorType.toTfJson()};
 }
 
 /// `behavior_type` — derived from the provider schema description.
-enum ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType
-    implements TerraformEnum {
+enum ConnectRoutingProfileBehaviorType implements TerraformEnum {
   routeCurrentChannelOnly('ROUTE_CURRENT_CHANNEL_ONLY'),
   routeAnyChannel('ROUTE_ANY_CHANNEL');
 
-  const ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType(
-    this.terraformValue,
-  );
+  const ConnectRoutingProfileBehaviorType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -83,7 +74,7 @@ final class ConnectRoutingProfileQueueConfigs {
     required this.queueId,
   });
 
-  final TfArg<ConnectRoutingProfileQueueConfigsChannel> channel;
+  final TfArg<ConnectRoutingProfileChannel> channel;
 
   final TfArg<num> delay;
 
@@ -97,18 +88,6 @@ final class ConnectRoutingProfileQueueConfigs {
     'priority': priority.toTfJson(),
     'queue_id': queueId.toTfJson(),
   };
-}
-
-/// `channel` — derived from the provider schema description.
-enum ConnectRoutingProfileQueueConfigsChannel implements TerraformEnum {
-  voice('VOICE'),
-  chat('CHAT'),
-  task('TASK'),
-  email('EMAIL');
-
-  const ConnectRoutingProfileQueueConfigsChannel(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_connect_routing_profile`.

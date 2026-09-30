@@ -32,7 +32,7 @@ final class ManagedKafkaConnectClusterCapacityConfig {
 final class ManagedKafkaConnectClusterGcpConfig {
   const ManagedKafkaConnectClusterGcpConfig({required this.accessConfig});
 
-  final ManagedKafkaConnectClusterGcpConfigAccessConfig accessConfig;
+  final ManagedKafkaConnectClusterAccessConfig accessConfig;
 
   Map<String, Object?> encode() => {'access_config': accessConfig.encode()};
 }
@@ -40,13 +40,10 @@ final class ManagedKafkaConnectClusterGcpConfig {
 /// Typed helper for the `gcp_config.access_config` block of
 /// `google_managed_kafka_connect_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaConnectClusterGcpConfigAccessConfig {
-  const ManagedKafkaConnectClusterGcpConfigAccessConfig({
-    required this.networkConfigs,
-  });
+final class ManagedKafkaConnectClusterAccessConfig {
+  const ManagedKafkaConnectClusterAccessConfig({required this.networkConfigs});
 
-  final List<ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs>
-  networkConfigs;
+  final List<ManagedKafkaConnectClusterNetworkConfigs> networkConfigs;
 
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
@@ -56,8 +53,8 @@ final class ManagedKafkaConnectClusterGcpConfigAccessConfig {
 /// Typed helper for the `gcp_config.access_config.network_configs` block of
 /// `google_managed_kafka_connect_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs {
-  const ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs({
+final class ManagedKafkaConnectClusterNetworkConfigs {
+  const ManagedKafkaConnectClusterNetworkConfigs({
     this.additionalSubnets,
     this.dnsDomainNames,
     required this.primarySubnet,
@@ -102,9 +99,9 @@ final class ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs {
 ///     memoryBytes: TfArg.literal('3221225472'),
 ///   ),
 ///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
-///     accessConfig: ManagedKafkaConnectClusterGcpConfigAccessConfig(
+///     accessConfig: ManagedKafkaConnectClusterAccessConfig(
 ///       networkConfigs: [
-///         ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs(
+///         ManagedKafkaConnectClusterNetworkConfigs(
 ///           primarySubnet: TfArg.ref(subnet.id),
 ///         ),
 ///       ],

@@ -56,12 +56,12 @@ sealed class ComputeTargetHttpsProxyCertificates {
   /// Sets `certificate_manager_certificates`.
   const factory ComputeTargetHttpsProxyCertificates.certificateManagerCertificates(
     TfArg<List<String>> certificateManagerCertificates,
-  ) = ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates;
+  ) = ComputeTargetHttpsProxyCertificateManagerCertificates;
 
   /// Sets `ssl_certificates`.
   const factory ComputeTargetHttpsProxyCertificates.sslCertificates(
     TfArg<List<String>> sslCertificates,
-  ) = ComputeTargetHttpsProxyCertificatesSslCertificates;
+  ) = ComputeTargetHttpsProxySslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,9 +74,9 @@ sealed class ComputeTargetHttpsProxyCertificates {
 }
 
 /// The [ComputeTargetHttpsProxyCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
-final class ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates
+final class ComputeTargetHttpsProxyCertificateManagerCertificates
     extends ComputeTargetHttpsProxyCertificates {
-  const ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates(
+  const ComputeTargetHttpsProxyCertificateManagerCertificates(
     this.certificateManagerCertificates,
   );
 
@@ -98,11 +98,9 @@ final class ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates
 }
 
 /// The [ComputeTargetHttpsProxyCertificates.sslCertificates] choice: sets `ssl_certificates`.
-final class ComputeTargetHttpsProxyCertificatesSslCertificates
+final class ComputeTargetHttpsProxySslCertificates
     extends ComputeTargetHttpsProxyCertificates {
-  const ComputeTargetHttpsProxyCertificatesSslCertificates(
-    this.sslCertificates,
-  );
+  const ComputeTargetHttpsProxySslCertificates(this.sslCertificates);
 
   final TfArg<List<String>> sslCertificates;
 

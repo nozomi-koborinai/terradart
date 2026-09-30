@@ -46,17 +46,13 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
 
   final TfArg<String>? optimizationObjective;
 
-  final TfArg<
-    DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingState
-  >?
-  trainingState;
+  final TfArg<DiscoveryEngineRecommendationEngineTrainingState>? trainingState;
 
   final TfArg<String>? type;
 
-  final DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfig?
-  engineFeaturesConfig;
+  final DiscoveryEngineRecommendationEngineFeaturesConfig? engineFeaturesConfig;
 
-  final DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig?
+  final DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig?
   optimizationObjectiveConfig;
 
   Map<String, Object?> encode() => {
@@ -69,14 +65,11 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
 }
 
 /// `training_state` — derived from the provider schema description.
-enum DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingState
-    implements TerraformEnum {
+enum DiscoveryEngineRecommendationEngineTrainingState implements TerraformEnum {
   paused('PAUSED'),
   training('TRAINING');
 
-  const DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingState(
-    this.terraformValue,
-  );
+  const DiscoveryEngineRecommendationEngineTrainingState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -84,16 +77,15 @@ enum DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingS
 /// Typed helper for the `media_recommendation_engine_config.engine_features_config` block of
 /// `google_discovery_engine_recommendation_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfig {
-  const DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfig({
+final class DiscoveryEngineRecommendationEngineFeaturesConfig {
+  const DiscoveryEngineRecommendationEngineFeaturesConfig({
     this.mostPopularConfig,
     this.recommendedForYouConfig,
   });
 
-  final DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigMostPopularConfig?
-  mostPopularConfig;
+  final DiscoveryEngineRecommendationEngineMostPopularConfig? mostPopularConfig;
 
-  final DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigRecommendedForYouConfig?
+  final DiscoveryEngineRecommendationEngineRecommendedForYouConfig?
   recommendedForYouConfig;
 
   Map<String, Object?> encode() => {
@@ -105,8 +97,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
 /// Typed helper for the `media_recommendation_engine_config.engine_features_config.most_popular_config` block of
 /// `google_discovery_engine_recommendation_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigMostPopularConfig {
-  const DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigMostPopularConfig({
+final class DiscoveryEngineRecommendationEngineMostPopularConfig {
+  const DiscoveryEngineRecommendationEngineMostPopularConfig({
     this.timeWindowDays,
   });
 
@@ -120,8 +112,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
 /// Typed helper for the `media_recommendation_engine_config.engine_features_config.recommended_for_you_config` block of
 /// `google_discovery_engine_recommendation_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigRecommendedForYouConfig {
-  const DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigRecommendedForYouConfig({
+final class DiscoveryEngineRecommendationEngineRecommendedForYouConfig {
+  const DiscoveryEngineRecommendationEngineRecommendedForYouConfig({
     this.contextEventType,
   });
 
@@ -135,8 +127,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
 /// Typed helper for the `media_recommendation_engine_config.optimization_objective_config` block of
 /// `google_discovery_engine_recommendation_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig {
-  const DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig({
+final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
+  const DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig({
     this.targetField,
     this.targetFieldValueFloat,
   });

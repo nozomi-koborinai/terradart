@@ -6,15 +6,15 @@ library;
 export 'src/devopsguru/aws_devopsguru_event_sources_config.dart'
     show
         AwsDevopsguruEventSourcesConfig,
+        DevopsguruEventSourcesConfigAmazonCodeGuruProfiler,
         DevopsguruEventSourcesConfigEventSources,
-        DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler,
-        DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus;
+        DevopsguruEventSourcesConfigStatus;
 export 'src/devopsguru/aws_devopsguru_notification_channel.dart'
     show
         AwsDevopsguruNotificationChannel,
         DevopsguruNotificationChannelFilters,
-        DevopsguruNotificationChannelFiltersMessageTypes,
-        DevopsguruNotificationChannelFiltersSeverities,
+        DevopsguruNotificationChannelMessageTypes,
+        DevopsguruNotificationChannelSeverities,
         DevopsguruNotificationChannelSns;
 export 'src/devopsguru/aws_devopsguru_resource_collection.dart'
     show
@@ -26,9 +26,7 @@ export 'src/devopsguru/aws_devopsguru_service_integration.dart'
     show
         AwsDevopsguruServiceIntegration,
         DevopsguruServiceIntegrationKmsServerSideEncryption,
-        DevopsguruServiceIntegrationKmsServerSideEncryptionOptInStatus,
-        DevopsguruServiceIntegrationKmsServerSideEncryptionType,
         DevopsguruServiceIntegrationLogsAnomalyDetection,
-        DevopsguruServiceIntegrationLogsAnomalyDetectionOptInStatus,
         DevopsguruServiceIntegrationOpsCenter,
-        DevopsguruServiceIntegrationOpsCenterOptInStatus;
+        DevopsguruServiceIntegrationOptInStatus,
+        DevopsguruServiceIntegrationType;

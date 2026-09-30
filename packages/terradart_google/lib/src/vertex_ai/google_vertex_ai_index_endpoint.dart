@@ -111,10 +111,7 @@ final class VertexAiIndexEndpointPrivateServiceConnectConfig {
 
   final TfArg<List<String>>? projectAllowlist;
 
-  final List<
-    VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs
-  >?
-  pscAutomationConfigs;
+  final List<VertexAiIndexEndpointPscAutomationConfigs>? pscAutomationConfigs;
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
@@ -129,8 +126,8 @@ final class VertexAiIndexEndpointPrivateServiceConnectConfig {
 /// Typed helper for the `private_service_connect_config.psc_automation_configs` block of
 /// `google_vertex_ai_index_endpoint` (derived from provider schema).
 @immutable
-final class VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs {
-  const VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs({
+final class VertexAiIndexEndpointPscAutomationConfigs {
+  const VertexAiIndexEndpointPscAutomationConfigs({
     required this.network,
     required this.projectId,
   });

@@ -26,25 +26,25 @@ final class TranscoderJobConfig {
     this.pubsubDestination,
   });
 
-  final List<TranscoderJobConfigAdBreaks>? adBreaks;
+  final List<TranscoderJobAdBreaks>? adBreaks;
 
-  final List<TranscoderJobConfigEditList>? editList;
+  final List<TranscoderJobEditList>? editList;
 
-  final List<TranscoderJobConfigElementaryStreams>? elementaryStreams;
+  final List<TranscoderJobElementaryStreams>? elementaryStreams;
 
-  final List<TranscoderJobConfigEncryptions>? encryptions;
+  final List<TranscoderJobEncryptions>? encryptions;
 
-  final List<TranscoderJobConfigInputs>? inputs;
+  final List<TranscoderJobInputs>? inputs;
 
-  final List<TranscoderJobConfigManifests>? manifests;
+  final List<TranscoderJobManifests>? manifests;
 
-  final List<TranscoderJobConfigMuxStreams>? muxStreams;
+  final List<TranscoderJobMuxStreams>? muxStreams;
 
-  final TranscoderJobConfigOutput? output;
+  final TranscoderJobOutput? output;
 
-  final List<TranscoderJobConfigOverlays>? overlays;
+  final List<TranscoderJobOverlays>? overlays;
 
-  final TranscoderJobConfigPubsubDestination? pubsubDestination;
+  final TranscoderJobPubsubDestination? pubsubDestination;
 
   Map<String, Object?> encode() => {
     if (adBreaks != null) 'ad_breaks': [for (final e in adBreaks!) e.encode()],
@@ -67,8 +67,8 @@ final class TranscoderJobConfig {
 /// Typed helper for the `config.ad_breaks` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigAdBreaks {
-  const TranscoderJobConfigAdBreaks({this.startTimeOffset});
+final class TranscoderJobAdBreaks {
+  const TranscoderJobAdBreaks({this.startTimeOffset});
 
   final TfArg<String>? startTimeOffset;
 
@@ -80,12 +80,8 @@ final class TranscoderJobConfigAdBreaks {
 /// Typed helper for the `config.edit_list` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEditList {
-  const TranscoderJobConfigEditList({
-    this.inputs,
-    this.key,
-    this.startTimeOffset,
-  });
+final class TranscoderJobEditList {
+  const TranscoderJobEditList({this.inputs, this.key, this.startTimeOffset});
 
   final TfArg<List<String>>? inputs;
 
@@ -103,8 +99,8 @@ final class TranscoderJobConfigEditList {
 /// Typed helper for the `config.elementary_streams` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreams {
-  const TranscoderJobConfigElementaryStreams({
+final class TranscoderJobElementaryStreams {
+  const TranscoderJobElementaryStreams({
     this.key,
     this.audioStream,
     this.videoStream,
@@ -112,9 +108,9 @@ final class TranscoderJobConfigElementaryStreams {
 
   final TfArg<String>? key;
 
-  final TranscoderJobConfigElementaryStreamsAudioStream? audioStream;
+  final TranscoderJobAudioStream? audioStream;
 
-  final TranscoderJobConfigElementaryStreamsVideoStream? videoStream;
+  final TranscoderJobVideoStream? videoStream;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -126,8 +122,8 @@ final class TranscoderJobConfigElementaryStreams {
 /// Typed helper for the `config.elementary_streams.audio_stream` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreamsAudioStream {
-  const TranscoderJobConfigElementaryStreamsAudioStream({
+final class TranscoderJobAudioStream {
+  const TranscoderJobAudioStream({
     required this.bitrateBps,
     this.channelCount,
     this.channelLayout,
@@ -157,10 +153,10 @@ final class TranscoderJobConfigElementaryStreamsAudioStream {
 /// Typed helper for the `config.elementary_streams.video_stream` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreamsVideoStream {
-  const TranscoderJobConfigElementaryStreamsVideoStream({this.h264});
+final class TranscoderJobVideoStream {
+  const TranscoderJobVideoStream({this.h264});
 
-  final TranscoderJobConfigElementaryStreamsVideoStreamH264? h264;
+  final TranscoderJobH264? h264;
 
   Map<String, Object?> encode() => {'h264': ?h264?.encode()};
 }
@@ -168,8 +164,8 @@ final class TranscoderJobConfigElementaryStreamsVideoStream {
 /// Typed helper for the `config.elementary_streams.video_stream.h264` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreamsVideoStreamH264 {
-  const TranscoderJobConfigElementaryStreamsVideoStreamH264({
+final class TranscoderJobH264 {
+  const TranscoderJobH264({
     required this.bitrateBps,
     this.crfLevel,
     this.entropyCoder,
@@ -213,9 +209,9 @@ final class TranscoderJobConfigElementaryStreamsVideoStreamH264 {
 
   final TfArg<num>? widthPixels;
 
-  final TranscoderJobConfigElementaryStreamsVideoStreamH264Hlg? hlg;
+  final TranscoderJobHlg? hlg;
 
-  final TranscoderJobConfigElementaryStreamsVideoStreamH264Sdr? sdr;
+  final TranscoderJobSdr? sdr;
 
   Map<String, Object?> encode() => {
     'bitrate_bps': bitrateBps.toTfJson(),
@@ -239,8 +235,8 @@ final class TranscoderJobConfigElementaryStreamsVideoStreamH264 {
 /// Typed helper for the `config.elementary_streams.video_stream.h264.hlg` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreamsVideoStreamH264Hlg {
-  const TranscoderJobConfigElementaryStreamsVideoStreamH264Hlg();
+final class TranscoderJobHlg {
+  const TranscoderJobHlg();
 
   Map<String, Object?> encode() => {};
 }
@@ -248,8 +244,8 @@ final class TranscoderJobConfigElementaryStreamsVideoStreamH264Hlg {
 /// Typed helper for the `config.elementary_streams.video_stream.h264.sdr` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigElementaryStreamsVideoStreamH264Sdr {
-  const TranscoderJobConfigElementaryStreamsVideoStreamH264Sdr();
+final class TranscoderJobSdr {
+  const TranscoderJobSdr();
 
   Map<String, Object?> encode() => {};
 }
@@ -257,8 +253,8 @@ final class TranscoderJobConfigElementaryStreamsVideoStreamH264Sdr {
 /// Typed helper for the `config.encryptions` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptions {
-  const TranscoderJobConfigEncryptions({
+final class TranscoderJobEncryptions {
+  const TranscoderJobEncryptions({
     required this.id,
     this.aes128,
     this.drmSystems,
@@ -269,16 +265,15 @@ final class TranscoderJobConfigEncryptions {
 
   final TfArg<String> id;
 
-  final TranscoderJobConfigEncryptionsAes128? aes128;
+  final TranscoderJobAes128? aes128;
 
-  final TranscoderJobConfigEncryptionsDrmSystems? drmSystems;
+  final TranscoderJobDrmSystems? drmSystems;
 
-  final TranscoderJobConfigEncryptionsMpegCenc? mpegCenc;
+  final TranscoderJobMpegCenc? mpegCenc;
 
-  final TranscoderJobConfigEncryptionsSampleAes? sampleAes;
+  final TranscoderJobSampleAes? sampleAes;
 
-  final TranscoderJobConfigEncryptionsSecretManagerKeySource?
-  secretManagerKeySource;
+  final TranscoderJobSecretManagerKeySource? secretManagerKeySource;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -293,8 +288,8 @@ final class TranscoderJobConfigEncryptions {
 /// Typed helper for the `config.encryptions.aes128` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsAes128 {
-  const TranscoderJobConfigEncryptionsAes128();
+final class TranscoderJobAes128 {
+  const TranscoderJobAes128();
 
   Map<String, Object?> encode() => {};
 }
@@ -302,21 +297,21 @@ final class TranscoderJobConfigEncryptionsAes128 {
 /// Typed helper for the `config.encryptions.drm_systems` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsDrmSystems {
-  const TranscoderJobConfigEncryptionsDrmSystems({
+final class TranscoderJobDrmSystems {
+  const TranscoderJobDrmSystems({
     this.clearkey,
     this.fairplay,
     this.playready,
     this.widevine,
   });
 
-  final TranscoderJobConfigEncryptionsDrmSystemsClearkey? clearkey;
+  final TranscoderJobClearkey? clearkey;
 
-  final TranscoderJobConfigEncryptionsDrmSystemsFairplay? fairplay;
+  final TranscoderJobFairplay? fairplay;
 
-  final TranscoderJobConfigEncryptionsDrmSystemsPlayready? playready;
+  final TranscoderJobPlayready? playready;
 
-  final TranscoderJobConfigEncryptionsDrmSystemsWidevine? widevine;
+  final TranscoderJobWidevine? widevine;
 
   Map<String, Object?> encode() => {
     'clearkey': ?clearkey?.encode(),
@@ -329,8 +324,8 @@ final class TranscoderJobConfigEncryptionsDrmSystems {
 /// Typed helper for the `config.encryptions.drm_systems.clearkey` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsDrmSystemsClearkey {
-  const TranscoderJobConfigEncryptionsDrmSystemsClearkey();
+final class TranscoderJobClearkey {
+  const TranscoderJobClearkey();
 
   Map<String, Object?> encode() => {};
 }
@@ -338,8 +333,8 @@ final class TranscoderJobConfigEncryptionsDrmSystemsClearkey {
 /// Typed helper for the `config.encryptions.drm_systems.fairplay` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsDrmSystemsFairplay {
-  const TranscoderJobConfigEncryptionsDrmSystemsFairplay();
+final class TranscoderJobFairplay {
+  const TranscoderJobFairplay();
 
   Map<String, Object?> encode() => {};
 }
@@ -347,8 +342,8 @@ final class TranscoderJobConfigEncryptionsDrmSystemsFairplay {
 /// Typed helper for the `config.encryptions.drm_systems.playready` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsDrmSystemsPlayready {
-  const TranscoderJobConfigEncryptionsDrmSystemsPlayready();
+final class TranscoderJobPlayready {
+  const TranscoderJobPlayready();
 
   Map<String, Object?> encode() => {};
 }
@@ -356,8 +351,8 @@ final class TranscoderJobConfigEncryptionsDrmSystemsPlayready {
 /// Typed helper for the `config.encryptions.drm_systems.widevine` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsDrmSystemsWidevine {
-  const TranscoderJobConfigEncryptionsDrmSystemsWidevine();
+final class TranscoderJobWidevine {
+  const TranscoderJobWidevine();
 
   Map<String, Object?> encode() => {};
 }
@@ -365,8 +360,8 @@ final class TranscoderJobConfigEncryptionsDrmSystemsWidevine {
 /// Typed helper for the `config.encryptions.mpeg_cenc` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsMpegCenc {
-  const TranscoderJobConfigEncryptionsMpegCenc({required this.scheme});
+final class TranscoderJobMpegCenc {
+  const TranscoderJobMpegCenc({required this.scheme});
 
   final TfArg<String> scheme;
 
@@ -376,8 +371,8 @@ final class TranscoderJobConfigEncryptionsMpegCenc {
 /// Typed helper for the `config.encryptions.sample_aes` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsSampleAes {
-  const TranscoderJobConfigEncryptionsSampleAes();
+final class TranscoderJobSampleAes {
+  const TranscoderJobSampleAes();
 
   Map<String, Object?> encode() => {};
 }
@@ -385,10 +380,8 @@ final class TranscoderJobConfigEncryptionsSampleAes {
 /// Typed helper for the `config.encryptions.secret_manager_key_source` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigEncryptionsSecretManagerKeySource {
-  const TranscoderJobConfigEncryptionsSecretManagerKeySource({
-    required this.secretVersion,
-  });
+final class TranscoderJobSecretManagerKeySource {
+  const TranscoderJobSecretManagerKeySource({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 
@@ -398,8 +391,8 @@ final class TranscoderJobConfigEncryptionsSecretManagerKeySource {
 /// Typed helper for the `config.inputs` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigInputs {
-  const TranscoderJobConfigInputs({this.key, this.uri});
+final class TranscoderJobInputs {
+  const TranscoderJobInputs({this.key, this.uri});
 
   final TfArg<String>? key;
 
@@ -414,18 +407,14 @@ final class TranscoderJobConfigInputs {
 /// Typed helper for the `config.manifests` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigManifests {
-  const TranscoderJobConfigManifests({
-    this.fileName,
-    this.muxStreams,
-    this.type,
-  });
+final class TranscoderJobManifests {
+  const TranscoderJobManifests({this.fileName, this.muxStreams, this.type});
 
   final TfArg<String>? fileName;
 
   final TfArg<List<String>>? muxStreams;
 
-  final TfArg<TranscoderJobConfigManifestsType>? type;
+  final TfArg<TranscoderJobType>? type;
 
   Map<String, Object?> encode() => {
     'file_name': ?fileName?.toTfJson(),
@@ -435,12 +424,12 @@ final class TranscoderJobConfigManifests {
 }
 
 /// `type` — derived from the provider schema description.
-enum TranscoderJobConfigManifestsType implements TerraformEnum {
+enum TranscoderJobType implements TerraformEnum {
   manifestTypeUnspecified('MANIFEST_TYPE_UNSPECIFIED'),
   hls('HLS'),
   dash('DASH');
 
-  const TranscoderJobConfigManifestsType(this.terraformValue);
+  const TranscoderJobType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -448,8 +437,8 @@ enum TranscoderJobConfigManifestsType implements TerraformEnum {
 /// Typed helper for the `config.mux_streams` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigMuxStreams {
-  const TranscoderJobConfigMuxStreams({
+final class TranscoderJobMuxStreams {
+  const TranscoderJobMuxStreams({
     this.container,
     this.elementaryStreams,
     this.encryptionId,
@@ -468,7 +457,7 @@ final class TranscoderJobConfigMuxStreams {
 
   final TfArg<String>? key;
 
-  final TranscoderJobConfigMuxStreamsSegmentSettings? segmentSettings;
+  final TranscoderJobSegmentSettings? segmentSettings;
 
   Map<String, Object?> encode() => {
     'container': ?container?.toTfJson(),
@@ -483,8 +472,8 @@ final class TranscoderJobConfigMuxStreams {
 /// Typed helper for the `config.mux_streams.segment_settings` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigMuxStreamsSegmentSettings {
-  const TranscoderJobConfigMuxStreamsSegmentSettings({this.segmentDuration});
+final class TranscoderJobSegmentSettings {
+  const TranscoderJobSegmentSettings({this.segmentDuration});
 
   final TfArg<String>? segmentDuration;
 
@@ -496,8 +485,8 @@ final class TranscoderJobConfigMuxStreamsSegmentSettings {
 /// Typed helper for the `config.output` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOutput {
-  const TranscoderJobConfigOutput({this.uri});
+final class TranscoderJobOutput {
+  const TranscoderJobOutput({this.uri});
 
   final TfArg<String>? uri;
 
@@ -507,12 +496,12 @@ final class TranscoderJobConfigOutput {
 /// Typed helper for the `config.overlays` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOverlays {
-  const TranscoderJobConfigOverlays({this.animations, this.image});
+final class TranscoderJobOverlays {
+  const TranscoderJobOverlays({this.animations, this.image});
 
-  final List<TranscoderJobConfigOverlaysAnimations>? animations;
+  final List<TranscoderJobAnimations>? animations;
 
-  final TranscoderJobConfigOverlaysImage? image;
+  final TranscoderJobImage? image;
 
   Map<String, Object?> encode() => {
     if (animations != null)
@@ -524,10 +513,10 @@ final class TranscoderJobConfigOverlays {
 /// Typed helper for the `config.overlays.animations` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOverlaysAnimations {
-  const TranscoderJobConfigOverlaysAnimations({this.animationFade});
+final class TranscoderJobAnimations {
+  const TranscoderJobAnimations({this.animationFade});
 
-  final TranscoderJobConfigOverlaysAnimationsAnimationFade? animationFade;
+  final TranscoderJobAnimationFade? animationFade;
 
   Map<String, Object?> encode() => {'animation_fade': ?animationFade?.encode()};
 }
@@ -535,8 +524,8 @@ final class TranscoderJobConfigOverlaysAnimations {
 /// Typed helper for the `config.overlays.animations.animation_fade` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOverlaysAnimationsAnimationFade {
-  const TranscoderJobConfigOverlaysAnimationsAnimationFade({
+final class TranscoderJobAnimationFade {
+  const TranscoderJobAnimationFade({
     this.endTimeOffset,
     required this.fadeType,
     this.startTimeOffset,
@@ -545,12 +534,11 @@ final class TranscoderJobConfigOverlaysAnimationsAnimationFade {
 
   final TfArg<String>? endTimeOffset;
 
-  final TfArg<TranscoderJobConfigOverlaysAnimationsAnimationFadeFadeType>
-  fadeType;
+  final TfArg<TranscoderJobFadeType> fadeType;
 
   final TfArg<String>? startTimeOffset;
 
-  final TranscoderJobConfigOverlaysAnimationsAnimationFadeXy? xy;
+  final TranscoderJobXy? xy;
 
   Map<String, Object?> encode() => {
     'end_time_offset': ?endTimeOffset?.toTfJson(),
@@ -561,15 +549,12 @@ final class TranscoderJobConfigOverlaysAnimationsAnimationFade {
 }
 
 /// `fade_type` — derived from the provider schema description.
-enum TranscoderJobConfigOverlaysAnimationsAnimationFadeFadeType
-    implements TerraformEnum {
+enum TranscoderJobFadeType implements TerraformEnum {
   fadeTypeUnspecified('FADE_TYPE_UNSPECIFIED'),
   fadeIn('FADE_IN'),
   fadeOut('FADE_OUT');
 
-  const TranscoderJobConfigOverlaysAnimationsAnimationFadeFadeType(
-    this.terraformValue,
-  );
+  const TranscoderJobFadeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -577,8 +562,8 @@ enum TranscoderJobConfigOverlaysAnimationsAnimationFadeFadeType
 /// Typed helper for the `config.overlays.animations.animation_fade.xy` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOverlaysAnimationsAnimationFadeXy {
-  const TranscoderJobConfigOverlaysAnimationsAnimationFadeXy({this.x, this.y});
+final class TranscoderJobXy {
+  const TranscoderJobXy({this.x, this.y});
 
   final TfArg<num>? x;
 
@@ -590,8 +575,8 @@ final class TranscoderJobConfigOverlaysAnimationsAnimationFadeXy {
 /// Typed helper for the `config.overlays.image` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigOverlaysImage {
-  const TranscoderJobConfigOverlaysImage({required this.uri});
+final class TranscoderJobImage {
+  const TranscoderJobImage({required this.uri});
 
   final TfArg<String> uri;
 
@@ -601,8 +586,8 @@ final class TranscoderJobConfigOverlaysImage {
 /// Typed helper for the `config.pubsub_destination` block of
 /// `google_transcoder_job` (derived from provider schema).
 @immutable
-final class TranscoderJobConfigPubsubDestination {
-  const TranscoderJobConfigPubsubDestination({this.topic});
+final class TranscoderJobPubsubDestination {
+  const TranscoderJobPubsubDestination({this.topic});
 
   final RefTo<GooglePubsubTopic>? topic;
 

@@ -15,7 +15,7 @@ const Set<String> _cloudflareAccountTokenSensitive = <String>{};
 final class DataAccountTokenFilter {
   const DataAccountTokenFilter({this.direction, this.includeExpired});
 
-  final TfArg<DataAccountTokenFilterDirection>? direction;
+  final TfArg<DataAccountTokenDirection>? direction;
 
   final TfArg<bool>? includeExpired;
 
@@ -26,11 +26,11 @@ final class DataAccountTokenFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataAccountTokenFilterDirection implements TerraformEnum {
+enum DataAccountTokenDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataAccountTokenFilterDirection(this.terraformValue);
+  const DataAccountTokenDirection(this.terraformValue);
   @override
   final String terraformValue;
 }

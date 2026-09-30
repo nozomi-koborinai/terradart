@@ -17,10 +17,9 @@ final class DataIdentitystoreGroupAlternateIdentifier {
     this.uniqueAttribute,
   });
 
-  final DataIdentitystoreGroupAlternateIdentifierExternalId? externalId;
+  final DataIdentitystoreGroupExternalId? externalId;
 
-  final DataIdentitystoreGroupAlternateIdentifierUniqueAttribute?
-  uniqueAttribute;
+  final DataIdentitystoreGroupUniqueAttribute? uniqueAttribute;
 
   Map<String, Object?> encode() => {
     'external_id': ?externalId?.encode(),
@@ -31,8 +30,8 @@ final class DataIdentitystoreGroupAlternateIdentifier {
 /// Typed helper for the `alternate_identifier.external_id` block of
 /// `aws_identitystore_group` (derived from provider schema).
 @immutable
-final class DataIdentitystoreGroupAlternateIdentifierExternalId {
-  const DataIdentitystoreGroupAlternateIdentifierExternalId({
+final class DataIdentitystoreGroupExternalId {
+  const DataIdentitystoreGroupExternalId({
     required this.id,
     required this.issuer,
   });
@@ -50,8 +49,8 @@ final class DataIdentitystoreGroupAlternateIdentifierExternalId {
 /// Typed helper for the `alternate_identifier.unique_attribute` block of
 /// `aws_identitystore_group` (derived from provider schema).
 @immutable
-final class DataIdentitystoreGroupAlternateIdentifierUniqueAttribute {
-  const DataIdentitystoreGroupAlternateIdentifierUniqueAttribute({
+final class DataIdentitystoreGroupUniqueAttribute {
+  const DataIdentitystoreGroupUniqueAttribute({
     required this.attributePath,
     required this.attributeValue,
   });

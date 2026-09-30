@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontVpcOriginSensitive = <String>{};
 /// Typed helper for the `vpc_origin_endpoint_config` block of
 /// `aws_cloudfront_vpc_origin` (derived from provider schema).
 @immutable
-final class CloudfrontVpcOriginVpcOriginEndpointConfig {
-  const CloudfrontVpcOriginVpcOriginEndpointConfig({
+final class CloudfrontVpcOriginEndpointConfig {
+  const CloudfrontVpcOriginEndpointConfig({
     required this.arn,
     required this.httpPort,
     required this.httpsPort,
@@ -28,11 +28,9 @@ final class CloudfrontVpcOriginVpcOriginEndpointConfig {
 
   final TfArg<String> name;
 
-  final TfArg<CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy>
-  originProtocolPolicy;
+  final TfArg<CloudfrontVpcOriginProtocolPolicy> originProtocolPolicy;
 
-  final List<CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols>?
-  originSslProtocols;
+  final List<CloudfrontVpcOriginSslProtocols>? originSslProtocols;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -46,15 +44,12 @@ final class CloudfrontVpcOriginVpcOriginEndpointConfig {
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy
-    implements TerraformEnum {
+enum CloudfrontVpcOriginProtocolPolicy implements TerraformEnum {
   httpOnly('http-only'),
   matchViewer('match-viewer'),
   httpsOnly('https-only');
 
-  const CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy(
-    this.terraformValue,
-  );
+  const CloudfrontVpcOriginProtocolPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -62,8 +57,8 @@ enum CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy
 /// Typed helper for the `vpc_origin_endpoint_config.origin_ssl_protocols` block of
 /// `aws_cloudfront_vpc_origin` (derived from provider schema).
 @immutable
-final class CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols {
-  const CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols({
+final class CloudfrontVpcOriginSslProtocols {
+  const CloudfrontVpcOriginSslProtocols({
     required this.items,
     required this.quantity,
   });
@@ -85,7 +80,7 @@ final class AwsCloudfrontVpcOrigin extends Resource {
   AwsCloudfrontVpcOrigin({
     required super.localName,
     TfArg<Map<String, String>>? tags,
-    List<CloudfrontVpcOriginVpcOriginEndpointConfig>? vpcOriginEndpointConfig,
+    List<CloudfrontVpcOriginEndpointConfig>? vpcOriginEndpointConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

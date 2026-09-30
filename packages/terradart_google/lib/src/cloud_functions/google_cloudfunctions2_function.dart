@@ -96,9 +96,9 @@ final class Cloudfunctions2FunctionBuildConfig {
 
   final TfArg<String>? workerPool;
 
-  final Cloudfunctions2FunctionBuildConfigUpdatePolicy updatePolicy;
+  final Cloudfunctions2FunctionUpdatePolicy updatePolicy;
 
-  final Cloudfunctions2FunctionBuildConfigSource? source;
+  final Cloudfunctions2FunctionSource? source;
 
   Map<String, Object?> encode() => {
     'docker_repository': ?dockerRepository?.toTfJson(),
@@ -116,19 +116,18 @@ final class Cloudfunctions2FunctionBuildConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.automaticUpdatePolicy(...)`.
-sealed class Cloudfunctions2FunctionBuildConfigUpdatePolicy {
-  const Cloudfunctions2FunctionBuildConfigUpdatePolicy();
+sealed class Cloudfunctions2FunctionUpdatePolicy {
+  const Cloudfunctions2FunctionUpdatePolicy();
 
   /// Sets `automatic_update_policy`.
-  const factory Cloudfunctions2FunctionBuildConfigUpdatePolicy.automaticUpdatePolicy(
-    Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy
-    automaticUpdatePolicy,
-  ) = Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy;
+  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy(
+    Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy,
+  ) = Cloudfunctions2FunctionAutomaticUpdatePolicyChoice;
 
   /// Sets `on_deploy_update_policy`.
-  const factory Cloudfunctions2FunctionBuildConfigUpdatePolicy.onDeployUpdatePolicy(
-    Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy onDeployUpdatePolicy,
-  ) = Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy;
+  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy(
+    Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy,
+  ) = Cloudfunctions2FunctionOnDeployUpdatePolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -136,15 +135,14 @@ sealed class Cloudfunctions2FunctionBuildConfigUpdatePolicy {
   Map<String, Object?> encode();
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigUpdatePolicy.automaticUpdatePolicy] choice: sets `automatic_update_policy`.
-final class Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy
-    extends Cloudfunctions2FunctionBuildConfigUpdatePolicy {
-  const Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy(
+/// The [Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy] choice: sets `automatic_update_policy`.
+final class Cloudfunctions2FunctionAutomaticUpdatePolicyChoice
+    extends Cloudfunctions2FunctionUpdatePolicy {
+  const Cloudfunctions2FunctionAutomaticUpdatePolicyChoice(
     this.automaticUpdatePolicy,
   );
 
-  final Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy
-  automaticUpdatePolicy;
+  final Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy;
 
   @override
   String get blockKey => 'automatic_update_policy';
@@ -155,15 +153,14 @@ final class Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy
   };
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigUpdatePolicy.onDeployUpdatePolicy] choice: sets `on_deploy_update_policy`.
-final class Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy
-    extends Cloudfunctions2FunctionBuildConfigUpdatePolicy {
-  const Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy(
+/// The [Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy] choice: sets `on_deploy_update_policy`.
+final class Cloudfunctions2FunctionOnDeployUpdatePolicyChoice
+    extends Cloudfunctions2FunctionUpdatePolicy {
+  const Cloudfunctions2FunctionOnDeployUpdatePolicyChoice(
     this.onDeployUpdatePolicy,
   );
 
-  final Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy
-  onDeployUpdatePolicy;
+  final Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy;
 
   @override
   String get blockKey => 'on_deploy_update_policy';
@@ -177,8 +174,8 @@ final class Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy
 /// Typed helper for the `build_config.automatic_update_policy` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy {
-  const Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy();
+final class Cloudfunctions2FunctionAutomaticUpdatePolicy {
+  const Cloudfunctions2FunctionAutomaticUpdatePolicy();
 
   Map<String, Object?> encode() => {};
 }
@@ -186,8 +183,8 @@ final class Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy {
 /// Typed helper for the `build_config.on_deploy_update_policy` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy {
-  const Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy();
+final class Cloudfunctions2FunctionOnDeployUpdatePolicy {
+  const Cloudfunctions2FunctionOnDeployUpdatePolicy();
 
   Map<String, Object?> encode() => {};
 }
@@ -196,18 +193,18 @@ final class Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.storageSource(...)`.
-sealed class Cloudfunctions2FunctionBuildConfigSource {
-  const Cloudfunctions2FunctionBuildConfigSource();
+sealed class Cloudfunctions2FunctionSource {
+  const Cloudfunctions2FunctionSource();
 
   /// Sets `storage_source`.
-  const factory Cloudfunctions2FunctionBuildConfigSource.storageSource(
-    Cloudfunctions2FunctionBuildConfigSourceStorageSource storageSource,
-  ) = Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice;
+  const factory Cloudfunctions2FunctionSource.storageSource(
+    Cloudfunctions2FunctionStorageSource storageSource,
+  ) = Cloudfunctions2FunctionStorageSourceChoice;
 
   /// Sets `repo_source`.
-  const factory Cloudfunctions2FunctionBuildConfigSource.repoSource(
-    Cloudfunctions2FunctionBuildConfigSourceRepoSource repoSource,
-  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice;
+  const factory Cloudfunctions2FunctionSource.repoSource(
+    Cloudfunctions2FunctionRepoSource repoSource,
+  ) = Cloudfunctions2FunctionRepoSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -215,14 +212,12 @@ sealed class Cloudfunctions2FunctionBuildConfigSource {
   Map<String, Object?> encode();
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSource.storageSource] choice: sets `storage_source`.
-final class Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice
-    extends Cloudfunctions2FunctionBuildConfigSource {
-  const Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice(
-    this.storageSource,
-  );
+/// The [Cloudfunctions2FunctionSource.storageSource] choice: sets `storage_source`.
+final class Cloudfunctions2FunctionStorageSourceChoice
+    extends Cloudfunctions2FunctionSource {
+  const Cloudfunctions2FunctionStorageSourceChoice(this.storageSource);
 
-  final Cloudfunctions2FunctionBuildConfigSourceStorageSource storageSource;
+  final Cloudfunctions2FunctionStorageSource storageSource;
 
   @override
   String get blockKey => 'storage_source';
@@ -231,14 +226,12 @@ final class Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice
   Map<String, Object?> encode() => {'storage_source': storageSource.encode()};
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSource.repoSource] choice: sets `repo_source`.
-final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice
-    extends Cloudfunctions2FunctionBuildConfigSource {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice(
-    this.repoSource,
-  );
+/// The [Cloudfunctions2FunctionSource.repoSource] choice: sets `repo_source`.
+final class Cloudfunctions2FunctionRepoSourceChoice
+    extends Cloudfunctions2FunctionSource {
+  const Cloudfunctions2FunctionRepoSourceChoice(this.repoSource);
 
-  final Cloudfunctions2FunctionBuildConfigSourceRepoSource repoSource;
+  final Cloudfunctions2FunctionRepoSource repoSource;
 
   @override
   String get blockKey => 'repo_source';
@@ -250,8 +243,8 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice
 /// Typed helper for the `build_config.source.repo_source` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionBuildConfigSourceRepoSource {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSource({
+final class Cloudfunctions2FunctionRepoSource {
+  const Cloudfunctions2FunctionRepoSource({
     required this.revision,
     this.dir,
     this.invertRegex,
@@ -259,7 +252,7 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSource {
     this.repoName,
   });
 
-  final Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision revision;
+  final Cloudfunctions2FunctionRevision revision;
 
   final TfArg<String>? dir;
 
@@ -282,23 +275,22 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSource {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.branchName(...)`.
-sealed class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision();
+sealed class Cloudfunctions2FunctionRevision {
+  const Cloudfunctions2FunctionRevision();
 
   /// Sets `branch_name`.
-  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.branchName(
+  const factory Cloudfunctions2FunctionRevision.branchName(
     TfArg<String> branchName,
-  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName;
+  ) = Cloudfunctions2FunctionRevisionBranchName;
 
   /// Sets `tag_name`.
-  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.tagName(
-    TfArg<String> tagName,
-  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName;
+  const factory Cloudfunctions2FunctionRevision.tagName(TfArg<String> tagName) =
+      Cloudfunctions2FunctionRevisionTagName;
 
   /// Sets `commit_sha`.
-  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.commitSha(
+  const factory Cloudfunctions2FunctionRevision.commitSha(
     TfArg<String> commitSha,
-  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha;
+  ) = Cloudfunctions2FunctionRevisionCommitSha;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -306,12 +298,10 @@ sealed class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
   Map<String, Object?> encode();
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.branchName] choice: sets `branch_name`.
-final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName
-    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName(
-    this.branchName,
-  );
+/// The [Cloudfunctions2FunctionRevision.branchName] choice: sets `branch_name`.
+final class Cloudfunctions2FunctionRevisionBranchName
+    extends Cloudfunctions2FunctionRevision {
+  const Cloudfunctions2FunctionRevisionBranchName(this.branchName);
 
   final TfArg<String> branchName;
 
@@ -322,12 +312,10 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.tagName] choice: sets `tag_name`.
-final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName
-    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName(
-    this.tagName,
-  );
+/// The [Cloudfunctions2FunctionRevision.tagName] choice: sets `tag_name`.
+final class Cloudfunctions2FunctionRevisionTagName
+    extends Cloudfunctions2FunctionRevision {
+  const Cloudfunctions2FunctionRevisionTagName(this.tagName);
 
   final TfArg<String> tagName;
 
@@ -338,12 +326,10 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName
   Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.commitSha] choice: sets `commit_sha`.
-final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha
-    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
-  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha(
-    this.commitSha,
-  );
+/// The [Cloudfunctions2FunctionRevision.commitSha] choice: sets `commit_sha`.
+final class Cloudfunctions2FunctionRevisionCommitSha
+    extends Cloudfunctions2FunctionRevision {
+  const Cloudfunctions2FunctionRevisionCommitSha(this.commitSha);
 
   final TfArg<String> commitSha;
 
@@ -357,8 +343,8 @@ final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha
 /// Typed helper for the `build_config.source.storage_source` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionBuildConfigSourceStorageSource {
-  const Cloudfunctions2FunctionBuildConfigSourceStorageSource({
+final class Cloudfunctions2FunctionStorageSource {
+  const Cloudfunctions2FunctionStorageSource({
     this.bucket,
     this.generation,
     this.object,
@@ -400,7 +386,7 @@ final class Cloudfunctions2FunctionEventTrigger {
 
   final TfArg<String>? triggerRegion;
 
-  final List<Cloudfunctions2FunctionEventTriggerEventFilters>? eventFilters;
+  final List<Cloudfunctions2FunctionEventFilters>? eventFilters;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
@@ -416,8 +402,8 @@ final class Cloudfunctions2FunctionEventTrigger {
 /// Typed helper for the `event_trigger.event_filters` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionEventTriggerEventFilters {
-  const Cloudfunctions2FunctionEventTriggerEventFilters({
+final class Cloudfunctions2FunctionEventFilters {
+  const Cloudfunctions2FunctionEventFilters({
     required this.attribute,
     this.operator,
     required this.value,
@@ -483,14 +469,14 @@ final class Cloudfunctions2FunctionServiceConfig {
 
   final TfArg<num>? timeoutSeconds;
 
-  final Cloudfunctions2FunctionServiceConfigConnection? connection;
+  final Cloudfunctions2FunctionConnection? connection;
 
   final TfArg<VpcConnectorEgressSettings>? vpcConnectorEgressSettings;
 
-  final List<Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables>?
+  final List<Cloudfunctions2FunctionSecretEnvironmentVariables>?
   secretEnvironmentVariables;
 
-  final List<Cloudfunctions2FunctionServiceConfigSecretVolumes>? secretVolumes;
+  final List<Cloudfunctions2FunctionSecretVolumes>? secretVolumes;
 
   Map<String, Object?> encode() => {
     'all_traffic_on_latest_revision': ?allTrafficOnLatestRevision?.toTfJson(),
@@ -522,19 +508,19 @@ final class Cloudfunctions2FunctionServiceConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.vpcConnector(...)`.
-sealed class Cloudfunctions2FunctionServiceConfigConnection {
-  const Cloudfunctions2FunctionServiceConfigConnection();
+sealed class Cloudfunctions2FunctionConnection {
+  const Cloudfunctions2FunctionConnection();
 
   /// Sets `vpc_connector`.
-  const factory Cloudfunctions2FunctionServiceConfigConnection.vpcConnector(
+  const factory Cloudfunctions2FunctionConnection.vpcConnector(
     TfArg<String> vpcConnector,
-  ) = Cloudfunctions2FunctionServiceConfigConnectionVpcConnector;
+  ) = Cloudfunctions2FunctionConnectionVpcConnector;
 
   /// Sets `direct_vpc_network_interface`.
-  const factory Cloudfunctions2FunctionServiceConfigConnection.directVpcNetworkInterface(
-    List<Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface>
+  const factory Cloudfunctions2FunctionConnection.directVpcNetworkInterface(
+    List<Cloudfunctions2FunctionDirectVpcNetworkInterface>
     directVpcNetworkInterface,
-  ) = Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface;
+  ) = Cloudfunctions2FunctionConnectionDirectVpcNetworkInterface;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -542,12 +528,10 @@ sealed class Cloudfunctions2FunctionServiceConfigConnection {
   Map<String, Object?> encode();
 }
 
-/// The [Cloudfunctions2FunctionServiceConfigConnection.vpcConnector] choice: sets `vpc_connector`.
-final class Cloudfunctions2FunctionServiceConfigConnectionVpcConnector
-    extends Cloudfunctions2FunctionServiceConfigConnection {
-  const Cloudfunctions2FunctionServiceConfigConnectionVpcConnector(
-    this.vpcConnector,
-  );
+/// The [Cloudfunctions2FunctionConnection.vpcConnector] choice: sets `vpc_connector`.
+final class Cloudfunctions2FunctionConnectionVpcConnector
+    extends Cloudfunctions2FunctionConnection {
+  const Cloudfunctions2FunctionConnectionVpcConnector(this.vpcConnector);
 
   final TfArg<String> vpcConnector;
 
@@ -558,14 +542,14 @@ final class Cloudfunctions2FunctionServiceConfigConnectionVpcConnector
   Map<String, Object?> encode() => {'vpc_connector': vpcConnector.toTfJson()};
 }
 
-/// The [Cloudfunctions2FunctionServiceConfigConnection.directVpcNetworkInterface] choice: sets `direct_vpc_network_interface`.
-final class Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface
-    extends Cloudfunctions2FunctionServiceConfigConnection {
-  const Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface(
+/// The [Cloudfunctions2FunctionConnection.directVpcNetworkInterface] choice: sets `direct_vpc_network_interface`.
+final class Cloudfunctions2FunctionConnectionDirectVpcNetworkInterface
+    extends Cloudfunctions2FunctionConnection {
+  const Cloudfunctions2FunctionConnectionDirectVpcNetworkInterface(
     this.directVpcNetworkInterface,
   );
 
-  final List<Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface>
+  final List<Cloudfunctions2FunctionDirectVpcNetworkInterface>
   directVpcNetworkInterface;
 
   @override
@@ -582,8 +566,8 @@ final class Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterf
 /// Typed helper for the `service_config.direct_vpc_network_interface` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface {
-  const Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface({
+final class Cloudfunctions2FunctionDirectVpcNetworkInterface {
+  const Cloudfunctions2FunctionDirectVpcNetworkInterface({
     this.network,
     this.subnetwork,
     this.tags,
@@ -605,8 +589,8 @@ final class Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface {
 /// Typed helper for the `service_config.secret_environment_variables` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables {
-  const Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables({
+final class Cloudfunctions2FunctionSecretEnvironmentVariables {
+  const Cloudfunctions2FunctionSecretEnvironmentVariables({
     required this.key,
     required this.projectId,
     required this.secret,
@@ -632,8 +616,8 @@ final class Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables {
 /// Typed helper for the `service_config.secret_volumes` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionServiceConfigSecretVolumes {
-  const Cloudfunctions2FunctionServiceConfigSecretVolumes({
+final class Cloudfunctions2FunctionSecretVolumes {
+  const Cloudfunctions2FunctionSecretVolumes({
     required this.mountPath,
     required this.projectId,
     required this.secret,
@@ -646,8 +630,7 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumes {
 
   final TfArg<String> secret;
 
-  final List<Cloudfunctions2FunctionServiceConfigSecretVolumesVersions>?
-  versions;
+  final List<Cloudfunctions2FunctionVersions>? versions;
 
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
@@ -660,8 +643,8 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumes {
 /// Typed helper for the `service_config.secret_volumes.versions` block of
 /// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
-  const Cloudfunctions2FunctionServiceConfigSecretVolumesVersions({
+final class Cloudfunctions2FunctionVersions {
+  const Cloudfunctions2FunctionVersions({
     required this.path,
     required this.version,
   });
@@ -696,13 +679,13 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('hello'),
 ///     source: .storageSource(
-///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///       Cloudfunctions2FunctionStorageSource(
 ///         bucket: .of(bucket),
 ///         object: .literal('hello-http.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(
-///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
+///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
 ///     ),
 ///   ),
 ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
@@ -723,13 +706,13 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('handle'),
 ///     source: .storageSource(
-///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///       Cloudfunctions2FunctionStorageSource(
 ///         bucket: .of(bucket),
 ///         object: .literal('order-handler.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(
-///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
+///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
 ///     ),
 ///   ),
 ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(

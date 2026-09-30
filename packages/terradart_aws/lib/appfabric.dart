@@ -5,10 +5,10 @@ library;
 
 export 'src/appfabric/aws_appfabric_app_authorization.dart'
     show
+        AppfabricAppAuthorizationApiKeyCredential,
         AppfabricAppAuthorizationAuthType,
         AppfabricAppAuthorizationCredential,
-        AppfabricAppAuthorizationCredentialApiKeyCredential,
-        AppfabricAppAuthorizationCredentialOauth2Credential,
+        AppfabricAppAuthorizationOauth2Credential,
         AppfabricAppAuthorizationTenant,
         AwsAppfabricAppAuthorization;
 export 'src/appfabric/aws_appfabric_app_authorization_connection.dart'
@@ -20,13 +20,13 @@ export 'src/appfabric/aws_appfabric_ingestion.dart'
     show AppfabricIngestionIngestionType, AwsAppfabricIngestion;
 export 'src/appfabric/aws_appfabric_ingestion_destination.dart'
     show
-        AppfabricIngestionDestinationDestinationConfiguration,
-        AppfabricIngestionDestinationDestinationConfigurationAuditLog,
-        AppfabricIngestionDestinationDestinationConfigurationAuditLogDestination,
-        AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationFirehoseStream,
-        AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationS3Bucket,
+        AppfabricIngestionDestinationConfiguration,
+        AppfabricIngestionDestinationConfigurationAuditLog,
+        AppfabricIngestionDestinationDestination,
+        AppfabricIngestionDestinationFirehoseStream,
+        AppfabricIngestionDestinationFormat,
         AppfabricIngestionDestinationProcessingConfiguration,
         AppfabricIngestionDestinationProcessingConfigurationAuditLog,
-        AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat,
-        AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema,
+        AppfabricIngestionDestinationS3Bucket,
+        AppfabricIngestionDestinationSchema,
         AwsAppfabricIngestionDestination;

@@ -33,12 +33,12 @@ sealed class ColabScheduleRequest {
   const factory ColabScheduleRequest.createNotebookExecutionJobRequest(
     ColabScheduleCreateNotebookExecutionJobRequest
     createNotebookExecutionJobRequest,
-  ) = ColabScheduleRequestCreateNotebookExecutionJobRequest;
+  ) = ColabScheduleCreateNotebookExecutionJobRequestChoice;
 
   /// Sets `create_pipeline_job_request`.
   const factory ColabScheduleRequest.createPipelineJobRequest(
     ColabScheduleCreatePipelineJobRequest createPipelineJobRequest,
-  ) = ColabScheduleRequestCreatePipelineJobRequest;
+  ) = ColabScheduleCreatePipelineJobRequestChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -51,9 +51,9 @@ sealed class ColabScheduleRequest {
 }
 
 /// The [ColabScheduleRequest.createNotebookExecutionJobRequest] choice: sets `create_notebook_execution_job_request`.
-final class ColabScheduleRequestCreateNotebookExecutionJobRequest
+final class ColabScheduleCreateNotebookExecutionJobRequestChoice
     extends ColabScheduleRequest {
-  const ColabScheduleRequestCreateNotebookExecutionJobRequest(
+  const ColabScheduleCreateNotebookExecutionJobRequestChoice(
     this.createNotebookExecutionJobRequest,
   );
 
@@ -78,9 +78,9 @@ final class ColabScheduleRequestCreateNotebookExecutionJobRequest
 }
 
 /// The [ColabScheduleRequest.createPipelineJobRequest] choice: sets `create_pipeline_job_request`.
-final class ColabScheduleRequestCreatePipelineJobRequest
+final class ColabScheduleCreatePipelineJobRequestChoice
     extends ColabScheduleRequest {
-  const ColabScheduleRequestCreatePipelineJobRequest(
+  const ColabScheduleCreatePipelineJobRequestChoice(
     this.createPipelineJobRequest,
   );
 
@@ -113,8 +113,7 @@ final class ColabScheduleCreateNotebookExecutionJobRequest {
 
   final TfArg<String>? parent;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob
-  notebookExecutionJob;
+  final ColabScheduleNotebookExecutionJob notebookExecutionJob;
 
   Map<String, Object?> encode() => {
     'parent': ?parent?.toTfJson(),
@@ -125,8 +124,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequest {
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob({
+final class ColabScheduleNotebookExecutionJob {
+  const ColabScheduleNotebookExecutionJob({
     required this.displayName,
     this.executionTimeout,
     required this.identity,
@@ -143,8 +142,7 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob {
 
   final TfArg<String>? executionTimeout;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity
-  identity;
+  final ColabScheduleIdentity identity;
 
   final TfArg<String> gcsOutputUri;
 
@@ -152,17 +150,13 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob {
 
   final TfArg<Map<String, String>>? labels;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute
-  compute;
+  final ColabScheduleCompute compute;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource
-  source;
+  final ColabScheduleSource source;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobEncryptionSpec?
-  encryptionSpec;
+  final ColabScheduleEncryptionSpec? encryptionSpec;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobWorkbenchRuntime?
-  workbenchRuntime;
+  final ColabScheduleWorkbenchRuntime? workbenchRuntime;
 
   Map<String, Object?> encode() => {
     'display_name': displayName.toTfJson(),
@@ -182,20 +176,18 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.dataformRepositorySource(...)`.
-sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource();
+sealed class ColabScheduleSource {
+  const ColabScheduleSource();
 
   /// Sets `dataform_repository_source`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource.dataformRepositorySource(
-    ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDataformRepositorySource
-    dataformRepositorySource,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceDataformRepositorySource;
+  const factory ColabScheduleSource.dataformRepositorySource(
+    ColabScheduleDataformRepositorySource dataformRepositorySource,
+  ) = ColabScheduleDataformRepositorySourceChoice;
 
   /// Sets `gcs_notebook_source`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource.gcsNotebookSource(
-    ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource
-    gcsNotebookSource,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceGcsNotebookSource;
+  const factory ColabScheduleSource.gcsNotebookSource(
+    ColabScheduleGcsNotebookSource gcsNotebookSource,
+  ) = ColabScheduleGcsNotebookSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -203,16 +195,14 @@ sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobS
   Map<String, Object?> encode();
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource.dataformRepositorySource] choice: sets `dataform_repository_source`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceDataformRepositorySource
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceDataformRepositorySource(
+/// The [ColabScheduleSource.dataformRepositorySource] choice: sets `dataform_repository_source`.
+final class ColabScheduleDataformRepositorySourceChoice
+    extends ColabScheduleSource {
+  const ColabScheduleDataformRepositorySourceChoice(
     this.dataformRepositorySource,
   );
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDataformRepositorySource
-  dataformRepositorySource;
+  final ColabScheduleDataformRepositorySource dataformRepositorySource;
 
   @override
   String get blockKey => 'dataform_repository_source';
@@ -223,16 +213,11 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSo
   };
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource.gcsNotebookSource] choice: sets `gcs_notebook_source`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceGcsNotebookSource
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceGcsNotebookSource(
-    this.gcsNotebookSource,
-  );
+/// The [ColabScheduleSource.gcsNotebookSource] choice: sets `gcs_notebook_source`.
+final class ColabScheduleGcsNotebookSourceChoice extends ColabScheduleSource {
+  const ColabScheduleGcsNotebookSourceChoice(this.gcsNotebookSource);
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource
-  gcsNotebookSource;
+  final ColabScheduleGcsNotebookSource gcsNotebookSource;
 
   @override
   String get blockKey => 'gcs_notebook_source';
@@ -247,19 +232,18 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSo
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.notebookRuntimeTemplateResourceName(...)`.
-sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute();
+sealed class ColabScheduleCompute {
+  const ColabScheduleCompute();
 
   /// Sets `notebook_runtime_template_resource_name`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute.notebookRuntimeTemplateResourceName(
+  const factory ColabScheduleCompute.notebookRuntimeTemplateResourceName(
     TfArg<String> notebookRuntimeTemplateResourceName,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeNotebookRuntimeTemplateResourceName;
+  ) = ColabScheduleComputeNotebookRuntimeTemplateResourceName;
 
   /// Sets `custom_environment_spec`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute.customEnvironmentSpec(
-    ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpec
-    customEnvironmentSpec,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeCustomEnvironmentSpec;
+  const factory ColabScheduleCompute.customEnvironmentSpec(
+    ColabScheduleCustomEnvironmentSpec customEnvironmentSpec,
+  ) = ColabScheduleComputeCustomEnvironmentSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -267,11 +251,10 @@ sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobC
   Map<String, Object?> encode();
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute.notebookRuntimeTemplateResourceName] choice: sets `notebook_runtime_template_resource_name`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeNotebookRuntimeTemplateResourceName
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeNotebookRuntimeTemplateResourceName(
+/// The [ColabScheduleCompute.notebookRuntimeTemplateResourceName] choice: sets `notebook_runtime_template_resource_name`.
+final class ColabScheduleComputeNotebookRuntimeTemplateResourceName
+    extends ColabScheduleCompute {
+  const ColabScheduleComputeNotebookRuntimeTemplateResourceName(
     this.notebookRuntimeTemplateResourceName,
   );
 
@@ -287,16 +270,12 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCo
   };
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute.customEnvironmentSpec] choice: sets `custom_environment_spec`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeCustomEnvironmentSpec
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeCustomEnvironmentSpec(
-    this.customEnvironmentSpec,
-  );
+/// The [ColabScheduleCompute.customEnvironmentSpec] choice: sets `custom_environment_spec`.
+final class ColabScheduleComputeCustomEnvironmentSpec
+    extends ColabScheduleCompute {
+  const ColabScheduleComputeCustomEnvironmentSpec(this.customEnvironmentSpec);
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpec
-  customEnvironmentSpec;
+  final ColabScheduleCustomEnvironmentSpec customEnvironmentSpec;
 
   @override
   String get blockKey => 'custom_environment_spec';
@@ -311,18 +290,18 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCo
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.executionUser(...)`.
-sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity();
+sealed class ColabScheduleIdentity {
+  const ColabScheduleIdentity();
 
   /// Sets `execution_user`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity.executionUser(
+  const factory ColabScheduleIdentity.executionUser(
     TfArg<String> executionUser,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityExecutionUser;
+  ) = ColabScheduleIdentityExecutionUser;
 
   /// Sets `service_account`.
-  const factory ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity.serviceAccount(
+  const factory ColabScheduleIdentity.serviceAccount(
     RefTo<GoogleServiceAccount> serviceAccount,
-  ) = ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityServiceAccount;
+  ) = ColabScheduleIdentityServiceAccount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -330,13 +309,9 @@ sealed class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobI
   Map<String, Object?> encode();
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity.executionUser] choice: sets `execution_user`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityExecutionUser
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityExecutionUser(
-    this.executionUser,
-  );
+/// The [ColabScheduleIdentity.executionUser] choice: sets `execution_user`.
+final class ColabScheduleIdentityExecutionUser extends ColabScheduleIdentity {
+  const ColabScheduleIdentityExecutionUser(this.executionUser);
 
   final TfArg<String> executionUser;
 
@@ -347,13 +322,9 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobId
   Map<String, Object?> encode() => {'execution_user': executionUser.toTfJson()};
 }
 
-/// The [ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity.serviceAccount] choice: sets `service_account`.
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityServiceAccount
-    extends
-        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityServiceAccount(
-    this.serviceAccount,
-  );
+/// The [ColabScheduleIdentity.serviceAccount] choice: sets `service_account`.
+final class ColabScheduleIdentityServiceAccount extends ColabScheduleIdentity {
+  const ColabScheduleIdentityServiceAccount(this.serviceAccount);
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
@@ -369,21 +340,18 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobId
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpec {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpec({
+final class ColabScheduleCustomEnvironmentSpec {
+  const ColabScheduleCustomEnvironmentSpec({
     this.machineSpec,
     this.networkSpec,
     this.persistentDiskSpec,
   });
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpec?
-  machineSpec;
+  final ColabScheduleMachineSpec? machineSpec;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecNetworkSpec?
-  networkSpec;
+  final ColabScheduleNetworkSpec? networkSpec;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecPersistentDiskSpec?
-  persistentDiskSpec;
+  final ColabSchedulePersistentDiskSpec? persistentDiskSpec;
 
   Map<String, Object?> encode() => {
     'machine_spec': ?machineSpec?.encode(),
@@ -395,8 +363,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.machine_spec` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpec {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpec({
+final class ColabScheduleMachineSpec {
+  const ColabScheduleMachineSpec({
     this.acceleratorCount,
     this.acceleratorType,
     this.gpuPartitionSize,
@@ -415,8 +383,7 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 
   final TfArg<String>? tpuTopology;
 
-  final ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpecReservationAffinity?
-  reservationAffinity;
+  final ColabScheduleReservationAffinity? reservationAffinity;
 
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
@@ -431,8 +398,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.machine_spec.reservation_affinity` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpecReservationAffinity {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpecReservationAffinity({
+final class ColabScheduleReservationAffinity {
+  const ColabScheduleReservationAffinity({
     this.key,
     required this.reservationAffinityType,
     this.useReservationPool,
@@ -458,8 +425,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.network_spec` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecNetworkSpec {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecNetworkSpec({
+final class ColabScheduleNetworkSpec {
+  const ColabScheduleNetworkSpec({
     this.enableInternetAccess,
     this.network,
     this.subnetwork,
@@ -481,11 +448,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.persistent_disk_spec` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecPersistentDiskSpec {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecPersistentDiskSpec({
-    this.diskSizeGb,
-    this.diskType,
-  });
+final class ColabSchedulePersistentDiskSpec {
+  const ColabSchedulePersistentDiskSpec({this.diskSizeGb, this.diskType});
 
   final TfArg<String>? diskSizeGb;
 
@@ -500,8 +464,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCu
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.dataform_repository_source` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDataformRepositorySource {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDataformRepositorySource({
+final class ColabScheduleDataformRepositorySource {
+  const ColabScheduleDataformRepositorySource({
     this.commitSha,
     required this.dataformRepositoryResourceName,
   });
@@ -519,11 +483,10 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDa
 
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.encryption_spec` block of
 /// `google_colab_schedule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobEncryptionSpec {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobEncryptionSpec({
-    required this.kmsKeyName,
-  });
+final class ColabScheduleEncryptionSpec {
+  const ColabScheduleEncryptionSpec({required this.kmsKeyName});
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -535,11 +498,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobEn
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.gcs_notebook_source` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource({
-    this.generation,
-    required this.uri,
-  });
+final class ColabScheduleGcsNotebookSource {
+  const ColabScheduleGcsNotebookSource({this.generation, required this.uri});
 
   final TfArg<String>? generation;
 
@@ -554,8 +514,8 @@ final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGc
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.workbench_runtime` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobWorkbenchRuntime {
-  const ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobWorkbenchRuntime();
+final class ColabScheduleWorkbenchRuntime {
+  const ColabScheduleWorkbenchRuntime();
 
   Map<String, Object?> encode() => {};
 }
@@ -571,7 +531,7 @@ final class ColabScheduleCreatePipelineJobRequest {
 
   final TfArg<String>? parent;
 
-  final ColabScheduleCreatePipelineJobRequestPipelineJob pipelineJob;
+  final ColabSchedulePipelineJob pipelineJob;
 
   Map<String, Object?> encode() => {
     'parent': ?parent?.toTfJson(),
@@ -582,8 +542,8 @@ final class ColabScheduleCreatePipelineJobRequest {
 /// Typed helper for the `create_pipeline_job_request.pipeline_job` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreatePipelineJobRequestPipelineJob {
-  const ColabScheduleCreatePipelineJobRequestPipelineJob({
+final class ColabSchedulePipelineJob {
+  const ColabSchedulePipelineJob({
     this.displayName,
     this.labels,
     this.network,
@@ -613,14 +573,11 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
 
   final TfArg<String>? templateUri;
 
-  final ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec?
-  encryptionSpec;
+  final ColabScheduleEncryptionSpec? encryptionSpec;
 
-  final ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig?
-  pscInterfaceConfig;
+  final ColabSchedulePscInterfaceConfig? pscInterfaceConfig;
 
-  final ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig?
-  runtimeConfig;
+  final ColabScheduleRuntimeConfig? runtimeConfig;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -637,36 +594,18 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
   };
 }
 
-/// Typed helper for the `create_pipeline_job_request.pipeline_job.encryption_spec` block of
-/// `google_colab_schedule` (derived from provider schema).
-@immutable
-final class ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec {
-  const ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec({
-    required this.kmsKeyName,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
-  };
-}
-
 /// Typed helper for the `create_pipeline_job_request.pipeline_job.psc_interface_config` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig {
-  const ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig({
+final class ColabSchedulePscInterfaceConfig {
+  const ColabSchedulePscInterfaceConfig({
     this.networkAttachment,
     this.dnsPeeringConfigs,
   });
 
   final TfArg<String>? networkAttachment;
 
-  final List<
-    ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDnsPeeringConfigs
-  >?
-  dnsPeeringConfigs;
+  final List<ColabScheduleDnsPeeringConfigs>? dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
@@ -678,8 +617,8 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig {
 /// Typed helper for the `create_pipeline_job_request.pipeline_job.psc_interface_config.dns_peering_configs` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDnsPeeringConfigs {
-  const ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDnsPeeringConfigs({
+final class ColabScheduleDnsPeeringConfigs {
+  const ColabScheduleDnsPeeringConfigs({
     required this.domain,
     required this.targetNetwork,
     required this.targetProject,
@@ -701,8 +640,8 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDn
 /// Typed helper for the `create_pipeline_job_request.pipeline_job.runtime_config` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
-final class ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig {
-  const ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig({
+final class ColabScheduleRuntimeConfig {
+  const ColabScheduleRuntimeConfig({
     this.failurePolicy,
     required this.gcsOutputDirectory,
     this.parameterValues,

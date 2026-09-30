@@ -19,7 +19,7 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig {
 
   final TfArg<bool> forwardWhenContentTypeIsUnknown;
 
-  final CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfiles
+  final CloudfrontFieldLevelEncryptionConfigContentTypeProfiles
   contentTypeProfiles;
 
   Map<String, Object?> encode() => {
@@ -32,14 +32,12 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig {
 /// Typed helper for the `content_type_profile_config.content_type_profiles` block of
 /// `aws_cloudfront_field_level_encryption_config` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfiles {
-  const CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfiles({
+final class CloudfrontFieldLevelEncryptionConfigContentTypeProfiles {
+  const CloudfrontFieldLevelEncryptionConfigContentTypeProfiles({
     required this.items,
   });
 
-  final List<
-    CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems
-  >
+  final List<CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems>
   items;
 
   Map<String, Object?> encode() => {
@@ -50,8 +48,8 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentT
 /// Typed helper for the `content_type_profile_config.content_type_profiles.items` block of
 /// `aws_cloudfront_field_level_encryption_config` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems {
-  const CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems({
+final class CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems {
+  const CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems({
     required this.contentType,
     required this.format,
     this.profileId,
@@ -81,8 +79,7 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfig {
 
   final TfArg<bool> forwardWhenQueryArgProfileIsUnknown;
 
-  final CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfiles?
-  queryArgProfiles;
+  final CloudfrontFieldLevelEncryptionConfigQueryArgProfiles? queryArgProfiles;
 
   Map<String, Object?> encode() => {
     'forward_when_query_arg_profile_is_unknown':
@@ -94,15 +91,10 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfig {
 /// Typed helper for the `query_arg_profile_config.query_arg_profiles` block of
 /// `aws_cloudfront_field_level_encryption_config` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfiles {
-  const CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfiles({
-    this.items,
-  });
+final class CloudfrontFieldLevelEncryptionConfigQueryArgProfiles {
+  const CloudfrontFieldLevelEncryptionConfigQueryArgProfiles({this.items});
 
-  final List<
-    CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfilesItems
-  >?
-  items;
+  final List<CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems>? items;
 
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
@@ -112,8 +104,8 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgPro
 /// Typed helper for the `query_arg_profile_config.query_arg_profiles.items` block of
 /// `aws_cloudfront_field_level_encryption_config` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfilesItems {
-  const CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfilesItems({
+final class CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems {
+  const CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems({
     required this.profileId,
     required this.queryArg,
   });

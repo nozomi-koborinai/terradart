@@ -19,7 +19,6 @@ export 'src/magic/cloudflare_magic_transit_cf1_site.dart'
     show
         CloudflareMagicTransitCf1Site,
         MagicTransitCf1SiteBody,
-        MagicTransitCf1SiteBodyLocation,
         MagicTransitCf1SiteLocation;
 export 'src/magic/cloudflare_magic_transit_connector.dart'
     show CloudflareMagicTransitConnector, MagicTransitConnectorDevice;
@@ -34,14 +33,13 @@ export 'src/magic/cloudflare_magic_transit_site_acl.dart'
 export 'src/magic/cloudflare_magic_transit_site_lan.dart'
     show
         CloudflareMagicTransitSiteLan,
+        MagicTransitSiteLanDhcpOptions,
+        MagicTransitSiteLanDhcpRelay,
+        MagicTransitSiteLanDhcpServer,
         MagicTransitSiteLanNat,
         MagicTransitSiteLanRoutedSubnets,
-        MagicTransitSiteLanRoutedSubnetsNat,
         MagicTransitSiteLanStaticAddressing,
-        MagicTransitSiteLanStaticAddressingDhcpRelay,
-        MagicTransitSiteLanStaticAddressingDhcpServer,
-        MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions,
-        MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType;
+        MagicTransitSiteLanType;
 export 'src/magic/cloudflare_magic_transit_site_wan.dart'
     show CloudflareMagicTransitSiteWan, MagicTransitSiteWanStaticAddressing;
 export 'src/magic/cloudflare_magic_wan_bgp_filter_profile.dart'
@@ -52,20 +50,20 @@ export 'src/magic/cloudflare_magic_wan_gre_tunnel.dart'
     show
         CloudflareMagicWanGreTunnel,
         MagicWanGreTunnelBgp,
+        MagicWanGreTunnelDirection,
         MagicWanGreTunnelHealthCheck,
-        MagicWanGreTunnelHealthCheckDirection,
-        MagicWanGreTunnelHealthCheckRate,
-        MagicWanGreTunnelHealthCheckTarget,
-        MagicWanGreTunnelHealthCheckType;
+        MagicWanGreTunnelRate,
+        MagicWanGreTunnelTarget,
+        MagicWanGreTunnelType;
 export 'src/magic/cloudflare_magic_wan_ipsec_tunnel.dart'
     show
         CloudflareMagicWanIpsecTunnel,
         MagicWanIpsecTunnelBgp,
         MagicWanIpsecTunnelCustomRemoteIdentities,
+        MagicWanIpsecTunnelDirection,
         MagicWanIpsecTunnelHealthCheck,
-        MagicWanIpsecTunnelHealthCheckDirection,
-        MagicWanIpsecTunnelHealthCheckRate,
-        MagicWanIpsecTunnelHealthCheckTarget,
-        MagicWanIpsecTunnelHealthCheckType;
+        MagicWanIpsecTunnelRate,
+        MagicWanIpsecTunnelTarget,
+        MagicWanIpsecTunnelType;
 export 'src/magic/cloudflare_magic_wan_static_route.dart'
     show CloudflareMagicWanStaticRoute, MagicWanStaticRouteScope;

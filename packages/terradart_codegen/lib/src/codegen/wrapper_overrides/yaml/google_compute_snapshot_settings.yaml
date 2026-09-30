@@ -14,7 +14,7 @@ curatedDoc: |-
   ///
   /// Terraform create/update use `PATCH`; destroy is a state-only remove
   /// (`exclude_delete` upstream) and leaves the GCP settings in place.
-  /// Prefer [ComputeSnapshotSettingsStorageLocationPolicy.localRegion] for
+  /// Prefer [ComputeSnapshotSettingsPolicy.localRegion] for
   /// cheap, region-local defaults in smoke stacks.
   ///
   /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
@@ -25,7 +25,7 @@ curatedDoc: |-
   ///   localName: 'defaults',
   ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
   ///     policy: TfArg.literal(
-  ///       ComputeSnapshotSettingsStorageLocationPolicy.localRegion,
+  ///       ComputeSnapshotSettingsPolicy.localRegion,
   ///     ),
   ///   ),
   /// );

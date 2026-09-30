@@ -8,7 +8,7 @@ export 'src/connectivity/cloudflare_connectivity_directory_service.dart'
         CloudflareConnectivityDirectoryService,
         ConnectivityDirectoryServiceAppProtocol,
         ConnectivityDirectoryServiceHost,
-        ConnectivityDirectoryServiceHostNetwork,
-        ConnectivityDirectoryServiceHostResolverNetwork,
+        ConnectivityDirectoryServiceNetwork,
+        ConnectivityDirectoryServiceResolverNetwork,
         ConnectivityDirectoryServiceTlsSettings,
         ConnectivityDirectoryServiceType;

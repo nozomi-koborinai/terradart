@@ -27,12 +27,12 @@ sealed class RdsClusterEndpointMembers {
   /// Sets `excluded_members`.
   const factory RdsClusterEndpointMembers.excludedMembers(
     TfArg<List<String>> excludedMembers,
-  ) = RdsClusterEndpointMembersExcludedMembers;
+  ) = RdsClusterEndpointExcludedMembers;
 
   /// Sets `static_members`.
   const factory RdsClusterEndpointMembers.staticMembers(
     TfArg<List<String>> staticMembers,
-  ) = RdsClusterEndpointMembersStaticMembers;
+  ) = RdsClusterEndpointStaticMembers;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,9 +45,9 @@ sealed class RdsClusterEndpointMembers {
 }
 
 /// The [RdsClusterEndpointMembers.excludedMembers] choice: sets `excluded_members`.
-final class RdsClusterEndpointMembersExcludedMembers
+final class RdsClusterEndpointExcludedMembers
     extends RdsClusterEndpointMembers {
-  const RdsClusterEndpointMembersExcludedMembers(this.excludedMembers);
+  const RdsClusterEndpointExcludedMembers(this.excludedMembers);
 
   final TfArg<List<String>> excludedMembers;
 
@@ -66,9 +66,8 @@ final class RdsClusterEndpointMembersExcludedMembers
 }
 
 /// The [RdsClusterEndpointMembers.staticMembers] choice: sets `static_members`.
-final class RdsClusterEndpointMembersStaticMembers
-    extends RdsClusterEndpointMembers {
-  const RdsClusterEndpointMembersStaticMembers(this.staticMembers);
+final class RdsClusterEndpointStaticMembers extends RdsClusterEndpointMembers {
+  const RdsClusterEndpointStaticMembers(this.staticMembers);
 
   final TfArg<List<String>> staticMembers;
 

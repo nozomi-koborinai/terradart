@@ -7,15 +7,15 @@ export 'src/accessanalyzer/aws_accessanalyzer_analyzer.dart'
     show
         AccessanalyzerAnalyzerConfiguration,
         AccessanalyzerAnalyzerConfigurationInternalAccess,
-        AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule,
-        AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion,
-        AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes,
-        AccessanalyzerAnalyzerConfigurationInternalAccessChoice,
         AccessanalyzerAnalyzerConfigurationUnusedAccess,
-        AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule,
-        AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion,
-        AccessanalyzerAnalyzerConfigurationUnusedAccessChoice,
+        AccessanalyzerAnalyzerExclusion,
+        AccessanalyzerAnalyzerInclusion,
+        AccessanalyzerAnalyzerInternalAccess,
+        AccessanalyzerAnalyzerInternalAccessAnalysisRule,
+        AccessanalyzerAnalyzerResourceTypes,
         AccessanalyzerAnalyzerType,
+        AccessanalyzerAnalyzerUnusedAccess,
+        AccessanalyzerAnalyzerUnusedAccessAnalysisRule,
         AwsAccessanalyzerAnalyzer;
 export 'src/accessanalyzer/aws_accessanalyzer_archive_rule.dart'
     show AccessanalyzerArchiveRuleFilter, AwsAccessanalyzerArchiveRule;

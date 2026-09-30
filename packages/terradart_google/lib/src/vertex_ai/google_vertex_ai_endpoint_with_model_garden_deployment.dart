@@ -89,7 +89,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfig {
 
   final TfArg<Map<String, String>>? systemLabels;
 
-  final VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResources?
+  final VertexAiEndpointWithModelGardenDeploymentDedicatedResources?
   dedicatedResources;
 
   Map<String, Object?> encode() => {
@@ -102,8 +102,8 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfig {
 /// Typed helper for the `deploy_config.dedicated_resources` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResources {
-  const VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResources({
+final class VertexAiEndpointWithModelGardenDeploymentDedicatedResources {
+  const VertexAiEndpointWithModelGardenDeploymentDedicatedResources({
     this.maxReplicaCount,
     required this.minReplicaCount,
     this.requiredReplicaCount,
@@ -120,13 +120,10 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 
   final TfArg<bool>? spot;
 
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesAutoscalingMetricSpecs
-  >?
+  final List<VertexAiEndpointWithModelGardenDeploymentAutoscalingMetricSpecs>?
   autoscalingMetricSpecs;
 
-  final VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpec
-  machineSpec;
+  final VertexAiEndpointWithModelGardenDeploymentMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
@@ -144,8 +141,8 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 /// Typed helper for the `deploy_config.dedicated_resources.autoscaling_metric_specs` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesAutoscalingMetricSpecs {
-  const VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesAutoscalingMetricSpecs({
+final class VertexAiEndpointWithModelGardenDeploymentAutoscalingMetricSpecs {
+  const VertexAiEndpointWithModelGardenDeploymentAutoscalingMetricSpecs({
     required this.metricName,
     this.target,
   });
@@ -163,8 +160,8 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 /// Typed helper for the `deploy_config.dedicated_resources.machine_spec` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpec {
-  const VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpec({
+final class VertexAiEndpointWithModelGardenDeploymentMachineSpec {
+  const VertexAiEndpointWithModelGardenDeploymentMachineSpec({
     this.acceleratorCount,
     this.acceleratorType,
     this.machineType,
@@ -183,7 +180,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 
   final TfArg<String>? tpuTopology;
 
-  final VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpecReservationAffinity?
+  final VertexAiEndpointWithModelGardenDeploymentReservationAffinity?
   reservationAffinity;
 
   Map<String, Object?> encode() => {
@@ -199,8 +196,8 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 /// Typed helper for the `deploy_config.dedicated_resources.machine_spec.reservation_affinity` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpecReservationAffinity {
-  const VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpecReservationAffinity({
+final class VertexAiEndpointWithModelGardenDeploymentReservationAffinity {
+  const VertexAiEndpointWithModelGardenDeploymentReservationAffinity({
     this.key,
     required this.reservationAffinityType,
     this.values,
@@ -233,7 +230,7 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfig {
 
   final TfArg<String>? endpointDisplayName;
 
-  final VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfig?
+  final VertexAiEndpointWithModelGardenDeploymentPrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
   Map<String, Object?> encode() => {
@@ -246,8 +243,8 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfig {
 /// Typed helper for the `endpoint_config.private_service_connect_config` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfig {
-  const VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfig({
+final class VertexAiEndpointWithModelGardenDeploymentPrivateServiceConnectConfig {
+  const VertexAiEndpointWithModelGardenDeploymentPrivateServiceConnectConfig({
     required this.enablePrivateServiceConnect,
     this.projectAllowlist,
     this.pscAutomationConfigs,
@@ -257,7 +254,7 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServic
 
   final TfArg<List<String>>? projectAllowlist;
 
-  final VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfigPscAutomationConfigs?
+  final VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs?
   pscAutomationConfigs;
 
   Map<String, Object?> encode() => {
@@ -270,8 +267,8 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServic
 /// Typed helper for the `endpoint_config.private_service_connect_config.psc_automation_configs` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfigPscAutomationConfigs {
-  const VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfigPscAutomationConfigs({
+final class VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs {
+  const VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs({
     required this.network,
     required this.projectId,
   });
@@ -306,8 +303,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfig {
 
   final TfArg<String>? modelDisplayName;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec?
-  containerSpec;
+  final VertexAiEndpointWithModelGardenDeploymentContainerSpec? containerSpec;
 
   Map<String, Object?> encode() => {
     'accept_eula': ?acceptEula?.toTfJson(),
@@ -321,8 +317,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfig {
 /// Typed helper for the `model_config.container_spec` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec({
+final class VertexAiEndpointWithModelGardenDeploymentContainerSpec {
+  const VertexAiEndpointWithModelGardenDeploymentContainerSpec({
     this.args,
     this.command,
     this.deploymentTimeout,
@@ -352,29 +348,17 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec {
 
   final TfArg<String>? sharedMemorySizeMb;
 
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecEnv
-  >?
-  env;
+  final List<VertexAiEndpointWithModelGardenDeploymentEnv>? env;
 
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrpcPorts
-  >?
-  grpcPorts;
+  final List<VertexAiEndpointWithModelGardenDeploymentGrpcPorts>? grpcPorts;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbe?
-  healthProbe;
+  final VertexAiEndpointWithModelGardenDeploymentHealthProbe? healthProbe;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbe?
-  livenessProbe;
+  final VertexAiEndpointWithModelGardenDeploymentLivenessProbe? livenessProbe;
 
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPorts
-  >?
-  ports;
+  final List<VertexAiEndpointWithModelGardenDeploymentPorts>? ports;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbe?
-  startupProbe;
+  final VertexAiEndpointWithModelGardenDeploymentStartupProbe? startupProbe;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -397,8 +381,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec {
 /// Typed helper for the `model_config.container_spec.env` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecEnv {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecEnv({
+final class VertexAiEndpointWithModelGardenDeploymentEnv {
+  const VertexAiEndpointWithModelGardenDeploymentEnv({
     required this.name,
     required this.value,
   });
@@ -416,8 +400,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecEnv
 /// Typed helper for the `model_config.container_spec.grpc_ports` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrpcPorts {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrpcPorts({
+final class VertexAiEndpointWithModelGardenDeploymentGrpcPorts {
+  const VertexAiEndpointWithModelGardenDeploymentGrpcPorts({
     this.containerPort,
   });
 
@@ -431,8 +415,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrp
 /// Typed helper for the `model_config.container_spec.health_probe` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbe {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbe({
+final class VertexAiEndpointWithModelGardenDeploymentHealthProbe {
+  const VertexAiEndpointWithModelGardenDeploymentHealthProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -454,17 +438,13 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
   final TfArg<num>? timeoutSeconds;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeExec?
-  exec;
+  final VertexAiEndpointWithModelGardenDeploymentExec? exec;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeGrpc?
-  grpc;
+  final VertexAiEndpointWithModelGardenDeploymentGrpc? grpc;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGet?
-  httpGet;
+  final VertexAiEndpointWithModelGardenDeploymentHttpGet? httpGet;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeTcpSocket?
-  tcpSocket;
+  final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -481,11 +461,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
 /// Typed helper for the `model_config.container_spec.health_probe.exec` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeExec {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeExec({
-    this.command,
-  });
+final class VertexAiEndpointWithModelGardenDeploymentExec {
+  const VertexAiEndpointWithModelGardenDeploymentExec({this.command});
 
   final TfArg<List<String>>? command;
 
@@ -494,9 +473,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
 /// Typed helper for the `model_config.container_spec.health_probe.grpc` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeGrpc {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeGrpc({
+final class VertexAiEndpointWithModelGardenDeploymentGrpc {
+  const VertexAiEndpointWithModelGardenDeploymentGrpc({
     this.port,
     this.service,
   });
@@ -513,9 +493,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
 /// Typed helper for the `model_config.container_spec.health_probe.http_get` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGet {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGet({
+final class VertexAiEndpointWithModelGardenDeploymentHttpGet {
+  const VertexAiEndpointWithModelGardenDeploymentHttpGet({
     this.host,
     this.path,
     this.port,
@@ -531,10 +512,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
   final TfArg<String>? scheme;
 
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
+  final List<VertexAiEndpointWithModelGardenDeploymentHttpHeaders>? httpHeaders;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -548,9 +526,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
 /// Typed helper for the `model_config.container_spec.health_probe.http_get.http_headers` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGetHttpHeaders {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGetHttpHeaders({
+final class VertexAiEndpointWithModelGardenDeploymentHttpHeaders {
+  const VertexAiEndpointWithModelGardenDeploymentHttpHeaders({
     this.name,
     this.value,
   });
@@ -567,9 +546,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
 /// Typed helper for the `model_config.container_spec.health_probe.tcp_socket` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeTcpSocket {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeTcpSocket({
+final class VertexAiEndpointWithModelGardenDeploymentTcpSocket {
+  const VertexAiEndpointWithModelGardenDeploymentTcpSocket({
     this.host,
     this.port,
   });
@@ -587,8 +567,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 /// Typed helper for the `model_config.container_spec.liveness_probe` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbe {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbe({
+final class VertexAiEndpointWithModelGardenDeploymentLivenessProbe {
+  const VertexAiEndpointWithModelGardenDeploymentLivenessProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -610,17 +590,13 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
 
   final TfArg<num>? timeoutSeconds;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeExec?
-  exec;
+  final VertexAiEndpointWithModelGardenDeploymentExec? exec;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeGrpc?
-  grpc;
+  final VertexAiEndpointWithModelGardenDeploymentGrpc? grpc;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGet?
-  httpGet;
+  final VertexAiEndpointWithModelGardenDeploymentHttpGet? httpGet;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeTcpSocket?
-  tcpSocket;
+  final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -635,118 +611,11 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   };
 }
 
-/// Typed helper for the `model_config.container_spec.liveness_probe.exec` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeExec {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeExec({
-    this.command,
-  });
-
-  final TfArg<List<String>>? command;
-
-  Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
-}
-
-/// Typed helper for the `model_config.container_spec.liveness_probe.grpc` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeGrpc {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.liveness_probe.http_get` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGet {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGet({
-    this.host,
-    this.path,
-    this.port,
-    this.scheme,
-    this.httpHeaders,
-  });
-
-  final TfArg<String>? host;
-
-  final TfArg<String>? path;
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? scheme;
-
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
-
-  Map<String, Object?> encode() => {
-    'host': ?host?.toTfJson(),
-    'path': ?path?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    'scheme': ?scheme?.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': [for (final e in httpHeaders!) e.encode()],
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.liveness_probe.http_get.http_headers` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGetHttpHeaders {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGetHttpHeaders({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.liveness_probe.tcp_socket` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeTcpSocket {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeTcpSocket({
-    this.host,
-    this.port,
-  });
-
-  final TfArg<String>? host;
-
-  final TfArg<num>? port;
-
-  Map<String, Object?> encode() => {
-    'host': ?host?.toTfJson(),
-    'port': ?port?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `model_config.container_spec.ports` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPorts {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPorts({
-    this.containerPort,
-  });
+final class VertexAiEndpointWithModelGardenDeploymentPorts {
+  const VertexAiEndpointWithModelGardenDeploymentPorts({this.containerPort});
 
   final TfArg<num>? containerPort;
 
@@ -758,8 +627,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPor
 /// Typed helper for the `model_config.container_spec.startup_probe` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbe {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbe({
+final class VertexAiEndpointWithModelGardenDeploymentStartupProbe {
+  const VertexAiEndpointWithModelGardenDeploymentStartupProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -781,17 +650,13 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
 
   final TfArg<num>? timeoutSeconds;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeExec?
-  exec;
+  final VertexAiEndpointWithModelGardenDeploymentExec? exec;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeGrpc?
-  grpc;
+  final VertexAiEndpointWithModelGardenDeploymentGrpc? grpc;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGet?
-  httpGet;
+  final VertexAiEndpointWithModelGardenDeploymentHttpGet? httpGet;
 
-  final VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeTcpSocket?
-  tcpSocket;
+  final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -803,111 +668,6 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
     'grpc': ?grpc?.encode(),
     'http_get': ?httpGet?.encode(),
     'tcp_socket': ?tcpSocket?.encode(),
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.startup_probe.exec` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeExec {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeExec({
-    this.command,
-  });
-
-  final TfArg<List<String>>? command;
-
-  Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
-}
-
-/// Typed helper for the `model_config.container_spec.startup_probe.grpc` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeGrpc {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.startup_probe.http_get` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGet {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGet({
-    this.host,
-    this.path,
-    this.port,
-    this.scheme,
-    this.httpHeaders,
-  });
-
-  final TfArg<String>? host;
-
-  final TfArg<String>? path;
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? scheme;
-
-  final List<
-    VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
-
-  Map<String, Object?> encode() => {
-    'host': ?host?.toTfJson(),
-    'path': ?path?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    'scheme': ?scheme?.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': [for (final e in httpHeaders!) e.encode()],
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.startup_probe.http_get.http_headers` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGetHttpHeaders {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGetHttpHeaders({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `model_config.container_spec.startup_probe.tcp_socket` block of
-/// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
-@immutable
-final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeTcpSocket {
-  const VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeTcpSocket({
-    this.host,
-    this.port,
-  });
-
-  final TfArg<String>? host;
-
-  final TfArg<num>? port;
-
-  Map<String, Object?> encode() => {
-    'host': ?host?.toTfJson(),
-    'port': ?port?.toTfJson(),
   };
 }
 

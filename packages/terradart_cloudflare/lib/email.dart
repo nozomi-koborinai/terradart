@@ -20,8 +20,8 @@ export 'src/email/cloudflare_email_routing_rule.dart'
         CloudflareEmailRoutingRule,
         EmailRoutingRuleActions,
         EmailRoutingRuleActionsType,
+        EmailRoutingRuleField,
         EmailRoutingRuleMatchers,
-        EmailRoutingRuleMatchersField,
         EmailRoutingRuleMatchersType,
         EmailRoutingRuleSource;
 export 'src/email/cloudflare_email_routing_settings.dart'

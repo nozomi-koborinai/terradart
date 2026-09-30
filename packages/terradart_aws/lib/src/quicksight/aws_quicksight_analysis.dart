@@ -21,22 +21,20 @@ final class QuicksightAnalysisDefinition {
     this.sheets,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaults? analysisDefaults;
+  final QuicksightAnalysisDefaults? analysisDefaults;
 
-  final List<QuicksightAnalysisDefinitionCalculatedFields>? calculatedFields;
+  final List<QuicksightAnalysisCalculatedFields>? calculatedFields;
 
-  final List<QuicksightAnalysisDefinitionColumnConfigurations>?
-  columnConfigurations;
+  final List<QuicksightAnalysisColumnConfigurations>? columnConfigurations;
 
-  final List<QuicksightAnalysisDefinitionDataSetIdentifiersDeclarations>
+  final List<QuicksightAnalysisDataSetIdentifiersDeclarations>
   dataSetIdentifiersDeclarations;
 
-  final List<QuicksightAnalysisDefinitionFilterGroups>? filterGroups;
+  final List<QuicksightAnalysisFilterGroups>? filterGroups;
 
-  final List<QuicksightAnalysisDefinitionParameterDeclarations>?
-  parameterDeclarations;
+  final List<QuicksightAnalysisParameterDeclarations>? parameterDeclarations;
 
-  final List<QuicksightAnalysisDefinitionSheets>? sheets;
+  final List<QuicksightAnalysisSheets>? sheets;
 
   Map<String, Object?> encode() => {
     'analysis_defaults': ?analysisDefaults?.encode(),
@@ -62,12 +60,12 @@ final class QuicksightAnalysisDefinition {
 /// Typed helper for the `definition.analysis_defaults` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaults {
-  const QuicksightAnalysisDefinitionAnalysisDefaults({
+final class QuicksightAnalysisDefaults {
+  const QuicksightAnalysisDefaults({
     required this.defaultNewSheetConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfiguration
+  final QuicksightAnalysisDefaultNewSheetConfiguration
   defaultNewSheetConfiguration;
 
   Map<String, Object?> encode() => {
@@ -78,8 +76,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaults {
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfiguration {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfiguration({
+final class QuicksightAnalysisDefaultNewSheetConfiguration {
+  const QuicksightAnalysisDefaultNewSheetConfiguration({
     this.sheetContentType,
     this.interactiveLayoutConfiguration,
     this.paginatedLayoutConfiguration,
@@ -87,10 +85,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 
   final TfArg<String>? sheetContentType;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfiguration?
+  final QuicksightAnalysisInteractiveLayoutConfiguration?
   interactiveLayoutConfiguration;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfiguration?
+  final QuicksightAnalysisPaginatedLayoutConfiguration?
   paginatedLayoutConfiguration;
 
   Map<String, Object?> encode() => {
@@ -104,17 +102,15 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.interactive_layout_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfiguration {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfiguration({
+final class QuicksightAnalysisInteractiveLayoutConfiguration {
+  const QuicksightAnalysisInteractiveLayoutConfiguration({
     this.freeForm,
     this.grid,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeForm?
-  freeForm;
+  final QuicksightAnalysisFreeForm? freeForm;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGrid?
-  grid;
+  final QuicksightAnalysisGrid? grid;
 
   Map<String, Object?> encode() => {
     'free_form': ?freeForm?.encode(),
@@ -125,13 +121,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.interactive_layout_configuration.free_form` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeForm {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeForm({
-    required this.canvasSizeOptions,
-  });
+final class QuicksightAnalysisFreeForm {
+  const QuicksightAnalysisFreeForm({required this.canvasSizeOptions});
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptions
-  canvasSizeOptions;
+  final QuicksightAnalysisFreeFormCanvasSizeOptions canvasSizeOptions;
 
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
@@ -142,12 +135,12 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptions({
+final class QuicksightAnalysisFreeFormCanvasSizeOptions {
+  const QuicksightAnalysisFreeFormCanvasSizeOptions({
     this.screenCanvasSizeOptions,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptionsScreenCanvasSizeOptions?
+  final QuicksightAnalysisFreeFormScreenCanvasSizeOptions?
   screenCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
@@ -159,8 +152,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptionsScreenCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptionsScreenCanvasSizeOptions({
+final class QuicksightAnalysisFreeFormScreenCanvasSizeOptions {
+  const QuicksightAnalysisFreeFormScreenCanvasSizeOptions({
     required this.optimizedViewPortWidth,
   });
 
@@ -174,13 +167,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.interactive_layout_configuration.grid` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGrid {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGrid({
-    required this.canvasSizeOptions,
-  });
+final class QuicksightAnalysisGrid {
+  const QuicksightAnalysisGrid({required this.canvasSizeOptions});
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptions
-  canvasSizeOptions;
+  final QuicksightAnalysisGridCanvasSizeOptions canvasSizeOptions;
 
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
@@ -191,13 +181,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptions({
-    this.screenCanvasSizeOptions,
-  });
+final class QuicksightAnalysisGridCanvasSizeOptions {
+  const QuicksightAnalysisGridCanvasSizeOptions({this.screenCanvasSizeOptions});
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptionsScreenCanvasSizeOptions?
-  screenCanvasSizeOptions;
+  final QuicksightAnalysisGridScreenCanvasSizeOptions? screenCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
@@ -208,8 +195,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptionsScreenCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptionsScreenCanvasSizeOptions({
+final class QuicksightAnalysisGridScreenCanvasSizeOptions {
+  const QuicksightAnalysisGridScreenCanvasSizeOptions({
     this.optimizedViewPortWidth,
     required this.resizeOption,
   });
@@ -227,13 +214,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.paginated_layout_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfiguration {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfiguration({
-    this.sectionBased,
-  });
+final class QuicksightAnalysisPaginatedLayoutConfiguration {
+  const QuicksightAnalysisPaginatedLayoutConfiguration({this.sectionBased});
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBased?
-  sectionBased;
+  final QuicksightAnalysisSectionBased? sectionBased;
 
   Map<String, Object?> encode() => {'section_based': ?sectionBased?.encode()};
 }
@@ -241,13 +225,10 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.paginated_layout_configuration.section_based` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBased {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBased({
-    required this.canvasSizeOptions,
-  });
+final class QuicksightAnalysisSectionBased {
+  const QuicksightAnalysisSectionBased({required this.canvasSizeOptions});
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptions
-  canvasSizeOptions;
+  final QuicksightAnalysisSectionBasedCanvasSizeOptions canvasSizeOptions;
 
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
@@ -258,13 +239,12 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptions({
+final class QuicksightAnalysisSectionBasedCanvasSizeOptions {
+  const QuicksightAnalysisSectionBasedCanvasSizeOptions({
     this.paperCanvasSizeOptions,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptions?
-  paperCanvasSizeOptions;
+  final QuicksightAnalysisPaperCanvasSizeOptions? paperCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
     'paper_canvas_size_options': ?paperCanvasSizeOptions?.encode(),
@@ -275,8 +255,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptions {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptions({
+final class QuicksightAnalysisPaperCanvasSizeOptions {
+  const QuicksightAnalysisPaperCanvasSizeOptions({
     this.paperOrientation,
     this.paperSize,
     this.paperMargin,
@@ -286,8 +266,7 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 
   final TfArg<String>? paperSize;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptionsPaperMargin?
-  paperMargin;
+  final QuicksightAnalysisPaperMargin? paperMargin;
 
   Map<String, Object?> encode() => {
     'paper_orientation': ?paperOrientation?.toTfJson(),
@@ -300,8 +279,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptionsPaperMargin {
-  const QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptionsPaperMargin({
+final class QuicksightAnalysisPaperMargin {
+  const QuicksightAnalysisPaperMargin({
     this.bottom,
     this.left,
     this.right,
@@ -327,8 +306,8 @@ final class QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigura
 /// Typed helper for the `definition.calculated_fields` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionCalculatedFields {
-  const QuicksightAnalysisDefinitionCalculatedFields({
+final class QuicksightAnalysisCalculatedFields {
+  const QuicksightAnalysisCalculatedFields({
     required this.dataSetIdentifier,
     required this.expression,
     required this.name,
@@ -350,8 +329,8 @@ final class QuicksightAnalysisDefinitionCalculatedFields {
 /// Typed helper for the `definition.column_configurations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurations {
-  const QuicksightAnalysisDefinitionColumnConfigurations({
+final class QuicksightAnalysisColumnConfigurations {
+  const QuicksightAnalysisColumnConfigurations({
     this.role,
     required this.column,
     this.formatConfiguration,
@@ -359,10 +338,9 @@ final class QuicksightAnalysisDefinitionColumnConfigurations {
 
   final TfArg<String>? role;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
@@ -375,8 +353,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurations {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsColumn {
-  const QuicksightAnalysisDefinitionColumnConfigurationsColumn({
+final class QuicksightAnalysisColumn {
+  const QuicksightAnalysisColumn({
     required this.columnName,
     required this.dataSetIdentifier,
   });
@@ -395,21 +373,19 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsColumn {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfiguration({
+final class QuicksightAnalysisFormatConfiguration {
+  const QuicksightAnalysisFormatConfiguration({
     this.dateTimeFormatConfiguration,
     this.numberFormatConfiguration,
     this.stringFormatConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfiguration?
+  final QuicksightAnalysisDateTimeFormatConfiguration?
   dateTimeFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationNumberFormatConfiguration?
-  numberFormatConfiguration;
+  final QuicksightAnalysisNumberFormatConfiguration? numberFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationStringFormatConfiguration?
-  stringFormatConfiguration;
+  final QuicksightAnalysisStringFormatConfiguration? stringFormatConfiguration;
 
   Map<String, Object?> encode() => {
     'date_time_format_configuration': ?dateTimeFormatConfiguration?.encode(),
@@ -422,8 +398,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfiguration 
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfiguration({
+final class QuicksightAnalysisDateTimeFormatConfiguration {
+  const QuicksightAnalysisDateTimeFormatConfiguration({
     this.dateTimeFormat,
     this.nullValueFormatConfiguration,
     this.numericFormatConfiguration,
@@ -431,10 +407,10 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 
   final TfArg<String>? dateTimeFormat;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration?
+  final QuicksightAnalysisNullValueFormatConfiguration?
   nullValueFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration?
+  final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
@@ -448,8 +424,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration({
+final class QuicksightAnalysisNullValueFormatConfiguration {
+  const QuicksightAnalysisNullValueFormatConfiguration({
     required this.nullString,
   });
 
@@ -462,20 +438,20 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration({
+final class QuicksightAnalysisNumericFormatConfiguration {
+  const QuicksightAnalysisNumericFormatConfiguration({
     this.currencyDisplayFormatConfiguration,
     this.numberDisplayFormatConfiguration,
     this.percentageDisplayFormatConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfiguration?
+  final QuicksightAnalysisCurrencyDisplayFormatConfiguration?
   currencyDisplayFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationNumberDisplayFormatConfiguration?
+  final QuicksightAnalysisNumberDisplayFormatConfiguration?
   numberDisplayFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationPercentageDisplayFormatConfiguration?
+  final QuicksightAnalysisPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
   Map<String, Object?> encode() => {
@@ -492,8 +468,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfiguration({
+final class QuicksightAnalysisCurrencyDisplayFormatConfiguration {
+  const QuicksightAnalysisCurrencyDisplayFormatConfiguration({
     this.numberScale,
     this.prefix,
     this.suffix,
@@ -512,17 +488,16 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 
   final TfArg<String>? symbol;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationDecimalPlacesConfiguration?
+  final QuicksightAnalysisDecimalPlacesConfiguration?
   decimalPlacesConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationNegativeValueConfiguration?
+  final QuicksightAnalysisNegativeValueConfiguration?
   negativeValueConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration?
+  final QuicksightAnalysisNullValueFormatConfiguration?
   nullValueFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfiguration?
-  separatorConfiguration;
+  final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
@@ -540,8 +515,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationDecimalPlacesConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationDecimalPlacesConfiguration({
+final class QuicksightAnalysisDecimalPlacesConfiguration {
+  const QuicksightAnalysisDecimalPlacesConfiguration({
     required this.decimalPlaces,
   });
 
@@ -554,8 +529,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationNegativeValueConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationNegativeValueConfiguration({
+final class QuicksightAnalysisNegativeValueConfiguration {
+  const QuicksightAnalysisNegativeValueConfiguration({
     required this.displayMode,
   });
 
@@ -568,16 +543,15 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfiguration({
+final class QuicksightAnalysisSeparatorConfiguration {
+  const QuicksightAnalysisSeparatorConfiguration({
     this.decimalSeparator,
     this.thousandsSeparator,
   });
 
   final TfArg<String>? decimalSeparator;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfigurationThousandsSeparator?
-  thousandsSeparator;
+  final QuicksightAnalysisThousandsSeparator? thousandsSeparator;
 
   Map<String, Object?> encode() => {
     'decimal_separator': ?decimalSeparator?.toTfJson(),
@@ -589,11 +563,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfigurationThousandsSeparator {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfigurationThousandsSeparator({
-    this.symbol,
-    this.visibility,
-  });
+final class QuicksightAnalysisThousandsSeparator {
+  const QuicksightAnalysisThousandsSeparator({this.symbol, this.visibility});
 
   final TfArg<String>? symbol;
 
@@ -609,8 +580,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationNumberDisplayFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationNumberDisplayFormatConfiguration({
+final class QuicksightAnalysisNumberDisplayFormatConfiguration {
+  const QuicksightAnalysisNumberDisplayFormatConfiguration({
     this.numberScale,
     this.prefix,
     this.suffix,
@@ -626,17 +597,16 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 
   final TfArg<String>? suffix;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationDecimalPlacesConfiguration?
+  final QuicksightAnalysisDecimalPlacesConfiguration?
   decimalPlacesConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationNegativeValueConfiguration?
+  final QuicksightAnalysisNegativeValueConfiguration?
   negativeValueConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration?
+  final QuicksightAnalysisNullValueFormatConfiguration?
   nullValueFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfiguration?
-  separatorConfiguration;
+  final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
@@ -653,8 +623,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationPercentageDisplayFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationPercentageDisplayFormatConfiguration({
+final class QuicksightAnalysisPercentageDisplayFormatConfiguration {
+  const QuicksightAnalysisPercentageDisplayFormatConfiguration({
     this.prefix,
     this.suffix,
     this.decimalPlacesConfiguration,
@@ -667,17 +637,16 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 
   final TfArg<String>? suffix;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationDecimalPlacesConfiguration?
+  final QuicksightAnalysisDecimalPlacesConfiguration?
   decimalPlacesConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationNegativeValueConfiguration?
+  final QuicksightAnalysisNegativeValueConfiguration?
   negativeValueConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration?
+  final QuicksightAnalysisNullValueFormatConfiguration?
   nullValueFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfiguration?
-  separatorConfiguration;
+  final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
@@ -693,12 +662,12 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationD
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationNumberFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationNumberFormatConfiguration({
+final class QuicksightAnalysisNumberFormatConfiguration {
+  const QuicksightAnalysisNumberFormatConfiguration({
     this.numericFormatConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration?
+  final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
@@ -710,16 +679,16 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationN
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationStringFormatConfiguration {
-  const QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationStringFormatConfiguration({
+final class QuicksightAnalysisStringFormatConfiguration {
+  const QuicksightAnalysisStringFormatConfiguration({
     this.nullValueFormatConfiguration,
     this.numericFormatConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNullValueFormatConfiguration?
+  final QuicksightAnalysisNullValueFormatConfiguration?
   nullValueFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration?
+  final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
@@ -731,8 +700,8 @@ final class QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationS
 /// Typed helper for the `definition.data_set_identifiers_declarations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionDataSetIdentifiersDeclarations {
-  const QuicksightAnalysisDefinitionDataSetIdentifiersDeclarations({
+final class QuicksightAnalysisDataSetIdentifiersDeclarations {
+  const QuicksightAnalysisDataSetIdentifiersDeclarations({
     this.dataSetArn,
     this.identifier,
   });
@@ -750,8 +719,8 @@ final class QuicksightAnalysisDefinitionDataSetIdentifiersDeclarations {
 /// Typed helper for the `definition.filter_groups` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroups {
-  const QuicksightAnalysisDefinitionFilterGroups({
+final class QuicksightAnalysisFilterGroups {
+  const QuicksightAnalysisFilterGroups({
     required this.crossDataset,
     required this.filterGroupId,
     this.status,
@@ -765,10 +734,9 @@ final class QuicksightAnalysisDefinitionFilterGroups {
 
   final TfArg<String>? status;
 
-  final List<QuicksightAnalysisDefinitionFilterGroupsFilters> filters;
+  final List<QuicksightAnalysisFilters> filters;
 
-  final QuicksightAnalysisDefinitionFilterGroupsScopeConfiguration
-  scopeConfiguration;
+  final QuicksightAnalysisScopeConfiguration scopeConfiguration;
 
   Map<String, Object?> encode() => {
     'cross_dataset': crossDataset.toTfJson(),
@@ -782,8 +750,8 @@ final class QuicksightAnalysisDefinitionFilterGroups {
 /// Typed helper for the `definition.filter_groups.filters` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFilters {
-  const QuicksightAnalysisDefinitionFilterGroupsFilters({
+final class QuicksightAnalysisFilters {
+  const QuicksightAnalysisFilters({
     this.categoryFilter,
     this.numericEqualityFilter,
     this.numericRangeFilter,
@@ -793,26 +761,19 @@ final class QuicksightAnalysisDefinitionFilterGroupsFilters {
     this.topBottomFilter,
   });
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilter?
-  categoryFilter;
+  final QuicksightAnalysisCategoryFilter? categoryFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter?
-  numericEqualityFilter;
+  final QuicksightAnalysisNumericEqualityFilter? numericEqualityFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilter?
-  numericRangeFilter;
+  final QuicksightAnalysisNumericRangeFilter? numericRangeFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilter?
-  relativeDatesFilter;
+  final QuicksightAnalysisRelativeDatesFilter? relativeDatesFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersTimeEqualityFilter?
-  timeEqualityFilter;
+  final QuicksightAnalysisTimeEqualityFilter? timeEqualityFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilter?
-  timeRangeFilter;
+  final QuicksightAnalysisTimeRangeFilter? timeRangeFilter;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilter?
-  topBottomFilter;
+  final QuicksightAnalysisTopBottomFilter? topBottomFilter;
 
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
@@ -828,8 +789,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFilters {
 /// Typed helper for the `definition.filter_groups.filters.category_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilter({
+final class QuicksightAnalysisCategoryFilter {
+  const QuicksightAnalysisCategoryFilter({
     required this.filterId,
     required this.column,
     required this.configuration,
@@ -837,10 +798,9 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilter {
 
   final TfArg<String> filterId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfiguration
-  configuration;
+  final QuicksightAnalysisCategoryFilterConfiguration configuration;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -852,21 +812,19 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilter {
 /// Typed helper for the `definition.filter_groups.filters.category_filter.configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfiguration({
+final class QuicksightAnalysisCategoryFilterConfiguration {
+  const QuicksightAnalysisCategoryFilterConfiguration({
     this.customFilterConfiguration,
     this.customFilterListConfiguration,
     this.filterListConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterConfiguration?
-  customFilterConfiguration;
+  final QuicksightAnalysisCustomFilterConfiguration? customFilterConfiguration;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterListConfiguration?
+  final QuicksightAnalysisCustomFilterListConfiguration?
   customFilterListConfiguration;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationFilterListConfiguration?
-  filterListConfiguration;
+  final QuicksightAnalysisFilterListConfiguration? filterListConfiguration;
 
   Map<String, Object?> encode() => {
     'custom_filter_configuration': ?customFilterConfiguration?.encode(),
@@ -879,8 +837,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
 /// Typed helper for the `definition.filter_groups.filters.category_filter.configuration.custom_filter_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterConfiguration({
+final class QuicksightAnalysisCustomFilterConfiguration {
+  const QuicksightAnalysisCustomFilterConfiguration({
     this.categoryValue,
     required this.matchOperator,
     required this.nullOption,
@@ -910,8 +868,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
 /// Typed helper for the `definition.filter_groups.filters.category_filter.configuration.custom_filter_list_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterListConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationCustomFilterListConfiguration({
+final class QuicksightAnalysisCustomFilterListConfiguration {
+  const QuicksightAnalysisCustomFilterListConfiguration({
     this.categoryValues,
     required this.matchOperator,
     required this.nullOption,
@@ -937,8 +895,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
 /// Typed helper for the `definition.filter_groups.filters.category_filter.configuration.filter_list_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationFilterListConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigurationFilterListConfiguration({
+final class QuicksightAnalysisFilterListConfiguration {
+  const QuicksightAnalysisFilterListConfiguration({
     this.categoryValues,
     required this.matchOperator,
     this.selectAllOptions,
@@ -960,8 +918,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersCategoryFilterConfigu
 /// Typed helper for the `definition.filter_groups.filters.numeric_equality_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter({
+final class QuicksightAnalysisNumericEqualityFilter {
+  const QuicksightAnalysisNumericEqualityFilter({
     required this.filterId,
     required this.matchOperator,
     required this.nullOption,
@@ -984,10 +942,9 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 
   final TfArg<num>? value;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction?
-  aggregationFunction;
+  final QuicksightAnalysisAggregationFunction? aggregationFunction;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -1005,8 +962,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction({
+final class QuicksightAnalysisAggregationFunction {
+  const QuicksightAnalysisAggregationFunction({
     this.categoricalAggregationFunction,
     this.dateAggregationFunction,
     this.numericalAggregationFunction,
@@ -1016,7 +973,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 
   final TfArg<String>? dateAggregationFunction;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunction?
+  final QuicksightAnalysisNumericalAggregationFunction?
   numericalAggregationFunction;
 
   Map<String, Object?> encode() => {
@@ -1031,16 +988,15 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunction {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunction({
+final class QuicksightAnalysisNumericalAggregationFunction {
+  const QuicksightAnalysisNumericalAggregationFunction({
     this.simpleNumericalAggregation,
     this.percentileAggregation,
   });
 
   final TfArg<String>? simpleNumericalAggregation;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunctionPercentileAggregation?
-  percentileAggregation;
+  final QuicksightAnalysisPercentileAggregation? percentileAggregation;
 
   Map<String, Object?> encode() => {
     'simple_numerical_aggregation': ?simpleNumericalAggregation?.toTfJson(),
@@ -1052,10 +1008,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunctionPercentileAggregation {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunctionPercentileAggregation({
-    this.percentileValue,
-  });
+final class QuicksightAnalysisPercentileAggregation {
+  const QuicksightAnalysisPercentileAggregation({this.percentileValue});
 
   final TfArg<num>? percentileValue;
 
@@ -1067,8 +1021,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilter
 /// Typed helper for the `definition.filter_groups.filters.numeric_range_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilter({
+final class QuicksightAnalysisNumericRangeFilter {
+  const QuicksightAnalysisNumericRangeFilter({
     required this.filterId,
     this.includeMaximum,
     this.includeMinimum,
@@ -1090,16 +1044,13 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilter {
 
   final TfArg<String>? selectAllOptions;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction?
-  aggregationFunction;
+  final QuicksightAnalysisAggregationFunction? aggregationFunction;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilterRangeMaximum?
-  rangeMaximum;
+  final QuicksightAnalysisRangeMaximum? rangeMaximum;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilterRangeMaximum?
-  rangeMinimum;
+  final QuicksightAnalysisRangeMaximum? rangeMinimum;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -1118,11 +1069,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilter {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilterRangeMaximum {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilterRangeMaximum({
-    this.parameter,
-    this.staticValue,
-  });
+final class QuicksightAnalysisRangeMaximum {
+  const QuicksightAnalysisRangeMaximum({this.parameter, this.staticValue});
 
   final TfArg<String>? parameter;
 
@@ -1137,8 +1085,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersNumericRangeFilterRan
 /// Typed helper for the `definition.filter_groups.filters.relative_dates_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilter({
+final class QuicksightAnalysisRelativeDatesFilter {
+  const QuicksightAnalysisRelativeDatesFilter({
     required this.filterId,
     required this.minimumGranularity,
     required this.nullOption,
@@ -1165,12 +1113,11 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilter {
 
   final TfArg<String> timeGranularity;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterAnchorDateConfiguration
-  anchorDateConfiguration;
+  final QuicksightAnalysisAnchorDateConfiguration anchorDateConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterExcludePeriodConfiguration?
+  final QuicksightAnalysisExcludePeriodConfiguration?
   excludePeriodConfiguration;
 
   Map<String, Object?> encode() => {
@@ -1190,8 +1137,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilter {
 /// Typed helper for the `definition.filter_groups.filters.relative_dates_filter.anchor_date_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterAnchorDateConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterAnchorDateConfiguration({
+final class QuicksightAnalysisAnchorDateConfiguration {
+  const QuicksightAnalysisAnchorDateConfiguration({
     this.anchorOption,
     this.parameterName,
   });
@@ -1210,8 +1157,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterAn
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterExcludePeriodConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterExcludePeriodConfiguration({
+final class QuicksightAnalysisExcludePeriodConfiguration {
+  const QuicksightAnalysisExcludePeriodConfiguration({
     required this.amount,
     required this.granularity,
     this.status,
@@ -1233,8 +1180,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterEx
 /// Typed helper for the `definition.filter_groups.filters.time_equality_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeEqualityFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersTimeEqualityFilter({
+final class QuicksightAnalysisTimeEqualityFilter {
+  const QuicksightAnalysisTimeEqualityFilter({
     required this.filterId,
     this.parameterName,
     required this.timeGranularity,
@@ -1250,7 +1197,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeEqualityFilter {
 
   final TfArg<String>? value;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -1264,8 +1211,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeEqualityFilter {
 /// Typed helper for the `definition.filter_groups.filters.time_range_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilter({
+final class QuicksightAnalysisTimeRangeFilter {
+  const QuicksightAnalysisTimeRangeFilter({
     required this.filterId,
     this.includeMaximum,
     this.includeMinimum,
@@ -1287,16 +1234,14 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilter {
 
   final TfArg<String> timeGranularity;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersRelativeDatesFilterExcludePeriodConfiguration?
+  final QuicksightAnalysisExcludePeriodConfiguration?
   excludePeriodConfiguration;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeMaximumValue?
-  rangeMaximumValue;
+  final QuicksightAnalysisRangeMaximumValue? rangeMaximumValue;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeMaximumValue?
-  rangeMinimumValue;
+  final QuicksightAnalysisRangeMaximumValue? rangeMinimumValue;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -1315,8 +1260,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilter {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeMaximumValue {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeMaximumValue({
+final class QuicksightAnalysisRangeMaximumValue {
+  const QuicksightAnalysisRangeMaximumValue({
     this.parameter,
     this.staticValue,
     this.rollingDate,
@@ -1326,8 +1271,7 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeM
 
   final TfArg<String>? staticValue;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesRollingDate?
-  rollingDate;
+  final QuicksightAnalysisRollingDate? rollingDate;
 
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
@@ -1340,8 +1284,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTimeRangeFilterRangeM
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesRollingDate {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesRollingDate({
+final class QuicksightAnalysisRollingDate {
+  const QuicksightAnalysisRollingDate({
     this.dataSetIdentifier,
     required this.expression,
   });
@@ -1359,8 +1303,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 /// Typed helper for the `definition.filter_groups.filters.top_bottom_filter` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilter {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilter({
+final class QuicksightAnalysisTopBottomFilter {
+  const QuicksightAnalysisTopBottomFilter({
     required this.filterId,
     this.limit,
     this.parameterName,
@@ -1377,12 +1321,10 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilter {
 
   final TfArg<String> timeGranularity;
 
-  final List<
-    QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilterAggregationSortConfiguration
-  >
+  final List<QuicksightAnalysisAggregationSortConfiguration>
   aggregationSortConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
@@ -1399,8 +1341,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilter {
 /// Typed helper for the `definition.filter_groups.filters.top_bottom_filter.aggregation_sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilterAggregationSortConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilterAggregationSortConfiguration({
+final class QuicksightAnalysisAggregationSortConfiguration {
+  const QuicksightAnalysisAggregationSortConfiguration({
     required this.sortDirection,
     required this.aggregationFunction,
     required this.column,
@@ -1408,10 +1350,9 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilterAggreg
 
   final TfArg<String> sortDirection;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction
-  aggregationFunction;
+  final QuicksightAnalysisAggregationFunction aggregationFunction;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'sort_direction': sortDirection.toTfJson(),
@@ -1423,13 +1364,10 @@ final class QuicksightAnalysisDefinitionFilterGroupsFiltersTopBottomFilterAggreg
 /// Typed helper for the `definition.filter_groups.scope_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsScopeConfiguration {
-  const QuicksightAnalysisDefinitionFilterGroupsScopeConfiguration({
-    this.selectedSheets,
-  });
+final class QuicksightAnalysisScopeConfiguration {
+  const QuicksightAnalysisScopeConfiguration({this.selectedSheets});
 
-  final QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheets?
-  selectedSheets;
+  final QuicksightAnalysisSelectedSheets? selectedSheets;
 
   Map<String, Object?> encode() => {
     'selected_sheets': ?selectedSheets?.encode(),
@@ -1439,14 +1377,12 @@ final class QuicksightAnalysisDefinitionFilterGroupsScopeConfiguration {
 /// Typed helper for the `definition.filter_groups.scope_configuration.selected_sheets` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheets {
-  const QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheets({
+final class QuicksightAnalysisSelectedSheets {
+  const QuicksightAnalysisSelectedSheets({
     this.sheetVisualScopingConfigurations,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheetsSheetVisualScopingConfigurations
-  >?
+  final List<QuicksightAnalysisSheetVisualScopingConfigurations>?
   sheetVisualScopingConfigurations;
 
   Map<String, Object?> encode() => {
@@ -1460,8 +1396,8 @@ final class QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSh
 /// Typed helper for the `definition.filter_groups.scope_configuration.selected_sheets.sheet_visual_scoping_configurations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheetsSheetVisualScopingConfigurations {
-  const QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSheetsSheetVisualScopingConfigurations({
+final class QuicksightAnalysisSheetVisualScopingConfigurations {
+  const QuicksightAnalysisSheetVisualScopingConfigurations({
     required this.scope,
     required this.sheetId,
     this.visualIds,
@@ -1483,24 +1419,24 @@ final class QuicksightAnalysisDefinitionFilterGroupsScopeConfigurationSelectedSh
 /// Typed helper for the `definition.parameter_declarations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarations {
-  const QuicksightAnalysisDefinitionParameterDeclarations({
+final class QuicksightAnalysisParameterDeclarations {
+  const QuicksightAnalysisParameterDeclarations({
     this.dateTimeParameterDeclaration,
     this.decimalParameterDeclaration,
     this.integerParameterDeclaration,
     this.stringParameterDeclaration,
   });
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclaration?
+  final QuicksightAnalysisDateTimeParameterDeclaration?
   dateTimeParameterDeclaration;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclaration?
+  final QuicksightAnalysisDecimalParameterDeclaration?
   decimalParameterDeclaration;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclaration?
+  final QuicksightAnalysisDecimalParameterDeclaration?
   integerParameterDeclaration;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclaration?
+  final QuicksightAnalysisStringParameterDeclaration?
   stringParameterDeclaration;
 
   Map<String, Object?> encode() => {
@@ -1514,8 +1450,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarations {
 /// Typed helper for the `definition.parameter_declarations.date_time_parameter_declaration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclaration {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclaration({
+final class QuicksightAnalysisDateTimeParameterDeclaration {
+  const QuicksightAnalysisDateTimeParameterDeclaration({
     required this.name,
     this.timeGranularity,
     this.defaultValues,
@@ -1526,10 +1462,10 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 
   final TfArg<String>? timeGranularity;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValues?
+  final QuicksightAnalysisDateTimeParameterDeclarationDefaultValues?
   defaultValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset?
+  final QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
   Map<String, Object?> encode() => {
@@ -1543,8 +1479,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 /// Typed helper for the `definition.parameter_declarations.date_time_parameter_declaration.default_values` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValues {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValues({
+final class QuicksightAnalysisDateTimeParameterDeclarationDefaultValues {
+  const QuicksightAnalysisDateTimeParameterDeclarationDefaultValues({
     this.staticValues,
     this.dynamicValue,
     this.rollingDate,
@@ -1552,11 +1488,9 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 
   final TfArg<List<String>>? staticValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
-  dynamicValue;
+  final QuicksightAnalysisDynamicValue? dynamicValue;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesRollingDate?
-  rollingDate;
+  final QuicksightAnalysisRollingDate? rollingDate;
 
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
@@ -1569,19 +1503,18 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue({
+final class QuicksightAnalysisDynamicValue {
+  const QuicksightAnalysisDynamicValue({
     required this.defaultValueColumn,
     this.groupNameColumn,
     this.userNameColumn,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn
-  defaultValueColumn;
+  final QuicksightAnalysisColumn defaultValueColumn;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn? groupNameColumn;
+  final QuicksightAnalysisColumn? groupNameColumn;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn? userNameColumn;
+  final QuicksightAnalysisColumn? userNameColumn;
 
   Map<String, Object?> encode() => {
     'default_value_column': defaultValueColumn.encode(),
@@ -1594,8 +1527,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset({
+final class QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset {
+  const QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset({
     this.customValue,
     this.valueWhenUnsetOption,
   });
@@ -1614,8 +1547,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDe
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclaration {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclaration({
+final class QuicksightAnalysisDecimalParameterDeclaration {
+  const QuicksightAnalysisDecimalParameterDeclaration({
     required this.name,
     required this.parameterValueType,
     this.defaultValues,
@@ -1626,10 +1559,10 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDec
 
   final TfArg<String> parameterValueType;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationDefaultValues?
+  final QuicksightAnalysisDecimalParameterDeclarationDefaultValues?
   defaultValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationValuesWhenUnset?
+  final QuicksightAnalysisDecimalParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
   Map<String, Object?> encode() => {
@@ -1644,16 +1577,15 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDec
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationDefaultValues {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationDefaultValues({
+final class QuicksightAnalysisDecimalParameterDeclarationDefaultValues {
+  const QuicksightAnalysisDecimalParameterDeclarationDefaultValues({
     this.staticValues,
     this.dynamicValue,
   });
 
   final TfArg<List<num>>? staticValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
-  dynamicValue;
+  final QuicksightAnalysisDynamicValue? dynamicValue;
 
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
@@ -1665,8 +1597,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDec
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationValuesWhenUnset {
-  const QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDeclarationValuesWhenUnset({
+final class QuicksightAnalysisDecimalParameterDeclarationValuesWhenUnset {
+  const QuicksightAnalysisDecimalParameterDeclarationValuesWhenUnset({
     this.customValue,
     this.valueWhenUnsetOption,
   });
@@ -1684,8 +1616,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsDecimalParameterDec
 /// Typed helper for the `definition.parameter_declarations.string_parameter_declaration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclaration {
-  const QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclaration({
+final class QuicksightAnalysisStringParameterDeclaration {
+  const QuicksightAnalysisStringParameterDeclaration({
     required this.name,
     required this.parameterValueType,
     this.defaultValues,
@@ -1696,10 +1628,10 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDecl
 
   final TfArg<String> parameterValueType;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues?
+  final QuicksightAnalysisStringParameterDeclarationDefaultValues?
   defaultValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationValuesWhenUnset?
+  final QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
   Map<String, Object?> encode() => {
@@ -1713,16 +1645,15 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDecl
 /// Typed helper for the `definition.parameter_declarations.string_parameter_declaration.default_values` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues {
-  const QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDeclarationDefaultValues({
+final class QuicksightAnalysisStringParameterDeclarationDefaultValues {
+  const QuicksightAnalysisStringParameterDeclarationDefaultValues({
     this.staticValues,
     this.dynamicValue,
   });
 
   final TfArg<List<String>>? staticValues;
 
-  final QuicksightAnalysisDefinitionParameterDeclarationsDateTimeParameterDeclarationDefaultValuesDynamicValue?
-  dynamicValue;
+  final QuicksightAnalysisDynamicValue? dynamicValue;
 
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
@@ -1733,8 +1664,8 @@ final class QuicksightAnalysisDefinitionParameterDeclarationsStringParameterDecl
 /// Typed helper for the `definition.sheets` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheets {
-  const QuicksightAnalysisDefinitionSheets({
+final class QuicksightAnalysisSheets {
+  const QuicksightAnalysisSheets({
     this.contentType,
     this.description,
     this.name,
@@ -1758,19 +1689,17 @@ final class QuicksightAnalysisDefinitionSheets {
 
   final TfArg<String>? title;
 
-  final List<QuicksightAnalysisDefinitionSheetsFilterControls>? filterControls;
+  final List<QuicksightAnalysisFilterControls>? filterControls;
 
-  final QuicksightAnalysisDefinitionSheetsLayouts? layouts;
+  final QuicksightAnalysisLayouts? layouts;
 
-  final List<QuicksightAnalysisDefinitionSheetsParameterControls>?
-  parameterControls;
+  final List<QuicksightAnalysisParameterControls>? parameterControls;
 
-  final QuicksightAnalysisDefinitionSheetsSheetControlLayouts?
-  sheetControlLayouts;
+  final QuicksightAnalysisSheetControlLayouts? sheetControlLayouts;
 
-  final List<QuicksightAnalysisDefinitionSheetsTextBoxes>? textBoxes;
+  final List<QuicksightAnalysisTextBoxes>? textBoxes;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisuals>? visuals;
+  final List<QuicksightAnalysisVisuals>? visuals;
 
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
@@ -1793,8 +1722,8 @@ final class QuicksightAnalysisDefinitionSheets {
 /// Typed helper for the `definition.sheets.filter_controls` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControls {
-  const QuicksightAnalysisDefinitionSheetsFilterControls({
+final class QuicksightAnalysisFilterControls {
+  const QuicksightAnalysisFilterControls({
     this.dateTimePicker,
     this.dropdown,
     this.list,
@@ -1804,21 +1733,19 @@ final class QuicksightAnalysisDefinitionSheetsFilterControls {
     this.textField,
   });
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePicker?
-  dateTimePicker;
+  final QuicksightAnalysisFilterControlsDateTimePicker? dateTimePicker;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdown? dropdown;
+  final QuicksightAnalysisFilterControlsDropdown? dropdown;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsList? list;
+  final QuicksightAnalysisFilterControlsList? list;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsRelativeDateTime?
-  relativeDateTime;
+  final QuicksightAnalysisRelativeDateTime? relativeDateTime;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsSlider? slider;
+  final QuicksightAnalysisFilterControlsSlider? slider;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextArea? textArea;
+  final QuicksightAnalysisFilterControlsTextArea? textArea;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextField? textField;
+  final QuicksightAnalysisFilterControlsTextField? textField;
 
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
@@ -1834,8 +1761,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControls {
 /// Typed helper for the `definition.sheets.filter_controls.date_time_picker` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePicker {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePicker({
+final class QuicksightAnalysisFilterControlsDateTimePicker {
+  const QuicksightAnalysisFilterControlsDateTimePicker({
     required this.filterControlId,
     required this.sourceFilterId,
     required this.title,
@@ -1851,8 +1778,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePicker {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -1867,16 +1793,15 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePicker {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptions({
+final class QuicksightAnalysisDateTimePickerDisplayOptions {
+  const QuicksightAnalysisDateTimePickerDisplayOptions({
     this.dateTimeFormat,
     this.titleOptions,
   });
 
   final TfArg<String>? dateTimeFormat;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  titleOptions;
+  final QuicksightAnalysisTitleOptions? titleOptions;
 
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
@@ -1888,8 +1813,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions({
+final class QuicksightAnalysisTitleOptions {
+  const QuicksightAnalysisTitleOptions({
     this.customLabel,
     this.visibility,
     this.fontConfiguration,
@@ -1899,8 +1824,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -1913,8 +1837,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration({
+final class QuicksightAnalysisFontConfiguration {
+  const QuicksightAnalysisFontConfiguration({
     this.fontColor,
     this.fontDecoration,
     this.fontStyle,
@@ -1928,11 +1852,9 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 
   final TfArg<String>? fontStyle;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontSize?
-  fontSize;
+  final QuicksightAnalysisFontSize? fontSize;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontWeight?
-  fontWeight;
+  final QuicksightAnalysisFontWeight? fontWeight;
 
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
@@ -1947,10 +1869,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontSize {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontSize({
-    this.relative,
-  });
+final class QuicksightAnalysisFontSize {
+  const QuicksightAnalysisFontSize({this.relative});
 
   final TfArg<String>? relative;
 
@@ -1961,10 +1881,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontWeight {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfigurationFontWeight({
-    this.name,
-  });
+final class QuicksightAnalysisFontWeight {
+  const QuicksightAnalysisFontWeight({this.name});
 
   final TfArg<String>? name;
 
@@ -1974,8 +1892,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDispla
 /// Typed helper for the `definition.sheets.filter_controls.dropdown` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdown {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdown({
+final class QuicksightAnalysisFilterControlsDropdown {
+  const QuicksightAnalysisFilterControlsDropdown({
     required this.filterControlId,
     required this.sourceFilterId,
     required this.title,
@@ -1993,14 +1911,12 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdown {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration?
+  final QuicksightAnalysisCascadingControlConfiguration?
   cascadingControlConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisDropdownDisplayOptions? displayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableValues?
-  selectableValues;
+  final QuicksightAnalysisFilterControlsSelectableValues? selectableValues;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -2017,15 +1933,10 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdown {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration({
-    this.sourceControls,
-  });
+final class QuicksightAnalysisCascadingControlConfiguration {
+  const QuicksightAnalysisCascadingControlConfiguration({this.sourceControls});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfigurationSourceControls
-  >?
-  sourceControls;
+  final List<QuicksightAnalysisSourceControls>? sourceControls;
 
   Map<String, Object?> encode() => {
     if (sourceControls != null)
@@ -2037,15 +1948,15 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingCon
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfigurationSourceControls {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfigurationSourceControls({
+final class QuicksightAnalysisSourceControls {
+  const QuicksightAnalysisSourceControls({
     this.sourceSheetControlId,
     required this.columnToMatch,
   });
 
   final TfArg<String>? sourceSheetControlId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn columnToMatch;
+  final QuicksightAnalysisColumn columnToMatch;
 
   Map<String, Object?> encode() => {
     'source_sheet_control_id': ?sourceSheetControlId?.toTfJson(),
@@ -2057,17 +1968,15 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingCon
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptions({
+final class QuicksightAnalysisDropdownDisplayOptions {
+  const QuicksightAnalysisDropdownDisplayOptions({
     this.selectAllOptions,
     this.titleOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  selectAllOptions;
+  final QuicksightAnalysisSelectAllOptions? selectAllOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  titleOptions;
+  final QuicksightAnalysisTitleOptions? titleOptions;
 
   Map<String, Object?> encode() => {
     'select_all_options': ?selectAllOptions?.encode(),
@@ -2079,10 +1988,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptio
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions({
-    this.visibility,
-  });
+final class QuicksightAnalysisSelectAllOptions {
+  const QuicksightAnalysisSelectAllOptions({this.visibility});
 
   final TfArg<String>? visibility;
 
@@ -2093,10 +2000,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptio
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableValues {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableValues({
-    this.values,
-  });
+final class QuicksightAnalysisFilterControlsSelectableValues {
+  const QuicksightAnalysisFilterControlsSelectableValues({this.values});
 
   final TfArg<List<String>>? values;
 
@@ -2106,8 +2011,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableVa
 /// Typed helper for the `definition.sheets.filter_controls.list` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsList {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsList({
+final class QuicksightAnalysisFilterControlsList {
+  const QuicksightAnalysisFilterControlsList({
     required this.filterControlId,
     required this.sourceFilterId,
     required this.title,
@@ -2125,14 +2030,12 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsList {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration?
+  final QuicksightAnalysisCascadingControlConfiguration?
   cascadingControlConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsListDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisListDisplayOptions? displayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownSelectableValues?
-  selectableValues;
+  final QuicksightAnalysisFilterControlsSelectableValues? selectableValues;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -2149,21 +2052,18 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsList {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsListDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsListDisplayOptions({
+final class QuicksightAnalysisListDisplayOptions {
+  const QuicksightAnalysisListDisplayOptions({
     this.searchOptions,
     this.selectAllOptions,
     this.titleOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  searchOptions;
+  final QuicksightAnalysisSelectAllOptions? searchOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  selectAllOptions;
+  final QuicksightAnalysisSelectAllOptions? selectAllOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  titleOptions;
+  final QuicksightAnalysisTitleOptions? titleOptions;
 
   Map<String, Object?> encode() => {
     'search_options': ?searchOptions?.encode(),
@@ -2175,8 +2075,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsListDisplayOptions {
 /// Typed helper for the `definition.sheets.filter_controls.relative_date_time` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsRelativeDateTime {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsRelativeDateTime({
+final class QuicksightAnalysisRelativeDateTime {
+  const QuicksightAnalysisRelativeDateTime({
     required this.filterControlId,
     required this.sourceFilterId,
     required this.title,
@@ -2189,8 +2089,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsRelativeDateTime {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -2203,8 +2102,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsRelativeDateTime {
 /// Typed helper for the `definition.sheets.filter_controls.slider` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsSlider {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsSlider({
+final class QuicksightAnalysisFilterControlsSlider {
+  const QuicksightAnalysisFilterControlsSlider({
     required this.filterControlId,
     required this.maximumValue,
     required this.minimumValue,
@@ -2229,8 +2128,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsSlider {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsSliderDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisSliderDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -2248,13 +2146,10 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsSlider {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsSliderDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsSliderDisplayOptions({
-    this.titleOptions,
-  });
+final class QuicksightAnalysisSliderDisplayOptions {
+  const QuicksightAnalysisSliderDisplayOptions({this.titleOptions});
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  titleOptions;
+  final QuicksightAnalysisTitleOptions? titleOptions;
 
   Map<String, Object?> encode() => {'title_options': ?titleOptions?.encode()};
 }
@@ -2262,8 +2157,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsSliderDisplayOptions
 /// Typed helper for the `definition.sheets.filter_controls.text_area` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsTextArea {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsTextArea({
+final class QuicksightAnalysisFilterControlsTextArea {
+  const QuicksightAnalysisFilterControlsTextArea({
     this.delimiter,
     required this.filterControlId,
     required this.sourceFilterId,
@@ -2279,8 +2174,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsTextArea {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
@@ -2295,17 +2189,15 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsTextArea {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions({
+final class QuicksightAnalysisTextAreaDisplayOptions {
+  const QuicksightAnalysisTextAreaDisplayOptions({
     this.placeholderOptions,
     this.titleOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  placeholderOptions;
+  final QuicksightAnalysisSelectAllOptions? placeholderOptions;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  titleOptions;
+  final QuicksightAnalysisTitleOptions? titleOptions;
 
   Map<String, Object?> encode() => {
     'placeholder_options': ?placeholderOptions?.encode(),
@@ -2316,8 +2208,8 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptio
 /// Typed helper for the `definition.sheets.filter_controls.text_field` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsFilterControlsTextField {
-  const QuicksightAnalysisDefinitionSheetsFilterControlsTextField({
+final class QuicksightAnalysisFilterControlsTextField {
+  const QuicksightAnalysisFilterControlsTextField({
     required this.filterControlId,
     required this.sourceFilterId,
     required this.title,
@@ -2330,8 +2222,7 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsTextField {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
@@ -2344,12 +2235,10 @@ final class QuicksightAnalysisDefinitionSheetsFilterControlsTextField {
 /// Typed helper for the `definition.sheets.layouts` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayouts {
-  const QuicksightAnalysisDefinitionSheetsLayouts({
-    required this.configuration,
-  });
+final class QuicksightAnalysisLayouts {
+  const QuicksightAnalysisLayouts({required this.configuration});
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfiguration configuration;
+  final QuicksightAnalysisLayoutsConfiguration configuration;
 
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
@@ -2357,21 +2246,18 @@ final class QuicksightAnalysisDefinitionSheetsLayouts {
 /// Typed helper for the `definition.sheets.layouts.configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfiguration {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfiguration({
+final class QuicksightAnalysisLayoutsConfiguration {
+  const QuicksightAnalysisLayoutsConfiguration({
     this.freeFormLayout,
     this.gridLayout,
     this.sectionBasedLayout,
   });
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout?
-  freeFormLayout;
+  final QuicksightAnalysisFreeFormLayout? freeFormLayout;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayout?
-  gridLayout;
+  final QuicksightAnalysisGridLayout? gridLayout;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayout?
-  sectionBasedLayout;
+  final QuicksightAnalysisSectionBasedLayout? sectionBasedLayout;
 
   Map<String, Object?> encode() => {
     'free_form_layout': ?freeFormLayout?.encode(),
@@ -2383,19 +2269,15 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfiguration {
 /// Typed helper for the `definition.sheets.layouts.configuration.free_form_layout` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout({
+final class QuicksightAnalysisFreeFormLayout {
+  const QuicksightAnalysisFreeFormLayout({
     this.canvasSizeOptions,
     required this.elements,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationFreeFormCanvasSizeOptions?
-  canvasSizeOptions;
+  final QuicksightAnalysisFreeFormCanvasSizeOptions? canvasSizeOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElements
-  >
-  elements;
+  final List<QuicksightAnalysisFreeFormLayoutElements> elements;
 
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
@@ -2407,8 +2289,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElements {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElements({
+final class QuicksightAnalysisFreeFormLayoutElements {
+  const QuicksightAnalysisFreeFormLayoutElements({
     required this.elementId,
     required this.elementType,
     required this.height,
@@ -2437,22 +2319,15 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout
 
   final TfArg<String> yAxisLocation;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsBackgroundStyle?
-  backgroundStyle;
+  final QuicksightAnalysisBackgroundStyle? backgroundStyle;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsBackgroundStyle?
-  borderStyle;
+  final QuicksightAnalysisBackgroundStyle? borderStyle;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  loadingAnimation;
+  final QuicksightAnalysisSelectAllOptions? loadingAnimation;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsRenderingRules
-  >?
-  renderingRules;
+  final List<QuicksightAnalysisRenderingRules>? renderingRules;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsBackgroundStyle?
-  selectedBorderStyle;
+  final QuicksightAnalysisBackgroundStyle? selectedBorderStyle;
 
   Map<String, Object?> encode() => {
     'element_id': elementId.toTfJson(),
@@ -2475,11 +2350,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsBackgroundStyle {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsBackgroundStyle({
-    this.color,
-    this.visibility,
-  });
+final class QuicksightAnalysisBackgroundStyle {
+  const QuicksightAnalysisBackgroundStyle({this.color, this.visibility});
 
   final TfArg<String>? color;
 
@@ -2495,16 +2367,15 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsRenderingRules {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElementsRenderingRules({
+final class QuicksightAnalysisRenderingRules {
+  const QuicksightAnalysisRenderingRules({
     required this.expression,
     required this.configurationOverrides,
   });
 
   final TfArg<String> expression;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions
-  configurationOverrides;
+  final QuicksightAnalysisSelectAllOptions configurationOverrides;
 
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
@@ -2516,19 +2387,15 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayout
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayout {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayout({
+final class QuicksightAnalysisGridLayout {
+  const QuicksightAnalysisGridLayout({
     this.canvasSizeOptions,
     required this.elements,
   });
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationInteractiveLayoutConfigurationGridCanvasSizeOptions?
-  canvasSizeOptions;
+  final QuicksightAnalysisGridCanvasSizeOptions? canvasSizeOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayoutElements
-  >
-  elements;
+  final List<QuicksightAnalysisGridLayoutElements> elements;
 
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
@@ -2540,8 +2407,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayout {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayoutElements {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayoutElements({
+final class QuicksightAnalysisGridLayoutElements {
+  const QuicksightAnalysisGridLayoutElements({
     this.columnIndex,
     required this.columnSpan,
     required this.elementId,
@@ -2575,27 +2442,21 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayoutElem
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayout {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayout({
+final class QuicksightAnalysisSectionBasedLayout {
+  const QuicksightAnalysisSectionBasedLayout({
     required this.bodySections,
     this.canvasSizeOptions,
     required this.footerSections,
     required this.headerSections,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySections
-  >
-  bodySections;
+  final List<QuicksightAnalysisBodySections> bodySections;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptions?
-  canvasSizeOptions;
+  final QuicksightAnalysisSectionBasedCanvasSizeOptions? canvasSizeOptions;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSections
-  footerSections;
+  final QuicksightAnalysisFooterSections footerSections;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSections
-  headerSections;
+  final QuicksightAnalysisFooterSections headerSections;
 
   Map<String, Object?> encode() => {
     'body_sections': [for (final e in bodySections) e.encode()],
@@ -2608,8 +2469,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySections {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySections({
+final class QuicksightAnalysisBodySections {
+  const QuicksightAnalysisBodySections({
     required this.sectionId,
     required this.content,
     this.pageBreakConfiguration,
@@ -2618,14 +2479,11 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 
   final TfArg<String> sectionId;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsContent
-  content;
+  final QuicksightAnalysisContent content;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfiguration?
-  pageBreakConfiguration;
+  final QuicksightAnalysisPageBreakConfiguration? pageBreakConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsStyle?
-  style;
+  final QuicksightAnalysisStyle? style;
 
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
@@ -2638,13 +2496,10 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections.content` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsContent {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsContent({
-    this.layout,
-  });
+final class QuicksightAnalysisContent {
+  const QuicksightAnalysisContent({this.layout});
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayout?
-  layout;
+  final QuicksightAnalysisLayout? layout;
 
   Map<String, Object?> encode() => {'layout': ?layout?.encode()};
 }
@@ -2653,13 +2508,10 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayout {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayout({
-    required this.freeFormLayout,
-  });
+final class QuicksightAnalysisLayout {
+  const QuicksightAnalysisLayout({required this.freeFormLayout});
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayoutFreeFormLayout
-  freeFormLayout;
+  final QuicksightAnalysisLayoutFreeFormLayout freeFormLayout;
 
   Map<String, Object?> encode() => {
     'free_form_layout': freeFormLayout.encode(),
@@ -2670,15 +2522,10 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayoutFreeFormLayout {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayoutFreeFormLayout({
-    required this.elements,
-  });
+final class QuicksightAnalysisLayoutFreeFormLayout {
+  const QuicksightAnalysisLayoutFreeFormLayout({required this.elements});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsLayoutsConfigurationFreeFormLayoutElements
-  >
-  elements;
+  final List<QuicksightAnalysisFreeFormLayoutElements> elements;
 
   Map<String, Object?> encode() => {
     'elements': [for (final e in elements) e.encode()],
@@ -2688,13 +2535,10 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections.page_break_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfiguration {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfiguration({
-    this.after,
-  });
+final class QuicksightAnalysisPageBreakConfiguration {
+  const QuicksightAnalysisPageBreakConfiguration({this.after});
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfigurationAfter?
-  after;
+  final QuicksightAnalysisAfter? after;
 
   Map<String, Object?> encode() => {'after': ?after?.encode()};
 }
@@ -2702,10 +2546,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections.page_break_configuration.after` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfigurationAfter {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfigurationAfter({
-    this.status,
-  });
+final class QuicksightAnalysisAfter {
+  const QuicksightAnalysisAfter({this.status});
 
   final TfArg<String>? status;
 
@@ -2716,16 +2558,12 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsStyle {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsStyle({
-    this.height,
-    this.padding,
-  });
+final class QuicksightAnalysisStyle {
+  const QuicksightAnalysisStyle({this.height, this.padding});
 
   final TfArg<String>? height;
 
-  final QuicksightAnalysisDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBasedCanvasSizeOptionsPaperCanvasSizeOptionsPaperMargin?
-  padding;
+  final QuicksightAnalysisPaperMargin? padding;
 
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
@@ -2737,8 +2575,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSections {
-  const QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSections({
+final class QuicksightAnalysisFooterSections {
+  const QuicksightAnalysisFooterSections({
     required this.sectionId,
     this.layout,
     this.style,
@@ -2746,11 +2584,9 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 
   final TfArg<String> sectionId;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayout?
-  layout;
+  final QuicksightAnalysisLayout? layout;
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsStyle?
-  style;
+  final QuicksightAnalysisStyle? style;
 
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
@@ -2762,8 +2598,8 @@ final class QuicksightAnalysisDefinitionSheetsLayoutsConfigurationSectionBasedLa
 /// Typed helper for the `definition.sheets.parameter_controls` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControls {
-  const QuicksightAnalysisDefinitionSheetsParameterControls({
+final class QuicksightAnalysisParameterControls {
+  const QuicksightAnalysisParameterControls({
     this.dateTimePicker,
     this.dropdown,
     this.list,
@@ -2772,18 +2608,17 @@ final class QuicksightAnalysisDefinitionSheetsParameterControls {
     this.textField,
   });
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsDateTimePicker?
-  dateTimePicker;
+  final QuicksightAnalysisParameterControlsDateTimePicker? dateTimePicker;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsDropdown? dropdown;
+  final QuicksightAnalysisParameterControlsDropdown? dropdown;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsList? list;
+  final QuicksightAnalysisParameterControlsList? list;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsSlider? slider;
+  final QuicksightAnalysisParameterControlsSlider? slider;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsTextArea? textArea;
+  final QuicksightAnalysisParameterControlsTextArea? textArea;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsTextField? textField;
+  final QuicksightAnalysisParameterControlsTextField? textField;
 
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
@@ -2798,8 +2633,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControls {
 /// Typed helper for the `definition.sheets.parameter_controls.date_time_picker` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsDateTimePicker {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsDateTimePicker({
+final class QuicksightAnalysisParameterControlsDateTimePicker {
+  const QuicksightAnalysisParameterControlsDateTimePicker({
     required this.parameterControlId,
     required this.sourceParameterName,
     required this.title,
@@ -2812,8 +2647,7 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDateTimePicker {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2826,8 +2660,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDateTimePicker {
 /// Typed helper for the `definition.sheets.parameter_controls.dropdown` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdown {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsDropdown({
+final class QuicksightAnalysisParameterControlsDropdown {
+  const QuicksightAnalysisParameterControlsDropdown({
     required this.parameterControlId,
     required this.sourceParameterName,
     required this.title,
@@ -2845,14 +2679,12 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdown {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration?
+  final QuicksightAnalysisCascadingControlConfiguration?
   cascadingControlConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisDropdownDisplayOptions? displayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectableValues?
-  selectableValues;
+  final QuicksightAnalysisParameterControlsSelectableValues? selectableValues;
 
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2869,16 +2701,15 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdown {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectableValues {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectableValues({
+final class QuicksightAnalysisParameterControlsSelectableValues {
+  const QuicksightAnalysisParameterControlsSelectableValues({
     this.values,
     this.linkToDataSetColumn,
   });
 
   final TfArg<List<String>>? values;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn?
-  linkToDataSetColumn;
+  final QuicksightAnalysisColumn? linkToDataSetColumn;
 
   Map<String, Object?> encode() => {
     'values': ?values?.toTfJson(),
@@ -2889,8 +2720,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectabl
 /// Typed helper for the `definition.sheets.parameter_controls.list` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsList {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsList({
+final class QuicksightAnalysisParameterControlsList {
+  const QuicksightAnalysisParameterControlsList({
     required this.parameterControlId,
     required this.sourceParameterName,
     required this.title,
@@ -2908,14 +2739,12 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsList {
 
   final TfArg<String>? type;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownCascadingControlConfiguration?
+  final QuicksightAnalysisCascadingControlConfiguration?
   cascadingControlConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsListDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisListDisplayOptions? displayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsParameterControlsDropdownSelectableValues?
-  selectableValues;
+  final QuicksightAnalysisParameterControlsSelectableValues? selectableValues;
 
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2931,8 +2760,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsList {
 /// Typed helper for the `definition.sheets.parameter_controls.slider` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsSlider {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsSlider({
+final class QuicksightAnalysisParameterControlsSlider {
+  const QuicksightAnalysisParameterControlsSlider({
     required this.maximumValue,
     required this.minimumValue,
     required this.parameterControlId,
@@ -2954,8 +2783,7 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsSlider {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsSliderDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisSliderDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'maximum_value': maximumValue.toTfJson(),
@@ -2971,8 +2799,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsSlider {
 /// Typed helper for the `definition.sheets.parameter_controls.text_area` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsTextArea {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsTextArea({
+final class QuicksightAnalysisParameterControlsTextArea {
+  const QuicksightAnalysisParameterControlsTextArea({
     this.delimiter,
     required this.parameterControlId,
     required this.sourceParameterName,
@@ -2988,8 +2816,7 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsTextArea {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
@@ -3003,8 +2830,8 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsTextArea {
 /// Typed helper for the `definition.sheets.parameter_controls.text_field` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsParameterControlsTextField {
-  const QuicksightAnalysisDefinitionSheetsParameterControlsTextField({
+final class QuicksightAnalysisParameterControlsTextField {
+  const QuicksightAnalysisParameterControlsTextField({
     required this.parameterControlId,
     required this.sourceParameterName,
     required this.title,
@@ -3017,8 +2844,7 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsTextField {
 
   final TfArg<String> title;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsTextAreaDisplayOptions?
-  displayOptions;
+  final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -3031,13 +2857,10 @@ final class QuicksightAnalysisDefinitionSheetsParameterControlsTextField {
 /// Typed helper for the `definition.sheets.sheet_control_layouts` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsSheetControlLayouts {
-  const QuicksightAnalysisDefinitionSheetsSheetControlLayouts({
-    required this.configuration,
-  });
+final class QuicksightAnalysisSheetControlLayouts {
+  const QuicksightAnalysisSheetControlLayouts({required this.configuration});
 
-  final QuicksightAnalysisDefinitionSheetsSheetControlLayoutsConfiguration
-  configuration;
+  final QuicksightAnalysisSheetControlLayoutsConfiguration configuration;
 
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
@@ -3045,13 +2868,10 @@ final class QuicksightAnalysisDefinitionSheetsSheetControlLayouts {
 /// Typed helper for the `definition.sheets.sheet_control_layouts.configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsSheetControlLayoutsConfiguration {
-  const QuicksightAnalysisDefinitionSheetsSheetControlLayoutsConfiguration({
-    this.gridLayout,
-  });
+final class QuicksightAnalysisSheetControlLayoutsConfiguration {
+  const QuicksightAnalysisSheetControlLayoutsConfiguration({this.gridLayout});
 
-  final QuicksightAnalysisDefinitionSheetsLayoutsConfigurationGridLayout?
-  gridLayout;
+  final QuicksightAnalysisGridLayout? gridLayout;
 
   Map<String, Object?> encode() => {'grid_layout': ?gridLayout?.encode()};
 }
@@ -3059,8 +2879,8 @@ final class QuicksightAnalysisDefinitionSheetsSheetControlLayoutsConfiguration {
 /// Typed helper for the `definition.sheets.text_boxes` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsTextBoxes {
-  const QuicksightAnalysisDefinitionSheetsTextBoxes({
+final class QuicksightAnalysisTextBoxes {
+  const QuicksightAnalysisTextBoxes({
     this.content,
     required this.sheetTextBoxId,
   });
@@ -3078,8 +2898,8 @@ final class QuicksightAnalysisDefinitionSheetsTextBoxes {
 /// Typed helper for the `definition.sheets.visuals` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisuals {
-  const QuicksightAnalysisDefinitionSheetsVisuals({
+final class QuicksightAnalysisVisuals {
+  const QuicksightAnalysisVisuals({
     this.barChartVisual,
     this.boxPlotVisual,
     this.comboChartVisual,
@@ -3105,65 +2925,51 @@ final class QuicksightAnalysisDefinitionSheetsVisuals {
     this.wordCloudVisual,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisual? barChartVisual;
+  final QuicksightAnalysisBarChartVisual? barChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisual? boxPlotVisual;
+  final QuicksightAnalysisBoxPlotVisual? boxPlotVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisual?
-  comboChartVisual;
+  final QuicksightAnalysisComboChartVisual? comboChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisual?
-  customContentVisual;
+  final QuicksightAnalysisCustomContentVisual? customContentVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsEmptyVisual? emptyVisual;
+  final QuicksightAnalysisEmptyVisual? emptyVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisual?
-  filledMapVisual;
+  final QuicksightAnalysisFilledMapVisual? filledMapVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisual?
-  funnelChartVisual;
+  final QuicksightAnalysisFunnelChartVisual? funnelChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisual?
-  gaugeChartVisual;
+  final QuicksightAnalysisGaugeChartVisual? gaugeChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisual?
-  geospatialMapVisual;
+  final QuicksightAnalysisGeospatialMapVisual? geospatialMapVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisual? heatMapVisual;
+  final QuicksightAnalysisHeatMapVisual? heatMapVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisual?
-  histogramVisual;
+  final QuicksightAnalysisHistogramVisual? histogramVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisual? insightVisual;
+  final QuicksightAnalysisInsightVisual? insightVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisual? kpiVisual;
+  final QuicksightAnalysisKpiVisual? kpiVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisual?
-  lineChartVisual;
+  final QuicksightAnalysisLineChartVisual? lineChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisual? pieChartVisual;
+  final QuicksightAnalysisPieChartVisual? pieChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisual?
-  pivotTableVisual;
+  final QuicksightAnalysisPivotTableVisual? pivotTableVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisual?
-  radarChartVisual;
+  final QuicksightAnalysisRadarChartVisual? radarChartVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisual?
-  sankeyDiagramVisual;
+  final QuicksightAnalysisSankeyDiagramVisual? sankeyDiagramVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisual?
-  scatterPlotVisual;
+  final QuicksightAnalysisScatterPlotVisual? scatterPlotVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisual? tableVisual;
+  final QuicksightAnalysisTableVisual? tableVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisual? treeMapVisual;
+  final QuicksightAnalysisTreeMapVisual? treeMapVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisual?
-  waterfallVisual;
+  final QuicksightAnalysisWaterfallVisual? waterfallVisual;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisual?
-  wordCloudVisual;
+  final QuicksightAnalysisWordCloudVisual? wordCloudVisual;
 
   Map<String, Object?> encode() => {
     'bar_chart_visual': ?barChartVisual?.encode(),
@@ -3195,8 +3001,8 @@ final class QuicksightAnalysisDefinitionSheetsVisuals {
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisual({
+final class QuicksightAnalysisBarChartVisual {
+  const QuicksightAnalysisBarChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -3207,21 +3013,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisBarChartVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -3238,8 +3038,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisual {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions({
+final class QuicksightAnalysisActions {
+  const QuicksightAnalysisActions({
     required this.customActionId,
     required this.name,
     required this.status,
@@ -3255,10 +3055,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions {
 
   final TfArg<String> trigger;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperations
-  >
-  actionOperations;
+  final List<QuicksightAnalysisActionOperations> actionOperations;
 
   Map<String, Object?> encode() => {
     'custom_action_id': customActionId.toTfJson(),
@@ -3273,25 +3070,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperations {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperations({
+final class QuicksightAnalysisActionOperations {
+  const QuicksightAnalysisActionOperations({
     this.filterOperation,
     this.navigationOperation,
     this.setParametersOperation,
     this.urlOperation,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperation?
-  filterOperation;
+  final QuicksightAnalysisFilterOperation? filterOperation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperation?
-  navigationOperation;
+  final QuicksightAnalysisNavigationOperation? navigationOperation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperation?
-  setParametersOperation;
+  final QuicksightAnalysisSetParametersOperation? setParametersOperation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsUrlOperation?
-  urlOperation;
+  final QuicksightAnalysisUrlOperation? urlOperation;
 
   Map<String, Object?> encode() => {
     'filter_operation': ?filterOperation?.encode(),
@@ -3305,17 +3098,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperation {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperation({
+final class QuicksightAnalysisFilterOperation {
+  const QuicksightAnalysisFilterOperation({
     required this.selectedFieldsConfiguration,
     required this.targetVisualsConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationSelectedFieldsConfiguration
+  final QuicksightAnalysisSelectedFieldsConfiguration
   selectedFieldsConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfiguration
-  targetVisualsConfiguration;
+  final QuicksightAnalysisTargetVisualsConfiguration targetVisualsConfiguration;
 
   Map<String, Object?> encode() => {
     'selected_fields_configuration': selectedFieldsConfiguration.encode(),
@@ -3327,8 +3119,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationSelectedFieldsConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationSelectedFieldsConfiguration({
+final class QuicksightAnalysisSelectedFieldsConfiguration {
+  const QuicksightAnalysisSelectedFieldsConfiguration({
     this.selectedFieldOption,
     this.selectedFields,
   });
@@ -3347,12 +3139,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfiguration({
+final class QuicksightAnalysisTargetVisualsConfiguration {
+  const QuicksightAnalysisTargetVisualsConfiguration({
     this.sameSheetTargetVisualConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfigurationSameSheetTargetVisualConfiguration?
+  final QuicksightAnalysisSameSheetTargetVisualConfiguration?
   sameSheetTargetVisualConfiguration;
 
   Map<String, Object?> encode() => {
@@ -3365,8 +3157,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfigurationSameSheetTargetVisualConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsFilterOperationTargetVisualsConfigurationSameSheetTargetVisualConfiguration({
+final class QuicksightAnalysisSameSheetTargetVisualConfiguration {
+  const QuicksightAnalysisSameSheetTargetVisualConfiguration({
     this.targetVisualOption,
     this.targetVisuals,
   });
@@ -3385,12 +3177,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperation {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperation({
+final class QuicksightAnalysisNavigationOperation {
+  const QuicksightAnalysisNavigationOperation({
     this.localNavigationConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperationLocalNavigationConfiguration?
+  final QuicksightAnalysisLocalNavigationConfiguration?
   localNavigationConfiguration;
 
   Map<String, Object?> encode() => {
@@ -3402,8 +3194,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperationLocalNavigationConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsNavigationOperationLocalNavigationConfiguration({
+final class QuicksightAnalysisLocalNavigationConfiguration {
+  const QuicksightAnalysisLocalNavigationConfiguration({
     required this.targetSheetId,
   });
 
@@ -3418,14 +3210,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperation {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperation({
+final class QuicksightAnalysisSetParametersOperation {
+  const QuicksightAnalysisSetParametersOperation({
     required this.parameterValueConfigurations,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurations
-  >
+  final List<QuicksightAnalysisParameterValueConfigurations>
   parameterValueConfigurations;
 
   Map<String, Object?> encode() => {
@@ -3439,16 +3229,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurations {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurations({
+final class QuicksightAnalysisParameterValueConfigurations {
+  const QuicksightAnalysisParameterValueConfigurations({
     required this.destinationParameterName,
     required this.value,
   });
 
   final TfArg<String> destinationParameterName;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValue
-  value;
+  final QuicksightAnalysisValue value;
 
   Map<String, Object?> encode() => {
     'destination_parameter_name': destinationParameterName.toTfJson(),
@@ -3460,8 +3249,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValue {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValue({
+final class QuicksightAnalysisValue {
+  const QuicksightAnalysisValue({
     this.selectAllValueOptions,
     this.sourceField,
     this.sourceParameterName,
@@ -3474,8 +3263,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 
   final TfArg<String>? sourceParameterName;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfiguration?
-  customValuesConfiguration;
+  final QuicksightAnalysisCustomValuesConfiguration? customValuesConfiguration;
 
   Map<String, Object?> encode() => {
     'select_all_value_options': ?selectAllValueOptions?.toTfJson(),
@@ -3489,16 +3277,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfiguration({
+final class QuicksightAnalysisCustomValuesConfiguration {
+  const QuicksightAnalysisCustomValuesConfiguration({
     this.includeNullValue,
     required this.customValues,
   });
 
   final TfArg<bool>? includeNullValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfigurationCustomValues
-  customValues;
+  final QuicksightAnalysisCustomValues customValues;
 
   Map<String, Object?> encode() => {
     'include_null_value': ?includeNullValue?.toTfJson(),
@@ -3510,8 +3297,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfigurationCustomValues {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsSetParametersOperationParameterValueConfigurationsValueCustomValuesConfigurationCustomValues({
+final class QuicksightAnalysisCustomValues {
+  const QuicksightAnalysisCustomValues({
     this.dateTimeValues,
     this.decimalValues,
     this.integerValues,
@@ -3538,8 +3325,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsUrlOperation {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsActionOperationsUrlOperation({
+final class QuicksightAnalysisUrlOperation {
+  const QuicksightAnalysisUrlOperation({
     required this.urlTarget,
     required this.urlTemplate,
   });
@@ -3557,8 +3344,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActionsAction
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfiguration({
+final class QuicksightAnalysisBarChartVisualChartConfiguration {
+  const QuicksightAnalysisBarChartVisualChartConfiguration({
     this.barsArrangement,
     this.orientation,
     this.categoryAxis,
@@ -3581,51 +3368,34 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? orientation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  categoryAxis;
+  final QuicksightAnalysisCategoryAxis? categoryAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  colorLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? colorLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationContributionAnalysisDefaults
-  >?
+  final List<QuicksightAnalysisContributionAnalysisDefaults>?
   contributionAnalysisDefaults;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisBarChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines
-  >?
-  referenceLines;
+  final List<QuicksightAnalysisReferenceLines>? referenceLines;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptions?
-  smallMultiplesOptions;
+  final QuicksightAnalysisSmallMultiplesOptions? smallMultiplesOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisBarChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  valueAxis;
+  final QuicksightAnalysisCategoryAxis? valueAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  valueLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? valueLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
@@ -3655,8 +3425,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis({
+final class QuicksightAnalysisCategoryAxis {
+  const QuicksightAnalysisCategoryAxis({
     this.axisLineVisibility,
     this.axisOffset,
     this.gridLineVisibility,
@@ -3671,14 +3441,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? gridLineVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptions?
-  dataOptions;
+  final QuicksightAnalysisDataOptions? dataOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptions?
-  scrollbarOptions;
+  final QuicksightAnalysisScrollbarOptions? scrollbarOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisTickLabelOptions?
-  tickLabelOptions;
+  final QuicksightAnalysisTickLabelOptions? tickLabelOptions;
 
   Map<String, Object?> encode() => {
     'axis_line_visibility': ?axisLineVisibility?.toTfJson(),
@@ -3694,17 +3461,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptions({
+final class QuicksightAnalysisDataOptions {
+  const QuicksightAnalysisDataOptions({
     this.dateAxisOptions,
     this.numericAxisOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsDateAxisOptions?
-  dateAxisOptions;
+  final QuicksightAnalysisDateAxisOptions? dateAxisOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptions?
-  numericAxisOptions;
+  final QuicksightAnalysisNumericAxisOptions? numericAxisOptions;
 
   Map<String, Object?> encode() => {
     'date_axis_options': ?dateAxisOptions?.encode(),
@@ -3716,10 +3481,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsDateAxisOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsDateAxisOptions({
-    this.missingDateVisibility,
-  });
+final class QuicksightAnalysisDateAxisOptions {
+  const QuicksightAnalysisDateAxisOptions({this.missingDateVisibility});
 
   final TfArg<String>? missingDateVisibility;
 
@@ -3732,17 +3495,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptions({
-    this.range,
-    this.scale,
-  });
+final class QuicksightAnalysisNumericAxisOptions {
+  const QuicksightAnalysisNumericAxisOptions({this.range, this.scale});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRange?
-  range;
+  final QuicksightAnalysisNumericAxisOptionsRange? range;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScale?
-  scale;
+  final QuicksightAnalysisScale? scale;
 
   Map<String, Object?> encode() => {
     'range': ?range?.encode(),
@@ -3754,17 +3512,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRange {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRange({
+final class QuicksightAnalysisNumericAxisOptionsRange {
+  const QuicksightAnalysisNumericAxisOptionsRange({
     this.dataDriven,
     this.minMax,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeDataDriven?
-  dataDriven;
+  final QuicksightAnalysisDataDriven? dataDriven;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeMinMax?
-  minMax;
+  final QuicksightAnalysisMinMax? minMax;
 
   Map<String, Object?> encode() => {
     'data_driven': ?dataDriven?.encode(),
@@ -3776,8 +3532,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeDataDriven {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeDataDriven();
+final class QuicksightAnalysisDataDriven {
+  const QuicksightAnalysisDataDriven();
 
   Map<String, Object?> encode() => {};
 }
@@ -3786,11 +3542,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeMinMax {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsRangeMinMax({
-    this.maximum,
-    this.minimum,
-  });
+final class QuicksightAnalysisMinMax {
+  const QuicksightAnalysisMinMax({this.maximum, this.minimum});
 
   final TfArg<num>? maximum;
 
@@ -3806,17 +3559,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScale {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScale({
-    this.linear,
-    this.logarithmic,
-  });
+final class QuicksightAnalysisScale {
+  const QuicksightAnalysisScale({this.linear, this.logarithmic});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLinear?
-  linear;
+  final QuicksightAnalysisLinear? linear;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLogarithmic?
-  logarithmic;
+  final QuicksightAnalysisLogarithmic? logarithmic;
 
   Map<String, Object?> encode() => {
     'linear': ?linear?.encode(),
@@ -3828,11 +3576,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLinear {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLinear({
-    this.stepCount,
-    this.stepSize,
-  });
+final class QuicksightAnalysisLinear {
+  const QuicksightAnalysisLinear({this.stepCount, this.stepSize});
 
   final TfArg<num>? stepCount;
 
@@ -3848,10 +3593,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLogarithmic {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisDataOptionsNumericAxisOptionsScaleLogarithmic({
-    this.base,
-  });
+final class QuicksightAnalysisLogarithmic {
+  const QuicksightAnalysisLogarithmic({this.base});
 
   final TfArg<num>? base;
 
@@ -3862,16 +3605,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptions({
+final class QuicksightAnalysisScrollbarOptions {
+  const QuicksightAnalysisScrollbarOptions({
     this.visibility,
     this.visibleRange,
   });
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRange?
-  visibleRange;
+  final QuicksightAnalysisVisibleRange? visibleRange;
 
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
@@ -3883,13 +3625,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRange {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRange({
-    this.percentRange,
-  });
+final class QuicksightAnalysisVisibleRange {
+  const QuicksightAnalysisVisibleRange({this.percentRange});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRangePercentRange?
-  percentRange;
+  final QuicksightAnalysisPercentRange? percentRange;
 
   Map<String, Object?> encode() => {'percent_range': ?percentRange?.encode()};
 }
@@ -3898,11 +3637,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRangePercentRange {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRangePercentRange({
-    this.from,
-    this.to,
-  });
+final class QuicksightAnalysisPercentRange {
+  const QuicksightAnalysisPercentRange({this.from, this.to});
 
   final TfArg<num>? from;
 
@@ -3918,16 +3654,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisTickLabelOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisTickLabelOptions({
+final class QuicksightAnalysisTickLabelOptions {
+  const QuicksightAnalysisTickLabelOptions({
     this.rotationAngle,
     this.labelOptions,
   });
 
   final TfArg<num>? rotationAngle;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  labelOptions;
+  final QuicksightAnalysisTitleOptions? labelOptions;
 
   Map<String, Object?> encode() => {
     'rotation_angle': ?rotationAngle?.toTfJson(),
@@ -3939,8 +3674,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions({
+final class QuicksightAnalysisCategoryLabelOptions {
+  const QuicksightAnalysisCategoryLabelOptions({
     this.sortIconVisibility,
     this.visibility,
     this.axisLabelOptions,
@@ -3950,8 +3685,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptions?
-  axisLabelOptions;
+  final QuicksightAnalysisAxisLabelOptions? axisLabelOptions;
 
   Map<String, Object?> encode() => {
     'sort_icon_visibility': ?sortIconVisibility?.toTfJson(),
@@ -3964,8 +3698,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptions({
+final class QuicksightAnalysisAxisLabelOptions {
+  const QuicksightAnalysisAxisLabelOptions({
     this.customLabel,
     this.applyTo,
     this.fontConfiguration,
@@ -3973,11 +3707,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? customLabel;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptionsApplyTo?
-  applyTo;
+  final QuicksightAnalysisApplyTo? applyTo;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -3990,15 +3722,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptionsApplyTo {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptionsAxisLabelOptionsApplyTo({
+final class QuicksightAnalysisApplyTo {
+  const QuicksightAnalysisApplyTo({
     required this.fieldId,
     required this.column,
   });
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -4010,16 +3742,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationContributionAnalysisDefaults {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationContributionAnalysisDefaults({
+final class QuicksightAnalysisContributionAnalysisDefaults {
+  const QuicksightAnalysisContributionAnalysisDefaults({
     required this.measureFieldId,
     required this.contributorDimensions,
   });
 
   final TfArg<String> measureFieldId;
 
-  final List<QuicksightAnalysisDefinitionColumnConfigurationsColumn>
-  contributorDimensions;
+  final List<QuicksightAnalysisColumn> contributorDimensions;
 
   Map<String, Object?> encode() => {
     'measure_field_id': measureFieldId.toTfJson(),
@@ -4033,8 +3764,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels({
+final class QuicksightAnalysisDataLabels {
+  const QuicksightAnalysisDataLabels({
     this.categoryLabelVisibility,
     this.labelColor,
     this.labelContent,
@@ -4060,13 +3791,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? visibility;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypes
-  >?
-  dataLabelTypes;
+  final List<QuicksightAnalysisDataLabelTypes>? dataLabelTypes;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  labelFontConfiguration;
+  final QuicksightAnalysisFontConfiguration? labelFontConfiguration;
 
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
@@ -4086,8 +3813,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypes {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypes({
+final class QuicksightAnalysisDataLabelTypes {
+  const QuicksightAnalysisDataLabelTypes({
     this.dataPathLabelType,
     this.fieldLabelType,
     this.maximumLabelType,
@@ -4095,20 +3822,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
     this.rangeEndsLabelType,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesDataPathLabelType?
-  dataPathLabelType;
+  final QuicksightAnalysisDataPathLabelType? dataPathLabelType;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesFieldLabelType?
-  fieldLabelType;
+  final QuicksightAnalysisFieldLabelType? fieldLabelType;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  maximumLabelType;
+  final QuicksightAnalysisSelectAllOptions? maximumLabelType;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  minimumLabelType;
+  final QuicksightAnalysisSelectAllOptions? minimumLabelType;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  rangeEndsLabelType;
+  final QuicksightAnalysisSelectAllOptions? rangeEndsLabelType;
 
   Map<String, Object?> encode() => {
     'data_path_label_type': ?dataPathLabelType?.encode(),
@@ -4123,8 +3845,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesDataPathLabelType {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesDataPathLabelType({
+final class QuicksightAnalysisDataPathLabelType {
+  const QuicksightAnalysisDataPathLabelType({
     this.fieldId,
     this.fieldValue,
     this.visibility,
@@ -4147,11 +3869,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesFieldLabelType {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabelsDataLabelTypesFieldLabelType({
-    this.fieldId,
-    this.visibility,
-  });
+final class QuicksightAnalysisFieldLabelType {
+  const QuicksightAnalysisFieldLabelType({this.fieldId, this.visibility});
 
   final TfArg<String>? fieldId;
 
@@ -4166,12 +3885,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisBarChartVisualFieldWells {
+  const QuicksightAnalysisBarChartVisualFieldWells({
     this.barChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWellsBarChartAggregatedFieldWells?
+  final QuicksightAnalysisBarChartAggregatedFieldWells?
   barChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -4183,31 +3902,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWellsBarChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWellsBarChartAggregatedFieldWells({
+final class QuicksightAnalysisBarChartAggregatedFieldWells {
+  const QuicksightAnalysisBarChartAggregatedFieldWells({
     this.category,
     this.colors,
     this.smallMultiples,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  category;
+  final List<QuicksightAnalysisTrendGroups>? category;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  colors;
+  final List<QuicksightAnalysisTrendGroups>? colors;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  smallMultiples;
+  final QuicksightAnalysisTrendGroups? smallMultiples;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
@@ -4221,21 +3930,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups({
+final class QuicksightAnalysisTrendGroups {
+  const QuicksightAnalysisTrendGroups({
     this.categoricalDimensionField,
     this.dateDimensionField,
     this.numericalDimensionField,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsCategoricalDimensionField?
-  categoricalDimensionField;
+  final QuicksightAnalysisCategoricalDimensionField? categoricalDimensionField;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsDateDimensionField?
-  dateDimensionField;
+  final QuicksightAnalysisDateDimensionField? dateDimensionField;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsNumericalDimensionField?
-  numericalDimensionField;
+  final QuicksightAnalysisNumericalDimensionField? numericalDimensionField;
 
   Map<String, Object?> encode() => {
     'categorical_dimension_field': ?categoricalDimensionField?.encode(),
@@ -4248,8 +3954,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsCategoricalDimensionField {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsCategoricalDimensionField({
+final class QuicksightAnalysisCategoricalDimensionField {
+  const QuicksightAnalysisCategoricalDimensionField({
     required this.fieldId,
     this.hierarchyId,
     required this.column,
@@ -4260,10 +3966,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   final TfArg<String>? hierarchyId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationStringFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisStringFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -4277,8 +3982,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsDateDimensionField {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsDateDimensionField({
+final class QuicksightAnalysisDateDimensionField {
+  const QuicksightAnalysisDateDimensionField({
     this.dateGranularity,
     required this.fieldId,
     this.hierarchyId,
@@ -4292,10 +3997,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   final TfArg<String>? hierarchyId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisDateTimeFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'date_granularity': ?dateGranularity?.toTfJson(),
@@ -4310,8 +4014,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsNumericalDimensionField {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroupsNumericalDimensionField({
+final class QuicksightAnalysisNumericalDimensionField {
+  const QuicksightAnalysisNumericalDimensionField({
     required this.fieldId,
     this.hierarchyId,
     required this.column,
@@ -4322,10 +4026,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   final TfArg<String>? hierarchyId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationNumberFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisNumberFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -4339,25 +4042,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues({
+final class QuicksightAnalysisTargetValues {
+  const QuicksightAnalysisTargetValues({
     this.calculatedMeasureField,
     this.categoricalMeasureField,
     this.dateMeasureField,
     this.numericalMeasureField,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCalculatedMeasureField?
-  calculatedMeasureField;
+  final QuicksightAnalysisCalculatedMeasureField? calculatedMeasureField;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCategoricalMeasureField?
-  categoricalMeasureField;
+  final QuicksightAnalysisCategoricalMeasureField? categoricalMeasureField;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesDateMeasureField?
-  dateMeasureField;
+  final QuicksightAnalysisDateMeasureField? dateMeasureField;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesNumericalMeasureField?
-  numericalMeasureField;
+  final QuicksightAnalysisNumericalMeasureField? numericalMeasureField;
 
   Map<String, Object?> encode() => {
     'calculated_measure_field': ?calculatedMeasureField?.encode(),
@@ -4371,8 +4070,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCalculatedMeasureField {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCalculatedMeasureField({
+final class QuicksightAnalysisCalculatedMeasureField {
+  const QuicksightAnalysisCalculatedMeasureField({
     required this.expression,
     required this.fieldId,
   });
@@ -4391,8 +4090,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCategoricalMeasureField {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesCategoricalMeasureField({
+final class QuicksightAnalysisCategoricalMeasureField {
+  const QuicksightAnalysisCategoricalMeasureField({
     this.aggregationFunction,
     required this.fieldId,
     required this.column,
@@ -4403,10 +4102,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationStringFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisStringFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
@@ -4420,8 +4118,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesDateMeasureField {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesDateMeasureField({
+final class QuicksightAnalysisDateMeasureField {
+  const QuicksightAnalysisDateMeasureField({
     this.aggregationFunction,
     required this.fieldId,
     required this.column,
@@ -4432,10 +4130,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisDateTimeFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
@@ -4449,8 +4146,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesNumericalMeasureField {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValuesNumericalMeasureField({
+final class QuicksightAnalysisNumericalMeasureField {
+  const QuicksightAnalysisNumericalMeasureField({
     required this.fieldId,
     this.aggregationFunction,
     required this.column,
@@ -4459,13 +4156,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunction?
-  aggregationFunction;
+  final QuicksightAnalysisNumericalAggregationFunction? aggregationFunction;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationNumberFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisNumberFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -4479,8 +4174,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend({
+final class QuicksightAnalysisLegend {
+  const QuicksightAnalysisLegend({
     this.height,
     this.position,
     this.visibility,
@@ -4496,8 +4191,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? width;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
-  title;
+  final QuicksightAnalysisTitleOptions? title;
 
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
@@ -4512,8 +4206,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines({
+final class QuicksightAnalysisReferenceLines {
+  const QuicksightAnalysisReferenceLines({
     this.status,
     required this.dataConfiguration,
     this.labelConfiguration,
@@ -4522,14 +4216,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? status;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfiguration
-  dataConfiguration;
+  final QuicksightAnalysisDataConfiguration dataConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfiguration?
-  labelConfiguration;
+  final QuicksightAnalysisLabelConfiguration? labelConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesStyleConfiguration?
-  styleConfiguration;
+  final QuicksightAnalysisStyleConfiguration? styleConfiguration;
 
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
@@ -4543,8 +4234,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfiguration({
+final class QuicksightAnalysisDataConfiguration {
+  const QuicksightAnalysisDataConfiguration({
     this.axisBinding,
     this.dynamicConfiguration,
     this.staticConfiguration,
@@ -4552,11 +4243,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? axisBinding;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationDynamicConfiguration?
-  dynamicConfiguration;
+  final QuicksightAnalysisDynamicConfiguration? dynamicConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationStaticConfiguration?
-  staticConfiguration;
+  final QuicksightAnalysisStaticConfiguration? staticConfiguration;
 
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
@@ -4569,20 +4258,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationDynamicConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationDynamicConfiguration({
+final class QuicksightAnalysisDynamicConfiguration {
+  const QuicksightAnalysisDynamicConfiguration({
     required this.calculation,
     required this.column,
     required this.measureAggregationFunction,
   });
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunctionNumericalAggregationFunction
-  calculation;
+  final QuicksightAnalysisNumericalAggregationFunction calculation;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction
-  measureAggregationFunction;
+  final QuicksightAnalysisAggregationFunction measureAggregationFunction;
 
   Map<String, Object?> encode() => {
     'calculation': calculation.encode(),
@@ -4595,10 +4282,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationStaticConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesDataConfigurationStaticConfiguration({
-    required this.value,
-  });
+final class QuicksightAnalysisStaticConfiguration {
+  const QuicksightAnalysisStaticConfiguration({required this.value});
 
   final TfArg<num> value;
 
@@ -4609,8 +4294,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfiguration({
+final class QuicksightAnalysisLabelConfiguration {
+  const QuicksightAnalysisLabelConfiguration({
     this.fontColor,
     this.horizontalPosition,
     this.verticalPosition,
@@ -4625,14 +4310,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? verticalPosition;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationCustomLabelConfiguration?
-  customLabelConfiguration;
+  final QuicksightAnalysisCustomLabelConfiguration? customLabelConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationValueLabelConfiguration?
-  valueLabelConfiguration;
+  final QuicksightAnalysisValueLabelConfiguration? valueLabelConfiguration;
 
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
@@ -4648,10 +4330,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationCustomLabelConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationCustomLabelConfiguration({
-    required this.customLabel,
-  });
+final class QuicksightAnalysisCustomLabelConfiguration {
+  const QuicksightAnalysisCustomLabelConfiguration({required this.customLabel});
 
   final TfArg<String> customLabel;
 
@@ -4662,16 +4342,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationValueLabelConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesLabelConfigurationValueLabelConfiguration({
+final class QuicksightAnalysisValueLabelConfiguration {
+  const QuicksightAnalysisValueLabelConfiguration({
     this.relativePosition,
     this.formatConfiguration,
   });
 
   final TfArg<String>? relativePosition;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisNumericFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'relative_position': ?relativePosition?.toTfJson(),
@@ -4683,11 +4362,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesStyleConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLinesStyleConfiguration({
-    this.color,
-    this.pattern,
-  });
+final class QuicksightAnalysisStyleConfiguration {
+  const QuicksightAnalysisStyleConfiguration({this.color, this.pattern});
 
   final TfArg<String>? color;
 
@@ -4703,8 +4379,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptions({
+final class QuicksightAnalysisSmallMultiplesOptions {
+  const QuicksightAnalysisSmallMultiplesOptions({
     this.maxVisibleColumns,
     this.maxVisibleRows,
     this.panelConfiguration,
@@ -4714,8 +4390,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<num>? maxVisibleRows;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfiguration?
-  panelConfiguration;
+  final QuicksightAnalysisPanelConfiguration? panelConfiguration;
 
   Map<String, Object?> encode() => {
     'max_visible_columns': ?maxVisibleColumns?.toTfJson(),
@@ -4728,8 +4403,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfiguration({
+final class QuicksightAnalysisPanelConfiguration {
+  const QuicksightAnalysisPanelConfiguration({
     this.backgroundColor,
     this.backgroundVisibility,
     this.borderColor,
@@ -4757,8 +4432,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? gutterVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfigurationTitle?
-  title;
+  final QuicksightAnalysisTitle? title;
 
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
@@ -4777,8 +4451,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfigurationTitle {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptionsPanelConfigurationTitle({
+final class QuicksightAnalysisTitle {
+  const QuicksightAnalysisTitle({
     this.horizontalTextAlignment,
     this.visibility,
     this.fontConfiguration,
@@ -4788,8 +4462,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
   Map<String, Object?> encode() => {
     'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
@@ -4801,8 +4474,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisBarChartVisualSortConfiguration {
+  const QuicksightAnalysisBarChartVisualSortConfiguration({
     this.categoryItemsLimit,
     this.categorySort,
     this.colorItemsLimit,
@@ -4811,29 +4484,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
     this.smallMultiplesSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  categoryItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? categoryItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  colorItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? colorItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  colorSort;
+  final List<QuicksightAnalysisCategorySort>? colorSort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  smallMultiplesLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? smallMultiplesLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  smallMultiplesSort;
+  final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
@@ -4853,8 +4514,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit({
+final class QuicksightAnalysisCategoryItemsLimit {
+  const QuicksightAnalysisCategoryItemsLimit({
     this.itemsLimit,
     required this.otherCategories,
   });
@@ -4873,17 +4534,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort({
-    this.columnSort,
-    this.fieldSort,
-  });
+final class QuicksightAnalysisCategorySort {
+  const QuicksightAnalysisCategorySort({this.columnSort, this.fieldSort});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortColumnSort?
-  columnSort;
+  final QuicksightAnalysisColumnSort? columnSort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortFieldSort?
-  fieldSort;
+  final QuicksightAnalysisFieldSort? fieldSort;
 
   Map<String, Object?> encode() => {
     'column_sort': ?columnSort?.encode(),
@@ -4895,8 +4551,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortColumnSort {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortColumnSort({
+final class QuicksightAnalysisColumnSort {
+  const QuicksightAnalysisColumnSort({
     required this.direction,
     this.aggregationFunction,
     required this.sortBy,
@@ -4904,10 +4560,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String> direction;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction?
-  aggregationFunction;
+  final QuicksightAnalysisAggregationFunction? aggregationFunction;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn sortBy;
+  final QuicksightAnalysisColumn sortBy;
 
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
@@ -4920,8 +4575,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortFieldSort {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortFieldSort({
+final class QuicksightAnalysisFieldSort {
+  const QuicksightAnalysisFieldSort({
     required this.direction,
     required this.fieldId,
   });
@@ -4940,8 +4595,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip({
+final class QuicksightAnalysisTooltip {
+  const QuicksightAnalysisTooltip({
     this.selectedTooltipType,
     this.tooltipVisibility,
     this.fieldBaseTooltip,
@@ -4951,8 +4606,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? tooltipVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltip?
-  fieldBaseTooltip;
+  final QuicksightAnalysisFieldBaseTooltip? fieldBaseTooltip;
 
   Map<String, Object?> encode() => {
     'selected_tooltip_type': ?selectedTooltipType?.toTfJson(),
@@ -4965,8 +4619,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltip {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltip({
+final class QuicksightAnalysisFieldBaseTooltip {
+  const QuicksightAnalysisFieldBaseTooltip({
     this.aggregationVisibility,
     this.tooltipTitleType,
     this.tooltipFields,
@@ -4976,10 +4630,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? tooltipTitleType;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFields
-  >?
-  tooltipFields;
+  final List<QuicksightAnalysisTooltipFields>? tooltipFields;
 
   Map<String, Object?> encode() => {
     'aggregation_visibility': ?aggregationVisibility?.toTfJson(),
@@ -4993,17 +4644,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFields {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFields({
+final class QuicksightAnalysisTooltipFields {
+  const QuicksightAnalysisTooltipFields({
     this.columnTooltipItem,
     this.fieldTooltipItem,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsColumnTooltipItem?
-  columnTooltipItem;
+  final QuicksightAnalysisColumnTooltipItem? columnTooltipItem;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsFieldTooltipItem?
-  fieldTooltipItem;
+  final QuicksightAnalysisFieldTooltipItem? fieldTooltipItem;
 
   Map<String, Object?> encode() => {
     'column_tooltip_item': ?columnTooltipItem?.encode(),
@@ -5015,8 +4664,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsColumnTooltipItem {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsColumnTooltipItem({
+final class QuicksightAnalysisColumnTooltipItem {
+  const QuicksightAnalysisColumnTooltipItem({
     this.label,
     this.visibility,
     this.aggregation,
@@ -5027,10 +4676,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionFilterGroupsFiltersNumericEqualityFilterAggregationFunction?
-  aggregation;
+  final QuicksightAnalysisAggregationFunction? aggregation;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
@@ -5044,8 +4692,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsFieldTooltipItem {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltipFieldBaseTooltipTooltipFieldsFieldTooltipItem({
+final class QuicksightAnalysisFieldTooltipItem {
+  const QuicksightAnalysisFieldTooltipItem({
     required this.fieldId,
     this.label,
     this.visibility,
@@ -5068,18 +4716,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette({
-    this.chartColor,
-    this.colorMap,
-  });
+final class QuicksightAnalysisVisualPalette {
+  const QuicksightAnalysisVisualPalette({this.chartColor, this.colorMap});
 
   final TfArg<String>? chartColor;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMap
-  >?
-  colorMap;
+  final List<QuicksightAnalysisColorMap>? colorMap;
 
   Map<String, Object?> encode() => {
     'chart_color': ?chartColor?.toTfJson(),
@@ -5091,8 +4733,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMap {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMap({
+final class QuicksightAnalysisColorMap {
+  const QuicksightAnalysisColorMap({
     required this.color,
     this.timeGranularity,
     required this.element,
@@ -5102,8 +4744,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<String>? timeGranularity;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMapElement
-  element;
+  final QuicksightAnalysisElement element;
 
   Map<String, Object?> encode() => {
     'color': color.toTfJson(),
@@ -5116,8 +4757,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMapElement {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMapElement({
+final class QuicksightAnalysisElement {
+  const QuicksightAnalysisElement({
     required this.fieldId,
     required this.fieldValue,
   });
@@ -5136,21 +4777,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigur
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies({
+final class QuicksightAnalysisColumnHierarchies {
+  const QuicksightAnalysisColumnHierarchies({
     this.dateTimeHierarchy,
     this.explicitHierarchy,
     this.predefinedHierarchy,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchy?
-  dateTimeHierarchy;
+  final QuicksightAnalysisDateTimeHierarchy? dateTimeHierarchy;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesExplicitHierarchy?
-  explicitHierarchy;
+  final QuicksightAnalysisExplicitHierarchy? explicitHierarchy;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesExplicitHierarchy?
-  predefinedHierarchy;
+  final QuicksightAnalysisExplicitHierarchy? predefinedHierarchy;
 
   Map<String, Object?> encode() => {
     'date_time_hierarchy': ?dateTimeHierarchy?.encode(),
@@ -5163,18 +4801,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchy {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchy({
+final class QuicksightAnalysisDateTimeHierarchy {
+  const QuicksightAnalysisDateTimeHierarchy({
     required this.hierarchyId,
     this.drillDownFilters,
   });
 
   final TfArg<String> hierarchyId;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFilters
-  >?
-  drillDownFilters;
+  final List<QuicksightAnalysisDrillDownFilters>? drillDownFilters;
 
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
@@ -5187,21 +4822,19 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFilters {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFilters({
+final class QuicksightAnalysisDrillDownFilters {
+  const QuicksightAnalysisDrillDownFilters({
     this.categoryFilter,
     this.numericEqualityFilter,
     this.timeRangeFilter,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersCategoryFilter?
-  categoryFilter;
+  final QuicksightAnalysisDrillDownFiltersCategoryFilter? categoryFilter;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersNumericEqualityFilter?
+  final QuicksightAnalysisDrillDownFiltersNumericEqualityFilter?
   numericEqualityFilter;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersTimeRangeFilter?
-  timeRangeFilter;
+  final QuicksightAnalysisDrillDownFiltersTimeRangeFilter? timeRangeFilter;
 
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
@@ -5214,15 +4847,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersCategoryFilter {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersCategoryFilter({
+final class QuicksightAnalysisDrillDownFiltersCategoryFilter {
+  const QuicksightAnalysisDrillDownFiltersCategoryFilter({
     required this.categoryValues,
     required this.column,
   });
 
   final TfArg<List<String>> categoryValues;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'category_values': categoryValues.toTfJson(),
@@ -5234,15 +4867,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersNumericEqualityFilter {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersNumericEqualityFilter({
+final class QuicksightAnalysisDrillDownFiltersNumericEqualityFilter {
+  const QuicksightAnalysisDrillDownFiltersNumericEqualityFilter({
     required this.value,
     required this.column,
   });
 
   final TfArg<num> value;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'value': value.toTfJson(),
@@ -5254,8 +4887,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersTimeRangeFilter {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFiltersTimeRangeFilter({
+final class QuicksightAnalysisDrillDownFiltersTimeRangeFilter {
+  const QuicksightAnalysisDrillDownFiltersTimeRangeFilter({
     required this.rangeMaximum,
     required this.rangeMinimum,
     required this.timeGranularity,
@@ -5268,7 +4901,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 
   final TfArg<String> timeGranularity;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
   Map<String, Object?> encode() => {
     'range_maximum': rangeMaximum.toTfJson(),
@@ -5282,8 +4915,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesExplicitHierarchy {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesExplicitHierarchy({
+final class QuicksightAnalysisExplicitHierarchy {
+  const QuicksightAnalysisExplicitHierarchy({
     required this.hierarchyId,
     required this.columns,
     this.drillDownFilters,
@@ -5291,12 +4924,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 
   final TfArg<String> hierarchyId;
 
-  final List<QuicksightAnalysisDefinitionColumnConfigurationsColumn> columns;
+  final List<QuicksightAnalysisColumn> columns;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchiesDateTimeHierarchyDrillDownFilters
-  >?
-  drillDownFilters;
+  final List<QuicksightAnalysisDrillDownFilters>? drillDownFilters;
 
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
@@ -5310,16 +4940,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarc
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle({
-    this.visibility,
-    this.formatText,
-  });
+final class QuicksightAnalysisSubtitle {
+  const QuicksightAnalysisSubtitle({this.visibility, this.formatText});
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitleFormatText?
-  formatText;
+  final QuicksightAnalysisFormatText? formatText;
 
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
@@ -5331,11 +4957,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitleFormatText {
-  const QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitleFormatText({
-    this.plainText,
-    this.richText,
-  });
+final class QuicksightAnalysisFormatText {
+  const QuicksightAnalysisFormatText({this.plainText, this.richText});
 
   final TfArg<String>? plainText;
 
@@ -5350,8 +4973,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitleForma
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisual({
+final class QuicksightAnalysisBoxPlotVisual {
+  const QuicksightAnalysisBoxPlotVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -5362,21 +4985,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisBoxPlotVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -5392,8 +5009,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisual {
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfiguration({
+final class QuicksightAnalysisBoxPlotVisualChartConfiguration {
+  const QuicksightAnalysisBoxPlotVisualChartConfiguration({
     this.boxPlotOptions,
     this.categoryAxis,
     this.categoryLabelOptions,
@@ -5407,40 +5024,27 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
     this.visualPalette,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptions?
-  boxPlotOptions;
+  final QuicksightAnalysisBoxPlotOptions? boxPlotOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  categoryAxis;
+  final QuicksightAnalysisCategoryAxis? categoryAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisBoxPlotVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  primaryYAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? primaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  primaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? primaryYAxisLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines
-  >?
-  referenceLines;
+  final List<QuicksightAnalysisReferenceLines>? referenceLines;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisBoxPlotVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'box_plot_options': ?boxPlotOptions?.encode(),
@@ -5461,8 +5065,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.box_plot_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptions({
+final class QuicksightAnalysisBoxPlotOptions {
+  const QuicksightAnalysisBoxPlotOptions({
     this.allDataPointsVisibility,
     this.outlierVisibility,
     this.styleOptions,
@@ -5472,8 +5076,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 
   final TfArg<String>? outlierVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptionsStyleOptions?
-  styleOptions;
+  final QuicksightAnalysisStyleOptions? styleOptions;
 
   Map<String, Object?> encode() => {
     'all_data_points_visibility': ?allDataPointsVisibility?.toTfJson(),
@@ -5485,10 +5088,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.box_plot_options.style_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptionsStyleOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationBoxPlotOptionsStyleOptions({
-    this.fillStyle,
-  });
+final class QuicksightAnalysisStyleOptions {
+  const QuicksightAnalysisStyleOptions({this.fillStyle});
 
   final TfArg<String>? fillStyle;
 
@@ -5498,12 +5099,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisBoxPlotVisualFieldWells {
+  const QuicksightAnalysisBoxPlotVisualFieldWells({
     this.boxPlotAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWellsBoxPlotAggregatedFieldWells?
+  final QuicksightAnalysisBoxPlotAggregatedFieldWells?
   boxPlotAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -5514,19 +5115,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.field_wells.box_plot_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWellsBoxPlotAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationFieldWellsBoxPlotAggregatedFieldWells({
+final class QuicksightAnalysisBoxPlotAggregatedFieldWells {
+  const QuicksightAnalysisBoxPlotAggregatedFieldWells({
     this.groupBy,
     this.values,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  groupBy;
+  final QuicksightAnalysisTrendGroups? groupBy;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     'group_by': ?groupBy?.encode(),
@@ -5537,19 +5134,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisBoxPlotVisualSortConfiguration {
+  const QuicksightAnalysisBoxPlotVisualSortConfiguration({
     this.categorySort,
     this.paginationConfiguration,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfigurationPaginationConfiguration?
-  paginationConfiguration;
+  final QuicksightAnalysisPaginationConfiguration? paginationConfiguration;
 
   Map<String, Object?> encode() => {
     if (categorySort != null)
@@ -5562,8 +5155,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfigurationPaginationConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfigurationPaginationConfiguration({
+final class QuicksightAnalysisPaginationConfiguration {
+  const QuicksightAnalysisPaginationConfiguration({
     required this.pageNumber,
     required this.pageSize,
   });
@@ -5581,8 +5174,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.combo_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsComboChartVisual({
+final class QuicksightAnalysisComboChartVisual {
+  const QuicksightAnalysisComboChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -5593,21 +5186,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfiguration?
+  final QuicksightAnalysisComboChartVisualChartConfiguration?
   chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -5623,8 +5211,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisual {
 /// Typed helper for the `definition.sheets.visuals.combo_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfiguration({
+final class QuicksightAnalysisComboChartVisualChartConfiguration {
+  const QuicksightAnalysisComboChartVisualChartConfiguration({
     this.barsArrangement,
     this.barDataLabels,
     this.categoryAxis,
@@ -5645,52 +5233,35 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfig
 
   final TfArg<String>? barsArrangement;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  barDataLabels;
+  final QuicksightAnalysisDataLabels? barDataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  categoryAxis;
+  final QuicksightAnalysisCategoryAxis? categoryAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  colorLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? colorLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisComboChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  lineDataLabels;
+  final QuicksightAnalysisDataLabels? lineDataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  primaryYAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? primaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  primaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? primaryYAxisLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines
-  >?
-  referenceLines;
+  final List<QuicksightAnalysisReferenceLines>? referenceLines;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  secondaryYAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? secondaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  secondaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? secondaryYAxisLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisComboChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
@@ -5716,12 +5287,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.combo_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisComboChartVisualFieldWells {
+  const QuicksightAnalysisComboChartVisualFieldWells({
     this.comboChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWellsComboChartAggregatedFieldWells?
+  final QuicksightAnalysisComboChartAggregatedFieldWells?
   comboChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -5733,33 +5304,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.combo_chart_visual.chart_configuration.field_wells.combo_chart_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWellsComboChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationFieldWellsComboChartAggregatedFieldWells({
+final class QuicksightAnalysisComboChartAggregatedFieldWells {
+  const QuicksightAnalysisComboChartAggregatedFieldWells({
     this.barValues,
     this.category,
     this.colors,
     this.lineValues,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  barValues;
+  final List<QuicksightAnalysisTargetValues>? barValues;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  category;
+  final List<QuicksightAnalysisTrendGroups>? category;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  colors;
+  final List<QuicksightAnalysisTrendGroups>? colors;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  lineValues;
+  final List<QuicksightAnalysisTargetValues>? lineValues;
 
   Map<String, Object?> encode() => {
     if (barValues != null)
@@ -5775,29 +5334,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisComboChartVisualSortConfiguration {
+  const QuicksightAnalysisComboChartVisualSortConfiguration({
     this.categoryItemsLimit,
     this.categorySort,
     this.colorItemsLimit,
     this.colorSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  categoryItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? categoryItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  colorItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? colorItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  colorSort;
+  final List<QuicksightAnalysisCategorySort>? colorSort;
 
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
@@ -5812,8 +5363,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.custom_content_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisual({
+final class QuicksightAnalysisCustomContentVisual {
+  const QuicksightAnalysisCustomContentVisual({
     required this.dataSetIdentifier,
     required this.visualId,
     this.actions,
@@ -5826,16 +5377,14 @@ final class QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisualChartConfiguration?
+  final QuicksightAnalysisCustomContentVisualChartConfiguration?
   chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -5850,8 +5399,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisual {
 /// Typed helper for the `definition.sheets.visuals.custom_content_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisualChartConfiguration({
+final class QuicksightAnalysisCustomContentVisualChartConfiguration {
+  const QuicksightAnalysisCustomContentVisualChartConfiguration({
     this.contentType,
     this.contentUrl,
     this.imageScaling,
@@ -5873,8 +5422,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsCustomContentVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.empty_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsEmptyVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsEmptyVisual({
+final class QuicksightAnalysisEmptyVisual {
+  const QuicksightAnalysisEmptyVisual({
     required this.dataSetIdentifier,
     required this.visualId,
     this.actions,
@@ -5884,8 +5433,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsEmptyVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -5897,8 +5445,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsEmptyVisual {
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisual({
+final class QuicksightAnalysisFilledMapVisual {
+  const QuicksightAnalysisFilledMapVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -5910,24 +5458,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisFilledMapVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormatting?
+  final QuicksightAnalysisFilledMapVisualConditionalFormatting?
   conditionalFormatting;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -5944,8 +5486,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisual {
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfiguration({
+final class QuicksightAnalysisFilledMapVisualChartConfiguration {
+  const QuicksightAnalysisFilledMapVisualChartConfiguration({
     this.fieldWells,
     this.legend,
     this.mapStyleOptions,
@@ -5954,23 +5496,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
     this.windowOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisFilledMapVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationMapStyleOptions?
-  mapStyleOptions;
+  final QuicksightAnalysisMapStyleOptions? mapStyleOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisFilledMapVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptions?
-  windowOptions;
+  final QuicksightAnalysisWindowOptions? windowOptions;
 
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
@@ -5985,12 +5521,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisFilledMapVisualFieldWells {
+  const QuicksightAnalysisFilledMapVisualFieldWells({
     this.filledMapAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWellsFilledMapAggregatedFieldWells?
+  final QuicksightAnalysisFilledMapAggregatedFieldWells?
   filledMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -6002,17 +5538,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.chart_configuration.field_wells.filled_map_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWellsFilledMapAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationFieldWellsFilledMapAggregatedFieldWells({
+final class QuicksightAnalysisFilledMapAggregatedFieldWells {
+  const QuicksightAnalysisFilledMapAggregatedFieldWells({
     this.geospatial,
     this.values,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  geospatial;
+  final QuicksightAnalysisTrendGroups? geospatial;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  values;
+  final QuicksightAnalysisTargetValues? values;
 
   Map<String, Object?> encode() => {
     'geospatial': ?geospatial?.encode(),
@@ -6024,10 +5558,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationMapStyleOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationMapStyleOptions({
-    this.baseMapStyle,
-  });
+final class QuicksightAnalysisMapStyleOptions {
+  const QuicksightAnalysisMapStyleOptions({this.baseMapStyle});
 
   final TfArg<String>? baseMapStyle;
 
@@ -6039,15 +5571,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationSortConfiguration({
-    this.categorySort,
-  });
+final class QuicksightAnalysisFilledMapVisualSortConfiguration {
+  const QuicksightAnalysisFilledMapVisualSortConfiguration({this.categorySort});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
   Map<String, Object?> encode() => {
     if (categorySort != null)
@@ -6059,16 +5586,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptions({
-    this.mapZoomMode,
-    this.bounds,
-  });
+final class QuicksightAnalysisWindowOptions {
+  const QuicksightAnalysisWindowOptions({this.mapZoomMode, this.bounds});
 
   final TfArg<String>? mapZoomMode;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptionsBounds?
-  bounds;
+  final QuicksightAnalysisBounds? bounds;
 
   Map<String, Object?> encode() => {
     'map_zoom_mode': ?mapZoomMode?.toTfJson(),
@@ -6080,8 +5603,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptionsBounds {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptionsBounds({
+final class QuicksightAnalysisBounds {
+  const QuicksightAnalysisBounds({
     required this.east,
     required this.north,
     required this.south,
@@ -6107,14 +5630,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.conditional_formatting` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormatting {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormatting({
+final class QuicksightAnalysisFilledMapVisualConditionalFormatting {
+  const QuicksightAnalysisFilledMapVisualConditionalFormatting({
     required this.conditionalFormattingOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptions
-  >
+  final List<QuicksightAnalysisFilledMapVisualConditionalFormattingOptions>
   conditionalFormattingOptions;
 
   Map<String, Object?> encode() => {
@@ -6127,13 +5648,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalF
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.conditional_formatting.conditional_formatting_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptions({
+final class QuicksightAnalysisFilledMapVisualConditionalFormattingOptions {
+  const QuicksightAnalysisFilledMapVisualConditionalFormattingOptions({
     required this.shape,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShape
-  shape;
+  final QuicksightAnalysisShape shape;
 
   Map<String, Object?> encode() => {'shape': shape.encode()};
 }
@@ -6141,16 +5661,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalF
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.conditional_formatting.conditional_formatting_options.shape` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShape {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShape({
-    required this.fieldId,
-    this.format,
-  });
+final class QuicksightAnalysisShape {
+  const QuicksightAnalysisShape({required this.fieldId, this.format});
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShapeFormat?
-  format;
+  final QuicksightAnalysisFormat? format;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -6161,13 +5677,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalF
 /// Typed helper for the `definition.sheets.visuals.filled_map_visual.conditional_formatting.conditional_formatting_options.shape.format` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShapeFormat {
-  const QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalFormattingConditionalFormattingOptionsShapeFormat({
-    required this.backgroundColor,
-  });
+final class QuicksightAnalysisFormat {
+  const QuicksightAnalysisFormat({required this.backgroundColor});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  backgroundColor;
+  final QuicksightAnalysisForegroundColor backgroundColor;
 
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
@@ -6178,17 +5691,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualConditionalF
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor({
-    this.gradient,
-    this.solid,
-  });
+final class QuicksightAnalysisForegroundColor {
+  const QuicksightAnalysisForegroundColor({this.gradient, this.solid});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradient?
-  gradient;
+  final QuicksightAnalysisGradient? gradient;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorSolid?
-  solid;
+  final QuicksightAnalysisSolid? solid;
 
   Map<String, Object?> encode() => {
     'gradient': ?gradient?.encode(),
@@ -6200,16 +5708,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradient {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradient({
+final class QuicksightAnalysisGradient {
+  const QuicksightAnalysisGradient({
     required this.expression,
     required this.color,
   });
 
   final TfArg<String> expression;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColor
-  color;
+  final QuicksightAnalysisColor color;
 
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
@@ -6221,15 +5728,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColor {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColor({
-    this.stops,
-  });
+final class QuicksightAnalysisColor {
+  const QuicksightAnalysisColor({this.stops});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColorStops
-  >?
-  stops;
+  final List<QuicksightAnalysisStops>? stops;
 
   Map<String, Object?> encode() => {
     if (stops != null) 'stops': [for (final e in stops!) e.encode()],
@@ -6240,8 +5742,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColorStops {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorGradientColorStops({
+final class QuicksightAnalysisStops {
+  const QuicksightAnalysisStops({
     this.color,
     this.dataValue,
     required this.gradientOffset,
@@ -6264,11 +5766,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorSolid {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColorSolid({
-    this.color,
-    required this.expression,
-  });
+final class QuicksightAnalysisSolid {
+  const QuicksightAnalysisSolid({this.color, required this.expression});
 
   final TfArg<String>? color;
 
@@ -6283,8 +5782,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// Typed helper for the `definition.sheets.visuals.funnel_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisual({
+final class QuicksightAnalysisFunnelChartVisual {
+  const QuicksightAnalysisFunnelChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -6295,21 +5794,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfiguration?
+  final QuicksightAnalysisFunnelChartVisualChartConfiguration?
   chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -6325,8 +5819,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisual {
 /// Typed helper for the `definition.sheets.visuals.funnel_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfiguration({
+final class QuicksightAnalysisFunnelChartVisualChartConfiguration {
+  const QuicksightAnalysisFunnelChartVisualChartConfiguration({
     this.categoryLabelOptions,
     this.dataLabelOptions,
     this.fieldWells,
@@ -6336,26 +5830,19 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
     this.visualPalette,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationDataLabelOptions?
-  dataLabelOptions;
+  final QuicksightAnalysisDataLabelOptions? dataLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisFunnelChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisFunnelChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  valueLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? valueLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
@@ -6371,8 +5858,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.funnel_chart_visual.chart_configuration.data_label_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationDataLabelOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationDataLabelOptions({
+final class QuicksightAnalysisDataLabelOptions {
+  const QuicksightAnalysisDataLabelOptions({
     this.categoryLabelVisibility,
     this.labelColor,
     this.measureDataLabelStyle,
@@ -6394,8 +5881,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  labelFontConfiguration;
+  final QuicksightAnalysisFontConfiguration? labelFontConfiguration;
 
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
@@ -6411,12 +5897,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.funnel_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisFunnelChartVisualFieldWells {
+  const QuicksightAnalysisFunnelChartVisualFieldWells({
     this.funnelChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWellsFunnelChartAggregatedFieldWells?
+  final QuicksightAnalysisFunnelChartAggregatedFieldWells?
   funnelChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -6428,17 +5914,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.funnel_chart_visual.chart_configuration.field_wells.funnel_chart_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWellsFunnelChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationFieldWellsFunnelChartAggregatedFieldWells({
+final class QuicksightAnalysisFunnelChartAggregatedFieldWells {
+  const QuicksightAnalysisFunnelChartAggregatedFieldWells({
     this.category,
     this.values,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  category;
+  final QuicksightAnalysisTrendGroups? category;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  values;
+  final QuicksightAnalysisTargetValues? values;
 
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
@@ -6450,19 +5934,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisFunnelChartVisualSortConfiguration {
+  const QuicksightAnalysisFunnelChartVisualSortConfiguration({
     this.categoryItemsLimit,
     this.categorySort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  categoryItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? categoryItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
@@ -6474,8 +5954,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisual({
+final class QuicksightAnalysisGaugeChartVisual {
+  const QuicksightAnalysisGaugeChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -6486,19 +5966,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfiguration?
+  final QuicksightAnalysisGaugeChartVisualChartConfiguration?
   chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormatting?
+  final QuicksightAnalysisGaugeChartVisualConditionalFormatting?
   conditionalFormatting;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -6513,8 +5991,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisual {
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfiguration({
+final class QuicksightAnalysisGaugeChartVisualChartConfiguration {
+  const QuicksightAnalysisGaugeChartVisualChartConfiguration({
     this.dataLabels,
     this.fieldWells,
     this.gaugeChartOptions,
@@ -6522,20 +6000,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
     this.visualPalette,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisGaugeChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptions?
-  gaugeChartOptions;
+  final QuicksightAnalysisGaugeChartOptions? gaugeChartOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
@@ -6549,21 +6022,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisGaugeChartVisualFieldWells {
+  const QuicksightAnalysisGaugeChartVisualFieldWells({
     this.targetValues,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  targetValues;
+  final List<QuicksightAnalysisTargetValues>? targetValues;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (targetValues != null)
@@ -6575,8 +6042,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration.gauge_chart_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptions({
+final class QuicksightAnalysisGaugeChartOptions {
+  const QuicksightAnalysisGaugeChartOptions({
     this.primaryValueDisplayType,
     this.arc,
     this.arcAxis,
@@ -6586,17 +6053,13 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 
   final TfArg<String>? primaryValueDisplayType;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArc?
-  arc;
+  final QuicksightAnalysisGaugeChartOptionsArc? arc;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxis?
-  arcAxis;
+  final QuicksightAnalysisArcAxis? arcAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparison?
-  comparison;
+  final QuicksightAnalysisComparison? comparison;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  primaryValueFontConfiguration;
+  final QuicksightAnalysisFontConfiguration? primaryValueFontConfiguration;
 
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
@@ -6611,8 +6074,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration.gauge_chart_options.arc` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArc {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArc({
+final class QuicksightAnalysisGaugeChartOptionsArc {
+  const QuicksightAnalysisGaugeChartOptionsArc({
     this.arcAngle,
     this.arcThickness,
   });
@@ -6630,16 +6093,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration.gauge_chart_options.arc_axis` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxis {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxis({
-    this.reserveRange,
-    this.range,
-  });
+final class QuicksightAnalysisArcAxis {
+  const QuicksightAnalysisArcAxis({this.reserveRange, this.range});
 
   final TfArg<num>? reserveRange;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxisRange?
-  range;
+  final QuicksightAnalysisRange? range;
 
   Map<String, Object?> encode() => {
     'reserve_range': ?reserveRange?.toTfJson(),
@@ -6650,11 +6109,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.chart_configuration.gauge_chart_options.arc_axis.range` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxisRange {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsArcAxisRange({
-    this.max,
-    this.min,
-  });
+final class QuicksightAnalysisRange {
+  const QuicksightAnalysisRange({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -6670,16 +6126,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparison {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparison({
+final class QuicksightAnalysisComparison {
+  const QuicksightAnalysisComparison({
     this.comparisonMethod,
     this.comparisonFormat,
   });
 
   final TfArg<String>? comparisonMethod;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparisonComparisonFormat?
-  comparisonFormat;
+  final QuicksightAnalysisComparisonFormat? comparisonFormat;
 
   Map<String, Object?> encode() => {
     'comparison_method': ?comparisonMethod?.toTfJson(),
@@ -6691,16 +6146,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparisonComparisonFormat {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparisonComparisonFormat({
+final class QuicksightAnalysisComparisonFormat {
+  const QuicksightAnalysisComparisonFormat({
     this.numberDisplayFormatConfiguration,
     this.percentageDisplayFormatConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationNumberDisplayFormatConfiguration?
+  final QuicksightAnalysisNumberDisplayFormatConfiguration?
   numberDisplayFormatConfiguration;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationPercentageDisplayFormatConfiguration?
+  final QuicksightAnalysisPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
   Map<String, Object?> encode() => {
@@ -6714,14 +6169,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.conditional_formatting` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormatting {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormatting({
+final class QuicksightAnalysisGaugeChartVisualConditionalFormatting {
+  const QuicksightAnalysisGaugeChartVisualConditionalFormatting({
     this.conditionalFormattingOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptions
-  >?
+  final List<QuicksightAnalysisGaugeChartVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
   Map<String, Object?> encode() => {
@@ -6735,17 +6188,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// Typed helper for the `definition.sheets.visuals.gauge_chart_visual.conditional_formatting.conditional_formatting_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptions({
+final class QuicksightAnalysisGaugeChartVisualConditionalFormattingOptions {
+  const QuicksightAnalysisGaugeChartVisualConditionalFormattingOptions({
     this.arc,
     this.primaryValue,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArc?
-  arc;
+  final QuicksightAnalysisConditionalFormattingOptionsArc? arc;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue?
-  primaryValue;
+  final QuicksightAnalysisPrimaryValue? primaryValue;
 
   Map<String, Object?> encode() => {
     'arc': ?arc?.encode(),
@@ -6757,13 +6208,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArc {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArc({
+final class QuicksightAnalysisConditionalFormattingOptionsArc {
+  const QuicksightAnalysisConditionalFormattingOptionsArc({
     required this.foregroundColor,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  foregroundColor;
+  final QuicksightAnalysisForegroundColor foregroundColor;
 
   Map<String, Object?> encode() => {
     'foreground_color': foregroundColor.encode(),
@@ -6774,17 +6224,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue({
-    this.icon,
-    required this.textColor,
-  });
+final class QuicksightAnalysisPrimaryValue {
+  const QuicksightAnalysisPrimaryValue({this.icon, required this.textColor});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIcon?
-  icon;
+  final QuicksightAnalysisIcon? icon;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  textColor;
+  final QuicksightAnalysisForegroundColor textColor;
 
   Map<String, Object?> encode() => {
     'icon': ?icon?.encode(),
@@ -6796,17 +6241,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIcon {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIcon({
-    this.customCondition,
-    this.iconSet,
-  });
+final class QuicksightAnalysisIcon {
+  const QuicksightAnalysisIcon({this.customCondition, this.iconSet});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomCondition?
-  customCondition;
+  final QuicksightAnalysisCustomCondition? customCondition;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconIconSet?
-  iconSet;
+  final QuicksightAnalysisIconSet? iconSet;
 
   Map<String, Object?> encode() => {
     'custom_condition': ?customCondition?.encode(),
@@ -6818,8 +6258,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomCondition {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomCondition({
+final class QuicksightAnalysisCustomCondition {
+  const QuicksightAnalysisCustomCondition({
     this.color,
     required this.expression,
     this.displayConfiguration,
@@ -6830,11 +6270,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 
   final TfArg<String> expression;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionDisplayConfiguration?
-  displayConfiguration;
+  final QuicksightAnalysisDisplayConfiguration? displayConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionIconOptions
-  iconOptions;
+  final QuicksightAnalysisIconOptions iconOptions;
 
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
@@ -6848,10 +6286,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionDisplayConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionDisplayConfiguration({
-    this.iconDisplayOption,
-  });
+final class QuicksightAnalysisDisplayConfiguration {
+  const QuicksightAnalysisDisplayConfiguration({this.iconDisplayOption});
 
   final TfArg<String>? iconDisplayOption;
 
@@ -6864,11 +6300,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionIconOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconCustomConditionIconOptions({
-    this.icon,
-    this.unicodeIcon,
-  });
+final class QuicksightAnalysisIconOptions {
+  const QuicksightAnalysisIconOptions({this.icon, this.unicodeIcon});
 
   final TfArg<String>? icon;
 
@@ -6884,11 +6317,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconIconSet {
-  const QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIconIconSet({
-    required this.expression,
-    this.iconSetType,
-  });
+final class QuicksightAnalysisIconSet {
+  const QuicksightAnalysisIconSet({required this.expression, this.iconSetType});
 
   final TfArg<String> expression;
 
@@ -6903,8 +6333,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditional
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisual({
+final class QuicksightAnalysisGeospatialMapVisual {
+  const QuicksightAnalysisGeospatialMapVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -6915,21 +6345,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfiguration?
+  final QuicksightAnalysisGeospatialMapVisualChartConfiguration?
   chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -6945,8 +6370,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisual {
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfiguration({
+final class QuicksightAnalysisGeospatialMapVisualChartConfiguration {
+  const QuicksightAnalysisGeospatialMapVisualChartConfiguration({
     this.fieldWells,
     this.legend,
     this.mapStyleOptions,
@@ -6956,26 +6381,19 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
     this.windowOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisGeospatialMapVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationMapStyleOptions?
-  mapStyleOptions;
+  final QuicksightAnalysisMapStyleOptions? mapStyleOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptions?
-  pointStyleOptions;
+  final QuicksightAnalysisPointStyleOptions? pointStyleOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFilledMapVisualChartConfigurationWindowOptions?
-  windowOptions;
+  final QuicksightAnalysisWindowOptions? windowOptions;
 
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
@@ -6991,12 +6409,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisGeospatialMapVisualFieldWells {
+  const QuicksightAnalysisGeospatialMapVisualFieldWells({
     this.geospatialMapAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWellsGeospatialMapAggregatedFieldWells?
+  final QuicksightAnalysisGeospatialMapAggregatedFieldWells?
   geospatialMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -7008,27 +6426,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.field_wells.geospatial_map_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWellsGeospatialMapAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationFieldWellsGeospatialMapAggregatedFieldWells({
+final class QuicksightAnalysisGeospatialMapAggregatedFieldWells {
+  const QuicksightAnalysisGeospatialMapAggregatedFieldWells({
     this.colors,
     this.geospatial,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  colors;
+  final List<QuicksightAnalysisTrendGroups>? colors;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  geospatial;
+  final List<QuicksightAnalysisTrendGroups>? geospatial;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
@@ -7041,15 +6450,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.point_style_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptions({
+final class QuicksightAnalysisPointStyleOptions {
+  const QuicksightAnalysisPointStyleOptions({
     this.selectedPointStyle,
     this.clusterMarkerConfiguration,
   });
 
   final TfArg<String>? selectedPointStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfiguration?
+  final QuicksightAnalysisClusterMarkerConfiguration?
   clusterMarkerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -7061,13 +6470,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.point_style_options.cluster_marker_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfiguration({
-    this.clusterMarker,
-  });
+final class QuicksightAnalysisClusterMarkerConfiguration {
+  const QuicksightAnalysisClusterMarkerConfiguration({this.clusterMarker});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarker?
-  clusterMarker;
+  final QuicksightAnalysisClusterMarker? clusterMarker;
 
   Map<String, Object?> encode() => {'cluster_marker': ?clusterMarker?.encode()};
 }
@@ -7075,13 +6481,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.point_style_options.cluster_marker_configuration.cluster_marker` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarker {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarker({
-    this.simpleClusterMarker,
-  });
+final class QuicksightAnalysisClusterMarker {
+  const QuicksightAnalysisClusterMarker({this.simpleClusterMarker});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarkerSimpleClusterMarker?
-  simpleClusterMarker;
+  final QuicksightAnalysisSimpleClusterMarker? simpleClusterMarker;
 
   Map<String, Object?> encode() => {
     'simple_cluster_marker': ?simpleClusterMarker?.encode(),
@@ -7091,10 +6494,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.point_style_options.cluster_marker_configuration.cluster_marker.simple_cluster_marker` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarkerSimpleClusterMarker {
-  const QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarkerSimpleClusterMarker({
-    this.color,
-  });
+final class QuicksightAnalysisSimpleClusterMarker {
+  const QuicksightAnalysisSimpleClusterMarker({this.color});
 
   final TfArg<String>? color;
 
@@ -7104,8 +6505,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsGeospatialMapVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisual({
+final class QuicksightAnalysisHeatMapVisual {
+  const QuicksightAnalysisHeatMapVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -7116,21 +6517,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisHeatMapVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -7146,8 +6541,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisual {
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfiguration({
+final class QuicksightAnalysisHeatMapVisualChartConfiguration {
+  const QuicksightAnalysisHeatMapVisualChartConfiguration({
     this.colorScale,
     this.columnLabelOptions,
     this.dataLabels,
@@ -7158,29 +6553,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
     this.tooltip,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScale?
-  colorScale;
+  final QuicksightAnalysisColorScale? colorScale;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  columnLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? columnLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisHeatMapVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  rowLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? rowLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisHeatMapVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
   Map<String, Object?> encode() => {
     'color_scale': ?colorScale?.encode(),
@@ -7198,8 +6585,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScale {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScale({
+final class QuicksightAnalysisColorScale {
+  const QuicksightAnalysisColorScale({
     required this.colorFillType,
     required this.colors,
     this.nullValueColor,
@@ -7207,13 +6594,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 
   final TfArg<String> colorFillType;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScaleColors
-  >
-  colors;
+  final List<QuicksightAnalysisColors> colors;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScaleColors?
-  nullValueColor;
+  final QuicksightAnalysisColors? nullValueColor;
 
   Map<String, Object?> encode() => {
     'color_fill_type': colorFillType.toTfJson(),
@@ -7226,11 +6609,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScaleColors {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScaleColors({
-    this.color,
-    this.dataValue,
-  });
+final class QuicksightAnalysisColors {
+  const QuicksightAnalysisColors({this.color, this.dataValue});
 
   final TfArg<String>? color;
 
@@ -7245,12 +6625,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisHeatMapVisualFieldWells {
+  const QuicksightAnalysisHeatMapVisualFieldWells({
     this.heatMapAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWellsHeatMapAggregatedFieldWells?
+  final QuicksightAnalysisHeatMapAggregatedFieldWells?
   heatMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -7261,21 +6641,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual.chart_configuration.field_wells.heat_map_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWellsHeatMapAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationFieldWellsHeatMapAggregatedFieldWells({
+final class QuicksightAnalysisHeatMapAggregatedFieldWells {
+  const QuicksightAnalysisHeatMapAggregatedFieldWells({
     this.columns,
     this.rows,
     this.values,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  columns;
+  final QuicksightAnalysisTrendGroups? columns;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  rows;
+  final QuicksightAnalysisTrendGroups? rows;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  values;
+  final QuicksightAnalysisTargetValues? values;
 
   Map<String, Object?> encode() => {
     'columns': ?columns?.encode(),
@@ -7287,29 +6664,22 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisHeatMapVisualSortConfiguration {
+  const QuicksightAnalysisHeatMapVisualSortConfiguration({
     this.heatMapColumnItemsLimitConfiguration,
     this.heatMapColumnSort,
     this.heatMapRowItemsLimitConfiguration,
     this.heatMapRowSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
+  final QuicksightAnalysisCategoryItemsLimit?
   heatMapColumnItemsLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  heatMapColumnSort;
+  final List<QuicksightAnalysisCategorySort>? heatMapColumnSort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  heatMapRowItemsLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? heatMapRowItemsLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  heatMapRowSort;
+  final List<QuicksightAnalysisCategorySort>? heatMapRowSort;
 
   Map<String, Object?> encode() => {
     'heat_map_column_items_limit_configuration':
@@ -7326,8 +6696,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.histogram_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisual({
+final class QuicksightAnalysisHistogramVisual {
+  const QuicksightAnalysisHistogramVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -7337,16 +6707,13 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisHistogramVisualChartConfiguration? chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -7360,8 +6727,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisual {
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfiguration({
+final class QuicksightAnalysisHistogramVisualChartConfiguration {
+  const QuicksightAnalysisHistogramVisualChartConfiguration({
     this.binOptions,
     this.dataLabels,
     this.fieldWells,
@@ -7372,29 +6739,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
     this.yAxisDisplayOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptions?
-  binOptions;
+  final QuicksightAnalysisBinOptions? binOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisHistogramVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  xAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? xAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  xAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? xAxisLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  yAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? yAxisDisplayOptions;
 
   Map<String, Object?> encode() => {
     'bin_options': ?binOptions?.encode(),
@@ -7411,8 +6770,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.bin_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptions({
+final class QuicksightAnalysisBinOptions {
+  const QuicksightAnalysisBinOptions({
     this.selectedBinType,
     this.startValue,
     this.binCount,
@@ -7423,11 +6782,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 
   final TfArg<num>? startValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinCount?
-  binCount;
+  final QuicksightAnalysisBinCount? binCount;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinWidth?
-  binWidth;
+  final QuicksightAnalysisBinWidth? binWidth;
 
   Map<String, Object?> encode() => {
     'selected_bin_type': ?selectedBinType?.toTfJson(),
@@ -7440,10 +6797,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.bin_options.bin_count` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinCount {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinCount({
-    this.value,
-  });
+final class QuicksightAnalysisBinCount {
+  const QuicksightAnalysisBinCount({this.value});
 
   final TfArg<num>? value;
 
@@ -7453,11 +6808,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.bin_options.bin_width` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinWidth {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationBinOptionsBinWidth({
-    this.binCountLimit,
-    this.value,
-  });
+final class QuicksightAnalysisBinWidth {
+  const QuicksightAnalysisBinWidth({this.binCountLimit, this.value});
 
   final TfArg<num>? binCountLimit;
 
@@ -7472,12 +6824,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisHistogramVisualFieldWells {
+  const QuicksightAnalysisHistogramVisualFieldWells({
     this.histogramAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWellsHistogramAggregatedFieldWells?
+  final QuicksightAnalysisHistogramAggregatedFieldWells?
   histogramAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -7489,13 +6841,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.field_wells.histogram_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWellsHistogramAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigurationFieldWellsHistogramAggregatedFieldWells({
-    this.values,
-  });
+final class QuicksightAnalysisHistogramAggregatedFieldWells {
+  const QuicksightAnalysisHistogramAggregatedFieldWells({this.values});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  values;
+  final QuicksightAnalysisTargetValues? values;
 
   Map<String, Object?> encode() => {'values': ?values?.encode()};
 }
@@ -7503,8 +6852,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsHistogramVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisual({
+final class QuicksightAnalysisInsightVisual {
+  const QuicksightAnalysisInsightVisual({
     required this.dataSetIdentifier,
     required this.visualId,
     this.actions,
@@ -7517,16 +6866,13 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfiguration?
-  insightConfiguration;
+  final QuicksightAnalysisInsightConfiguration? insightConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -7541,19 +6887,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisual {
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfiguration({
+final class QuicksightAnalysisInsightConfiguration {
+  const QuicksightAnalysisInsightConfiguration({
     this.computation,
     this.customNarrative,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputation
-  >?
-  computation;
+  final List<QuicksightAnalysisComputation>? computation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationCustomNarrative?
-  customNarrative;
+  final QuicksightAnalysisCustomNarrative? customNarrative;
 
   Map<String, Object?> encode() => {
     if (computation != null)
@@ -7565,8 +6907,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputation {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputation({
+final class QuicksightAnalysisComputation {
+  const QuicksightAnalysisComputation({
     this.forecast,
     this.growthRate,
     this.maximumMinimum,
@@ -7579,35 +6921,25 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
     this.uniqueValues,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationForecast?
-  forecast;
+  final QuicksightAnalysisForecast? forecast;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationGrowthRate?
-  growthRate;
+  final QuicksightAnalysisGrowthRate? growthRate;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMaximumMinimum?
-  maximumMinimum;
+  final QuicksightAnalysisMaximumMinimum? maximumMinimum;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMetricComparison?
-  metricComparison;
+  final QuicksightAnalysisMetricComparison? metricComparison;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodOverPeriod?
-  periodOverPeriod;
+  final QuicksightAnalysisPeriodOverPeriod? periodOverPeriod;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodToDate?
-  periodToDate;
+  final QuicksightAnalysisPeriodToDate? periodToDate;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomMovers?
-  topBottomMovers;
+  final QuicksightAnalysisTopBottomMovers? topBottomMovers;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomRanked?
-  topBottomRanked;
+  final QuicksightAnalysisTopBottomRanked? topBottomRanked;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTotalAggregation?
-  totalAggregation;
+  final QuicksightAnalysisTotalAggregation? totalAggregation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationUniqueValues?
-  uniqueValues;
+  final QuicksightAnalysisUniqueValues? uniqueValues;
 
   Map<String, Object?> encode() => {
     'forecast': ?forecast?.encode(),
@@ -7626,8 +6958,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.forecast` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationForecast {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationForecast({
+final class QuicksightAnalysisForecast {
+  const QuicksightAnalysisForecast({
     required this.computationId,
     this.customSeasonalityValue,
     this.lowerBoundary,
@@ -7659,11 +6991,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<num>? upperBoundary;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7683,8 +7013,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.growth_rate` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationGrowthRate {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationGrowthRate({
+final class QuicksightAnalysisGrowthRate {
+  const QuicksightAnalysisGrowthRate({
     required this.computationId,
     this.name,
     this.periodSize,
@@ -7698,11 +7028,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<num>? periodSize;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7716,8 +7044,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.maximum_minimum` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMaximumMinimum {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMaximumMinimum({
+final class QuicksightAnalysisMaximumMinimum {
+  const QuicksightAnalysisMaximumMinimum({
     required this.computationId,
     this.name,
     required this.type,
@@ -7731,11 +7059,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String> type;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7749,8 +7075,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.metric_comparison` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMetricComparison {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationMetricComparison({
+final class QuicksightAnalysisMetricComparison {
+  const QuicksightAnalysisMetricComparison({
     required this.computationId,
     this.name,
     this.fromValue,
@@ -7762,14 +7088,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String>? name;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  fromValue;
+  final QuicksightAnalysisTargetValues? fromValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  targetValue;
+  final QuicksightAnalysisTargetValues? targetValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7783,8 +7106,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.period_over_period` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodOverPeriod {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodOverPeriod({
+final class QuicksightAnalysisPeriodOverPeriod {
+  const QuicksightAnalysisPeriodOverPeriod({
     required this.computationId,
     this.name,
     this.time,
@@ -7795,11 +7118,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String>? name;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7812,8 +7133,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.period_to_date` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodToDate {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationPeriodToDate({
+final class QuicksightAnalysisPeriodToDate {
+  const QuicksightAnalysisPeriodToDate({
     required this.computationId,
     this.name,
     required this.periodTimeGranularity,
@@ -7827,11 +7148,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String> periodTimeGranularity;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7845,8 +7164,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.top_bottom_movers` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomMovers {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomMovers({
+final class QuicksightAnalysisTopBottomMovers {
+  const QuicksightAnalysisTopBottomMovers({
     required this.computationId,
     this.moverSize,
     this.name,
@@ -7867,14 +7186,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String> type;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  category;
+  final QuicksightAnalysisTrendGroups? category;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  time;
+  final QuicksightAnalysisTrendGroups? time;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7891,8 +7207,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.top_bottom_ranked` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomRanked {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTopBottomRanked({
+final class QuicksightAnalysisTopBottomRanked {
+  const QuicksightAnalysisTopBottomRanked({
     required this.computationId,
     this.name,
     this.resultSize,
@@ -7909,11 +7225,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String> type;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  category;
+  final QuicksightAnalysisTrendGroups? category;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7928,8 +7242,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.total_aggregation` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTotalAggregation {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationTotalAggregation({
+final class QuicksightAnalysisTotalAggregation {
+  const QuicksightAnalysisTotalAggregation({
     required this.computationId,
     this.name,
     this.value,
@@ -7939,8 +7253,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String>? name;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  value;
+  final QuicksightAnalysisTargetValues? value;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7952,8 +7265,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.computation.unique_values` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationUniqueValues {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationComputationUniqueValues({
+final class QuicksightAnalysisUniqueValues {
+  const QuicksightAnalysisUniqueValues({
     required this.computationId,
     this.name,
     this.category,
@@ -7963,8 +7276,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   final TfArg<String>? name;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  category;
+  final QuicksightAnalysisTrendGroups? category;
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
@@ -7976,10 +7288,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.insight_visual.insight_configuration.custom_narrative` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationCustomNarrative {
-  const QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigurationCustomNarrative({
-    required this.narrative,
-  });
+final class QuicksightAnalysisCustomNarrative {
+  const QuicksightAnalysisCustomNarrative({required this.narrative});
 
   final TfArg<String> narrative;
 
@@ -7989,8 +7299,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsInsightVisualInsightConfigu
 /// Typed helper for the `definition.sheets.visuals.kpi_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisual({
+final class QuicksightAnalysisKpiVisual {
+  const QuicksightAnalysisKpiVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -8002,24 +7312,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisKpiVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormatting?
-  conditionalFormatting;
+  final QuicksightAnalysisKpiVisualConditionalFormatting? conditionalFormatting;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -8036,21 +7339,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisual {
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration({
+final class QuicksightAnalysisKpiVisualChartConfiguration {
+  const QuicksightAnalysisKpiVisualChartConfiguration({
     this.fieldWells,
     this.kpiOptions,
     this.sortConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisKpiVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptions?
-  kpiOptions;
+  final QuicksightAnalysisKpiOptions? kpiOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisKpiVisualSortConfiguration? sortConfiguration;
 
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
@@ -8062,27 +7362,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisKpiVisualFieldWells {
+  const QuicksightAnalysisKpiVisualFieldWells({
     this.targetValues,
     this.trendGroups,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  targetValues;
+  final List<QuicksightAnalysisTargetValues>? targetValues;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  trendGroups;
+  final List<QuicksightAnalysisTrendGroups>? trendGroups;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (targetValues != null)
@@ -8096,8 +7387,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.kpi_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptions({
+final class QuicksightAnalysisKpiOptions {
+  const QuicksightAnalysisKpiOptions({
     this.primaryValueDisplayType,
     this.comparison,
     this.primaryValueFontConfiguration,
@@ -8111,29 +7402,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   final TfArg<String>? primaryValueDisplayType;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationGaugeChartOptionsComparison?
-  comparison;
+  final QuicksightAnalysisComparison? comparison;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  primaryValueFontConfiguration;
+  final QuicksightAnalysisFontConfiguration? primaryValueFontConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  progressBar;
+  final QuicksightAnalysisSelectAllOptions? progressBar;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  secondaryValue;
+  final QuicksightAnalysisSelectAllOptions? secondaryValue;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  secondaryValueFontConfiguration;
+  final QuicksightAnalysisFontConfiguration? secondaryValueFontConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsSparkline?
-  sparkline;
+  final QuicksightAnalysisSparkline? sparkline;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  trendArrows;
+  final QuicksightAnalysisSelectAllOptions? trendArrows;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptions?
-  visualLayoutOptions;
+  final QuicksightAnalysisVisualLayoutOptions? visualLayoutOptions;
 
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
@@ -8153,8 +7436,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.kpi_options.sparkline` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsSparkline {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsSparkline({
+final class QuicksightAnalysisSparkline {
+  const QuicksightAnalysisSparkline({
     this.color,
     this.tooltipVisibility,
     required this.type,
@@ -8180,13 +7463,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.kpi_options.visual_layout_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptions({
-    this.standardLayout,
-  });
+final class QuicksightAnalysisVisualLayoutOptions {
+  const QuicksightAnalysisVisualLayoutOptions({this.standardLayout});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptionsStandardLayout?
-  standardLayout;
+  final QuicksightAnalysisStandardLayout? standardLayout;
 
   Map<String, Object?> encode() => {
     'standard_layout': ?standardLayout?.encode(),
@@ -8196,10 +7476,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.kpi_options.visual_layout_options.standard_layout` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptionsStandardLayout {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationKpiOptionsVisualLayoutOptionsStandardLayout({
-    required this.type,
-  });
+final class QuicksightAnalysisStandardLayout {
+  const QuicksightAnalysisStandardLayout({required this.type});
 
   final TfArg<String> type;
 
@@ -8209,15 +7487,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationSortConfiguration({
-    this.trendGroupSort,
-  });
+final class QuicksightAnalysisKpiVisualSortConfiguration {
+  const QuicksightAnalysisKpiVisualSortConfiguration({this.trendGroupSort});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  trendGroupSort;
+  final List<QuicksightAnalysisCategorySort>? trendGroupSort;
 
   Map<String, Object?> encode() => {
     if (trendGroupSort != null)
@@ -8228,14 +7501,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfiguration
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.conditional_formatting` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormatting {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormatting({
+final class QuicksightAnalysisKpiVisualConditionalFormatting {
+  const QuicksightAnalysisKpiVisualConditionalFormatting({
     this.conditionalFormattingOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormattingConditionalFormattingOptions
-  >?
+  final List<QuicksightAnalysisKpiVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
   Map<String, Object?> encode() => {
@@ -8249,25 +7520,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormatt
 /// Typed helper for the `definition.sheets.visuals.kpi_visual.conditional_formatting.conditional_formatting_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormattingConditionalFormattingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormattingConditionalFormattingOptions({
+final class QuicksightAnalysisKpiVisualConditionalFormattingOptions {
+  const QuicksightAnalysisKpiVisualConditionalFormattingOptions({
     this.actualValue,
     this.comparisonValue,
     this.primaryValue,
     this.progressBar,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue?
-  actualValue;
+  final QuicksightAnalysisPrimaryValue? actualValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue?
-  comparisonValue;
+  final QuicksightAnalysisPrimaryValue? comparisonValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValue?
-  primaryValue;
+  final QuicksightAnalysisPrimaryValue? primaryValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArc?
-  progressBar;
+  final QuicksightAnalysisConditionalFormattingOptionsArc? progressBar;
 
   Map<String, Object?> encode() => {
     'actual_value': ?actualValue?.encode(),
@@ -8280,8 +7547,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsKpiVisualConditionalFormatt
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisual({
+final class QuicksightAnalysisLineChartVisual {
+  const QuicksightAnalysisLineChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -8292,21 +7559,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisLineChartVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -8322,8 +7583,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisual {
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfiguration({
+final class QuicksightAnalysisLineChartVisualChartConfiguration {
+  const QuicksightAnalysisLineChartVisualChartConfiguration({
     this.type,
     this.contributionAnalysisDefaults,
     this.dataLabels,
@@ -8347,67 +7608,44 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 
   final TfArg<String>? type;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationContributionAnalysisDefaults
-  >?
+  final List<QuicksightAnalysisContributionAnalysisDefaults>?
   contributionAnalysisDefaults;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettings?
-  defaultSeriesSettings;
+  final QuicksightAnalysisDefaultSeriesSettings? defaultSeriesSettings;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisLineChartVisualFieldWells? fieldWells;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurations
-  >?
-  forecastConfigurations;
+  final List<QuicksightAnalysisForecastConfigurations>? forecastConfigurations;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptions?
+  final QuicksightAnalysisPrimaryYAxisDisplayOptions?
   primaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  primaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? primaryYAxisLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationReferenceLines
-  >?
-  referenceLines;
+  final List<QuicksightAnalysisReferenceLines>? referenceLines;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptions?
+  final QuicksightAnalysisPrimaryYAxisDisplayOptions?
   secondaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  secondaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? secondaryYAxisLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeries
-  >?
-  series;
+  final List<QuicksightAnalysisSeries>? series;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptions?
-  smallMultiplesOptions;
+  final QuicksightAnalysisSmallMultiplesOptions? smallMultiplesOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisLineChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  xAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? xAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  xAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? xAxisLabelOptions;
 
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
@@ -8442,8 +7680,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.default_series_settings` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettings {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettings({
+final class QuicksightAnalysisDefaultSeriesSettings {
+  const QuicksightAnalysisDefaultSeriesSettings({
     this.axisBinding,
     this.lineStyleSettings,
     this.markerStyleSettings,
@@ -8451,11 +7689,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 
   final TfArg<String>? axisBinding;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsLineStyleSettings?
-  lineStyleSettings;
+  final QuicksightAnalysisLineStyleSettings? lineStyleSettings;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsMarkerStyleSettings?
-  markerStyleSettings;
+  final QuicksightAnalysisMarkerStyleSettings? markerStyleSettings;
 
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
@@ -8468,8 +7704,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsLineStyleSettings {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsLineStyleSettings({
+final class QuicksightAnalysisLineStyleSettings {
+  const QuicksightAnalysisLineStyleSettings({
     this.lineInterpolation,
     this.lineStyle,
     this.lineVisibility,
@@ -8496,8 +7732,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsMarkerStyleSettings {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsMarkerStyleSettings({
+final class QuicksightAnalysisMarkerStyleSettings {
+  const QuicksightAnalysisMarkerStyleSettings({
     this.markerColor,
     this.markerShape,
     this.markerSize,
@@ -8523,12 +7759,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisLineChartVisualFieldWells {
+  const QuicksightAnalysisLineChartVisualFieldWells({
     this.lineChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationFieldWellsBarChartAggregatedFieldWells?
+  final QuicksightAnalysisBarChartAggregatedFieldWells?
   lineChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -8540,17 +7776,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.forecast_configurations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurations {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurations({
+final class QuicksightAnalysisForecastConfigurations {
+  const QuicksightAnalysisForecastConfigurations({
     this.forecastProperties,
     this.scenario,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsForecastProperties?
-  forecastProperties;
+  final QuicksightAnalysisForecastProperties? forecastProperties;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenario?
-  scenario;
+  final QuicksightAnalysisScenario? scenario;
 
   Map<String, Object?> encode() => {
     'forecast_properties': ?forecastProperties?.encode(),
@@ -8561,8 +7795,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.forecast_configurations.forecast_properties` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsForecastProperties {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsForecastProperties({
+final class QuicksightAnalysisForecastProperties {
+  const QuicksightAnalysisForecastProperties({
     this.lowerBoundary,
     this.periodsBackward,
     this.periodsForward,
@@ -8596,17 +7830,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.forecast_configurations.scenario` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenario {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenario({
+final class QuicksightAnalysisScenario {
+  const QuicksightAnalysisScenario({
     this.whatIfPointScenario,
     this.whatIfRangeScenario,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfPointScenario?
-  whatIfPointScenario;
+  final QuicksightAnalysisWhatIfPointScenario? whatIfPointScenario;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfRangeScenario?
-  whatIfRangeScenario;
+  final QuicksightAnalysisWhatIfRangeScenario? whatIfRangeScenario;
 
   Map<String, Object?> encode() => {
     'what_if_point_scenario': ?whatIfPointScenario?.encode(),
@@ -8617,8 +7849,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.forecast_configurations.scenario.what_if_point_scenario` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfPointScenario {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfPointScenario({
+final class QuicksightAnalysisWhatIfPointScenario {
+  const QuicksightAnalysisWhatIfPointScenario({
     required this.date,
     required this.value,
   });
@@ -8636,8 +7868,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.forecast_configurations.scenario.what_if_range_scenario` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfRangeScenario {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationForecastConfigurationsScenarioWhatIfRangeScenario({
+final class QuicksightAnalysisWhatIfRangeScenario {
+  const QuicksightAnalysisWhatIfRangeScenario({
     required this.endDate,
     required this.startDate,
     required this.value,
@@ -8660,18 +7892,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptions({
+final class QuicksightAnalysisPrimaryYAxisDisplayOptions {
+  const QuicksightAnalysisPrimaryYAxisDisplayOptions({
     this.axisOptions,
     this.missingDataConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  axisOptions;
+  final QuicksightAnalysisCategoryAxis? axisOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptionsMissingDataConfiguration
-  >?
+  final List<QuicksightAnalysisMissingDataConfiguration>?
   missingDataConfiguration;
 
   Map<String, Object?> encode() => {
@@ -8687,10 +7916,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptionsMissingDataConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationPrimaryYAxisDisplayOptionsMissingDataConfiguration({
-    this.treatmentOption,
-  });
+final class QuicksightAnalysisMissingDataConfiguration {
+  const QuicksightAnalysisMissingDataConfiguration({this.treatmentOption});
 
   final TfArg<String>? treatmentOption;
 
@@ -8702,17 +7929,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.series` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeries {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeries({
+final class QuicksightAnalysisSeries {
+  const QuicksightAnalysisSeries({
     this.dataFieldSeriesItem,
     this.fieldSeriesItem,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItem?
-  dataFieldSeriesItem;
+  final QuicksightAnalysisDataFieldSeriesItem? dataFieldSeriesItem;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesFieldSeriesItem?
-  fieldSeriesItem;
+  final QuicksightAnalysisFieldSeriesItem? fieldSeriesItem;
 
   Map<String, Object?> encode() => {
     'data_field_series_item': ?dataFieldSeriesItem?.encode(),
@@ -8723,8 +7948,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.series.data_field_series_item` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItem {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItem({
+final class QuicksightAnalysisDataFieldSeriesItem {
+  const QuicksightAnalysisDataFieldSeriesItem({
     required this.axisBinding,
     required this.fieldId,
     this.fieldValue,
@@ -8737,8 +7962,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 
   final TfArg<String>? fieldValue;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItemSettings?
-  settings;
+  final QuicksightAnalysisSettings? settings;
 
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
@@ -8752,17 +7976,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItemSettings {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItemSettings({
+final class QuicksightAnalysisSettings {
+  const QuicksightAnalysisSettings({
     this.lineStyleSettings,
     this.markerStyleSettings,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsLineStyleSettings?
-  lineStyleSettings;
+  final QuicksightAnalysisLineStyleSettings? lineStyleSettings;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationDefaultSeriesSettingsMarkerStyleSettings?
-  markerStyleSettings;
+  final QuicksightAnalysisMarkerStyleSettings? markerStyleSettings;
 
   Map<String, Object?> encode() => {
     'line_style_settings': ?lineStyleSettings?.encode(),
@@ -8773,8 +7995,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.series.field_series_item` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesFieldSeriesItem {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesFieldSeriesItem({
+final class QuicksightAnalysisFieldSeriesItem {
+  const QuicksightAnalysisFieldSeriesItem({
     required this.axisBinding,
     required this.fieldId,
     this.settings,
@@ -8784,8 +8006,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSeriesDataFieldSeriesItemSettings?
-  settings;
+  final QuicksightAnalysisSettings? settings;
 
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
@@ -8797,8 +8018,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.line_chart_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisLineChartVisualSortConfiguration {
+  const QuicksightAnalysisLineChartVisualSortConfiguration({
     this.categoryItemsLimitConfiguration,
     this.categorySort,
     this.colorItemsLimitConfiguration,
@@ -8806,24 +8027,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
     this.smallMultiplesSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  categoryItemsLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? categoryItemsLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  colorItemsLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? colorItemsLimitConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  smallMultiplesLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? smallMultiplesLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  smallMultiplesSort;
+  final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
   Map<String, Object?> encode() => {
     'category_items_limit_configuration': ?categoryItemsLimitConfiguration
@@ -8841,8 +8053,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsLineChartVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisual({
+final class QuicksightAnalysisPieChartVisual {
+  const QuicksightAnalysisPieChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -8853,21 +8065,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisPieChartVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -8883,8 +8089,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisual {
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfiguration({
+final class QuicksightAnalysisPieChartVisualChartConfiguration {
+  const QuicksightAnalysisPieChartVisualChartConfiguration({
     this.categoryLabelOptions,
     this.contributionAnalysisDefaults,
     this.dataLabels,
@@ -8898,40 +8104,28 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
     this.visualPalette,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationContributionAnalysisDefaults
-  >?
+  final List<QuicksightAnalysisContributionAnalysisDefaults>?
   contributionAnalysisDefaults;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptions?
-  donutOptions;
+  final QuicksightAnalysisDonutOptions? donutOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisPieChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSmallMultiplesOptions?
-  smallMultiplesOptions;
+  final QuicksightAnalysisSmallMultiplesOptions? smallMultiplesOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisPieChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  valueLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? valueLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
@@ -8954,17 +8148,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.donut_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptions({
+final class QuicksightAnalysisDonutOptions {
+  const QuicksightAnalysisDonutOptions({
     this.arcOptions,
     this.donutCenterOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsArcOptions?
-  arcOptions;
+  final QuicksightAnalysisArcOptions? arcOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsDonutCenterOptions?
-  donutCenterOptions;
+  final QuicksightAnalysisDonutCenterOptions? donutCenterOptions;
 
   Map<String, Object?> encode() => {
     'arc_options': ?arcOptions?.encode(),
@@ -8975,10 +8167,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.donut_options.arc_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsArcOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsArcOptions({
-    this.arcThickness,
-  });
+final class QuicksightAnalysisArcOptions {
+  const QuicksightAnalysisArcOptions({this.arcThickness});
 
   final TfArg<String>? arcThickness;
 
@@ -8988,10 +8178,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.donut_options.donut_center_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsDonutCenterOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationDonutOptionsDonutCenterOptions({
-    this.labelVisibility,
-  });
+final class QuicksightAnalysisDonutCenterOptions {
+  const QuicksightAnalysisDonutCenterOptions({this.labelVisibility});
 
   final TfArg<String>? labelVisibility;
 
@@ -9003,12 +8191,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisPieChartVisualFieldWells {
+  const QuicksightAnalysisPieChartVisualFieldWells({
     this.pieChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWellsPieChartAggregatedFieldWells?
+  final QuicksightAnalysisPieChartAggregatedFieldWells?
   pieChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -9019,25 +8207,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.field_wells.pie_chart_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWellsPieChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationFieldWellsPieChartAggregatedFieldWells({
+final class QuicksightAnalysisPieChartAggregatedFieldWells {
+  const QuicksightAnalysisPieChartAggregatedFieldWells({
     this.category,
     this.smallMultiples,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  category;
+  final List<QuicksightAnalysisTrendGroups>? category;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  smallMultiples;
+  final QuicksightAnalysisTrendGroups? smallMultiples;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
@@ -9049,29 +8230,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisPieChartVisualSortConfiguration {
+  const QuicksightAnalysisPieChartVisualSortConfiguration({
     this.categoryItemsLimit,
     this.categorySort,
     this.smallMultiplesLimitConfiguration,
     this.smallMultiplesSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  categoryItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? categoryItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  smallMultiplesLimitConfiguration;
+  final QuicksightAnalysisCategoryItemsLimit? smallMultiplesLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  smallMultiplesSort;
+  final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
@@ -9087,8 +8260,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPieChartVisualChartConfigur
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisual({
+final class QuicksightAnalysisPivotTableVisual {
+  const QuicksightAnalysisPivotTableVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -9099,19 +8272,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfiguration?
+  final QuicksightAnalysisPivotTableVisualChartConfiguration?
   chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormatting?
+  final QuicksightAnalysisPivotTableVisualConditionalFormatting?
   conditionalFormatting;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -9126,8 +8297,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisual {
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfiguration({
+final class QuicksightAnalysisPivotTableVisualChartConfiguration {
+  const QuicksightAnalysisPivotTableVisualChartConfiguration({
     this.fieldOptions,
     this.fieldWells,
     this.paginatedReportOptions,
@@ -9136,23 +8307,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
     this.totalOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptions?
-  fieldOptions;
+  final QuicksightAnalysisPivotTableVisualFieldOptions? fieldOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisPivotTableVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationPaginatedReportOptions?
-  paginatedReportOptions;
+  final QuicksightAnalysisPaginatedReportOptions? paginatedReportOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisPivotTableVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptions?
-  tableOptions;
+  final QuicksightAnalysisPivotTableVisualTableOptions? tableOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptions?
-  totalOptions;
+  final QuicksightAnalysisPivotTableVisualTotalOptions? totalOptions;
 
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
@@ -9167,20 +8332,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.field_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptions({
+final class QuicksightAnalysisPivotTableVisualFieldOptions {
+  const QuicksightAnalysisPivotTableVisualFieldOptions({
     this.dataPathOptions,
     this.selectedFieldOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsDataPathOptions
-  >?
-  dataPathOptions;
+  final List<QuicksightAnalysisDataPathOptions>? dataPathOptions;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsSelectedFieldOptions
-  >?
+  final List<QuicksightAnalysisPivotTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
   Map<String, Object?> encode() => {
@@ -9196,18 +8356,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.field_options.data_path_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsDataPathOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsDataPathOptions({
+final class QuicksightAnalysisDataPathOptions {
+  const QuicksightAnalysisDataPathOptions({
     this.width,
     required this.dataPathList,
   });
 
   final TfArg<String>? width;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMapElement
-  >
-  dataPathList;
+  final List<QuicksightAnalysisElement> dataPathList;
 
   Map<String, Object?> encode() => {
     'width': ?width?.toTfJson(),
@@ -9218,8 +8375,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.field_options.selected_field_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsSelectedFieldOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldOptionsSelectedFieldOptions({
+final class QuicksightAnalysisPivotTableVisualSelectedFieldOptions {
+  const QuicksightAnalysisPivotTableVisualSelectedFieldOptions({
     this.customLabel,
     required this.fieldId,
     this.visibility,
@@ -9241,12 +8398,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisPivotTableVisualFieldWells {
+  const QuicksightAnalysisPivotTableVisualFieldWells({
     this.pivotTableAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWellsPivotTableAggregatedFieldWells?
+  final QuicksightAnalysisPivotTableAggregatedFieldWells?
   pivotTableAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -9258,27 +8415,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.field_wells.pivot_table_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWellsPivotTableAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationFieldWellsPivotTableAggregatedFieldWells({
+final class QuicksightAnalysisPivotTableAggregatedFieldWells {
+  const QuicksightAnalysisPivotTableAggregatedFieldWells({
     this.columns,
     this.rows,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  columns;
+  final List<QuicksightAnalysisTrendGroups>? columns;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  rows;
+  final List<QuicksightAnalysisTrendGroups>? rows;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
@@ -9291,8 +8439,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationPaginatedReportOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationPaginatedReportOptions({
+final class QuicksightAnalysisPaginatedReportOptions {
+  const QuicksightAnalysisPaginatedReportOptions({
     this.overflowColumnHeaderVisibility,
     this.verticalOverflowVisibility,
   });
@@ -9311,15 +8459,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisPivotTableVisualSortConfiguration {
+  const QuicksightAnalysisPivotTableVisualSortConfiguration({
     this.fieldSortOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptions
-  >?
-  fieldSortOptions;
+  final List<QuicksightAnalysisFieldSortOptions>? fieldSortOptions;
 
   Map<String, Object?> encode() => {
     if (fieldSortOptions != null)
@@ -9330,16 +8475,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.sort_configuration.field_sort_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptions({
+final class QuicksightAnalysisFieldSortOptions {
+  const QuicksightAnalysisFieldSortOptions({
     required this.fieldId,
     required this.sortBy,
   });
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortBy
-  sortBy;
+  final QuicksightAnalysisSortBy sortBy;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -9350,21 +8494,14 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.sort_configuration.field_sort_options.sort_by` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortBy {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortBy({
-    this.column,
-    this.dataPath,
-    this.field,
-  });
+final class QuicksightAnalysisSortBy {
+  const QuicksightAnalysisSortBy({this.column, this.dataPath, this.field});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortColumnSort?
-  column;
+  final QuicksightAnalysisColumnSort? column;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortByDataPath?
-  dataPath;
+  final QuicksightAnalysisDataPath? dataPath;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySortFieldSort?
-  field;
+  final QuicksightAnalysisFieldSort? field;
 
   Map<String, Object?> encode() => {
     'column': ?column?.encode(),
@@ -9376,18 +8513,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.sort_configuration.field_sort_options.sort_by.data_path` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortByDataPath {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationSortConfigurationFieldSortOptionsSortByDataPath({
+final class QuicksightAnalysisDataPath {
+  const QuicksightAnalysisDataPath({
     required this.direction,
     required this.sortPaths,
   });
 
   final TfArg<String> direction;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPaletteColorMapElement
-  >
-  sortPaths;
+  final List<QuicksightAnalysisElement> sortPaths;
 
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
@@ -9398,8 +8532,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.table_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptions({
+final class QuicksightAnalysisPivotTableVisualTableOptions {
+  const QuicksightAnalysisPivotTableVisualTableOptions({
     this.collapsedRowDimensionsVisibility,
     this.columnNamesVisibility,
     this.metricPlacement,
@@ -9422,20 +8556,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 
   final TfArg<String>? toggleButtonsVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  cellStyle;
+  final QuicksightAnalysisCellStyle? cellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  columnHeaderStyle;
+  final QuicksightAnalysisCellStyle? columnHeaderStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsRowAlternateColorOptions?
-  rowAlternateColorOptions;
+  final QuicksightAnalysisRowAlternateColorOptions? rowAlternateColorOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  rowFieldNamesStyle;
+  final QuicksightAnalysisCellStyle? rowFieldNamesStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  rowHeaderStyle;
+  final QuicksightAnalysisCellStyle? rowHeaderStyle;
 
   Map<String, Object?> encode() => {
     'collapsed_row_dimensions_visibility': ?collapsedRowDimensionsVisibility
@@ -9456,8 +8585,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle({
+final class QuicksightAnalysisCellStyle {
+  const QuicksightAnalysisCellStyle({
     this.backgroundColor,
     this.height,
     this.horizontalTextAlignment,
@@ -9480,11 +8609,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 
   final TfArg<String>? visibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorder?
-  border;
+  final QuicksightAnalysisBorder? border;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
@@ -9502,17 +8629,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorder {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorder({
+final class QuicksightAnalysisBorder {
+  const QuicksightAnalysisBorder({
     this.sideSpecificBorder,
     required this.uniformBorder,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderSideSpecificBorder?
-  sideSpecificBorder;
+  final QuicksightAnalysisSideSpecificBorder? sideSpecificBorder;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  uniformBorder;
+  final QuicksightAnalysisUniformBorder uniformBorder;
 
   Map<String, Object?> encode() => {
     'side_specific_border': ?sideSpecificBorder?.encode(),
@@ -9524,8 +8649,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderSideSpecificBorder {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderSideSpecificBorder({
+final class QuicksightAnalysisSideSpecificBorder {
+  const QuicksightAnalysisSideSpecificBorder({
     required this.bottom,
     required this.innerHorizontal,
     required this.innerVertical,
@@ -9534,23 +8659,17 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
     required this.top,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  bottom;
+  final QuicksightAnalysisUniformBorder bottom;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  innerHorizontal;
+  final QuicksightAnalysisUniformBorder innerHorizontal;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  innerVertical;
+  final QuicksightAnalysisUniformBorder innerVertical;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  left;
+  final QuicksightAnalysisUniformBorder left;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  right;
+  final QuicksightAnalysisUniformBorder right;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder
-  top;
+  final QuicksightAnalysisUniformBorder top;
 
   Map<String, Object?> encode() => {
     'bottom': bottom.encode(),
@@ -9566,8 +8685,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyleBorderUniformBorder({
+final class QuicksightAnalysisUniformBorder {
+  const QuicksightAnalysisUniformBorder({
     this.color,
     this.style,
     this.thickness,
@@ -9590,8 +8709,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsRowAlternateColorOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsRowAlternateColorOptions({
+final class QuicksightAnalysisRowAlternateColorOptions {
+  const QuicksightAnalysisRowAlternateColorOptions({
     this.rowAlternateColors,
     this.status,
   });
@@ -9609,25 +8728,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.total_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptions({
+final class QuicksightAnalysisPivotTableVisualTotalOptions {
+  const QuicksightAnalysisPivotTableVisualTotalOptions({
     this.columnSubtotalOptions,
     this.columnTotalOptions,
     this.rowSubtotalOptions,
     this.rowTotalOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptions?
-  columnSubtotalOptions;
+  final QuicksightAnalysisColumnSubtotalOptions? columnSubtotalOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnTotalOptions?
-  columnTotalOptions;
+  final QuicksightAnalysisColumnTotalOptions? columnTotalOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptions?
-  rowSubtotalOptions;
+  final QuicksightAnalysisColumnSubtotalOptions? rowSubtotalOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnTotalOptions?
-  rowTotalOptions;
+  final QuicksightAnalysisColumnTotalOptions? rowTotalOptions;
 
   Map<String, Object?> encode() => {
     'column_subtotal_options': ?columnSubtotalOptions?.encode(),
@@ -9641,8 +8756,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptions({
+final class QuicksightAnalysisColumnSubtotalOptions {
+  const QuicksightAnalysisColumnSubtotalOptions({
     this.customLabel,
     this.fieldLevel,
     this.totalsVisibility,
@@ -9658,19 +8773,13 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 
   final TfArg<String>? totalsVisibility;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptionsFieldLevelOptions
-  >?
-  fieldLevelOptions;
+  final List<QuicksightAnalysisFieldLevelOptions>? fieldLevelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  metricHeaderCellStyle;
+  final QuicksightAnalysisCellStyle? metricHeaderCellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  totalCellStyle;
+  final QuicksightAnalysisCellStyle? totalCellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  valueCellStyle;
+  final QuicksightAnalysisCellStyle? valueCellStyle;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -9688,10 +8797,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptionsFieldLevelOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnSubtotalOptionsFieldLevelOptions({
-    this.fieldId,
-  });
+final class QuicksightAnalysisFieldLevelOptions {
+  const QuicksightAnalysisFieldLevelOptions({this.fieldId});
 
   final TfArg<String>? fieldId;
 
@@ -9702,8 +8809,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnTotalOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTotalOptionsColumnTotalOptions({
+final class QuicksightAnalysisColumnTotalOptions {
+  const QuicksightAnalysisColumnTotalOptions({
     this.customLabel,
     this.placement,
     this.scrollStatus,
@@ -9721,14 +8828,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 
   final TfArg<String>? totalsVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  metricHeaderCellStyle;
+  final QuicksightAnalysisCellStyle? metricHeaderCellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  totalCellStyle;
+  final QuicksightAnalysisCellStyle? totalCellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  valueCellStyle;
+  final QuicksightAnalysisCellStyle? valueCellStyle;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -9744,14 +8848,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormatting {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormatting({
+final class QuicksightAnalysisPivotTableVisualConditionalFormatting {
+  const QuicksightAnalysisPivotTableVisualConditionalFormatting({
     this.conditionalFormattingOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptions
-  >?
+  final List<QuicksightAnalysisPivotTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
   Map<String, Object?> encode() => {
@@ -9765,13 +8867,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptions({
+final class QuicksightAnalysisPivotTableVisualConditionalFormattingOptions {
+  const QuicksightAnalysisPivotTableVisualConditionalFormattingOptions({
     this.cell,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCell?
-  cell;
+  final QuicksightAnalysisPivotTableVisualCell? cell;
 
   Map<String, Object?> encode() => {'cell': ?cell?.encode()};
 }
@@ -9779,8 +8880,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCell {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCell({
+final class QuicksightAnalysisPivotTableVisualCell {
+  const QuicksightAnalysisPivotTableVisualCell({
     required this.fieldId,
     this.scope,
     this.textFormat,
@@ -9788,11 +8889,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellScope?
-  scope;
+  final QuicksightAnalysisScope? scope;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellTextFormat?
-  textFormat;
+  final QuicksightAnalysisTextFormat? textFormat;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -9804,10 +8903,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell.scope` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellScope {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellScope({
-    this.role,
-  });
+final class QuicksightAnalysisScope {
+  const QuicksightAnalysisScope({this.role});
 
   final TfArg<String>? role;
 
@@ -9818,21 +8915,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellTextFormat {
-  const QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellTextFormat({
+final class QuicksightAnalysisTextFormat {
+  const QuicksightAnalysisTextFormat({
     required this.backgroundColor,
     this.icon,
     required this.textColor,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  backgroundColor;
+  final QuicksightAnalysisForegroundColor backgroundColor;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsPrimaryValueIcon?
-  icon;
+  final QuicksightAnalysisIcon? icon;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  textColor;
+  final QuicksightAnalysisForegroundColor textColor;
 
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
@@ -9844,8 +8938,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditional
 /// Typed helper for the `definition.sheets.visuals.radar_chart_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisual({
+final class QuicksightAnalysisRadarChartVisual {
+  const QuicksightAnalysisRadarChartVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -9856,21 +8950,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfiguration?
+  final QuicksightAnalysisRadarChartVisualChartConfiguration?
   chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -9886,8 +8975,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisual {
 /// Typed helper for the `definition.sheets.visuals.radar_chart_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfiguration({
+final class QuicksightAnalysisRadarChartVisualChartConfiguration {
+  const QuicksightAnalysisRadarChartVisualChartConfiguration({
     this.alternateBandColorsVisibility,
     this.alternateBandEvenColor,
     this.alternateBandOddColor,
@@ -9914,32 +9003,23 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfig
 
   final TfArg<num>? startAngle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationBaseSeriesSettings?
-  baseSeriesSettings;
+  final QuicksightAnalysisBaseSeriesSettings? baseSeriesSettings;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  categoryAxis;
+  final QuicksightAnalysisCategoryAxis? categoryAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  colorAxis;
+  final QuicksightAnalysisCategoryAxis? colorAxis;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  colorLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? colorLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisRadarChartVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsComboChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisComboChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
   Map<String, Object?> encode() => {
     'alternate_band_colors_visibility': ?alternateBandColorsVisibility
@@ -9963,13 +9043,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.radar_chart_visual.chart_configuration.base_series_settings` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationBaseSeriesSettings {
-  const QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationBaseSeriesSettings({
-    this.areaStyleSettings,
-  });
+final class QuicksightAnalysisBaseSeriesSettings {
+  const QuicksightAnalysisBaseSeriesSettings({this.areaStyleSettings});
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDropdownDisplayOptionsSelectAllOptions?
-  areaStyleSettings;
+  final QuicksightAnalysisSelectAllOptions? areaStyleSettings;
 
   Map<String, Object?> encode() => {
     'area_style_settings': ?areaStyleSettings?.encode(),
@@ -9979,12 +9056,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.radar_chart_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisRadarChartVisualFieldWells {
+  const QuicksightAnalysisRadarChartVisualFieldWells({
     this.radarChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWellsRadarChartAggregatedFieldWells?
+  final QuicksightAnalysisRadarChartAggregatedFieldWells?
   radarChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -9996,23 +9073,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.radar_chart_visual.chart_configuration.field_wells.radar_chart_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWellsRadarChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfigurationFieldWellsRadarChartAggregatedFieldWells({
+final class QuicksightAnalysisRadarChartAggregatedFieldWells {
+  const QuicksightAnalysisRadarChartAggregatedFieldWells({
     this.category,
     this.color,
     this.values,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  category;
+  final QuicksightAnalysisTrendGroups? category;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  color;
+  final QuicksightAnalysisTrendGroups? color;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
@@ -10024,8 +9096,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsRadarChartVisualChartConfig
 /// Typed helper for the `definition.sheets.visuals.sankey_diagram_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisual({
+final class QuicksightAnalysisSankeyDiagramVisual {
+  const QuicksightAnalysisSankeyDiagramVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -10035,16 +9107,14 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfiguration?
+  final QuicksightAnalysisSankeyDiagramVisualChartConfiguration?
   chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -10058,20 +9128,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisual {
 /// Typed helper for the `definition.sheets.visuals.sankey_diagram_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfiguration({
+final class QuicksightAnalysisSankeyDiagramVisualChartConfiguration {
+  const QuicksightAnalysisSankeyDiagramVisualChartConfiguration({
     this.dataLabels,
     this.fieldWells,
     this.sortConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisSankeyDiagramVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationSortConfiguration?
+  final QuicksightAnalysisSankeyDiagramVisualSortConfiguration?
   sortConfiguration;
 
   Map<String, Object?> encode() => {
@@ -10084,12 +9152,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.sankey_diagram_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisSankeyDiagramVisualFieldWells {
+  const QuicksightAnalysisSankeyDiagramVisualFieldWells({
     this.sankeyDiagramAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWellsSankeyDiagramAggregatedFieldWells?
+  final QuicksightAnalysisSankeyDiagramAggregatedFieldWells?
   sankeyDiagramAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -10101,27 +9169,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.sankey_diagram_visual.chart_configuration.field_wells.sankey_diagram_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWellsSankeyDiagramAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationFieldWellsSankeyDiagramAggregatedFieldWells({
+final class QuicksightAnalysisSankeyDiagramAggregatedFieldWells {
+  const QuicksightAnalysisSankeyDiagramAggregatedFieldWells({
     this.destination,
     this.source,
     this.weight,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  destination;
+  final List<QuicksightAnalysisTrendGroups>? destination;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  source;
+  final List<QuicksightAnalysisTrendGroups>? source;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  weight;
+  final List<QuicksightAnalysisTargetValues>? weight;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -10134,23 +9193,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.sankey_diagram_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisSankeyDiagramVisualSortConfiguration {
+  const QuicksightAnalysisSankeyDiagramVisualSortConfiguration({
     this.destinationItemsLimit,
     this.sourceItemsLimit,
     this.weightSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  destinationItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? destinationItemsLimit;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  sourceItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? sourceItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  weightSort;
+  final List<QuicksightAnalysisCategorySort>? weightSort;
 
   Map<String, Object?> encode() => {
     'destination_items_limit': ?destinationItemsLimit?.encode(),
@@ -10163,8 +9217,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsSankeyDiagramVisualChartCon
 /// Typed helper for the `definition.sheets.visuals.scatter_plot_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisual({
+final class QuicksightAnalysisScatterPlotVisual {
+  const QuicksightAnalysisScatterPlotVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -10175,21 +9229,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfiguration?
+  final QuicksightAnalysisScatterPlotVisualChartConfiguration?
   chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -10205,8 +9254,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisual {
 /// Typed helper for the `definition.sheets.visuals.scatter_plot_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfiguration({
+final class QuicksightAnalysisScatterPlotVisualChartConfiguration {
+  const QuicksightAnalysisScatterPlotVisualChartConfiguration({
     this.dataLabels,
     this.fieldWells,
     this.legend,
@@ -10218,32 +9267,23 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfi
     this.yAxisLabelOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisScatterPlotVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  xAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? xAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  xAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? xAxisLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  yAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? yAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  yAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? yAxisLabelOptions;
 
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
@@ -10261,16 +9301,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.scatter_plot_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisScatterPlotVisualFieldWells {
+  const QuicksightAnalysisScatterPlotVisualFieldWells({
     this.scatterPlotCategoricallyAggregatedFieldWells,
     this.scatterPlotUnaggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotCategoricallyAggregatedFieldWells?
+  final QuicksightAnalysisScatterPlotCategoricallyAggregatedFieldWells?
   scatterPlotCategoricallyAggregatedFieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotUnaggregatedFieldWells?
+  final QuicksightAnalysisScatterPlotUnaggregatedFieldWells?
   scatterPlotUnaggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -10284,33 +9324,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.scatter_plot_visual.chart_configuration.field_wells.scatter_plot_categorically_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotCategoricallyAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotCategoricallyAggregatedFieldWells({
+final class QuicksightAnalysisScatterPlotCategoricallyAggregatedFieldWells {
+  const QuicksightAnalysisScatterPlotCategoricallyAggregatedFieldWells({
     this.category,
     this.size,
     this.xAxis,
     this.yAxis,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  category;
+  final List<QuicksightAnalysisTrendGroups>? category;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  size;
+  final List<QuicksightAnalysisTargetValues>? size;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  xAxis;
+  final List<QuicksightAnalysisTargetValues>? xAxis;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  yAxis;
+  final List<QuicksightAnalysisTargetValues>? yAxis;
 
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
@@ -10323,27 +9351,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.scatter_plot_visual.chart_configuration.field_wells.scatter_plot_unaggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotUnaggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfigurationFieldWellsScatterPlotUnaggregatedFieldWells({
+final class QuicksightAnalysisScatterPlotUnaggregatedFieldWells {
+  const QuicksightAnalysisScatterPlotUnaggregatedFieldWells({
     this.size,
     this.xAxis,
     this.yAxis,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  size;
+  final List<QuicksightAnalysisTargetValues>? size;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  xAxis;
+  final List<QuicksightAnalysisTrendGroups>? xAxis;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  yAxis;
+  final List<QuicksightAnalysisTrendGroups>? yAxis;
 
   Map<String, Object?> encode() => {
     if (size != null) 'size': [for (final e in size!) e.encode()],
@@ -10355,8 +9374,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsScatterPlotVisualChartConfi
 /// Typed helper for the `definition.sheets.visuals.table_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisual({
+final class QuicksightAnalysisTableVisual {
+  const QuicksightAnalysisTableVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -10367,19 +9386,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisTableVisualChartConfiguration? chartConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormatting?
+  final QuicksightAnalysisTableVisualConditionalFormatting?
   conditionalFormatting;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -10394,8 +9410,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisual {
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfiguration({
+final class QuicksightAnalysisTableVisualChartConfiguration {
+  const QuicksightAnalysisTableVisualChartConfiguration({
     this.fieldOptions,
     this.fieldWells,
     this.paginatedReportOptions,
@@ -10405,28 +9421,20 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
     this.totalOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptions?
-  fieldOptions;
+  final QuicksightAnalysisTableVisualFieldOptions? fieldOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisTableVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationPaginatedReportOptions?
-  paginatedReportOptions;
+  final QuicksightAnalysisPaginatedReportOptions? paginatedReportOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisTableVisualSortConfiguration? sortConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizations
-  >?
+  final List<QuicksightAnalysisTableInlineVisualizations>?
   tableInlineVisualizations;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableOptions?
-  tableOptions;
+  final QuicksightAnalysisTableVisualTableOptions? tableOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTotalOptions?
-  totalOptions;
+  final QuicksightAnalysisTableVisualTotalOptions? totalOptions;
 
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
@@ -10445,17 +9453,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptions({
+final class QuicksightAnalysisTableVisualFieldOptions {
+  const QuicksightAnalysisTableVisualFieldOptions({
     this.order,
     this.selectedFieldOptions,
   });
 
   final TfArg<List<String>>? order;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptions
-  >?
+  final List<QuicksightAnalysisTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
   Map<String, Object?> encode() => {
@@ -10470,8 +9476,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptions({
+final class QuicksightAnalysisTableVisualSelectedFieldOptions {
+  const QuicksightAnalysisTableVisualSelectedFieldOptions({
     this.customLabel,
     required this.fieldId,
     this.visibility,
@@ -10487,8 +9493,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 
   final TfArg<String>? width;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStyling?
-  urlStyling;
+  final QuicksightAnalysisUrlStyling? urlStyling;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -10502,17 +9507,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStyling {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStyling({
+final class QuicksightAnalysisUrlStyling {
+  const QuicksightAnalysisUrlStyling({
     this.imageConfiguration,
     this.linkConfiguration,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfiguration?
-  imageConfiguration;
+  final QuicksightAnalysisImageConfiguration? imageConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfiguration?
-  linkConfiguration;
+  final QuicksightAnalysisLinkConfiguration? linkConfiguration;
 
   Map<String, Object?> encode() => {
     'image_configuration': ?imageConfiguration?.encode(),
@@ -10523,13 +9526,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.image_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfiguration({
-    this.sizingOptions,
-  });
+final class QuicksightAnalysisImageConfiguration {
+  const QuicksightAnalysisImageConfiguration({this.sizingOptions});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfigurationSizingOptions?
-  sizingOptions;
+  final QuicksightAnalysisSizingOptions? sizingOptions;
 
   Map<String, Object?> encode() => {'sizing_options': ?sizingOptions?.encode()};
 }
@@ -10537,8 +9537,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.image_configuration.sizing_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfigurationSizingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfigurationSizingOptions({
+final class QuicksightAnalysisSizingOptions {
+  const QuicksightAnalysisSizingOptions({
     this.tableCellImageScalingConfiguration,
   });
 
@@ -10553,16 +9553,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.link_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfiguration({
-    this.target,
-    this.content,
-  });
+final class QuicksightAnalysisLinkConfiguration {
+  const QuicksightAnalysisLinkConfiguration({this.target, this.content});
 
   final TfArg<String>? target;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContent?
-  content;
+  final QuicksightAnalysisLinkConfigurationContent? content;
 
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
@@ -10573,17 +9569,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.link_configuration.content` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContent {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContent({
+final class QuicksightAnalysisLinkConfigurationContent {
+  const QuicksightAnalysisLinkConfigurationContent({
     this.customIconContent,
     this.customTextContent,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomIconContent?
-  customIconContent;
+  final QuicksightAnalysisCustomIconContent? customIconContent;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomTextContent?
-  customTextContent;
+  final QuicksightAnalysisCustomTextContent? customTextContent;
 
   Map<String, Object?> encode() => {
     'custom_icon_content': ?customIconContent?.encode(),
@@ -10594,10 +9588,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.link_configuration.content.custom_icon_content` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomIconContent {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomIconContent({
-    this.icon,
-  });
+final class QuicksightAnalysisCustomIconContent {
+  const QuicksightAnalysisCustomIconContent({this.icon});
 
   final TfArg<String>? icon;
 
@@ -10607,16 +9599,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.link_configuration.content.custom_text_content` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomTextContent {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingLinkConfigurationContentCustomTextContent({
+final class QuicksightAnalysisCustomTextContent {
+  const QuicksightAnalysisCustomTextContent({
     this.value,
     this.fontConfiguration,
   });
 
   final TfArg<String>? value;
 
-  final QuicksightAnalysisDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptionsFontConfiguration?
-  fontConfiguration;
+  final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
   Map<String, Object?> encode() => {
     'value': ?value?.toTfJson(),
@@ -10627,16 +9618,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisTableVisualFieldWells {
+  const QuicksightAnalysisTableVisualFieldWells({
     this.tableAggregatedFieldWells,
     this.tableUnaggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableAggregatedFieldWells?
-  tableAggregatedFieldWells;
+  final QuicksightAnalysisTableAggregatedFieldWells? tableAggregatedFieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWells?
+  final QuicksightAnalysisTableUnaggregatedFieldWells?
   tableUnaggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -10648,21 +9638,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_wells.table_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableAggregatedFieldWells({
+final class QuicksightAnalysisTableAggregatedFieldWells {
+  const QuicksightAnalysisTableAggregatedFieldWells({
     this.groupBy,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  groupBy;
+  final List<QuicksightAnalysisTrendGroups>? groupBy;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
@@ -10673,15 +9657,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_wells.table_unaggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWells({
-    this.values,
-  });
+final class QuicksightAnalysisTableUnaggregatedFieldWells {
+  const QuicksightAnalysisTableUnaggregatedFieldWells({this.values});
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWellsValues
-  >?
-  values;
+  final List<QuicksightAnalysisValues>? values;
 
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -10691,8 +9670,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_wells.table_unaggregated_field_wells.values` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWellsValues {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationFieldWellsTableUnaggregatedFieldWellsValues({
+final class QuicksightAnalysisValues {
+  const QuicksightAnalysisValues({
     required this.fieldId,
     required this.column,
     this.formatConfiguration,
@@ -10700,10 +9679,9 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsColumn column;
+  final QuicksightAnalysisColumn column;
 
-  final QuicksightAnalysisDefinitionColumnConfigurationsFormatConfiguration?
-  formatConfiguration;
+  final QuicksightAnalysisFormatConfiguration? formatConfiguration;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -10715,19 +9693,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisTableVisualSortConfiguration {
+  const QuicksightAnalysisTableVisualSortConfiguration({
     this.paginationConfiguration,
     this.rowSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBoxPlotVisualChartConfigurationSortConfigurationPaginationConfiguration?
-  paginationConfiguration;
+  final QuicksightAnalysisPaginationConfiguration? paginationConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  rowSort;
+  final List<QuicksightAnalysisCategorySort>? rowSort;
 
   Map<String, Object?> encode() => {
     'pagination_configuration': ?paginationConfiguration?.encode(),
@@ -10738,13 +9712,10 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.table_inline_visualizations` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizations {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizations({
-    this.dataBars,
-  });
+final class QuicksightAnalysisTableInlineVisualizations {
+  const QuicksightAnalysisTableInlineVisualizations({this.dataBars});
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizationsDataBars?
-  dataBars;
+  final QuicksightAnalysisDataBars? dataBars;
 
   Map<String, Object?> encode() => {'data_bars': ?dataBars?.encode()};
 }
@@ -10752,8 +9723,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.table_inline_visualizations.data_bars` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizationsDataBars {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizationsDataBars({
+final class QuicksightAnalysisDataBars {
+  const QuicksightAnalysisDataBars({
     required this.fieldId,
     this.negativeColor,
     this.positiveColor,
@@ -10775,8 +9746,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.table_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTableOptions({
+final class QuicksightAnalysisTableVisualTableOptions {
+  const QuicksightAnalysisTableVisualTableOptions({
     this.orientation,
     this.cellStyle,
     this.headerStyle,
@@ -10785,14 +9756,11 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 
   final TfArg<String>? orientation;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  cellStyle;
+  final QuicksightAnalysisCellStyle? cellStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  headerStyle;
+  final QuicksightAnalysisCellStyle? headerStyle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsRowAlternateColorOptions?
-  rowAlternateColorOptions;
+  final QuicksightAnalysisRowAlternateColorOptions? rowAlternateColorOptions;
 
   Map<String, Object?> encode() => {
     'orientation': ?orientation?.toTfJson(),
@@ -10805,8 +9773,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.total_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTotalOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurationTotalOptions({
+final class QuicksightAnalysisTableVisualTotalOptions {
+  const QuicksightAnalysisTableVisualTotalOptions({
     this.customLabel,
     this.placement,
     this.scrollStatus,
@@ -10822,8 +9790,7 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 
   final TfArg<String>? totalsVisibility;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualChartConfigurationTableOptionsCellStyle?
-  totalCellStyle;
+  final QuicksightAnalysisCellStyle? totalCellStyle;
 
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
@@ -10837,14 +9804,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualChartConfigurati
 /// Typed helper for the `definition.sheets.visuals.table_visual.conditional_formatting` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormatting {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormatting({
+final class QuicksightAnalysisTableVisualConditionalFormatting {
+  const QuicksightAnalysisTableVisualConditionalFormatting({
     this.conditionalFormattingOptions,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptions
-  >?
+  final List<QuicksightAnalysisTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
   Map<String, Object?> encode() => {
@@ -10858,17 +9823,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalForma
 /// Typed helper for the `definition.sheets.visuals.table_visual.conditional_formatting.conditional_formatting_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptions({
+final class QuicksightAnalysisTableVisualConditionalFormattingOptions {
+  const QuicksightAnalysisTableVisualConditionalFormattingOptions({
     this.cell,
     this.row,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsCell?
-  cell;
+  final QuicksightAnalysisTableVisualCell? cell;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsRow?
-  row;
+  final QuicksightAnalysisRow? row;
 
   Map<String, Object?> encode() => {
     'cell': ?cell?.encode(),
@@ -10879,16 +9842,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalForma
 /// Typed helper for the `definition.sheets.visuals.table_visual.conditional_formatting.conditional_formatting_options.cell` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsCell {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsCell({
+final class QuicksightAnalysisTableVisualCell {
+  const QuicksightAnalysisTableVisualCell({
     required this.fieldId,
     this.textFormat,
   });
 
   final TfArg<String> fieldId;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCellTextFormat?
-  textFormat;
+  final QuicksightAnalysisTextFormat? textFormat;
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
@@ -10899,17 +9861,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalForma
 /// Typed helper for the `definition.sheets.visuals.table_visual.conditional_formatting.conditional_formatting_options.row` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsRow {
-  const QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalFormattingConditionalFormattingOptionsRow({
+final class QuicksightAnalysisRow {
+  const QuicksightAnalysisRow({
     required this.backgroundColor,
     required this.textColor,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  backgroundColor;
+  final QuicksightAnalysisForegroundColor backgroundColor;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualConditionalFormattingConditionalFormattingOptionsArcForegroundColor
-  textColor;
+  final QuicksightAnalysisForegroundColor textColor;
 
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
@@ -10920,8 +9880,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTableVisualConditionalForma
 /// Typed helper for the `definition.sheets.visuals.tree_map_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisual({
+final class QuicksightAnalysisTreeMapVisual {
+  const QuicksightAnalysisTreeMapVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -10932,21 +9892,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisTreeMapVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -10962,8 +9916,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisual {
 /// Typed helper for the `definition.sheets.visuals.tree_map_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfiguration({
+final class QuicksightAnalysisTreeMapVisualChartConfiguration {
+  const QuicksightAnalysisTreeMapVisualChartConfiguration({
     this.colorLabelOptions,
     this.colorScale,
     this.dataLabels,
@@ -10975,32 +9929,23 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigura
     this.tooltip,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  colorLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? colorLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsHeatMapVisualChartConfigurationColorScale?
-  colorScale;
+  final QuicksightAnalysisColorScale? colorScale;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisTreeMapVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  groupLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? groupLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  sizeLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? sizeLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisTreeMapVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationTooltip?
-  tooltip;
+  final QuicksightAnalysisTooltip? tooltip;
 
   Map<String, Object?> encode() => {
     'color_label_options': ?colorLabelOptions?.encode(),
@@ -11018,12 +9963,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.tree_map_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisTreeMapVisualFieldWells {
+  const QuicksightAnalysisTreeMapVisualFieldWells({
     this.treeMapAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWellsTreeMapAggregatedFieldWells?
+  final QuicksightAnalysisTreeMapAggregatedFieldWells?
   treeMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -11034,21 +9979,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.tree_map_visual.chart_configuration.field_wells.tree_map_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWellsTreeMapAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationFieldWellsTreeMapAggregatedFieldWells({
+final class QuicksightAnalysisTreeMapAggregatedFieldWells {
+  const QuicksightAnalysisTreeMapAggregatedFieldWells({
     this.colors,
     this.groups,
     this.sizes,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  colors;
+  final QuicksightAnalysisTargetValues? colors;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups?
-  groups;
+  final QuicksightAnalysisTrendGroups? groups;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  sizes;
+  final QuicksightAnalysisTargetValues? sizes;
 
   Map<String, Object?> encode() => {
     'colors': ?colors?.encode(),
@@ -11060,19 +10002,16 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.tree_map_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisTreeMapVisualSortConfiguration {
+  const QuicksightAnalysisTreeMapVisualSortConfiguration({
     this.treeMapGroupItemsLimitConfiguration,
     this.treeMapSort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
+  final QuicksightAnalysisCategoryItemsLimit?
   treeMapGroupItemsLimitConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  treeMapSort;
+  final List<QuicksightAnalysisCategorySort>? treeMapSort;
 
   Map<String, Object?> encode() => {
     'tree_map_group_items_limit_configuration':
@@ -11085,8 +10024,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsTreeMapVisualChartConfigura
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisual({
+final class QuicksightAnalysisWaterfallVisual {
+  const QuicksightAnalysisWaterfallVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -11097,21 +10036,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisWaterfallVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -11127,8 +10060,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisual {
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfiguration({
+final class QuicksightAnalysisWaterfallVisualChartConfiguration {
+  const QuicksightAnalysisWaterfallVisualChartConfiguration({
     this.categoryAxisDisplayOptions,
     this.categoryAxisLabelOptions,
     this.dataLabels,
@@ -11141,35 +10074,25 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
     this.waterfallChartOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  categoryAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? categoryAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryAxisLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationDataLabels?
-  dataLabels;
+  final QuicksightAnalysisDataLabels? dataLabels;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisWaterfallVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationLegend?
-  legend;
+  final QuicksightAnalysisLegend? legend;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxis?
-  primaryYAxisDisplayOptions;
+  final QuicksightAnalysisCategoryAxis? primaryYAxisDisplayOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  primaryYAxisLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? primaryYAxisLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisWaterfallVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationVisualPalette?
-  visualPalette;
+  final QuicksightAnalysisVisualPalette? visualPalette;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationWaterfallChartOptions?
-  waterfallChartOptions;
+  final QuicksightAnalysisWaterfallChartOptions? waterfallChartOptions;
 
   Map<String, Object?> encode() => {
     'category_axis_display_options': ?categoryAxisDisplayOptions?.encode(),
@@ -11188,12 +10111,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisWaterfallVisualFieldWells {
+  const QuicksightAnalysisWaterfallVisualFieldWells({
     this.waterfallChartAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWellsWaterfallChartAggregatedFieldWells?
+  final QuicksightAnalysisWaterfallChartAggregatedFieldWells?
   waterfallChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -11205,27 +10128,18 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual.chart_configuration.field_wells.waterfall_chart_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWellsWaterfallChartAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationFieldWellsWaterfallChartAggregatedFieldWells({
+final class QuicksightAnalysisWaterfallChartAggregatedFieldWells {
+  const QuicksightAnalysisWaterfallChartAggregatedFieldWells({
     this.breakdowns,
     this.categories,
     this.values,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  breakdowns;
+  final List<QuicksightAnalysisTrendGroups>? breakdowns;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  categories;
+  final List<QuicksightAnalysisTrendGroups>? categories;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues
-  >?
-  values;
+  final List<QuicksightAnalysisTargetValues>? values;
 
   Map<String, Object?> encode() => {
     if (breakdowns != null)
@@ -11239,19 +10153,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual.chart_configuration.sort_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationSortConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationSortConfiguration({
+final class QuicksightAnalysisWaterfallVisualSortConfiguration {
+  const QuicksightAnalysisWaterfallVisualSortConfiguration({
     this.breakdownItemsLimit,
     this.categorySort,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategoryItemsLimit?
-  breakdownItemsLimit;
+  final QuicksightAnalysisCategoryItemsLimit? breakdownItemsLimit;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationSortConfigurationCategorySort
-  >?
-  categorySort;
+  final List<QuicksightAnalysisCategorySort>? categorySort;
 
   Map<String, Object?> encode() => {
     'breakdown_items_limit': ?breakdownItemsLimit?.encode(),
@@ -11263,10 +10173,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.waterfall_visual.chart_configuration.waterfall_chart_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationWaterfallChartOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigurationWaterfallChartOptions({
-    this.totalBarLabel,
-  });
+final class QuicksightAnalysisWaterfallChartOptions {
+  const QuicksightAnalysisWaterfallChartOptions({this.totalBarLabel});
 
   final TfArg<String>? totalBarLabel;
 
@@ -11278,8 +10186,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWaterfallVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.word_cloud_visual` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisual {
-  const QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisual({
+final class QuicksightAnalysisWordCloudVisual {
+  const QuicksightAnalysisWordCloudVisual({
     required this.visualId,
     this.actions,
     this.chartConfiguration,
@@ -11290,21 +10198,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisual {
 
   final TfArg<String> visualId;
 
-  final List<QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualActions>?
-  actions;
+  final List<QuicksightAnalysisActions>? actions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfiguration?
-  chartConfiguration;
+  final QuicksightAnalysisWordCloudVisualChartConfiguration? chartConfiguration;
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualColumnHierarchies
-  >?
-  columnHierarchies;
+  final List<QuicksightAnalysisColumnHierarchies>? columnHierarchies;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle?
-  subtitle;
+  final QuicksightAnalysisSubtitle? subtitle;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualSubtitle? title;
+  final QuicksightAnalysisSubtitle? title;
 
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
@@ -11320,25 +10222,21 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisual {
 /// Typed helper for the `definition.sheets.visuals.word_cloud_visual.chart_configuration` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfiguration {
-  const QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfiguration({
+final class QuicksightAnalysisWordCloudVisualChartConfiguration {
+  const QuicksightAnalysisWordCloudVisualChartConfiguration({
     this.categoryLabelOptions,
     this.fieldWells,
     this.sortConfiguration,
     this.wordCloudOptions,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryLabelOptions?
-  categoryLabelOptions;
+  final QuicksightAnalysisCategoryLabelOptions? categoryLabelOptions;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWells?
-  fieldWells;
+  final QuicksightAnalysisWordCloudVisualFieldWells? fieldWells;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsFunnelChartVisualChartConfigurationSortConfiguration?
-  sortConfiguration;
+  final QuicksightAnalysisFunnelChartVisualSortConfiguration? sortConfiguration;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationWordCloudOptions?
-  wordCloudOptions;
+  final QuicksightAnalysisWordCloudOptions? wordCloudOptions;
 
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
@@ -11351,12 +10249,12 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.word_cloud_visual.chart_configuration.field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWells({
+final class QuicksightAnalysisWordCloudVisualFieldWells {
+  const QuicksightAnalysisWordCloudVisualFieldWells({
     this.wordCloudAggregatedFieldWells,
   });
 
-  final QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWellsWordCloudAggregatedFieldWells?
+  final QuicksightAnalysisWordCloudAggregatedFieldWells?
   wordCloudAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
@@ -11368,19 +10266,15 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.word_cloud_visual.chart_configuration.field_wells.word_cloud_aggregated_field_wells` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWellsWordCloudAggregatedFieldWells {
-  const QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationFieldWellsWordCloudAggregatedFieldWells({
+final class QuicksightAnalysisWordCloudAggregatedFieldWells {
+  const QuicksightAnalysisWordCloudAggregatedFieldWells({
     this.groupBy,
     this.size,
   });
 
-  final List<
-    QuicksightAnalysisDefinitionSheetsVisualsKpiVisualChartConfigurationFieldWellsTrendGroups
-  >?
-  groupBy;
+  final List<QuicksightAnalysisTrendGroups>? groupBy;
 
-  final QuicksightAnalysisDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
-  size;
+  final QuicksightAnalysisTargetValues? size;
 
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
@@ -11391,8 +10285,8 @@ final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigu
 /// Typed helper for the `definition.sheets.visuals.word_cloud_visual.chart_configuration.word_cloud_options` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationWordCloudOptions {
-  const QuicksightAnalysisDefinitionSheetsVisualsWordCloudVisualChartConfigurationWordCloudOptions({
+final class QuicksightAnalysisWordCloudOptions {
+  const QuicksightAnalysisWordCloudOptions({
     this.cloudLayout,
     this.maximumStringLength,
     this.wordCasing,
@@ -11434,14 +10328,13 @@ final class QuicksightAnalysisParameters {
     this.stringParameters,
   });
 
-  final List<QuicksightAnalysisParametersDateTimeParameters>?
-  dateTimeParameters;
+  final List<QuicksightAnalysisDateTimeParameters>? dateTimeParameters;
 
-  final List<QuicksightAnalysisParametersDecimalParameters>? decimalParameters;
+  final List<QuicksightAnalysisDecimalParameters>? decimalParameters;
 
-  final List<QuicksightAnalysisParametersDecimalParameters>? integerParameters;
+  final List<QuicksightAnalysisDecimalParameters>? integerParameters;
 
-  final List<QuicksightAnalysisParametersDateTimeParameters>? stringParameters;
+  final List<QuicksightAnalysisDateTimeParameters>? stringParameters;
 
   Map<String, Object?> encode() => {
     if (dateTimeParameters != null)
@@ -11459,8 +10352,8 @@ final class QuicksightAnalysisParameters {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisParametersDateTimeParameters {
-  const QuicksightAnalysisParametersDateTimeParameters({
+final class QuicksightAnalysisDateTimeParameters {
+  const QuicksightAnalysisDateTimeParameters({
     required this.name,
     required this.values,
   });
@@ -11479,8 +10372,8 @@ final class QuicksightAnalysisParametersDateTimeParameters {
 /// `aws_quicksight_analysis` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class QuicksightAnalysisParametersDecimalParameters {
-  const QuicksightAnalysisParametersDecimalParameters({
+final class QuicksightAnalysisDecimalParameters {
+  const QuicksightAnalysisDecimalParameters({
     required this.name,
     required this.values,
   });
@@ -11520,7 +10413,7 @@ final class QuicksightAnalysisPermissions {
 final class QuicksightAnalysisSourceEntity {
   const QuicksightAnalysisSourceEntity({this.sourceTemplate});
 
-  final QuicksightAnalysisSourceEntitySourceTemplate? sourceTemplate;
+  final QuicksightAnalysisSourceTemplate? sourceTemplate;
 
   Map<String, Object?> encode() => {
     'source_template': ?sourceTemplate?.encode(),
@@ -11530,16 +10423,15 @@ final class QuicksightAnalysisSourceEntity {
 /// Typed helper for the `source_entity.source_template` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisSourceEntitySourceTemplate {
-  const QuicksightAnalysisSourceEntitySourceTemplate({
+final class QuicksightAnalysisSourceTemplate {
+  const QuicksightAnalysisSourceTemplate({
     required this.arn,
     required this.dataSetReferences,
   });
 
   final TfArg<String> arn;
 
-  final List<QuicksightAnalysisSourceEntitySourceTemplateDataSetReferences>
-  dataSetReferences;
+  final List<QuicksightAnalysisDataSetReferences> dataSetReferences;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -11550,8 +10442,8 @@ final class QuicksightAnalysisSourceEntitySourceTemplate {
 /// Typed helper for the `source_entity.source_template.data_set_references` block of
 /// `aws_quicksight_analysis` (derived from provider schema).
 @immutable
-final class QuicksightAnalysisSourceEntitySourceTemplateDataSetReferences {
-  const QuicksightAnalysisSourceEntitySourceTemplateDataSetReferences({
+final class QuicksightAnalysisDataSetReferences {
+  const QuicksightAnalysisDataSetReferences({
     required this.dataSetArn,
     required this.dataSetPlaceholder,
   });

@@ -24,9 +24,9 @@ enum VpclatticeListenerProtocol implements TerraformEnum {
 final class VpclatticeListenerDefaultAction {
   const VpclatticeListenerDefaultAction({this.fixedResponse, this.forward});
 
-  final VpclatticeListenerDefaultActionFixedResponse? fixedResponse;
+  final VpclatticeListenerFixedResponse? fixedResponse;
 
-  final List<VpclatticeListenerDefaultActionForward>? forward;
+  final List<VpclatticeListenerForward>? forward;
 
   Map<String, Object?> encode() => {
     'fixed_response': ?fixedResponse?.encode(),
@@ -37,10 +37,8 @@ final class VpclatticeListenerDefaultAction {
 /// Typed helper for the `default_action.fixed_response` block of
 /// `aws_vpclattice_listener` (derived from provider schema).
 @immutable
-final class VpclatticeListenerDefaultActionFixedResponse {
-  const VpclatticeListenerDefaultActionFixedResponse({
-    required this.statusCode,
-  });
+final class VpclatticeListenerFixedResponse {
+  const VpclatticeListenerFixedResponse({required this.statusCode});
 
   final TfArg<num> statusCode;
 
@@ -50,10 +48,10 @@ final class VpclatticeListenerDefaultActionFixedResponse {
 /// Typed helper for the `default_action.forward` block of
 /// `aws_vpclattice_listener` (derived from provider schema).
 @immutable
-final class VpclatticeListenerDefaultActionForward {
-  const VpclatticeListenerDefaultActionForward({this.targetGroups});
+final class VpclatticeListenerForward {
+  const VpclatticeListenerForward({this.targetGroups});
 
-  final List<VpclatticeListenerDefaultActionForwardTargetGroups>? targetGroups;
+  final List<VpclatticeListenerTargetGroups>? targetGroups;
 
   Map<String, Object?> encode() => {
     if (targetGroups != null)
@@ -64,8 +62,8 @@ final class VpclatticeListenerDefaultActionForward {
 /// Typed helper for the `default_action.forward.target_groups` block of
 /// `aws_vpclattice_listener` (derived from provider schema).
 @immutable
-final class VpclatticeListenerDefaultActionForwardTargetGroups {
-  const VpclatticeListenerDefaultActionForwardTargetGroups({
+final class VpclatticeListenerTargetGroups {
+  const VpclatticeListenerTargetGroups({
     this.targetGroupIdentifier,
     this.weight,
   });

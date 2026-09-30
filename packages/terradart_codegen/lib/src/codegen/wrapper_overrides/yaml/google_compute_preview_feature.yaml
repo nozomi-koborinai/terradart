@@ -32,7 +32,7 @@ curatedDoc: |-
   ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
   ///   ),
   ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
-  ///     rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
+  ///     rolloutInput: ComputePreviewFeatureRolloutInput(
   ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
   ///     ),
   ///   ),

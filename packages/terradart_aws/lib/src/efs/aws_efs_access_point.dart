@@ -38,7 +38,7 @@ final class EfsAccessPointRootDirectory {
 
   final TfArg<String>? path;
 
-  final EfsAccessPointRootDirectoryCreationInfo? creationInfo;
+  final EfsAccessPointCreationInfo? creationInfo;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -49,8 +49,8 @@ final class EfsAccessPointRootDirectory {
 /// Typed helper for the `root_directory.creation_info` block of
 /// `aws_efs_access_point` (derived from provider schema).
 @immutable
-final class EfsAccessPointRootDirectoryCreationInfo {
-  const EfsAccessPointRootDirectoryCreationInfo({
+final class EfsAccessPointCreationInfo {
+  const EfsAccessPointCreationInfo({
     required this.ownerGid,
     required this.ownerUid,
     required this.permissions,

@@ -36,8 +36,8 @@ enum GlueCatalogOverwriteChildResourcePermissionsWithDefault
 /// Typed helper for the `catalog_properties` block of
 /// `aws_glue_catalog` (derived from provider schema).
 @immutable
-final class GlueCatalogCatalogProperties {
-  const GlueCatalogCatalogProperties({
+final class GlueCatalogProperties {
+  const GlueCatalogProperties({
     this.customProperties,
     this.dataLakeAccessProperties,
     this.icebergOptimizationProperties,
@@ -45,10 +45,9 @@ final class GlueCatalogCatalogProperties {
 
   final TfArg<Map<String, String>>? customProperties;
 
-  final List<GlueCatalogCatalogPropertiesDataLakeAccessProperties>?
-  dataLakeAccessProperties;
+  final List<GlueCatalogDataLakeAccessProperties>? dataLakeAccessProperties;
 
-  final List<GlueCatalogCatalogPropertiesIcebergOptimizationProperties>?
+  final List<GlueCatalogIcebergOptimizationProperties>?
   icebergOptimizationProperties;
 
   Map<String, Object?> encode() => {
@@ -67,8 +66,8 @@ final class GlueCatalogCatalogProperties {
 /// Typed helper for the `catalog_properties.data_lake_access_properties` block of
 /// `aws_glue_catalog` (derived from provider schema).
 @immutable
-final class GlueCatalogCatalogPropertiesDataLakeAccessProperties {
-  const GlueCatalogCatalogPropertiesDataLakeAccessProperties({
+final class GlueCatalogDataLakeAccessProperties {
+  const GlueCatalogDataLakeAccessProperties({
     this.catalogType,
     this.dataLakeAccess,
     this.dataTransferRole,
@@ -94,8 +93,8 @@ final class GlueCatalogCatalogPropertiesDataLakeAccessProperties {
 /// Typed helper for the `catalog_properties.iceberg_optimization_properties` block of
 /// `aws_glue_catalog` (derived from provider schema).
 @immutable
-final class GlueCatalogCatalogPropertiesIcebergOptimizationProperties {
-  const GlueCatalogCatalogPropertiesIcebergOptimizationProperties({
+final class GlueCatalogIcebergOptimizationProperties {
+  const GlueCatalogIcebergOptimizationProperties({
     this.compaction,
     this.orphanFileDeletion,
     this.retention,
@@ -129,7 +128,7 @@ final class GlueCatalogCreateDatabaseDefaultPermissions {
 
   final TfArg<List<String>>? permissions;
 
-  final List<GlueCatalogCreateDatabaseDefaultPermissionsPrincipal>? principal;
+  final List<GlueCatalogPrincipal>? principal;
 
   Map<String, Object?> encode() => {
     'permissions': ?permissions?.toTfJson(),
@@ -140,11 +139,10 @@ final class GlueCatalogCreateDatabaseDefaultPermissions {
 
 /// Typed helper for the `create_database_default_permissions.principal` block of
 /// `aws_glue_catalog` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class GlueCatalogCreateDatabaseDefaultPermissionsPrincipal {
-  const GlueCatalogCreateDatabaseDefaultPermissionsPrincipal({
-    this.dataLakePrincipalIdentifier,
-  });
+final class GlueCatalogPrincipal {
+  const GlueCatalogPrincipal({this.dataLakePrincipalIdentifier});
 
   final TfArg<String>? dataLakePrincipalIdentifier;
 
@@ -164,27 +162,12 @@ final class GlueCatalogCreateTableDefaultPermissions {
 
   final TfArg<List<String>>? permissions;
 
-  final List<GlueCatalogCreateTableDefaultPermissionsPrincipal>? principal;
+  final List<GlueCatalogPrincipal>? principal;
 
   Map<String, Object?> encode() => {
     'permissions': ?permissions?.toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
-  };
-}
-
-/// Typed helper for the `create_table_default_permissions.principal` block of
-/// `aws_glue_catalog` (derived from provider schema).
-@immutable
-final class GlueCatalogCreateTableDefaultPermissionsPrincipal {
-  const GlueCatalogCreateTableDefaultPermissionsPrincipal({
-    this.dataLakePrincipalIdentifier,
-  });
-
-  final TfArg<String>? dataLakePrincipalIdentifier;
-
-  Map<String, Object?> encode() => {
-    'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
 }
 
@@ -237,7 +220,7 @@ final class AwsGlueCatalog extends Resource {
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<GlueCatalogCatalogProperties>? catalogProperties,
+    List<GlueCatalogProperties>? catalogProperties,
     List<GlueCatalogCreateDatabaseDefaultPermissions>?
     createDatabaseDefaultPermissions,
     List<GlueCatalogCreateTableDefaultPermissions>?

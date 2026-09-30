@@ -25,14 +25,14 @@ curatedDoc: |-
   ///   machineType: .literal('e2-medium'),
   ///   zone: .literal('us-central1-a'),
   ///   bootDisk: ComputeInstanceBootDisk(
-  ///     initializeParams: ComputeInstanceBootDiskInitializeParams(
+  ///     initializeParams: ComputeInstanceInitializeParams(
   ///       image: .literal('debian-cloud/debian-12'),
   ///     ),
   ///   ),
   ///   networkInterface: [
   ///     ComputeInstanceNetworkInterface(
   ///       network: vpc.ref,
-  ///       accessConfig: [ComputeInstanceNetworkInterfaceAccessConfig()],
+  ///       accessConfig: [ComputeInstanceAccessConfig()],
   ///     ),
   ///   ],
   /// );

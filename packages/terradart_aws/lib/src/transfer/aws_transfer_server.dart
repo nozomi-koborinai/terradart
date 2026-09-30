@@ -164,14 +164,13 @@ final class TransferServerProtocolDetails {
     this.tlsSessionResumptionMode,
   });
 
-  final List<TfArg<TransferServerProtocolDetailsAs2Transports>>? as2Transports;
+  final List<TfArg<TransferServerAs2Transports>>? as2Transports;
 
   final TfArg<String>? passiveIp;
 
-  final TfArg<TransferServerProtocolDetailsSetStatOption>? setStatOption;
+  final TfArg<TransferServerSetStatOption>? setStatOption;
 
-  final TfArg<TransferServerProtocolDetailsTlsSessionResumptionMode>?
-  tlsSessionResumptionMode;
+  final TfArg<TransferServerTlsSessionResumptionMode>? tlsSessionResumptionMode;
 
   Map<String, Object?> encode() => {
     if (as2Transports != null)
@@ -183,34 +182,31 @@ final class TransferServerProtocolDetails {
 }
 
 /// `as2_transports` — derived from the provider schema description.
-enum TransferServerProtocolDetailsAs2Transports implements TerraformEnum {
+enum TransferServerAs2Transports implements TerraformEnum {
   http('HTTP');
 
-  const TransferServerProtocolDetailsAs2Transports(this.terraformValue);
+  const TransferServerAs2Transports(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `set_stat_option` — derived from the provider schema description.
-enum TransferServerProtocolDetailsSetStatOption implements TerraformEnum {
+enum TransferServerSetStatOption implements TerraformEnum {
   defaultCase('DEFAULT'),
   enableNoOp('ENABLE_NO_OP');
 
-  const TransferServerProtocolDetailsSetStatOption(this.terraformValue);
+  const TransferServerSetStatOption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `tls_session_resumption_mode` — derived from the provider schema description.
-enum TransferServerProtocolDetailsTlsSessionResumptionMode
-    implements TerraformEnum {
+enum TransferServerTlsSessionResumptionMode implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED'),
   enforced('ENFORCED');
 
-  const TransferServerProtocolDetailsTlsSessionResumptionMode(
-    this.terraformValue,
-  );
+  const TransferServerTlsSessionResumptionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -221,7 +217,7 @@ enum TransferServerProtocolDetailsTlsSessionResumptionMode
 final class TransferServerS3StorageOptions {
   const TransferServerS3StorageOptions({this.directoryListingOptimization});
 
-  final TfArg<TransferServerS3StorageOptionsDirectoryListingOptimization>?
+  final TfArg<TransferServerDirectoryListingOptimization>?
   directoryListingOptimization;
 
   Map<String, Object?> encode() => {
@@ -230,14 +226,11 @@ final class TransferServerS3StorageOptions {
 }
 
 /// `directory_listing_optimization` — derived from the provider schema description.
-enum TransferServerS3StorageOptionsDirectoryListingOptimization
-    implements TerraformEnum {
+enum TransferServerDirectoryListingOptimization implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const TransferServerS3StorageOptionsDirectoryListingOptimization(
-    this.terraformValue,
-  );
+  const TransferServerDirectoryListingOptimization(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -248,9 +241,9 @@ enum TransferServerS3StorageOptionsDirectoryListingOptimization
 final class TransferServerWorkflowDetails {
   const TransferServerWorkflowDetails({this.onPartialUpload, this.onUpload});
 
-  final TransferServerWorkflowDetailsOnPartialUpload? onPartialUpload;
+  final TransferServerOnPartialUpload? onPartialUpload;
 
-  final TransferServerWorkflowDetailsOnUpload? onUpload;
+  final TransferServerOnUpload? onUpload;
 
   Map<String, Object?> encode() => {
     'on_partial_upload': ?onPartialUpload?.encode(),
@@ -261,8 +254,8 @@ final class TransferServerWorkflowDetails {
 /// Typed helper for the `workflow_details.on_partial_upload` block of
 /// `aws_transfer_server` (derived from provider schema).
 @immutable
-final class TransferServerWorkflowDetailsOnPartialUpload {
-  const TransferServerWorkflowDetailsOnPartialUpload({
+final class TransferServerOnPartialUpload {
+  const TransferServerOnPartialUpload({
     required this.executionRole,
     required this.workflowId,
   });
@@ -280,8 +273,8 @@ final class TransferServerWorkflowDetailsOnPartialUpload {
 /// Typed helper for the `workflow_details.on_upload` block of
 /// `aws_transfer_server` (derived from provider schema).
 @immutable
-final class TransferServerWorkflowDetailsOnUpload {
-  const TransferServerWorkflowDetailsOnUpload({
+final class TransferServerOnUpload {
+  const TransferServerOnUpload({
     required this.executionRole,
     required this.workflowId,
   });

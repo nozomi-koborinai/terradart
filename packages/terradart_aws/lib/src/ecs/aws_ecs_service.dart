@@ -134,15 +134,13 @@ final class EcsServiceDeploymentConfiguration {
 
   final TfArg<String>? bakeTimeInMinutes;
 
-  final TfArg<EcsServiceDeploymentConfigurationStrategy>? strategy;
+  final TfArg<EcsServiceStrategy>? strategy;
 
-  final EcsServiceDeploymentConfigurationCanaryConfiguration?
-  canaryConfiguration;
+  final EcsServiceCanaryConfiguration? canaryConfiguration;
 
-  final List<EcsServiceDeploymentConfigurationLifecycleHook>? lifecycleHook;
+  final List<EcsServiceLifecycleHook>? lifecycleHook;
 
-  final EcsServiceDeploymentConfigurationLinearConfiguration?
-  linearConfiguration;
+  final EcsServiceLinearConfiguration? linearConfiguration;
 
   Map<String, Object?> encode() => {
     'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
@@ -155,13 +153,13 @@ final class EcsServiceDeploymentConfiguration {
 }
 
 /// `strategy` — derived from the provider schema description.
-enum EcsServiceDeploymentConfigurationStrategy implements TerraformEnum {
+enum EcsServiceStrategy implements TerraformEnum {
   rolling('ROLLING'),
   blueGreen('BLUE_GREEN'),
   linear('LINEAR'),
   canary('CANARY');
 
-  const EcsServiceDeploymentConfigurationStrategy(this.terraformValue);
+  const EcsServiceStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -169,8 +167,8 @@ enum EcsServiceDeploymentConfigurationStrategy implements TerraformEnum {
 /// Typed helper for the `deployment_configuration.canary_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceDeploymentConfigurationCanaryConfiguration {
-  const EcsServiceDeploymentConfigurationCanaryConfiguration({
+final class EcsServiceCanaryConfiguration {
+  const EcsServiceCanaryConfiguration({
     this.canaryBakeTimeInMinutes,
     this.canaryPercent,
   });
@@ -188,8 +186,8 @@ final class EcsServiceDeploymentConfigurationCanaryConfiguration {
 /// Typed helper for the `deployment_configuration.lifecycle_hook` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceDeploymentConfigurationLifecycleHook {
-  const EcsServiceDeploymentConfigurationLifecycleHook({
+final class EcsServiceLifecycleHook {
+  const EcsServiceLifecycleHook({
     this.hookDetails,
     this.hookTargetArn,
     required this.lifecycleStages,
@@ -202,18 +200,13 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
 
   final TfArg<String>? hookTargetArn;
 
-  final List<
-    TfArg<EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages>
-  >
-  lifecycleStages;
+  final List<TfArg<EcsServiceLifecycleStages>> lifecycleStages;
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final TfArg<EcsServiceDeploymentConfigurationLifecycleHookTargetType>?
-  targetType;
+  final TfArg<EcsServiceTargetType>? targetType;
 
-  final EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration?
-  timeoutConfiguration;
+  final EcsServiceTimeoutConfiguration? timeoutConfiguration;
 
   Map<String, Object?> encode() => {
     'hook_details': ?hookDetails?.toTfJson(),
@@ -226,8 +219,7 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
 }
 
 /// `lifecycle_stages` — derived from the provider schema description.
-enum EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages
-    implements TerraformEnum {
+enum EcsServiceLifecycleStages implements TerraformEnum {
   reconcileService('RECONCILE_SERVICE'),
   preScaleUp('PRE_SCALE_UP'),
   postScaleUp('POST_SCALE_UP'),
@@ -237,22 +229,17 @@ enum EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages
   productionTrafficShift('PRODUCTION_TRAFFIC_SHIFT'),
   postProductionTrafficShift('POST_PRODUCTION_TRAFFIC_SHIFT');
 
-  const EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages(
-    this.terraformValue,
-  );
+  const EcsServiceLifecycleStages(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `target_type` — derived from the provider schema description.
-enum EcsServiceDeploymentConfigurationLifecycleHookTargetType
-    implements TerraformEnum {
+enum EcsServiceTargetType implements TerraformEnum {
   awsLambda('AWS_LAMBDA'),
   pause('PAUSE');
 
-  const EcsServiceDeploymentConfigurationLifecycleHookTargetType(
-    this.terraformValue,
-  );
+  const EcsServiceTargetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -260,16 +247,10 @@ enum EcsServiceDeploymentConfigurationLifecycleHookTargetType
 /// Typed helper for the `deployment_configuration.lifecycle_hook.timeout_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration {
-  const EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration({
-    this.action,
-    this.timeoutInMinutes,
-  });
+final class EcsServiceTimeoutConfiguration {
+  const EcsServiceTimeoutConfiguration({this.action, this.timeoutInMinutes});
 
-  final TfArg<
-    EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction
-  >?
-  action;
+  final TfArg<EcsServiceAction>? action;
 
   final TfArg<String>? timeoutInMinutes;
 
@@ -280,14 +261,11 @@ final class EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration {
 }
 
 /// `action` — derived from the provider schema description.
-enum EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction
-    implements TerraformEnum {
+enum EcsServiceAction implements TerraformEnum {
   rollback('ROLLBACK'),
   continueCase('CONTINUE');
 
-  const EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction(
-    this.terraformValue,
-  );
+  const EcsServiceAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -295,8 +273,8 @@ enum EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction
 /// Typed helper for the `deployment_configuration.linear_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceDeploymentConfigurationLinearConfiguration {
-  const EcsServiceDeploymentConfigurationLinearConfiguration({
+final class EcsServiceLinearConfiguration {
+  const EcsServiceLinearConfiguration({
     this.stepBakeTimeInMinutes,
     this.stepPercent,
   });
@@ -353,7 +331,7 @@ final class EcsServiceLoadBalancer {
 
   final TfArg<String>? targetGroupArn;
 
-  final EcsServiceLoadBalancerAdvancedConfiguration? advancedConfiguration;
+  final EcsServiceAdvancedConfiguration? advancedConfiguration;
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
@@ -367,8 +345,8 @@ final class EcsServiceLoadBalancer {
 /// Typed helper for the `load_balancer.advanced_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceLoadBalancerAdvancedConfiguration {
-  const EcsServiceLoadBalancerAdvancedConfiguration({
+final class EcsServiceAdvancedConfiguration {
+  const EcsServiceAdvancedConfiguration({
     required this.alternateTargetGroupArn,
     required this.productionListenerRule,
     required this.roleArn,
@@ -470,8 +448,8 @@ enum EcsServicePlacementConstraintsType implements TerraformEnum {
 /// Typed helper for the `service_connect_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfiguration {
-  const EcsServiceServiceConnectConfiguration({
+final class EcsServiceConnectConfiguration {
+  const EcsServiceConnectConfiguration({
     required this.enabled,
     this.namespace,
     this.accessLogConfiguration,
@@ -483,12 +461,11 @@ final class EcsServiceServiceConnectConfiguration {
 
   final TfArg<String>? namespace;
 
-  final EcsServiceServiceConnectConfigurationAccessLogConfiguration?
-  accessLogConfiguration;
+  final EcsServiceAccessLogConfiguration? accessLogConfiguration;
 
-  final EcsServiceServiceConnectConfigurationLogConfiguration? logConfiguration;
+  final EcsServiceLogConfiguration? logConfiguration;
 
-  final List<EcsServiceServiceConnectConfigurationService>? service;
+  final List<EcsServiceService>? service;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -502,19 +479,15 @@ final class EcsServiceServiceConnectConfiguration {
 /// Typed helper for the `service_connect_configuration.access_log_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationAccessLogConfiguration {
-  const EcsServiceServiceConnectConfigurationAccessLogConfiguration({
+final class EcsServiceAccessLogConfiguration {
+  const EcsServiceAccessLogConfiguration({
     required this.format,
     this.includeQueryParameters,
   });
 
-  final TfArg<EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat>
-  format;
+  final TfArg<EcsServiceFormat> format;
 
-  final TfArg<
-    EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters
-  >?
-  includeQueryParameters;
+  final TfArg<EcsServiceIncludeQueryParameters>? includeQueryParameters;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
@@ -523,27 +496,21 @@ final class EcsServiceServiceConnectConfigurationAccessLogConfiguration {
 }
 
 /// `format` — derived from the provider schema description.
-enum EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat
-    implements TerraformEnum {
+enum EcsServiceFormat implements TerraformEnum {
   text('TEXT'),
   json('JSON');
 
-  const EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat(
-    this.terraformValue,
-  );
+  const EcsServiceFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `include_query_parameters` — derived from the provider schema description.
-enum EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters
-    implements TerraformEnum {
+enum EcsServiceIncludeQueryParameters implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED');
 
-  const EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters(
-    this.terraformValue,
-  );
+  const EcsServiceIncludeQueryParameters(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -551,20 +518,18 @@ enum EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryPara
 /// Typed helper for the `service_connect_configuration.log_configuration` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationLogConfiguration {
-  const EcsServiceServiceConnectConfigurationLogConfiguration({
+final class EcsServiceLogConfiguration {
+  const EcsServiceLogConfiguration({
     required this.logDriver,
     this.options,
     this.secretOption,
   });
 
-  final TfArg<EcsServiceServiceConnectConfigurationLogConfigurationLogDriver>
-  logDriver;
+  final TfArg<EcsServiceLogDriver> logDriver;
 
   final TfArg<Map<String, String>>? options;
 
-  final List<EcsServiceServiceConnectConfigurationLogConfigurationSecretOption>?
-  secretOption;
+  final List<EcsServiceSecretOption>? secretOption;
 
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
@@ -575,8 +540,7 @@ final class EcsServiceServiceConnectConfigurationLogConfiguration {
 }
 
 /// `log_driver` — derived from the provider schema description.
-enum EcsServiceServiceConnectConfigurationLogConfigurationLogDriver
-    implements TerraformEnum {
+enum EcsServiceLogDriver implements TerraformEnum {
   jsonFile('json-file'),
   syslog('syslog'),
   journald('journald'),
@@ -586,9 +550,7 @@ enum EcsServiceServiceConnectConfigurationLogConfigurationLogDriver
   splunk('splunk'),
   awsfirelens('awsfirelens');
 
-  const EcsServiceServiceConnectConfigurationLogConfigurationLogDriver(
-    this.terraformValue,
-  );
+  const EcsServiceLogDriver(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -596,11 +558,8 @@ enum EcsServiceServiceConnectConfigurationLogConfigurationLogDriver
 /// Typed helper for the `service_connect_configuration.log_configuration.secret_option` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationLogConfigurationSecretOption {
-  const EcsServiceServiceConnectConfigurationLogConfigurationSecretOption({
-    required this.name,
-    required this.valueFrom,
-  });
+final class EcsServiceSecretOption {
+  const EcsServiceSecretOption({required this.name, required this.valueFrom});
 
   final TfArg<String> name;
 
@@ -615,8 +574,8 @@ final class EcsServiceServiceConnectConfigurationLogConfigurationSecretOption {
 /// Typed helper for the `service_connect_configuration.service` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationService {
-  const EcsServiceServiceConnectConfigurationService({
+final class EcsServiceService {
+  const EcsServiceService({
     this.discoveryName,
     this.ingressPortOverride,
     required this.portName,
@@ -631,11 +590,11 @@ final class EcsServiceServiceConnectConfigurationService {
 
   final TfArg<String> portName;
 
-  final EcsServiceServiceConnectConfigurationServiceClientAlias? clientAlias;
+  final EcsServiceClientAlias? clientAlias;
 
-  final EcsServiceServiceConnectConfigurationServiceTimeout? timeout;
+  final EcsServiceTimeout? timeout;
 
-  final EcsServiceServiceConnectConfigurationServiceTls? tls;
+  final EcsServiceTls? tls;
 
   Map<String, Object?> encode() => {
     'discovery_name': ?discoveryName?.toTfJson(),
@@ -650,8 +609,8 @@ final class EcsServiceServiceConnectConfigurationService {
 /// Typed helper for the `service_connect_configuration.service.client_alias` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceClientAlias {
-  const EcsServiceServiceConnectConfigurationServiceClientAlias({
+final class EcsServiceClientAlias {
+  const EcsServiceClientAlias({
     this.dnsName,
     required this.port,
     this.testTrafficRules,
@@ -661,10 +620,7 @@ final class EcsServiceServiceConnectConfigurationServiceClientAlias {
 
   final TfArg<num> port;
 
-  final List<
-    EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRules
-  >?
-  testTrafficRules;
+  final List<EcsServiceTestTrafficRules>? testTrafficRules;
 
   Map<String, Object?> encode() => {
     'dns_name': ?dnsName?.toTfJson(),
@@ -677,13 +633,10 @@ final class EcsServiceServiceConnectConfigurationServiceClientAlias {
 /// Typed helper for the `service_connect_configuration.service.client_alias.test_traffic_rules` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRules {
-  const EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRules({
-    this.header,
-  });
+final class EcsServiceTestTrafficRules {
+  const EcsServiceTestTrafficRules({this.header});
 
-  final EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeader?
-  header;
+  final EcsServiceHeader? header;
 
   Map<String, Object?> encode() => {'header': ?header?.encode()};
 }
@@ -691,16 +644,12 @@ final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRu
 /// Typed helper for the `service_connect_configuration.service.client_alias.test_traffic_rules.header` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeader {
-  const EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeader({
-    required this.name,
-    required this.value,
-  });
+final class EcsServiceHeader {
+  const EcsServiceHeader({required this.name, required this.value});
 
   final TfArg<String> name;
 
-  final EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeaderValue
-  value;
+  final EcsServiceValue value;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -711,10 +660,8 @@ final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRu
 /// Typed helper for the `service_connect_configuration.service.client_alias.test_traffic_rules.header.value` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeaderValue {
-  const EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeaderValue({
-    required this.exact,
-  });
+final class EcsServiceValue {
+  const EcsServiceValue({required this.exact});
 
   final TfArg<String> exact;
 
@@ -724,8 +671,8 @@ final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRu
 /// Typed helper for the `service_connect_configuration.service.timeout` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceTimeout {
-  const EcsServiceServiceConnectConfigurationServiceTimeout({
+final class EcsServiceTimeout {
+  const EcsServiceTimeout({
     this.idleTimeoutSeconds,
     this.perRequestTimeoutSeconds,
   });
@@ -743,8 +690,8 @@ final class EcsServiceServiceConnectConfigurationServiceTimeout {
 /// Typed helper for the `service_connect_configuration.service.tls` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceTls {
-  const EcsServiceServiceConnectConfigurationServiceTls({
+final class EcsServiceTls {
+  const EcsServiceTls({
     this.kmsKey,
     this.roleArn,
     required this.issuerCertAuthority,
@@ -754,8 +701,7 @@ final class EcsServiceServiceConnectConfigurationServiceTls {
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final EcsServiceServiceConnectConfigurationServiceTlsIssuerCertAuthority
-  issuerCertAuthority;
+  final EcsServiceIssuerCertAuthority issuerCertAuthority;
 
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
@@ -767,10 +713,8 @@ final class EcsServiceServiceConnectConfigurationServiceTls {
 /// Typed helper for the `service_connect_configuration.service.tls.issuer_cert_authority` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceConnectConfigurationServiceTlsIssuerCertAuthority {
-  const EcsServiceServiceConnectConfigurationServiceTlsIssuerCertAuthority({
-    required this.awsPcaAuthorityArn,
-  });
+final class EcsServiceIssuerCertAuthority {
+  const EcsServiceIssuerCertAuthority({required this.awsPcaAuthorityArn});
 
   final TfArg<String> awsPcaAuthorityArn;
 
@@ -782,8 +726,8 @@ final class EcsServiceServiceConnectConfigurationServiceTlsIssuerCertAuthority {
 /// Typed helper for the `service_registries` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceServiceRegistries {
-  const EcsServiceServiceRegistries({
+final class EcsServiceRegistries {
+  const EcsServiceRegistries({
     this.containerName,
     this.containerPort,
     this.port,
@@ -817,7 +761,7 @@ final class EcsServiceVolumeConfiguration {
 
   final TfArg<String> name;
 
-  final EcsServiceVolumeConfigurationManagedEbsVolume managedEbsVolume;
+  final EcsServiceManagedEbsVolume managedEbsVolume;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -828,8 +772,8 @@ final class EcsServiceVolumeConfiguration {
 /// Typed helper for the `volume_configuration.managed_ebs_volume` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceVolumeConfigurationManagedEbsVolume {
-  const EcsServiceVolumeConfigurationManagedEbsVolume({
+final class EcsServiceManagedEbsVolume {
+  const EcsServiceManagedEbsVolume({
     this.encrypted,
     this.fileSystemType,
     this.iops,
@@ -845,8 +789,7 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
 
   final TfArg<bool>? encrypted;
 
-  final TfArg<EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType>?
-  fileSystemType;
+  final TfArg<EcsServiceFileSystemType>? fileSystemType;
 
   final TfArg<num>? iops;
 
@@ -864,8 +807,7 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
 
   final TfArg<String>? volumeType;
 
-  final List<EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications>?
-  tagSpecifications;
+  final List<EcsServiceTagSpecifications>? tagSpecifications;
 
   Map<String, Object?> encode() => {
     'encrypted': ?encrypted?.toTfJson(),
@@ -884,16 +826,13 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
 }
 
 /// `file_system_type` — derived from the provider schema description.
-enum EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType
-    implements TerraformEnum {
+enum EcsServiceFileSystemType implements TerraformEnum {
   ext3('ext3'),
   ext4('ext4'),
   xfs('xfs'),
   ntfs('ntfs');
 
-  const EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType(
-    this.terraformValue,
-  );
+  const EcsServiceFileSystemType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -901,22 +840,16 @@ enum EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType
 /// Typed helper for the `volume_configuration.managed_ebs_volume.tag_specifications` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications {
-  const EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications({
+final class EcsServiceTagSpecifications {
+  const EcsServiceTagSpecifications({
     this.propagateTags,
     required this.resourceType,
     this.tags,
   });
 
-  final TfArg<
-    EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags
-  >?
-  propagateTags;
+  final TfArg<EcsServiceTagSpecificationsPropagateTags>? propagateTags;
 
-  final TfArg<
-    EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType
-  >
-  resourceType;
+  final TfArg<EcsServiceResourceType> resourceType;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -928,27 +861,21 @@ final class EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications {
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags
-    implements TerraformEnum {
+enum EcsServiceTagSpecificationsPropagateTags implements TerraformEnum {
   taskDefinition('TASK_DEFINITION'),
   service('SERVICE'),
   none('NONE');
 
-  const EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags(
-    this.terraformValue,
-  );
+  const EcsServiceTagSpecificationsPropagateTags(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType
-    implements TerraformEnum {
+enum EcsServiceResourceType implements TerraformEnum {
   volume('volume');
 
-  const EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType(
-    this.terraformValue,
-  );
+  const EcsServiceResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1013,8 +940,8 @@ final class AwsEcsService extends Resource {
     EcsServiceNetworkConfiguration? networkConfiguration,
     List<EcsServiceOrderedPlacementStrategy>? orderedPlacementStrategy,
     List<EcsServicePlacementConstraints>? placementConstraints,
-    EcsServiceServiceConnectConfiguration? serviceConnectConfiguration,
-    EcsServiceServiceRegistries? serviceRegistries,
+    EcsServiceConnectConfiguration? serviceConnectConfiguration,
+    EcsServiceRegistries? serviceRegistries,
     EcsServiceVolumeConfiguration? volumeConfiguration,
     List<EcsServiceVpcLatticeConfigurations>? vpcLatticeConfigurations,
     super.lifecycle,

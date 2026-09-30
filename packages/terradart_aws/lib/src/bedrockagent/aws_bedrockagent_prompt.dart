@@ -23,19 +23,17 @@ final class BedrockagentPromptVariant {
 
   final TfArg<String>? additionalModelRequestFields;
 
-  final BedrockagentPromptVariantModel model;
+  final BedrockagentPromptModel model;
 
   final TfArg<String> name;
 
-  final TfArg<BedrockagentPromptVariantTemplateType> templateType;
+  final TfArg<BedrockagentPromptTemplateType> templateType;
 
-  final List<BedrockagentPromptVariantInferenceConfiguration>?
-  inferenceConfiguration;
+  final List<BedrockagentPromptInferenceConfiguration>? inferenceConfiguration;
 
-  final List<BedrockagentPromptVariantMetadata>? metadata;
+  final List<BedrockagentPromptMetadata>? metadata;
 
-  final List<BedrockagentPromptVariantTemplateConfiguration>?
-  templateConfiguration;
+  final List<BedrockagentPromptTemplateConfiguration>? templateConfiguration;
 
   Map<String, Object?> encode() => {
     'additional_model_request_fields': ?additionalModelRequestFields
@@ -59,17 +57,17 @@ final class BedrockagentPromptVariant {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.genAiResource(...)`.
-sealed class BedrockagentPromptVariantModel {
-  const BedrockagentPromptVariantModel();
+sealed class BedrockagentPromptModel {
+  const BedrockagentPromptModel();
 
   /// Sets `gen_ai_resource`.
-  const factory BedrockagentPromptVariantModel.genAiResource(
-    List<BedrockagentPromptVariantGenAiResource> genAiResource,
-  ) = BedrockagentPromptVariantModelGenAiResource;
+  const factory BedrockagentPromptModel.genAiResource(
+    List<BedrockagentPromptGenAiResource> genAiResource,
+  ) = BedrockagentPromptModelGenAiResource;
 
   /// Sets `model_id`.
-  const factory BedrockagentPromptVariantModel.modelId(TfArg<String> modelId) =
-      BedrockagentPromptVariantModelId;
+  const factory BedrockagentPromptModel.modelId(TfArg<String> modelId) =
+      BedrockagentPromptModelId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -77,12 +75,12 @@ sealed class BedrockagentPromptVariantModel {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantModel.genAiResource] choice: sets `gen_ai_resource`.
-final class BedrockagentPromptVariantModelGenAiResource
-    extends BedrockagentPromptVariantModel {
-  const BedrockagentPromptVariantModelGenAiResource(this.genAiResource);
+/// The [BedrockagentPromptModel.genAiResource] choice: sets `gen_ai_resource`.
+final class BedrockagentPromptModelGenAiResource
+    extends BedrockagentPromptModel {
+  const BedrockagentPromptModelGenAiResource(this.genAiResource);
 
-  final List<BedrockagentPromptVariantGenAiResource> genAiResource;
+  final List<BedrockagentPromptGenAiResource> genAiResource;
 
   @override
   String get blockKey => 'gen_ai_resource';
@@ -93,10 +91,9 @@ final class BedrockagentPromptVariantModelGenAiResource
   };
 }
 
-/// The [BedrockagentPromptVariantModel.modelId] choice: sets `model_id`.
-final class BedrockagentPromptVariantModelId
-    extends BedrockagentPromptVariantModel {
-  const BedrockagentPromptVariantModelId(this.modelId);
+/// The [BedrockagentPromptModel.modelId] choice: sets `model_id`.
+final class BedrockagentPromptModelId extends BedrockagentPromptModel {
+  const BedrockagentPromptModelId(this.modelId);
 
   final TfArg<String> modelId;
 
@@ -108,11 +105,11 @@ final class BedrockagentPromptVariantModelId
 }
 
 /// `template_type` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateType implements TerraformEnum {
+enum BedrockagentPromptTemplateType implements TerraformEnum {
   text('TEXT'),
   chat('CHAT');
 
-  const BedrockagentPromptVariantTemplateType(this.terraformValue);
+  const BedrockagentPromptTemplateType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -120,10 +117,10 @@ enum BedrockagentPromptVariantTemplateType implements TerraformEnum {
 /// Typed helper for the `variant.gen_ai_resource` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantGenAiResource {
-  const BedrockagentPromptVariantGenAiResource({this.agent});
+final class BedrockagentPromptGenAiResource {
+  const BedrockagentPromptGenAiResource({this.agent});
 
-  final List<BedrockagentPromptVariantGenAiResourceAgent>? agent;
+  final List<BedrockagentPromptAgent>? agent;
 
   Map<String, Object?> encode() => {
     if (agent != null) 'agent': [for (final e in agent!) e.encode()],
@@ -133,10 +130,8 @@ final class BedrockagentPromptVariantGenAiResource {
 /// Typed helper for the `variant.gen_ai_resource.agent` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantGenAiResourceAgent {
-  const BedrockagentPromptVariantGenAiResourceAgent({
-    required this.agentIdentifier,
-  });
+final class BedrockagentPromptAgent {
+  const BedrockagentPromptAgent({required this.agentIdentifier});
 
   final TfArg<String> agentIdentifier;
 
@@ -148,10 +143,10 @@ final class BedrockagentPromptVariantGenAiResourceAgent {
 /// Typed helper for the `variant.inference_configuration` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantInferenceConfiguration {
-  const BedrockagentPromptVariantInferenceConfiguration({this.text});
+final class BedrockagentPromptInferenceConfiguration {
+  const BedrockagentPromptInferenceConfiguration({this.text});
 
-  final List<BedrockagentPromptVariantInferenceConfigurationText>? text;
+  final List<BedrockagentPromptInferenceConfigurationText>? text;
 
   Map<String, Object?> encode() => {
     if (text != null) 'text': [for (final e in text!) e.encode()],
@@ -161,8 +156,8 @@ final class BedrockagentPromptVariantInferenceConfiguration {
 /// Typed helper for the `variant.inference_configuration.text` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantInferenceConfigurationText {
-  const BedrockagentPromptVariantInferenceConfigurationText({
+final class BedrockagentPromptInferenceConfigurationText {
+  const BedrockagentPromptInferenceConfigurationText({
     this.maxTokens,
     this.stopSequences,
     this.temperature,
@@ -188,11 +183,8 @@ final class BedrockagentPromptVariantInferenceConfigurationText {
 /// Typed helper for the `variant.metadata` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantMetadata {
-  const BedrockagentPromptVariantMetadata({
-    required this.key,
-    required this.value,
-  });
+final class BedrockagentPromptMetadata {
+  const BedrockagentPromptMetadata({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -208,18 +200,18 @@ final class BedrockagentPromptVariantMetadata {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.chat(...)`.
-sealed class BedrockagentPromptVariantTemplateConfiguration {
-  const BedrockagentPromptVariantTemplateConfiguration();
+sealed class BedrockagentPromptTemplateConfiguration {
+  const BedrockagentPromptTemplateConfiguration();
 
   /// Sets `chat`.
-  const factory BedrockagentPromptVariantTemplateConfiguration.chat(
-    List<BedrockagentPromptVariantTemplateConfigurationChat> chat,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatChoice;
+  const factory BedrockagentPromptTemplateConfiguration.chat(
+    List<BedrockagentPromptChat> chat,
+  ) = BedrockagentPromptTemplateConfigurationChat;
 
   /// Sets `text`.
-  const factory BedrockagentPromptVariantTemplateConfiguration.text(
-    List<BedrockagentPromptVariantTemplateConfigurationText> text,
-  ) = BedrockagentPromptVariantTemplateConfigurationTextChoice;
+  const factory BedrockagentPromptTemplateConfiguration.text(
+    List<BedrockagentPromptTemplateConfigurationText> text,
+  ) = BedrockagentPromptTemplateConfigurationTextChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -227,12 +219,12 @@ sealed class BedrockagentPromptVariantTemplateConfiguration {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantTemplateConfiguration.chat] choice: sets `chat`.
-final class BedrockagentPromptVariantTemplateConfigurationChatChoice
-    extends BedrockagentPromptVariantTemplateConfiguration {
-  const BedrockagentPromptVariantTemplateConfigurationChatChoice(this.chat);
+/// The [BedrockagentPromptTemplateConfiguration.chat] choice: sets `chat`.
+final class BedrockagentPromptTemplateConfigurationChat
+    extends BedrockagentPromptTemplateConfiguration {
+  const BedrockagentPromptTemplateConfigurationChat(this.chat);
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChat> chat;
+  final List<BedrockagentPromptChat> chat;
 
   @override
   String get blockKey => 'chat';
@@ -243,12 +235,12 @@ final class BedrockagentPromptVariantTemplateConfigurationChatChoice
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfiguration.text] choice: sets `text`.
-final class BedrockagentPromptVariantTemplateConfigurationTextChoice
-    extends BedrockagentPromptVariantTemplateConfiguration {
-  const BedrockagentPromptVariantTemplateConfigurationTextChoice(this.text);
+/// The [BedrockagentPromptTemplateConfiguration.text] choice: sets `text`.
+final class BedrockagentPromptTemplateConfigurationTextChoice
+    extends BedrockagentPromptTemplateConfiguration {
+  const BedrockagentPromptTemplateConfigurationTextChoice(this.text);
 
-  final List<BedrockagentPromptVariantTemplateConfigurationText> text;
+  final List<BedrockagentPromptTemplateConfigurationText> text;
 
   @override
   String get blockKey => 'text';
@@ -262,26 +254,21 @@ final class BedrockagentPromptVariantTemplateConfigurationTextChoice
 /// Typed helper for the `variant.template_configuration.chat` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChat {
-  const BedrockagentPromptVariantTemplateConfigurationChat({
+final class BedrockagentPromptChat {
+  const BedrockagentPromptChat({
     this.inputVariable,
     this.message,
     this.system,
     this.toolConfiguration,
   });
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChatInputVariable>?
-  inputVariable;
+  final List<BedrockagentPromptInputVariable>? inputVariable;
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChatMessage>?
-  message;
+  final List<BedrockagentPromptMessage>? message;
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChatSystem>? system;
+  final List<BedrockagentPromptSystem>? system;
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration
-  >?
-  toolConfiguration;
+  final List<BedrockagentPromptToolConfiguration>? toolConfiguration;
 
   Map<String, Object?> encode() => {
     if (inputVariable != null)
@@ -295,11 +282,10 @@ final class BedrockagentPromptVariantTemplateConfigurationChat {
 
 /// Typed helper for the `variant.template_configuration.chat.input_variable` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatInputVariable {
-  const BedrockagentPromptVariantTemplateConfigurationChatInputVariable({
-    required this.name,
-  });
+final class BedrockagentPromptInputVariable {
+  const BedrockagentPromptInputVariable({required this.name});
 
   final TfArg<String> name;
 
@@ -309,17 +295,12 @@ final class BedrockagentPromptVariantTemplateConfigurationChatInputVariable {
 /// Typed helper for the `variant.template_configuration.chat.message` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatMessage {
-  const BedrockagentPromptVariantTemplateConfigurationChatMessage({
-    required this.role,
-    this.content,
-  });
+final class BedrockagentPromptMessage {
+  const BedrockagentPromptMessage({required this.role, this.content});
 
-  final TfArg<BedrockagentPromptVariantTemplateConfigurationChatMessageRole>
-  role;
+  final TfArg<BedrockagentPromptRole> role;
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChatMessageContent>?
-  content;
+  final List<BedrockagentPromptContent>? content;
 
   Map<String, Object?> encode() => {
     'role': role.toTfJson(),
@@ -328,14 +309,11 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessage {
 }
 
 /// `role` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateConfigurationChatMessageRole
-    implements TerraformEnum {
+enum BedrockagentPromptRole implements TerraformEnum {
   user('user'),
   assistant('assistant');
 
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageRole(
-    this.terraformValue,
-  );
+  const BedrockagentPromptRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -344,21 +322,17 @@ enum BedrockagentPromptVariantTemplateConfigurationChatMessageRole
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cachePoint(...)`.
-sealed class BedrockagentPromptVariantTemplateConfigurationChatMessageContent {
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageContent();
+sealed class BedrockagentPromptContent {
+  const BedrockagentPromptContent();
 
   /// Sets `cache_point`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatMessageContent.cachePoint(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePoint
-    >
-    cachePoint,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointChoice;
+  const factory BedrockagentPromptContent.cachePoint(
+    List<BedrockagentPromptCachePoint> cachePoint,
+  ) = BedrockagentPromptContentCachePoint;
 
   /// Sets `text`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatMessageContent.text(
-    TfArg<String> text,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatMessageContentText;
+  const factory BedrockagentPromptContent.text(TfArg<String> text) =
+      BedrockagentPromptContentText;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -366,17 +340,12 @@ sealed class BedrockagentPromptVariantTemplateConfigurationChatMessageContent {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatMessageContent.cachePoint] choice: sets `cache_point`.
-final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointChoice
-    extends BedrockagentPromptVariantTemplateConfigurationChatMessageContent {
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointChoice(
-    this.cachePoint,
-  );
+/// The [BedrockagentPromptContent.cachePoint] choice: sets `cache_point`.
+final class BedrockagentPromptContentCachePoint
+    extends BedrockagentPromptContent {
+  const BedrockagentPromptContentCachePoint(this.cachePoint);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePoint
-  >
-  cachePoint;
+  final List<BedrockagentPromptCachePoint> cachePoint;
 
   @override
   String get blockKey => 'cache_point';
@@ -387,12 +356,9 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentCach
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatMessageContent.text] choice: sets `text`.
-final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentText
-    extends BedrockagentPromptVariantTemplateConfigurationChatMessageContent {
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageContentText(
-    this.text,
-  );
+/// The [BedrockagentPromptContent.text] choice: sets `text`.
+final class BedrockagentPromptContentText extends BedrockagentPromptContent {
+  const BedrockagentPromptContentText(this.text);
 
   final TfArg<String> text;
 
@@ -403,30 +369,23 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentText
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
 
-/// Typed helper for the `variant.template_configuration.chat.message.content.cache_point` block of
+/// Typed helper for the `variant.template_configuration.text.cache_point` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePoint {
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePoint({
-    required this.type,
-  });
+final class BedrockagentPromptCachePoint {
+  const BedrockagentPromptCachePoint({required this.type});
 
-  final TfArg<
-    BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType
-  >
-  type;
+  final TfArg<BedrockagentPromptType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType
-    implements TerraformEnum {
+enum BedrockagentPromptType implements TerraformEnum {
   defaultCase('default');
 
-  const BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType(
-    this.terraformValue,
-  );
+  const BedrockagentPromptType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -435,19 +394,17 @@ enum BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointT
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cachePoint(...)`.
-sealed class BedrockagentPromptVariantTemplateConfigurationChatSystem {
-  const BedrockagentPromptVariantTemplateConfigurationChatSystem();
+sealed class BedrockagentPromptSystem {
+  const BedrockagentPromptSystem();
 
   /// Sets `cache_point`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatSystem.cachePoint(
-    List<BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint>
-    cachePoint,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointChoice;
+  const factory BedrockagentPromptSystem.cachePoint(
+    List<BedrockagentPromptCachePoint> cachePoint,
+  ) = BedrockagentPromptSystemCachePoint;
 
   /// Sets `text`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatSystem.text(
-    TfArg<String> text,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatSystemText;
+  const factory BedrockagentPromptSystem.text(TfArg<String> text) =
+      BedrockagentPromptSystemText;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -455,15 +412,12 @@ sealed class BedrockagentPromptVariantTemplateConfigurationChatSystem {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatSystem.cachePoint] choice: sets `cache_point`.
-final class BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointChoice
-    extends BedrockagentPromptVariantTemplateConfigurationChatSystem {
-  const BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointChoice(
-    this.cachePoint,
-  );
+/// The [BedrockagentPromptSystem.cachePoint] choice: sets `cache_point`.
+final class BedrockagentPromptSystemCachePoint
+    extends BedrockagentPromptSystem {
+  const BedrockagentPromptSystemCachePoint(this.cachePoint);
 
-  final List<BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint>
-  cachePoint;
+  final List<BedrockagentPromptCachePoint> cachePoint;
 
   @override
   String get blockKey => 'cache_point';
@@ -474,10 +428,9 @@ final class BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointCh
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatSystem.text] choice: sets `text`.
-final class BedrockagentPromptVariantTemplateConfigurationChatSystemText
-    extends BedrockagentPromptVariantTemplateConfigurationChatSystem {
-  const BedrockagentPromptVariantTemplateConfigurationChatSystemText(this.text);
+/// The [BedrockagentPromptSystem.text] choice: sets `text`.
+final class BedrockagentPromptSystemText extends BedrockagentPromptSystem {
+  const BedrockagentPromptSystemText(this.text);
 
   final TfArg<String> text;
 
@@ -488,52 +441,15 @@ final class BedrockagentPromptVariantTemplateConfigurationChatSystemText
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
 
-/// Typed helper for the `variant.template_configuration.chat.system.cache_point` block of
-/// `aws_bedrockagent_prompt` (derived from provider schema).
-@immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint {
-  const BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint({
-    required this.type,
-  });
-
-  final TfArg<
-    BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType
-  >
-  type;
-
-  Map<String, Object?> encode() => {'type': type.toTfJson()};
-}
-
-/// `type` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType
-    implements TerraformEnum {
-  defaultCase('default');
-
-  const BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration({
-    this.tool,
-    this.toolChoice,
-  });
+final class BedrockagentPromptToolConfiguration {
+  const BedrockagentPromptToolConfiguration({this.tool, this.toolChoice});
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool
-  >?
-  tool;
+  final List<BedrockagentPromptTool>? tool;
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice
-  >?
-  toolChoice;
+  final List<BedrockagentPromptToolChoice>? toolChoice;
 
   Map<String, Object?> encode() => {
     if (tool != null) 'tool': [for (final e in tool!) e.encode()],
@@ -546,24 +462,18 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration 
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cachePoint(...)`.
-sealed class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool();
+sealed class BedrockagentPromptTool {
+  const BedrockagentPromptTool();
 
   /// Sets `cache_point`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool.cachePoint(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePoint
-    >
-    cachePoint,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointChoice;
+  const factory BedrockagentPromptTool.cachePoint(
+    List<BedrockagentPromptCachePoint> cachePoint,
+  ) = BedrockagentPromptToolCachePoint;
 
   /// Sets `tool_spec`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool.toolSpec(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpec
-    >
-    toolSpec,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolSpec;
+  const factory BedrockagentPromptTool.toolSpec(
+    List<BedrockagentPromptToolSpec> toolSpec,
+  ) = BedrockagentPromptToolSpecChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -571,18 +481,11 @@ sealed class BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool.cachePoint] choice: sets `cache_point`.
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointChoice
-    extends
-        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointChoice(
-    this.cachePoint,
-  );
+/// The [BedrockagentPromptTool.cachePoint] choice: sets `cache_point`.
+final class BedrockagentPromptToolCachePoint extends BedrockagentPromptTool {
+  const BedrockagentPromptToolCachePoint(this.cachePoint);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePoint
-  >
-  cachePoint;
+  final List<BedrockagentPromptCachePoint> cachePoint;
 
   @override
   String get blockKey => 'cache_point';
@@ -593,18 +496,11 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool.toolSpec] choice: sets `tool_spec`.
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolSpec
-    extends
-        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolSpec(
-    this.toolSpec,
-  );
+/// The [BedrockagentPromptTool.toolSpec] choice: sets `tool_spec`.
+final class BedrockagentPromptToolSpecChoice extends BedrockagentPromptTool {
+  const BedrockagentPromptToolSpecChoice(this.toolSpec);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpec
-  >
-  toolSpec;
+  final List<BedrockagentPromptToolSpec> toolSpec;
 
   @override
   String get blockKey => 'tool_spec';
@@ -615,39 +511,11 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
   };
 }
 
-/// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool.cache_point` block of
-/// `aws_bedrockagent_prompt` (derived from provider schema).
-@immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePoint {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePoint({
-    required this.type,
-  });
-
-  final TfArg<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType
-  >
-  type;
-
-  Map<String, Object?> encode() => {'type': type.toTfJson()};
-}
-
-/// `type` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType
-    implements TerraformEnum {
-  defaultCase('default');
-
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool.tool_spec` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpec {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpec({
+final class BedrockagentPromptToolSpec {
+  const BedrockagentPromptToolSpec({
     this.description,
     required this.name,
     this.inputSchema,
@@ -657,10 +525,7 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 
   final TfArg<String> name;
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpecInputSchema
-  >?
-  inputSchema;
+  final List<BedrockagentPromptInputSchema>? inputSchema;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -673,10 +538,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool.tool_spec.input_schema` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpecInputSchema {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpecInputSchema({
-    this.json,
-  });
+final class BedrockagentPromptInputSchema {
+  const BedrockagentPromptInputSchema({this.json});
 
   final TfArg<String>? json;
 
@@ -687,32 +550,23 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.any(...)`.
-sealed class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice();
+sealed class BedrockagentPromptToolChoice {
+  const BedrockagentPromptToolChoice();
 
   /// Sets `any`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.any(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAny
-    >
-    any,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAnyChoice;
+  const factory BedrockagentPromptToolChoice.any(
+    List<BedrockagentPromptAny> any,
+  ) = BedrockagentPromptToolChoiceAny;
 
   /// Sets `auto`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.auto(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAuto
-    >
-    auto,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAutoChoice;
+  const factory BedrockagentPromptToolChoice.auto(
+    List<BedrockagentPromptAuto> auto,
+  ) = BedrockagentPromptToolChoiceAuto;
 
   /// Sets `tool`.
-  const factory BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.tool(
-    List<
-      BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceTool
-    >
-    tool,
-  ) = BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceToolOption;
+  const factory BedrockagentPromptToolChoice.tool(
+    List<BedrockagentPromptToolChoiceTool> tool,
+  ) = BedrockagentPromptToolChoiceToolOption;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -720,18 +574,12 @@ sealed class BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.any] choice: sets `any`.
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAnyChoice
-    extends
-        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAnyChoice(
-    this.any,
-  );
+/// The [BedrockagentPromptToolChoice.any] choice: sets `any`.
+final class BedrockagentPromptToolChoiceAny
+    extends BedrockagentPromptToolChoice {
+  const BedrockagentPromptToolChoiceAny(this.any);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAny
-  >
-  any;
+  final List<BedrockagentPromptAny> any;
 
   @override
   String get blockKey => 'any';
@@ -742,18 +590,12 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.auto] choice: sets `auto`.
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAutoChoice
-    extends
-        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAutoChoice(
-    this.auto,
-  );
+/// The [BedrockagentPromptToolChoice.auto] choice: sets `auto`.
+final class BedrockagentPromptToolChoiceAuto
+    extends BedrockagentPromptToolChoice {
+  const BedrockagentPromptToolChoiceAuto(this.auto);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAuto
-  >
-  auto;
+  final List<BedrockagentPromptAuto> auto;
 
   @override
   String get blockKey => 'auto';
@@ -764,18 +606,12 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
   };
 }
 
-/// The [BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice.tool] choice: sets `tool`.
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceToolOption
-    extends
-        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceToolOption(
-    this.tool,
-  );
+/// The [BedrockagentPromptToolChoice.tool] choice: sets `tool`.
+final class BedrockagentPromptToolChoiceToolOption
+    extends BedrockagentPromptToolChoice {
+  const BedrockagentPromptToolChoiceToolOption(this.tool);
 
-  final List<
-    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceTool
-  >
-  tool;
+  final List<BedrockagentPromptToolChoiceTool> tool;
 
   @override
   String get blockKey => 'tool';
@@ -789,8 +625,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool_choice.any` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAny {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAny();
+final class BedrockagentPromptAny {
+  const BedrockagentPromptAny();
 
   Map<String, Object?> encode() => {};
 }
@@ -798,8 +634,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool_choice.auto` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAuto {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAuto();
+final class BedrockagentPromptAuto {
+  const BedrockagentPromptAuto();
 
   Map<String, Object?> encode() => {};
 }
@@ -807,10 +643,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool_choice.tool` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceTool {
-  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceTool({
-    required this.name,
-  });
+final class BedrockagentPromptToolChoiceTool {
+  const BedrockagentPromptToolChoiceTool({required this.name});
 
   final TfArg<String> name;
 
@@ -820,8 +654,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 /// Typed helper for the `variant.template_configuration.text` block of
 /// `aws_bedrockagent_prompt` (derived from provider schema).
 @immutable
-final class BedrockagentPromptVariantTemplateConfigurationText {
-  const BedrockagentPromptVariantTemplateConfigurationText({
+final class BedrockagentPromptTemplateConfigurationText {
+  const BedrockagentPromptTemplateConfigurationText({
     required this.text,
     this.cachePoint,
     this.inputVariable,
@@ -829,11 +663,9 @@ final class BedrockagentPromptVariantTemplateConfigurationText {
 
   final TfArg<String> text;
 
-  final List<BedrockagentPromptVariantTemplateConfigurationTextCachePoint>?
-  cachePoint;
+  final List<BedrockagentPromptCachePoint>? cachePoint;
 
-  final List<BedrockagentPromptVariantTemplateConfigurationTextInputVariable>?
-  inputVariable;
+  final List<BedrockagentPromptInputVariable>? inputVariable;
 
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
@@ -842,45 +674,6 @@ final class BedrockagentPromptVariantTemplateConfigurationText {
     if (inputVariable != null)
       'input_variable': [for (final e in inputVariable!) e.encode()],
   };
-}
-
-/// Typed helper for the `variant.template_configuration.text.cache_point` block of
-/// `aws_bedrockagent_prompt` (derived from provider schema).
-@immutable
-final class BedrockagentPromptVariantTemplateConfigurationTextCachePoint {
-  const BedrockagentPromptVariantTemplateConfigurationTextCachePoint({
-    required this.type,
-  });
-
-  final TfArg<BedrockagentPromptVariantTemplateConfigurationTextCachePointType>
-  type;
-
-  Map<String, Object?> encode() => {'type': type.toTfJson()};
-}
-
-/// `type` — derived from the provider schema description.
-enum BedrockagentPromptVariantTemplateConfigurationTextCachePointType
-    implements TerraformEnum {
-  defaultCase('default');
-
-  const BedrockagentPromptVariantTemplateConfigurationTextCachePointType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `variant.template_configuration.text.input_variable` block of
-/// `aws_bedrockagent_prompt` (derived from provider schema).
-@immutable
-final class BedrockagentPromptVariantTemplateConfigurationTextInputVariable {
-  const BedrockagentPromptVariantTemplateConfigurationTextInputVariable({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Factory wrapper for `aws_bedrockagent_prompt`.

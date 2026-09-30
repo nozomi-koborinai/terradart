@@ -6,10 +6,10 @@ library;
 export 'src/tpu/google_tpu_v2_queued_resource.dart'
     show
         GoogleTpuV2QueuedResource,
-        TpuV2QueuedResourceTpu,
-        TpuV2QueuedResourceTpuNodeSpec,
-        TpuV2QueuedResourceTpuNodeSpecNode,
-        TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig;
+        TpuV2QueuedResourceNetworkConfig,
+        TpuV2QueuedResourceNode,
+        TpuV2QueuedResourceNodeSpec,
+        TpuV2QueuedResourceTpu;
 export 'src/tpu/google_tpu_v2_vm.dart'
     show
         GoogleTpuV2Vm,
@@ -18,7 +18,7 @@ export 'src/tpu/google_tpu_v2_vm.dart'
         TpuV2VmAcceleratorConfigChoice,
         TpuV2VmAcceleratorType,
         TpuV2VmDataDisks,
-        TpuV2VmDataDisksMode,
+        TpuV2VmMode,
         TpuV2VmNetwork,
         TpuV2VmNetworkConfig,
         TpuV2VmNetworkConfigChoice,

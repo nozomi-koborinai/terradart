@@ -100,20 +100,15 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
     this.type,
   });
 
-  final TfArg<
-    ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode
-  >?
+  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode>?
   dscpMode;
 
   final TfArg<num>? dscpValue;
 
-  final TfArg<
-    ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
-  >?
+  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass>?
   trafficClass;
 
-  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleActionType>?
-  type;
+  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleType>? type;
 
   Map<String, Object?> encode() => {
     'dscp_mode': ?dscpMode?.toTfJson(),
@@ -124,12 +119,12 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
 }
 
 /// `dscp_mode` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode
     implements TerraformEnum {
   auto('AUTO'),
   custom('CUSTOM');
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode(
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode(
     this.terraformValue,
   );
   @override
@@ -137,7 +132,7 @@ enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode
 }
 
 /// `traffic_class` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass
     implements TerraformEnum {
   tc1('TC1'),
   tc2('TC2'),
@@ -146,7 +141,7 @@ enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
   tc5('TC5'),
   tc6('TC6');
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass(
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass(
     this.terraformValue,
   );
   @override
@@ -154,11 +149,11 @@ enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionType
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleType
     implements TerraformEnum {
   applyTrafficClassification('apply_traffic_classification');
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionType(
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleType(
     this.terraformValue,
   );
   @override
@@ -179,9 +174,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final List<
-    ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs
-  >
+  final List<ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs>
   layer4Configs;
 
   Map<String, Object?> encode() => {
@@ -194,8 +187,8 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatch {
 /// Typed helper for the `match.layer4_configs` block of
 /// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs({
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs({
     required this.ipProtocol,
     this.ports,
   });

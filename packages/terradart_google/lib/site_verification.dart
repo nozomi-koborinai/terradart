@@ -11,5 +11,5 @@ export 'src/site_verification/google_site_verification_web_resource.dart'
     show
         GoogleSiteVerificationWebResource,
         SiteVerificationWebResourceSite,
-        SiteVerificationWebResourceSiteType,
+        SiteVerificationWebResourceType,
         SiteVerificationWebResourceVerificationMethod;

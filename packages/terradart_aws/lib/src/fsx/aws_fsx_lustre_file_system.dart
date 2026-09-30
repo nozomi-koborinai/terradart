@@ -77,8 +77,7 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<FsxLustreFileSystemDataReadCacheConfigurationSizingMode>
-  sizingMode;
+  final TfArg<FsxLustreFileSystemSizingMode> sizingMode;
 
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
@@ -87,15 +86,12 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
 }
 
 /// `sizing_mode` — derived from the provider schema description.
-enum FsxLustreFileSystemDataReadCacheConfigurationSizingMode
-    implements TerraformEnum {
+enum FsxLustreFileSystemSizingMode implements TerraformEnum {
   noCache('NO_CACHE'),
   userProvisioned('USER_PROVISIONED'),
   proportionalToThroughputCapacity('PROPORTIONAL_TO_THROUGHPUT_CAPACITY');
 
-  const FsxLustreFileSystemDataReadCacheConfigurationSizingMode(
-    this.terraformValue,
-  );
+  const FsxLustreFileSystemSizingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,7 +104,7 @@ final class FsxLustreFileSystemLogConfiguration {
 
   final TfArg<String>? destination;
 
-  final TfArg<FsxLustreFileSystemLogConfigurationLevel>? level;
+  final TfArg<FsxLustreFileSystemLevel>? level;
 
   Map<String, Object?> encode() => {
     'destination': ?destination?.toTfJson(),
@@ -117,13 +113,13 @@ final class FsxLustreFileSystemLogConfiguration {
 }
 
 /// `level` — derived from the provider schema description.
-enum FsxLustreFileSystemLogConfigurationLevel implements TerraformEnum {
+enum FsxLustreFileSystemLevel implements TerraformEnum {
   disabled('DISABLED'),
   warnOnly('WARN_ONLY'),
   errorOnly('ERROR_ONLY'),
   warnError('WARN_ERROR');
 
-  const FsxLustreFileSystemLogConfigurationLevel(this.terraformValue);
+  const FsxLustreFileSystemLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -136,7 +132,7 @@ final class FsxLustreFileSystemMetadataConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxLustreFileSystemMetadataConfigurationMode>? mode;
+  final TfArg<FsxLustreFileSystemMode>? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -145,11 +141,11 @@ final class FsxLustreFileSystemMetadataConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxLustreFileSystemMetadataConfigurationMode implements TerraformEnum {
+enum FsxLustreFileSystemMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   userProvisioned('USER_PROVISIONED');
 
-  const FsxLustreFileSystemMetadataConfigurationMode(this.terraformValue);
+  const FsxLustreFileSystemMode(this.terraformValue);
   @override
   final String terraformValue;
 }

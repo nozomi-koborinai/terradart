@@ -22,12 +22,12 @@ export 'src/apigatewayv2/aws_apigatewayv2_deployment.dart'
     show AwsApigatewayv2Deployment;
 export 'src/apigatewayv2/aws_apigatewayv2_domain_name.dart'
     show
-        Apigatewayv2DomainNameDomainNameConfiguration,
-        Apigatewayv2DomainNameDomainNameConfigurationEndpointType,
-        Apigatewayv2DomainNameDomainNameConfigurationIpAddressType,
-        Apigatewayv2DomainNameDomainNameConfigurationSecurityPolicy,
+        Apigatewayv2DomainNameConfiguration,
+        Apigatewayv2DomainNameEndpointType,
+        Apigatewayv2DomainNameIpAddressType,
         Apigatewayv2DomainNameMutualTlsAuthentication,
         Apigatewayv2DomainNameRoutingMode,
+        Apigatewayv2DomainNameSecurityPolicy,
         AwsApigatewayv2DomainName;
 export 'src/apigatewayv2/aws_apigatewayv2_integration.dart'
     show
@@ -54,19 +54,18 @@ export 'src/apigatewayv2/aws_apigatewayv2_route_response.dart'
 export 'src/apigatewayv2/aws_apigatewayv2_routing_rule.dart'
     show
         Apigatewayv2RoutingRuleAction,
-        Apigatewayv2RoutingRuleActionInvokeApi,
+        Apigatewayv2RoutingRuleAnyOf,
         Apigatewayv2RoutingRuleCondition,
-        Apigatewayv2RoutingRuleConditionMatchBasePaths,
-        Apigatewayv2RoutingRuleConditionMatchHeaders,
-        Apigatewayv2RoutingRuleConditionMatchHeadersAnyOf,
+        Apigatewayv2RoutingRuleInvokeApi,
+        Apigatewayv2RoutingRuleMatchBasePaths,
+        Apigatewayv2RoutingRuleMatchHeaders,
         AwsApigatewayv2RoutingRule;
 export 'src/apigatewayv2/aws_apigatewayv2_stage.dart'
     show
         Apigatewayv2StageAccessLogSettings,
         Apigatewayv2StageDefaultRouteSettings,
-        Apigatewayv2StageDefaultRouteSettingsLoggingLevel,
+        Apigatewayv2StageLoggingLevel,
         Apigatewayv2StageRouteSettings,
-        Apigatewayv2StageRouteSettingsLoggingLevel,
         AwsApigatewayv2Stage;
 export 'src/apigatewayv2/aws_apigatewayv2_vpc_link.dart'
     show AwsApigatewayv2VpcLink;

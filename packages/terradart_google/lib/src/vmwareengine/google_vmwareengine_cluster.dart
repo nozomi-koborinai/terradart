@@ -37,8 +37,7 @@ final class VmwareengineClusterAutoscalingSettings {
 
   final TfArg<num>? minClusterNodeCount;
 
-  final List<VmwareengineClusterAutoscalingSettingsAutoscalingPolicies>
-  autoscalingPolicies;
+  final List<VmwareengineClusterAutoscalingPolicies> autoscalingPolicies;
 
   Map<String, Object?> encode() => {
     'cool_down_period': ?coolDownPeriod?.toTfJson(),
@@ -51,8 +50,8 @@ final class VmwareengineClusterAutoscalingSettings {
 /// Typed helper for the `autoscaling_settings.autoscaling_policies` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable
-final class VmwareengineClusterAutoscalingSettingsAutoscalingPolicies {
-  const VmwareengineClusterAutoscalingSettingsAutoscalingPolicies({
+final class VmwareengineClusterAutoscalingPolicies {
+  const VmwareengineClusterAutoscalingPolicies({
     required this.autoscalePolicyId,
     required this.nodeTypeId,
     required this.scaleOutSize,
@@ -67,14 +66,11 @@ final class VmwareengineClusterAutoscalingSettingsAutoscalingPolicies {
 
   final TfArg<num> scaleOutSize;
 
-  final VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds?
-  consumedMemoryThresholds;
+  final VmwareengineClusterConsumedMemoryThresholds? consumedMemoryThresholds;
 
-  final VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds?
-  cpuThresholds;
+  final VmwareengineClusterCpuThresholds? cpuThresholds;
 
-  final VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds?
-  storageThresholds;
+  final VmwareengineClusterStorageThresholds? storageThresholds;
 
   Map<String, Object?> encode() => {
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
@@ -89,8 +85,8 @@ final class VmwareengineClusterAutoscalingSettingsAutoscalingPolicies {
 /// Typed helper for the `autoscaling_settings.autoscaling_policies.consumed_memory_thresholds` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable
-final class VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds {
-  const VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds({
+final class VmwareengineClusterConsumedMemoryThresholds {
+  const VmwareengineClusterConsumedMemoryThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -108,8 +104,8 @@ final class VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesConsumedMem
 /// Typed helper for the `autoscaling_settings.autoscaling_policies.cpu_thresholds` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable
-final class VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds {
-  const VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds({
+final class VmwareengineClusterCpuThresholds {
+  const VmwareengineClusterCpuThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -127,8 +123,8 @@ final class VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesCpuThreshol
 /// Typed helper for the `autoscaling_settings.autoscaling_policies.storage_thresholds` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable
-final class VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds {
-  const VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds({
+final class VmwareengineClusterStorageThresholds {
+  const VmwareengineClusterStorageThresholds({
     required this.scaleIn,
     required this.scaleOut,
   });
@@ -163,8 +159,7 @@ final class VmwareengineClusterDatastoreMountConfig {
 
   final TfArg<String>? nfsVersion;
 
-  final VmwareengineClusterDatastoreMountConfigDatastoreNetwork
-  datastoreNetwork;
+  final VmwareengineClusterDatastoreNetwork datastoreNetwork;
 
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
@@ -178,8 +173,8 @@ final class VmwareengineClusterDatastoreMountConfig {
 /// Typed helper for the `datastore_mount_config.datastore_network` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable
-final class VmwareengineClusterDatastoreMountConfigDatastoreNetwork {
-  const VmwareengineClusterDatastoreMountConfigDatastoreNetwork({
+final class VmwareengineClusterDatastoreNetwork {
+  const VmwareengineClusterDatastoreNetwork({
     this.connectionCount,
     this.mtu,
     required this.subnet,

@@ -35,7 +35,7 @@ final class ElasticsearchDomainSamlOptionsSamlOptions {
 
   final TfArg<String>? subjectKey;
 
-  final ElasticsearchDomainSamlOptionsSamlOptionsIdp? idp;
+  final ElasticsearchDomainSamlOptionsIdp? idp;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -51,8 +51,8 @@ final class ElasticsearchDomainSamlOptionsSamlOptions {
 /// Typed helper for the `saml_options.idp` block of
 /// `aws_elasticsearch_domain_saml_options` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainSamlOptionsSamlOptionsIdp {
-  const ElasticsearchDomainSamlOptionsSamlOptionsIdp({
+final class ElasticsearchDomainSamlOptionsIdp {
+  const ElasticsearchDomainSamlOptionsIdp({
     required this.entityId,
     required this.metadataContent,
   });

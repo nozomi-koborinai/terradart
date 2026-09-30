@@ -60,9 +60,9 @@ final class GlueMlTransformParameters {
     required this.findMatchesParameters,
   });
 
-  final TfArg<GlueMlTransformParametersTransformType> transformType;
+  final TfArg<GlueMlTransformType> transformType;
 
-  final GlueMlTransformParametersFindMatchesParameters findMatchesParameters;
+  final GlueMlTransformFindMatchesParameters findMatchesParameters;
 
   Map<String, Object?> encode() => {
     'transform_type': transformType.toTfJson(),
@@ -71,10 +71,10 @@ final class GlueMlTransformParameters {
 }
 
 /// `transform_type` — derived from the provider schema description.
-enum GlueMlTransformParametersTransformType implements TerraformEnum {
+enum GlueMlTransformType implements TerraformEnum {
   findMatches('FIND_MATCHES');
 
-  const GlueMlTransformParametersTransformType(this.terraformValue);
+  const GlueMlTransformType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -82,8 +82,8 @@ enum GlueMlTransformParametersTransformType implements TerraformEnum {
 /// Typed helper for the `parameters.find_matches_parameters` block of
 /// `aws_glue_ml_transform` (derived from provider schema).
 @immutable
-final class GlueMlTransformParametersFindMatchesParameters {
-  const GlueMlTransformParametersFindMatchesParameters({
+final class GlueMlTransformFindMatchesParameters {
+  const GlueMlTransformFindMatchesParameters({
     this.accuracyCostTradeOff,
     this.enforceProvidedLabels,
     this.precisionRecallTradeOff,

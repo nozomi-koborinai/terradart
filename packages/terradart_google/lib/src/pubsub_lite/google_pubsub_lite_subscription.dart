@@ -15,8 +15,7 @@ final class PubsubLiteSubscriptionDeliveryConfig {
     required this.deliveryRequirement,
   });
 
-  final TfArg<PubsubLiteSubscriptionDeliveryConfigDeliveryRequirement>
-  deliveryRequirement;
+  final TfArg<PubsubLiteSubscriptionDeliveryRequirement> deliveryRequirement;
 
   Map<String, Object?> encode() => {
     'delivery_requirement': deliveryRequirement.toTfJson(),
@@ -24,15 +23,12 @@ final class PubsubLiteSubscriptionDeliveryConfig {
 }
 
 /// `delivery_requirement` — derived from the provider schema description.
-enum PubsubLiteSubscriptionDeliveryConfigDeliveryRequirement
-    implements TerraformEnum {
+enum PubsubLiteSubscriptionDeliveryRequirement implements TerraformEnum {
   deliverImmediately('DELIVER_IMMEDIATELY'),
   deliverAfterStored('DELIVER_AFTER_STORED'),
   deliveryRequirementUnspecified('DELIVERY_REQUIREMENT_UNSPECIFIED');
 
-  const PubsubLiteSubscriptionDeliveryConfigDeliveryRequirement(
-    this.terraformValue,
-  );
+  const PubsubLiteSubscriptionDeliveryRequirement(this.terraformValue);
   @override
   final String terraformValue;
 }

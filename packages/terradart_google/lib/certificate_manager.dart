@@ -6,19 +6,19 @@ library;
 
 export 'src/certificate_manager/google_certificate_manager_certificate.dart'
     show
+        CertificateManagerCertificateCertificate,
+        CertificateManagerCertificateCertificatePem,
         CertificateManagerCertificateManaged,
+        CertificateManagerCertificatePemCertificate,
+        CertificateManagerCertificatePemPrivateKey,
+        CertificateManagerCertificatePrivateKey,
+        CertificateManagerCertificatePrivateKeyPem,
+        CertificateManagerCertificatePrivateKeyPemPrivateKeyWo,
         CertificateManagerCertificateProvisioning,
         CertificateManagerCertificateProvisioningManaged,
         CertificateManagerCertificateProvisioningSelfManaged,
         CertificateManagerCertificateScope,
         CertificateManagerCertificateSelfManaged,
-        CertificateManagerCertificateSelfManagedCertificate,
-        CertificateManagerCertificateSelfManagedCertificatePem,
-        CertificateManagerCertificateSelfManagedCertificatePemCertificate,
-        CertificateManagerCertificateSelfManagedPrivateKey,
-        CertificateManagerCertificateSelfManagedPrivateKeyPem,
-        CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKey,
-        CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKeyWo,
         GoogleCertificateManagerCertificate;
 export 'src/certificate_manager/google_certificate_manager_certificate_issuance_config.dart'
     show

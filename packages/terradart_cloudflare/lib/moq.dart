@@ -7,6 +7,6 @@ export 'src/moq/cloudflare_moq_relay.dart'
     show
         CloudflareMoqRelay,
         MoqRelayConfig,
-        MoqRelayConfigLingeringSubscribe,
-        MoqRelayConfigUpstreams,
-        MoqRelayConfigUpstreamsUpstreams;
+        MoqRelayLingeringSubscribe,
+        MoqRelayUpstreams,
+        MoqRelayUpstreamsUpstreams;

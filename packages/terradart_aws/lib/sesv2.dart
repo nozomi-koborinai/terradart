@@ -11,49 +11,49 @@ export 'src/sesv2/aws_sesv2_account_vdm_attributes.dart'
     show
         AwsSesv2AccountVdmAttributes,
         Sesv2AccountVdmAttributesDashboardAttributes,
-        Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics,
+        Sesv2AccountVdmAttributesEngagementMetrics,
         Sesv2AccountVdmAttributesGuardianAttributes,
-        Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery,
+        Sesv2AccountVdmAttributesOptimizedSharedDelivery,
         Sesv2AccountVdmAttributesVdmEnabled;
 export 'src/sesv2/aws_sesv2_configuration_set.dart'
     show
         AwsSesv2ConfigurationSet,
+        Sesv2ConfigurationSetDashboardOptions,
         Sesv2ConfigurationSetDeliveryOptions,
-        Sesv2ConfigurationSetDeliveryOptionsTlsPolicy,
+        Sesv2ConfigurationSetEngagementMetrics,
+        Sesv2ConfigurationSetGuardianOptions,
+        Sesv2ConfigurationSetHttpsPolicy,
+        Sesv2ConfigurationSetOptimizedSharedDelivery,
         Sesv2ConfigurationSetReputationOptions,
         Sesv2ConfigurationSetSendingOptions,
+        Sesv2ConfigurationSetSuppressedReasons,
         Sesv2ConfigurationSetSuppressionOptions,
-        Sesv2ConfigurationSetSuppressionOptionsSuppressedReasons,
+        Sesv2ConfigurationSetTlsPolicy,
         Sesv2ConfigurationSetTrackingOptions,
-        Sesv2ConfigurationSetTrackingOptionsHttpsPolicy,
-        Sesv2ConfigurationSetVdmOptions,
-        Sesv2ConfigurationSetVdmOptionsDashboardOptions,
-        Sesv2ConfigurationSetVdmOptionsDashboardOptionsEngagementMetrics,
-        Sesv2ConfigurationSetVdmOptionsGuardianOptions,
-        Sesv2ConfigurationSetVdmOptionsGuardianOptionsOptimizedSharedDelivery;
+        Sesv2ConfigurationSetVdmOptions;
 export 'src/sesv2/aws_sesv2_configuration_set_event_destination.dart'
     show
         AwsSesv2ConfigurationSetEventDestination,
+        Sesv2ConfigurationSetEventDestinationCloudWatchDestination,
+        Sesv2ConfigurationSetEventDestinationDimensionConfiguration,
+        Sesv2ConfigurationSetEventDestinationDimensionValueSource,
+        Sesv2ConfigurationSetEventDestinationEventBridgeDestination,
         Sesv2ConfigurationSetEventDestinationEventDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration,
-        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource,
-        Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes,
-        Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTarget,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatchDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBridgeDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFirehoseDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestination;
+        Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination,
+        Sesv2ConfigurationSetEventDestinationMatchingEventTypes,
+        Sesv2ConfigurationSetEventDestinationPinpointDestination,
+        Sesv2ConfigurationSetEventDestinationSnsDestination,
+        Sesv2ConfigurationSetEventDestinationTarget,
+        Sesv2ConfigurationSetEventDestinationTargetCloudWatchDestination,
+        Sesv2ConfigurationSetEventDestinationTargetEventBridgeDestination,
+        Sesv2ConfigurationSetEventDestinationTargetKinesisFirehoseDestination,
+        Sesv2ConfigurationSetEventDestinationTargetPinpointDestination,
+        Sesv2ConfigurationSetEventDestinationTargetSnsDestination;
 export 'src/sesv2/aws_sesv2_contact_list.dart'
     show
         AwsSesv2ContactList,
-        Sesv2ContactListTopic,
-        Sesv2ContactListTopicDefaultSubscriptionStatus;
+        Sesv2ContactListDefaultSubscriptionStatus,
+        Sesv2ContactListTopic;
 export 'src/sesv2/aws_sesv2_dedicated_ip_assignment.dart'
     show AwsSesv2DedicatedIpAssignment;
 export 'src/sesv2/aws_sesv2_dedicated_ip_pool.dart'
@@ -62,7 +62,7 @@ export 'src/sesv2/aws_sesv2_email_identity.dart'
     show
         AwsSesv2EmailIdentity,
         Sesv2EmailIdentityDkimSigningAttributes,
-        Sesv2EmailIdentityDkimSigningAttributesNextSigningKeyLength;
+        Sesv2EmailIdentityNextSigningKeyLength;
 export 'src/sesv2/aws_sesv2_email_identity_feedback_attributes.dart'
     show AwsSesv2EmailIdentityFeedbackAttributes;
 export 'src/sesv2/aws_sesv2_email_identity_mail_from_attributes.dart'
@@ -75,7 +75,7 @@ export 'src/sesv2/aws_sesv2_multi_region_endpoint.dart'
     show
         AwsSesv2MultiRegionEndpoint,
         Sesv2MultiRegionEndpointDetails,
-        Sesv2MultiRegionEndpointDetailsRoutesDetails;
+        Sesv2MultiRegionEndpointRoutesDetails;
 export 'src/sesv2/aws_sesv2_tenant.dart' show AwsSesv2Tenant;
 export 'src/sesv2/aws_sesv2_tenant_resource_association.dart'
     show AwsSesv2TenantResourceAssociation;

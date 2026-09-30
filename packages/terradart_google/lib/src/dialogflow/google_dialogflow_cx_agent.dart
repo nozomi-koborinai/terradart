@@ -20,14 +20,13 @@ final class DialogflowCxAgentAdvancedSettings {
     this.speechSettings,
   });
 
-  final DialogflowCxAgentAdvancedSettingsAudioExportGcsDestination?
-  audioExportGcsDestination;
+  final DialogflowCxAgentAudioExportGcsDestination? audioExportGcsDestination;
 
-  final DialogflowCxAgentAdvancedSettingsDtmfSettings? dtmfSettings;
+  final DialogflowCxAgentDtmfSettings? dtmfSettings;
 
-  final DialogflowCxAgentAdvancedSettingsLoggingSettings? loggingSettings;
+  final DialogflowCxAgentLoggingSettings? loggingSettings;
 
-  final DialogflowCxAgentAdvancedSettingsSpeechSettings? speechSettings;
+  final DialogflowCxAgentSpeechSettings? speechSettings;
 
   Map<String, Object?> encode() => {
     'audio_export_gcs_destination': ?audioExportGcsDestination?.encode(),
@@ -40,8 +39,8 @@ final class DialogflowCxAgentAdvancedSettings {
 /// Typed helper for the `advanced_settings.audio_export_gcs_destination` block of
 /// `google_dialogflow_cx_agent` (derived from provider schema).
 @immutable
-final class DialogflowCxAgentAdvancedSettingsAudioExportGcsDestination {
-  const DialogflowCxAgentAdvancedSettingsAudioExportGcsDestination({this.uri});
+final class DialogflowCxAgentAudioExportGcsDestination {
+  const DialogflowCxAgentAudioExportGcsDestination({this.uri});
 
   final TfArg<String>? uri;
 
@@ -51,8 +50,8 @@ final class DialogflowCxAgentAdvancedSettingsAudioExportGcsDestination {
 /// Typed helper for the `advanced_settings.dtmf_settings` block of
 /// `google_dialogflow_cx_agent` (derived from provider schema).
 @immutable
-final class DialogflowCxAgentAdvancedSettingsDtmfSettings {
-  const DialogflowCxAgentAdvancedSettingsDtmfSettings({
+final class DialogflowCxAgentDtmfSettings {
+  const DialogflowCxAgentDtmfSettings({
     this.enabled,
     this.finishDigit,
     this.maxDigits,
@@ -74,8 +73,8 @@ final class DialogflowCxAgentAdvancedSettingsDtmfSettings {
 /// Typed helper for the `advanced_settings.logging_settings` block of
 /// `google_dialogflow_cx_agent` (derived from provider schema).
 @immutable
-final class DialogflowCxAgentAdvancedSettingsLoggingSettings {
-  const DialogflowCxAgentAdvancedSettingsLoggingSettings({
+final class DialogflowCxAgentLoggingSettings {
+  const DialogflowCxAgentLoggingSettings({
     this.enableConsentBasedRedaction,
     this.enableInteractionLogging,
     this.enableStackdriverLogging,
@@ -97,8 +96,8 @@ final class DialogflowCxAgentAdvancedSettingsLoggingSettings {
 /// Typed helper for the `advanced_settings.speech_settings` block of
 /// `google_dialogflow_cx_agent` (derived from provider schema).
 @immutable
-final class DialogflowCxAgentAdvancedSettingsSpeechSettings {
-  const DialogflowCxAgentAdvancedSettingsSpeechSettings({
+final class DialogflowCxAgentSpeechSettings {
+  const DialogflowCxAgentSpeechSettings({
     this.endpointerSensitivity,
     this.models,
     this.noSpeechTimeout,
@@ -174,7 +173,7 @@ final class DialogflowCxAgentGenAppBuilderSettings {
 final class DialogflowCxAgentGitIntegrationSettings {
   const DialogflowCxAgentGitIntegrationSettings({this.githubSettings});
 
-  final DialogflowCxAgentGitIntegrationSettingsGithubSettings? githubSettings;
+  final DialogflowCxAgentGithubSettings? githubSettings;
 
   Map<String, Object?> encode() => {
     'github_settings': ?githubSettings?.encode(),
@@ -184,8 +183,8 @@ final class DialogflowCxAgentGitIntegrationSettings {
 /// Typed helper for the `git_integration_settings.github_settings` block of
 /// `google_dialogflow_cx_agent` (derived from provider schema).
 @immutable
-final class DialogflowCxAgentGitIntegrationSettingsGithubSettings {
-  const DialogflowCxAgentGitIntegrationSettingsGithubSettings({
+final class DialogflowCxAgentGithubSettings {
+  const DialogflowCxAgentGithubSettings({
     this.accessToken,
     this.branches,
     this.displayName,

@@ -45,7 +45,7 @@ sealed class LambdaEventSourceMappingEventSource {
   /// Sets `self_managed_event_source`.
   const factory LambdaEventSourceMappingEventSource.selfManagedEventSource(
     LambdaEventSourceMappingSelfManagedEventSource selfManagedEventSource,
-  ) = LambdaEventSourceMappingEventSourceSelfManagedEventSource;
+  ) = LambdaEventSourceMappingSelfManagedEventSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -79,9 +79,9 @@ final class LambdaEventSourceMappingEventSourceArn
 }
 
 /// The [LambdaEventSourceMappingEventSource.selfManagedEventSource] choice: sets `self_managed_event_source`.
-final class LambdaEventSourceMappingEventSourceSelfManagedEventSource
+final class LambdaEventSourceMappingSelfManagedEventSourceChoice
     extends LambdaEventSourceMappingEventSource {
-  const LambdaEventSourceMappingEventSourceSelfManagedEventSource(
+  const LambdaEventSourceMappingSelfManagedEventSourceChoice(
     this.selfManagedEventSource,
   );
 
@@ -113,13 +113,13 @@ sealed class LambdaEventSourceMappingManagedKafkaEventSourceConfig {
   const factory LambdaEventSourceMappingManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig(
     LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig
     amazonManagedKafkaEventSourceConfig,
-  ) = LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig;
+  ) = LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigChoice;
 
   /// Sets `self_managed_kafka_event_source_config`.
   const factory LambdaEventSourceMappingManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig(
     LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig
     selfManagedKafkaEventSourceConfig,
-  ) = LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig;
+  ) = LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -132,9 +132,9 @@ sealed class LambdaEventSourceMappingManagedKafkaEventSourceConfig {
 }
 
 /// The [LambdaEventSourceMappingManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig] choice: sets `amazon_managed_kafka_event_source_config`.
-final class LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig
+final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigChoice
     extends LambdaEventSourceMappingManagedKafkaEventSourceConfig {
-  const LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig(
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigChoice(
     this.amazonManagedKafkaEventSourceConfig,
   );
 
@@ -159,9 +159,9 @@ final class LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKa
 }
 
 /// The [LambdaEventSourceMappingManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig] choice: sets `self_managed_kafka_event_source_config`.
-final class LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig
+final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigChoice
     extends LambdaEventSourceMappingManagedKafkaEventSourceConfig {
-  const LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig(
+  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigChoice(
     this.selfManagedKafkaEventSourceConfig,
   );
 
@@ -196,8 +196,7 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig {
 
   final TfArg<String>? consumerGroupId;
 
-  final LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfig?
-  schemaRegistryConfig;
+  final LambdaEventSourceMappingSchemaRegistryConfig? schemaRegistryConfig;
 
   Map<String, Object?> encode() => {
     'consumer_group_id': ?consumerGroupId?.toTfJson(),
@@ -207,30 +206,23 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig {
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfig({
+final class LambdaEventSourceMappingSchemaRegistryConfig {
+  const LambdaEventSourceMappingSchemaRegistryConfig({
     this.eventRecordFormat,
     this.schemaRegistryUri,
     this.accessConfig,
     this.schemaValidationConfig,
   });
 
-  final TfArg<
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
-  >?
-  eventRecordFormat;
+  final TfArg<LambdaEventSourceMappingEventRecordFormat>? eventRecordFormat;
 
   final TfArg<String>? schemaRegistryUri;
 
-  final List<
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig
-  >?
-  accessConfig;
+  final List<LambdaEventSourceMappingAccessConfig>? accessConfig;
 
-  final List<
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig
-  >?
+  final List<LambdaEventSourceMappingSchemaValidationConfig>?
   schemaValidationConfig;
 
   Map<String, Object?> encode() => {
@@ -246,31 +238,23 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
 }
 
 /// `event_record_format` — derived from the provider schema description.
-enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
-    implements TerraformEnum {
+enum LambdaEventSourceMappingEventRecordFormat implements TerraformEnum {
   json('JSON'),
   source('SOURCE');
 
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat(
-    this.terraformValue,
-  );
+  const LambdaEventSourceMappingEventRecordFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.access_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig({
-    this.type,
-    this.uri,
-  });
+final class LambdaEventSourceMappingAccessConfig {
+  const LambdaEventSourceMappingAccessConfig({this.type, this.uri});
 
-  final TfArg<
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
-  >?
-  type;
+  final TfArg<LambdaEventSourceMappingAccessConfigType>? type;
 
   final TfArg<String>? uri;
 
@@ -281,44 +265,34 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
 }
 
 /// `type` — derived from the provider schema description.
-enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
-    implements TerraformEnum {
+enum LambdaEventSourceMappingAccessConfigType implements TerraformEnum {
   basicAuth('BASIC_AUTH'),
   clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
   serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
 
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType(
-    this.terraformValue,
-  );
+  const LambdaEventSourceMappingAccessConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.schema_validation_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig({
-    this.attribute,
-  });
+final class LambdaEventSourceMappingSchemaValidationConfig {
+  const LambdaEventSourceMappingSchemaValidationConfig({this.attribute});
 
-  final TfArg<
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
-  >?
-  attribute;
+  final TfArg<LambdaEventSourceMappingAttribute>? attribute;
 
   Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
-    implements TerraformEnum {
+enum LambdaEventSourceMappingAttribute implements TerraformEnum {
   key('KEY'),
   value('VALUE');
 
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute(
-    this.terraformValue,
-  );
+  const LambdaEventSourceMappingAttribute(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -329,7 +303,7 @@ enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryCo
 final class LambdaEventSourceMappingDestinationConfig {
   const LambdaEventSourceMappingDestinationConfig({this.onFailure});
 
-  final LambdaEventSourceMappingDestinationConfigOnFailure? onFailure;
+  final LambdaEventSourceMappingOnFailure? onFailure;
 
   Map<String, Object?> encode() => {'on_failure': ?onFailure?.encode()};
 }
@@ -337,10 +311,8 @@ final class LambdaEventSourceMappingDestinationConfig {
 /// Typed helper for the `destination_config.on_failure` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
-final class LambdaEventSourceMappingDestinationConfigOnFailure {
-  const LambdaEventSourceMappingDestinationConfigOnFailure({
-    required this.destinationArn,
-  });
+final class LambdaEventSourceMappingOnFailure {
+  const LambdaEventSourceMappingOnFailure({required this.destinationArn});
 
   final TfArg<String> destinationArn;
 
@@ -363,8 +335,7 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 
   final TfArg<String> databaseName;
 
-  final TfArg<LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument>?
-  fullDocument;
+  final TfArg<LambdaEventSourceMappingFullDocument>? fullDocument;
 
   Map<String, Object?> encode() => {
     'collection_name': ?collectionName?.toTfJson(),
@@ -374,14 +345,11 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 }
 
 /// `full_document` — derived from the provider schema description.
-enum LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument
-    implements TerraformEnum {
+enum LambdaEventSourceMappingFullDocument implements TerraformEnum {
   updatelookup('UpdateLookup'),
   defaultCase('Default');
 
-  const LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument(
-    this.terraformValue,
-  );
+  const LambdaEventSourceMappingFullDocument(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -392,7 +360,7 @@ enum LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument
 final class LambdaEventSourceMappingFilterCriteria {
   const LambdaEventSourceMappingFilterCriteria({this.filter});
 
-  final List<LambdaEventSourceMappingFilterCriteriaFilter>? filter;
+  final List<LambdaEventSourceMappingFilter>? filter;
 
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
@@ -402,8 +370,8 @@ final class LambdaEventSourceMappingFilterCriteria {
 /// Typed helper for the `filter_criteria.filter` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
-final class LambdaEventSourceMappingFilterCriteriaFilter {
-  const LambdaEventSourceMappingFilterCriteriaFilter({this.pattern});
+final class LambdaEventSourceMappingFilter {
+  const LambdaEventSourceMappingFilter({this.pattern});
 
   final TfArg<String>? pattern;
 
@@ -416,7 +384,7 @@ final class LambdaEventSourceMappingFilterCriteriaFilter {
 final class LambdaEventSourceMappingMetricsConfig {
   const LambdaEventSourceMappingMetricsConfig({required this.metrics});
 
-  final List<TfArg<LambdaEventSourceMappingMetricsConfigMetrics>> metrics;
+  final List<TfArg<LambdaEventSourceMappingMetrics>> metrics;
 
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.toTfJson()],
@@ -424,12 +392,12 @@ final class LambdaEventSourceMappingMetricsConfig {
 }
 
 /// `metrics` — derived from the provider schema description.
-enum LambdaEventSourceMappingMetricsConfigMetrics implements TerraformEnum {
+enum LambdaEventSourceMappingMetrics implements TerraformEnum {
   eventcount('EventCount'),
   errorcount('ErrorCount'),
   kafkametrics('KafkaMetrics');
 
-  const LambdaEventSourceMappingMetricsConfigMetrics(this.terraformValue);
+  const LambdaEventSourceMappingMetrics(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -494,131 +462,12 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig {
 
   final TfArg<String>? consumerGroupId;
 
-  final LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfig?
-  schemaRegistryConfig;
+  final LambdaEventSourceMappingSchemaRegistryConfig? schemaRegistryConfig;
 
   Map<String, Object?> encode() => {
     'consumer_group_id': ?consumerGroupId?.toTfJson(),
     'schema_registry_config': ?schemaRegistryConfig?.encode(),
   };
-}
-
-/// Typed helper for the `self_managed_kafka_event_source_config.schema_registry_config` block of
-/// `aws_lambda_event_source_mapping` (derived from provider schema).
-@immutable
-final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfig {
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfig({
-    this.eventRecordFormat,
-    this.schemaRegistryUri,
-    this.accessConfig,
-    this.schemaValidationConfig,
-  });
-
-  final TfArg<
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
-  >?
-  eventRecordFormat;
-
-  final TfArg<String>? schemaRegistryUri;
-
-  final List<
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig
-  >?
-  accessConfig;
-
-  final List<
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig
-  >?
-  schemaValidationConfig;
-
-  Map<String, Object?> encode() => {
-    'event_record_format': ?eventRecordFormat?.toTfJson(),
-    'schema_registry_uri': ?schemaRegistryUri?.toTfJson(),
-    if (accessConfig != null)
-      'access_config': [for (final e in accessConfig!) e.encode()],
-    if (schemaValidationConfig != null)
-      'schema_validation_config': [
-        for (final e in schemaValidationConfig!) e.encode(),
-      ],
-  };
-}
-
-/// `event_record_format` — derived from the provider schema description.
-enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
-    implements TerraformEnum {
-  json('JSON'),
-  source('SOURCE');
-
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `self_managed_kafka_event_source_config.schema_registry_config.access_config` block of
-/// `aws_lambda_event_source_mapping` (derived from provider schema).
-@immutable
-final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig {
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig({
-    this.type,
-    this.uri,
-  });
-
-  final TfArg<
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
-  >?
-  type;
-
-  final TfArg<String>? uri;
-
-  Map<String, Object?> encode() => {
-    'type': ?type?.toTfJson(),
-    'uri': ?uri?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
-    implements TerraformEnum {
-  basicAuth('BASIC_AUTH'),
-  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
-  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
-
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `self_managed_kafka_event_source_config.schema_registry_config.schema_validation_config` block of
-/// `aws_lambda_event_source_mapping` (derived from provider schema).
-@immutable
-final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig {
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfig({
-    this.attribute,
-  });
-
-  final TfArg<
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
-  >?
-  attribute;
-
-  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
-}
-
-/// `attribute` — derived from the provider schema description.
-enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
-    implements TerraformEnum {
-  key('KEY'),
-  value('VALUE');
-
-  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `source_access_configuration` block of
@@ -630,7 +479,7 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
     required this.uri,
   });
 
-  final TfArg<LambdaEventSourceMappingSourceAccessConfigurationType> type;
+  final TfArg<LambdaEventSourceMappingType> type;
 
   final TfArg<String> uri;
 
@@ -641,8 +490,7 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum LambdaEventSourceMappingSourceAccessConfigurationType
-    implements TerraformEnum {
+enum LambdaEventSourceMappingType implements TerraformEnum {
   basicAuth('BASIC_AUTH'),
   vpcSubnet('VPC_SUBNET'),
   vpcSecurityGroup('VPC_SECURITY_GROUP'),
@@ -652,9 +500,7 @@ enum LambdaEventSourceMappingSourceAccessConfigurationType
   clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
   serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
 
-  const LambdaEventSourceMappingSourceAccessConfigurationType(
-    this.terraformValue,
-  );
+  const LambdaEventSourceMappingType(this.terraformValue);
   @override
   final String terraformValue;
 }

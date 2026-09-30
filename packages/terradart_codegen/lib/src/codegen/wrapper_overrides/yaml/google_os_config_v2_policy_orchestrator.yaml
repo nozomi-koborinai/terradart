@@ -28,18 +28,18 @@ curatedDoc: |-
   ///   state: TfArg.literal('STOPPED'),
   ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
   ///     osPolicyAssignmentV1Payload:
-  ///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
+  ///         OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload(
   ///       osPolicies: [
-  ///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+  ///         OsConfigV2PolicyOrchestratorOsPolicies(
   ///           id: TfArg.literal('test-os-policy'),
   ///           mode: TfArg.literal('VALIDATION'),
   ///           resourceGroups: [
-  ///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+  ///             OsConfigV2PolicyOrchestratorResourceGroups(
   ///               resources: [
-  ///                 OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources(
+  ///                 OsConfigV2PolicyOrchestratorResources(
   ///                   id: .literal('resource-tf'),
   ///                   file:
-  ///                       OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile(
+  ///                       OsConfigV2PolicyOrchestratorFile(
   ///                     content: .literal('file-content-tf'),
   ///                     path: .literal('file-path-tf-1'),
   ///                     state: .literal('PRESENT'),
@@ -51,17 +51,17 @@ curatedDoc: |-
   ///         ),
   ///       ],
   ///       instanceFilter:
-  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+  ///           OsConfigV2PolicyOrchestratorInstanceFilter(
   ///         inventories: [
-  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+  ///           OsConfigV2PolicyOrchestratorInventories(
   ///             osShortName: TfArg.literal('windows-10'),
   ///           ),
   ///         ],
   ///       ),
   ///       rollout:
-  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+  ///           OsConfigV2PolicyOrchestratorRollout(
   ///         disruptionBudget:
-  ///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+  ///             OsConfigV2PolicyOrchestratorDisruptionBudget(
   ///           percent: TfArg.literal(100),
   ///         ),
   ///         minWaitDuration: TfArg.literal('60s'),

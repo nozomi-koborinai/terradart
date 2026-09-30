@@ -7,42 +7,32 @@ export 'src/lex/aws_lex_bot.dart'
     show
         AwsLexBot,
         LexBotAbortStatement,
-        LexBotAbortStatementMessage,
         LexBotClarificationPrompt,
-        LexBotClarificationPromptMessage,
         LexBotIntent,
         LexBotLocale,
+        LexBotMessage,
         LexBotProcessBehavior;
 export 'src/lex/aws_lex_bot_alias.dart'
-    show
-        AwsLexBotAlias,
-        LexBotAliasConversationLogs,
-        LexBotAliasConversationLogsLogSettings;
+    show AwsLexBotAlias, LexBotAliasConversationLogs, LexBotAliasLogSettings;
 export 'src/lex/aws_lex_intent.dart'
     show
         AwsLexIntent,
         LexIntentClosing,
         LexIntentClosingConclusionStatement,
         LexIntentClosingFollowUpPrompt,
+        LexIntentCodeHook,
         LexIntentConclusionStatement,
-        LexIntentConclusionStatementMessage,
         LexIntentConfirmationPrompt,
-        LexIntentConfirmationPromptMessage,
         LexIntentDialogCodeHook,
         LexIntentFollowUpPrompt,
-        LexIntentFollowUpPromptPrompt,
-        LexIntentFollowUpPromptPromptMessage,
-        LexIntentFollowUpPromptRejectionStatement,
-        LexIntentFollowUpPromptRejectionStatementMessage,
         LexIntentFulfillmentActivity,
-        LexIntentFulfillmentActivityCodeHook,
-        LexIntentFulfillmentActivityType,
+        LexIntentMessage,
+        LexIntentPrompt,
         LexIntentRejectionStatement,
-        LexIntentRejectionStatementMessage,
         LexIntentSlot,
-        LexIntentSlotSlotConstraint,
-        LexIntentSlotValueElicitationPrompt,
-        LexIntentSlotValueElicitationPromptMessage;
+        LexIntentSlotConstraint,
+        LexIntentType,
+        LexIntentValueElicitationPrompt;
 export 'src/lex/aws_lex_slot_type.dart'
     show
         AwsLexSlotType,

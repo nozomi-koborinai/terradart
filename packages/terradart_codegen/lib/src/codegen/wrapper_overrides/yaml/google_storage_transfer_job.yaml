@@ -28,10 +28,10 @@ curatedDoc: |-
   ///   description: TfArg.literal('terradart disabled gcs copy'),
   ///   status: TfArg.literal('DISABLED'),
   ///   transferSpec: StorageTransferJobTransferSpec(
-  ///     gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
+  ///     gcsDataSource: StorageTransferJobGcsDataSource(
   ///       bucketName: src.ref,
   ///     ),
-  ///     gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
+  ///     gcsDataSink: StorageTransferJobGcsDataSink(
   ///       bucketName: dst.ref,
   ///     ),
   ///   ),

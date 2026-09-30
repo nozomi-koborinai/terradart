@@ -20,17 +20,17 @@ sealed class CloudSchedulerJobTarget {
   /// Sets `pubsub_target`.
   const factory CloudSchedulerJobTarget.pubsubTarget(
     CloudSchedulerJobPubsubTarget pubsubTarget,
-  ) = CloudSchedulerJobTargetPubsubTarget;
+  ) = CloudSchedulerJobPubsubTargetChoice;
 
   /// Sets `http_target`.
   const factory CloudSchedulerJobTarget.httpTarget(
     CloudSchedulerJobHttpTarget httpTarget,
-  ) = CloudSchedulerJobTargetHttpTarget;
+  ) = CloudSchedulerJobHttpTargetChoice;
 
   /// Sets `app_engine_http_target`.
   const factory CloudSchedulerJobTarget.appEngineHttpTarget(
     CloudSchedulerJobAppEngineHttpTarget appEngineHttpTarget,
-  ) = CloudSchedulerJobTargetAppEngineHttpTarget;
+  ) = CloudSchedulerJobAppEngineHttpTargetChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,9 +43,9 @@ sealed class CloudSchedulerJobTarget {
 }
 
 /// The [CloudSchedulerJobTarget.pubsubTarget] choice: sets `pubsub_target`.
-final class CloudSchedulerJobTargetPubsubTarget
+final class CloudSchedulerJobPubsubTargetChoice
     extends CloudSchedulerJobTarget {
-  const CloudSchedulerJobTargetPubsubTarget(this.pubsubTarget);
+  const CloudSchedulerJobPubsubTargetChoice(this.pubsubTarget);
 
   final CloudSchedulerJobPubsubTarget pubsubTarget;
 
@@ -62,8 +62,8 @@ final class CloudSchedulerJobTargetPubsubTarget
 }
 
 /// The [CloudSchedulerJobTarget.httpTarget] choice: sets `http_target`.
-final class CloudSchedulerJobTargetHttpTarget extends CloudSchedulerJobTarget {
-  const CloudSchedulerJobTargetHttpTarget(this.httpTarget);
+final class CloudSchedulerJobHttpTargetChoice extends CloudSchedulerJobTarget {
+  const CloudSchedulerJobHttpTargetChoice(this.httpTarget);
 
   final CloudSchedulerJobHttpTarget httpTarget;
 
@@ -80,9 +80,9 @@ final class CloudSchedulerJobTargetHttpTarget extends CloudSchedulerJobTarget {
 }
 
 /// The [CloudSchedulerJobTarget.appEngineHttpTarget] choice: sets `app_engine_http_target`.
-final class CloudSchedulerJobTargetAppEngineHttpTarget
+final class CloudSchedulerJobAppEngineHttpTargetChoice
     extends CloudSchedulerJobTarget {
-  const CloudSchedulerJobTargetAppEngineHttpTarget(this.appEngineHttpTarget);
+  const CloudSchedulerJobAppEngineHttpTargetChoice(this.appEngineHttpTarget);
 
   final CloudSchedulerJobAppEngineHttpTarget appEngineHttpTarget;
 
@@ -120,7 +120,7 @@ final class CloudSchedulerJobAppEngineHttpTarget {
 
   final TfArg<String> relativeUri;
 
-  final CloudSchedulerJobAppEngineHttpTargetAppEngineRouting? appEngineRouting;
+  final CloudSchedulerJobAppEngineRouting? appEngineRouting;
 
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
@@ -134,8 +134,8 @@ final class CloudSchedulerJobAppEngineHttpTarget {
 /// Typed helper for the `app_engine_http_target.app_engine_routing` block of
 /// `google_cloud_scheduler_job` (derived from provider schema).
 @immutable
-final class CloudSchedulerJobAppEngineHttpTargetAppEngineRouting {
-  const CloudSchedulerJobAppEngineHttpTargetAppEngineRouting({
+final class CloudSchedulerJobAppEngineRouting {
+  const CloudSchedulerJobAppEngineRouting({
     this.instance,
     this.service,
     this.version,
@@ -175,9 +175,9 @@ final class CloudSchedulerJobHttpTarget {
 
   final TfArg<String> uri;
 
-  final CloudSchedulerJobHttpTargetOauthToken? oauthToken;
+  final CloudSchedulerJobOauthToken? oauthToken;
 
-  final CloudSchedulerJobHttpTargetOidcToken? oidcToken;
+  final CloudSchedulerJobOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
@@ -192,8 +192,8 @@ final class CloudSchedulerJobHttpTarget {
 /// Typed helper for the `http_target.oauth_token` block of
 /// `google_cloud_scheduler_job` (derived from provider schema).
 @immutable
-final class CloudSchedulerJobHttpTargetOauthToken {
-  const CloudSchedulerJobHttpTargetOauthToken({
+final class CloudSchedulerJobOauthToken {
+  const CloudSchedulerJobOauthToken({
     this.scope,
     required this.serviceAccountEmail,
   });
@@ -211,8 +211,8 @@ final class CloudSchedulerJobHttpTargetOauthToken {
 /// Typed helper for the `http_target.oidc_token` block of
 /// `google_cloud_scheduler_job` (derived from provider schema).
 @immutable
-final class CloudSchedulerJobHttpTargetOidcToken {
-  const CloudSchedulerJobHttpTargetOidcToken({
+final class CloudSchedulerJobOidcToken {
+  const CloudSchedulerJobOidcToken({
     this.audience,
     required this.serviceAccountEmail,
   });

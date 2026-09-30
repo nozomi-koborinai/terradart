@@ -227,8 +227,7 @@ enum VpnConnectionType implements TerraformEnum {
 final class VpnConnectionTunnel1LogOptions {
   const VpnConnectionTunnel1LogOptions({this.cloudwatchLogOptions});
 
-  final VpnConnectionTunnel1LogOptionsCloudwatchLogOptions?
-  cloudwatchLogOptions;
+  final VpnConnectionCloudwatchLogOptions? cloudwatchLogOptions;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
@@ -237,9 +236,10 @@ final class VpnConnectionTunnel1LogOptions {
 
 /// Typed helper for the `tunnel1_log_options.cloudwatch_log_options` block of
 /// `aws_vpn_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VpnConnectionTunnel1LogOptionsCloudwatchLogOptions {
-  const VpnConnectionTunnel1LogOptionsCloudwatchLogOptions({
+final class VpnConnectionCloudwatchLogOptions {
+  const VpnConnectionCloudwatchLogOptions({
     this.bgpLogEnabled,
     this.bgpLogGroupArn,
     this.bgpLogOutputFormat,
@@ -276,46 +276,10 @@ final class VpnConnectionTunnel1LogOptionsCloudwatchLogOptions {
 final class VpnConnectionTunnel2LogOptions {
   const VpnConnectionTunnel2LogOptions({this.cloudwatchLogOptions});
 
-  final VpnConnectionTunnel2LogOptionsCloudwatchLogOptions?
-  cloudwatchLogOptions;
+  final VpnConnectionCloudwatchLogOptions? cloudwatchLogOptions;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `tunnel2_log_options.cloudwatch_log_options` block of
-/// `aws_vpn_connection` (derived from provider schema).
-@immutable
-final class VpnConnectionTunnel2LogOptionsCloudwatchLogOptions {
-  const VpnConnectionTunnel2LogOptionsCloudwatchLogOptions({
-    this.bgpLogEnabled,
-    this.bgpLogGroupArn,
-    this.bgpLogOutputFormat,
-    this.logEnabled,
-    this.logGroupArn,
-    this.logOutputFormat,
-  });
-
-  final TfArg<bool>? bgpLogEnabled;
-
-  final TfArg<String>? bgpLogGroupArn;
-
-  final TfArg<String>? bgpLogOutputFormat;
-
-  final TfArg<bool>? logEnabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
-
-  final TfArg<String>? logOutputFormat;
-
-  Map<String, Object?> encode() => {
-    'bgp_log_enabled': ?bgpLogEnabled?.toTfJson(),
-    'bgp_log_group_arn': ?bgpLogGroupArn?.toTfJson(),
-    'bgp_log_output_format': ?bgpLogOutputFormat?.toTfJson(),
-    'log_enabled': ?logEnabled?.toTfJson(),
-    'log_group_arn': ?logGroupArn?.encodeAs('arn').toTfJson(),
-    'log_output_format': ?logOutputFormat?.toTfJson(),
   };
 }
 

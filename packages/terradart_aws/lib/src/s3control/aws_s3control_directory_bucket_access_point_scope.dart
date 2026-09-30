@@ -17,7 +17,7 @@ final class S3controlDirectoryBucketAccessPointScopeScope {
     this.prefixes,
   });
 
-  final List<TfArg<S3controlDirectoryBucketAccessPointScopeScopePermissions>>?
+  final List<TfArg<S3controlDirectoryBucketAccessPointScopePermissions>>?
   permissions;
 
   final TfArg<List<String>>? prefixes;
@@ -30,7 +30,7 @@ final class S3controlDirectoryBucketAccessPointScopeScope {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum S3controlDirectoryBucketAccessPointScopeScopePermissions
+enum S3controlDirectoryBucketAccessPointScopePermissions
     implements TerraformEnum {
   getobject('GetObject'),
   getobjectattributes('GetObjectAttributes'),
@@ -41,7 +41,7 @@ enum S3controlDirectoryBucketAccessPointScopeScopePermissions
   deleteobject('DeleteObject'),
   abortmultipartupload('AbortMultipartUpload');
 
-  const S3controlDirectoryBucketAccessPointScopeScopePermissions(
+  const S3controlDirectoryBucketAccessPointScopePermissions(
     this.terraformValue,
   );
   @override

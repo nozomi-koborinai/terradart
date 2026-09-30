@@ -24,14 +24,14 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   selectors: [
   ///     ClouddeployDeployPolicySelectors(
-  ///       deliveryPipeline: ClouddeployDeployPolicySelectorsDeliveryPipeline(
+  ///       deliveryPipeline: ClouddeployDeployPolicyDeliveryPipeline(
   ///         id: TfArg.literal('terradart-pipeline'),
   ///       ),
   ///     ),
   ///   ],
   ///   rules: [
   ///     ClouddeployDeployPolicyRules(
-  ///       rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(
+  ///       rolloutRestriction: ClouddeployDeployPolicyRolloutRestriction(
   ///         id: TfArg.literal('no-automation'),
   ///         invokers: [TfArg.literal(.deployAutomation)],
   ///       ),

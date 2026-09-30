@@ -33,16 +33,16 @@ final class LambdamicrovmsImageCodeArtifact {
 final class LambdamicrovmsImageCpuConfiguration {
   const LambdamicrovmsImageCpuConfiguration({required this.architecture});
 
-  final TfArg<LambdamicrovmsImageCpuConfigurationArchitecture> architecture;
+  final TfArg<LambdamicrovmsImageArchitecture> architecture;
 
   Map<String, Object?> encode() => {'architecture': architecture.toTfJson()};
 }
 
 /// `architecture` — derived from the provider schema description.
-enum LambdamicrovmsImageCpuConfigurationArchitecture implements TerraformEnum {
+enum LambdamicrovmsImageArchitecture implements TerraformEnum {
   arm64('ARM_64');
 
-  const LambdamicrovmsImageCpuConfigurationArchitecture(this.terraformValue);
+  const LambdamicrovmsImageArchitecture(this.terraformValue);
   @override
   final String terraformValue;
 }

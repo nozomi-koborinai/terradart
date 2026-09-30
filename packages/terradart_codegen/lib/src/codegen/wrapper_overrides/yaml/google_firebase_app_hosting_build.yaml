@@ -25,7 +25,7 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),
   ///   source: .codebase(
-  ///     FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')),
+  ///     FirebaseAppHostingBuildCodebase(branch: .literal('main')),
   ///   ),
   ///   displayName: TfArg.literal('First release'),
   /// );
@@ -39,7 +39,7 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),
   ///   source: .container(
-  ///     FirebaseAppHostingBuildSourceContainer(
+  ///     FirebaseAppHostingBuildContainer(
   ///       image: .literal('us-central1-docker.pkg.dev/p/r/web:1.2.3'),
   ///     ),
   ///   ),

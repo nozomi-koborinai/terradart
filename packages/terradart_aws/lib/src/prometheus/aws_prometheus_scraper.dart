@@ -17,9 +17,9 @@ const Set<String> _awsPrometheusScraperSensitive = <String>{};
 final class PrometheusScraperDestination {
   const PrometheusScraperDestination({this.amp, this.cloudwatch});
 
-  final List<PrometheusScraperDestinationAmp>? amp;
+  final List<PrometheusScraperAmp>? amp;
 
-  final List<PrometheusScraperDestinationCloudwatch>? cloudwatch;
+  final List<PrometheusScraperCloudwatch>? cloudwatch;
 
   Map<String, Object?> encode() => {
     if (amp != null) 'amp': [for (final e in amp!) e.encode()],
@@ -31,8 +31,8 @@ final class PrometheusScraperDestination {
 /// Typed helper for the `destination.amp` block of
 /// `aws_prometheus_scraper` (derived from provider schema).
 @immutable
-final class PrometheusScraperDestinationAmp {
-  const PrometheusScraperDestinationAmp({required this.workspaceArn});
+final class PrometheusScraperAmp {
+  const PrometheusScraperAmp({required this.workspaceArn});
 
   final TfArg<String> workspaceArn;
 
@@ -42,8 +42,8 @@ final class PrometheusScraperDestinationAmp {
 /// Typed helper for the `destination.cloudwatch` block of
 /// `aws_prometheus_scraper` (derived from provider schema).
 @immutable
-final class PrometheusScraperDestinationCloudwatch {
-  const PrometheusScraperDestinationCloudwatch({required this.datasetArn});
+final class PrometheusScraperCloudwatch {
+  const PrometheusScraperCloudwatch({required this.datasetArn});
 
   final TfArg<String> datasetArn;
 
@@ -56,7 +56,7 @@ final class PrometheusScraperDestinationCloudwatch {
 final class PrometheusScraperExporter {
   const PrometheusScraperExporter({this.opensearch});
 
-  final List<PrometheusScraperExporterOpensearch>? opensearch;
+  final List<PrometheusScraperOpensearch>? opensearch;
 
   Map<String, Object?> encode() => {
     if (opensearch != null)
@@ -67,8 +67,8 @@ final class PrometheusScraperExporter {
 /// Typed helper for the `exporter.opensearch` block of
 /// `aws_prometheus_scraper` (derived from provider schema).
 @immutable
-final class PrometheusScraperExporterOpensearch {
-  const PrometheusScraperExporterOpensearch({required this.domainArn});
+final class PrometheusScraperOpensearch {
+  const PrometheusScraperOpensearch({required this.domainArn});
 
   final TfArg<String> domainArn;
 
@@ -100,9 +100,9 @@ final class PrometheusScraperRoleConfiguration {
 final class PrometheusScraperSource {
   const PrometheusScraperSource({this.eks, this.vpc});
 
-  final List<PrometheusScraperSourceEks>? eks;
+  final List<PrometheusScraperEks>? eks;
 
-  final List<PrometheusScraperSourceVpc>? vpc;
+  final List<PrometheusScraperVpc>? vpc;
 
   Map<String, Object?> encode() => {
     if (eks != null) 'eks': [for (final e in eks!) e.encode()],
@@ -113,8 +113,8 @@ final class PrometheusScraperSource {
 /// Typed helper for the `source.eks` block of
 /// `aws_prometheus_scraper` (derived from provider schema).
 @immutable
-final class PrometheusScraperSourceEks {
-  const PrometheusScraperSourceEks({
+final class PrometheusScraperEks {
+  const PrometheusScraperEks({
     required this.clusterArn,
     this.securityGroupIds,
     required this.subnetIds,
@@ -136,8 +136,8 @@ final class PrometheusScraperSourceEks {
 /// Typed helper for the `source.vpc` block of
 /// `aws_prometheus_scraper` (derived from provider schema).
 @immutable
-final class PrometheusScraperSourceVpc {
-  const PrometheusScraperSourceVpc({
+final class PrometheusScraperVpc {
+  const PrometheusScraperVpc({
     required this.securityGroupIds,
     required this.subnetIds,
   });

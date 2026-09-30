@@ -33,7 +33,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysis {
     required this.dataExport,
   });
 
-  final S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport dataExport;
+  final S3BucketAnalyticsConfigurationDataExport dataExport;
 
   Map<String, Object?> encode() => {'data_export': dataExport.encode()};
 }
@@ -41,19 +41,16 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysis {
 /// Typed helper for the `storage_class_analysis.data_export` block of
 /// `aws_s3_bucket_analytics_configuration` (derived from provider schema).
 @immutable
-final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport {
-  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport({
+final class S3BucketAnalyticsConfigurationDataExport {
+  const S3BucketAnalyticsConfigurationDataExport({
     this.outputSchemaVersion,
     required this.destination,
   });
 
-  final TfArg<
-    S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion
-  >?
+  final TfArg<S3BucketAnalyticsConfigurationOutputSchemaVersion>?
   outputSchemaVersion;
 
-  final S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestination
-  destination;
+  final S3BucketAnalyticsConfigurationDestination destination;
 
   Map<String, Object?> encode() => {
     'output_schema_version': ?outputSchemaVersion?.toTfJson(),
@@ -62,13 +59,11 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport {
 }
 
 /// `output_schema_version` — derived from the provider schema description.
-enum S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion
+enum S3BucketAnalyticsConfigurationOutputSchemaVersion
     implements TerraformEnum {
   v1('V_1');
 
-  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion(
-    this.terraformValue,
-  );
+  const S3BucketAnalyticsConfigurationOutputSchemaVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -76,13 +71,12 @@ enum S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVer
 /// Typed helper for the `storage_class_analysis.data_export.destination` block of
 /// `aws_s3_bucket_analytics_configuration` (derived from provider schema).
 @immutable
-final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestination {
-  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestination({
+final class S3BucketAnalyticsConfigurationDestination {
+  const S3BucketAnalyticsConfigurationDestination({
     required this.s3BucketDestination,
   });
 
-  final S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestination
-  s3BucketDestination;
+  final S3BucketAnalyticsConfigurationS3BucketDestination s3BucketDestination;
 
   Map<String, Object?> encode() => {
     's3_bucket_destination': s3BucketDestination.encode(),
@@ -92,8 +86,8 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
 /// Typed helper for the `storage_class_analysis.data_export.destination.s3_bucket_destination` block of
 /// `aws_s3_bucket_analytics_configuration` (derived from provider schema).
 @immutable
-final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestination {
-  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestination({
+final class S3BucketAnalyticsConfigurationS3BucketDestination {
+  const S3BucketAnalyticsConfigurationS3BucketDestination({
     this.bucketAccountId,
     required this.bucketArn,
     this.format,
@@ -104,10 +98,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<
-    S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat
-  >?
-  format;
+  final TfArg<S3BucketAnalyticsConfigurationFormat>? format;
 
   final TfArg<String>? prefix;
 
@@ -120,13 +111,10 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
 }
 
 /// `format` — derived from the provider schema description.
-enum S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat
-    implements TerraformEnum {
+enum S3BucketAnalyticsConfigurationFormat implements TerraformEnum {
   csv('CSV');
 
-  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat(
-    this.terraformValue,
-  );
+  const S3BucketAnalyticsConfigurationFormat(this.terraformValue);
   @override
   final String terraformValue;
 }

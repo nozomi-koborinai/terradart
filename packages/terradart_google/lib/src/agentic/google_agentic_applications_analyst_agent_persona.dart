@@ -55,16 +55,17 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamples {
     required this.resource,
   });
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource resource;
+  final AgenticApplicationsAnalystAgentPersonaResource resource;
 
   Map<String, Object?> encode() => {'resource': resource.encode()};
 }
 
 /// Typed helper for the `artifact_examples.resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource({
+final class AgenticApplicationsAnalystAgentPersonaResource {
+  const AgenticApplicationsAnalystAgentPersonaResource({
     this.displayLabel,
     this.modelDescription,
     this.useRag,
@@ -81,20 +82,18 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource {
 
   final TfArg<bool>? useRag;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceBigqueryResource?
+  final AgenticApplicationsAnalystAgentPersonaBigqueryResource?
   bigqueryResource;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceF1Resource?
-  f1Resource;
+  final AgenticApplicationsAnalystAgentPersonaF1Resource? f1Resource;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleCloudStorageResource?
+  final AgenticApplicationsAnalystAgentPersonaGoogleCloudStorageResource?
   googleCloudStorageResource;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleDriveResource?
+  final AgenticApplicationsAnalystAgentPersonaGoogleDriveResource?
   googleDriveResource;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource?
-  rawFileResource;
+  final AgenticApplicationsAnalystAgentPersonaRawFileResource? rawFileResource;
 
   Map<String, Object?> encode() => {
     'display_label': ?displayLabel?.toTfJson(),
@@ -108,11 +107,12 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource {
   };
 }
 
-/// Typed helper for the `artifact_examples.resource.bigquery_resource` block of
+/// Typed helper for the `resources.bigquery_resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceBigqueryResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceBigqueryResource({
+final class AgenticApplicationsAnalystAgentPersonaBigqueryResource {
+  const AgenticApplicationsAnalystAgentPersonaBigqueryResource({
     this.bigqueryDataset,
     this.bigqueryTable,
     this.columnDescriptions,
@@ -131,24 +131,24 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceBigque
   };
 }
 
-/// Typed helper for the `artifact_examples.resource.f1_resource` block of
+/// Typed helper for the `resources.f1_resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceF1Resource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceF1Resource({
-    this.f1Table,
-  });
+final class AgenticApplicationsAnalystAgentPersonaF1Resource {
+  const AgenticApplicationsAnalystAgentPersonaF1Resource({this.f1Table});
 
   final TfArg<String>? f1Table;
 
   Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
-/// Typed helper for the `artifact_examples.resource.google_cloud_storage_resource` block of
+/// Typed helper for the `resources.google_cloud_storage_resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleCloudStorageResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleCloudStorageResource({
+final class AgenticApplicationsAnalystAgentPersonaGoogleCloudStorageResource {
+  const AgenticApplicationsAnalystAgentPersonaGoogleCloudStorageResource({
     this.fileExtensionRestrictions,
     required this.googleCloudStorageObject,
   });
@@ -163,11 +163,12 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
   };
 }
 
-/// Typed helper for the `artifact_examples.resource.google_drive_resource` block of
+/// Typed helper for the `resources.google_drive_resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleDriveResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogleDriveResource({
+final class AgenticApplicationsAnalystAgentPersonaGoogleDriveResource {
+  const AgenticApplicationsAnalystAgentPersonaGoogleDriveResource({
     this.fileExtensionRestrictions,
     this.fileReference,
   });
@@ -182,11 +183,12 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
   };
 }
 
-/// Typed helper for the `artifact_examples.resource.raw_file_resource` block of
+/// Typed helper for the `resources.raw_file_resource` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource({
+final class AgenticApplicationsAnalystAgentPersonaRawFileResource {
+  const AgenticApplicationsAnalystAgentPersonaRawFileResource({
     required this.fileContent,
     required this.fileTitle,
     required this.mimeType,
@@ -216,16 +218,16 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
     this.visualizationOptions,
   });
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions?
+  final AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions?
   documentGenerationOptions;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions?
+  final AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions?
   methodologyExportOptions;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptions?
+  final AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions?
   slideGenerationOptions;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptions?
+  final AgenticApplicationsAnalystAgentPersonaVisualizationOptions?
   visualizationOptions;
 
   Map<String, Object?> encode() => {
@@ -239,17 +241,15 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
 /// Typed helper for the `artifacts_config.document_generation_options` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions({
+final class AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions {
+  const AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions({
     this.exportFormat,
     this.documentExamples,
   });
 
   final TfArg<String>? exportFormat;
 
-  final List<
-    AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamples
-  >?
+  final List<AgenticApplicationsAnalystAgentPersonaDocumentExamples>?
   documentExamples;
 
   Map<String, Object?> encode() => {
@@ -262,167 +262,21 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
 /// Typed helper for the `artifacts_config.document_generation_options.document_examples` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamples {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamples({
+final class AgenticApplicationsAnalystAgentPersonaDocumentExamples {
+  const AgenticApplicationsAnalystAgentPersonaDocumentExamples({
     required this.resource,
   });
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResource
-  resource;
+  final AgenticApplicationsAnalystAgentPersonaResource resource;
 
   Map<String, Object?> encode() => {'resource': resource.encode()};
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResource({
-    this.displayLabel,
-    this.modelDescription,
-    this.useRag,
-    this.bigqueryResource,
-    this.f1Resource,
-    this.googleCloudStorageResource,
-    this.googleDriveResource,
-    this.rawFileResource,
-  });
-
-  final TfArg<String>? displayLabel;
-
-  final TfArg<String>? modelDescription;
-
-  final TfArg<bool>? useRag;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceBigqueryResource?
-  bigqueryResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceF1Resource?
-  f1Resource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleCloudStorageResource?
-  googleCloudStorageResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleDriveResource?
-  googleDriveResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceRawFileResource?
-  rawFileResource;
-
-  Map<String, Object?> encode() => {
-    'display_label': ?displayLabel?.toTfJson(),
-    'model_description': ?modelDescription?.toTfJson(),
-    'use_rag': ?useRag?.toTfJson(),
-    'bigquery_resource': ?bigqueryResource?.encode(),
-    'f1_resource': ?f1Resource?.encode(),
-    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
-    'google_drive_resource': ?googleDriveResource?.encode(),
-    'raw_file_resource': ?rawFileResource?.encode(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.bigquery_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceBigqueryResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceBigqueryResource({
-    this.bigqueryDataset,
-    this.bigqueryTable,
-    this.columnDescriptions,
-  });
-
-  final TfArg<String>? bigqueryDataset;
-
-  final TfArg<String>? bigqueryTable;
-
-  final TfArg<Map<String, String>>? columnDescriptions;
-
-  Map<String, Object?> encode() => {
-    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
-    'bigquery_table': ?bigqueryTable?.toTfJson(),
-    'column_descriptions': ?columnDescriptions?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.f1_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceF1Resource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceF1Resource({
-    this.f1Table,
-  });
-
-  final TfArg<String>? f1Table;
-
-  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.google_cloud_storage_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleCloudStorageResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleCloudStorageResource({
-    this.fileExtensionRestrictions,
-    required this.googleCloudStorageObject,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String> googleCloudStorageObject;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.google_drive_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleDriveResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceGoogleDriveResource({
-    this.fileExtensionRestrictions,
-    this.fileReference,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String>? fileReference;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'file_reference': ?fileReference?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.raw_file_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceRawFileResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptionsDocumentExamplesResourceRawFileResource({
-    required this.fileContent,
-    required this.fileTitle,
-    required this.mimeType,
-  });
-
-  final TfArg<String> fileContent;
-
-  final TfArg<String> fileTitle;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'file_content': fileContent.toTfJson(),
-    'file_title': fileTitle.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
 }
 
 /// Typed helper for the `artifacts_config.methodology_export_options` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions({
+final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
+  const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions({
     this.appendMethodology,
     this.exportFormat,
     this.exportMethodologyArtifact,
@@ -444,17 +298,15 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExpo
 /// Typed helper for the `artifacts_config.slide_generation_options` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptions {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptions({
+final class AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions {
+  const AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions({
     this.exportFormat,
     this.slideExamples,
   });
 
   final TfArg<String>? exportFormat;
 
-  final List<
-    AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamples
-  >?
+  final List<AgenticApplicationsAnalystAgentPersonaSlideExamples>?
   slideExamples;
 
   Map<String, Object?> encode() => {
@@ -467,173 +319,25 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
 /// Typed helper for the `artifacts_config.slide_generation_options.slide_examples` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamples {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamples({
+final class AgenticApplicationsAnalystAgentPersonaSlideExamples {
+  const AgenticApplicationsAnalystAgentPersonaSlideExamples({
     required this.resource,
   });
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResource
-  resource;
+  final AgenticApplicationsAnalystAgentPersonaResource resource;
 
   Map<String, Object?> encode() => {'resource': resource.encode()};
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResource({
-    this.displayLabel,
-    this.modelDescription,
-    this.useRag,
-    this.bigqueryResource,
-    this.f1Resource,
-    this.googleCloudStorageResource,
-    this.googleDriveResource,
-    this.rawFileResource,
-  });
-
-  final TfArg<String>? displayLabel;
-
-  final TfArg<String>? modelDescription;
-
-  final TfArg<bool>? useRag;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceBigqueryResource?
-  bigqueryResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceF1Resource?
-  f1Resource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleCloudStorageResource?
-  googleCloudStorageResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleDriveResource?
-  googleDriveResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceRawFileResource?
-  rawFileResource;
-
-  Map<String, Object?> encode() => {
-    'display_label': ?displayLabel?.toTfJson(),
-    'model_description': ?modelDescription?.toTfJson(),
-    'use_rag': ?useRag?.toTfJson(),
-    'bigquery_resource': ?bigqueryResource?.encode(),
-    'f1_resource': ?f1Resource?.encode(),
-    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
-    'google_drive_resource': ?googleDriveResource?.encode(),
-    'raw_file_resource': ?rawFileResource?.encode(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.bigquery_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceBigqueryResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceBigqueryResource({
-    this.bigqueryDataset,
-    this.bigqueryTable,
-    this.columnDescriptions,
-  });
-
-  final TfArg<String>? bigqueryDataset;
-
-  final TfArg<String>? bigqueryTable;
-
-  final TfArg<Map<String, String>>? columnDescriptions;
-
-  Map<String, Object?> encode() => {
-    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
-    'bigquery_table': ?bigqueryTable?.toTfJson(),
-    'column_descriptions': ?columnDescriptions?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.f1_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceF1Resource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceF1Resource({
-    this.f1Table,
-  });
-
-  final TfArg<String>? f1Table;
-
-  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.google_cloud_storage_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleCloudStorageResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleCloudStorageResource({
-    this.fileExtensionRestrictions,
-    required this.googleCloudStorageObject,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String> googleCloudStorageObject;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.google_drive_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleDriveResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceGoogleDriveResource({
-    this.fileExtensionRestrictions,
-    this.fileReference,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String>? fileReference;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'file_reference': ?fileReference?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.raw_file_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceRawFileResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptionsSlideExamplesResourceRawFileResource({
-    required this.fileContent,
-    required this.fileTitle,
-    required this.mimeType,
-  });
-
-  final TfArg<String> fileContent;
-
-  final TfArg<String> fileTitle;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'file_content': fileContent.toTfJson(),
-    'file_title': fileTitle.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
 }
 
 /// Typed helper for the `artifacts_config.visualization_options` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptions {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptions({
+final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
+  const AgenticApplicationsAnalystAgentPersonaVisualizationOptions({
     this.visualizationExamples,
   });
 
-  final List<
-    AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamples
-  >?
+  final List<AgenticApplicationsAnalystAgentPersonaVisualizationExamples>?
   visualizationExamples;
 
   Map<String, Object?> encode() => {
@@ -647,165 +351,19 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
 /// Typed helper for the `artifacts_config.visualization_options.visualization_examples` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamples {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamples({
+final class AgenticApplicationsAnalystAgentPersonaVisualizationExamples {
+  const AgenticApplicationsAnalystAgentPersonaVisualizationExamples({
     required this.visualizationType,
     required this.resource,
   });
 
   final TfArg<String> visualizationType;
 
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResource
-  resource;
+  final AgenticApplicationsAnalystAgentPersonaResource resource;
 
   Map<String, Object?> encode() => {
     'visualization_type': visualizationType.toTfJson(),
     'resource': resource.encode(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResource({
-    this.displayLabel,
-    this.modelDescription,
-    this.useRag,
-    this.bigqueryResource,
-    this.f1Resource,
-    this.googleCloudStorageResource,
-    this.googleDriveResource,
-    this.rawFileResource,
-  });
-
-  final TfArg<String>? displayLabel;
-
-  final TfArg<String>? modelDescription;
-
-  final TfArg<bool>? useRag;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceBigqueryResource?
-  bigqueryResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceF1Resource?
-  f1Resource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleCloudStorageResource?
-  googleCloudStorageResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleDriveResource?
-  googleDriveResource;
-
-  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceRawFileResource?
-  rawFileResource;
-
-  Map<String, Object?> encode() => {
-    'display_label': ?displayLabel?.toTfJson(),
-    'model_description': ?modelDescription?.toTfJson(),
-    'use_rag': ?useRag?.toTfJson(),
-    'bigquery_resource': ?bigqueryResource?.encode(),
-    'f1_resource': ?f1Resource?.encode(),
-    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
-    'google_drive_resource': ?googleDriveResource?.encode(),
-    'raw_file_resource': ?rawFileResource?.encode(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.bigquery_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceBigqueryResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceBigqueryResource({
-    this.bigqueryDataset,
-    this.bigqueryTable,
-    this.columnDescriptions,
-  });
-
-  final TfArg<String>? bigqueryDataset;
-
-  final TfArg<String>? bigqueryTable;
-
-  final TfArg<Map<String, String>>? columnDescriptions;
-
-  Map<String, Object?> encode() => {
-    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
-    'bigquery_table': ?bigqueryTable?.toTfJson(),
-    'column_descriptions': ?columnDescriptions?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.f1_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceF1Resource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceF1Resource({
-    this.f1Table,
-  });
-
-  final TfArg<String>? f1Table;
-
-  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.google_cloud_storage_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleCloudStorageResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleCloudStorageResource({
-    this.fileExtensionRestrictions,
-    required this.googleCloudStorageObject,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String> googleCloudStorageObject;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.google_drive_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleDriveResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceGoogleDriveResource({
-    this.fileExtensionRestrictions,
-    this.fileReference,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String>? fileReference;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'file_reference': ?fileReference?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.raw_file_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceRawFileResource {
-  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOptionsVisualizationExamplesResourceRawFileResource({
-    required this.fileContent,
-    required this.fileTitle,
-    required this.mimeType,
-  });
-
-  final TfArg<String> fileContent;
-
-  final TfArg<String> fileTitle;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'file_content': fileContent.toTfJson(),
-    'file_title': fileTitle.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
   };
 }
 
@@ -827,27 +385,23 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSources {
 
   final TfArg<bool> enabled;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesAirQuality?
-  airQuality;
+  final AgenticApplicationsAnalystAgentPersonaAirQuality? airQuality;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesBureauLaborStatistics?
+  final AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics?
   bureauLaborStatistics;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesCoindesk?
-  coindesk;
+  final AgenticApplicationsAnalystAgentPersonaCoindesk? coindesk;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFinnhub?
-  finnhub;
+  final AgenticApplicationsAnalystAgentPersonaFinnhub? finnhub;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFred? fred;
+  final AgenticApplicationsAnalystAgentPersonaFred? fred;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesSecEdgar?
-  secEdgar;
+  final AgenticApplicationsAnalystAgentPersonaSecEdgar? secEdgar;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySecuritiesAuctions?
+  final AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions?
   treasurySecuritiesAuctions;
 
-  final AgenticApplicationsAnalystAgentPersonaExternalDataSourcesUsda? usda;
+  final AgenticApplicationsAnalystAgentPersonaUsda? usda;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -865,8 +419,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSources {
 /// Typed helper for the `external_data_sources.air_quality` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesAirQuality {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesAirQuality();
+final class AgenticApplicationsAnalystAgentPersonaAirQuality {
+  const AgenticApplicationsAnalystAgentPersonaAirQuality();
 
   Map<String, Object?> encode() => {};
 }
@@ -874,8 +428,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesAirQuality 
 /// Typed helper for the `external_data_sources.bureau_labor_statistics` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesBureauLaborStatistics {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesBureauLaborStatistics();
+final class AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics {
+  const AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics();
 
   Map<String, Object?> encode() => {};
 }
@@ -883,8 +437,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesBureauLabor
 /// Typed helper for the `external_data_sources.coindesk` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesCoindesk {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesCoindesk();
+final class AgenticApplicationsAnalystAgentPersonaCoindesk {
+  const AgenticApplicationsAnalystAgentPersonaCoindesk();
 
   Map<String, Object?> encode() => {};
 }
@@ -892,8 +446,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesCoindesk {
 /// Typed helper for the `external_data_sources.finnhub` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFinnhub {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFinnhub();
+final class AgenticApplicationsAnalystAgentPersonaFinnhub {
+  const AgenticApplicationsAnalystAgentPersonaFinnhub();
 
   Map<String, Object?> encode() => {};
 }
@@ -901,8 +455,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFinnhub {
 /// Typed helper for the `external_data_sources.fred` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFred {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFred();
+final class AgenticApplicationsAnalystAgentPersonaFred {
+  const AgenticApplicationsAnalystAgentPersonaFred();
 
   Map<String, Object?> encode() => {};
 }
@@ -910,8 +464,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesFred {
 /// Typed helper for the `external_data_sources.sec_edgar` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesSecEdgar {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesSecEdgar();
+final class AgenticApplicationsAnalystAgentPersonaSecEdgar {
+  const AgenticApplicationsAnalystAgentPersonaSecEdgar();
 
   Map<String, Object?> encode() => {};
 }
@@ -919,8 +473,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesSecEdgar {
 /// Typed helper for the `external_data_sources.treasury_securities_auctions` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySecuritiesAuctions {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySecuritiesAuctions();
+final class AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions {
+  const AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions();
 
   Map<String, Object?> encode() => {};
 }
@@ -928,8 +482,8 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySec
 /// Typed helper for the `external_data_sources.usda` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaExternalDataSourcesUsda {
-  const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesUsda();
+final class AgenticApplicationsAnalystAgentPersonaUsda {
+  const AgenticApplicationsAnalystAgentPersonaUsda();
 
   Map<String, Object?> encode() => {};
 }
@@ -1006,19 +560,18 @@ final class AgenticApplicationsAnalystAgentPersonaResources {
 
   final TfArg<bool>? useRag;
 
-  final AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource?
+  final AgenticApplicationsAnalystAgentPersonaBigqueryResource?
   bigqueryResource;
 
-  final AgenticApplicationsAnalystAgentPersonaResourcesF1Resource? f1Resource;
+  final AgenticApplicationsAnalystAgentPersonaF1Resource? f1Resource;
 
-  final AgenticApplicationsAnalystAgentPersonaResourcesGoogleCloudStorageResource?
+  final AgenticApplicationsAnalystAgentPersonaGoogleCloudStorageResource?
   googleCloudStorageResource;
 
-  final AgenticApplicationsAnalystAgentPersonaResourcesGoogleDriveResource?
+  final AgenticApplicationsAnalystAgentPersonaGoogleDriveResource?
   googleDriveResource;
 
-  final AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource?
-  rawFileResource;
+  final AgenticApplicationsAnalystAgentPersonaRawFileResource? rawFileResource;
 
   Map<String, Object?> encode() => {
     'display_label': ?displayLabel?.toTfJson(),
@@ -1029,103 +582,6 @@ final class AgenticApplicationsAnalystAgentPersonaResources {
     'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
     'google_drive_resource': ?googleDriveResource?.encode(),
     'raw_file_resource': ?rawFileResource?.encode(),
-  };
-}
-
-/// Typed helper for the `resources.bigquery_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource {
-  const AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource({
-    this.bigqueryDataset,
-    this.bigqueryTable,
-    this.columnDescriptions,
-  });
-
-  final TfArg<String>? bigqueryDataset;
-
-  final TfArg<String>? bigqueryTable;
-
-  final TfArg<Map<String, String>>? columnDescriptions;
-
-  Map<String, Object?> encode() => {
-    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
-    'bigquery_table': ?bigqueryTable?.toTfJson(),
-    'column_descriptions': ?columnDescriptions?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `resources.f1_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaResourcesF1Resource {
-  const AgenticApplicationsAnalystAgentPersonaResourcesF1Resource({
-    this.f1Table,
-  });
-
-  final TfArg<String>? f1Table;
-
-  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
-}
-
-/// Typed helper for the `resources.google_cloud_storage_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleCloudStorageResource {
-  const AgenticApplicationsAnalystAgentPersonaResourcesGoogleCloudStorageResource({
-    this.fileExtensionRestrictions,
-    required this.googleCloudStorageObject,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String> googleCloudStorageObject;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
-  };
-}
-
-/// Typed helper for the `resources.google_drive_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleDriveResource {
-  const AgenticApplicationsAnalystAgentPersonaResourcesGoogleDriveResource({
-    this.fileExtensionRestrictions,
-    this.fileReference,
-  });
-
-  final TfArg<List<String>>? fileExtensionRestrictions;
-
-  final TfArg<String>? fileReference;
-
-  Map<String, Object?> encode() => {
-    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
-    'file_reference': ?fileReference?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `resources.raw_file_resource` block of
-/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
-@immutable
-final class AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource {
-  const AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource({
-    required this.fileContent,
-    required this.fileTitle,
-    required this.mimeType,
-  });
-
-  final TfArg<String> fileContent;
-
-  final TfArg<String> fileTitle;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'file_content': fileContent.toTfJson(),
-    'file_title': fileTitle.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
   };
 }
 
@@ -1146,8 +602,7 @@ final class AgenticApplicationsAnalystAgentPersonaSkills {
 
   final TfArg<String> skillId;
 
-  final List<AgenticApplicationsAnalystAgentPersonaSkillsReferences>?
-  references;
+  final List<AgenticApplicationsAnalystAgentPersonaReferences>? references;
 
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
@@ -1161,8 +616,8 @@ final class AgenticApplicationsAnalystAgentPersonaSkills {
 /// Typed helper for the `skills.references` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaSkillsReferences {
-  const AgenticApplicationsAnalystAgentPersonaSkillsReferences({
+final class AgenticApplicationsAnalystAgentPersonaReferences {
+  const AgenticApplicationsAnalystAgentPersonaReferences({
     required this.content,
     required this.referenceId,
   });
@@ -1191,7 +646,7 @@ final class AgenticApplicationsAnalystAgentPersonaTables {
 
   final TfArg<String> name;
 
-  final List<AgenticApplicationsAnalystAgentPersonaTablesColumns>? columns;
+  final List<AgenticApplicationsAnalystAgentPersonaColumns>? columns;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -1203,8 +658,8 @@ final class AgenticApplicationsAnalystAgentPersonaTables {
 /// Typed helper for the `tables.columns` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
-final class AgenticApplicationsAnalystAgentPersonaTablesColumns {
-  const AgenticApplicationsAnalystAgentPersonaTablesColumns({
+final class AgenticApplicationsAnalystAgentPersonaColumns {
+  const AgenticApplicationsAnalystAgentPersonaColumns({
     required this.dataType,
     this.description,
     required this.name,

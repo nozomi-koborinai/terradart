@@ -9,27 +9,27 @@ export 'src/container_azure/google_container_azure_client.dart'
     show GoogleContainerAzureClient;
 export 'src/container_azure/google_container_azure_cluster.dart'
     show
+        ContainerAzureClusterAdminGroups,
+        ContainerAzureClusterAdminUsers,
         ContainerAzureClusterAuthorization,
-        ContainerAzureClusterAuthorizationAdminGroups,
-        ContainerAzureClusterAuthorizationAdminUsers,
         ContainerAzureClusterAzureServicesAuthentication,
         ContainerAzureClusterControlPlane,
-        ContainerAzureClusterControlPlaneDatabaseEncryption,
-        ContainerAzureClusterControlPlaneMainVolume,
-        ContainerAzureClusterControlPlaneProxyConfig,
-        ContainerAzureClusterControlPlaneReplicaPlacements,
-        ContainerAzureClusterControlPlaneRootVolume,
-        ContainerAzureClusterControlPlaneSshConfig,
+        ContainerAzureClusterDatabaseEncryption,
         ContainerAzureClusterFleet,
+        ContainerAzureClusterMainVolume,
         ContainerAzureClusterNetworking,
+        ContainerAzureClusterProxyConfig,
+        ContainerAzureClusterReplicaPlacements,
+        ContainerAzureClusterRootVolume,
+        ContainerAzureClusterSshConfig,
         GoogleContainerAzureCluster;
 export 'src/container_azure/google_container_azure_node_pool.dart'
     show
         ContainerAzureNodePoolAutoscaling,
         ContainerAzureNodePoolConfig,
-        ContainerAzureNodePoolConfigProxyConfig,
-        ContainerAzureNodePoolConfigRootVolume,
-        ContainerAzureNodePoolConfigSshConfig,
         ContainerAzureNodePoolManagement,
         ContainerAzureNodePoolMaxPodsConstraint,
+        ContainerAzureNodePoolProxyConfig,
+        ContainerAzureNodePoolRootVolume,
+        ContainerAzureNodePoolSshConfig,
         GoogleContainerAzureNodePool;

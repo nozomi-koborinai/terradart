@@ -8,12 +8,12 @@ export 'src/dynamodb/aws_dynamodb_contributor_insights.dart'
 export 'src/dynamodb/aws_dynamodb_global_secondary_index.dart'
     show
         AwsDynamodbGlobalSecondaryIndex,
+        DynamodbGlobalSecondaryIndexAttributeType,
         DynamodbGlobalSecondaryIndexKeySchema,
-        DynamodbGlobalSecondaryIndexKeySchemaAttributeType,
-        DynamodbGlobalSecondaryIndexKeySchemaKeyType,
+        DynamodbGlobalSecondaryIndexKeyType,
         DynamodbGlobalSecondaryIndexOnDemandThroughput,
         DynamodbGlobalSecondaryIndexProjection,
-        DynamodbGlobalSecondaryIndexProjectionProjectionType,
+        DynamodbGlobalSecondaryIndexProjectionType,
         DynamodbGlobalSecondaryIndexProvisionedThroughput;
 export 'src/dynamodb/aws_dynamodb_global_table.dart'
     show AwsDynamodbGlobalTable, DynamodbGlobalTableReplica;
@@ -27,27 +27,23 @@ export 'src/dynamodb/aws_dynamodb_table.dart'
     show
         AwsDynamodbTable,
         DynamodbTableAttribute,
-        DynamodbTableAttributeType,
         DynamodbTableBillingMode,
+        DynamodbTableConsistencyMode,
+        DynamodbTableCsv,
         DynamodbTableGlobalSecondaryIndex,
-        DynamodbTableGlobalSecondaryIndexKeySchema,
-        DynamodbTableGlobalSecondaryIndexKeySchemaKeyType,
-        DynamodbTableGlobalSecondaryIndexOnDemandThroughput,
-        DynamodbTableGlobalSecondaryIndexProjectionType,
-        DynamodbTableGlobalSecondaryIndexWarmThroughput,
         DynamodbTableGlobalTableWitness,
         DynamodbTableImportTable,
-        DynamodbTableImportTableInputCompressionType,
-        DynamodbTableImportTableInputFormat,
-        DynamodbTableImportTableInputFormatOptions,
-        DynamodbTableImportTableInputFormatOptionsCsv,
-        DynamodbTableImportTableS3BucketSource,
+        DynamodbTableInputCompressionType,
+        DynamodbTableInputFormat,
+        DynamodbTableInputFormatOptions,
+        DynamodbTableKeySchema,
+        DynamodbTableKeyType,
         DynamodbTableLocalSecondaryIndex,
-        DynamodbTableLocalSecondaryIndexProjectionType,
         DynamodbTableOnDemandThroughput,
         DynamodbTablePointInTimeRecovery,
+        DynamodbTableProjectionType,
         DynamodbTableReplica,
-        DynamodbTableReplicaConsistencyMode,
+        DynamodbTableS3BucketSource,
         DynamodbTableServerSideEncryption,
         DynamodbTableSource,
         DynamodbTableSourceImportTable,
@@ -57,6 +53,7 @@ export 'src/dynamodb/aws_dynamodb_table.dart'
         DynamodbTableStreamViewType,
         DynamodbTableTableClass,
         DynamodbTableTtl,
+        DynamodbTableType,
         DynamodbTableWarmThroughput;
 export 'src/dynamodb/aws_dynamodb_table_export.dart'
     show
@@ -64,8 +61,8 @@ export 'src/dynamodb/aws_dynamodb_table_export.dart'
         DynamodbTableExportExportFormat,
         DynamodbTableExportExportType,
         DynamodbTableExportIncrementalExportSpecification,
-        DynamodbTableExportIncrementalExportSpecificationExportViewType,
-        DynamodbTableExportS3SseAlgorithm;
+        DynamodbTableExportS3SseAlgorithm,
+        DynamodbTableExportViewType;
 export 'src/dynamodb/aws_dynamodb_table_item.dart' show AwsDynamodbTableItem;
 export 'src/dynamodb/aws_dynamodb_table_replica.dart'
     show AwsDynamodbTableReplica, DynamodbTableReplicaTableClassOverride;

@@ -16,7 +16,7 @@ const Set<String> _awsMskServerlessClusterSensitive = <String>{};
 final class MskServerlessClusterClientAuthentication {
   const MskServerlessClusterClientAuthentication({required this.sasl});
 
-  final MskServerlessClusterClientAuthenticationSasl sasl;
+  final MskServerlessClusterSasl sasl;
 
   Map<String, Object?> encode() => {'sasl': sasl.encode()};
 }
@@ -24,10 +24,10 @@ final class MskServerlessClusterClientAuthentication {
 /// Typed helper for the `client_authentication.sasl` block of
 /// `aws_msk_serverless_cluster` (derived from provider schema).
 @immutable
-final class MskServerlessClusterClientAuthenticationSasl {
-  const MskServerlessClusterClientAuthenticationSasl({required this.iam});
+final class MskServerlessClusterSasl {
+  const MskServerlessClusterSasl({required this.iam});
 
-  final MskServerlessClusterClientAuthenticationSaslIam iam;
+  final MskServerlessClusterIam iam;
 
   Map<String, Object?> encode() => {'iam': iam.encode()};
 }
@@ -35,10 +35,8 @@ final class MskServerlessClusterClientAuthenticationSasl {
 /// Typed helper for the `client_authentication.sasl.iam` block of
 /// `aws_msk_serverless_cluster` (derived from provider schema).
 @immutable
-final class MskServerlessClusterClientAuthenticationSaslIam {
-  const MskServerlessClusterClientAuthenticationSaslIam({
-    required this.enabled,
-  });
+final class MskServerlessClusterIam {
+  const MskServerlessClusterIam({required this.enabled});
 
   final TfArg<bool> enabled;
 

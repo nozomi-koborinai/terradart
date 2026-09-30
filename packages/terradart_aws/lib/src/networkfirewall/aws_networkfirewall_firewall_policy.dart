@@ -20,7 +20,7 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<NetworkfirewallFirewallPolicyEncryptionConfigurationType> type;
+  final TfArg<NetworkfirewallFirewallPolicyType> type;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -29,14 +29,11 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyEncryptionConfigurationType
-    implements TerraformEnum {
+enum NetworkfirewallFirewallPolicyType implements TerraformEnum {
   customerKms('CUSTOMER_KMS'),
   awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
 
-  const NetworkfirewallFirewallPolicyEncryptionConfigurationType(
-    this.terraformValue,
-  );
+  const NetworkfirewallFirewallPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -68,23 +65,18 @@ final class NetworkfirewallFirewallPolicyFirewallPolicy {
 
   final TfArg<String>? tlsInspectionConfigurationArn;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariables?
-  policyVariables;
+  final NetworkfirewallFirewallPolicyVariables? policyVariables;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions?
+  final NetworkfirewallFirewallPolicyStatefulEngineOptions?
   statefulEngineOptions;
 
-  final List<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReference
-  >?
+  final List<NetworkfirewallFirewallPolicyStatefulRuleGroupReference>?
   statefulRuleGroupReference;
 
-  final List<NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomAction>?
+  final List<NetworkfirewallFirewallPolicyStatelessCustomAction>?
   statelessCustomAction;
 
-  final List<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatelessRuleGroupReference
-  >?
+  final List<NetworkfirewallFirewallPolicyStatelessRuleGroupReference>?
   statelessRuleGroupReference;
 
   Map<String, Object?> encode() => {
@@ -115,15 +107,10 @@ final class NetworkfirewallFirewallPolicyFirewallPolicy {
 /// Typed helper for the `firewall_policy.policy_variables` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariables {
-  const NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariables({
-    this.ruleVariables,
-  });
+final class NetworkfirewallFirewallPolicyVariables {
+  const NetworkfirewallFirewallPolicyVariables({this.ruleVariables});
 
-  final List<
-    NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariables
-  >?
-  ruleVariables;
+  final List<NetworkfirewallFirewallPolicyRuleVariables>? ruleVariables;
 
   Map<String, Object?> encode() => {
     if (ruleVariables != null)
@@ -134,16 +121,15 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariables {
 /// Typed helper for the `firewall_policy.policy_variables.rule_variables` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariables {
-  const NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariables({
+final class NetworkfirewallFirewallPolicyRuleVariables {
+  const NetworkfirewallFirewallPolicyRuleVariables({
     required this.key,
     required this.ipSet,
   });
 
   final TfArg<String> key;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariablesIpSet
-  ipSet;
+  final NetworkfirewallFirewallPolicyIpSet ipSet;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -154,10 +140,8 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariab
 /// Typed helper for the `firewall_policy.policy_variables.rule_variables.ip_set` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariablesIpSet {
-  const NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariablesIpSet({
-    required this.definition,
-  });
+final class NetworkfirewallFirewallPolicyIpSet {
+  const NetworkfirewallFirewallPolicyIpSet({required this.definition});
 
   final TfArg<List<String>> definition;
 
@@ -167,25 +151,19 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariab
 /// Typed helper for the `firewall_policy.stateful_engine_options` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions({
+final class NetworkfirewallFirewallPolicyStatefulEngineOptions {
+  const NetworkfirewallFirewallPolicyStatefulEngineOptions({
     this.ruleOrder,
     this.streamExceptionPolicy,
     this.flowTimeouts,
   });
 
-  final TfArg<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder
-  >?
-  ruleOrder;
+  final TfArg<NetworkfirewallFirewallPolicyRuleOrder>? ruleOrder;
 
-  final TfArg<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy
-  >?
+  final TfArg<NetworkfirewallFirewallPolicyStreamExceptionPolicy>?
   streamExceptionPolicy;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlowTimeouts?
-  flowTimeouts;
+  final NetworkfirewallFirewallPolicyFlowTimeouts? flowTimeouts;
 
   Map<String, Object?> encode() => {
     'rule_order': ?ruleOrder?.toTfJson(),
@@ -195,28 +173,23 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions {
 }
 
 /// `rule_order` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder
-    implements TerraformEnum {
+enum NetworkfirewallFirewallPolicyRuleOrder implements TerraformEnum {
   defaultActionOrder('DEFAULT_ACTION_ORDER'),
   strictOrder('STRICT_ORDER');
 
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder(
-    this.terraformValue,
-  );
+  const NetworkfirewallFirewallPolicyRuleOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `stream_exception_policy` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy
+enum NetworkfirewallFirewallPolicyStreamExceptionPolicy
     implements TerraformEnum {
   drop('DROP'),
   continueCase('CONTINUE'),
   reject('REJECT');
 
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy(
-    this.terraformValue,
-  );
+  const NetworkfirewallFirewallPolicyStreamExceptionPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -224,10 +197,8 @@ enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExcep
 /// Typed helper for the `firewall_policy.stateful_engine_options.flow_timeouts` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlowTimeouts {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlowTimeouts({
-    this.tcpIdleTimeoutSeconds,
-  });
+final class NetworkfirewallFirewallPolicyFlowTimeouts {
+  const NetworkfirewallFirewallPolicyFlowTimeouts({this.tcpIdleTimeoutSeconds});
 
   final TfArg<num>? tcpIdleTimeoutSeconds;
 
@@ -239,8 +210,8 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlow
 /// Typed helper for the `firewall_policy.stateful_rule_group_reference` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReference {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReference({
+final class NetworkfirewallFirewallPolicyStatefulRuleGroupReference {
+  const NetworkfirewallFirewallPolicyStatefulRuleGroupReference({
     this.deepThreatInspection,
     this.priority,
     required this.resourceArn,
@@ -253,8 +224,7 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenc
 
   final TfArg<String> resourceArn;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverride?
-  override;
+  final NetworkfirewallFirewallPolicyOverride? override;
 
   Map<String, Object?> encode() => {
     'deep_threat_inspection': ?deepThreatInspection?.toTfJson(),
@@ -267,27 +237,19 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenc
 /// Typed helper for the `firewall_policy.stateful_rule_group_reference.override` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverride {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverride({
-    this.action,
-  });
+final class NetworkfirewallFirewallPolicyOverride {
+  const NetworkfirewallFirewallPolicyOverride({this.action});
 
-  final TfArg<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction
-  >?
-  action;
+  final TfArg<NetworkfirewallFirewallPolicyAction>? action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction
-    implements TerraformEnum {
+enum NetworkfirewallFirewallPolicyAction implements TerraformEnum {
   dropToAlert('DROP_TO_ALERT');
 
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction(
-    this.terraformValue,
-  );
+  const NetworkfirewallFirewallPolicyAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -295,16 +257,15 @@ enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverri
 /// Typed helper for the `firewall_policy.stateless_custom_action` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomAction {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomAction({
+final class NetworkfirewallFirewallPolicyStatelessCustomAction {
+  const NetworkfirewallFirewallPolicyStatelessCustomAction({
     required this.actionName,
     required this.actionDefinition,
   });
 
   final TfArg<String> actionName;
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinition
-  actionDefinition;
+  final NetworkfirewallFirewallPolicyActionDefinition actionDefinition;
 
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
@@ -315,13 +276,12 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomAction {
 /// Typed helper for the `firewall_policy.stateless_custom_action.action_definition` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinition {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinition({
+final class NetworkfirewallFirewallPolicyActionDefinition {
+  const NetworkfirewallFirewallPolicyActionDefinition({
     required this.publishMetricAction,
   });
 
-  final NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricAction
-  publishMetricAction;
+  final NetworkfirewallFirewallPolicyPublishMetricAction publishMetricAction;
 
   Map<String, Object?> encode() => {
     'publish_metric_action': publishMetricAction.encode(),
@@ -331,15 +291,12 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActi
 /// Typed helper for the `firewall_policy.stateless_custom_action.action_definition.publish_metric_action` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricAction {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricAction({
+final class NetworkfirewallFirewallPolicyPublishMetricAction {
+  const NetworkfirewallFirewallPolicyPublishMetricAction({
     required this.dimension,
   });
 
-  final List<
-    NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricActionDimension
-  >
-  dimension;
+  final List<NetworkfirewallFirewallPolicyDimension> dimension;
 
   Map<String, Object?> encode() => {
     'dimension': [for (final e in dimension) e.encode()],
@@ -349,10 +306,8 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActi
 /// Typed helper for the `firewall_policy.stateless_custom_action.action_definition.publish_metric_action.dimension` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricActionDimension {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricActionDimension({
-    required this.value,
-  });
+final class NetworkfirewallFirewallPolicyDimension {
+  const NetworkfirewallFirewallPolicyDimension({required this.value});
 
   final TfArg<String> value;
 
@@ -362,8 +317,8 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActi
 /// Typed helper for the `firewall_policy.stateless_rule_group_reference` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicyStatelessRuleGroupReference {
-  const NetworkfirewallFirewallPolicyFirewallPolicyStatelessRuleGroupReference({
+final class NetworkfirewallFirewallPolicyStatelessRuleGroupReference {
+  const NetworkfirewallFirewallPolicyStatelessRuleGroupReference({
     required this.priority,
     required this.resourceArn,
   });

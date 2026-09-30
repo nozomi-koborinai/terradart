@@ -48,13 +48,11 @@ final class RedshiftIdcApplicationServiceIntegration {
     this.s3AccessGrants,
   });
 
-  final List<RedshiftIdcApplicationServiceIntegrationLakeFormation>?
-  lakeFormation;
+  final List<RedshiftIdcApplicationLakeFormation>? lakeFormation;
 
-  final List<RedshiftIdcApplicationServiceIntegrationRedshift>? redshift;
+  final List<RedshiftIdcApplicationRedshift>? redshift;
 
-  final List<RedshiftIdcApplicationServiceIntegrationS3AccessGrants>?
-  s3AccessGrants;
+  final List<RedshiftIdcApplicationS3AccessGrants>? s3AccessGrants;
 
   Map<String, Object?> encode() => {
     if (lakeFormation != null)
@@ -68,15 +66,10 @@ final class RedshiftIdcApplicationServiceIntegration {
 /// Typed helper for the `service_integration.lake_formation` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationLakeFormation {
-  const RedshiftIdcApplicationServiceIntegrationLakeFormation({
-    this.lakeFormationQuery,
-  });
+final class RedshiftIdcApplicationLakeFormation {
+  const RedshiftIdcApplicationLakeFormation({this.lakeFormationQuery});
 
-  final List<
-    RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQuery
-  >?
-  lakeFormationQuery;
+  final List<RedshiftIdcApplicationLakeFormationQuery>? lakeFormationQuery;
 
   Map<String, Object?> encode() => {
     if (lakeFormationQuery != null)
@@ -87,28 +80,20 @@ final class RedshiftIdcApplicationServiceIntegrationLakeFormation {
 /// Typed helper for the `service_integration.lake_formation.lake_formation_query` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQuery {
-  const RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQuery({
-    required this.authorization,
-  });
+final class RedshiftIdcApplicationLakeFormationQuery {
+  const RedshiftIdcApplicationLakeFormationQuery({required this.authorization});
 
-  final TfArg<
-    RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization
-  >
-  authorization;
+  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
 
 /// `authorization` — derived from the provider schema description.
-enum RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization
-    implements TerraformEnum {
+enum RedshiftIdcApplicationAuthorization implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization(
-    this.terraformValue,
-  );
+  const RedshiftIdcApplicationAuthorization(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,10 +101,10 @@ enum RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuth
 /// Typed helper for the `service_integration.redshift` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationRedshift {
-  const RedshiftIdcApplicationServiceIntegrationRedshift({this.connect});
+final class RedshiftIdcApplicationRedshift {
+  const RedshiftIdcApplicationRedshift({this.connect});
 
-  final List<RedshiftIdcApplicationServiceIntegrationRedshiftConnect>? connect;
+  final List<RedshiftIdcApplicationConnect>? connect;
 
   Map<String, Object?> encode() => {
     if (connect != null) 'connect': [for (final e in connect!) e.encode()],
@@ -129,44 +114,21 @@ final class RedshiftIdcApplicationServiceIntegrationRedshift {
 /// Typed helper for the `service_integration.redshift.connect` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationRedshiftConnect {
-  const RedshiftIdcApplicationServiceIntegrationRedshiftConnect({
-    required this.authorization,
-  });
+final class RedshiftIdcApplicationConnect {
+  const RedshiftIdcApplicationConnect({required this.authorization});
 
-  final TfArg<
-    RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization
-  >
-  authorization;
+  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
-}
-
-/// `authorization` — derived from the provider schema description.
-enum RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization
-    implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
-
-  const RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `service_integration.s3_access_grants` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationS3AccessGrants {
-  const RedshiftIdcApplicationServiceIntegrationS3AccessGrants({
-    this.readWriteAccess,
-  });
+final class RedshiftIdcApplicationS3AccessGrants {
+  const RedshiftIdcApplicationS3AccessGrants({this.readWriteAccess});
 
-  final List<
-    RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess
-  >?
-  readWriteAccess;
+  final List<RedshiftIdcApplicationReadWriteAccess>? readWriteAccess;
 
   Map<String, Object?> encode() => {
     if (readWriteAccess != null)
@@ -177,30 +139,12 @@ final class RedshiftIdcApplicationServiceIntegrationS3AccessGrants {
 /// Typed helper for the `service_integration.s3_access_grants.read_write_access` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
-final class RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess {
-  const RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess({
-    required this.authorization,
-  });
+final class RedshiftIdcApplicationReadWriteAccess {
+  const RedshiftIdcApplicationReadWriteAccess({required this.authorization});
 
-  final TfArg<
-    RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization
-  >
-  authorization;
+  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
-}
-
-/// `authorization` — derived from the provider schema description.
-enum RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization
-    implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
-
-  const RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_redshift_idc_application`.

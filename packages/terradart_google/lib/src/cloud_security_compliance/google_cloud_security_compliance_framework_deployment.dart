@@ -19,7 +19,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
 
   final TfArg<String> enforcementMode;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails
+  final CloudSecurityComplianceFrameworkDeploymentCloudControlDetails
   cloudControlDetails;
 
   Map<String, Object?> encode() => {
@@ -31,8 +31,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
 /// Typed helper for the `cloud_control_metadata.cloud_control_details` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails({
+final class CloudSecurityComplianceFrameworkDeploymentCloudControlDetails {
+  const CloudSecurityComplianceFrameworkDeploymentCloudControlDetails({
     required this.majorRevisionId,
     required this.name,
     this.parameters,
@@ -42,10 +42,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 
   final TfArg<String> name;
 
-  final List<
-    CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParameters
-  >?
-  parameters;
+  final List<CloudSecurityComplianceFrameworkDeploymentParameters>? parameters;
 
   Map<String, Object?> encode() => {
     'major_revision_id': majorRevisionId.toTfJson(),
@@ -58,16 +55,15 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 /// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParameters {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParameters({
+final class CloudSecurityComplianceFrameworkDeploymentParameters {
+  const CloudSecurityComplianceFrameworkDeploymentParameters({
     required this.name,
     required this.parameterValue,
   });
 
   final TfArg<String> name;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValue
-  parameterValue;
+  final CloudSecurityComplianceFrameworkDeploymentParameterValue parameterValue;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -78,8 +74,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 /// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters.parameter_value` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValue {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValue({
+final class CloudSecurityComplianceFrameworkDeploymentParameterValue {
+  const CloudSecurityComplianceFrameworkDeploymentParameterValue({
     this.boolValue,
     this.numberValue,
     this.stringValue,
@@ -93,10 +89,9 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 
   final TfArg<String>? stringValue;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValue?
-  oneofValue;
+  final CloudSecurityComplianceFrameworkDeploymentOneofValue? oneofValue;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueStringListValue?
+  final CloudSecurityComplianceFrameworkDeploymentStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -111,15 +106,15 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 /// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters.parameter_value.oneof_value` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValue {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValue({
+final class CloudSecurityComplianceFrameworkDeploymentOneofValue {
+  const CloudSecurityComplianceFrameworkDeploymentOneofValue({
     this.name,
     this.parameterValue,
   });
 
   final TfArg<String>? name;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValue?
+  final CloudSecurityComplianceFrameworkDeploymentOneofValueParameterValue?
   parameterValue;
 
   Map<String, Object?> encode() => {
@@ -131,8 +126,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 /// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters.parameter_value.oneof_value.parameter_value` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValue {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValue({
+final class CloudSecurityComplianceFrameworkDeploymentOneofValueParameterValue {
+  const CloudSecurityComplianceFrameworkDeploymentOneofValueParameterValue({
     this.boolValue,
     this.numberValue,
     this.stringValue,
@@ -145,7 +140,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
 
   final TfArg<String>? stringValue;
 
-  final CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue?
+  final CloudSecurityComplianceFrameworkDeploymentStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -156,24 +151,12 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
   };
 }
 
-/// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters.parameter_value.oneof_value.parameter_value.string_list_value` block of
-/// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
-@immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue({
-    required this.values,
-  });
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {'values': values.toTfJson()};
-}
-
 /// Typed helper for the `cloud_control_metadata.cloud_control_details.parameters.parameter_value.string_list_value` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueStringListValue {
-  const CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueStringListValue({
+final class CloudSecurityComplianceFrameworkDeploymentStringListValue {
+  const CloudSecurityComplianceFrameworkDeploymentStringListValue({
     required this.values,
   });
 
@@ -215,9 +198,9 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
 
   /// Sets `target_resource_creation_config`.
   const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.targetResourceCreationConfig(
-    CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig
+    CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig
     targetResourceCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -244,13 +227,13 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExisti
 }
 
 /// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.targetResourceCreationConfig] choice: sets `target_resource_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig
     extends CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice(
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig(
     this.targetResourceCreationConfig,
   );
 
-  final CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig
+  final CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig
   targetResourceCreationConfig;
 
   @override
@@ -266,20 +249,20 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.folderCreationConfig(...)`.
-sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig();
+sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig();
 
   /// Sets `folder_creation_config`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.folderCreationConfig(
-    CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig.folderCreationConfig(
+    CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig
     folderCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigFolderCreationConfig;
 
   /// Sets `project_creation_config`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.projectCreationConfig(
-    CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig.projectCreationConfig(
+    CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig
     projectCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigProjectCreationConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -287,15 +270,15 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarge
   Map<String, Object?> encode();
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.folderCreationConfig] choice: sets `folder_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig.folderCreationConfig] choice: sets `folder_creation_config`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigFolderCreationConfig
     extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice(
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigFolderCreationConfig(
     this.folderCreationConfig,
   );
 
-  final CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig
+  final CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig
   folderCreationConfig;
 
   @override
@@ -307,15 +290,15 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
   };
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.projectCreationConfig] choice: sets `project_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig.projectCreationConfig] choice: sets `project_creation_config`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigProjectCreationConfig
     extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice(
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigProjectCreationConfig(
     this.projectCreationConfig,
   );
 
-  final CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig
+  final CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig
   projectCreationConfig;
 
   @override
@@ -330,8 +313,8 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
 /// Typed helper for the `target_resource_config.target_resource_creation_config.folder_creation_config` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig({
+final class CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig({
     required this.folderDisplayName,
     required this.parent,
   });
@@ -349,8 +332,8 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
 /// Typed helper for the `target_resource_config.target_resource_creation_config.project_creation_config` block of
 /// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig({
+final class CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig({
     required this.billingAccountId,
     required this.parent,
     required this.projectDisplayName,

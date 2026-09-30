@@ -177,7 +177,7 @@ class StorageBucketObjectBucketObjectRetention {
 final class StorageBucketObjectContexts {
   const StorageBucketObjectContexts({required this.custom});
 
-  final List<StorageBucketObjectContextsCustom> custom;
+  final List<StorageBucketObjectCustom> custom;
 
   Map<String, Object?> encode() => {
     'custom': [for (final e in custom) e.encode()],
@@ -187,11 +187,8 @@ final class StorageBucketObjectContexts {
 /// Typed helper for the `contexts.custom` block of
 /// `google_storage_bucket_object` (derived from provider schema).
 @immutable
-final class StorageBucketObjectContextsCustom {
-  const StorageBucketObjectContextsCustom({
-    required this.key,
-    required this.value,
-  });
+final class StorageBucketObjectCustom {
+  const StorageBucketObjectCustom({required this.key, required this.value});
 
   final TfArg<String> key;
 

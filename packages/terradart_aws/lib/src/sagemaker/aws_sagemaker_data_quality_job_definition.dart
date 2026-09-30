@@ -49,11 +49,10 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfig {
     this.statisticsResource,
   });
 
-  final SagemakerDataQualityJobDefinitionDataQualityBaselineConfigConstraintsResource?
+  final SagemakerDataQualityJobDefinitionConstraintsResource?
   constraintsResource;
 
-  final SagemakerDataQualityJobDefinitionDataQualityBaselineConfigStatisticsResource?
-  statisticsResource;
+  final SagemakerDataQualityJobDefinitionStatisticsResource? statisticsResource;
 
   Map<String, Object?> encode() => {
     'constraints_resource': ?constraintsResource?.encode(),
@@ -64,10 +63,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfig {
 /// Typed helper for the `data_quality_baseline_config.constraints_resource` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfigConstraintsResource {
-  const SagemakerDataQualityJobDefinitionDataQualityBaselineConfigConstraintsResource({
-    this.s3Uri,
-  });
+final class SagemakerDataQualityJobDefinitionConstraintsResource {
+  const SagemakerDataQualityJobDefinitionConstraintsResource({this.s3Uri});
 
   final TfArg<String>? s3Uri;
 
@@ -77,10 +74,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfigConstraint
 /// Typed helper for the `data_quality_baseline_config.statistics_resource` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfigStatisticsResource {
-  const SagemakerDataQualityJobDefinitionDataQualityBaselineConfigStatisticsResource({
-    this.s3Uri,
-  });
+final class SagemakerDataQualityJobDefinitionStatisticsResource {
+  const SagemakerDataQualityJobDefinitionStatisticsResource({this.s3Uri});
 
   final TfArg<String>? s3Uri;
 
@@ -96,11 +91,10 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInput {
     this.endpointInput,
   });
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInput?
+  final SagemakerDataQualityJobDefinitionBatchTransformInput?
   batchTransformInput;
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput?
-  endpointInput;
+  final SagemakerDataQualityJobDefinitionEndpointInput? endpointInput;
 
   Map<String, Object?> encode() => {
     'batch_transform_input': ?batchTransformInput?.encode(),
@@ -111,8 +105,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInput {
 /// Typed helper for the `data_quality_job_input.batch_transform_input` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInput {
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInput({
+final class SagemakerDataQualityJobDefinitionBatchTransformInput {
+  const SagemakerDataQualityJobDefinitionBatchTransformInput({
     required this.dataCapturedDestinationS3Uri,
     this.localPath,
     this.s3DataDistributionType,
@@ -124,18 +118,12 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 
   final TfArg<String>? localPath;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3DataDistributionType
-  >?
+  final TfArg<SagemakerDataQualityJobDefinitionS3DataDistributionType>?
   s3DataDistributionType;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3InputMode
-  >?
-  s3InputMode;
+  final TfArg<SagemakerDataQualityJobDefinitionS3InputMode>? s3InputMode;
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormat
-  datasetFormat;
+  final SagemakerDataQualityJobDefinitionDatasetFormat datasetFormat;
 
   Map<String, Object?> encode() => {
     'data_captured_destination_s3_uri': dataCapturedDestinationS3Uri.toTfJson(),
@@ -147,12 +135,12 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3DataDistributionType
+enum SagemakerDataQualityJobDefinitionS3DataDistributionType
     implements TerraformEnum {
   fullyreplicated('FullyReplicated'),
   shardedbys3key('ShardedByS3Key');
 
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3DataDistributionType(
+  const SagemakerDataQualityJobDefinitionS3DataDistributionType(
     this.terraformValue,
   );
   @override
@@ -160,14 +148,11 @@ enum SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3Da
 }
 
 /// `s3_input_mode` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3InputMode
-    implements TerraformEnum {
+enum SagemakerDataQualityJobDefinitionS3InputMode implements TerraformEnum {
   pipe('Pipe'),
   file('File');
 
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3InputMode(
-    this.terraformValue,
-  );
+  const SagemakerDataQualityJobDefinitionS3InputMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -175,17 +160,12 @@ enum SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputS3In
 /// Typed helper for the `data_quality_job_input.batch_transform_input.dataset_format` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormat {
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormat({
-    this.csv,
-    this.json,
-  });
+final class SagemakerDataQualityJobDefinitionDatasetFormat {
+  const SagemakerDataQualityJobDefinitionDatasetFormat({this.csv, this.json});
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatCsv?
-  csv;
+  final SagemakerDataQualityJobDefinitionCsv? csv;
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatJson?
-  json;
+  final SagemakerDataQualityJobDefinitionJson? json;
 
   Map<String, Object?> encode() => {
     'csv': ?csv?.encode(),
@@ -196,10 +176,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 /// Typed helper for the `data_quality_job_input.batch_transform_input.dataset_format.csv` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatCsv {
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatCsv({
-    this.header,
-  });
+final class SagemakerDataQualityJobDefinitionCsv {
+  const SagemakerDataQualityJobDefinitionCsv({this.header});
 
   final TfArg<bool>? header;
 
@@ -209,10 +187,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 /// Typed helper for the `data_quality_job_input.batch_transform_input.dataset_format.json` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatJson {
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformInputDatasetFormatJson({
-    this.line,
-  });
+final class SagemakerDataQualityJobDefinitionJson {
+  const SagemakerDataQualityJobDefinitionJson({this.line});
 
   final TfArg<bool>? line;
 
@@ -222,8 +198,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 /// Typed helper for the `data_quality_job_input.endpoint_input` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput {
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput({
+final class SagemakerDataQualityJobDefinitionEndpointInput {
+  const SagemakerDataQualityJobDefinitionEndpointInput({
     required this.endpointName,
     this.localPath,
     this.s3DataDistributionType,
@@ -234,15 +210,10 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput {
 
   final TfArg<String>? localPath;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3DataDistributionType
-  >?
+  final TfArg<SagemakerDataQualityJobDefinitionS3DataDistributionType>?
   s3DataDistributionType;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3InputMode
-  >?
-  s3InputMode;
+  final TfArg<SagemakerDataQualityJobDefinitionS3InputMode>? s3InputMode;
 
   Map<String, Object?> encode() => {
     'endpoint_name': endpointName.toTfJson(),
@@ -250,32 +221,6 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput {
     's3_data_distribution_type': ?s3DataDistributionType?.toTfJson(),
     's3_input_mode': ?s3InputMode?.toTfJson(),
   };
-}
-
-/// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3DataDistributionType
-    implements TerraformEnum {
-  fullyreplicated('FullyReplicated'),
-  shardedbys3key('ShardedByS3Key');
-
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3DataDistributionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_input_mode` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3InputMode
-    implements TerraformEnum {
-  pipe('Pipe'),
-  file('File');
-
-  const SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInputS3InputMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `data_quality_job_output_config` block of
@@ -289,8 +234,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfig {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputs
-  monitoringOutputs;
+  final SagemakerDataQualityJobDefinitionMonitoringOutputs monitoringOutputs;
 
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -301,13 +245,12 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfig {
 /// Typed helper for the `data_quality_job_output_config.monitoring_outputs` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputs {
-  const SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputs({
+final class SagemakerDataQualityJobDefinitionMonitoringOutputs {
+  const SagemakerDataQualityJobDefinitionMonitoringOutputs({
     required this.s3Output,
   });
 
-  final SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3Output
-  s3Output;
+  final SagemakerDataQualityJobDefinitionS3Output s3Output;
 
   Map<String, Object?> encode() => {'s3_output': s3Output.encode()};
 }
@@ -315,8 +258,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitorin
 /// Typed helper for the `data_quality_job_output_config.monitoring_outputs.s3_output` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3Output {
-  const SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3Output({
+final class SagemakerDataQualityJobDefinitionS3Output {
+  const SagemakerDataQualityJobDefinitionS3Output({
     this.localPath,
     this.s3UploadMode,
     required this.s3Uri,
@@ -324,10 +267,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitorin
 
   final TfArg<String>? localPath;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3OutputS3UploadMode
-  >?
-  s3UploadMode;
+  final TfArg<SagemakerDataQualityJobDefinitionS3UploadMode>? s3UploadMode;
 
   final TfArg<String> s3Uri;
 
@@ -339,14 +279,11 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitorin
 }
 
 /// `s3_upload_mode` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3OutputS3UploadMode
-    implements TerraformEnum {
+enum SagemakerDataQualityJobDefinitionS3UploadMode implements TerraformEnum {
   continuous('Continuous'),
   endofjob('EndOfJob');
 
-  const SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputsS3OutputS3UploadMode(
-    this.terraformValue,
-  );
+  const SagemakerDataQualityJobDefinitionS3UploadMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -359,8 +296,7 @@ final class SagemakerDataQualityJobDefinitionJobResources {
     required this.clusterConfig,
   });
 
-  final SagemakerDataQualityJobDefinitionJobResourcesClusterConfig
-  clusterConfig;
+  final SagemakerDataQualityJobDefinitionClusterConfig clusterConfig;
 
   Map<String, Object?> encode() => {'cluster_config': clusterConfig.encode()};
 }
@@ -368,8 +304,8 @@ final class SagemakerDataQualityJobDefinitionJobResources {
 /// Typed helper for the `job_resources.cluster_config` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionJobResourcesClusterConfig {
-  const SagemakerDataQualityJobDefinitionJobResourcesClusterConfig({
+final class SagemakerDataQualityJobDefinitionClusterConfig {
+  const SagemakerDataQualityJobDefinitionClusterConfig({
     required this.instanceCount,
     required this.instanceType,
     this.volumeKmsKeyId,
@@ -378,10 +314,7 @@ final class SagemakerDataQualityJobDefinitionJobResourcesClusterConfig {
 
   final TfArg<num> instanceCount;
 
-  final TfArg<
-    SagemakerDataQualityJobDefinitionJobResourcesClusterConfigInstanceType
-  >
-  instanceType;
+  final TfArg<SagemakerDataQualityJobDefinitionInstanceType> instanceType;
 
   final TfArg<String>? volumeKmsKeyId;
 
@@ -396,8 +329,7 @@ final class SagemakerDataQualityJobDefinitionJobResourcesClusterConfig {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerDataQualityJobDefinitionJobResourcesClusterConfigInstanceType
-    implements TerraformEnum {
+enum SagemakerDataQualityJobDefinitionInstanceType implements TerraformEnum {
   mlT3Medium('ml.t3.medium'),
   mlT3Large('ml.t3.large'),
   mlT3Xlarge('ml.t3.xlarge'),
@@ -532,9 +464,7 @@ enum SagemakerDataQualityJobDefinitionJobResourcesClusterConfigInstanceType
   mlG7p24xlarge('ml.g7.24xlarge'),
   mlG7p48xlarge('ml.g7.48xlarge');
 
-  const SagemakerDataQualityJobDefinitionJobResourcesClusterConfigInstanceType(
-    this.terraformValue,
-  );
+  const SagemakerDataQualityJobDefinitionInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -553,7 +483,7 @@ final class SagemakerDataQualityJobDefinitionNetworkConfig {
 
   final TfArg<bool>? enableNetworkIsolation;
 
-  final SagemakerDataQualityJobDefinitionNetworkConfigVpcConfig? vpcConfig;
+  final SagemakerDataQualityJobDefinitionVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'enable_inter_container_traffic_encryption':
@@ -566,8 +496,8 @@ final class SagemakerDataQualityJobDefinitionNetworkConfig {
 /// Typed helper for the `network_config.vpc_config` block of
 /// `aws_sagemaker_data_quality_job_definition` (derived from provider schema).
 @immutable
-final class SagemakerDataQualityJobDefinitionNetworkConfigVpcConfig {
-  const SagemakerDataQualityJobDefinitionNetworkConfigVpcConfig({
+final class SagemakerDataQualityJobDefinitionVpcConfig {
+  const SagemakerDataQualityJobDefinitionVpcConfig({
     required this.securityGroupIds,
     required this.subnets,
   });

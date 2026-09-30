@@ -40,7 +40,7 @@ final class WafregionalWebAclLoggingConfiguration {
 
   final TfArg<String> logDestination;
 
-  final WafregionalWebAclLoggingConfigurationRedactedFields? redactedFields;
+  final WafregionalWebAclRedactedFields? redactedFields;
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
@@ -51,13 +51,10 @@ final class WafregionalWebAclLoggingConfiguration {
 /// Typed helper for the `logging_configuration.redacted_fields` block of
 /// `aws_wafregional_web_acl` (derived from provider schema).
 @immutable
-final class WafregionalWebAclLoggingConfigurationRedactedFields {
-  const WafregionalWebAclLoggingConfigurationRedactedFields({
-    required this.fieldToMatch,
-  });
+final class WafregionalWebAclRedactedFields {
+  const WafregionalWebAclRedactedFields({required this.fieldToMatch});
 
-  final List<WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch>
-  fieldToMatch;
+  final List<WafregionalWebAclFieldToMatch> fieldToMatch;
 
   Map<String, Object?> encode() => {
     'field_to_match': [for (final e in fieldToMatch) e.encode()],
@@ -67,18 +64,12 @@ final class WafregionalWebAclLoggingConfigurationRedactedFields {
 /// Typed helper for the `logging_configuration.redacted_fields.field_to_match` block of
 /// `aws_wafregional_web_acl` (derived from provider schema).
 @immutable
-final class WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch {
-  const WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafregionalWebAclFieldToMatch {
+  const WafregionalWebAclFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 
-  final TfArg<
-    WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType
-  >
-  type;
+  final TfArg<WafregionalWebAclFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -87,8 +78,7 @@ final class WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType
-    implements TerraformEnum {
+enum WafregionalWebAclFieldToMatchType implements TerraformEnum {
   uri('URI'),
   queryString('QUERY_STRING'),
   header('HEADER'),
@@ -97,9 +87,7 @@ enum WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType
   singleQueryArg('SINGLE_QUERY_ARG'),
   allQueryArgs('ALL_QUERY_ARGS');
 
-  const WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType(
-    this.terraformValue,
-  );
+  const WafregionalWebAclFieldToMatchType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -122,9 +110,9 @@ final class WafregionalWebAclRule {
 
   final TfArg<WafregionalWebAclRuleType>? type;
 
-  final WafregionalWebAclRuleAction? action;
+  final WafregionalWebAclAction? action;
 
-  final WafregionalWebAclRuleOverrideAction? overrideAction;
+  final WafregionalWebAclOverrideAction? overrideAction;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -149,42 +137,31 @@ enum WafregionalWebAclRuleType implements TerraformEnum {
 /// Typed helper for the `rule.action` block of
 /// `aws_wafregional_web_acl` (derived from provider schema).
 @immutable
-final class WafregionalWebAclRuleAction {
-  const WafregionalWebAclRuleAction({required this.type});
+final class WafregionalWebAclAction {
+  const WafregionalWebAclAction({required this.type});
 
-  final TfArg<WafregionalWebAclRuleActionType> type;
+  final TfArg<WafregionalWebAclDefaultActionType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
-}
-
-/// `type` — derived from the provider schema description.
-enum WafregionalWebAclRuleActionType implements TerraformEnum {
-  block('BLOCK'),
-  allow('ALLOW'),
-  count('COUNT');
-
-  const WafregionalWebAclRuleActionType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rule.override_action` block of
 /// `aws_wafregional_web_acl` (derived from provider schema).
 @immutable
-final class WafregionalWebAclRuleOverrideAction {
-  const WafregionalWebAclRuleOverrideAction({required this.type});
+final class WafregionalWebAclOverrideAction {
+  const WafregionalWebAclOverrideAction({required this.type});
 
-  final TfArg<WafregionalWebAclRuleOverrideActionType> type;
+  final TfArg<WafregionalWebAclOverrideActionType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclRuleOverrideActionType implements TerraformEnum {
+enum WafregionalWebAclOverrideActionType implements TerraformEnum {
   none('NONE'),
   count('COUNT');
 
-  const WafregionalWebAclRuleOverrideActionType(this.terraformValue);
+  const WafregionalWebAclOverrideActionType(this.terraformValue);
   @override
   final String terraformValue;
 }

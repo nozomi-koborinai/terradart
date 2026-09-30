@@ -19,7 +19,7 @@ final class NetworkServicesWasmPluginLogConfig {
 
   final TfArg<bool>? enable;
 
-  final TfArg<NetworkServicesWasmPluginLogConfigMinLogLevel>? minLogLevel;
+  final TfArg<NetworkServicesWasmPluginMinLogLevel>? minLogLevel;
 
   final TfArg<num>? sampleRate;
 
@@ -31,7 +31,7 @@ final class NetworkServicesWasmPluginLogConfig {
 }
 
 /// `min_log_level` — derived from the provider schema description.
-enum NetworkServicesWasmPluginLogConfigMinLogLevel implements TerraformEnum {
+enum NetworkServicesWasmPluginMinLogLevel implements TerraformEnum {
   logLevelUnspecified('LOG_LEVEL_UNSPECIFIED'),
   trace('TRACE'),
   debug('DEBUG'),
@@ -40,7 +40,7 @@ enum NetworkServicesWasmPluginLogConfigMinLogLevel implements TerraformEnum {
   error('ERROR'),
   critical('CRITICAL');
 
-  const NetworkServicesWasmPluginLogConfigMinLogLevel(this.terraformValue);
+  const NetworkServicesWasmPluginMinLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }

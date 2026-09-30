@@ -98,13 +98,13 @@ final class StorageTransferJobReplicationSpec {
     this.transferOptions,
   });
 
-  final StorageTransferJobReplicationSpecGcsDataSink? gcsDataSink;
+  final StorageTransferJobGcsDataSink? gcsDataSink;
 
-  final StorageTransferJobReplicationSpecGcsDataSource? gcsDataSource;
+  final StorageTransferJobGcsDataSource? gcsDataSource;
 
-  final StorageTransferJobReplicationSpecObjectConditions? objectConditions;
+  final StorageTransferJobObjectConditions? objectConditions;
 
-  final StorageTransferJobReplicationSpecTransferOptions? transferOptions;
+  final StorageTransferJobTransferOptions? transferOptions;
 
   Map<String, Object?> encode() => {
     'gcs_data_sink': ?gcsDataSink?.encode(),
@@ -116,12 +116,10 @@ final class StorageTransferJobReplicationSpec {
 
 /// Typed helper for the `replication_spec.gcs_data_sink` block of
 /// `google_storage_transfer_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class StorageTransferJobReplicationSpecGcsDataSink {
-  const StorageTransferJobReplicationSpecGcsDataSink({
-    required this.bucketName,
-    this.path,
-  });
+final class StorageTransferJobGcsDataSink {
+  const StorageTransferJobGcsDataSink({required this.bucketName, this.path});
 
   final RefTo<GoogleStorageBucket> bucketName;
 
@@ -135,12 +133,10 @@ final class StorageTransferJobReplicationSpecGcsDataSink {
 
 /// Typed helper for the `replication_spec.gcs_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class StorageTransferJobReplicationSpecGcsDataSource {
-  const StorageTransferJobReplicationSpecGcsDataSource({
-    required this.bucketName,
-    this.path,
-  });
+final class StorageTransferJobGcsDataSource {
+  const StorageTransferJobGcsDataSource({required this.bucketName, this.path});
 
   final RefTo<GoogleStorageBucket> bucketName;
 
@@ -154,9 +150,10 @@ final class StorageTransferJobReplicationSpecGcsDataSource {
 
 /// Typed helper for the `replication_spec.object_conditions` block of
 /// `google_storage_transfer_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class StorageTransferJobReplicationSpecObjectConditions {
-  const StorageTransferJobReplicationSpecObjectConditions({
+final class StorageTransferJobObjectConditions {
+  const StorageTransferJobObjectConditions({
     this.excludePrefixes,
     this.includePrefixes,
     this.lastModifiedBefore,
@@ -191,9 +188,10 @@ final class StorageTransferJobReplicationSpecObjectConditions {
 
 /// Typed helper for the `replication_spec.transfer_options` block of
 /// `google_storage_transfer_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class StorageTransferJobReplicationSpecTransferOptions {
-  const StorageTransferJobReplicationSpecTransferOptions({
+final class StorageTransferJobTransferOptions {
+  const StorageTransferJobTransferOptions({
     this.deleteObjectsFromSourceAfterTransfer,
     this.deleteObjectsUniqueInSink,
     this.overwriteObjectsAlreadyExistingInSink,
@@ -209,8 +207,7 @@ final class StorageTransferJobReplicationSpecTransferOptions {
 
   final TfArg<String>? overwriteWhen;
 
-  final StorageTransferJobReplicationSpecTransferOptionsMetadataOptions?
-  metadataOptions;
+  final StorageTransferJobMetadataOptions? metadataOptions;
 
   Map<String, Object?> encode() => {
     'delete_objects_from_source_after_transfer':
@@ -225,9 +222,10 @@ final class StorageTransferJobReplicationSpecTransferOptions {
 
 /// Typed helper for the `replication_spec.transfer_options.metadata_options` block of
 /// `google_storage_transfer_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class StorageTransferJobReplicationSpecTransferOptionsMetadataOptions {
-  const StorageTransferJobReplicationSpecTransferOptionsMetadataOptions({
+final class StorageTransferJobMetadataOptions {
+  const StorageTransferJobMetadataOptions({
     this.acl,
     this.gid,
     this.kmsKey,
@@ -283,11 +281,11 @@ final class StorageTransferJobSchedule {
 
   final TfArg<String>? repeatInterval;
 
-  final StorageTransferJobScheduleScheduleEndDate? scheduleEndDate;
+  final StorageTransferJobScheduleEndDate? scheduleEndDate;
 
-  final StorageTransferJobScheduleScheduleStartDate scheduleStartDate;
+  final StorageTransferJobScheduleStartDate scheduleStartDate;
 
-  final StorageTransferJobScheduleStartTimeOfDay? startTimeOfDay;
+  final StorageTransferJobStartTimeOfDay? startTimeOfDay;
 
   Map<String, Object?> encode() => {
     'repeat_interval': ?repeatInterval?.toTfJson(),
@@ -300,8 +298,8 @@ final class StorageTransferJobSchedule {
 /// Typed helper for the `schedule.schedule_end_date` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobScheduleScheduleEndDate {
-  const StorageTransferJobScheduleScheduleEndDate({
+final class StorageTransferJobScheduleEndDate {
+  const StorageTransferJobScheduleEndDate({
     required this.day,
     required this.month,
     required this.year,
@@ -323,8 +321,8 @@ final class StorageTransferJobScheduleScheduleEndDate {
 /// Typed helper for the `schedule.schedule_start_date` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobScheduleScheduleStartDate {
-  const StorageTransferJobScheduleScheduleStartDate({
+final class StorageTransferJobScheduleStartDate {
+  const StorageTransferJobScheduleStartDate({
     required this.day,
     required this.month,
     required this.year,
@@ -346,8 +344,8 @@ final class StorageTransferJobScheduleScheduleStartDate {
 /// Typed helper for the `schedule.start_time_of_day` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobScheduleStartTimeOfDay {
-  const StorageTransferJobScheduleStartTimeOfDay({
+final class StorageTransferJobStartTimeOfDay {
+  const StorageTransferJobStartTimeOfDay({
     required this.hours,
     required this.minutes,
     required this.nanos,
@@ -395,31 +393,30 @@ final class StorageTransferJobTransferSpec {
 
   final TfArg<String>? sourceAgentPoolName;
 
-  final StorageTransferJobTransferSpecAwsS3CompatibleDataSource?
-  awsS3CompatibleDataSource;
+  final StorageTransferJobAwsS3CompatibleDataSource? awsS3CompatibleDataSource;
 
-  final StorageTransferJobTransferSpecAwsS3DataSource? awsS3DataSource;
+  final StorageTransferJobAwsS3DataSource? awsS3DataSource;
 
-  final StorageTransferJobTransferSpecAzureBlobStorageDataSource?
+  final StorageTransferJobAzureBlobStorageDataSource?
   azureBlobStorageDataSource;
 
-  final StorageTransferJobTransferSpecGcsDataSink? gcsDataSink;
+  final StorageTransferJobGcsDataSink? gcsDataSink;
 
-  final StorageTransferJobTransferSpecGcsDataSource? gcsDataSource;
+  final StorageTransferJobGcsDataSource? gcsDataSource;
 
-  final StorageTransferJobTransferSpecHdfsDataSource? hdfsDataSource;
+  final StorageTransferJobHdfsDataSource? hdfsDataSource;
 
-  final StorageTransferJobTransferSpecHttpDataSource? httpDataSource;
+  final StorageTransferJobHttpDataSource? httpDataSource;
 
-  final StorageTransferJobTransferSpecObjectConditions? objectConditions;
+  final StorageTransferJobObjectConditions? objectConditions;
 
-  final StorageTransferJobTransferSpecPosixDataSink? posixDataSink;
+  final StorageTransferJobPosixDataSink? posixDataSink;
 
-  final StorageTransferJobTransferSpecPosixDataSource? posixDataSource;
+  final StorageTransferJobPosixDataSource? posixDataSource;
 
-  final StorageTransferJobTransferSpecTransferManifest? transferManifest;
+  final StorageTransferJobTransferManifest? transferManifest;
 
-  final StorageTransferJobTransferSpecTransferOptions? transferOptions;
+  final StorageTransferJobTransferOptions? transferOptions;
 
   Map<String, Object?> encode() => {
     'sink_agent_pool_name': ?sinkAgentPoolName?.toTfJson(),
@@ -442,8 +439,8 @@ final class StorageTransferJobTransferSpec {
 /// Typed helper for the `transfer_spec.aws_s3_compatible_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAwsS3CompatibleDataSource {
-  const StorageTransferJobTransferSpecAwsS3CompatibleDataSource({
+final class StorageTransferJobAwsS3CompatibleDataSource {
+  const StorageTransferJobAwsS3CompatibleDataSource({
     required this.bucketName,
     required this.endpoint,
     this.path,
@@ -459,8 +456,7 @@ final class StorageTransferJobTransferSpecAwsS3CompatibleDataSource {
 
   final TfArg<String>? region;
 
-  final StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata?
-  s3Metadata;
+  final StorageTransferJobS3Metadata? s3Metadata;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
@@ -474,8 +470,8 @@ final class StorageTransferJobTransferSpecAwsS3CompatibleDataSource {
 /// Typed helper for the `transfer_spec.aws_s3_compatible_data_source.s3_metadata` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata {
-  const StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata({
+final class StorageTransferJobS3Metadata {
+  const StorageTransferJobS3Metadata({
     this.authMethod,
     this.listApi,
     this.protocol,
@@ -501,8 +497,8 @@ final class StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata {
 /// Typed helper for the `transfer_spec.aws_s3_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAwsS3DataSource {
-  const StorageTransferJobTransferSpecAwsS3DataSource({
+final class StorageTransferJobAwsS3DataSource {
+  const StorageTransferJobAwsS3DataSource({
     required this.bucketName,
     this.cloudfrontDomain,
     this.credentialsSecret,
@@ -524,7 +520,7 @@ final class StorageTransferJobTransferSpecAwsS3DataSource {
 
   final TfArg<String>? roleArn;
 
-  final StorageTransferJobTransferSpecAwsS3DataSourceAwsAccessKey? awsAccessKey;
+  final StorageTransferJobAwsAccessKey? awsAccessKey;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
@@ -540,8 +536,8 @@ final class StorageTransferJobTransferSpecAwsS3DataSource {
 /// Typed helper for the `transfer_spec.aws_s3_data_source.aws_access_key` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAwsS3DataSourceAwsAccessKey {
-  const StorageTransferJobTransferSpecAwsS3DataSourceAwsAccessKey({
+final class StorageTransferJobAwsAccessKey {
+  const StorageTransferJobAwsAccessKey({
     required this.accessKeyId,
     required this.secretAccessKey,
   });
@@ -559,8 +555,8 @@ final class StorageTransferJobTransferSpecAwsS3DataSourceAwsAccessKey {
 /// Typed helper for the `transfer_spec.azure_blob_storage_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAzureBlobStorageDataSource {
-  const StorageTransferJobTransferSpecAzureBlobStorageDataSource({
+final class StorageTransferJobAzureBlobStorageDataSource {
+  const StorageTransferJobAzureBlobStorageDataSource({
     required this.container,
     this.credentialsSecret,
     this.path,
@@ -580,11 +576,9 @@ final class StorageTransferJobTransferSpecAzureBlobStorageDataSource {
 
   final TfArg<String> storageAccount;
 
-  final StorageTransferJobTransferSpecAzureBlobStorageDataSourceAzureCredentials?
-  azureCredentials;
+  final StorageTransferJobAzureCredentials? azureCredentials;
 
-  final StorageTransferJobTransferSpecAzureBlobStorageDataSourceFederatedIdentityConfig?
-  federatedIdentityConfig;
+  final StorageTransferJobFederatedIdentityConfig? federatedIdentityConfig;
 
   Map<String, Object?> encode() => {
     'container': container.toTfJson(),
@@ -600,10 +594,8 @@ final class StorageTransferJobTransferSpecAzureBlobStorageDataSource {
 /// Typed helper for the `transfer_spec.azure_blob_storage_data_source.azure_credentials` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAzureBlobStorageDataSourceAzureCredentials {
-  const StorageTransferJobTransferSpecAzureBlobStorageDataSourceAzureCredentials({
-    required this.sasToken,
-  });
+final class StorageTransferJobAzureCredentials {
+  const StorageTransferJobAzureCredentials({required this.sasToken});
 
   final TfArg<String> sasToken;
 
@@ -613,8 +605,8 @@ final class StorageTransferJobTransferSpecAzureBlobStorageDataSourceAzureCredent
 /// Typed helper for the `transfer_spec.azure_blob_storage_data_source.federated_identity_config` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecAzureBlobStorageDataSourceFederatedIdentityConfig {
-  const StorageTransferJobTransferSpecAzureBlobStorageDataSourceFederatedIdentityConfig({
+final class StorageTransferJobFederatedIdentityConfig {
+  const StorageTransferJobFederatedIdentityConfig({
     required this.clientId,
     required this.tenantId,
   });
@@ -629,49 +621,11 @@ final class StorageTransferJobTransferSpecAzureBlobStorageDataSourceFederatedIde
   };
 }
 
-/// Typed helper for the `transfer_spec.gcs_data_sink` block of
-/// `google_storage_transfer_job` (derived from provider schema).
-@immutable
-final class StorageTransferJobTransferSpecGcsDataSink {
-  const StorageTransferJobTransferSpecGcsDataSink({
-    required this.bucketName,
-    this.path,
-  });
-
-  final RefTo<GoogleStorageBucket> bucketName;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `transfer_spec.gcs_data_source` block of
-/// `google_storage_transfer_job` (derived from provider schema).
-@immutable
-final class StorageTransferJobTransferSpecGcsDataSource {
-  const StorageTransferJobTransferSpecGcsDataSource({
-    required this.bucketName,
-    this.path,
-  });
-
-  final RefTo<GoogleStorageBucket> bucketName;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `transfer_spec.hdfs_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecHdfsDataSource {
-  const StorageTransferJobTransferSpecHdfsDataSource({required this.path});
+final class StorageTransferJobHdfsDataSource {
+  const StorageTransferJobHdfsDataSource({required this.path});
 
   final TfArg<String> path;
 
@@ -681,58 +635,19 @@ final class StorageTransferJobTransferSpecHdfsDataSource {
 /// Typed helper for the `transfer_spec.http_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecHttpDataSource {
-  const StorageTransferJobTransferSpecHttpDataSource({required this.listUrl});
+final class StorageTransferJobHttpDataSource {
+  const StorageTransferJobHttpDataSource({required this.listUrl});
 
   final TfArg<String> listUrl;
 
   Map<String, Object?> encode() => {'list_url': listUrl.toTfJson()};
 }
 
-/// Typed helper for the `transfer_spec.object_conditions` block of
-/// `google_storage_transfer_job` (derived from provider schema).
-@immutable
-final class StorageTransferJobTransferSpecObjectConditions {
-  const StorageTransferJobTransferSpecObjectConditions({
-    this.excludePrefixes,
-    this.includePrefixes,
-    this.lastModifiedBefore,
-    this.lastModifiedSince,
-    this.maxTimeElapsedSinceLastModification,
-    this.minTimeElapsedSinceLastModification,
-  });
-
-  final TfArg<List<String>>? excludePrefixes;
-
-  final TfArg<List<String>>? includePrefixes;
-
-  final TfArg<String>? lastModifiedBefore;
-
-  final TfArg<String>? lastModifiedSince;
-
-  final TfArg<String>? maxTimeElapsedSinceLastModification;
-
-  final TfArg<String>? minTimeElapsedSinceLastModification;
-
-  Map<String, Object?> encode() => {
-    'exclude_prefixes': ?excludePrefixes?.toTfJson(),
-    'include_prefixes': ?includePrefixes?.toTfJson(),
-    'last_modified_before': ?lastModifiedBefore?.toTfJson(),
-    'last_modified_since': ?lastModifiedSince?.toTfJson(),
-    'max_time_elapsed_since_last_modification':
-        ?maxTimeElapsedSinceLastModification?.toTfJson(),
-    'min_time_elapsed_since_last_modification':
-        ?minTimeElapsedSinceLastModification?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `transfer_spec.posix_data_sink` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecPosixDataSink {
-  const StorageTransferJobTransferSpecPosixDataSink({
-    required this.rootDirectory,
-  });
+final class StorageTransferJobPosixDataSink {
+  const StorageTransferJobPosixDataSink({required this.rootDirectory});
 
   final TfArg<String> rootDirectory;
 
@@ -742,10 +657,8 @@ final class StorageTransferJobTransferSpecPosixDataSink {
 /// Typed helper for the `transfer_spec.posix_data_source` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecPosixDataSource {
-  const StorageTransferJobTransferSpecPosixDataSource({
-    required this.rootDirectory,
-  });
+final class StorageTransferJobPosixDataSource {
+  const StorageTransferJobPosixDataSource({required this.rootDirectory});
 
   final TfArg<String> rootDirectory;
 
@@ -755,95 +668,12 @@ final class StorageTransferJobTransferSpecPosixDataSource {
 /// Typed helper for the `transfer_spec.transfer_manifest` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
-final class StorageTransferJobTransferSpecTransferManifest {
-  const StorageTransferJobTransferSpecTransferManifest({
-    required this.location,
-  });
+final class StorageTransferJobTransferManifest {
+  const StorageTransferJobTransferManifest({required this.location});
 
   final TfArg<String> location;
 
   Map<String, Object?> encode() => {'location': location.toTfJson()};
-}
-
-/// Typed helper for the `transfer_spec.transfer_options` block of
-/// `google_storage_transfer_job` (derived from provider schema).
-@immutable
-final class StorageTransferJobTransferSpecTransferOptions {
-  const StorageTransferJobTransferSpecTransferOptions({
-    this.deleteObjectsFromSourceAfterTransfer,
-    this.deleteObjectsUniqueInSink,
-    this.overwriteObjectsAlreadyExistingInSink,
-    this.overwriteWhen,
-    this.metadataOptions,
-  });
-
-  final TfArg<bool>? deleteObjectsFromSourceAfterTransfer;
-
-  final TfArg<bool>? deleteObjectsUniqueInSink;
-
-  final TfArg<bool>? overwriteObjectsAlreadyExistingInSink;
-
-  final TfArg<String>? overwriteWhen;
-
-  final StorageTransferJobTransferSpecTransferOptionsMetadataOptions?
-  metadataOptions;
-
-  Map<String, Object?> encode() => {
-    'delete_objects_from_source_after_transfer':
-        ?deleteObjectsFromSourceAfterTransfer?.toTfJson(),
-    'delete_objects_unique_in_sink': ?deleteObjectsUniqueInSink?.toTfJson(),
-    'overwrite_objects_already_existing_in_sink':
-        ?overwriteObjectsAlreadyExistingInSink?.toTfJson(),
-    'overwrite_when': ?overwriteWhen?.toTfJson(),
-    'metadata_options': ?metadataOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `transfer_spec.transfer_options.metadata_options` block of
-/// `google_storage_transfer_job` (derived from provider schema).
-@immutable
-final class StorageTransferJobTransferSpecTransferOptionsMetadataOptions {
-  const StorageTransferJobTransferSpecTransferOptionsMetadataOptions({
-    this.acl,
-    this.gid,
-    this.kmsKey,
-    this.mode,
-    this.storageClass,
-    this.symlink,
-    this.temporaryHold,
-    this.timeCreated,
-    this.uid,
-  });
-
-  final TfArg<String>? acl;
-
-  final TfArg<String>? gid;
-
-  final TfArg<String>? kmsKey;
-
-  final TfArg<String>? mode;
-
-  final TfArg<String>? storageClass;
-
-  final TfArg<String>? symlink;
-
-  final TfArg<String>? temporaryHold;
-
-  final TfArg<String>? timeCreated;
-
-  final TfArg<String>? uid;
-
-  Map<String, Object?> encode() => {
-    'acl': ?acl?.toTfJson(),
-    'gid': ?gid?.toTfJson(),
-    'kms_key': ?kmsKey?.toTfJson(),
-    'mode': ?mode?.toTfJson(),
-    'storage_class': ?storageClass?.toTfJson(),
-    'symlink': ?symlink?.toTfJson(),
-    'temporary_hold': ?temporaryHold?.toTfJson(),
-    'time_created': ?timeCreated?.toTfJson(),
-    'uid': ?uid?.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `google_storage_transfer_job`.
@@ -866,10 +696,10 @@ final class StorageTransferJobTransferSpecTransferOptionsMetadataOptions {
 ///   description: TfArg.literal('terradart disabled gcs copy'),
 ///   status: TfArg.literal('DISABLED'),
 ///   transferSpec: StorageTransferJobTransferSpec(
-///     gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
+///     gcsDataSource: StorageTransferJobGcsDataSource(
 ///       bucketName: src.ref,
 ///     ),
-///     gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
+///     gcsDataSink: StorageTransferJobGcsDataSink(
 ///       bucketName: dst.ref,
 ///     ),
 ///   ),

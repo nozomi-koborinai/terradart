@@ -92,7 +92,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<num>? activeThreats;
 
-  final List<TfArg<ZeroTrustDevicePostureRuleInputAuthState>>? authState;
+  final List<TfArg<ZeroTrustDevicePostureRuleAuthState>>? authState;
 
   final TfArg<String>? certificateId;
 
@@ -102,12 +102,11 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<String>? cn;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputComplianceStatus>?
-  complianceStatus;
+  final TfArg<ZeroTrustDevicePostureRuleComplianceStatus>? complianceStatus;
 
   final TfArg<String>? connectionId;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputCountOperator>? countOperator;
+  final TfArg<ZeroTrustDevicePostureRuleCountOperator>? countOperator;
 
   final TfArg<String>? domain;
 
@@ -117,7 +116,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<bool>? exists;
 
-  final List<TfArg<ZeroTrustDevicePostureRuleInputExtendedKeyUsage>>?
+  final List<TfArg<ZeroTrustDevicePostureRuleExtendedKeyUsage>>?
   extendedKeyUsage;
 
   final TfArg<String>? id;
@@ -130,14 +129,13 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<String>? lastSeen;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputNetworkStatus>? networkStatus;
+  final TfArg<ZeroTrustDevicePostureRuleNetworkStatus>? networkStatus;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputOperatingSystem>? operatingSystem;
+  final TfArg<ZeroTrustDevicePostureRuleOperatingSystem>? operatingSystem;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputOperationalState>?
-  operationalState;
+  final TfArg<ZeroTrustDevicePostureRuleOperationalState>? operationalState;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputOperator>? operator;
+  final TfArg<ZeroTrustDevicePostureRuleOperator>? operator;
 
   final TfArg<String>? os;
 
@@ -153,17 +151,17 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<bool>? requireAll;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputRiskLevel>? riskLevel;
+  final TfArg<ZeroTrustDevicePostureRuleRiskLevel>? riskLevel;
 
   final TfArg<num>? score;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputScoreOperator>? scoreOperator;
+  final TfArg<ZeroTrustDevicePostureRuleScoreOperator>? scoreOperator;
 
   final TfArg<String>? sensorConfig;
 
   final TfArg<String>? sha256;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputState>? state;
+  final TfArg<ZeroTrustDevicePostureRuleState>? state;
 
   final TfArg<List<String>>? subjectAlternativeNames;
 
@@ -175,9 +173,9 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<String>? version;
 
-  final TfArg<ZeroTrustDevicePostureRuleInputVersionOperator>? versionOperator;
+  final TfArg<ZeroTrustDevicePostureRuleVersionOperator>? versionOperator;
 
-  final ZeroTrustDevicePostureRuleInputLocations? locations;
+  final ZeroTrustDevicePostureRuleLocations? locations;
 
   Map<String, Object?> encode() => {
     'active_threats': ?activeThreats?.toTfJson(),
@@ -229,19 +227,19 @@ final class ZeroTrustDevicePostureRuleInput {
 }
 
 /// `auth_state` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputAuthState implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleAuthState implements TerraformEnum {
   good('Good'),
   notified('Notified'),
   willBlock('Will Block'),
   blocked('Blocked');
 
-  const ZeroTrustDevicePostureRuleInputAuthState(this.terraformValue);
+  const ZeroTrustDevicePostureRuleAuthState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `compliance_status` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputComplianceStatus implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleComplianceStatus implements TerraformEnum {
   compliant('compliant'),
   noncompliant('noncompliant'),
   unknown('unknown'),
@@ -249,48 +247,48 @@ enum ZeroTrustDevicePostureRuleInputComplianceStatus implements TerraformEnum {
   ingraceperiod('ingraceperiod'),
   error('error');
 
-  const ZeroTrustDevicePostureRuleInputComplianceStatus(this.terraformValue);
+  const ZeroTrustDevicePostureRuleComplianceStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `count_operator` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputCountOperator implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleCountOperator implements TerraformEnum {
   lt('<'),
   lte('<='),
   gt('>'),
   gte('>='),
   eq('==');
 
-  const ZeroTrustDevicePostureRuleInputCountOperator(this.terraformValue);
+  const ZeroTrustDevicePostureRuleCountOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `extended_key_usage` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputExtendedKeyUsage implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleExtendedKeyUsage implements TerraformEnum {
   clientauth('clientAuth'),
   emailprotection('emailProtection');
 
-  const ZeroTrustDevicePostureRuleInputExtendedKeyUsage(this.terraformValue);
+  const ZeroTrustDevicePostureRuleExtendedKeyUsage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `network_status` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputNetworkStatus implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleNetworkStatus implements TerraformEnum {
   connected('connected'),
   disconnected('disconnected'),
   disconnecting('disconnecting'),
   connecting('connecting');
 
-  const ZeroTrustDevicePostureRuleInputNetworkStatus(this.terraformValue);
+  const ZeroTrustDevicePostureRuleNetworkStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operating_system` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputOperatingSystem implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleOperatingSystem implements TerraformEnum {
   windows('windows'),
   linux('linux'),
   mac('mac'),
@@ -298,13 +296,13 @@ enum ZeroTrustDevicePostureRuleInputOperatingSystem implements TerraformEnum {
   ios('ios'),
   chromeos('chromeos');
 
-  const ZeroTrustDevicePostureRuleInputOperatingSystem(this.terraformValue);
+  const ZeroTrustDevicePostureRuleOperatingSystem(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operational_state` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputOperationalState implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleOperationalState implements TerraformEnum {
   na('na'),
   partiallyDisabled('partially_disabled'),
   autoFullyDisabled('auto_fully_disabled'),
@@ -313,69 +311,69 @@ enum ZeroTrustDevicePostureRuleInputOperationalState implements TerraformEnum {
   disabledError('disabled_error'),
   dbCorruption('db_corruption');
 
-  const ZeroTrustDevicePostureRuleInputOperationalState(this.terraformValue);
+  const ZeroTrustDevicePostureRuleOperationalState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operator` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputOperator implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleOperator implements TerraformEnum {
   lt('<'),
   lte('<='),
   gt('>'),
   gte('>='),
   eq('==');
 
-  const ZeroTrustDevicePostureRuleInputOperator(this.terraformValue);
+  const ZeroTrustDevicePostureRuleOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `risk_level` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputRiskLevel implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleRiskLevel implements TerraformEnum {
   low('low'),
   medium('medium'),
   high('high'),
   critical('critical');
 
-  const ZeroTrustDevicePostureRuleInputRiskLevel(this.terraformValue);
+  const ZeroTrustDevicePostureRuleRiskLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `score_operator` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputScoreOperator implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleScoreOperator implements TerraformEnum {
   lt('<'),
   lte('<='),
   gt('>'),
   gte('>='),
   eq('==');
 
-  const ZeroTrustDevicePostureRuleInputScoreOperator(this.terraformValue);
+  const ZeroTrustDevicePostureRuleScoreOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `state` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputState implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleState implements TerraformEnum {
   online('online'),
   offline('offline'),
   unknown('unknown');
 
-  const ZeroTrustDevicePostureRuleInputState(this.terraformValue);
+  const ZeroTrustDevicePostureRuleState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `version_operator` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputVersionOperator implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleVersionOperator implements TerraformEnum {
   lt('<'),
   lte('<='),
   gt('>'),
   gte('>='),
   eq('==');
 
-  const ZeroTrustDevicePostureRuleInputVersionOperator(this.terraformValue);
+  const ZeroTrustDevicePostureRuleVersionOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -383,16 +381,12 @@ enum ZeroTrustDevicePostureRuleInputVersionOperator implements TerraformEnum {
 /// Typed helper for the `input.locations` block of
 /// `cloudflare_zero_trust_device_posture_rule` (derived from provider schema).
 @immutable
-final class ZeroTrustDevicePostureRuleInputLocations {
-  const ZeroTrustDevicePostureRuleInputLocations({
-    this.paths,
-    this.trustStores,
-  });
+final class ZeroTrustDevicePostureRuleLocations {
+  const ZeroTrustDevicePostureRuleLocations({this.paths, this.trustStores});
 
   final TfArg<List<String>>? paths;
 
-  final List<TfArg<ZeroTrustDevicePostureRuleInputLocationsTrustStores>>?
-  trustStores;
+  final List<TfArg<ZeroTrustDevicePostureRuleTrustStores>>? trustStores;
 
   Map<String, Object?> encode() => {
     'paths': ?paths?.toTfJson(),
@@ -402,14 +396,11 @@ final class ZeroTrustDevicePostureRuleInputLocations {
 }
 
 /// `trust_stores` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleInputLocationsTrustStores
-    implements TerraformEnum {
+enum ZeroTrustDevicePostureRuleTrustStores implements TerraformEnum {
   system('system'),
   user('user');
 
-  const ZeroTrustDevicePostureRuleInputLocationsTrustStores(
-    this.terraformValue,
-  );
+  const ZeroTrustDevicePostureRuleTrustStores(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -420,13 +411,13 @@ enum ZeroTrustDevicePostureRuleInputLocationsTrustStores
 final class ZeroTrustDevicePostureRuleMatch {
   const ZeroTrustDevicePostureRuleMatch({this.platform});
 
-  final TfArg<ZeroTrustDevicePostureRuleMatchPlatform>? platform;
+  final TfArg<ZeroTrustDevicePostureRulePlatform>? platform;
 
   Map<String, Object?> encode() => {'platform': ?platform?.toTfJson()};
 }
 
 /// `platform` — derived from the provider schema description.
-enum ZeroTrustDevicePostureRuleMatchPlatform implements TerraformEnum {
+enum ZeroTrustDevicePostureRulePlatform implements TerraformEnum {
   windows('windows'),
   mac('mac'),
   linux('linux'),
@@ -434,7 +425,7 @@ enum ZeroTrustDevicePostureRuleMatchPlatform implements TerraformEnum {
   ios('ios'),
   chromeos('chromeos');
 
-  const ZeroTrustDevicePostureRuleMatchPlatform(this.terraformValue);
+  const ZeroTrustDevicePostureRulePlatform(this.terraformValue);
   @override
   final String terraformValue;
 }

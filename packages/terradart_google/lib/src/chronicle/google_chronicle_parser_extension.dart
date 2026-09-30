@@ -103,7 +103,7 @@ final class ChronicleParserExtensionDefinitionDynamicParsing
 final class ChronicleParserExtensionDynamicParsing {
   const ChronicleParserExtensionDynamicParsing({this.optedFields});
 
-  final List<ChronicleParserExtensionDynamicParsingOptedFields>? optedFields;
+  final List<ChronicleParserExtensionOptedFields>? optedFields;
 
   Map<String, Object?> encode() => {
     if (optedFields != null)
@@ -114,11 +114,8 @@ final class ChronicleParserExtensionDynamicParsing {
 /// Typed helper for the `dynamic_parsing.opted_fields` block of
 /// `google_chronicle_parser_extension` (derived from provider schema).
 @immutable
-final class ChronicleParserExtensionDynamicParsingOptedFields {
-  const ChronicleParserExtensionDynamicParsingOptedFields({
-    this.path,
-    this.sampleValue,
-  });
+final class ChronicleParserExtensionOptedFields {
+  const ChronicleParserExtensionOptedFields({this.path, this.sampleValue});
 
   final TfArg<String>? path;
 
@@ -145,10 +142,9 @@ final class ChronicleParserExtensionFieldExtractors {
 
   final TfArg<String>? logFormat;
 
-  final List<ChronicleParserExtensionFieldExtractorsExtractors>? extractors;
+  final List<ChronicleParserExtensionExtractors>? extractors;
 
-  final ChronicleParserExtensionFieldExtractorsPreprocessConfig?
-  preprocessConfig;
+  final ChronicleParserExtensionPreprocessConfig? preprocessConfig;
 
   Map<String, Object?> encode() => {
     'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
@@ -162,8 +158,8 @@ final class ChronicleParserExtensionFieldExtractors {
 /// Typed helper for the `field_extractors.extractors` block of
 /// `google_chronicle_parser_extension` (derived from provider schema).
 @immutable
-final class ChronicleParserExtensionFieldExtractorsExtractors {
-  const ChronicleParserExtensionFieldExtractorsExtractors({
+final class ChronicleParserExtensionExtractors {
+  const ChronicleParserExtensionExtractors({
     this.destinationPath,
     this.fieldPath,
     this.preconditionOp,
@@ -197,11 +193,8 @@ final class ChronicleParserExtensionFieldExtractorsExtractors {
 /// Typed helper for the `field_extractors.preprocess_config` block of
 /// `google_chronicle_parser_extension` (derived from provider schema).
 @immutable
-final class ChronicleParserExtensionFieldExtractorsPreprocessConfig {
-  const ChronicleParserExtensionFieldExtractorsPreprocessConfig({
-    this.grokRegex,
-    this.target,
-  });
+final class ChronicleParserExtensionPreprocessConfig {
+  const ChronicleParserExtensionPreprocessConfig({this.grokRegex, this.target});
 
   final TfArg<String>? grokRegex;
 

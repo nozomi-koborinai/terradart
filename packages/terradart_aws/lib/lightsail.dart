@@ -13,16 +13,16 @@ export 'src/lightsail/aws_lightsail_certificate.dart'
 export 'src/lightsail/aws_lightsail_container_service.dart'
     show
         AwsLightsailContainerService,
+        LightsailContainerServiceCertificate,
+        LightsailContainerServiceEcrImagePullerRole,
         LightsailContainerServicePrivateRegistryAccess,
-        LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole,
-        LightsailContainerServicePublicDomainNames,
-        LightsailContainerServicePublicDomainNamesCertificate;
+        LightsailContainerServicePublicDomainNames;
 export 'src/lightsail/aws_lightsail_container_service_deployment_version.dart'
     show
         AwsLightsailContainerServiceDeploymentVersion,
         LightsailContainerServiceDeploymentVersionContainer,
-        LightsailContainerServiceDeploymentVersionPublicEndpoint,
-        LightsailContainerServiceDeploymentVersionPublicEndpointHealthCheck;
+        LightsailContainerServiceDeploymentVersionHealthCheck,
+        LightsailContainerServiceDeploymentVersionPublicEndpoint;
 export 'src/lightsail/aws_lightsail_database.dart' show AwsLightsailDatabase;
 export 'src/lightsail/aws_lightsail_disk.dart' show AwsLightsailDisk;
 export 'src/lightsail/aws_lightsail_disk_attachment.dart'
@@ -32,20 +32,17 @@ export 'src/lightsail/aws_lightsail_distribution.dart'
         AwsLightsailDistribution,
         LightsailDistributionCacheBehavior,
         LightsailDistributionCacheBehaviorSettings,
-        LightsailDistributionCacheBehaviorSettingsForwardedCookies,
-        LightsailDistributionCacheBehaviorSettingsForwardedHeaders,
-        LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption,
-        LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings,
         LightsailDistributionDefaultCacheBehavior,
+        LightsailDistributionForwardedCookies,
+        LightsailDistributionForwardedHeaders,
+        LightsailDistributionForwardedQueryStrings,
+        LightsailDistributionOption,
         LightsailDistributionOrigin;
 export 'src/lightsail/aws_lightsail_domain.dart' show AwsLightsailDomain;
 export 'src/lightsail/aws_lightsail_domain_entry.dart'
     show AwsLightsailDomainEntry, LightsailDomainEntryType;
 export 'src/lightsail/aws_lightsail_instance.dart'
-    show
-        AwsLightsailInstance,
-        LightsailInstanceAddOn,
-        LightsailInstanceAddOnStatus;
+    show AwsLightsailInstance, LightsailInstanceAddOn, LightsailInstanceStatus;
 export 'src/lightsail/aws_lightsail_instance_public_ports.dart'
     show AwsLightsailInstancePublicPorts, LightsailInstancePublicPortsPortInfo;
 export 'src/lightsail/aws_lightsail_key_pair.dart'

@@ -55,7 +55,7 @@ final class ComputeNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? destIpRanges;
 
-  final TfArg<ComputeNetworkFirewallPolicyRuleMatchDestNetworkContext>?
+  final TfArg<ComputeNetworkFirewallPolicyRuleDestNetworkContext>?
   destNetworkContext;
 
   final TfArg<List<String>>? destRegionCodes;
@@ -68,7 +68,7 @@ final class ComputeNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final TfArg<ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext>?
+  final TfArg<ComputeNetworkFirewallPolicyRuleSrcNetworkContext>?
   srcNetworkContext;
 
   final TfArg<List<String>>? srcNetworks;
@@ -77,9 +77,9 @@ final class ComputeNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeNetworkFirewallPolicyRuleMatchLayer4Configs> layer4Configs;
+  final List<ComputeNetworkFirewallPolicyRuleLayer4Configs> layer4Configs;
 
-  final List<ComputeNetworkFirewallPolicyRuleMatchSrcSecureTags>? srcSecureTags;
+  final List<ComputeNetworkFirewallPolicyRuleSrcSecureTags>? srcSecureTags;
 
   Map<String, Object?> encode() => {
     'dest_address_groups': ?destAddressGroups?.toTfJson(),
@@ -102,7 +102,7 @@ final class ComputeNetworkFirewallPolicyRuleMatch {
 }
 
 /// `dest_network_context` — derived from the provider schema description.
-enum ComputeNetworkFirewallPolicyRuleMatchDestNetworkContext
+enum ComputeNetworkFirewallPolicyRuleDestNetworkContext
     implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
@@ -110,15 +110,13 @@ enum ComputeNetworkFirewallPolicyRuleMatchDestNetworkContext
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeNetworkFirewallPolicyRuleMatchDestNetworkContext(
-    this.terraformValue,
-  );
+  const ComputeNetworkFirewallPolicyRuleDestNetworkContext(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `src_network_context` — derived from the provider schema description.
-enum ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext
+enum ComputeNetworkFirewallPolicyRuleSrcNetworkContext
     implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
@@ -126,9 +124,7 @@ enum ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext(
-    this.terraformValue,
-  );
+  const ComputeNetworkFirewallPolicyRuleSrcNetworkContext(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -136,8 +132,8 @@ enum ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext
 /// Typed helper for the `match.layer4_configs` block of
 /// `google_compute_network_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyRuleMatchLayer4Configs {
-  const ComputeNetworkFirewallPolicyRuleMatchLayer4Configs({
+final class ComputeNetworkFirewallPolicyRuleLayer4Configs {
+  const ComputeNetworkFirewallPolicyRuleLayer4Configs({
     required this.ipProtocol,
     this.ports,
   });
@@ -155,8 +151,8 @@ final class ComputeNetworkFirewallPolicyRuleMatchLayer4Configs {
 /// Typed helper for the `match.src_secure_tags` block of
 /// `google_compute_network_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyRuleMatchSrcSecureTags {
-  const ComputeNetworkFirewallPolicyRuleMatchSrcSecureTags({this.name});
+final class ComputeNetworkFirewallPolicyRuleSrcSecureTags {
+  const ComputeNetworkFirewallPolicyRuleSrcSecureTags({this.name});
 
   final TfArg<String>? name;
 
@@ -195,7 +191,7 @@ final class ComputeNetworkFirewallPolicyRuleTargetSecureTags {
 ///   match: ComputeNetworkFirewallPolicyRuleMatch(
 ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
 ///     layer4Configs: [
-///       ComputeNetworkFirewallPolicyRuleMatchLayer4Configs(
+///       ComputeNetworkFirewallPolicyRuleLayer4Configs(
 ///         ipProtocol: TfArg.literal('tcp'),
 ///         ports: TfArg.literal(['443']),
 ///       ),

@@ -168,7 +168,7 @@ final class TpuV2VmAcceleratorConfig {
 final class TpuV2VmDataDisks {
   const TpuV2VmDataDisks({this.mode, required this.sourceDisk});
 
-  final TfArg<TpuV2VmDataDisksMode>? mode;
+  final TfArg<TpuV2VmMode>? mode;
 
   final TfArg<String> sourceDisk;
 
@@ -179,11 +179,11 @@ final class TpuV2VmDataDisks {
 }
 
 /// `mode` — derived from the provider schema description.
-enum TpuV2VmDataDisksMode implements TerraformEnum {
+enum TpuV2VmMode implements TerraformEnum {
   readWrite('READ_WRITE'),
   readOnly('READ_ONLY');
 
-  const TpuV2VmDataDisksMode(this.terraformValue);
+  const TpuV2VmMode(this.terraformValue);
   @override
   final String terraformValue;
 }

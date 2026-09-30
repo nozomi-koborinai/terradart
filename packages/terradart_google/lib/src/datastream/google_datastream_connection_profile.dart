@@ -236,12 +236,12 @@ sealed class DatastreamConnectionProfileConnectivity {
   /// Sets `forward_ssh_connectivity`.
   const factory DatastreamConnectionProfileConnectivity.forwardSshConnectivity(
     DatastreamConnectionProfileForwardSshConnectivity forwardSshConnectivity,
-  ) = DatastreamConnectionProfileConnectivityForwardSshConnectivity;
+  ) = DatastreamConnectionProfileForwardSshConnectivityChoice;
 
   /// Sets `private_connectivity`.
   const factory DatastreamConnectionProfileConnectivity.privateConnectivity(
     DatastreamConnectionProfilePrivateConnectivity privateConnectivity,
-  ) = DatastreamConnectionProfileConnectivityPrivateConnectivity;
+  ) = DatastreamConnectionProfilePrivateConnectivityChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -254,9 +254,9 @@ sealed class DatastreamConnectionProfileConnectivity {
 }
 
 /// The [DatastreamConnectionProfileConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
-final class DatastreamConnectionProfileConnectivityForwardSshConnectivity
+final class DatastreamConnectionProfileForwardSshConnectivityChoice
     extends DatastreamConnectionProfileConnectivity {
-  const DatastreamConnectionProfileConnectivityForwardSshConnectivity(
+  const DatastreamConnectionProfileForwardSshConnectivityChoice(
     this.forwardSshConnectivity,
   );
 
@@ -278,9 +278,9 @@ final class DatastreamConnectionProfileConnectivityForwardSshConnectivity
 }
 
 /// The [DatastreamConnectionProfileConnectivity.privateConnectivity] choice: sets `private_connectivity`.
-final class DatastreamConnectionProfileConnectivityPrivateConnectivity
+final class DatastreamConnectionProfilePrivateConnectivityChoice
     extends DatastreamConnectionProfileConnectivity {
-  const DatastreamConnectionProfileConnectivityPrivateConnectivity(
+  const DatastreamConnectionProfilePrivateConnectivityChoice(
     this.privateConnectivity,
   );
 
@@ -322,7 +322,7 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 
   final TfArg<String> hostname;
 
-  final DatastreamConnectionProfileForwardSshConnectivityCredential? credential;
+  final DatastreamConnectionProfileCredential? credential;
 
   final TfArg<num>? port;
 
@@ -341,18 +341,18 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class DatastreamConnectionProfileForwardSshConnectivityCredential {
-  const DatastreamConnectionProfileForwardSshConnectivityCredential();
+sealed class DatastreamConnectionProfileCredential {
+  const DatastreamConnectionProfileCredential();
 
   /// Sets `password`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.password(
+  const factory DatastreamConnectionProfileCredential.password(
     TfArg<String> password,
-  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPassword;
+  ) = DatastreamConnectionProfileCredentialPassword;
 
   /// Sets `private_key`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey(
+  const factory DatastreamConnectionProfileCredential.privateKey(
     TfArg<String> privateKey,
-  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey;
+  ) = DatastreamConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -360,12 +360,10 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityCredential {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.password] choice: sets `password`.
-final class DatastreamConnectionProfileForwardSshConnectivityCredentialPassword
-    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
-  const DatastreamConnectionProfileForwardSshConnectivityCredentialPassword(
-    this.password,
-  );
+/// The [DatastreamConnectionProfileCredential.password] choice: sets `password`.
+final class DatastreamConnectionProfileCredentialPassword
+    extends DatastreamConnectionProfileCredential {
+  const DatastreamConnectionProfileCredentialPassword(this.password);
 
   final TfArg<String> password;
 
@@ -376,12 +374,10 @@ final class DatastreamConnectionProfileForwardSshConnectivityCredentialPassword
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey] choice: sets `private_key`.
-final class DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey
-    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
-  const DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey(
-    this.privateKey,
-  );
+/// The [DatastreamConnectionProfileCredential.privateKey] choice: sets `private_key`.
+final class DatastreamConnectionProfileCredentialPrivateKey
+    extends DatastreamConnectionProfileCredential {
+  const DatastreamConnectionProfileCredentialPrivateKey(this.privateKey);
 
   final TfArg<String> privateKey;
 
@@ -437,15 +433,13 @@ final class DatastreamConnectionProfileMongodbProfile {
 
   final TfArg<String> username;
 
-  final List<DatastreamConnectionProfileMongodbProfileHostAddresses>
-  hostAddresses;
+  final List<DatastreamConnectionProfileHostAddresses> hostAddresses;
 
-  final DatastreamConnectionProfileMongodbProfileSrvConnectionFormat?
-  srvConnectionFormat;
+  final DatastreamConnectionProfileSrvConnectionFormat? srvConnectionFormat;
 
   final DatastreamConnectionProfileMongodbProfileSslConfig? sslConfig;
 
-  final DatastreamConnectionProfileMongodbProfileStandardConnectionFormat?
+  final DatastreamConnectionProfileStandardConnectionFormat?
   standardConnectionFormat;
 
   Map<String, Object?> encode() => {
@@ -464,8 +458,8 @@ final class DatastreamConnectionProfileMongodbProfile {
 /// Typed helper for the `mongodb_profile.host_addresses` block of
 /// `google_datastream_connection_profile` (derived from provider schema).
 @immutable
-final class DatastreamConnectionProfileMongodbProfileHostAddresses {
-  const DatastreamConnectionProfileMongodbProfileHostAddresses({
+final class DatastreamConnectionProfileHostAddresses {
+  const DatastreamConnectionProfileHostAddresses({
     required this.hostname,
     this.port,
   });
@@ -483,8 +477,8 @@ final class DatastreamConnectionProfileMongodbProfileHostAddresses {
 /// Typed helper for the `mongodb_profile.srv_connection_format` block of
 /// `google_datastream_connection_profile` (derived from provider schema).
 @immutable
-final class DatastreamConnectionProfileMongodbProfileSrvConnectionFormat {
-  const DatastreamConnectionProfileMongodbProfileSrvConnectionFormat();
+final class DatastreamConnectionProfileSrvConnectionFormat {
+  const DatastreamConnectionProfileSrvConnectionFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -520,8 +514,8 @@ final class DatastreamConnectionProfileMongodbProfileSslConfig {
 /// Typed helper for the `mongodb_profile.standard_connection_format` block of
 /// `google_datastream_connection_profile` (derived from provider schema).
 @immutable
-final class DatastreamConnectionProfileMongodbProfileStandardConnectionFormat {
-  const DatastreamConnectionProfileMongodbProfileStandardConnectionFormat({
+final class DatastreamConnectionProfileStandardConnectionFormat {
+  const DatastreamConnectionProfileStandardConnectionFormat({
     this.directConnection,
   });
 
@@ -677,11 +671,10 @@ final class DatastreamConnectionProfilePostgresqlProfileSslConfig {
     this.serverVerification,
   });
 
-  final DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification?
+  final DatastreamConnectionProfileServerAndClientVerification?
   serverAndClientVerification;
 
-  final DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification?
-  serverVerification;
+  final DatastreamConnectionProfileServerVerification? serverVerification;
 
   Map<String, Object?> encode() => {
     'server_and_client_verification': ?serverAndClientVerification?.encode(),
@@ -692,8 +685,8 @@ final class DatastreamConnectionProfilePostgresqlProfileSslConfig {
 /// Typed helper for the `postgresql_profile.ssl_config.server_and_client_verification` block of
 /// `google_datastream_connection_profile` (derived from provider schema).
 @immutable
-final class DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification {
-  const DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification({
+final class DatastreamConnectionProfileServerAndClientVerification {
+  const DatastreamConnectionProfileServerAndClientVerification({
     required this.caCertificate,
     required this.clientCertificate,
     required this.clientKey,
@@ -715,8 +708,8 @@ final class DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClient
 /// Typed helper for the `postgresql_profile.ssl_config.server_verification` block of
 /// `google_datastream_connection_profile` (derived from provider schema).
 @immutable
-final class DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification {
-  const DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification({
+final class DatastreamConnectionProfileServerVerification {
+  const DatastreamConnectionProfileServerVerification({
     required this.caCertificate,
   });
 

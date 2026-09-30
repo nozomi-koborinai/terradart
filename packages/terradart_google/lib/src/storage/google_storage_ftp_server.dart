@@ -27,12 +27,12 @@ sealed class StorageFtpServerConfig {
   /// Sets `internal_config`.
   const factory StorageFtpServerConfig.internalConfig(
     StorageFtpServerInternalConfig internalConfig,
-  ) = StorageFtpServerConfigInternalConfig;
+  ) = StorageFtpServerInternalConfigChoice;
 
   /// Sets `external_config`.
   const factory StorageFtpServerConfig.externalConfig(
     StorageFtpServerExternalConfig externalConfig,
-  ) = StorageFtpServerConfigExternalConfig;
+  ) = StorageFtpServerExternalConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,9 +45,9 @@ sealed class StorageFtpServerConfig {
 }
 
 /// The [StorageFtpServerConfig.internalConfig] choice: sets `internal_config`.
-final class StorageFtpServerConfigInternalConfig
+final class StorageFtpServerInternalConfigChoice
     extends StorageFtpServerConfig {
-  const StorageFtpServerConfigInternalConfig(this.internalConfig);
+  const StorageFtpServerInternalConfigChoice(this.internalConfig);
 
   final StorageFtpServerInternalConfig internalConfig;
 
@@ -64,9 +64,9 @@ final class StorageFtpServerConfigInternalConfig
 }
 
 /// The [StorageFtpServerConfig.externalConfig] choice: sets `external_config`.
-final class StorageFtpServerConfigExternalConfig
+final class StorageFtpServerExternalConfigChoice
     extends StorageFtpServerConfig {
-  const StorageFtpServerConfigExternalConfig(this.externalConfig);
+  const StorageFtpServerExternalConfigChoice(this.externalConfig);
 
   final StorageFtpServerExternalConfig externalConfig;
 
@@ -104,11 +104,9 @@ final class StorageFtpServerInternalConfig {
     this.consumerRejectList,
   });
 
-  final List<StorageFtpServerInternalConfigConsumerAcceptList>?
-  consumerAcceptList;
+  final List<StorageFtpServerConsumerAcceptList>? consumerAcceptList;
 
-  final List<StorageFtpServerInternalConfigConsumerRejectList>?
-  consumerRejectList;
+  final List<StorageFtpServerConsumerRejectList>? consumerRejectList;
 
   Map<String, Object?> encode() => {
     if (consumerAcceptList != null)
@@ -121,8 +119,8 @@ final class StorageFtpServerInternalConfig {
 /// Typed helper for the `internal_config.consumer_accept_list` block of
 /// `google_storage_ftp_server` (derived from provider schema).
 @immutable
-final class StorageFtpServerInternalConfigConsumerAcceptList {
-  const StorageFtpServerInternalConfigConsumerAcceptList({
+final class StorageFtpServerConsumerAcceptList {
+  const StorageFtpServerConsumerAcceptList({
     required this.connectionLimit,
     required this.project,
   });
@@ -140,10 +138,8 @@ final class StorageFtpServerInternalConfigConsumerAcceptList {
 /// Typed helper for the `internal_config.consumer_reject_list` block of
 /// `google_storage_ftp_server` (derived from provider schema).
 @immutable
-final class StorageFtpServerInternalConfigConsumerRejectList {
-  const StorageFtpServerInternalConfigConsumerRejectList({
-    required this.project,
-  });
+final class StorageFtpServerConsumerRejectList {
+  const StorageFtpServerConsumerRejectList({required this.project});
 
   final TfArg<String> project;
 

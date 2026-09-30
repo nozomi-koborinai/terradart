@@ -16,11 +16,9 @@ final class SagemakerWorkteamMemberDefinition {
     this.oidcMemberDefinition,
   });
 
-  final SagemakerWorkteamMemberDefinitionCognitoMemberDefinition?
-  cognitoMemberDefinition;
+  final SagemakerWorkteamCognitoMemberDefinition? cognitoMemberDefinition;
 
-  final SagemakerWorkteamMemberDefinitionOidcMemberDefinition?
-  oidcMemberDefinition;
+  final SagemakerWorkteamOidcMemberDefinition? oidcMemberDefinition;
 
   Map<String, Object?> encode() => {
     'cognito_member_definition': ?cognitoMemberDefinition?.encode(),
@@ -31,8 +29,8 @@ final class SagemakerWorkteamMemberDefinition {
 /// Typed helper for the `member_definition.cognito_member_definition` block of
 /// `aws_sagemaker_workteam` (derived from provider schema).
 @immutable
-final class SagemakerWorkteamMemberDefinitionCognitoMemberDefinition {
-  const SagemakerWorkteamMemberDefinitionCognitoMemberDefinition({
+final class SagemakerWorkteamCognitoMemberDefinition {
+  const SagemakerWorkteamCognitoMemberDefinition({
     required this.clientId,
     required this.userGroup,
     required this.userPool,
@@ -54,10 +52,8 @@ final class SagemakerWorkteamMemberDefinitionCognitoMemberDefinition {
 /// Typed helper for the `member_definition.oidc_member_definition` block of
 /// `aws_sagemaker_workteam` (derived from provider schema).
 @immutable
-final class SagemakerWorkteamMemberDefinitionOidcMemberDefinition {
-  const SagemakerWorkteamMemberDefinitionOidcMemberDefinition({
-    required this.groups,
-  });
+final class SagemakerWorkteamOidcMemberDefinition {
+  const SagemakerWorkteamOidcMemberDefinition({required this.groups});
 
   final TfArg<List<String>> groups;
 
@@ -83,7 +79,7 @@ final class SagemakerWorkteamNotificationConfiguration {
 final class SagemakerWorkteamWorkerAccessConfiguration {
   const SagemakerWorkteamWorkerAccessConfiguration({this.s3Presign});
 
-  final SagemakerWorkteamWorkerAccessConfigurationS3Presign? s3Presign;
+  final SagemakerWorkteamS3Presign? s3Presign;
 
   Map<String, Object?> encode() => {'s3_presign': ?s3Presign?.encode()};
 }
@@ -91,13 +87,10 @@ final class SagemakerWorkteamWorkerAccessConfiguration {
 /// Typed helper for the `worker_access_configuration.s3_presign` block of
 /// `aws_sagemaker_workteam` (derived from provider schema).
 @immutable
-final class SagemakerWorkteamWorkerAccessConfigurationS3Presign {
-  const SagemakerWorkteamWorkerAccessConfigurationS3Presign({
-    this.iamPolicyConstraints,
-  });
+final class SagemakerWorkteamS3Presign {
+  const SagemakerWorkteamS3Presign({this.iamPolicyConstraints});
 
-  final SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints?
-  iamPolicyConstraints;
+  final SagemakerWorkteamIamPolicyConstraints? iamPolicyConstraints;
 
   Map<String, Object?> encode() => {
     'iam_policy_constraints': ?iamPolicyConstraints?.encode(),
@@ -108,24 +101,18 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3Presign {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sourceIp(...)`.
-sealed class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints {
-  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints();
+sealed class SagemakerWorkteamIamPolicyConstraints {
+  const SagemakerWorkteamIamPolicyConstraints();
 
   /// Sets `source_ip`.
-  const factory SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints.sourceIp(
-    TfArg<
-      SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
-    >
-    sourceIp,
-  ) = SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpChoice;
+  const factory SagemakerWorkteamIamPolicyConstraints.sourceIp(
+    TfArg<SagemakerWorkteamSourceIp> sourceIp,
+  ) = SagemakerWorkteamIamPolicyConstraintsSourceIp;
 
   /// Sets `vpc_source_ip`.
-  const factory SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints.vpcSourceIp(
-    TfArg<
-      SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
-    >
-    vpcSourceIp,
-  ) = SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpChoice;
+  const factory SagemakerWorkteamIamPolicyConstraints.vpcSourceIp(
+    TfArg<SagemakerWorkteamVpcSourceIp> vpcSourceIp,
+  ) = SagemakerWorkteamIamPolicyConstraintsVpcSourceIp;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -133,18 +120,12 @@ sealed class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstra
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints.sourceIp] choice: sets `source_ip`.
-final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpChoice
-    extends
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints {
-  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpChoice(
-    this.sourceIp,
-  );
+/// The [SagemakerWorkteamIamPolicyConstraints.sourceIp] choice: sets `source_ip`.
+final class SagemakerWorkteamIamPolicyConstraintsSourceIp
+    extends SagemakerWorkteamIamPolicyConstraints {
+  const SagemakerWorkteamIamPolicyConstraintsSourceIp(this.sourceIp);
 
-  final TfArg<
-    SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
-  >
-  sourceIp;
+  final TfArg<SagemakerWorkteamSourceIp> sourceIp;
 
   @override
   String get blockKey => 'source_ip';
@@ -153,18 +134,12 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstrai
   Map<String, Object?> encode() => {'source_ip': sourceIp.toTfJson()};
 }
 
-/// The [SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints.vpcSourceIp] choice: sets `vpc_source_ip`.
-final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpChoice
-    extends
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints {
-  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpChoice(
-    this.vpcSourceIp,
-  );
+/// The [SagemakerWorkteamIamPolicyConstraints.vpcSourceIp] choice: sets `vpc_source_ip`.
+final class SagemakerWorkteamIamPolicyConstraintsVpcSourceIp
+    extends SagemakerWorkteamIamPolicyConstraints {
+  const SagemakerWorkteamIamPolicyConstraintsVpcSourceIp(this.vpcSourceIp);
 
-  final TfArg<
-    SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
-  >
-  vpcSourceIp;
+  final TfArg<SagemakerWorkteamVpcSourceIp> vpcSourceIp;
 
   @override
   String get blockKey => 'vpc_source_ip';
@@ -174,27 +149,21 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstrai
 }
 
 /// `source_ip` — derived from the provider schema description.
-enum SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
-    implements TerraformEnum {
+enum SagemakerWorkteamSourceIp implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp(
-    this.terraformValue,
-  );
+  const SagemakerWorkteamSourceIp(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `vpc_source_ip` — derived from the provider schema description.
-enum SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
-    implements TerraformEnum {
+enum SagemakerWorkteamVpcSourceIp implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp(
-    this.terraformValue,
-  );
+  const SagemakerWorkteamVpcSourceIp(this.terraformValue);
   @override
   final String terraformValue;
 }

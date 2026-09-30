@@ -25,10 +25,9 @@ final class Resiliencehubv2InputSourceResourceConfiguration {
 
   final TfArg<String>? tfStateFileUrl;
 
-  final List<Resiliencehubv2InputSourceResourceConfigurationEks>? eks;
+  final List<Resiliencehubv2InputSourceEks>? eks;
 
-  final List<Resiliencehubv2InputSourceResourceConfigurationResourceTag>?
-  resourceTag;
+  final List<Resiliencehubv2InputSourceResourceTag>? resourceTag;
 
   Map<String, Object?> encode() => {
     'cfn_stack_arn': ?cfnStackArn?.toTfJson(),
@@ -43,8 +42,8 @@ final class Resiliencehubv2InputSourceResourceConfiguration {
 /// Typed helper for the `resource_configuration.eks` block of
 /// `aws_resiliencehubv2_input_source` (derived from provider schema).
 @immutable
-final class Resiliencehubv2InputSourceResourceConfigurationEks {
-  const Resiliencehubv2InputSourceResourceConfigurationEks({
+final class Resiliencehubv2InputSourceEks {
+  const Resiliencehubv2InputSourceEks({
     required this.clusterArn,
     required this.namespaces,
   });
@@ -62,8 +61,8 @@ final class Resiliencehubv2InputSourceResourceConfigurationEks {
 /// Typed helper for the `resource_configuration.resource_tag` block of
 /// `aws_resiliencehubv2_input_source` (derived from provider schema).
 @immutable
-final class Resiliencehubv2InputSourceResourceConfigurationResourceTag {
-  const Resiliencehubv2InputSourceResourceConfigurationResourceTag({
+final class Resiliencehubv2InputSourceResourceTag {
+  const Resiliencehubv2InputSourceResourceTag({
     required this.key,
     required this.values,
   });

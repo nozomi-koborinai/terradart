@@ -91,14 +91,13 @@ final class OracleDatabaseDbSystemProperties {
 
   final TfArg<List<String>> sshPublicKeys;
 
-  final OracleDatabaseDbSystemPropertiesDataCollectionOptions?
-  dataCollectionOptions;
+  final OracleDatabaseDbSystemDataCollectionOptions? dataCollectionOptions;
 
-  final OracleDatabaseDbSystemPropertiesDbHome? dbHome;
+  final OracleDatabaseDbSystemDbHome? dbHome;
 
-  final OracleDatabaseDbSystemPropertiesDbSystemOptions? dbSystemOptions;
+  final OracleDatabaseDbSystemOptions? dbSystemOptions;
 
-  final OracleDatabaseDbSystemPropertiesTimeZone? timeZone;
+  final OracleDatabaseDbSystemTimeZone? timeZone;
 
   Map<String, Object?> encode() => {
     'compute_count': computeCount.toTfJson(),
@@ -125,8 +124,8 @@ final class OracleDatabaseDbSystemProperties {
 /// Typed helper for the `properties.data_collection_options` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDataCollectionOptions {
-  const OracleDatabaseDbSystemPropertiesDataCollectionOptions({
+final class OracleDatabaseDbSystemDataCollectionOptions {
+  const OracleDatabaseDbSystemDataCollectionOptions({
     this.isDiagnosticsEventsEnabled,
     this.isIncidentLogsEnabled,
   });
@@ -144,8 +143,8 @@ final class OracleDatabaseDbSystemPropertiesDataCollectionOptions {
 /// Typed helper for the `properties.db_home` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbHome {
-  const OracleDatabaseDbSystemPropertiesDbHome({
+final class OracleDatabaseDbSystemDbHome {
+  const OracleDatabaseDbSystemDbHome({
     required this.dbVersion,
     this.displayName,
     this.isUnifiedAuditingEnabled,
@@ -158,7 +157,7 @@ final class OracleDatabaseDbSystemPropertiesDbHome {
 
   final TfArg<bool>? isUnifiedAuditingEnabled;
 
-  final OracleDatabaseDbSystemPropertiesDbHomeDatabase database;
+  final OracleDatabaseDbSystemDatabase database;
 
   Map<String, Object?> encode() => {
     'db_version': dbVersion.toTfJson(),
@@ -171,8 +170,8 @@ final class OracleDatabaseDbSystemPropertiesDbHome {
 /// Typed helper for the `properties.db_home.database` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbHomeDatabase {
-  const OracleDatabaseDbSystemPropertiesDbHomeDatabase({
+final class OracleDatabaseDbSystemDatabase {
+  const OracleDatabaseDbSystemDatabase({
     required this.adminPassword,
     this.characterSet,
     required this.databaseId,
@@ -209,7 +208,7 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabase {
 
   final TfArg<String>? tdeWalletPassword;
 
-  final OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties? properties;
+  final OracleDatabaseDbSystemDatabaseProperties? properties;
 
   Map<String, Object?> encode() => {
     'admin_password': adminPassword.toTfJson(),
@@ -230,16 +229,15 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabase {
 /// Typed helper for the `properties.db_home.database.properties` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties {
-  const OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties({
+final class OracleDatabaseDbSystemDatabaseProperties {
+  const OracleDatabaseDbSystemDatabaseProperties({
     required this.dbVersion,
     this.dbBackupConfig,
   });
 
   final TfArg<String> dbVersion;
 
-  final OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig?
-  dbBackupConfig;
+  final OracleDatabaseDbSystemDbBackupConfig? dbBackupConfig;
 
   Map<String, Object?> encode() => {
     'db_version': dbVersion.toTfJson(),
@@ -250,8 +248,8 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties {
 /// Typed helper for the `properties.db_home.database.properties.db_backup_config` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig {
-  const OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig({
+final class OracleDatabaseDbSystemDbBackupConfig {
+  const OracleDatabaseDbSystemDbBackupConfig({
     this.autoBackupEnabled,
     this.autoFullBackupDay,
     this.autoFullBackupWindow,
@@ -273,9 +271,7 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConf
 
   final TfArg<num>? retentionPeriodDays;
 
-  final List<
-    OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails
-  >?
+  final List<OracleDatabaseDbSystemBackupDestinationDetails>?
   backupDestinationDetails;
 
   Map<String, Object?> encode() => {
@@ -295,10 +291,8 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConf
 /// Typed helper for the `properties.db_home.database.properties.db_backup_config.backup_destination_details` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails {
-  const OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails({
-    this.type,
-  });
+final class OracleDatabaseDbSystemBackupDestinationDetails {
+  const OracleDatabaseDbSystemBackupDestinationDetails({this.type});
 
   final TfArg<String>? type;
 
@@ -308,10 +302,8 @@ final class OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConf
 /// Typed helper for the `properties.db_system_options` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesDbSystemOptions {
-  const OracleDatabaseDbSystemPropertiesDbSystemOptions({
-    this.storageManagement,
-  });
+final class OracleDatabaseDbSystemOptions {
+  const OracleDatabaseDbSystemOptions({this.storageManagement});
 
   final TfArg<String>? storageManagement;
 
@@ -323,8 +315,8 @@ final class OracleDatabaseDbSystemPropertiesDbSystemOptions {
 /// Typed helper for the `properties.time_zone` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
-final class OracleDatabaseDbSystemPropertiesTimeZone {
-  const OracleDatabaseDbSystemPropertiesTimeZone({this.id});
+final class OracleDatabaseDbSystemTimeZone {
+  const OracleDatabaseDbSystemTimeZone({this.id});
 
   final TfArg<String>? id;
 

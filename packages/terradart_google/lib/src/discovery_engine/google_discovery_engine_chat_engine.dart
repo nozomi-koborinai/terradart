@@ -19,15 +19,15 @@ enum DiscoveryEngineChatEngineIndustryVertical implements TerraformEnum {
 /// Typed helper for the `chat_engine_config` block of
 /// `google_discovery_engine_chat_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineChatEngineChatEngineConfig {
-  const DiscoveryEngineChatEngineChatEngineConfig({
+final class DiscoveryEngineChatEngineConfig {
+  const DiscoveryEngineChatEngineConfig({
     this.allowCrossRegion,
     required this.agent,
   });
 
   final TfArg<bool>? allowCrossRegion;
 
-  final DiscoveryEngineChatEngineChatEngineConfigAgent agent;
+  final DiscoveryEngineChatEngineAgent agent;
 
   Map<String, Object?> encode() => {
     'allow_cross_region': ?allowCrossRegion?.toTfJson(),
@@ -39,19 +39,18 @@ final class DiscoveryEngineChatEngineChatEngineConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.agentCreationConfig(...)`.
-sealed class DiscoveryEngineChatEngineChatEngineConfigAgent {
-  const DiscoveryEngineChatEngineChatEngineConfigAgent();
+sealed class DiscoveryEngineChatEngineAgent {
+  const DiscoveryEngineChatEngineAgent();
 
   /// Sets `agent_creation_config`.
-  const factory DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig(
-    DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig
-    agentCreationConfig,
-  ) = DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice;
+  const factory DiscoveryEngineChatEngineAgent.agentCreationConfig(
+    DiscoveryEngineChatEngineAgentCreationConfig agentCreationConfig,
+  ) = DiscoveryEngineChatEngineAgentCreationConfigChoice;
 
   /// Sets `dialogflow_agent_to_link`.
-  const factory DiscoveryEngineChatEngineChatEngineConfigAgent.dialogflowAgentToLink(
+  const factory DiscoveryEngineChatEngineAgent.dialogflowAgentToLink(
     TfArg<String> dialogflowAgentToLink,
-  ) = DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink;
+  ) = DiscoveryEngineChatEngineAgentDialogflowAgentToLink;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,15 +58,14 @@ sealed class DiscoveryEngineChatEngineChatEngineConfigAgent {
   Map<String, Object?> encode();
 }
 
-/// The [DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig] choice: sets `agent_creation_config`.
-final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice
-    extends DiscoveryEngineChatEngineChatEngineConfigAgent {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice(
+/// The [DiscoveryEngineChatEngineAgent.agentCreationConfig] choice: sets `agent_creation_config`.
+final class DiscoveryEngineChatEngineAgentCreationConfigChoice
+    extends DiscoveryEngineChatEngineAgent {
+  const DiscoveryEngineChatEngineAgentCreationConfigChoice(
     this.agentCreationConfig,
   );
 
-  final DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig
-  agentCreationConfig;
+  final DiscoveryEngineChatEngineAgentCreationConfig agentCreationConfig;
 
   @override
   String get blockKey => 'agent_creation_config';
@@ -78,10 +76,10 @@ final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice
   };
 }
 
-/// The [DiscoveryEngineChatEngineChatEngineConfigAgent.dialogflowAgentToLink] choice: sets `dialogflow_agent_to_link`.
-final class DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink
-    extends DiscoveryEngineChatEngineChatEngineConfigAgent {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink(
+/// The [DiscoveryEngineChatEngineAgent.dialogflowAgentToLink] choice: sets `dialogflow_agent_to_link`.
+final class DiscoveryEngineChatEngineAgentDialogflowAgentToLink
+    extends DiscoveryEngineChatEngineAgent {
+  const DiscoveryEngineChatEngineAgentDialogflowAgentToLink(
     this.dialogflowAgentToLink,
   );
 
@@ -99,8 +97,8 @@ final class DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink
 /// Typed helper for the `chat_engine_config.agent_creation_config` block of
 /// `google_discovery_engine_chat_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig({
+final class DiscoveryEngineChatEngineAgentCreationConfig {
+  const DiscoveryEngineChatEngineAgentCreationConfig({
     this.business,
     required this.defaultLanguageCode,
     this.location,
@@ -162,7 +160,7 @@ final class GoogleDiscoveryEngineChatEngine extends Resource {
     required TfArg<String> engineId,
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
-    required DiscoveryEngineChatEngineChatEngineConfig chatEngineConfig,
+    required DiscoveryEngineChatEngineConfig chatEngineConfig,
     TfArg<DiscoveryEngineChatEngineIndustryVertical>? industryVertical,
     DiscoveryEngineChatEngineCommonConfig? commonConfig,
     TfArg<String>? deletionPolicy,

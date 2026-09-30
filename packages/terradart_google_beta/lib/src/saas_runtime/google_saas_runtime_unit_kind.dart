@@ -38,9 +38,9 @@ final class SaasRuntimeUnitKindInputVariableMappings {
 
   final TfArg<String> variable;
 
-  final SaasRuntimeUnitKindInputVariableMappingsFrom? from;
+  final SaasRuntimeUnitKindFrom? from;
 
-  final SaasRuntimeUnitKindInputVariableMappingsTo? to;
+  final SaasRuntimeUnitKindTo? to;
 
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
@@ -51,9 +51,10 @@ final class SaasRuntimeUnitKindInputVariableMappings {
 
 /// Typed helper for the `input_variable_mappings.from` block of
 /// `google_saas_runtime_unit_kind` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SaasRuntimeUnitKindInputVariableMappingsFrom {
-  const SaasRuntimeUnitKindInputVariableMappingsFrom({
+final class SaasRuntimeUnitKindFrom {
+  const SaasRuntimeUnitKindFrom({
     required this.dependency,
     required this.outputVariable,
   });
@@ -70,9 +71,10 @@ final class SaasRuntimeUnitKindInputVariableMappingsFrom {
 
 /// Typed helper for the `input_variable_mappings.to` block of
 /// `google_saas_runtime_unit_kind` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SaasRuntimeUnitKindInputVariableMappingsTo {
-  const SaasRuntimeUnitKindInputVariableMappingsTo({
+final class SaasRuntimeUnitKindTo {
+  const SaasRuntimeUnitKindTo({
     required this.dependency,
     this.ignoreForLookup,
     required this.inputVariable,
@@ -103,56 +105,14 @@ final class SaasRuntimeUnitKindOutputVariableMappings {
 
   final TfArg<String> variable;
 
-  final SaasRuntimeUnitKindOutputVariableMappingsFrom? from;
+  final SaasRuntimeUnitKindFrom? from;
 
-  final SaasRuntimeUnitKindOutputVariableMappingsTo? to;
+  final SaasRuntimeUnitKindTo? to;
 
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
     'from': ?from?.encode(),
     'to': ?to?.encode(),
-  };
-}
-
-/// Typed helper for the `output_variable_mappings.from` block of
-/// `google_saas_runtime_unit_kind` (derived from provider schema).
-@immutable
-final class SaasRuntimeUnitKindOutputVariableMappingsFrom {
-  const SaasRuntimeUnitKindOutputVariableMappingsFrom({
-    required this.dependency,
-    required this.outputVariable,
-  });
-
-  final TfArg<String> dependency;
-
-  final TfArg<String> outputVariable;
-
-  Map<String, Object?> encode() => {
-    'dependency': dependency.toTfJson(),
-    'output_variable': outputVariable.toTfJson(),
-  };
-}
-
-/// Typed helper for the `output_variable_mappings.to` block of
-/// `google_saas_runtime_unit_kind` (derived from provider schema).
-@immutable
-final class SaasRuntimeUnitKindOutputVariableMappingsTo {
-  const SaasRuntimeUnitKindOutputVariableMappingsTo({
-    required this.dependency,
-    this.ignoreForLookup,
-    required this.inputVariable,
-  });
-
-  final TfArg<String> dependency;
-
-  final TfArg<bool>? ignoreForLookup;
-
-  final TfArg<String> inputVariable;
-
-  Map<String, Object?> encode() => {
-    'dependency': dependency.toTfJson(),
-    'ignore_for_lookup': ?ignoreForLookup?.toTfJson(),
-    'input_variable': inputVariable.toTfJson(),
   };
 }
 

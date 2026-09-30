@@ -135,7 +135,7 @@ class ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch {
 final class ComputeSecurityPolicyRuleHeaderAction {
   const ComputeSecurityPolicyRuleHeaderAction({this.requestHeadersToAdds});
 
-  final List<ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds>?
+  final List<ComputeSecurityPolicyRuleRequestHeadersToAdds>?
   requestHeadersToAdds;
 
   Map<String, Object?> encode() => {
@@ -149,8 +149,8 @@ final class ComputeSecurityPolicyRuleHeaderAction {
 /// Typed helper for the `header_action.request_headers_to_adds` block of
 /// `google_compute_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds {
-  const ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds({
+final class ComputeSecurityPolicyRuleRequestHeadersToAdds {
+  const ComputeSecurityPolicyRuleRequestHeadersToAdds({
     this.headerName,
     this.headerValue,
   });

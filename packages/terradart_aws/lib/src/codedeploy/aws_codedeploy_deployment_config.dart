@@ -56,7 +56,7 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
 
   final TfArg<CodedeployDeploymentConfigTrafficRoutingConfigType>? type;
 
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBased? timeBased;
+  final CodedeployDeploymentConfigTimeBased? timeBased;
 
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
@@ -69,20 +69,18 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.timeBasedCanary(...)`.
-sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBased();
+sealed class CodedeployDeploymentConfigTimeBased {
+  const CodedeployDeploymentConfigTimeBased();
 
   /// Sets `time_based_canary`.
-  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary(
-    CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
-    timeBasedCanary,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice;
+  const factory CodedeployDeploymentConfigTimeBased.timeBasedCanary(
+    CodedeployDeploymentConfigTimeBasedCanary timeBasedCanary,
+  ) = CodedeployDeploymentConfigTimeBasedCanaryChoice;
 
   /// Sets `time_based_linear`.
-  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear(
-    CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
-    timeBasedLinear,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice;
+  const factory CodedeployDeploymentConfigTimeBased.timeBasedLinear(
+    CodedeployDeploymentConfigTimeBasedLinear timeBasedLinear,
+  ) = CodedeployDeploymentConfigTimeBasedLinearChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -90,15 +88,12 @@ sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
   Map<String, Object?> encode();
 }
 
-/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary] choice: sets `time_based_canary`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice
-    extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice(
-    this.timeBasedCanary,
-  );
+/// The [CodedeployDeploymentConfigTimeBased.timeBasedCanary] choice: sets `time_based_canary`.
+final class CodedeployDeploymentConfigTimeBasedCanaryChoice
+    extends CodedeployDeploymentConfigTimeBased {
+  const CodedeployDeploymentConfigTimeBasedCanaryChoice(this.timeBasedCanary);
 
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
-  timeBasedCanary;
+  final CodedeployDeploymentConfigTimeBasedCanary timeBasedCanary;
 
   @override
   String get blockKey => 'time_based_canary';
@@ -109,15 +104,12 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice
   };
 }
 
-/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear] choice: sets `time_based_linear`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice
-    extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice(
-    this.timeBasedLinear,
-  );
+/// The [CodedeployDeploymentConfigTimeBased.timeBasedLinear] choice: sets `time_based_linear`.
+final class CodedeployDeploymentConfigTimeBasedLinearChoice
+    extends CodedeployDeploymentConfigTimeBased {
+  const CodedeployDeploymentConfigTimeBasedLinearChoice(this.timeBasedLinear);
 
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
-  timeBasedLinear;
+  final CodedeployDeploymentConfigTimeBasedLinear timeBasedLinear;
 
   @override
   String get blockKey => 'time_based_linear';
@@ -143,8 +135,8 @@ enum CodedeployDeploymentConfigTrafficRoutingConfigType
 /// Typed helper for the `traffic_routing_config.time_based_canary` block of
 /// `aws_codedeploy_deployment_config` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary({
+final class CodedeployDeploymentConfigTimeBasedCanary {
+  const CodedeployDeploymentConfigTimeBasedCanary({
     this.interval,
     this.percentage,
   });
@@ -162,8 +154,8 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary {
 /// Typed helper for the `traffic_routing_config.time_based_linear` block of
 /// `aws_codedeploy_deployment_config` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear({
+final class CodedeployDeploymentConfigTimeBasedLinear {
+  const CodedeployDeploymentConfigTimeBasedLinear({
     this.interval,
     this.percentage,
   });
@@ -192,7 +184,7 @@ final class CodedeployDeploymentConfigZonalConfig {
 
   final TfArg<num>? monitorDurationInSeconds;
 
-  final CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZone?
+  final CodedeployDeploymentConfigMinimumHealthyHostsPerZone?
   minimumHealthyHostsPerZone;
 
   Map<String, Object?> encode() => {
@@ -206,16 +198,13 @@ final class CodedeployDeploymentConfigZonalConfig {
 /// Typed helper for the `zonal_config.minimum_healthy_hosts_per_zone` block of
 /// `aws_codedeploy_deployment_config` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZone {
-  const CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZone({
+final class CodedeployDeploymentConfigMinimumHealthyHostsPerZone {
+  const CodedeployDeploymentConfigMinimumHealthyHostsPerZone({
     this.type,
     this.value,
   });
 
-  final TfArg<
-    CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZoneType
-  >?
-  type;
+  final TfArg<CodedeployDeploymentConfigMinimumHealthyHostsType>? type;
 
   final TfArg<num>? value;
 
@@ -223,19 +212,6 @@ final class CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZone {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZoneType
-    implements TerraformEnum {
-  hostCount('HOST_COUNT'),
-  fleetPercent('FLEET_PERCENT');
-
-  const CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZoneType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_codedeploy_deployment_config`.

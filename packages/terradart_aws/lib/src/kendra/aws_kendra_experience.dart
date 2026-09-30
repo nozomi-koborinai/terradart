@@ -18,11 +18,9 @@ final class KendraExperienceConfiguration {
     this.userIdentityConfiguration,
   });
 
-  final KendraExperienceConfigurationContentSourceConfiguration?
-  contentSourceConfiguration;
+  final KendraExperienceContentSourceConfiguration? contentSourceConfiguration;
 
-  final KendraExperienceConfigurationUserIdentityConfiguration?
-  userIdentityConfiguration;
+  final KendraExperienceUserIdentityConfiguration? userIdentityConfiguration;
 
   Map<String, Object?> encode() => {
     'content_source_configuration': ?contentSourceConfiguration?.encode(),
@@ -33,8 +31,8 @@ final class KendraExperienceConfiguration {
 /// Typed helper for the `configuration.content_source_configuration` block of
 /// `aws_kendra_experience` (derived from provider schema).
 @immutable
-final class KendraExperienceConfigurationContentSourceConfiguration {
-  const KendraExperienceConfigurationContentSourceConfiguration({
+final class KendraExperienceContentSourceConfiguration {
+  const KendraExperienceContentSourceConfiguration({
     this.dataSourceIds,
     this.directPutContent,
     this.faqIds,
@@ -56,8 +54,8 @@ final class KendraExperienceConfigurationContentSourceConfiguration {
 /// Typed helper for the `configuration.user_identity_configuration` block of
 /// `aws_kendra_experience` (derived from provider schema).
 @immutable
-final class KendraExperienceConfigurationUserIdentityConfiguration {
-  const KendraExperienceConfigurationUserIdentityConfiguration({
+final class KendraExperienceUserIdentityConfiguration {
+  const KendraExperienceUserIdentityConfiguration({
     required this.identityAttributeName,
   });
 

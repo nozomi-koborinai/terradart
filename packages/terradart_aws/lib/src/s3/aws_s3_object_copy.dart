@@ -211,9 +211,9 @@ final class S3ObjectCopyGrant {
 
   final TfArg<String>? id;
 
-  final List<TfArg<S3ObjectCopyGrantPermissions>> permissions;
+  final List<TfArg<S3ObjectCopyPermissions>> permissions;
 
-  final TfArg<S3ObjectCopyGrantType> type;
+  final TfArg<S3ObjectCopyType> type;
 
   final TfArg<String>? uri;
 
@@ -227,24 +227,24 @@ final class S3ObjectCopyGrant {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum S3ObjectCopyGrantPermissions implements TerraformEnum {
+enum S3ObjectCopyPermissions implements TerraformEnum {
   fullControl('FULL_CONTROL'),
   read('READ'),
   readAcp('READ_ACP'),
   writeAcp('WRITE_ACP');
 
-  const S3ObjectCopyGrantPermissions(this.terraformValue);
+  const S3ObjectCopyPermissions(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum S3ObjectCopyGrantType implements TerraformEnum {
+enum S3ObjectCopyType implements TerraformEnum {
   canonicaluser('CanonicalUser'),
   amazoncustomerbyemail('AmazonCustomerByEmail'),
   group('Group');
 
-  const S3ObjectCopyGrantType(this.terraformValue);
+  const S3ObjectCopyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -255,7 +255,7 @@ enum S3ObjectCopyGrantType implements TerraformEnum {
 final class S3ObjectCopyOverrideProvider {
   const S3ObjectCopyOverrideProvider({this.defaultTags});
 
-  final S3ObjectCopyOverrideProviderDefaultTags? defaultTags;
+  final S3ObjectCopyDefaultTags? defaultTags;
 
   Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
@@ -263,8 +263,8 @@ final class S3ObjectCopyOverrideProvider {
 /// Typed helper for the `override_provider.default_tags` block of
 /// `aws_s3_object_copy` (derived from provider schema).
 @immutable
-final class S3ObjectCopyOverrideProviderDefaultTags {
-  const S3ObjectCopyOverrideProviderDefaultTags({this.tags});
+final class S3ObjectCopyDefaultTags {
+  const S3ObjectCopyDefaultTags({this.tags});
 
   final TfArg<Map<String, String>>? tags;
 

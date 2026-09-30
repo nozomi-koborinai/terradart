@@ -51,7 +51,7 @@ final class S3controlAccessGrantGrantee {
 
   final TfArg<String> granteeIdentifier;
 
-  final TfArg<S3controlAccessGrantGranteeGranteeType> granteeType;
+  final TfArg<S3controlAccessGrantGranteeType> granteeType;
 
   Map<String, Object?> encode() => {
     'grantee_identifier': granteeIdentifier.toTfJson(),
@@ -60,12 +60,12 @@ final class S3controlAccessGrantGrantee {
 }
 
 /// `grantee_type` — derived from the provider schema description.
-enum S3controlAccessGrantGranteeGranteeType implements TerraformEnum {
+enum S3controlAccessGrantGranteeType implements TerraformEnum {
   directoryUser('DIRECTORY_USER'),
   directoryGroup('DIRECTORY_GROUP'),
   iam('IAM');
 
-  const S3controlAccessGrantGranteeGranteeType(this.terraformValue);
+  const S3controlAccessGrantGranteeType(this.terraformValue);
   @override
   final String terraformValue;
 }

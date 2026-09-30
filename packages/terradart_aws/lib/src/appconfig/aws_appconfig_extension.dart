@@ -18,9 +18,9 @@ final class AppconfigExtensionActionPoint {
     required this.action,
   });
 
-  final TfArg<AppconfigExtensionActionPointPoint> point;
+  final TfArg<AppconfigExtensionPoint> point;
 
-  final List<AppconfigExtensionActionPointAction> action;
+  final List<AppconfigExtensionAction> action;
 
   Map<String, Object?> encode() => {
     'point': point.toTfJson(),
@@ -29,7 +29,7 @@ final class AppconfigExtensionActionPoint {
 }
 
 /// `point` — derived from the provider schema description.
-enum AppconfigExtensionActionPointPoint implements TerraformEnum {
+enum AppconfigExtensionPoint implements TerraformEnum {
   preCreateHostedConfigurationVersion(
     'PRE_CREATE_HOSTED_CONFIGURATION_VERSION',
   ),
@@ -41,7 +41,7 @@ enum AppconfigExtensionActionPointPoint implements TerraformEnum {
   onDeploymentComplete('ON_DEPLOYMENT_COMPLETE'),
   onDeploymentRolledBack('ON_DEPLOYMENT_ROLLED_BACK');
 
-  const AppconfigExtensionActionPointPoint(this.terraformValue);
+  const AppconfigExtensionPoint(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -49,8 +49,8 @@ enum AppconfigExtensionActionPointPoint implements TerraformEnum {
 /// Typed helper for the `action_point.action` block of
 /// `aws_appconfig_extension` (derived from provider schema).
 @immutable
-final class AppconfigExtensionActionPointAction {
-  const AppconfigExtensionActionPointAction({
+final class AppconfigExtensionAction {
+  const AppconfigExtensionAction({
     this.description,
     required this.name,
     this.roleArn,

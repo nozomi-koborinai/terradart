@@ -33,7 +33,7 @@ curatedDoc: |-
   ///   network: vpc.ref,
   ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
   ///     protocolVersion: TfArg.literal(
-  ///       NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,
+  ///       NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
   ///     ),
   ///   ),
   ///   nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(

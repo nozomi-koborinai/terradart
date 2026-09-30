@@ -7,39 +7,39 @@ library;
 export 'src/apphub/google_apphub_application.dart'
     show
         ApphubApplicationAttributes,
-        ApphubApplicationAttributesBusinessOwners,
-        ApphubApplicationAttributesCriticality,
-        ApphubApplicationAttributesCriticalityType,
-        ApphubApplicationAttributesDeveloperOwners,
-        ApphubApplicationAttributesEnvironment,
-        ApphubApplicationAttributesEnvironmentType,
-        ApphubApplicationAttributesOperatorOwners,
+        ApphubApplicationBusinessOwners,
+        ApphubApplicationCriticality,
+        ApphubApplicationCriticalityType,
+        ApphubApplicationDeveloperOwners,
+        ApphubApplicationEnvironment,
+        ApphubApplicationEnvironmentType,
+        ApphubApplicationOperatorOwners,
         ApphubApplicationScope,
-        ApphubApplicationScopeType,
         ApphubApplicationState,
+        ApphubApplicationType,
         GoogleApphubApplication;
 export 'src/apphub/google_apphub_boundary.dart' show GoogleApphubBoundary;
 export 'src/apphub/google_apphub_service.dart'
     show
         ApphubServiceAttributes,
-        ApphubServiceAttributesBusinessOwners,
-        ApphubServiceAttributesCriticality,
-        ApphubServiceAttributesCriticalityType,
-        ApphubServiceAttributesDeveloperOwners,
-        ApphubServiceAttributesEnvironment,
-        ApphubServiceAttributesEnvironmentType,
-        ApphubServiceAttributesOperatorOwners,
+        ApphubServiceBusinessOwners,
+        ApphubServiceCriticality,
+        ApphubServiceCriticalityType,
+        ApphubServiceDeveloperOwners,
+        ApphubServiceEnvironment,
+        ApphubServiceEnvironmentType,
+        ApphubServiceOperatorOwners,
         GoogleApphubService;
 export 'src/apphub/google_apphub_service_project_attachment.dart'
     show GoogleApphubServiceProjectAttachment;
 export 'src/apphub/google_apphub_workload.dart'
     show
         ApphubWorkloadAttributes,
-        ApphubWorkloadAttributesBusinessOwners,
-        ApphubWorkloadAttributesCriticality,
-        ApphubWorkloadAttributesCriticalityType,
-        ApphubWorkloadAttributesDeveloperOwners,
-        ApphubWorkloadAttributesEnvironment,
-        ApphubWorkloadAttributesEnvironmentType,
-        ApphubWorkloadAttributesOperatorOwners,
+        ApphubWorkloadBusinessOwners,
+        ApphubWorkloadCriticality,
+        ApphubWorkloadCriticalityType,
+        ApphubWorkloadDeveloperOwners,
+        ApphubWorkloadEnvironment,
+        ApphubWorkloadEnvironmentType,
+        ApphubWorkloadOperatorOwners,
         GoogleApphubWorkload;

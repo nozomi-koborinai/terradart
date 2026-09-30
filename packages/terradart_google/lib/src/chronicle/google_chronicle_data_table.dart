@@ -33,7 +33,7 @@ final class ChronicleDataTableColumnInfo {
 
   final TfArg<num> columnIndex;
 
-  final TfArg<ChronicleDataTableColumnInfoColumnType>? columnType;
+  final TfArg<ChronicleDataTableColumnType>? columnType;
 
   final TfArg<bool>? keyColumn;
 
@@ -54,13 +54,13 @@ final class ChronicleDataTableColumnInfo {
 }
 
 /// `column_type` — derived from the provider schema description.
-enum ChronicleDataTableColumnInfoColumnType implements TerraformEnum {
+enum ChronicleDataTableColumnType implements TerraformEnum {
   string('STRING'),
   regex('REGEX'),
   cidr('CIDR'),
   number('NUMBER');
 
-  const ChronicleDataTableColumnInfoColumnType(this.terraformValue);
+  const ChronicleDataTableColumnType(this.terraformValue);
   @override
   final String terraformValue;
 }

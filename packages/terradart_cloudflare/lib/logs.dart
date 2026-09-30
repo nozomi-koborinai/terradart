@@ -12,7 +12,7 @@ export 'src/logs/cloudflare_logpush_job.dart'
         LogpushJobFrequency,
         LogpushJobKind,
         LogpushJobOutputOptions,
-        LogpushJobOutputOptionsOutputType,
-        LogpushJobOutputOptionsTimestampFormat;
+        LogpushJobOutputType,
+        LogpushJobTimestampFormat;
 export 'src/logs/cloudflare_logpush_ownership_challenge.dart'
     show CloudflareLogpushOwnershipChallenge;

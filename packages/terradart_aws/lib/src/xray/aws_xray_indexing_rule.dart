@@ -13,7 +13,7 @@ const Set<String> _awsXrayIndexingRuleSensitive = <String>{};
 final class XrayIndexingRuleRule {
   const XrayIndexingRuleRule({this.probabilistic});
 
-  final List<XrayIndexingRuleRuleProbabilistic>? probabilistic;
+  final List<XrayIndexingRuleProbabilistic>? probabilistic;
 
   Map<String, Object?> encode() => {
     if (probabilistic != null)
@@ -24,8 +24,8 @@ final class XrayIndexingRuleRule {
 /// Typed helper for the `rule.probabilistic` block of
 /// `aws_xray_indexing_rule` (derived from provider schema).
 @immutable
-final class XrayIndexingRuleRuleProbabilistic {
-  const XrayIndexingRuleRuleProbabilistic({
+final class XrayIndexingRuleProbabilistic {
+  const XrayIndexingRuleProbabilistic({
     required this.desiredSamplingPercentage,
   });
 

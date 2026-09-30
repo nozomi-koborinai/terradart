@@ -132,7 +132,7 @@ final class WorkstationsWorkstationConfigEphemeralDirectoriesGcePd {
 final class WorkstationsWorkstationConfigHost {
   const WorkstationsWorkstationConfigHost({this.gceInstance});
 
-  final WorkstationsWorkstationConfigHostGceInstance? gceInstance;
+  final WorkstationsWorkstationConfigGceInstance? gceInstance;
 
   Map<String, Object?> encode() => {'gce_instance': ?gceInstance?.encode()};
 }
@@ -140,8 +140,8 @@ final class WorkstationsWorkstationConfigHost {
 /// Typed helper for the `host.gce_instance` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
 @immutable
-final class WorkstationsWorkstationConfigHostGceInstance {
-  const WorkstationsWorkstationConfigHostGceInstance({
+final class WorkstationsWorkstationConfigGceInstance {
+  const WorkstationsWorkstationConfigGceInstance({
     this.bootDiskSizeGb,
     this.disablePublicIpAddresses,
     this.disableSsh,
@@ -181,16 +181,14 @@ final class WorkstationsWorkstationConfigHostGceInstance {
 
   final TfArg<Map<String, String>>? vmTags;
 
-  final List<WorkstationsWorkstationConfigHostGceInstanceAccelerators>?
-  accelerators;
+  final List<WorkstationsWorkstationConfigAccelerators>? accelerators;
 
-  final List<WorkstationsWorkstationConfigHostGceInstanceBoostConfigs>?
-  boostConfigs;
+  final List<WorkstationsWorkstationConfigBoostConfigs>? boostConfigs;
 
-  final WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConfig?
+  final WorkstationsWorkstationConfigConfidentialInstanceConfig?
   confidentialInstanceConfig;
 
-  final WorkstationsWorkstationConfigHostGceInstanceShieldedInstanceConfig?
+  final WorkstationsWorkstationConfigShieldedInstanceConfig?
   shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
@@ -216,9 +214,10 @@ final class WorkstationsWorkstationConfigHostGceInstance {
 
 /// Typed helper for the `host.gce_instance.accelerators` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkstationsWorkstationConfigHostGceInstanceAccelerators {
-  const WorkstationsWorkstationConfigHostGceInstanceAccelerators({
+final class WorkstationsWorkstationConfigAccelerators {
+  const WorkstationsWorkstationConfigAccelerators({
     required this.count,
     required this.type,
   });
@@ -236,8 +235,8 @@ final class WorkstationsWorkstationConfigHostGceInstanceAccelerators {
 /// Typed helper for the `host.gce_instance.boost_configs` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
 @immutable
-final class WorkstationsWorkstationConfigHostGceInstanceBoostConfigs {
-  const WorkstationsWorkstationConfigHostGceInstanceBoostConfigs({
+final class WorkstationsWorkstationConfigBoostConfigs {
+  const WorkstationsWorkstationConfigBoostConfigs({
     this.bootDiskSizeGb,
     this.enableNestedVirtualization,
     required this.id,
@@ -256,10 +255,7 @@ final class WorkstationsWorkstationConfigHostGceInstanceBoostConfigs {
 
   final TfArg<num>? poolSize;
 
-  final List<
-    WorkstationsWorkstationConfigHostGceInstanceBoostConfigsAccelerators
-  >?
-  accelerators;
+  final List<WorkstationsWorkstationConfigAccelerators>? accelerators;
 
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
@@ -272,30 +268,11 @@ final class WorkstationsWorkstationConfigHostGceInstanceBoostConfigs {
   };
 }
 
-/// Typed helper for the `host.gce_instance.boost_configs.accelerators` block of
-/// `google_workstations_workstation_config` (derived from provider schema).
-@immutable
-final class WorkstationsWorkstationConfigHostGceInstanceBoostConfigsAccelerators {
-  const WorkstationsWorkstationConfigHostGceInstanceBoostConfigsAccelerators({
-    required this.count,
-    required this.type,
-  });
-
-  final TfArg<num> count;
-
-  final TfArg<String> type;
-
-  Map<String, Object?> encode() => {
-    'count': count.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
 /// Typed helper for the `host.gce_instance.confidential_instance_config` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
 @immutable
-final class WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConfig {
-  const WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConfig({
+final class WorkstationsWorkstationConfigConfidentialInstanceConfig {
+  const WorkstationsWorkstationConfigConfidentialInstanceConfig({
     this.enableConfidentialCompute,
   });
 
@@ -309,8 +286,8 @@ final class WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConf
 /// Typed helper for the `host.gce_instance.shielded_instance_config` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
 @immutable
-final class WorkstationsWorkstationConfigHostGceInstanceShieldedInstanceConfig {
-  const WorkstationsWorkstationConfigHostGceInstanceShieldedInstanceConfig({
+final class WorkstationsWorkstationConfigShieldedInstanceConfig {
+  const WorkstationsWorkstationConfigShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -341,7 +318,7 @@ final class WorkstationsWorkstationConfigPersistentDirectories {
 
   final TfArg<String>? mountPath;
 
-  final WorkstationsWorkstationConfigPersistentDirectoriesGceHd? gceHd;
+  final WorkstationsWorkstationConfigGceHd? gceHd;
 
   final WorkstationsWorkstationConfigPersistentDirectoriesGcePd? gcePd;
 
@@ -355,8 +332,8 @@ final class WorkstationsWorkstationConfigPersistentDirectories {
 /// Typed helper for the `persistent_directories.gce_hd` block of
 /// `google_workstations_workstation_config` (derived from provider schema).
 @immutable
-final class WorkstationsWorkstationConfigPersistentDirectoriesGceHd {
-  const WorkstationsWorkstationConfigPersistentDirectoriesGceHd({
+final class WorkstationsWorkstationConfigGceHd {
+  const WorkstationsWorkstationConfigGceHd({
     this.archiveTimeout,
     this.reclaimPolicy,
     this.sizeGb,
@@ -365,10 +342,7 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGceHd {
 
   final TfArg<String>? archiveTimeout;
 
-  final TfArg<
-    WorkstationsWorkstationConfigPersistentDirectoriesGceHdReclaimPolicy
-  >?
-  reclaimPolicy;
+  final TfArg<WorkstationsWorkstationConfigReclaimPolicy>? reclaimPolicy;
 
   final TfArg<num>? sizeGb;
 
@@ -383,14 +357,11 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGceHd {
 }
 
 /// `reclaim_policy` — derived from the provider schema description.
-enum WorkstationsWorkstationConfigPersistentDirectoriesGceHdReclaimPolicy
-    implements TerraformEnum {
+enum WorkstationsWorkstationConfigReclaimPolicy implements TerraformEnum {
   delete('DELETE'),
   retain('RETAIN');
 
-  const WorkstationsWorkstationConfigPersistentDirectoriesGceHdReclaimPolicy(
-    this.terraformValue,
-  );
+  const WorkstationsWorkstationConfigReclaimPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -411,10 +382,7 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGcePd {
 
   final TfArg<String>? fsType;
 
-  final TfArg<
-    WorkstationsWorkstationConfigPersistentDirectoriesGcePdReclaimPolicy
-  >?
-  reclaimPolicy;
+  final TfArg<WorkstationsWorkstationConfigReclaimPolicy>? reclaimPolicy;
 
   final TfArg<num>? sizeGb;
 
@@ -427,19 +395,6 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGcePd {
     'size_gb': ?sizeGb?.toTfJson(),
     'source_snapshot': ?sourceSnapshot?.toTfJson(),
   };
-}
-
-/// `reclaim_policy` — derived from the provider schema description.
-enum WorkstationsWorkstationConfigPersistentDirectoriesGcePdReclaimPolicy
-    implements TerraformEnum {
-  delete('DELETE'),
-  retain('RETAIN');
-
-  const WorkstationsWorkstationConfigPersistentDirectoriesGcePdReclaimPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `readiness_checks` block of
@@ -482,7 +437,7 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   host: WorkstationsWorkstationConfigHost(
-///     gceInstance: WorkstationsWorkstationConfigHostGceInstance(
+///     gceInstance: WorkstationsWorkstationConfigGceInstance(
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///       bootDiskSizeGb: TfArg.literal(50),
 ///     ),

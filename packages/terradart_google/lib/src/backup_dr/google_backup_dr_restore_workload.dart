@@ -60,9 +60,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 
   final TfArg<String>? hostname;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesKeyRevocationActionType
-  >?
+  final TfArg<BackupDrRestoreWorkloadKeyRevocationActionType>?
   keyRevocationActionType;
 
   final TfArg<String>? machineType;
@@ -71,64 +69,44 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 
   final TfArg<String> name;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesPrivateIpv6GoogleAccess
-  >?
+  final TfArg<BackupDrRestoreWorkloadPrivateIpv6GoogleAccess>?
   privateIpv6GoogleAccess;
 
   final TfArg<List<String>>? resourcePolicies;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachineFeatures?
-  advancedMachineFeatures;
+  final BackupDrRestoreWorkloadAdvancedMachineFeatures? advancedMachineFeatures;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinity?
-  allocationAffinity;
+  final BackupDrRestoreWorkloadAllocationAffinity? allocationAffinity;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesConfidentialInstanceConfig?
+  final BackupDrRestoreWorkloadConfidentialInstanceConfig?
   confidentialInstanceConfig;
 
-  final List<BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks>?
-  disks;
+  final List<BackupDrRestoreWorkloadDisks>? disks;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisplayDevice?
-  displayDevice;
+  final BackupDrRestoreWorkloadDisplayDevice? displayDevice;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesGuestAccelerators
-  >?
-  guestAccelerators;
+  final List<BackupDrRestoreWorkloadGuestAccelerators>? guestAccelerators;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncryptionKey?
-  instanceEncryptionKey;
+  final BackupDrRestoreWorkloadInstanceEncryptionKey? instanceEncryptionKey;
 
-  final List<BackupDrRestoreWorkloadComputeInstanceRestorePropertiesLabels>?
-  labels;
+  final List<BackupDrRestoreWorkloadLabels>? labels;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadata?
-  metadata;
+  final BackupDrRestoreWorkloadMetadata? metadata;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfaces
-  >?
-  networkInterfaces;
+  final List<BackupDrRestoreWorkloadNetworkInterfaces>? networkInterfaces;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfig?
+  final BackupDrRestoreWorkloadNetworkPerformanceConfig?
   networkPerformanceConfig;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParams? params;
+  final BackupDrRestoreWorkloadParams? params;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling?
-  scheduling;
+  final BackupDrRestoreWorkloadScheduling? scheduling;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccounts
-  >?
-  serviceAccounts;
+  final List<BackupDrRestoreWorkloadServiceAccounts>? serviceAccounts;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final BackupDrRestoreWorkloadShieldedInstanceConfig? shieldedInstanceConfig;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags? tags;
+  final BackupDrRestoreWorkloadTags? tags;
 
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
@@ -164,22 +142,18 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 }
 
 /// `key_revocation_action_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesKeyRevocationActionType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadKeyRevocationActionType implements TerraformEnum {
   keyRevocationActionTypeUnspecified('KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED'),
   none('NONE'),
   stop('STOP');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesKeyRevocationActionType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadKeyRevocationActionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `private_ipv6_google_access` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesPrivateIpv6GoogleAccess
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadPrivateIpv6GoogleAccess implements TerraformEnum {
   instancePrivateIpv6GoogleAccessUnspecified(
     'INSTANCE_PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED',
   ),
@@ -187,9 +161,7 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesPrivateIpv6GoogleAcc
   enableOutboundVmAccessToGoogle('ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE'),
   enableBidirectionalAccessToGoogle('ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesPrivateIpv6GoogleAccess(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadPrivateIpv6GoogleAccess(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -197,8 +169,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesPrivateIpv6GoogleAcc
 /// Typed helper for the `compute_instance_restore_properties.advanced_machine_features` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachineFeatures {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachineFeatures({
+final class BackupDrRestoreWorkloadAdvancedMachineFeatures {
+  const BackupDrRestoreWorkloadAdvancedMachineFeatures({
     this.enableNestedVirtualization,
     this.enableUefiNetworking,
     this.threadsPerCore,
@@ -224,16 +196,14 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachi
 /// Typed helper for the `compute_instance_restore_properties.allocation_affinity` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinity {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinity({
+final class BackupDrRestoreWorkloadAllocationAffinity {
+  const BackupDrRestoreWorkloadAllocationAffinity({
     this.consumeAllocationType,
     this.key,
     this.values,
   });
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinityConsumeAllocationType
-  >?
+  final TfArg<BackupDrRestoreWorkloadConsumeAllocationType>?
   consumeAllocationType;
 
   final TfArg<String>? key;
@@ -248,16 +218,13 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAff
 }
 
 /// `consume_allocation_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinityConsumeAllocationType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadConsumeAllocationType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   noReservation('NO_RESERVATION'),
   anyReservation('ANY_RESERVATION'),
   specificReservation('SPECIFIC_RESERVATION');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinityConsumeAllocationType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadConsumeAllocationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -265,8 +232,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAffinityCo
 /// Typed helper for the `compute_instance_restore_properties.confidential_instance_config` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesConfidentialInstanceConfig {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesConfidentialInstanceConfig({
+final class BackupDrRestoreWorkloadConfidentialInstanceConfig {
+  const BackupDrRestoreWorkloadConfidentialInstanceConfig({
     this.enableConfidentialCompute,
   });
 
@@ -280,8 +247,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesConfidentialI
 /// Typed helper for the `compute_instance_restore_properties.disks` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks({
+final class BackupDrRestoreWorkloadDisks {
+  const BackupDrRestoreWorkloadDisks({
     this.autoDelete,
     this.boot,
     this.deviceName,
@@ -306,10 +273,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskInterface
-  >?
-  diskInterface;
+  final TfArg<BackupDrRestoreWorkloadDiskInterface>? diskInterface;
 
   final TfArg<num>? diskSizeGb;
 
@@ -321,29 +285,19 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
 
   final TfArg<List<String>>? license;
 
-  final TfArg<BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksMode>?
-  mode;
+  final TfArg<BackupDrRestoreWorkloadMode>? mode;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksSavedState
-  >?
-  savedState;
+  final TfArg<BackupDrRestoreWorkloadSavedState>? savedState;
 
   final TfArg<String>? source;
 
-  final TfArg<BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksType>?
-  type;
+  final TfArg<BackupDrRestoreWorkloadDisksType>? type;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncryptionKey?
-  diskEncryptionKey;
+  final BackupDrRestoreWorkloadDiskEncryptionKey? diskEncryptionKey;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeature
-  >?
-  guestOsFeature;
+  final List<BackupDrRestoreWorkloadGuestOsFeature>? guestOsFeature;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitializeParams?
-  initializeParams;
+  final BackupDrRestoreWorkloadInitializeParams? initializeParams;
 
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
@@ -367,68 +321,57 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
 }
 
 /// `disk_interface` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskInterface
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadDiskInterface implements TerraformEnum {
   diskInterfaceUnspecified('DISK_INTERFACE_UNSPECIFIED'),
   scsi('SCSI'),
   nvme('NVME'),
   nvdimm('NVDIMM'),
   iscsi('ISCSI');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskInterface(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadDiskInterface(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mode` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksMode
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadMode implements TerraformEnum {
   diskModeUnspecified('DISK_MODE_UNSPECIFIED'),
   readWrite('READ_WRITE'),
   readOnly('READ_ONLY'),
   locked('LOCKED');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksMode(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `saved_state` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksSavedState
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadSavedState implements TerraformEnum {
   diskSavedStateUnspecified('DISK_SAVED_STATE_UNSPECIFIED'),
   preserved('PRESERVED');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksSavedState(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadSavedState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadDisksType implements TerraformEnum {
   diskTypeUnspecified('DISK_TYPE_UNSPECIFIED'),
   scratch('SCRATCH'),
   persistent('PERSISTENT');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadDisksType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `compute_instance_restore_properties.disks.disk_encryption_key` block of
+/// Typed helper for the `disk_restore_properties.disk_encryption_key` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncryptionKey {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncryptionKey({
+final class BackupDrRestoreWorkloadDiskEncryptionKey {
+  const BackupDrRestoreWorkloadDiskEncryptionKey({
     this.kmsKeyName,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -451,25 +394,20 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncr
   };
 }
 
-/// Typed helper for the `compute_instance_restore_properties.disks.guest_os_feature` block of
+/// Typed helper for the `disk_restore_properties.guest_os_feature` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeature {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeature({
-    this.type,
-  });
+final class BackupDrRestoreWorkloadGuestOsFeature {
+  const BackupDrRestoreWorkloadGuestOsFeature({this.type});
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeatureType
-  >?
-  type;
+  final TfArg<BackupDrRestoreWorkloadGuestOsFeatureType>? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeatureType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadGuestOsFeatureType implements TerraformEnum {
   featureTypeUnspecified('FEATURE_TYPE_UNSPECIFIED'),
   virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
   windows('WINDOWS'),
@@ -486,9 +424,7 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeatureT
   idpf('IDPF'),
   sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeatureType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadGuestOsFeatureType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -496,8 +432,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsFeatureT
 /// Typed helper for the `compute_instance_restore_properties.disks.initialize_params` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitializeParams {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitializeParams({
+final class BackupDrRestoreWorkloadInitializeParams {
+  const BackupDrRestoreWorkloadInitializeParams({
     this.diskName,
     this.replicaZones,
   });
@@ -515,10 +451,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitiali
 /// Typed helper for the `compute_instance_restore_properties.display_device` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisplayDevice {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisplayDevice({
-    this.enableDisplay,
-  });
+final class BackupDrRestoreWorkloadDisplayDevice {
+  const BackupDrRestoreWorkloadDisplayDevice({this.enableDisplay});
 
   final TfArg<bool>? enableDisplay;
 
@@ -530,8 +464,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisplayDevice
 /// Typed helper for the `compute_instance_restore_properties.guest_accelerators` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesGuestAccelerators {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesGuestAccelerators({
+final class BackupDrRestoreWorkloadGuestAccelerators {
+  const BackupDrRestoreWorkloadGuestAccelerators({
     this.acceleratorCount,
     this.acceleratorType,
   });
@@ -549,8 +483,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesGuestAccelera
 /// Typed helper for the `compute_instance_restore_properties.instance_encryption_key` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncryptionKey {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncryptionKey({
+final class BackupDrRestoreWorkloadInstanceEncryptionKey {
+  const BackupDrRestoreWorkloadInstanceEncryptionKey({
     this.kmsKeyName,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -575,12 +509,10 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncry
 
 /// Typed helper for the `compute_instance_restore_properties.labels` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesLabels {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesLabels({
-    required this.key,
-    this.value,
-  });
+final class BackupDrRestoreWorkloadLabels {
+  const BackupDrRestoreWorkloadLabels({required this.key, this.value});
 
   final TfArg<String> key;
 
@@ -595,15 +527,10 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesLabels {
 /// Typed helper for the `compute_instance_restore_properties.metadata` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadata {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadata({
-    this.items,
-  });
+final class BackupDrRestoreWorkloadMetadata {
+  const BackupDrRestoreWorkloadMetadata({this.items});
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadataItems
-  >?
-  items;
+  final List<BackupDrRestoreWorkloadItems>? items;
 
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
@@ -613,11 +540,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadata {
 /// Typed helper for the `compute_instance_restore_properties.metadata.items` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadataItems {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadataItems({
-    this.key,
-    this.value,
-  });
+final class BackupDrRestoreWorkloadItems {
+  const BackupDrRestoreWorkloadItems({this.key, this.value});
 
   final TfArg<String>? key;
 
@@ -632,8 +556,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadataItems
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfaces {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfaces({
+final class BackupDrRestoreWorkloadNetworkInterfaces {
+  const BackupDrRestoreWorkloadNetworkInterfaces({
     this.internalIpv6PrefixLength,
     this.ipAddress,
     this.ipv6AccessType,
@@ -653,10 +577,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 
   final TfArg<String>? ipAddress;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessType
-  >?
-  ipv6AccessType;
+  final TfArg<BackupDrRestoreWorkloadIpv6AccessType>? ipv6AccessType;
 
   final TfArg<String>? ipv6Address;
 
@@ -664,34 +585,19 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 
   final TfArg<String>? networkAttachment;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesNicType
-  >?
-  nicType;
+  final TfArg<BackupDrRestoreWorkloadNicType>? nicType;
 
   final TfArg<num>? queueCount;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesStackType
-  >?
-  stackType;
+  final TfArg<BackupDrRestoreWorkloadStackType>? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigs
-  >?
-  accessConfigs;
+  final List<BackupDrRestoreWorkloadAccessConfigs>? accessConfigs;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAliasIpRanges
-  >?
-  aliasIpRanges;
+  final List<BackupDrRestoreWorkloadAliasIpRanges>? aliasIpRanges;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigs
-  >?
-  ipv6AccessConfigs;
+  final List<BackupDrRestoreWorkloadIpv6AccessConfigs>? ipv6AccessConfigs;
 
   Map<String, Object?> encode() => {
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
@@ -714,43 +620,34 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 }
 
 /// `ipv6_access_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadIpv6AccessType implements TerraformEnum {
   unspecifiedIpv6AccessType('UNSPECIFIED_IPV6_ACCESS_TYPE'),
   internal('INTERNAL'),
   external('EXTERNAL');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadIpv6AccessType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesNicType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadNicType implements TerraformEnum {
   nicTypeUnspecified('NIC_TYPE_UNSPECIFIED'),
   virtioNet('VIRTIO_NET'),
   gvnic('GVNIC');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesNicType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadNicType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `stack_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesStackType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadStackType implements TerraformEnum {
   stackTypeUnspecified('STACK_TYPE_UNSPECIFIED'),
   ipv4Only('IPV4_ONLY'),
   ipv4Ipv6('IPV4_IPV6');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesStackType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadStackType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -758,8 +655,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesSta
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces.access_configs` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigs {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigs({
+final class BackupDrRestoreWorkloadAccessConfigs {
+  const BackupDrRestoreWorkloadAccessConfigs({
     this.externalIp,
     this.externalIpv6,
     this.externalIpv6PrefixLength,
@@ -778,19 +675,13 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 
   final TfArg<String>? name;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsNetworkTier
-  >?
-  networkTier;
+  final TfArg<BackupDrRestoreWorkloadNetworkTier>? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
   final TfArg<bool>? setPublicPtr;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsType
-  >?
-  type;
+  final TfArg<BackupDrRestoreWorkloadAccessConfigsType>? type;
 
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
@@ -805,29 +696,23 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 }
 
 /// `network_tier` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsNetworkTier
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadNetworkTier implements TerraformEnum {
   networkTierUnspecified('NETWORK_TIER_UNSPECIFIED'),
   premium('PREMIUM'),
   standard('STANDARD');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsNetworkTier(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadNetworkTier(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsType
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadAccessConfigsType implements TerraformEnum {
   accessTypeUnspecified('ACCESS_TYPE_UNSPECIFIED'),
   oneToOneNat('ONE_TO_ONE_NAT'),
   directIpv6('DIRECT_IPV6');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigsType(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadAccessConfigsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -835,8 +720,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAcc
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces.alias_ip_ranges` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAliasIpRanges {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAliasIpRanges({
+final class BackupDrRestoreWorkloadAliasIpRanges {
+  const BackupDrRestoreWorkloadAliasIpRanges({
     this.ipCidrRange,
     this.subnetworkRangeName,
   });
@@ -854,8 +739,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces.ipv6_access_configs` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigs {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigs({
+final class BackupDrRestoreWorkloadIpv6AccessConfigs {
+  const BackupDrRestoreWorkloadIpv6AccessConfigs({
     this.externalIp,
     this.externalIpv6,
     this.externalIpv6PrefixLength,
@@ -874,19 +759,13 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 
   final TfArg<String>? name;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsNetworkTier
-  >?
-  networkTier;
+  final TfArg<BackupDrRestoreWorkloadNetworkTier>? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
   final TfArg<bool>? setPublicPtr;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsType
-  >?
-  type;
+  final TfArg<BackupDrRestoreWorkloadAccessConfigsType>? type;
 
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
@@ -900,45 +779,15 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   };
 }
 
-/// `network_tier` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsNetworkTier
-    implements TerraformEnum {
-  networkTierUnspecified('NETWORK_TIER_UNSPECIFIED'),
-  premium('PREMIUM'),
-  standard('STANDARD');
-
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsNetworkTier(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsType
-    implements TerraformEnum {
-  accessTypeUnspecified('ACCESS_TYPE_UNSPECIFIED'),
-  oneToOneNat('ONE_TO_ONE_NAT'),
-  directIpv6('DIRECT_IPV6');
-
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesIpv6AccessConfigsType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `compute_instance_restore_properties.network_performance_config` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfig {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfig({
+final class BackupDrRestoreWorkloadNetworkPerformanceConfig {
+  const BackupDrRestoreWorkloadNetworkPerformanceConfig({
     this.totalEgressBandwidthTier,
   });
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfigTotalEgressBandwidthTier
-  >?
+  final TfArg<BackupDrRestoreWorkloadTotalEgressBandwidthTier>?
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -947,15 +796,12 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerfor
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfigTotalEgressBandwidthTier
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadTotalEgressBandwidthTier implements TerraformEnum {
   tierUnspecified('TIER_UNSPECIFIED'),
   defaultCase('DEFAULT'),
   tier1('TIER_1');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceConfigTotalEgressBandwidthTier(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadTotalEgressBandwidthTier(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -963,15 +809,10 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerformanceCo
 /// Typed helper for the `compute_instance_restore_properties.params` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParams {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParams({
-    this.resourceManagerTags,
-  });
+final class BackupDrRestoreWorkloadParams {
+  const BackupDrRestoreWorkloadParams({this.resourceManagerTags});
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParamsResourceManagerTags
-  >?
-  resourceManagerTags;
+  final List<BackupDrRestoreWorkloadResourceManagerTags>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
     if (resourceManagerTags != null)
@@ -981,11 +822,12 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParams {
   };
 }
 
-/// Typed helper for the `compute_instance_restore_properties.params.resource_manager_tags` block of
+/// Typed helper for the `disk_restore_properties.resource_manager_tags` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParamsResourceManagerTags {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParamsResourceManagerTags({
+final class BackupDrRestoreWorkloadResourceManagerTags {
+  const BackupDrRestoreWorkloadResourceManagerTags({
     required this.key,
     this.value,
   });
@@ -1003,8 +845,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParamsResourc
 /// Typed helper for the `compute_instance_restore_properties.scheduling` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling({
+final class BackupDrRestoreWorkloadScheduling {
+  const BackupDrRestoreWorkloadScheduling({
     this.automaticRestart,
     this.instanceTerminationAction,
     this.minNodeCpus,
@@ -1019,37 +861,24 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling {
 
   final TfArg<bool>? automaticRestart;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingInstanceTerminationAction
-  >?
+  final TfArg<BackupDrRestoreWorkloadInstanceTerminationAction>?
   instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingOnHostMaintenance
-  >?
-  onHostMaintenance;
+  final TfArg<BackupDrRestoreWorkloadOnHostMaintenance>? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingProvisioningModel
-  >?
-  provisioningModel;
+  final TfArg<BackupDrRestoreWorkloadProvisioningModel>? provisioningModel;
 
   final TfArg<String>? terminationTime;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingLocalSsdRecoveryTimeout?
-  localSsdRecoveryTimeout;
+  final BackupDrRestoreWorkloadLocalSsdRecoveryTimeout? localSsdRecoveryTimeout;
 
-  final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingMaxRunDuration?
-  maxRunDuration;
+  final BackupDrRestoreWorkloadMaxRunDuration? maxRunDuration;
 
-  final List<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinities
-  >?
-  nodeAffinities;
+  final List<BackupDrRestoreWorkloadNodeAffinities>? nodeAffinities;
 
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
@@ -1067,45 +896,36 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling {
 }
 
 /// `instance_termination_action` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingInstanceTerminationAction
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadInstanceTerminationAction implements TerraformEnum {
   instanceTerminationActionUnspecified(
     'INSTANCE_TERMINATION_ACTION_UNSPECIFIED',
   ),
   delete('DELETE'),
   stop('STOP');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingInstanceTerminationAction(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadInstanceTerminationAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `on_host_maintenance` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingOnHostMaintenance
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadOnHostMaintenance implements TerraformEnum {
   onHostMaintenanceUnspecified('ON_HOST_MAINTENANCE_UNSPECIFIED'),
   terminate('TERMINATE'),
   migrate('MIGRATE');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingOnHostMaintenance(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadOnHostMaintenance(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `provisioning_model` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingProvisioningModel
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadProvisioningModel implements TerraformEnum {
   provisioningModelUnspecified('PROVISIONING_MODEL_UNSPECIFIED'),
   standard('STANDARD'),
   spot('SPOT');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingProvisioningModel(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadProvisioningModel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1113,8 +933,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingProvisioni
 /// Typed helper for the `compute_instance_restore_properties.scheduling.local_ssd_recovery_timeout` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingLocalSsdRecoveryTimeout {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingLocalSsdRecoveryTimeout({
+final class BackupDrRestoreWorkloadLocalSsdRecoveryTimeout {
+  const BackupDrRestoreWorkloadLocalSsdRecoveryTimeout({
     this.nanos,
     this.seconds,
   });
@@ -1132,11 +952,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingLoc
 /// Typed helper for the `compute_instance_restore_properties.scheduling.max_run_duration` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingMaxRunDuration {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingMaxRunDuration({
-    this.nanos,
-    this.seconds,
-  });
+final class BackupDrRestoreWorkloadMaxRunDuration {
+  const BackupDrRestoreWorkloadMaxRunDuration({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -1151,8 +968,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingMax
 /// Typed helper for the `compute_instance_restore_properties.scheduling.node_affinities` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinities {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinities({
+final class BackupDrRestoreWorkloadNodeAffinities {
+  const BackupDrRestoreWorkloadNodeAffinities({
     this.key,
     this.operator,
     this.values,
@@ -1160,10 +977,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNod
 
   final TfArg<String>? key;
 
-  final TfArg<
-    BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinitiesOperator
-  >?
-  operator;
+  final TfArg<BackupDrRestoreWorkloadOperator>? operator;
 
   final TfArg<List<String>>? values;
 
@@ -1175,15 +989,12 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNod
 }
 
 /// `operator` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinitiesOperator
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadOperator implements TerraformEnum {
   operatorUnspecified('OPERATOR_UNSPECIFIED'),
   inCase('IN'),
   notIn('NOT_IN');
 
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffinitiesOperator(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1191,11 +1002,8 @@ enum BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNodeAffini
 /// Typed helper for the `compute_instance_restore_properties.service_accounts` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccounts {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccounts({
-    this.email,
-    this.scopes,
-  });
+final class BackupDrRestoreWorkloadServiceAccounts {
+  const BackupDrRestoreWorkloadServiceAccounts({this.email, this.scopes});
 
   final RefTo<GoogleServiceAccount>? email;
 
@@ -1210,8 +1018,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccoun
 /// Typed helper for the `compute_instance_restore_properties.shielded_instance_config` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesShieldedInstanceConfig {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesShieldedInstanceConfig({
+final class BackupDrRestoreWorkloadShieldedInstanceConfig {
+  const BackupDrRestoreWorkloadShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -1233,10 +1041,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesShieldedInsta
 /// Typed helper for the `compute_instance_restore_properties.tags` block of
 /// `google_backup_dr_restore_workload` (derived from provider schema).
 @immutable
-final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags {
-  const BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags({
-    this.items,
-  });
+final class BackupDrRestoreWorkloadTags {
+  const BackupDrRestoreWorkloadTags({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -1290,11 +1096,9 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
     this.resourceManagerTags,
   });
 
-  final TfArg<BackupDrRestoreWorkloadDiskRestorePropertiesAccessMode>?
-  accessMode;
+  final TfArg<BackupDrRestoreWorkloadAccessMode>? accessMode;
 
-  final TfArg<BackupDrRestoreWorkloadDiskRestorePropertiesArchitecture>?
-  architecture;
+  final TfArg<BackupDrRestoreWorkloadArchitecture>? architecture;
 
   final TfArg<String>? description;
 
@@ -1318,16 +1122,13 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 
   final TfArg<String> type;
 
-  final BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey?
-  diskEncryptionKey;
+  final BackupDrRestoreWorkloadDiskEncryptionKey? diskEncryptionKey;
 
-  final List<BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeature>?
-  guestOsFeature;
+  final List<BackupDrRestoreWorkloadGuestOsFeature>? guestOsFeature;
 
-  final List<BackupDrRestoreWorkloadDiskRestorePropertiesLabels>? labels;
+  final List<BackupDrRestoreWorkloadLabels>? labels;
 
-  final List<BackupDrRestoreWorkloadDiskRestorePropertiesResourceManagerTags>?
-  resourceManagerTags;
+  final List<BackupDrRestoreWorkloadResourceManagerTags>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
@@ -1355,134 +1156,25 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 }
 
 /// `access_mode` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadDiskRestorePropertiesAccessMode
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadAccessMode implements TerraformEnum {
   readWriteSingle('READ_WRITE_SINGLE'),
   readWriteMany('READ_WRITE_MANY'),
   readOnlyMany('READ_ONLY_MANY');
 
-  const BackupDrRestoreWorkloadDiskRestorePropertiesAccessMode(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadAccessMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `architecture` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadDiskRestorePropertiesArchitecture
-    implements TerraformEnum {
+enum BackupDrRestoreWorkloadArchitecture implements TerraformEnum {
   architectureUnspecified('ARCHITECTURE_UNSPECIFIED'),
   x8664('X86_64'),
   arm64('ARM64');
 
-  const BackupDrRestoreWorkloadDiskRestorePropertiesArchitecture(
-    this.terraformValue,
-  );
+  const BackupDrRestoreWorkloadArchitecture(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `disk_restore_properties.disk_encryption_key` block of
-/// `google_backup_dr_restore_workload` (derived from provider schema).
-@immutable
-final class BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey {
-  const BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey({
-    this.kmsKeyName,
-    this.kmsKeyServiceAccount,
-    this.rawKey,
-    this.rsaEncryptedKey,
-  });
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  final TfArg<String>? kmsKeyServiceAccount;
-
-  final TfArg<String>? rawKey;
-
-  final TfArg<String>? rsaEncryptedKey;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
-    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
-    'raw_key': ?rawKey?.toTfJson(),
-    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `disk_restore_properties.guest_os_feature` block of
-/// `google_backup_dr_restore_workload` (derived from provider schema).
-@immutable
-final class BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeature {
-  const BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeature({this.type});
-
-  final TfArg<BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeatureType>?
-  type;
-
-  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
-}
-
-/// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeatureType
-    implements TerraformEnum {
-  featureTypeUnspecified('FEATURE_TYPE_UNSPECIFIED'),
-  virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
-  windows('WINDOWS'),
-  multiIpSubnet('MULTI_IP_SUBNET'),
-  uefiCompatible('UEFI_COMPATIBLE'),
-  secureBoot('SECURE_BOOT'),
-  gvnic('GVNIC'),
-  sevCapable('SEV_CAPABLE'),
-  bareMetalLinuxCompatible('BARE_METAL_LINUX_COMPATIBLE'),
-  suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
-  sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
-  sevSnpCapable('SEV_SNP_CAPABLE'),
-  tdxCapable('TDX_CAPABLE'),
-  idpf('IDPF'),
-  sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2');
-
-  const BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeatureType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `disk_restore_properties.labels` block of
-/// `google_backup_dr_restore_workload` (derived from provider schema).
-@immutable
-final class BackupDrRestoreWorkloadDiskRestorePropertiesLabels {
-  const BackupDrRestoreWorkloadDiskRestorePropertiesLabels({
-    required this.key,
-    this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `disk_restore_properties.resource_manager_tags` block of
-/// `google_backup_dr_restore_workload` (derived from provider schema).
-@immutable
-final class BackupDrRestoreWorkloadDiskRestorePropertiesResourceManagerTags {
-  const BackupDrRestoreWorkloadDiskRestorePropertiesResourceManagerTags({
-    required this.key,
-    this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `disk_target_environment` block of

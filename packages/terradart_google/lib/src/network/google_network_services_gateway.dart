@@ -59,7 +59,7 @@ sealed class NetworkServicesGatewayPorts {
 
   /// Sets `all_ports`.
   const factory NetworkServicesGatewayPorts.allPorts(TfArg<bool> allPorts) =
-      NetworkServicesGatewayPortsAllPorts;
+      NetworkServicesGatewayAllPorts;
 
   /// Sets `ports`.
   const factory NetworkServicesGatewayPorts.ports(TfArg<List<num>> ports) =
@@ -76,9 +76,8 @@ sealed class NetworkServicesGatewayPorts {
 }
 
 /// The [NetworkServicesGatewayPorts.allPorts] choice: sets `all_ports`.
-final class NetworkServicesGatewayPortsAllPorts
-    extends NetworkServicesGatewayPorts {
-  const NetworkServicesGatewayPortsAllPorts(this.allPorts);
+final class NetworkServicesGatewayAllPorts extends NetworkServicesGatewayPorts {
+  const NetworkServicesGatewayAllPorts(this.allPorts);
 
   final TfArg<bool> allPorts;
 

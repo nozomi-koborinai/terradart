@@ -21,15 +21,15 @@ final class ApikeysKeyRestrictions {
     this.serverKeyRestrictions,
   });
 
-  final ApikeysKeyRestrictionsAndroidKeyRestrictions? androidKeyRestrictions;
+  final ApikeysKeyAndroidKeyRestrictions? androidKeyRestrictions;
 
-  final List<ApikeysKeyRestrictionsApiTargets>? apiTargets;
+  final List<ApikeysKeyApiTargets>? apiTargets;
 
-  final ApikeysKeyRestrictionsBrowserKeyRestrictions? browserKeyRestrictions;
+  final ApikeysKeyBrowserKeyRestrictions? browserKeyRestrictions;
 
-  final ApikeysKeyRestrictionsIosKeyRestrictions? iosKeyRestrictions;
+  final ApikeysKeyIosKeyRestrictions? iosKeyRestrictions;
 
-  final ApikeysKeyRestrictionsServerKeyRestrictions? serverKeyRestrictions;
+  final ApikeysKeyServerKeyRestrictions? serverKeyRestrictions;
 
   Map<String, Object?> encode() => {
     'android_key_restrictions': ?androidKeyRestrictions?.encode(),
@@ -44,13 +44,10 @@ final class ApikeysKeyRestrictions {
 /// Typed helper for the `restrictions.android_key_restrictions` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsAndroidKeyRestrictions {
-  const ApikeysKeyRestrictionsAndroidKeyRestrictions({
-    required this.allowedApplications,
-  });
+final class ApikeysKeyAndroidKeyRestrictions {
+  const ApikeysKeyAndroidKeyRestrictions({required this.allowedApplications});
 
-  final List<ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications>
-  allowedApplications;
+  final List<ApikeysKeyAllowedApplications> allowedApplications;
 
   Map<String, Object?> encode() => {
     'allowed_applications': [for (final e in allowedApplications) e.encode()],
@@ -60,8 +57,8 @@ final class ApikeysKeyRestrictionsAndroidKeyRestrictions {
 /// Typed helper for the `restrictions.android_key_restrictions.allowed_applications` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications {
-  const ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications({
+final class ApikeysKeyAllowedApplications {
+  const ApikeysKeyAllowedApplications({
     required this.packageName,
     required this.sha1Fingerprint,
   });
@@ -79,8 +76,8 @@ final class ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications {
 /// Typed helper for the `restrictions.api_targets` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsApiTargets {
-  const ApikeysKeyRestrictionsApiTargets({this.methods, required this.service});
+final class ApikeysKeyApiTargets {
+  const ApikeysKeyApiTargets({this.methods, required this.service});
 
   final TfArg<List<String>>? methods;
 
@@ -95,10 +92,8 @@ final class ApikeysKeyRestrictionsApiTargets {
 /// Typed helper for the `restrictions.browser_key_restrictions` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsBrowserKeyRestrictions {
-  const ApikeysKeyRestrictionsBrowserKeyRestrictions({
-    required this.allowedReferrers,
-  });
+final class ApikeysKeyBrowserKeyRestrictions {
+  const ApikeysKeyBrowserKeyRestrictions({required this.allowedReferrers});
 
   final TfArg<List<String>> allowedReferrers;
 
@@ -110,10 +105,8 @@ final class ApikeysKeyRestrictionsBrowserKeyRestrictions {
 /// Typed helper for the `restrictions.ios_key_restrictions` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsIosKeyRestrictions {
-  const ApikeysKeyRestrictionsIosKeyRestrictions({
-    required this.allowedBundleIds,
-  });
+final class ApikeysKeyIosKeyRestrictions {
+  const ApikeysKeyIosKeyRestrictions({required this.allowedBundleIds});
 
   final TfArg<List<String>> allowedBundleIds;
 
@@ -125,8 +118,8 @@ final class ApikeysKeyRestrictionsIosKeyRestrictions {
 /// Typed helper for the `restrictions.server_key_restrictions` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
-final class ApikeysKeyRestrictionsServerKeyRestrictions {
-  const ApikeysKeyRestrictionsServerKeyRestrictions({required this.allowedIps});
+final class ApikeysKeyServerKeyRestrictions {
+  const ApikeysKeyServerKeyRestrictions({required this.allowedIps});
 
   final TfArg<List<String>> allowedIps;
 

@@ -15,7 +15,7 @@ const Set<String> _cloudflareZeroTrustDexTestSensitive = <String>{};
 final class DataZeroTrustDexTestFilter {
   const DataZeroTrustDexTestFilter({this.kind, this.testName});
 
-  final TfArg<DataZeroTrustDexTestFilterKind>? kind;
+  final TfArg<DataZeroTrustDexTestKind>? kind;
 
   final TfArg<String>? testName;
 
@@ -26,11 +26,11 @@ final class DataZeroTrustDexTestFilter {
 }
 
 /// `kind` — derived from the provider schema description.
-enum DataZeroTrustDexTestFilterKind implements TerraformEnum {
+enum DataZeroTrustDexTestKind implements TerraformEnum {
   http('http'),
   traceroute('traceroute');
 
-  const DataZeroTrustDexTestFilterKind(this.terraformValue);
+  const DataZeroTrustDexTestKind(this.terraformValue);
   @override
   final String terraformValue;
 }

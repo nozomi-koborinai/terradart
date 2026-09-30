@@ -28,7 +28,7 @@ enum EdgecontainerClusterReleaseChannel implements TerraformEnum {
 final class EdgecontainerClusterAuthorization {
   const EdgecontainerClusterAuthorization({required this.adminUsers});
 
-  final EdgecontainerClusterAuthorizationAdminUsers adminUsers;
+  final EdgecontainerClusterAdminUsers adminUsers;
 
   Map<String, Object?> encode() => {'admin_users': adminUsers.encode()};
 }
@@ -36,8 +36,8 @@ final class EdgecontainerClusterAuthorization {
 /// Typed helper for the `authorization.admin_users` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterAuthorizationAdminUsers {
-  const EdgecontainerClusterAuthorizationAdminUsers({required this.username});
+final class EdgecontainerClusterAdminUsers {
+  const EdgecontainerClusterAdminUsers({required this.username});
 
   final TfArg<String> username;
 
@@ -53,13 +53,13 @@ sealed class EdgecontainerClusterControlPlane {
 
   /// Sets `remote`.
   const factory EdgecontainerClusterControlPlane.remote(
-    EdgecontainerClusterControlPlaneRemote remote,
-  ) = EdgecontainerClusterControlPlaneRemoteChoice;
+    EdgecontainerClusterRemote remote,
+  ) = EdgecontainerClusterControlPlaneRemote;
 
   /// Sets `local`.
   const factory EdgecontainerClusterControlPlane.local(
-    EdgecontainerClusterControlPlaneLocal local,
-  ) = EdgecontainerClusterControlPlaneLocalChoice;
+    EdgecontainerClusterLocal local,
+  ) = EdgecontainerClusterControlPlaneLocal;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -68,11 +68,11 @@ sealed class EdgecontainerClusterControlPlane {
 }
 
 /// The [EdgecontainerClusterControlPlane.remote] choice: sets `remote`.
-final class EdgecontainerClusterControlPlaneRemoteChoice
+final class EdgecontainerClusterControlPlaneRemote
     extends EdgecontainerClusterControlPlane {
-  const EdgecontainerClusterControlPlaneRemoteChoice(this.remote);
+  const EdgecontainerClusterControlPlaneRemote(this.remote);
 
-  final EdgecontainerClusterControlPlaneRemote remote;
+  final EdgecontainerClusterRemote remote;
 
   @override
   String get blockKey => 'remote';
@@ -82,11 +82,11 @@ final class EdgecontainerClusterControlPlaneRemoteChoice
 }
 
 /// The [EdgecontainerClusterControlPlane.local] choice: sets `local`.
-final class EdgecontainerClusterControlPlaneLocalChoice
+final class EdgecontainerClusterControlPlaneLocal
     extends EdgecontainerClusterControlPlane {
-  const EdgecontainerClusterControlPlaneLocalChoice(this.local);
+  const EdgecontainerClusterControlPlaneLocal(this.local);
 
-  final EdgecontainerClusterControlPlaneLocal local;
+  final EdgecontainerClusterLocal local;
 
   @override
   String get blockKey => 'local';
@@ -98,8 +98,8 @@ final class EdgecontainerClusterControlPlaneLocalChoice
 /// Typed helper for the `control_plane.local` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterControlPlaneLocal {
-  const EdgecontainerClusterControlPlaneLocal({
+final class EdgecontainerClusterLocal {
+  const EdgecontainerClusterLocal({
     this.machineFilter,
     this.nodeCount,
     this.nodeLocation,
@@ -112,7 +112,7 @@ final class EdgecontainerClusterControlPlaneLocal {
 
   final TfArg<String>? nodeLocation;
 
-  final TfArg<EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy>?
+  final TfArg<EdgecontainerClusterSharedDeploymentPolicy>?
   sharedDeploymentPolicy;
 
   Map<String, Object?> encode() => {
@@ -124,15 +124,12 @@ final class EdgecontainerClusterControlPlaneLocal {
 }
 
 /// `shared_deployment_policy` — derived from the provider schema description.
-enum EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy
-    implements TerraformEnum {
+enum EdgecontainerClusterSharedDeploymentPolicy implements TerraformEnum {
   sharedDeploymentPolicyUnspecified('SHARED_DEPLOYMENT_POLICY_UNSPECIFIED'),
   allowed('ALLOWED'),
   disallowed('DISALLOWED');
 
-  const EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy(
-    this.terraformValue,
-  );
+  const EdgecontainerClusterSharedDeploymentPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -140,8 +137,8 @@ enum EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy
 /// Typed helper for the `control_plane.remote` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterControlPlaneRemote {
-  const EdgecontainerClusterControlPlaneRemote({this.nodeLocation});
+final class EdgecontainerClusterRemote {
+  const EdgecontainerClusterRemote({this.nodeLocation});
 
   final TfArg<String>? nodeLocation;
 
@@ -181,10 +178,9 @@ final class EdgecontainerClusterMaintenancePolicy {
     required this.window,
   });
 
-  final List<EdgecontainerClusterMaintenancePolicyMaintenanceExclusions>?
-  maintenanceExclusions;
+  final List<EdgecontainerClusterMaintenanceExclusions>? maintenanceExclusions;
 
-  final EdgecontainerClusterMaintenancePolicyWindow window;
+  final EdgecontainerClusterWindow window;
 
   Map<String, Object?> encode() => {
     if (maintenanceExclusions != null)
@@ -198,16 +194,12 @@ final class EdgecontainerClusterMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.maintenance_exclusions` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusions {
-  const EdgecontainerClusterMaintenancePolicyMaintenanceExclusions({
-    this.id,
-    this.window,
-  });
+final class EdgecontainerClusterMaintenanceExclusions {
+  const EdgecontainerClusterMaintenanceExclusions({this.id, this.window});
 
   final TfArg<String>? id;
 
-  final EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow?
-  window;
+  final EdgecontainerClusterMaintenanceExclusionsWindow? window;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
@@ -217,9 +209,10 @@ final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusions {
 
 /// Typed helper for the `maintenance_policy.maintenance_exclusions.window` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow {
-  const EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow({
+final class EdgecontainerClusterMaintenanceExclusionsWindow {
+  const EdgecontainerClusterMaintenanceExclusionsWindow({
     this.endTime,
     this.startTime,
   });
@@ -237,13 +230,10 @@ final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow {
 /// Typed helper for the `maintenance_policy.window` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterMaintenancePolicyWindow {
-  const EdgecontainerClusterMaintenancePolicyWindow({
-    required this.recurringWindow,
-  });
+final class EdgecontainerClusterWindow {
+  const EdgecontainerClusterWindow({required this.recurringWindow});
 
-  final EdgecontainerClusterMaintenancePolicyWindowRecurringWindow
-  recurringWindow;
+  final EdgecontainerClusterRecurringWindow recurringWindow;
 
   Map<String, Object?> encode() => {
     'recurring_window': recurringWindow.encode(),
@@ -253,39 +243,16 @@ final class EdgecontainerClusterMaintenancePolicyWindow {
 /// Typed helper for the `maintenance_policy.window.recurring_window` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterMaintenancePolicyWindowRecurringWindow {
-  const EdgecontainerClusterMaintenancePolicyWindowRecurringWindow({
-    this.recurrence,
-    this.window,
-  });
+final class EdgecontainerClusterRecurringWindow {
+  const EdgecontainerClusterRecurringWindow({this.recurrence, this.window});
 
   final TfArg<String>? recurrence;
 
-  final EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow?
-  window;
+  final EdgecontainerClusterMaintenanceExclusionsWindow? window;
 
   Map<String, Object?> encode() => {
     'recurrence': ?recurrence?.toTfJson(),
     'window': ?window?.encode(),
-  };
-}
-
-/// Typed helper for the `maintenance_policy.window.recurring_window.window` block of
-/// `google_edgecontainer_cluster` (derived from provider schema).
-@immutable
-final class EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow {
-  const EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow({
-    this.endTime,
-    this.startTime,
-  });
-
-  final TfArg<String>? endTime;
-
-  final TfArg<String>? startTime;
-
-  Map<String, Object?> encode() => {
-    'end_time': ?endTime?.toTfJson(),
-    'start_time': ?startTime?.toTfJson(),
   };
 }
 
@@ -322,7 +289,7 @@ final class EdgecontainerClusterNetworking {
 final class EdgecontainerClusterSystemAddonsConfig {
   const EdgecontainerClusterSystemAddonsConfig({this.ingress});
 
-  final EdgecontainerClusterSystemAddonsConfigIngress? ingress;
+  final EdgecontainerClusterIngress? ingress;
 
   Map<String, Object?> encode() => {'ingress': ?ingress?.encode()};
 }
@@ -330,11 +297,8 @@ final class EdgecontainerClusterSystemAddonsConfig {
 /// Typed helper for the `system_addons_config.ingress` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
-final class EdgecontainerClusterSystemAddonsConfigIngress {
-  const EdgecontainerClusterSystemAddonsConfigIngress({
-    this.disabled,
-    this.ipv4Vip,
-  });
+final class EdgecontainerClusterIngress {
+  const EdgecontainerClusterIngress({this.disabled, this.ipv4Vip});
 
   final TfArg<bool>? disabled;
 
@@ -381,12 +345,12 @@ final class EdgecontainerClusterSystemAddonsConfigIngress {
 ///     project: TfArg.literal('projects/$projectNumber'),
 ///   ),
 ///   authorization: EdgecontainerClusterAuthorization(
-///     adminUsers: EdgecontainerClusterAuthorizationAdminUsers(
+///     adminUsers: EdgecontainerClusterAdminUsers(
 ///       username: TfArg.literal('admin@example.com'),
 ///     ),
 ///   ),
 ///   controlPlane: .remote(
-///     EdgecontainerClusterControlPlaneRemote(
+///     EdgecontainerClusterRemote(
 ///       nodeLocation: .literal('us-central1-edge-customer-a'),
 ///     ),
 ///   ),

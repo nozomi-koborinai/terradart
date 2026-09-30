@@ -124,8 +124,7 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
     this.userDataShared,
   });
 
-  final CognitoManagedUserPoolClientAnalyticsConfigurationApplication
-  application;
+  final CognitoManagedUserPoolClientApplication application;
 
   final TfArg<String>? externalId;
 
@@ -145,18 +144,18 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.applicationArn(...)`.
-sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplication();
+sealed class CognitoManagedUserPoolClientApplication {
+  const CognitoManagedUserPoolClientApplication();
 
   /// Sets `application_arn`.
-  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationArn(
+  const factory CognitoManagedUserPoolClientApplication.applicationArn(
     TfArg<String> applicationArn,
-  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArn;
+  ) = CognitoManagedUserPoolClientApplicationArn;
 
   /// Sets `application_id`.
-  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationId(
+  const factory CognitoManagedUserPoolClientApplication.applicationId(
     TfArg<String> applicationId,
-  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationId;
+  ) = CognitoManagedUserPoolClientApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -164,12 +163,10 @@ sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
   Map<String, Object?> encode();
 }
 
-/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationArn] choice: sets `application_arn`.
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArn
-    extends CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArn(
-    this.applicationArn,
-  );
+/// The [CognitoManagedUserPoolClientApplication.applicationArn] choice: sets `application_arn`.
+final class CognitoManagedUserPoolClientApplicationArn
+    extends CognitoManagedUserPoolClientApplication {
+  const CognitoManagedUserPoolClientApplicationArn(this.applicationArn);
 
   final TfArg<String> applicationArn;
 
@@ -182,12 +179,10 @@ final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArn
   };
 }
 
-/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationId] choice: sets `application_id`.
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationId
-    extends CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationId(
-    this.applicationId,
-  );
+/// The [CognitoManagedUserPoolClientApplication.applicationId] choice: sets `application_id`.
+final class CognitoManagedUserPoolClientApplicationId
+    extends CognitoManagedUserPoolClientApplication {
+  const CognitoManagedUserPoolClientApplicationId(this.applicationId);
 
   final TfArg<String> applicationId;
 
@@ -207,7 +202,7 @@ final class CognitoManagedUserPoolClientRefreshTokenRotation {
     this.retryGracePeriodSeconds,
   });
 
-  final TfArg<CognitoManagedUserPoolClientRefreshTokenRotationFeature> feature;
+  final TfArg<CognitoManagedUserPoolClientFeature> feature;
 
   final TfArg<num>? retryGracePeriodSeconds;
 
@@ -218,14 +213,11 @@ final class CognitoManagedUserPoolClientRefreshTokenRotation {
 }
 
 /// `feature` — derived from the provider schema description.
-enum CognitoManagedUserPoolClientRefreshTokenRotationFeature
-    implements TerraformEnum {
+enum CognitoManagedUserPoolClientFeature implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const CognitoManagedUserPoolClientRefreshTokenRotationFeature(
-    this.terraformValue,
-  );
+  const CognitoManagedUserPoolClientFeature(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -13,17 +13,17 @@ const Set<String> _awsSesConfigurationSetSensitive = <String>{};
 final class SesConfigurationSetDeliveryOptions {
   const SesConfigurationSetDeliveryOptions({this.tlsPolicy});
 
-  final TfArg<SesConfigurationSetDeliveryOptionsTlsPolicy>? tlsPolicy;
+  final TfArg<SesConfigurationSetTlsPolicy>? tlsPolicy;
 
   Map<String, Object?> encode() => {'tls_policy': ?tlsPolicy?.toTfJson()};
 }
 
 /// `tls_policy` — derived from the provider schema description.
-enum SesConfigurationSetDeliveryOptionsTlsPolicy implements TerraformEnum {
+enum SesConfigurationSetTlsPolicy implements TerraformEnum {
   require('Require'),
   optional('Optional');
 
-  const SesConfigurationSetDeliveryOptionsTlsPolicy(this.terraformValue);
+  const SesConfigurationSetTlsPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }

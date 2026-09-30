@@ -45,18 +45,18 @@ final class KinesisAnalyticsApplicationInputs {
 
   final TfArg<String> namePrefix;
 
-  final KinesisAnalyticsApplicationInputsKinesisFirehose? kinesisFirehose;
+  final KinesisAnalyticsApplicationKinesisFirehose? kinesisFirehose;
 
-  final KinesisAnalyticsApplicationInputsKinesisStream? kinesisStream;
+  final KinesisAnalyticsApplicationKinesisStream? kinesisStream;
 
-  final KinesisAnalyticsApplicationInputsParallelism? parallelism;
+  final KinesisAnalyticsApplicationParallelism? parallelism;
 
-  final KinesisAnalyticsApplicationInputsProcessingConfiguration?
+  final KinesisAnalyticsApplicationProcessingConfiguration?
   processingConfiguration;
 
   final KinesisAnalyticsApplicationInputsSchema schema;
 
-  final List<KinesisAnalyticsApplicationInputsStartingPositionConfiguration>?
+  final List<KinesisAnalyticsApplicationStartingPositionConfiguration>?
   startingPositionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -75,9 +75,10 @@ final class KinesisAnalyticsApplicationInputs {
 
 /// Typed helper for the `inputs.kinesis_firehose` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsKinesisFirehose {
-  const KinesisAnalyticsApplicationInputsKinesisFirehose({
+final class KinesisAnalyticsApplicationKinesisFirehose {
+  const KinesisAnalyticsApplicationKinesisFirehose({
     required this.resourceArn,
     required this.roleArn,
   });
@@ -94,9 +95,10 @@ final class KinesisAnalyticsApplicationInputsKinesisFirehose {
 
 /// Typed helper for the `inputs.kinesis_stream` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsKinesisStream {
-  const KinesisAnalyticsApplicationInputsKinesisStream({
+final class KinesisAnalyticsApplicationKinesisStream {
+  const KinesisAnalyticsApplicationKinesisStream({
     required this.resourceArn,
     required this.roleArn,
   });
@@ -114,8 +116,8 @@ final class KinesisAnalyticsApplicationInputsKinesisStream {
 /// Typed helper for the `inputs.parallelism` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
 @immutable
-final class KinesisAnalyticsApplicationInputsParallelism {
-  const KinesisAnalyticsApplicationInputsParallelism({this.count});
+final class KinesisAnalyticsApplicationParallelism {
+  const KinesisAnalyticsApplicationParallelism({this.count});
 
   final TfArg<num>? count;
 
@@ -125,21 +127,22 @@ final class KinesisAnalyticsApplicationInputsParallelism {
 /// Typed helper for the `inputs.processing_configuration` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
 @immutable
-final class KinesisAnalyticsApplicationInputsProcessingConfiguration {
-  const KinesisAnalyticsApplicationInputsProcessingConfiguration({
+final class KinesisAnalyticsApplicationProcessingConfiguration {
+  const KinesisAnalyticsApplicationProcessingConfiguration({
     required this.lambda,
   });
 
-  final KinesisAnalyticsApplicationInputsProcessingConfigurationLambda lambda;
+  final KinesisAnalyticsApplicationLambda lambda;
 
   Map<String, Object?> encode() => {'lambda': lambda.encode()};
 }
 
-/// Typed helper for the `inputs.processing_configuration.lambda` block of
+/// Typed helper for the `outputs.lambda` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsProcessingConfigurationLambda {
-  const KinesisAnalyticsApplicationInputsProcessingConfigurationLambda({
+final class KinesisAnalyticsApplicationLambda {
+  const KinesisAnalyticsApplicationLambda({
     required this.resourceArn,
     required this.roleArn,
   });
@@ -156,6 +159,7 @@ final class KinesisAnalyticsApplicationInputsProcessingConfigurationLambda {
 
 /// Typed helper for the `inputs.schema` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class KinesisAnalyticsApplicationInputsSchema {
   const KinesisAnalyticsApplicationInputsSchema({
@@ -166,10 +170,9 @@ final class KinesisAnalyticsApplicationInputsSchema {
 
   final TfArg<String>? recordEncoding;
 
-  final List<KinesisAnalyticsApplicationInputsSchemaRecordColumns>
-  recordColumns;
+  final List<KinesisAnalyticsApplicationRecordColumns> recordColumns;
 
-  final KinesisAnalyticsApplicationInputsSchemaRecordFormat recordFormat;
+  final KinesisAnalyticsApplicationRecordFormat recordFormat;
 
   Map<String, Object?> encode() => {
     'record_encoding': ?recordEncoding?.toTfJson(),
@@ -180,9 +183,10 @@ final class KinesisAnalyticsApplicationInputsSchema {
 
 /// Typed helper for the `inputs.schema.record_columns` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsSchemaRecordColumns {
-  const KinesisAnalyticsApplicationInputsSchemaRecordColumns({
+final class KinesisAnalyticsApplicationRecordColumns {
+  const KinesisAnalyticsApplicationRecordColumns({
     this.mapping,
     required this.name,
     required this.sqlType,
@@ -203,14 +207,12 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordColumns {
 
 /// Typed helper for the `inputs.schema.record_format` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormat {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormat({
-    this.mappingParameters,
-  });
+final class KinesisAnalyticsApplicationRecordFormat {
+  const KinesisAnalyticsApplicationRecordFormat({this.mappingParameters});
 
-  final KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters?
-  mappingParameters;
+  final KinesisAnalyticsApplicationMappingParameters? mappingParameters;
 
   Map<String, Object?> encode() => {
     'mapping_parameters': ?mappingParameters?.encode(),
@@ -221,19 +223,18 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormat {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.csv(...)`.
-sealed class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters();
+sealed class KinesisAnalyticsApplicationMappingParameters {
+  const KinesisAnalyticsApplicationMappingParameters();
 
   /// Sets `csv`.
-  const factory KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters.csv(
-    KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv csv,
-  ) = KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvChoice;
+  const factory KinesisAnalyticsApplicationMappingParameters.csv(
+    KinesisAnalyticsApplicationCsv csv,
+  ) = KinesisAnalyticsApplicationMappingParametersCsv;
 
   /// Sets `json`.
-  const factory KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters.json(
-    KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson
-    json,
-  ) = KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonChoice;
+  const factory KinesisAnalyticsApplicationMappingParameters.json(
+    KinesisAnalyticsApplicationJson json,
+  ) = KinesisAnalyticsApplicationMappingParametersJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -241,16 +242,12 @@ sealed class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameter
   Map<String, Object?> encode();
 }
 
-/// The [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters.csv] choice: sets `csv`.
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvChoice
-    extends
-        KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvChoice(
-    this.csv,
-  );
+/// The [KinesisAnalyticsApplicationMappingParameters.csv] choice: sets `csv`.
+final class KinesisAnalyticsApplicationMappingParametersCsv
+    extends KinesisAnalyticsApplicationMappingParameters {
+  const KinesisAnalyticsApplicationMappingParametersCsv(this.csv);
 
-  final KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv
-  csv;
+  final KinesisAnalyticsApplicationCsv csv;
 
   @override
   String get blockKey => 'csv';
@@ -259,16 +256,12 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
   Map<String, Object?> encode() => {'csv': csv.encode()};
 }
 
-/// The [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters.json] choice: sets `json`.
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonChoice
-    extends
-        KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonChoice(
-    this.json,
-  );
+/// The [KinesisAnalyticsApplicationMappingParameters.json] choice: sets `json`.
+final class KinesisAnalyticsApplicationMappingParametersJson
+    extends KinesisAnalyticsApplicationMappingParameters {
+  const KinesisAnalyticsApplicationMappingParametersJson(this.json);
 
-  final KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson
-  json;
+  final KinesisAnalyticsApplicationJson json;
 
   @override
   String get blockKey => 'json';
@@ -279,9 +272,10 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
 
 /// Typed helper for the `inputs.schema.record_format.mapping_parameters.csv` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv({
+final class KinesisAnalyticsApplicationCsv {
+  const KinesisAnalyticsApplicationCsv({
     required this.recordColumnDelimiter,
     required this.recordRowDelimiter,
   });
@@ -298,11 +292,10 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
 
 /// Typed helper for the `inputs.schema.record_format.mapping_parameters.json` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson({
-    required this.recordRowPath,
-  });
+final class KinesisAnalyticsApplicationJson {
+  const KinesisAnalyticsApplicationJson({required this.recordRowPath});
 
   final TfArg<String> recordRowPath;
 
@@ -314,15 +307,12 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
 /// Typed helper for the `inputs.starting_position_configuration` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
 @immutable
-final class KinesisAnalyticsApplicationInputsStartingPositionConfiguration {
-  const KinesisAnalyticsApplicationInputsStartingPositionConfiguration({
+final class KinesisAnalyticsApplicationStartingPositionConfiguration {
+  const KinesisAnalyticsApplicationStartingPositionConfiguration({
     this.startingPosition,
   });
 
-  final TfArg<
-    KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition
-  >?
-  startingPosition;
+  final TfArg<KinesisAnalyticsApplicationStartingPosition>? startingPosition;
 
   Map<String, Object?> encode() => {
     'starting_position': ?startingPosition?.toTfJson(),
@@ -330,15 +320,12 @@ final class KinesisAnalyticsApplicationInputsStartingPositionConfiguration {
 }
 
 /// `starting_position` — derived from the provider schema description.
-enum KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition
-    implements TerraformEnum {
+enum KinesisAnalyticsApplicationStartingPosition implements TerraformEnum {
   now('NOW'),
   trimHorizon('TRIM_HORIZON'),
   lastStoppedPoint('LAST_STOPPED_POINT');
 
-  const KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition(
-    this.terraformValue,
-  );
+  const KinesisAnalyticsApplicationStartingPosition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -357,11 +344,11 @@ final class KinesisAnalyticsApplicationOutputs {
 
   final TfArg<String> name;
 
-  final KinesisAnalyticsApplicationOutputsKinesisFirehose? kinesisFirehose;
+  final KinesisAnalyticsApplicationKinesisFirehose? kinesisFirehose;
 
-  final KinesisAnalyticsApplicationOutputsKinesisStream? kinesisStream;
+  final KinesisAnalyticsApplicationKinesisStream? kinesisStream;
 
-  final KinesisAnalyticsApplicationOutputsLambda? lambda;
+  final KinesisAnalyticsApplicationLambda? lambda;
 
   final KinesisAnalyticsApplicationOutputsSchema schema;
 
@@ -374,63 +361,6 @@ final class KinesisAnalyticsApplicationOutputs {
   };
 }
 
-/// Typed helper for the `outputs.kinesis_firehose` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationOutputsKinesisFirehose {
-  const KinesisAnalyticsApplicationOutputsKinesisFirehose({
-    required this.resourceArn,
-    required this.roleArn,
-  });
-
-  final TfArg<String> resourceArn;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  Map<String, Object?> encode() => {
-    'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// Typed helper for the `outputs.kinesis_stream` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationOutputsKinesisStream {
-  const KinesisAnalyticsApplicationOutputsKinesisStream({
-    required this.resourceArn,
-    required this.roleArn,
-  });
-
-  final TfArg<String> resourceArn;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  Map<String, Object?> encode() => {
-    'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// Typed helper for the `outputs.lambda` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationOutputsLambda {
-  const KinesisAnalyticsApplicationOutputsLambda({
-    required this.resourceArn,
-    required this.roleArn,
-  });
-
-  final TfArg<String> resourceArn;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  Map<String, Object?> encode() => {
-    'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-  };
-}
-
 /// Typed helper for the `outputs.schema` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
 @immutable
@@ -439,8 +369,7 @@ final class KinesisAnalyticsApplicationOutputsSchema {
     required this.recordFormatType,
   });
 
-  final TfArg<KinesisAnalyticsApplicationOutputsSchemaRecordFormatType>
-  recordFormatType;
+  final TfArg<KinesisAnalyticsApplicationRecordFormatType> recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
@@ -448,14 +377,11 @@ final class KinesisAnalyticsApplicationOutputsSchema {
 }
 
 /// `record_format_type` — derived from the provider schema description.
-enum KinesisAnalyticsApplicationOutputsSchemaRecordFormatType
-    implements TerraformEnum {
+enum KinesisAnalyticsApplicationRecordFormatType implements TerraformEnum {
   json('JSON'),
   csv('CSV');
 
-  const KinesisAnalyticsApplicationOutputsSchemaRecordFormatType(
-    this.terraformValue,
-  );
+  const KinesisAnalyticsApplicationRecordFormatType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -472,9 +398,9 @@ final class KinesisAnalyticsApplicationReferenceDataSources {
 
   final TfArg<String> tableName;
 
-  final KinesisAnalyticsApplicationReferenceDataSourcesS3 s3;
+  final KinesisAnalyticsApplicationS3 s3;
 
-  final KinesisAnalyticsApplicationReferenceDataSourcesSchema schema;
+  final KinesisAnalyticsApplicationInputsSchema schema;
 
   Map<String, Object?> encode() => {
     'table_name': tableName.toTfJson(),
@@ -486,8 +412,8 @@ final class KinesisAnalyticsApplicationReferenceDataSources {
 /// Typed helper for the `reference_data_sources.s3` block of
 /// `aws_kinesis_analytics_application` (derived from provider schema).
 @immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesS3 {
-  const KinesisAnalyticsApplicationReferenceDataSourcesS3({
+final class KinesisAnalyticsApplicationS3 {
+  const KinesisAnalyticsApplicationS3({
     required this.bucketArn,
     required this.fileKey,
     required this.roleArn,
@@ -503,165 +429,6 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesS3 {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// Typed helper for the `reference_data_sources.schema` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchema {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchema({
-    this.recordEncoding,
-    required this.recordColumns,
-    required this.recordFormat,
-  });
-
-  final TfArg<String>? recordEncoding;
-
-  final List<KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordColumns>
-  recordColumns;
-
-  final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormat
-  recordFormat;
-
-  Map<String, Object?> encode() => {
-    'record_encoding': ?recordEncoding?.toTfJson(),
-    'record_columns': [for (final e in recordColumns) e.encode()],
-    'record_format': recordFormat.encode(),
-  };
-}
-
-/// Typed helper for the `reference_data_sources.schema.record_columns` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordColumns {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordColumns({
-    this.mapping,
-    required this.name,
-    required this.sqlType,
-  });
-
-  final TfArg<String>? mapping;
-
-  final TfArg<String> name;
-
-  final TfArg<String> sqlType;
-
-  Map<String, Object?> encode() => {
-    'mapping': ?mapping?.toTfJson(),
-    'name': name.toTfJson(),
-    'sql_type': sqlType.toTfJson(),
-  };
-}
-
-/// Typed helper for the `reference_data_sources.schema.record_format` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormat({
-    this.mappingParameters,
-  });
-
-  final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters?
-  mappingParameters;
-
-  Map<String, Object?> encode() => {
-    'mapping_parameters': ?mappingParameters?.encode(),
-  };
-}
-
-/// Exactly one of `csv`, `json` on the `reference_data_sources.schema.record_format.mapping_parameters` block of `aws_kinesis_analytics_application`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.csv(...)`.
-sealed class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters();
-
-  /// Sets `csv`.
-  const factory KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters.csv(
-    KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv
-    csv,
-  ) = KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvChoice;
-
-  /// Sets `json`.
-  const factory KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters.json(
-    KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson
-    json,
-  ) = KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonChoice;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters.csv] choice: sets `csv`.
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvChoice
-    extends
-        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvChoice(
-    this.csv,
-  );
-
-  final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv
-  csv;
-
-  @override
-  String get blockKey => 'csv';
-
-  @override
-  Map<String, Object?> encode() => {'csv': csv.encode()};
-}
-
-/// The [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters.json] choice: sets `json`.
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonChoice
-    extends
-        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonChoice(
-    this.json,
-  );
-
-  final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson
-  json;
-
-  @override
-  String get blockKey => 'json';
-
-  @override
-  Map<String, Object?> encode() => {'json': json.encode()};
-}
-
-/// Typed helper for the `reference_data_sources.schema.record_format.mapping_parameters.csv` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv({
-    required this.recordColumnDelimiter,
-    required this.recordRowDelimiter,
-  });
-
-  final TfArg<String> recordColumnDelimiter;
-
-  final TfArg<String> recordRowDelimiter;
-
-  Map<String, Object?> encode() => {
-    'record_column_delimiter': recordColumnDelimiter.toTfJson(),
-    'record_row_delimiter': recordRowDelimiter.toTfJson(),
-  };
-}
-
-/// Typed helper for the `reference_data_sources.schema.record_format.mapping_parameters.json` block of
-/// `aws_kinesis_analytics_application` (derived from provider schema).
-@immutable
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson({
-    required this.recordRowPath,
-  });
-
-  final TfArg<String> recordRowPath;
-
-  Map<String, Object?> encode() => {
-    'record_row_path': recordRowPath.toTfJson(),
   };
 }
 

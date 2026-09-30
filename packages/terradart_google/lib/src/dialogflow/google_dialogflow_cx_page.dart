@@ -9,20 +9,22 @@ const Set<String> _googleDialogflowCxPageSensitive = <String>{};
 
 /// Typed helper for the `advanced_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class DialogflowCxPageAdvancedSettings {
   const DialogflowCxPageAdvancedSettings({this.dtmfSettings});
 
-  final DialogflowCxPageAdvancedSettingsDtmfSettings? dtmfSettings;
+  final DialogflowCxPageDtmfSettings? dtmfSettings;
 
   Map<String, Object?> encode() => {'dtmf_settings': ?dtmfSettings?.encode()};
 }
 
 /// Typed helper for the `advanced_settings.dtmf_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageAdvancedSettingsDtmfSettings {
-  const DialogflowCxPageAdvancedSettingsDtmfSettings({
+final class DialogflowCxPageDtmfSettings {
+  const DialogflowCxPageDtmfSettings({
     this.enabled,
     this.finishDigit,
     this.maxDigits,
@@ -60,13 +62,11 @@ final class DialogflowCxPageEntryFulfillment {
 
   final TfArg<String>? webhook;
 
-  final List<DialogflowCxPageEntryFulfillmentConditionalCases>?
-  conditionalCases;
+  final List<DialogflowCxPageConditionalCases>? conditionalCases;
 
-  final List<DialogflowCxPageEntryFulfillmentMessages>? messages;
+  final List<DialogflowCxPageMessages>? messages;
 
-  final List<DialogflowCxPageEntryFulfillmentSetParameterActions>?
-  setParameterActions;
+  final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -84,9 +84,10 @@ final class DialogflowCxPageEntryFulfillment {
 
 /// Typed helper for the `entry_fulfillment.conditional_cases` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentConditionalCases {
-  const DialogflowCxPageEntryFulfillmentConditionalCases({this.cases});
+final class DialogflowCxPageConditionalCases {
+  const DialogflowCxPageConditionalCases({this.cases});
 
   final TfArg<String>? cases;
 
@@ -95,9 +96,10 @@ final class DialogflowCxPageEntryFulfillmentConditionalCases {
 
 /// Typed helper for the `entry_fulfillment.messages` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessages {
-  const DialogflowCxPageEntryFulfillmentMessages({
+final class DialogflowCxPageMessages {
+  const DialogflowCxPageMessages({
     this.channel,
     this.payload,
     this.conversationSuccess,
@@ -112,21 +114,17 @@ final class DialogflowCxPageEntryFulfillmentMessages {
 
   final TfArg<String>? payload;
 
-  final DialogflowCxPageEntryFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
+  final DialogflowCxPageConversationSuccess? conversationSuccess;
 
-  final DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
+  final DialogflowCxPageLiveAgentHandoff? liveAgentHandoff;
 
-  final DialogflowCxPageEntryFulfillmentMessagesOutputAudioText?
-  outputAudioText;
+  final DialogflowCxPageOutputAudioText? outputAudioText;
 
-  final DialogflowCxPageEntryFulfillmentMessagesPlayAudio? playAudio;
+  final DialogflowCxPagePlayAudio? playAudio;
 
-  final DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
+  final DialogflowCxPageTelephonyTransferCall? telephonyTransferCall;
 
-  final DialogflowCxPageEntryFulfillmentMessagesText? text;
+  final DialogflowCxPageText? text;
 
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
@@ -142,11 +140,10 @@ final class DialogflowCxPageEntryFulfillmentMessages {
 
 /// Typed helper for the `entry_fulfillment.messages.conversation_success` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageEntryFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
+final class DialogflowCxPageConversationSuccess {
+  const DialogflowCxPageConversationSuccess({this.metadata});
 
   final TfArg<String>? metadata;
 
@@ -155,11 +152,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesConversationSuccess {
 
 /// Typed helper for the `entry_fulfillment.messages.live_agent_handoff` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
+final class DialogflowCxPageLiveAgentHandoff {
+  const DialogflowCxPageLiveAgentHandoff({this.metadata});
 
   final TfArg<String>? metadata;
 
@@ -168,12 +164,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff {
 
 /// Typed helper for the `entry_fulfillment.messages.output_audio_text` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageEntryFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
+final class DialogflowCxPageOutputAudioText {
+  const DialogflowCxPageOutputAudioText({this.ssml, this.text});
 
   final TfArg<String>? ssml;
 
@@ -187,11 +181,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesOutputAudioText {
 
 /// Typed helper for the `entry_fulfillment.messages.play_audio` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageEntryFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
+final class DialogflowCxPagePlayAudio {
+  const DialogflowCxPagePlayAudio({required this.audioUri});
 
   final TfArg<String> audioUri;
 
@@ -200,11 +193,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesPlayAudio {
 
 /// Typed helper for the `entry_fulfillment.messages.telephony_transfer_call` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
+final class DialogflowCxPageTelephonyTransferCall {
+  const DialogflowCxPageTelephonyTransferCall({required this.phoneNumber});
 
   final TfArg<String> phoneNumber;
 
@@ -213,9 +205,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall {
 
 /// Typed helper for the `entry_fulfillment.messages.text` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentMessagesText {
-  const DialogflowCxPageEntryFulfillmentMessagesText({this.text});
+final class DialogflowCxPageText {
+  const DialogflowCxPageText({this.text});
 
   final TfArg<List<String>>? text;
 
@@ -224,12 +217,10 @@ final class DialogflowCxPageEntryFulfillmentMessagesText {
 
 /// Typed helper for the `entry_fulfillment.set_parameter_actions` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxPageEntryFulfillmentSetParameterActions {
-  const DialogflowCxPageEntryFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
+final class DialogflowCxPageSetParameterActions {
+  const DialogflowCxPageSetParameterActions({this.parameter, this.value});
 
   final TfArg<String>? parameter;
 
@@ -270,6 +261,7 @@ final class DialogflowCxPageEventHandlers {
 
 /// Typed helper for the `event_handlers.trigger_fulfillment` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class DialogflowCxPageEventHandlersTriggerFulfillment {
   const DialogflowCxPageEventHandlersTriggerFulfillment({
@@ -287,15 +279,11 @@ final class DialogflowCxPageEventHandlersTriggerFulfillment {
 
   final TfArg<String>? webhook;
 
-  final List<DialogflowCxPageEventHandlersTriggerFulfillmentConditionalCases>?
-  conditionalCases;
+  final List<DialogflowCxPageConditionalCases>? conditionalCases;
 
-  final List<DialogflowCxPageEventHandlersTriggerFulfillmentMessages>? messages;
+  final List<DialogflowCxPageMessages>? messages;
 
-  final List<
-    DialogflowCxPageEventHandlersTriggerFulfillmentSetParameterActions
-  >?
-  setParameterActions;
+  final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -311,177 +299,13 @@ final class DialogflowCxPageEventHandlersTriggerFulfillment {
   };
 }
 
-/// Typed helper for the `event_handlers.trigger_fulfillment.conditional_cases` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentConditionalCases {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentConditionalCases({
-    this.cases,
-  });
-
-  final TfArg<String>? cases;
-
-  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessages {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessages({
-    this.channel,
-    this.payload,
-    this.conversationSuccess,
-    this.liveAgentHandoff,
-    this.outputAudioText,
-    this.playAudio,
-    this.telephonyTransferCall,
-    this.text,
-  });
-
-  final TfArg<String>? channel;
-
-  final TfArg<String>? payload;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesOutputAudioText?
-  outputAudioText;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesPlayAudio?
-  playAudio;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
-
-  final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText? text;
-
-  Map<String, Object?> encode() => {
-    'channel': ?channel?.toTfJson(),
-    'payload': ?payload?.toTfJson(),
-    'conversation_success': ?conversationSuccess?.encode(),
-    'live_agent_handoff': ?liveAgentHandoff?.encode(),
-    'output_audio_text': ?outputAudioText?.encode(),
-    'play_audio': ?playAudio?.encode(),
-    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
-    'text': ?text?.encode(),
-  };
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.conversation_success` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.live_agent_handoff` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.output_audio_text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
-
-  final TfArg<String>? ssml;
-
-  final TfArg<String>? text;
-
-  Map<String, Object?> encode() => {
-    'ssml': ?ssml?.toTfJson(),
-    'text': ?text?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.play_audio` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
-
-  final TfArg<String> audioUri;
-
-  Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.telephony_transfer_call` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
-
-  final TfArg<String> phoneNumber;
-
-  Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.messages.text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText({
-    this.text,
-  });
-
-  final TfArg<List<String>>? text;
-
-  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
-}
-
-/// Typed helper for the `event_handlers.trigger_fulfillment.set_parameter_actions` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageEventHandlersTriggerFulfillmentSetParameterActions {
-  const DialogflowCxPageEventHandlersTriggerFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
-
-  final TfArg<String>? parameter;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'parameter': ?parameter?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `form` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
 final class DialogflowCxPageForm {
   const DialogflowCxPageForm({this.parameters});
 
-  final List<DialogflowCxPageFormParameters>? parameters;
+  final List<DialogflowCxPageParameters>? parameters;
 
   Map<String, Object?> encode() => {
     if (parameters != null)
@@ -492,8 +316,8 @@ final class DialogflowCxPageForm {
 /// Typed helper for the `form.parameters` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageFormParameters {
-  const DialogflowCxPageFormParameters({
+final class DialogflowCxPageParameters {
+  const DialogflowCxPageParameters({
     this.defaultValue,
     this.displayName,
     this.entityType,
@@ -516,9 +340,9 @@ final class DialogflowCxPageFormParameters {
 
   final TfArg<bool>? required;
 
-  final DialogflowCxPageFormParametersAdvancedSettings? advancedSettings;
+  final DialogflowCxPageAdvancedSettings? advancedSettings;
 
-  final DialogflowCxPageFormParametersFillBehavior? fillBehavior;
+  final DialogflowCxPageFillBehavior? fillBehavior;
 
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
@@ -532,55 +356,18 @@ final class DialogflowCxPageFormParameters {
   };
 }
 
-/// Typed helper for the `form.parameters.advanced_settings` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersAdvancedSettings {
-  const DialogflowCxPageFormParametersAdvancedSettings({this.dtmfSettings});
-
-  final DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings?
-  dtmfSettings;
-
-  Map<String, Object?> encode() => {'dtmf_settings': ?dtmfSettings?.encode()};
-}
-
-/// Typed helper for the `form.parameters.advanced_settings.dtmf_settings` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings {
-  const DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings({
-    this.enabled,
-    this.finishDigit,
-    this.maxDigits,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final TfArg<String>? finishDigit;
-
-  final TfArg<num>? maxDigits;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'finish_digit': ?finishDigit?.toTfJson(),
-    'max_digits': ?maxDigits?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `form.parameters.fill_behavior` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageFormParametersFillBehavior {
-  const DialogflowCxPageFormParametersFillBehavior({
+final class DialogflowCxPageFillBehavior {
+  const DialogflowCxPageFillBehavior({
     this.initialPromptFulfillment,
     this.repromptEventHandlers,
   });
 
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment?
-  initialPromptFulfillment;
+  final DialogflowCxPageInitialPromptFulfillment? initialPromptFulfillment;
 
-  final List<DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers>?
-  repromptEventHandlers;
+  final List<DialogflowCxPageRepromptEventHandlers>? repromptEventHandlers;
 
   Map<String, Object?> encode() => {
     'initial_prompt_fulfillment': ?initialPromptFulfillment?.encode(),
@@ -594,8 +381,8 @@ final class DialogflowCxPageFormParametersFillBehavior {
 /// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment({
+final class DialogflowCxPageInitialPromptFulfillment {
+  const DialogflowCxPageInitialPromptFulfillment({
     this.returnPartialResponses,
     this.tag,
     this.webhook,
@@ -610,20 +397,11 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment {
 
   final TfArg<String>? webhook;
 
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentConditionalCases
-  >?
-  conditionalCases;
+  final List<DialogflowCxPageConditionalCases>? conditionalCases;
 
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessages
-  >?
-  messages;
+  final List<DialogflowCxPageMessages>? messages;
 
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentSetParameterActions
-  >?
-  setParameterActions;
+  final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -639,176 +417,11 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment {
   };
 }
 
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentConditionalCases {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentConditionalCases({
-    this.cases,
-  });
-
-  final TfArg<String>? cases;
-
-  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessages {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessages({
-    this.channel,
-    this.payload,
-    this.conversationSuccess,
-    this.liveAgentHandoff,
-    this.outputAudioText,
-    this.playAudio,
-    this.telephonyTransferCall,
-    this.text,
-  });
-
-  final TfArg<String>? channel;
-
-  final TfArg<String>? payload;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesOutputAudioText?
-  outputAudioText;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesPlayAudio?
-  playAudio;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
-
-  final DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesText?
-  text;
-
-  Map<String, Object?> encode() => {
-    'channel': ?channel?.toTfJson(),
-    'payload': ?payload?.toTfJson(),
-    'conversation_success': ?conversationSuccess?.encode(),
-    'live_agent_handoff': ?liveAgentHandoff?.encode(),
-    'output_audio_text': ?outputAudioText?.encode(),
-    'play_audio': ?playAudio?.encode(),
-    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
-    'text': ?text?.encode(),
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.conversation_success` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.live_agent_handoff` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.output_audio_text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
-
-  final TfArg<String>? ssml;
-
-  final TfArg<String>? text;
-
-  Map<String, Object?> encode() => {
-    'ssml': ?ssml?.toTfJson(),
-    'text': ?text?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.play_audio` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
-
-  final TfArg<String> audioUri;
-
-  Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.telephony_transfer_call` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
-
-  final TfArg<String> phoneNumber;
-
-  Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesText {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesText({
-    this.text,
-  });
-
-  final TfArg<List<String>>? text;
-
-  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.set_parameter_actions` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentSetParameterActions {
-  const DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
-
-  final TfArg<String>? parameter;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'parameter': ?parameter?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers({
+final class DialogflowCxPageRepromptEventHandlers {
+  const DialogflowCxPageRepromptEventHandlers({
     this.event,
     this.targetFlow,
     this.targetPage,
@@ -821,227 +434,13 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers {
 
   final TfArg<String>? targetPage;
 
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillment?
-  triggerFulfillment;
+  final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
   Map<String, Object?> encode() => {
     'event': ?event?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
     'target_page': ?targetPage?.toTfJson(),
     'trigger_fulfillment': ?triggerFulfillment?.encode(),
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillment {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillment({
-    this.returnPartialResponses,
-    this.tag,
-    this.webhook,
-    this.conditionalCases,
-    this.messages,
-    this.setParameterActions,
-  });
-
-  final TfArg<bool>? returnPartialResponses;
-
-  final TfArg<String>? tag;
-
-  final TfArg<String>? webhook;
-
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentConditionalCases
-  >?
-  conditionalCases;
-
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessages
-  >?
-  messages;
-
-  final List<
-    DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentSetParameterActions
-  >?
-  setParameterActions;
-
-  Map<String, Object?> encode() => {
-    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
-    'tag': ?tag?.toTfJson(),
-    'webhook': ?webhook?.toTfJson(),
-    if (conditionalCases != null)
-      'conditional_cases': [for (final e in conditionalCases!) e.encode()],
-    if (messages != null) 'messages': [for (final e in messages!) e.encode()],
-    if (setParameterActions != null)
-      'set_parameter_actions': [
-        for (final e in setParameterActions!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.conditional_cases` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentConditionalCases {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentConditionalCases({
-    this.cases,
-  });
-
-  final TfArg<String>? cases;
-
-  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessages {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessages({
-    this.channel,
-    this.payload,
-    this.conversationSuccess,
-    this.liveAgentHandoff,
-    this.outputAudioText,
-    this.playAudio,
-    this.telephonyTransferCall,
-    this.text,
-  });
-
-  final TfArg<String>? channel;
-
-  final TfArg<String>? payload;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesOutputAudioText?
-  outputAudioText;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesPlayAudio?
-  playAudio;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
-
-  final DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesText?
-  text;
-
-  Map<String, Object?> encode() => {
-    'channel': ?channel?.toTfJson(),
-    'payload': ?payload?.toTfJson(),
-    'conversation_success': ?conversationSuccess?.encode(),
-    'live_agent_handoff': ?liveAgentHandoff?.encode(),
-    'output_audio_text': ?outputAudioText?.encode(),
-    'play_audio': ?playAudio?.encode(),
-    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
-    'text': ?text?.encode(),
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.conversation_success` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.live_agent_handoff` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.output_audio_text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
-
-  final TfArg<String>? ssml;
-
-  final TfArg<String>? text;
-
-  Map<String, Object?> encode() => {
-    'ssml': ?ssml?.toTfJson(),
-    'text': ?text?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.play_audio` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
-
-  final TfArg<String> audioUri;
-
-  Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.telephony_transfer_call` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
-
-  final TfArg<String> phoneNumber;
-
-  Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesText {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesText({
-    this.text,
-  });
-
-  final TfArg<List<String>>? text;
-
-  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
-}
-
-/// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.set_parameter_actions` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentSetParameterActions {
-  const DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
-
-  final TfArg<String>? parameter;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'parameter': ?parameter?.toTfJson(),
-    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1063,8 +462,7 @@ final class DialogflowCxPageKnowledgeConnectorSettings {
 
   final TfArg<String>? targetPage;
 
-  final List<DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections>?
-  dataStoreConnections;
+  final List<DialogflowCxPageDataStoreConnections>? dataStoreConnections;
 
   final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment?
   triggerFulfillment;
@@ -1084,8 +482,8 @@ final class DialogflowCxPageKnowledgeConnectorSettings {
 /// Typed helper for the `knowledge_connector_settings.data_store_connections` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections {
-  const DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections({
+final class DialogflowCxPageDataStoreConnections {
+  const DialogflowCxPageDataStoreConnections({
     this.dataStore,
     this.dataStoreType,
     this.documentProcessingMode,
@@ -1093,15 +491,9 @@ final class DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections {
 
   final TfArg<String>? dataStore;
 
-  final TfArg<
-    DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDataStoreType
-  >?
-  dataStoreType;
+  final TfArg<DialogflowCxPageDataStoreType>? dataStoreType;
 
-  final TfArg<
-    DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDocumentProcessingMode
-  >?
-  documentProcessingMode;
+  final TfArg<DialogflowCxPageDocumentProcessingMode>? documentProcessingMode;
 
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
@@ -1111,28 +503,22 @@ final class DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections {
 }
 
 /// `data_store_type` — derived from the provider schema description.
-enum DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDataStoreType
-    implements TerraformEnum {
+enum DialogflowCxPageDataStoreType implements TerraformEnum {
   publicWeb('PUBLIC_WEB'),
   unstructured('UNSTRUCTURED'),
   structured('STRUCTURED');
 
-  const DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDataStoreType(
-    this.terraformValue,
-  );
+  const DialogflowCxPageDataStoreType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `document_processing_mode` — derived from the provider schema description.
-enum DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDocumentProcessingMode
-    implements TerraformEnum {
+enum DialogflowCxPageDocumentProcessingMode implements TerraformEnum {
   documents('DOCUMENTS'),
   chunks('CHUNKS');
 
-  const DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDocumentProcessingMode(
-    this.terraformValue,
-  );
+  const DialogflowCxPageDocumentProcessingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1160,23 +546,13 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment {
 
   final TfArg<String>? webhook;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettings?
-  advancedSettings;
+  final DialogflowCxPageTriggerFulfillmentAdvancedSettings? advancedSettings;
 
-  final List<
-    DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentConditionalCases
-  >?
-  conditionalCases;
+  final List<DialogflowCxPageConditionalCases>? conditionalCases;
 
-  final List<
-    DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
-  >?
-  messages;
+  final List<DialogflowCxPageTriggerFulfillmentMessages>? messages;
 
-  final List<
-    DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentSetParameterActions
-  >?
-  setParameterActions;
+  final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
   Map<String, Object?> encode() => {
     'enable_generative_fallback': ?enableGenerativeFallback?.toTfJson(),
@@ -1197,21 +573,18 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment {
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.advanced_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettings {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettings({
+final class DialogflowCxPageTriggerFulfillmentAdvancedSettings {
+  const DialogflowCxPageTriggerFulfillmentAdvancedSettings({
     this.dtmfSettings,
     this.loggingSettings,
     this.speechSettings,
   });
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsDtmfSettings?
-  dtmfSettings;
+  final DialogflowCxPageAdvancedSettingsDtmfSettings? dtmfSettings;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsLoggingSettings?
-  loggingSettings;
+  final DialogflowCxPageLoggingSettings? loggingSettings;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsSpeechSettings?
-  speechSettings;
+  final DialogflowCxPageSpeechSettings? speechSettings;
 
   Map<String, Object?> encode() => {
     'dtmf_settings': ?dtmfSettings?.encode(),
@@ -1223,8 +596,8 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.advanced_settings.dtmf_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsDtmfSettings {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsDtmfSettings({
+final class DialogflowCxPageAdvancedSettingsDtmfSettings {
+  const DialogflowCxPageAdvancedSettingsDtmfSettings({
     this.enabled,
     this.endpointingTimeoutDuration,
     this.finishDigit,
@@ -1254,8 +627,8 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.advanced_settings.logging_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsLoggingSettings {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsLoggingSettings({
+final class DialogflowCxPageLoggingSettings {
+  const DialogflowCxPageLoggingSettings({
     this.enableConsentBasedRedaction,
     this.enableInteractionLogging,
     this.enableStackdriverLogging,
@@ -1277,8 +650,8 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.advanced_settings.speech_settings` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsSpeechSettings {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsSpeechSettings({
+final class DialogflowCxPageSpeechSettings {
+  const DialogflowCxPageSpeechSettings({
     this.endpointerSensitivity,
     this.models,
     this.noSpeechTimeout,
@@ -1301,24 +674,11 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
   };
 }
 
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.conditional_cases` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentConditionalCases {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentConditionalCases({
-    this.cases,
-  });
-
-  final TfArg<String>? cases;
-
-  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
-}
-
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages({
+final class DialogflowCxPageTriggerFulfillmentMessages {
+  const DialogflowCxPageTriggerFulfillmentMessages({
     this.channel,
     this.payload,
     this.conversationSuccess,
@@ -1334,26 +694,19 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
 
   final TfArg<String>? payload;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
+  final DialogflowCxPageConversationSuccess? conversationSuccess;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesKnowledgeInfoCard?
-  knowledgeInfoCard;
+  final DialogflowCxPageKnowledgeInfoCard? knowledgeInfoCard;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
+  final DialogflowCxPageLiveAgentHandoff? liveAgentHandoff;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesOutputAudioText?
-  outputAudioText;
+  final DialogflowCxPageOutputAudioText? outputAudioText;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesPlayAudio?
-  playAudio;
+  final DialogflowCxPagePlayAudio? playAudio;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
+  final DialogflowCxPageTelephonyTransferCall? telephonyTransferCall;
 
-  final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesText?
-  text;
+  final DialogflowCxPageText? text;
 
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
@@ -1368,116 +721,13 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
   };
 }
 
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.conversation_success` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.knowledge_info_card` block of
 /// `google_dialogflow_cx_page` (derived from provider schema).
 @immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesKnowledgeInfoCard {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesKnowledgeInfoCard();
+final class DialogflowCxPageKnowledgeInfoCard {
+  const DialogflowCxPageKnowledgeInfoCard();
 
   Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.live_agent_handoff` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
-
-  final TfArg<String>? ssml;
-
-  final TfArg<String>? text;
-
-  Map<String, Object?> encode() => {
-    'ssml': ?ssml?.toTfJson(),
-    'text': ?text?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.play_audio` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
-
-  final TfArg<String> audioUri;
-
-  Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.telephony_transfer_call` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
-
-  final TfArg<String> phoneNumber;
-
-  Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesText {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesText({
-    this.text,
-  });
-
-  final TfArg<List<String>>? text;
-
-  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
-}
-
-/// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.set_parameter_actions` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentSetParameterActions {
-  const DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
-
-  final TfArg<String>? parameter;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'parameter': ?parameter?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `transition_routes` block of
@@ -1500,7 +750,7 @@ final class DialogflowCxPageTransitionRoutes {
 
   final TfArg<String>? targetPage;
 
-  final DialogflowCxPageTransitionRoutesTriggerFulfillment? triggerFulfillment;
+  final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
@@ -1508,216 +758,6 @@ final class DialogflowCxPageTransitionRoutes {
     'target_flow': ?targetFlow?.toTfJson(),
     'target_page': ?targetPage?.toTfJson(),
     'trigger_fulfillment': ?triggerFulfillment?.encode(),
-  };
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillment {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillment({
-    this.returnPartialResponses,
-    this.tag,
-    this.webhook,
-    this.conditionalCases,
-    this.messages,
-    this.setParameterActions,
-  });
-
-  final TfArg<bool>? returnPartialResponses;
-
-  final TfArg<String>? tag;
-
-  final TfArg<String>? webhook;
-
-  final List<
-    DialogflowCxPageTransitionRoutesTriggerFulfillmentConditionalCases
-  >?
-  conditionalCases;
-
-  final List<DialogflowCxPageTransitionRoutesTriggerFulfillmentMessages>?
-  messages;
-
-  final List<
-    DialogflowCxPageTransitionRoutesTriggerFulfillmentSetParameterActions
-  >?
-  setParameterActions;
-
-  Map<String, Object?> encode() => {
-    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
-    'tag': ?tag?.toTfJson(),
-    'webhook': ?webhook?.toTfJson(),
-    if (conditionalCases != null)
-      'conditional_cases': [for (final e in conditionalCases!) e.encode()],
-    if (messages != null) 'messages': [for (final e in messages!) e.encode()],
-    if (setParameterActions != null)
-      'set_parameter_actions': [
-        for (final e in setParameterActions!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.conditional_cases` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentConditionalCases {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentConditionalCases({
-    this.cases,
-  });
-
-  final TfArg<String>? cases;
-
-  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessages {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessages({
-    this.channel,
-    this.payload,
-    this.conversationSuccess,
-    this.liveAgentHandoff,
-    this.outputAudioText,
-    this.playAudio,
-    this.telephonyTransferCall,
-    this.text,
-  });
-
-  final TfArg<String>? channel;
-
-  final TfArg<String>? payload;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesConversationSuccess?
-  conversationSuccess;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesLiveAgentHandoff?
-  liveAgentHandoff;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesOutputAudioText?
-  outputAudioText;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesPlayAudio?
-  playAudio;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesTelephonyTransferCall?
-  telephonyTransferCall;
-
-  final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText? text;
-
-  Map<String, Object?> encode() => {
-    'channel': ?channel?.toTfJson(),
-    'payload': ?payload?.toTfJson(),
-    'conversation_success': ?conversationSuccess?.encode(),
-    'live_agent_handoff': ?liveAgentHandoff?.encode(),
-    'output_audio_text': ?outputAudioText?.encode(),
-    'play_audio': ?playAudio?.encode(),
-    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
-    'text': ?text?.encode(),
-  };
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.conversation_success` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesConversationSuccess {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesConversationSuccess({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.live_agent_handoff` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesLiveAgentHandoff {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesLiveAgentHandoff({
-    this.metadata,
-  });
-
-  final TfArg<String>? metadata;
-
-  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.output_audio_text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesOutputAudioText {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesOutputAudioText({
-    this.ssml,
-    this.text,
-  });
-
-  final TfArg<String>? ssml;
-
-  final TfArg<String>? text;
-
-  Map<String, Object?> encode() => {
-    'ssml': ?ssml?.toTfJson(),
-    'text': ?text?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.play_audio` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesPlayAudio {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesPlayAudio({
-    required this.audioUri,
-  });
-
-  final TfArg<String> audioUri;
-
-  Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.telephony_transfer_call` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesTelephonyTransferCall {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesTelephonyTransferCall({
-    required this.phoneNumber,
-  });
-
-  final TfArg<String> phoneNumber;
-
-  Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.messages.text` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText({
-    this.text,
-  });
-
-  final TfArg<List<String>>? text;
-
-  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
-}
-
-/// Typed helper for the `transition_routes.trigger_fulfillment.set_parameter_actions` block of
-/// `google_dialogflow_cx_page` (derived from provider schema).
-@immutable
-final class DialogflowCxPageTransitionRoutesTriggerFulfillmentSetParameterActions {
-  const DialogflowCxPageTransitionRoutesTriggerFulfillmentSetParameterActions({
-    this.parameter,
-    this.value,
-  });
-
-  final TfArg<String>? parameter;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'parameter': ?parameter?.toTfJson(),
-    'value': ?value?.toTfJson(),
   };
 }
 

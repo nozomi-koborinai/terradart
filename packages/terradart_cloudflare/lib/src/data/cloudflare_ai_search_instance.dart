@@ -22,9 +22,9 @@ final class DataAiSearchInstanceFilter {
 
   final TfArg<String>? namespace;
 
-  final TfArg<DataAiSearchInstanceFilterOrderBy>? orderBy;
+  final TfArg<DataAiSearchInstanceOrderBy>? orderBy;
 
-  final TfArg<DataAiSearchInstanceFilterOrderByDirection>? orderByDirection;
+  final TfArg<DataAiSearchInstanceOrderByDirection>? orderByDirection;
 
   final TfArg<String>? search;
 
@@ -37,20 +37,20 @@ final class DataAiSearchInstanceFilter {
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataAiSearchInstanceFilterOrderBy implements TerraformEnum {
+enum DataAiSearchInstanceOrderBy implements TerraformEnum {
   createdAt('created_at');
 
-  const DataAiSearchInstanceFilterOrderBy(this.terraformValue);
+  const DataAiSearchInstanceOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order_by_direction` — derived from the provider schema description.
-enum DataAiSearchInstanceFilterOrderByDirection implements TerraformEnum {
+enum DataAiSearchInstanceOrderByDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataAiSearchInstanceFilterOrderByDirection(this.terraformValue);
+  const DataAiSearchInstanceOrderByDirection(this.terraformValue);
   @override
   final String terraformValue;
 }

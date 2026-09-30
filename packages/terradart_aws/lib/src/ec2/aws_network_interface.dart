@@ -278,8 +278,7 @@ final class NetworkInterfaceEnaSrdSpecification {
 
   final TfArg<bool>? enaSrdEnabled;
 
-  final NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification?
-  enaSrdUdpSpecification;
+  final NetworkInterfaceEnaSrdUdpSpecification? enaSrdUdpSpecification;
 
   Map<String, Object?> encode() => {
     'ena_srd_enabled': ?enaSrdEnabled?.toTfJson(),
@@ -290,10 +289,8 @@ final class NetworkInterfaceEnaSrdSpecification {
 /// Typed helper for the `ena_srd_specification.ena_srd_udp_specification` block of
 /// `aws_network_interface` (derived from provider schema).
 @immutable
-final class NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification {
-  const NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification({
-    this.enaSrdUdpEnabled,
-  });
+final class NetworkInterfaceEnaSrdUdpSpecification {
+  const NetworkInterfaceEnaSrdUdpSpecification({this.enaSrdUdpEnabled});
 
   final TfArg<bool>? enaSrdUdpEnabled;
 

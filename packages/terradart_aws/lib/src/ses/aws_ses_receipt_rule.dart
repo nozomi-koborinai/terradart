@@ -94,7 +94,7 @@ final class SesReceiptRuleLambdaAction {
 
   final RefTo<AwsLambdaFunction> functionArn;
 
-  final TfArg<SesReceiptRuleLambdaActionInvocationType>? invocationType;
+  final TfArg<SesReceiptRuleInvocationType>? invocationType;
 
   final TfArg<num> position;
 
@@ -109,11 +109,11 @@ final class SesReceiptRuleLambdaAction {
 }
 
 /// `invocation_type` — derived from the provider schema description.
-enum SesReceiptRuleLambdaActionInvocationType implements TerraformEnum {
+enum SesReceiptRuleInvocationType implements TerraformEnum {
   event('Event'),
   requestresponse('RequestResponse');
 
-  const SesReceiptRuleLambdaActionInvocationType(this.terraformValue);
+  const SesReceiptRuleInvocationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -163,7 +163,7 @@ final class SesReceiptRuleSnsAction {
     required this.topicArn,
   });
 
-  final TfArg<SesReceiptRuleSnsActionEncoding>? encoding;
+  final TfArg<SesReceiptRuleEncoding>? encoding;
 
   final TfArg<num> position;
 
@@ -177,11 +177,11 @@ final class SesReceiptRuleSnsAction {
 }
 
 /// `encoding` — derived from the provider schema description.
-enum SesReceiptRuleSnsActionEncoding implements TerraformEnum {
+enum SesReceiptRuleEncoding implements TerraformEnum {
   utf8('UTF-8'),
   base64('Base64');
 
-  const SesReceiptRuleSnsActionEncoding(this.terraformValue);
+  const SesReceiptRuleEncoding(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -198,7 +198,7 @@ final class SesReceiptRuleStopAction {
 
   final TfArg<num> position;
 
-  final TfArg<SesReceiptRuleStopActionScope> scope;
+  final TfArg<SesReceiptRuleScope> scope;
 
   final RefTo<AwsSnsTopic>? topicArn;
 
@@ -210,10 +210,10 @@ final class SesReceiptRuleStopAction {
 }
 
 /// `scope` — derived from the provider schema description.
-enum SesReceiptRuleStopActionScope implements TerraformEnum {
+enum SesReceiptRuleScope implements TerraformEnum {
   ruleset('RuleSet');
 
-  const SesReceiptRuleStopActionScope(this.terraformValue);
+  const SesReceiptRuleScope(this.terraformValue);
   @override
   final String terraformValue;
 }

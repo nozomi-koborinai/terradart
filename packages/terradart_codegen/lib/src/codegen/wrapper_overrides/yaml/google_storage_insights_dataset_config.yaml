@@ -35,7 +35,7 @@ curatedDoc: |-
   ///   retentionPeriodDays: TfArg.literal(1),
   ///   identity: StorageInsightsDatasetConfigIdentity(
   ///     type: TfArg.literal(
-  ///       StorageInsightsDatasetConfigIdentityType.identityTypePerConfig,
+  ///       StorageInsightsDatasetConfigType.identityTypePerConfig,
   ///     ),
   ///   ),
   ///   source: StorageInsightsDatasetConfigSourceProjects(

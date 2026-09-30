@@ -29,9 +29,9 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   name: TfArg.literal('terradart-run-v1'),
   ///   template: CloudRunServiceTemplate(
-  ///     spec: CloudRunServiceTemplateSpec(
+  ///     spec: CloudRunServiceSpec(
   ///       containers: [
-  ///         CloudRunServiceTemplateSpecContainers(
+  ///         CloudRunServiceContainers(
   ///           image: TfArg.literal(
   ///             'us-docker.pkg.dev/cloudrun/container/hello',
   ///           ),

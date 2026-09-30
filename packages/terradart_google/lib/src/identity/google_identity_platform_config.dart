@@ -18,10 +18,10 @@ final class IdentityPlatformConfigBlockingFunctions {
     required this.triggers,
   });
 
-  final IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials?
+  final IdentityPlatformConfigForwardInboundCredentials?
   forwardInboundCredentials;
 
-  final List<IdentityPlatformConfigBlockingFunctionsTriggers> triggers;
+  final List<IdentityPlatformConfigTriggers> triggers;
 
   Map<String, Object?> encode() => {
     'forward_inbound_credentials': ?forwardInboundCredentials?.encode(),
@@ -32,8 +32,8 @@ final class IdentityPlatformConfigBlockingFunctions {
 /// Typed helper for the `blocking_functions.forward_inbound_credentials` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials {
-  const IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials({
+final class IdentityPlatformConfigForwardInboundCredentials {
+  const IdentityPlatformConfigForwardInboundCredentials({
     this.accessToken,
     this.idToken,
     this.refreshToken,
@@ -55,8 +55,8 @@ final class IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials {
 /// Typed helper for the `blocking_functions.triggers` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigBlockingFunctionsTriggers {
-  const IdentityPlatformConfigBlockingFunctionsTriggers({
+final class IdentityPlatformConfigTriggers {
+  const IdentityPlatformConfigTriggers({
     required this.eventType,
     required this.functionUri,
   });
@@ -77,7 +77,7 @@ final class IdentityPlatformConfigBlockingFunctionsTriggers {
 final class IdentityPlatformConfigClient {
   const IdentityPlatformConfigClient({this.permissions});
 
-  final IdentityPlatformConfigClientPermissions? permissions;
+  final IdentityPlatformConfigPermissions? permissions;
 
   Map<String, Object?> encode() => {'permissions': ?permissions?.encode()};
 }
@@ -85,8 +85,8 @@ final class IdentityPlatformConfigClient {
 /// Typed helper for the `client.permissions` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigClientPermissions {
-  const IdentityPlatformConfigClientPermissions({
+final class IdentityPlatformConfigPermissions {
+  const IdentityPlatformConfigPermissions({
     this.disabledUserDeletion,
     this.disabledUserSignup,
   });
@@ -113,9 +113,9 @@ final class IdentityPlatformConfigMfa {
 
   final TfArg<List<String>>? enabledProviders;
 
-  final TfArg<IdentityPlatformConfigMfaState>? state;
+  final TfArg<IdentityPlatformConfigState>? state;
 
-  final List<IdentityPlatformConfigMfaProviderConfigs>? providerConfigs;
+  final List<IdentityPlatformConfigProviderConfigs>? providerConfigs;
 
   Map<String, Object?> encode() => {
     'enabled_providers': ?enabledProviders?.toTfJson(),
@@ -126,12 +126,12 @@ final class IdentityPlatformConfigMfa {
 }
 
 /// `state` — derived from the provider schema description.
-enum IdentityPlatformConfigMfaState implements TerraformEnum {
+enum IdentityPlatformConfigState implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED'),
   mandatory('MANDATORY');
 
-  const IdentityPlatformConfigMfaState(this.terraformValue);
+  const IdentityPlatformConfigState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -139,16 +139,15 @@ enum IdentityPlatformConfigMfaState implements TerraformEnum {
 /// Typed helper for the `mfa.provider_configs` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigMfaProviderConfigs {
-  const IdentityPlatformConfigMfaProviderConfigs({
+final class IdentityPlatformConfigProviderConfigs {
+  const IdentityPlatformConfigProviderConfigs({
     this.state,
     this.totpProviderConfig,
   });
 
-  final TfArg<IdentityPlatformConfigMfaProviderConfigsState>? state;
+  final TfArg<IdentityPlatformConfigState>? state;
 
-  final IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig?
-  totpProviderConfig;
+  final IdentityPlatformConfigTotpProviderConfig? totpProviderConfig;
 
   Map<String, Object?> encode() => {
     'state': ?state?.toTfJson(),
@@ -156,24 +155,11 @@ final class IdentityPlatformConfigMfaProviderConfigs {
   };
 }
 
-/// `state` — derived from the provider schema description.
-enum IdentityPlatformConfigMfaProviderConfigsState implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  mandatory('MANDATORY');
-
-  const IdentityPlatformConfigMfaProviderConfigsState(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `mfa.provider_configs.totp_provider_config` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig {
-  const IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig({
-    this.adjacentIntervals,
-  });
+final class IdentityPlatformConfigTotpProviderConfig {
+  const IdentityPlatformConfigTotpProviderConfig({this.adjacentIntervals});
 
   final TfArg<num>? adjacentIntervals;
 
@@ -188,7 +174,7 @@ final class IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig {
 final class IdentityPlatformConfigMonitoring {
   const IdentityPlatformConfigMonitoring({this.requestLogging});
 
-  final IdentityPlatformConfigMonitoringRequestLogging? requestLogging;
+  final IdentityPlatformConfigRequestLogging? requestLogging;
 
   Map<String, Object?> encode() => {
     'request_logging': ?requestLogging?.encode(),
@@ -198,8 +184,8 @@ final class IdentityPlatformConfigMonitoring {
 /// Typed helper for the `monitoring.request_logging` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigMonitoringRequestLogging {
-  const IdentityPlatformConfigMonitoringRequestLogging({this.enabled});
+final class IdentityPlatformConfigRequestLogging {
+  const IdentityPlatformConfigRequestLogging({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -231,7 +217,7 @@ final class IdentityPlatformConfigMultiTenant {
 final class IdentityPlatformConfigQuota {
   const IdentityPlatformConfigQuota({this.signUpQuotaConfig});
 
-  final IdentityPlatformConfigQuotaSignUpQuotaConfig? signUpQuotaConfig;
+  final IdentityPlatformConfigSignUpQuotaConfig? signUpQuotaConfig;
 
   Map<String, Object?> encode() => {
     'sign_up_quota_config': ?signUpQuotaConfig?.encode(),
@@ -241,8 +227,8 @@ final class IdentityPlatformConfigQuota {
 /// Typed helper for the `quota.sign_up_quota_config` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigQuotaSignUpQuotaConfig {
-  const IdentityPlatformConfigQuotaSignUpQuotaConfig({
+final class IdentityPlatformConfigSignUpQuotaConfig {
+  const IdentityPlatformConfigSignUpQuotaConfig({
     this.quota,
     this.quotaDuration,
     this.startTime,
@@ -274,11 +260,11 @@ final class IdentityPlatformConfigSignIn {
 
   final TfArg<bool>? allowDuplicateEmails;
 
-  final IdentityPlatformConfigSignInAnonymous? anonymous;
+  final IdentityPlatformConfigAnonymous? anonymous;
 
-  final IdentityPlatformConfigSignInEmail? email;
+  final IdentityPlatformConfigEmail? email;
 
-  final IdentityPlatformConfigSignInPhoneNumber? phoneNumber;
+  final IdentityPlatformConfigPhoneNumber? phoneNumber;
 
   Map<String, Object?> encode() => {
     'allow_duplicate_emails': ?allowDuplicateEmails?.toTfJson(),
@@ -291,8 +277,8 @@ final class IdentityPlatformConfigSignIn {
 /// Typed helper for the `sign_in.anonymous` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigSignInAnonymous {
-  const IdentityPlatformConfigSignInAnonymous({required this.enabled});
+final class IdentityPlatformConfigAnonymous {
+  const IdentityPlatformConfigAnonymous({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -302,8 +288,8 @@ final class IdentityPlatformConfigSignInAnonymous {
 /// Typed helper for the `sign_in.email` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigSignInEmail {
-  const IdentityPlatformConfigSignInEmail({
+final class IdentityPlatformConfigEmail {
+  const IdentityPlatformConfigEmail({
     required this.enabled,
     this.passwordRequired,
   });
@@ -321,8 +307,8 @@ final class IdentityPlatformConfigSignInEmail {
 /// Typed helper for the `sign_in.phone_number` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigSignInPhoneNumber {
-  const IdentityPlatformConfigSignInPhoneNumber({
+final class IdentityPlatformConfigPhoneNumber {
+  const IdentityPlatformConfigPhoneNumber({
     required this.enabled,
     this.testPhoneNumbers,
   });
@@ -346,13 +332,13 @@ sealed class IdentityPlatformConfigSmsRegionConfig {
 
   /// Sets `allow_by_default`.
   const factory IdentityPlatformConfigSmsRegionConfig.allowByDefault(
-    IdentityPlatformConfigSmsRegionConfigAllowByDefault allowByDefault,
-  ) = IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice;
+    IdentityPlatformConfigAllowByDefault allowByDefault,
+  ) = IdentityPlatformConfigSmsRegionConfigAllowByDefault;
 
   /// Sets `allowlist_only`.
   const factory IdentityPlatformConfigSmsRegionConfig.allowlistOnly(
-    IdentityPlatformConfigSmsRegionConfigAllowlistOnly allowlistOnly,
-  ) = IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice;
+    IdentityPlatformConfigAllowlistOnly allowlistOnly,
+  ) = IdentityPlatformConfigSmsRegionConfigAllowlistOnly;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -361,13 +347,13 @@ sealed class IdentityPlatformConfigSmsRegionConfig {
 }
 
 /// The [IdentityPlatformConfigSmsRegionConfig.allowByDefault] choice: sets `allow_by_default`.
-final class IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice
+final class IdentityPlatformConfigSmsRegionConfigAllowByDefault
     extends IdentityPlatformConfigSmsRegionConfig {
-  const IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice(
+  const IdentityPlatformConfigSmsRegionConfigAllowByDefault(
     this.allowByDefault,
   );
 
-  final IdentityPlatformConfigSmsRegionConfigAllowByDefault allowByDefault;
+  final IdentityPlatformConfigAllowByDefault allowByDefault;
 
   @override
   String get blockKey => 'allow_by_default';
@@ -379,13 +365,11 @@ final class IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice
 }
 
 /// The [IdentityPlatformConfigSmsRegionConfig.allowlistOnly] choice: sets `allowlist_only`.
-final class IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice
+final class IdentityPlatformConfigSmsRegionConfigAllowlistOnly
     extends IdentityPlatformConfigSmsRegionConfig {
-  const IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice(
-    this.allowlistOnly,
-  );
+  const IdentityPlatformConfigSmsRegionConfigAllowlistOnly(this.allowlistOnly);
 
-  final IdentityPlatformConfigSmsRegionConfigAllowlistOnly allowlistOnly;
+  final IdentityPlatformConfigAllowlistOnly allowlistOnly;
 
   @override
   String get blockKey => 'allowlist_only';
@@ -397,10 +381,8 @@ final class IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice
 /// Typed helper for the `sms_region_config.allow_by_default` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigSmsRegionConfigAllowByDefault {
-  const IdentityPlatformConfigSmsRegionConfigAllowByDefault({
-    this.disallowedRegions,
-  });
+final class IdentityPlatformConfigAllowByDefault {
+  const IdentityPlatformConfigAllowByDefault({this.disallowedRegions});
 
   final TfArg<List<String>>? disallowedRegions;
 
@@ -412,10 +394,8 @@ final class IdentityPlatformConfigSmsRegionConfigAllowByDefault {
 /// Typed helper for the `sms_region_config.allowlist_only` block of
 /// `google_identity_platform_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformConfigSmsRegionConfigAllowlistOnly {
-  const IdentityPlatformConfigSmsRegionConfigAllowlistOnly({
-    this.allowedRegions,
-  });
+final class IdentityPlatformConfigAllowlistOnly {
+  const IdentityPlatformConfigAllowlistOnly({this.allowedRegions});
 
   final TfArg<List<String>>? allowedRegions;
 

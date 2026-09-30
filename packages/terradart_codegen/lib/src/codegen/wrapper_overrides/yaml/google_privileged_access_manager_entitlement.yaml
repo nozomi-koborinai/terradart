@@ -41,7 +41,7 @@ curatedDoc: |-
   ///   privilegedAccess:
   ///       PrivilegedAccessManagerEntitlementPrivilegedAccess(
   ///     gcpIamAccess:
-  ///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess(
+  ///         PrivilegedAccessManagerEntitlementGcpIamAccess(
   ///       resourceType: TfArg.literal(
   ///         'cloudresourcemanager.googleapis.com/Project',
   ///       ),
@@ -49,7 +49,7 @@ curatedDoc: |-
   ///         '//cloudresourcemanager.googleapis.com/projects/my-project',
   ///       ),
   ///       roleBindings: [
-  ///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
+  ///         PrivilegedAccessManagerEntitlementRoleBindings(
   ///           role: TfArg.literal('roles/browser'),
   ///         ),
   ///       ],
@@ -58,7 +58,7 @@ curatedDoc: |-
   ///   requesterJustificationConfig:
   ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
   ///     requirement: .unstructured(
-  ///       const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+  ///       const PrivilegedAccessManagerEntitlementUnstructured(),
   ///     ),
   ///   ),
   ///   deletionPolicy: TfArg.literal('DELETE'),

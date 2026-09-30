@@ -82,11 +82,11 @@ final class LookerInstanceDenyMaintenancePeriod {
     required this.time,
   });
 
-  final LookerInstanceDenyMaintenancePeriodEndDate endDate;
+  final LookerInstanceEndDate endDate;
 
-  final LookerInstanceDenyMaintenancePeriodStartDate startDate;
+  final LookerInstanceStartDate startDate;
 
-  final LookerInstanceDenyMaintenancePeriodTime time;
+  final LookerInstanceTime time;
 
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
@@ -98,12 +98,8 @@ final class LookerInstanceDenyMaintenancePeriod {
 /// Typed helper for the `deny_maintenance_period.end_date` block of
 /// `google_looker_instance` (derived from provider schema).
 @immutable
-final class LookerInstanceDenyMaintenancePeriodEndDate {
-  const LookerInstanceDenyMaintenancePeriodEndDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class LookerInstanceEndDate {
+  const LookerInstanceEndDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -121,12 +117,8 @@ final class LookerInstanceDenyMaintenancePeriodEndDate {
 /// Typed helper for the `deny_maintenance_period.start_date` block of
 /// `google_looker_instance` (derived from provider schema).
 @immutable
-final class LookerInstanceDenyMaintenancePeriodStartDate {
-  const LookerInstanceDenyMaintenancePeriodStartDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class LookerInstanceStartDate {
+  const LookerInstanceStartDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -144,8 +136,8 @@ final class LookerInstanceDenyMaintenancePeriodStartDate {
 /// Typed helper for the `deny_maintenance_period.time` block of
 /// `google_looker_instance` (derived from provider schema).
 @immutable
-final class LookerInstanceDenyMaintenancePeriodTime {
-  const LookerInstanceDenyMaintenancePeriodTime({
+final class LookerInstanceTime {
+  const LookerInstanceTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -190,9 +182,9 @@ final class LookerInstanceMaintenanceWindow {
     required this.startTime,
   });
 
-  final TfArg<LookerInstanceMaintenanceWindowDayOfWeek> dayOfWeek;
+  final TfArg<LookerInstanceDayOfWeek> dayOfWeek;
 
-  final LookerInstanceMaintenanceWindowStartTime startTime;
+  final LookerInstanceStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
@@ -201,7 +193,7 @@ final class LookerInstanceMaintenanceWindow {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum LookerInstanceMaintenanceWindowDayOfWeek implements TerraformEnum {
+enum LookerInstanceDayOfWeek implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -210,16 +202,17 @@ enum LookerInstanceMaintenanceWindowDayOfWeek implements TerraformEnum {
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const LookerInstanceMaintenanceWindowDayOfWeek(this.terraformValue);
+  const LookerInstanceDayOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `maintenance_window.start_time` block of
 /// `google_looker_instance` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LookerInstanceMaintenanceWindowStartTime {
-  const LookerInstanceMaintenanceWindowStartTime({
+final class LookerInstanceStartTime {
+  const LookerInstanceStartTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -275,39 +268,12 @@ final class LookerInstancePeriodicExportConfig {
 
   final RefTo<GoogleKmsCryptoKey> kmsKey;
 
-  final LookerInstancePeriodicExportConfigStartTime startTime;
+  final LookerInstanceStartTime startTime;
 
   Map<String, Object?> encode() => {
     'gcs_uri': gcsUri.toTfJson(),
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
     'start_time': startTime.encode(),
-  };
-}
-
-/// Typed helper for the `periodic_export_config.start_time` block of
-/// `google_looker_instance` (derived from provider schema).
-@immutable
-final class LookerInstancePeriodicExportConfigStartTime {
-  const LookerInstancePeriodicExportConfigStartTime({
-    this.hours,
-    this.minutes,
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? hours;
-
-  final TfArg<num>? minutes;
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num>? seconds;
-
-  Map<String, Object?> encode() => {
-    'hours': ?hours?.toTfJson(),
-    'minutes': ?minutes?.toTfJson(),
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -319,7 +285,7 @@ final class LookerInstancePscConfig {
 
   final TfArg<List<String>>? allowedVpcs;
 
-  final List<LookerInstancePscConfigServiceAttachments>? serviceAttachments;
+  final List<LookerInstanceServiceAttachments>? serviceAttachments;
 
   Map<String, Object?> encode() => {
     'allowed_vpcs': ?allowedVpcs?.toTfJson(),
@@ -331,8 +297,8 @@ final class LookerInstancePscConfig {
 /// Typed helper for the `psc_config.service_attachments` block of
 /// `google_looker_instance` (derived from provider schema).
 @immutable
-final class LookerInstancePscConfigServiceAttachments {
-  const LookerInstancePscConfigServiceAttachments({
+final class LookerInstanceServiceAttachments {
+  const LookerInstanceServiceAttachments({
     this.localFqdn,
     this.targetServiceAttachmentUri,
   });

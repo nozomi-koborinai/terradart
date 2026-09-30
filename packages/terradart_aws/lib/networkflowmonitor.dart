@@ -14,6 +14,6 @@ export 'src/networkflowmonitor/aws_networkflowmonitor_scope.dart'
     show
         AwsNetworkflowmonitorScope,
         NetworkflowmonitorScopeTarget,
-        NetworkflowmonitorScopeTargetTargetIdentifier,
-        NetworkflowmonitorScopeTargetTargetIdentifierTargetId,
-        NetworkflowmonitorScopeTargetTargetIdentifierTargetType;
+        NetworkflowmonitorScopeTargetId,
+        NetworkflowmonitorScopeTargetIdentifier,
+        NetworkflowmonitorScopeTargetType;

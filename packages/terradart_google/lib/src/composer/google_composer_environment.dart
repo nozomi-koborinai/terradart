@@ -47,32 +47,31 @@ final class ComposerEnvironmentConfig {
 
   final TfArg<String>? resilienceMode;
 
-  final ComposerEnvironmentConfigDataRetentionConfig? dataRetentionConfig;
+  final ComposerEnvironmentDataRetentionConfig? dataRetentionConfig;
 
-  final ComposerEnvironmentConfigDatabaseConfig? databaseConfig;
+  final ComposerEnvironmentDatabaseConfig? databaseConfig;
 
-  final ComposerEnvironmentConfigEncryptionConfig? encryptionConfig;
+  final ComposerEnvironmentEncryptionConfig? encryptionConfig;
 
-  final ComposerEnvironmentConfigMaintenanceWindow? maintenanceWindow;
+  final ComposerEnvironmentMaintenanceWindow? maintenanceWindow;
 
-  final ComposerEnvironmentConfigMasterAuthorizedNetworksConfig?
+  final ComposerEnvironmentMasterAuthorizedNetworksConfig?
   masterAuthorizedNetworksConfig;
 
-  final ComposerEnvironmentConfigNodeConfig? nodeConfig;
+  final ComposerEnvironmentNodeConfig? nodeConfig;
 
-  final ComposerEnvironmentConfigPrivateEnvironmentConfig?
-  privateEnvironmentConfig;
+  final ComposerEnvironmentPrivateEnvironmentConfig? privateEnvironmentConfig;
 
-  final ComposerEnvironmentConfigRecoveryConfig? recoveryConfig;
+  final ComposerEnvironmentRecoveryConfig? recoveryConfig;
 
-  final ComposerEnvironmentConfigSoftwareConfig? softwareConfig;
+  final ComposerEnvironmentSoftwareConfig? softwareConfig;
 
-  final ComposerEnvironmentConfigWebServerConfig? webServerConfig;
+  final ComposerEnvironmentWebServerConfig? webServerConfig;
 
-  final ComposerEnvironmentConfigWebServerNetworkAccessControl?
+  final ComposerEnvironmentWebServerNetworkAccessControl?
   webServerNetworkAccessControl;
 
-  final ComposerEnvironmentConfigWorkloadsConfig? workloadsConfig;
+  final ComposerEnvironmentWorkloadsConfig? workloadsConfig;
 
   Map<String, Object?> encode() => {
     'enable_private_builds_only': ?enablePrivateBuildsOnly?.toTfJson(),
@@ -100,20 +99,16 @@ final class ComposerEnvironmentConfig {
 /// Typed helper for the `config.data_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigDataRetentionConfig {
-  const ComposerEnvironmentConfigDataRetentionConfig({
+final class ComposerEnvironmentDataRetentionConfig {
+  const ComposerEnvironmentDataRetentionConfig({
     this.airflowMetadataRetentionConfig,
     this.taskLogsRetentionConfig,
   });
 
-  final List<
-    ComposerEnvironmentConfigDataRetentionConfigAirflowMetadataRetentionConfig
-  >?
+  final List<ComposerEnvironmentAirflowMetadataRetentionConfig>?
   airflowMetadataRetentionConfig;
 
-  final List<
-    ComposerEnvironmentConfigDataRetentionConfigTaskLogsRetentionConfig
-  >?
+  final List<ComposerEnvironmentTaskLogsRetentionConfig>?
   taskLogsRetentionConfig;
 
   Map<String, Object?> encode() => {
@@ -131,8 +126,8 @@ final class ComposerEnvironmentConfigDataRetentionConfig {
 /// Typed helper for the `config.data_retention_config.airflow_metadata_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigDataRetentionConfigAirflowMetadataRetentionConfig {
-  const ComposerEnvironmentConfigDataRetentionConfigAirflowMetadataRetentionConfig({
+final class ComposerEnvironmentAirflowMetadataRetentionConfig {
+  const ComposerEnvironmentAirflowMetadataRetentionConfig({
     this.retentionDays,
     this.retentionMode,
   });
@@ -150,10 +145,8 @@ final class ComposerEnvironmentConfigDataRetentionConfigAirflowMetadataRetention
 /// Typed helper for the `config.data_retention_config.task_logs_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigDataRetentionConfigTaskLogsRetentionConfig {
-  const ComposerEnvironmentConfigDataRetentionConfigTaskLogsRetentionConfig({
-    this.storageMode,
-  });
+final class ComposerEnvironmentTaskLogsRetentionConfig {
+  const ComposerEnvironmentTaskLogsRetentionConfig({this.storageMode});
 
   final TfArg<String>? storageMode;
 
@@ -163,8 +156,8 @@ final class ComposerEnvironmentConfigDataRetentionConfigTaskLogsRetentionConfig 
 /// Typed helper for the `config.database_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigDatabaseConfig {
-  const ComposerEnvironmentConfigDatabaseConfig({this.machineType, this.zone});
+final class ComposerEnvironmentDatabaseConfig {
+  const ComposerEnvironmentDatabaseConfig({this.machineType, this.zone});
 
   final TfArg<String>? machineType;
 
@@ -179,8 +172,8 @@ final class ComposerEnvironmentConfigDatabaseConfig {
 /// Typed helper for the `config.encryption_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigEncryptionConfig {
-  const ComposerEnvironmentConfigEncryptionConfig({required this.kmsKeyName});
+final class ComposerEnvironmentEncryptionConfig {
+  const ComposerEnvironmentEncryptionConfig({required this.kmsKeyName});
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -192,8 +185,8 @@ final class ComposerEnvironmentConfigEncryptionConfig {
 /// Typed helper for the `config.maintenance_window` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigMaintenanceWindow {
-  const ComposerEnvironmentConfigMaintenanceWindow({
+final class ComposerEnvironmentMaintenanceWindow {
+  const ComposerEnvironmentMaintenanceWindow({
     required this.endTime,
     required this.recurrence,
     required this.startTime,
@@ -215,16 +208,15 @@ final class ComposerEnvironmentConfigMaintenanceWindow {
 /// Typed helper for the `config.master_authorized_networks_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigMasterAuthorizedNetworksConfig {
-  const ComposerEnvironmentConfigMasterAuthorizedNetworksConfig({
+final class ComposerEnvironmentMasterAuthorizedNetworksConfig {
+  const ComposerEnvironmentMasterAuthorizedNetworksConfig({
     required this.enabled,
     this.cidrBlocks,
   });
 
   final TfArg<bool> enabled;
 
-  final List<ComposerEnvironmentConfigMasterAuthorizedNetworksConfigCidrBlocks>?
-  cidrBlocks;
+  final List<ComposerEnvironmentCidrBlocks>? cidrBlocks;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -236,8 +228,8 @@ final class ComposerEnvironmentConfigMasterAuthorizedNetworksConfig {
 /// Typed helper for the `config.master_authorized_networks_config.cidr_blocks` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigMasterAuthorizedNetworksConfigCidrBlocks {
-  const ComposerEnvironmentConfigMasterAuthorizedNetworksConfigCidrBlocks({
+final class ComposerEnvironmentCidrBlocks {
+  const ComposerEnvironmentCidrBlocks({
     required this.cidrBlock,
     this.displayName,
   });
@@ -255,8 +247,8 @@ final class ComposerEnvironmentConfigMasterAuthorizedNetworksConfigCidrBlocks {
 /// Typed helper for the `config.node_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigNodeConfig {
-  const ComposerEnvironmentConfigNodeConfig({
+final class ComposerEnvironmentNodeConfig {
+  const ComposerEnvironmentNodeConfig({
     this.composerInternalIpv4CidrBlock,
     this.composerNetworkAttachment,
     this.diskSizeGb,
@@ -293,8 +285,7 @@ final class ComposerEnvironmentConfigNodeConfig {
 
   final TfArg<String>? zone;
 
-  final ComposerEnvironmentConfigNodeConfigIpAllocationPolicy?
-  ipAllocationPolicy;
+  final ComposerEnvironmentIpAllocationPolicy? ipAllocationPolicy;
 
   Map<String, Object?> encode() => {
     'composer_internal_ipv4_cidr_block': ?composerInternalIpv4CidrBlock
@@ -316,8 +307,8 @@ final class ComposerEnvironmentConfigNodeConfig {
 /// Typed helper for the `config.node_config.ip_allocation_policy` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigNodeConfigIpAllocationPolicy {
-  const ComposerEnvironmentConfigNodeConfigIpAllocationPolicy({
+final class ComposerEnvironmentIpAllocationPolicy {
+  const ComposerEnvironmentIpAllocationPolicy({
     this.clusterIpv4CidrBlock,
     this.clusterSecondaryRangeName,
     this.servicesIpv4CidrBlock,
@@ -347,8 +338,8 @@ final class ComposerEnvironmentConfigNodeConfigIpAllocationPolicy {
 /// Typed helper for the `config.private_environment_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigPrivateEnvironmentConfig {
-  const ComposerEnvironmentConfigPrivateEnvironmentConfig({
+final class ComposerEnvironmentPrivateEnvironmentConfig {
+  const ComposerEnvironmentPrivateEnvironmentConfig({
     this.cloudComposerConnectionSubnetwork,
     this.cloudComposerNetworkIpv4CidrBlock,
     this.cloudSqlIpv4CidrBlock,
@@ -393,13 +384,10 @@ final class ComposerEnvironmentConfigPrivateEnvironmentConfig {
 /// Typed helper for the `config.recovery_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigRecoveryConfig {
-  const ComposerEnvironmentConfigRecoveryConfig({
-    this.scheduledSnapshotsConfig,
-  });
+final class ComposerEnvironmentRecoveryConfig {
+  const ComposerEnvironmentRecoveryConfig({this.scheduledSnapshotsConfig});
 
-  final ComposerEnvironmentConfigRecoveryConfigScheduledSnapshotsConfig?
-  scheduledSnapshotsConfig;
+  final ComposerEnvironmentScheduledSnapshotsConfig? scheduledSnapshotsConfig;
 
   Map<String, Object?> encode() => {
     'scheduled_snapshots_config': ?scheduledSnapshotsConfig?.encode(),
@@ -409,8 +397,8 @@ final class ComposerEnvironmentConfigRecoveryConfig {
 /// Typed helper for the `config.recovery_config.scheduled_snapshots_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigRecoveryConfigScheduledSnapshotsConfig {
-  const ComposerEnvironmentConfigRecoveryConfigScheduledSnapshotsConfig({
+final class ComposerEnvironmentScheduledSnapshotsConfig {
+  const ComposerEnvironmentScheduledSnapshotsConfig({
     required this.enabled,
     this.snapshotCreationSchedule,
     this.snapshotLocation,
@@ -436,8 +424,8 @@ final class ComposerEnvironmentConfigRecoveryConfigScheduledSnapshotsConfig {
 /// Typed helper for the `config.software_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigSoftwareConfig {
-  const ComposerEnvironmentConfigSoftwareConfig({
+final class ComposerEnvironmentSoftwareConfig {
+  const ComposerEnvironmentSoftwareConfig({
     this.airflowConfigOverrides,
     this.envVariables,
     this.imageVersion,
@@ -462,7 +450,7 @@ final class ComposerEnvironmentConfigSoftwareConfig {
 
   final TfArg<String>? webServerPluginsMode;
 
-  final ComposerEnvironmentConfigSoftwareConfigCloudDataLineageIntegration?
+  final ComposerEnvironmentCloudDataLineageIntegration?
   cloudDataLineageIntegration;
 
   Map<String, Object?> encode() => {
@@ -480,10 +468,8 @@ final class ComposerEnvironmentConfigSoftwareConfig {
 /// Typed helper for the `config.software_config.cloud_data_lineage_integration` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigSoftwareConfigCloudDataLineageIntegration {
-  const ComposerEnvironmentConfigSoftwareConfigCloudDataLineageIntegration({
-    required this.enabled,
-  });
+final class ComposerEnvironmentCloudDataLineageIntegration {
+  const ComposerEnvironmentCloudDataLineageIntegration({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -493,8 +479,8 @@ final class ComposerEnvironmentConfigSoftwareConfigCloudDataLineageIntegration {
 /// Typed helper for the `config.web_server_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWebServerConfig {
-  const ComposerEnvironmentConfigWebServerConfig({required this.machineType});
+final class ComposerEnvironmentWebServerConfig {
+  const ComposerEnvironmentWebServerConfig({required this.machineType});
 
   final TfArg<String> machineType;
 
@@ -504,15 +490,10 @@ final class ComposerEnvironmentConfigWebServerConfig {
 /// Typed helper for the `config.web_server_network_access_control` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWebServerNetworkAccessControl {
-  const ComposerEnvironmentConfigWebServerNetworkAccessControl({
-    this.allowedIpRange,
-  });
+final class ComposerEnvironmentWebServerNetworkAccessControl {
+  const ComposerEnvironmentWebServerNetworkAccessControl({this.allowedIpRange});
 
-  final List<
-    ComposerEnvironmentConfigWebServerNetworkAccessControlAllowedIpRange
-  >?
-  allowedIpRange;
+  final List<ComposerEnvironmentAllowedIpRange>? allowedIpRange;
 
   Map<String, Object?> encode() => {
     if (allowedIpRange != null)
@@ -523,8 +504,8 @@ final class ComposerEnvironmentConfigWebServerNetworkAccessControl {
 /// Typed helper for the `config.web_server_network_access_control.allowed_ip_range` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWebServerNetworkAccessControlAllowedIpRange {
-  const ComposerEnvironmentConfigWebServerNetworkAccessControlAllowedIpRange({
+final class ComposerEnvironmentAllowedIpRange {
+  const ComposerEnvironmentAllowedIpRange({
     this.description,
     required this.value,
   });
@@ -542,8 +523,8 @@ final class ComposerEnvironmentConfigWebServerNetworkAccessControlAllowedIpRange
 /// Typed helper for the `config.workloads_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfig {
-  const ComposerEnvironmentConfigWorkloadsConfig({
+final class ComposerEnvironmentWorkloadsConfig {
+  const ComposerEnvironmentWorkloadsConfig({
     this.dagProcessor,
     this.scheduler,
     this.triggerer,
@@ -551,15 +532,15 @@ final class ComposerEnvironmentConfigWorkloadsConfig {
     this.worker,
   });
 
-  final ComposerEnvironmentConfigWorkloadsConfigDagProcessor? dagProcessor;
+  final ComposerEnvironmentDagProcessor? dagProcessor;
 
-  final ComposerEnvironmentConfigWorkloadsConfigScheduler? scheduler;
+  final ComposerEnvironmentScheduler? scheduler;
 
-  final ComposerEnvironmentConfigWorkloadsConfigTriggerer? triggerer;
+  final ComposerEnvironmentTriggerer? triggerer;
 
-  final ComposerEnvironmentConfigWorkloadsConfigWebServer? webServer;
+  final ComposerEnvironmentWebServer? webServer;
 
-  final ComposerEnvironmentConfigWorkloadsConfigWorker? worker;
+  final ComposerEnvironmentWorker? worker;
 
   Map<String, Object?> encode() => {
     'dag_processor': ?dagProcessor?.encode(),
@@ -573,8 +554,8 @@ final class ComposerEnvironmentConfigWorkloadsConfig {
 /// Typed helper for the `config.workloads_config.dag_processor` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfigDagProcessor {
-  const ComposerEnvironmentConfigWorkloadsConfigDagProcessor({
+final class ComposerEnvironmentDagProcessor {
+  const ComposerEnvironmentDagProcessor({
     this.count,
     this.cpu,
     this.memoryGb,
@@ -600,8 +581,8 @@ final class ComposerEnvironmentConfigWorkloadsConfigDagProcessor {
 /// Typed helper for the `config.workloads_config.scheduler` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfigScheduler {
-  const ComposerEnvironmentConfigWorkloadsConfigScheduler({
+final class ComposerEnvironmentScheduler {
+  const ComposerEnvironmentScheduler({
     this.count,
     this.cpu,
     this.memoryGb,
@@ -627,8 +608,8 @@ final class ComposerEnvironmentConfigWorkloadsConfigScheduler {
 /// Typed helper for the `config.workloads_config.triggerer` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfigTriggerer {
-  const ComposerEnvironmentConfigWorkloadsConfigTriggerer({
+final class ComposerEnvironmentTriggerer {
+  const ComposerEnvironmentTriggerer({
     required this.count,
     required this.cpu,
     required this.memoryGb,
@@ -650,12 +631,8 @@ final class ComposerEnvironmentConfigWorkloadsConfigTriggerer {
 /// Typed helper for the `config.workloads_config.web_server` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfigWebServer {
-  const ComposerEnvironmentConfigWorkloadsConfigWebServer({
-    this.cpu,
-    this.memoryGb,
-    this.storageGb,
-  });
+final class ComposerEnvironmentWebServer {
+  const ComposerEnvironmentWebServer({this.cpu, this.memoryGb, this.storageGb});
 
   final TfArg<num>? cpu;
 
@@ -673,8 +650,8 @@ final class ComposerEnvironmentConfigWorkloadsConfigWebServer {
 /// Typed helper for the `config.workloads_config.worker` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
-final class ComposerEnvironmentConfigWorkloadsConfigWorker {
-  const ComposerEnvironmentConfigWorkloadsConfigWorker({
+final class ComposerEnvironmentWorker {
+  const ComposerEnvironmentWorker({
     this.cpu,
     this.maxCount,
     this.memoryGb,

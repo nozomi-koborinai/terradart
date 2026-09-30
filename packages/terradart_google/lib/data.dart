@@ -504,9 +504,9 @@ export 'src/data/google_iam_policy.dart'
     show
         DataGoogleIamPolicy,
         DataIamPolicyAuditConfig,
-        DataIamPolicyAuditConfigAuditLogConfigs,
+        DataIamPolicyAuditLogConfigs,
         DataIamPolicyBinding,
-        DataIamPolicyBindingCondition;
+        DataIamPolicyCondition;
 export 'src/data/google_iam_role.dart' show DataGoogleIamRole;
 export 'src/data/google_iam_testable_permissions.dart'
     show DataGoogleIamTestablePermissions;

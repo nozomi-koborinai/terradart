@@ -27,8 +27,7 @@ enum CloudfrontMultitenantDistributionHttpVersion implements TerraformEnum {
 final class CloudfrontMultitenantDistributionActiveTrustedKeyGroups {
   const CloudfrontMultitenantDistributionActiveTrustedKeyGroups({this.items});
 
-  final List<CloudfrontMultitenantDistributionActiveTrustedKeyGroupsItems>?
-  items;
+  final List<CloudfrontMultitenantDistributionItems>? items;
 
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
@@ -38,8 +37,8 @@ final class CloudfrontMultitenantDistributionActiveTrustedKeyGroups {
 /// Typed helper for the `active_trusted_key_groups.items` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionActiveTrustedKeyGroupsItems {
-  const CloudfrontMultitenantDistributionActiveTrustedKeyGroupsItems();
+final class CloudfrontMultitenantDistributionItems {
+  const CloudfrontMultitenantDistributionItems();
 
   Map<String, Object?> encode() => {};
 }
@@ -80,23 +79,18 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy
-  >
+  final TfArg<CloudfrontMultitenantDistributionViewerProtocolPolicy>
   viewerProtocolPolicy;
 
-  final List<CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods>?
-  allowedMethods;
+  final List<CloudfrontMultitenantDistributionAllowedMethods>? allowedMethods;
 
-  final List<CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation>?
+  final List<CloudfrontMultitenantDistributionFunctionAssociation>?
   functionAssociation;
 
-  final List<
-    CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociation
-  >?
+  final List<CloudfrontMultitenantDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
-  final List<CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups>?
+  final List<CloudfrontMultitenantDistributionTrustedKeyGroups>?
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
@@ -125,13 +119,13 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 }
 
 /// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy
+enum CloudfrontMultitenantDistributionViewerProtocolPolicy
     implements TerraformEnum {
   allowAll('allow-all'),
   httpsOnly('https-only'),
   redirectToHttps('redirect-to-https');
 
-  const CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy(
+  const CloudfrontMultitenantDistributionViewerProtocolPolicy(
     this.terraformValue,
   );
   @override
@@ -140,18 +134,15 @@ enum CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy
 
 /// Typed helper for the `cache_behavior.allowed_methods` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods {
-  const CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods({
+final class CloudfrontMultitenantDistributionAllowedMethods {
+  const CloudfrontMultitenantDistributionAllowedMethods({
     required this.cachedMethods,
     required this.items,
   });
 
-  final List<
-    TfArg<
-      CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods
-    >
-  >
+  final List<TfArg<CloudfrontMultitenantDistributionCachedMethods>>
   cachedMethods;
 
   final TfArg<List<String>> items;
@@ -163,8 +154,7 @@ final class CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods {
 }
 
 /// `cached_methods` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods
-    implements TerraformEnum {
+enum CloudfrontMultitenantDistributionCachedMethods implements TerraformEnum {
   get('GET'),
   head('HEAD'),
   post('POST'),
@@ -173,26 +163,22 @@ enum CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods
   options('OPTIONS'),
   delete('DELETE');
 
-  const CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods(
-    this.terraformValue,
-  );
+  const CloudfrontMultitenantDistributionCachedMethods(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior.function_association` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation {
-  const CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation({
+final class CloudfrontMultitenantDistributionFunctionAssociation {
+  const CloudfrontMultitenantDistributionFunctionAssociation({
     required this.eventType,
     required this.functionArn,
   });
 
-  final TfArg<
-    CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType
-  >
-  eventType;
+  final TfArg<CloudfrontMultitenantDistributionEventType> eventType;
 
   final TfArg<String> functionArn;
 
@@ -203,34 +189,29 @@ final class CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType
-    implements TerraformEnum {
+enum CloudfrontMultitenantDistributionEventType implements TerraformEnum {
   viewerRequest('viewer-request'),
   viewerResponse('viewer-response'),
   originRequest('origin-request'),
   originResponse('origin-response');
 
-  const CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType(
-    this.terraformValue,
-  );
+  const CloudfrontMultitenantDistributionEventType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior.lambda_function_association` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociation {
-  const CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociation({
+final class CloudfrontMultitenantDistributionLambdaFunctionAssociation {
+  const CloudfrontMultitenantDistributionLambdaFunctionAssociation({
     required this.eventType,
     this.includeBody,
     required this.lambdaFunctionArn,
   });
 
-  final TfArg<
-    CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType
-  >
-  eventType;
+  final TfArg<CloudfrontMultitenantDistributionEventType> eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -243,26 +224,12 @@ final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociat
   };
 }
 
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `cache_behavior.trusted_key_groups` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups {
-  const CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups({
+final class CloudfrontMultitenantDistributionTrustedKeyGroups {
+  const CloudfrontMultitenantDistributionTrustedKeyGroups({
     this.enabled,
     this.items,
   });
@@ -337,29 +304,18 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy
-  >
+  final TfArg<CloudfrontMultitenantDistributionViewerProtocolPolicy>
   viewerProtocolPolicy;
 
-  final List<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods
-  >?
-  allowedMethods;
+  final List<CloudfrontMultitenantDistributionAllowedMethods>? allowedMethods;
 
-  final List<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociation
-  >?
+  final List<CloudfrontMultitenantDistributionFunctionAssociation>?
   functionAssociation;
 
-  final List<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociation
-  >?
+  final List<CloudfrontMultitenantDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
-  final List<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroups
-  >?
+  final List<CloudfrontMultitenantDistributionTrustedKeyGroups>?
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
@@ -383,159 +339,6 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
       ],
     if (trustedKeyGroups != null)
       'trusted_key_groups': [for (final e in trustedKeyGroups!) e.encode()],
-  };
-}
-
-/// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy
-    implements TerraformEnum {
-  allowAll('allow-all'),
-  httpsOnly('https-only'),
-  redirectToHttps('redirect-to-https');
-
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `default_cache_behavior.allowed_methods` block of
-/// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods {
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods({
-    required this.cachedMethods,
-    required this.items,
-  });
-
-  final List<
-    TfArg<
-      CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods
-    >
-  >
-  cachedMethods;
-
-  final TfArg<List<String>> items;
-
-  Map<String, Object?> encode() => {
-    'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
-    'items': items.toTfJson(),
-  };
-}
-
-/// `cached_methods` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods
-    implements TerraformEnum {
-  get('GET'),
-  head('HEAD'),
-  post('POST'),
-  put('PUT'),
-  patch('PATCH'),
-  options('OPTIONS'),
-  delete('DELETE');
-
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `default_cache_behavior.function_association` block of
-/// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociation {
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociation({
-    required this.eventType,
-    required this.functionArn,
-  });
-
-  final TfArg<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType
-  >
-  eventType;
-
-  final TfArg<String> functionArn;
-
-  Map<String, Object?> encode() => {
-    'event_type': eventType.toTfJson(),
-    'function_arn': functionArn.toTfJson(),
-  };
-}
-
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `default_cache_behavior.lambda_function_association` block of
-/// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociation {
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociation({
-    required this.eventType,
-    this.includeBody,
-    required this.lambdaFunctionArn,
-  });
-
-  final TfArg<
-    CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
-  >
-  eventType;
-
-  final TfArg<bool>? includeBody;
-
-  final RefTo<AwsLambdaFunction> lambdaFunctionArn;
-
-  Map<String, Object?> encode() => {
-    'event_type': eventType.toTfJson(),
-    'include_body': ?includeBody?.toTfJson(),
-    'lambda_function_arn': lambdaFunctionArn.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `default_cache_behavior.trusted_key_groups` block of
-/// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroups {
-  const CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroups({
-    this.enabled,
-    this.items,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final TfArg<List<String>>? items;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'items': ?items?.toTfJson(),
   };
 }
 
@@ -571,15 +374,14 @@ final class CloudfrontMultitenantDistributionOrigin {
 
   final TfArg<num>? responseCompletionTimeout;
 
-  final List<CloudfrontMultitenantDistributionOriginCustomHeader>? customHeader;
+  final List<CloudfrontMultitenantDistributionCustomHeader>? customHeader;
 
-  final List<CloudfrontMultitenantDistributionOriginCustomOriginConfig>?
+  final List<CloudfrontMultitenantDistributionCustomOriginConfig>?
   customOriginConfig;
 
-  final List<CloudfrontMultitenantDistributionOriginOriginShield>? originShield;
+  final List<CloudfrontMultitenantDistributionOriginShield>? originShield;
 
-  final List<CloudfrontMultitenantDistributionOriginVpcOriginConfig>?
-  vpcOriginConfig;
+  final List<CloudfrontMultitenantDistributionVpcOriginConfig>? vpcOriginConfig;
 
   Map<String, Object?> encode() => {
     'connection_attempts': ?connectionAttempts?.toTfJson(),
@@ -603,8 +405,8 @@ final class CloudfrontMultitenantDistributionOrigin {
 /// Typed helper for the `origin.custom_header` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginCustomHeader {
-  const CloudfrontMultitenantDistributionOriginCustomHeader({
+final class CloudfrontMultitenantDistributionCustomHeader {
+  const CloudfrontMultitenantDistributionCustomHeader({
     required this.headerName,
     required this.headerValue,
   });
@@ -622,8 +424,8 @@ final class CloudfrontMultitenantDistributionOriginCustomHeader {
 /// Typed helper for the `origin.custom_origin_config` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
-  const CloudfrontMultitenantDistributionOriginCustomOriginConfig({
+final class CloudfrontMultitenantDistributionCustomOriginConfig {
+  const CloudfrontMultitenantDistributionCustomOriginConfig({
     required this.httpPort,
     required this.httpsPort,
     this.ipAddressType,
@@ -638,30 +440,19 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
 
   final TfArg<num> httpsPort;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType
-  >?
-  ipAddressType;
+  final TfArg<CloudfrontMultitenantDistributionIpAddressType>? ipAddressType;
 
   final TfArg<num>? originKeepaliveTimeout;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy
-  >
+  final TfArg<CloudfrontMultitenantDistributionOriginProtocolPolicy>
   originProtocolPolicy;
 
   final TfArg<num>? originReadTimeout;
 
-  final List<
-    TfArg<
-      CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols
-    >
-  >
+  final List<TfArg<CloudfrontMultitenantDistributionOriginSslProtocols>>
   originSslProtocols;
 
-  final List<
-    CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsConfig
-  >?
+  final List<CloudfrontMultitenantDistributionOriginMtlsConfig>?
   originMtlsConfig;
 
   Map<String, Object?> encode() => {
@@ -678,27 +469,24 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType
-    implements TerraformEnum {
+enum CloudfrontMultitenantDistributionIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   ipv6('ipv6'),
   dualstack('dualstack');
 
-  const CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType(
-    this.terraformValue,
-  );
+  const CloudfrontMultitenantDistributionIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy
+enum CloudfrontMultitenantDistributionOriginProtocolPolicy
     implements TerraformEnum {
   httpOnly('http-only'),
   matchViewer('match-viewer'),
   httpsOnly('https-only');
 
-  const CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy(
+  const CloudfrontMultitenantDistributionOriginProtocolPolicy(
     this.terraformValue,
   );
   @override
@@ -706,14 +494,14 @@ enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPoli
 }
 
 /// `origin_ssl_protocols` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols
+enum CloudfrontMultitenantDistributionOriginSslProtocols
     implements TerraformEnum {
   sslv3('SSLv3'),
   tlsv1('TLSv1'),
   tlsv1p1('TLSv1.1'),
   tlsv1p2('TLSv1.2');
 
-  const CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols(
+  const CloudfrontMultitenantDistributionOriginSslProtocols(
     this.terraformValue,
   );
   @override
@@ -723,8 +511,8 @@ enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols
 /// Typed helper for the `origin.custom_origin_config.origin_mtls_config` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsConfig {
-  const CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsConfig({
+final class CloudfrontMultitenantDistributionOriginMtlsConfig {
+  const CloudfrontMultitenantDistributionOriginMtlsConfig({
     required this.clientCertificateArn,
   });
 
@@ -738,8 +526,8 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsC
 /// Typed helper for the `origin.origin_shield` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginOriginShield {
-  const CloudfrontMultitenantDistributionOriginOriginShield({
+final class CloudfrontMultitenantDistributionOriginShield {
+  const CloudfrontMultitenantDistributionOriginShield({
     required this.enabled,
     this.originShieldRegion,
   });
@@ -757,8 +545,8 @@ final class CloudfrontMultitenantDistributionOriginOriginShield {
 /// Typed helper for the `origin.vpc_origin_config` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginVpcOriginConfig {
-  const CloudfrontMultitenantDistributionOriginVpcOriginConfig({
+final class CloudfrontMultitenantDistributionVpcOriginConfig {
+  const CloudfrontMultitenantDistributionVpcOriginConfig({
     this.originKeepaliveTimeout,
     this.originReadTimeout,
     required this.vpcOriginId,
@@ -789,10 +577,10 @@ final class CloudfrontMultitenantDistributionOriginGroup {
 
   final TfArg<String> id;
 
-  final List<CloudfrontMultitenantDistributionOriginGroupFailoverCriteria>?
+  final List<CloudfrontMultitenantDistributionFailoverCriteria>?
   failoverCriteria;
 
-  final List<CloudfrontMultitenantDistributionOriginGroupMember>? member;
+  final List<CloudfrontMultitenantDistributionMember>? member;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -805,8 +593,8 @@ final class CloudfrontMultitenantDistributionOriginGroup {
 /// Typed helper for the `origin_group.failover_criteria` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginGroupFailoverCriteria {
-  const CloudfrontMultitenantDistributionOriginGroupFailoverCriteria({
+final class CloudfrontMultitenantDistributionFailoverCriteria {
+  const CloudfrontMultitenantDistributionFailoverCriteria({
     required this.statusCodes,
   });
 
@@ -818,10 +606,8 @@ final class CloudfrontMultitenantDistributionOriginGroupFailoverCriteria {
 /// Typed helper for the `origin_group.member` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionOriginGroupMember {
-  const CloudfrontMultitenantDistributionOriginGroupMember({
-    required this.originId,
-  });
+final class CloudfrontMultitenantDistributionMember {
+  const CloudfrontMultitenantDistributionMember({required this.originId});
 
   final TfArg<String> originId;
 
@@ -834,8 +620,7 @@ final class CloudfrontMultitenantDistributionOriginGroupMember {
 final class CloudfrontMultitenantDistributionRestrictions {
   const CloudfrontMultitenantDistributionRestrictions({this.geoRestriction});
 
-  final List<CloudfrontMultitenantDistributionRestrictionsGeoRestriction>?
-  geoRestriction;
+  final List<CloudfrontMultitenantDistributionGeoRestriction>? geoRestriction;
 
   Map<String, Object?> encode() => {
     if (geoRestriction != null)
@@ -846,18 +631,15 @@ final class CloudfrontMultitenantDistributionRestrictions {
 /// Typed helper for the `restrictions.geo_restriction` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionRestrictionsGeoRestriction {
-  const CloudfrontMultitenantDistributionRestrictionsGeoRestriction({
+final class CloudfrontMultitenantDistributionGeoRestriction {
+  const CloudfrontMultitenantDistributionGeoRestriction({
     this.items,
     required this.restrictionType,
   });
 
   final TfArg<List<String>>? items;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType
-  >
-  restrictionType;
+  final TfArg<CloudfrontMultitenantDistributionRestrictionType> restrictionType;
 
   Map<String, Object?> encode() => {
     'items': ?items?.toTfJson(),
@@ -866,15 +648,12 @@ final class CloudfrontMultitenantDistributionRestrictionsGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType
-    implements TerraformEnum {
+enum CloudfrontMultitenantDistributionRestrictionType implements TerraformEnum {
   blacklist('blacklist'),
   whitelist('whitelist'),
   none('none');
 
-  const CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType(
-    this.terraformValue,
-  );
+  const CloudfrontMultitenantDistributionRestrictionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -887,7 +666,7 @@ final class CloudfrontMultitenantDistributionTenantConfig {
     this.parameterDefinition,
   });
 
-  final List<CloudfrontMultitenantDistributionTenantConfigParameterDefinition>?
+  final List<CloudfrontMultitenantDistributionParameterDefinition>?
   parameterDefinition;
 
   Map<String, Object?> encode() => {
@@ -901,18 +680,15 @@ final class CloudfrontMultitenantDistributionTenantConfig {
 /// Typed helper for the `tenant_config.parameter_definition` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionTenantConfigParameterDefinition {
-  const CloudfrontMultitenantDistributionTenantConfigParameterDefinition({
+final class CloudfrontMultitenantDistributionParameterDefinition {
+  const CloudfrontMultitenantDistributionParameterDefinition({
     required this.name,
     this.definition,
   });
 
   final TfArg<String> name;
 
-  final List<
-    CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinition
-  >?
-  definition;
+  final List<CloudfrontMultitenantDistributionDefinition>? definition;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -924,15 +700,10 @@ final class CloudfrontMultitenantDistributionTenantConfigParameterDefinition {
 /// Typed helper for the `tenant_config.parameter_definition.definition` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinition {
-  const CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinition({
-    this.stringSchema,
-  });
+final class CloudfrontMultitenantDistributionDefinition {
+  const CloudfrontMultitenantDistributionDefinition({this.stringSchema});
 
-  final List<
-    CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinitionStringSchema
-  >?
-  stringSchema;
+  final List<CloudfrontMultitenantDistributionStringSchema>? stringSchema;
 
   Map<String, Object?> encode() => {
     if (stringSchema != null)
@@ -943,8 +714,8 @@ final class CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefi
 /// Typed helper for the `tenant_config.parameter_definition.definition.string_schema` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinitionStringSchema {
-  const CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinitionStringSchema({
+final class CloudfrontMultitenantDistributionStringSchema {
+  const CloudfrontMultitenantDistributionStringSchema({
     this.comment,
     this.defaultValue,
     required this.required,
@@ -978,14 +749,10 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 
   final TfArg<bool>? cloudfrontDefaultCertificate;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
-  >?
+  final TfArg<CloudfrontMultitenantDistributionMinimumProtocolVersion>?
   minimumProtocolVersion;
 
-  final TfArg<
-    CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod
-  >?
+  final TfArg<CloudfrontMultitenantDistributionSslSupportMethod>?
   sslSupportMethod;
 
   Map<String, Object?> encode() => {
@@ -997,7 +764,7 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 }
 
 /// `minimum_protocol_version` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
+enum CloudfrontMultitenantDistributionMinimumProtocolVersion
     implements TerraformEnum {
   sslv3('SSLv3'),
   tlsv1('TLSv1'),
@@ -1009,7 +776,7 @@ enum CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
   tlsv1p3x2025('TLSv1.3_2025'),
   tlsv1p2x2025('TLSv1.2_2025');
 
-  const CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion(
+  const CloudfrontMultitenantDistributionMinimumProtocolVersion(
     this.terraformValue,
   );
   @override
@@ -1017,15 +784,13 @@ enum CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
 }
 
 /// `ssl_support_method` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod
+enum CloudfrontMultitenantDistributionSslSupportMethod
     implements TerraformEnum {
   sniOnly('sni-only'),
   vip('vip'),
   staticIp('static-ip');
 
-  const CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod(
-    this.terraformValue,
-  );
+  const CloudfrontMultitenantDistributionSslSupportMethod(this.terraformValue);
   @override
   final String terraformValue;
 }

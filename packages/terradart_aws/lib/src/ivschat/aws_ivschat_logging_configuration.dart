@@ -19,19 +19,18 @@ sealed class IvschatLoggingConfigurationDestinationConfiguration {
 
   /// Sets `cloudwatch_logs`.
   const factory IvschatLoggingConfigurationDestinationConfiguration.cloudwatchLogs(
-    IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
-    cloudwatchLogs,
-  ) = IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice;
+    IvschatLoggingConfigurationCloudwatchLogs cloudwatchLogs,
+  ) = IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs;
 
   /// Sets `firehose`.
   const factory IvschatLoggingConfigurationDestinationConfiguration.firehose(
-    IvschatLoggingConfigurationDestinationConfigurationFirehose firehose,
-  ) = IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice;
+    IvschatLoggingConfigurationFirehose firehose,
+  ) = IvschatLoggingConfigurationDestinationConfigurationFirehose;
 
   /// Sets `s3`.
   const factory IvschatLoggingConfigurationDestinationConfiguration.s3(
-    IvschatLoggingConfigurationDestinationConfigurationS3 s3,
-  ) = IvschatLoggingConfigurationDestinationConfigurationS3Choice;
+    IvschatLoggingConfigurationS3 s3,
+  ) = IvschatLoggingConfigurationDestinationConfigurationS3;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,14 +39,13 @@ sealed class IvschatLoggingConfigurationDestinationConfiguration {
 }
 
 /// The [IvschatLoggingConfigurationDestinationConfiguration.cloudwatchLogs] choice: sets `cloudwatch_logs`.
-final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice
+final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
     extends IvschatLoggingConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice(
+  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs(
     this.cloudwatchLogs,
   );
 
-  final IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
-  cloudwatchLogs;
+  final IvschatLoggingConfigurationCloudwatchLogs cloudwatchLogs;
 
   @override
   String get blockKey => 'cloudwatch_logs';
@@ -57,13 +55,13 @@ final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsCho
 }
 
 /// The [IvschatLoggingConfigurationDestinationConfiguration.firehose] choice: sets `firehose`.
-final class IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice
+final class IvschatLoggingConfigurationDestinationConfigurationFirehose
     extends IvschatLoggingConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice(
+  const IvschatLoggingConfigurationDestinationConfigurationFirehose(
     this.firehose,
   );
 
-  final IvschatLoggingConfigurationDestinationConfigurationFirehose firehose;
+  final IvschatLoggingConfigurationFirehose firehose;
 
   @override
   String get blockKey => 'firehose';
@@ -73,11 +71,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice
 }
 
 /// The [IvschatLoggingConfigurationDestinationConfiguration.s3] choice: sets `s3`.
-final class IvschatLoggingConfigurationDestinationConfigurationS3Choice
+final class IvschatLoggingConfigurationDestinationConfigurationS3
     extends IvschatLoggingConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationS3Choice(this.s3);
+  const IvschatLoggingConfigurationDestinationConfigurationS3(this.s3);
 
-  final IvschatLoggingConfigurationDestinationConfigurationS3 s3;
+  final IvschatLoggingConfigurationS3 s3;
 
   @override
   String get blockKey => 's3';
@@ -89,10 +87,8 @@ final class IvschatLoggingConfigurationDestinationConfigurationS3Choice
 /// Typed helper for the `destination_configuration.cloudwatch_logs` block of
 /// `aws_ivschat_logging_configuration` (derived from provider schema).
 @immutable
-final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs {
-  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs({
-    required this.logGroupName,
-  });
+final class IvschatLoggingConfigurationCloudwatchLogs {
+  const IvschatLoggingConfigurationCloudwatchLogs({required this.logGroupName});
 
   final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
@@ -104,10 +100,8 @@ final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs {
 /// Typed helper for the `destination_configuration.firehose` block of
 /// `aws_ivschat_logging_configuration` (derived from provider schema).
 @immutable
-final class IvschatLoggingConfigurationDestinationConfigurationFirehose {
-  const IvschatLoggingConfigurationDestinationConfigurationFirehose({
-    required this.deliveryStreamName,
-  });
+final class IvschatLoggingConfigurationFirehose {
+  const IvschatLoggingConfigurationFirehose({required this.deliveryStreamName});
 
   final TfArg<String> deliveryStreamName;
 
@@ -119,10 +113,8 @@ final class IvschatLoggingConfigurationDestinationConfigurationFirehose {
 /// Typed helper for the `destination_configuration.s3` block of
 /// `aws_ivschat_logging_configuration` (derived from provider schema).
 @immutable
-final class IvschatLoggingConfigurationDestinationConfigurationS3 {
-  const IvschatLoggingConfigurationDestinationConfigurationS3({
-    required this.bucketName,
-  });
+final class IvschatLoggingConfigurationS3 {
+  const IvschatLoggingConfigurationS3({required this.bucketName});
 
   final RefTo<AwsS3Bucket> bucketName;
 

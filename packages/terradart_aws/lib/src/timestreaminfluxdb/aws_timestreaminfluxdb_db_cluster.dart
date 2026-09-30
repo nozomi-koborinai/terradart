@@ -77,10 +77,7 @@ final class TimestreaminfluxdbDbClusterLogDeliveryConfiguration {
     this.s3Configuration,
   });
 
-  final List<
-    TimestreaminfluxdbDbClusterLogDeliveryConfigurationS3Configuration
-  >?
-  s3Configuration;
+  final List<TimestreaminfluxdbDbClusterS3Configuration>? s3Configuration;
 
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
@@ -91,8 +88,8 @@ final class TimestreaminfluxdbDbClusterLogDeliveryConfiguration {
 /// Typed helper for the `log_delivery_configuration.s3_configuration` block of
 /// `aws_timestreaminfluxdb_db_cluster` (derived from provider schema).
 @immutable
-final class TimestreaminfluxdbDbClusterLogDeliveryConfigurationS3Configuration {
-  const TimestreaminfluxdbDbClusterLogDeliveryConfigurationS3Configuration({
+final class TimestreaminfluxdbDbClusterS3Configuration {
+  const TimestreaminfluxdbDbClusterS3Configuration({
     required this.bucketName,
     required this.enabled,
   });

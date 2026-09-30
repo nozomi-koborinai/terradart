@@ -58,7 +58,7 @@ curatedDoc: |-
   ///     owner: .literal('myorg'),
   ///     name: .literal('my-repo'),
   ///     event: .push(
-  ///       CloudbuildTriggerGithubPush(revision: .branch(.literal(r'^main$'))),
+  ///       CloudbuildTriggerBitbucketServerTriggerConfigPush(revision: .branch(.literal(r'^main$'))),
   ///     ),
   ///   ),
   /// );
@@ -76,7 +76,7 @@ curatedDoc: |-
   ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
   ///     repository: .ref(repository.id),
   ///     event: .pullRequest(
-  ///       CloudbuildTriggerRepositoryEventConfigPullRequest(
+  ///       CloudbuildTriggerDeveloperConnectEventConfigPullRequest(
   ///         branch: .literal(r'^main$'),
   ///         commentControl: .literal(.commentsEnabled),
   ///       ),

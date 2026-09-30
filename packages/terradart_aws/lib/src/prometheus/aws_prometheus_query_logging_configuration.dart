@@ -18,10 +18,9 @@ final class PrometheusQueryLoggingConfigurationDestination {
     this.filters,
   });
 
-  final List<PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs>?
-  cloudwatchLogs;
+  final List<PrometheusQueryLoggingConfigurationCloudwatchLogs>? cloudwatchLogs;
 
-  final List<PrometheusQueryLoggingConfigurationDestinationFilters>? filters;
+  final List<PrometheusQueryLoggingConfigurationFilters>? filters;
 
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
@@ -33,8 +32,8 @@ final class PrometheusQueryLoggingConfigurationDestination {
 /// Typed helper for the `destination.cloudwatch_logs` block of
 /// `aws_prometheus_query_logging_configuration` (derived from provider schema).
 @immutable
-final class PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs {
-  const PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs({
+final class PrometheusQueryLoggingConfigurationCloudwatchLogs {
+  const PrometheusQueryLoggingConfigurationCloudwatchLogs({
     required this.logGroupArn,
   });
 
@@ -48,8 +47,8 @@ final class PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs {
 /// Typed helper for the `destination.filters` block of
 /// `aws_prometheus_query_logging_configuration` (derived from provider schema).
 @immutable
-final class PrometheusQueryLoggingConfigurationDestinationFilters {
-  const PrometheusQueryLoggingConfigurationDestinationFilters({
+final class PrometheusQueryLoggingConfigurationFilters {
+  const PrometheusQueryLoggingConfigurationFilters({
     required this.qspThreshold,
   });
 

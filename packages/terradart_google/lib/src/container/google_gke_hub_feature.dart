@@ -17,11 +17,11 @@ final class GkeHubFeatureFleetDefaultMemberConfig {
     this.policycontroller,
   });
 
-  final GkeHubFeatureFleetDefaultMemberConfigConfigmanagement? configmanagement;
+  final GkeHubFeatureConfigmanagement? configmanagement;
 
-  final GkeHubFeatureFleetDefaultMemberConfigMesh? mesh;
+  final GkeHubFeatureMesh? mesh;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontroller? policycontroller;
+  final GkeHubFeaturePolicycontroller? policycontroller;
 
   Map<String, Object?> encode() => {
     'configmanagement': ?configmanagement?.encode(),
@@ -33,20 +33,18 @@ final class GkeHubFeatureFleetDefaultMemberConfig {
 /// Typed helper for the `fleet_default_member_config.configmanagement` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagement {
-  const GkeHubFeatureFleetDefaultMemberConfigConfigmanagement({
+final class GkeHubFeatureConfigmanagement {
+  const GkeHubFeatureConfigmanagement({
     this.management,
     this.version,
     this.configSync,
   });
 
-  final TfArg<GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement>?
-  management;
+  final TfArg<GkeHubFeatureManagement>? management;
 
   final TfArg<String>? version;
 
-  final GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync?
-  configSync;
+  final GkeHubFeatureConfigSync? configSync;
 
   Map<String, Object?> encode() => {
     'management': ?management?.toTfJson(),
@@ -56,15 +54,12 @@ final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagement {
 }
 
 /// `management` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement
-    implements TerraformEnum {
+enum GkeHubFeatureManagement implements TerraformEnum {
   managementUnspecified('MANAGEMENT_UNSPECIFIED'),
   managementAutomatic('MANAGEMENT_AUTOMATIC'),
   managementManual('MANAGEMENT_MANUAL');
 
-  const GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement(
-    this.terraformValue,
-  );
+  const GkeHubFeatureManagement(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -72,8 +67,8 @@ enum GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement
 /// Typed helper for the `fleet_default_member_config.configmanagement.config_sync` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync {
-  const GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync({
+final class GkeHubFeatureConfigSync {
+  const GkeHubFeatureConfigSync({
     this.enabled,
     this.metricsGcpServiceAccountEmail,
     this.preventDrift,
@@ -90,9 +85,9 @@ final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync {
 
   final TfArg<String>? sourceFormat;
 
-  final GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit? git;
+  final GkeHubFeatureGit? git;
 
-  final GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci? oci;
+  final GkeHubFeatureOci? oci;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -108,8 +103,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync {
 /// Typed helper for the `fleet_default_member_config.configmanagement.config_sync.git` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit {
-  const GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit({
+final class GkeHubFeatureGit {
+  const GkeHubFeatureGit({
     this.gcpServiceAccountEmail,
     this.httpsProxy,
     this.policyDir,
@@ -151,8 +146,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit {
 /// Typed helper for the `fleet_default_member_config.configmanagement.config_sync.oci` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci {
-  const GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci({
+final class GkeHubFeatureOci {
+  const GkeHubFeatureOci({
     this.gcpServiceAccountEmail,
     this.policyDir,
     required this.secretType,
@@ -186,41 +181,26 @@ final class GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci {
 /// Typed helper for the `fleet_default_member_config.mesh` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigMesh {
-  const GkeHubFeatureFleetDefaultMemberConfigMesh({required this.management});
+final class GkeHubFeatureMesh {
+  const GkeHubFeatureMesh({required this.management});
 
-  final TfArg<GkeHubFeatureFleetDefaultMemberConfigMeshManagement> management;
+  final TfArg<GkeHubFeatureManagement> management;
 
   Map<String, Object?> encode() => {'management': management.toTfJson()};
-}
-
-/// `management` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigMeshManagement
-    implements TerraformEnum {
-  managementUnspecified('MANAGEMENT_UNSPECIFIED'),
-  managementAutomatic('MANAGEMENT_AUTOMATIC'),
-  managementManual('MANAGEMENT_MANUAL');
-
-  const GkeHubFeatureFleetDefaultMemberConfigMeshManagement(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `fleet_default_member_config.policycontroller` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontroller {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontroller({
+final class GkeHubFeaturePolicycontroller {
+  const GkeHubFeaturePolicycontroller({
     this.version,
     required this.policyControllerHubConfig,
   });
 
   final TfArg<String>? version;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig
-  policyControllerHubConfig;
+  final GkeHubFeaturePolicyControllerHubConfig policyControllerHubConfig;
 
   Map<String, Object?> encode() => {
     'version': ?version?.toTfJson(),
@@ -231,8 +211,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontroller {
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig({
+final class GkeHubFeaturePolicyControllerHubConfig {
+  const GkeHubFeaturePolicyControllerHubConfig({
     this.auditIntervalSeconds,
     this.constraintViolationLimit,
     this.exemptableNamespaces,
@@ -251,10 +231,7 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 
   final TfArg<List<String>>? exemptableNamespaces;
 
-  final TfArg<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec
-  >
-  installSpec;
+  final TfArg<GkeHubFeatureInstallSpec> installSpec;
 
   final TfArg<bool>? logDeniesEnabled;
 
@@ -262,16 +239,11 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 
   final TfArg<bool>? referentialRulesEnabled;
 
-  final List<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs
-  >?
-  deploymentConfigs;
+  final List<GkeHubFeatureDeploymentConfigs>? deploymentConfigs;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring?
-  monitoring;
+  final GkeHubFeatureMonitoring? monitoring;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent?
-  policyContent;
+  final GkeHubFeaturePolicyContent? policyContent;
 
   Map<String, Object?> encode() => {
     'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
@@ -289,17 +261,14 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 }
 
 /// `install_spec` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec
-    implements TerraformEnum {
+enum GkeHubFeatureInstallSpec implements TerraformEnum {
   installSpecUnspecified('INSTALL_SPEC_UNSPECIFIED'),
   installSpecNotInstalled('INSTALL_SPEC_NOT_INSTALLED'),
   installSpecEnabled('INSTALL_SPEC_ENABLED'),
   installSpecSuspended('INSTALL_SPEC_SUSPENDED'),
   installSpecDetached('INSTALL_SPEC_DETACHED');
 
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec(
-    this.terraformValue,
-  );
+  const GkeHubFeatureInstallSpec(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -307,8 +276,8 @@ enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubCon
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs({
+final class GkeHubFeatureDeploymentConfigs {
+  const GkeHubFeatureDeploymentConfigs({
     required this.component,
     this.podAffinity,
     this.replicaCount,
@@ -318,20 +287,13 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 
   final TfArg<String> component;
 
-  final TfArg<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity
-  >?
-  podAffinity;
+  final TfArg<GkeHubFeaturePodAffinity>? podAffinity;
 
   final TfArg<num>? replicaCount;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources?
-  containerResources;
+  final GkeHubFeatureContainerResources? containerResources;
 
-  final List<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration
-  >?
-  podToleration;
+  final List<GkeHubFeaturePodToleration>? podToleration;
 
   Map<String, Object?> encode() => {
     'component': component.toTfJson(),
@@ -344,15 +306,12 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 }
 
 /// `pod_affinity` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity
-    implements TerraformEnum {
+enum GkeHubFeaturePodAffinity implements TerraformEnum {
   affinityUnspecified('AFFINITY_UNSPECIFIED'),
   noAffinity('NO_AFFINITY'),
   antiAffinity('ANTI_AFFINITY');
 
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity(
-    this.terraformValue,
-  );
+  const GkeHubFeaturePodAffinity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -360,17 +319,12 @@ enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubCon
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs.container_resources` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources({
-    this.limits,
-    this.requests,
-  });
+final class GkeHubFeatureContainerResources {
+  const GkeHubFeatureContainerResources({this.limits, this.requests});
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits?
-  limits;
+  final GkeHubFeatureLimits? limits;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests?
-  requests;
+  final GkeHubFeatureRequests? requests;
 
   Map<String, Object?> encode() => {
     'limits': ?limits?.encode(),
@@ -381,11 +335,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs.container_resources.limits` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits({
-    this.cpu,
-    this.memory,
-  });
+final class GkeHubFeatureLimits {
+  const GkeHubFeatureLimits({this.cpu, this.memory});
 
   final TfArg<String>? cpu;
 
@@ -400,11 +351,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs.container_resources.requests` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests({
-    this.cpu,
-    this.memory,
-  });
+final class GkeHubFeatureRequests {
+  const GkeHubFeatureRequests({this.cpu, this.memory});
 
   final TfArg<String>? cpu;
 
@@ -419,8 +367,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs.pod_toleration` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration({
+final class GkeHubFeaturePodToleration {
+  const GkeHubFeaturePodToleration({
     this.effect,
     this.key,
     this.operator,
@@ -446,17 +394,10 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.monitoring` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring({
-    this.backends,
-  });
+final class GkeHubFeatureMonitoring {
+  const GkeHubFeatureMonitoring({this.backends});
 
-  final List<
-    TfArg<
-      GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends
-    >
-  >?
-  backends;
+  final List<TfArg<GkeHubFeatureBackends>>? backends;
 
   Map<String, Object?> encode() => {
     if (backends != null) 'backends': [for (final e in backends!) e.toTfJson()],
@@ -464,15 +405,12 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 }
 
 /// `backends` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends
-    implements TerraformEnum {
+enum GkeHubFeatureBackends implements TerraformEnum {
   monitoringBackendUnspecified('MONITORING_BACKEND_UNSPECIFIED'),
   prometheus('PROMETHEUS'),
   cloudMonitoring('CLOUD_MONITORING');
 
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends(
-    this.terraformValue,
-  );
+  const GkeHubFeatureBackends(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -480,19 +418,12 @@ enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubCon
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent({
-    this.bundles,
-    this.templateLibrary,
-  });
+final class GkeHubFeaturePolicyContent {
+  const GkeHubFeaturePolicyContent({this.bundles, this.templateLibrary});
 
-  final List<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles
-  >?
-  bundles;
+  final List<GkeHubFeatureBundles>? bundles;
 
-  final GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary?
-  templateLibrary;
+  final GkeHubFeatureTemplateLibrary? templateLibrary;
 
   Map<String, Object?> encode() => {
     if (bundles != null) 'bundles': [for (final e in bundles!) e.encode()],
@@ -503,11 +434,8 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content.bundles` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles({
-    required this.bundle,
-    this.exemptedNamespaces,
-  });
+final class GkeHubFeatureBundles {
+  const GkeHubFeatureBundles({required this.bundle, this.exemptedNamespaces});
 
   final TfArg<String> bundle;
 
@@ -522,29 +450,21 @@ final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControlle
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content.template_library` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary {
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary({
-    this.installation,
-  });
+final class GkeHubFeatureTemplateLibrary {
+  const GkeHubFeatureTemplateLibrary({this.installation});
 
-  final TfArg<
-    GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation
-  >?
-  installation;
+  final TfArg<GkeHubFeatureInstallation>? installation;
 
   Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 
 /// `installation` — derived from the provider schema description.
-enum GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation
-    implements TerraformEnum {
+enum GkeHubFeatureInstallation implements TerraformEnum {
   installationUnspecified('INSTALLATION_UNSPECIFIED'),
   notInstalled('NOT_INSTALLED'),
   all('ALL');
 
-  const GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation(
-    this.terraformValue,
-  );
+  const GkeHubFeatureInstallation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -561,15 +481,15 @@ final class GkeHubFeatureSpec {
     this.workloadidentity,
   });
 
-  final GkeHubFeatureSpecClusterupgrade? clusterupgrade;
+  final GkeHubFeatureClusterupgrade? clusterupgrade;
 
-  final GkeHubFeatureSpecFleetobservability? fleetobservability;
+  final GkeHubFeatureFleetobservability? fleetobservability;
 
-  final GkeHubFeatureSpecMulticlusteringress? multiclusteringress;
+  final GkeHubFeatureMulticlusteringress? multiclusteringress;
 
-  final GkeHubFeatureSpecRbacrolebindingactuation? rbacrolebindingactuation;
+  final GkeHubFeatureRbacrolebindingactuation? rbacrolebindingactuation;
 
-  final GkeHubFeatureSpecWorkloadidentity? workloadidentity;
+  final GkeHubFeatureWorkloadidentity? workloadidentity;
 
   Map<String, Object?> encode() => {
     'clusterupgrade': ?clusterupgrade?.encode(),
@@ -583,8 +503,8 @@ final class GkeHubFeatureSpec {
 /// Typed helper for the `spec.clusterupgrade` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecClusterupgrade {
-  const GkeHubFeatureSpecClusterupgrade({
+final class GkeHubFeatureClusterupgrade {
+  const GkeHubFeatureClusterupgrade({
     required this.upstreamFleets,
     this.gkeUpgradeOverrides,
     this.postConditions,
@@ -592,10 +512,9 @@ final class GkeHubFeatureSpecClusterupgrade {
 
   final TfArg<List<String>> upstreamFleets;
 
-  final List<GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides>?
-  gkeUpgradeOverrides;
+  final List<GkeHubFeatureGkeUpgradeOverrides>? gkeUpgradeOverrides;
 
-  final GkeHubFeatureSpecClusterupgradePostConditions? postConditions;
+  final GkeHubFeaturePostConditions? postConditions;
 
   Map<String, Object?> encode() => {
     'upstream_fleets': upstreamFleets.toTfJson(),
@@ -610,16 +529,15 @@ final class GkeHubFeatureSpecClusterupgrade {
 /// Typed helper for the `spec.clusterupgrade.gke_upgrade_overrides` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides {
-  const GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides({
+final class GkeHubFeatureGkeUpgradeOverrides {
+  const GkeHubFeatureGkeUpgradeOverrides({
     required this.postConditions,
     required this.upgrade,
   });
 
-  final GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions
-  postConditions;
+  final GkeHubFeaturePostConditions postConditions;
 
-  final GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade upgrade;
+  final GkeHubFeatureUpgrade upgrade;
 
   Map<String, Object?> encode() => {
     'post_conditions': postConditions.encode(),
@@ -627,13 +545,12 @@ final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides {
   };
 }
 
-/// Typed helper for the `spec.clusterupgrade.gke_upgrade_overrides.post_conditions` block of
+/// Typed helper for the `spec.clusterupgrade.post_conditions` block of
 /// `google_gke_hub_feature` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions {
-  const GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions({
-    required this.soaking,
-  });
+final class GkeHubFeaturePostConditions {
+  const GkeHubFeaturePostConditions({required this.soaking});
 
   final TfArg<String> soaking;
 
@@ -643,11 +560,8 @@ final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions {
 /// Typed helper for the `spec.clusterupgrade.gke_upgrade_overrides.upgrade` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade {
-  const GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade({
-    required this.name,
-    required this.version,
-  });
+final class GkeHubFeatureUpgrade {
+  const GkeHubFeatureUpgrade({required this.name, required this.version});
 
   final TfArg<String> name;
 
@@ -659,24 +573,13 @@ final class GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade {
   };
 }
 
-/// Typed helper for the `spec.clusterupgrade.post_conditions` block of
-/// `google_gke_hub_feature` (derived from provider schema).
-@immutable
-final class GkeHubFeatureSpecClusterupgradePostConditions {
-  const GkeHubFeatureSpecClusterupgradePostConditions({required this.soaking});
-
-  final TfArg<String> soaking;
-
-  Map<String, Object?> encode() => {'soaking': soaking.toTfJson()};
-}
-
 /// Typed helper for the `spec.fleetobservability` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecFleetobservability {
-  const GkeHubFeatureSpecFleetobservability({this.loggingConfig});
+final class GkeHubFeatureFleetobservability {
+  const GkeHubFeatureFleetobservability({this.loggingConfig});
 
-  final GkeHubFeatureSpecFleetobservabilityLoggingConfig? loggingConfig;
+  final GkeHubFeatureLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {'logging_config': ?loggingConfig?.encode()};
 }
@@ -684,17 +587,15 @@ final class GkeHubFeatureSpecFleetobservability {
 /// Typed helper for the `spec.fleetobservability.logging_config` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecFleetobservabilityLoggingConfig {
-  const GkeHubFeatureSpecFleetobservabilityLoggingConfig({
+final class GkeHubFeatureLoggingConfig {
+  const GkeHubFeatureLoggingConfig({
     this.defaultConfig,
     this.fleetScopeLogsConfig,
   });
 
-  final GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig?
-  defaultConfig;
+  final GkeHubFeatureDefaultConfig? defaultConfig;
 
-  final GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig?
-  fleetScopeLogsConfig;
+  final GkeHubFeatureFleetScopeLogsConfig? fleetScopeLogsConfig;
 
   Map<String, Object?> encode() => {
     'default_config': ?defaultConfig?.encode(),
@@ -705,29 +606,21 @@ final class GkeHubFeatureSpecFleetobservabilityLoggingConfig {
 /// Typed helper for the `spec.fleetobservability.logging_config.default_config` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig {
-  const GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig({
-    this.mode,
-  });
+final class GkeHubFeatureDefaultConfig {
+  const GkeHubFeatureDefaultConfig({this.mode});
 
-  final TfArg<
-    GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode
-  >?
-  mode;
+  final TfArg<GkeHubFeatureMode>? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode
-    implements TerraformEnum {
+enum GkeHubFeatureMode implements TerraformEnum {
   modeUnspecified('MODE_UNSPECIFIED'),
   copy('COPY'),
   move('MOVE');
 
-  const GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode(
-    this.terraformValue,
-  );
+  const GkeHubFeatureMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -735,38 +628,19 @@ enum GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode
 /// Typed helper for the `spec.fleetobservability.logging_config.fleet_scope_logs_config` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig {
-  const GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig({
-    this.mode,
-  });
+final class GkeHubFeatureFleetScopeLogsConfig {
+  const GkeHubFeatureFleetScopeLogsConfig({this.mode});
 
-  final TfArg<
-    GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode
-  >?
-  mode;
+  final TfArg<GkeHubFeatureMode>? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
-}
-
-/// `mode` — derived from the provider schema description.
-enum GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode
-    implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  copy('COPY'),
-  move('MOVE');
-
-  const GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.multiclusteringress` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecMulticlusteringress {
-  const GkeHubFeatureSpecMulticlusteringress({required this.configMembership});
+final class GkeHubFeatureMulticlusteringress {
+  const GkeHubFeatureMulticlusteringress({required this.configMembership});
 
   final TfArg<String> configMembership;
 
@@ -778,8 +652,8 @@ final class GkeHubFeatureSpecMulticlusteringress {
 /// Typed helper for the `spec.rbacrolebindingactuation` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecRbacrolebindingactuation {
-  const GkeHubFeatureSpecRbacrolebindingactuation({this.allowedCustomRoles});
+final class GkeHubFeatureRbacrolebindingactuation {
+  const GkeHubFeatureRbacrolebindingactuation({this.allowedCustomRoles});
 
   final TfArg<List<String>>? allowedCustomRoles;
 
@@ -791,8 +665,8 @@ final class GkeHubFeatureSpecRbacrolebindingactuation {
 /// Typed helper for the `spec.workloadidentity` block of
 /// `google_gke_hub_feature` (derived from provider schema).
 @immutable
-final class GkeHubFeatureSpecWorkloadidentity {
-  const GkeHubFeatureSpecWorkloadidentity({this.scopeTenancyPool});
+final class GkeHubFeatureWorkloadidentity {
+  const GkeHubFeatureWorkloadidentity({this.scopeTenancyPool});
 
   final TfArg<String>? scopeTenancyPool;
 

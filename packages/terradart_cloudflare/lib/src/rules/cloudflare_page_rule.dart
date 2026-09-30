@@ -62,19 +62,19 @@ final class PageRuleActions {
 
   final TfArg<bool>? alwaysUseHttps;
 
-  final TfArg<PageRuleActionsAutomaticHttpsRewrites>? automaticHttpsRewrites;
+  final TfArg<PageRuleAutomaticHttpsRewrites>? automaticHttpsRewrites;
 
   final TfArg<num>? browserCacheTtl;
 
-  final TfArg<PageRuleActionsBrowserCheck>? browserCheck;
+  final TfArg<PageRuleBrowserCheck>? browserCheck;
 
   final TfArg<String>? bypassCacheOnCookie;
 
-  final TfArg<PageRuleActionsCacheByDeviceType>? cacheByDeviceType;
+  final TfArg<PageRuleCacheByDeviceType>? cacheByDeviceType;
 
-  final TfArg<PageRuleActionsCacheDeceptionArmor>? cacheDeceptionArmor;
+  final TfArg<PageRuleCacheDeceptionArmor>? cacheDeceptionArmor;
 
-  final TfArg<PageRuleActionsCacheLevel>? cacheLevel;
+  final TfArg<PageRuleCacheLevel>? cacheLevel;
 
   final TfArg<String>? cacheOnCookie;
 
@@ -90,43 +90,43 @@ final class PageRuleActions {
 
   final TfArg<num>? edgeCacheTtl;
 
-  final TfArg<PageRuleActionsEmailObfuscation>? emailObfuscation;
+  final TfArg<PageRuleEmailObfuscation>? emailObfuscation;
 
-  final TfArg<PageRuleActionsExplicitCacheControl>? explicitCacheControl;
+  final TfArg<PageRuleExplicitCacheControl>? explicitCacheControl;
 
   final TfArg<String>? hostHeaderOverride;
 
-  final TfArg<PageRuleActionsIpGeolocation>? ipGeolocation;
+  final TfArg<PageRuleIpGeolocation>? ipGeolocation;
 
-  final TfArg<PageRuleActionsMirage>? mirage;
+  final TfArg<PageRuleMirage>? mirage;
 
-  final TfArg<PageRuleActionsOpportunisticEncryption>? opportunisticEncryption;
+  final TfArg<PageRuleOpportunisticEncryption>? opportunisticEncryption;
 
-  final TfArg<PageRuleActionsOriginErrorPagePassThru>? originErrorPagePassThru;
+  final TfArg<PageRuleOriginErrorPagePassThru>? originErrorPagePassThru;
 
-  final TfArg<PageRuleActionsPolish>? polish;
+  final TfArg<PageRulePolish>? polish;
 
   final TfArg<String>? resolveOverride;
 
-  final TfArg<PageRuleActionsRespectStrongEtag>? respectStrongEtag;
+  final TfArg<PageRuleRespectStrongEtag>? respectStrongEtag;
 
-  final TfArg<PageRuleActionsResponseBuffering>? responseBuffering;
+  final TfArg<PageRuleResponseBuffering>? responseBuffering;
 
-  final TfArg<PageRuleActionsRocketLoader>? rocketLoader;
+  final TfArg<PageRuleRocketLoader>? rocketLoader;
 
-  final TfArg<PageRuleActionsSecurityLevel>? securityLevel;
+  final TfArg<PageRuleSecurityLevel>? securityLevel;
 
-  final TfArg<PageRuleActionsSortQueryStringForCache>? sortQueryStringForCache;
+  final TfArg<PageRuleSortQueryStringForCache>? sortQueryStringForCache;
 
-  final TfArg<PageRuleActionsSsl>? ssl;
+  final TfArg<PageRuleSsl>? ssl;
 
-  final TfArg<PageRuleActionsTrueClientIpHeader>? trueClientIpHeader;
+  final TfArg<PageRuleTrueClientIpHeader>? trueClientIpHeader;
 
-  final TfArg<PageRuleActionsWaf>? waf;
+  final TfArg<PageRuleWaf>? waf;
 
-  final PageRuleActionsCacheKeyFields? cacheKeyFields;
+  final PageRuleCacheKeyFields? cacheKeyFields;
 
-  final PageRuleActionsForwardingUrl? forwardingUrl;
+  final PageRuleForwardingUrl? forwardingUrl;
 
   Map<String, Object?> encode() => {
     'always_use_https': ?alwaysUseHttps?.toTfJson(),
@@ -167,161 +167,161 @@ final class PageRuleActions {
 }
 
 /// `automatic_https_rewrites` — derived from the provider schema description.
-enum PageRuleActionsAutomaticHttpsRewrites implements TerraformEnum {
+enum PageRuleAutomaticHttpsRewrites implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsAutomaticHttpsRewrites(this.terraformValue);
+  const PageRuleAutomaticHttpsRewrites(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `browser_check` — derived from the provider schema description.
-enum PageRuleActionsBrowserCheck implements TerraformEnum {
+enum PageRuleBrowserCheck implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsBrowserCheck(this.terraformValue);
+  const PageRuleBrowserCheck(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `cache_by_device_type` — derived from the provider schema description.
-enum PageRuleActionsCacheByDeviceType implements TerraformEnum {
+enum PageRuleCacheByDeviceType implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsCacheByDeviceType(this.terraformValue);
+  const PageRuleCacheByDeviceType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `cache_deception_armor` — derived from the provider schema description.
-enum PageRuleActionsCacheDeceptionArmor implements TerraformEnum {
+enum PageRuleCacheDeceptionArmor implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsCacheDeceptionArmor(this.terraformValue);
+  const PageRuleCacheDeceptionArmor(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `cache_level` — derived from the provider schema description.
-enum PageRuleActionsCacheLevel implements TerraformEnum {
+enum PageRuleCacheLevel implements TerraformEnum {
   bypass('bypass'),
   basic('basic'),
   simplified('simplified'),
   aggressive('aggressive'),
   cacheEverything('cache_everything');
 
-  const PageRuleActionsCacheLevel(this.terraformValue);
+  const PageRuleCacheLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `email_obfuscation` — derived from the provider schema description.
-enum PageRuleActionsEmailObfuscation implements TerraformEnum {
+enum PageRuleEmailObfuscation implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsEmailObfuscation(this.terraformValue);
+  const PageRuleEmailObfuscation(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `explicit_cache_control` — derived from the provider schema description.
-enum PageRuleActionsExplicitCacheControl implements TerraformEnum {
+enum PageRuleExplicitCacheControl implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsExplicitCacheControl(this.terraformValue);
+  const PageRuleExplicitCacheControl(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ip_geolocation` — derived from the provider schema description.
-enum PageRuleActionsIpGeolocation implements TerraformEnum {
+enum PageRuleIpGeolocation implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsIpGeolocation(this.terraformValue);
+  const PageRuleIpGeolocation(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mirage` — derived from the provider schema description.
-enum PageRuleActionsMirage implements TerraformEnum {
+enum PageRuleMirage implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsMirage(this.terraformValue);
+  const PageRuleMirage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `opportunistic_encryption` — derived from the provider schema description.
-enum PageRuleActionsOpportunisticEncryption implements TerraformEnum {
+enum PageRuleOpportunisticEncryption implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsOpportunisticEncryption(this.terraformValue);
+  const PageRuleOpportunisticEncryption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `origin_error_page_pass_thru` — derived from the provider schema description.
-enum PageRuleActionsOriginErrorPagePassThru implements TerraformEnum {
+enum PageRuleOriginErrorPagePassThru implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsOriginErrorPagePassThru(this.terraformValue);
+  const PageRuleOriginErrorPagePassThru(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `polish` — derived from the provider schema description.
-enum PageRuleActionsPolish implements TerraformEnum {
+enum PageRulePolish implements TerraformEnum {
   off('off'),
   lossless('lossless'),
   lossy('lossy');
 
-  const PageRuleActionsPolish(this.terraformValue);
+  const PageRulePolish(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `respect_strong_etag` — derived from the provider schema description.
-enum PageRuleActionsRespectStrongEtag implements TerraformEnum {
+enum PageRuleRespectStrongEtag implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsRespectStrongEtag(this.terraformValue);
+  const PageRuleRespectStrongEtag(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `response_buffering` — derived from the provider schema description.
-enum PageRuleActionsResponseBuffering implements TerraformEnum {
+enum PageRuleResponseBuffering implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsResponseBuffering(this.terraformValue);
+  const PageRuleResponseBuffering(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `rocket_loader` — derived from the provider schema description.
-enum PageRuleActionsRocketLoader implements TerraformEnum {
+enum PageRuleRocketLoader implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsRocketLoader(this.terraformValue);
+  const PageRuleRocketLoader(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `security_level` — derived from the provider schema description.
-enum PageRuleActionsSecurityLevel implements TerraformEnum {
+enum PageRuleSecurityLevel implements TerraformEnum {
   off('off'),
   essentiallyOff('essentially_off'),
   low('low'),
@@ -329,50 +329,50 @@ enum PageRuleActionsSecurityLevel implements TerraformEnum {
   high('high'),
   underAttack('under_attack');
 
-  const PageRuleActionsSecurityLevel(this.terraformValue);
+  const PageRuleSecurityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `sort_query_string_for_cache` — derived from the provider schema description.
-enum PageRuleActionsSortQueryStringForCache implements TerraformEnum {
+enum PageRuleSortQueryStringForCache implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsSortQueryStringForCache(this.terraformValue);
+  const PageRuleSortQueryStringForCache(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ssl` — derived from the provider schema description.
-enum PageRuleActionsSsl implements TerraformEnum {
+enum PageRuleSsl implements TerraformEnum {
   off('off'),
   flexible('flexible'),
   full('full'),
   strict('strict'),
   originPull('origin_pull');
 
-  const PageRuleActionsSsl(this.terraformValue);
+  const PageRuleSsl(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `true_client_ip_header` — derived from the provider schema description.
-enum PageRuleActionsTrueClientIpHeader implements TerraformEnum {
+enum PageRuleTrueClientIpHeader implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsTrueClientIpHeader(this.terraformValue);
+  const PageRuleTrueClientIpHeader(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `waf` — derived from the provider schema description.
-enum PageRuleActionsWaf implements TerraformEnum {
+enum PageRuleWaf implements TerraformEnum {
   on('on'),
   off('off');
 
-  const PageRuleActionsWaf(this.terraformValue);
+  const PageRuleWaf(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -380,8 +380,8 @@ enum PageRuleActionsWaf implements TerraformEnum {
 /// Typed helper for the `actions.cache_key_fields` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFields {
-  const PageRuleActionsCacheKeyFields({
+final class PageRuleCacheKeyFields {
+  const PageRuleCacheKeyFields({
     this.cookie,
     this.header,
     this.host,
@@ -389,15 +389,15 @@ final class PageRuleActionsCacheKeyFields {
     this.user,
   });
 
-  final PageRuleActionsCacheKeyFieldsCookie? cookie;
+  final PageRuleCookie? cookie;
 
-  final PageRuleActionsCacheKeyFieldsHeader? header;
+  final PageRuleHeader? header;
 
-  final PageRuleActionsCacheKeyFieldsHost? host;
+  final PageRuleHost? host;
 
-  final PageRuleActionsCacheKeyFieldsQueryString? queryString;
+  final PageRuleQueryString? queryString;
 
-  final PageRuleActionsCacheKeyFieldsUser? user;
+  final PageRuleUser? user;
 
   Map<String, Object?> encode() => {
     'cookie': ?cookie?.encode(),
@@ -411,8 +411,8 @@ final class PageRuleActionsCacheKeyFields {
 /// Typed helper for the `actions.cache_key_fields.cookie` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFieldsCookie {
-  const PageRuleActionsCacheKeyFieldsCookie({this.checkPresence, this.include});
+final class PageRuleCookie {
+  const PageRuleCookie({this.checkPresence, this.include});
 
   final TfArg<List<String>>? checkPresence;
 
@@ -427,12 +427,8 @@ final class PageRuleActionsCacheKeyFieldsCookie {
 /// Typed helper for the `actions.cache_key_fields.header` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFieldsHeader {
-  const PageRuleActionsCacheKeyFieldsHeader({
-    this.checkPresence,
-    this.exclude,
-    this.include,
-  });
+final class PageRuleHeader {
+  const PageRuleHeader({this.checkPresence, this.exclude, this.include});
 
   final TfArg<List<String>>? checkPresence;
 
@@ -450,8 +446,8 @@ final class PageRuleActionsCacheKeyFieldsHeader {
 /// Typed helper for the `actions.cache_key_fields.host` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFieldsHost {
-  const PageRuleActionsCacheKeyFieldsHost({this.resolved});
+final class PageRuleHost {
+  const PageRuleHost({this.resolved});
 
   final TfArg<bool>? resolved;
 
@@ -461,8 +457,8 @@ final class PageRuleActionsCacheKeyFieldsHost {
 /// Typed helper for the `actions.cache_key_fields.query_string` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFieldsQueryString {
-  const PageRuleActionsCacheKeyFieldsQueryString({this.exclude, this.include});
+final class PageRuleQueryString {
+  const PageRuleQueryString({this.exclude, this.include});
 
   final TfArg<List<String>>? exclude;
 
@@ -477,12 +473,8 @@ final class PageRuleActionsCacheKeyFieldsQueryString {
 /// Typed helper for the `actions.cache_key_fields.user` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsCacheKeyFieldsUser {
-  const PageRuleActionsCacheKeyFieldsUser({
-    this.deviceType,
-    this.geo,
-    this.lang,
-  });
+final class PageRuleUser {
+  const PageRuleUser({this.deviceType, this.geo, this.lang});
 
   final TfArg<bool>? deviceType;
 
@@ -500,11 +492,8 @@ final class PageRuleActionsCacheKeyFieldsUser {
 /// Typed helper for the `actions.forwarding_url` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
-final class PageRuleActionsForwardingUrl {
-  const PageRuleActionsForwardingUrl({
-    required this.statusCode,
-    required this.url,
-  });
+final class PageRuleForwardingUrl {
+  const PageRuleForwardingUrl({required this.statusCode, required this.url});
 
   final TfArg<num> statusCode;
 

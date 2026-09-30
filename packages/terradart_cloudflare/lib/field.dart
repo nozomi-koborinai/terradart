@@ -4,7 +4,4 @@
 library;
 
 export 'src/field/cloudflare_field_extractor.dart'
-    show
-        CloudflareFieldExtractor,
-        FieldExtractorRules,
-        FieldExtractorRulesFields;
+    show CloudflareFieldExtractor, FieldExtractorFields, FieldExtractorRules;

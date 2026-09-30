@@ -195,16 +195,16 @@ final class BigqueryJobCopy {
     required this.sourceTables,
   });
 
-  final TfArg<BigqueryJobCopyCreateDisposition>? createDisposition;
+  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
 
-  final TfArg<BigqueryJobCopyWriteDisposition>? writeDisposition;
+  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
 
-  final BigqueryJobCopyDestinationEncryptionConfiguration?
+  final BigqueryJobDestinationEncryptionConfiguration?
   destinationEncryptionConfiguration;
 
-  final BigqueryJobCopyDestinationTable? destinationTable;
+  final BigqueryJobDestinationTable? destinationTable;
 
-  final List<BigqueryJobCopySourceTables> sourceTables;
+  final List<BigqueryJobSourceTables> sourceTables;
 
   Map<String, Object?> encode() => {
     'create_disposition': ?createDisposition?.toTfJson(),
@@ -217,31 +217,32 @@ final class BigqueryJobCopy {
 }
 
 /// `create_disposition` — derived from the provider schema description.
-enum BigqueryJobCopyCreateDisposition implements TerraformEnum {
+enum BigqueryJobCreateDisposition implements TerraformEnum {
   createIfNeeded('CREATE_IF_NEEDED'),
   createNever('CREATE_NEVER');
 
-  const BigqueryJobCopyCreateDisposition(this.terraformValue);
+  const BigqueryJobCreateDisposition(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `write_disposition` — derived from the provider schema description.
-enum BigqueryJobCopyWriteDisposition implements TerraformEnum {
+enum BigqueryJobWriteDisposition implements TerraformEnum {
   writeTruncate('WRITE_TRUNCATE'),
   writeAppend('WRITE_APPEND'),
   writeEmpty('WRITE_EMPTY');
 
-  const BigqueryJobCopyWriteDisposition(this.terraformValue);
+  const BigqueryJobWriteDisposition(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `copy.destination_encryption_configuration` block of
 /// `google_bigquery_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BigqueryJobCopyDestinationEncryptionConfiguration {
-  const BigqueryJobCopyDestinationEncryptionConfiguration({
+final class BigqueryJobDestinationEncryptionConfiguration {
+  const BigqueryJobDestinationEncryptionConfiguration({
     required this.kmsKeyName,
   });
 
@@ -254,9 +255,10 @@ final class BigqueryJobCopyDestinationEncryptionConfiguration {
 
 /// Typed helper for the `copy.destination_table` block of
 /// `google_bigquery_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BigqueryJobCopyDestinationTable {
-  const BigqueryJobCopyDestinationTable({
+final class BigqueryJobDestinationTable {
+  const BigqueryJobDestinationTable({
     this.datasetId,
     this.projectId,
     required this.tableId,
@@ -278,8 +280,8 @@ final class BigqueryJobCopyDestinationTable {
 /// Typed helper for the `copy.source_tables` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobCopySourceTables {
-  const BigqueryJobCopySourceTables({
+final class BigqueryJobSourceTables {
+  const BigqueryJobSourceTables({
     this.datasetId,
     this.projectId,
     required this.tableId,
@@ -324,7 +326,7 @@ final class BigqueryJobExtract {
 
   final TfArg<bool>? useAvroLogicalTypes;
 
-  final BigqueryJobExtractSource source;
+  final BigqueryJobSource source;
 
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
@@ -341,18 +343,18 @@ final class BigqueryJobExtract {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sourceTable(...)`.
-sealed class BigqueryJobExtractSource {
-  const BigqueryJobExtractSource();
+sealed class BigqueryJobSource {
+  const BigqueryJobSource();
 
   /// Sets `source_table`.
-  const factory BigqueryJobExtractSource.sourceTable(
-    BigqueryJobExtractSourceTable sourceTable,
-  ) = BigqueryJobExtractSourceTableChoice;
+  const factory BigqueryJobSource.sourceTable(
+    BigqueryJobSourceTable sourceTable,
+  ) = BigqueryJobSourceTableChoice;
 
   /// Sets `source_model`.
-  const factory BigqueryJobExtractSource.sourceModel(
-    BigqueryJobExtractSourceModel sourceModel,
-  ) = BigqueryJobExtractSourceModelChoice;
+  const factory BigqueryJobSource.sourceModel(
+    BigqueryJobSourceModel sourceModel,
+  ) = BigqueryJobSourceModelChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -360,12 +362,11 @@ sealed class BigqueryJobExtractSource {
   Map<String, Object?> encode();
 }
 
-/// The [BigqueryJobExtractSource.sourceTable] choice: sets `source_table`.
-final class BigqueryJobExtractSourceTableChoice
-    extends BigqueryJobExtractSource {
-  const BigqueryJobExtractSourceTableChoice(this.sourceTable);
+/// The [BigqueryJobSource.sourceTable] choice: sets `source_table`.
+final class BigqueryJobSourceTableChoice extends BigqueryJobSource {
+  const BigqueryJobSourceTableChoice(this.sourceTable);
 
-  final BigqueryJobExtractSourceTable sourceTable;
+  final BigqueryJobSourceTable sourceTable;
 
   @override
   String get blockKey => 'source_table';
@@ -374,12 +375,11 @@ final class BigqueryJobExtractSourceTableChoice
   Map<String, Object?> encode() => {'source_table': sourceTable.encode()};
 }
 
-/// The [BigqueryJobExtractSource.sourceModel] choice: sets `source_model`.
-final class BigqueryJobExtractSourceModelChoice
-    extends BigqueryJobExtractSource {
-  const BigqueryJobExtractSourceModelChoice(this.sourceModel);
+/// The [BigqueryJobSource.sourceModel] choice: sets `source_model`.
+final class BigqueryJobSourceModelChoice extends BigqueryJobSource {
+  const BigqueryJobSourceModelChoice(this.sourceModel);
 
-  final BigqueryJobExtractSourceModel sourceModel;
+  final BigqueryJobSourceModel sourceModel;
 
   @override
   String get blockKey => 'source_model';
@@ -391,8 +391,8 @@ final class BigqueryJobExtractSourceModelChoice
 /// Typed helper for the `extract.source_model` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobExtractSourceModel {
-  const BigqueryJobExtractSourceModel({
+final class BigqueryJobSourceModel {
+  const BigqueryJobSourceModel({
     required this.datasetId,
     required this.modelId,
     required this.projectId,
@@ -414,8 +414,8 @@ final class BigqueryJobExtractSourceModel {
 /// Typed helper for the `extract.source_table` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobExtractSourceTable {
-  const BigqueryJobExtractSourceTable({
+final class BigqueryJobSourceTable {
+  const BigqueryJobSourceTable({
     this.datasetId,
     this.projectId,
     required this.tableId,
@@ -468,7 +468,7 @@ final class BigqueryJobLoad {
 
   final TfArg<bool>? autodetect;
 
-  final TfArg<BigqueryJobLoadCreateDisposition>? createDisposition;
+  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
 
   final TfArg<String>? encoding;
 
@@ -494,16 +494,16 @@ final class BigqueryJobLoad {
 
   final TfArg<List<String>> sourceUris;
 
-  final TfArg<BigqueryJobLoadWriteDisposition>? writeDisposition;
+  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
 
-  final BigqueryJobLoadDestinationEncryptionConfiguration?
+  final BigqueryJobDestinationEncryptionConfiguration?
   destinationEncryptionConfiguration;
 
-  final BigqueryJobLoadDestinationTable destinationTable;
+  final BigqueryJobDestinationTable destinationTable;
 
-  final BigqueryJobLoadParquetOptions? parquetOptions;
+  final BigqueryJobParquetOptions? parquetOptions;
 
-  final BigqueryJobLoadTimePartitioning? timePartitioning;
+  final BigqueryJobTimePartitioning? timePartitioning;
 
   Map<String, Object?> encode() => {
     'allow_jagged_rows': ?allowJaggedRows?.toTfJson(),
@@ -531,70 +531,11 @@ final class BigqueryJobLoad {
   };
 }
 
-/// `create_disposition` — derived from the provider schema description.
-enum BigqueryJobLoadCreateDisposition implements TerraformEnum {
-  createIfNeeded('CREATE_IF_NEEDED'),
-  createNever('CREATE_NEVER');
-
-  const BigqueryJobLoadCreateDisposition(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `write_disposition` — derived from the provider schema description.
-enum BigqueryJobLoadWriteDisposition implements TerraformEnum {
-  writeTruncate('WRITE_TRUNCATE'),
-  writeAppend('WRITE_APPEND'),
-  writeEmpty('WRITE_EMPTY');
-
-  const BigqueryJobLoadWriteDisposition(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `load.destination_encryption_configuration` block of
-/// `google_bigquery_job` (derived from provider schema).
-@immutable
-final class BigqueryJobLoadDestinationEncryptionConfiguration {
-  const BigqueryJobLoadDestinationEncryptionConfiguration({
-    required this.kmsKeyName,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
-  };
-}
-
-/// Typed helper for the `load.destination_table` block of
-/// `google_bigquery_job` (derived from provider schema).
-@immutable
-final class BigqueryJobLoadDestinationTable {
-  const BigqueryJobLoadDestinationTable({
-    this.datasetId,
-    this.projectId,
-    required this.tableId,
-  });
-
-  final RefTo<GoogleBigqueryDataset>? datasetId;
-
-  final TfArg<String>? projectId;
-
-  final TfArg<String> tableId;
-
-  Map<String, Object?> encode() => {
-    'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
-    'project_id': ?projectId?.toTfJson(),
-    'table_id': tableId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `load.parquet_options` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobLoadParquetOptions {
-  const BigqueryJobLoadParquetOptions({
+final class BigqueryJobParquetOptions {
+  const BigqueryJobParquetOptions({
     this.enableListInference,
     this.enumAsString,
   });
@@ -612,8 +553,8 @@ final class BigqueryJobLoadParquetOptions {
 /// Typed helper for the `load.time_partitioning` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobLoadTimePartitioning {
-  const BigqueryJobLoadTimePartitioning({
+final class BigqueryJobTimePartitioning {
+  const BigqueryJobTimePartitioning({
     this.expirationMs,
     this.field,
     required this.type,
@@ -659,7 +600,7 @@ final class BigqueryJobQuery {
 
   final TfArg<bool>? allowLargeResults;
 
-  final TfArg<BigqueryJobQueryCreateDisposition>? createDisposition;
+  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
 
   final TfArg<bool>? flattenResults;
 
@@ -669,7 +610,7 @@ final class BigqueryJobQuery {
 
   final TfArg<BigqueryJobParameterMode>? parameterMode;
 
-  final TfArg<BigqueryJobQueryPriority>? priority;
+  final TfArg<BigqueryJobPriority>? priority;
 
   final TfArg<String> query;
 
@@ -679,20 +620,20 @@ final class BigqueryJobQuery {
 
   final TfArg<bool>? useQueryCache;
 
-  final TfArg<BigqueryJobQueryWriteDisposition>? writeDisposition;
+  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
 
-  final List<BigqueryJobQueryConnectionProperties>? connectionProperties;
+  final List<BigqueryJobConnectionProperties>? connectionProperties;
 
-  final BigqueryJobQueryDefaultDataset? defaultDataset;
+  final BigqueryJobDefaultDataset? defaultDataset;
 
-  final BigqueryJobQueryDestinationEncryptionConfiguration?
+  final BigqueryJobDestinationEncryptionConfiguration?
   destinationEncryptionConfiguration;
 
-  final BigqueryJobQueryDestinationTable? destinationTable;
+  final BigqueryJobDestinationTable? destinationTable;
 
-  final BigqueryJobQueryScriptOptions? scriptOptions;
+  final BigqueryJobScriptOptions? scriptOptions;
 
-  final List<BigqueryJobQueryUserDefinedFunctionResources>?
+  final List<BigqueryJobUserDefinedFunctionResources>?
   userDefinedFunctionResources;
 
   Map<String, Object?> encode() => {
@@ -724,33 +665,12 @@ final class BigqueryJobQuery {
   };
 }
 
-/// `create_disposition` — derived from the provider schema description.
-enum BigqueryJobQueryCreateDisposition implements TerraformEnum {
-  createIfNeeded('CREATE_IF_NEEDED'),
-  createNever('CREATE_NEVER');
-
-  const BigqueryJobQueryCreateDisposition(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `priority` — derived from the provider schema description.
-enum BigqueryJobQueryPriority implements TerraformEnum {
+enum BigqueryJobPriority implements TerraformEnum {
   interactive('INTERACTIVE'),
   batch('BATCH');
 
-  const BigqueryJobQueryPriority(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `write_disposition` — derived from the provider schema description.
-enum BigqueryJobQueryWriteDisposition implements TerraformEnum {
-  writeTruncate('WRITE_TRUNCATE'),
-  writeAppend('WRITE_APPEND'),
-  writeEmpty('WRITE_EMPTY');
-
-  const BigqueryJobQueryWriteDisposition(this.terraformValue);
+  const BigqueryJobPriority(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -758,8 +678,8 @@ enum BigqueryJobQueryWriteDisposition implements TerraformEnum {
 /// Typed helper for the `query.connection_properties` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobQueryConnectionProperties {
-  const BigqueryJobQueryConnectionProperties({
+final class BigqueryJobConnectionProperties {
+  const BigqueryJobConnectionProperties({
     required this.key,
     required this.value,
   });
@@ -777,11 +697,8 @@ final class BigqueryJobQueryConnectionProperties {
 /// Typed helper for the `query.default_dataset` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobQueryDefaultDataset {
-  const BigqueryJobQueryDefaultDataset({
-    required this.datasetId,
-    this.projectId,
-  });
+final class BigqueryJobDefaultDataset {
+  const BigqueryJobDefaultDataset({required this.datasetId, this.projectId});
 
   final RefTo<GoogleBigqueryDataset> datasetId;
 
@@ -793,56 +710,17 @@ final class BigqueryJobQueryDefaultDataset {
   };
 }
 
-/// Typed helper for the `query.destination_encryption_configuration` block of
-/// `google_bigquery_job` (derived from provider schema).
-@immutable
-final class BigqueryJobQueryDestinationEncryptionConfiguration {
-  const BigqueryJobQueryDestinationEncryptionConfiguration({
-    required this.kmsKeyName,
-  });
-
-  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
-  };
-}
-
-/// Typed helper for the `query.destination_table` block of
-/// `google_bigquery_job` (derived from provider schema).
-@immutable
-final class BigqueryJobQueryDestinationTable {
-  const BigqueryJobQueryDestinationTable({
-    this.datasetId,
-    this.projectId,
-    required this.tableId,
-  });
-
-  final RefTo<GoogleBigqueryDataset>? datasetId;
-
-  final TfArg<String>? projectId;
-
-  final TfArg<String> tableId;
-
-  Map<String, Object?> encode() => {
-    'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
-    'project_id': ?projectId?.toTfJson(),
-    'table_id': tableId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `query.script_options` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobQueryScriptOptions {
-  const BigqueryJobQueryScriptOptions({
+final class BigqueryJobScriptOptions {
+  const BigqueryJobScriptOptions({
     this.keyResultStatement,
     this.statementByteBudget,
     this.statementTimeoutMs,
   });
 
-  final TfArg<BigqueryJobQueryScriptOptionsKeyResultStatement>?
-  keyResultStatement;
+  final TfArg<BigqueryJobKeyResultStatement>? keyResultStatement;
 
   final TfArg<String>? statementByteBudget;
 
@@ -856,11 +734,11 @@ final class BigqueryJobQueryScriptOptions {
 }
 
 /// `key_result_statement` — derived from the provider schema description.
-enum BigqueryJobQueryScriptOptionsKeyResultStatement implements TerraformEnum {
+enum BigqueryJobKeyResultStatement implements TerraformEnum {
   last('LAST'),
   firstSelect('FIRST_SELECT');
 
-  const BigqueryJobQueryScriptOptionsKeyResultStatement(this.terraformValue);
+  const BigqueryJobKeyResultStatement(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -868,8 +746,8 @@ enum BigqueryJobQueryScriptOptionsKeyResultStatement implements TerraformEnum {
 /// Typed helper for the `query.user_defined_function_resources` block of
 /// `google_bigquery_job` (derived from provider schema).
 @immutable
-final class BigqueryJobQueryUserDefinedFunctionResources {
-  const BigqueryJobQueryUserDefinedFunctionResources({
+final class BigqueryJobUserDefinedFunctionResources {
+  const BigqueryJobUserDefinedFunctionResources({
     this.inlineCode,
     this.resourceUri,
   });
@@ -938,7 +816,7 @@ final class BigqueryJobQueryUserDefinedFunctionResources {
 ///         'GROUP BY user_id',
 ///       ),
 ///       useLegacySql: .literal(false),
-///       destinationTable: BigqueryJobQueryDestinationTable(
+///       destinationTable: BigqueryJobDestinationTable(
 ///         datasetId: analyticsProd.ref,
 ///         tableId: .literal('daily_user_events'),
 ///       ),
@@ -961,7 +839,7 @@ final class BigqueryJobQueryUserDefinedFunctionResources {
 ///       sourceUris: .literal([
 ///         'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
 ///       ]),
-///       destinationTable: BigqueryJobLoadDestinationTable(
+///       destinationTable: BigqueryJobDestinationTable(
 ///         datasetId: staging.ref,
 ///         tableId: .literal('users_raw'),
 ///       ),

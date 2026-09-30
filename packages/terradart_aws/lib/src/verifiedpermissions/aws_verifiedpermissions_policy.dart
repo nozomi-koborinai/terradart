@@ -13,9 +13,9 @@ const Set<String> _awsVerifiedpermissionsPolicySensitive = <String>{};
 final class VerifiedpermissionsPolicyDefinition {
   const VerifiedpermissionsPolicyDefinition({this.static, this.templateLinked});
 
-  final List<VerifiedpermissionsPolicyDefinitionStatic>? static;
+  final List<VerifiedpermissionsPolicyStatic>? static;
 
-  final List<VerifiedpermissionsPolicyDefinitionTemplateLinked>? templateLinked;
+  final List<VerifiedpermissionsPolicyTemplateLinked>? templateLinked;
 
   Map<String, Object?> encode() => {
     if (static != null) 'static': [for (final e in static!) e.encode()],
@@ -27,8 +27,8 @@ final class VerifiedpermissionsPolicyDefinition {
 /// Typed helper for the `definition.static` block of
 /// `aws_verifiedpermissions_policy` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsPolicyDefinitionStatic {
-  const VerifiedpermissionsPolicyDefinitionStatic({
+final class VerifiedpermissionsPolicyStatic {
+  const VerifiedpermissionsPolicyStatic({
     this.description,
     required this.statement,
   });
@@ -46,8 +46,8 @@ final class VerifiedpermissionsPolicyDefinitionStatic {
 /// Typed helper for the `definition.template_linked` block of
 /// `aws_verifiedpermissions_policy` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsPolicyDefinitionTemplateLinked {
-  const VerifiedpermissionsPolicyDefinitionTemplateLinked({
+final class VerifiedpermissionsPolicyTemplateLinked {
+  const VerifiedpermissionsPolicyTemplateLinked({
     required this.policyTemplateId,
     this.principal,
     this.resource,
@@ -55,11 +55,9 @@ final class VerifiedpermissionsPolicyDefinitionTemplateLinked {
 
   final TfArg<String> policyTemplateId;
 
-  final List<VerifiedpermissionsPolicyDefinitionTemplateLinkedPrincipal>?
-  principal;
+  final List<VerifiedpermissionsPolicyPrincipal>? principal;
 
-  final List<VerifiedpermissionsPolicyDefinitionTemplateLinkedResource>?
-  resource;
+  final List<VerifiedpermissionsPolicyResource>? resource;
 
   Map<String, Object?> encode() => {
     'policy_template_id': policyTemplateId.toTfJson(),
@@ -72,8 +70,8 @@ final class VerifiedpermissionsPolicyDefinitionTemplateLinked {
 /// Typed helper for the `definition.template_linked.principal` block of
 /// `aws_verifiedpermissions_policy` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsPolicyDefinitionTemplateLinkedPrincipal {
-  const VerifiedpermissionsPolicyDefinitionTemplateLinkedPrincipal({
+final class VerifiedpermissionsPolicyPrincipal {
+  const VerifiedpermissionsPolicyPrincipal({
     required this.entityId,
     required this.entityType,
   });
@@ -91,8 +89,8 @@ final class VerifiedpermissionsPolicyDefinitionTemplateLinkedPrincipal {
 /// Typed helper for the `definition.template_linked.resource` block of
 /// `aws_verifiedpermissions_policy` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsPolicyDefinitionTemplateLinkedResource {
-  const VerifiedpermissionsPolicyDefinitionTemplateLinkedResource({
+final class VerifiedpermissionsPolicyResource {
+  const VerifiedpermissionsPolicyResource({
     required this.entityId,
     required this.entityType,
   });

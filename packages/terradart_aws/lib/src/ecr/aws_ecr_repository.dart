@@ -30,8 +30,7 @@ final class EcrRepositoryEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<EcrRepositoryEncryptionConfigurationEncryptionType>?
-  encryptionType;
+  final TfArg<EcrRepositoryEncryptionType>? encryptionType;
 
   final RefTo<AwsKmsKey>? kmsKey;
 
@@ -42,13 +41,12 @@ final class EcrRepositoryEncryptionConfiguration {
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum EcrRepositoryEncryptionConfigurationEncryptionType
-    implements TerraformEnum {
+enum EcrRepositoryEncryptionType implements TerraformEnum {
   aes256('AES256'),
   kms('KMS'),
   kmsDsse('KMS_DSSE');
 
-  const EcrRepositoryEncryptionConfigurationEncryptionType(this.terraformValue);
+  const EcrRepositoryEncryptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -75,8 +73,7 @@ final class EcrRepositoryImageTagMutabilityExclusionFilter {
 
   final TfArg<String> filter;
 
-  final TfArg<EcrRepositoryImageTagMutabilityExclusionFilterFilterType>
-  filterType;
+  final TfArg<EcrRepositoryFilterType> filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
@@ -85,13 +82,10 @@ final class EcrRepositoryImageTagMutabilityExclusionFilter {
 }
 
 /// `filter_type` — derived from the provider schema description.
-enum EcrRepositoryImageTagMutabilityExclusionFilterFilterType
-    implements TerraformEnum {
+enum EcrRepositoryFilterType implements TerraformEnum {
   wildcard('WILDCARD');
 
-  const EcrRepositoryImageTagMutabilityExclusionFilterFilterType(
-    this.terraformValue,
-  );
+  const EcrRepositoryFilterType(this.terraformValue);
   @override
   final String terraformValue;
 }

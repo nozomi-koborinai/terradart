@@ -4,10 +4,7 @@
 library;
 
 export 'src/sfn/aws_sfn_activity.dart'
-    show
-        AwsSfnActivity,
-        SfnActivityEncryptionConfiguration,
-        SfnActivityEncryptionConfigurationType;
+    show AwsSfnActivity, SfnActivityEncryptionConfiguration, SfnActivityType;
 export 'src/sfn/aws_sfn_alias.dart'
     show AwsSfnAlias, SfnAliasRoutingConfiguration;
 export 'src/sfn/aws_sfn_state_machine.dart'
@@ -15,8 +12,8 @@ export 'src/sfn/aws_sfn_state_machine.dart'
         AwsSfnStateMachine,
         SfnStateMachineEncryptionConfiguration,
         SfnStateMachineEncryptionConfigurationType,
+        SfnStateMachineLevel,
         SfnStateMachineLoggingConfiguration,
-        SfnStateMachineLoggingConfigurationLevel,
         SfnStateMachineName,
         SfnStateMachineNameChoice,
         SfnStateMachineNamePrefix,

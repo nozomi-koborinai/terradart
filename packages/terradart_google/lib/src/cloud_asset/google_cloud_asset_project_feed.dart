@@ -53,13 +53,10 @@ final class CloudAssetProjectFeedCondition {
 /// Typed helper for the `feed_output_config` block of
 /// `google_cloud_asset_project_feed` (derived from provider schema).
 @immutable
-final class CloudAssetProjectFeedFeedOutputConfig {
-  const CloudAssetProjectFeedFeedOutputConfig({
-    required this.pubsubDestination,
-  });
+final class CloudAssetProjectFeedOutputConfig {
+  const CloudAssetProjectFeedOutputConfig({required this.pubsubDestination});
 
-  final CloudAssetProjectFeedFeedOutputConfigPubsubDestination
-  pubsubDestination;
+  final CloudAssetProjectFeedPubsubDestination pubsubDestination;
 
   Map<String, Object?> encode() => {
     'pubsub_destination': pubsubDestination.encode(),
@@ -69,10 +66,8 @@ final class CloudAssetProjectFeedFeedOutputConfig {
 /// Typed helper for the `feed_output_config.pubsub_destination` block of
 /// `google_cloud_asset_project_feed` (derived from provider schema).
 @immutable
-final class CloudAssetProjectFeedFeedOutputConfigPubsubDestination {
-  const CloudAssetProjectFeedFeedOutputConfigPubsubDestination({
-    required this.topic,
-  });
+final class CloudAssetProjectFeedPubsubDestination {
+  const CloudAssetProjectFeedPubsubDestination({required this.topic});
 
   final RefTo<GooglePubsubTopic> topic;
 
@@ -111,8 +106,8 @@ final class CloudAssetProjectFeedFeedOutputConfigPubsubDestination {
 ///     'cloudresourcemanager.googleapis.com/Project',
 ///   ]),
 ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
-///   feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
-///     pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
+///   feedOutputConfig: CloudAssetProjectFeedOutputConfig(
+///     pubsubDestination: CloudAssetProjectFeedPubsubDestination(
 ///       topic: topic.ref,
 ///     ),
 ///   ),
@@ -127,7 +122,7 @@ final class GoogleCloudAssetProjectFeed extends Resource {
     TfArg<List<String>>? assetTypes,
     TfArg<List<String>>? assetNames,
     TfArg<CloudAssetProjectFeedContentType>? contentType,
-    required CloudAssetProjectFeedFeedOutputConfig feedOutputConfig,
+    required CloudAssetProjectFeedOutputConfig feedOutputConfig,
     CloudAssetProjectFeedCondition? condition,
     TfArg<String>? billingProject,
     TfArg<String>? deletionPolicy,

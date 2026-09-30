@@ -23,14 +23,11 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin {
 
   final TfArg<bool>? enableAcceptEncodingGzip;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfig
-  cookiesConfig;
+  final CloudfrontCachePolicyCookiesConfig cookiesConfig;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfig
-  headersConfig;
+  final CloudfrontCachePolicyHeadersConfig headersConfig;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfig
-  queryStringsConfig;
+  final CloudfrontCachePolicyQueryStringsConfig queryStringsConfig;
 
   Map<String, Object?> encode() => {
     'enable_accept_encoding_brotli': ?enableAcceptEncodingBrotli?.toTfJson(),
@@ -44,19 +41,15 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin {
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.cookies_config` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfig {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfig({
+final class CloudfrontCachePolicyCookiesConfig {
+  const CloudfrontCachePolicyCookiesConfig({
     required this.cookieBehavior,
     this.cookies,
   });
 
-  final TfArg<
-    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior
-  >
-  cookieBehavior;
+  final TfArg<CloudfrontCachePolicyCookieBehavior> cookieBehavior;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookies?
-  cookies;
+  final CloudfrontCachePolicyCookies? cookies;
 
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
@@ -65,16 +58,13 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
 }
 
 /// `cookie_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior
-    implements TerraformEnum {
+enum CloudfrontCachePolicyCookieBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   allexcept('allExcept'),
   all('all');
 
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontCachePolicyCookieBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -82,10 +72,8 @@ enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigC
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.cookies_config.cookies` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookies {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookies({
-    this.items,
-  });
+final class CloudfrontCachePolicyCookies {
+  const CloudfrontCachePolicyCookies({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -95,19 +83,12 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.headers_config` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfig {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfig({
-    this.headerBehavior,
-    this.headers,
-  });
+final class CloudfrontCachePolicyHeadersConfig {
+  const CloudfrontCachePolicyHeadersConfig({this.headerBehavior, this.headers});
 
-  final TfArg<
-    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior
-  >?
-  headerBehavior;
+  final TfArg<CloudfrontCachePolicyHeaderBehavior>? headerBehavior;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaders?
-  headers;
+  final CloudfrontCachePolicyHeaders? headers;
 
   Map<String, Object?> encode() => {
     'header_behavior': ?headerBehavior?.toTfJson(),
@@ -116,14 +97,11 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
 }
 
 /// `header_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior
-    implements TerraformEnum {
+enum CloudfrontCachePolicyHeaderBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist');
 
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontCachePolicyHeaderBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -131,10 +109,8 @@ enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigH
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.headers_config.headers` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaders {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaders({
-    this.items,
-  });
+final class CloudfrontCachePolicyHeaders {
+  const CloudfrontCachePolicyHeaders({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -144,19 +120,15 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.query_strings_config` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfig {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfig({
+final class CloudfrontCachePolicyQueryStringsConfig {
+  const CloudfrontCachePolicyQueryStringsConfig({
     required this.queryStringBehavior,
     this.queryStrings,
   });
 
-  final TfArg<
-    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior
-  >
-  queryStringBehavior;
+  final TfArg<CloudfrontCachePolicyQueryStringBehavior> queryStringBehavior;
 
-  final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStrings?
-  queryStrings;
+  final CloudfrontCachePolicyQueryStrings? queryStrings;
 
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
@@ -165,16 +137,13 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
 }
 
 /// `query_string_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior
-    implements TerraformEnum {
+enum CloudfrontCachePolicyQueryStringBehavior implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   allexcept('allExcept'),
   all('all');
 
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior(
-    this.terraformValue,
-  );
+  const CloudfrontCachePolicyQueryStringBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -182,10 +151,8 @@ enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsCo
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.query_strings_config.query_strings` block of
 /// `aws_cloudfront_cache_policy` (derived from provider schema).
 @immutable
-final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStrings {
-  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStrings({
-    this.items,
-  });
+final class CloudfrontCachePolicyQueryStrings {
+  const CloudfrontCachePolicyQueryStrings({this.items});
 
   final TfArg<List<String>>? items;
 

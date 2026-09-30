@@ -46,8 +46,8 @@ enum MailmanagerIngressPointType implements TerraformEnum {
 /// Typed helper for the `ingress_point_configuration` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
-final class MailmanagerIngressPointIngressPointConfiguration {
-  const MailmanagerIngressPointIngressPointConfiguration({
+final class MailmanagerIngressPointConfiguration {
+  const MailmanagerIngressPointConfiguration({
     this.secretArn,
     this.smtpPasswordWo,
     this.smtpPasswordWoVersion,
@@ -60,10 +60,7 @@ final class MailmanagerIngressPointIngressPointConfiguration {
 
   final TfArg<num>? smtpPasswordWoVersion;
 
-  final List<
-    MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration
-  >?
-  tlsAuthConfiguration;
+  final List<MailmanagerIngressPointTlsAuthConfiguration>? tlsAuthConfiguration;
 
   Map<String, Object?> encode() => {
     'secret_arn': ?secretArn?.toTfJson(),
@@ -79,15 +76,10 @@ final class MailmanagerIngressPointIngressPointConfiguration {
 /// Typed helper for the `ingress_point_configuration.tls_auth_configuration` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
-final class MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration {
-  const MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration({
-    this.trustStore,
-  });
+final class MailmanagerIngressPointTlsAuthConfiguration {
+  const MailmanagerIngressPointTlsAuthConfiguration({this.trustStore});
 
-  final List<
-    MailmanagerIngressPointIngressPointConfigurationTlsAuthConfigurationTrustStore
-  >?
-  trustStore;
+  final List<MailmanagerIngressPointTrustStore>? trustStore;
 
   Map<String, Object?> encode() => {
     if (trustStore != null)
@@ -98,8 +90,8 @@ final class MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration
 /// Typed helper for the `ingress_point_configuration.tls_auth_configuration.trust_store` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
-final class MailmanagerIngressPointIngressPointConfigurationTlsAuthConfigurationTrustStore {
-  const MailmanagerIngressPointIngressPointConfigurationTlsAuthConfigurationTrustStore({
+final class MailmanagerIngressPointTrustStore {
+  const MailmanagerIngressPointTrustStore({
     required this.caContent,
     this.crlContent,
     this.kmsKeyArn,
@@ -127,14 +119,10 @@ final class MailmanagerIngressPointNetworkConfiguration {
     this.publicNetworkConfiguration,
   });
 
-  final List<
-    MailmanagerIngressPointNetworkConfigurationPrivateNetworkConfiguration
-  >?
+  final List<MailmanagerIngressPointPrivateNetworkConfiguration>?
   privateNetworkConfiguration;
 
-  final List<
-    MailmanagerIngressPointNetworkConfigurationPublicNetworkConfiguration
-  >?
+  final List<MailmanagerIngressPointPublicNetworkConfiguration>?
   publicNetworkConfiguration;
 
   Map<String, Object?> encode() => {
@@ -152,8 +140,8 @@ final class MailmanagerIngressPointNetworkConfiguration {
 /// Typed helper for the `network_configuration.private_network_configuration` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
-final class MailmanagerIngressPointNetworkConfigurationPrivateNetworkConfiguration {
-  const MailmanagerIngressPointNetworkConfigurationPrivateNetworkConfiguration({
+final class MailmanagerIngressPointPrivateNetworkConfiguration {
+  const MailmanagerIngressPointPrivateNetworkConfiguration({
     required this.vpcEndpointId,
   });
 
@@ -167,28 +155,22 @@ final class MailmanagerIngressPointNetworkConfigurationPrivateNetworkConfigurati
 /// Typed helper for the `network_configuration.public_network_configuration` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
-final class MailmanagerIngressPointNetworkConfigurationPublicNetworkConfiguration {
-  const MailmanagerIngressPointNetworkConfigurationPublicNetworkConfiguration({
+final class MailmanagerIngressPointPublicNetworkConfiguration {
+  const MailmanagerIngressPointPublicNetworkConfiguration({
     required this.ipType,
   });
 
-  final TfArg<
-    MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType
-  >
-  ipType;
+  final TfArg<MailmanagerIngressPointIpType> ipType;
 
   Map<String, Object?> encode() => {'ip_type': ipType.toTfJson()};
 }
 
 /// `ip_type` — derived from the provider schema description.
-enum MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType
-    implements TerraformEnum {
+enum MailmanagerIngressPointIpType implements TerraformEnum {
   ipv4('IPV4'),
   dualStack('DUAL_STACK');
 
-  const MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType(
-    this.terraformValue,
-  );
+  const MailmanagerIngressPointIpType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -207,8 +189,7 @@ final class AwsMailmanagerIngressPoint extends Resource {
     TfArg<MailmanagerIngressPointTlsPolicy>? tlsPolicy,
     required TfArg<String> trafficPolicyId,
     required TfArg<MailmanagerIngressPointType> type,
-    List<MailmanagerIngressPointIngressPointConfiguration>?
-    ingressPointConfiguration,
+    List<MailmanagerIngressPointConfiguration>? ingressPointConfiguration,
     List<MailmanagerIngressPointNetworkConfiguration>? networkConfiguration,
     super.lifecycle,
     super.dependsOn,

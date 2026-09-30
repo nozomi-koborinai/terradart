@@ -24,7 +24,7 @@ final class SaasRuntimeUnitOperationProvision {
 
   final TfArg<String>? release;
 
-  final List<SaasRuntimeUnitOperationProvisionInputVariables>? inputVariables;
+  final List<SaasRuntimeUnitOperationInputVariables>? inputVariables;
 
   Map<String, Object?> encode() => {
     'release': ?release?.toTfJson(),
@@ -35,9 +35,10 @@ final class SaasRuntimeUnitOperationProvision {
 
 /// Typed helper for the `provision.input_variables` block of
 /// `google_saas_runtime_unit_operation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SaasRuntimeUnitOperationProvisionInputVariables {
-  const SaasRuntimeUnitOperationProvisionInputVariables({
+final class SaasRuntimeUnitOperationInputVariables {
+  const SaasRuntimeUnitOperationInputVariables({
     this.type,
     this.value,
     required this.variable,
@@ -64,35 +65,12 @@ final class SaasRuntimeUnitOperationUpgrade {
 
   final TfArg<String>? release;
 
-  final List<SaasRuntimeUnitOperationUpgradeInputVariables>? inputVariables;
+  final List<SaasRuntimeUnitOperationInputVariables>? inputVariables;
 
   Map<String, Object?> encode() => {
     'release': ?release?.toTfJson(),
     if (inputVariables != null)
       'input_variables': [for (final e in inputVariables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `upgrade.input_variables` block of
-/// `google_saas_runtime_unit_operation` (derived from provider schema).
-@immutable
-final class SaasRuntimeUnitOperationUpgradeInputVariables {
-  const SaasRuntimeUnitOperationUpgradeInputVariables({
-    this.type,
-    this.value,
-    required this.variable,
-  });
-
-  final TfArg<String>? type;
-
-  final TfArg<String>? value;
-
-  final TfArg<String> variable;
-
-  Map<String, Object?> encode() => {
-    'type': ?type?.toTfJson(),
-    'value': ?value?.toTfJson(),
-    'variable': variable.toTfJson(),
   };
 }
 

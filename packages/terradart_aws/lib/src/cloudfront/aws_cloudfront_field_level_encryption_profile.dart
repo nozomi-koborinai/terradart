@@ -14,8 +14,7 @@ const Set<String> _awsCloudfrontFieldLevelEncryptionProfileSensitive =
 final class CloudfrontFieldLevelEncryptionProfileEncryptionEntities {
   const CloudfrontFieldLevelEncryptionProfileEncryptionEntities({this.items});
 
-  final List<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems>?
-  items;
+  final List<CloudfrontFieldLevelEncryptionProfileItems>? items;
 
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
@@ -25,8 +24,8 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntities {
 /// Typed helper for the `encryption_entities.items` block of
 /// `aws_cloudfront_field_level_encryption_profile` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems {
-  const CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems({
+final class CloudfrontFieldLevelEncryptionProfileItems {
+  const CloudfrontFieldLevelEncryptionProfileItems({
     required this.providerId,
     required this.publicKeyId,
     required this.fieldPatterns,
@@ -36,8 +35,7 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems {
 
   final TfArg<String> publicKeyId;
 
-  final CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPatterns
-  fieldPatterns;
+  final CloudfrontFieldLevelEncryptionProfileFieldPatterns fieldPatterns;
 
   Map<String, Object?> encode() => {
     'provider_id': providerId.toTfJson(),
@@ -49,10 +47,8 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems {
 /// Typed helper for the `encryption_entities.items.field_patterns` block of
 /// `aws_cloudfront_field_level_encryption_profile` (derived from provider schema).
 @immutable
-final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPatterns {
-  const CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPatterns({
-    this.items,
-  });
+final class CloudfrontFieldLevelEncryptionProfileFieldPatterns {
+  const CloudfrontFieldLevelEncryptionProfileFieldPatterns({this.items});
 
   final TfArg<List<String>>? items;
 

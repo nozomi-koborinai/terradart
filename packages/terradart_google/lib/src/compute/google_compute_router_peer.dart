@@ -56,7 +56,7 @@ final class ComputeRouterPeerBfd {
 
   final TfArg<num>? multiplier;
 
-  final TfArg<ComputeRouterPeerBfdSessionInitializationMode>
+  final TfArg<ComputeRouterPeerSessionInitializationMode>
   sessionInitializationMode;
 
   Map<String, Object?> encode() => {
@@ -68,12 +68,12 @@ final class ComputeRouterPeerBfd {
 }
 
 /// `session_initialization_mode` — derived from the provider schema description.
-enum ComputeRouterPeerBfdSessionInitializationMode implements TerraformEnum {
+enum ComputeRouterPeerSessionInitializationMode implements TerraformEnum {
   active('ACTIVE'),
   disabled('DISABLED'),
   passive('PASSIVE');
 
-  const ComputeRouterPeerBfdSessionInitializationMode(this.terraformValue);
+  const ComputeRouterPeerSessionInitializationMode(this.terraformValue);
   @override
   final String terraformValue;
 }

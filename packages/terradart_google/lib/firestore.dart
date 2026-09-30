@@ -14,10 +14,10 @@ export 'src/firestore/google_firestore_backup_schedule.dart'
 export 'src/firestore/google_firestore_change_stream.dart'
     show
         FirestoreChangeStreamCollectionGroupScope,
+        FirestoreChangeStreamCollectionGroupScopeChoice,
         FirestoreChangeStreamDatabaseScope,
+        FirestoreChangeStreamDatabaseScopeChoice,
         FirestoreChangeStreamScope,
-        FirestoreChangeStreamScopeCollectionGroupScope,
-        FirestoreChangeStreamScopeDatabaseScope,
         GoogleFirestoreChangeStream;
 export 'src/firestore/google_firestore_database.dart'
     show
@@ -37,10 +37,10 @@ export 'src/firestore/google_firestore_document.dart'
 export 'src/firestore/google_firestore_field.dart'
     show
         FirestoreFieldIndexConfig,
-        FirestoreFieldIndexConfigIndexes,
-        FirestoreFieldIndexConfigIndexesMode,
-        FirestoreFieldIndexConfigIndexesModeArrayConfig,
-        FirestoreFieldIndexConfigIndexesModeOrder,
+        FirestoreFieldIndexes,
+        FirestoreFieldMode,
+        FirestoreFieldModeArrayConfig,
+        FirestoreFieldModeOrder,
         FirestoreFieldOrder,
         FirestoreFieldQueryScope,
         FirestoreFieldTtlConfig,

@@ -8,8 +8,8 @@ export 'src/datapipeline/aws_datapipeline_pipeline.dart'
 export 'src/datapipeline/aws_datapipeline_pipeline_definition.dart'
     show
         AwsDatapipelinePipelineDefinition,
+        DatapipelinePipelineDefinitionAttribute,
+        DatapipelinePipelineDefinitionField,
         DatapipelinePipelineDefinitionParameterObject,
-        DatapipelinePipelineDefinitionParameterObjectAttribute,
         DatapipelinePipelineDefinitionParameterValue,
-        DatapipelinePipelineDefinitionPipelineObject,
-        DatapipelinePipelineDefinitionPipelineObjectField;
+        DatapipelinePipelineDefinitionPipelineObject;

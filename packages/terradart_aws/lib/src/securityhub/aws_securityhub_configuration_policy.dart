@@ -21,7 +21,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
 
   final TfArg<bool> serviceEnabled;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration?
+  final SecurityhubConfigurationPolicySecurityControlsConfiguration?
   securityControlsConfiguration;
 
   Map<String, Object?> encode() => {
@@ -34,18 +34,15 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
 /// Typed helper for the `configuration_policy.security_controls_configuration` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration({
+final class SecurityhubConfigurationPolicySecurityControlsConfiguration {
+  const SecurityhubConfigurationPolicySecurityControlsConfiguration({
     this.controlIdentifiers,
     this.securityControlCustomParameter,
   });
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers?
-  controlIdentifiers;
+  final SecurityhubConfigurationPolicyControlIdentifiers? controlIdentifiers;
 
-  final List<
-    SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter
-  >?
+  final List<SecurityhubConfigurationPolicySecurityControlCustomParameter>?
   securityControlCustomParameter;
 
   Map<String, Object?> encode() => {
@@ -62,18 +59,18 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.disabledControlIdentifiers(...)`.
-sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers();
+sealed class SecurityhubConfigurationPolicyControlIdentifiers {
+  const SecurityhubConfigurationPolicyControlIdentifiers();
 
   /// Sets `disabled_control_identifiers`.
-  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.disabledControlIdentifiers(
+  const factory SecurityhubConfigurationPolicyControlIdentifiers.disabledControlIdentifiers(
     TfArg<List<String>> disabledControlIdentifiers,
-  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers;
+  ) = SecurityhubConfigurationPolicyDisabledControlIdentifiers;
 
   /// Sets `enabled_control_identifiers`.
-  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.enabledControlIdentifiers(
+  const factory SecurityhubConfigurationPolicyControlIdentifiers.enabledControlIdentifiers(
     TfArg<List<String>> enabledControlIdentifiers,
-  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers;
+  ) = SecurityhubConfigurationPolicyEnabledControlIdentifiers;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -81,11 +78,10 @@ sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCo
   Map<String, Object?> encode();
 }
 
-/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.disabledControlIdentifiers] choice: sets `disabled_control_identifiers`.
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers
-    extends
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers(
+/// The [SecurityhubConfigurationPolicyControlIdentifiers.disabledControlIdentifiers] choice: sets `disabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyDisabledControlIdentifiers
+    extends SecurityhubConfigurationPolicyControlIdentifiers {
+  const SecurityhubConfigurationPolicyDisabledControlIdentifiers(
     this.disabledControlIdentifiers,
   );
 
@@ -100,11 +96,10 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   };
 }
 
-/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.enabledControlIdentifiers] choice: sets `enabled_control_identifiers`.
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers
-    extends
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers(
+/// The [SecurityhubConfigurationPolicyControlIdentifiers.enabledControlIdentifiers] choice: sets `enabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyEnabledControlIdentifiers
+    extends SecurityhubConfigurationPolicyControlIdentifiers {
+  const SecurityhubConfigurationPolicyEnabledControlIdentifiers(
     this.enabledControlIdentifiers,
   );
 
@@ -122,18 +117,15 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter({
+final class SecurityhubConfigurationPolicySecurityControlCustomParameter {
+  const SecurityhubConfigurationPolicySecurityControlCustomParameter({
     required this.securityControlId,
     required this.parameter,
   });
 
   final TfArg<String> securityControlId;
 
-  final List<
-    SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameter
-  >
-  parameter;
+  final List<SecurityhubConfigurationPolicyParameter> parameter;
 
   Map<String, Object?> encode() => {
     'security_control_id': securityControlId.toTfJson(),
@@ -144,8 +136,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameter {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameter({
+final class SecurityhubConfigurationPolicyParameter {
+  const SecurityhubConfigurationPolicyParameter({
     required this.name,
     required this.valueType,
     this.bool,
@@ -162,29 +154,21 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 
   final TfArg<String> valueType;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterBool?
-  bool;
+  final SecurityhubConfigurationPolicyBool? bool;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterDouble?
-  double;
+  final SecurityhubConfigurationPolicyDouble? double;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnum?
-  enumCase;
+  final SecurityhubConfigurationPolicyEnum? enumCase;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnumList?
-  enumList;
+  final SecurityhubConfigurationPolicyEnumList? enumList;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterInt?
-  int;
+  final SecurityhubConfigurationPolicyInt? int;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterIntList?
-  intList;
+  final SecurityhubConfigurationPolicyIntList? intList;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterString?
-  string;
+  final SecurityhubConfigurationPolicyString? string;
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterStringList?
-  stringList;
+  final SecurityhubConfigurationPolicyStringList? stringList;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -203,10 +187,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.bool` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterBool {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterBool({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyBool {
+  const SecurityhubConfigurationPolicyBool({required this.value});
 
   final TfArg<bool> value;
 
@@ -216,10 +198,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.double` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterDouble {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterDouble({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyDouble {
+  const SecurityhubConfigurationPolicyDouble({required this.value});
 
   final TfArg<num> value;
 
@@ -229,10 +209,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.enum` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnum {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnum({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyEnum {
+  const SecurityhubConfigurationPolicyEnum({required this.value});
 
   final TfArg<String> value;
 
@@ -242,10 +220,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.enum_list` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnumList {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterEnumList({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyEnumList {
+  const SecurityhubConfigurationPolicyEnumList({required this.value});
 
   final TfArg<List<String>> value;
 
@@ -255,10 +231,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.int` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterInt {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterInt({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyInt {
+  const SecurityhubConfigurationPolicyInt({required this.value});
 
   final TfArg<num> value;
 
@@ -268,10 +242,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.int_list` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterIntList {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterIntList({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyIntList {
+  const SecurityhubConfigurationPolicyIntList({required this.value});
 
   final TfArg<List<num>> value;
 
@@ -281,10 +253,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.string` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterString {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterString({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyString {
+  const SecurityhubConfigurationPolicyString({required this.value});
 
   final TfArg<String> value;
 
@@ -294,10 +264,8 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// Typed helper for the `configuration_policy.security_controls_configuration.security_control_custom_parameter.parameter.string_list` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterStringList {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterStringList({
-    required this.value,
-  });
+final class SecurityhubConfigurationPolicyStringList {
+  const SecurityhubConfigurationPolicyStringList({required this.value});
 
   final TfArg<List<String>> value;
 

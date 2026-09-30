@@ -45,9 +45,9 @@ final class CodepipelineArtifactStore {
 
   final TfArg<String>? region;
 
-  final TfArg<CodepipelineArtifactStoreType> type;
+  final TfArg<CodepipelineType> type;
 
-  final CodepipelineArtifactStoreEncryptionKey? encryptionKey;
+  final CodepipelineEncryptionKey? encryptionKey;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
@@ -58,10 +58,10 @@ final class CodepipelineArtifactStore {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineArtifactStoreType implements TerraformEnum {
+enum CodepipelineType implements TerraformEnum {
   s3('S3');
 
-  const CodepipelineArtifactStoreType(this.terraformValue);
+  const CodepipelineType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,15 +69,12 @@ enum CodepipelineArtifactStoreType implements TerraformEnum {
 /// Typed helper for the `artifact_store.encryption_key` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineArtifactStoreEncryptionKey {
-  const CodepipelineArtifactStoreEncryptionKey({
-    required this.id,
-    required this.type,
-  });
+final class CodepipelineEncryptionKey {
+  const CodepipelineEncryptionKey({required this.id, required this.type});
 
   final TfArg<String> id;
 
-  final TfArg<CodepipelineArtifactStoreEncryptionKeyType> type;
+  final TfArg<CodepipelineEncryptionKeyType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -86,10 +83,10 @@ final class CodepipelineArtifactStoreEncryptionKey {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineArtifactStoreEncryptionKeyType implements TerraformEnum {
+enum CodepipelineEncryptionKeyType implements TerraformEnum {
   kms('KMS');
 
-  const CodepipelineArtifactStoreEncryptionKeyType(this.terraformValue);
+  const CodepipelineEncryptionKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,13 +105,13 @@ final class CodepipelineStage {
 
   final TfArg<String> name;
 
-  final List<CodepipelineStageAction> action;
+  final List<CodepipelineAction> action;
 
-  final CodepipelineStageBeforeEntry? beforeEntry;
+  final CodepipelineBeforeEntry? beforeEntry;
 
-  final CodepipelineStageOnFailure? onFailure;
+  final CodepipelineOnFailure? onFailure;
 
-  final CodepipelineStageOnSuccess? onSuccess;
+  final CodepipelineOnSuccess? onSuccess;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -128,8 +125,8 @@ final class CodepipelineStage {
 /// Typed helper for the `stage.action` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageAction {
-  const CodepipelineStageAction({
+final class CodepipelineAction {
+  const CodepipelineAction({
     required this.category,
     this.commands,
     this.configuration,
@@ -148,7 +145,7 @@ final class CodepipelineStageAction {
     this.outputArtifactsForComputeAction,
   });
 
-  final TfArg<CodepipelineStageActionCategory> category;
+  final TfArg<CodepipelineCategory> category;
 
   final TfArg<List<String>>? commands;
 
@@ -164,7 +161,7 @@ final class CodepipelineStageAction {
 
   final TfArg<List<String>>? outputVariables;
 
-  final TfArg<CodepipelineStageActionOwner> owner;
+  final TfArg<CodepipelineOwner> owner;
 
   final TfArg<String> provider;
 
@@ -178,7 +175,7 @@ final class CodepipelineStageAction {
 
   final TfArg<String> version;
 
-  final List<CodepipelineStageActionOutputArtifactsForComputeAction>?
+  final List<CodepipelineOutputArtifactsForComputeAction>?
   outputArtifactsForComputeAction;
 
   Map<String, Object?> encode() => {
@@ -205,7 +202,7 @@ final class CodepipelineStageAction {
 }
 
 /// `category` — derived from the provider schema description.
-enum CodepipelineStageActionCategory implements TerraformEnum {
+enum CodepipelineCategory implements TerraformEnum {
   source('Source'),
   build('Build'),
   deploy('Deploy'),
@@ -214,18 +211,18 @@ enum CodepipelineStageActionCategory implements TerraformEnum {
   approval('Approval'),
   compute('Compute');
 
-  const CodepipelineStageActionCategory(this.terraformValue);
+  const CodepipelineCategory(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `owner` — derived from the provider schema description.
-enum CodepipelineStageActionOwner implements TerraformEnum {
+enum CodepipelineOwner implements TerraformEnum {
   aws('AWS'),
   thirdparty('ThirdParty'),
   custom('Custom');
 
-  const CodepipelineStageActionOwner(this.terraformValue);
+  const CodepipelineOwner(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -233,8 +230,8 @@ enum CodepipelineStageActionOwner implements TerraformEnum {
 /// Typed helper for the `stage.action.output_artifacts_for_compute_action` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageActionOutputArtifactsForComputeAction {
-  const CodepipelineStageActionOutputArtifactsForComputeAction({
+final class CodepipelineOutputArtifactsForComputeAction {
+  const CodepipelineOutputArtifactsForComputeAction({
     this.files,
     required this.name,
   });
@@ -252,26 +249,24 @@ final class CodepipelineStageActionOutputArtifactsForComputeAction {
 /// Typed helper for the `stage.before_entry` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageBeforeEntry {
-  const CodepipelineStageBeforeEntry({required this.condition});
+final class CodepipelineBeforeEntry {
+  const CodepipelineBeforeEntry({required this.condition});
 
-  final CodepipelineStageBeforeEntryCondition condition;
+  final CodepipelineCondition condition;
 
   Map<String, Object?> encode() => {'condition': condition.encode()};
 }
 
 /// Typed helper for the `stage.before_entry.condition` block of
 /// `aws_codepipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodepipelineStageBeforeEntryCondition {
-  const CodepipelineStageBeforeEntryCondition({
-    this.result,
-    required this.rule,
-  });
+final class CodepipelineCondition {
+  const CodepipelineCondition({this.result, required this.rule});
 
   final TfArg<String>? result;
 
-  final List<CodepipelineStageBeforeEntryConditionRule> rule;
+  final List<CodepipelineRule> rule;
 
   Map<String, Object?> encode() => {
     'result': ?result?.toTfJson(),
@@ -281,9 +276,10 @@ final class CodepipelineStageBeforeEntryCondition {
 
 /// Typed helper for the `stage.before_entry.condition.rule` block of
 /// `aws_codepipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodepipelineStageBeforeEntryConditionRule {
-  const CodepipelineStageBeforeEntryConditionRule({
+final class CodepipelineRule {
+  const CodepipelineRule({
     this.commands,
     this.configuration,
     this.inputArtifacts,
@@ -308,7 +304,7 @@ final class CodepipelineStageBeforeEntryConditionRule {
 
   final TfArg<num>? timeoutInMinutes;
 
-  final CodepipelineStageBeforeEntryConditionRuleRuleTypeId ruleTypeId;
+  final CodepipelineRuleTypeId ruleTypeId;
 
   Map<String, Object?> encode() => {
     'commands': ?commands?.toTfJson(),
@@ -324,9 +320,10 @@ final class CodepipelineStageBeforeEntryConditionRule {
 
 /// Typed helper for the `stage.before_entry.condition.rule.rule_type_id` block of
 /// `aws_codepipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodepipelineStageBeforeEntryConditionRuleRuleTypeId {
-  const CodepipelineStageBeforeEntryConditionRuleRuleTypeId({
+final class CodepipelineRuleTypeId {
+  const CodepipelineRuleTypeId({
     required this.category,
     this.owner,
     required this.provider,
@@ -352,18 +349,18 @@ final class CodepipelineStageBeforeEntryConditionRuleRuleTypeId {
 /// Typed helper for the `stage.on_failure` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageOnFailure {
-  const CodepipelineStageOnFailure({
+final class CodepipelineOnFailure {
+  const CodepipelineOnFailure({
     this.result,
     this.condition,
     this.retryConfiguration,
   });
 
-  final TfArg<CodepipelineStageOnFailureResult>? result;
+  final TfArg<CodepipelineResult>? result;
 
-  final CodepipelineStageOnFailureCondition? condition;
+  final CodepipelineCondition? condition;
 
-  final CodepipelineStageOnFailureRetryConfiguration? retryConfiguration;
+  final CodepipelineRetryConfiguration? retryConfiguration;
 
   Map<String, Object?> encode() => {
     'result': ?result?.toTfJson(),
@@ -373,123 +370,34 @@ final class CodepipelineStageOnFailure {
 }
 
 /// `result` — derived from the provider schema description.
-enum CodepipelineStageOnFailureResult implements TerraformEnum {
+enum CodepipelineResult implements TerraformEnum {
   rollback('ROLLBACK'),
   fail('FAIL'),
   retry('RETRY'),
   skip('SKIP');
 
-  const CodepipelineStageOnFailureResult(this.terraformValue);
+  const CodepipelineResult(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `stage.on_failure.condition` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnFailureCondition {
-  const CodepipelineStageOnFailureCondition({this.result, required this.rule});
-
-  final TfArg<String>? result;
-
-  final List<CodepipelineStageOnFailureConditionRule> rule;
-
-  Map<String, Object?> encode() => {
-    'result': ?result?.toTfJson(),
-    'rule': [for (final e in rule) e.encode()],
-  };
-}
-
-/// Typed helper for the `stage.on_failure.condition.rule` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnFailureConditionRule {
-  const CodepipelineStageOnFailureConditionRule({
-    this.commands,
-    this.configuration,
-    this.inputArtifacts,
-    required this.name,
-    this.region,
-    this.roleArn,
-    this.timeoutInMinutes,
-    required this.ruleTypeId,
-  });
-
-  final TfArg<List<String>>? commands;
-
-  final TfArg<Map<String, String>>? configuration;
-
-  final TfArg<List<String>>? inputArtifacts;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? region;
-
-  final RefTo<AwsIamRole>? roleArn;
-
-  final TfArg<num>? timeoutInMinutes;
-
-  final CodepipelineStageOnFailureConditionRuleRuleTypeId ruleTypeId;
-
-  Map<String, Object?> encode() => {
-    'commands': ?commands?.toTfJson(),
-    'configuration': ?configuration?.toTfJson(),
-    'input_artifacts': ?inputArtifacts?.toTfJson(),
-    'name': name.toTfJson(),
-    'region': ?region?.toTfJson(),
-    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
-    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
-    'rule_type_id': ruleTypeId.encode(),
-  };
-}
-
-/// Typed helper for the `stage.on_failure.condition.rule.rule_type_id` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnFailureConditionRuleRuleTypeId {
-  const CodepipelineStageOnFailureConditionRuleRuleTypeId({
-    required this.category,
-    this.owner,
-    required this.provider,
-    this.version,
-  });
-
-  final TfArg<String> category;
-
-  final TfArg<String>? owner;
-
-  final TfArg<String> provider;
-
-  final TfArg<String>? version;
-
-  Map<String, Object?> encode() => {
-    'category': category.toTfJson(),
-    'owner': ?owner?.toTfJson(),
-    'provider': provider.toTfJson(),
-    'version': ?version?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `stage.on_failure.retry_configuration` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageOnFailureRetryConfiguration {
-  const CodepipelineStageOnFailureRetryConfiguration({this.retryMode});
+final class CodepipelineRetryConfiguration {
+  const CodepipelineRetryConfiguration({this.retryMode});
 
-  final TfArg<CodepipelineStageOnFailureRetryConfigurationRetryMode>? retryMode;
+  final TfArg<CodepipelineRetryMode>? retryMode;
 
   Map<String, Object?> encode() => {'retry_mode': ?retryMode?.toTfJson()};
 }
 
 /// `retry_mode` — derived from the provider schema description.
-enum CodepipelineStageOnFailureRetryConfigurationRetryMode
-    implements TerraformEnum {
+enum CodepipelineRetryMode implements TerraformEnum {
   failedActions('FAILED_ACTIONS'),
   allActions('ALL_ACTIONS');
 
-  const CodepipelineStageOnFailureRetryConfigurationRetryMode(
-    this.terraformValue,
-  );
+  const CodepipelineRetryMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -497,98 +405,12 @@ enum CodepipelineStageOnFailureRetryConfigurationRetryMode
 /// Typed helper for the `stage.on_success` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineStageOnSuccess {
-  const CodepipelineStageOnSuccess({required this.condition});
+final class CodepipelineOnSuccess {
+  const CodepipelineOnSuccess({required this.condition});
 
-  final CodepipelineStageOnSuccessCondition condition;
+  final CodepipelineCondition condition;
 
   Map<String, Object?> encode() => {'condition': condition.encode()};
-}
-
-/// Typed helper for the `stage.on_success.condition` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnSuccessCondition {
-  const CodepipelineStageOnSuccessCondition({this.result, required this.rule});
-
-  final TfArg<String>? result;
-
-  final List<CodepipelineStageOnSuccessConditionRule> rule;
-
-  Map<String, Object?> encode() => {
-    'result': ?result?.toTfJson(),
-    'rule': [for (final e in rule) e.encode()],
-  };
-}
-
-/// Typed helper for the `stage.on_success.condition.rule` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnSuccessConditionRule {
-  const CodepipelineStageOnSuccessConditionRule({
-    this.commands,
-    this.configuration,
-    this.inputArtifacts,
-    required this.name,
-    this.region,
-    this.roleArn,
-    this.timeoutInMinutes,
-    required this.ruleTypeId,
-  });
-
-  final TfArg<List<String>>? commands;
-
-  final TfArg<Map<String, String>>? configuration;
-
-  final TfArg<List<String>>? inputArtifacts;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? region;
-
-  final RefTo<AwsIamRole>? roleArn;
-
-  final TfArg<num>? timeoutInMinutes;
-
-  final CodepipelineStageOnSuccessConditionRuleRuleTypeId ruleTypeId;
-
-  Map<String, Object?> encode() => {
-    'commands': ?commands?.toTfJson(),
-    'configuration': ?configuration?.toTfJson(),
-    'input_artifacts': ?inputArtifacts?.toTfJson(),
-    'name': name.toTfJson(),
-    'region': ?region?.toTfJson(),
-    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
-    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
-    'rule_type_id': ruleTypeId.encode(),
-  };
-}
-
-/// Typed helper for the `stage.on_success.condition.rule.rule_type_id` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineStageOnSuccessConditionRuleRuleTypeId {
-  const CodepipelineStageOnSuccessConditionRuleRuleTypeId({
-    required this.category,
-    this.owner,
-    required this.provider,
-    this.version,
-  });
-
-  final TfArg<String> category;
-
-  final TfArg<String>? owner;
-
-  final TfArg<String> provider;
-
-  final TfArg<String>? version;
-
-  Map<String, Object?> encode() => {
-    'category': category.toTfJson(),
-    'owner': ?owner?.toTfJson(),
-    'provider': provider.toTfJson(),
-    'version': ?version?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `trigger` block of
@@ -602,7 +424,7 @@ final class CodepipelineTrigger {
 
   final TfArg<String> providerType;
 
-  final CodepipelineTriggerGitConfiguration gitConfiguration;
+  final CodepipelineGitConfiguration gitConfiguration;
 
   Map<String, Object?> encode() => {
     'provider_type': providerType.toTfJson(),
@@ -613,8 +435,8 @@ final class CodepipelineTrigger {
 /// Typed helper for the `trigger.git_configuration` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineTriggerGitConfiguration {
-  const CodepipelineTriggerGitConfiguration({
+final class CodepipelineGitConfiguration {
+  const CodepipelineGitConfiguration({
     required this.sourceActionName,
     this.pullRequest,
     this.push,
@@ -622,9 +444,9 @@ final class CodepipelineTriggerGitConfiguration {
 
   final TfArg<String> sourceActionName;
 
-  final List<CodepipelineTriggerGitConfigurationPullRequest>? pullRequest;
+  final List<CodepipelinePullRequest>? pullRequest;
 
-  final List<CodepipelineTriggerGitConfigurationPush>? push;
+  final List<CodepipelinePush>? push;
 
   Map<String, Object?> encode() => {
     'source_action_name': sourceActionName.toTfJson(),
@@ -637,18 +459,14 @@ final class CodepipelineTriggerGitConfiguration {
 /// Typed helper for the `trigger.git_configuration.pull_request` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineTriggerGitConfigurationPullRequest {
-  const CodepipelineTriggerGitConfigurationPullRequest({
-    this.events,
-    this.branches,
-    this.filePaths,
-  });
+final class CodepipelinePullRequest {
+  const CodepipelinePullRequest({this.events, this.branches, this.filePaths});
 
   final TfArg<List<String>>? events;
 
-  final CodepipelineTriggerGitConfigurationPullRequestBranches? branches;
+  final CodepipelineBranches? branches;
 
-  final CodepipelineTriggerGitConfigurationPullRequestFilePaths? filePaths;
+  final CodepipelineFilePaths? filePaths;
 
   Map<String, Object?> encode() => {
     'events': ?events?.toTfJson(),
@@ -659,12 +477,10 @@ final class CodepipelineTriggerGitConfigurationPullRequest {
 
 /// Typed helper for the `trigger.git_configuration.pull_request.branches` block of
 /// `aws_codepipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodepipelineTriggerGitConfigurationPullRequestBranches {
-  const CodepipelineTriggerGitConfigurationPullRequestBranches({
-    this.excludes,
-    this.includes,
-  });
+final class CodepipelineBranches {
+  const CodepipelineBranches({this.excludes, this.includes});
 
   final TfArg<List<String>>? excludes;
 
@@ -678,12 +494,10 @@ final class CodepipelineTriggerGitConfigurationPullRequestBranches {
 
 /// Typed helper for the `trigger.git_configuration.pull_request.file_paths` block of
 /// `aws_codepipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodepipelineTriggerGitConfigurationPullRequestFilePaths {
-  const CodepipelineTriggerGitConfigurationPullRequestFilePaths({
-    this.excludes,
-    this.includes,
-  });
+final class CodepipelineFilePaths {
+  const CodepipelineFilePaths({this.excludes, this.includes});
 
   final TfArg<List<String>>? excludes;
 
@@ -698,18 +512,14 @@ final class CodepipelineTriggerGitConfigurationPullRequestFilePaths {
 /// Typed helper for the `trigger.git_configuration.push` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineTriggerGitConfigurationPush {
-  const CodepipelineTriggerGitConfigurationPush({
-    this.branches,
-    this.filePaths,
-    this.tags,
-  });
+final class CodepipelinePush {
+  const CodepipelinePush({this.branches, this.filePaths, this.tags});
 
-  final CodepipelineTriggerGitConfigurationPushBranches? branches;
+  final CodepipelineBranches? branches;
 
-  final CodepipelineTriggerGitConfigurationPushFilePaths? filePaths;
+  final CodepipelineFilePaths? filePaths;
 
-  final CodepipelineTriggerGitConfigurationPushTags? tags;
+  final CodepipelinePushTags? tags;
 
   Map<String, Object?> encode() => {
     'branches': ?branches?.encode(),
@@ -718,52 +528,11 @@ final class CodepipelineTriggerGitConfigurationPush {
   };
 }
 
-/// Typed helper for the `trigger.git_configuration.push.branches` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineTriggerGitConfigurationPushBranches {
-  const CodepipelineTriggerGitConfigurationPushBranches({
-    this.excludes,
-    this.includes,
-  });
-
-  final TfArg<List<String>>? excludes;
-
-  final TfArg<List<String>>? includes;
-
-  Map<String, Object?> encode() => {
-    'excludes': ?excludes?.toTfJson(),
-    'includes': ?includes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `trigger.git_configuration.push.file_paths` block of
-/// `aws_codepipeline` (derived from provider schema).
-@immutable
-final class CodepipelineTriggerGitConfigurationPushFilePaths {
-  const CodepipelineTriggerGitConfigurationPushFilePaths({
-    this.excludes,
-    this.includes,
-  });
-
-  final TfArg<List<String>>? excludes;
-
-  final TfArg<List<String>>? includes;
-
-  Map<String, Object?> encode() => {
-    'excludes': ?excludes?.toTfJson(),
-    'includes': ?includes?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `trigger.git_configuration.push.tags` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
-final class CodepipelineTriggerGitConfigurationPushTags {
-  const CodepipelineTriggerGitConfigurationPushTags({
-    this.excludes,
-    this.includes,
-  });
+final class CodepipelinePushTags {
+  const CodepipelinePushTags({this.excludes, this.includes});
 
   final TfArg<List<String>>? excludes;
 

@@ -25,33 +25,31 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
     this.voiceAnalyticsProcessorConfiguration,
   });
 
-  final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
-  >
+  final TfArg<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationType>
   type;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeCallAnalyticsProcessorConfiguration?
   amazonTranscribeCallAnalyticsProcessorConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeProcessorConfiguration?
   amazonTranscribeProcessorConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsKinesisDataStreamSinkConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKinesisDataStreamSinkConfiguration?
   kinesisDataStreamSinkConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsLambdaFunctionSinkConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLambdaFunctionSinkConfiguration?
   lambdaFunctionSinkConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsS3RecordingSinkConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationS3RecordingSinkConfiguration?
   s3RecordingSinkConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSnsTopicSinkConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSnsTopicSinkConfiguration?
   snsTopicSinkConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSqsQueueSinkConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSqsQueueSinkConfiguration?
   sqsQueueSinkConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyticsProcessorConfiguration?
   voiceAnalyticsProcessorConfiguration;
 
   Map<String, Object?> encode() => {
@@ -73,7 +71,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
 }
 
 /// `type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationType
     implements TerraformEnum {
   amazontranscribecallanalyticsprocessor(
     'AmazonTranscribeCallAnalyticsProcessor',
@@ -87,7 +85,7 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
   s3recordingsink('S3RecordingSink'),
   voiceenhancementsink('VoiceEnhancementSink');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationType(
     this.terraformValue,
   );
   @override
@@ -97,8 +95,8 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
 /// Typed helper for the `elements.amazon_transcribe_call_analytics_processor_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeCallAnalyticsProcessorConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeCallAnalyticsProcessorConfiguration({
     this.callAnalyticsStreamCategories,
     this.contentIdentificationType,
     this.contentRedactionType,
@@ -117,12 +115,12 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<List<String>>? callAnalyticsStreamCategories;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType
   >?
   contentIdentificationType;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType
   >?
   contentRedactionType;
 
@@ -131,21 +129,21 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<bool>? filterPartialResults;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode
   >
   languageCode;
 
   final TfArg<String>? languageModelName;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability
   >?
   partialResultsStability;
 
   final TfArg<String>? piiEntityTypes;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod
   >?
   vocabularyFilterMethod;
 
@@ -153,7 +151,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
 
   final TfArg<String>? vocabularyName;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettings?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnalyticsSettings?
   postCallAnalyticsSettings;
 
   Map<String, Object?> encode() => {
@@ -176,11 +174,11 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
 }
 
 /// `content_identification_type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType
     implements TerraformEnum {
   pii('PII');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType(
     this.terraformValue,
   );
   @override
@@ -188,11 +186,11 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 }
 
 /// `content_redaction_type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType
     implements TerraformEnum {
   pii('PII');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType(
     this.terraformValue,
   );
   @override
@@ -200,7 +198,7 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 }
 
 /// `language_code` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode
     implements TerraformEnum {
   enUs('en-US'),
   enGb('en-GB'),
@@ -212,7 +210,7 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
   deDe('de-DE'),
   ptBr('pt-BR');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode(
     this.terraformValue,
   );
   @override
@@ -220,13 +218,13 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 }
 
 /// `partial_results_stability` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability
     implements TerraformEnum {
   high('high'),
   medium('medium'),
   low('low');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability(
     this.terraformValue,
   );
   @override
@@ -234,13 +232,13 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 }
 
 /// `vocabulary_filter_method` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod
     implements TerraformEnum {
   remove('remove'),
   mask('mask'),
   tag('tag');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod(
     this.terraformValue,
   );
   @override
@@ -250,8 +248,8 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 /// Typed helper for the `elements.amazon_transcribe_call_analytics_processor_configuration.post_call_analytics_settings` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettings {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettings({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnalyticsSettings {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnalyticsSettings({
     this.contentRedactionOutput,
     required this.dataAccessRoleArn,
     this.outputEncryptionKmsKeyId,
@@ -259,7 +257,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   });
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionOutput
   >?
   contentRedactionOutput;
 
@@ -278,12 +276,12 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
 }
 
 /// `content_redaction_output` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionOutput
     implements TerraformEnum {
   redacted('redacted'),
   redactedAndUnredacted('redacted_and_unredacted');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionOutput(
     this.terraformValue,
   );
   @override
@@ -293,8 +291,8 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTrans
 /// Typed helper for the `elements.amazon_transcribe_processor_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeProcessorConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTranscribeProcessorConfiguration({
     this.contentIdentificationType,
     this.contentRedactionType,
     this.enablePartialResultsStabilization,
@@ -310,12 +308,12 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   });
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType
   >?
   contentIdentificationType;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType
   >?
   contentRedactionType;
 
@@ -324,14 +322,14 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<bool>? filterPartialResults;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode
   >
   languageCode;
 
   final TfArg<String>? languageModelName;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability
   >?
   partialResultsStability;
 
@@ -340,7 +338,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<bool>? showSpeakerLabel;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod
   >?
   vocabularyFilterMethod;
 
@@ -365,83 +363,11 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   };
 }
 
-/// `content_identification_type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType
-    implements TerraformEnum {
-  pii('PII');
-
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `content_redaction_type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType
-    implements TerraformEnum {
-  pii('PII');
-
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `language_code` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode
-    implements TerraformEnum {
-  enUs('en-US'),
-  enGb('en-GB'),
-  esUs('es-US'),
-  frCa('fr-CA'),
-  frFr('fr-FR'),
-  enAu('en-AU'),
-  itIt('it-IT'),
-  deDe('de-DE'),
-  ptBr('pt-BR');
-
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `partial_results_stability` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability
-    implements TerraformEnum {
-  high('high'),
-  medium('medium'),
-  low('low');
-
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `vocabulary_filter_method` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod
-    implements TerraformEnum {
-  remove('remove'),
-  mask('mask'),
-  tag('tag');
-
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `elements.kinesis_data_stream_sink_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsKinesisDataStreamSinkConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsKinesisDataStreamSinkConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKinesisDataStreamSinkConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKinesisDataStreamSinkConfiguration({
     required this.insightsTarget,
   });
 
@@ -455,8 +381,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsKine
 /// Typed helper for the `elements.lambda_function_sink_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsLambdaFunctionSinkConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsLambdaFunctionSinkConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLambdaFunctionSinkConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLambdaFunctionSinkConfiguration({
     required this.insightsTarget,
   });
 
@@ -470,8 +396,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsLamb
 /// Typed helper for the `elements.s3_recording_sink_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsS3RecordingSinkConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsS3RecordingSinkConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationS3RecordingSinkConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationS3RecordingSinkConfiguration({
     this.destination,
   });
 
@@ -483,8 +409,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsS3Re
 /// Typed helper for the `elements.sns_topic_sink_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSnsTopicSinkConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSnsTopicSinkConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSnsTopicSinkConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSnsTopicSinkConfiguration({
     required this.insightsTarget,
   });
 
@@ -498,8 +424,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSnsT
 /// Typed helper for the `elements.sqs_queue_sink_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSqsQueueSinkConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSqsQueueSinkConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSqsQueueSinkConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSqsQueueSinkConfiguration({
     required this.insightsTarget,
   });
 
@@ -513,19 +439,19 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsSqsQ
 /// Typed helper for the `elements.voice_analytics_processor_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyticsProcessorConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyticsProcessorConfiguration({
     required this.speakerSearchStatus,
     required this.voiceToneAnalysisStatus,
   });
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpeakerSearchStatus
   >
   speakerSearchStatus;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus
   >
   voiceToneAnalysisStatus;
 
@@ -536,12 +462,12 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoic
 }
 
 /// `speaker_search_status` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpeakerSearchStatus
     implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpeakerSearchStatus(
     this.terraformValue,
   );
   @override
@@ -549,12 +475,12 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyt
 }
 
 /// `voice_tone_analysis_status` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus
     implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus(
     this.terraformValue,
   );
   @override
@@ -572,9 +498,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 
   final TfArg<bool>? disabled;
 
-  final List<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRules
-  >
+  final List<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules>
   rules;
 
   Map<String, Object?> encode() => {
@@ -586,26 +510,24 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 /// Typed helper for the `real_time_alert_configuration.rules` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRules {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRules({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules({
     required this.type,
     this.issueDetectionConfiguration,
     this.keywordMatchConfiguration,
     this.sentimentConfiguration,
   });
 
-  final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType
-  >
+  final TfArg<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRulesType>
   type;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesIssueDetectionConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationIssueDetectionConfiguration?
   issueDetectionConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesKeywordMatchConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKeywordMatchConfiguration?
   keywordMatchConfiguration;
 
-  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfiguration?
+  final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentConfiguration?
   sentimentConfiguration;
 
   Map<String, Object?> encode() => {
@@ -617,13 +539,13 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 }
 
 /// `type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRulesType
     implements TerraformEnum {
   keywordmatch('KeywordMatch'),
   sentiment('Sentiment'),
   issuedetection('IssueDetection');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRulesType(
     this.terraformValue,
   );
   @override
@@ -633,8 +555,8 @@ enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
 /// Typed helper for the `real_time_alert_configuration.rules.issue_detection_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesIssueDetectionConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesIssueDetectionConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationIssueDetectionConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationIssueDetectionConfiguration({
     required this.ruleName,
   });
 
@@ -646,8 +568,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 /// Typed helper for the `real_time_alert_configuration.rules.keyword_match_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesKeywordMatchConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesKeywordMatchConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKeywordMatchConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKeywordMatchConfiguration({
     required this.keywords,
     this.negate,
     required this.ruleName,
@@ -669,8 +591,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 /// Typed helper for the `real_time_alert_configuration.rules.sentiment_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
-final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfiguration {
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfiguration({
+final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentConfiguration {
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentConfiguration({
     required this.ruleName,
     required this.sentimentType,
     required this.timePeriod,
@@ -679,7 +601,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
   final TfArg<String> ruleName;
 
   final TfArg<
-    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentType
   >
   sentimentType;
 
@@ -693,11 +615,11 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 }
 
 /// `sentiment_type` — derived from the provider schema description.
-enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentType
     implements TerraformEnum {
   negative('NEGATIVE');
 
-  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType(
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentType(
     this.terraformValue,
   );
   @override

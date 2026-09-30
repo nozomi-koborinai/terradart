@@ -7,7 +7,7 @@ library;
 export 'src/container_analysis/google_container_analysis_note.dart'
     show
         ContainerAnalysisNoteAttestationAuthority,
-        ContainerAnalysisNoteAttestationAuthorityHint,
+        ContainerAnalysisNoteHint,
         ContainerAnalysisNoteRelatedUrl,
         GoogleContainerAnalysisNote;
 export 'src/container_analysis/google_container_analysis_note_iam_binding.dart'
@@ -23,5 +23,5 @@ export 'src/container_analysis/google_container_analysis_note_iam_policy.dart'
 export 'src/container_analysis/google_container_analysis_occurrence.dart'
     show
         ContainerAnalysisOccurrenceAttestation,
-        ContainerAnalysisOccurrenceAttestationSignatures,
+        ContainerAnalysisOccurrenceSignatures,
         GoogleContainerAnalysisOccurrence;

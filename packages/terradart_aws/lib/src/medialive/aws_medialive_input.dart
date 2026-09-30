@@ -49,8 +49,8 @@ final class MedialiveInputDestinations {
 /// Typed helper for the `input_devices` block of
 /// `aws_medialive_input` (derived from provider schema).
 @immutable
-final class MedialiveInputInputDevices {
-  const MedialiveInputInputDevices({required this.id});
+final class MedialiveInputDevices {
+  const MedialiveInputDevices({required this.id});
 
   final TfArg<String> id;
 
@@ -120,7 +120,7 @@ final class AwsMedialiveInput extends Resource {
     TfArg<Map<String, String>>? tags,
     required TfArg<MedialiveInputType> type,
     List<MedialiveInputDestinations>? destinations,
-    List<MedialiveInputInputDevices>? inputDevices,
+    List<MedialiveInputDevices>? inputDevices,
     List<MedialiveInputMediaConnectFlows>? mediaConnectFlows,
     List<MedialiveInputSources>? sources,
     MedialiveInputVpc? vpc,

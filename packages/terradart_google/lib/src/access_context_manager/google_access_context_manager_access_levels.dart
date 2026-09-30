@@ -25,9 +25,9 @@ final class AccessContextManagerAccessLevelsAccessLevels {
 
   final TfArg<String> title;
 
-  final AccessContextManagerAccessLevelsAccessLevelsBasic? basic;
+  final AccessContextManagerAccessLevelsBasic? basic;
 
-  final AccessContextManagerAccessLevelsAccessLevelsCustom? custom;
+  final AccessContextManagerAccessLevelsCustom? custom;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -41,19 +41,16 @@ final class AccessContextManagerAccessLevelsAccessLevels {
 /// Typed helper for the `access_levels.basic` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasic {
-  const AccessContextManagerAccessLevelsAccessLevelsBasic({
+final class AccessContextManagerAccessLevelsBasic {
+  const AccessContextManagerAccessLevelsBasic({
     this.combiningFunction,
     required this.conditions,
   });
 
-  final TfArg<
-    AccessContextManagerAccessLevelsAccessLevelsBasicCombiningFunction
-  >?
+  final TfArg<AccessContextManagerAccessLevelsCombiningFunction>?
   combiningFunction;
 
-  final List<AccessContextManagerAccessLevelsAccessLevelsBasicConditions>
-  conditions;
+  final List<AccessContextManagerAccessLevelsConditions> conditions;
 
   Map<String, Object?> encode() => {
     'combining_function': ?combiningFunction?.toTfJson(),
@@ -62,14 +59,12 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasic {
 }
 
 /// `combining_function` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAccessLevelsBasicCombiningFunction
+enum AccessContextManagerAccessLevelsCombiningFunction
     implements TerraformEnum {
   and('AND'),
   or('OR');
 
-  const AccessContextManagerAccessLevelsAccessLevelsBasicCombiningFunction(
-    this.terraformValue,
-  );
+  const AccessContextManagerAccessLevelsCombiningFunction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -77,8 +72,8 @@ enum AccessContextManagerAccessLevelsAccessLevelsBasicCombiningFunction
 /// Typed helper for the `access_levels.basic.conditions` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasicConditions {
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditions({
+final class AccessContextManagerAccessLevelsConditions {
+  const AccessContextManagerAccessLevelsConditions({
     this.ipSubnetworks,
     this.members,
     this.negate,
@@ -98,12 +93,9 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditions {
 
   final TfArg<List<String>>? requiredAccessLevels;
 
-  final AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicy?
-  devicePolicy;
+  final AccessContextManagerAccessLevelsDevicePolicy? devicePolicy;
 
-  final List<
-    AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSources
-  >?
+  final List<AccessContextManagerAccessLevelsVpcNetworkSources>?
   vpcNetworkSources;
 
   Map<String, Object?> encode() => {
@@ -121,8 +113,8 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditions {
 /// Typed helper for the `access_levels.basic.conditions.device_policy` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicy {
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicy({
+final class AccessContextManagerAccessLevelsDevicePolicy {
+  const AccessContextManagerAccessLevelsDevicePolicy({
     this.allowedDeviceManagementLevels,
     this.allowedEncryptionStatuses,
     this.requireAdminApproval,
@@ -132,17 +124,11 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePol
   });
 
   final List<
-    TfArg<
-      AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedDeviceManagementLevels
-    >
+    TfArg<AccessContextManagerAccessLevelsAllowedDeviceManagementLevels>
   >?
   allowedDeviceManagementLevels;
 
-  final List<
-    TfArg<
-      AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedEncryptionStatuses
-    >
-  >?
+  final List<TfArg<AccessContextManagerAccessLevelsAllowedEncryptionStatuses>>?
   allowedEncryptionStatuses;
 
   final TfArg<bool>? requireAdminApproval;
@@ -151,10 +137,7 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePol
 
   final TfArg<bool>? requireScreenLock;
 
-  final List<
-    AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraints
-  >?
-  osConstraints;
+  final List<AccessContextManagerAccessLevelsOsConstraints>? osConstraints;
 
   Map<String, Object?> encode() => {
     if (allowedDeviceManagementLevels != null)
@@ -174,14 +157,14 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePol
 }
 
 /// `allowed_device_management_levels` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedDeviceManagementLevels
+enum AccessContextManagerAccessLevelsAllowedDeviceManagementLevels
     implements TerraformEnum {
   managementUnspecified('MANAGEMENT_UNSPECIFIED'),
   none('NONE'),
   basic('BASIC'),
   complete('COMPLETE');
 
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedDeviceManagementLevels(
+  const AccessContextManagerAccessLevelsAllowedDeviceManagementLevels(
     this.terraformValue,
   );
   @override
@@ -189,14 +172,14 @@ enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllo
 }
 
 /// `allowed_encryption_statuses` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedEncryptionStatuses
+enum AccessContextManagerAccessLevelsAllowedEncryptionStatuses
     implements TerraformEnum {
   encryptionUnspecified('ENCRYPTION_UNSPECIFIED'),
   encryptionUnsupported('ENCRYPTION_UNSUPPORTED'),
   unencrypted('UNENCRYPTED'),
   encrypted('ENCRYPTED');
 
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllowedEncryptionStatuses(
+  const AccessContextManagerAccessLevelsAllowedEncryptionStatuses(
     this.terraformValue,
   );
   @override
@@ -206,18 +189,15 @@ enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyAllo
 /// Typed helper for the `access_levels.basic.conditions.device_policy.os_constraints` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraints {
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraints({
+final class AccessContextManagerAccessLevelsOsConstraints {
+  const AccessContextManagerAccessLevelsOsConstraints({
     this.minimumVersion,
     required this.osType,
   });
 
   final TfArg<String>? minimumVersion;
 
-  final TfArg<
-    AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraintsOsType
-  >
-  osType;
+  final TfArg<AccessContextManagerAccessLevelsOsType> osType;
 
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
@@ -226,8 +206,7 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePol
 }
 
 /// `os_type` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraintsOsType
-    implements TerraformEnum {
+enum AccessContextManagerAccessLevelsOsType implements TerraformEnum {
   osUnspecified('OS_UNSPECIFIED'),
   desktopMac('DESKTOP_MAC'),
   desktopWindows('DESKTOP_WINDOWS'),
@@ -236,9 +215,7 @@ enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsCo
   android('ANDROID'),
   ios('IOS');
 
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsConstraintsOsType(
-    this.terraformValue,
-  );
+  const AccessContextManagerAccessLevelsOsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -246,13 +223,10 @@ enum AccessContextManagerAccessLevelsAccessLevelsBasicConditionsDevicePolicyOsCo
 /// Typed helper for the `access_levels.basic.conditions.vpc_network_sources` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSources {
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSources({
-    this.vpcSubnetwork,
-  });
+final class AccessContextManagerAccessLevelsVpcNetworkSources {
+  const AccessContextManagerAccessLevelsVpcNetworkSources({this.vpcSubnetwork});
 
-  final AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSourcesVpcSubnetwork?
-  vpcSubnetwork;
+  final AccessContextManagerAccessLevelsVpcSubnetwork? vpcSubnetwork;
 
   Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
@@ -260,8 +234,8 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetwor
 /// Typed helper for the `access_levels.basic.conditions.vpc_network_sources.vpc_subnetwork` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSourcesVpcSubnetwork {
-  const AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetworkSourcesVpcSubnetwork({
+final class AccessContextManagerAccessLevelsVpcSubnetwork {
+  const AccessContextManagerAccessLevelsVpcSubnetwork({
     required this.network,
     this.vpcIpSubnetworks,
   });
@@ -279,12 +253,10 @@ final class AccessContextManagerAccessLevelsAccessLevelsBasicConditionsVpcNetwor
 /// Typed helper for the `access_levels.custom` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsCustom {
-  const AccessContextManagerAccessLevelsAccessLevelsCustom({
-    required this.expr,
-  });
+final class AccessContextManagerAccessLevelsCustom {
+  const AccessContextManagerAccessLevelsCustom({required this.expr});
 
-  final AccessContextManagerAccessLevelsAccessLevelsCustomExpr expr;
+  final AccessContextManagerAccessLevelsExpr expr;
 
   Map<String, Object?> encode() => {'expr': expr.encode()};
 }
@@ -292,8 +264,8 @@ final class AccessContextManagerAccessLevelsAccessLevelsCustom {
 /// Typed helper for the `access_levels.custom.expr` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevelsCustomExpr {
-  const AccessContextManagerAccessLevelsAccessLevelsCustomExpr({
+final class AccessContextManagerAccessLevelsExpr {
+  const AccessContextManagerAccessLevelsExpr({
     this.description,
     required this.expression,
     this.location,

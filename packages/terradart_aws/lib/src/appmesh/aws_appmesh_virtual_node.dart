@@ -19,15 +19,15 @@ final class AppmeshVirtualNodeSpec {
     this.serviceDiscovery,
   });
 
-  final List<AppmeshVirtualNodeSpecBackend>? backend;
+  final List<AppmeshVirtualNodeBackend>? backend;
 
-  final AppmeshVirtualNodeSpecBackendDefaults? backendDefaults;
+  final AppmeshVirtualNodeBackendDefaults? backendDefaults;
 
-  final List<AppmeshVirtualNodeSpecListener>? listener;
+  final List<AppmeshVirtualNodeListener>? listener;
 
-  final AppmeshVirtualNodeSpecLogging? logging;
+  final AppmeshVirtualNodeLogging? logging;
 
-  final AppmeshVirtualNodeSpecServiceDiscovery? serviceDiscovery;
+  final AppmeshVirtualNodeServiceDiscovery? serviceDiscovery;
 
   Map<String, Object?> encode() => {
     if (backend != null) 'backend': [for (final e in backend!) e.encode()],
@@ -41,10 +41,10 @@ final class AppmeshVirtualNodeSpec {
 /// Typed helper for the `spec.backend` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecBackend {
-  const AppmeshVirtualNodeSpecBackend({required this.virtualService});
+final class AppmeshVirtualNodeBackend {
+  const AppmeshVirtualNodeBackend({required this.virtualService});
 
-  final AppmeshVirtualNodeSpecBackendVirtualService virtualService;
+  final AppmeshVirtualNodeVirtualService virtualService;
 
   Map<String, Object?> encode() => {'virtual_service': virtualService.encode()};
 }
@@ -52,15 +52,15 @@ final class AppmeshVirtualNodeSpecBackend {
 /// Typed helper for the `spec.backend.virtual_service` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecBackendVirtualService {
-  const AppmeshVirtualNodeSpecBackendVirtualService({
+final class AppmeshVirtualNodeVirtualService {
+  const AppmeshVirtualNodeVirtualService({
     required this.virtualServiceName,
     this.clientPolicy,
   });
 
   final TfArg<String> virtualServiceName;
 
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicy? clientPolicy;
+  final AppmeshVirtualNodeClientPolicy? clientPolicy;
 
   Map<String, Object?> encode() => {
     'virtual_service_name': virtualServiceName.toTfJson(),
@@ -68,243 +68,24 @@ final class AppmeshVirtualNodeSpecBackendVirtualService {
   };
 }
 
-/// Typed helper for the `spec.backend.virtual_service.client_policy` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicy {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicy({this.tls});
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls? tls;
-
-  Map<String, Object?> encode() => {'tls': ?tls?.encode()};
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls({
-    this.enforce,
-    this.ports,
-    this.certificate,
-    required this.validation,
-  });
-
-  final TfArg<bool>? enforce;
-
-  final TfArg<List<num>>? ports;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificate?
-  certificate;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation
-  validation;
-
-  Map<String, Object?> encode() => {
-    'enforce': ?enforce?.toTfJson(),
-    'ports': ?ports?.toTfJson(),
-    'certificate': ?certificate?.encode(),
-    'validation': validation.encode(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.certificate` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificate {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificate({
-    this.file,
-    this.sds,
-  });
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateFile?
-  file;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateSds?
-  sds;
-
-  Map<String, Object?> encode() => {
-    'file': ?file?.encode(),
-    'sds': ?sds?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.certificate.file` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateFile {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateFile({
-    required this.certificateChain,
-    required this.privateKey,
-  });
-
-  final TfArg<String> certificateChain;
-
-  final TfArg<String> privateKey;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-    'private_key': privateKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.certificate.sds` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateSds {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificateSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation({
-    this.subjectAlternativeNames,
-    required this.trust,
-  });
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNames?
-  subjectAlternativeNames;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrust
-  trust;
-
-  Map<String, Object?> encode() => {
-    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
-    'trust': trust.encode(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.subject_alternative_names` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNames {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNames({
-    required this.match,
-  });
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNamesMatch
-  match;
-
-  Map<String, Object?> encode() => {'match': match.encode()};
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.subject_alternative_names.match` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNamesMatch {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationSubjectAlternativeNamesMatch({
-    required this.exact,
-  });
-
-  final TfArg<List<String>> exact;
-
-  Map<String, Object?> encode() => {'exact': exact.toTfJson()};
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.trust` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrust {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrust({
-    this.acm,
-    this.file,
-    this.sds,
-  });
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustAcm?
-  acm;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustFile?
-  file;
-
-  final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustSds?
-  sds;
-
-  Map<String, Object?> encode() => {
-    'acm': ?acm?.encode(),
-    'file': ?file?.encode(),
-    'sds': ?sds?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.trust.acm` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustAcm {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustAcm({
-    required this.certificateAuthorityArns,
-  });
-
-  final TfArg<List<String>> certificateAuthorityArns;
-
-  Map<String, Object?> encode() => {
-    'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.trust.file` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustFile {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustFile({
-    required this.certificateChain,
-  });
-
-  final TfArg<String> certificateChain;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.backend.virtual_service.client_policy.tls.validation.trust.sds` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustSds {
-  const AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidationTrustSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
-/// Typed helper for the `spec.backend_defaults` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecBackendDefaults {
-  const AppmeshVirtualNodeSpecBackendDefaults({this.clientPolicy});
-
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicy? clientPolicy;
-
-  Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
-}
-
 /// Typed helper for the `spec.backend_defaults.client_policy` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicy {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicy({this.tls});
+final class AppmeshVirtualNodeClientPolicy {
+  const AppmeshVirtualNodeClientPolicy({this.tls});
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls? tls;
+  final AppmeshVirtualNodeClientPolicyTls? tls;
 
   Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls({
+final class AppmeshVirtualNodeClientPolicyTls {
+  const AppmeshVirtualNodeClientPolicyTls({
     this.enforce,
     this.ports,
     this.certificate,
@@ -315,11 +96,9 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls {
 
   final TfArg<List<num>>? ports;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate?
-  certificate;
+  final AppmeshVirtualNodeTlsCertificate? certificate;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidation
-  validation;
+  final AppmeshVirtualNodeTlsValidation validation;
 
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.toTfJson(),
@@ -331,17 +110,14 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls {
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate({
-    this.file,
-    this.sds,
-  });
+final class AppmeshVirtualNodeTlsCertificate {
+  const AppmeshVirtualNodeTlsCertificate({this.file, this.sds});
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateFile?
-  file;
+  final AppmeshVirtualNodeCertificateFile? file;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateSds? sds;
+  final AppmeshVirtualNodeSds? sds;
 
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
@@ -349,11 +125,12 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate {
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate.file` block of
+/// Typed helper for the `spec.listener.tls.certificate.file` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateFile {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateFile({
+final class AppmeshVirtualNodeCertificateFile {
+  const AppmeshVirtualNodeCertificateFile({
     required this.certificateChain,
     required this.privateKey,
   });
@@ -368,13 +145,12 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateFile 
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate.sds` block of
+/// Typed helper for the `spec.listener.tls.certificate.sds` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateSds {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateSds({
-    required this.secretName,
-  });
+final class AppmeshVirtualNodeSds {
+  const AppmeshVirtualNodeSds({required this.secretName});
 
   final TfArg<String> secretName;
 
@@ -383,18 +159,17 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateSds {
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidation {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidation({
+final class AppmeshVirtualNodeTlsValidation {
+  const AppmeshVirtualNodeTlsValidation({
     this.subjectAlternativeNames,
     required this.trust,
   });
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames?
-  subjectAlternativeNames;
+  final AppmeshVirtualNodeSubjectAlternativeNames? subjectAlternativeNames;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrust
-  trust;
+  final AppmeshVirtualNodeValidationTrust trust;
 
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
@@ -402,27 +177,24 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidation {
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names` block of
+/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNames({
-    required this.match,
-  });
+final class AppmeshVirtualNodeSubjectAlternativeNames {
+  const AppmeshVirtualNodeSubjectAlternativeNames({required this.match});
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch
-  match;
+  final AppmeshVirtualNodeMatch match;
 
   Map<String, Object?> encode() => {'match': match.encode()};
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.match` block of
+/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names.match` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjectAlternativeNamesMatch({
-    required this.exact,
-  });
+final class AppmeshVirtualNodeMatch {
+  const AppmeshVirtualNodeMatch({required this.exact});
 
   final TfArg<List<String>> exact;
 
@@ -431,22 +203,16 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationSubjec
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrust {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrust({
-    this.acm,
-    this.file,
-    this.sds,
-  });
+final class AppmeshVirtualNodeValidationTrust {
+  const AppmeshVirtualNodeValidationTrust({this.acm, this.file, this.sds});
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustAcm?
-  acm;
+  final AppmeshVirtualNodeTrustAcm? acm;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustFile?
-  file;
+  final AppmeshVirtualNodeTrustFile? file;
 
-  final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustSds?
-  sds;
+  final AppmeshVirtualNodeSds? sds;
 
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
@@ -457,11 +223,10 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrust 
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.acm` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustAcm {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustAcm({
-    required this.certificateAuthorityArns,
-  });
+final class AppmeshVirtualNodeTrustAcm {
+  const AppmeshVirtualNodeTrustAcm({required this.certificateAuthorityArns});
 
   final TfArg<List<String>> certificateAuthorityArns;
 
@@ -470,13 +235,12 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustA
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.file` block of
+/// Typed helper for the `spec.listener.tls.validation.trust.file` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustFile {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustFile({
-    required this.certificateChain,
-  });
+final class AppmeshVirtualNodeTrustFile {
+  const AppmeshVirtualNodeTrustFile({required this.certificateChain});
 
   final TfArg<String> certificateChain;
 
@@ -485,24 +249,22 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustF
   };
 }
 
-/// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.sds` block of
+/// Typed helper for the `spec.backend_defaults` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustSds {
-  const AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrustSds({
-    required this.secretName,
-  });
+final class AppmeshVirtualNodeBackendDefaults {
+  const AppmeshVirtualNodeBackendDefaults({this.clientPolicy});
 
-  final TfArg<String> secretName;
+  final AppmeshVirtualNodeClientPolicy? clientPolicy;
 
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
+  Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
 
 /// Typed helper for the `spec.listener` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListener {
-  const AppmeshVirtualNodeSpecListener({
+final class AppmeshVirtualNodeListener {
+  const AppmeshVirtualNodeListener({
     this.connectionPool,
     this.healthCheck,
     this.outlierDetection,
@@ -511,17 +273,17 @@ final class AppmeshVirtualNodeSpecListener {
     this.tls,
   });
 
-  final AppmeshVirtualNodeSpecListenerConnectionPool? connectionPool;
+  final AppmeshVirtualNodeConnectionPool? connectionPool;
 
-  final AppmeshVirtualNodeSpecListenerHealthCheck? healthCheck;
+  final AppmeshVirtualNodeHealthCheck? healthCheck;
 
-  final AppmeshVirtualNodeSpecListenerOutlierDetection? outlierDetection;
+  final AppmeshVirtualNodeOutlierDetection? outlierDetection;
 
-  final AppmeshVirtualNodeSpecListenerPortMapping portMapping;
+  final AppmeshVirtualNodePortMapping portMapping;
 
-  final AppmeshVirtualNodeSpecListenerTimeout? timeout;
+  final AppmeshVirtualNodeTimeout? timeout;
 
-  final AppmeshVirtualNodeSpecListenerTls? tls;
+  final AppmeshVirtualNodeTls? tls;
 
   Map<String, Object?> encode() => {
     'connection_pool': ?connectionPool?.encode(),
@@ -536,21 +298,21 @@ final class AppmeshVirtualNodeSpecListener {
 /// Typed helper for the `spec.listener.connection_pool` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerConnectionPool {
-  const AppmeshVirtualNodeSpecListenerConnectionPool({
+final class AppmeshVirtualNodeConnectionPool {
+  const AppmeshVirtualNodeConnectionPool({
     this.grpc,
     this.http,
     this.http2,
     this.tcp,
   });
 
-  final AppmeshVirtualNodeSpecListenerConnectionPoolGrpc? grpc;
+  final AppmeshVirtualNodeConnectionPoolGrpc? grpc;
 
-  final List<AppmeshVirtualNodeSpecListenerConnectionPoolHttp>? http;
+  final List<AppmeshVirtualNodeConnectionPoolHttp>? http;
 
-  final List<AppmeshVirtualNodeSpecListenerConnectionPoolHttp2>? http2;
+  final List<AppmeshVirtualNodeConnectionPoolHttp2>? http2;
 
-  final List<AppmeshVirtualNodeSpecListenerConnectionPoolTcp>? tcp;
+  final List<AppmeshVirtualNodeConnectionPoolTcp>? tcp;
 
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
@@ -563,10 +325,8 @@ final class AppmeshVirtualNodeSpecListenerConnectionPool {
 /// Typed helper for the `spec.listener.connection_pool.grpc` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerConnectionPoolGrpc {
-  const AppmeshVirtualNodeSpecListenerConnectionPoolGrpc({
-    required this.maxRequests,
-  });
+final class AppmeshVirtualNodeConnectionPoolGrpc {
+  const AppmeshVirtualNodeConnectionPoolGrpc({required this.maxRequests});
 
   final TfArg<num> maxRequests;
 
@@ -576,8 +336,8 @@ final class AppmeshVirtualNodeSpecListenerConnectionPoolGrpc {
 /// Typed helper for the `spec.listener.connection_pool.http` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerConnectionPoolHttp {
-  const AppmeshVirtualNodeSpecListenerConnectionPoolHttp({
+final class AppmeshVirtualNodeConnectionPoolHttp {
+  const AppmeshVirtualNodeConnectionPoolHttp({
     required this.maxConnections,
     this.maxPendingRequests,
   });
@@ -595,10 +355,8 @@ final class AppmeshVirtualNodeSpecListenerConnectionPoolHttp {
 /// Typed helper for the `spec.listener.connection_pool.http2` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerConnectionPoolHttp2 {
-  const AppmeshVirtualNodeSpecListenerConnectionPoolHttp2({
-    required this.maxRequests,
-  });
+final class AppmeshVirtualNodeConnectionPoolHttp2 {
+  const AppmeshVirtualNodeConnectionPoolHttp2({required this.maxRequests});
 
   final TfArg<num> maxRequests;
 
@@ -608,10 +366,8 @@ final class AppmeshVirtualNodeSpecListenerConnectionPoolHttp2 {
 /// Typed helper for the `spec.listener.connection_pool.tcp` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerConnectionPoolTcp {
-  const AppmeshVirtualNodeSpecListenerConnectionPoolTcp({
-    required this.maxConnections,
-  });
+final class AppmeshVirtualNodeConnectionPoolTcp {
+  const AppmeshVirtualNodeConnectionPoolTcp({required this.maxConnections});
 
   final TfArg<num> maxConnections;
 
@@ -623,8 +379,8 @@ final class AppmeshVirtualNodeSpecListenerConnectionPoolTcp {
 /// Typed helper for the `spec.listener.health_check` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerHealthCheck {
-  const AppmeshVirtualNodeSpecListenerHealthCheck({
+final class AppmeshVirtualNodeHealthCheck {
+  const AppmeshVirtualNodeHealthCheck({
     required this.healthyThreshold,
     required this.intervalMillis,
     this.path,
@@ -642,7 +398,7 @@ final class AppmeshVirtualNodeSpecListenerHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<AppmeshVirtualNodeSpecListenerHealthCheckProtocol> protocol;
+  final TfArg<AppmeshVirtualNodeProtocol> protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -660,14 +416,13 @@ final class AppmeshVirtualNodeSpecListenerHealthCheck {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerHealthCheckProtocol
-    implements TerraformEnum {
+enum AppmeshVirtualNodeProtocol implements TerraformEnum {
   http('http'),
   tcp('tcp'),
   http2('http2'),
   grpc('grpc');
 
-  const AppmeshVirtualNodeSpecListenerHealthCheckProtocol(this.terraformValue);
+  const AppmeshVirtualNodeProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -675,8 +430,8 @@ enum AppmeshVirtualNodeSpecListenerHealthCheckProtocol
 /// Typed helper for the `spec.listener.outlier_detection` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerOutlierDetection {
-  const AppmeshVirtualNodeSpecListenerOutlierDetection({
+final class AppmeshVirtualNodeOutlierDetection {
+  const AppmeshVirtualNodeOutlierDetection({
     required this.maxEjectionPercent,
     required this.maxServerErrors,
     required this.baseEjectionDuration,
@@ -687,10 +442,9 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetection {
 
   final TfArg<num> maxServerErrors;
 
-  final AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration
-  baseEjectionDuration;
+  final AppmeshVirtualNodeBaseEjectionDuration baseEjectionDuration;
 
-  final AppmeshVirtualNodeSpecListenerOutlierDetectionInterval interval;
+  final AppmeshVirtualNodeInterval interval;
 
   Map<String, Object?> encode() => {
     'max_ejection_percent': maxEjectionPercent.toTfJson(),
@@ -703,16 +457,13 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetection {
 /// Typed helper for the `spec.listener.outlier_detection.base_ejection_duration` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration {
-  const AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration({
+final class AppmeshVirtualNodeBaseEjectionDuration {
+  const AppmeshVirtualNodeBaseEjectionDuration({
     required this.unit,
     required this.value,
   });
 
-  final TfArg<
-    AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit
-  >
-  unit;
+  final TfArg<AppmeshVirtualNodeUnit> unit;
 
   final TfArg<num> value;
 
@@ -723,14 +474,11 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit
-    implements TerraformEnum {
+enum AppmeshVirtualNodeUnit implements TerraformEnum {
   s('s'),
   ms('ms');
 
-  const AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit(
-    this.terraformValue,
-  );
+  const AppmeshVirtualNodeUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -738,13 +486,10 @@ enum AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit
 /// Typed helper for the `spec.listener.outlier_detection.interval` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerOutlierDetectionInterval {
-  const AppmeshVirtualNodeSpecListenerOutlierDetectionInterval({
-    required this.unit,
-    required this.value,
-  });
+final class AppmeshVirtualNodeInterval {
+  const AppmeshVirtualNodeInterval({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit> unit;
+  final TfArg<AppmeshVirtualNodeUnit> unit;
 
   final TfArg<num> value;
 
@@ -754,31 +499,18 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionInterval {
   };
 }
 
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `spec.listener.port_mapping` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerPortMapping {
-  const AppmeshVirtualNodeSpecListenerPortMapping({
+final class AppmeshVirtualNodePortMapping {
+  const AppmeshVirtualNodePortMapping({
     required this.port,
     required this.protocol,
   });
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualNodeSpecListenerPortMappingProtocol> protocol;
+  final TfArg<AppmeshVirtualNodeProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -786,37 +518,19 @@ final class AppmeshVirtualNodeSpecListenerPortMapping {
   };
 }
 
-/// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerPortMappingProtocol
-    implements TerraformEnum {
-  http('http'),
-  tcp('tcp'),
-  http2('http2'),
-  grpc('grpc');
-
-  const AppmeshVirtualNodeSpecListenerPortMappingProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `spec.listener.timeout` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeout {
-  const AppmeshVirtualNodeSpecListenerTimeout({
-    this.grpc,
-    this.http,
-    this.http2,
-    this.tcp,
-  });
+final class AppmeshVirtualNodeTimeout {
+  const AppmeshVirtualNodeTimeout({this.grpc, this.http, this.http2, this.tcp});
 
-  final AppmeshVirtualNodeSpecListenerTimeoutGrpc? grpc;
+  final AppmeshVirtualNodeTimeoutGrpc? grpc;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttp? http;
+  final AppmeshVirtualNodeTimeoutHttp? http;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttp2? http2;
+  final AppmeshVirtualNodeTimeoutHttp2? http2;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutTcp? tcp;
+  final AppmeshVirtualNodeTimeoutTcp? tcp;
 
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
@@ -829,12 +543,12 @@ final class AppmeshVirtualNodeSpecListenerTimeout {
 /// Typed helper for the `spec.listener.timeout.grpc` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutGrpc {
-  const AppmeshVirtualNodeSpecListenerTimeoutGrpc({this.idle, this.perRequest});
+final class AppmeshVirtualNodeTimeoutGrpc {
+  const AppmeshVirtualNodeTimeoutGrpc({this.idle, this.perRequest});
 
-  final AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle? idle;
+  final AppmeshVirtualNodeIdle? idle;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest? perRequest;
+  final AppmeshVirtualNodePerRequest? perRequest;
 
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
@@ -844,14 +558,12 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpc {
 
 /// Typed helper for the `spec.listener.timeout.grpc.idle` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle {
-  const AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle({
-    required this.unit,
-    required this.value,
-  });
+final class AppmeshVirtualNodeIdle {
+  const AppmeshVirtualNodeIdle({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit> unit;
+  final TfArg<AppmeshVirtualNodeUnit> unit;
 
   final TfArg<num> value;
 
@@ -859,29 +571,16 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.grpc.per_request` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest {
-  const AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest({
-    required this.unit,
-    required this.value,
-  });
+final class AppmeshVirtualNodePerRequest {
+  const AppmeshVirtualNodePerRequest({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit> unit;
+  final TfArg<AppmeshVirtualNodeUnit> unit;
 
   final TfArg<num> value;
 
@@ -889,111 +588,33 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttp {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp({this.idle, this.perRequest});
+final class AppmeshVirtualNodeTimeoutHttp {
+  const AppmeshVirtualNodeTimeoutHttp({this.idle, this.perRequest});
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttpIdle? idle;
+  final AppmeshVirtualNodeIdle? idle;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest? perRequest;
+  final AppmeshVirtualNodePerRequest? perRequest;
 
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
   };
-}
-
-/// Typed helper for the `spec.listener.timeout.http.idle` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttpIdle {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttpIdle({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `spec.listener.timeout.http.per_request` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http2` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttp2 {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp2({
-    this.idle,
-    this.perRequest,
-  });
+final class AppmeshVirtualNodeTimeoutHttp2 {
+  const AppmeshVirtualNodeTimeoutHttp2({this.idle, this.perRequest});
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttp2Idle? idle;
+  final AppmeshVirtualNodeIdle? idle;
 
-  final AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest? perRequest;
+  final AppmeshVirtualNodePerRequest? perRequest;
 
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
@@ -1001,123 +622,32 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2 {
   };
 }
 
-/// Typed helper for the `spec.listener.timeout.http2.idle` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttp2Idle {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp2Idle({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `spec.listener.timeout.http2.per_request` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest {
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit
-    implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `spec.listener.timeout.tcp` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutTcp {
-  const AppmeshVirtualNodeSpecListenerTimeoutTcp({this.idle});
+final class AppmeshVirtualNodeTimeoutTcp {
+  const AppmeshVirtualNodeTimeoutTcp({this.idle});
 
-  final AppmeshVirtualNodeSpecListenerTimeoutTcpIdle? idle;
+  final AppmeshVirtualNodeIdle? idle;
 
   Map<String, Object?> encode() => {'idle': ?idle?.encode()};
-}
-
-/// Typed helper for the `spec.listener.timeout.tcp.idle` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTimeoutTcpIdle {
-  const AppmeshVirtualNodeSpecListenerTimeoutTcpIdle({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.tls` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTls {
-  const AppmeshVirtualNodeSpecListenerTls({
+final class AppmeshVirtualNodeTls {
+  const AppmeshVirtualNodeTls({
     required this.mode,
     required this.certificate,
     this.validation,
   });
 
-  final TfArg<AppmeshVirtualNodeSpecListenerTlsMode> mode;
+  final TfArg<AppmeshVirtualNodeMode> mode;
 
-  final AppmeshVirtualNodeSpecListenerTlsCertificate certificate;
+  final AppmeshVirtualNodeCertificate certificate;
 
-  final AppmeshVirtualNodeSpecListenerTlsValidation? validation;
+  final AppmeshVirtualNodeValidation? validation;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
@@ -1127,12 +657,12 @@ final class AppmeshVirtualNodeSpecListenerTls {
 }
 
 /// `mode` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecListenerTlsMode implements TerraformEnum {
+enum AppmeshVirtualNodeMode implements TerraformEnum {
   strict('STRICT'),
   permissive('PERMISSIVE'),
   disabled('DISABLED');
 
-  const AppmeshVirtualNodeSpecListenerTlsMode(this.terraformValue);
+  const AppmeshVirtualNodeMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1140,18 +670,14 @@ enum AppmeshVirtualNodeSpecListenerTlsMode implements TerraformEnum {
 /// Typed helper for the `spec.listener.tls.certificate` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTlsCertificate {
-  const AppmeshVirtualNodeSpecListenerTlsCertificate({
-    this.acm,
-    this.file,
-    this.sds,
-  });
+final class AppmeshVirtualNodeCertificate {
+  const AppmeshVirtualNodeCertificate({this.acm, this.file, this.sds});
 
-  final AppmeshVirtualNodeSpecListenerTlsCertificateAcm? acm;
+  final AppmeshVirtualNodeAcm? acm;
 
-  final AppmeshVirtualNodeSpecListenerTlsCertificateFile? file;
+  final AppmeshVirtualNodeCertificateFile? file;
 
-  final AppmeshVirtualNodeSpecListenerTlsCertificateSds? sds;
+  final AppmeshVirtualNodeSds? sds;
 
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
@@ -1163,10 +689,8 @@ final class AppmeshVirtualNodeSpecListenerTlsCertificate {
 /// Typed helper for the `spec.listener.tls.certificate.acm` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTlsCertificateAcm {
-  const AppmeshVirtualNodeSpecListenerTlsCertificateAcm({
-    required this.certificateArn,
-  });
+final class AppmeshVirtualNodeAcm {
+  const AppmeshVirtualNodeAcm({required this.certificateArn});
 
   final TfArg<String> certificateArn;
 
@@ -1175,51 +699,18 @@ final class AppmeshVirtualNodeSpecListenerTlsCertificateAcm {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.certificate.file` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsCertificateFile {
-  const AppmeshVirtualNodeSpecListenerTlsCertificateFile({
-    required this.certificateChain,
-    required this.privateKey,
-  });
-
-  final TfArg<String> certificateChain;
-
-  final TfArg<String> privateKey;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-    'private_key': privateKey.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.listener.tls.certificate.sds` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsCertificateSds {
-  const AppmeshVirtualNodeSpecListenerTlsCertificateSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
 /// Typed helper for the `spec.listener.tls.validation` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidation {
-  const AppmeshVirtualNodeSpecListenerTlsValidation({
+final class AppmeshVirtualNodeValidation {
+  const AppmeshVirtualNodeValidation({
     this.subjectAlternativeNames,
     required this.trust,
   });
 
-  final AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNames?
-  subjectAlternativeNames;
+  final AppmeshVirtualNodeSubjectAlternativeNames? subjectAlternativeNames;
 
-  final AppmeshVirtualNodeSpecListenerTlsValidationTrust trust;
+  final AppmeshVirtualNodeTrust trust;
 
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
@@ -1227,42 +718,15 @@ final class AppmeshVirtualNodeSpecListenerTlsValidation {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNames {
-  const AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNames({
-    required this.match,
-  });
-
-  final AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNamesMatch
-  match;
-
-  Map<String, Object?> encode() => {'match': match.encode()};
-}
-
-/// Typed helper for the `spec.listener.tls.validation.subject_alternative_names.match` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNamesMatch {
-  const AppmeshVirtualNodeSpecListenerTlsValidationSubjectAlternativeNamesMatch({
-    required this.exact,
-  });
-
-  final TfArg<List<String>> exact;
-
-  Map<String, Object?> encode() => {'exact': exact.toTfJson()};
-}
-
 /// Typed helper for the `spec.listener.tls.validation.trust` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidationTrust {
-  const AppmeshVirtualNodeSpecListenerTlsValidationTrust({this.file, this.sds});
+final class AppmeshVirtualNodeTrust {
+  const AppmeshVirtualNodeTrust({this.file, this.sds});
 
-  final AppmeshVirtualNodeSpecListenerTlsValidationTrustFile? file;
+  final AppmeshVirtualNodeTrustFile? file;
 
-  final AppmeshVirtualNodeSpecListenerTlsValidationTrustSds? sds;
+  final AppmeshVirtualNodeSds? sds;
 
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
@@ -1270,41 +734,13 @@ final class AppmeshVirtualNodeSpecListenerTlsValidationTrust {
   };
 }
 
-/// Typed helper for the `spec.listener.tls.validation.trust.file` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidationTrustFile {
-  const AppmeshVirtualNodeSpecListenerTlsValidationTrustFile({
-    required this.certificateChain,
-  });
-
-  final TfArg<String> certificateChain;
-
-  Map<String, Object?> encode() => {
-    'certificate_chain': certificateChain.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.listener.tls.validation.trust.sds` block of
-/// `aws_appmesh_virtual_node` (derived from provider schema).
-@immutable
-final class AppmeshVirtualNodeSpecListenerTlsValidationTrustSds {
-  const AppmeshVirtualNodeSpecListenerTlsValidationTrustSds({
-    required this.secretName,
-  });
-
-  final TfArg<String> secretName;
-
-  Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
-}
-
 /// Typed helper for the `spec.logging` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecLogging {
-  const AppmeshVirtualNodeSpecLogging({this.accessLog});
+final class AppmeshVirtualNodeLogging {
+  const AppmeshVirtualNodeLogging({this.accessLog});
 
-  final AppmeshVirtualNodeSpecLoggingAccessLog? accessLog;
+  final AppmeshVirtualNodeAccessLog? accessLog;
 
   Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
@@ -1312,10 +748,10 @@ final class AppmeshVirtualNodeSpecLogging {
 /// Typed helper for the `spec.logging.access_log` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecLoggingAccessLog {
-  const AppmeshVirtualNodeSpecLoggingAccessLog({this.file});
+final class AppmeshVirtualNodeAccessLog {
+  const AppmeshVirtualNodeAccessLog({this.file});
 
-  final AppmeshVirtualNodeSpecLoggingAccessLogFile? file;
+  final AppmeshVirtualNodeFile? file;
 
   Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
@@ -1323,15 +759,12 @@ final class AppmeshVirtualNodeSpecLoggingAccessLog {
 /// Typed helper for the `spec.logging.access_log.file` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecLoggingAccessLogFile {
-  const AppmeshVirtualNodeSpecLoggingAccessLogFile({
-    required this.path,
-    this.format,
-  });
+final class AppmeshVirtualNodeFile {
+  const AppmeshVirtualNodeFile({required this.path, this.format});
 
   final TfArg<String> path;
 
-  final AppmeshVirtualNodeSpecLoggingAccessLogFileFormat? format;
+  final AppmeshVirtualNodeFormat? format;
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
@@ -1342,15 +775,12 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFile {
 /// Typed helper for the `spec.logging.access_log.file.format` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormat {
-  const AppmeshVirtualNodeSpecLoggingAccessLogFileFormat({
-    this.text,
-    this.json,
-  });
+final class AppmeshVirtualNodeFormat {
+  const AppmeshVirtualNodeFormat({this.text, this.json});
 
   final TfArg<String>? text;
 
-  final List<AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson>? json;
+  final List<AppmeshVirtualNodeJson>? json;
 
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
@@ -1361,11 +791,8 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormat {
 /// Typed helper for the `spec.logging.access_log.file.format.json` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson {
-  const AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson({
-    required this.key,
-    required this.value,
-  });
+final class AppmeshVirtualNodeJson {
+  const AppmeshVirtualNodeJson({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -1382,18 +809,18 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.awsCloudMap(...)`.
-sealed class AppmeshVirtualNodeSpecServiceDiscovery {
-  const AppmeshVirtualNodeSpecServiceDiscovery();
+sealed class AppmeshVirtualNodeServiceDiscovery {
+  const AppmeshVirtualNodeServiceDiscovery();
 
   /// Sets `aws_cloud_map`.
-  const factory AppmeshVirtualNodeSpecServiceDiscovery.awsCloudMap(
-    AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap,
-  ) = AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapChoice;
+  const factory AppmeshVirtualNodeServiceDiscovery.awsCloudMap(
+    AppmeshVirtualNodeAwsCloudMap awsCloudMap,
+  ) = AppmeshVirtualNodeServiceDiscoveryAwsCloudMap;
 
   /// Sets `dns`.
-  const factory AppmeshVirtualNodeSpecServiceDiscovery.dns(
-    AppmeshVirtualNodeSpecServiceDiscoveryDns dns,
-  ) = AppmeshVirtualNodeSpecServiceDiscoveryDnsChoice;
+  const factory AppmeshVirtualNodeServiceDiscovery.dns(
+    AppmeshVirtualNodeDns dns,
+  ) = AppmeshVirtualNodeServiceDiscoveryDns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1401,14 +828,12 @@ sealed class AppmeshVirtualNodeSpecServiceDiscovery {
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualNodeSpecServiceDiscovery.awsCloudMap] choice: sets `aws_cloud_map`.
-final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapChoice
-    extends AppmeshVirtualNodeSpecServiceDiscovery {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapChoice(
-    this.awsCloudMap,
-  );
+/// The [AppmeshVirtualNodeServiceDiscovery.awsCloudMap] choice: sets `aws_cloud_map`.
+final class AppmeshVirtualNodeServiceDiscoveryAwsCloudMap
+    extends AppmeshVirtualNodeServiceDiscovery {
+  const AppmeshVirtualNodeServiceDiscoveryAwsCloudMap(this.awsCloudMap);
 
-  final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap;
+  final AppmeshVirtualNodeAwsCloudMap awsCloudMap;
 
   @override
   String get blockKey => 'aws_cloud_map';
@@ -1417,12 +842,12 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapChoice
   Map<String, Object?> encode() => {'aws_cloud_map': awsCloudMap.encode()};
 }
 
-/// The [AppmeshVirtualNodeSpecServiceDiscovery.dns] choice: sets `dns`.
-final class AppmeshVirtualNodeSpecServiceDiscoveryDnsChoice
-    extends AppmeshVirtualNodeSpecServiceDiscovery {
-  const AppmeshVirtualNodeSpecServiceDiscoveryDnsChoice(this.dns);
+/// The [AppmeshVirtualNodeServiceDiscovery.dns] choice: sets `dns`.
+final class AppmeshVirtualNodeServiceDiscoveryDns
+    extends AppmeshVirtualNodeServiceDiscovery {
+  const AppmeshVirtualNodeServiceDiscoveryDns(this.dns);
 
-  final AppmeshVirtualNodeSpecServiceDiscoveryDns dns;
+  final AppmeshVirtualNodeDns dns;
 
   @override
   String get blockKey => 'dns';
@@ -1434,8 +859,8 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryDnsChoice
 /// Typed helper for the `spec.service_discovery.aws_cloud_map` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap({
+final class AppmeshVirtualNodeAwsCloudMap {
+  const AppmeshVirtualNodeAwsCloudMap({
     this.attributes,
     required this.namespaceName,
     required this.serviceName,
@@ -1457,8 +882,8 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap {
 /// Typed helper for the `spec.service_discovery.dns` block of
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
-final class AppmeshVirtualNodeSpecServiceDiscoveryDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryDns({
+final class AppmeshVirtualNodeDns {
+  const AppmeshVirtualNodeDns({
     required this.hostname,
     this.ipPreference,
     this.responseType,
@@ -1466,11 +891,9 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryDns {
 
   final TfArg<String> hostname;
 
-  final TfArg<AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference>?
-  ipPreference;
+  final TfArg<AppmeshVirtualNodeIpPreference>? ipPreference;
 
-  final TfArg<AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType>?
-  responseType;
+  final TfArg<AppmeshVirtualNodeResponseType>? responseType;
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
@@ -1480,29 +903,23 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryDns {
 }
 
 /// `ip_preference` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference
-    implements TerraformEnum {
+enum AppmeshVirtualNodeIpPreference implements TerraformEnum {
   ipv6Preferred('IPv6_PREFERRED'),
   ipv4Preferred('IPv4_PREFERRED'),
   ipv4Only('IPv4_ONLY'),
   ipv6Only('IPv6_ONLY');
 
-  const AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference(
-    this.terraformValue,
-  );
+  const AppmeshVirtualNodeIpPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `response_type` — derived from the provider schema description.
-enum AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType
-    implements TerraformEnum {
+enum AppmeshVirtualNodeResponseType implements TerraformEnum {
   loadbalancer('LOADBALANCER'),
   endpoints('ENDPOINTS');
 
-  const AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType(
-    this.terraformValue,
-  );
+  const AppmeshVirtualNodeResponseType(this.terraformValue);
   @override
   final String terraformValue;
 }

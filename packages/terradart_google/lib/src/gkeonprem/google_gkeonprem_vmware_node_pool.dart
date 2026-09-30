@@ -55,9 +55,9 @@ final class GkeonpremVmwareNodePoolConfig {
 
   final TfArg<num>? replicas;
 
-  final List<GkeonpremVmwareNodePoolConfigTaints>? taints;
+  final List<GkeonpremVmwareNodePoolTaints>? taints;
 
-  final GkeonpremVmwareNodePoolConfigVsphereConfig? vsphereConfig;
+  final GkeonpremVmwareNodePoolVsphereConfig? vsphereConfig;
 
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
@@ -76,14 +76,14 @@ final class GkeonpremVmwareNodePoolConfig {
 /// Typed helper for the `config.taints` block of
 /// `google_gkeonprem_vmware_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremVmwareNodePoolConfigTaints {
-  const GkeonpremVmwareNodePoolConfigTaints({
+final class GkeonpremVmwareNodePoolTaints {
+  const GkeonpremVmwareNodePoolTaints({
     this.effect,
     required this.key,
     required this.value,
   });
 
-  final TfArg<GkeonpremVmwareNodePoolConfigTaintsEffect>? effect;
+  final TfArg<GkeonpremVmwareNodePoolEffect>? effect;
 
   final TfArg<String> key;
 
@@ -97,13 +97,13 @@ final class GkeonpremVmwareNodePoolConfigTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremVmwareNodePoolConfigTaintsEffect implements TerraformEnum {
+enum GkeonpremVmwareNodePoolEffect implements TerraformEnum {
   effectUnspecified('EFFECT_UNSPECIFIED'),
   noSchedule('NO_SCHEDULE'),
   preferNoSchedule('PREFER_NO_SCHEDULE'),
   noExecute('NO_EXECUTE');
 
-  const GkeonpremVmwareNodePoolConfigTaintsEffect(this.terraformValue);
+  const GkeonpremVmwareNodePoolEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -111,8 +111,8 @@ enum GkeonpremVmwareNodePoolConfigTaintsEffect implements TerraformEnum {
 /// Typed helper for the `config.vsphere_config` block of
 /// `google_gkeonprem_vmware_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremVmwareNodePoolConfigVsphereConfig {
-  const GkeonpremVmwareNodePoolConfigVsphereConfig({
+final class GkeonpremVmwareNodePoolVsphereConfig {
+  const GkeonpremVmwareNodePoolVsphereConfig({
     this.datastore,
     this.hostGroups,
     this.tags,
@@ -122,7 +122,7 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfig {
 
   final TfArg<List<String>>? hostGroups;
 
-  final List<GkeonpremVmwareNodePoolConfigVsphereConfigTags>? tags;
+  final List<GkeonpremVmwareNodePoolTags>? tags;
 
   Map<String, Object?> encode() => {
     'datastore': ?datastore?.toTfJson(),
@@ -134,11 +134,8 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfig {
 /// Typed helper for the `config.vsphere_config.tags` block of
 /// `google_gkeonprem_vmware_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremVmwareNodePoolConfigVsphereConfigTags {
-  const GkeonpremVmwareNodePoolConfigVsphereConfigTags({
-    this.category,
-    this.tag,
-  });
+final class GkeonpremVmwareNodePoolTags {
+  const GkeonpremVmwareNodePoolTags({this.category, this.tag});
 
   final TfArg<String>? category;
 
@@ -153,8 +150,8 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfigTags {
 /// Typed helper for the `node_pool_autoscaling` block of
 /// `google_gkeonprem_vmware_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremVmwareNodePoolNodePoolAutoscaling {
-  const GkeonpremVmwareNodePoolNodePoolAutoscaling({
+final class GkeonpremVmwareNodePoolAutoscaling {
+  const GkeonpremVmwareNodePoolAutoscaling({
     required this.maxReplicas,
     required this.minReplicas,
   });
@@ -193,7 +190,7 @@ final class GoogleGkeonpremVmwareNodePool extends Resource {
     required GkeonpremVmwareNodePoolConfig config,
     TfArg<String>? onPremVersion,
     TfArg<String>? displayName,
-    GkeonpremVmwareNodePoolNodePoolAutoscaling? nodePoolAutoscaling,
+    GkeonpremVmwareNodePoolAutoscaling? nodePoolAutoscaling,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

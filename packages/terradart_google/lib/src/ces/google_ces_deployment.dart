@@ -33,11 +33,11 @@ final class CesDeploymentChannelProfile {
 
   final TfArg<String>? profileId;
 
-  final CesDeploymentChannelProfilePersonaProperty? personaProperty;
+  final CesDeploymentPersonaProperty? personaProperty;
 
-  final CesDeploymentChannelProfileWebWidgetConfig? webWidgetConfig;
+  final CesDeploymentWebWidgetConfig? webWidgetConfig;
 
-  final CesDeploymentChannelProfileWhatsappConfig? whatsappConfig;
+  final CesDeploymentWhatsappConfig? whatsappConfig;
 
   Map<String, Object?> encode() => {
     'channel_type': ?channelType?.toTfJson(),
@@ -53,8 +53,8 @@ final class CesDeploymentChannelProfile {
 /// Typed helper for the `channel_profile.persona_property` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
-final class CesDeploymentChannelProfilePersonaProperty {
-  const CesDeploymentChannelProfilePersonaProperty({this.persona});
+final class CesDeploymentPersonaProperty {
+  const CesDeploymentPersonaProperty({this.persona});
 
   final TfArg<String>? persona;
 
@@ -64,8 +64,8 @@ final class CesDeploymentChannelProfilePersonaProperty {
 /// Typed helper for the `channel_profile.web_widget_config` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
-final class CesDeploymentChannelProfileWebWidgetConfig {
-  const CesDeploymentChannelProfileWebWidgetConfig({
+final class CesDeploymentWebWidgetConfig {
+  const CesDeploymentWebWidgetConfig({
     this.modality,
     this.theme,
     this.webWidgetTitle,
@@ -78,8 +78,7 @@ final class CesDeploymentChannelProfileWebWidgetConfig {
 
   final TfArg<String>? webWidgetTitle;
 
-  final CesDeploymentChannelProfileWebWidgetConfigSecuritySettings?
-  securitySettings;
+  final CesDeploymentSecuritySettings? securitySettings;
 
   Map<String, Object?> encode() => {
     'modality': ?modality?.toTfJson(),
@@ -92,8 +91,8 @@ final class CesDeploymentChannelProfileWebWidgetConfig {
 /// Typed helper for the `channel_profile.web_widget_config.security_settings` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
-final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
-  const CesDeploymentChannelProfileWebWidgetConfigSecuritySettings({
+final class CesDeploymentSecuritySettings {
+  const CesDeploymentSecuritySettings({
     this.allowedOrigins,
     this.enableOriginCheck,
     this.enablePublicAccess,
@@ -119,8 +118,8 @@ final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
 /// Typed helper for the `channel_profile.whatsapp_config` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
-final class CesDeploymentChannelProfileWhatsappConfig {
-  const CesDeploymentChannelProfileWhatsappConfig({
+final class CesDeploymentWhatsappConfig {
+  const CesDeploymentWhatsappConfig({
     this.phoneNumber,
     required this.phoneNumberId,
     required this.wabaId,
@@ -238,7 +237,7 @@ final class CesDeploymentWhatsappCredentials {
 
   final TfArg<String> phoneNumber;
 
-  final CesDeploymentWhatsappCredentialsPin pin;
+  final CesDeploymentPin pin;
 
   final TfArg<String>? pinWoVersion;
 
@@ -311,16 +310,16 @@ final class CesDeploymentWhatsappCredentialsAuthCodeWo
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pin(...)`.
-sealed class CesDeploymentWhatsappCredentialsPin {
-  const CesDeploymentWhatsappCredentialsPin();
+sealed class CesDeploymentPin {
+  const CesDeploymentPin();
 
   /// Sets `pin`.
-  const factory CesDeploymentWhatsappCredentialsPin.pin(TfArg<String> pin) =
-      CesDeploymentWhatsappCredentialsPinChoice;
+  const factory CesDeploymentPin.pin(TfArg<String> pin) =
+      CesDeploymentPinChoice;
 
   /// Sets `pin_wo`.
-  const factory CesDeploymentWhatsappCredentialsPin.pinWo(TfArg<String> pinWo) =
-      CesDeploymentWhatsappCredentialsPinWo;
+  const factory CesDeploymentPin.pinWo(TfArg<String> pinWo) =
+      CesDeploymentPinWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -328,10 +327,9 @@ sealed class CesDeploymentWhatsappCredentialsPin {
   Map<String, Object?> encode();
 }
 
-/// The [CesDeploymentWhatsappCredentialsPin.pin] choice: sets `pin`.
-final class CesDeploymentWhatsappCredentialsPinChoice
-    extends CesDeploymentWhatsappCredentialsPin {
-  const CesDeploymentWhatsappCredentialsPinChoice(this.pin);
+/// The [CesDeploymentPin.pin] choice: sets `pin`.
+final class CesDeploymentPinChoice extends CesDeploymentPin {
+  const CesDeploymentPinChoice(this.pin);
 
   final TfArg<String> pin;
 
@@ -342,10 +340,9 @@ final class CesDeploymentWhatsappCredentialsPinChoice
   Map<String, Object?> encode() => {'pin': pin.toTfJson()};
 }
 
-/// The [CesDeploymentWhatsappCredentialsPin.pinWo] choice: sets `pin_wo`.
-final class CesDeploymentWhatsappCredentialsPinWo
-    extends CesDeploymentWhatsappCredentialsPin {
-  const CesDeploymentWhatsappCredentialsPinWo(this.pinWo);
+/// The [CesDeploymentPin.pinWo] choice: sets `pin_wo`.
+final class CesDeploymentPinWo extends CesDeploymentPin {
+  const CesDeploymentPinWo(this.pinWo);
 
   final TfArg<String> pinWo;
 

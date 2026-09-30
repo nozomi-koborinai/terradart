@@ -13,9 +13,9 @@ const Set<String> _awsDevicefarmDevicePoolSensitive = <String>{};
 final class DevicefarmDevicePoolRule {
   const DevicefarmDevicePoolRule({this.attribute, this.operator, this.value});
 
-  final TfArg<DevicefarmDevicePoolRuleAttribute>? attribute;
+  final TfArg<DevicefarmDevicePoolAttribute>? attribute;
 
-  final TfArg<DevicefarmDevicePoolRuleOperator>? operator;
+  final TfArg<DevicefarmDevicePoolOperator>? operator;
 
   final TfArg<String>? value;
 
@@ -27,7 +27,7 @@ final class DevicefarmDevicePoolRule {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum DevicefarmDevicePoolRuleAttribute implements TerraformEnum {
+enum DevicefarmDevicePoolAttribute implements TerraformEnum {
   arn('ARN'),
   platform('PLATFORM'),
   formFactor('FORM_FACTOR'),
@@ -42,13 +42,13 @@ enum DevicefarmDevicePoolRuleAttribute implements TerraformEnum {
   model('MODEL'),
   availability('AVAILABILITY');
 
-  const DevicefarmDevicePoolRuleAttribute(this.terraformValue);
+  const DevicefarmDevicePoolAttribute(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operator` — derived from the provider schema description.
-enum DevicefarmDevicePoolRuleOperator implements TerraformEnum {
+enum DevicefarmDevicePoolOperator implements TerraformEnum {
   equals('EQUALS'),
   lessThan('LESS_THAN'),
   lessThanOrEquals('LESS_THAN_OR_EQUALS'),
@@ -58,7 +58,7 @@ enum DevicefarmDevicePoolRuleOperator implements TerraformEnum {
   notIn('NOT_IN'),
   contains('CONTAINS');
 
-  const DevicefarmDevicePoolRuleOperator(this.terraformValue);
+  const DevicefarmDevicePoolOperator(this.terraformValue);
   @override
   final String terraformValue;
 }

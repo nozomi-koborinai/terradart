@@ -53,8 +53,7 @@ final class DynamodbTableExportIncrementalExportSpecification {
 
   final TfArg<String>? exportToTime;
 
-  final TfArg<DynamodbTableExportIncrementalExportSpecificationExportViewType>?
-  exportViewType;
+  final TfArg<DynamodbTableExportViewType>? exportViewType;
 
   Map<String, Object?> encode() => {
     'export_from_time': ?exportFromTime?.toTfJson(),
@@ -64,14 +63,11 @@ final class DynamodbTableExportIncrementalExportSpecification {
 }
 
 /// `export_view_type` — derived from the provider schema description.
-enum DynamodbTableExportIncrementalExportSpecificationExportViewType
-    implements TerraformEnum {
+enum DynamodbTableExportViewType implements TerraformEnum {
   newImage('NEW_IMAGE'),
   newAndOldImages('NEW_AND_OLD_IMAGES');
 
-  const DynamodbTableExportIncrementalExportSpecificationExportViewType(
-    this.terraformValue,
-  );
+  const DynamodbTableExportViewType(this.terraformValue);
   @override
   final String terraformValue;
 }

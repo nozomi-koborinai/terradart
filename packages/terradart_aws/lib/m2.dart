@@ -14,10 +14,10 @@ export 'src/m2/aws_m2_deployment.dart' show AwsM2Deployment;
 export 'src/m2/aws_m2_environment.dart'
     show
         AwsM2Environment,
+        M2EnvironmentEfs,
         M2EnvironmentEngineType,
+        M2EnvironmentFsx,
         M2EnvironmentHighAvailabilityConfig,
         M2EnvironmentStorageConfiguration,
         M2EnvironmentStorageConfigurationEfs,
-        M2EnvironmentStorageConfigurationEfsChoice,
-        M2EnvironmentStorageConfigurationFsx,
-        M2EnvironmentStorageConfigurationFsxChoice;
+        M2EnvironmentStorageConfigurationFsx;

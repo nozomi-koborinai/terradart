@@ -40,7 +40,7 @@ final class FsxFileCacheDataRepositoryAssociation {
 
   final TfArg<Map<String, String>>? tags;
 
-  final List<FsxFileCacheDataRepositoryAssociationNfs>? nfs;
+  final List<FsxFileCacheNfs>? nfs;
 
   Map<String, Object?> encode() => {
     'data_repository_path': dataRepositoryPath.toTfJson(),
@@ -54,15 +54,12 @@ final class FsxFileCacheDataRepositoryAssociation {
 /// Typed helper for the `data_repository_association.nfs` block of
 /// `aws_fsx_file_cache` (derived from provider schema).
 @immutable
-final class FsxFileCacheDataRepositoryAssociationNfs {
-  const FsxFileCacheDataRepositoryAssociationNfs({
-    this.dnsIps,
-    required this.version,
-  });
+final class FsxFileCacheNfs {
+  const FsxFileCacheNfs({this.dnsIps, required this.version});
 
   final TfArg<List<String>>? dnsIps;
 
-  final TfArg<FsxFileCacheDataRepositoryAssociationNfsVersion> version;
+  final TfArg<FsxFileCacheVersion> version;
 
   Map<String, Object?> encode() => {
     'dns_ips': ?dnsIps?.toTfJson(),
@@ -71,10 +68,10 @@ final class FsxFileCacheDataRepositoryAssociationNfs {
 }
 
 /// `version` — derived from the provider schema description.
-enum FsxFileCacheDataRepositoryAssociationNfsVersion implements TerraformEnum {
+enum FsxFileCacheVersion implements TerraformEnum {
   nfs3('NFS3');
 
-  const FsxFileCacheDataRepositoryAssociationNfsVersion(this.terraformValue);
+  const FsxFileCacheVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -90,14 +87,13 @@ final class FsxFileCacheLustreConfiguration {
     required this.metadataConfiguration,
   });
 
-  final TfArg<FsxFileCacheLustreConfigurationDeploymentType> deploymentType;
+  final TfArg<FsxFileCacheDeploymentType> deploymentType;
 
   final TfArg<num> perUnitStorageThroughput;
 
   final TfArg<String>? weeklyMaintenanceStartTime;
 
-  final List<FsxFileCacheLustreConfigurationMetadataConfiguration>
-  metadataConfiguration;
+  final List<FsxFileCacheMetadataConfiguration> metadataConfiguration;
 
   Map<String, Object?> encode() => {
     'deployment_type': deploymentType.toTfJson(),
@@ -110,10 +106,10 @@ final class FsxFileCacheLustreConfiguration {
 }
 
 /// `deployment_type` — derived from the provider schema description.
-enum FsxFileCacheLustreConfigurationDeploymentType implements TerraformEnum {
+enum FsxFileCacheDeploymentType implements TerraformEnum {
   cache1('CACHE_1');
 
-  const FsxFileCacheLustreConfigurationDeploymentType(this.terraformValue);
+  const FsxFileCacheDeploymentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -121,10 +117,8 @@ enum FsxFileCacheLustreConfigurationDeploymentType implements TerraformEnum {
 /// Typed helper for the `lustre_configuration.metadata_configuration` block of
 /// `aws_fsx_file_cache` (derived from provider schema).
 @immutable
-final class FsxFileCacheLustreConfigurationMetadataConfiguration {
-  const FsxFileCacheLustreConfigurationMetadataConfiguration({
-    required this.storageCapacity,
-  });
+final class FsxFileCacheMetadataConfiguration {
+  const FsxFileCacheMetadataConfiguration({required this.storageCapacity});
 
   final TfArg<num> storageCapacity;
 

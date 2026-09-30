@@ -15,11 +15,11 @@ library;
 export 'src/apigee/google_apigee_addons_config.dart'
     show
         ApigeeAddonsConfigAddonsConfig,
-        ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig,
-        ApigeeAddonsConfigAddonsConfigApiSecurityConfig,
-        ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig,
-        ApigeeAddonsConfigAddonsConfigIntegrationConfig,
-        ApigeeAddonsConfigAddonsConfigMonetizationConfig,
+        ApigeeAddonsConfigAdvancedApiOpsConfig,
+        ApigeeAddonsConfigApiSecurityConfig,
+        ApigeeAddonsConfigConnectorsPlatformConfig,
+        ApigeeAddonsConfigIntegrationConfig,
+        ApigeeAddonsConfigMonetizationConfig,
         GoogleApigeeAddonsConfig;
 export 'src/apigee/google_apigee_api.dart' show GoogleApigeeApi;
 export 'src/apigee/google_apigee_api_deployment.dart'
@@ -29,21 +29,15 @@ export 'src/apigee/google_apigee_api_product.dart'
         ApigeeApiProductApprovalType,
         ApigeeApiProductAttributes,
         ApigeeApiProductGraphqlOperationGroup,
-        ApigeeApiProductGraphqlOperationGroupOperationConfigType,
         ApigeeApiProductGraphqlOperationGroupOperationConfigs,
-        ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes,
-        ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations,
-        ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota,
+        ApigeeApiProductGraphqlOperationGroupOperations,
         ApigeeApiProductGrpcOperationGroup,
         ApigeeApiProductGrpcOperationGroupOperationConfigs,
-        ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes,
-        ApigeeApiProductGrpcOperationGroupOperationConfigsQuota,
+        ApigeeApiProductOperationConfigType,
+        ApigeeApiProductOperationConfigsQuota,
         ApigeeApiProductOperationGroup,
-        ApigeeApiProductOperationGroupOperationConfigType,
         ApigeeApiProductOperationGroupOperationConfigs,
-        ApigeeApiProductOperationGroupOperationConfigsAttributes,
-        ApigeeApiProductOperationGroupOperationConfigsOperations,
-        ApigeeApiProductOperationGroupOperationConfigsQuota,
+        ApigeeApiProductOperationGroupOperations,
         ApigeeApiProductQuotaCounterScope,
         GoogleApigeeApiProduct;
 export 'src/apigee/google_apigee_app_group.dart'
@@ -57,7 +51,7 @@ export 'src/apigee/google_apigee_data_collector.dart'
         GoogleApigeeDataCollector;
 export 'src/apigee/google_apigee_datastore.dart'
     show
-        ApigeeDatastoreDatastoreConfig,
+        ApigeeDatastoreConfig,
         ApigeeDatastoreDeletionPolicy,
         ApigeeDatastoreTargetType,
         GoogleApigeeDatastore;
@@ -80,11 +74,11 @@ export 'src/apigee/google_apigee_environment.dart'
     show
         ApigeeEnvironmentApiProxyType,
         ApigeeEnvironmentClientIpResolutionConfig,
-        ApigeeEnvironmentClientIpResolutionConfigHeaderIndexAlgorithm,
         ApigeeEnvironmentDeploymentType,
+        ApigeeEnvironmentHeaderIndexAlgorithm,
         ApigeeEnvironmentNodeConfig,
         ApigeeEnvironmentProperties,
-        ApigeeEnvironmentPropertiesProperty,
+        ApigeeEnvironmentProperty,
         ApigeeEnvironmentType,
         GoogleApigeeEnvironment;
 export 'src/apigee/google_apigee_environment_addons_config.dart'
@@ -124,7 +118,7 @@ export 'src/apigee/google_apigee_nat_address.dart' show GoogleApigeeNatAddress;
 export 'src/apigee/google_apigee_organization.dart'
     show
         ApigeeOrganizationProperties,
-        ApigeeOrganizationPropertiesProperty,
+        ApigeeOrganizationProperty,
         ApigeeOrganizationRetention,
         ApigeeOrganizationRuntimeType,
         GoogleApigeeOrganization;
@@ -141,13 +135,13 @@ export 'src/apigee/google_apigee_security_action.dart'
         ApigeeSecurityActionExpirationExpireTime,
         ApigeeSecurityActionExpirationTtl,
         ApigeeSecurityActionFlag,
-        ApigeeSecurityActionFlagHeaders,
+        ApigeeSecurityActionHeaders,
         ApigeeSecurityActionState,
         GoogleApigeeSecurityAction;
 export 'src/apigee/google_apigee_security_feedback.dart'
     show
-        ApigeeSecurityFeedbackFeedbackContexts,
-        ApigeeSecurityFeedbackFeedbackContextsAttribute,
+        ApigeeSecurityFeedbackAttribute,
+        ApigeeSecurityFeedbackContexts,
         ApigeeSecurityFeedbackFeedbackType,
         ApigeeSecurityFeedbackReason,
         GoogleApigeeSecurityFeedback;
@@ -158,7 +152,7 @@ export 'src/apigee/google_apigee_security_monitoring_condition.dart'
 export 'src/apigee/google_apigee_security_profile_v2.dart'
     show
         ApigeeSecurityProfileV2ProfileAssessmentConfigs,
-        ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight,
+        ApigeeSecurityProfileV2Weight,
         GoogleApigeeSecurityProfileV2;
 export 'src/apigee/google_apigee_sharedflow.dart' show GoogleApigeeSharedflow;
 export 'src/apigee/google_apigee_sharedflow_deployment.dart'
@@ -168,7 +162,7 @@ export 'src/apigee/google_apigee_sync_authorization.dart'
     show GoogleApigeeSyncAuthorization;
 export 'src/apigee/google_apigee_target_server.dart'
     show
+        ApigeeTargetServerCommonName,
         ApigeeTargetServerProtocol,
         ApigeeTargetServerSSlInfo,
-        ApigeeTargetServerSSlInfoCommonName,
         GoogleApigeeTargetServer;

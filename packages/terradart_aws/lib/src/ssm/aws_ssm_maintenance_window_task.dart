@@ -57,24 +57,21 @@ final class SsmMaintenanceWindowTaskTargets {
 /// Typed helper for the `task_invocation_parameters` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParameters {
-  const SsmMaintenanceWindowTaskTaskInvocationParameters({
+final class SsmMaintenanceWindowTaskInvocationParameters {
+  const SsmMaintenanceWindowTaskInvocationParameters({
     this.automationParameters,
     this.lambdaParameters,
     this.runCommandParameters,
     this.stepFunctionsParameters,
   });
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters?
-  automationParameters;
+  final SsmMaintenanceWindowTaskAutomationParameters? automationParameters;
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters?
-  lambdaParameters;
+  final SsmMaintenanceWindowTaskLambdaParameters? lambdaParameters;
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters?
-  runCommandParameters;
+  final SsmMaintenanceWindowTaskRunCommandParameters? runCommandParameters;
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters?
+  final SsmMaintenanceWindowTaskStepFunctionsParameters?
   stepFunctionsParameters;
 
   Map<String, Object?> encode() => {
@@ -88,18 +85,15 @@ final class SsmMaintenanceWindowTaskTaskInvocationParameters {
 /// Typed helper for the `task_invocation_parameters.automation_parameters` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters({
+final class SsmMaintenanceWindowTaskAutomationParameters {
+  const SsmMaintenanceWindowTaskAutomationParameters({
     this.documentVersion,
     this.parameter,
   });
 
   final TfArg<String>? documentVersion;
 
-  final List<
-    SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter
-  >?
-  parameter;
+  final List<SsmMaintenanceWindowTaskParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'document_version': ?documentVersion?.toTfJson(),
@@ -110,9 +104,10 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters
 
 /// Typed helper for the `task_invocation_parameters.automation_parameters.parameter` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter({
+final class SsmMaintenanceWindowTaskParameter {
+  const SsmMaintenanceWindowTaskParameter({
     required this.name,
     required this.values,
   });
@@ -130,8 +125,8 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters
 /// Typed helper for the `task_invocation_parameters.lambda_parameters` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters({
+final class SsmMaintenanceWindowTaskLambdaParameters {
+  const SsmMaintenanceWindowTaskLambdaParameters({
     this.clientContext,
     this.payload,
     this.qualifier,
@@ -153,8 +148,8 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters {
 /// Typed helper for the `task_invocation_parameters.run_command_parameters` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters({
+final class SsmMaintenanceWindowTaskRunCommandParameters {
+  const SsmMaintenanceWindowTaskRunCommandParameters({
     this.comment,
     this.documentHash,
     this.documentHashType,
@@ -172,10 +167,7 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<String>? documentHash;
 
-  final TfArg<
-    SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType
-  >?
-  documentHashType;
+  final TfArg<SsmMaintenanceWindowTaskDocumentHashType>? documentHashType;
 
   final TfArg<String>? documentVersion;
 
@@ -187,16 +179,11 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<num>? timeoutSeconds;
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersCloudwatchConfig?
-  cloudwatchConfig;
+  final SsmMaintenanceWindowTaskCloudwatchConfig? cloudwatchConfig;
 
-  final SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfig?
-  notificationConfig;
+  final SsmMaintenanceWindowTaskNotificationConfig? notificationConfig;
 
-  final List<
-    SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter
-  >?
-  parameter;
+  final List<SsmMaintenanceWindowTaskParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
@@ -215,14 +202,11 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 }
 
 /// `document_hash_type` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType
-    implements TerraformEnum {
+enum SsmMaintenanceWindowTaskDocumentHashType implements TerraformEnum {
   sha256('Sha256'),
   sha1('Sha1');
 
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType(
-    this.terraformValue,
-  );
+  const SsmMaintenanceWindowTaskDocumentHashType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -230,8 +214,8 @@ enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumen
 /// Typed helper for the `task_invocation_parameters.run_command_parameters.cloudwatch_config` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersCloudwatchConfig {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersCloudwatchConfig({
+final class SsmMaintenanceWindowTaskCloudwatchConfig {
+  const SsmMaintenanceWindowTaskCloudwatchConfig({
     this.cloudwatchLogGroupName,
     this.cloudwatchOutputEnabled,
   });
@@ -251,8 +235,8 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 /// Typed helper for the `task_invocation_parameters.run_command_parameters.notification_config` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfig {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfig({
+final class SsmMaintenanceWindowTaskNotificationConfig {
+  const SsmMaintenanceWindowTaskNotificationConfig({
     this.notificationArn,
     this.notificationEvents,
     this.notificationType,
@@ -260,17 +244,10 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<String>? notificationArn;
 
-  final List<
-    TfArg<
-      SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents
-    >
-  >?
+  final List<TfArg<SsmMaintenanceWindowTaskNotificationEvents>>?
   notificationEvents;
 
-  final TfArg<
-    SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType
-  >?
-  notificationType;
+  final TfArg<SsmMaintenanceWindowTaskNotificationType>? notificationType;
 
   Map<String, Object?> encode() => {
     'notification_arn': ?notificationArn?.toTfJson(),
@@ -283,8 +260,7 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 }
 
 /// `notification_events` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents
-    implements TerraformEnum {
+enum SsmMaintenanceWindowTaskNotificationEvents implements TerraformEnum {
   all('All'),
   inprogress('InProgress'),
   success('Success'),
@@ -292,50 +268,26 @@ enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotific
   cancelled('Cancelled'),
   failed('Failed');
 
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents(
-    this.terraformValue,
-  );
+  const SsmMaintenanceWindowTaskNotificationEvents(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `notification_type` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType
-    implements TerraformEnum {
+enum SsmMaintenanceWindowTaskNotificationType implements TerraformEnum {
   command('Command'),
   invocation('Invocation');
 
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType(
-    this.terraformValue,
-  );
+  const SsmMaintenanceWindowTaskNotificationType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `task_invocation_parameters.run_command_parameters.parameter` block of
-/// `aws_ssm_maintenance_window_task` (derived from provider schema).
-@immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter({
-    required this.name,
-    required this.values,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'values': values.toTfJson(),
-  };
 }
 
 /// Typed helper for the `task_invocation_parameters.step_functions_parameters` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
-final class SsmMaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters {
-  const SsmMaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters({
+final class SsmMaintenanceWindowTaskStepFunctionsParameters {
+  const SsmMaintenanceWindowTaskStepFunctionsParameters({
     this.input,
     this.name,
   });
@@ -368,7 +320,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
     required TfArg<SsmMaintenanceWindowTaskTaskType> taskType,
     required TfArg<String> windowId,
     List<SsmMaintenanceWindowTaskTargets>? targets,
-    SsmMaintenanceWindowTaskTaskInvocationParameters? taskInvocationParameters,
+    SsmMaintenanceWindowTaskInvocationParameters? taskInvocationParameters,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -7,7 +7,7 @@ export 'src/billing/aws_billing_view.dart'
     show
         AwsBillingView,
         BillingViewDataFilterExpression,
-        BillingViewDataFilterExpressionDimensions,
-        BillingViewDataFilterExpressionDimensionsKey,
         BillingViewDataFilterExpressionTags,
-        BillingViewDataFilterExpressionTimeRange;
+        BillingViewDimensions,
+        BillingViewKey,
+        BillingViewTimeRange;

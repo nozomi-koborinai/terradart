@@ -172,32 +172,23 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
     this.accessEndpointConfig,
   });
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid>?
-  deviceTypeAndroid;
+  final TfArg<WorkspacesDirectoryDeviceTypeAndroid>? deviceTypeAndroid;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos>?
-  deviceTypeChromeos;
+  final TfArg<WorkspacesDirectoryDeviceTypeChromeos>? deviceTypeChromeos;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos>?
-  deviceTypeIos;
+  final TfArg<WorkspacesDirectoryDeviceTypeIos>? deviceTypeIos;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux>?
-  deviceTypeLinux;
+  final TfArg<WorkspacesDirectoryDeviceTypeLinux>? deviceTypeLinux;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx>?
-  deviceTypeOsx;
+  final TfArg<WorkspacesDirectoryDeviceTypeOsx>? deviceTypeOsx;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb>?
-  deviceTypeWeb;
+  final TfArg<WorkspacesDirectoryDeviceTypeWeb>? deviceTypeWeb;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows>?
-  deviceTypeWindows;
+  final TfArg<WorkspacesDirectoryDeviceTypeWindows>? deviceTypeWindows;
 
-  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient>?
-  deviceTypeZeroclient;
+  final TfArg<WorkspacesDirectoryDeviceTypeZeroclient>? deviceTypeZeroclient;
 
-  final WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig?
-  accessEndpointConfig;
+  final WorkspacesDirectoryAccessEndpointConfig? accessEndpointConfig;
 
   Map<String, Object?> encode() => {
     'device_type_android': ?deviceTypeAndroid?.toTfJson(),
@@ -213,105 +204,81 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
 }
 
 /// `device_type_android` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeAndroid implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeAndroid(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_chromeos` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeChromeos implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeChromeos(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_ios` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeIos implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeIos(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_linux` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeLinux implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeLinux(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_osx` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeOsx implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeOsx(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_web` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeWeb implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeWeb(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_windows` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeWindows implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeWindows(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `device_type_zeroclient` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient
-    implements TerraformEnum {
+enum WorkspacesDirectoryDeviceTypeZeroclient implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryDeviceTypeZeroclient(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -319,23 +286,16 @@ enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient
 /// Typed helper for the `workspace_access_properties.access_endpoint_config` block of
 /// `aws_workspaces_directory` (derived from provider schema).
 @immutable
-final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig {
-  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig({
+final class WorkspacesDirectoryAccessEndpointConfig {
+  const WorkspacesDirectoryAccessEndpointConfig({
     this.internetFallbackProtocols,
     required this.accessEndpoints,
   });
 
-  final List<
-    TfArg<
-      WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols
-    >
-  >?
+  final List<TfArg<WorkspacesDirectoryInternetFallbackProtocols>>?
   internetFallbackProtocols;
 
-  final List<
-    WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints
-  >
-  accessEndpoints;
+  final List<WorkspacesDirectoryAccessEndpoints> accessEndpoints;
 
   Map<String, Object?> encode() => {
     if (internetFallbackProtocols != null)
@@ -347,13 +307,10 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig {
 }
 
 /// `internet_fallback_protocols` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols
-    implements TerraformEnum {
+enum WorkspacesDirectoryInternetFallbackProtocols implements TerraformEnum {
   pcoip('PCOIP');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryInternetFallbackProtocols(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -361,16 +318,13 @@ enum WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFal
 /// Typed helper for the `workspace_access_properties.access_endpoint_config.access_endpoints` block of
 /// `aws_workspaces_directory` (derived from provider schema).
 @immutable
-final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints {
-  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints({
+final class WorkspacesDirectoryAccessEndpoints {
+  const WorkspacesDirectoryAccessEndpoints({
     required this.accessEndpointType,
     required this.vpcEndpointId,
   });
 
-  final TfArg<
-    WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType
-  >
-  accessEndpointType;
+  final TfArg<WorkspacesDirectoryAccessEndpointType> accessEndpointType;
 
   final TfArg<String> vpcEndpointId;
 
@@ -381,13 +335,10 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAcce
 }
 
 /// `access_endpoint_type` — derived from the provider schema description.
-enum WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType
-    implements TerraformEnum {
+enum WorkspacesDirectoryAccessEndpointType implements TerraformEnum {
   streamingWsp('STREAMING_WSP');
 
-  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType(
-    this.terraformValue,
-  );
+  const WorkspacesDirectoryAccessEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }

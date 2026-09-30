@@ -97,15 +97,9 @@ final class BackupRestoreTestingSelectionProtectedResourceConditions {
     this.stringNotEquals,
   });
 
-  final List<
-    BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals
-  >?
-  stringEquals;
+  final List<BackupRestoreTestingSelectionStringEquals>? stringEquals;
 
-  final List<
-    BackupRestoreTestingSelectionProtectedResourceConditionsStringNotEquals
-  >?
-  stringNotEquals;
+  final List<BackupRestoreTestingSelectionStringNotEquals>? stringNotEquals;
 
   Map<String, Object?> encode() => {
     if (stringEquals != null)
@@ -118,8 +112,8 @@ final class BackupRestoreTestingSelectionProtectedResourceConditions {
 /// Typed helper for the `protected_resource_conditions.string_equals` block of
 /// `aws_backup_restore_testing_selection` (derived from provider schema).
 @immutable
-final class BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals {
-  const BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals({
+final class BackupRestoreTestingSelectionStringEquals {
+  const BackupRestoreTestingSelectionStringEquals({
     required this.key,
     required this.value,
   });
@@ -137,8 +131,8 @@ final class BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals
 /// Typed helper for the `protected_resource_conditions.string_not_equals` block of
 /// `aws_backup_restore_testing_selection` (derived from provider schema).
 @immutable
-final class BackupRestoreTestingSelectionProtectedResourceConditionsStringNotEquals {
-  const BackupRestoreTestingSelectionProtectedResourceConditionsStringNotEquals({
+final class BackupRestoreTestingSelectionStringNotEquals {
+  const BackupRestoreTestingSelectionStringNotEquals({
     required this.key,
     required this.value,
   });

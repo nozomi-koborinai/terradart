@@ -17,10 +17,10 @@ final class StorageControlOrganizationIntelligenceConfigFilter {
     this.cloudStorageLocations,
   });
 
-  final StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets?
+  final StorageControlOrganizationIntelligenceConfigCloudStorageBuckets?
   cloudStorageBuckets;
 
-  final StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations?
+  final StorageControlOrganizationIntelligenceConfigCloudStorageLocations?
   cloudStorageLocations;
 
   Map<String, Object?> encode() => {
@@ -34,20 +34,20 @@ final class StorageControlOrganizationIntelligenceConfigFilter {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludedCloudStorageBuckets(...)`.
-sealed class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets();
+sealed class StorageControlOrganizationIntelligenceConfigCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigCloudStorageBuckets();
 
   /// Sets `excluded_cloud_storage_buckets`.
-  const factory StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets.excludedCloudStorageBuckets(
-    StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets
+  const factory StorageControlOrganizationIntelligenceConfigCloudStorageBuckets.excludedCloudStorageBuckets(
+    StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets
     excludedCloudStorageBuckets,
-  ) = StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsExcludedCloudStorageBuckets;
+  ) = StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBucketsChoice;
 
   /// Sets `included_cloud_storage_buckets`.
-  const factory StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets.includedCloudStorageBuckets(
-    StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets
+  const factory StorageControlOrganizationIntelligenceConfigCloudStorageBuckets.includedCloudStorageBuckets(
+    StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuckets
     includedCloudStorageBuckets,
-  ) = StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsIncludedCloudStorageBuckets;
+  ) = StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBucketsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,15 +55,14 @@ sealed class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucke
   Map<String, Object?> encode();
 }
 
-/// The [StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets.excludedCloudStorageBuckets] choice: sets `excluded_cloud_storage_buckets`.
-final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsExcludedCloudStorageBuckets
-    extends
-        StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsExcludedCloudStorageBuckets(
+/// The [StorageControlOrganizationIntelligenceConfigCloudStorageBuckets.excludedCloudStorageBuckets] choice: sets `excluded_cloud_storage_buckets`.
+final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBucketsChoice
+    extends StorageControlOrganizationIntelligenceConfigCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBucketsChoice(
     this.excludedCloudStorageBuckets,
   );
 
-  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets
+  final StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets
   excludedCloudStorageBuckets;
 
   @override
@@ -75,15 +74,14 @@ final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucket
   };
 }
 
-/// The [StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets.includedCloudStorageBuckets] choice: sets `included_cloud_storage_buckets`.
-final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsIncludedCloudStorageBuckets
-    extends
-        StorageControlOrganizationIntelligenceConfigFilterCloudStorageBuckets {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucketsIncludedCloudStorageBuckets(
+/// The [StorageControlOrganizationIntelligenceConfigCloudStorageBuckets.includedCloudStorageBuckets] choice: sets `included_cloud_storage_buckets`.
+final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBucketsChoice
+    extends StorageControlOrganizationIntelligenceConfigCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBucketsChoice(
     this.includedCloudStorageBuckets,
   );
 
-  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets
+  final StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuckets
   includedCloudStorageBuckets;
 
   @override
@@ -100,20 +98,20 @@ final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageBucket
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludedCloudStorageLocations(...)`.
-sealed class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations();
+sealed class StorageControlOrganizationIntelligenceConfigCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigCloudStorageLocations();
 
   /// Sets `excluded_cloud_storage_locations`.
-  const factory StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations.excludedCloudStorageLocations(
-    StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations
+  const factory StorageControlOrganizationIntelligenceConfigCloudStorageLocations.excludedCloudStorageLocations(
+    StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations
     excludedCloudStorageLocations,
-  ) = StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsExcludedCloudStorageLocations;
+  ) = StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocationsChoice;
 
   /// Sets `included_cloud_storage_locations`.
-  const factory StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations.includedCloudStorageLocations(
-    StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations
+  const factory StorageControlOrganizationIntelligenceConfigCloudStorageLocations.includedCloudStorageLocations(
+    StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocations
     includedCloudStorageLocations,
-  ) = StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsIncludedCloudStorageLocations;
+  ) = StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocationsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -121,15 +119,14 @@ sealed class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocat
   Map<String, Object?> encode();
 }
 
-/// The [StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations.excludedCloudStorageLocations] choice: sets `excluded_cloud_storage_locations`.
-final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsExcludedCloudStorageLocations
-    extends
-        StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsExcludedCloudStorageLocations(
+/// The [StorageControlOrganizationIntelligenceConfigCloudStorageLocations.excludedCloudStorageLocations] choice: sets `excluded_cloud_storage_locations`.
+final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocationsChoice
+    extends StorageControlOrganizationIntelligenceConfigCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocationsChoice(
     this.excludedCloudStorageLocations,
   );
 
-  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations
+  final StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations
   excludedCloudStorageLocations;
 
   @override
@@ -141,15 +138,14 @@ final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocati
   };
 }
 
-/// The [StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations.includedCloudStorageLocations] choice: sets `included_cloud_storage_locations`.
-final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsIncludedCloudStorageLocations
-    extends
-        StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations {
-  const StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocationsIncludedCloudStorageLocations(
+/// The [StorageControlOrganizationIntelligenceConfigCloudStorageLocations.includedCloudStorageLocations] choice: sets `included_cloud_storage_locations`.
+final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocationsChoice
+    extends StorageControlOrganizationIntelligenceConfigCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocationsChoice(
     this.includedCloudStorageLocations,
   );
 
-  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations
+  final StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocations
   includedCloudStorageLocations;
 
   @override
@@ -164,8 +160,8 @@ final class StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocati
 /// Typed helper for the `filter.excluded_cloud_storage_buckets` block of
 /// `google_storage_control_organization_intelligence_config` (derived from provider schema).
 @immutable
-final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets {
-  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets({
+final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets({
     required this.bucketIdRegexes,
   });
 
@@ -179,8 +175,8 @@ final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStora
 /// Typed helper for the `filter.excluded_cloud_storage_locations` block of
 /// `google_storage_control_organization_intelligence_config` (derived from provider schema).
 @immutable
-final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations {
-  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations({
+final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations({
     required this.locations,
   });
 
@@ -192,8 +188,8 @@ final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStora
 /// Typed helper for the `filter.included_cloud_storage_buckets` block of
 /// `google_storage_control_organization_intelligence_config` (derived from provider schema).
 @immutable
-final class StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets {
-  const StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets({
+final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuckets({
     required this.bucketIdRegexes,
   });
 
@@ -207,8 +203,8 @@ final class StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStora
 /// Typed helper for the `filter.included_cloud_storage_locations` block of
 /// `google_storage_control_organization_intelligence_config` (derived from provider schema).
 @immutable
-final class StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations {
-  const StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations({
+final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocations({
     required this.locations,
   });
 

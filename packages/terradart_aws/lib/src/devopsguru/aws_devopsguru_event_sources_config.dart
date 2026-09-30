@@ -13,7 +13,7 @@ const Set<String> _awsDevopsguruEventSourcesConfigSensitive = <String>{};
 final class DevopsguruEventSourcesConfigEventSources {
   const DevopsguruEventSourcesConfigEventSources({this.amazonCodeGuruProfiler});
 
-  final List<DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler>?
+  final List<DevopsguruEventSourcesConfigAmazonCodeGuruProfiler>?
   amazonCodeGuruProfiler;
 
   Map<String, Object?> encode() => {
@@ -27,28 +27,22 @@ final class DevopsguruEventSourcesConfigEventSources {
 /// Typed helper for the `event_sources.amazon_code_guru_profiler` block of
 /// `aws_devopsguru_event_sources_config` (derived from provider schema).
 @immutable
-final class DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler {
-  const DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler({
+final class DevopsguruEventSourcesConfigAmazonCodeGuruProfiler {
+  const DevopsguruEventSourcesConfigAmazonCodeGuruProfiler({
     required this.status,
   });
 
-  final TfArg<
-    DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus
-  >
-  status;
+  final TfArg<DevopsguruEventSourcesConfigStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus
-    implements TerraformEnum {
+enum DevopsguruEventSourcesConfigStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus(
-    this.terraformValue,
-  );
+  const DevopsguruEventSourcesConfigStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

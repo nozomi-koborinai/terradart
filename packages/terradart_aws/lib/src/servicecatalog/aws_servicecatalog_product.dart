@@ -49,7 +49,7 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 
   final TfArg<String>? name;
 
-  final ServicecatalogProductProvisioningArtifactParametersTemplate template;
+  final ServicecatalogProductTemplate template;
 
   final TfArg<ServicecatalogProductProvisioningArtifactParametersType>? type;
 
@@ -66,18 +66,18 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.templatePhysicalId(...)`.
-sealed class ServicecatalogProductProvisioningArtifactParametersTemplate {
-  const ServicecatalogProductProvisioningArtifactParametersTemplate();
+sealed class ServicecatalogProductTemplate {
+  const ServicecatalogProductTemplate();
 
   /// Sets `template_physical_id`.
-  const factory ServicecatalogProductProvisioningArtifactParametersTemplate.templatePhysicalId(
+  const factory ServicecatalogProductTemplate.templatePhysicalId(
     TfArg<String> templatePhysicalId,
-  ) = ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId;
+  ) = ServicecatalogProductTemplatePhysicalId;
 
   /// Sets `template_url`.
-  const factory ServicecatalogProductProvisioningArtifactParametersTemplate.templateUrl(
+  const factory ServicecatalogProductTemplate.templateUrl(
     TfArg<String> templateUrl,
-  ) = ServicecatalogProductProvisioningArtifactParametersTemplateUrl;
+  ) = ServicecatalogProductTemplateUrl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -85,12 +85,10 @@ sealed class ServicecatalogProductProvisioningArtifactParametersTemplate {
   Map<String, Object?> encode();
 }
 
-/// The [ServicecatalogProductProvisioningArtifactParametersTemplate.templatePhysicalId] choice: sets `template_physical_id`.
-final class ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId
-    extends ServicecatalogProductProvisioningArtifactParametersTemplate {
-  const ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId(
-    this.templatePhysicalId,
-  );
+/// The [ServicecatalogProductTemplate.templatePhysicalId] choice: sets `template_physical_id`.
+final class ServicecatalogProductTemplatePhysicalId
+    extends ServicecatalogProductTemplate {
+  const ServicecatalogProductTemplatePhysicalId(this.templatePhysicalId);
 
   final TfArg<String> templatePhysicalId;
 
@@ -103,12 +101,10 @@ final class ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalI
   };
 }
 
-/// The [ServicecatalogProductProvisioningArtifactParametersTemplate.templateUrl] choice: sets `template_url`.
-final class ServicecatalogProductProvisioningArtifactParametersTemplateUrl
-    extends ServicecatalogProductProvisioningArtifactParametersTemplate {
-  const ServicecatalogProductProvisioningArtifactParametersTemplateUrl(
-    this.templateUrl,
-  );
+/// The [ServicecatalogProductTemplate.templateUrl] choice: sets `template_url`.
+final class ServicecatalogProductTemplateUrl
+    extends ServicecatalogProductTemplate {
+  const ServicecatalogProductTemplateUrl(this.templateUrl);
 
   final TfArg<String> templateUrl;
 

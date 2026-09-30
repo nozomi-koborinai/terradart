@@ -62,7 +62,7 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxOpenzfsFileSystemDiskIopsConfigurationMode>? mode;
+  final TfArg<FsxOpenzfsFileSystemMode>? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -71,11 +71,11 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+enum FsxOpenzfsFileSystemMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   userProvisioned('USER_PROVISIONED');
 
-  const FsxOpenzfsFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  const FsxOpenzfsFileSystemMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -91,7 +91,7 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<FsxOpenzfsFileSystemReadCacheConfigurationSizingMode>? sizingMode;
+  final TfArg<FsxOpenzfsFileSystemSizingMode>? sizingMode;
 
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
@@ -100,15 +100,12 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 }
 
 /// `sizing_mode` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemReadCacheConfigurationSizingMode
-    implements TerraformEnum {
+enum FsxOpenzfsFileSystemSizingMode implements TerraformEnum {
   noCache('NO_CACHE'),
   userProvisioned('USER_PROVISIONED'),
   proportionalToThroughputCapacity('PROPORTIONAL_TO_THROUGHPUT_CAPACITY');
 
-  const FsxOpenzfsFileSystemReadCacheConfigurationSizingMode(
-    this.terraformValue,
-  );
+  const FsxOpenzfsFileSystemSizingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,17 +125,15 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 
   final TfArg<bool>? copyTagsToSnapshots;
 
-  final TfArg<FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType>?
-  dataCompressionType;
+  final TfArg<FsxOpenzfsFileSystemDataCompressionType>? dataCompressionType;
 
   final TfArg<bool>? readOnly;
 
   final TfArg<num>? recordSizeKib;
 
-  final FsxOpenzfsFileSystemRootVolumeConfigurationNfsExports? nfsExports;
+  final FsxOpenzfsFileSystemNfsExports? nfsExports;
 
-  final List<FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas>?
-  userAndGroupQuotas;
+  final List<FsxOpenzfsFileSystemUserAndGroupQuotas>? userAndGroupQuotas;
 
   Map<String, Object?> encode() => {
     'copy_tags_to_snapshots': ?copyTagsToSnapshots?.toTfJson(),
@@ -154,15 +149,12 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 }
 
 /// `data_compression_type` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType
-    implements TerraformEnum {
+enum FsxOpenzfsFileSystemDataCompressionType implements TerraformEnum {
   none('NONE'),
   zstd('ZSTD'),
   lz4('LZ4');
 
-  const FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType(
-    this.terraformValue,
-  );
+  const FsxOpenzfsFileSystemDataCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -170,15 +162,10 @@ enum FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType
 /// Typed helper for the `root_volume_configuration.nfs_exports` block of
 /// `aws_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
-final class FsxOpenzfsFileSystemRootVolumeConfigurationNfsExports {
-  const FsxOpenzfsFileSystemRootVolumeConfigurationNfsExports({
-    required this.clientConfigurations,
-  });
+final class FsxOpenzfsFileSystemNfsExports {
+  const FsxOpenzfsFileSystemNfsExports({required this.clientConfigurations});
 
-  final List<
-    FsxOpenzfsFileSystemRootVolumeConfigurationNfsExportsClientConfigurations
-  >
-  clientConfigurations;
+  final List<FsxOpenzfsFileSystemClientConfigurations> clientConfigurations;
 
   Map<String, Object?> encode() => {
     'client_configurations': [for (final e in clientConfigurations) e.encode()],
@@ -188,8 +175,8 @@ final class FsxOpenzfsFileSystemRootVolumeConfigurationNfsExports {
 /// Typed helper for the `root_volume_configuration.nfs_exports.client_configurations` block of
 /// `aws_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
-final class FsxOpenzfsFileSystemRootVolumeConfigurationNfsExportsClientConfigurations {
-  const FsxOpenzfsFileSystemRootVolumeConfigurationNfsExportsClientConfigurations({
+final class FsxOpenzfsFileSystemClientConfigurations {
+  const FsxOpenzfsFileSystemClientConfigurations({
     required this.clients,
     required this.options,
   });
@@ -207,8 +194,8 @@ final class FsxOpenzfsFileSystemRootVolumeConfigurationNfsExportsClientConfigura
 /// Typed helper for the `root_volume_configuration.user_and_group_quotas` block of
 /// `aws_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
-final class FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas {
-  const FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas({
+final class FsxOpenzfsFileSystemUserAndGroupQuotas {
+  const FsxOpenzfsFileSystemUserAndGroupQuotas({
     required this.id,
     required this.storageCapacityQuotaGib,
     required this.type,
@@ -218,8 +205,7 @@ final class FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType>
-  type;
+  final TfArg<FsxOpenzfsFileSystemType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -229,14 +215,11 @@ final class FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType
-    implements TerraformEnum {
+enum FsxOpenzfsFileSystemType implements TerraformEnum {
   user('USER'),
   group('GROUP');
 
-  const FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType(
-    this.terraformValue,
-  );
+  const FsxOpenzfsFileSystemType(this.terraformValue);
   @override
   final String terraformValue;
 }

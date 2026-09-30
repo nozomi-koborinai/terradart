@@ -16,17 +16,14 @@ export 'src/zone/cloudflare_zone_dns_settings.dart'
         CloudflareZoneDnsSettings,
         ZoneDnsSettingsInternalDns,
         ZoneDnsSettingsNameservers,
-        ZoneDnsSettingsNameserversType,
         ZoneDnsSettingsSoa,
+        ZoneDnsSettingsType,
         ZoneDnsSettingsZoneMode;
 export 'src/zone/cloudflare_zone_dnssec.dart'
     show CloudflareZoneDnssec, ZoneDnssecStatus;
 export 'src/zone/cloudflare_zone_hold.dart' show CloudflareZoneHold;
 export 'src/zone/cloudflare_zone_lockdown.dart'
-    show
-        CloudflareZoneLockdown,
-        ZoneLockdownConfigurations,
-        ZoneLockdownConfigurationsTarget;
+    show CloudflareZoneLockdown, ZoneLockdownConfigurations, ZoneLockdownTarget;
 export 'src/zone/cloudflare_zone_setting.dart' show CloudflareZoneSetting;
 export 'src/zone/cloudflare_zone_subscription.dart'
     show
@@ -39,6 +36,6 @@ export 'src/zone/cloudflare_zone_tracing.dart'
 export 'src/zone/cloudflare_zone_tracing_rules.dart'
     show
         CloudflareZoneTracingRules,
-        ZoneTracingRulesRules,
-        ZoneTracingRulesRulesAction,
-        ZoneTracingRulesRulesActionParameters;
+        ZoneTracingRulesAction,
+        ZoneTracingRulesActionParameters,
+        ZoneTracingRulesRules;

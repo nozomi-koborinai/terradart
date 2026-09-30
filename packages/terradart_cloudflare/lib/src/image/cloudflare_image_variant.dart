@@ -20,11 +20,11 @@ final class ImageVariantOptions {
     required this.width,
   });
 
-  final TfArg<ImageVariantOptionsFit> fit;
+  final TfArg<ImageVariantFit> fit;
 
   final TfArg<num> height;
 
-  final TfArg<ImageVariantOptionsMetadata> metadata;
+  final TfArg<ImageVariantMetadata> metadata;
 
   final TfArg<num> width;
 
@@ -37,25 +37,25 @@ final class ImageVariantOptions {
 }
 
 /// `fit` — derived from the provider schema description.
-enum ImageVariantOptionsFit implements TerraformEnum {
+enum ImageVariantFit implements TerraformEnum {
   scaleDown('scale-down'),
   contain('contain'),
   cover('cover'),
   crop('crop'),
   pad('pad');
 
-  const ImageVariantOptionsFit(this.terraformValue);
+  const ImageVariantFit(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `metadata` — derived from the provider schema description.
-enum ImageVariantOptionsMetadata implements TerraformEnum {
+enum ImageVariantMetadata implements TerraformEnum {
   keep('keep'),
   copyright('copyright'),
   none('none');
 
-  const ImageVariantOptionsMetadata(this.terraformValue);
+  const ImageVariantMetadata(this.terraformValue);
   @override
   final String terraformValue;
 }

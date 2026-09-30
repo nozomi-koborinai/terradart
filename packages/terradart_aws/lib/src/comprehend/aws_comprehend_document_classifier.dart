@@ -112,13 +112,11 @@ final class ComprehendDocumentClassifierInputDataConfig {
     this.testS3Uri,
   });
 
-  final TfArg<ComprehendDocumentClassifierInputDataConfigDataFormat>?
-  dataFormat;
+  final TfArg<ComprehendDocumentClassifierDataFormat>? dataFormat;
 
-  final TfArg<ComprehendDocumentClassifierInputDataConfigLabelDelimiter>?
-  labelDelimiter;
+  final TfArg<ComprehendDocumentClassifierLabelDelimiter>? labelDelimiter;
 
-  final ComprehendDocumentClassifierInputDataConfigSource source;
+  final ComprehendDocumentClassifierSource source;
 
   final TfArg<String>? testS3Uri;
 
@@ -134,19 +132,17 @@ final class ComprehendDocumentClassifierInputDataConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.augmentedManifests(...)`.
-sealed class ComprehendDocumentClassifierInputDataConfigSource {
-  const ComprehendDocumentClassifierInputDataConfigSource();
+sealed class ComprehendDocumentClassifierSource {
+  const ComprehendDocumentClassifierSource();
 
   /// Sets `augmented_manifests`.
-  const factory ComprehendDocumentClassifierInputDataConfigSource.augmentedManifests(
-    List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
-    augmentedManifests,
-  ) = ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests;
+  const factory ComprehendDocumentClassifierSource.augmentedManifests(
+    List<ComprehendDocumentClassifierAugmentedManifests> augmentedManifests,
+  ) = ComprehendDocumentClassifierSourceAugmentedManifests;
 
   /// Sets `s3_uri`.
-  const factory ComprehendDocumentClassifierInputDataConfigSource.s3Uri(
-    TfArg<String> s3Uri,
-  ) = ComprehendDocumentClassifierInputDataConfigSourceS3Uri;
+  const factory ComprehendDocumentClassifierSource.s3Uri(TfArg<String> s3Uri) =
+      ComprehendDocumentClassifierSourceS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -154,15 +150,14 @@ sealed class ComprehendDocumentClassifierInputDataConfigSource {
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendDocumentClassifierInputDataConfigSource.augmentedManifests] choice: sets `augmented_manifests`.
-final class ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests
-    extends ComprehendDocumentClassifierInputDataConfigSource {
-  const ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests(
+/// The [ComprehendDocumentClassifierSource.augmentedManifests] choice: sets `augmented_manifests`.
+final class ComprehendDocumentClassifierSourceAugmentedManifests
+    extends ComprehendDocumentClassifierSource {
+  const ComprehendDocumentClassifierSourceAugmentedManifests(
     this.augmentedManifests,
   );
 
-  final List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
-  augmentedManifests;
+  final List<ComprehendDocumentClassifierAugmentedManifests> augmentedManifests;
 
   @override
   String get blockKey => 'augmented_manifests';
@@ -173,10 +168,10 @@ final class ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests
   };
 }
 
-/// The [ComprehendDocumentClassifierInputDataConfigSource.s3Uri] choice: sets `s3_uri`.
-final class ComprehendDocumentClassifierInputDataConfigSourceS3Uri
-    extends ComprehendDocumentClassifierInputDataConfigSource {
-  const ComprehendDocumentClassifierInputDataConfigSourceS3Uri(this.s3Uri);
+/// The [ComprehendDocumentClassifierSource.s3Uri] choice: sets `s3_uri`.
+final class ComprehendDocumentClassifierSourceS3Uri
+    extends ComprehendDocumentClassifierSource {
+  const ComprehendDocumentClassifierSourceS3Uri(this.s3Uri);
 
   final TfArg<String> s3Uri;
 
@@ -188,21 +183,17 @@ final class ComprehendDocumentClassifierInputDataConfigSourceS3Uri
 }
 
 /// `data_format` — derived from the provider schema description.
-enum ComprehendDocumentClassifierInputDataConfigDataFormat
-    implements TerraformEnum {
+enum ComprehendDocumentClassifierDataFormat implements TerraformEnum {
   comprehendCsv('COMPREHEND_CSV'),
   augmentedManifest('AUGMENTED_MANIFEST');
 
-  const ComprehendDocumentClassifierInputDataConfigDataFormat(
-    this.terraformValue,
-  );
+  const ComprehendDocumentClassifierDataFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `label_delimiter` — derived from the provider schema description.
-enum ComprehendDocumentClassifierInputDataConfigLabelDelimiter
-    implements TerraformEnum {
+enum ComprehendDocumentClassifierLabelDelimiter implements TerraformEnum {
   value('|'),
   value2('~'),
   value3('!'),
@@ -225,9 +216,7 @@ enum ComprehendDocumentClassifierInputDataConfigLabelDelimiter
   value18(' '),
   value19('	');
 
-  const ComprehendDocumentClassifierInputDataConfigLabelDelimiter(
-    this.terraformValue,
-  );
+  const ComprehendDocumentClassifierLabelDelimiter(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -235,8 +224,8 @@ enum ComprehendDocumentClassifierInputDataConfigLabelDelimiter
 /// Typed helper for the `input_data_config.augmented_manifests` block of
 /// `aws_comprehend_document_classifier` (derived from provider schema).
 @immutable
-final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifests({
+final class ComprehendDocumentClassifierAugmentedManifests {
+  const ComprehendDocumentClassifierAugmentedManifests({
     this.annotationDataS3Uri,
     required this.attributeNames,
     this.documentType,
@@ -249,19 +238,13 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
 
   final TfArg<List<String>> attributeNames;
 
-  final TfArg<
-    ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType
-  >?
-  documentType;
+  final TfArg<ComprehendDocumentClassifierDocumentType>? documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<
-    ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit
-  >?
-  split;
+  final TfArg<ComprehendDocumentClassifierSplit>? split;
 
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
@@ -274,27 +257,21 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
 }
 
 /// `document_type` — derived from the provider schema description.
-enum ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType
-    implements TerraformEnum {
+enum ComprehendDocumentClassifierDocumentType implements TerraformEnum {
   plainTextDocument('PLAIN_TEXT_DOCUMENT'),
   semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
 
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType(
-    this.terraformValue,
-  );
+  const ComprehendDocumentClassifierDocumentType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `split` — derived from the provider schema description.
-enum ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit
-    implements TerraformEnum {
+enum ComprehendDocumentClassifierSplit implements TerraformEnum {
   train('TRAIN'),
   test('TEST');
 
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit(
-    this.terraformValue,
-  );
+  const ComprehendDocumentClassifierSplit(this.terraformValue);
   @override
   final String terraformValue;
 }

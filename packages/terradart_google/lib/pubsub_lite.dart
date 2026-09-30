@@ -11,11 +11,11 @@ export 'src/pubsub_lite/google_pubsub_lite_subscription.dart'
     show
         GooglePubsubLiteSubscription,
         PubsubLiteSubscriptionDeliveryConfig,
-        PubsubLiteSubscriptionDeliveryConfigDeliveryRequirement;
+        PubsubLiteSubscriptionDeliveryRequirement;
 export 'src/pubsub_lite/google_pubsub_lite_topic.dart'
     show
         GooglePubsubLiteTopic,
+        PubsubLiteTopicCapacity,
         PubsubLiteTopicPartitionConfig,
-        PubsubLiteTopicPartitionConfigCapacity,
         PubsubLiteTopicReservationConfig,
         PubsubLiteTopicRetentionConfig;

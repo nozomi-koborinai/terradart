@@ -11,17 +11,11 @@ export 'src/route53domains/aws_route53domains_domain.dart'
     show
         AwsRoute53domainsDomain,
         Route53domainsDomainAdminContact,
-        Route53domainsDomainAdminContactContactType,
-        Route53domainsDomainAdminContactCountryCode,
-        Route53domainsDomainAdminContactExtraParam,
+        Route53domainsDomainContactType,
+        Route53domainsDomainCountryCode,
+        Route53domainsDomainExtraParam,
         Route53domainsDomainRegistrantContact,
-        Route53domainsDomainRegistrantContactContactType,
-        Route53domainsDomainRegistrantContactCountryCode,
-        Route53domainsDomainRegistrantContactExtraParam,
-        Route53domainsDomainTechContact,
-        Route53domainsDomainTechContactContactType,
-        Route53domainsDomainTechContactCountryCode,
-        Route53domainsDomainTechContactExtraParam;
+        Route53domainsDomainTechContact;
 export 'src/route53domains/aws_route53domains_registered_domain.dart'
     show
         AwsRoute53domainsRegisteredDomain,

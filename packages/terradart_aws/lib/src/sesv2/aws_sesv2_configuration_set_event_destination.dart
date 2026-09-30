@@ -23,14 +23,10 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
 
   final TfArg<bool>? enabled;
 
-  final List<
-    TfArg<
-      Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
-    >
-  >
+  final List<TfArg<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>>
   matchingEventTypes;
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationTarget target;
+  final Sesv2ConfigurationSetEventDestinationTarget target;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -43,38 +39,37 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudWatchDestination(...)`.
-sealed class Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTarget();
+sealed class Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTarget();
 
   /// Sets `cloud_watch_destination`.
-  const factory Sesv2ConfigurationSetEventDestinationEventDestinationTarget.cloudWatchDestination(
-    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination
+  const factory Sesv2ConfigurationSetEventDestinationTarget.cloudWatchDestination(
+    Sesv2ConfigurationSetEventDestinationCloudWatchDestination
     cloudWatchDestination,
-  ) = Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatchDestination;
+  ) = Sesv2ConfigurationSetEventDestinationTargetCloudWatchDestination;
 
   /// Sets `event_bridge_destination`.
-  const factory Sesv2ConfigurationSetEventDestinationEventDestinationTarget.eventBridgeDestination(
-    Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination
+  const factory Sesv2ConfigurationSetEventDestinationTarget.eventBridgeDestination(
+    Sesv2ConfigurationSetEventDestinationEventBridgeDestination
     eventBridgeDestination,
-  ) = Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBridgeDestination;
+  ) = Sesv2ConfigurationSetEventDestinationTargetEventBridgeDestination;
 
   /// Sets `kinesis_firehose_destination`.
-  const factory Sesv2ConfigurationSetEventDestinationEventDestinationTarget.kinesisFirehoseDestination(
-    Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination
+  const factory Sesv2ConfigurationSetEventDestinationTarget.kinesisFirehoseDestination(
+    Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination
     kinesisFirehoseDestination,
-  ) = Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFirehoseDestination;
+  ) = Sesv2ConfigurationSetEventDestinationTargetKinesisFirehoseDestination;
 
   /// Sets `pinpoint_destination`.
-  const factory Sesv2ConfigurationSetEventDestinationEventDestinationTarget.pinpointDestination(
-    Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination
+  const factory Sesv2ConfigurationSetEventDestinationTarget.pinpointDestination(
+    Sesv2ConfigurationSetEventDestinationPinpointDestination
     pinpointDestination,
-  ) = Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointDestination;
+  ) = Sesv2ConfigurationSetEventDestinationTargetPinpointDestination;
 
   /// Sets `sns_destination`.
-  const factory Sesv2ConfigurationSetEventDestinationEventDestinationTarget.snsDestination(
-    Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination
-    snsDestination,
-  ) = Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestination;
+  const factory Sesv2ConfigurationSetEventDestinationTarget.snsDestination(
+    Sesv2ConfigurationSetEventDestinationSnsDestination snsDestination,
+  ) = Sesv2ConfigurationSetEventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -82,14 +77,14 @@ sealed class Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
   Map<String, Object?> encode();
 }
 
-/// The [Sesv2ConfigurationSetEventDestinationEventDestinationTarget.cloudWatchDestination] choice: sets `cloud_watch_destination`.
-final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatchDestination
-    extends Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatchDestination(
+/// The [Sesv2ConfigurationSetEventDestinationTarget.cloudWatchDestination] choice: sets `cloud_watch_destination`.
+final class Sesv2ConfigurationSetEventDestinationTargetCloudWatchDestination
+    extends Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTargetCloudWatchDestination(
     this.cloudWatchDestination,
   );
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination
+  final Sesv2ConfigurationSetEventDestinationCloudWatchDestination
   cloudWatchDestination;
 
   @override
@@ -101,14 +96,14 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatc
   };
 }
 
-/// The [Sesv2ConfigurationSetEventDestinationEventDestinationTarget.eventBridgeDestination] choice: sets `event_bridge_destination`.
-final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBridgeDestination
-    extends Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBridgeDestination(
+/// The [Sesv2ConfigurationSetEventDestinationTarget.eventBridgeDestination] choice: sets `event_bridge_destination`.
+final class Sesv2ConfigurationSetEventDestinationTargetEventBridgeDestination
+    extends Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTargetEventBridgeDestination(
     this.eventBridgeDestination,
   );
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination
+  final Sesv2ConfigurationSetEventDestinationEventBridgeDestination
   eventBridgeDestination;
 
   @override
@@ -120,14 +115,14 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBrid
   };
 }
 
-/// The [Sesv2ConfigurationSetEventDestinationEventDestinationTarget.kinesisFirehoseDestination] choice: sets `kinesis_firehose_destination`.
-final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFirehoseDestination
-    extends Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFirehoseDestination(
+/// The [Sesv2ConfigurationSetEventDestinationTarget.kinesisFirehoseDestination] choice: sets `kinesis_firehose_destination`.
+final class Sesv2ConfigurationSetEventDestinationTargetKinesisFirehoseDestination
+    extends Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTargetKinesisFirehoseDestination(
     this.kinesisFirehoseDestination,
   );
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination
+  final Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination
   kinesisFirehoseDestination;
 
   @override
@@ -139,14 +134,14 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFi
   };
 }
 
-/// The [Sesv2ConfigurationSetEventDestinationEventDestinationTarget.pinpointDestination] choice: sets `pinpoint_destination`.
-final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointDestination
-    extends Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointDestination(
+/// The [Sesv2ConfigurationSetEventDestinationTarget.pinpointDestination] choice: sets `pinpoint_destination`.
+final class Sesv2ConfigurationSetEventDestinationTargetPinpointDestination
+    extends Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTargetPinpointDestination(
     this.pinpointDestination,
   );
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination
+  final Sesv2ConfigurationSetEventDestinationPinpointDestination
   pinpointDestination;
 
   @override
@@ -158,15 +153,14 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointD
   };
 }
 
-/// The [Sesv2ConfigurationSetEventDestinationEventDestinationTarget.snsDestination] choice: sets `sns_destination`.
-final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestination
-    extends Sesv2ConfigurationSetEventDestinationEventDestinationTarget {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestination(
+/// The [Sesv2ConfigurationSetEventDestinationTarget.snsDestination] choice: sets `sns_destination`.
+final class Sesv2ConfigurationSetEventDestinationTargetSnsDestination
+    extends Sesv2ConfigurationSetEventDestinationTarget {
+  const Sesv2ConfigurationSetEventDestinationTargetSnsDestination(
     this.snsDestination,
   );
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination
-  snsDestination;
+  final Sesv2ConfigurationSetEventDestinationSnsDestination snsDestination;
 
   @override
   String get blockKey => 'sns_destination';
@@ -176,7 +170,7 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestin
 }
 
 /// `matching_event_types` — derived from the provider schema description.
-enum Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
+enum Sesv2ConfigurationSetEventDestinationMatchingEventTypes
     implements TerraformEnum {
   send('SEND'),
   reject('REJECT'),
@@ -189,7 +183,7 @@ enum Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
   deliveryDelay('DELIVERY_DELAY'),
   subscription('SUBSCRIPTION');
 
-  const Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes(
+  const Sesv2ConfigurationSetEventDestinationMatchingEventTypes(
     this.terraformValue,
   );
   @override
@@ -199,14 +193,12 @@ enum Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
 /// Typed helper for the `event_destination.cloud_watch_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination({
+final class Sesv2ConfigurationSetEventDestinationCloudWatchDestination {
+  const Sesv2ConfigurationSetEventDestinationCloudWatchDestination({
     required this.dimensionConfiguration,
   });
 
-  final List<
-    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration
-  >
+  final List<Sesv2ConfigurationSetEventDestinationDimensionConfiguration>
   dimensionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -219,8 +211,8 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDesti
 /// Typed helper for the `event_destination.cloud_watch_destination.dimension_configuration` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration({
+final class Sesv2ConfigurationSetEventDestinationDimensionConfiguration {
+  const Sesv2ConfigurationSetEventDestinationDimensionConfiguration({
     required this.defaultDimensionValue,
     required this.dimensionName,
     required this.dimensionValueSource,
@@ -230,9 +222,7 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDesti
 
   final TfArg<String> dimensionName;
 
-  final TfArg<
-    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
-  >
+  final TfArg<Sesv2ConfigurationSetEventDestinationDimensionValueSource>
   dimensionValueSource;
 
   Map<String, Object?> encode() => {
@@ -243,13 +233,13 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDesti
 }
 
 /// `dimension_value_source` — derived from the provider schema description.
-enum Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
+enum Sesv2ConfigurationSetEventDestinationDimensionValueSource
     implements TerraformEnum {
   messageTag('MESSAGE_TAG'),
   emailHeader('EMAIL_HEADER'),
   linkTag('LINK_TAG');
 
-  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource(
+  const Sesv2ConfigurationSetEventDestinationDimensionValueSource(
     this.terraformValue,
   );
   @override
@@ -259,8 +249,8 @@ enum Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationD
 /// Typed helper for the `event_destination.event_bridge_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination({
+final class Sesv2ConfigurationSetEventDestinationEventBridgeDestination {
+  const Sesv2ConfigurationSetEventDestinationEventBridgeDestination({
     required this.eventBusArn,
   });
 
@@ -272,8 +262,8 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDest
 /// Typed helper for the `event_destination.kinesis_firehose_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination({
+final class Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination {
+  const Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination({
     required this.deliveryStreamArn,
     required this.iamRoleArn,
   });
@@ -291,8 +281,8 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehose
 /// Typed helper for the `event_destination.pinpoint_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination({
+final class Sesv2ConfigurationSetEventDestinationPinpointDestination {
+  const Sesv2ConfigurationSetEventDestinationPinpointDestination({
     required this.applicationArn,
   });
 
@@ -306,8 +296,8 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestina
 /// Typed helper for the `event_destination.sns_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination({
+final class Sesv2ConfigurationSetEventDestinationSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationSnsDestination({
     required this.topicArn,
   });
 

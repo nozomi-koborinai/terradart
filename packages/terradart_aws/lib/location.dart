@@ -11,7 +11,7 @@ export 'src/location/aws_location_place_index.dart'
     show
         AwsLocationPlaceIndex,
         LocationPlaceIndexDataSourceConfiguration,
-        LocationPlaceIndexDataSourceConfigurationIntendedUse;
+        LocationPlaceIndexIntendedUse;
 export 'src/location/aws_location_route_calculator.dart'
     show AwsLocationRouteCalculator;
 export 'src/location/aws_location_tracker.dart'

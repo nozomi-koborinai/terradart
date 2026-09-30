@@ -192,17 +192,14 @@ sealed class SpotInstanceRequestCapacityReservationSpecification {
 
   /// Sets `capacity_reservation_preference`.
   const factory SpotInstanceRequestCapacityReservationSpecification.capacityReservationPreference(
-    TfArg<
-      SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
-    >
+    TfArg<SpotInstanceRequestCapacityReservationPreference>
     capacityReservationPreference,
-  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceChoice;
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference;
 
   /// Sets `capacity_reservation_target`.
   const factory SpotInstanceRequestCapacityReservationSpecification.capacityReservationTarget(
-    SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget
-    capacityReservationTarget,
-  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetChoice;
+    SpotInstanceRequestCapacityReservationTarget capacityReservationTarget,
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -211,15 +208,13 @@ sealed class SpotInstanceRequestCapacityReservationSpecification {
 }
 
 /// The [SpotInstanceRequestCapacityReservationSpecification.capacityReservationPreference] choice: sets `capacity_reservation_preference`.
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceChoice
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
     extends SpotInstanceRequestCapacityReservationSpecification {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceChoice(
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference(
     this.capacityReservationPreference,
   );
 
-  final TfArg<
-    SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
-  >
+  final TfArg<SpotInstanceRequestCapacityReservationPreference>
   capacityReservationPreference;
 
   @override
@@ -232,14 +227,13 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 }
 
 /// The [SpotInstanceRequestCapacityReservationSpecification.capacityReservationTarget] choice: sets `capacity_reservation_target`.
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetChoice
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget
     extends SpotInstanceRequestCapacityReservationSpecification {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetChoice(
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget(
     this.capacityReservationTarget,
   );
 
-  final SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget
-  capacityReservationTarget;
+  final SpotInstanceRequestCapacityReservationTarget capacityReservationTarget;
 
   @override
   String get blockKey => 'capacity_reservation_target';
@@ -251,15 +245,12 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 }
 
 /// `capacity_reservation_preference` — derived from the provider schema description.
-enum SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
-    implements TerraformEnum {
+enum SpotInstanceRequestCapacityReservationPreference implements TerraformEnum {
   capacityReservationsOnly('capacity-reservations-only'),
   open('open'),
   none('none');
 
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference(
-    this.terraformValue,
-  );
+  const SpotInstanceRequestCapacityReservationPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -269,18 +260,18 @@ enum SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPrefe
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationId(...)`.
-sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget();
+sealed class SpotInstanceRequestCapacityReservationTarget {
+  const SpotInstanceRequestCapacityReservationTarget();
 
   /// Sets `capacity_reservation_id`.
-  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget.capacityReservationId(
+  const factory SpotInstanceRequestCapacityReservationTarget.capacityReservationId(
     TfArg<String> capacityReservationId,
-  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId;
+  ) = SpotInstanceRequestCapacityReservationTargetCapacityReservationId;
 
   /// Sets `capacity_reservation_resource_group_arn`.
-  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget.capacityReservationResourceGroupArn(
+  const factory SpotInstanceRequestCapacityReservationTarget.capacityReservationResourceGroupArn(
     TfArg<String> capacityReservationResourceGroupArn,
-  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn;
+  ) = SpotInstanceRequestCapacityReservationTargetCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -288,11 +279,10 @@ sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservat
   Map<String, Object?> encode();
 }
 
-/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget.capacityReservationId] choice: sets `capacity_reservation_id`.
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId
-    extends
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId(
+/// The [SpotInstanceRequestCapacityReservationTarget.capacityReservationId] choice: sets `capacity_reservation_id`.
+final class SpotInstanceRequestCapacityReservationTargetCapacityReservationId
+    extends SpotInstanceRequestCapacityReservationTarget {
+  const SpotInstanceRequestCapacityReservationTargetCapacityReservationId(
     this.capacityReservationId,
   );
 
@@ -307,11 +297,10 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
   };
 }
 
-/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn
-    extends
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn(
+/// The [SpotInstanceRequestCapacityReservationTarget.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
+final class SpotInstanceRequestCapacityReservationTargetCapacityReservationResourceGroupArn
+    extends SpotInstanceRequestCapacityReservationTarget {
+  const SpotInstanceRequestCapacityReservationTargetCapacityReservationResourceGroupArn(
     this.capacityReservationResourceGroupArn,
   );
 
@@ -338,12 +327,11 @@ final class SpotInstanceRequestCpuOptions {
     this.threadsPerCore,
   });
 
-  final TfArg<SpotInstanceRequestCpuOptionsAmdSevSnp>? amdSevSnp;
+  final TfArg<SpotInstanceRequestAmdSevSnp>? amdSevSnp;
 
   final TfArg<num>? coreCount;
 
-  final TfArg<SpotInstanceRequestCpuOptionsNestedVirtualization>?
-  nestedVirtualization;
+  final TfArg<SpotInstanceRequestNestedVirtualization>? nestedVirtualization;
 
   final TfArg<num>? threadsPerCore;
 
@@ -356,22 +344,21 @@ final class SpotInstanceRequestCpuOptions {
 }
 
 /// `amd_sev_snp` — derived from the provider schema description.
-enum SpotInstanceRequestCpuOptionsAmdSevSnp implements TerraformEnum {
+enum SpotInstanceRequestAmdSevSnp implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const SpotInstanceRequestCpuOptionsAmdSevSnp(this.terraformValue);
+  const SpotInstanceRequestAmdSevSnp(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `nested_virtualization` — derived from the provider schema description.
-enum SpotInstanceRequestCpuOptionsNestedVirtualization
-    implements TerraformEnum {
+enum SpotInstanceRequestNestedVirtualization implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const SpotInstanceRequestCpuOptionsNestedVirtualization(this.terraformValue);
+  const SpotInstanceRequestNestedVirtualization(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -382,17 +369,17 @@ enum SpotInstanceRequestCpuOptionsNestedVirtualization
 final class SpotInstanceRequestCreditSpecification {
   const SpotInstanceRequestCreditSpecification({this.cpuCredits});
 
-  final TfArg<SpotInstanceRequestCreditSpecificationCpuCredits>? cpuCredits;
+  final TfArg<SpotInstanceRequestCpuCredits>? cpuCredits;
 
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
-enum SpotInstanceRequestCreditSpecificationCpuCredits implements TerraformEnum {
+enum SpotInstanceRequestCpuCredits implements TerraformEnum {
   standard('standard'),
   unlimited('unlimited');
 
-  const SpotInstanceRequestCreditSpecificationCpuCredits(this.terraformValue);
+  const SpotInstanceRequestCpuCredits(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -435,7 +422,7 @@ final class SpotInstanceRequestEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotInstanceRequestEbsBlockDeviceVolumeType>? volumeType;
+  final TfArg<SpotInstanceRequestVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -453,7 +440,7 @@ final class SpotInstanceRequestEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum SpotInstanceRequestEbsBlockDeviceVolumeType implements TerraformEnum {
+enum SpotInstanceRequestVolumeType implements TerraformEnum {
   standard('standard'),
   io1('io1'),
   io2('io2'),
@@ -462,7 +449,7 @@ enum SpotInstanceRequestEbsBlockDeviceVolumeType implements TerraformEnum {
   st1('st1'),
   gp3('gp3');
 
-  const SpotInstanceRequestEbsBlockDeviceVolumeType(this.terraformValue);
+  const SpotInstanceRequestVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -510,7 +497,7 @@ final class SpotInstanceRequestLaunchTemplate {
     this.version,
   });
 
-  final SpotInstanceRequestLaunchTemplateIdentifier identifier;
+  final SpotInstanceRequestIdentifier identifier;
 
   final TfArg<String>? version;
 
@@ -524,18 +511,16 @@ final class SpotInstanceRequestLaunchTemplate {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class SpotInstanceRequestLaunchTemplateIdentifier {
-  const SpotInstanceRequestLaunchTemplateIdentifier();
+sealed class SpotInstanceRequestIdentifier {
+  const SpotInstanceRequestIdentifier();
 
   /// Sets `id`.
-  const factory SpotInstanceRequestLaunchTemplateIdentifier.id(
-    TfArg<String> id,
-  ) = SpotInstanceRequestLaunchTemplateIdentifierId;
+  const factory SpotInstanceRequestIdentifier.id(TfArg<String> id) =
+      SpotInstanceRequestIdentifierId;
 
   /// Sets `name`.
-  const factory SpotInstanceRequestLaunchTemplateIdentifier.name(
-    TfArg<String> name,
-  ) = SpotInstanceRequestLaunchTemplateIdentifierName;
+  const factory SpotInstanceRequestIdentifier.name(TfArg<String> name) =
+      SpotInstanceRequestIdentifierName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -543,10 +528,10 @@ sealed class SpotInstanceRequestLaunchTemplateIdentifier {
   Map<String, Object?> encode();
 }
 
-/// The [SpotInstanceRequestLaunchTemplateIdentifier.id] choice: sets `id`.
-final class SpotInstanceRequestLaunchTemplateIdentifierId
-    extends SpotInstanceRequestLaunchTemplateIdentifier {
-  const SpotInstanceRequestLaunchTemplateIdentifierId(this.id);
+/// The [SpotInstanceRequestIdentifier.id] choice: sets `id`.
+final class SpotInstanceRequestIdentifierId
+    extends SpotInstanceRequestIdentifier {
+  const SpotInstanceRequestIdentifierId(this.id);
 
   final TfArg<String> id;
 
@@ -557,10 +542,10 @@ final class SpotInstanceRequestLaunchTemplateIdentifierId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [SpotInstanceRequestLaunchTemplateIdentifier.name] choice: sets `name`.
-final class SpotInstanceRequestLaunchTemplateIdentifierName
-    extends SpotInstanceRequestLaunchTemplateIdentifier {
-  const SpotInstanceRequestLaunchTemplateIdentifierName(this.name);
+/// The [SpotInstanceRequestIdentifier.name] choice: sets `name`.
+final class SpotInstanceRequestIdentifierName
+    extends SpotInstanceRequestIdentifier {
+  const SpotInstanceRequestIdentifierName(this.name);
 
   final TfArg<String> name;
 
@@ -577,18 +562,17 @@ final class SpotInstanceRequestLaunchTemplateIdentifierName
 final class SpotInstanceRequestMaintenanceOptions {
   const SpotInstanceRequestMaintenanceOptions({this.autoRecovery});
 
-  final TfArg<SpotInstanceRequestMaintenanceOptionsAutoRecovery>? autoRecovery;
+  final TfArg<SpotInstanceRequestAutoRecovery>? autoRecovery;
 
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
-enum SpotInstanceRequestMaintenanceOptionsAutoRecovery
-    implements TerraformEnum {
+enum SpotInstanceRequestAutoRecovery implements TerraformEnum {
   disabled('disabled'),
   defaultCase('default');
 
-  const SpotInstanceRequestMaintenanceOptionsAutoRecovery(this.terraformValue);
+  const SpotInstanceRequestAutoRecovery(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -605,17 +589,15 @@ final class SpotInstanceRequestMetadataOptions {
     this.instanceMetadataTags,
   });
 
-  final TfArg<SpotInstanceRequestMetadataOptionsHttpEndpoint>? httpEndpoint;
+  final TfArg<SpotInstanceRequestHttpEndpoint>? httpEndpoint;
 
-  final TfArg<SpotInstanceRequestMetadataOptionsHttpProtocolIpv6>?
-  httpProtocolIpv6;
+  final TfArg<SpotInstanceRequestHttpProtocolIpv6>? httpProtocolIpv6;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<SpotInstanceRequestMetadataOptionsHttpTokens>? httpTokens;
+  final TfArg<SpotInstanceRequestHttpTokens>? httpTokens;
 
-  final TfArg<SpotInstanceRequestMetadataOptionsInstanceMetadataTags>?
-  instanceMetadataTags;
+  final TfArg<SpotInstanceRequestInstanceMetadataTags>? instanceMetadataTags;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -627,45 +609,41 @@ final class SpotInstanceRequestMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum SpotInstanceRequestMetadataOptionsHttpEndpoint implements TerraformEnum {
+enum SpotInstanceRequestHttpEndpoint implements TerraformEnum {
   disabled('disabled'),
   enabled('enabled');
 
-  const SpotInstanceRequestMetadataOptionsHttpEndpoint(this.terraformValue);
+  const SpotInstanceRequestHttpEndpoint(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `http_protocol_ipv6` — derived from the provider schema description.
-enum SpotInstanceRequestMetadataOptionsHttpProtocolIpv6
-    implements TerraformEnum {
+enum SpotInstanceRequestHttpProtocolIpv6 implements TerraformEnum {
   disabled('disabled'),
   enabled('enabled');
 
-  const SpotInstanceRequestMetadataOptionsHttpProtocolIpv6(this.terraformValue);
+  const SpotInstanceRequestHttpProtocolIpv6(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum SpotInstanceRequestMetadataOptionsHttpTokens implements TerraformEnum {
+enum SpotInstanceRequestHttpTokens implements TerraformEnum {
   optional('optional'),
   required('required');
 
-  const SpotInstanceRequestMetadataOptionsHttpTokens(this.terraformValue);
+  const SpotInstanceRequestHttpTokens(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `instance_metadata_tags` — derived from the provider schema description.
-enum SpotInstanceRequestMetadataOptionsInstanceMetadataTags
-    implements TerraformEnum {
+enum SpotInstanceRequestInstanceMetadataTags implements TerraformEnum {
   disabled('disabled'),
   enabled('enabled');
 
-  const SpotInstanceRequestMetadataOptionsInstanceMetadataTags(
-    this.terraformValue,
-  );
+  const SpotInstanceRequestInstanceMetadataTags(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -707,8 +685,7 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
 
   final TfArg<bool>? enableResourceNameDnsAaaaRecord;
 
-  final TfArg<SpotInstanceRequestPrivateDnsNameOptionsHostnameType>?
-  hostnameType;
+  final TfArg<SpotInstanceRequestHostnameType>? hostnameType;
 
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
@@ -720,14 +697,11 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
 }
 
 /// `hostname_type` — derived from the provider schema description.
-enum SpotInstanceRequestPrivateDnsNameOptionsHostnameType
-    implements TerraformEnum {
+enum SpotInstanceRequestHostnameType implements TerraformEnum {
   ipName('ip-name'),
   resourceName('resource-name');
 
-  const SpotInstanceRequestPrivateDnsNameOptionsHostnameType(
-    this.terraformValue,
-  );
+  const SpotInstanceRequestHostnameType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -764,7 +738,7 @@ final class SpotInstanceRequestRootBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotInstanceRequestRootBlockDeviceVolumeType>? volumeType;
+  final TfArg<SpotInstanceRequestVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -777,21 +751,6 @@ final class SpotInstanceRequestRootBlockDevice {
     'volume_size': ?volumeSize?.toTfJson(),
     'volume_type': ?volumeType?.toTfJson(),
   };
-}
-
-/// `volume_type` — derived from the provider schema description.
-enum SpotInstanceRequestRootBlockDeviceVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
-
-  const SpotInstanceRequestRootBlockDeviceVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `secondary_network_interface` block of
@@ -811,8 +770,7 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
 
   final TfArg<num>? deviceIndex;
 
-  final TfArg<SpotInstanceRequestSecondaryNetworkInterfaceInterfaceType>?
-  interfaceType;
+  final TfArg<SpotInstanceRequestInterfaceType>? interfaceType;
 
   final TfArg<num> networkCardIndex;
 
@@ -831,13 +789,10 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
 }
 
 /// `interface_type` — derived from the provider schema description.
-enum SpotInstanceRequestSecondaryNetworkInterfaceInterfaceType
-    implements TerraformEnum {
+enum SpotInstanceRequestInterfaceType implements TerraformEnum {
   secondary('secondary');
 
-  const SpotInstanceRequestSecondaryNetworkInterfaceInterfaceType(
-    this.terraformValue,
-  );
+  const SpotInstanceRequestInterfaceType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -52,7 +52,7 @@ final class BedrockCustomModelTrainingDataConfig {
 final class BedrockCustomModelValidationDataConfig {
   const BedrockCustomModelValidationDataConfig({this.validator});
 
-  final List<BedrockCustomModelValidationDataConfigValidator>? validator;
+  final List<BedrockCustomModelValidator>? validator;
 
   Map<String, Object?> encode() => {
     if (validator != null)
@@ -63,8 +63,8 @@ final class BedrockCustomModelValidationDataConfig {
 /// Typed helper for the `validation_data_config.validator` block of
 /// `aws_bedrock_custom_model` (derived from provider schema).
 @immutable
-final class BedrockCustomModelValidationDataConfigValidator {
-  const BedrockCustomModelValidationDataConfigValidator({required this.s3Uri});
+final class BedrockCustomModelValidator {
+  const BedrockCustomModelValidator({required this.s3Uri});
 
   final TfArg<String> s3Uri;
 

@@ -52,15 +52,15 @@ final class MagicWanGreTunnelHealthCheck {
     this.target,
   });
 
-  final TfArg<MagicWanGreTunnelHealthCheckDirection>? direction;
+  final TfArg<MagicWanGreTunnelDirection>? direction;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MagicWanGreTunnelHealthCheckRate>? rate;
+  final TfArg<MagicWanGreTunnelRate>? rate;
 
-  final TfArg<MagicWanGreTunnelHealthCheckType>? type;
+  final TfArg<MagicWanGreTunnelType>? type;
 
-  final MagicWanGreTunnelHealthCheckTarget? target;
+  final MagicWanGreTunnelTarget? target;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -72,32 +72,32 @@ final class MagicWanGreTunnelHealthCheck {
 }
 
 /// `direction` — derived from the provider schema description.
-enum MagicWanGreTunnelHealthCheckDirection implements TerraformEnum {
+enum MagicWanGreTunnelDirection implements TerraformEnum {
   unidirectional('unidirectional'),
   bidirectional('bidirectional');
 
-  const MagicWanGreTunnelHealthCheckDirection(this.terraformValue);
+  const MagicWanGreTunnelDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `rate` — derived from the provider schema description.
-enum MagicWanGreTunnelHealthCheckRate implements TerraformEnum {
+enum MagicWanGreTunnelRate implements TerraformEnum {
   low('low'),
   mid('mid'),
   high('high');
 
-  const MagicWanGreTunnelHealthCheckRate(this.terraformValue);
+  const MagicWanGreTunnelRate(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum MagicWanGreTunnelHealthCheckType implements TerraformEnum {
+enum MagicWanGreTunnelType implements TerraformEnum {
   reply('reply'),
   request('request');
 
-  const MagicWanGreTunnelHealthCheckType(this.terraformValue);
+  const MagicWanGreTunnelType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -105,8 +105,8 @@ enum MagicWanGreTunnelHealthCheckType implements TerraformEnum {
 /// Typed helper for the `health_check.target` block of
 /// `cloudflare_magic_wan_gre_tunnel` (derived from provider schema).
 @immutable
-final class MagicWanGreTunnelHealthCheckTarget {
-  const MagicWanGreTunnelHealthCheckTarget({this.saved});
+final class MagicWanGreTunnelTarget {
+  const MagicWanGreTunnelTarget({this.saved});
 
   final TfArg<String>? saved;
 

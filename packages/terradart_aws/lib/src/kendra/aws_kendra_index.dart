@@ -63,11 +63,11 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
 
   final TfArg<String> name;
 
-  final TfArg<KendraIndexDocumentMetadataConfigurationUpdatesType> type;
+  final TfArg<KendraIndexType> type;
 
-  final KendraIndexDocumentMetadataConfigurationUpdatesRelevance? relevance;
+  final KendraIndexRelevance? relevance;
 
-  final KendraIndexDocumentMetadataConfigurationUpdatesSearch? search;
+  final KendraIndexSearch? search;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -78,16 +78,13 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
 }
 
 /// `type` — derived from the provider schema description.
-enum KendraIndexDocumentMetadataConfigurationUpdatesType
-    implements TerraformEnum {
+enum KendraIndexType implements TerraformEnum {
   stringValue('STRING_VALUE'),
   stringListValue('STRING_LIST_VALUE'),
   longValue('LONG_VALUE'),
   dateValue('DATE_VALUE');
 
-  const KendraIndexDocumentMetadataConfigurationUpdatesType(
-    this.terraformValue,
-  );
+  const KendraIndexType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,8 +92,8 @@ enum KendraIndexDocumentMetadataConfigurationUpdatesType
 /// Typed helper for the `document_metadata_configuration_updates.relevance` block of
 /// `aws_kendra_index` (derived from provider schema).
 @immutable
-final class KendraIndexDocumentMetadataConfigurationUpdatesRelevance {
-  const KendraIndexDocumentMetadataConfigurationUpdatesRelevance({
+final class KendraIndexRelevance {
+  const KendraIndexRelevance({
     this.duration,
     this.freshness,
     this.importance,
@@ -110,10 +107,7 @@ final class KendraIndexDocumentMetadataConfigurationUpdatesRelevance {
 
   final TfArg<num>? importance;
 
-  final TfArg<
-    KendraIndexDocumentMetadataConfigurationUpdatesRelevanceRankOrder
-  >?
-  rankOrder;
+  final TfArg<KendraIndexRankOrder>? rankOrder;
 
   final TfArg<Map<String, num>>? valuesImportanceMap;
 
@@ -127,14 +121,11 @@ final class KendraIndexDocumentMetadataConfigurationUpdatesRelevance {
 }
 
 /// `rank_order` — derived from the provider schema description.
-enum KendraIndexDocumentMetadataConfigurationUpdatesRelevanceRankOrder
-    implements TerraformEnum {
+enum KendraIndexRankOrder implements TerraformEnum {
   ascending('ASCENDING'),
   descending('DESCENDING');
 
-  const KendraIndexDocumentMetadataConfigurationUpdatesRelevanceRankOrder(
-    this.terraformValue,
-  );
+  const KendraIndexRankOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -142,8 +133,8 @@ enum KendraIndexDocumentMetadataConfigurationUpdatesRelevanceRankOrder
 /// Typed helper for the `document_metadata_configuration_updates.search` block of
 /// `aws_kendra_index` (derived from provider schema).
 @immutable
-final class KendraIndexDocumentMetadataConfigurationUpdatesSearch {
-  const KendraIndexDocumentMetadataConfigurationUpdatesSearch({
+final class KendraIndexSearch {
+  const KendraIndexSearch({
     this.displayable,
     this.facetable,
     this.searchable,
@@ -187,10 +178,7 @@ final class KendraIndexUserGroupResolutionConfiguration {
     required this.userGroupResolutionMode,
   });
 
-  final TfArg<
-    KendraIndexUserGroupResolutionConfigurationUserGroupResolutionMode
-  >
-  userGroupResolutionMode;
+  final TfArg<KendraIndexUserGroupResolutionMode> userGroupResolutionMode;
 
   Map<String, Object?> encode() => {
     'user_group_resolution_mode': userGroupResolutionMode.toTfJson(),
@@ -198,14 +186,11 @@ final class KendraIndexUserGroupResolutionConfiguration {
 }
 
 /// `user_group_resolution_mode` — derived from the provider schema description.
-enum KendraIndexUserGroupResolutionConfigurationUserGroupResolutionMode
-    implements TerraformEnum {
+enum KendraIndexUserGroupResolutionMode implements TerraformEnum {
   awsSso('AWS_SSO'),
   none('NONE');
 
-  const KendraIndexUserGroupResolutionConfigurationUserGroupResolutionMode(
-    this.terraformValue,
-  );
+  const KendraIndexUserGroupResolutionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -219,11 +204,9 @@ final class KendraIndexUserTokenConfigurations {
     this.jwtTokenTypeConfiguration,
   });
 
-  final KendraIndexUserTokenConfigurationsJsonTokenTypeConfiguration?
-  jsonTokenTypeConfiguration;
+  final KendraIndexJsonTokenTypeConfiguration? jsonTokenTypeConfiguration;
 
-  final KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration?
-  jwtTokenTypeConfiguration;
+  final KendraIndexJwtTokenTypeConfiguration? jwtTokenTypeConfiguration;
 
   Map<String, Object?> encode() => {
     'json_token_type_configuration': ?jsonTokenTypeConfiguration?.encode(),
@@ -234,8 +217,8 @@ final class KendraIndexUserTokenConfigurations {
 /// Typed helper for the `user_token_configurations.json_token_type_configuration` block of
 /// `aws_kendra_index` (derived from provider schema).
 @immutable
-final class KendraIndexUserTokenConfigurationsJsonTokenTypeConfiguration {
-  const KendraIndexUserTokenConfigurationsJsonTokenTypeConfiguration({
+final class KendraIndexJsonTokenTypeConfiguration {
+  const KendraIndexJsonTokenTypeConfiguration({
     required this.groupAttributeField,
     required this.userNameAttributeField,
   });
@@ -253,8 +236,8 @@ final class KendraIndexUserTokenConfigurationsJsonTokenTypeConfiguration {
 /// Typed helper for the `user_token_configurations.jwt_token_type_configuration` block of
 /// `aws_kendra_index` (derived from provider schema).
 @immutable
-final class KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration {
-  const KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration({
+final class KendraIndexJwtTokenTypeConfiguration {
+  const KendraIndexJwtTokenTypeConfiguration({
     this.claimRegex,
     this.groupAttributeField,
     this.issuer,
@@ -270,10 +253,7 @@ final class KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration {
 
   final TfArg<String>? issuer;
 
-  final TfArg<
-    KendraIndexUserTokenConfigurationsJwtTokenTypeConfigurationKeyLocation
-  >
-  keyLocation;
+  final TfArg<KendraIndexKeyLocation> keyLocation;
 
   final TfArg<String>? secretsManagerArn;
 
@@ -293,14 +273,11 @@ final class KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration {
 }
 
 /// `key_location` — derived from the provider schema description.
-enum KendraIndexUserTokenConfigurationsJwtTokenTypeConfigurationKeyLocation
-    implements TerraformEnum {
+enum KendraIndexKeyLocation implements TerraformEnum {
   url('URL'),
   secretManager('SECRET_MANAGER');
 
-  const KendraIndexUserTokenConfigurationsJwtTokenTypeConfigurationKeyLocation(
-    this.terraformValue,
-  );
+  const KendraIndexKeyLocation(this.terraformValue);
   @override
   final String terraformValue;
 }

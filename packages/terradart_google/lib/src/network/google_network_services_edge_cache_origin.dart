@@ -49,9 +49,7 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
     this.flexShieldingRegions,
   });
 
-  final List<
-    TfArg<NetworkServicesEdgeCacheOriginFlexShieldingFlexShieldingRegions>
-  >?
+  final List<TfArg<NetworkServicesEdgeCacheOriginFlexShieldingRegions>>?
   flexShieldingRegions;
 
   Map<String, Object?> encode() => {
@@ -63,14 +61,12 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
 }
 
 /// `flex_shielding_regions` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheOriginFlexShieldingFlexShieldingRegions
+enum NetworkServicesEdgeCacheOriginFlexShieldingRegions
     implements TerraformEnum {
   africaSouth1('AFRICA_SOUTH1'),
   meCentral1('ME_CENTRAL1');
 
-  const NetworkServicesEdgeCacheOriginFlexShieldingFlexShieldingRegions(
-    this.terraformValue,
-  );
+  const NetworkServicesEdgeCacheOriginFlexShieldingRegions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -78,17 +74,15 @@ enum NetworkServicesEdgeCacheOriginFlexShieldingFlexShieldingRegions
 /// Typed helper for the `origin_override_action` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheOriginOriginOverrideAction {
-  const NetworkServicesEdgeCacheOriginOriginOverrideAction({
+final class NetworkServicesEdgeCacheOriginOverrideAction {
+  const NetworkServicesEdgeCacheOriginOverrideAction({
     this.headerAction,
     this.urlRewrite,
   });
 
-  final NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderAction?
-  headerAction;
+  final NetworkServicesEdgeCacheOriginHeaderAction? headerAction;
 
-  final NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite?
-  urlRewrite;
+  final NetworkServicesEdgeCacheOriginUrlRewrite? urlRewrite;
 
   Map<String, Object?> encode() => {
     'header_action': ?headerAction?.encode(),
@@ -99,14 +93,10 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideAction {
 /// Typed helper for the `origin_override_action.header_action` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderAction {
-  const NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderAction({
-    this.requestHeadersToAdd,
-  });
+final class NetworkServicesEdgeCacheOriginHeaderAction {
+  const NetworkServicesEdgeCacheOriginHeaderAction({this.requestHeadersToAdd});
 
-  final List<
-    NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionRequestHeadersToAdd
-  >?
+  final List<NetworkServicesEdgeCacheOriginRequestHeadersToAdd>?
   requestHeadersToAdd;
 
   Map<String, Object?> encode() => {
@@ -120,8 +110,8 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderAction {
 /// Typed helper for the `origin_override_action.header_action.request_headers_to_add` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionRequestHeadersToAdd {
-  const NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionRequestHeadersToAdd({
+final class NetworkServicesEdgeCacheOriginRequestHeadersToAdd {
+  const NetworkServicesEdgeCacheOriginRequestHeadersToAdd({
     required this.headerName,
     required this.headerValue,
     this.replace,
@@ -143,10 +133,8 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionReques
 /// Typed helper for the `origin_override_action.url_rewrite` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite {
-  const NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite({
-    this.hostRewrite,
-  });
+final class NetworkServicesEdgeCacheOriginUrlRewrite {
+  const NetworkServicesEdgeCacheOriginUrlRewrite({this.hostRewrite});
 
   final TfArg<String>? hostRewrite;
 
@@ -156,8 +144,8 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite {
 /// Typed helper for the `origin_redirect` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheOriginOriginRedirect {
-  const NetworkServicesEdgeCacheOriginOriginRedirect({this.redirectConditions});
+final class NetworkServicesEdgeCacheOriginRedirect {
+  const NetworkServicesEdgeCacheOriginRedirect({this.redirectConditions});
 
   final TfArg<List<String>>? redirectConditions;
 
@@ -225,8 +213,8 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
     NetworkServicesEdgeCacheOriginTimeout? timeout,
     NetworkServicesEdgeCacheOriginAwsV4Authentication? awsV4Authentication,
     NetworkServicesEdgeCacheOriginFlexShielding? flexShielding,
-    NetworkServicesEdgeCacheOriginOriginOverrideAction? originOverrideAction,
-    NetworkServicesEdgeCacheOriginOriginRedirect? originRedirect,
+    NetworkServicesEdgeCacheOriginOverrideAction? originOverrideAction,
+    NetworkServicesEdgeCacheOriginRedirect? originRedirect,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

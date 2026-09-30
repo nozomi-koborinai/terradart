@@ -10,16 +10,15 @@ const Set<String> _googleDialogflowCxTestCaseSensitive = <String>{};
 /// Typed helper for the `test_case_conversation_turns` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurns {
-  const DialogflowCxTestCaseTestCaseConversationTurns({
+final class DialogflowCxTestCaseConversationTurns {
+  const DialogflowCxTestCaseConversationTurns({
     this.userInput,
     this.virtualAgentOutput,
   });
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsUserInput? userInput;
+  final DialogflowCxTestCaseUserInput? userInput;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput?
-  virtualAgentOutput;
+  final DialogflowCxTestCaseVirtualAgentOutput? virtualAgentOutput;
 
   Map<String, Object?> encode() => {
     'user_input': ?userInput?.encode(),
@@ -30,8 +29,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurns {
 /// Typed helper for the `test_case_conversation_turns.user_input` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsUserInput {
-  const DialogflowCxTestCaseTestCaseConversationTurnsUserInput({
+final class DialogflowCxTestCaseUserInput {
+  const DialogflowCxTestCaseUserInput({
     this.enableSentimentAnalysis,
     this.injectedParameters,
     this.isWebhookEnabled,
@@ -44,7 +43,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInput {
 
   final TfArg<bool>? isWebhookEnabled;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput? input;
+  final DialogflowCxTestCaseInput? input;
 
   Map<String, Object?> encode() => {
     'enable_sentiment_analysis': ?enableSentimentAnalysis?.toTfJson(),
@@ -57,8 +56,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInput {
 /// Typed helper for the `test_case_conversation_turns.user_input.input` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput {
-  const DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput({
+final class DialogflowCxTestCaseInput {
+  const DialogflowCxTestCaseInput({
     this.languageCode,
     this.dtmf,
     this.event,
@@ -67,11 +66,11 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput {
 
   final TfArg<String>? languageCode;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf? dtmf;
+  final DialogflowCxTestCaseDtmf? dtmf;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputEvent? event;
+  final DialogflowCxTestCaseEvent? event;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText? text;
+  final DialogflowCxTestCaseText? text;
 
   Map<String, Object?> encode() => {
     'language_code': ?languageCode?.toTfJson(),
@@ -84,11 +83,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput {
 /// Typed helper for the `test_case_conversation_turns.user_input.input.dtmf` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf {
-  const DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf({
-    this.digits,
-    this.finishDigit,
-  });
+final class DialogflowCxTestCaseDtmf {
+  const DialogflowCxTestCaseDtmf({this.digits, this.finishDigit});
 
   final TfArg<String>? digits;
 
@@ -103,10 +99,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf {
 /// Typed helper for the `test_case_conversation_turns.user_input.input.event` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputEvent {
-  const DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputEvent({
-    required this.event,
-  });
+final class DialogflowCxTestCaseEvent {
+  const DialogflowCxTestCaseEvent({required this.event});
 
   final TfArg<String> event;
 
@@ -116,10 +110,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputEvent {
 /// Typed helper for the `test_case_conversation_turns.user_input.input.text` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText {
-  const DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText({
-    required this.text,
-  });
+final class DialogflowCxTestCaseText {
+  const DialogflowCxTestCaseText({required this.text});
 
   final TfArg<String> text;
 
@@ -129,8 +121,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText {
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput {
-  const DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput({
+final class DialogflowCxTestCaseVirtualAgentOutput {
+  const DialogflowCxTestCaseVirtualAgentOutput({
     this.sessionParameters,
     this.currentPage,
     this.textResponses,
@@ -139,16 +131,11 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput {
 
   final TfArg<String>? sessionParameters;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurrentPage?
-  currentPage;
+  final DialogflowCxTestCaseCurrentPage? currentPage;
 
-  final List<
-    DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextResponses
-  >?
-  textResponses;
+  final List<DialogflowCxTestCaseTextResponses>? textResponses;
 
-  final DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTriggeredIntent?
-  triggeredIntent;
+  final DialogflowCxTestCaseTriggeredIntent? triggeredIntent;
 
   Map<String, Object?> encode() => {
     'session_parameters': ?sessionParameters?.toTfJson(),
@@ -162,10 +149,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput {
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output.current_page` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurrentPage {
-  const DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurrentPage({
-    this.name,
-  });
+final class DialogflowCxTestCaseCurrentPage {
+  const DialogflowCxTestCaseCurrentPage({this.name});
 
   final TfArg<String>? name;
 
@@ -175,10 +160,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurre
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output.text_responses` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextResponses {
-  const DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextResponses({
-    this.text,
-  });
+final class DialogflowCxTestCaseTextResponses {
+  const DialogflowCxTestCaseTextResponses({this.text});
 
   final TfArg<List<String>>? text;
 
@@ -188,10 +171,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextR
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output.triggered_intent` block of
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
-final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTriggeredIntent {
-  const DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTriggeredIntent({
-    this.name,
-  });
+final class DialogflowCxTestCaseTriggeredIntent {
+  const DialogflowCxTestCaseTriggeredIntent({this.name});
 
   final TfArg<String>? name;
 
@@ -204,7 +185,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTrigg
 final class DialogflowCxTestCaseTestConfig {
   const DialogflowCxTestCaseTestConfig({this.start, this.trackingParameters});
 
-  final DialogflowCxTestCaseTestConfigStart? start;
+  final DialogflowCxTestCaseStart? start;
 
   final TfArg<List<String>>? trackingParameters;
 
@@ -219,16 +200,16 @@ final class DialogflowCxTestCaseTestConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.flow(...)`.
-sealed class DialogflowCxTestCaseTestConfigStart {
-  const DialogflowCxTestCaseTestConfigStart();
+sealed class DialogflowCxTestCaseStart {
+  const DialogflowCxTestCaseStart();
 
   /// Sets `flow`.
-  const factory DialogflowCxTestCaseTestConfigStart.flow(TfArg<String> flow) =
-      DialogflowCxTestCaseTestConfigStartFlow;
+  const factory DialogflowCxTestCaseStart.flow(TfArg<String> flow) =
+      DialogflowCxTestCaseStartFlow;
 
   /// Sets `page`.
-  const factory DialogflowCxTestCaseTestConfigStart.page(TfArg<String> page) =
-      DialogflowCxTestCaseTestConfigStartPage;
+  const factory DialogflowCxTestCaseStart.page(TfArg<String> page) =
+      DialogflowCxTestCaseStartPage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -236,10 +217,9 @@ sealed class DialogflowCxTestCaseTestConfigStart {
   Map<String, Object?> encode();
 }
 
-/// The [DialogflowCxTestCaseTestConfigStart.flow] choice: sets `flow`.
-final class DialogflowCxTestCaseTestConfigStartFlow
-    extends DialogflowCxTestCaseTestConfigStart {
-  const DialogflowCxTestCaseTestConfigStartFlow(this.flow);
+/// The [DialogflowCxTestCaseStart.flow] choice: sets `flow`.
+final class DialogflowCxTestCaseStartFlow extends DialogflowCxTestCaseStart {
+  const DialogflowCxTestCaseStartFlow(this.flow);
 
   final TfArg<String> flow;
 
@@ -250,10 +230,9 @@ final class DialogflowCxTestCaseTestConfigStartFlow
   Map<String, Object?> encode() => {'flow': flow.toTfJson()};
 }
 
-/// The [DialogflowCxTestCaseTestConfigStart.page] choice: sets `page`.
-final class DialogflowCxTestCaseTestConfigStartPage
-    extends DialogflowCxTestCaseTestConfigStart {
-  const DialogflowCxTestCaseTestConfigStartPage(this.page);
+/// The [DialogflowCxTestCaseStart.page] choice: sets `page`.
+final class DialogflowCxTestCaseStartPage extends DialogflowCxTestCaseStart {
+  const DialogflowCxTestCaseStartPage(this.page);
 
   final TfArg<String> page;
 
@@ -288,8 +267,7 @@ final class GoogleDialogflowCxTestCase extends Resource {
     TfArg<String>? notes,
     TfArg<List<String>>? tags,
     DialogflowCxTestCaseTestConfig? testConfig,
-    List<DialogflowCxTestCaseTestCaseConversationTurns>?
-    testCaseConversationTurns,
+    List<DialogflowCxTestCaseConversationTurns>? testCaseConversationTurns,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

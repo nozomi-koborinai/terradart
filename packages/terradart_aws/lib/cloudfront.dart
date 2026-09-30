@@ -8,113 +8,103 @@ export 'src/cloudfront/aws_cloudfront_anycast_ip_list.dart'
 export 'src/cloudfront/aws_cloudfront_cache_policy.dart'
     show
         AwsCloudfrontCachePolicy,
+        CloudfrontCachePolicyCookieBehavior,
+        CloudfrontCachePolicyCookies,
+        CloudfrontCachePolicyCookiesConfig,
+        CloudfrontCachePolicyHeaderBehavior,
+        CloudfrontCachePolicyHeaders,
+        CloudfrontCachePolicyHeadersConfig,
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfig,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookies,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfig,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaders,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfig,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior,
-        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStrings;
+        CloudfrontCachePolicyQueryStringBehavior,
+        CloudfrontCachePolicyQueryStrings,
+        CloudfrontCachePolicyQueryStringsConfig;
 export 'src/cloudfront/aws_cloudfront_connection_function.dart'
     show
         AwsCloudfrontConnectionFunction,
-        CloudfrontConnectionFunctionConnectionFunctionConfig,
-        CloudfrontConnectionFunctionConnectionFunctionConfigKeyValueStoreAssociation,
-        CloudfrontConnectionFunctionConnectionFunctionConfigRuntime;
+        CloudfrontConnectionFunctionConfig,
+        CloudfrontConnectionFunctionKeyValueStoreAssociation,
+        CloudfrontConnectionFunctionRuntime;
 export 'src/cloudfront/aws_cloudfront_connection_group.dart'
     show AwsCloudfrontConnectionGroup;
 export 'src/cloudfront/aws_cloudfront_continuous_deployment_policy.dart'
     show
         AwsCloudfrontContinuousDeploymentPolicy,
+        CloudfrontContinuousDeploymentPolicySessionStickinessConfig,
+        CloudfrontContinuousDeploymentPolicySingleHeaderConfig,
+        CloudfrontContinuousDeploymentPolicySingleWeightConfig,
         CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNames,
         CloudfrontContinuousDeploymentPolicyTrafficConfig,
-        CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig,
-        CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfig,
-        CloudfrontContinuousDeploymentPolicyTrafficConfigSingleWeightConfigSessionStickinessConfig,
-        CloudfrontContinuousDeploymentPolicyTrafficConfigType;
+        CloudfrontContinuousDeploymentPolicyType;
 export 'src/cloudfront/aws_cloudfront_distribution.dart'
     show
         AwsCloudfrontDistribution,
         CloudfrontDistributionCacheTagConfig,
         CloudfrontDistributionConnectionFunctionAssociation,
+        CloudfrontDistributionCookies,
         CloudfrontDistributionCustomErrorResponse,
+        CloudfrontDistributionCustomHeader,
+        CloudfrontDistributionCustomOriginConfig,
         CloudfrontDistributionDefaultCacheBehavior,
-        CloudfrontDistributionDefaultCacheBehaviorForwardedValues,
-        CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies,
-        CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesForward,
-        CloudfrontDistributionDefaultCacheBehaviorFunctionAssociation,
-        CloudfrontDistributionDefaultCacheBehaviorFunctionAssociationEventType,
-        CloudfrontDistributionDefaultCacheBehaviorGrpcConfig,
-        CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation,
-        CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType,
-        CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy,
+        CloudfrontDistributionEventType,
+        CloudfrontDistributionFailoverCriteria,
+        CloudfrontDistributionForward,
+        CloudfrontDistributionForwardedValues,
+        CloudfrontDistributionFunctionAssociation,
+        CloudfrontDistributionGeoRestriction,
+        CloudfrontDistributionGrpcConfig,
         CloudfrontDistributionHttpVersion,
+        CloudfrontDistributionIpAddressType,
+        CloudfrontDistributionLambdaFunctionAssociation,
         CloudfrontDistributionLoggingConfig,
+        CloudfrontDistributionMember,
+        CloudfrontDistributionMinimumProtocolVersion,
+        CloudfrontDistributionMode,
         CloudfrontDistributionOrderedCacheBehavior,
-        CloudfrontDistributionOrderedCacheBehaviorForwardedValues,
-        CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies,
-        CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesForward,
-        CloudfrontDistributionOrderedCacheBehaviorFunctionAssociation,
-        CloudfrontDistributionOrderedCacheBehaviorFunctionAssociationEventType,
-        CloudfrontDistributionOrderedCacheBehaviorGrpcConfig,
-        CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociation,
-        CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociationEventType,
-        CloudfrontDistributionOrderedCacheBehaviorViewerProtocolPolicy,
         CloudfrontDistributionOrigin,
-        CloudfrontDistributionOriginCustomHeader,
-        CloudfrontDistributionOriginCustomOriginConfig,
-        CloudfrontDistributionOriginCustomOriginConfigIpAddressType,
-        CloudfrontDistributionOriginCustomOriginConfigOriginMtlsConfig,
-        CloudfrontDistributionOriginCustomOriginConfigOriginProtocolPolicy,
-        CloudfrontDistributionOriginCustomOriginConfigOriginSslProtocols,
         CloudfrontDistributionOriginGroup,
-        CloudfrontDistributionOriginGroupFailoverCriteria,
-        CloudfrontDistributionOriginGroupMember,
-        CloudfrontDistributionOriginOriginShield,
-        CloudfrontDistributionOriginS3OriginConfig,
-        CloudfrontDistributionOriginVpcOriginConfig,
+        CloudfrontDistributionOriginMtlsConfig,
+        CloudfrontDistributionOriginProtocolPolicy,
+        CloudfrontDistributionOriginShield,
+        CloudfrontDistributionOriginSslProtocols,
         CloudfrontDistributionPriceClass,
+        CloudfrontDistributionRestrictionType,
         CloudfrontDistributionRestrictions,
-        CloudfrontDistributionRestrictionsGeoRestriction,
-        CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType,
+        CloudfrontDistributionS3OriginConfig,
+        CloudfrontDistributionSslSupportMethod,
+        CloudfrontDistributionTrustStoreConfig,
         CloudfrontDistributionViewerCertificate,
-        CloudfrontDistributionViewerCertificateMinimumProtocolVersion,
-        CloudfrontDistributionViewerCertificateSslSupportMethod,
         CloudfrontDistributionViewerMtlsConfig,
-        CloudfrontDistributionViewerMtlsConfigMode,
-        CloudfrontDistributionViewerMtlsConfigTrustStoreConfig;
+        CloudfrontDistributionViewerProtocolPolicy,
+        CloudfrontDistributionVpcOriginConfig;
 export 'src/cloudfront/aws_cloudfront_distribution_tenant.dart'
     show
         AwsCloudfrontDistributionTenant,
+        CloudfrontDistributionTenantAction,
+        CloudfrontDistributionTenantCertificate,
+        CloudfrontDistributionTenantCertificateTransparencyLoggingPreference,
         CloudfrontDistributionTenantCustomizations,
-        CloudfrontDistributionTenantCustomizationsCertificate,
-        CloudfrontDistributionTenantCustomizationsGeoRestriction,
-        CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType,
-        CloudfrontDistributionTenantCustomizationsWebAcl,
-        CloudfrontDistributionTenantCustomizationsWebAclAction,
         CloudfrontDistributionTenantDomain,
+        CloudfrontDistributionTenantGeoRestriction,
         CloudfrontDistributionTenantManagedCertificateRequest,
-        CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference,
-        CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost,
-        CloudfrontDistributionTenantParameter;
+        CloudfrontDistributionTenantParameter,
+        CloudfrontDistributionTenantRestrictionType,
+        CloudfrontDistributionTenantValidationTokenHost,
+        CloudfrontDistributionTenantWebAcl;
 export 'src/cloudfront/aws_cloudfront_field_level_encryption_config.dart'
     show
         AwsCloudfrontFieldLevelEncryptionConfig,
         CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig,
-        CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfiles,
-        CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems,
+        CloudfrontFieldLevelEncryptionConfigContentTypeProfiles,
+        CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems,
         CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfig,
-        CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfiles,
-        CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfigQueryArgProfilesItems;
+        CloudfrontFieldLevelEncryptionConfigQueryArgProfiles,
+        CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems;
 export 'src/cloudfront/aws_cloudfront_field_level_encryption_profile.dart'
     show
         AwsCloudfrontFieldLevelEncryptionProfile,
         CloudfrontFieldLevelEncryptionProfileEncryptionEntities,
-        CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItems,
-        CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPatterns;
+        CloudfrontFieldLevelEncryptionProfileFieldPatterns,
+        CloudfrontFieldLevelEncryptionProfileItems;
 export 'src/cloudfront/aws_cloudfront_function.dart'
     show AwsCloudfrontFunction, CloudfrontFunctionRuntime;
 export 'src/cloudfront/aws_cloudfront_key_group.dart'
@@ -125,55 +115,46 @@ export 'src/cloudfront/aws_cloudfront_monitoring_subscription.dart'
     show
         AwsCloudfrontMonitoringSubscription,
         CloudfrontMonitoringSubscriptionMonitoringSubscription,
-        CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig,
-        CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus;
+        CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig,
+        CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus;
 export 'src/cloudfront/aws_cloudfront_multitenant_distribution.dart'
     show
         AwsCloudfrontMultitenantDistribution,
         CloudfrontMultitenantDistributionActiveTrustedKeyGroups,
-        CloudfrontMultitenantDistributionActiveTrustedKeyGroupsItems,
+        CloudfrontMultitenantDistributionAllowedMethods,
         CloudfrontMultitenantDistributionCacheBehavior,
-        CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods,
-        CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods,
-        CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation,
-        CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType,
-        CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociation,
-        CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType,
-        CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups,
-        CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy,
+        CloudfrontMultitenantDistributionCachedMethods,
         CloudfrontMultitenantDistributionCustomErrorResponse,
+        CloudfrontMultitenantDistributionCustomHeader,
+        CloudfrontMultitenantDistributionCustomOriginConfig,
         CloudfrontMultitenantDistributionDefaultCacheBehavior,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociation,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociation,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroups,
-        CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy,
+        CloudfrontMultitenantDistributionDefinition,
+        CloudfrontMultitenantDistributionEventType,
+        CloudfrontMultitenantDistributionFailoverCriteria,
+        CloudfrontMultitenantDistributionFunctionAssociation,
+        CloudfrontMultitenantDistributionGeoRestriction,
         CloudfrontMultitenantDistributionHttpVersion,
+        CloudfrontMultitenantDistributionIpAddressType,
+        CloudfrontMultitenantDistributionItems,
+        CloudfrontMultitenantDistributionLambdaFunctionAssociation,
+        CloudfrontMultitenantDistributionMember,
+        CloudfrontMultitenantDistributionMinimumProtocolVersion,
         CloudfrontMultitenantDistributionOrigin,
-        CloudfrontMultitenantDistributionOriginCustomHeader,
-        CloudfrontMultitenantDistributionOriginCustomOriginConfig,
-        CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType,
-        CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsConfig,
-        CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy,
-        CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols,
         CloudfrontMultitenantDistributionOriginGroup,
-        CloudfrontMultitenantDistributionOriginGroupFailoverCriteria,
-        CloudfrontMultitenantDistributionOriginGroupMember,
-        CloudfrontMultitenantDistributionOriginOriginShield,
-        CloudfrontMultitenantDistributionOriginVpcOriginConfig,
+        CloudfrontMultitenantDistributionOriginMtlsConfig,
+        CloudfrontMultitenantDistributionOriginProtocolPolicy,
+        CloudfrontMultitenantDistributionOriginShield,
+        CloudfrontMultitenantDistributionOriginSslProtocols,
+        CloudfrontMultitenantDistributionParameterDefinition,
+        CloudfrontMultitenantDistributionRestrictionType,
         CloudfrontMultitenantDistributionRestrictions,
-        CloudfrontMultitenantDistributionRestrictionsGeoRestriction,
-        CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType,
+        CloudfrontMultitenantDistributionSslSupportMethod,
+        CloudfrontMultitenantDistributionStringSchema,
         CloudfrontMultitenantDistributionTenantConfig,
-        CloudfrontMultitenantDistributionTenantConfigParameterDefinition,
-        CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinition,
-        CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefinitionStringSchema,
+        CloudfrontMultitenantDistributionTrustedKeyGroups,
         CloudfrontMultitenantDistributionViewerCertificate,
-        CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion,
-        CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod;
+        CloudfrontMultitenantDistributionViewerProtocolPolicy,
+        CloudfrontMultitenantDistributionVpcOriginConfig;
 export 'src/cloudfront/aws_cloudfront_origin_access_control.dart'
     show
         AwsCloudfrontOriginAccessControl,
@@ -185,15 +166,15 @@ export 'src/cloudfront/aws_cloudfront_origin_access_identity.dart'
 export 'src/cloudfront/aws_cloudfront_origin_request_policy.dart'
     show
         AwsCloudfrontOriginRequestPolicy,
+        CloudfrontOriginRequestPolicyCookieBehavior,
+        CloudfrontOriginRequestPolicyCookies,
         CloudfrontOriginRequestPolicyCookiesConfig,
-        CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior,
-        CloudfrontOriginRequestPolicyCookiesConfigCookies,
+        CloudfrontOriginRequestPolicyHeaderBehavior,
+        CloudfrontOriginRequestPolicyHeaders,
         CloudfrontOriginRequestPolicyHeadersConfig,
-        CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior,
-        CloudfrontOriginRequestPolicyHeadersConfigHeaders,
-        CloudfrontOriginRequestPolicyQueryStringsConfig,
-        CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior,
-        CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings;
+        CloudfrontOriginRequestPolicyQueryStringBehavior,
+        CloudfrontOriginRequestPolicyQueryStrings,
+        CloudfrontOriginRequestPolicyQueryStringsConfig;
 export 'src/cloudfront/aws_cloudfront_public_key.dart'
     show
         AwsCloudfrontPublicKey,
@@ -204,38 +185,38 @@ export 'src/cloudfront/aws_cloudfront_realtime_log_config.dart'
     show
         AwsCloudfrontRealtimeLogConfig,
         CloudfrontRealtimeLogConfigEndpoint,
-        CloudfrontRealtimeLogConfigEndpointKinesisStreamConfig,
-        CloudfrontRealtimeLogConfigEndpointStreamType;
+        CloudfrontRealtimeLogConfigKinesisStreamConfig,
+        CloudfrontRealtimeLogConfigStreamType;
 export 'src/cloudfront/aws_cloudfront_response_headers_policy.dart'
     show
         AwsCloudfrontResponseHeadersPolicy,
+        CloudfrontResponseHeadersPolicyAccessControlAllowHeaders,
+        CloudfrontResponseHeadersPolicyAccessControlAllowMethods,
+        CloudfrontResponseHeadersPolicyAccessControlAllowOrigins,
+        CloudfrontResponseHeadersPolicyAccessControlExposeHeaders,
+        CloudfrontResponseHeadersPolicyContentSecurityPolicy,
+        CloudfrontResponseHeadersPolicyContentTypeOptions,
         CloudfrontResponseHeadersPolicyCorsConfig,
-        CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders,
-        CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods,
-        CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins,
-        CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders,
         CloudfrontResponseHeadersPolicyCustomHeadersConfig,
         CloudfrontResponseHeadersPolicyCustomHeadersConfigItems,
+        CloudfrontResponseHeadersPolicyFrameOption,
+        CloudfrontResponseHeadersPolicyFrameOptions,
+        CloudfrontResponseHeadersPolicyReferrerPolicy,
+        CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy,
         CloudfrontResponseHeadersPolicyRemoveHeadersConfig,
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigItems,
         CloudfrontResponseHeadersPolicySecurityHeadersConfig,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigContentSecurityPolicy,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigContentTypeOptions,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportSecurity,
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigXssProtection,
-        CloudfrontResponseHeadersPolicyServerTimingHeadersConfig;
+        CloudfrontResponseHeadersPolicyServerTimingHeadersConfig,
+        CloudfrontResponseHeadersPolicyStrictTransportSecurity,
+        CloudfrontResponseHeadersPolicyXssProtection;
 export 'src/cloudfront/aws_cloudfront_trust_store.dart'
     show
         AwsCloudfrontTrustStore,
-        CloudfrontTrustStoreCaCertificatesBundleSource,
-        CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3Location;
+        CloudfrontTrustStoreCaCertificatesBundleS3Location,
+        CloudfrontTrustStoreCaCertificatesBundleSource;
 export 'src/cloudfront/aws_cloudfront_vpc_origin.dart'
     show
         AwsCloudfrontVpcOrigin,
-        CloudfrontVpcOriginVpcOriginEndpointConfig,
-        CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy,
-        CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols;
+        CloudfrontVpcOriginEndpointConfig,
+        CloudfrontVpcOriginProtocolPolicy,
+        CloudfrontVpcOriginSslProtocols;

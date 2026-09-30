@@ -19,14 +19,10 @@ enum SsoadminTrustedTokenIssuerTrustedTokenIssuerType implements TerraformEnum {
 /// Typed helper for the `trusted_token_issuer_configuration` block of
 /// `aws_ssoadmin_trusted_token_issuer` (derived from provider schema).
 @immutable
-final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration {
-  const SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration({
-    this.oidcJwtConfiguration,
-  });
+final class SsoadminTrustedTokenIssuerConfiguration {
+  const SsoadminTrustedTokenIssuerConfiguration({this.oidcJwtConfiguration});
 
-  final List<
-    SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration
-  >?
+  final List<SsoadminTrustedTokenIssuerOidcJwtConfiguration>?
   oidcJwtConfiguration;
 
   Map<String, Object?> encode() => {
@@ -40,8 +36,8 @@ final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration {
 /// Typed helper for the `trusted_token_issuer_configuration.oidc_jwt_configuration` block of
 /// `aws_ssoadmin_trusted_token_issuer` (derived from provider schema).
 @immutable
-final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration {
-  const SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration({
+final class SsoadminTrustedTokenIssuerOidcJwtConfiguration {
+  const SsoadminTrustedTokenIssuerOidcJwtConfiguration({
     required this.claimAttributePath,
     required this.identityStoreAttributePath,
     required this.issuerUrl,
@@ -54,9 +50,7 @@ final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConf
 
   final TfArg<String> issuerUrl;
 
-  final TfArg<
-    SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption
-  >
+  final TfArg<SsoadminTrustedTokenIssuerJwksRetrievalOption>
   jwksRetrievalOption;
 
   Map<String, Object?> encode() => {
@@ -68,13 +62,10 @@ final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConf
 }
 
 /// `jwks_retrieval_option` — derived from the provider schema description.
-enum SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption
-    implements TerraformEnum {
+enum SsoadminTrustedTokenIssuerJwksRetrievalOption implements TerraformEnum {
   openIdDiscovery('OPEN_ID_DISCOVERY');
 
-  const SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption(
-    this.terraformValue,
-  );
+  const SsoadminTrustedTokenIssuerJwksRetrievalOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -92,7 +83,7 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
     TfArg<Map<String, String>>? tags,
     required TfArg<SsoadminTrustedTokenIssuerTrustedTokenIssuerType>
     trustedTokenIssuerType,
-    List<SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration>?
+    List<SsoadminTrustedTokenIssuerConfiguration>?
     trustedTokenIssuerConfiguration,
     super.lifecycle,
     super.dependsOn,

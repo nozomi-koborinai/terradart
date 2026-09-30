@@ -54,7 +54,7 @@ final class VpcIpamPoolSourceResource {
 
   final TfArg<String> resourceRegion;
 
-  final TfArg<VpcIpamPoolSourceResourceResourceType> resourceType;
+  final TfArg<VpcIpamPoolResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'resource_id': resourceId.toTfJson(),
@@ -65,10 +65,10 @@ final class VpcIpamPoolSourceResource {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum VpcIpamPoolSourceResourceResourceType implements TerraformEnum {
+enum VpcIpamPoolResourceType implements TerraformEnum {
   vpc('vpc');
 
-  const VpcIpamPoolSourceResourceResourceType(this.terraformValue);
+  const VpcIpamPoolResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }

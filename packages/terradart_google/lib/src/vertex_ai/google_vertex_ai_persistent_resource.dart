@@ -34,8 +34,7 @@ final class VertexAiPersistentResourcePscInterfaceConfig {
 
   final TfArg<String>? networkAttachment;
 
-  final List<VertexAiPersistentResourcePscInterfaceConfigDnsPeeringConfigs>?
-  dnsPeeringConfigs;
+  final List<VertexAiPersistentResourceDnsPeeringConfigs>? dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
@@ -47,8 +46,8 @@ final class VertexAiPersistentResourcePscInterfaceConfig {
 /// Typed helper for the `psc_interface_config.dns_peering_configs` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourcePscInterfaceConfigDnsPeeringConfigs {
-  const VertexAiPersistentResourcePscInterfaceConfigDnsPeeringConfigs({
+final class VertexAiPersistentResourceDnsPeeringConfigs {
+  const VertexAiPersistentResourceDnsPeeringConfigs({
     required this.domain,
     required this.targetNetwork,
     required this.targetProject,
@@ -70,8 +69,8 @@ final class VertexAiPersistentResourcePscInterfaceConfigDnsPeeringConfigs {
 /// Typed helper for the `resource_pools` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourcePools {
-  const VertexAiPersistentResourceResourcePools({
+final class VertexAiPersistentResourcePools {
+  const VertexAiPersistentResourcePools({
     this.id,
     this.replicaCount,
     this.autoscalingSpec,
@@ -83,11 +82,11 @@ final class VertexAiPersistentResourceResourcePools {
 
   final TfArg<String>? replicaCount;
 
-  final VertexAiPersistentResourceResourcePoolsAutoscalingSpec? autoscalingSpec;
+  final VertexAiPersistentResourceAutoscalingSpec? autoscalingSpec;
 
-  final VertexAiPersistentResourceResourcePoolsDiskSpec? diskSpec;
+  final VertexAiPersistentResourceDiskSpec? diskSpec;
 
-  final VertexAiPersistentResourceResourcePoolsMachineSpec machineSpec;
+  final VertexAiPersistentResourceMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
@@ -101,8 +100,8 @@ final class VertexAiPersistentResourceResourcePools {
 /// Typed helper for the `resource_pools.autoscaling_spec` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourcePoolsAutoscalingSpec {
-  const VertexAiPersistentResourceResourcePoolsAutoscalingSpec({
+final class VertexAiPersistentResourceAutoscalingSpec {
+  const VertexAiPersistentResourceAutoscalingSpec({
     this.maxReplicaCount,
     this.minReplicaCount,
   });
@@ -120,8 +119,8 @@ final class VertexAiPersistentResourceResourcePoolsAutoscalingSpec {
 /// Typed helper for the `resource_pools.disk_spec` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourcePoolsDiskSpec {
-  const VertexAiPersistentResourceResourcePoolsDiskSpec({
+final class VertexAiPersistentResourceDiskSpec {
+  const VertexAiPersistentResourceDiskSpec({
     this.bootDiskSizeGb,
     this.bootDiskType,
   });
@@ -139,8 +138,8 @@ final class VertexAiPersistentResourceResourcePoolsDiskSpec {
 /// Typed helper for the `resource_pools.machine_spec` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourcePoolsMachineSpec {
-  const VertexAiPersistentResourceResourcePoolsMachineSpec({
+final class VertexAiPersistentResourceMachineSpec {
+  const VertexAiPersistentResourceMachineSpec({
     this.acceleratorCount,
     this.acceleratorType,
     this.machineType,
@@ -162,13 +161,10 @@ final class VertexAiPersistentResourceResourcePoolsMachineSpec {
 /// Typed helper for the `resource_runtime_spec` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourceRuntimeSpec {
-  const VertexAiPersistentResourceResourceRuntimeSpec({
-    this.serviceAccountSpec,
-  });
+final class VertexAiPersistentResourceRuntimeSpec {
+  const VertexAiPersistentResourceRuntimeSpec({this.serviceAccountSpec});
 
-  final VertexAiPersistentResourceResourceRuntimeSpecServiceAccountSpec?
-  serviceAccountSpec;
+  final VertexAiPersistentResourceServiceAccountSpec? serviceAccountSpec;
 
   Map<String, Object?> encode() => {
     'service_account_spec': ?serviceAccountSpec?.encode(),
@@ -178,8 +174,8 @@ final class VertexAiPersistentResourceResourceRuntimeSpec {
 /// Typed helper for the `resource_runtime_spec.service_account_spec` block of
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
-final class VertexAiPersistentResourceResourceRuntimeSpecServiceAccountSpec {
-  const VertexAiPersistentResourceResourceRuntimeSpecServiceAccountSpec({
+final class VertexAiPersistentResourceServiceAccountSpec {
+  const VertexAiPersistentResourceServiceAccountSpec({
     required this.enableCustomServiceAccount,
   });
 
@@ -218,12 +214,12 @@ final class GoogleVertexAiPersistentResource extends Resource {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? displayName,
-    required List<VertexAiPersistentResourceResourcePools> resourcePools,
+    required List<VertexAiPersistentResourcePools> resourcePools,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? reservedIpRanges,
     VertexAiPersistentResourceEncryptionSpec? encryptionSpec,
     VertexAiPersistentResourcePscInterfaceConfig? pscInterfaceConfig,
-    VertexAiPersistentResourceResourceRuntimeSpec? resourceRuntimeSpec,
+    VertexAiPersistentResourceRuntimeSpec? resourceRuntimeSpec,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

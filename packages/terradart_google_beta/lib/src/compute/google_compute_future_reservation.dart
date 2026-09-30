@@ -57,13 +57,11 @@ final class ComputeFutureReservationAggregateReservation {
     required this.reservedResources,
   });
 
-  final TfArg<ComputeFutureReservationAggregateReservationVmFamily>? vmFamily;
+  final TfArg<ComputeFutureReservationVmFamily>? vmFamily;
 
-  final TfArg<ComputeFutureReservationAggregateReservationWorkloadType>?
-  workloadType;
+  final TfArg<ComputeFutureReservationWorkloadType>? workloadType;
 
-  final List<ComputeFutureReservationAggregateReservationReservedResources>
-  reservedResources;
+  final List<ComputeFutureReservationReservedResources> reservedResources;
 
   Map<String, Object?> encode() => {
     'vm_family': ?vmFamily?.toTfJson(),
@@ -73,8 +71,7 @@ final class ComputeFutureReservationAggregateReservation {
 }
 
 /// `vm_family` — derived from the provider schema description.
-enum ComputeFutureReservationAggregateReservationVmFamily
-    implements TerraformEnum {
+enum ComputeFutureReservationVmFamily implements TerraformEnum {
   vmFamilyCloudTpuDeviceCt3('VM_FAMILY_CLOUD_TPU_DEVICE_CT3'),
   vmFamilyCloudTpuLiteDeviceCt5l('VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L'),
   vmFamilyCloudTpuLitePodSliceCt5lp('VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP'),
@@ -83,23 +80,18 @@ enum ComputeFutureReservationAggregateReservationVmFamily
   vmFamilyCloudTpuPodSliceCt4p('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P'),
   vmFamilyCloudTpuPodSliceCt5p('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P');
 
-  const ComputeFutureReservationAggregateReservationVmFamily(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationVmFamily(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `workload_type` — derived from the provider schema description.
-enum ComputeFutureReservationAggregateReservationWorkloadType
-    implements TerraformEnum {
+enum ComputeFutureReservationWorkloadType implements TerraformEnum {
   batch('BATCH'),
   serving('SERVING'),
   unspecified('UNSPECIFIED');
 
-  const ComputeFutureReservationAggregateReservationWorkloadType(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationWorkloadType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -107,13 +99,10 @@ enum ComputeFutureReservationAggregateReservationWorkloadType
 /// Typed helper for the `aggregate_reservation.reserved_resources` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationAggregateReservationReservedResources {
-  const ComputeFutureReservationAggregateReservationReservedResources({
-    this.accelerator,
-  });
+final class ComputeFutureReservationReservedResources {
+  const ComputeFutureReservationReservedResources({this.accelerator});
 
-  final ComputeFutureReservationAggregateReservationReservedResourcesAccelerator?
-  accelerator;
+  final ComputeFutureReservationAccelerator? accelerator;
 
   Map<String, Object?> encode() => {'accelerator': ?accelerator?.encode()};
 }
@@ -121,8 +110,8 @@ final class ComputeFutureReservationAggregateReservationReservedResources {
 /// Typed helper for the `aggregate_reservation.reserved_resources.accelerator` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationAggregateReservationReservedResourcesAccelerator {
-  const ComputeFutureReservationAggregateReservationReservedResourcesAccelerator({
+final class ComputeFutureReservationAccelerator {
+  const ComputeFutureReservationAccelerator({
     this.acceleratorCount,
     this.acceleratorType,
   });
@@ -168,10 +157,9 @@ final class ComputeFutureReservationCommitmentInfo {
 
   final TfArg<String>? commitmentName;
 
-  final TfArg<ComputeFutureReservationCommitmentInfoCommitmentPlan>?
-  commitmentPlan;
+  final TfArg<ComputeFutureReservationCommitmentPlan>? commitmentPlan;
 
-  final TfArg<ComputeFutureReservationCommitmentInfoPreviousCommitmentTerms>?
+  final TfArg<ComputeFutureReservationPreviousCommitmentTerms>?
   previousCommitmentTerms;
 
   Map<String, Object?> encode() => {
@@ -182,27 +170,21 @@ final class ComputeFutureReservationCommitmentInfo {
 }
 
 /// `commitment_plan` — derived from the provider schema description.
-enum ComputeFutureReservationCommitmentInfoCommitmentPlan
-    implements TerraformEnum {
+enum ComputeFutureReservationCommitmentPlan implements TerraformEnum {
   invalid('INVALID'),
   thirtySixMonth('THIRTY_SIX_MONTH'),
   twelveMonth('TWELVE_MONTH');
 
-  const ComputeFutureReservationCommitmentInfoCommitmentPlan(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationCommitmentPlan(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `previous_commitment_terms` — derived from the provider schema description.
-enum ComputeFutureReservationCommitmentInfoPreviousCommitmentTerms
-    implements TerraformEnum {
+enum ComputeFutureReservationPreviousCommitmentTerms implements TerraformEnum {
   extend('EXTEND');
 
-  const ComputeFutureReservationCommitmentInfoPreviousCommitmentTerms(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationPreviousCommitmentTerms(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -232,9 +214,9 @@ final class ComputeFutureReservationShareSettings {
 
   final TfArg<List<String>>? projects;
 
-  final TfArg<ComputeFutureReservationShareSettingsShareType>? shareType;
+  final TfArg<ComputeFutureReservationShareType>? shareType;
 
-  final List<ComputeFutureReservationShareSettingsProjectMap>? projectMap;
+  final List<ComputeFutureReservationProjectMap>? projectMap;
 
   Map<String, Object?> encode() => {
     'projects': ?projects?.toTfJson(),
@@ -245,11 +227,11 @@ final class ComputeFutureReservationShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeFutureReservationShareSettingsShareType implements TerraformEnum {
+enum ComputeFutureReservationShareType implements TerraformEnum {
   local('LOCAL'),
   specificProjects('SPECIFIC_PROJECTS');
 
-  const ComputeFutureReservationShareSettingsShareType(this.terraformValue);
+  const ComputeFutureReservationShareType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -257,11 +239,8 @@ enum ComputeFutureReservationShareSettingsShareType implements TerraformEnum {
 /// Typed helper for the `share_settings.project_map` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationShareSettingsProjectMap {
-  const ComputeFutureReservationShareSettingsProjectMap({
-    required this.id,
-    this.projectId,
-  });
+final class ComputeFutureReservationProjectMap {
+  const ComputeFutureReservationProjectMap({required this.id, this.projectId});
 
   final TfArg<String> id;
 
@@ -287,8 +266,7 @@ final class ComputeFutureReservationSpecificSkuProperties {
 
   final TfArg<String>? totalCount;
 
-  final ComputeFutureReservationSpecificSkuPropertiesInstanceProperties?
-  instanceProperties;
+  final ComputeFutureReservationInstanceProperties? instanceProperties;
 
   Map<String, Object?> encode() => {
     'source_instance_template': ?sourceInstanceTemplate?.toTfJson(),
@@ -300,8 +278,8 @@ final class ComputeFutureReservationSpecificSkuProperties {
 /// Typed helper for the `specific_sku_properties.instance_properties` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationSpecificSkuPropertiesInstanceProperties {
-  const ComputeFutureReservationSpecificSkuPropertiesInstanceProperties({
+final class ComputeFutureReservationInstanceProperties {
+  const ComputeFutureReservationInstanceProperties({
     this.locationHint,
     this.machineType,
     this.maintenanceFreezeDurationHours,
@@ -317,22 +295,13 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstanceProperties {
 
   final TfArg<num>? maintenanceFreezeDurationHours;
 
-  final TfArg<
-    ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesMaintenanceInterval
-  >?
-  maintenanceInterval;
+  final TfArg<ComputeFutureReservationMaintenanceInterval>? maintenanceInterval;
 
   final TfArg<String>? minCpuPlatform;
 
-  final List<
-    ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuestAccelerators
-  >?
-  guestAccelerators;
+  final List<ComputeFutureReservationGuestAccelerators>? guestAccelerators;
 
-  final List<
-    ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsds
-  >?
-  localSsds;
+  final List<ComputeFutureReservationLocalSsds>? localSsds;
 
   Map<String, Object?> encode() => {
     'location_hint': ?locationHint?.toTfJson(),
@@ -349,13 +318,10 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstanceProperties {
 }
 
 /// `maintenance_interval` — derived from the provider schema description.
-enum ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesMaintenanceInterval
-    implements TerraformEnum {
+enum ComputeFutureReservationMaintenanceInterval implements TerraformEnum {
   periodic('PERIODIC');
 
-  const ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesMaintenanceInterval(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationMaintenanceInterval(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -363,8 +329,8 @@ enum ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesMaintenanceI
 /// Typed helper for the `specific_sku_properties.instance_properties.guest_accelerators` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuestAccelerators {
-  const ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuestAccelerators({
+final class ComputeFutureReservationGuestAccelerators {
+  const ComputeFutureReservationGuestAccelerators({
     this.acceleratorCount,
     this.acceleratorType,
   });
@@ -382,18 +348,12 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuest
 /// Typed helper for the `specific_sku_properties.instance_properties.local_ssds` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsds {
-  const ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsds({
-    this.diskSizeGb,
-    this.interface,
-  });
+final class ComputeFutureReservationLocalSsds {
+  const ComputeFutureReservationLocalSsds({this.diskSizeGb, this.interface});
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<
-    ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsdsInterface
-  >?
-  interface;
+  final TfArg<ComputeFutureReservationInterface>? interface;
 
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -402,14 +362,11 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocal
 }
 
 /// `interface` — derived from the provider schema description.
-enum ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsdsInterface
-    implements TerraformEnum {
+enum ComputeFutureReservationInterface implements TerraformEnum {
   scsi('SCSI'),
   nvme('NVME');
 
-  const ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsdsInterface(
-    this.terraformValue,
-  );
+  const ComputeFutureReservationInterface(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -428,7 +385,7 @@ final class ComputeFutureReservationTimeWindow {
 
   final TfArg<String> startTime;
 
-  final ComputeFutureReservationTimeWindowDuration? duration;
+  final ComputeFutureReservationDuration? duration;
 
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
@@ -440,8 +397,8 @@ final class ComputeFutureReservationTimeWindow {
 /// Typed helper for the `time_window.duration` block of
 /// `google_compute_future_reservation` (derived from provider schema).
 @immutable
-final class ComputeFutureReservationTimeWindowDuration {
-  const ComputeFutureReservationTimeWindowDuration({this.nanos, this.seconds});
+final class ComputeFutureReservationDuration {
+  const ComputeFutureReservationDuration({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 

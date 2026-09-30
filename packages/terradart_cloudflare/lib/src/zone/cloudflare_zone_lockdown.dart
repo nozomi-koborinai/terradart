@@ -15,7 +15,7 @@ const Set<String> _cloudflareZoneLockdownSensitive = <String>{};
 final class ZoneLockdownConfigurations {
   const ZoneLockdownConfigurations({this.target, this.value});
 
-  final TfArg<ZoneLockdownConfigurationsTarget>? target;
+  final TfArg<ZoneLockdownTarget>? target;
 
   final TfArg<String>? value;
 
@@ -26,11 +26,11 @@ final class ZoneLockdownConfigurations {
 }
 
 /// `target` — derived from the provider schema description.
-enum ZoneLockdownConfigurationsTarget implements TerraformEnum {
+enum ZoneLockdownTarget implements TerraformEnum {
   ip('ip'),
   ipRange('ip_range');
 
-  const ZoneLockdownConfigurationsTarget(this.terraformValue);
+  const ZoneLockdownTarget(this.terraformValue);
   @override
   final String terraformValue;
 }

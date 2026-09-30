@@ -48,8 +48,7 @@ final class FinspaceKxClusterAutoScalingConfiguration {
     required this.scaleOutCooldownSeconds,
   });
 
-  final TfArg<FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric>
-  autoScalingMetric;
+  final TfArg<FinspaceKxClusterAutoScalingMetric> autoScalingMetric;
 
   final TfArg<num> maxNodeCount;
 
@@ -72,13 +71,10 @@ final class FinspaceKxClusterAutoScalingConfiguration {
 }
 
 /// `auto_scaling_metric` — derived from the provider schema description.
-enum FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric
-    implements TerraformEnum {
+enum FinspaceKxClusterAutoScalingMetric implements TerraformEnum {
   cpuUtilizationPercentage('CPU_UTILIZATION_PERCENTAGE');
 
-  const FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric(
-    this.terraformValue,
-  );
+  const FinspaceKxClusterAutoScalingMetric(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -161,7 +157,7 @@ final class FinspaceKxClusterDatabase {
 
   final TfArg<String>? dataviewName;
 
-  final List<FinspaceKxClusterDatabaseCacheConfigurations>? cacheConfigurations;
+  final List<FinspaceKxClusterCacheConfigurations>? cacheConfigurations;
 
   Map<String, Object?> encode() => {
     'changeset_id': ?changesetId?.toTfJson(),
@@ -177,8 +173,8 @@ final class FinspaceKxClusterDatabase {
 /// Typed helper for the `database.cache_configurations` block of
 /// `aws_finspace_kx_cluster` (derived from provider schema).
 @immutable
-final class FinspaceKxClusterDatabaseCacheConfigurations {
-  const FinspaceKxClusterDatabaseCacheConfigurations({
+final class FinspaceKxClusterCacheConfigurations {
+  const FinspaceKxClusterCacheConfigurations({
     required this.cacheType,
     this.dbPaths,
   });
@@ -283,7 +279,7 @@ final class FinspaceKxClusterVpcConfiguration {
     required this.vpcId,
   });
 
-  final TfArg<FinspaceKxClusterVpcConfigurationIpAddressType> ipAddressType;
+  final TfArg<FinspaceKxClusterIpAddressType> ipAddressType;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
@@ -300,10 +296,10 @@ final class FinspaceKxClusterVpcConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum FinspaceKxClusterVpcConfigurationIpAddressType implements TerraformEnum {
+enum FinspaceKxClusterIpAddressType implements TerraformEnum {
   ipV4('IP_V4');
 
-  const FinspaceKxClusterVpcConfigurationIpAddressType(this.terraformValue);
+  const FinspaceKxClusterIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -7,42 +7,41 @@ export 'src/fsx/aws_fsx_backup.dart' show AwsFsxBackup;
 export 'src/fsx/aws_fsx_data_repository_association.dart'
     show
         AwsFsxDataRepositoryAssociation,
-        FsxDataRepositoryAssociationS3,
-        FsxDataRepositoryAssociationS3AutoExportPolicy,
-        FsxDataRepositoryAssociationS3AutoExportPolicyEvents,
-        FsxDataRepositoryAssociationS3AutoImportPolicy,
-        FsxDataRepositoryAssociationS3AutoImportPolicyEvents;
+        FsxDataRepositoryAssociationAutoExportPolicy,
+        FsxDataRepositoryAssociationAutoImportPolicy,
+        FsxDataRepositoryAssociationEvents,
+        FsxDataRepositoryAssociationS3;
 export 'src/fsx/aws_fsx_file_cache.dart'
     show
         AwsFsxFileCache,
         FsxFileCacheDataRepositoryAssociation,
-        FsxFileCacheDataRepositoryAssociationNfs,
-        FsxFileCacheDataRepositoryAssociationNfsVersion,
+        FsxFileCacheDeploymentType,
         FsxFileCacheFileCacheType,
         FsxFileCacheLustreConfiguration,
-        FsxFileCacheLustreConfigurationDeploymentType,
-        FsxFileCacheLustreConfigurationMetadataConfiguration;
+        FsxFileCacheMetadataConfiguration,
+        FsxFileCacheNfs,
+        FsxFileCacheVersion;
 export 'src/fsx/aws_fsx_lustre_file_system.dart'
     show
         AwsFsxLustreFileSystem,
         FsxLustreFileSystemAutoImportPolicy,
         FsxLustreFileSystemDataCompressionType,
         FsxLustreFileSystemDataReadCacheConfiguration,
-        FsxLustreFileSystemDataReadCacheConfigurationSizingMode,
         FsxLustreFileSystemDeploymentType,
         FsxLustreFileSystemDriveCacheType,
+        FsxLustreFileSystemLevel,
         FsxLustreFileSystemLogConfiguration,
-        FsxLustreFileSystemLogConfigurationLevel,
         FsxLustreFileSystemMetadataConfiguration,
-        FsxLustreFileSystemMetadataConfigurationMode,
+        FsxLustreFileSystemMode,
         FsxLustreFileSystemRootSquashConfiguration,
+        FsxLustreFileSystemSizingMode,
         FsxLustreFileSystemStorageType;
 export 'src/fsx/aws_fsx_ontap_file_system.dart'
     show
         AwsFsxOntapFileSystem,
         FsxOntapFileSystemDeploymentType,
         FsxOntapFileSystemDiskIopsConfiguration,
-        FsxOntapFileSystemDiskIopsConfigurationMode,
+        FsxOntapFileSystemMode,
         FsxOntapFileSystemNetworkType,
         FsxOntapFileSystemStorageType,
         FsxOntapFileSystemThroughputCapacity,
@@ -52,85 +51,83 @@ export 'src/fsx/aws_fsx_ontap_storage_virtual_machine.dart'
     show
         AwsFsxOntapStorageVirtualMachine,
         FsxOntapStorageVirtualMachineActiveDirectoryConfiguration,
-        FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManagedActiveDirectoryConfiguration,
-        FsxOntapStorageVirtualMachineRootVolumeSecurityStyle;
+        FsxOntapStorageVirtualMachineRootVolumeSecurityStyle,
+        FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration;
 export 'src/fsx/aws_fsx_ontap_volume.dart'
     show
         AwsFsxOntapVolume,
         FsxOntapVolumeAggregateConfiguration,
+        FsxOntapVolumeAutocommitPeriod,
+        FsxOntapVolumeDefaultRetention,
+        FsxOntapVolumeDefaultRetentionType,
+        FsxOntapVolumeMaximumRetention,
+        FsxOntapVolumeMinimumRetention,
         FsxOntapVolumeOntapVolumeType,
+        FsxOntapVolumePrivilegedDelete,
+        FsxOntapVolumeRetentionPeriod,
         FsxOntapVolumeSecurityStyle,
         FsxOntapVolumeSize,
         FsxOntapVolumeSizeInBytes,
         FsxOntapVolumeSizeInMegabytes,
         FsxOntapVolumeSnaplockConfiguration,
-        FsxOntapVolumeSnaplockConfigurationAutocommitPeriod,
-        FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType,
-        FsxOntapVolumeSnaplockConfigurationPrivilegedDelete,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriod,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetentionType,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention,
-        FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetentionType,
-        FsxOntapVolumeSnaplockConfigurationSnaplockType,
+        FsxOntapVolumeSnaplockType,
         FsxOntapVolumeTieringPolicy,
         FsxOntapVolumeTieringPolicyName,
+        FsxOntapVolumeType,
         FsxOntapVolumeVolumeStyle,
         FsxOntapVolumeVolumeType;
 export 'src/fsx/aws_fsx_openzfs_file_system.dart'
     show
         AwsFsxOpenzfsFileSystem,
+        FsxOpenzfsFileSystemClientConfigurations,
+        FsxOpenzfsFileSystemDataCompressionType,
         FsxOpenzfsFileSystemDeleteOptions,
         FsxOpenzfsFileSystemDeploymentType,
         FsxOpenzfsFileSystemDiskIopsConfiguration,
-        FsxOpenzfsFileSystemDiskIopsConfigurationMode,
+        FsxOpenzfsFileSystemMode,
         FsxOpenzfsFileSystemNetworkType,
+        FsxOpenzfsFileSystemNfsExports,
         FsxOpenzfsFileSystemReadCacheConfiguration,
-        FsxOpenzfsFileSystemReadCacheConfigurationSizingMode,
         FsxOpenzfsFileSystemRootVolumeConfiguration,
-        FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType,
-        FsxOpenzfsFileSystemRootVolumeConfigurationNfsExports,
-        FsxOpenzfsFileSystemRootVolumeConfigurationNfsExportsClientConfigurations,
-        FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas,
-        FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType,
-        FsxOpenzfsFileSystemStorageType;
+        FsxOpenzfsFileSystemSizingMode,
+        FsxOpenzfsFileSystemStorageType,
+        FsxOpenzfsFileSystemType,
+        FsxOpenzfsFileSystemUserAndGroupQuotas;
 export 'src/fsx/aws_fsx_openzfs_snapshot.dart' show AwsFsxOpenzfsSnapshot;
 export 'src/fsx/aws_fsx_openzfs_volume.dart'
     show
         AwsFsxOpenzfsVolume,
+        FsxOpenzfsVolumeClientConfigurations,
+        FsxOpenzfsVolumeCopyStrategy,
         FsxOpenzfsVolumeDataCompressionType,
         FsxOpenzfsVolumeDeleteVolumeOptions,
         FsxOpenzfsVolumeNfsExports,
-        FsxOpenzfsVolumeNfsExportsClientConfigurations,
         FsxOpenzfsVolumeOriginSnapshot,
-        FsxOpenzfsVolumeOriginSnapshotCopyStrategy,
+        FsxOpenzfsVolumeType,
         FsxOpenzfsVolumeUserAndGroupQuotas,
-        FsxOpenzfsVolumeUserAndGroupQuotasType,
         FsxOpenzfsVolumeVolumeType;
 export 'src/fsx/aws_fsx_s3_access_point_attachment.dart'
     show
         AwsFsxS3AccessPointAttachment,
+        FsxS3AccessPointAttachmentFileSystemIdentity,
+        FsxS3AccessPointAttachmentFileSystemIdentityType,
         FsxS3AccessPointAttachmentOpenzfsConfiguration,
-        FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity,
-        FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosixUser,
-        FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType,
+        FsxS3AccessPointAttachmentPosixUser,
         FsxS3AccessPointAttachmentS3AccessPoint,
-        FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration,
-        FsxS3AccessPointAttachmentType;
+        FsxS3AccessPointAttachmentType,
+        FsxS3AccessPointAttachmentVpcConfiguration;
 export 'src/fsx/aws_fsx_windows_file_system.dart'
     show
         AwsFsxWindowsFileSystem,
         FsxWindowsFileSystemActiveDirectory,
         FsxWindowsFileSystemActiveDirectoryId,
-        FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory,
         FsxWindowsFileSystemAuditLogConfiguration,
-        FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel,
-        FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel,
         FsxWindowsFileSystemDeploymentType,
         FsxWindowsFileSystemDiskIopsConfiguration,
-        FsxWindowsFileSystemDiskIopsConfigurationMode,
+        FsxWindowsFileSystemFileAccessAuditLogLevel,
+        FsxWindowsFileSystemFileShareAccessAuditLogLevel,
+        FsxWindowsFileSystemMode,
         FsxWindowsFileSystemNetworkType,
         FsxWindowsFileSystemSelfManagedActiveDirectory,
+        FsxWindowsFileSystemSelfManagedActiveDirectoryChoice,
         FsxWindowsFileSystemStorageType;

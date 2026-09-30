@@ -10,11 +10,11 @@ export 'src/workspacesweb/aws_workspacesweb_browser_settings_association.dart'
 export 'src/workspacesweb/aws_workspacesweb_data_protection_settings.dart'
     show
         AwsWorkspaceswebDataProtectionSettings,
+        WorkspaceswebDataProtectionSettingsCustomPattern,
         WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration,
-        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern,
-        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern,
-        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder,
-        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType;
+        WorkspaceswebDataProtectionSettingsInlineRedactionPattern,
+        WorkspaceswebDataProtectionSettingsRedactionPlaceHolder,
+        WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType;
 export 'src/workspacesweb/aws_workspacesweb_data_protection_settings_association.dart'
     show AwsWorkspaceswebDataProtectionSettingsAssociation;
 export 'src/workspacesweb/aws_workspacesweb_identity_provider.dart'
@@ -37,15 +37,15 @@ export 'src/workspacesweb/aws_workspacesweb_portal.dart'
 export 'src/workspacesweb/aws_workspacesweb_session_logger.dart'
     show
         AwsWorkspaceswebSessionLogger,
+        WorkspaceswebSessionLoggerAll,
         WorkspaceswebSessionLoggerEventFilter,
         WorkspaceswebSessionLoggerEventFilterAll,
-        WorkspaceswebSessionLoggerEventFilterAllChoice,
         WorkspaceswebSessionLoggerEventFilterInclude,
-        WorkspaceswebSessionLoggerEventFilterIncludeChoice,
+        WorkspaceswebSessionLoggerFolderStructure,
+        WorkspaceswebSessionLoggerInclude,
         WorkspaceswebSessionLoggerLogConfiguration,
-        WorkspaceswebSessionLoggerLogConfigurationS3,
-        WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure,
-        WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat;
+        WorkspaceswebSessionLoggerLogFileFormat,
+        WorkspaceswebSessionLoggerS3;
 export 'src/workspacesweb/aws_workspacesweb_session_logger_association.dart'
     show AwsWorkspaceswebSessionLoggerAssociation;
 export 'src/workspacesweb/aws_workspacesweb_trust_store.dart'
@@ -59,19 +59,19 @@ export 'src/workspacesweb/aws_workspacesweb_user_access_logging_settings_associa
 export 'src/workspacesweb/aws_workspacesweb_user_settings.dart'
     show
         AwsWorkspaceswebUserSettings,
+        WorkspaceswebUserSettingsAllowlist,
+        WorkspaceswebUserSettingsBlocklist,
         WorkspaceswebUserSettingsCookieSynchronizationConfiguration,
-        WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist,
-        WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist,
         WorkspaceswebUserSettingsCopyAllowed,
         WorkspaceswebUserSettingsDeepLinkAllowed,
         WorkspaceswebUserSettingsDownloadAllowed,
+        WorkspaceswebUserSettingsHiddenToolbarItems,
+        WorkspaceswebUserSettingsMaxDisplayResolution,
         WorkspaceswebUserSettingsPasteAllowed,
         WorkspaceswebUserSettingsPrintAllowed,
         WorkspaceswebUserSettingsToolbarConfiguration,
-        WorkspaceswebUserSettingsToolbarConfigurationHiddenToolbarItems,
-        WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution,
-        WorkspaceswebUserSettingsToolbarConfigurationToolbarType,
-        WorkspaceswebUserSettingsToolbarConfigurationVisualMode,
-        WorkspaceswebUserSettingsUploadAllowed;
+        WorkspaceswebUserSettingsToolbarType,
+        WorkspaceswebUserSettingsUploadAllowed,
+        WorkspaceswebUserSettingsVisualMode;
 export 'src/workspacesweb/aws_workspacesweb_user_settings_association.dart'
     show AwsWorkspaceswebUserSettingsAssociation;

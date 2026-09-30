@@ -35,7 +35,7 @@ enum EksCapabilityType implements TerraformEnum {
 final class EksCapabilityConfiguration {
   const EksCapabilityConfiguration({this.argoCd});
 
-  final List<EksCapabilityConfigurationArgoCd>? argoCd;
+  final List<EksCapabilityArgoCd>? argoCd;
 
   Map<String, Object?> encode() => {
     if (argoCd != null) 'argo_cd': [for (final e in argoCd!) e.encode()],
@@ -45,8 +45,8 @@ final class EksCapabilityConfiguration {
 /// Typed helper for the `configuration.argo_cd` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
-final class EksCapabilityConfigurationArgoCd {
-  const EksCapabilityConfigurationArgoCd({
+final class EksCapabilityArgoCd {
+  const EksCapabilityArgoCd({
     this.namespace,
     this.awsIdc,
     this.networkAccess,
@@ -55,11 +55,11 @@ final class EksCapabilityConfigurationArgoCd {
 
   final TfArg<String>? namespace;
 
-  final List<EksCapabilityConfigurationArgoCdAwsIdc>? awsIdc;
+  final List<EksCapabilityAwsIdc>? awsIdc;
 
-  final List<EksCapabilityConfigurationArgoCdNetworkAccess>? networkAccess;
+  final List<EksCapabilityNetworkAccess>? networkAccess;
 
-  final List<EksCapabilityConfigurationArgoCdRbacRoleMapping>? rbacRoleMapping;
+  final List<EksCapabilityRbacRoleMapping>? rbacRoleMapping;
 
   Map<String, Object?> encode() => {
     'namespace': ?namespace?.toTfJson(),
@@ -74,11 +74,8 @@ final class EksCapabilityConfigurationArgoCd {
 /// Typed helper for the `configuration.argo_cd.aws_idc` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
-final class EksCapabilityConfigurationArgoCdAwsIdc {
-  const EksCapabilityConfigurationArgoCdAwsIdc({
-    required this.idcInstanceArn,
-    this.idcRegion,
-  });
+final class EksCapabilityAwsIdc {
+  const EksCapabilityAwsIdc({required this.idcInstanceArn, this.idcRegion});
 
   final TfArg<String> idcInstanceArn;
 
@@ -93,8 +90,8 @@ final class EksCapabilityConfigurationArgoCdAwsIdc {
 /// Typed helper for the `configuration.argo_cd.network_access` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
-final class EksCapabilityConfigurationArgoCdNetworkAccess {
-  const EksCapabilityConfigurationArgoCdNetworkAccess({this.vpceIds});
+final class EksCapabilityNetworkAccess {
+  const EksCapabilityNetworkAccess({this.vpceIds});
 
   final TfArg<List<String>>? vpceIds;
 
@@ -104,15 +101,12 @@ final class EksCapabilityConfigurationArgoCdNetworkAccess {
 /// Typed helper for the `configuration.argo_cd.rbac_role_mapping` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
-final class EksCapabilityConfigurationArgoCdRbacRoleMapping {
-  const EksCapabilityConfigurationArgoCdRbacRoleMapping({
-    required this.role,
-    this.identity,
-  });
+final class EksCapabilityRbacRoleMapping {
+  const EksCapabilityRbacRoleMapping({required this.role, this.identity});
 
-  final TfArg<EksCapabilityConfigurationArgoCdRbacRoleMappingRole> role;
+  final TfArg<EksCapabilityRole> role;
 
-  final List<EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity>? identity;
+  final List<EksCapabilityIdentity>? identity;
 
   Map<String, Object?> encode() => {
     'role': role.toTfJson(),
@@ -121,15 +115,12 @@ final class EksCapabilityConfigurationArgoCdRbacRoleMapping {
 }
 
 /// `role` — derived from the provider schema description.
-enum EksCapabilityConfigurationArgoCdRbacRoleMappingRole
-    implements TerraformEnum {
+enum EksCapabilityRole implements TerraformEnum {
   admin('ADMIN'),
   editor('EDITOR'),
   viewer('VIEWER');
 
-  const EksCapabilityConfigurationArgoCdRbacRoleMappingRole(
-    this.terraformValue,
-  );
+  const EksCapabilityRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -137,15 +128,12 @@ enum EksCapabilityConfigurationArgoCdRbacRoleMappingRole
 /// Typed helper for the `configuration.argo_cd.rbac_role_mapping.identity` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
-final class EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity {
-  const EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity({
-    required this.id,
-    required this.type,
-  });
+final class EksCapabilityIdentity {
+  const EksCapabilityIdentity({required this.id, required this.type});
 
   final TfArg<String> id;
 
-  final TfArg<EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType> type;
+  final TfArg<EksCapabilityIdentityType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -154,14 +142,11 @@ final class EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity {
 }
 
 /// `type` — derived from the provider schema description.
-enum EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType
-    implements TerraformEnum {
+enum EksCapabilityIdentityType implements TerraformEnum {
   ssoUser('SSO_USER'),
   ssoGroup('SSO_GROUP');
 
-  const EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType(
-    this.terraformValue,
-  );
+  const EksCapabilityIdentityType(this.terraformValue);
   @override
   final String terraformValue;
 }

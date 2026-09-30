@@ -9,7 +9,7 @@ export 'src/ses/aws_ses_configuration_set.dart'
     show
         AwsSesConfigurationSet,
         SesConfigurationSetDeliveryOptions,
-        SesConfigurationSetDeliveryOptionsTlsPolicy,
+        SesConfigurationSetTlsPolicy,
         SesConfigurationSetTrackingOptions;
 export 'src/ses/aws_ses_domain_dkim.dart' show AwsSesDomainDkim;
 export 'src/ses/aws_ses_domain_identity.dart' show AwsSesDomainIdentity;
@@ -22,14 +22,14 @@ export 'src/ses/aws_ses_event_destination.dart'
     show
         AwsSesEventDestination,
         SesEventDestinationCloudwatchDestination,
-        SesEventDestinationCloudwatchDestinationValueSource,
         SesEventDestinationKinesisDestination,
         SesEventDestinationMatchingTypes,
         SesEventDestinationSnsDestination,
         SesEventDestinationTarget,
         SesEventDestinationTargetCloudwatchDestination,
         SesEventDestinationTargetKinesisDestination,
-        SesEventDestinationTargetSnsDestination;
+        SesEventDestinationTargetSnsDestination,
+        SesEventDestinationValueSource;
 export 'src/ses/aws_ses_identity_notification_topic.dart'
     show
         AwsSesIdentityNotificationTopic,
@@ -42,13 +42,13 @@ export 'src/ses/aws_ses_receipt_rule.dart'
         AwsSesReceiptRule,
         SesReceiptRuleAddHeaderAction,
         SesReceiptRuleBounceAction,
+        SesReceiptRuleEncoding,
+        SesReceiptRuleInvocationType,
         SesReceiptRuleLambdaAction,
-        SesReceiptRuleLambdaActionInvocationType,
         SesReceiptRuleS3Action,
+        SesReceiptRuleScope,
         SesReceiptRuleSnsAction,
-        SesReceiptRuleSnsActionEncoding,
         SesReceiptRuleStopAction,
-        SesReceiptRuleStopActionScope,
         SesReceiptRuleTlsPolicy,
         SesReceiptRuleWorkmailAction;
 export 'src/ses/aws_ses_receipt_rule_set.dart' show AwsSesReceiptRuleSet;

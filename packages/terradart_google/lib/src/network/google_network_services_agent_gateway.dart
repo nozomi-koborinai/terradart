@@ -83,10 +83,9 @@ final class NetworkServicesAgentGatewayNetworkConfig {
     required this.egress,
   });
 
-  final NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig?
-  dnsPeeringConfig;
+  final NetworkServicesAgentGatewayDnsPeeringConfig? dnsPeeringConfig;
 
-  final NetworkServicesAgentGatewayNetworkConfigEgress egress;
+  final NetworkServicesAgentGatewayEgress egress;
 
   Map<String, Object?> encode() => {
     'dns_peering_config': ?dnsPeeringConfig?.encode(),
@@ -97,8 +96,8 @@ final class NetworkServicesAgentGatewayNetworkConfig {
 /// Typed helper for the `network_config.dns_peering_config` block of
 /// `google_network_services_agent_gateway` (derived from provider schema).
 @immutable
-final class NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig {
-  const NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig({
+final class NetworkServicesAgentGatewayDnsPeeringConfig {
+  const NetworkServicesAgentGatewayDnsPeeringConfig({
     required this.domains,
     required this.targetNetwork,
     required this.targetProject,
@@ -120,10 +119,8 @@ final class NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig {
 /// Typed helper for the `network_config.egress` block of
 /// `google_network_services_agent_gateway` (derived from provider schema).
 @immutable
-final class NetworkServicesAgentGatewayNetworkConfigEgress {
-  const NetworkServicesAgentGatewayNetworkConfigEgress({
-    required this.networkAttachment,
-  });
+final class NetworkServicesAgentGatewayEgress {
+  const NetworkServicesAgentGatewayEgress({required this.networkAttachment});
 
   final TfArg<String> networkAttachment;
 

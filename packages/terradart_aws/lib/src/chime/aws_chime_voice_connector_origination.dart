@@ -25,7 +25,7 @@ final class ChimeVoiceConnectorOriginationRoute {
 
   final TfArg<num> priority;
 
-  final TfArg<ChimeVoiceConnectorOriginationRouteProtocol> protocol;
+  final TfArg<ChimeVoiceConnectorOriginationProtocol> protocol;
 
   final TfArg<num> weight;
 
@@ -39,11 +39,11 @@ final class ChimeVoiceConnectorOriginationRoute {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum ChimeVoiceConnectorOriginationRouteProtocol implements TerraformEnum {
+enum ChimeVoiceConnectorOriginationProtocol implements TerraformEnum {
   tcp('TCP'),
   udp('UDP');
 
-  const ChimeVoiceConnectorOriginationRouteProtocol(this.terraformValue);
+  const ChimeVoiceConnectorOriginationProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

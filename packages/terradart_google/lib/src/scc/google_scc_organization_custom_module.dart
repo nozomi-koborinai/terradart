@@ -34,14 +34,13 @@ final class SccOrganizationCustomModuleCustomConfig {
 
   final TfArg<String> recommendation;
 
-  final TfArg<SccOrganizationCustomModuleCustomConfigSeverity> severity;
+  final TfArg<SccOrganizationCustomModuleSeverity> severity;
 
-  final SccOrganizationCustomModuleCustomConfigCustomOutput? customOutput;
+  final SccOrganizationCustomModuleCustomOutput? customOutput;
 
-  final SccOrganizationCustomModuleCustomConfigPredicate predicate;
+  final SccOrganizationCustomModulePredicate predicate;
 
-  final SccOrganizationCustomModuleCustomConfigResourceSelector
-  resourceSelector;
+  final SccOrganizationCustomModuleResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -54,13 +53,13 @@ final class SccOrganizationCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccOrganizationCustomModuleCustomConfigSeverity implements TerraformEnum {
+enum SccOrganizationCustomModuleSeverity implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const SccOrganizationCustomModuleCustomConfigSeverity(this.terraformValue);
+  const SccOrganizationCustomModuleSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -68,11 +67,10 @@ enum SccOrganizationCustomModuleCustomConfigSeverity implements TerraformEnum {
 /// Typed helper for the `custom_config.custom_output` block of
 /// `google_scc_organization_custom_module` (derived from provider schema).
 @immutable
-final class SccOrganizationCustomModuleCustomConfigCustomOutput {
-  const SccOrganizationCustomModuleCustomConfigCustomOutput({this.properties});
+final class SccOrganizationCustomModuleCustomOutput {
+  const SccOrganizationCustomModuleCustomOutput({this.properties});
 
-  final List<SccOrganizationCustomModuleCustomConfigCustomOutputProperties>?
-  properties;
+  final List<SccOrganizationCustomModuleProperties>? properties;
 
   Map<String, Object?> encode() => {
     if (properties != null)
@@ -83,16 +81,15 @@ final class SccOrganizationCustomModuleCustomConfigCustomOutput {
 /// Typed helper for the `custom_config.custom_output.properties` block of
 /// `google_scc_organization_custom_module` (derived from provider schema).
 @immutable
-final class SccOrganizationCustomModuleCustomConfigCustomOutputProperties {
-  const SccOrganizationCustomModuleCustomConfigCustomOutputProperties({
+final class SccOrganizationCustomModuleProperties {
+  const SccOrganizationCustomModuleProperties({
     this.name,
     this.valueExpression,
   });
 
   final TfArg<String>? name;
 
-  final SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueExpression?
-  valueExpression;
+  final SccOrganizationCustomModuleValueExpression? valueExpression;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -103,8 +100,8 @@ final class SccOrganizationCustomModuleCustomConfigCustomOutputProperties {
 /// Typed helper for the `custom_config.custom_output.properties.value_expression` block of
 /// `google_scc_organization_custom_module` (derived from provider schema).
 @immutable
-final class SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueExpression {
-  const SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueExpression({
+final class SccOrganizationCustomModuleValueExpression {
+  const SccOrganizationCustomModuleValueExpression({
     this.description,
     required this.expression,
     this.location,
@@ -130,8 +127,8 @@ final class SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueEx
 /// Typed helper for the `custom_config.predicate` block of
 /// `google_scc_organization_custom_module` (derived from provider schema).
 @immutable
-final class SccOrganizationCustomModuleCustomConfigPredicate {
-  const SccOrganizationCustomModuleCustomConfigPredicate({
+final class SccOrganizationCustomModulePredicate {
+  const SccOrganizationCustomModulePredicate({
     this.description,
     required this.expression,
     this.location,
@@ -157,8 +154,8 @@ final class SccOrganizationCustomModuleCustomConfigPredicate {
 /// Typed helper for the `custom_config.resource_selector` block of
 /// `google_scc_organization_custom_module` (derived from provider schema).
 @immutable
-final class SccOrganizationCustomModuleCustomConfigResourceSelector {
-  const SccOrganizationCustomModuleCustomConfigResourceSelector({
+final class SccOrganizationCustomModuleResourceSelector {
+  const SccOrganizationCustomModuleResourceSelector({
     required this.resourceTypes,
   });
 

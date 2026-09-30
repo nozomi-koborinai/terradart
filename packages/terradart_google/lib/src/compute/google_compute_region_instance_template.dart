@@ -141,12 +141,12 @@ final class ComputeRegionInstanceTemplateDisk {
 
   final TfArg<String>? type;
 
-  final ComputeRegionInstanceTemplateDiskDiskEncryptionKey? diskEncryptionKey;
+  final ComputeRegionInstanceTemplateDiskEncryptionKey? diskEncryptionKey;
 
-  final ComputeRegionInstanceTemplateDiskSourceImageEncryptionKey?
+  final ComputeRegionInstanceTemplateSourceImageEncryptionKey?
   sourceImageEncryptionKey;
 
-  final ComputeRegionInstanceTemplateDiskSourceSnapshotEncryptionKey?
+  final ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey?
   sourceSnapshotEncryptionKey;
 
   Map<String, Object?> encode() => {
@@ -179,8 +179,8 @@ final class ComputeRegionInstanceTemplateDisk {
 /// Typed helper for the `disk.disk_encryption_key` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateDiskDiskEncryptionKey {
-  const ComputeRegionInstanceTemplateDiskDiskEncryptionKey({
+final class ComputeRegionInstanceTemplateDiskEncryptionKey {
+  const ComputeRegionInstanceTemplateDiskEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
   });
@@ -198,8 +198,8 @@ final class ComputeRegionInstanceTemplateDiskDiskEncryptionKey {
 /// Typed helper for the `disk.source_image_encryption_key` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateDiskSourceImageEncryptionKey {
-  const ComputeRegionInstanceTemplateDiskSourceImageEncryptionKey({
+final class ComputeRegionInstanceTemplateSourceImageEncryptionKey {
+  const ComputeRegionInstanceTemplateSourceImageEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -225,8 +225,8 @@ final class ComputeRegionInstanceTemplateDiskSourceImageEncryptionKey {
 /// Typed helper for the `disk.source_snapshot_encryption_key` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateDiskSourceSnapshotEncryptionKey {
-  const ComputeRegionInstanceTemplateDiskSourceSnapshotEncryptionKey({
+final class ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey {
+  const ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -302,7 +302,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<ComputeRegionInstanceTemplateNetworkInterfaceNicType>? nicType;
+  final TfArg<ComputeRegionInstanceTemplateNicType>? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -314,14 +314,11 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<num>? vlan;
 
-  final List<ComputeRegionInstanceTemplateNetworkInterfaceAccessConfig>?
-  accessConfig;
+  final List<ComputeRegionInstanceTemplateAccessConfig>? accessConfig;
 
-  final List<ComputeRegionInstanceTemplateNetworkInterfaceAliasIpRange>?
-  aliasIpRange;
+  final List<ComputeRegionInstanceTemplateAliasIpRange>? aliasIpRange;
 
-  final List<ComputeRegionInstanceTemplateNetworkInterfaceIpv6AccessConfig>?
-  ipv6AccessConfig;
+  final List<ComputeRegionInstanceTemplateIpv6AccessConfig>? ipv6AccessConfig;
 
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
@@ -346,16 +343,13 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum ComputeRegionInstanceTemplateNetworkInterfaceNicType
-    implements TerraformEnum {
+enum ComputeRegionInstanceTemplateNicType implements TerraformEnum {
   gvnic('GVNIC'),
   virtioNet('VIRTIO_NET'),
   mrdma('MRDMA'),
   irdma('IRDMA');
 
-  const ComputeRegionInstanceTemplateNetworkInterfaceNicType(
-    this.terraformValue,
-  );
+  const ComputeRegionInstanceTemplateNicType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -363,8 +357,8 @@ enum ComputeRegionInstanceTemplateNetworkInterfaceNicType
 /// Typed helper for the `network_interface.access_config` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateNetworkInterfaceAccessConfig {
-  const ComputeRegionInstanceTemplateNetworkInterfaceAccessConfig({
+final class ComputeRegionInstanceTemplateAccessConfig {
+  const ComputeRegionInstanceTemplateAccessConfig({
     this.natIp,
     this.networkTier,
   });
@@ -382,8 +376,8 @@ final class ComputeRegionInstanceTemplateNetworkInterfaceAccessConfig {
 /// Typed helper for the `network_interface.alias_ip_range` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateNetworkInterfaceAliasIpRange {
-  const ComputeRegionInstanceTemplateNetworkInterfaceAliasIpRange({
+final class ComputeRegionInstanceTemplateAliasIpRange {
+  const ComputeRegionInstanceTemplateAliasIpRange({
     required this.ipCidrRange,
     this.subnetworkRangeName,
   });
@@ -401,8 +395,8 @@ final class ComputeRegionInstanceTemplateNetworkInterfaceAliasIpRange {
 /// Typed helper for the `network_interface.ipv6_access_config` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateNetworkInterfaceIpv6AccessConfig {
-  const ComputeRegionInstanceTemplateNetworkInterfaceIpv6AccessConfig({
+final class ComputeRegionInstanceTemplateIpv6AccessConfig {
+  const ComputeRegionInstanceTemplateIpv6AccessConfig({
     required this.networkTier,
   });
 
@@ -419,9 +413,7 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<
-    ComputeRegionInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier
-  >
+  final TfArg<ComputeRegionInstanceTemplateTotalEgressBandwidthTier>
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -430,12 +422,12 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeRegionInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier
+enum ComputeRegionInstanceTemplateTotalEgressBandwidthTier
     implements TerraformEnum {
   tier1('TIER_1'),
   defaultCase('DEFAULT');
 
-  const ComputeRegionInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier(
+  const ComputeRegionInstanceTemplateTotalEgressBandwidthTier(
     this.terraformValue,
   );
   @override
@@ -453,8 +445,7 @@ final class ComputeRegionInstanceTemplateReservationAffinity {
 
   final TfArg<String> type;
 
-  final ComputeRegionInstanceTemplateReservationAffinitySpecificReservation?
-  specificReservation;
+  final ComputeRegionInstanceTemplateSpecificReservation? specificReservation;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -465,8 +456,8 @@ final class ComputeRegionInstanceTemplateReservationAffinity {
 /// Typed helper for the `reservation_affinity.specific_reservation` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateReservationAffinitySpecificReservation {
-  const ComputeRegionInstanceTemplateReservationAffinitySpecificReservation({
+final class ComputeRegionInstanceTemplateSpecificReservation {
+  const ComputeRegionInstanceTemplateSpecificReservation({
     required this.key,
     required this.values,
   });
@@ -519,16 +510,14 @@ final class ComputeRegionInstanceTemplateScheduling {
 
   final TfArg<String>? terminationTime;
 
-  final List<ComputeRegionInstanceTemplateSchedulingLocalSsdRecoveryTimeout>?
+  final List<ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout>?
   localSsdRecoveryTimeout;
 
-  final ComputeRegionInstanceTemplateSchedulingMaxRunDuration? maxRunDuration;
+  final ComputeRegionInstanceTemplateMaxRunDuration? maxRunDuration;
 
-  final List<ComputeRegionInstanceTemplateSchedulingNodeAffinities>?
-  nodeAffinities;
+  final List<ComputeRegionInstanceTemplateNodeAffinities>? nodeAffinities;
 
-  final ComputeRegionInstanceTemplateSchedulingOnInstanceStopAction?
-  onInstanceStopAction;
+  final ComputeRegionInstanceTemplateOnInstanceStopAction? onInstanceStopAction;
 
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
@@ -554,8 +543,8 @@ final class ComputeRegionInstanceTemplateScheduling {
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateSchedulingLocalSsdRecoveryTimeout {
-  const ComputeRegionInstanceTemplateSchedulingLocalSsdRecoveryTimeout({
+final class ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout {
+  const ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -573,8 +562,8 @@ final class ComputeRegionInstanceTemplateSchedulingLocalSsdRecoveryTimeout {
 /// Typed helper for the `scheduling.max_run_duration` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateSchedulingMaxRunDuration {
-  const ComputeRegionInstanceTemplateSchedulingMaxRunDuration({
+final class ComputeRegionInstanceTemplateMaxRunDuration {
+  const ComputeRegionInstanceTemplateMaxRunDuration({
     this.nanos,
     required this.seconds,
   });
@@ -592,8 +581,8 @@ final class ComputeRegionInstanceTemplateSchedulingMaxRunDuration {
 /// Typed helper for the `scheduling.node_affinities` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateSchedulingNodeAffinities {
-  const ComputeRegionInstanceTemplateSchedulingNodeAffinities({
+final class ComputeRegionInstanceTemplateNodeAffinities {
+  const ComputeRegionInstanceTemplateNodeAffinities({
     required this.key,
     required this.operator,
     required this.values,
@@ -615,8 +604,8 @@ final class ComputeRegionInstanceTemplateSchedulingNodeAffinities {
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
-final class ComputeRegionInstanceTemplateSchedulingOnInstanceStopAction {
-  const ComputeRegionInstanceTemplateSchedulingOnInstanceStopAction({
+final class ComputeRegionInstanceTemplateOnInstanceStopAction {
+  const ComputeRegionInstanceTemplateOnInstanceStopAction({
     this.discardLocalSsd,
   });
 

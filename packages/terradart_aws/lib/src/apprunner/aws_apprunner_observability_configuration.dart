@@ -13,20 +13,16 @@ const Set<String> _awsApprunnerObservabilityConfigurationSensitive = <String>{};
 final class ApprunnerObservabilityConfigurationTraceConfiguration {
   const ApprunnerObservabilityConfigurationTraceConfiguration({this.vendor});
 
-  final TfArg<ApprunnerObservabilityConfigurationTraceConfigurationVendor>?
-  vendor;
+  final TfArg<ApprunnerObservabilityConfigurationVendor>? vendor;
 
   Map<String, Object?> encode() => {'vendor': ?vendor?.toTfJson()};
 }
 
 /// `vendor` — derived from the provider schema description.
-enum ApprunnerObservabilityConfigurationTraceConfigurationVendor
-    implements TerraformEnum {
+enum ApprunnerObservabilityConfigurationVendor implements TerraformEnum {
   awsxray('AWSXRAY');
 
-  const ApprunnerObservabilityConfigurationTraceConfigurationVendor(
-    this.terraformValue,
-  );
+  const ApprunnerObservabilityConfigurationVendor(this.terraformValue);
   @override
   final String terraformValue;
 }

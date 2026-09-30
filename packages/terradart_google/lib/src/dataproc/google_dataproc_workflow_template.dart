@@ -50,23 +50,23 @@ final class DataprocWorkflowTemplateJobs {
 
   final TfArg<String> stepId;
 
-  final DataprocWorkflowTemplateJobsHadoopJob? hadoopJob;
+  final DataprocWorkflowTemplateHadoopJob? hadoopJob;
 
-  final DataprocWorkflowTemplateJobsHiveJob? hiveJob;
+  final DataprocWorkflowTemplateHiveJob? hiveJob;
 
-  final DataprocWorkflowTemplateJobsPigJob? pigJob;
+  final DataprocWorkflowTemplatePigJob? pigJob;
 
-  final DataprocWorkflowTemplateJobsPrestoJob? prestoJob;
+  final DataprocWorkflowTemplatePrestoJob? prestoJob;
 
-  final DataprocWorkflowTemplateJobsPysparkJob? pysparkJob;
+  final DataprocWorkflowTemplatePysparkJob? pysparkJob;
 
-  final DataprocWorkflowTemplateJobsScheduling? scheduling;
+  final DataprocWorkflowTemplateScheduling? scheduling;
 
-  final DataprocWorkflowTemplateJobsSparkJob? sparkJob;
+  final DataprocWorkflowTemplateSparkJob? sparkJob;
 
-  final DataprocWorkflowTemplateJobsSparkRJob? sparkRJob;
+  final DataprocWorkflowTemplateSparkRJob? sparkRJob;
 
-  final DataprocWorkflowTemplateJobsSparkSqlJob? sparkSqlJob;
+  final DataprocWorkflowTemplateSparkSqlJob? sparkSqlJob;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -87,8 +87,8 @@ final class DataprocWorkflowTemplateJobs {
 /// Typed helper for the `jobs.hadoop_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsHadoopJob {
-  const DataprocWorkflowTemplateJobsHadoopJob({
+final class DataprocWorkflowTemplateHadoopJob {
+  const DataprocWorkflowTemplateHadoopJob({
     this.archiveUris,
     this.args,
     this.fileUris,
@@ -113,7 +113,7 @@ final class DataprocWorkflowTemplateJobsHadoopJob {
 
   final TfArg<Map<String, String>>? properties;
 
-  final DataprocWorkflowTemplateJobsHadoopJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -129,11 +129,10 @@ final class DataprocWorkflowTemplateJobsHadoopJob {
 
 /// Typed helper for the `jobs.hadoop_job.logging_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplateJobsHadoopJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsHadoopJobLoggingConfig({
-    this.driverLogLevels,
-  });
+final class DataprocWorkflowTemplateLoggingConfig {
+  const DataprocWorkflowTemplateLoggingConfig({this.driverLogLevels});
 
   final TfArg<Map<String, String>>? driverLogLevels;
 
@@ -145,8 +144,8 @@ final class DataprocWorkflowTemplateJobsHadoopJobLoggingConfig {
 /// Typed helper for the `jobs.hive_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsHiveJob {
-  const DataprocWorkflowTemplateJobsHiveJob({
+final class DataprocWorkflowTemplateHiveJob {
+  const DataprocWorkflowTemplateHiveJob({
     this.continueOnFailure,
     this.jarFileUris,
     this.properties,
@@ -165,7 +164,7 @@ final class DataprocWorkflowTemplateJobsHiveJob {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocWorkflowTemplateJobsHiveJobQueryList? queryList;
+  final DataprocWorkflowTemplateQueryList? queryList;
 
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
@@ -179,9 +178,10 @@ final class DataprocWorkflowTemplateJobsHiveJob {
 
 /// Typed helper for the `jobs.hive_job.query_list` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplateJobsHiveJobQueryList {
-  const DataprocWorkflowTemplateJobsHiveJobQueryList({required this.queries});
+final class DataprocWorkflowTemplateQueryList {
+  const DataprocWorkflowTemplateQueryList({required this.queries});
 
   final TfArg<List<String>> queries;
 
@@ -191,8 +191,8 @@ final class DataprocWorkflowTemplateJobsHiveJobQueryList {
 /// Typed helper for the `jobs.pig_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsPigJob {
-  const DataprocWorkflowTemplateJobsPigJob({
+final class DataprocWorkflowTemplatePigJob {
+  const DataprocWorkflowTemplatePigJob({
     this.continueOnFailure,
     this.jarFileUris,
     this.properties,
@@ -212,9 +212,9 @@ final class DataprocWorkflowTemplateJobsPigJob {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocWorkflowTemplateJobsPigJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
-  final DataprocWorkflowTemplateJobsPigJobQueryList? queryList;
+  final DataprocWorkflowTemplateQueryList? queryList;
 
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
@@ -227,35 +227,11 @@ final class DataprocWorkflowTemplateJobsPigJob {
   };
 }
 
-/// Typed helper for the `jobs.pig_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsPigJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsPigJobLoggingConfig({this.driverLogLevels});
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `jobs.pig_job.query_list` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsPigJobQueryList {
-  const DataprocWorkflowTemplateJobsPigJobQueryList({required this.queries});
-
-  final TfArg<List<String>> queries;
-
-  Map<String, Object?> encode() => {'queries': queries.toTfJson()};
-}
-
 /// Typed helper for the `jobs.presto_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsPrestoJob {
-  const DataprocWorkflowTemplateJobsPrestoJob({
+final class DataprocWorkflowTemplatePrestoJob {
+  const DataprocWorkflowTemplatePrestoJob({
     this.clientTags,
     this.continueOnFailure,
     this.outputFormat,
@@ -275,9 +251,9 @@ final class DataprocWorkflowTemplateJobsPrestoJob {
 
   final TfArg<String>? queryFileUri;
 
-  final DataprocWorkflowTemplateJobsPrestoJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
-  final DataprocWorkflowTemplateJobsPrestoJobQueryList? queryList;
+  final DataprocWorkflowTemplateQueryList? queryList;
 
   Map<String, Object?> encode() => {
     'client_tags': ?clientTags?.toTfJson(),
@@ -290,37 +266,11 @@ final class DataprocWorkflowTemplateJobsPrestoJob {
   };
 }
 
-/// Typed helper for the `jobs.presto_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsPrestoJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsPrestoJobLoggingConfig({
-    this.driverLogLevels,
-  });
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `jobs.presto_job.query_list` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsPrestoJobQueryList {
-  const DataprocWorkflowTemplateJobsPrestoJobQueryList({required this.queries});
-
-  final TfArg<List<String>> queries;
-
-  Map<String, Object?> encode() => {'queries': queries.toTfJson()};
-}
-
 /// Typed helper for the `jobs.pyspark_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsPysparkJob {
-  const DataprocWorkflowTemplateJobsPysparkJob({
+final class DataprocWorkflowTemplatePysparkJob {
+  const DataprocWorkflowTemplatePysparkJob({
     this.archiveUris,
     this.args,
     this.fileUris,
@@ -345,7 +295,7 @@ final class DataprocWorkflowTemplateJobsPysparkJob {
 
   final TfArg<List<String>>? pythonFileUris;
 
-  final DataprocWorkflowTemplateJobsPysparkJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -359,26 +309,11 @@ final class DataprocWorkflowTemplateJobsPysparkJob {
   };
 }
 
-/// Typed helper for the `jobs.pyspark_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsPysparkJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsPysparkJobLoggingConfig({
-    this.driverLogLevels,
-  });
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `jobs.scheduling` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsScheduling {
-  const DataprocWorkflowTemplateJobsScheduling({
+final class DataprocWorkflowTemplateScheduling {
+  const DataprocWorkflowTemplateScheduling({
     this.maxFailuresPerHour,
     this.maxFailuresTotal,
   });
@@ -396,8 +331,8 @@ final class DataprocWorkflowTemplateJobsScheduling {
 /// Typed helper for the `jobs.spark_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsSparkJob {
-  const DataprocWorkflowTemplateJobsSparkJob({
+final class DataprocWorkflowTemplateSparkJob {
+  const DataprocWorkflowTemplateSparkJob({
     this.archiveUris,
     this.args,
     this.fileUris,
@@ -422,7 +357,7 @@ final class DataprocWorkflowTemplateJobsSparkJob {
 
   final TfArg<Map<String, String>>? properties;
 
-  final DataprocWorkflowTemplateJobsSparkJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -436,26 +371,11 @@ final class DataprocWorkflowTemplateJobsSparkJob {
   };
 }
 
-/// Typed helper for the `jobs.spark_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsSparkJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsSparkJobLoggingConfig({
-    this.driverLogLevels,
-  });
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `jobs.spark_r_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsSparkRJob {
-  const DataprocWorkflowTemplateJobsSparkRJob({
+final class DataprocWorkflowTemplateSparkRJob {
+  const DataprocWorkflowTemplateSparkRJob({
     this.archiveUris,
     this.args,
     this.fileUris,
@@ -474,7 +394,7 @@ final class DataprocWorkflowTemplateJobsSparkRJob {
 
   final TfArg<Map<String, String>>? properties;
 
-  final DataprocWorkflowTemplateJobsSparkRJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -486,26 +406,11 @@ final class DataprocWorkflowTemplateJobsSparkRJob {
   };
 }
 
-/// Typed helper for the `jobs.spark_r_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsSparkRJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsSparkRJobLoggingConfig({
-    this.driverLogLevels,
-  });
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `jobs.spark_sql_job` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateJobsSparkSqlJob {
-  const DataprocWorkflowTemplateJobsSparkSqlJob({
+final class DataprocWorkflowTemplateSparkSqlJob {
+  const DataprocWorkflowTemplateSparkSqlJob({
     this.jarFileUris,
     this.properties,
     this.queryFileUri,
@@ -522,9 +427,9 @@ final class DataprocWorkflowTemplateJobsSparkSqlJob {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocWorkflowTemplateJobsSparkSqlJobLoggingConfig? loggingConfig;
+  final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
-  final DataprocWorkflowTemplateJobsSparkSqlJobQueryList? queryList;
+  final DataprocWorkflowTemplateQueryList? queryList;
 
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -534,34 +439,6 @@ final class DataprocWorkflowTemplateJobsSparkSqlJob {
     'logging_config': ?loggingConfig?.encode(),
     'query_list': ?queryList?.encode(),
   };
-}
-
-/// Typed helper for the `jobs.spark_sql_job.logging_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsSparkSqlJobLoggingConfig {
-  const DataprocWorkflowTemplateJobsSparkSqlJobLoggingConfig({
-    this.driverLogLevels,
-  });
-
-  final TfArg<Map<String, String>>? driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': ?driverLogLevels?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `jobs.spark_sql_job.query_list` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplateJobsSparkSqlJobQueryList {
-  const DataprocWorkflowTemplateJobsSparkSqlJobQueryList({
-    required this.queries,
-  });
-
-  final TfArg<List<String>> queries;
-
-  Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
 
 /// Typed helper for the `parameters` block of
@@ -581,7 +458,7 @@ final class DataprocWorkflowTemplateParameters {
 
   final TfArg<String> name;
 
-  final DataprocWorkflowTemplateParametersValidation? validation;
+  final DataprocWorkflowTemplateValidation? validation;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -594,12 +471,12 @@ final class DataprocWorkflowTemplateParameters {
 /// Typed helper for the `parameters.validation` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateParametersValidation {
-  const DataprocWorkflowTemplateParametersValidation({this.regex, this.values});
+final class DataprocWorkflowTemplateValidation {
+  const DataprocWorkflowTemplateValidation({this.regex, this.values});
 
-  final DataprocWorkflowTemplateParametersValidationRegex? regex;
+  final DataprocWorkflowTemplateRegex? regex;
 
-  final DataprocWorkflowTemplateParametersValidationValues? values;
+  final DataprocWorkflowTemplateValues? values;
 
   Map<String, Object?> encode() => {
     'regex': ?regex?.encode(),
@@ -610,10 +487,8 @@ final class DataprocWorkflowTemplateParametersValidation {
 /// Typed helper for the `parameters.validation.regex` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateParametersValidationRegex {
-  const DataprocWorkflowTemplateParametersValidationRegex({
-    required this.regexes,
-  });
+final class DataprocWorkflowTemplateRegex {
+  const DataprocWorkflowTemplateRegex({required this.regexes});
 
   final TfArg<List<String>> regexes;
 
@@ -623,10 +498,8 @@ final class DataprocWorkflowTemplateParametersValidationRegex {
 /// Typed helper for the `parameters.validation.values` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplateParametersValidationValues {
-  const DataprocWorkflowTemplateParametersValidationValues({
-    required this.values,
-  });
+final class DataprocWorkflowTemplateValues {
+  const DataprocWorkflowTemplateValues({required this.values});
 
   final TfArg<List<String>> values;
 
@@ -642,9 +515,9 @@ final class DataprocWorkflowTemplatePlacement {
     this.managedCluster,
   });
 
-  final DataprocWorkflowTemplatePlacementClusterSelector? clusterSelector;
+  final DataprocWorkflowTemplateClusterSelector? clusterSelector;
 
-  final DataprocWorkflowTemplatePlacementManagedCluster? managedCluster;
+  final DataprocWorkflowTemplateManagedCluster? managedCluster;
 
   Map<String, Object?> encode() => {
     'cluster_selector': ?clusterSelector?.encode(),
@@ -655,8 +528,8 @@ final class DataprocWorkflowTemplatePlacement {
 /// Typed helper for the `placement.cluster_selector` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementClusterSelector {
-  const DataprocWorkflowTemplatePlacementClusterSelector({
+final class DataprocWorkflowTemplateClusterSelector {
+  const DataprocWorkflowTemplateClusterSelector({
     required this.clusterLabels,
     this.zone,
   });
@@ -674,8 +547,8 @@ final class DataprocWorkflowTemplatePlacementClusterSelector {
 /// Typed helper for the `placement.managed_cluster` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedCluster {
-  const DataprocWorkflowTemplatePlacementManagedCluster({
+final class DataprocWorkflowTemplateManagedCluster {
+  const DataprocWorkflowTemplateManagedCluster({
     required this.clusterName,
     this.labels,
     required this.config,
@@ -685,7 +558,7 @@ final class DataprocWorkflowTemplatePlacementManagedCluster {
 
   final TfArg<Map<String, String>>? labels;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfig config;
+  final DataprocWorkflowTemplateConfig config;
 
   Map<String, Object?> encode() => {
     'cluster_name': clusterName.toTfJson(),
@@ -697,8 +570,8 @@ final class DataprocWorkflowTemplatePlacementManagedCluster {
 /// Typed helper for the `placement.managed_cluster.config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfig({
+final class DataprocWorkflowTemplateConfig {
+  const DataprocWorkflowTemplateConfig({
     this.stagingBucket,
     this.tempBucket,
     this.autoscalingConfig,
@@ -718,40 +591,28 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfig {
 
   final TfArg<String>? tempBucket;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConfig?
-  autoscalingConfig;
+  final DataprocWorkflowTemplateAutoscalingConfig? autoscalingConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfig?
-  encryptionConfig;
+  final DataprocWorkflowTemplateConfigEncryptionConfig? encryptionConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig?
-  endpointConfig;
+  final DataprocWorkflowTemplateEndpointConfig? endpointConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig?
-  gceClusterConfig;
+  final DataprocWorkflowTemplateGceClusterConfig? gceClusterConfig;
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationActions
-  >?
+  final List<DataprocWorkflowTemplateInitializationActions>?
   initializationActions;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig?
-  lifecycleConfig;
+  final DataprocWorkflowTemplateLifecycleConfig? lifecycleConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig?
-  masterConfig;
+  final DataprocWorkflowTemplateMasterConfig? masterConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfig?
-  secondaryWorkerConfig;
+  final DataprocWorkflowTemplateSecondaryWorkerConfig? secondaryWorkerConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig?
-  securityConfig;
+  final DataprocWorkflowTemplateSecurityConfig? securityConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig?
-  softwareConfig;
+  final DataprocWorkflowTemplateSoftwareConfig? softwareConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig?
-  workerConfig;
+  final DataprocWorkflowTemplateWorkerConfig? workerConfig;
 
   Map<String, Object?> encode() => {
     'staging_bucket': ?stagingBucket?.toTfJson(),
@@ -776,10 +637,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfig {
 /// Typed helper for the `placement.managed_cluster.config.autoscaling_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConfig({
-    this.policy,
-  });
+final class DataprocWorkflowTemplateAutoscalingConfig {
+  const DataprocWorkflowTemplateAutoscalingConfig({this.policy});
 
   final TfArg<String>? policy;
 
@@ -789,10 +648,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConf
 /// Typed helper for the `placement.managed_cluster.config.encryption_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfig({
-    this.gcePdKmsKeyName,
-  });
+final class DataprocWorkflowTemplateConfigEncryptionConfig {
+  const DataprocWorkflowTemplateConfigEncryptionConfig({this.gcePdKmsKeyName});
 
   final TfArg<String>? gcePdKmsKeyName;
 
@@ -804,10 +661,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfi
 /// Typed helper for the `placement.managed_cluster.config.endpoint_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig({
-    this.enableHttpPortAccess,
-  });
+final class DataprocWorkflowTemplateEndpointConfig {
+  const DataprocWorkflowTemplateEndpointConfig({this.enableHttpPortAccess});
 
   final TfArg<bool>? enableHttpPortAccess;
 
@@ -819,8 +674,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig 
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig({
+final class DataprocWorkflowTemplateGceClusterConfig {
+  const DataprocWorkflowTemplateGceClusterConfig({
     this.internalIpOnly,
     this.metadata,
     this.network,
@@ -841,9 +696,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivateIpv6GoogleAccess
-  >?
+  final TfArg<DataprocWorkflowTemplatePrivateIpv6GoogleAccess>?
   privateIpv6GoogleAccess;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
@@ -856,14 +709,11 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 
   final TfArg<String>? zone;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigNodeGroupAffinity?
-  nodeGroupAffinity;
+  final DataprocWorkflowTemplateNodeGroupAffinity? nodeGroupAffinity;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinity?
-  reservationAffinity;
+  final DataprocWorkflowTemplateReservationAffinity? reservationAffinity;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final DataprocWorkflowTemplateShieldedInstanceConfig? shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
     'internal_ip_only': ?internalIpOnly?.toTfJson(),
@@ -882,16 +732,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 }
 
 /// `private_ipv6_google_access` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivateIpv6GoogleAccess
-    implements TerraformEnum {
+enum DataprocWorkflowTemplatePrivateIpv6GoogleAccess implements TerraformEnum {
   privateIpv6GoogleAccessUnspecified('PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
   inheritFromSubnetwork('INHERIT_FROM_SUBNETWORK'),
   outbound('OUTBOUND'),
   bidirectional('BIDIRECTIONAL');
 
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivateIpv6GoogleAccess(
-    this.terraformValue,
-  );
+  const DataprocWorkflowTemplatePrivateIpv6GoogleAccess(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -899,10 +746,8 @@ enum DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivat
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.node_group_affinity` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigNodeGroupAffinity {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigNodeGroupAffinity({
-    required this.nodeGroup,
-  });
+final class DataprocWorkflowTemplateNodeGroupAffinity {
+  const DataprocWorkflowTemplateNodeGroupAffinity({required this.nodeGroup});
 
   final TfArg<String> nodeGroup;
 
@@ -912,16 +757,14 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.reservation_affinity` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinity {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinity({
+final class DataprocWorkflowTemplateReservationAffinity {
+  const DataprocWorkflowTemplateReservationAffinity({
     this.consumeReservationType,
     this.key,
     this.values,
   });
 
-  final TfArg<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinityConsumeReservationType
-  >?
+  final TfArg<DataprocWorkflowTemplateConsumeReservationType>?
   consumeReservationType;
 
   final TfArg<String>? key;
@@ -936,16 +779,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 }
 
 /// `consume_reservation_type` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinityConsumeReservationType
-    implements TerraformEnum {
+enum DataprocWorkflowTemplateConsumeReservationType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   noReservation('NO_RESERVATION'),
   anyReservation('ANY_RESERVATION'),
   specificReservation('SPECIFIC_RESERVATION');
 
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinityConsumeReservationType(
-    this.terraformValue,
-  );
+  const DataprocWorkflowTemplateConsumeReservationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -953,8 +793,8 @@ enum DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReserv
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.shielded_instance_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigShieldedInstanceConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigShieldedInstanceConfig({
+final class DataprocWorkflowTemplateShieldedInstanceConfig {
+  const DataprocWorkflowTemplateShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -976,8 +816,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 /// Typed helper for the `placement.managed_cluster.config.initialization_actions` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationActions {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationActions({
+final class DataprocWorkflowTemplateInitializationActions {
+  const DataprocWorkflowTemplateInitializationActions({
     this.executableFile,
     this.executionTimeout,
   });
@@ -995,8 +835,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationA
 /// Typed helper for the `placement.managed_cluster.config.lifecycle_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig({
+final class DataprocWorkflowTemplateLifecycleConfig {
+  const DataprocWorkflowTemplateLifecycleConfig({
     this.autoDeleteTime,
     this.autoDeleteTtl,
     this.idleDeleteTtl,
@@ -1018,8 +858,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig
 /// Typed helper for the `placement.managed_cluster.config.master_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig({
+final class DataprocWorkflowTemplateMasterConfig {
+  const DataprocWorkflowTemplateMasterConfig({
     this.image,
     this.machineType,
     this.minCpuPlatform,
@@ -1038,20 +878,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigPreemptibility
-  >?
-  preemptibility;
+  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAccelerators
-  >?
-  accelerators;
+  final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig?
-  diskConfig;
+  final DataprocWorkflowTemplateDiskConfig? diskConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy?
+  final DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -1068,24 +901,22 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
 }
 
 /// `preemptibility` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigPreemptibility
-    implements TerraformEnum {
+enum DataprocWorkflowTemplatePreemptibility implements TerraformEnum {
   preemptibilityUnspecified('PREEMPTIBILITY_UNSPECIFIED'),
   nonPreemptible('NON_PREEMPTIBLE'),
   preemptible('PREEMPTIBLE');
 
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigPreemptibility(
-    this.terraformValue,
-  );
+  const DataprocWorkflowTemplatePreemptibility(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.accelerators` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAccelerators {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAccelerators({
+final class DataprocWorkflowTemplateAccelerators {
+  const DataprocWorkflowTemplateAccelerators({
     this.acceleratorCount,
     this.acceleratorType,
   });
@@ -1102,9 +933,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAcc
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.disk_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig({
+final class DataprocWorkflowTemplateDiskConfig {
+  const DataprocWorkflowTemplateDiskConfig({
     this.bootDiskProvisionedIops,
     this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
@@ -1126,10 +958,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDis
 
   final TfArg<num>? numLocalSsds;
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
+  final List<DataprocWorkflowTemplateAttachedDiskConfig>? attachedDiskConfig;
 
   Map<String, Object?> encode() => {
     'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
@@ -1146,9 +975,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDis
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.disk_config.attached_disk_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig({
+final class DataprocWorkflowTemplateAttachedDiskConfig {
+  const DataprocWorkflowTemplateAttachedDiskConfig({
     this.diskSizeGb,
     this.diskType,
     this.provisionedIops,
@@ -1173,15 +1003,14 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDis
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy({
+final class DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy {
+  const DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy({
     this.instanceSelectionList,
   });
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
+  final List<DataprocWorkflowTemplateInstanceSelectionList>?
   instanceSelectionList;
 
   Map<String, Object?> encode() => {
@@ -1194,9 +1023,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList({
+final class DataprocWorkflowTemplateInstanceSelectionList {
+  const DataprocWorkflowTemplateInstanceSelectionList({
     this.machineTypes,
     this.rank,
     this.diskConfig,
@@ -1206,8 +1036,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
 
   final TfArg<num>? rank;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
+  final DataprocWorkflowTemplateDiskConfig? diskConfig;
 
   Map<String, Object?> encode() => {
     'machine_types': ?machineTypes?.toTfJson(),
@@ -1216,82 +1045,11 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
   };
 }
 
-/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `placement.managed_cluster.config.secondary_worker_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfig({
+final class DataprocWorkflowTemplateSecondaryWorkerConfig {
+  const DataprocWorkflowTemplateSecondaryWorkerConfig({
     this.image,
     this.machineType,
     this.minCpuPlatform,
@@ -1310,20 +1068,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
 
   final TfArg<num>? numInstances;
 
-  final TfArg<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigPreemptibility
-  >?
-  preemptibility;
+  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigAccelerators
-  >?
-  accelerators;
+  final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig?
-  diskConfig;
+  final DataprocWorkflowTemplateDiskConfig? diskConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy?
+  final DataprocWorkflowTemplateSecondaryWorkerConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -1339,126 +1090,19 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   };
 }
 
-/// `preemptibility` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigPreemptibility
-    implements TerraformEnum {
-  preemptibilityUnspecified('PREEMPTIBILITY_UNSPECIFIED'),
-  nonPreemptible('NON_PREEMPTIBLE'),
-  preemptible('PREEMPTIBLE');
-
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigPreemptibility(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.accelerators` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigAccelerators {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigAccelerators({
-    this.acceleratorCount,
-    this.acceleratorType,
-  });
-
-  final TfArg<num>? acceleratorCount;
-
-  final TfArg<String>? acceleratorType;
-
-  Map<String, Object?> encode() => {
-    'accelerator_count': ?acceleratorCount?.toTfJson(),
-    'accelerator_type': ?acceleratorType?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.disk_config.attached_disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy({
+final class DataprocWorkflowTemplateSecondaryWorkerConfigInstanceFlexibilityPolicy {
+  const DataprocWorkflowTemplateSecondaryWorkerConfigInstanceFlexibilityPolicy({
     this.instanceSelectionList,
     this.provisioningModelMix,
   });
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
+  final List<DataprocWorkflowTemplateInstanceSelectionList>?
   instanceSelectionList;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix?
-  provisioningModelMix;
+  final DataprocWorkflowTemplateProvisioningModelMix? provisioningModelMix;
 
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
@@ -1469,106 +1113,11 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   };
 }
 
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
-    this.machineTypes,
-    this.rank,
-    this.diskConfig,
-  });
-
-  final TfArg<List<String>>? machineTypes;
-
-  final TfArg<num>? rank;
-
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
-
-  Map<String, Object?> encode() => {
-    'machine_types': ?machineTypes?.toTfJson(),
-    'rank': ?rank?.toTfJson(),
-    'disk_config': ?diskConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.provisioning_model_mix` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix({
+final class DataprocWorkflowTemplateProvisioningModelMix {
+  const DataprocWorkflowTemplateProvisioningModelMix({
     this.standardCapacityBase,
     this.standardCapacityPercentAboveBase,
   });
@@ -1587,13 +1136,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
 /// Typed helper for the `placement.managed_cluster.config.security_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig({
-    this.kerberosConfig,
-  });
+final class DataprocWorkflowTemplateSecurityConfig {
+  const DataprocWorkflowTemplateSecurityConfig({this.kerberosConfig});
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigKerberosConfig?
-  kerberosConfig;
+  final DataprocWorkflowTemplateKerberosConfig? kerberosConfig;
 
   Map<String, Object?> encode() => {
     'kerberos_config': ?kerberosConfig?.encode(),
@@ -1603,8 +1149,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig 
 /// Typed helper for the `placement.managed_cluster.config.security_config.kerberos_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigKerberosConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigKerberosConfig({
+final class DataprocWorkflowTemplateKerberosConfig {
+  const DataprocWorkflowTemplateKerberosConfig({
     this.crossRealmTrustAdminServer,
     this.crossRealmTrustKdc,
     this.crossRealmTrustRealm,
@@ -1675,8 +1221,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigK
 /// Typed helper for the `placement.managed_cluster.config.software_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig({
+final class DataprocWorkflowTemplateSoftwareConfig {
+  const DataprocWorkflowTemplateSoftwareConfig({
     this.imageVersion,
     this.optionalComponents,
     this.properties,
@@ -1698,8 +1244,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig 
 /// Typed helper for the `placement.managed_cluster.config.worker_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig({
+final class DataprocWorkflowTemplateWorkerConfig {
+  const DataprocWorkflowTemplateWorkerConfig({
     this.image,
     this.machineType,
     this.minCpuPlatform,
@@ -1718,20 +1264,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigPreemptibility
-  >?
-  preemptibility;
+  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
 
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAccelerators
-  >?
-  accelerators;
+  final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig?
-  diskConfig;
+  final DataprocWorkflowTemplateDiskConfig? diskConfig;
 
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy?
+  final DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
@@ -1744,226 +1283,6 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
       'accelerators': [for (final e in accelerators!) e.encode()],
     'disk_config': ?diskConfig?.encode(),
     'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
-  };
-}
-
-/// `preemptibility` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigPreemptibility
-    implements TerraformEnum {
-  preemptibilityUnspecified('PREEMPTIBILITY_UNSPECIFIED'),
-  nonPreemptible('NON_PREEMPTIBLE'),
-  preemptible('PREEMPTIBLE');
-
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigPreemptibility(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.accelerators` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAccelerators {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAccelerators({
-    this.acceleratorCount,
-    this.acceleratorType,
-  });
-
-  final TfArg<num>? acceleratorCount;
-
-  final TfArg<String>? acceleratorType;
-
-  Map<String, Object?> encode() => {
-    'accelerator_count': ?acceleratorCount?.toTfJson(),
-    'accelerator_type': ?acceleratorType?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.disk_config.attached_disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy({
-    this.instanceSelectionList,
-  });
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
-  >?
-  instanceSelectionList;
-
-  Map<String, Object?> encode() => {
-    if (instanceSelectionList != null)
-      'instance_selection_list': [
-        for (final e in instanceSelectionList!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
-    this.machineTypes,
-    this.rank,
-    this.diskConfig,
-  });
-
-  final TfArg<List<String>>? machineTypes;
-
-  final TfArg<num>? rank;
-
-  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
-  diskConfig;
-
-  Map<String, Object?> encode() => {
-    'machine_types': ?machineTypes?.toTfJson(),
-    'rank': ?rank?.toTfJson(),
-    'disk_config': ?diskConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
-
-  final TfArg<num>? bootDiskProvisionedIops;
-
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final TfArg<String>? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<
-    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
-  >?
-  attachedDiskConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
-/// `google_dataproc_workflow_template` (derived from provider schema).
-@immutable
-final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
-  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1990,11 +1309,11 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
 ///   name: TfArg.literal('terradart-wf'),
 ///   location: TfArg.literal('us-central1'),
 ///   placement: DataprocWorkflowTemplatePlacement(
-///     managedCluster: DataprocWorkflowTemplatePlacementManagedCluster(
+///     managedCluster: DataprocWorkflowTemplateManagedCluster(
 ///       clusterName: TfArg.literal('terradart-wf-cluster'),
-///       config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
+///       config: DataprocWorkflowTemplateConfig(
 ///         gceClusterConfig:
-///             DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
+///             DataprocWorkflowTemplateGceClusterConfig(
 ///           zone: TfArg.literal('us-central1-a'),
 ///         ),
 ///       ),
@@ -2003,7 +1322,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
 ///   jobs: [
 ///     DataprocWorkflowTemplateJobs(
 ///       stepId: TfArg.literal('sparkpi'),
-///       sparkJob: DataprocWorkflowTemplateJobsSparkJob(
+///       sparkJob: DataprocWorkflowTemplateSparkJob(
 ///         mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
 ///       ),
 ///     ),

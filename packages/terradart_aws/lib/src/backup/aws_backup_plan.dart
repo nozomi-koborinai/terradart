@@ -18,7 +18,7 @@ final class BackupPlanAdvancedBackupSetting {
 
   final TfArg<Map<String, String>> backupOptions;
 
-  final TfArg<BackupPlanAdvancedBackupSettingResourceType> resourceType;
+  final TfArg<BackupPlanResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'backup_options': backupOptions.toTfJson(),
@@ -27,10 +27,10 @@ final class BackupPlanAdvancedBackupSetting {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum BackupPlanAdvancedBackupSettingResourceType implements TerraformEnum {
+enum BackupPlanResourceType implements TerraformEnum {
   ec2('EC2');
 
-  const BackupPlanAdvancedBackupSettingResourceType(this.terraformValue);
+  const BackupPlanResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -72,11 +72,11 @@ final class BackupPlanRule {
 
   final TfArg<String> targetVaultName;
 
-  final List<BackupPlanRuleCopyAction>? copyAction;
+  final List<BackupPlanCopyAction>? copyAction;
 
-  final BackupPlanRuleLifecycle? lifecycle;
+  final BackupPlanLifecycle? lifecycle;
 
-  final List<BackupPlanRuleScanAction>? scanAction;
+  final List<BackupPlanScanAction>? scanAction;
 
   Map<String, Object?> encode() => {
     'completion_window': ?completionWindow?.toTfJson(),
@@ -100,15 +100,15 @@ final class BackupPlanRule {
 /// Typed helper for the `rule.copy_action` block of
 /// `aws_backup_plan` (derived from provider schema).
 @immutable
-final class BackupPlanRuleCopyAction {
-  const BackupPlanRuleCopyAction({
+final class BackupPlanCopyAction {
+  const BackupPlanCopyAction({
     required this.destinationVaultArn,
     this.lifecycle,
   });
 
   final TfArg<String> destinationVaultArn;
 
-  final BackupPlanRuleCopyActionLifecycle? lifecycle;
+  final BackupPlanLifecycle? lifecycle;
 
   Map<String, Object?> encode() => {
     'destination_vault_arn': destinationVaultArn.toTfJson(),
@@ -116,35 +116,12 @@ final class BackupPlanRuleCopyAction {
   };
 }
 
-/// Typed helper for the `rule.copy_action.lifecycle` block of
-/// `aws_backup_plan` (derived from provider schema).
-@immutable
-final class BackupPlanRuleCopyActionLifecycle {
-  const BackupPlanRuleCopyActionLifecycle({
-    this.coldStorageAfter,
-    this.deleteAfter,
-    this.optInToArchiveForSupportedResources,
-  });
-
-  final TfArg<num>? coldStorageAfter;
-
-  final TfArg<num>? deleteAfter;
-
-  final TfArg<bool>? optInToArchiveForSupportedResources;
-
-  Map<String, Object?> encode() => {
-    'cold_storage_after': ?coldStorageAfter?.toTfJson(),
-    'delete_after': ?deleteAfter?.toTfJson(),
-    'opt_in_to_archive_for_supported_resources':
-        ?optInToArchiveForSupportedResources?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `rule.lifecycle` block of
 /// `aws_backup_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BackupPlanRuleLifecycle {
-  const BackupPlanRuleLifecycle({
+final class BackupPlanLifecycle {
+  const BackupPlanLifecycle({
     this.coldStorageAfter,
     this.deleteAfter,
     this.optInToArchiveForSupportedResources,
@@ -167,15 +144,15 @@ final class BackupPlanRuleLifecycle {
 /// Typed helper for the `rule.scan_action` block of
 /// `aws_backup_plan` (derived from provider schema).
 @immutable
-final class BackupPlanRuleScanAction {
-  const BackupPlanRuleScanAction({
+final class BackupPlanScanAction {
+  const BackupPlanScanAction({
     required this.malwareScanner,
     required this.scanMode,
   });
 
-  final TfArg<BackupPlanRuleScanActionMalwareScanner> malwareScanner;
+  final TfArg<BackupPlanMalwareScanner> malwareScanner;
 
-  final TfArg<BackupPlanRuleScanActionScanMode> scanMode;
+  final TfArg<BackupPlanScanMode> scanMode;
 
   Map<String, Object?> encode() => {
     'malware_scanner': malwareScanner.toTfJson(),
@@ -184,20 +161,20 @@ final class BackupPlanRuleScanAction {
 }
 
 /// `malware_scanner` — derived from the provider schema description.
-enum BackupPlanRuleScanActionMalwareScanner implements TerraformEnum {
+enum BackupPlanMalwareScanner implements TerraformEnum {
   guardduty('GUARDDUTY');
 
-  const BackupPlanRuleScanActionMalwareScanner(this.terraformValue);
+  const BackupPlanMalwareScanner(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scan_mode` — derived from the provider schema description.
-enum BackupPlanRuleScanActionScanMode implements TerraformEnum {
+enum BackupPlanScanMode implements TerraformEnum {
   fullScan('FULL_SCAN'),
   incrementalScan('INCREMENTAL_SCAN');
 
-  const BackupPlanRuleScanActionScanMode(this.terraformValue);
+  const BackupPlanScanMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -212,7 +189,7 @@ final class BackupPlanScanSetting {
     required this.scannerRoleArn,
   });
 
-  final TfArg<BackupPlanScanSettingMalwareScanner> malwareScanner;
+  final TfArg<BackupPlanMalwareScanner> malwareScanner;
 
   final TfArg<List<String>> resourceTypes;
 
@@ -223,15 +200,6 @@ final class BackupPlanScanSetting {
     'resource_types': resourceTypes.toTfJson(),
     'scanner_role_arn': scannerRoleArn.toTfJson(),
   };
-}
-
-/// `malware_scanner` — derived from the provider schema description.
-enum BackupPlanScanSettingMalwareScanner implements TerraformEnum {
-  guardduty('GUARDDUTY');
-
-  const BackupPlanScanSettingMalwareScanner(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_backup_plan`.

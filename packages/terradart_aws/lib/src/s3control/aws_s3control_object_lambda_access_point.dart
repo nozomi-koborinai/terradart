@@ -20,18 +20,14 @@ final class S3controlObjectLambdaAccessPointConfiguration {
     required this.transformationConfiguration,
   });
 
-  final List<
-    TfArg<S3controlObjectLambdaAccessPointConfigurationAllowedFeatures>
-  >?
+  final List<TfArg<S3controlObjectLambdaAccessPointAllowedFeatures>>?
   allowedFeatures;
 
   final TfArg<bool>? cloudWatchMetricsEnabled;
 
   final TfArg<String> supportingAccessPoint;
 
-  final List<
-    S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration
-  >
+  final List<S3controlObjectLambdaAccessPointTransformationConfiguration>
   transformationConfiguration;
 
   Map<String, Object?> encode() => {
@@ -46,16 +42,13 @@ final class S3controlObjectLambdaAccessPointConfiguration {
 }
 
 /// `allowed_features` — derived from the provider schema description.
-enum S3controlObjectLambdaAccessPointConfigurationAllowedFeatures
-    implements TerraformEnum {
+enum S3controlObjectLambdaAccessPointAllowedFeatures implements TerraformEnum {
   getobjectRange('GetObject-Range'),
   getobjectPartnumber('GetObject-PartNumber'),
   headobjectRange('HeadObject-Range'),
   headobjectPartnumber('HeadObject-PartNumber');
 
-  const S3controlObjectLambdaAccessPointConfigurationAllowedFeatures(
-    this.terraformValue,
-  );
+  const S3controlObjectLambdaAccessPointAllowedFeatures(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -63,20 +56,15 @@ enum S3controlObjectLambdaAccessPointConfigurationAllowedFeatures
 /// Typed helper for the `configuration.transformation_configuration` block of
 /// `aws_s3control_object_lambda_access_point` (derived from provider schema).
 @immutable
-final class S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration {
-  const S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration({
+final class S3controlObjectLambdaAccessPointTransformationConfiguration {
+  const S3controlObjectLambdaAccessPointTransformationConfiguration({
     required this.actions,
     required this.contentTransformation,
   });
 
-  final List<
-    TfArg<
-      S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions
-    >
-  >
-  actions;
+  final List<TfArg<S3controlObjectLambdaAccessPointActions>> actions;
 
-  final S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation
+  final S3controlObjectLambdaAccessPointContentTransformation
   contentTransformation;
 
   Map<String, Object?> encode() => {
@@ -86,16 +74,13 @@ final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigura
 }
 
 /// `actions` — derived from the provider schema description.
-enum S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions
-    implements TerraformEnum {
+enum S3controlObjectLambdaAccessPointActions implements TerraformEnum {
   getobject('GetObject'),
   headobject('HeadObject'),
   listobjects('ListObjects'),
   listobjectsv2('ListObjectsV2');
 
-  const S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions(
-    this.terraformValue,
-  );
+  const S3controlObjectLambdaAccessPointActions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -103,13 +88,12 @@ enum S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationAct
 /// Typed helper for the `configuration.transformation_configuration.content_transformation` block of
 /// `aws_s3control_object_lambda_access_point` (derived from provider schema).
 @immutable
-final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation {
-  const S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation({
+final class S3controlObjectLambdaAccessPointContentTransformation {
+  const S3controlObjectLambdaAccessPointContentTransformation({
     required this.awsLambda,
   });
 
-  final S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformationAwsLambda
-  awsLambda;
+  final S3controlObjectLambdaAccessPointAwsLambda awsLambda;
 
   Map<String, Object?> encode() => {'aws_lambda': awsLambda.encode()};
 }
@@ -117,8 +101,8 @@ final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigura
 /// Typed helper for the `configuration.transformation_configuration.content_transformation.aws_lambda` block of
 /// `aws_s3control_object_lambda_access_point` (derived from provider schema).
 @immutable
-final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformationAwsLambda {
-  const S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformationAwsLambda({
+final class S3controlObjectLambdaAccessPointAwsLambda {
+  const S3controlObjectLambdaAccessPointAwsLambda({
     required this.functionArn,
     this.functionPayload,
   });

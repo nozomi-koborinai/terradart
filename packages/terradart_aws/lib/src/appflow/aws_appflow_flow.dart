@@ -26,9 +26,9 @@ final class AppflowFlowDestinationFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<AppflowFlowDestinationFlowConfigConnectorType> connectorType;
+  final TfArg<AppflowFlowConnectorType> connectorType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorProperties
+  final AppflowFlowDestinationConnectorProperties
   destinationConnectorProperties;
 
   Map<String, Object?> encode() => {
@@ -40,7 +40,7 @@ final class AppflowFlowDestinationFlowConfig {
 }
 
 /// `connector_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigConnectorType implements TerraformEnum {
+enum AppflowFlowConnectorType implements TerraformEnum {
   salesforce('Salesforce'),
   singular('Singular'),
   slack('Slack'),
@@ -66,7 +66,7 @@ enum AppflowFlowDestinationFlowConfigConnectorType implements TerraformEnum {
   customconnector('CustomConnector'),
   pardot('Pardot');
 
-  const AppflowFlowDestinationFlowConfigConnectorType(this.terraformValue);
+  const AppflowFlowConnectorType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -74,8 +74,8 @@ enum AppflowFlowDestinationFlowConfigConnectorType implements TerraformEnum {
 /// Typed helper for the `destination_flow_config.destination_connector_properties` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorProperties {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorProperties({
+final class AppflowFlowDestinationConnectorProperties {
+  const AppflowFlowDestinationConnectorProperties({
     this.customConnector,
     this.customerProfiles,
     this.eventBridge,
@@ -91,43 +91,32 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorProperties {
     this.zendesk,
   });
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnector?
+  final AppflowFlowDestinationConnectorPropertiesCustomConnector?
   customConnector;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomerProfiles?
-  customerProfiles;
+  final AppflowFlowCustomerProfiles? customerProfiles;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridge?
-  eventBridge;
+  final AppflowFlowEventBridge? eventBridge;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycode?
-  honeycode;
+  final AppflowFlowHoneycode? honeycode;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesLookoutMetrics?
-  lookoutMetrics;
+  final AppflowFlowLookoutMetrics? lookoutMetrics;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketo?
-  marketo;
+  final AppflowFlowDestinationConnectorPropertiesMarketo? marketo;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshift?
-  redshift;
+  final AppflowFlowRedshift? redshift;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3? s3;
+  final AppflowFlowDestinationConnectorPropertiesS3? s3;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforce?
-  salesforce;
+  final AppflowFlowDestinationConnectorPropertiesSalesforce? salesforce;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoData?
-  sapoData;
+  final AppflowFlowDestinationConnectorPropertiesSapoData? sapoData;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflake?
-  snowflake;
+  final AppflowFlowSnowflake? snowflake;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolver?
-  upsolver;
+  final AppflowFlowUpsolver? upsolver;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendesk?
-  zendesk;
+  final AppflowFlowDestinationConnectorPropertiesZendesk? zendesk;
 
   Map<String, Object?> encode() => {
     'custom_connector': ?customConnector?.encode(),
@@ -149,8 +138,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorProperties {
 /// Typed helper for the `destination_flow_config.destination_connector_properties.custom_connector` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnector {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnector({
+final class AppflowFlowDestinationConnectorPropertiesCustomConnector {
+  const AppflowFlowDestinationConnectorPropertiesCustomConnector({
     this.customProperties,
     required this.entityName,
     this.idFieldNames,
@@ -164,13 +153,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 
   final TfArg<List<String>>? idFieldNames;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType
-  >?
-  writeOperationType;
+  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'custom_properties': ?customProperties?.toTfJson(),
@@ -182,25 +167,23 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 }
 
 /// `write_operation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType
-    implements TerraformEnum {
+enum AppflowFlowWriteOperationType implements TerraformEnum {
   insert('INSERT'),
   upsert('UPSERT'),
   update('UPDATE'),
   delete('DELETE');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType(
-    this.terraformValue,
-  );
+  const AppflowFlowWriteOperationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.custom_connector.error_handling_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorErrorHandlingConfig({
+final class AppflowFlowErrorHandlingConfig {
+  const AppflowFlowErrorHandlingConfig({
     this.bucketName,
     this.bucketPrefix,
     this.failOnFirstDestinationError,
@@ -222,8 +205,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 /// Typed helper for the `destination_flow_config.destination_connector_properties.customer_profiles` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomerProfiles {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomerProfiles({
+final class AppflowFlowCustomerProfiles {
+  const AppflowFlowCustomerProfiles({
     required this.domainName,
     this.objectTypeName,
   });
@@ -241,59 +224,31 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 /// Typed helper for the `destination_flow_config.destination_connector_properties.event_bridge` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridge {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridge({
+final class AppflowFlowEventBridge {
+  const AppflowFlowEventBridge({
     required this.object,
     this.errorHandlingConfig,
   });
 
   final TfArg<String> object;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridgeErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
     'error_handling_config': ?errorHandlingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `destination_flow_config.destination_connector_properties.event_bridge.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridgeErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventBridgeErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.honeycode` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycode {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycode({
-    required this.object,
-    this.errorHandlingConfig,
-  });
+final class AppflowFlowHoneycode {
+  const AppflowFlowHoneycode({required this.object, this.errorHandlingConfig});
 
   final TfArg<String> object;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycodeErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
@@ -301,34 +256,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneyc
   };
 }
 
-/// Typed helper for the `destination_flow_config.destination_connector_properties.honeycode.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycodeErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneycodeErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.lookout_metrics` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesLookoutMetrics {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesLookoutMetrics();
+final class AppflowFlowLookoutMetrics {
+  const AppflowFlowLookoutMetrics();
 
   Map<String, Object?> encode() => {};
 }
@@ -336,16 +268,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesLookou
 /// Typed helper for the `destination_flow_config.destination_connector_properties.marketo` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketo {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketo({
+final class AppflowFlowDestinationConnectorPropertiesMarketo {
+  const AppflowFlowDestinationConnectorPropertiesMarketo({
     required this.object,
     this.errorHandlingConfig,
   });
 
   final TfArg<String> object;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketoErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
@@ -353,34 +284,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarket
   };
 }
 
-/// Typed helper for the `destination_flow_config.destination_connector_properties.marketo.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketoErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarketoErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.redshift` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshift {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshift({
+final class AppflowFlowRedshift {
+  const AppflowFlowRedshift({
     this.bucketPrefix,
     required this.intermediateBucketName,
     required this.object,
@@ -393,8 +301,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshi
 
   final TfArg<String> object;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshiftErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -404,34 +311,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshi
   };
 }
 
-/// Typed helper for the `destination_flow_config.destination_connector_properties.redshift.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshiftErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshiftErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3({
+final class AppflowFlowDestinationConnectorPropertiesS3 {
+  const AppflowFlowDestinationConnectorPropertiesS3({
     required this.bucketName,
     this.bucketPrefix,
     this.s3OutputFormatConfig,
@@ -441,8 +325,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
 
   final TfArg<String>? bucketPrefix;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfig?
-  s3OutputFormatConfig;
+  final AppflowFlowS3S3OutputFormatConfig? s3OutputFormatConfig;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -454,26 +337,21 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfig({
+final class AppflowFlowS3S3OutputFormatConfig {
+  const AppflowFlowS3S3OutputFormatConfig({
     this.fileType,
     this.preserveSourceDataTyping,
     this.aggregationConfig,
     this.prefixConfig,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType
-  >?
-  fileType;
+  final TfArg<AppflowFlowFileType>? fileType;
 
   final TfArg<bool>? preserveSourceDataTyping;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfig?
-  aggregationConfig;
+  final AppflowFlowS3AggregationConfig? aggregationConfig;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfig?
-  prefixConfig;
+  final AppflowFlowS3PrefixConfig? prefixConfig;
 
   Map<String, Object?> encode() => {
     'file_type': ?fileType?.toTfJson(),
@@ -484,15 +362,12 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
 }
 
 /// `file_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType
-    implements TerraformEnum {
+enum AppflowFlowFileType implements TerraformEnum {
   csv('CSV'),
   json('JSON'),
   parquet('PARQUET');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType(
-    this.terraformValue,
-  );
+  const AppflowFlowFileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -500,16 +375,13 @@ enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFor
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.aggregation_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfig({
+final class AppflowFlowS3AggregationConfig {
+  const AppflowFlowS3AggregationConfig({
     this.aggregationType,
     this.targetFileSize,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType
-  >?
-  aggregationType;
+  final TfArg<AppflowFlowAggregationType>? aggregationType;
 
   final TfArg<num>? targetFileSize;
 
@@ -520,14 +392,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
 }
 
 /// `aggregation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType
-    implements TerraformEnum {
+enum AppflowFlowAggregationType implements TerraformEnum {
   none('None'),
   singlefile('SingleFile');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType(
-    this.terraformValue,
-  );
+  const AppflowFlowAggregationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -535,29 +404,18 @@ enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFor
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.prefix_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfig({
+final class AppflowFlowS3PrefixConfig {
+  const AppflowFlowS3PrefixConfig({
     this.prefixFormat,
     this.prefixHierarchy,
     this.prefixType,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat
-  >?
-  prefixFormat;
+  final TfArg<AppflowFlowPrefixFormat>? prefixFormat;
 
-  final List<
-    TfArg<
-      AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy
-    >
-  >?
-  prefixHierarchy;
+  final List<TfArg<AppflowFlowPrefixHierarchy>>? prefixHierarchy;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType
-  >?
-  prefixType;
+  final TfArg<AppflowFlowPrefixType>? prefixType;
 
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
@@ -568,44 +426,35 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
 }
 
 /// `prefix_format` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat
-    implements TerraformEnum {
+enum AppflowFlowPrefixFormat implements TerraformEnum {
   year('YEAR'),
   month('MONTH'),
   day('DAY'),
   hour('HOUR'),
   minute('MINUTE');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat(
-    this.terraformValue,
-  );
+  const AppflowFlowPrefixFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `prefix_hierarchy` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy
-    implements TerraformEnum {
+enum AppflowFlowPrefixHierarchy implements TerraformEnum {
   executionId('EXECUTION_ID'),
   schemaVersion('SCHEMA_VERSION');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy(
-    this.terraformValue,
-  );
+  const AppflowFlowPrefixHierarchy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `prefix_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType
-    implements TerraformEnum {
+enum AppflowFlowPrefixType implements TerraformEnum {
   filename('FILENAME'),
   path('PATH'),
   pathAndFilename('PATH_AND_FILENAME');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType(
-    this.terraformValue,
-  );
+  const AppflowFlowPrefixType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -613,8 +462,8 @@ enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFor
 /// Typed helper for the `destination_flow_config.destination_connector_properties.salesforce` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforce {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforce({
+final class AppflowFlowDestinationConnectorPropertiesSalesforce {
+  const AppflowFlowDestinationConnectorPropertiesSalesforce({
     this.dataTransferApi,
     this.idFieldNames,
     required this.object,
@@ -622,22 +471,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
     this.errorHandlingConfig,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi
-  >?
-  dataTransferApi;
+  final TfArg<AppflowFlowDataTransferApi>? dataTransferApi;
 
   final TfArg<List<String>>? idFieldNames;
 
   final TfArg<String> object;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType
-  >?
-  writeOperationType;
+  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'data_transfer_api': ?dataTransferApi?.toTfJson(),
@@ -649,62 +491,21 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
 }
 
 /// `data_transfer_api` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi
-    implements TerraformEnum {
+enum AppflowFlowDataTransferApi implements TerraformEnum {
   automatic('AUTOMATIC'),
   bulkv2('BULKV2'),
   restSync('REST_SYNC');
 
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi(
-    this.terraformValue,
-  );
+  const AppflowFlowDataTransferApi(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// `write_operation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType
-    implements TerraformEnum {
-  insert('INSERT'),
-  upsert('UPSERT'),
-  update('UPDATE'),
-  delete('DELETE');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `destination_flow_config.destination_connector_properties.salesforce.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.sapo_data` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoData {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoData({
+final class AppflowFlowDestinationConnectorPropertiesSapoData {
+  const AppflowFlowDestinationConnectorPropertiesSapoData({
     this.idFieldNames,
     required this.objectPath,
     this.writeOperationType,
@@ -716,16 +517,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
 
   final TfArg<String> objectPath;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType
-  >?
-  writeOperationType;
+  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataSuccessResponseHandlingConfig?
-  successResponseHandlingConfig;
+  final AppflowFlowSuccessResponseHandlingConfig? successResponseHandlingConfig;
 
   Map<String, Object?> encode() => {
     'id_field_names': ?idFieldNames?.toTfJson(),
@@ -737,49 +533,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
   };
 }
 
-/// `write_operation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType
-    implements TerraformEnum {
-  insert('INSERT'),
-  upsert('UPSERT'),
-  update('UPDATE'),
-  delete('DELETE');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `destination_flow_config.destination_connector_properties.sapo_data.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.sapo_data.success_response_handling_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataSuccessResponseHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataSuccessResponseHandlingConfig({
+final class AppflowFlowSuccessResponseHandlingConfig {
+  const AppflowFlowSuccessResponseHandlingConfig({
     this.bucketName,
     this.bucketPrefix,
   });
@@ -797,8 +555,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
 /// Typed helper for the `destination_flow_config.destination_connector_properties.snowflake` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflake {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflake({
+final class AppflowFlowSnowflake {
+  const AppflowFlowSnowflake({
     this.bucketPrefix,
     required this.intermediateBucketName,
     required this.object,
@@ -811,8 +569,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowfl
 
   final TfArg<String> object;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflakeErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -822,34 +579,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowfl
   };
 }
 
-/// Typed helper for the `destination_flow_config.destination_connector_properties.snowflake.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflakeErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowflakeErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolver {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolver({
+final class AppflowFlowUpsolver {
+  const AppflowFlowUpsolver({
     required this.bucketName,
     this.bucketPrefix,
     required this.s3OutputFormatConfig,
@@ -859,8 +593,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
 
   final TfArg<String>? bucketPrefix;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfig
-  s3OutputFormatConfig;
+  final AppflowFlowUpsolverS3OutputFormatConfig s3OutputFormatConfig;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -872,23 +605,18 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver.s3_output_format_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfig({
+final class AppflowFlowUpsolverS3OutputFormatConfig {
+  const AppflowFlowUpsolverS3OutputFormatConfig({
     this.fileType,
     this.aggregationConfig,
     required this.prefixConfig,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType
-  >?
-  fileType;
+  final TfArg<AppflowFlowFileType>? fileType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfig?
-  aggregationConfig;
+  final AppflowFlowUpsolverAggregationConfig? aggregationConfig;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfig
-  prefixConfig;
+  final AppflowFlowUpsolverPrefixConfig prefixConfig;
 
   Map<String, Object?> encode() => {
     'file_type': ?fileType?.toTfJson(),
@@ -897,77 +625,34 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   };
 }
 
-/// `file_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType
-    implements TerraformEnum {
-  csv('CSV'),
-  json('JSON'),
-  parquet('PARQUET');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver.s3_output_format_config.aggregation_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfig({
-    this.aggregationType,
-  });
+final class AppflowFlowUpsolverAggregationConfig {
+  const AppflowFlowUpsolverAggregationConfig({this.aggregationType});
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType
-  >?
-  aggregationType;
+  final TfArg<AppflowFlowAggregationType>? aggregationType;
 
   Map<String, Object?> encode() => {
     'aggregation_type': ?aggregationType?.toTfJson(),
   };
 }
 
-/// `aggregation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType
-    implements TerraformEnum {
-  none('None'),
-  singlefile('SingleFile');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver.s3_output_format_config.prefix_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfig({
+final class AppflowFlowUpsolverPrefixConfig {
+  const AppflowFlowUpsolverPrefixConfig({
     this.prefixFormat,
     this.prefixHierarchy,
     required this.prefixType,
   });
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat
-  >?
-  prefixFormat;
+  final TfArg<AppflowFlowPrefixFormat>? prefixFormat;
 
-  final List<
-    TfArg<
-      AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy
-    >
-  >?
-  prefixHierarchy;
+  final List<TfArg<AppflowFlowPrefixHierarchy>>? prefixHierarchy;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType
-  >
-  prefixType;
+  final TfArg<AppflowFlowPrefixType> prefixType;
 
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
@@ -977,54 +662,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   };
 }
 
-/// `prefix_format` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat
-    implements TerraformEnum {
-  year('YEAR'),
-  month('MONTH'),
-  day('DAY'),
-  hour('HOUR'),
-  minute('MINUTE');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `prefix_hierarchy` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy
-    implements TerraformEnum {
-  executionId('EXECUTION_ID'),
-  schemaVersion('SCHEMA_VERSION');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `prefix_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType
-    implements TerraformEnum {
-  filename('FILENAME'),
-  path('PATH'),
-  pathAndFilename('PATH_AND_FILENAME');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `destination_flow_config.destination_connector_properties.zendesk` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendesk {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendesk({
+final class AppflowFlowDestinationConnectorPropertiesZendesk {
+  const AppflowFlowDestinationConnectorPropertiesZendesk({
     this.idFieldNames,
     required this.object,
     this.writeOperationType,
@@ -1035,13 +677,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
 
   final TfArg<String> object;
 
-  final TfArg<
-    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType
-  >?
-  writeOperationType;
+  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
 
-  final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskErrorHandlingConfig?
-  errorHandlingConfig;
+  final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
   Map<String, Object?> encode() => {
     'id_field_names': ?idFieldNames?.toTfJson(),
@@ -1051,51 +689,13 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
   };
 }
 
-/// `write_operation_type` — derived from the provider schema description.
-enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType
-    implements TerraformEnum {
-  insert('INSERT'),
-  upsert('UPSERT'),
-  update('UPDATE'),
-  delete('DELETE');
-
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `destination_flow_config.destination_connector_properties.zendesk.error_handling_config` block of
-/// `aws_appflow_flow` (derived from provider schema).
-@immutable
-final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskErrorHandlingConfig {
-  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskErrorHandlingConfig({
-    this.bucketName,
-    this.bucketPrefix,
-    this.failOnFirstDestinationError,
-  });
-
-  final RefTo<AwsS3Bucket>? bucketName;
-
-  final TfArg<String>? bucketPrefix;
-
-  final TfArg<bool>? failOnFirstDestinationError;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
-    'bucket_prefix': ?bucketPrefix?.toTfJson(),
-    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `metadata_catalog_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
 final class AppflowFlowMetadataCatalogConfig {
   const AppflowFlowMetadataCatalogConfig({this.glueDataCatalog});
 
-  final AppflowFlowMetadataCatalogConfigGlueDataCatalog? glueDataCatalog;
+  final AppflowFlowGlueDataCatalog? glueDataCatalog;
 
   Map<String, Object?> encode() => {
     'glue_data_catalog': ?glueDataCatalog?.encode(),
@@ -1105,8 +705,8 @@ final class AppflowFlowMetadataCatalogConfig {
 /// Typed helper for the `metadata_catalog_config.glue_data_catalog` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowMetadataCatalogConfigGlueDataCatalog {
-  const AppflowFlowMetadataCatalogConfigGlueDataCatalog({
+final class AppflowFlowGlueDataCatalog {
+  const AppflowFlowGlueDataCatalog({
     required this.databaseName,
     required this.roleArn,
     required this.tablePrefix,
@@ -1141,12 +741,11 @@ final class AppflowFlowSourceFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<AppflowFlowSourceFlowConfigConnectorType> connectorType;
+  final TfArg<AppflowFlowConnectorType> connectorType;
 
-  final AppflowFlowSourceFlowConfigIncrementalPullConfig? incrementalPullConfig;
+  final AppflowFlowIncrementalPullConfig? incrementalPullConfig;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorProperties
-  sourceConnectorProperties;
+  final AppflowFlowSourceConnectorProperties sourceConnectorProperties;
 
   Map<String, Object?> encode() => {
     'api_version': ?apiVersion?.toTfJson(),
@@ -1157,45 +756,11 @@ final class AppflowFlowSourceFlowConfig {
   };
 }
 
-/// `connector_type` — derived from the provider schema description.
-enum AppflowFlowSourceFlowConfigConnectorType implements TerraformEnum {
-  salesforce('Salesforce'),
-  singular('Singular'),
-  slack('Slack'),
-  redshift('Redshift'),
-  s3('S3'),
-  marketo('Marketo'),
-  googleanalytics('Googleanalytics'),
-  zendesk('Zendesk'),
-  servicenow('Servicenow'),
-  datadog('Datadog'),
-  trendmicro('Trendmicro'),
-  snowflake('Snowflake'),
-  dynatrace('Dynatrace'),
-  infornexus('Infornexus'),
-  amplitude('Amplitude'),
-  veeva('Veeva'),
-  eventbridge('EventBridge'),
-  lookoutmetrics('LookoutMetrics'),
-  upsolver('Upsolver'),
-  honeycode('Honeycode'),
-  customerprofiles('CustomerProfiles'),
-  sapodata('SAPOData'),
-  customconnector('CustomConnector'),
-  pardot('Pardot');
-
-  const AppflowFlowSourceFlowConfigConnectorType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `source_flow_config.incremental_pull_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigIncrementalPullConfig {
-  const AppflowFlowSourceFlowConfigIncrementalPullConfig({
-    this.datetimeTypeFieldName,
-  });
+final class AppflowFlowIncrementalPullConfig {
+  const AppflowFlowIncrementalPullConfig({this.datetimeTypeFieldName});
 
   final TfArg<String>? datetimeTypeFieldName;
 
@@ -1207,8 +772,8 @@ final class AppflowFlowSourceFlowConfigIncrementalPullConfig {
 /// Typed helper for the `source_flow_config.source_connector_properties` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorProperties {
-  const AppflowFlowSourceFlowConfigSourceConnectorProperties({
+final class AppflowFlowSourceConnectorProperties {
+  const AppflowFlowSourceConnectorProperties({
     this.amplitude,
     this.customConnector,
     this.datadog,
@@ -1227,45 +792,37 @@ final class AppflowFlowSourceFlowConfigSourceConnectorProperties {
     this.zendesk,
   });
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesAmplitude?
-  amplitude;
+  final AppflowFlowSourceConnectorPropertiesAmplitude? amplitude;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesCustomConnector?
-  customConnector;
+  final AppflowFlowSourceConnectorPropertiesCustomConnector? customConnector;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesDatadog? datadog;
+  final AppflowFlowSourceConnectorPropertiesDatadog? datadog;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesDynatrace?
-  dynatrace;
+  final AppflowFlowSourceConnectorPropertiesDynatrace? dynatrace;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesGoogleAnalytics?
-  googleAnalytics;
+  final AppflowFlowSourceConnectorPropertiesGoogleAnalytics? googleAnalytics;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesInforNexus?
-  inforNexus;
+  final AppflowFlowSourceConnectorPropertiesInforNexus? inforNexus;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesMarketo? marketo;
+  final AppflowFlowSourceConnectorPropertiesMarketo? marketo;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3? s3;
+  final AppflowFlowSourceConnectorPropertiesS3? s3;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce?
-  salesforce;
+  final AppflowFlowSourceConnectorPropertiesSalesforce? salesforce;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData? sapoData;
+  final AppflowFlowSourceConnectorPropertiesSapoData? sapoData;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesServiceNow?
-  serviceNow;
+  final AppflowFlowSourceConnectorPropertiesServiceNow? serviceNow;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSingular? singular;
+  final AppflowFlowSourceConnectorPropertiesSingular? singular;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSlack? slack;
+  final AppflowFlowSourceConnectorPropertiesSlack? slack;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesTrendmicro?
-  trendmicro;
+  final AppflowFlowSourceConnectorPropertiesTrendmicro? trendmicro;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesVeeva? veeva;
+  final AppflowFlowSourceConnectorPropertiesVeeva? veeva;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesZendesk? zendesk;
+  final AppflowFlowSourceConnectorPropertiesZendesk? zendesk;
 
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
@@ -1290,10 +847,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorProperties {
 /// Typed helper for the `source_flow_config.source_connector_properties.amplitude` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesAmplitude {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesAmplitude({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesAmplitude {
+  const AppflowFlowSourceConnectorPropertiesAmplitude({required this.object});
 
   final TfArg<String> object;
 
@@ -1303,8 +858,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesAmplitude {
 /// Typed helper for the `source_flow_config.source_connector_properties.custom_connector` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesCustomConnector {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesCustomConnector({
+final class AppflowFlowSourceConnectorPropertiesCustomConnector {
+  const AppflowFlowSourceConnectorPropertiesCustomConnector({
     this.customProperties,
     required this.entityName,
   });
@@ -1322,10 +877,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesCustomConnector 
 /// Typed helper for the `source_flow_config.source_connector_properties.datadog` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesDatadog {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesDatadog({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesDatadog {
+  const AppflowFlowSourceConnectorPropertiesDatadog({required this.object});
 
   final TfArg<String> object;
 
@@ -1335,10 +888,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesDatadog {
 /// Typed helper for the `source_flow_config.source_connector_properties.dynatrace` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesDynatrace {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesDynatrace({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesDynatrace {
+  const AppflowFlowSourceConnectorPropertiesDynatrace({required this.object});
 
   final TfArg<String> object;
 
@@ -1348,8 +899,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesDynatrace {
 /// Typed helper for the `source_flow_config.source_connector_properties.google_analytics` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesGoogleAnalytics {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesGoogleAnalytics({
+final class AppflowFlowSourceConnectorPropertiesGoogleAnalytics {
+  const AppflowFlowSourceConnectorPropertiesGoogleAnalytics({
     required this.object,
   });
 
@@ -1361,10 +912,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesGoogleAnalytics 
 /// Typed helper for the `source_flow_config.source_connector_properties.infor_nexus` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesInforNexus {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesInforNexus({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesInforNexus {
+  const AppflowFlowSourceConnectorPropertiesInforNexus({required this.object});
 
   final TfArg<String> object;
 
@@ -1374,10 +923,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesInforNexus {
 /// Typed helper for the `source_flow_config.source_connector_properties.marketo` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesMarketo {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesMarketo({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesMarketo {
+  const AppflowFlowSourceConnectorPropertiesMarketo({required this.object});
 
   final TfArg<String> object;
 
@@ -1387,8 +934,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesMarketo {
 /// Typed helper for the `source_flow_config.source_connector_properties.s3` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3({
+final class AppflowFlowSourceConnectorPropertiesS3 {
+  const AppflowFlowSourceConnectorPropertiesS3({
     required this.bucketName,
     required this.bucketPrefix,
     this.s3InputFormatConfig,
@@ -1398,8 +945,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
 
   final TfArg<String> bucketPrefix;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfig?
-  s3InputFormatConfig;
+  final AppflowFlowS3InputFormatConfig? s3InputFormatConfig;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -1411,15 +957,10 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
 /// Typed helper for the `source_flow_config.source_connector_properties.s3.s3_input_format_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfig {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfig({
-    this.s3InputFileType,
-  });
+final class AppflowFlowS3InputFormatConfig {
+  const AppflowFlowS3InputFormatConfig({this.s3InputFileType});
 
-  final TfArg<
-    AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType
-  >?
-  s3InputFileType;
+  final TfArg<AppflowFlowS3InputFileType>? s3InputFileType;
 
   Map<String, Object?> encode() => {
     's3_input_file_type': ?s3InputFileType?.toTfJson(),
@@ -1427,14 +968,11 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatC
 }
 
 /// `s3_input_file_type` — derived from the provider schema description.
-enum AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType
-    implements TerraformEnum {
+enum AppflowFlowS3InputFileType implements TerraformEnum {
   csv('CSV'),
   json('JSON');
 
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType(
-    this.terraformValue,
-  );
+  const AppflowFlowS3InputFileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1442,18 +980,15 @@ enum AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3
 /// Typed helper for the `source_flow_config.source_connector_properties.salesforce` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce({
+final class AppflowFlowSourceConnectorPropertiesSalesforce {
+  const AppflowFlowSourceConnectorPropertiesSalesforce({
     this.dataTransferApi,
     this.enableDynamicFieldUpdate,
     this.includeDeletedRecords,
     required this.object,
   });
 
-  final TfArg<
-    AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi
-  >?
-  dataTransferApi;
+  final TfArg<AppflowFlowDataTransferApi>? dataTransferApi;
 
   final TfArg<bool>? enableDynamicFieldUpdate;
 
@@ -1469,25 +1004,11 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce {
   };
 }
 
-/// `data_transfer_api` — derived from the provider schema description.
-enum AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi
-    implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  bulkv2('BULKV2'),
-  restSync('REST_SYNC');
-
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `source_flow_config.source_connector_properties.sapo_data` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData({
+final class AppflowFlowSourceConnectorPropertiesSapoData {
+  const AppflowFlowSourceConnectorPropertiesSapoData({
     required this.objectPath,
     this.paginationConfig,
     this.parallelismConfig,
@@ -1495,11 +1016,9 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData {
 
   final TfArg<String> objectPath;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataPaginationConfig?
-  paginationConfig;
+  final AppflowFlowPaginationConfig? paginationConfig;
 
-  final AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataParallelismConfig?
-  parallelismConfig;
+  final AppflowFlowParallelismConfig? parallelismConfig;
 
   Map<String, Object?> encode() => {
     'object_path': objectPath.toTfJson(),
@@ -1511,10 +1030,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData {
 /// Typed helper for the `source_flow_config.source_connector_properties.sapo_data.pagination_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataPaginationConfig {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataPaginationConfig({
-    required this.maxPageSize,
-  });
+final class AppflowFlowPaginationConfig {
+  const AppflowFlowPaginationConfig({required this.maxPageSize});
 
   final TfArg<num> maxPageSize;
 
@@ -1524,10 +1041,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataPaginati
 /// Typed helper for the `source_flow_config.source_connector_properties.sapo_data.parallelism_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataParallelismConfig {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataParallelismConfig({
-    required this.maxPageSize,
-  });
+final class AppflowFlowParallelismConfig {
+  const AppflowFlowParallelismConfig({required this.maxPageSize});
 
   final TfArg<num> maxPageSize;
 
@@ -1537,10 +1052,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoDataParallel
 /// Typed helper for the `source_flow_config.source_connector_properties.service_now` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesServiceNow {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesServiceNow({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesServiceNow {
+  const AppflowFlowSourceConnectorPropertiesServiceNow({required this.object});
 
   final TfArg<String> object;
 
@@ -1550,10 +1063,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesServiceNow {
 /// Typed helper for the `source_flow_config.source_connector_properties.singular` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSingular {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSingular({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesSingular {
+  const AppflowFlowSourceConnectorPropertiesSingular({required this.object});
 
   final TfArg<String> object;
 
@@ -1563,10 +1074,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSingular {
 /// Typed helper for the `source_flow_config.source_connector_properties.slack` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSlack {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSlack({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesSlack {
+  const AppflowFlowSourceConnectorPropertiesSlack({required this.object});
 
   final TfArg<String> object;
 
@@ -1576,10 +1085,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSlack {
 /// Typed helper for the `source_flow_config.source_connector_properties.trendmicro` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesTrendmicro {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesTrendmicro({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesTrendmicro {
+  const AppflowFlowSourceConnectorPropertiesTrendmicro({required this.object});
 
   final TfArg<String> object;
 
@@ -1589,8 +1096,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesTrendmicro {
 /// Typed helper for the `source_flow_config.source_connector_properties.veeva` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesVeeva {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesVeeva({
+final class AppflowFlowSourceConnectorPropertiesVeeva {
+  const AppflowFlowSourceConnectorPropertiesVeeva({
     this.documentType,
     this.includeAllVersions,
     this.includeRenditions,
@@ -1620,10 +1127,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesVeeva {
 /// Typed helper for the `source_flow_config.source_connector_properties.zendesk` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesZendesk {
-  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesZendesk({
-    required this.object,
-  });
+final class AppflowFlowSourceConnectorPropertiesZendesk {
+  const AppflowFlowSourceConnectorPropertiesZendesk({required this.object});
 
   final TfArg<String> object;
 
@@ -1648,9 +1153,9 @@ final class AppflowFlowTask {
 
   final TfArg<Map<String, String>>? taskProperties;
 
-  final TfArg<AppflowFlowTaskTaskType> taskType;
+  final TfArg<AppflowFlowTaskType> taskType;
 
-  final List<AppflowFlowTaskConnectorOperator>? connectorOperator;
+  final List<AppflowFlowConnectorOperator>? connectorOperator;
 
   Map<String, Object?> encode() => {
     'destination_field': ?destinationField?.toTfJson(),
@@ -1663,7 +1168,7 @@ final class AppflowFlowTask {
 }
 
 /// `task_type` — derived from the provider schema description.
-enum AppflowFlowTaskTaskType implements TerraformEnum {
+enum AppflowFlowTaskType implements TerraformEnum {
   arithmetic('Arithmetic'),
   filter('Filter'),
   map('Map'),
@@ -1675,7 +1180,7 @@ enum AppflowFlowTaskTaskType implements TerraformEnum {
   validate('Validate'),
   partition('Partition');
 
-  const AppflowFlowTaskTaskType(this.terraformValue);
+  const AppflowFlowTaskType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1683,8 +1188,8 @@ enum AppflowFlowTaskTaskType implements TerraformEnum {
 /// Typed helper for the `task.connector_operator` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowTaskConnectorOperator {
-  const AppflowFlowTaskConnectorOperator({
+final class AppflowFlowConnectorOperator {
+  const AppflowFlowConnectorOperator({
     this.amplitude,
     this.customConnector,
     this.datadog,
@@ -1703,37 +1208,37 @@ final class AppflowFlowTaskConnectorOperator {
     this.zendesk,
   });
 
-  final TfArg<AppflowFlowTaskConnectorOperatorAmplitude>? amplitude;
+  final TfArg<AppflowFlowConnectorOperatorAmplitude>? amplitude;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorCustomConnector>? customConnector;
+  final TfArg<AppflowFlowConnectorOperatorCustomConnector>? customConnector;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorDatadog>? datadog;
+  final TfArg<AppflowFlowConnectorOperatorDatadog>? datadog;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorDynatrace>? dynatrace;
+  final TfArg<AppflowFlowConnectorOperatorDynatrace>? dynatrace;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorGoogleAnalytics>? googleAnalytics;
+  final TfArg<AppflowFlowConnectorOperatorGoogleAnalytics>? googleAnalytics;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorInforNexus>? inforNexus;
+  final TfArg<AppflowFlowConnectorOperatorInforNexus>? inforNexus;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorMarketo>? marketo;
+  final TfArg<AppflowFlowConnectorOperatorMarketo>? marketo;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorS3>? s3;
+  final TfArg<AppflowFlowConnectorOperatorS3>? s3;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorSalesforce>? salesforce;
+  final TfArg<AppflowFlowConnectorOperatorSalesforce>? salesforce;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorSapoData>? sapoData;
+  final TfArg<AppflowFlowConnectorOperatorSapoData>? sapoData;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorServiceNow>? serviceNow;
+  final TfArg<AppflowFlowConnectorOperatorServiceNow>? serviceNow;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorSingular>? singular;
+  final TfArg<AppflowFlowConnectorOperatorSingular>? singular;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorSlack>? slack;
+  final TfArg<AppflowFlowConnectorOperatorSlack>? slack;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorTrendmicro>? trendmicro;
+  final TfArg<AppflowFlowConnectorOperatorTrendmicro>? trendmicro;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorVeeva>? veeva;
+  final TfArg<AppflowFlowConnectorOperatorVeeva>? veeva;
 
-  final TfArg<AppflowFlowTaskConnectorOperatorZendesk>? zendesk;
+  final TfArg<AppflowFlowConnectorOperatorZendesk>? zendesk;
 
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.toTfJson(),
@@ -1756,16 +1261,16 @@ final class AppflowFlowTaskConnectorOperator {
 }
 
 /// `amplitude` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorAmplitude implements TerraformEnum {
+enum AppflowFlowConnectorOperatorAmplitude implements TerraformEnum {
   between('BETWEEN');
 
-  const AppflowFlowTaskConnectorOperatorAmplitude(this.terraformValue);
+  const AppflowFlowConnectorOperatorAmplitude(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `custom_connector` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorCustomConnector implements TerraformEnum {
+enum AppflowFlowConnectorOperatorCustomConnector implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   greaterThan('GREATER_THAN'),
@@ -1788,13 +1293,13 @@ enum AppflowFlowTaskConnectorOperatorCustomConnector implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorCustomConnector(this.terraformValue);
+  const AppflowFlowConnectorOperatorCustomConnector(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `datadog` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorDatadog implements TerraformEnum {
+enum AppflowFlowConnectorOperatorDatadog implements TerraformEnum {
   projection('PROJECTION'),
   between('BETWEEN'),
   equalTo('EQUAL_TO'),
@@ -1811,13 +1316,13 @@ enum AppflowFlowTaskConnectorOperatorDatadog implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorDatadog(this.terraformValue);
+  const AppflowFlowConnectorOperatorDatadog(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `dynatrace` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorDynatrace implements TerraformEnum {
+enum AppflowFlowConnectorOperatorDynatrace implements TerraformEnum {
   projection('PROJECTION'),
   between('BETWEEN'),
   equalTo('EQUAL_TO'),
@@ -1834,23 +1339,23 @@ enum AppflowFlowTaskConnectorOperatorDynatrace implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorDynatrace(this.terraformValue);
+  const AppflowFlowConnectorOperatorDynatrace(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `google_analytics` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorGoogleAnalytics implements TerraformEnum {
+enum AppflowFlowConnectorOperatorGoogleAnalytics implements TerraformEnum {
   projection('PROJECTION'),
   between('BETWEEN');
 
-  const AppflowFlowTaskConnectorOperatorGoogleAnalytics(this.terraformValue);
+  const AppflowFlowConnectorOperatorGoogleAnalytics(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `infor_nexus` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorInforNexus implements TerraformEnum {
+enum AppflowFlowConnectorOperatorInforNexus implements TerraformEnum {
   projection('PROJECTION'),
   between('BETWEEN'),
   equalTo('EQUAL_TO'),
@@ -1867,13 +1372,13 @@ enum AppflowFlowTaskConnectorOperatorInforNexus implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorInforNexus(this.terraformValue);
+  const AppflowFlowConnectorOperatorInforNexus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `marketo` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorMarketo implements TerraformEnum {
+enum AppflowFlowConnectorOperatorMarketo implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   greaterThan('GREATER_THAN'),
@@ -1891,13 +1396,13 @@ enum AppflowFlowTaskConnectorOperatorMarketo implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorMarketo(this.terraformValue);
+  const AppflowFlowConnectorOperatorMarketo(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `s3` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorS3 implements TerraformEnum {
+enum AppflowFlowConnectorOperatorS3 implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   greaterThan('GREATER_THAN'),
@@ -1919,13 +1424,13 @@ enum AppflowFlowTaskConnectorOperatorS3 implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorS3(this.terraformValue);
+  const AppflowFlowConnectorOperatorS3(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `salesforce` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorSalesforce implements TerraformEnum {
+enum AppflowFlowConnectorOperatorSalesforce implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   contains('CONTAINS'),
@@ -1948,13 +1453,13 @@ enum AppflowFlowTaskConnectorOperatorSalesforce implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorSalesforce(this.terraformValue);
+  const AppflowFlowConnectorOperatorSalesforce(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `sapo_data` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorSapoData implements TerraformEnum {
+enum AppflowFlowConnectorOperatorSapoData implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   contains('CONTAINS'),
@@ -1977,13 +1482,13 @@ enum AppflowFlowTaskConnectorOperatorSapoData implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorSapoData(this.terraformValue);
+  const AppflowFlowConnectorOperatorSapoData(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `service_now` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorServiceNow implements TerraformEnum {
+enum AppflowFlowConnectorOperatorServiceNow implements TerraformEnum {
   projection('PROJECTION'),
   contains('CONTAINS'),
   lessThan('LESS_THAN'),
@@ -2006,13 +1511,13 @@ enum AppflowFlowTaskConnectorOperatorServiceNow implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorServiceNow(this.terraformValue);
+  const AppflowFlowConnectorOperatorServiceNow(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `singular` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorSingular implements TerraformEnum {
+enum AppflowFlowConnectorOperatorSingular implements TerraformEnum {
   projection('PROJECTION'),
   equalTo('EQUAL_TO'),
   addition('ADDITION'),
@@ -2028,13 +1533,13 @@ enum AppflowFlowTaskConnectorOperatorSingular implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorSingular(this.terraformValue);
+  const AppflowFlowConnectorOperatorSingular(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `slack` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorSlack implements TerraformEnum {
+enum AppflowFlowConnectorOperatorSlack implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   greaterThan('GREATER_THAN'),
@@ -2055,13 +1560,13 @@ enum AppflowFlowTaskConnectorOperatorSlack implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorSlack(this.terraformValue);
+  const AppflowFlowConnectorOperatorSlack(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `trendmicro` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorTrendmicro implements TerraformEnum {
+enum AppflowFlowConnectorOperatorTrendmicro implements TerraformEnum {
   projection('PROJECTION'),
   equalTo('EQUAL_TO'),
   addition('ADDITION'),
@@ -2077,13 +1582,13 @@ enum AppflowFlowTaskConnectorOperatorTrendmicro implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorTrendmicro(this.terraformValue);
+  const AppflowFlowConnectorOperatorTrendmicro(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `veeva` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorVeeva implements TerraformEnum {
+enum AppflowFlowConnectorOperatorVeeva implements TerraformEnum {
   projection('PROJECTION'),
   lessThan('LESS_THAN'),
   greaterThan('GREATER_THAN'),
@@ -2106,13 +1611,13 @@ enum AppflowFlowTaskConnectorOperatorVeeva implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorVeeva(this.terraformValue);
+  const AppflowFlowConnectorOperatorVeeva(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `zendesk` — derived from the provider schema description.
-enum AppflowFlowTaskConnectorOperatorZendesk implements TerraformEnum {
+enum AppflowFlowConnectorOperatorZendesk implements TerraformEnum {
   projection('PROJECTION'),
   greaterThan('GREATER_THAN'),
   addition('ADDITION'),
@@ -2128,7 +1633,7 @@ enum AppflowFlowTaskConnectorOperatorZendesk implements TerraformEnum {
   validateNumeric('VALIDATE_NUMERIC'),
   noOp('NO_OP');
 
-  const AppflowFlowTaskConnectorOperatorZendesk(this.terraformValue);
+  const AppflowFlowConnectorOperatorZendesk(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2142,9 +1647,9 @@ final class AppflowFlowTriggerConfig {
     this.triggerProperties,
   });
 
-  final TfArg<AppflowFlowTriggerConfigTriggerType> triggerType;
+  final TfArg<AppflowFlowTriggerType> triggerType;
 
-  final AppflowFlowTriggerConfigTriggerProperties? triggerProperties;
+  final AppflowFlowTriggerProperties? triggerProperties;
 
   Map<String, Object?> encode() => {
     'trigger_type': triggerType.toTfJson(),
@@ -2153,12 +1658,12 @@ final class AppflowFlowTriggerConfig {
 }
 
 /// `trigger_type` — derived from the provider schema description.
-enum AppflowFlowTriggerConfigTriggerType implements TerraformEnum {
+enum AppflowFlowTriggerType implements TerraformEnum {
   scheduled('Scheduled'),
   event('Event'),
   ondemand('OnDemand');
 
-  const AppflowFlowTriggerConfigTriggerType(this.terraformValue);
+  const AppflowFlowTriggerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2166,10 +1671,10 @@ enum AppflowFlowTriggerConfigTriggerType implements TerraformEnum {
 /// Typed helper for the `trigger_config.trigger_properties` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowTriggerConfigTriggerProperties {
-  const AppflowFlowTriggerConfigTriggerProperties({this.scheduled});
+final class AppflowFlowTriggerProperties {
+  const AppflowFlowTriggerProperties({this.scheduled});
 
-  final AppflowFlowTriggerConfigTriggerPropertiesScheduled? scheduled;
+  final AppflowFlowScheduled? scheduled;
 
   Map<String, Object?> encode() => {'scheduled': ?scheduled?.encode()};
 }
@@ -2177,8 +1682,8 @@ final class AppflowFlowTriggerConfigTriggerProperties {
 /// Typed helper for the `trigger_config.trigger_properties.scheduled` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
-  const AppflowFlowTriggerConfigTriggerPropertiesScheduled({
+final class AppflowFlowScheduled {
+  const AppflowFlowScheduled({
     this.dataPullMode,
     this.firstExecutionFrom,
     this.scheduleEndTime,
@@ -2188,8 +1693,7 @@ final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
     this.timezone,
   });
 
-  final TfArg<AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode>?
-  dataPullMode;
+  final TfArg<AppflowFlowDataPullMode>? dataPullMode;
 
   final TfArg<String>? firstExecutionFrom;
 
@@ -2215,14 +1719,11 @@ final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
 }
 
 /// `data_pull_mode` — derived from the provider schema description.
-enum AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode
-    implements TerraformEnum {
+enum AppflowFlowDataPullMode implements TerraformEnum {
   incremental('Incremental'),
   complete('Complete');
 
-  const AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode(
-    this.terraformValue,
-  );
+  const AppflowFlowDataPullMode(this.terraformValue);
   @override
   final String terraformValue;
 }

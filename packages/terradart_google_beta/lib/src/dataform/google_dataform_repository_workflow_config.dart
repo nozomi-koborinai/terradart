@@ -33,8 +33,7 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
 
   final TfArg<bool>? transitiveDependentsIncluded;
 
-  final List<DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets>?
-  includedTargets;
+  final List<DataformRepositoryWorkflowConfigIncludedTargets>? includedTargets;
 
   Map<String, Object?> encode() => {
     'fully_refresh_incremental_tables_enabled':
@@ -52,8 +51,8 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
 /// Typed helper for the `invocation_config.included_targets` block of
 /// `google_dataform_repository_workflow_config` (derived from provider schema).
 @immutable
-final class DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets {
-  const DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets({
+final class DataformRepositoryWorkflowConfigIncludedTargets {
+  const DataformRepositoryWorkflowConfigIncludedTargets({
     this.database,
     this.name,
     this.schema,

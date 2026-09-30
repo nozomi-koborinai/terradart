@@ -159,7 +159,7 @@ sealed class DbInstancePassword {
   /// Sets `manage_master_user_password`.
   const factory DbInstancePassword.manageMasterUserPassword(
     TfArg<bool> manageMasterUserPassword,
-  ) = DbInstancePasswordManageMasterUserPassword;
+  ) = DbInstanceManageMasterUserPassword;
 
   /// Sets `password`.
   const factory DbInstancePassword.password(TfArg<String> password) =
@@ -180,11 +180,8 @@ sealed class DbInstancePassword {
 }
 
 /// The [DbInstancePassword.manageMasterUserPassword] choice: sets `manage_master_user_password`.
-final class DbInstancePasswordManageMasterUserPassword
-    extends DbInstancePassword {
-  const DbInstancePasswordManageMasterUserPassword(
-    this.manageMasterUserPassword,
-  );
+final class DbInstanceManageMasterUserPassword extends DbInstancePassword {
+  const DbInstanceManageMasterUserPassword(this.manageMasterUserPassword);
 
   final TfArg<bool> manageMasterUserPassword;
 
@@ -256,7 +253,7 @@ final class DbInstanceRestoreToPointInTime {
     this.sourceDbiResourceId,
   });
 
-  final DbInstanceRestoreToPointInTimeTarget? target;
+  final DbInstanceTarget? target;
 
   final TfArg<String>? sourceDbInstanceAutomatedBackupsArn;
 
@@ -278,18 +275,17 @@ final class DbInstanceRestoreToPointInTime {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreTime(...)`.
-sealed class DbInstanceRestoreToPointInTimeTarget {
-  const DbInstanceRestoreToPointInTimeTarget();
+sealed class DbInstanceTarget {
+  const DbInstanceTarget();
 
   /// Sets `restore_time`.
-  const factory DbInstanceRestoreToPointInTimeTarget.restoreTime(
-    TfArg<String> restoreTime,
-  ) = DbInstanceRestoreToPointInTimeTargetRestoreTime;
+  const factory DbInstanceTarget.restoreTime(TfArg<String> restoreTime) =
+      DbInstanceTargetRestoreTime;
 
   /// Sets `use_latest_restorable_time`.
-  const factory DbInstanceRestoreToPointInTimeTarget.useLatestRestorableTime(
+  const factory DbInstanceTarget.useLatestRestorableTime(
     TfArg<bool> useLatestRestorableTime,
-  ) = DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime;
+  ) = DbInstanceTargetUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -297,10 +293,9 @@ sealed class DbInstanceRestoreToPointInTimeTarget {
   Map<String, Object?> encode();
 }
 
-/// The [DbInstanceRestoreToPointInTimeTarget.restoreTime] choice: sets `restore_time`.
-final class DbInstanceRestoreToPointInTimeTargetRestoreTime
-    extends DbInstanceRestoreToPointInTimeTarget {
-  const DbInstanceRestoreToPointInTimeTargetRestoreTime(this.restoreTime);
+/// The [DbInstanceTarget.restoreTime] choice: sets `restore_time`.
+final class DbInstanceTargetRestoreTime extends DbInstanceTarget {
+  const DbInstanceTargetRestoreTime(this.restoreTime);
 
   final TfArg<String> restoreTime;
 
@@ -311,12 +306,9 @@ final class DbInstanceRestoreToPointInTimeTargetRestoreTime
   Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
 }
 
-/// The [DbInstanceRestoreToPointInTimeTarget.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
-final class DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime
-    extends DbInstanceRestoreToPointInTimeTarget {
-  const DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime(
-    this.useLatestRestorableTime,
-  );
+/// The [DbInstanceTarget.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DbInstanceTargetUseLatestRestorableTime extends DbInstanceTarget {
+  const DbInstanceTargetUseLatestRestorableTime(this.useLatestRestorableTime);
 
   final TfArg<bool> useLatestRestorableTime;
 

@@ -121,9 +121,9 @@ final class WaitingRoomAdditionalRoutes {
 final class WaitingRoomCookieAttributes {
   const WaitingRoomCookieAttributes({this.samesite, this.secure});
 
-  final TfArg<WaitingRoomCookieAttributesSamesite>? samesite;
+  final TfArg<WaitingRoomSamesite>? samesite;
 
-  final TfArg<WaitingRoomCookieAttributesSecure>? secure;
+  final TfArg<WaitingRoomSecure>? secure;
 
   Map<String, Object?> encode() => {
     'samesite': ?samesite?.toTfJson(),
@@ -132,24 +132,24 @@ final class WaitingRoomCookieAttributes {
 }
 
 /// `samesite` — derived from the provider schema description.
-enum WaitingRoomCookieAttributesSamesite implements TerraformEnum {
+enum WaitingRoomSamesite implements TerraformEnum {
   auto('auto'),
   lax('lax'),
   none('none'),
   strict('strict');
 
-  const WaitingRoomCookieAttributesSamesite(this.terraformValue);
+  const WaitingRoomSamesite(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `secure` — derived from the provider schema description.
-enum WaitingRoomCookieAttributesSecure implements TerraformEnum {
+enum WaitingRoomSecure implements TerraformEnum {
   auto('auto'),
   always('always'),
   never('never');
 
-  const WaitingRoomCookieAttributesSecure(this.terraformValue);
+  const WaitingRoomSecure(this.terraformValue);
   @override
   final String terraformValue;
 }

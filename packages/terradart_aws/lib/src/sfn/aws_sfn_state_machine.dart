@@ -124,7 +124,7 @@ final class SfnStateMachineLoggingConfiguration {
 
   final TfArg<bool>? includeExecutionData;
 
-  final TfArg<SfnStateMachineLoggingConfigurationLevel>? level;
+  final TfArg<SfnStateMachineLevel>? level;
 
   final TfArg<String>? logDestination;
 
@@ -136,13 +136,13 @@ final class SfnStateMachineLoggingConfiguration {
 }
 
 /// `level` — derived from the provider schema description.
-enum SfnStateMachineLoggingConfigurationLevel implements TerraformEnum {
+enum SfnStateMachineLevel implements TerraformEnum {
   all('ALL'),
   error('ERROR'),
   fatal('FATAL'),
   off('OFF');
 
-  const SfnStateMachineLoggingConfigurationLevel(this.terraformValue);
+  const SfnStateMachineLevel(this.terraformValue);
   @override
   final String terraformValue;
 }

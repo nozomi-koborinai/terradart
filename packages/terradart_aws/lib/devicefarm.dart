@@ -6,9 +6,9 @@ library;
 export 'src/devicefarm/aws_devicefarm_device_pool.dart'
     show
         AwsDevicefarmDevicePool,
-        DevicefarmDevicePoolRule,
-        DevicefarmDevicePoolRuleAttribute,
-        DevicefarmDevicePoolRuleOperator;
+        DevicefarmDevicePoolAttribute,
+        DevicefarmDevicePoolOperator,
+        DevicefarmDevicePoolRule;
 export 'src/devicefarm/aws_devicefarm_instance_profile.dart'
     show AwsDevicefarmInstanceProfile;
 export 'src/devicefarm/aws_devicefarm_network_profile.dart'

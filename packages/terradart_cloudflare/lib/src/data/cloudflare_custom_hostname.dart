@@ -28,22 +28,21 @@ final class DataCustomHostnameFilter {
     this.hostname,
   });
 
-  final TfArg<DataCustomHostnameFilterCertificateAuthority>?
-  certificateAuthority;
+  final TfArg<DataCustomHostnameCertificateAuthority>? certificateAuthority;
 
   final TfArg<String>? customOriginServer;
 
-  final TfArg<DataCustomHostnameFilterDirection>? direction;
+  final TfArg<DataCustomHostnameDirection>? direction;
 
-  final TfArg<DataCustomHostnameFilterHostnameStatus>? hostnameStatus;
+  final TfArg<DataCustomHostnameHostnameStatus>? hostnameStatus;
 
   final TfArg<String>? id;
 
-  final TfArg<DataCustomHostnameFilterOrder>? order;
+  final TfArg<DataCustomHostnameOrder>? order;
 
   final TfArg<num>? ssl;
 
-  final TfArg<DataCustomHostnameFilterSslStatus>? sslStatus;
+  final TfArg<DataCustomHostnameSslStatus>? sslStatus;
 
   final TfArg<bool>? wildcard;
 
@@ -64,28 +63,28 @@ final class DataCustomHostnameFilter {
 }
 
 /// `certificate_authority` — derived from the provider schema description.
-enum DataCustomHostnameFilterCertificateAuthority implements TerraformEnum {
+enum DataCustomHostnameCertificateAuthority implements TerraformEnum {
   google('google'),
   letsEncrypt('lets_encrypt'),
   sslCom('ssl_com');
 
-  const DataCustomHostnameFilterCertificateAuthority(this.terraformValue);
+  const DataCustomHostnameCertificateAuthority(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataCustomHostnameFilterDirection implements TerraformEnum {
+enum DataCustomHostnameDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataCustomHostnameFilterDirection(this.terraformValue);
+  const DataCustomHostnameDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `hostname_status` — derived from the provider schema description.
-enum DataCustomHostnameFilterHostnameStatus implements TerraformEnum {
+enum DataCustomHostnameHostnameStatus implements TerraformEnum {
   active('active'),
   pending('pending'),
   activeRedeploying('active_redeploying'),
@@ -103,23 +102,23 @@ enum DataCustomHostnameFilterHostnameStatus implements TerraformEnum {
   provisioned('provisioned'),
   blocked('blocked');
 
-  const DataCustomHostnameFilterHostnameStatus(this.terraformValue);
+  const DataCustomHostnameHostnameStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataCustomHostnameFilterOrder implements TerraformEnum {
+enum DataCustomHostnameOrder implements TerraformEnum {
   ssl('ssl'),
   sslStatus('ssl_status');
 
-  const DataCustomHostnameFilterOrder(this.terraformValue);
+  const DataCustomHostnameOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ssl_status` — derived from the provider schema description.
-enum DataCustomHostnameFilterSslStatus implements TerraformEnum {
+enum DataCustomHostnameSslStatus implements TerraformEnum {
   initializing('initializing'),
   pendingValidation('pending_validation'),
   deleted('deleted'),
@@ -142,7 +141,7 @@ enum DataCustomHostnameFilterSslStatus implements TerraformEnum {
   backupIssued('backup_issued'),
   holdingDeployment('holding_deployment');
 
-  const DataCustomHostnameFilterSslStatus(this.terraformValue);
+  const DataCustomHostnameSslStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

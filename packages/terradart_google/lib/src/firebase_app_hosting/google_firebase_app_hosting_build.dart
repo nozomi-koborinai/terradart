@@ -16,13 +16,13 @@ sealed class FirebaseAppHostingBuildSource {
 
   /// Sets `container`.
   const factory FirebaseAppHostingBuildSource.container(
-    FirebaseAppHostingBuildSourceContainer container,
-  ) = FirebaseAppHostingBuildSourceContainerChoice;
+    FirebaseAppHostingBuildContainer container,
+  ) = FirebaseAppHostingBuildSourceContainer;
 
   /// Sets `codebase`.
   const factory FirebaseAppHostingBuildSource.codebase(
-    FirebaseAppHostingBuildSourceCodebase codebase,
-  ) = FirebaseAppHostingBuildSourceCodebaseChoice;
+    FirebaseAppHostingBuildCodebase codebase,
+  ) = FirebaseAppHostingBuildSourceCodebase;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,11 +31,11 @@ sealed class FirebaseAppHostingBuildSource {
 }
 
 /// The [FirebaseAppHostingBuildSource.container] choice: sets `container`.
-final class FirebaseAppHostingBuildSourceContainerChoice
+final class FirebaseAppHostingBuildSourceContainer
     extends FirebaseAppHostingBuildSource {
-  const FirebaseAppHostingBuildSourceContainerChoice(this.container);
+  const FirebaseAppHostingBuildSourceContainer(this.container);
 
-  final FirebaseAppHostingBuildSourceContainer container;
+  final FirebaseAppHostingBuildContainer container;
 
   @override
   String get blockKey => 'container';
@@ -45,11 +45,11 @@ final class FirebaseAppHostingBuildSourceContainerChoice
 }
 
 /// The [FirebaseAppHostingBuildSource.codebase] choice: sets `codebase`.
-final class FirebaseAppHostingBuildSourceCodebaseChoice
+final class FirebaseAppHostingBuildSourceCodebase
     extends FirebaseAppHostingBuildSource {
-  const FirebaseAppHostingBuildSourceCodebaseChoice(this.codebase);
+  const FirebaseAppHostingBuildSourceCodebase(this.codebase);
 
-  final FirebaseAppHostingBuildSourceCodebase codebase;
+  final FirebaseAppHostingBuildCodebase codebase;
 
   @override
   String get blockKey => 'codebase';
@@ -61,8 +61,8 @@ final class FirebaseAppHostingBuildSourceCodebaseChoice
 /// Typed helper for the `source.codebase` block of
 /// `google_firebase_app_hosting_build` (derived from provider schema).
 @immutable
-final class FirebaseAppHostingBuildSourceCodebase {
-  const FirebaseAppHostingBuildSourceCodebase({this.branch, this.commit});
+final class FirebaseAppHostingBuildCodebase {
+  const FirebaseAppHostingBuildCodebase({this.branch, this.commit});
 
   final TfArg<String>? branch;
 
@@ -77,8 +77,8 @@ final class FirebaseAppHostingBuildSourceCodebase {
 /// Typed helper for the `source.container` block of
 /// `google_firebase_app_hosting_build` (derived from provider schema).
 @immutable
-final class FirebaseAppHostingBuildSourceContainer {
-  const FirebaseAppHostingBuildSourceContainer({required this.image});
+final class FirebaseAppHostingBuildContainer {
+  const FirebaseAppHostingBuildContainer({required this.image});
 
   final TfArg<String> image;
 
@@ -112,7 +112,7 @@ final class FirebaseAppHostingBuildSourceContainer {
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .codebase(
-///     FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')),
+///     FirebaseAppHostingBuildCodebase(branch: .literal('main')),
 ///   ),
 ///   displayName: TfArg.literal('First release'),
 /// );
@@ -126,7 +126,7 @@ final class FirebaseAppHostingBuildSourceContainer {
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .container(
-///     FirebaseAppHostingBuildSourceContainer(
+///     FirebaseAppHostingBuildContainer(
 ///       image: .literal('us-central1-docker.pkg.dev/p/r/web:1.2.3'),
 ///     ),
 ///   ),

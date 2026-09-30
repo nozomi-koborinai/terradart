@@ -91,15 +91,15 @@ final class Wafv2WebAclRuleAction {
     this.count,
   });
 
-  final List<Wafv2WebAclRuleActionAllow>? allow;
+  final List<Wafv2WebAclRuleAllow>? allow;
 
-  final List<Wafv2WebAclRuleActionBlock>? block;
+  final List<Wafv2WebAclRuleBlock>? block;
 
-  final List<Wafv2WebAclRuleActionAllow>? captcha;
+  final List<Wafv2WebAclRuleAllow>? captcha;
 
-  final List<Wafv2WebAclRuleActionAllow>? challenge;
+  final List<Wafv2WebAclRuleAllow>? challenge;
 
-  final List<Wafv2WebAclRuleActionAllow>? count;
+  final List<Wafv2WebAclRuleAllow>? count;
 
   Map<String, Object?> encode() => {
     if (allow != null) 'allow': [for (final e in allow!) e.encode()],
@@ -115,11 +115,10 @@ final class Wafv2WebAclRuleAction {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionAllow {
-  const Wafv2WebAclRuleActionAllow({this.customRequestHandling});
+final class Wafv2WebAclRuleAllow {
+  const Wafv2WebAclRuleAllow({this.customRequestHandling});
 
-  final List<Wafv2WebAclRuleActionAllowCustomRequestHandling>?
-  customRequestHandling;
+  final List<Wafv2WebAclRuleCustomRequestHandling>? customRequestHandling;
 
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
@@ -133,11 +132,10 @@ final class Wafv2WebAclRuleActionAllow {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionAllowCustomRequestHandling {
-  const Wafv2WebAclRuleActionAllowCustomRequestHandling({this.insertHeader});
+final class Wafv2WebAclRuleCustomRequestHandling {
+  const Wafv2WebAclRuleCustomRequestHandling({this.insertHeader});
 
-  final List<Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader>?
-  insertHeader;
+  final List<Wafv2WebAclRuleInsertHeader>? insertHeader;
 
   Map<String, Object?> encode() => {
     if (insertHeader != null)
@@ -149,11 +147,8 @@ final class Wafv2WebAclRuleActionAllowCustomRequestHandling {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader {
-  const Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader({
-    required this.name,
-    required this.value,
-  });
+final class Wafv2WebAclRuleInsertHeader {
+  const Wafv2WebAclRuleInsertHeader({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -169,10 +164,10 @@ final class Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionBlock {
-  const Wafv2WebAclRuleActionBlock({this.customResponse});
+final class Wafv2WebAclRuleBlock {
+  const Wafv2WebAclRuleBlock({this.customResponse});
 
-  final List<Wafv2WebAclRuleActionBlockCustomResponse>? customResponse;
+  final List<Wafv2WebAclRuleCustomResponse>? customResponse;
 
   Map<String, Object?> encode() => {
     if (customResponse != null)
@@ -184,8 +179,8 @@ final class Wafv2WebAclRuleActionBlock {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionBlockCustomResponse {
-  const Wafv2WebAclRuleActionBlockCustomResponse({
+final class Wafv2WebAclRuleCustomResponse {
+  const Wafv2WebAclRuleCustomResponse({
     this.customResponseBodyKey,
     required this.responseCode,
     this.responseHeader,
@@ -195,8 +190,7 @@ final class Wafv2WebAclRuleActionBlockCustomResponse {
 
   final TfArg<num> responseCode;
 
-  final List<Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader>?
-  responseHeader;
+  final List<Wafv2WebAclRuleInsertHeader>? responseHeader;
 
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
@@ -213,8 +207,7 @@ final class Wafv2WebAclRuleActionBlockCustomResponse {
 final class Wafv2WebAclRuleCaptchaConfig {
   const Wafv2WebAclRuleCaptchaConfig({this.immunityTimeProperty});
 
-  final List<Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty>?
-  immunityTimeProperty;
+  final List<Wafv2WebAclRuleImmunityTimeProperty>? immunityTimeProperty;
 
   Map<String, Object?> encode() => {
     if (immunityTimeProperty != null)
@@ -228,8 +221,8 @@ final class Wafv2WebAclRuleCaptchaConfig {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty {
-  const Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty({this.immunityTime});
+final class Wafv2WebAclRuleImmunityTimeProperty {
+  const Wafv2WebAclRuleImmunityTimeProperty({this.immunityTime});
 
   final TfArg<num>? immunityTime;
 
@@ -242,9 +235,9 @@ final class Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty {
 final class Wafv2WebAclRuleOverrideAction {
   const Wafv2WebAclRuleOverrideAction({this.count, this.none});
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? count;
+  final List<Wafv2WebAclRuleCount>? count;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? none;
+  final List<Wafv2WebAclRuleCount>? none;
 
   Map<String, Object?> encode() => {
     if (count != null) 'count': [for (final e in count!) e.encode()],
@@ -256,8 +249,8 @@ final class Wafv2WebAclRuleOverrideAction {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleOverrideActionCount {
-  const Wafv2WebAclRuleOverrideActionCount();
+final class Wafv2WebAclRuleCount {
+  const Wafv2WebAclRuleCount();
 
   Map<String, Object?> encode() => {};
 }
@@ -266,8 +259,8 @@ final class Wafv2WebAclRuleOverrideActionCount {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleRuleLabel {
-  const Wafv2WebAclRuleRuleLabel({required this.name});
+final class Wafv2WebAclRuleLabel {
+  const Wafv2WebAclRuleLabel({required this.name});
 
   final TfArg<String> name;
 
@@ -297,42 +290,40 @@ final class Wafv2WebAclRuleStatement {
     this.xssMatchStatement,
   });
 
-  final List<Wafv2WebAclRuleStatementAndStatement>? andStatement;
+  final List<Wafv2WebAclRuleAndStatement>? andStatement;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatement>? asnMatchStatement;
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatement>? byteMatchStatement;
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementGeoMatchStatement>? geoMatchStatement;
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementIpSetReferenceStatement>?
-  ipSetReferenceStatement;
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementLabelMatchStatement>? labelMatchStatement;
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
-  final List<Wafv2WebAclRuleStatementAndStatement>? notStatement;
+  final List<Wafv2WebAclRuleAndStatement>? notStatement;
 
-  final List<Wafv2WebAclRuleStatementAndStatement>? orStatement;
+  final List<Wafv2WebAclRuleAndStatement>? orStatement;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexMatchStatement>? regexMatchStatement;
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement>?
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementSizeConstraintStatement>?
-  sizeConstraintStatement;
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
 
-  final List<Wafv2WebAclRuleStatementSqliMatchStatement>? sqliMatchStatement;
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementXssMatchStatement>? xssMatchStatement;
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     if (andStatement != null)
@@ -388,10 +379,10 @@ final class Wafv2WebAclRuleStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatement {
-  const Wafv2WebAclRuleStatementAndStatement({this.statement});
+final class Wafv2WebAclRuleAndStatement {
+  const Wafv2WebAclRuleAndStatement({this.statement});
 
-  final List<Wafv2WebAclRuleStatementAndStatementStatement>? statement;
+  final List<Wafv2WebAclRuleAndStatementStatement>? statement;
 
   Map<String, Object?> encode() => {
     if (statement != null)
@@ -403,8 +394,8 @@ final class Wafv2WebAclRuleStatementAndStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatementStatement {
-  const Wafv2WebAclRuleStatementAndStatementStatement({
+final class Wafv2WebAclRuleAndStatementStatement {
+  const Wafv2WebAclRuleAndStatementStatement({
     this.andStatement,
     this.asnMatchStatement,
     this.byteMatchStatement,
@@ -423,45 +414,40 @@ final class Wafv2WebAclRuleStatementAndStatementStatement {
     this.xssMatchStatement,
   });
 
-  final List<Wafv2WebAclRuleStatementAndStatementStatementAndStatement>?
-  andStatement;
+  final List<Wafv2WebAclRuleStatementAndStatement>? andStatement;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatement>? asnMatchStatement;
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatement>? byteMatchStatement;
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementGeoMatchStatement>? geoMatchStatement;
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementIpSetReferenceStatement>?
-  ipSetReferenceStatement;
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementLabelMatchStatement>? labelMatchStatement;
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
-  final List<Wafv2WebAclRuleStatementAndStatementStatementAndStatement>?
-  notStatement;
+  final List<Wafv2WebAclRuleStatementAndStatement>? notStatement;
 
-  final List<Wafv2WebAclRuleStatementAndStatementStatementAndStatement>?
-  orStatement;
+  final List<Wafv2WebAclRuleStatementAndStatement>? orStatement;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexMatchStatement>? regexMatchStatement;
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement>?
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementSizeConstraintStatement>?
-  sizeConstraintStatement;
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
 
-  final List<Wafv2WebAclRuleStatementSqliMatchStatement>? sqliMatchStatement;
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementXssMatchStatement>? xssMatchStatement;
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     if (andStatement != null)
@@ -517,15 +503,10 @@ final class Wafv2WebAclRuleStatementAndStatementStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatementStatementAndStatement {
-  const Wafv2WebAclRuleStatementAndStatementStatementAndStatement({
-    this.statement,
-  });
+final class Wafv2WebAclRuleStatementAndStatement {
+  const Wafv2WebAclRuleStatementAndStatement({this.statement});
 
-  final List<
-    Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement
-  >?
-  statement;
+  final List<Wafv2WebAclRuleStatementStatement>? statement;
 
   Map<String, Object?> encode() => {
     if (statement != null)
@@ -537,8 +518,8 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement {
-  const Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement({
+final class Wafv2WebAclRuleStatementStatement {
+  const Wafv2WebAclRuleStatementStatement({
     this.andStatement,
     this.asnMatchStatement,
     this.byteMatchStatement,
@@ -557,51 +538,40 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement {
     this.xssMatchStatement,
   });
 
-  final List<
-    Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement
-  >?
-  andStatement;
+  final List<Wafv2WebAclRuleAndStatementAndStatement>? andStatement;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatement>? asnMatchStatement;
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatement>? byteMatchStatement;
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementGeoMatchStatement>? geoMatchStatement;
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementIpSetReferenceStatement>?
-  ipSetReferenceStatement;
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementLabelMatchStatement>? labelMatchStatement;
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
-  final List<
-    Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement
-  >?
-  notStatement;
+  final List<Wafv2WebAclRuleAndStatementAndStatement>? notStatement;
 
-  final List<
-    Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement
-  >?
-  orStatement;
+  final List<Wafv2WebAclRuleAndStatementAndStatement>? orStatement;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexMatchStatement>? regexMatchStatement;
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement>?
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementSizeConstraintStatement>?
-  sizeConstraintStatement;
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
 
-  final List<Wafv2WebAclRuleStatementSqliMatchStatement>? sqliMatchStatement;
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementXssMatchStatement>? xssMatchStatement;
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     if (andStatement != null)
@@ -657,15 +627,10 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement {
-  const Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement({
-    this.statement,
-  });
+final class Wafv2WebAclRuleAndStatementAndStatement {
+  const Wafv2WebAclRuleAndStatementAndStatement({this.statement});
 
-  final List<
-    Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement
-  >?
-  statement;
+  final List<Wafv2WebAclRuleStatementAndStatementStatement>? statement;
 
   Map<String, Object?> encode() => {
     if (statement != null)
@@ -677,8 +642,8 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAn
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement {
-  const Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement({
+final class Wafv2WebAclRuleStatementAndStatementStatement {
+  const Wafv2WebAclRuleStatementAndStatementStatement({
     this.asnMatchStatement,
     this.byteMatchStatement,
     this.geoMatchStatement,
@@ -694,36 +659,34 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAn
     this.xssMatchStatement,
   });
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatement>? asnMatchStatement;
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatement>? byteMatchStatement;
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementGeoMatchStatement>? geoMatchStatement;
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementIpSetReferenceStatement>?
-  ipSetReferenceStatement;
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementLabelMatchStatement>? labelMatchStatement;
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexMatchStatement>? regexMatchStatement;
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement>?
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementSizeConstraintStatement>?
-  sizeConstraintStatement;
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
 
-  final List<Wafv2WebAclRuleStatementSqliMatchStatement>? sqliMatchStatement;
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementXssMatchStatement>? xssMatchStatement;
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     if (asnMatchStatement != null)
@@ -773,16 +736,15 @@ final class Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAn
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAsnMatchStatement {
-  const Wafv2WebAclRuleStatementAsnMatchStatement({
+final class Wafv2WebAclRuleAsnMatchStatement {
+  const Wafv2WebAclRuleAsnMatchStatement({
     required this.asnList,
     this.forwardedIpConfig,
   });
 
   final TfArg<List<num>> asnList;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig>?
-  forwardedIpConfig;
+  final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'asn_list': asnList.toTfJson(),
@@ -795,8 +757,8 @@ final class Wafv2WebAclRuleStatementAsnMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig {
-  const Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig({
+final class Wafv2WebAclRuleForwardedIpConfig {
+  const Wafv2WebAclRuleForwardedIpConfig({
     required this.fallbackBehavior,
     required this.headerName,
   });
@@ -815,8 +777,8 @@ final class Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatement {
-  const Wafv2WebAclRuleStatementByteMatchStatement({
+final class Wafv2WebAclRuleByteMatchStatement {
+  const Wafv2WebAclRuleByteMatchStatement({
     required this.positionalConstraint,
     required this.searchString,
     this.fieldToMatch,
@@ -827,11 +789,9 @@ final class Wafv2WebAclRuleStatementByteMatchStatement {
 
   final TfArg<String> searchString;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
@@ -847,8 +807,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch({
+final class Wafv2WebAclRuleFieldToMatch {
+  const Wafv2WebAclRuleFieldToMatch({
     this.allQueryArguments,
     this.body,
     this.cookies,
@@ -865,44 +825,33 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch {
     this.uriPath,
   });
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? allQueryArguments;
+  final List<Wafv2WebAclRuleCount>? allQueryArguments;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchBody>? body;
+  final List<Wafv2WebAclRuleBody>? body;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookies>?
-  cookies;
+  final List<Wafv2WebAclRuleCookies>? cookies;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaderOrder>?
-  headerOrder;
+  final List<Wafv2WebAclRuleHeaderOrder>? headerOrder;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaders>?
-  headers;
+  final List<Wafv2WebAclRuleHeaders>? headers;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint
-  >?
-  ja3Fingerprint;
+  final List<Wafv2WebAclRuleJa3Fingerprint>? ja3Fingerprint;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint
-  >?
-  ja4Fingerprint;
+  final List<Wafv2WebAclRuleJa3Fingerprint>? ja4Fingerprint;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBody>?
-  jsonBody;
+  final List<Wafv2WebAclRuleJsonBody>? jsonBody;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? method;
+  final List<Wafv2WebAclRuleCount>? method;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? queryString;
+  final List<Wafv2WebAclRuleCount>? queryString;
 
-  final List<Wafv2WebAclRuleRuleLabel>? singleHeader;
+  final List<Wafv2WebAclRuleLabel>? singleHeader;
 
-  final List<Wafv2WebAclRuleRuleLabel>? singleQueryArgument;
+  final List<Wafv2WebAclRuleLabel>? singleQueryArgument;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchUriFragment>?
-  uriFragment;
+  final List<Wafv2WebAclRuleUriFragment>? uriFragment;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? uriPath;
+  final List<Wafv2WebAclRuleCount>? uriPath;
 
   Map<String, Object?> encode() => {
     if (allQueryArguments != null)
@@ -936,10 +885,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchBody {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchBody({
-    this.oversizeHandling,
-  });
+final class Wafv2WebAclRuleBody {
+  const Wafv2WebAclRuleBody({this.oversizeHandling});
 
   final TfArg<String>? oversizeHandling;
 
@@ -952,8 +899,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchBody {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookies {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookies({
+final class Wafv2WebAclRuleCookies {
+  const Wafv2WebAclRuleCookies({
     required this.matchScope,
     required this.oversizeHandling,
     this.matchPattern,
@@ -963,10 +910,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookies {
 
   final TfArg<String> oversizeHandling;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern
-  >?
-  matchPattern;
+  final List<Wafv2WebAclRuleCookiesMatchPattern>? matchPattern;
 
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
@@ -980,8 +924,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookies {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern({
+final class Wafv2WebAclRuleCookiesMatchPattern {
+  const Wafv2WebAclRuleCookiesMatchPattern({
     this.excludedCookies,
     this.includedCookies,
     this.all,
@@ -991,7 +935,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPa
 
   final TfArg<List<String>>? includedCookies;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? all;
+  final List<Wafv2WebAclRuleCount>? all;
 
   Map<String, Object?> encode() => {
     'excluded_cookies': ?excludedCookies?.toTfJson(),
@@ -1004,10 +948,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchCookiesMatchPa
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaderOrder {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaderOrder({
-    required this.oversizeHandling,
-  });
+final class Wafv2WebAclRuleHeaderOrder {
+  const Wafv2WebAclRuleHeaderOrder({required this.oversizeHandling});
 
   final TfArg<String> oversizeHandling;
 
@@ -1020,8 +962,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaderOrder {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaders {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaders({
+final class Wafv2WebAclRuleHeaders {
+  const Wafv2WebAclRuleHeaders({
     required this.matchScope,
     required this.oversizeHandling,
     this.matchPattern,
@@ -1031,10 +973,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaders {
 
   final TfArg<String> oversizeHandling;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern
-  >?
-  matchPattern;
+  final List<Wafv2WebAclRuleHeadersMatchPattern>? matchPattern;
 
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
@@ -1048,8 +987,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeaders {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern({
+final class Wafv2WebAclRuleHeadersMatchPattern {
+  const Wafv2WebAclRuleHeadersMatchPattern({
     this.excludedHeaders,
     this.includedHeaders,
     this.all,
@@ -1059,7 +998,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPa
 
   final TfArg<List<String>>? includedHeaders;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? all;
+  final List<Wafv2WebAclRuleCount>? all;
 
   Map<String, Object?> encode() => {
     'excluded_headers': ?excludedHeaders?.toTfJson(),
@@ -1072,10 +1011,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchHeadersMatchPa
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint({
-    required this.fallbackBehavior,
-  });
+final class Wafv2WebAclRuleJa3Fingerprint {
+  const Wafv2WebAclRuleJa3Fingerprint({required this.fallbackBehavior});
 
   final TfArg<String> fallbackBehavior;
 
@@ -1088,8 +1025,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBody {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBody({
+final class Wafv2WebAclRuleJsonBody {
+  const Wafv2WebAclRuleJsonBody({
     this.invalidFallbackBehavior,
     required this.matchScope,
     this.oversizeHandling,
@@ -1102,10 +1039,7 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBody {
 
   final TfArg<String>? oversizeHandling;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern
-  >?
-  matchPattern;
+  final List<Wafv2WebAclRuleJsonBodyMatchPattern>? matchPattern;
 
   Map<String, Object?> encode() => {
     'invalid_fallback_behavior': ?invalidFallbackBehavior?.toTfJson(),
@@ -1120,15 +1054,12 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBody {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern({
-    this.includedPaths,
-    this.all,
-  });
+final class Wafv2WebAclRuleJsonBodyMatchPattern {
+  const Wafv2WebAclRuleJsonBodyMatchPattern({this.includedPaths, this.all});
 
   final TfArg<List<String>>? includedPaths;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? all;
+  final List<Wafv2WebAclRuleCount>? all;
 
   Map<String, Object?> encode() => {
     'included_paths': ?includedPaths?.toTfJson(),
@@ -1140,10 +1071,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchP
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchUriFragment {
-  const Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchUriFragment({
-    this.fallbackBehavior,
-  });
+final class Wafv2WebAclRuleUriFragment {
+  const Wafv2WebAclRuleUriFragment({this.fallbackBehavior});
 
   final TfArg<String>? fallbackBehavior;
 
@@ -1156,8 +1085,8 @@ final class Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchUriFragment {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementByteMatchStatementTextTransformation {
-  const Wafv2WebAclRuleStatementByteMatchStatementTextTransformation({
+final class Wafv2WebAclRuleTextTransformation {
+  const Wafv2WebAclRuleTextTransformation({
     required this.priority,
     required this.type,
   });
@@ -1176,16 +1105,15 @@ final class Wafv2WebAclRuleStatementByteMatchStatementTextTransformation {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementGeoMatchStatement {
-  const Wafv2WebAclRuleStatementGeoMatchStatement({
+final class Wafv2WebAclRuleGeoMatchStatement {
+  const Wafv2WebAclRuleGeoMatchStatement({
     required this.countryCodes,
     this.forwardedIpConfig,
   });
 
   final TfArg<List<String>> countryCodes;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig>?
-  forwardedIpConfig;
+  final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'country_codes': countryCodes.toTfJson(),
@@ -1198,18 +1126,15 @@ final class Wafv2WebAclRuleStatementGeoMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementIpSetReferenceStatement {
-  const Wafv2WebAclRuleStatementIpSetReferenceStatement({
+final class Wafv2WebAclRuleIpSetReferenceStatement {
+  const Wafv2WebAclRuleIpSetReferenceStatement({
     required this.arn,
     this.ipSetForwardedIpConfig,
   });
 
   final TfArg<String> arn;
 
-  final List<
-    Wafv2WebAclRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig
-  >?
-  ipSetForwardedIpConfig;
+  final List<Wafv2WebAclRuleIpSetForwardedIpConfig>? ipSetForwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -1224,8 +1149,8 @@ final class Wafv2WebAclRuleStatementIpSetReferenceStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig {
-  const Wafv2WebAclRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig({
+final class Wafv2WebAclRuleIpSetForwardedIpConfig {
+  const Wafv2WebAclRuleIpSetForwardedIpConfig({
     required this.fallbackBehavior,
     required this.headerName,
     required this.position,
@@ -1248,8 +1173,8 @@ final class Wafv2WebAclRuleStatementIpSetReferenceStatementIpSetForwardedIpConfi
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementLabelMatchStatement {
-  const Wafv2WebAclRuleStatementLabelMatchStatement({
+final class Wafv2WebAclRuleLabelMatchStatement {
+  const Wafv2WebAclRuleLabelMatchStatement({
     required this.key,
     required this.scope,
   });
@@ -1268,8 +1193,8 @@ final class Wafv2WebAclRuleStatementLabelMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatement {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatement({
+final class Wafv2WebAclRuleManagedRuleGroupStatement {
+  const Wafv2WebAclRuleManagedRuleGroupStatement({
     required this.name,
     required this.vendorName,
     this.version,
@@ -1284,20 +1209,11 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatement {
 
   final TfArg<String>? version;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigs
-  >?
-  managedRuleGroupConfigs;
+  final List<Wafv2WebAclRuleManagedRuleGroupConfigs>? managedRuleGroupConfigs;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementRuleActionOverride
-  >?
-  ruleActionOverride;
+  final List<Wafv2WebAclRuleActionOverride>? ruleActionOverride;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement
-  >?
-  scopeDownStatement;
+  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1318,8 +1234,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigs {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigs({
+final class Wafv2WebAclRuleManagedRuleGroupConfigs {
+  const Wafv2WebAclRuleManagedRuleGroupConfigs({
     this.loginPath,
     this.payloadType,
     this.awsManagedRulesAcfpRuleSet,
@@ -1334,35 +1250,21 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String>? payloadType;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSet
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesAcfpRuleSet>?
   awsManagedRulesAcfpRuleSet;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSet
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesAntiDdosRuleSet>?
   awsManagedRulesAntiDdosRuleSet;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSet
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesAtpRuleSet>?
   awsManagedRulesAtpRuleSet;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesBotControlRuleSet
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesBotControlRuleSet>?
   awsManagedRulesBotControlRuleSet;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  passwordField;
+  final List<Wafv2WebAclRulePasswordField>? passwordField;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  usernameField;
+  final List<Wafv2WebAclRulePasswordField>? usernameField;
 
   Map<String, Object?> encode() => {
     'login_path': ?loginPath?.toTfJson(),
@@ -1394,8 +1296,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSet {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSet({
+final class Wafv2WebAclRuleAwsManagedRulesAcfpRuleSet {
+  const Wafv2WebAclRuleAwsManagedRulesAcfpRuleSet({
     required this.creationPath,
     this.enableRegexInPath,
     required this.registrationPagePath,
@@ -1409,15 +1311,10 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String> registrationPagePath;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspection
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesAcfpRuleSetRequestInspection>?
   requestInspection;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspection
-  >?
-  responseInspection;
+  final List<Wafv2WebAclRuleResponseInspection>? responseInspection;
 
   Map<String, Object?> encode() => {
     'creation_path': creationPath.toTfJson(),
@@ -1434,8 +1331,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspection {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspection({
+final class Wafv2WebAclRuleAwsManagedRulesAcfpRuleSetRequestInspection {
+  const Wafv2WebAclRuleAwsManagedRulesAcfpRuleSetRequestInspection({
     required this.payloadType,
     this.addressFields,
     this.emailField,
@@ -1446,30 +1343,15 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String> payloadType;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspectionAddressFields
-  >?
-  addressFields;
+  final List<Wafv2WebAclRuleAddressFields>? addressFields;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  emailField;
+  final List<Wafv2WebAclRulePasswordField>? emailField;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  passwordField;
+  final List<Wafv2WebAclRulePasswordField>? passwordField;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspectionAddressFields
-  >?
-  phoneNumberFields;
+  final List<Wafv2WebAclRuleAddressFields>? phoneNumberFields;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  usernameField;
+  final List<Wafv2WebAclRulePasswordField>? usernameField;
 
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
@@ -1490,10 +1372,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspectionAddressFields {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetRequestInspectionAddressFields({
-    required this.identifiers,
-  });
+final class Wafv2WebAclRuleAddressFields {
+  const Wafv2WebAclRuleAddressFields({required this.identifiers});
 
   final TfArg<List<String>> identifiers;
 
@@ -1504,10 +1384,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField({
-    required this.identifier,
-  });
+final class Wafv2WebAclRulePasswordField {
+  const Wafv2WebAclRulePasswordField({required this.identifier});
 
   final TfArg<String> identifier;
 
@@ -1518,33 +1396,21 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspection {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspection({
+final class Wafv2WebAclRuleResponseInspection {
+  const Wafv2WebAclRuleResponseInspection({
     this.bodyContains,
     this.header,
     this.json,
     this.statusCode,
   });
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionBodyContains
-  >?
-  bodyContains;
+  final List<Wafv2WebAclRuleBodyContains>? bodyContains;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionHeader
-  >?
-  header;
+  final List<Wafv2WebAclRuleHeader>? header;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionJson
-  >?
-  json;
+  final List<Wafv2WebAclRuleJson>? json;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionStatusCode
-  >?
-  statusCode;
+  final List<Wafv2WebAclRuleStatusCode>? statusCode;
 
   Map<String, Object?> encode() => {
     if (bodyContains != null)
@@ -1560,8 +1426,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionBodyContains {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionBodyContains({
+final class Wafv2WebAclRuleBodyContains {
+  const Wafv2WebAclRuleBodyContains({
     required this.failureStrings,
     required this.successStrings,
   });
@@ -1580,8 +1446,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionHeader {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionHeader({
+final class Wafv2WebAclRuleHeader {
+  const Wafv2WebAclRuleHeader({
     required this.failureValues,
     required this.name,
     required this.successValues,
@@ -1604,8 +1470,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionJson {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionJson({
+final class Wafv2WebAclRuleJson {
+  const Wafv2WebAclRuleJson({
     required this.failureValues,
     required this.identifier,
     required this.successValues,
@@ -1628,8 +1494,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionStatusCode {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspectionStatusCode({
+final class Wafv2WebAclRuleStatusCode {
+  const Wafv2WebAclRuleStatusCode({
     required this.failureCodes,
     required this.successCodes,
   });
@@ -1648,18 +1514,15 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSet {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSet({
+final class Wafv2WebAclRuleAwsManagedRulesAntiDdosRuleSet {
+  const Wafv2WebAclRuleAwsManagedRulesAntiDdosRuleSet({
     this.sensitivityToBlock,
     this.clientSideActionConfig,
   });
 
   final TfArg<String>? sensitivityToBlock;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfig
-  >?
-  clientSideActionConfig;
+  final List<Wafv2WebAclRuleClientSideActionConfig>? clientSideActionConfig;
 
   Map<String, Object?> encode() => {
     'sensitivity_to_block': ?sensitivityToBlock?.toTfJson(),
@@ -1674,15 +1537,10 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfig {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfig({
-    this.challenge,
-  });
+final class Wafv2WebAclRuleClientSideActionConfig {
+  const Wafv2WebAclRuleClientSideActionConfig({this.challenge});
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallenge
-  >?
-  challenge;
+  final List<Wafv2WebAclRuleChallenge>? challenge;
 
   Map<String, Object?> encode() => {
     if (challenge != null)
@@ -1694,8 +1552,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallenge {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallenge({
+final class Wafv2WebAclRuleChallenge {
+  const Wafv2WebAclRuleChallenge({
     this.sensitivity,
     required this.usageOfAction,
     this.exemptUriRegularExpression,
@@ -1705,9 +1563,7 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String> usageOfAction;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallengeExemptUriRegularExpression
-  >?
+  final List<Wafv2WebAclRuleExemptUriRegularExpression>?
   exemptUriRegularExpression;
 
   Map<String, Object?> encode() => {
@@ -1724,10 +1580,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallengeExemptUriRegularExpression {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAntiDdosRuleSetClientSideActionConfigChallengeExemptUriRegularExpression({
-    this.regexString,
-  });
+final class Wafv2WebAclRuleExemptUriRegularExpression {
+  const Wafv2WebAclRuleExemptUriRegularExpression({this.regexString});
 
   final TfArg<String>? regexString;
 
@@ -1738,8 +1592,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSet {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSet({
+final class Wafv2WebAclRuleAwsManagedRulesAtpRuleSet {
+  const Wafv2WebAclRuleAwsManagedRulesAtpRuleSet({
     this.enableRegexInPath,
     required this.loginPath,
     this.requestInspection,
@@ -1750,15 +1604,10 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String> loginPath;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSetRequestInspection
-  >?
+  final List<Wafv2WebAclRuleAwsManagedRulesAtpRuleSetRequestInspection>?
   requestInspection;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAcfpRuleSetResponseInspection
-  >?
-  responseInspection;
+  final List<Wafv2WebAclRuleResponseInspection>? responseInspection;
 
   Map<String, Object?> encode() => {
     'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
@@ -1774,8 +1623,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSetRequestInspection {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesAtpRuleSetRequestInspection({
+final class Wafv2WebAclRuleAwsManagedRulesAtpRuleSetRequestInspection {
+  const Wafv2WebAclRuleAwsManagedRulesAtpRuleSetRequestInspection({
     required this.payloadType,
     this.passwordField,
     this.usernameField,
@@ -1783,15 +1632,9 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 
   final TfArg<String> payloadType;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  passwordField;
+  final List<Wafv2WebAclRulePasswordField>? passwordField;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsPasswordField
-  >?
-  usernameField;
+  final List<Wafv2WebAclRulePasswordField>? usernameField;
 
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
@@ -1806,8 +1649,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesBotControlRuleSet {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupConfigsAwsManagedRulesBotControlRuleSet({
+final class Wafv2WebAclRuleAwsManagedRulesBotControlRuleSet {
+  const Wafv2WebAclRuleAwsManagedRulesBotControlRuleSet({
     this.enableMachineLearning,
     required this.inspectionLevel,
   });
@@ -1826,11 +1669,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementManagedRuleGroupCon
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementRuleActionOverride {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementRuleActionOverride({
-    required this.name,
-    this.actionToUse,
-  });
+final class Wafv2WebAclRuleActionOverride {
+  const Wafv2WebAclRuleActionOverride({required this.name, this.actionToUse});
 
   final TfArg<String> name;
 
@@ -1847,8 +1687,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementRuleActionOverride 
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement {
-  const Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement({
+final class Wafv2WebAclRuleScopeDownStatement {
+  const Wafv2WebAclRuleScopeDownStatement({
     this.asnMatchStatement,
     this.byteMatchStatement,
     this.geoMatchStatement,
@@ -1861,28 +1701,26 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement 
     this.xssMatchStatement,
   });
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatement>? asnMatchStatement;
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatement>? byteMatchStatement;
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementGeoMatchStatement>? geoMatchStatement;
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementIpSetReferenceStatement>?
-  ipSetReferenceStatement;
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementLabelMatchStatement>? labelMatchStatement;
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexMatchStatement>? regexMatchStatement;
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement>?
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleStatementSizeConstraintStatement>?
-  sizeConstraintStatement;
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
 
-  final List<Wafv2WebAclRuleStatementSqliMatchStatement>? sqliMatchStatement;
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
 
-  final List<Wafv2WebAclRuleStatementXssMatchStatement>? xssMatchStatement;
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     if (asnMatchStatement != null)
@@ -1922,8 +1760,8 @@ final class Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement 
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRegexMatchStatement {
-  const Wafv2WebAclRuleStatementRegexMatchStatement({
+final class Wafv2WebAclRuleRegexMatchStatement {
+  const Wafv2WebAclRuleRegexMatchStatement({
     required this.regexString,
     this.fieldToMatch,
     this.textTransformation,
@@ -1931,11 +1769,9 @@ final class Wafv2WebAclRuleStatementRegexMatchStatement {
 
   final TfArg<String> regexString;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'regex_string': regexString.toTfJson(),
@@ -1950,8 +1786,8 @@ final class Wafv2WebAclRuleStatementRegexMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement {
-  const Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement({
+final class Wafv2WebAclRuleRegexPatternSetReferenceStatement {
+  const Wafv2WebAclRuleRegexPatternSetReferenceStatement({
     required this.arn,
     this.fieldToMatch,
     this.textTransformation,
@@ -1959,11 +1795,9 @@ final class Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement {
 
   final TfArg<String> arn;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -1978,8 +1812,8 @@ final class Wafv2WebAclRuleStatementRegexPatternSetReferenceStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementSizeConstraintStatement {
-  const Wafv2WebAclRuleStatementSizeConstraintStatement({
+final class Wafv2WebAclRuleSizeConstraintStatement {
+  const Wafv2WebAclRuleSizeConstraintStatement({
     required this.comparisonOperator,
     required this.size,
     this.fieldToMatch,
@@ -1990,11 +1824,9 @@ final class Wafv2WebAclRuleStatementSizeConstraintStatement {
 
   final TfArg<num> size;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -2010,8 +1842,8 @@ final class Wafv2WebAclRuleStatementSizeConstraintStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementSqliMatchStatement {
-  const Wafv2WebAclRuleStatementSqliMatchStatement({
+final class Wafv2WebAclRuleSqliMatchStatement {
+  const Wafv2WebAclRuleSqliMatchStatement({
     this.sensitivityLevel,
     this.fieldToMatch,
     this.textTransformation,
@@ -2019,11 +1851,9 @@ final class Wafv2WebAclRuleStatementSqliMatchStatement {
 
   final TfArg<String>? sensitivityLevel;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'sensitivity_level': ?sensitivityLevel?.toTfJson(),
@@ -2038,17 +1868,15 @@ final class Wafv2WebAclRuleStatementSqliMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementXssMatchStatement {
-  const Wafv2WebAclRuleStatementXssMatchStatement({
+final class Wafv2WebAclRuleXssMatchStatement {
+  const Wafv2WebAclRuleXssMatchStatement({
     this.fieldToMatch,
     this.textTransformation,
   });
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementFieldToMatch>?
-  fieldToMatch;
+  final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     if (fieldToMatch != null)
@@ -2062,8 +1890,8 @@ final class Wafv2WebAclRuleStatementXssMatchStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRateBasedStatement {
-  const Wafv2WebAclRuleStatementRateBasedStatement({
+final class Wafv2WebAclRuleRateBasedStatement {
+  const Wafv2WebAclRuleRateBasedStatement({
     required this.aggregateKeyType,
     this.evaluationWindowSec,
     required this.limit,
@@ -2078,15 +1906,11 @@ final class Wafv2WebAclRuleStatementRateBasedStatement {
 
   final TfArg<num> limit;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeys>? customKeys;
+  final List<Wafv2WebAclRuleCustomKeys>? customKeys;
 
-  final List<Wafv2WebAclRuleStatementAsnMatchStatementForwardedIpConfig>?
-  forwardedIpConfig;
+  final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementScopeDownStatement
-  >?
-  scopeDownStatement;
+  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
 
   Map<String, Object?> encode() => {
     'aggregate_key_type': aggregateKeyType.toTfJson(),
@@ -2105,8 +1929,8 @@ final class Wafv2WebAclRuleStatementRateBasedStatement {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeys {
-  const Wafv2WebAclRuleStatementRateBasedStatementCustomKeys({
+final class Wafv2WebAclRuleCustomKeys {
+  const Wafv2WebAclRuleCustomKeys({
     this.asn,
     this.cookie,
     this.forwardedIp,
@@ -2121,43 +1945,29 @@ final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeys {
     this.uriPath,
   });
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? asn;
+  final List<Wafv2WebAclRuleCount>? asn;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie>?
-  cookie;
+  final List<Wafv2WebAclRuleCookie>? cookie;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? forwardedIp;
+  final List<Wafv2WebAclRuleCount>? forwardedIp;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie>?
-  header;
+  final List<Wafv2WebAclRuleCookie>? header;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? httpMethod;
+  final List<Wafv2WebAclRuleCount>? httpMethod;
 
-  final List<Wafv2WebAclRuleOverrideActionCount>? ip;
+  final List<Wafv2WebAclRuleCount>? ip;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint
-  >?
-  ja3Fingerprint;
+  final List<Wafv2WebAclRuleJa3Fingerprint>? ja3Fingerprint;
 
-  final List<
-    Wafv2WebAclRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint
-  >?
-  ja4Fingerprint;
+  final List<Wafv2WebAclRuleJa3Fingerprint>? ja4Fingerprint;
 
-  final List<
-    Wafv2WebAclRuleStatementRateBasedStatementCustomKeysLabelNamespace
-  >?
-  labelNamespace;
+  final List<Wafv2WebAclRuleLabelNamespace>? labelNamespace;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie>?
-  queryArgument;
+  final List<Wafv2WebAclRuleCookie>? queryArgument;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeysQueryString>?
-  queryString;
+  final List<Wafv2WebAclRuleQueryString>? queryString;
 
-  final List<Wafv2WebAclRuleStatementRateBasedStatementCustomKeysQueryString>?
-  uriPath;
+  final List<Wafv2WebAclRuleQueryString>? uriPath;
 
   Map<String, Object?> encode() => {
     if (asn != null) 'asn': [for (final e in asn!) e.encode()],
@@ -2186,16 +1996,12 @@ final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeys {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie {
-  const Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie({
-    required this.name,
-    this.textTransformation,
-  });
+final class Wafv2WebAclRuleCookie {
+  const Wafv2WebAclRuleCookie({required this.name, this.textTransformation});
 
   final TfArg<String> name;
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -2208,10 +2014,8 @@ final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysCookie {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysLabelNamespace {
-  const Wafv2WebAclRuleStatementRateBasedStatementCustomKeysLabelNamespace({
-    required this.namespace,
-  });
+final class Wafv2WebAclRuleLabelNamespace {
+  const Wafv2WebAclRuleLabelNamespace({required this.namespace});
 
   final TfArg<String> namespace;
 
@@ -2222,13 +2026,10 @@ final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysLabelNamespace {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysQueryString {
-  const Wafv2WebAclRuleStatementRateBasedStatementCustomKeysQueryString({
-    this.textTransformation,
-  });
+final class Wafv2WebAclRuleQueryString {
+  const Wafv2WebAclRuleQueryString({this.textTransformation});
 
-  final List<Wafv2WebAclRuleStatementByteMatchStatementTextTransformation>?
-  textTransformation;
+  final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
   Map<String, Object?> encode() => {
     if (textTransformation != null)
@@ -2240,8 +2041,8 @@ final class Wafv2WebAclRuleStatementRateBasedStatementCustomKeysQueryString {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
-  const Wafv2WebAclRuleStatementRuleGroupReferenceStatement({
+final class Wafv2WebAclRuleGroupReferenceStatement {
+  const Wafv2WebAclRuleGroupReferenceStatement({
     required this.arn,
     this.excludedRule,
     this.ruleActionOverride,
@@ -2249,12 +2050,9 @@ final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
 
   final TfArg<String> arn;
 
-  final List<Wafv2WebAclRuleRuleLabel>? excludedRule;
+  final List<Wafv2WebAclRuleLabel>? excludedRule;
 
-  final List<
-    Wafv2WebAclRuleStatementManagedRuleGroupStatementRuleActionOverride
-  >?
-  ruleActionOverride;
+  final List<Wafv2WebAclRuleActionOverride>? ruleActionOverride;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -2301,7 +2099,7 @@ final class AwsWafv2WebAclRule extends Resource {
     Wafv2WebAclRuleBehavior? behavior,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
-    List<Wafv2WebAclRuleRuleLabel>? ruleLabel,
+    List<Wafv2WebAclRuleLabel>? ruleLabel,
     List<Wafv2WebAclRuleStatement>? statement,
     List<Wafv2WebAclRuleVisibilityConfig>? visibilityConfig,
     super.lifecycle,

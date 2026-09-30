@@ -32,9 +32,9 @@ final class ClouddeployTargetAssociatedEntities {
 
   final TfArg<String> entityId;
 
-  final List<ClouddeployTargetAssociatedEntitiesAnthosClusters>? anthosClusters;
+  final List<ClouddeployTargetAnthosClusters>? anthosClusters;
 
-  final List<ClouddeployTargetAssociatedEntitiesGkeClusters>? gkeClusters;
+  final List<ClouddeployTargetGkeClusters>? gkeClusters;
 
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
@@ -48,8 +48,8 @@ final class ClouddeployTargetAssociatedEntities {
 /// Typed helper for the `associated_entities.anthos_clusters` block of
 /// `google_clouddeploy_target` (derived from provider schema).
 @immutable
-final class ClouddeployTargetAssociatedEntitiesAnthosClusters {
-  const ClouddeployTargetAssociatedEntitiesAnthosClusters({this.membership});
+final class ClouddeployTargetAnthosClusters {
+  const ClouddeployTargetAnthosClusters({this.membership});
 
   final TfArg<String>? membership;
 
@@ -59,8 +59,8 @@ final class ClouddeployTargetAssociatedEntitiesAnthosClusters {
 /// Typed helper for the `associated_entities.gke_clusters` block of
 /// `google_clouddeploy_target` (derived from provider schema).
 @immutable
-final class ClouddeployTargetAssociatedEntitiesGkeClusters {
-  const ClouddeployTargetAssociatedEntitiesGkeClusters({
+final class ClouddeployTargetGkeClusters {
+  const ClouddeployTargetGkeClusters({
     this.cluster,
     this.internalIp,
     this.proxyUrl,
@@ -119,9 +119,9 @@ final class ClouddeployTargetExecutionConfigs {
 
   final TfArg<String>? workerPool;
 
-  final ClouddeployTargetExecutionConfigsDefaultPool? defaultPool;
+  final ClouddeployTargetDefaultPool? defaultPool;
 
-  final ClouddeployTargetExecutionConfigsPrivatePool? privatePool;
+  final ClouddeployTargetPrivatePool? privatePool;
 
   Map<String, Object?> encode() => {
     'artifact_storage': ?artifactStorage?.toTfJson(),
@@ -138,8 +138,8 @@ final class ClouddeployTargetExecutionConfigs {
 /// Typed helper for the `execution_configs.default_pool` block of
 /// `google_clouddeploy_target` (derived from provider schema).
 @immutable
-final class ClouddeployTargetExecutionConfigsDefaultPool {
-  const ClouddeployTargetExecutionConfigsDefaultPool({
+final class ClouddeployTargetDefaultPool {
+  const ClouddeployTargetDefaultPool({
     this.artifactStorage,
     this.serviceAccount,
   });
@@ -157,8 +157,8 @@ final class ClouddeployTargetExecutionConfigsDefaultPool {
 /// Typed helper for the `execution_configs.private_pool` block of
 /// `google_clouddeploy_target` (derived from provider schema).
 @immutable
-final class ClouddeployTargetExecutionConfigsPrivatePool {
-  const ClouddeployTargetExecutionConfigsPrivatePool({
+final class ClouddeployTargetPrivatePool {
+  const ClouddeployTargetPrivatePool({
     this.artifactStorage,
     this.serviceAccount,
     required this.workerPool,

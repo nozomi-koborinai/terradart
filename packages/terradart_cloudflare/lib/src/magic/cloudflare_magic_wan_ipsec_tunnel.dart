@@ -63,15 +63,15 @@ final class MagicWanIpsecTunnelHealthCheck {
     this.target,
   });
 
-  final TfArg<MagicWanIpsecTunnelHealthCheckDirection>? direction;
+  final TfArg<MagicWanIpsecTunnelDirection>? direction;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MagicWanIpsecTunnelHealthCheckRate>? rate;
+  final TfArg<MagicWanIpsecTunnelRate>? rate;
 
-  final TfArg<MagicWanIpsecTunnelHealthCheckType>? type;
+  final TfArg<MagicWanIpsecTunnelType>? type;
 
-  final MagicWanIpsecTunnelHealthCheckTarget? target;
+  final MagicWanIpsecTunnelTarget? target;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -83,32 +83,32 @@ final class MagicWanIpsecTunnelHealthCheck {
 }
 
 /// `direction` — derived from the provider schema description.
-enum MagicWanIpsecTunnelHealthCheckDirection implements TerraformEnum {
+enum MagicWanIpsecTunnelDirection implements TerraformEnum {
   unidirectional('unidirectional'),
   bidirectional('bidirectional');
 
-  const MagicWanIpsecTunnelHealthCheckDirection(this.terraformValue);
+  const MagicWanIpsecTunnelDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `rate` — derived from the provider schema description.
-enum MagicWanIpsecTunnelHealthCheckRate implements TerraformEnum {
+enum MagicWanIpsecTunnelRate implements TerraformEnum {
   low('low'),
   mid('mid'),
   high('high');
 
-  const MagicWanIpsecTunnelHealthCheckRate(this.terraformValue);
+  const MagicWanIpsecTunnelRate(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum MagicWanIpsecTunnelHealthCheckType implements TerraformEnum {
+enum MagicWanIpsecTunnelType implements TerraformEnum {
   reply('reply'),
   request('request');
 
-  const MagicWanIpsecTunnelHealthCheckType(this.terraformValue);
+  const MagicWanIpsecTunnelType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,8 +116,8 @@ enum MagicWanIpsecTunnelHealthCheckType implements TerraformEnum {
 /// Typed helper for the `health_check.target` block of
 /// `cloudflare_magic_wan_ipsec_tunnel` (derived from provider schema).
 @immutable
-final class MagicWanIpsecTunnelHealthCheckTarget {
-  const MagicWanIpsecTunnelHealthCheckTarget({this.saved});
+final class MagicWanIpsecTunnelTarget {
+  const MagicWanIpsecTunnelTarget({this.saved});
 
   final TfArg<String>? saved;
 

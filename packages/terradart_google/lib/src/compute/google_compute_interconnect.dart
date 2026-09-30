@@ -59,7 +59,7 @@ final class ComputeInterconnectMacsec {
 
   final TfArg<bool>? failOpen;
 
-  final List<ComputeInterconnectMacsecPreSharedKeys> preSharedKeys;
+  final List<ComputeInterconnectPreSharedKeys> preSharedKeys;
 
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
@@ -70,8 +70,8 @@ final class ComputeInterconnectMacsec {
 /// Typed helper for the `macsec.pre_shared_keys` block of
 /// `google_compute_interconnect` (derived from provider schema).
 @immutable
-final class ComputeInterconnectMacsecPreSharedKeys {
-  const ComputeInterconnectMacsecPreSharedKeys({
+final class ComputeInterconnectPreSharedKeys {
+  const ComputeInterconnectPreSharedKeys({
     this.failOpen,
     required this.name,
     this.startTime,

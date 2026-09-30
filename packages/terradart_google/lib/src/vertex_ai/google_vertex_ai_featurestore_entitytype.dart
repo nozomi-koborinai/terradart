@@ -18,17 +18,16 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfig {
     this.snapshotAnalysis,
   });
 
-  final VertexAiFeaturestoreEntitytypeMonitoringConfigCategoricalThresholdConfig?
+  final VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig?
   categoricalThresholdConfig;
 
-  final VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis?
+  final VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis?
   importFeaturesAnalysis;
 
-  final VertexAiFeaturestoreEntitytypeMonitoringConfigNumericalThresholdConfig?
+  final VertexAiFeaturestoreEntitytypeNumericalThresholdConfig?
   numericalThresholdConfig;
 
-  final VertexAiFeaturestoreEntitytypeMonitoringConfigSnapshotAnalysis?
-  snapshotAnalysis;
+  final VertexAiFeaturestoreEntitytypeSnapshotAnalysis? snapshotAnalysis;
 
   Map<String, Object?> encode() => {
     'categorical_threshold_config': ?categoricalThresholdConfig?.encode(),
@@ -41,8 +40,8 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfig {
 /// Typed helper for the `monitoring_config.categorical_threshold_config` block of
 /// `google_vertex_ai_featurestore_entitytype` (derived from provider schema).
 @immutable
-final class VertexAiFeaturestoreEntitytypeMonitoringConfigCategoricalThresholdConfig {
-  const VertexAiFeaturestoreEntitytypeMonitoringConfigCategoricalThresholdConfig({
+final class VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig {
+  const VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig({
     required this.value,
   });
 
@@ -54,8 +53,8 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfigCategoricalThresholdCo
 /// Typed helper for the `monitoring_config.import_features_analysis` block of
 /// `google_vertex_ai_featurestore_entitytype` (derived from provider schema).
 @immutable
-final class VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis {
-  const VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis({
+final class VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis {
+  const VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis({
     this.anomalyDetectionBaseline,
     this.state,
   });
@@ -73,8 +72,8 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis
 /// Typed helper for the `monitoring_config.numerical_threshold_config` block of
 /// `google_vertex_ai_featurestore_entitytype` (derived from provider schema).
 @immutable
-final class VertexAiFeaturestoreEntitytypeMonitoringConfigNumericalThresholdConfig {
-  const VertexAiFeaturestoreEntitytypeMonitoringConfigNumericalThresholdConfig({
+final class VertexAiFeaturestoreEntitytypeNumericalThresholdConfig {
+  const VertexAiFeaturestoreEntitytypeNumericalThresholdConfig({
     required this.value,
   });
 
@@ -86,8 +85,8 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfigNumericalThresholdConf
 /// Typed helper for the `monitoring_config.snapshot_analysis` block of
 /// `google_vertex_ai_featurestore_entitytype` (derived from provider schema).
 @immutable
-final class VertexAiFeaturestoreEntitytypeMonitoringConfigSnapshotAnalysis {
-  const VertexAiFeaturestoreEntitytypeMonitoringConfigSnapshotAnalysis({
+final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
+  const VertexAiFeaturestoreEntitytypeSnapshotAnalysis({
     this.disabled,
     this.monitoringIntervalDays,
     this.stalenessDays,

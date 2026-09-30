@@ -54,9 +54,9 @@ final class SecurityScannerScanConfigAuthentication {
     this.googleAccount,
   });
 
-  final SecurityScannerScanConfigAuthenticationCustomAccount? customAccount;
+  final SecurityScannerScanConfigCustomAccount? customAccount;
 
-  final SecurityScannerScanConfigAuthenticationGoogleAccount? googleAccount;
+  final SecurityScannerScanConfigGoogleAccount? googleAccount;
 
   Map<String, Object?> encode() => {
     'custom_account': ?customAccount?.encode(),
@@ -67,8 +67,8 @@ final class SecurityScannerScanConfigAuthentication {
 /// Typed helper for the `authentication.custom_account` block of
 /// `google_security_scanner_scan_config` (derived from provider schema).
 @immutable
-final class SecurityScannerScanConfigAuthenticationCustomAccount {
-  const SecurityScannerScanConfigAuthenticationCustomAccount({
+final class SecurityScannerScanConfigCustomAccount {
+  const SecurityScannerScanConfigCustomAccount({
     required this.loginUrl,
     required this.password,
     required this.username,
@@ -90,8 +90,8 @@ final class SecurityScannerScanConfigAuthenticationCustomAccount {
 /// Typed helper for the `authentication.google_account` block of
 /// `google_security_scanner_scan_config` (derived from provider schema).
 @immutable
-final class SecurityScannerScanConfigAuthenticationGoogleAccount {
-  const SecurityScannerScanConfigAuthenticationGoogleAccount({
+final class SecurityScannerScanConfigGoogleAccount {
+  const SecurityScannerScanConfigGoogleAccount({
     required this.password,
     required this.username,
   });

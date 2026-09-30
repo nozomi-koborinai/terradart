@@ -21,7 +21,7 @@ final class WafregionalRegexMatchSetRegexMatchTuple {
 
   final TfArg<String> textTransformation;
 
-  final WafregionalRegexMatchSetRegexMatchTupleFieldToMatch fieldToMatch;
+  final WafregionalRegexMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'regex_pattern_set_id': regexPatternSetId.toTfJson(),
@@ -33,11 +33,8 @@ final class WafregionalRegexMatchSetRegexMatchTuple {
 /// Typed helper for the `regex_match_tuple.field_to_match` block of
 /// `aws_wafregional_regex_match_set` (derived from provider schema).
 @immutable
-final class WafregionalRegexMatchSetRegexMatchTupleFieldToMatch {
-  const WafregionalRegexMatchSetRegexMatchTupleFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafregionalRegexMatchSetFieldToMatch {
+  const WafregionalRegexMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 

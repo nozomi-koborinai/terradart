@@ -113,7 +113,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDataset {
 
   final TfArg<List<String>>? replicaLocations;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference
+  final BigqueryAnalyticsHubListingSubscriptionDatasetReference
   datasetReference;
 
   Map<String, Object?> encode() => {
@@ -129,8 +129,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDataset {
 /// Typed helper for the `destination_dataset.dataset_reference` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference({
+final class BigqueryAnalyticsHubListingSubscriptionDatasetReference {
+  const BigqueryAnalyticsHubListingSubscriptionDatasetReference({
     required this.datasetId,
     required this.projectId,
   });
@@ -153,7 +153,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
     required this.pubsubSubscription,
   });
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscription
+  final BigqueryAnalyticsHubListingSubscriptionPubsubSubscription
   pubsubSubscription;
 
   Map<String, Object?> encode() => {
@@ -164,8 +164,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscription {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscription({
+final class BigqueryAnalyticsHubListingSubscriptionPubsubSubscription {
+  const BigqueryAnalyticsHubListingSubscriptionPubsubSubscription({
     this.ackDeadlineSeconds,
     this.detached,
     this.enableExactlyOnceDelivery,
@@ -201,23 +201,20 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 
   final TfArg<bool>? retainAckedMessages;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionBigqueryConfig?
-  bigqueryConfig;
+  final BigqueryAnalyticsHubListingSubscriptionBigqueryConfig? bigqueryConfig;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfig?
+  final BigqueryAnalyticsHubListingSubscriptionCloudStorageConfig?
   cloudStorageConfig;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionDeadLetterPolicy?
+  final BigqueryAnalyticsHubListingSubscriptionDeadLetterPolicy?
   deadLetterPolicy;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionExpirationPolicy?
+  final BigqueryAnalyticsHubListingSubscriptionExpirationPolicy?
   expirationPolicy;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfig?
-  pushConfig;
+  final BigqueryAnalyticsHubListingSubscriptionPushConfig? pushConfig;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionRetryPolicy?
-  retryPolicy;
+  final BigqueryAnalyticsHubListingSubscriptionRetryPolicy? retryPolicy;
 
   Map<String, Object?> encode() => {
     'ack_deadline_seconds': ?ackDeadlineSeconds?.toTfJson(),
@@ -241,8 +238,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.bigquery_config` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionBigqueryConfig {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionBigqueryConfig({
+final class BigqueryAnalyticsHubListingSubscriptionBigqueryConfig {
+  const BigqueryAnalyticsHubListingSubscriptionBigqueryConfig({
     this.dropUnknownFields,
     this.serviceAccountEmail,
     this.table,
@@ -276,8 +273,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.cloud_storage_config` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfig {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfig({
+final class BigqueryAnalyticsHubListingSubscriptionCloudStorageConfig {
+  const BigqueryAnalyticsHubListingSubscriptionCloudStorageConfig({
     this.bucket,
     this.filenameDatetimeFormat,
     this.filenamePrefix,
@@ -305,8 +302,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfigAvroConfig?
-  avroConfig;
+  final BigqueryAnalyticsHubListingSubscriptionAvroConfig? avroConfig;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
@@ -324,8 +320,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.cloud_storage_config.avro_config` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfigAvroConfig {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfigAvroConfig({
+final class BigqueryAnalyticsHubListingSubscriptionAvroConfig {
+  const BigqueryAnalyticsHubListingSubscriptionAvroConfig({
     this.useTopicSchema,
     this.writeMetadata,
   });
@@ -343,8 +339,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.dead_letter_policy` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionDeadLetterPolicy {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionDeadLetterPolicy({
+final class BigqueryAnalyticsHubListingSubscriptionDeadLetterPolicy {
+  const BigqueryAnalyticsHubListingSubscriptionDeadLetterPolicy({
     this.deadLetterTopic,
     this.maxDeliveryAttempts,
   });
@@ -362,10 +358,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.expiration_policy` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionExpirationPolicy {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionExpirationPolicy({
-    this.ttl,
-  });
+final class BigqueryAnalyticsHubListingSubscriptionExpirationPolicy {
+  const BigqueryAnalyticsHubListingSubscriptionExpirationPolicy({this.ttl});
 
   final TfArg<String>? ttl;
 
@@ -375,8 +369,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.push_config` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfig {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfig({
+final class BigqueryAnalyticsHubListingSubscriptionPushConfig {
+  const BigqueryAnalyticsHubListingSubscriptionPushConfig({
     this.attributes,
     this.pushEndpoint,
     this.noWrapper,
@@ -387,11 +381,9 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 
   final TfArg<String>? pushEndpoint;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigNoWrapper?
-  noWrapper;
+  final BigqueryAnalyticsHubListingSubscriptionNoWrapper? noWrapper;
 
-  final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigOidcToken?
-  oidcToken;
+  final BigqueryAnalyticsHubListingSubscriptionOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
@@ -404,10 +396,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.push_config.no_wrapper` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigNoWrapper {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigNoWrapper({
-    this.writeMetadata,
-  });
+final class BigqueryAnalyticsHubListingSubscriptionNoWrapper {
+  const BigqueryAnalyticsHubListingSubscriptionNoWrapper({this.writeMetadata});
 
   final TfArg<bool>? writeMetadata;
 
@@ -419,8 +409,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.push_config.oidc_token` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigOidcToken {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigOidcToken({
+final class BigqueryAnalyticsHubListingSubscriptionOidcToken {
+  const BigqueryAnalyticsHubListingSubscriptionOidcToken({
     this.audience,
     this.serviceAccountEmail,
   });
@@ -438,8 +428,8 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
 /// Typed helper for the `destination_pubsub_subscription.pubsub_subscription.retry_policy` block of
 /// `google_bigquery_analytics_hub_listing_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionRetryPolicy {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionRetryPolicy({
+final class BigqueryAnalyticsHubListingSubscriptionRetryPolicy {
+  const BigqueryAnalyticsHubListingSubscriptionRetryPolicy({
     this.maximumBackoff,
     this.minimumBackoff,
   });

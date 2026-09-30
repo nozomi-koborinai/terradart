@@ -19,11 +19,9 @@ final class EcsClusterConfiguration {
     this.managedStorageConfiguration,
   });
 
-  final EcsClusterConfigurationExecuteCommandConfiguration?
-  executeCommandConfiguration;
+  final EcsClusterExecuteCommandConfiguration? executeCommandConfiguration;
 
-  final EcsClusterConfigurationManagedStorageConfiguration?
-  managedStorageConfiguration;
+  final EcsClusterManagedStorageConfiguration? managedStorageConfiguration;
 
   Map<String, Object?> encode() => {
     'execute_command_configuration': ?executeCommandConfiguration?.encode(),
@@ -34,8 +32,8 @@ final class EcsClusterConfiguration {
 /// Typed helper for the `configuration.execute_command_configuration` block of
 /// `aws_ecs_cluster` (derived from provider schema).
 @immutable
-final class EcsClusterConfigurationExecuteCommandConfiguration {
-  const EcsClusterConfigurationExecuteCommandConfiguration({
+final class EcsClusterExecuteCommandConfiguration {
+  const EcsClusterExecuteCommandConfiguration({
     this.kmsKeyId,
     this.logging,
     this.logConfiguration,
@@ -43,11 +41,9 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final TfArg<EcsClusterConfigurationExecuteCommandConfigurationLogging>?
-  logging;
+  final TfArg<EcsClusterLogging>? logging;
 
-  final EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration?
-  logConfiguration;
+  final EcsClusterLogConfiguration? logConfiguration;
 
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -57,15 +53,12 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
 }
 
 /// `logging` — derived from the provider schema description.
-enum EcsClusterConfigurationExecuteCommandConfigurationLogging
-    implements TerraformEnum {
+enum EcsClusterLogging implements TerraformEnum {
   none('NONE'),
   defaultCase('DEFAULT'),
   overrideCase('OVERRIDE');
 
-  const EcsClusterConfigurationExecuteCommandConfigurationLogging(
-    this.terraformValue,
-  );
+  const EcsClusterLogging(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -73,8 +66,8 @@ enum EcsClusterConfigurationExecuteCommandConfigurationLogging
 /// Typed helper for the `configuration.execute_command_configuration.log_configuration` block of
 /// `aws_ecs_cluster` (derived from provider schema).
 @immutable
-final class EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration {
-  const EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration({
+final class EcsClusterLogConfiguration {
+  const EcsClusterLogConfiguration({
     this.cloudWatchEncryptionEnabled,
     this.cloudWatchLogGroupName,
     this.s3BucketEncryptionEnabled,
@@ -104,8 +97,8 @@ final class EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration {
 /// Typed helper for the `configuration.managed_storage_configuration` block of
 /// `aws_ecs_cluster` (derived from provider schema).
 @immutable
-final class EcsClusterConfigurationManagedStorageConfiguration {
-  const EcsClusterConfigurationManagedStorageConfiguration({
+final class EcsClusterManagedStorageConfiguration {
+  const EcsClusterManagedStorageConfiguration({
     this.fargateEphemeralStorageKmsKeyId,
     this.kmsKeyId,
   });

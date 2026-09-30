@@ -12,9 +12,9 @@ export 'src/ssmincidents/aws_ssmincidents_response_plan.dart'
     show
         AwsSsmincidentsResponsePlan,
         SsmincidentsResponsePlanAction,
-        SsmincidentsResponsePlanActionSsmAutomation,
-        SsmincidentsResponsePlanActionSsmAutomationParameter,
         SsmincidentsResponsePlanIncidentTemplate,
-        SsmincidentsResponsePlanIncidentTemplateNotificationTarget,
         SsmincidentsResponsePlanIntegration,
-        SsmincidentsResponsePlanIntegrationPagerduty;
+        SsmincidentsResponsePlanNotificationTarget,
+        SsmincidentsResponsePlanPagerduty,
+        SsmincidentsResponsePlanParameter,
+        SsmincidentsResponsePlanSsmAutomation;

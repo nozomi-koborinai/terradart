@@ -19,25 +19,22 @@ export 'src/eventarc/google_eventarc_message_bus.dart'
         GoogleEventarcMessageBus;
 export 'src/eventarc/google_eventarc_pipeline.dart'
     show
+        EventarcPipelineAuthenticationConfig,
+        EventarcPipelineAvro,
         EventarcPipelineDestinations,
-        EventarcPipelineDestinationsAuthenticationConfig,
-        EventarcPipelineDestinationsAuthenticationConfigGoogleOidc,
-        EventarcPipelineDestinationsAuthenticationConfigOauthToken,
-        EventarcPipelineDestinationsHttpEndpoint,
-        EventarcPipelineDestinationsNetworkConfig,
-        EventarcPipelineDestinationsOutputPayloadFormat,
-        EventarcPipelineDestinationsOutputPayloadFormatAvro,
-        EventarcPipelineDestinationsOutputPayloadFormatJson,
-        EventarcPipelineDestinationsOutputPayloadFormatProtobuf,
+        EventarcPipelineGoogleOidc,
+        EventarcPipelineHttpEndpoint,
         EventarcPipelineInputPayloadFormat,
-        EventarcPipelineInputPayloadFormatAvro,
-        EventarcPipelineInputPayloadFormatJson,
-        EventarcPipelineInputPayloadFormatProtobuf,
+        EventarcPipelineJson,
+        EventarcPipelineLogSeverity,
         EventarcPipelineLoggingConfig,
-        EventarcPipelineLoggingConfigLogSeverity,
         EventarcPipelineMediations,
-        EventarcPipelineMediationsTransformation,
+        EventarcPipelineNetworkConfig,
+        EventarcPipelineOauthToken,
+        EventarcPipelineOutputPayloadFormat,
+        EventarcPipelineProtobuf,
         EventarcPipelineRetryPolicy,
+        EventarcPipelineTransformation,
         GoogleEventarcPipeline;
 export 'src/eventarc/google_eventarc_pipeline_iam_binding.dart'
     show EventarcPipelineIamBindingCondition, GoogleEventarcPipelineIamBinding;
@@ -47,13 +44,13 @@ export 'src/eventarc/google_eventarc_pipeline_iam_policy.dart'
     show GoogleEventarcPipelineIamPolicy;
 export 'src/eventarc/google_eventarc_trigger.dart'
     show
+        EventarcTriggerCloudRunService,
         EventarcTriggerDestination,
-        EventarcTriggerDestinationCloudRunService,
-        EventarcTriggerDestinationGke,
-        EventarcTriggerDestinationHttpEndpoint,
-        EventarcTriggerDestinationNetworkConfig,
+        EventarcTriggerGke,
+        EventarcTriggerHttpEndpoint,
         EventarcTriggerMatchingCriteria,
+        EventarcTriggerNetworkConfig,
+        EventarcTriggerPubsub,
         EventarcTriggerRetryPolicy,
         EventarcTriggerTransport,
-        EventarcTriggerTransportPubsub,
         GoogleEventarcTrigger;

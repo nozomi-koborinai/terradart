@@ -15,24 +15,22 @@ export 'src/workstations/google_workstations_workstation_cluster.dart'
 export 'src/workstations/google_workstations_workstation_config.dart'
     show
         GoogleWorkstationsWorkstationConfig,
+        WorkstationsWorkstationConfigAccelerators,
         WorkstationsWorkstationConfigAllowedPorts,
+        WorkstationsWorkstationConfigBoostConfigs,
+        WorkstationsWorkstationConfigConfidentialInstanceConfig,
         WorkstationsWorkstationConfigContainer,
         WorkstationsWorkstationConfigEncryptionKey,
         WorkstationsWorkstationConfigEphemeralDirectories,
         WorkstationsWorkstationConfigEphemeralDirectoriesGcePd,
+        WorkstationsWorkstationConfigGceHd,
+        WorkstationsWorkstationConfigGceInstance,
         WorkstationsWorkstationConfigHost,
-        WorkstationsWorkstationConfigHostGceInstance,
-        WorkstationsWorkstationConfigHostGceInstanceAccelerators,
-        WorkstationsWorkstationConfigHostGceInstanceBoostConfigs,
-        WorkstationsWorkstationConfigHostGceInstanceBoostConfigsAccelerators,
-        WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConfig,
-        WorkstationsWorkstationConfigHostGceInstanceShieldedInstanceConfig,
         WorkstationsWorkstationConfigPersistentDirectories,
-        WorkstationsWorkstationConfigPersistentDirectoriesGceHd,
-        WorkstationsWorkstationConfigPersistentDirectoriesGceHdReclaimPolicy,
         WorkstationsWorkstationConfigPersistentDirectoriesGcePd,
-        WorkstationsWorkstationConfigPersistentDirectoriesGcePdReclaimPolicy,
-        WorkstationsWorkstationConfigReadinessChecks;
+        WorkstationsWorkstationConfigReadinessChecks,
+        WorkstationsWorkstationConfigReclaimPolicy,
+        WorkstationsWorkstationConfigShieldedInstanceConfig;
 export 'src/workstations/google_workstations_workstation_config_iam_binding.dart'
     show
         GoogleWorkstationsWorkstationConfigIamBinding,

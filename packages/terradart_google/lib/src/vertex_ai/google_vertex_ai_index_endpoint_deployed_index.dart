@@ -41,8 +41,7 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResources {
 
   final TfArg<num> minReplicaCount;
 
-  final VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec
-  machineSpec;
+  final VertexAiIndexEndpointDeployedIndexMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
@@ -54,10 +53,8 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResources {
 /// Typed helper for the `dedicated_resources.machine_spec` block of
 /// `google_vertex_ai_index_endpoint_deployed_index` (derived from provider schema).
 @immutable
-final class VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec {
-  const VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec({
-    this.machineType,
-  });
+final class VertexAiIndexEndpointDeployedIndexMachineSpec {
+  const VertexAiIndexEndpointDeployedIndexMachineSpec({this.machineType});
 
   final TfArg<String>? machineType;
 
@@ -67,13 +64,10 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec {
 /// Typed helper for the `deployed_index_auth_config` block of
 /// `google_vertex_ai_index_endpoint_deployed_index` (derived from provider schema).
 @immutable
-final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig {
-  const VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig({
-    this.authProvider,
-  });
+final class VertexAiIndexEndpointDeployedIndexAuthConfig {
+  const VertexAiIndexEndpointDeployedIndexAuthConfig({this.authProvider});
 
-  final VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider?
-  authProvider;
+  final VertexAiIndexEndpointDeployedIndexAuthProvider? authProvider;
 
   Map<String, Object?> encode() => {'auth_provider': ?authProvider?.encode()};
 }
@@ -81,8 +75,8 @@ final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig {
 /// Typed helper for the `deployed_index_auth_config.auth_provider` block of
 /// `google_vertex_ai_index_endpoint_deployed_index` (derived from provider schema).
 @immutable
-final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider {
-  const VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider({
+final class VertexAiIndexEndpointDeployedIndexAuthProvider {
+  const VertexAiIndexEndpointDeployedIndexAuthProvider({
     this.allowedIssuers,
     this.audiences,
   });
@@ -142,8 +136,7 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
     TfArg<String>? displayName,
     VertexAiIndexEndpointDeployedIndexAutomaticResources? automaticResources,
     VertexAiIndexEndpointDeployedIndexDedicatedResources? dedicatedResources,
-    VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig?
-    deployedIndexAuthConfig,
+    VertexAiIndexEndpointDeployedIndexAuthConfig? deployedIndexAuthConfig,
     TfArg<String>? deploymentGroup,
     TfArg<bool>? enableAccessLogging,
     TfArg<List<String>>? reservedIpRanges,

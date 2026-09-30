@@ -31,11 +31,11 @@ final class ComputeRolloutPlanWaves {
 
   final TfArg<String>? displayName;
 
-  final ComputeRolloutPlanWavesOrchestrationOptions? orchestrationOptions;
+  final ComputeRolloutPlanOrchestrationOptions? orchestrationOptions;
 
-  final List<ComputeRolloutPlanWavesSelectors> selectors;
+  final List<ComputeRolloutPlanSelectors> selectors;
 
-  final ComputeRolloutPlanWavesValidation validation;
+  final ComputeRolloutPlanValidation validation;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -48,8 +48,8 @@ final class ComputeRolloutPlanWaves {
 /// Typed helper for the `waves.orchestration_options` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesOrchestrationOptions {
-  const ComputeRolloutPlanWavesOrchestrationOptions({
+final class ComputeRolloutPlanOrchestrationOptions {
+  const ComputeRolloutPlanOrchestrationOptions({
     this.maxConcurrentLocations,
     this.maxConcurrentResourcesPerLocation,
     this.delays,
@@ -59,7 +59,7 @@ final class ComputeRolloutPlanWavesOrchestrationOptions {
 
   final TfArg<num>? maxConcurrentResourcesPerLocation;
 
-  final List<ComputeRolloutPlanWavesOrchestrationOptionsDelays>? delays;
+  final List<ComputeRolloutPlanDelays>? delays;
 
   Map<String, Object?> encode() => {
     'max_concurrent_locations': ?maxConcurrentLocations?.toTfJson(),
@@ -72,19 +72,14 @@ final class ComputeRolloutPlanWavesOrchestrationOptions {
 /// Typed helper for the `waves.orchestration_options.delays` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesOrchestrationOptionsDelays {
-  const ComputeRolloutPlanWavesOrchestrationOptionsDelays({
-    this.delimiter,
-    this.duration,
-    this.type,
-  });
+final class ComputeRolloutPlanDelays {
+  const ComputeRolloutPlanDelays({this.delimiter, this.duration, this.type});
 
-  final TfArg<ComputeRolloutPlanWavesOrchestrationOptionsDelaysDelimiter>?
-  delimiter;
+  final TfArg<ComputeRolloutPlanDelimiter>? delimiter;
 
   final TfArg<String>? duration;
 
-  final TfArg<ComputeRolloutPlanWavesOrchestrationOptionsDelaysType>? type;
+  final TfArg<ComputeRolloutPlanType>? type;
 
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
@@ -94,29 +89,23 @@ final class ComputeRolloutPlanWavesOrchestrationOptionsDelays {
 }
 
 /// `delimiter` — derived from the provider schema description.
-enum ComputeRolloutPlanWavesOrchestrationOptionsDelaysDelimiter
-    implements TerraformEnum {
+enum ComputeRolloutPlanDelimiter implements TerraformEnum {
   delimiterUnspecified('DELIMITER_UNSPECIFIED'),
   delimiterLocation('DELIMITER_LOCATION'),
   delimiterBatch('DELIMITER_BATCH');
 
-  const ComputeRolloutPlanWavesOrchestrationOptionsDelaysDelimiter(
-    this.terraformValue,
-  );
+  const ComputeRolloutPlanDelimiter(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeRolloutPlanWavesOrchestrationOptionsDelaysType
-    implements TerraformEnum {
+enum ComputeRolloutPlanType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   typeOffset('TYPE_OFFSET'),
   typeMinimum('TYPE_MINIMUM');
 
-  const ComputeRolloutPlanWavesOrchestrationOptionsDelaysType(
-    this.terraformValue,
-  );
+  const ComputeRolloutPlanType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -124,16 +113,15 @@ enum ComputeRolloutPlanWavesOrchestrationOptionsDelaysType
 /// Typed helper for the `waves.selectors` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesSelectors {
-  const ComputeRolloutPlanWavesSelectors({
+final class ComputeRolloutPlanSelectors {
+  const ComputeRolloutPlanSelectors({
     this.locationSelector,
     this.resourceHierarchySelector,
   });
 
-  final ComputeRolloutPlanWavesSelectorsLocationSelector? locationSelector;
+  final ComputeRolloutPlanLocationSelector? locationSelector;
 
-  final ComputeRolloutPlanWavesSelectorsResourceHierarchySelector?
-  resourceHierarchySelector;
+  final ComputeRolloutPlanResourceHierarchySelector? resourceHierarchySelector;
 
   Map<String, Object?> encode() => {
     'location_selector': ?locationSelector?.encode(),
@@ -144,10 +132,8 @@ final class ComputeRolloutPlanWavesSelectors {
 /// Typed helper for the `waves.selectors.location_selector` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesSelectorsLocationSelector {
-  const ComputeRolloutPlanWavesSelectorsLocationSelector({
-    this.includedLocations,
-  });
+final class ComputeRolloutPlanLocationSelector {
+  const ComputeRolloutPlanLocationSelector({this.includedLocations});
 
   final TfArg<List<String>>? includedLocations;
 
@@ -159,8 +145,8 @@ final class ComputeRolloutPlanWavesSelectorsLocationSelector {
 /// Typed helper for the `waves.selectors.resource_hierarchy_selector` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesSelectorsResourceHierarchySelector {
-  const ComputeRolloutPlanWavesSelectorsResourceHierarchySelector({
+final class ComputeRolloutPlanResourceHierarchySelector {
+  const ComputeRolloutPlanResourceHierarchySelector({
     this.includedFolders,
     this.includedOrganizations,
     this.includedProjects,
@@ -182,15 +168,15 @@ final class ComputeRolloutPlanWavesSelectorsResourceHierarchySelector {
 /// Typed helper for the `waves.validation` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesValidation {
-  const ComputeRolloutPlanWavesValidation({
+final class ComputeRolloutPlanValidation {
+  const ComputeRolloutPlanValidation({
     required this.type,
     this.timeBasedValidationMetadata,
   });
 
   final TfArg<String> type;
 
-  final ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata?
+  final ComputeRolloutPlanTimeBasedValidationMetadata?
   timeBasedValidationMetadata;
 
   Map<String, Object?> encode() => {
@@ -202,10 +188,8 @@ final class ComputeRolloutPlanWavesValidation {
 /// Typed helper for the `waves.validation.time_based_validation_metadata` block of
 /// `google_compute_rollout_plan` (derived from provider schema).
 @immutable
-final class ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata {
-  const ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata({
-    this.waitDuration,
-  });
+final class ComputeRolloutPlanTimeBasedValidationMetadata {
+  const ComputeRolloutPlanTimeBasedValidationMetadata({this.waitDuration});
 
   final TfArg<String>? waitDuration;
 

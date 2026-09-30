@@ -35,12 +35,12 @@ curatedDoc: |-
   ///   region: TfArg.literal('us-central1'),
   ///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
   ///   metadata: VertexAiIndexMetadata(
-  ///     config: VertexAiIndexMetadataConfig(
+  ///     config: VertexAiIndexConfig(
   ///       dimensions: TfArg.literal(128),
   ///       approximateNeighborsCount: TfArg.literal(10),
   ///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
   ///       algorithmConfig: .treeAhConfig(
-  ///         VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig(
+  ///         VertexAiIndexTreeAhConfig(
   ///           leafNodeEmbeddingCount: TfArg.literal(1000),
   ///           leafNodesToSearchPercent: TfArg.literal(10),
   ///         ),

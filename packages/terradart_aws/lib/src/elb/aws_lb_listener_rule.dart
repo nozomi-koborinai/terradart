@@ -31,17 +31,17 @@ final class LbListenerRuleAction {
 
   final TfArg<LbListenerRuleActionType> type;
 
-  final LbListenerRuleActionAuthenticateCognito? authenticateCognito;
+  final LbListenerRuleAuthenticateCognito? authenticateCognito;
 
-  final LbListenerRuleActionAuthenticateOidc? authenticateOidc;
+  final LbListenerRuleAuthenticateOidc? authenticateOidc;
 
-  final LbListenerRuleActionFixedResponse? fixedResponse;
+  final LbListenerRuleFixedResponse? fixedResponse;
 
-  final LbListenerRuleActionForward? forward;
+  final LbListenerRuleForward? forward;
 
-  final LbListenerRuleActionJwtValidation? jwtValidation;
+  final LbListenerRuleJwtValidation? jwtValidation;
 
-  final LbListenerRuleActionRedirect? redirect;
+  final LbListenerRuleRedirect? redirect;
 
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
@@ -73,8 +73,8 @@ enum LbListenerRuleActionType implements TerraformEnum {
 /// Typed helper for the `action.authenticate_cognito` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionAuthenticateCognito {
-  const LbListenerRuleActionAuthenticateCognito({
+final class LbListenerRuleAuthenticateCognito {
+  const LbListenerRuleAuthenticateCognito({
     this.authenticationRequestExtraParams,
     this.onUnauthenticatedRequest,
     this.scope,
@@ -87,8 +87,7 @@ final class LbListenerRuleActionAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<LbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest>?
-  onUnauthenticatedRequest;
+  final TfArg<LbListenerRuleOnUnauthenticatedRequest>? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -116,15 +115,12 @@ final class LbListenerRuleActionAuthenticateCognito {
 }
 
 /// `on_unauthenticated_request` — derived from the provider schema description.
-enum LbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest
-    implements TerraformEnum {
+enum LbListenerRuleOnUnauthenticatedRequest implements TerraformEnum {
   deny('deny'),
   allow('allow'),
   authenticate('authenticate');
 
-  const LbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest(
-    this.terraformValue,
-  );
+  const LbListenerRuleOnUnauthenticatedRequest(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -132,8 +128,8 @@ enum LbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest
 /// Typed helper for the `action.authenticate_oidc` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionAuthenticateOidc {
-  const LbListenerRuleActionAuthenticateOidc({
+final class LbListenerRuleAuthenticateOidc {
+  const LbListenerRuleAuthenticateOidc({
     this.authenticationRequestExtraParams,
     required this.authorizationEndpoint,
     required this.clientId,
@@ -157,8 +153,7 @@ final class LbListenerRuleActionAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<LbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest>?
-  onUnauthenticatedRequest;
+  final TfArg<LbListenerRuleOnUnauthenticatedRequest>? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -186,31 +181,17 @@ final class LbListenerRuleActionAuthenticateOidc {
   };
 }
 
-/// `on_unauthenticated_request` — derived from the provider schema description.
-enum LbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest
-    implements TerraformEnum {
-  deny('deny'),
-  allow('allow'),
-  authenticate('authenticate');
-
-  const LbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `action.fixed_response` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionFixedResponse {
-  const LbListenerRuleActionFixedResponse({
+final class LbListenerRuleFixedResponse {
+  const LbListenerRuleFixedResponse({
     required this.contentType,
     this.messageBody,
     this.statusCode,
   });
 
-  final TfArg<LbListenerRuleActionFixedResponseContentType> contentType;
+  final TfArg<LbListenerRuleContentType> contentType;
 
   final TfArg<String>? messageBody;
 
@@ -224,14 +205,14 @@ final class LbListenerRuleActionFixedResponse {
 }
 
 /// `content_type` — derived from the provider schema description.
-enum LbListenerRuleActionFixedResponseContentType implements TerraformEnum {
+enum LbListenerRuleContentType implements TerraformEnum {
   textPlain('text/plain'),
   textCss('text/css'),
   textHtml('text/html'),
   applicationJavascript('application/javascript'),
   applicationJson('application/json');
 
-  const LbListenerRuleActionFixedResponseContentType(this.terraformValue);
+  const LbListenerRuleContentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -239,15 +220,12 @@ enum LbListenerRuleActionFixedResponseContentType implements TerraformEnum {
 /// Typed helper for the `action.forward` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionForward {
-  const LbListenerRuleActionForward({
-    this.stickiness,
-    required this.targetGroup,
-  });
+final class LbListenerRuleForward {
+  const LbListenerRuleForward({this.stickiness, required this.targetGroup});
 
-  final LbListenerRuleActionForwardStickiness? stickiness;
+  final LbListenerRuleStickiness? stickiness;
 
-  final List<LbListenerRuleActionForwardTargetGroup> targetGroup;
+  final List<LbListenerRuleTargetGroup> targetGroup;
 
   Map<String, Object?> encode() => {
     'stickiness': ?stickiness?.encode(),
@@ -258,11 +236,8 @@ final class LbListenerRuleActionForward {
 /// Typed helper for the `action.forward.stickiness` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionForwardStickiness {
-  const LbListenerRuleActionForwardStickiness({
-    required this.duration,
-    this.enabled,
-  });
+final class LbListenerRuleStickiness {
+  const LbListenerRuleStickiness({required this.duration, this.enabled});
 
   final TfArg<num> duration;
 
@@ -277,11 +252,8 @@ final class LbListenerRuleActionForwardStickiness {
 /// Typed helper for the `action.forward.target_group` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionForwardTargetGroup {
-  const LbListenerRuleActionForwardTargetGroup({
-    required this.arn,
-    this.weight,
-  });
+final class LbListenerRuleTargetGroup {
+  const LbListenerRuleTargetGroup({required this.arn, this.weight});
 
   final TfArg<String> arn;
 
@@ -296,8 +268,8 @@ final class LbListenerRuleActionForwardTargetGroup {
 /// Typed helper for the `action.jwt_validation` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionJwtValidation {
-  const LbListenerRuleActionJwtValidation({
+final class LbListenerRuleJwtValidation {
+  const LbListenerRuleJwtValidation({
     required this.issuer,
     required this.jwksEndpoint,
     this.additionalClaim,
@@ -307,7 +279,7 @@ final class LbListenerRuleActionJwtValidation {
 
   final TfArg<String> jwksEndpoint;
 
-  final List<LbListenerRuleActionJwtValidationAdditionalClaim>? additionalClaim;
+  final List<LbListenerRuleAdditionalClaim>? additionalClaim;
 
   Map<String, Object?> encode() => {
     'issuer': issuer.toTfJson(),
@@ -320,14 +292,14 @@ final class LbListenerRuleActionJwtValidation {
 /// Typed helper for the `action.jwt_validation.additional_claim` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionJwtValidationAdditionalClaim {
-  const LbListenerRuleActionJwtValidationAdditionalClaim({
+final class LbListenerRuleAdditionalClaim {
+  const LbListenerRuleAdditionalClaim({
     required this.format,
     required this.name,
     required this.values,
   });
 
-  final TfArg<LbListenerRuleActionJwtValidationAdditionalClaimFormat> format;
+  final TfArg<LbListenerRuleFormat> format;
 
   final TfArg<String> name;
 
@@ -341,15 +313,12 @@ final class LbListenerRuleActionJwtValidationAdditionalClaim {
 }
 
 /// `format` — derived from the provider schema description.
-enum LbListenerRuleActionJwtValidationAdditionalClaimFormat
-    implements TerraformEnum {
+enum LbListenerRuleFormat implements TerraformEnum {
   singleString('single-string'),
   stringArray('string-array'),
   spaceSeparatedValues('space-separated-values');
 
-  const LbListenerRuleActionJwtValidationAdditionalClaimFormat(
-    this.terraformValue,
-  );
+  const LbListenerRuleFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -357,8 +326,8 @@ enum LbListenerRuleActionJwtValidationAdditionalClaimFormat
 /// Typed helper for the `action.redirect` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleActionRedirect {
-  const LbListenerRuleActionRedirect({
+final class LbListenerRuleRedirect {
+  const LbListenerRuleRedirect({
     this.host,
     this.path,
     this.port,
@@ -373,11 +342,11 @@ final class LbListenerRuleActionRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<LbListenerRuleActionRedirectProtocol>? protocol;
+  final TfArg<LbListenerRuleProtocol>? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<LbListenerRuleActionRedirectStatusCode> statusCode;
+  final TfArg<LbListenerRuleStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -390,22 +359,22 @@ final class LbListenerRuleActionRedirect {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum LbListenerRuleActionRedirectProtocol implements TerraformEnum {
+enum LbListenerRuleProtocol implements TerraformEnum {
   protocol('#{protocol}'),
   http('HTTP'),
   https('HTTPS');
 
-  const LbListenerRuleActionRedirectProtocol(this.terraformValue);
+  const LbListenerRuleProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `status_code` — derived from the provider schema description.
-enum LbListenerRuleActionRedirectStatusCode implements TerraformEnum {
+enum LbListenerRuleStatusCode implements TerraformEnum {
   http301('HTTP_301'),
   http302('HTTP_302');
 
-  const LbListenerRuleActionRedirectStatusCode(this.terraformValue);
+  const LbListenerRuleStatusCode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -423,17 +392,17 @@ final class LbListenerRuleCondition {
     this.sourceIp,
   });
 
-  final LbListenerRuleConditionHostHeader? hostHeader;
+  final LbListenerRuleHostHeader? hostHeader;
 
-  final LbListenerRuleConditionHttpHeader? httpHeader;
+  final LbListenerRuleHttpHeader? httpHeader;
 
-  final LbListenerRuleConditionHttpRequestMethod? httpRequestMethod;
+  final LbListenerRuleHttpRequestMethod? httpRequestMethod;
 
-  final LbListenerRuleConditionPathPattern? pathPattern;
+  final LbListenerRulePathPattern? pathPattern;
 
-  final List<LbListenerRuleConditionQueryString>? queryString;
+  final List<LbListenerRuleQueryString>? queryString;
 
-  final LbListenerRuleConditionSourceIp? sourceIp;
+  final LbListenerRuleSourceIp? sourceIp;
 
   Map<String, Object?> encode() => {
     'host_header': ?hostHeader?.encode(),
@@ -449,8 +418,8 @@ final class LbListenerRuleCondition {
 /// Typed helper for the `condition.host_header` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionHostHeader {
-  const LbListenerRuleConditionHostHeader({this.regexValues, this.values});
+final class LbListenerRuleHostHeader {
+  const LbListenerRuleHostHeader({this.regexValues, this.values});
 
   final TfArg<List<String>>? regexValues;
 
@@ -465,8 +434,8 @@ final class LbListenerRuleConditionHostHeader {
 /// Typed helper for the `condition.http_header` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionHttpHeader {
-  const LbListenerRuleConditionHttpHeader({
+final class LbListenerRuleHttpHeader {
+  const LbListenerRuleHttpHeader({
     required this.httpHeaderName,
     this.regexValues,
     this.values,
@@ -488,8 +457,8 @@ final class LbListenerRuleConditionHttpHeader {
 /// Typed helper for the `condition.http_request_method` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionHttpRequestMethod {
-  const LbListenerRuleConditionHttpRequestMethod({required this.values});
+final class LbListenerRuleHttpRequestMethod {
+  const LbListenerRuleHttpRequestMethod({required this.values});
 
   final TfArg<List<String>> values;
 
@@ -499,8 +468,8 @@ final class LbListenerRuleConditionHttpRequestMethod {
 /// Typed helper for the `condition.path_pattern` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionPathPattern {
-  const LbListenerRuleConditionPathPattern({this.regexValues, this.values});
+final class LbListenerRulePathPattern {
+  const LbListenerRulePathPattern({this.regexValues, this.values});
 
   final TfArg<List<String>>? regexValues;
 
@@ -515,8 +484,8 @@ final class LbListenerRuleConditionPathPattern {
 /// Typed helper for the `condition.query_string` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionQueryString {
-  const LbListenerRuleConditionQueryString({this.key, required this.value});
+final class LbListenerRuleQueryString {
+  const LbListenerRuleQueryString({this.key, required this.value});
 
   final TfArg<String>? key;
 
@@ -531,10 +500,10 @@ final class LbListenerRuleConditionQueryString {
 /// Typed helper for the `condition.source_ip` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleConditionSourceIp {
-  const LbListenerRuleConditionSourceIp({this.ipAddressType, this.values});
+final class LbListenerRuleSourceIp {
+  const LbListenerRuleSourceIp({this.ipAddressType, this.values});
 
-  final TfArg<LbListenerRuleConditionSourceIpIpAddressType>? ipAddressType;
+  final TfArg<LbListenerRuleIpAddressType>? ipAddressType;
 
   final TfArg<List<String>>? values;
 
@@ -545,11 +514,11 @@ final class LbListenerRuleConditionSourceIp {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum LbListenerRuleConditionSourceIpIpAddressType implements TerraformEnum {
+enum LbListenerRuleIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   ipv6('ipv6');
 
-  const LbListenerRuleConditionSourceIpIpAddressType(this.terraformValue);
+  const LbListenerRuleIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -566,9 +535,9 @@ final class LbListenerRuleTransform {
 
   final TfArg<LbListenerRuleTransformType> type;
 
-  final LbListenerRuleTransformHostHeaderRewriteConfig? hostHeaderRewriteConfig;
+  final LbListenerRuleHostHeaderRewriteConfig? hostHeaderRewriteConfig;
 
-  final LbListenerRuleTransformUrlRewriteConfig? urlRewriteConfig;
+  final LbListenerRuleUrlRewriteConfig? urlRewriteConfig;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -590,22 +559,20 @@ enum LbListenerRuleTransformType implements TerraformEnum {
 /// Typed helper for the `transform.host_header_rewrite_config` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleTransformHostHeaderRewriteConfig {
-  const LbListenerRuleTransformHostHeaderRewriteConfig({this.rewrite});
+final class LbListenerRuleHostHeaderRewriteConfig {
+  const LbListenerRuleHostHeaderRewriteConfig({this.rewrite});
 
-  final LbListenerRuleTransformHostHeaderRewriteConfigRewrite? rewrite;
+  final LbListenerRuleRewrite? rewrite;
 
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 
 /// Typed helper for the `transform.host_header_rewrite_config.rewrite` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LbListenerRuleTransformHostHeaderRewriteConfigRewrite {
-  const LbListenerRuleTransformHostHeaderRewriteConfigRewrite({
-    required this.regex,
-    required this.replace,
-  });
+final class LbListenerRuleRewrite {
+  const LbListenerRuleRewrite({required this.regex, required this.replace});
 
   final TfArg<String> regex;
 
@@ -620,31 +587,12 @@ final class LbListenerRuleTransformHostHeaderRewriteConfigRewrite {
 /// Typed helper for the `transform.url_rewrite_config` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class LbListenerRuleTransformUrlRewriteConfig {
-  const LbListenerRuleTransformUrlRewriteConfig({this.rewrite});
+final class LbListenerRuleUrlRewriteConfig {
+  const LbListenerRuleUrlRewriteConfig({this.rewrite});
 
-  final LbListenerRuleTransformUrlRewriteConfigRewrite? rewrite;
+  final LbListenerRuleRewrite? rewrite;
 
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
-}
-
-/// Typed helper for the `transform.url_rewrite_config.rewrite` block of
-/// `aws_lb_listener_rule` (derived from provider schema).
-@immutable
-final class LbListenerRuleTransformUrlRewriteConfigRewrite {
-  const LbListenerRuleTransformUrlRewriteConfigRewrite({
-    required this.regex,
-    required this.replace,
-  });
-
-  final TfArg<String> regex;
-
-  final TfArg<String> replace;
-
-  Map<String, Object?> encode() => {
-    'regex': regex.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `aws_lb_listener_rule`.

@@ -50,7 +50,7 @@ sealed class SsmParameterValue {
 
   /// Sets `insecure_value`.
   const factory SsmParameterValue.insecureValue(TfArg<String> insecureValue) =
-      SsmParameterValueInsecureValue;
+      SsmParameterInsecureValue;
 
   /// Sets `value`.
   const factory SsmParameterValue.value(TfArg<String> value) =
@@ -71,8 +71,8 @@ sealed class SsmParameterValue {
 }
 
 /// The [SsmParameterValue.insecureValue] choice: sets `insecure_value`.
-final class SsmParameterValueInsecureValue extends SsmParameterValue {
-  const SsmParameterValueInsecureValue(this.insecureValue);
+final class SsmParameterInsecureValue extends SsmParameterValue {
+  const SsmParameterInsecureValue(this.insecureValue);
 
   final TfArg<String> insecureValue;
 

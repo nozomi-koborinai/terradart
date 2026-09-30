@@ -37,7 +37,7 @@ final class R2BucketCorsRules {
 
   final TfArg<num>? maxAgeSeconds;
 
-  final R2BucketCorsRulesAllowed allowed;
+  final R2BucketCorsAllowed allowed;
 
   Map<String, Object?> encode() => {
     'expose_headers': ?exposeHeaders?.toTfJson(),
@@ -50,8 +50,8 @@ final class R2BucketCorsRules {
 /// Typed helper for the `rules.allowed` block of
 /// `cloudflare_r2_bucket_cors` (derived from provider schema).
 @immutable
-final class R2BucketCorsRulesAllowed {
-  const R2BucketCorsRulesAllowed({
+final class R2BucketCorsAllowed {
+  const R2BucketCorsAllowed({
     this.headers,
     required this.methods,
     required this.origins,
@@ -59,7 +59,7 @@ final class R2BucketCorsRulesAllowed {
 
   final TfArg<List<String>>? headers;
 
-  final List<TfArg<R2BucketCorsRulesAllowedMethods>> methods;
+  final List<TfArg<R2BucketCorsMethods>> methods;
 
   final TfArg<List<String>> origins;
 
@@ -71,14 +71,14 @@ final class R2BucketCorsRulesAllowed {
 }
 
 /// `methods` — derived from the provider schema description.
-enum R2BucketCorsRulesAllowedMethods implements TerraformEnum {
+enum R2BucketCorsMethods implements TerraformEnum {
   get('GET'),
   put('PUT'),
   post('POST'),
   delete('DELETE'),
   head('HEAD');
 
-  const R2BucketCorsRulesAllowedMethods(this.terraformValue);
+  const R2BucketCorsMethods(this.terraformValue);
   @override
   final String terraformValue;
 }

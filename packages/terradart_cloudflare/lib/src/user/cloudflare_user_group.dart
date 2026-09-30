@@ -19,11 +19,11 @@ final class UserGroupPolicies {
     required this.resourceGroups,
   });
 
-  final TfArg<UserGroupPoliciesAccess> access;
+  final TfArg<UserGroupAccess> access;
 
-  final List<UserGroupPoliciesPermissionGroups> permissionGroups;
+  final List<UserGroupPermissionGroups> permissionGroups;
 
-  final List<UserGroupPoliciesResourceGroups> resourceGroups;
+  final List<UserGroupResourceGroups> resourceGroups;
 
   Map<String, Object?> encode() => {
     'access': access.toTfJson(),
@@ -33,11 +33,11 @@ final class UserGroupPolicies {
 }
 
 /// `access` — derived from the provider schema description.
-enum UserGroupPoliciesAccess implements TerraformEnum {
+enum UserGroupAccess implements TerraformEnum {
   allow('allow'),
   deny('deny');
 
-  const UserGroupPoliciesAccess(this.terraformValue);
+  const UserGroupAccess(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -45,8 +45,8 @@ enum UserGroupPoliciesAccess implements TerraformEnum {
 /// Typed helper for the `policies.permission_groups` block of
 /// `cloudflare_user_group` (derived from provider schema).
 @immutable
-final class UserGroupPoliciesPermissionGroups {
-  const UserGroupPoliciesPermissionGroups({required this.id});
+final class UserGroupPermissionGroups {
+  const UserGroupPermissionGroups({required this.id});
 
   final TfArg<String> id;
 
@@ -56,8 +56,8 @@ final class UserGroupPoliciesPermissionGroups {
 /// Typed helper for the `policies.resource_groups` block of
 /// `cloudflare_user_group` (derived from provider schema).
 @immutable
-final class UserGroupPoliciesResourceGroups {
-  const UserGroupPoliciesResourceGroups({required this.id});
+final class UserGroupResourceGroups {
+  const UserGroupResourceGroups({required this.id});
 
   final TfArg<String> id;
 

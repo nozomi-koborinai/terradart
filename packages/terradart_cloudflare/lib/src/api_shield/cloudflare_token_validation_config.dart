@@ -24,7 +24,7 @@ enum TokenValidationConfigTokenType implements TerraformEnum {
 final class TokenValidationConfigCredentials {
   const TokenValidationConfigCredentials({required this.keys});
 
-  final List<TokenValidationConfigCredentialsKeys> keys;
+  final List<TokenValidationConfigKeys> keys;
 
   Map<String, Object?> encode() => {
     'keys': [for (final e in keys) e.encode()],
@@ -34,8 +34,8 @@ final class TokenValidationConfigCredentials {
 /// Typed helper for the `credentials.keys` block of
 /// `cloudflare_token_validation_config` (derived from provider schema).
 @immutable
-final class TokenValidationConfigCredentialsKeys {
-  const TokenValidationConfigCredentialsKeys({
+final class TokenValidationConfigKeys {
+  const TokenValidationConfigKeys({
     required this.alg,
     this.crv,
     this.e,
@@ -47,9 +47,9 @@ final class TokenValidationConfigCredentialsKeys {
     this.y,
   });
 
-  final TfArg<TokenValidationConfigCredentialsKeysAlg> alg;
+  final TfArg<TokenValidationConfigAlg> alg;
 
-  final TfArg<TokenValidationConfigCredentialsKeysCrv>? crv;
+  final TfArg<TokenValidationConfigCrv>? crv;
 
   final TfArg<String>? e;
 
@@ -57,7 +57,7 @@ final class TokenValidationConfigCredentialsKeys {
 
   final TfArg<String> kid;
 
-  final TfArg<TokenValidationConfigCredentialsKeysKty> kty;
+  final TfArg<TokenValidationConfigKty> kty;
 
   final TfArg<String>? n;
 
@@ -79,7 +79,7 @@ final class TokenValidationConfigCredentialsKeys {
 }
 
 /// `alg` — derived from the provider schema description.
-enum TokenValidationConfigCredentialsKeysAlg implements TerraformEnum {
+enum TokenValidationConfigAlg implements TerraformEnum {
   rs256('RS256'),
   rs384('RS384'),
   rs512('RS512'),
@@ -92,28 +92,28 @@ enum TokenValidationConfigCredentialsKeysAlg implements TerraformEnum {
   hs384('HS384'),
   hs512('HS512');
 
-  const TokenValidationConfigCredentialsKeysAlg(this.terraformValue);
+  const TokenValidationConfigAlg(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `crv` — derived from the provider schema description.
-enum TokenValidationConfigCredentialsKeysCrv implements TerraformEnum {
+enum TokenValidationConfigCrv implements TerraformEnum {
   p256('P-256'),
   p384('P-384');
 
-  const TokenValidationConfigCredentialsKeysCrv(this.terraformValue);
+  const TokenValidationConfigCrv(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `kty` — derived from the provider schema description.
-enum TokenValidationConfigCredentialsKeysKty implements TerraformEnum {
+enum TokenValidationConfigKty implements TerraformEnum {
   rsa('RSA'),
   ec('EC'),
   oct('oct');
 
-  const TokenValidationConfigCredentialsKeysKty(this.terraformValue);
+  const TokenValidationConfigKty(this.terraformValue);
   @override
   final String terraformValue;
 }

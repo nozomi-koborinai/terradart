@@ -16,11 +16,9 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfig {
     this.fileSystemConfig,
   });
 
-  final SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig?
-  containerConfig;
+  final SagemakerAppImageConfigContainerConfig? containerConfig;
 
-  final SagemakerAppImageConfigCodeEditorAppImageConfigFileSystemConfig?
-  fileSystemConfig;
+  final SagemakerAppImageConfigFileSystemConfig? fileSystemConfig;
 
   Map<String, Object?> encode() => {
     'container_config': ?containerConfig?.encode(),
@@ -30,9 +28,10 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfig {
 
 /// Typed helper for the `code_editor_app_image_config.container_config` block of
 /// `aws_sagemaker_app_image_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig {
-  const SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig({
+final class SagemakerAppImageConfigContainerConfig {
+  const SagemakerAppImageConfigContainerConfig({
     this.containerArguments,
     this.containerEntrypoint,
     this.containerEnvironmentVariables,
@@ -54,9 +53,10 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig {
 
 /// Typed helper for the `code_editor_app_image_config.file_system_config` block of
 /// `aws_sagemaker_app_image_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerAppImageConfigCodeEditorAppImageConfigFileSystemConfig {
-  const SagemakerAppImageConfigCodeEditorAppImageConfigFileSystemConfig({
+final class SagemakerAppImageConfigFileSystemConfig {
+  const SagemakerAppImageConfigFileSystemConfig({
     this.defaultGid,
     this.defaultUid,
     this.mountPath,
@@ -84,62 +84,13 @@ final class SagemakerAppImageConfigJupyterLabImageConfig {
     this.fileSystemConfig,
   });
 
-  final SagemakerAppImageConfigJupyterLabImageConfigContainerConfig?
-  containerConfig;
+  final SagemakerAppImageConfigContainerConfig? containerConfig;
 
-  final SagemakerAppImageConfigJupyterLabImageConfigFileSystemConfig?
-  fileSystemConfig;
+  final SagemakerAppImageConfigFileSystemConfig? fileSystemConfig;
 
   Map<String, Object?> encode() => {
     'container_config': ?containerConfig?.encode(),
     'file_system_config': ?fileSystemConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `jupyter_lab_image_config.container_config` block of
-/// `aws_sagemaker_app_image_config` (derived from provider schema).
-@immutable
-final class SagemakerAppImageConfigJupyterLabImageConfigContainerConfig {
-  const SagemakerAppImageConfigJupyterLabImageConfigContainerConfig({
-    this.containerArguments,
-    this.containerEntrypoint,
-    this.containerEnvironmentVariables,
-  });
-
-  final TfArg<List<String>>? containerArguments;
-
-  final TfArg<List<String>>? containerEntrypoint;
-
-  final TfArg<Map<String, String>>? containerEnvironmentVariables;
-
-  Map<String, Object?> encode() => {
-    'container_arguments': ?containerArguments?.toTfJson(),
-    'container_entrypoint': ?containerEntrypoint?.toTfJson(),
-    'container_environment_variables': ?containerEnvironmentVariables
-        ?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `jupyter_lab_image_config.file_system_config` block of
-/// `aws_sagemaker_app_image_config` (derived from provider schema).
-@immutable
-final class SagemakerAppImageConfigJupyterLabImageConfigFileSystemConfig {
-  const SagemakerAppImageConfigJupyterLabImageConfigFileSystemConfig({
-    this.defaultGid,
-    this.defaultUid,
-    this.mountPath,
-  });
-
-  final TfArg<num>? defaultGid;
-
-  final TfArg<num>? defaultUid;
-
-  final TfArg<String>? mountPath;
-
-  Map<String, Object?> encode() => {
-    'default_gid': ?defaultGid?.toTfJson(),
-    'default_uid': ?defaultUid?.toTfJson(),
-    'mount_path': ?mountPath?.toTfJson(),
   };
 }
 
@@ -152,11 +103,9 @@ final class SagemakerAppImageConfigKernelGatewayImageConfig {
     required this.kernelSpec,
   });
 
-  final SagemakerAppImageConfigKernelGatewayImageConfigFileSystemConfig?
-  fileSystemConfig;
+  final SagemakerAppImageConfigFileSystemConfig? fileSystemConfig;
 
-  final List<SagemakerAppImageConfigKernelGatewayImageConfigKernelSpec>
-  kernelSpec;
+  final List<SagemakerAppImageConfigKernelSpec> kernelSpec;
 
   Map<String, Object?> encode() => {
     'file_system_config': ?fileSystemConfig?.encode(),
@@ -164,34 +113,11 @@ final class SagemakerAppImageConfigKernelGatewayImageConfig {
   };
 }
 
-/// Typed helper for the `kernel_gateway_image_config.file_system_config` block of
-/// `aws_sagemaker_app_image_config` (derived from provider schema).
-@immutable
-final class SagemakerAppImageConfigKernelGatewayImageConfigFileSystemConfig {
-  const SagemakerAppImageConfigKernelGatewayImageConfigFileSystemConfig({
-    this.defaultGid,
-    this.defaultUid,
-    this.mountPath,
-  });
-
-  final TfArg<num>? defaultGid;
-
-  final TfArg<num>? defaultUid;
-
-  final TfArg<String>? mountPath;
-
-  Map<String, Object?> encode() => {
-    'default_gid': ?defaultGid?.toTfJson(),
-    'default_uid': ?defaultUid?.toTfJson(),
-    'mount_path': ?mountPath?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `kernel_gateway_image_config.kernel_spec` block of
 /// `aws_sagemaker_app_image_config` (derived from provider schema).
 @immutable
-final class SagemakerAppImageConfigKernelGatewayImageConfigKernelSpec {
-  const SagemakerAppImageConfigKernelGatewayImageConfigKernelSpec({
+final class SagemakerAppImageConfigKernelSpec {
+  const SagemakerAppImageConfigKernelSpec({
     this.displayName,
     required this.name,
   });

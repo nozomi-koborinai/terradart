@@ -81,7 +81,7 @@ final class GkeBackupBackupPlanBackupConfig {
     this.encryptionKey,
   });
 
-  final GkeBackupBackupPlanBackupConfigScope scope;
+  final GkeBackupBackupPlanScope scope;
 
   final TfArg<bool>? includeSecrets;
 
@@ -89,7 +89,7 @@ final class GkeBackupBackupPlanBackupConfig {
 
   final TfArg<bool>? permissiveMode;
 
-  final GkeBackupBackupPlanBackupConfigEncryptionKey? encryptionKey;
+  final GkeBackupBackupPlanEncryptionKey? encryptionKey;
 
   Map<String, Object?> encode() => {
     ...scope.encode(),
@@ -104,29 +104,28 @@ final class GkeBackupBackupPlanBackupConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allNamespaces(...)`.
-sealed class GkeBackupBackupPlanBackupConfigScope {
-  const GkeBackupBackupPlanBackupConfigScope();
+sealed class GkeBackupBackupPlanScope {
+  const GkeBackupBackupPlanScope();
 
   /// Sets `all_namespaces`.
-  const factory GkeBackupBackupPlanBackupConfigScope.allNamespaces(
+  const factory GkeBackupBackupPlanScope.allNamespaces(
     TfArg<bool> allNamespaces,
-  ) = GkeBackupBackupPlanBackupConfigScopeAllNamespaces;
+  ) = GkeBackupBackupPlanScopeAllNamespaces;
 
   /// Sets `selected_namespaces`.
-  const factory GkeBackupBackupPlanBackupConfigScope.selectedNamespaces(
-    GkeBackupBackupPlanBackupConfigSelectedNamespaces selectedNamespaces,
-  ) = GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces;
+  const factory GkeBackupBackupPlanScope.selectedNamespaces(
+    GkeBackupBackupPlanSelectedNamespaces selectedNamespaces,
+  ) = GkeBackupBackupPlanScopeSelectedNamespaces;
 
   /// Sets `selected_applications`.
-  const factory GkeBackupBackupPlanBackupConfigScope.selectedApplications(
-    GkeBackupBackupPlanBackupConfigSelectedApplications selectedApplications,
-  ) = GkeBackupBackupPlanBackupConfigScopeSelectedApplications;
+  const factory GkeBackupBackupPlanScope.selectedApplications(
+    GkeBackupBackupPlanSelectedApplications selectedApplications,
+  ) = GkeBackupBackupPlanScopeSelectedApplications;
 
   /// Sets `selected_namespace_labels`.
-  const factory GkeBackupBackupPlanBackupConfigScope.selectedNamespaceLabels(
-    GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels
-    selectedNamespaceLabels,
-  ) = GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels;
+  const factory GkeBackupBackupPlanScope.selectedNamespaceLabels(
+    GkeBackupBackupPlanSelectedNamespaceLabels selectedNamespaceLabels,
+  ) = GkeBackupBackupPlanScopeSelectedNamespaceLabels;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -134,10 +133,10 @@ sealed class GkeBackupBackupPlanBackupConfigScope {
   Map<String, Object?> encode();
 }
 
-/// The [GkeBackupBackupPlanBackupConfigScope.allNamespaces] choice: sets `all_namespaces`.
-final class GkeBackupBackupPlanBackupConfigScopeAllNamespaces
-    extends GkeBackupBackupPlanBackupConfigScope {
-  const GkeBackupBackupPlanBackupConfigScopeAllNamespaces(this.allNamespaces);
+/// The [GkeBackupBackupPlanScope.allNamespaces] choice: sets `all_namespaces`.
+final class GkeBackupBackupPlanScopeAllNamespaces
+    extends GkeBackupBackupPlanScope {
+  const GkeBackupBackupPlanScopeAllNamespaces(this.allNamespaces);
 
   final TfArg<bool> allNamespaces;
 
@@ -148,14 +147,12 @@ final class GkeBackupBackupPlanBackupConfigScopeAllNamespaces
   Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
 }
 
-/// The [GkeBackupBackupPlanBackupConfigScope.selectedNamespaces] choice: sets `selected_namespaces`.
-final class GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces
-    extends GkeBackupBackupPlanBackupConfigScope {
-  const GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces(
-    this.selectedNamespaces,
-  );
+/// The [GkeBackupBackupPlanScope.selectedNamespaces] choice: sets `selected_namespaces`.
+final class GkeBackupBackupPlanScopeSelectedNamespaces
+    extends GkeBackupBackupPlanScope {
+  const GkeBackupBackupPlanScopeSelectedNamespaces(this.selectedNamespaces);
 
-  final GkeBackupBackupPlanBackupConfigSelectedNamespaces selectedNamespaces;
+  final GkeBackupBackupPlanSelectedNamespaces selectedNamespaces;
 
   @override
   String get blockKey => 'selected_namespaces';
@@ -166,15 +163,12 @@ final class GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces
   };
 }
 
-/// The [GkeBackupBackupPlanBackupConfigScope.selectedApplications] choice: sets `selected_applications`.
-final class GkeBackupBackupPlanBackupConfigScopeSelectedApplications
-    extends GkeBackupBackupPlanBackupConfigScope {
-  const GkeBackupBackupPlanBackupConfigScopeSelectedApplications(
-    this.selectedApplications,
-  );
+/// The [GkeBackupBackupPlanScope.selectedApplications] choice: sets `selected_applications`.
+final class GkeBackupBackupPlanScopeSelectedApplications
+    extends GkeBackupBackupPlanScope {
+  const GkeBackupBackupPlanScopeSelectedApplications(this.selectedApplications);
 
-  final GkeBackupBackupPlanBackupConfigSelectedApplications
-  selectedApplications;
+  final GkeBackupBackupPlanSelectedApplications selectedApplications;
 
   @override
   String get blockKey => 'selected_applications';
@@ -185,15 +179,14 @@ final class GkeBackupBackupPlanBackupConfigScopeSelectedApplications
   };
 }
 
-/// The [GkeBackupBackupPlanBackupConfigScope.selectedNamespaceLabels] choice: sets `selected_namespace_labels`.
-final class GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels
-    extends GkeBackupBackupPlanBackupConfigScope {
-  const GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels(
+/// The [GkeBackupBackupPlanScope.selectedNamespaceLabels] choice: sets `selected_namespace_labels`.
+final class GkeBackupBackupPlanScopeSelectedNamespaceLabels
+    extends GkeBackupBackupPlanScope {
+  const GkeBackupBackupPlanScopeSelectedNamespaceLabels(
     this.selectedNamespaceLabels,
   );
 
-  final GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels
-  selectedNamespaceLabels;
+  final GkeBackupBackupPlanSelectedNamespaceLabels selectedNamespaceLabels;
 
   @override
   String get blockKey => 'selected_namespace_labels';
@@ -207,10 +200,8 @@ final class GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels
 /// Typed helper for the `backup_config.encryption_key` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigEncryptionKey {
-  const GkeBackupBackupPlanBackupConfigEncryptionKey({
-    required this.gcpKmsEncryptionKey,
-  });
+final class GkeBackupBackupPlanEncryptionKey {
+  const GkeBackupBackupPlanEncryptionKey({required this.gcpKmsEncryptionKey});
 
   final TfArg<String> gcpKmsEncryptionKey;
 
@@ -222,13 +213,12 @@ final class GkeBackupBackupPlanBackupConfigEncryptionKey {
 /// Typed helper for the `backup_config.selected_applications` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigSelectedApplications {
-  const GkeBackupBackupPlanBackupConfigSelectedApplications({
+final class GkeBackupBackupPlanSelectedApplications {
+  const GkeBackupBackupPlanSelectedApplications({
     required this.namespacedNames,
   });
 
-  final List<GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames>
-  namespacedNames;
+  final List<GkeBackupBackupPlanNamespacedNames> namespacedNames;
 
   Map<String, Object?> encode() => {
     'namespaced_names': [for (final e in namespacedNames) e.encode()],
@@ -238,8 +228,8 @@ final class GkeBackupBackupPlanBackupConfigSelectedApplications {
 /// Typed helper for the `backup_config.selected_applications.namespaced_names` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames {
-  const GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames({
+final class GkeBackupBackupPlanNamespacedNames {
+  const GkeBackupBackupPlanNamespacedNames({
     required this.name,
     required this.namespace,
   });
@@ -257,15 +247,12 @@ final class GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames {
 /// Typed helper for the `backup_config.selected_namespace_labels` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels {
-  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels({
+final class GkeBackupBackupPlanSelectedNamespaceLabels {
+  const GkeBackupBackupPlanSelectedNamespaceLabels({
     required this.resourceLabels,
   });
 
-  final List<
-    GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels
-  >
-  resourceLabels;
+  final List<GkeBackupBackupPlanResourceLabels> resourceLabels;
 
   Map<String, Object?> encode() => {
     'resource_labels': [for (final e in resourceLabels) e.encode()],
@@ -275,8 +262,8 @@ final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels {
 /// Typed helper for the `backup_config.selected_namespace_labels.resource_labels` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels {
-  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels({
+final class GkeBackupBackupPlanResourceLabels {
+  const GkeBackupBackupPlanResourceLabels({
     required this.key,
     required this.value,
   });
@@ -294,10 +281,8 @@ final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels
 /// Typed helper for the `backup_config.selected_namespaces` block of
 /// `google_gke_backup_backup_plan` (derived from provider schema).
 @immutable
-final class GkeBackupBackupPlanBackupConfigSelectedNamespaces {
-  const GkeBackupBackupPlanBackupConfigSelectedNamespaces({
-    required this.namespaces,
-  });
+final class GkeBackupBackupPlanSelectedNamespaces {
+  const GkeBackupBackupPlanSelectedNamespaces({required this.namespaces});
 
   final TfArg<List<String>> namespaces;
 

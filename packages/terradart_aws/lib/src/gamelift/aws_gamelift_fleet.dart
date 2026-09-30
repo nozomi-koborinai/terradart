@@ -624,8 +624,7 @@ final class GameliftFleetArtifactScriptId extends GameliftFleetArtifact {
 final class GameliftFleetCertificateConfiguration {
   const GameliftFleetCertificateConfiguration({this.certificateType});
 
-  final TfArg<GameliftFleetCertificateConfigurationCertificateType>?
-  certificateType;
+  final TfArg<GameliftFleetCertificateType>? certificateType;
 
   Map<String, Object?> encode() => {
     'certificate_type': ?certificateType?.toTfJson(),
@@ -633,14 +632,11 @@ final class GameliftFleetCertificateConfiguration {
 }
 
 /// `certificate_type` — derived from the provider schema description.
-enum GameliftFleetCertificateConfigurationCertificateType
-    implements TerraformEnum {
+enum GameliftFleetCertificateType implements TerraformEnum {
   disabled('DISABLED'),
   generated('GENERATED');
 
-  const GameliftFleetCertificateConfigurationCertificateType(
-    this.terraformValue,
-  );
+  const GameliftFleetCertificateType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -660,7 +656,7 @@ final class GameliftFleetEc2InboundPermission {
 
   final TfArg<String> ipRange;
 
-  final TfArg<GameliftFleetEc2InboundPermissionProtocol> protocol;
+  final TfArg<GameliftFleetProtocol> protocol;
 
   final TfArg<num> toPort;
 
@@ -673,11 +669,11 @@ final class GameliftFleetEc2InboundPermission {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum GameliftFleetEc2InboundPermissionProtocol implements TerraformEnum {
+enum GameliftFleetProtocol implements TerraformEnum {
   tcp('TCP'),
   udp('UDP');
 
-  const GameliftFleetEc2InboundPermissionProtocol(this.terraformValue);
+  const GameliftFleetProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -715,7 +711,7 @@ final class GameliftFleetRuntimeConfiguration {
 
   final TfArg<num>? maxConcurrentGameSessionActivations;
 
-  final List<GameliftFleetRuntimeConfigurationServerProcess>? serverProcess;
+  final List<GameliftFleetServerProcess>? serverProcess;
 
   Map<String, Object?> encode() => {
     'game_session_activation_timeout_seconds':
@@ -730,8 +726,8 @@ final class GameliftFleetRuntimeConfiguration {
 /// Typed helper for the `runtime_configuration.server_process` block of
 /// `aws_gamelift_fleet` (derived from provider schema).
 @immutable
-final class GameliftFleetRuntimeConfigurationServerProcess {
-  const GameliftFleetRuntimeConfigurationServerProcess({
+final class GameliftFleetServerProcess {
+  const GameliftFleetServerProcess({
     required this.concurrentExecutions,
     required this.launchPath,
     this.parameters,

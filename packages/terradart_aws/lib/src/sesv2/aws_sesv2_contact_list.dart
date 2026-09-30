@@ -18,7 +18,7 @@ final class Sesv2ContactListTopic {
     required this.topicName,
   });
 
-  final TfArg<Sesv2ContactListTopicDefaultSubscriptionStatus>
+  final TfArg<Sesv2ContactListDefaultSubscriptionStatus>
   defaultSubscriptionStatus;
 
   final TfArg<String>? description;
@@ -36,11 +36,11 @@ final class Sesv2ContactListTopic {
 }
 
 /// `default_subscription_status` — derived from the provider schema description.
-enum Sesv2ContactListTopicDefaultSubscriptionStatus implements TerraformEnum {
+enum Sesv2ContactListDefaultSubscriptionStatus implements TerraformEnum {
   optIn('OPT_IN'),
   optOut('OPT_OUT');
 
-  const Sesv2ContactListTopicDefaultSubscriptionStatus(this.terraformValue);
+  const Sesv2ContactListDefaultSubscriptionStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

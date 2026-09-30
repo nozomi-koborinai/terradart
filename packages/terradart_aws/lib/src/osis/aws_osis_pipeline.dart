@@ -49,8 +49,7 @@ final class OsisPipelineLogPublishingOptions {
 
   final TfArg<bool>? isLoggingEnabled;
 
-  final List<OsisPipelineLogPublishingOptionsCloudwatchLogDestination>?
-  cloudwatchLogDestination;
+  final List<OsisPipelineCloudwatchLogDestination>? cloudwatchLogDestination;
 
   Map<String, Object?> encode() => {
     'is_logging_enabled': ?isLoggingEnabled?.toTfJson(),
@@ -64,10 +63,8 @@ final class OsisPipelineLogPublishingOptions {
 /// Typed helper for the `log_publishing_options.cloudwatch_log_destination` block of
 /// `aws_osis_pipeline` (derived from provider schema).
 @immutable
-final class OsisPipelineLogPublishingOptionsCloudwatchLogDestination {
-  const OsisPipelineLogPublishingOptionsCloudwatchLogDestination({
-    required this.logGroup,
-  });
+final class OsisPipelineCloudwatchLogDestination {
+  const OsisPipelineCloudwatchLogDestination({required this.logGroup});
 
   final RefTo<AwsCloudwatchLogGroup> logGroup;
 
@@ -90,8 +87,7 @@ final class OsisPipelineVpcOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<OsisPipelineVpcOptionsVpcEndpointManagement>?
-  vpcEndpointManagement;
+  final TfArg<OsisPipelineVpcEndpointManagement>? vpcEndpointManagement;
 
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
@@ -101,11 +97,11 @@ final class OsisPipelineVpcOptions {
 }
 
 /// `vpc_endpoint_management` — derived from the provider schema description.
-enum OsisPipelineVpcOptionsVpcEndpointManagement implements TerraformEnum {
+enum OsisPipelineVpcEndpointManagement implements TerraformEnum {
   customer('CUSTOMER'),
   service('SERVICE');
 
-  const OsisPipelineVpcOptionsVpcEndpointManagement(this.terraformValue);
+  const OsisPipelineVpcEndpointManagement(this.terraformValue);
   @override
   final String terraformValue;
 }

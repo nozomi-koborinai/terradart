@@ -123,8 +123,7 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 
   final TfArg<String>? audioExportPattern;
 
-  final TfArg<DialogflowCxSecuritySettingsAudioExportSettingsAudioFormat>?
-  audioFormat;
+  final TfArg<DialogflowCxSecuritySettingsAudioFormat>? audioFormat;
 
   final TfArg<bool>? enableAudioRedaction;
 
@@ -139,15 +138,12 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 }
 
 /// `audio_format` — derived from the provider schema description.
-enum DialogflowCxSecuritySettingsAudioExportSettingsAudioFormat
-    implements TerraformEnum {
+enum DialogflowCxSecuritySettingsAudioFormat implements TerraformEnum {
   mulaw('MULAW'),
   mp3('MP3'),
   ogg('OGG');
 
-  const DialogflowCxSecuritySettingsAudioExportSettingsAudioFormat(
-    this.terraformValue,
-  );
+  const DialogflowCxSecuritySettingsAudioFormat(this.terraformValue);
   @override
   final String terraformValue;
 }

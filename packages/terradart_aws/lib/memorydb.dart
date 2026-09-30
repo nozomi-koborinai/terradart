@@ -46,7 +46,4 @@ export 'src/memorydb/aws_memorydb_subnet_group.dart'
         MemorydbSubnetGroupNameChoice,
         MemorydbSubnetGroupNamePrefix;
 export 'src/memorydb/aws_memorydb_user.dart'
-    show
-        AwsMemorydbUser,
-        MemorydbUserAuthenticationMode,
-        MemorydbUserAuthenticationModeType;
+    show AwsMemorydbUser, MemorydbUserAuthenticationMode, MemorydbUserType;

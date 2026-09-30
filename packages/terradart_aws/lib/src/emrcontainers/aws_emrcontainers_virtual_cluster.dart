@@ -19,9 +19,9 @@ final class EmrcontainersVirtualClusterContainerProvider {
 
   final TfArg<String> id;
 
-  final TfArg<EmrcontainersVirtualClusterContainerProviderType> type;
+  final TfArg<EmrcontainersVirtualClusterType> type;
 
-  final EmrcontainersVirtualClusterContainerProviderInfo info;
+  final EmrcontainersVirtualClusterInfo info;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -31,10 +31,10 @@ final class EmrcontainersVirtualClusterContainerProvider {
 }
 
 /// `type` — derived from the provider schema description.
-enum EmrcontainersVirtualClusterContainerProviderType implements TerraformEnum {
+enum EmrcontainersVirtualClusterType implements TerraformEnum {
   eks('EKS');
 
-  const EmrcontainersVirtualClusterContainerProviderType(this.terraformValue);
+  const EmrcontainersVirtualClusterType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -42,12 +42,10 @@ enum EmrcontainersVirtualClusterContainerProviderType implements TerraformEnum {
 /// Typed helper for the `container_provider.info` block of
 /// `aws_emrcontainers_virtual_cluster` (derived from provider schema).
 @immutable
-final class EmrcontainersVirtualClusterContainerProviderInfo {
-  const EmrcontainersVirtualClusterContainerProviderInfo({
-    required this.eksInfo,
-  });
+final class EmrcontainersVirtualClusterInfo {
+  const EmrcontainersVirtualClusterInfo({required this.eksInfo});
 
-  final EmrcontainersVirtualClusterContainerProviderInfoEksInfo eksInfo;
+  final EmrcontainersVirtualClusterEksInfo eksInfo;
 
   Map<String, Object?> encode() => {'eks_info': eksInfo.encode()};
 }
@@ -55,10 +53,8 @@ final class EmrcontainersVirtualClusterContainerProviderInfo {
 /// Typed helper for the `container_provider.info.eks_info` block of
 /// `aws_emrcontainers_virtual_cluster` (derived from provider schema).
 @immutable
-final class EmrcontainersVirtualClusterContainerProviderInfoEksInfo {
-  const EmrcontainersVirtualClusterContainerProviderInfoEksInfo({
-    this.namespace,
-  });
+final class EmrcontainersVirtualClusterEksInfo {
+  const EmrcontainersVirtualClusterEksInfo({this.namespace});
 
   final TfArg<String>? namespace;
 

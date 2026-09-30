@@ -19,12 +19,12 @@ sealed class OsConfigPatchDeploymentSchedule {
   /// Sets `one_time_schedule`.
   const factory OsConfigPatchDeploymentSchedule.oneTimeSchedule(
     OsConfigPatchDeploymentOneTimeSchedule oneTimeSchedule,
-  ) = OsConfigPatchDeploymentScheduleOneTimeSchedule;
+  ) = OsConfigPatchDeploymentOneTimeScheduleChoice;
 
   /// Sets `recurring_schedule`.
   const factory OsConfigPatchDeploymentSchedule.recurringSchedule(
     OsConfigPatchDeploymentRecurringSchedule recurringSchedule,
-  ) = OsConfigPatchDeploymentScheduleRecurringSchedule;
+  ) = OsConfigPatchDeploymentRecurringScheduleChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,9 +37,9 @@ sealed class OsConfigPatchDeploymentSchedule {
 }
 
 /// The [OsConfigPatchDeploymentSchedule.oneTimeSchedule] choice: sets `one_time_schedule`.
-final class OsConfigPatchDeploymentScheduleOneTimeSchedule
+final class OsConfigPatchDeploymentOneTimeScheduleChoice
     extends OsConfigPatchDeploymentSchedule {
-  const OsConfigPatchDeploymentScheduleOneTimeSchedule(this.oneTimeSchedule);
+  const OsConfigPatchDeploymentOneTimeScheduleChoice(this.oneTimeSchedule);
 
   final OsConfigPatchDeploymentOneTimeSchedule oneTimeSchedule;
 
@@ -58,11 +58,9 @@ final class OsConfigPatchDeploymentScheduleOneTimeSchedule
 }
 
 /// The [OsConfigPatchDeploymentSchedule.recurringSchedule] choice: sets `recurring_schedule`.
-final class OsConfigPatchDeploymentScheduleRecurringSchedule
+final class OsConfigPatchDeploymentRecurringScheduleChoice
     extends OsConfigPatchDeploymentSchedule {
-  const OsConfigPatchDeploymentScheduleRecurringSchedule(
-    this.recurringSchedule,
-  );
+  const OsConfigPatchDeploymentRecurringScheduleChoice(this.recurringSchedule);
 
   final OsConfigPatchDeploymentRecurringSchedule recurringSchedule;
 
@@ -100,7 +98,7 @@ final class OsConfigPatchDeploymentInstanceFilter {
 
   final TfArg<List<String>>? zones;
 
-  final List<OsConfigPatchDeploymentInstanceFilterGroupLabels>? groupLabels;
+  final List<OsConfigPatchDeploymentGroupLabels>? groupLabels;
 
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
@@ -115,10 +113,8 @@ final class OsConfigPatchDeploymentInstanceFilter {
 /// Typed helper for the `instance_filter.group_labels` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentInstanceFilterGroupLabels {
-  const OsConfigPatchDeploymentInstanceFilterGroupLabels({
-    required this.labels,
-  });
+final class OsConfigPatchDeploymentGroupLabels {
+  const OsConfigPatchDeploymentGroupLabels({required this.labels});
 
   final TfArg<Map<String, String>> labels;
 
@@ -155,23 +151,23 @@ final class OsConfigPatchDeploymentPatchConfig {
 
   final TfArg<bool>? migInstancesAllowed;
 
-  final TfArg<OsConfigPatchDeploymentPatchConfigRebootConfig>? rebootConfig;
+  final TfArg<OsConfigPatchDeploymentRebootConfig>? rebootConfig;
 
   final TfArg<bool>? skipUnpatchableVms;
 
-  final OsConfigPatchDeploymentPatchConfigApt? apt;
+  final OsConfigPatchDeploymentApt? apt;
 
-  final OsConfigPatchDeploymentPatchConfigGoo? goo;
+  final OsConfigPatchDeploymentGoo? goo;
 
-  final OsConfigPatchDeploymentPatchConfigPostStep? postStep;
+  final OsConfigPatchDeploymentPostStep? postStep;
 
-  final OsConfigPatchDeploymentPatchConfigPreStep? preStep;
+  final OsConfigPatchDeploymentPreStep? preStep;
 
-  final OsConfigPatchDeploymentPatchConfigWindowsUpdate? windowsUpdate;
+  final OsConfigPatchDeploymentWindowsUpdate? windowsUpdate;
 
-  final OsConfigPatchDeploymentPatchConfigYum? yum;
+  final OsConfigPatchDeploymentYum? yum;
 
-  final OsConfigPatchDeploymentPatchConfigZypper? zypper;
+  final OsConfigPatchDeploymentZypper? zypper;
 
   Map<String, Object?> encode() => {
     'mig_instances_allowed': ?migInstancesAllowed?.toTfJson(),
@@ -188,12 +184,12 @@ final class OsConfigPatchDeploymentPatchConfig {
 }
 
 /// `reboot_config` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigRebootConfig implements TerraformEnum {
+enum OsConfigPatchDeploymentRebootConfig implements TerraformEnum {
   defaultCase('DEFAULT'),
   always('ALWAYS'),
   never('NEVER');
 
-  const OsConfigPatchDeploymentPatchConfigRebootConfig(this.terraformValue);
+  const OsConfigPatchDeploymentRebootConfig(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -201,8 +197,8 @@ enum OsConfigPatchDeploymentPatchConfigRebootConfig implements TerraformEnum {
 /// Typed helper for the `patch_config.apt` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigApt {
-  const OsConfigPatchDeploymentPatchConfigApt({
+final class OsConfigPatchDeploymentApt {
+  const OsConfigPatchDeploymentApt({
     this.excludes,
     this.exclusivePackages,
     this.type,
@@ -212,7 +208,7 @@ final class OsConfigPatchDeploymentPatchConfigApt {
 
   final TfArg<List<String>>? exclusivePackages;
 
-  final TfArg<OsConfigPatchDeploymentPatchConfigAptType>? type;
+  final TfArg<OsConfigPatchDeploymentType>? type;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -222,11 +218,11 @@ final class OsConfigPatchDeploymentPatchConfigApt {
 }
 
 /// `type` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigAptType implements TerraformEnum {
+enum OsConfigPatchDeploymentType implements TerraformEnum {
   dist('DIST'),
   upgrade('UPGRADE');
 
-  const OsConfigPatchDeploymentPatchConfigAptType(this.terraformValue);
+  const OsConfigPatchDeploymentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -234,8 +230,8 @@ enum OsConfigPatchDeploymentPatchConfigAptType implements TerraformEnum {
 /// Typed helper for the `patch_config.goo` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigGoo {
-  const OsConfigPatchDeploymentPatchConfigGoo({required this.enabled});
+final class OsConfigPatchDeploymentGoo {
+  const OsConfigPatchDeploymentGoo({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -245,17 +241,15 @@ final class OsConfigPatchDeploymentPatchConfigGoo {
 /// Typed helper for the `patch_config.post_step` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigPostStep {
-  const OsConfigPatchDeploymentPatchConfigPostStep({
+final class OsConfigPatchDeploymentPostStep {
+  const OsConfigPatchDeploymentPostStep({
     this.linuxExecStepConfig,
     this.windowsExecStepConfig,
   });
 
-  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig?
-  linuxExecStepConfig;
+  final OsConfigPatchDeploymentLinuxExecStepConfig? linuxExecStepConfig;
 
-  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig?
-  windowsExecStepConfig;
+  final OsConfigPatchDeploymentWindowsExecStepConfig? windowsExecStepConfig;
 
   Map<String, Object?> encode() => {
     'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
@@ -265,9 +259,10 @@ final class OsConfigPatchDeploymentPatchConfigPostStep {
 
 /// Typed helper for the `patch_config.post_step.linux_exec_step_config` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig({
+final class OsConfigPatchDeploymentLinuxExecStepConfig {
+  const OsConfigPatchDeploymentLinuxExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
     required this.script,
@@ -275,13 +270,9 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
 
   final TfArg<List<num>>? allowedSuccessCodes;
 
-  final TfArg<
-    OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigInterpreter
-  >?
-  interpreter;
+  final TfArg<OsConfigPatchDeploymentInterpreter>? interpreter;
 
-  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript
-  script;
+  final OsConfigPatchDeploymentLinuxExecStepConfigScript script;
 
   Map<String, Object?> encode() => {
     'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
@@ -294,19 +285,18 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.localPath(...)`.
-sealed class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript();
+sealed class OsConfigPatchDeploymentLinuxExecStepConfigScript {
+  const OsConfigPatchDeploymentLinuxExecStepConfigScript();
 
   /// Sets `local_path`.
-  const factory OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript.localPath(
+  const factory OsConfigPatchDeploymentLinuxExecStepConfigScript.localPath(
     TfArg<String> localPath,
-  ) = OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath;
+  ) = OsConfigPatchDeploymentLinuxExecStepConfigScriptLocalPath;
 
   /// Sets `gcs_object`.
-  const factory OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript.gcsObject(
-    OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject
-    gcsObject,
-  ) = OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject;
+  const factory OsConfigPatchDeploymentLinuxExecStepConfigScript.gcsObject(
+    OsConfigPatchDeploymentGcsObject gcsObject,
+  ) = OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -314,11 +304,10 @@ sealed class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript
   Map<String, Object?> encode();
 }
 
-/// The [OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript.localPath] choice: sets `local_path`.
-final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath
-    extends
-        OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath(
+/// The [OsConfigPatchDeploymentLinuxExecStepConfigScript.localPath] choice: sets `local_path`.
+final class OsConfigPatchDeploymentLinuxExecStepConfigScriptLocalPath
+    extends OsConfigPatchDeploymentLinuxExecStepConfigScript {
+  const OsConfigPatchDeploymentLinuxExecStepConfigScriptLocalPath(
     this.localPath,
   );
 
@@ -331,16 +320,14 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptL
   Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
 }
 
-/// The [OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
-final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject
-    extends
-        OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject(
+/// The [OsConfigPatchDeploymentLinuxExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
+final class OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject
+    extends OsConfigPatchDeploymentLinuxExecStepConfigScript {
+  const OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject(
     this.gcsObject,
   );
 
-  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject
-  gcsObject;
+  final OsConfigPatchDeploymentGcsObject gcsObject;
 
   @override
   String get blockKey => 'gcs_object';
@@ -350,23 +337,21 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptG
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigInterpreter
-    implements TerraformEnum {
+enum OsConfigPatchDeploymentInterpreter implements TerraformEnum {
   shell('SHELL'),
   powershell('POWERSHELL');
 
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigInterpreter(
-    this.terraformValue,
-  );
+  const OsConfigPatchDeploymentInterpreter(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `patch_config.post_step.linux_exec_step_config.gcs_object` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject {
-  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject({
+final class OsConfigPatchDeploymentGcsObject {
+  const OsConfigPatchDeploymentGcsObject({
     required this.bucket,
     required this.generationNumber,
     required this.object,
@@ -387,9 +372,10 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObje
 
 /// Typed helper for the `patch_config.post_step.windows_exec_step_config` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig({
+final class OsConfigPatchDeploymentWindowsExecStepConfig {
+  const OsConfigPatchDeploymentWindowsExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
     required this.script,
@@ -397,13 +383,9 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
 
   final TfArg<List<num>>? allowedSuccessCodes;
 
-  final TfArg<
-    OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigInterpreter
-  >?
-  interpreter;
+  final TfArg<OsConfigPatchDeploymentInterpreter>? interpreter;
 
-  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript
-  script;
+  final OsConfigPatchDeploymentWindowsExecStepConfigScript script;
 
   Map<String, Object?> encode() => {
     'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
@@ -416,19 +398,18 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.localPath(...)`.
-sealed class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript();
+sealed class OsConfigPatchDeploymentWindowsExecStepConfigScript {
+  const OsConfigPatchDeploymentWindowsExecStepConfigScript();
 
   /// Sets `local_path`.
-  const factory OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript.localPath(
+  const factory OsConfigPatchDeploymentWindowsExecStepConfigScript.localPath(
     TfArg<String> localPath,
-  ) = OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath;
+  ) = OsConfigPatchDeploymentWindowsExecStepConfigScriptLocalPath;
 
   /// Sets `gcs_object`.
-  const factory OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript.gcsObject(
-    OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject
-    gcsObject,
-  ) = OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject;
+  const factory OsConfigPatchDeploymentWindowsExecStepConfigScript.gcsObject(
+    OsConfigPatchDeploymentGcsObject gcsObject,
+  ) = OsConfigPatchDeploymentWindowsExecStepConfigScriptGcsObject;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -436,11 +417,10 @@ sealed class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScri
   Map<String, Object?> encode();
 }
 
-/// The [OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript.localPath] choice: sets `local_path`.
-final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath
-    extends
-        OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath(
+/// The [OsConfigPatchDeploymentWindowsExecStepConfigScript.localPath] choice: sets `local_path`.
+final class OsConfigPatchDeploymentWindowsExecStepConfigScriptLocalPath
+    extends OsConfigPatchDeploymentWindowsExecStepConfigScript {
+  const OsConfigPatchDeploymentWindowsExecStepConfigScriptLocalPath(
     this.localPath,
   );
 
@@ -453,16 +433,14 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScrip
   Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
 }
 
-/// The [OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
-final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject
-    extends
-        OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject(
+/// The [OsConfigPatchDeploymentWindowsExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
+final class OsConfigPatchDeploymentWindowsExecStepConfigScriptGcsObject
+    extends OsConfigPatchDeploymentWindowsExecStepConfigScript {
+  const OsConfigPatchDeploymentWindowsExecStepConfigScriptGcsObject(
     this.gcsObject,
   );
 
-  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject
-  gcsObject;
+  final OsConfigPatchDeploymentGcsObject gcsObject;
 
   @override
   String get blockKey => 'gcs_object';
@@ -471,56 +449,18 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScrip
   Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
 
-/// `interpreter` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigInterpreter
-    implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
-
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigInterpreter(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `patch_config.post_step.windows_exec_step_config.gcs_object` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject {
-  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject({
-    required this.bucket,
-    required this.generationNumber,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String> generationNumber;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation_number': generationNumber.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
 /// Typed helper for the `patch_config.pre_step` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigPreStep {
-  const OsConfigPatchDeploymentPatchConfigPreStep({
+final class OsConfigPatchDeploymentPreStep {
+  const OsConfigPatchDeploymentPreStep({
     this.linuxExecStepConfig,
     this.windowsExecStepConfig,
   });
 
-  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig?
-  linuxExecStepConfig;
+  final OsConfigPatchDeploymentLinuxExecStepConfig? linuxExecStepConfig;
 
-  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig?
-  windowsExecStepConfig;
+  final OsConfigPatchDeploymentWindowsExecStepConfig? windowsExecStepConfig;
 
   Map<String, Object?> encode() => {
     'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
@@ -528,262 +468,17 @@ final class OsConfigPatchDeploymentPatchConfigPreStep {
   };
 }
 
-/// Typed helper for the `patch_config.pre_step.linux_exec_step_config` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig({
-    this.allowedSuccessCodes,
-    this.interpreter,
-    required this.script,
-  });
-
-  final TfArg<List<num>>? allowedSuccessCodes;
-
-  final TfArg<
-    OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigInterpreter
-  >?
-  interpreter;
-
-  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript
-  script;
-
-  Map<String, Object?> encode() => {
-    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
-    'interpreter': ?interpreter?.toTfJson(),
-    ...script.encode(),
-  };
-}
-
-/// Exactly one of `local_path`, `gcs_object` on the `patch_config.pre_step.linux_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.localPath(...)`.
-sealed class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript();
-
-  /// Sets `local_path`.
-  const factory OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript.localPath(
-    TfArg<String> localPath,
-  ) = OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath;
-
-  /// Sets `gcs_object`.
-  const factory OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript.gcsObject(
-    OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject
-    gcsObject,
-  ) = OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript.localPath] choice: sets `local_path`.
-final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath
-    extends OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath(
-    this.localPath,
-  );
-
-  final TfArg<String> localPath;
-
-  @override
-  String get blockKey => 'local_path';
-
-  @override
-  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
-}
-
-/// The [OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
-final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject
-    extends OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject(
-    this.gcsObject,
-  );
-
-  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject
-  gcsObject;
-
-  @override
-  String get blockKey => 'gcs_object';
-
-  @override
-  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
-}
-
-/// `interpreter` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigInterpreter
-    implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
-
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigInterpreter(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `patch_config.pre_step.linux_exec_step_config.gcs_object` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject {
-  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject({
-    required this.bucket,
-    required this.generationNumber,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String> generationNumber;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation_number': generationNumber.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `patch_config.pre_step.windows_exec_step_config` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig {
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig({
-    this.allowedSuccessCodes,
-    this.interpreter,
-    required this.script,
-  });
-
-  final TfArg<List<num>>? allowedSuccessCodes;
-
-  final TfArg<
-    OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigInterpreter
-  >?
-  interpreter;
-
-  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript
-  script;
-
-  Map<String, Object?> encode() => {
-    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
-    'interpreter': ?interpreter?.toTfJson(),
-    ...script.encode(),
-  };
-}
-
-/// Exactly one of `local_path`, `gcs_object` on the `patch_config.pre_step.windows_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.localPath(...)`.
-sealed class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript();
-
-  /// Sets `local_path`.
-  const factory OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript.localPath(
-    TfArg<String> localPath,
-  ) = OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath;
-
-  /// Sets `gcs_object`.
-  const factory OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript.gcsObject(
-    OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject
-    gcsObject,
-  ) = OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript.localPath] choice: sets `local_path`.
-final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath
-    extends
-        OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath(
-    this.localPath,
-  );
-
-  final TfArg<String> localPath;
-
-  @override
-  String get blockKey => 'local_path';
-
-  @override
-  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
-}
-
-/// The [OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript.gcsObject] choice: sets `gcs_object`.
-final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject
-    extends
-        OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript {
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject(
-    this.gcsObject,
-  );
-
-  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject
-  gcsObject;
-
-  @override
-  String get blockKey => 'gcs_object';
-
-  @override
-  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
-}
-
-/// `interpreter` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigInterpreter
-    implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
-
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigInterpreter(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `patch_config.pre_step.windows_exec_step_config.gcs_object` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject {
-  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject({
-    required this.bucket,
-    required this.generationNumber,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String> generationNumber;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation_number': generationNumber.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
 /// Typed helper for the `patch_config.windows_update` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigWindowsUpdate {
-  const OsConfigPatchDeploymentPatchConfigWindowsUpdate({
+final class OsConfigPatchDeploymentWindowsUpdate {
+  const OsConfigPatchDeploymentWindowsUpdate({
     this.classifications,
     this.excludes,
     this.exclusivePatches,
   });
 
-  final List<
-    TfArg<OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications>
-  >?
-  classifications;
+  final List<TfArg<OsConfigPatchDeploymentClassifications>>? classifications;
 
   final TfArg<List<String>>? excludes;
 
@@ -798,8 +493,7 @@ final class OsConfigPatchDeploymentPatchConfigWindowsUpdate {
 }
 
 /// `classifications` — derived from the provider schema description.
-enum OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications
-    implements TerraformEnum {
+enum OsConfigPatchDeploymentClassifications implements TerraformEnum {
   critical('CRITICAL'),
   security('SECURITY'),
   definition('DEFINITION'),
@@ -810,9 +504,7 @@ enum OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications
   updateRollup('UPDATE_ROLLUP'),
   update('UPDATE');
 
-  const OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications(
-    this.terraformValue,
-  );
+  const OsConfigPatchDeploymentClassifications(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -820,8 +512,8 @@ enum OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications
 /// Typed helper for the `patch_config.yum` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigYum {
-  const OsConfigPatchDeploymentPatchConfigYum({
+final class OsConfigPatchDeploymentYum {
+  const OsConfigPatchDeploymentYum({
     this.excludes,
     this.exclusivePackages,
     this.minimal,
@@ -847,8 +539,8 @@ final class OsConfigPatchDeploymentPatchConfigYum {
 /// Typed helper for the `patch_config.zypper` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentPatchConfigZypper {
-  const OsConfigPatchDeploymentPatchConfigZypper({
+final class OsConfigPatchDeploymentZypper {
+  const OsConfigPatchDeploymentZypper({
     this.categories,
     this.excludes,
     this.exclusivePatches,
@@ -896,13 +588,13 @@ final class OsConfigPatchDeploymentRecurringSchedule {
 
   final TfArg<String>? startTime;
 
-  final OsConfigPatchDeploymentRecurringScheduleMonthly? monthly;
+  final OsConfigPatchDeploymentMonthly? monthly;
 
-  final OsConfigPatchDeploymentRecurringScheduleTimeOfDay timeOfDay;
+  final OsConfigPatchDeploymentTimeOfDay timeOfDay;
 
-  final OsConfigPatchDeploymentRecurringScheduleTimeZone timeZone;
+  final OsConfigPatchDeploymentTimeZone timeZone;
 
-  final OsConfigPatchDeploymentRecurringScheduleWeekly? weekly;
+  final OsConfigPatchDeploymentWeekly? weekly;
 
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
@@ -918,19 +610,17 @@ final class OsConfigPatchDeploymentRecurringSchedule {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.weekDayOfMonth(...)`.
-sealed class OsConfigPatchDeploymentRecurringScheduleMonthly {
-  const OsConfigPatchDeploymentRecurringScheduleMonthly();
+sealed class OsConfigPatchDeploymentMonthly {
+  const OsConfigPatchDeploymentMonthly();
 
   /// Sets `week_day_of_month`.
-  const factory OsConfigPatchDeploymentRecurringScheduleMonthly.weekDayOfMonth(
-    OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth
-    weekDayOfMonth,
-  ) = OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthChoice;
+  const factory OsConfigPatchDeploymentMonthly.weekDayOfMonth(
+    OsConfigPatchDeploymentWeekDayOfMonth weekDayOfMonth,
+  ) = OsConfigPatchDeploymentMonthlyWeekDayOfMonth;
 
   /// Sets `month_day`.
-  const factory OsConfigPatchDeploymentRecurringScheduleMonthly.monthDay(
-    TfArg<num> monthDay,
-  ) = OsConfigPatchDeploymentRecurringScheduleMonthlyMonthDay;
+  const factory OsConfigPatchDeploymentMonthly.monthDay(TfArg<num> monthDay) =
+      OsConfigPatchDeploymentMonthlyMonthDay;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -938,15 +628,12 @@ sealed class OsConfigPatchDeploymentRecurringScheduleMonthly {
   Map<String, Object?> encode();
 }
 
-/// The [OsConfigPatchDeploymentRecurringScheduleMonthly.weekDayOfMonth] choice: sets `week_day_of_month`.
-final class OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthChoice
-    extends OsConfigPatchDeploymentRecurringScheduleMonthly {
-  const OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthChoice(
-    this.weekDayOfMonth,
-  );
+/// The [OsConfigPatchDeploymentMonthly.weekDayOfMonth] choice: sets `week_day_of_month`.
+final class OsConfigPatchDeploymentMonthlyWeekDayOfMonth
+    extends OsConfigPatchDeploymentMonthly {
+  const OsConfigPatchDeploymentMonthlyWeekDayOfMonth(this.weekDayOfMonth);
 
-  final OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth
-  weekDayOfMonth;
+  final OsConfigPatchDeploymentWeekDayOfMonth weekDayOfMonth;
 
   @override
   String get blockKey => 'week_day_of_month';
@@ -957,10 +644,10 @@ final class OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthChoice
   };
 }
 
-/// The [OsConfigPatchDeploymentRecurringScheduleMonthly.monthDay] choice: sets `month_day`.
-final class OsConfigPatchDeploymentRecurringScheduleMonthlyMonthDay
-    extends OsConfigPatchDeploymentRecurringScheduleMonthly {
-  const OsConfigPatchDeploymentRecurringScheduleMonthlyMonthDay(this.monthDay);
+/// The [OsConfigPatchDeploymentMonthly.monthDay] choice: sets `month_day`.
+final class OsConfigPatchDeploymentMonthlyMonthDay
+    extends OsConfigPatchDeploymentMonthly {
+  const OsConfigPatchDeploymentMonthlyMonthDay(this.monthDay);
 
   final TfArg<num> monthDay;
 
@@ -974,17 +661,14 @@ final class OsConfigPatchDeploymentRecurringScheduleMonthlyMonthDay
 /// Typed helper for the `recurring_schedule.monthly.week_day_of_month` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth {
-  const OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth({
+final class OsConfigPatchDeploymentWeekDayOfMonth {
+  const OsConfigPatchDeploymentWeekDayOfMonth({
     required this.dayOfWeek,
     this.dayOffset,
     required this.weekOrdinal,
   });
 
-  final TfArg<
-    OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthDayOfWeek
-  >
-  dayOfWeek;
+  final TfArg<OsConfigPatchDeploymentDayOfWeek> dayOfWeek;
 
   final TfArg<num>? dayOffset;
 
@@ -998,8 +682,7 @@ final class OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthDayOfWeek
-    implements TerraformEnum {
+enum OsConfigPatchDeploymentDayOfWeek implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -1008,9 +691,7 @@ enum OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthDayOfWeek
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthDayOfWeek(
-    this.terraformValue,
-  );
+  const OsConfigPatchDeploymentDayOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1018,8 +699,8 @@ enum OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthDayOfWeek
 /// Typed helper for the `recurring_schedule.time_of_day` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentRecurringScheduleTimeOfDay {
-  const OsConfigPatchDeploymentRecurringScheduleTimeOfDay({
+final class OsConfigPatchDeploymentTimeOfDay {
+  const OsConfigPatchDeploymentTimeOfDay({
     this.hours,
     this.minutes,
     this.nanos,
@@ -1045,11 +726,8 @@ final class OsConfigPatchDeploymentRecurringScheduleTimeOfDay {
 /// Typed helper for the `recurring_schedule.time_zone` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentRecurringScheduleTimeZone {
-  const OsConfigPatchDeploymentRecurringScheduleTimeZone({
-    required this.id,
-    this.version,
-  });
+final class OsConfigPatchDeploymentTimeZone {
+  const OsConfigPatchDeploymentTimeZone({required this.id, this.version});
 
   final TfArg<String> id;
 
@@ -1064,33 +742,12 @@ final class OsConfigPatchDeploymentRecurringScheduleTimeZone {
 /// Typed helper for the `recurring_schedule.weekly` block of
 /// `google_os_config_patch_deployment` (derived from provider schema).
 @immutable
-final class OsConfigPatchDeploymentRecurringScheduleWeekly {
-  const OsConfigPatchDeploymentRecurringScheduleWeekly({
-    required this.dayOfWeek,
-  });
+final class OsConfigPatchDeploymentWeekly {
+  const OsConfigPatchDeploymentWeekly({required this.dayOfWeek});
 
-  final TfArg<OsConfigPatchDeploymentRecurringScheduleWeeklyDayOfWeek>
-  dayOfWeek;
+  final TfArg<OsConfigPatchDeploymentDayOfWeek> dayOfWeek;
 
   Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
-}
-
-/// `day_of_week` — derived from the provider schema description.
-enum OsConfigPatchDeploymentRecurringScheduleWeeklyDayOfWeek
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
-
-  const OsConfigPatchDeploymentRecurringScheduleWeeklyDayOfWeek(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rollout` block of
@@ -1102,9 +759,9 @@ final class OsConfigPatchDeploymentRollout {
     required this.disruptionBudget,
   });
 
-  final TfArg<OsConfigPatchDeploymentRolloutMode> mode;
+  final TfArg<OsConfigPatchDeploymentMode> mode;
 
-  final OsConfigPatchDeploymentRolloutDisruptionBudget disruptionBudget;
+  final OsConfigPatchDeploymentDisruptionBudget disruptionBudget;
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
@@ -1113,11 +770,11 @@ final class OsConfigPatchDeploymentRollout {
 }
 
 /// `mode` — derived from the provider schema description.
-enum OsConfigPatchDeploymentRolloutMode implements TerraformEnum {
+enum OsConfigPatchDeploymentMode implements TerraformEnum {
   zoneByZone('ZONE_BY_ZONE'),
   concurrentZones('CONCURRENT_ZONES');
 
-  const OsConfigPatchDeploymentRolloutMode(this.terraformValue);
+  const OsConfigPatchDeploymentMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1126,18 +783,18 @@ enum OsConfigPatchDeploymentRolloutMode implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixed(...)`.
-sealed class OsConfigPatchDeploymentRolloutDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudget();
+sealed class OsConfigPatchDeploymentDisruptionBudget {
+  const OsConfigPatchDeploymentDisruptionBudget();
 
   /// Sets `fixed`.
-  const factory OsConfigPatchDeploymentRolloutDisruptionBudget.fixed(
+  const factory OsConfigPatchDeploymentDisruptionBudget.fixed(
     TfArg<num> fixed,
-  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetFixed;
+  ) = OsConfigPatchDeploymentDisruptionBudgetFixed;
 
   /// Sets `percentage`.
-  const factory OsConfigPatchDeploymentRolloutDisruptionBudget.percentage(
+  const factory OsConfigPatchDeploymentDisruptionBudget.percentage(
     TfArg<num> percentage,
-  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage;
+  ) = OsConfigPatchDeploymentDisruptionBudgetPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1145,10 +802,10 @@ sealed class OsConfigPatchDeploymentRolloutDisruptionBudget {
   Map<String, Object?> encode();
 }
 
-/// The [OsConfigPatchDeploymentRolloutDisruptionBudget.fixed] choice: sets `fixed`.
-final class OsConfigPatchDeploymentRolloutDisruptionBudgetFixed
-    extends OsConfigPatchDeploymentRolloutDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudgetFixed(this.fixed);
+/// The [OsConfigPatchDeploymentDisruptionBudget.fixed] choice: sets `fixed`.
+final class OsConfigPatchDeploymentDisruptionBudgetFixed
+    extends OsConfigPatchDeploymentDisruptionBudget {
+  const OsConfigPatchDeploymentDisruptionBudgetFixed(this.fixed);
 
   final TfArg<num> fixed;
 
@@ -1159,12 +816,10 @@ final class OsConfigPatchDeploymentRolloutDisruptionBudgetFixed
   Map<String, Object?> encode() => {'fixed': fixed.toTfJson()};
 }
 
-/// The [OsConfigPatchDeploymentRolloutDisruptionBudget.percentage] choice: sets `percentage`.
-final class OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage
-    extends OsConfigPatchDeploymentRolloutDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage(
-    this.percentage,
-  );
+/// The [OsConfigPatchDeploymentDisruptionBudget.percentage] choice: sets `percentage`.
+final class OsConfigPatchDeploymentDisruptionBudgetPercentage
+    extends OsConfigPatchDeploymentDisruptionBudget {
+  const OsConfigPatchDeploymentDisruptionBudgetPercentage(this.percentage);
 
   final TfArg<num> percentage;
 

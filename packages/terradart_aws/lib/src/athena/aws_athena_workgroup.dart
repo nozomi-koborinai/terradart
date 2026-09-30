@@ -52,24 +52,22 @@ final class AthenaWorkgroupConfiguration {
 
   final TfArg<bool>? requesterPaysEnabled;
 
-  final AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration?
+  final AthenaWorkgroupCustomerContentEncryptionConfiguration?
   customerContentEncryptionConfiguration;
 
-  final AthenaWorkgroupConfigurationEngineVersion? engineVersion;
+  final AthenaWorkgroupEngineVersion? engineVersion;
 
-  final AthenaWorkgroupConfigurationIdentityCenterConfiguration?
-  identityCenterConfiguration;
+  final AthenaWorkgroupIdentityCenterConfiguration? identityCenterConfiguration;
 
-  final AthenaWorkgroupConfigurationManagedQueryResultsConfiguration?
+  final AthenaWorkgroupManagedQueryResultsConfiguration?
   managedQueryResultsConfiguration;
 
-  final AthenaWorkgroupConfigurationMonitoringConfiguration?
-  monitoringConfiguration;
+  final AthenaWorkgroupMonitoringConfiguration? monitoringConfiguration;
 
-  final AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration?
+  final AthenaWorkgroupQueryResultsS3AccessGrantsConfiguration?
   queryResultsS3AccessGrantsConfiguration;
 
-  final AthenaWorkgroupConfigurationResultConfiguration? resultConfiguration;
+  final AthenaWorkgroupResultConfiguration? resultConfiguration;
 
   Map<String, Object?> encode() => {
     'bytes_scanned_cutoff_per_query': ?bytesScannedCutoffPerQuery?.toTfJson(),
@@ -97,10 +95,8 @@ final class AthenaWorkgroupConfiguration {
 /// Typed helper for the `configuration.customer_content_encryption_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration {
-  const AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration({
-    this.kmsKey,
-  });
+final class AthenaWorkgroupCustomerContentEncryptionConfiguration {
+  const AthenaWorkgroupCustomerContentEncryptionConfiguration({this.kmsKey});
 
   final RefTo<AwsKmsKey>? kmsKey;
 
@@ -112,8 +108,8 @@ final class AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration {
 /// Typed helper for the `configuration.engine_version` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationEngineVersion {
-  const AthenaWorkgroupConfigurationEngineVersion({this.selectedEngineVersion});
+final class AthenaWorkgroupEngineVersion {
+  const AthenaWorkgroupEngineVersion({this.selectedEngineVersion});
 
   final TfArg<String>? selectedEngineVersion;
 
@@ -125,8 +121,8 @@ final class AthenaWorkgroupConfigurationEngineVersion {
 /// Typed helper for the `configuration.identity_center_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationIdentityCenterConfiguration {
-  const AthenaWorkgroupConfigurationIdentityCenterConfiguration({
+final class AthenaWorkgroupIdentityCenterConfiguration {
+  const AthenaWorkgroupIdentityCenterConfiguration({
     this.enableIdentityCenter,
     this.identityCenterInstanceArn,
   });
@@ -144,15 +140,15 @@ final class AthenaWorkgroupConfigurationIdentityCenterConfiguration {
 /// Typed helper for the `configuration.managed_query_results_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationManagedQueryResultsConfiguration {
-  const AthenaWorkgroupConfigurationManagedQueryResultsConfiguration({
+final class AthenaWorkgroupManagedQueryResultsConfiguration {
+  const AthenaWorkgroupManagedQueryResultsConfiguration({
     this.enabled,
     this.encryptionConfiguration,
   });
 
   final TfArg<bool>? enabled;
 
-  final AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncryptionConfiguration?
+  final AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfiguration?
   encryptionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -164,8 +160,8 @@ final class AthenaWorkgroupConfigurationManagedQueryResultsConfiguration {
 /// Typed helper for the `configuration.managed_query_results_configuration.encryption_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncryptionConfiguration {
-  const AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncryptionConfiguration({
+final class AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfiguration {
+  const AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfiguration({
     this.kmsKey,
   });
 
@@ -179,21 +175,19 @@ final class AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncrypti
 /// Typed helper for the `configuration.monitoring_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationMonitoringConfiguration {
-  const AthenaWorkgroupConfigurationMonitoringConfiguration({
+final class AthenaWorkgroupMonitoringConfiguration {
+  const AthenaWorkgroupMonitoringConfiguration({
     this.cloudWatchLoggingConfiguration,
     this.managedLoggingConfiguration,
     this.s3LoggingConfiguration,
   });
 
-  final AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfiguration?
+  final AthenaWorkgroupCloudWatchLoggingConfiguration?
   cloudWatchLoggingConfiguration;
 
-  final AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingConfiguration?
-  managedLoggingConfiguration;
+  final AthenaWorkgroupManagedLoggingConfiguration? managedLoggingConfiguration;
 
-  final AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfiguration?
-  s3LoggingConfiguration;
+  final AthenaWorkgroupS3LoggingConfiguration? s3LoggingConfiguration;
 
   Map<String, Object?> encode() => {
     'cloud_watch_logging_configuration': ?cloudWatchLoggingConfiguration
@@ -206,8 +200,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfiguration {
 /// Typed helper for the `configuration.monitoring_configuration.cloud_watch_logging_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfiguration {
-  const AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfiguration({
+final class AthenaWorkgroupCloudWatchLoggingConfiguration {
+  const AthenaWorkgroupCloudWatchLoggingConfiguration({
     required this.enabled,
     this.logGroup,
     this.logStreamNamePrefix,
@@ -220,10 +214,7 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 
   final TfArg<String>? logStreamNamePrefix;
 
-  final List<
-    AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfigurationLogType
-  >?
-  logType;
+  final List<AthenaWorkgroupLogType>? logType;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -236,11 +227,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 /// Typed helper for the `configuration.monitoring_configuration.cloud_watch_logging_configuration.log_type` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfigurationLogType {
-  const AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfigurationLogType({
-    required this.key,
-    required this.values,
-  });
+final class AthenaWorkgroupLogType {
+  const AthenaWorkgroupLogType({required this.key, required this.values});
 
   final TfArg<String> key;
 
@@ -255,8 +243,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 /// Typed helper for the `configuration.monitoring_configuration.managed_logging_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingConfiguration {
-  const AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingConfiguration({
+final class AthenaWorkgroupManagedLoggingConfiguration {
+  const AthenaWorkgroupManagedLoggingConfiguration({
     required this.enabled,
     this.kmsKey,
   });
@@ -274,8 +262,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingCon
 /// Typed helper for the `configuration.monitoring_configuration.s3_logging_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfiguration {
-  const AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfiguration({
+final class AthenaWorkgroupS3LoggingConfiguration {
+  const AthenaWorkgroupS3LoggingConfiguration({
     required this.enabled,
     this.kmsKey,
     this.logLocation,
@@ -297,17 +285,14 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfigur
 /// Typed helper for the `configuration.query_results_s3_access_grants_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration {
-  const AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration({
+final class AthenaWorkgroupQueryResultsS3AccessGrantsConfiguration {
+  const AthenaWorkgroupQueryResultsS3AccessGrantsConfiguration({
     required this.authenticationType,
     this.createUserLevelPrefix,
     required this.enableS3AccessGrants,
   });
 
-  final TfArg<
-    AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType
-  >
-  authenticationType;
+  final TfArg<AthenaWorkgroupAuthenticationType> authenticationType;
 
   final TfArg<bool>? createUserLevelPrefix;
 
@@ -321,13 +306,10 @@ final class AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration 
 }
 
 /// `authentication_type` — derived from the provider schema description.
-enum AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType
-    implements TerraformEnum {
+enum AthenaWorkgroupAuthenticationType implements TerraformEnum {
   directoryIdentity('DIRECTORY_IDENTITY');
 
-  const AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType(
-    this.terraformValue,
-  );
+  const AthenaWorkgroupAuthenticationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -335,8 +317,8 @@ enum AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenti
 /// Typed helper for the `configuration.result_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationResultConfiguration {
-  const AthenaWorkgroupConfigurationResultConfiguration({
+final class AthenaWorkgroupResultConfiguration {
+  const AthenaWorkgroupResultConfiguration({
     this.expectedBucketOwner,
     this.outputLocation,
     this.aclConfiguration,
@@ -347,10 +329,9 @@ final class AthenaWorkgroupConfigurationResultConfiguration {
 
   final TfArg<String>? outputLocation;
 
-  final AthenaWorkgroupConfigurationResultConfigurationAclConfiguration?
-  aclConfiguration;
+  final AthenaWorkgroupAclConfiguration? aclConfiguration;
 
-  final AthenaWorkgroupConfigurationResultConfigurationEncryptionConfiguration?
+  final AthenaWorkgroupResultConfigurationEncryptionConfiguration?
   encryptionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -364,27 +345,19 @@ final class AthenaWorkgroupConfigurationResultConfiguration {
 /// Typed helper for the `configuration.result_configuration.acl_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationResultConfigurationAclConfiguration {
-  const AthenaWorkgroupConfigurationResultConfigurationAclConfiguration({
-    required this.s3AclOption,
-  });
+final class AthenaWorkgroupAclConfiguration {
+  const AthenaWorkgroupAclConfiguration({required this.s3AclOption});
 
-  final TfArg<
-    AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption
-  >
-  s3AclOption;
+  final TfArg<AthenaWorkgroupS3AclOption> s3AclOption;
 
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
 }
 
 /// `s3_acl_option` — derived from the provider schema description.
-enum AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption
-    implements TerraformEnum {
+enum AthenaWorkgroupS3AclOption implements TerraformEnum {
   bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
 
-  const AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption(
-    this.terraformValue,
-  );
+  const AthenaWorkgroupS3AclOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -392,16 +365,13 @@ enum AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption
 /// Typed helper for the `configuration.result_configuration.encryption_configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
-final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfiguration {
-  const AthenaWorkgroupConfigurationResultConfigurationEncryptionConfiguration({
+final class AthenaWorkgroupResultConfigurationEncryptionConfiguration {
+  const AthenaWorkgroupResultConfigurationEncryptionConfiguration({
     this.encryptionOption,
     this.kmsKeyArn,
   });
 
-  final TfArg<
-    AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption
-  >?
-  encryptionOption;
+  final TfArg<AthenaWorkgroupEncryptionOption>? encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
@@ -412,15 +382,12 @@ final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurati
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption
-    implements TerraformEnum {
+enum AthenaWorkgroupEncryptionOption implements TerraformEnum {
   sseS3('SSE_S3'),
   sseKms('SSE_KMS'),
   cseKms('CSE_KMS');
 
-  const AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption(
-    this.terraformValue,
-  );
+  const AthenaWorkgroupEncryptionOption(this.terraformValue);
   @override
   final String terraformValue;
 }

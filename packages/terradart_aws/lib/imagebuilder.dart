@@ -13,103 +13,102 @@ export 'src/imagebuilder/aws_imagebuilder_component.dart'
 export 'src/imagebuilder/aws_imagebuilder_container_recipe.dart'
     show
         AwsImagebuilderContainerRecipe,
+        ImagebuilderContainerRecipeBlockDeviceMapping,
         ImagebuilderContainerRecipeComponent,
-        ImagebuilderContainerRecipeComponentParameter,
         ImagebuilderContainerRecipeContainerType,
         ImagebuilderContainerRecipeDockerfileTemplate,
         ImagebuilderContainerRecipeDockerfileTemplateData,
         ImagebuilderContainerRecipeDockerfileTemplateUri,
+        ImagebuilderContainerRecipeEbs,
         ImagebuilderContainerRecipeInstanceConfiguration,
-        ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping,
-        ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs,
-        ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType,
+        ImagebuilderContainerRecipeParameter,
         ImagebuilderContainerRecipePlatformOverride,
+        ImagebuilderContainerRecipeService,
         ImagebuilderContainerRecipeTargetRepository,
-        ImagebuilderContainerRecipeTargetRepositoryService;
+        ImagebuilderContainerRecipeVolumeType;
 export 'src/imagebuilder/aws_imagebuilder_distribution_configuration.dart'
     show
         AwsImagebuilderDistributionConfiguration,
+        ImagebuilderDistributionConfigurationAmiDistributionConfiguration,
+        ImagebuilderDistributionConfigurationContainerDistributionConfiguration,
+        ImagebuilderDistributionConfigurationDataType,
+        ImagebuilderDistributionConfigurationDiskImageFormat,
         ImagebuilderDistributionConfigurationDistribution,
-        ImagebuilderDistributionConfigurationDistributionAmiDistributionConfiguration,
-        ImagebuilderDistributionConfigurationDistributionAmiDistributionConfigurationLaunchPermission,
-        ImagebuilderDistributionConfigurationDistributionContainerDistributionConfiguration,
-        ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepository,
-        ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService,
-        ImagebuilderDistributionConfigurationDistributionFastLaunchConfiguration,
-        ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationLaunchTemplate,
-        ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationSnapshotConfiguration,
-        ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfiguration,
-        ImagebuilderDistributionConfigurationDistributionS3ExportConfiguration,
-        ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat,
-        ImagebuilderDistributionConfigurationDistributionSsmParameterConfiguration,
-        ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType;
+        ImagebuilderDistributionConfigurationFastLaunchConfiguration,
+        ImagebuilderDistributionConfigurationLaunchPermission,
+        ImagebuilderDistributionConfigurationLaunchTemplate,
+        ImagebuilderDistributionConfigurationLaunchTemplateConfiguration,
+        ImagebuilderDistributionConfigurationS3ExportConfiguration,
+        ImagebuilderDistributionConfigurationService,
+        ImagebuilderDistributionConfigurationSnapshotConfiguration,
+        ImagebuilderDistributionConfigurationSsmParameterConfiguration,
+        ImagebuilderDistributionConfigurationTargetRepository;
 export 'src/imagebuilder/aws_imagebuilder_image.dart'
     show
         AwsImagebuilderImage,
-        ImagebuilderImageImageScanningConfiguration,
-        ImagebuilderImageImageScanningConfigurationEcrConfiguration,
-        ImagebuilderImageImageTestsConfiguration,
+        ImagebuilderImageContainerRecipeArn,
+        ImagebuilderImageEcrConfiguration,
         ImagebuilderImageLoggingConfiguration,
+        ImagebuilderImageOnFailure,
+        ImagebuilderImageParameter,
         ImagebuilderImageRecipeArn,
         ImagebuilderImageRecipeArnChoice,
-        ImagebuilderImageRecipeArnContainerRecipeArn,
-        ImagebuilderImageWorkflow,
-        ImagebuilderImageWorkflowOnFailure,
-        ImagebuilderImageWorkflowParameter;
+        ImagebuilderImageScanningConfiguration,
+        ImagebuilderImageTestsConfiguration,
+        ImagebuilderImageWorkflow;
 export 'src/imagebuilder/aws_imagebuilder_image_pipeline.dart'
     show
         AwsImagebuilderImagePipeline,
+        ImagebuilderImagePipelineContainerRecipeArn,
+        ImagebuilderImagePipelineEcrConfiguration,
+        ImagebuilderImagePipelineExecutionStartCondition,
+        ImagebuilderImagePipelineImageRecipeArn,
         ImagebuilderImagePipelineImageScanningConfiguration,
-        ImagebuilderImagePipelineImageScanningConfigurationEcrConfiguration,
         ImagebuilderImagePipelineImageTestsConfiguration,
         ImagebuilderImagePipelineLoggingConfiguration,
+        ImagebuilderImagePipelineOnFailure,
+        ImagebuilderImagePipelineParameter,
         ImagebuilderImagePipelineRecipeArn,
-        ImagebuilderImagePipelineRecipeArnContainerRecipeArn,
-        ImagebuilderImagePipelineRecipeArnImageRecipeArn,
         ImagebuilderImagePipelineSchedule,
-        ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition,
         ImagebuilderImagePipelineStatus,
-        ImagebuilderImagePipelineWorkflow,
-        ImagebuilderImagePipelineWorkflowOnFailure,
-        ImagebuilderImagePipelineWorkflowParameter;
+        ImagebuilderImagePipelineWorkflow;
 export 'src/imagebuilder/aws_imagebuilder_image_recipe.dart'
     show
         AwsImagebuilderImageRecipe,
         ImagebuilderImageRecipeBlockDeviceMapping,
-        ImagebuilderImageRecipeBlockDeviceMappingEbs,
-        ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType,
         ImagebuilderImageRecipeComponent,
-        ImagebuilderImageRecipeComponentParameter,
-        ImagebuilderImageRecipeSystemsManagerAgent;
+        ImagebuilderImageRecipeEbs,
+        ImagebuilderImageRecipeParameter,
+        ImagebuilderImageRecipeSystemsManagerAgent,
+        ImagebuilderImageRecipeVolumeType;
 export 'src/imagebuilder/aws_imagebuilder_infrastructure_configuration.dart'
     show
         AwsImagebuilderInfrastructureConfiguration,
+        ImagebuilderInfrastructureConfigurationHost,
+        ImagebuilderInfrastructureConfigurationHostId,
+        ImagebuilderInfrastructureConfigurationHostResourceGroupArn,
+        ImagebuilderInfrastructureConfigurationHttpTokens,
         ImagebuilderInfrastructureConfigurationInstanceMetadataOptions,
-        ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens,
         ImagebuilderInfrastructureConfigurationLogging,
-        ImagebuilderInfrastructureConfigurationLoggingS3Logs,
         ImagebuilderInfrastructureConfigurationPlacement,
-        ImagebuilderInfrastructureConfigurationPlacementHost,
-        ImagebuilderInfrastructureConfigurationPlacementHostId,
-        ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn,
-        ImagebuilderInfrastructureConfigurationPlacementTenancy;
+        ImagebuilderInfrastructureConfigurationS3Logs,
+        ImagebuilderInfrastructureConfigurationTenancy;
 export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
     show
         AwsImagebuilderLifecyclePolicy,
-        ImagebuilderLifecyclePolicyPolicyDetail,
-        ImagebuilderLifecyclePolicyPolicyDetailAction,
-        ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources,
-        ImagebuilderLifecyclePolicyPolicyDetailActionType,
-        ImagebuilderLifecyclePolicyPolicyDetailExclusionRules,
-        ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis,
-        ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunched,
-        ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit,
-        ImagebuilderLifecyclePolicyPolicyDetailFilter,
-        ImagebuilderLifecyclePolicyPolicyDetailFilterType,
-        ImagebuilderLifecyclePolicyPolicyDetailFilterUnit,
+        ImagebuilderLifecyclePolicyAction,
+        ImagebuilderLifecyclePolicyActionType,
+        ImagebuilderLifecyclePolicyAmis,
+        ImagebuilderLifecyclePolicyDetail,
+        ImagebuilderLifecyclePolicyExclusionRules,
+        ImagebuilderLifecyclePolicyFilter,
+        ImagebuilderLifecyclePolicyFilterType,
+        ImagebuilderLifecyclePolicyIncludeResources,
+        ImagebuilderLifecyclePolicyLastLaunched,
+        ImagebuilderLifecyclePolicyRecipe,
         ImagebuilderLifecyclePolicyResourceSelection,
-        ImagebuilderLifecyclePolicyResourceSelectionRecipe,
-        ImagebuilderLifecyclePolicyResourceType;
+        ImagebuilderLifecyclePolicyResourceType,
+        ImagebuilderLifecyclePolicyUnit;
 export 'src/imagebuilder/aws_imagebuilder_workflow.dart'
     show
         AwsImagebuilderWorkflow,

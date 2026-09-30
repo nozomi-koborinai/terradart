@@ -33,11 +33,9 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
 
   final TfArg<String> cluster;
 
-  final TfArg<BinaryAuthorizationPolicyClusterAdmissionRulesEnforcementMode>
-  enforcementMode;
+  final TfArg<BinaryAuthorizationPolicyEnforcementMode> enforcementMode;
 
-  final TfArg<BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode>
-  evaluationMode;
+  final TfArg<BinaryAuthorizationPolicyEvaluationMode> evaluationMode;
 
   final TfArg<List<String>>? requireAttestationsBy;
 
@@ -50,28 +48,22 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
 }
 
 /// `enforcement_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyClusterAdmissionRulesEnforcementMode
-    implements TerraformEnum {
+enum BinaryAuthorizationPolicyEnforcementMode implements TerraformEnum {
   enforcedBlockAndAuditLog('ENFORCED_BLOCK_AND_AUDIT_LOG'),
   dryrunAuditLogOnly('DRYRUN_AUDIT_LOG_ONLY');
 
-  const BinaryAuthorizationPolicyClusterAdmissionRulesEnforcementMode(
-    this.terraformValue,
-  );
+  const BinaryAuthorizationPolicyEnforcementMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode
-    implements TerraformEnum {
+enum BinaryAuthorizationPolicyEvaluationMode implements TerraformEnum {
   alwaysAllow('ALWAYS_ALLOW'),
   requireAttestation('REQUIRE_ATTESTATION'),
   alwaysDeny('ALWAYS_DENY');
 
-  const BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode(
-    this.terraformValue,
-  );
+  const BinaryAuthorizationPolicyEvaluationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,11 +78,9 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
     this.requireAttestationsBy,
   });
 
-  final TfArg<BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode>
-  enforcementMode;
+  final TfArg<BinaryAuthorizationPolicyEnforcementMode> enforcementMode;
 
-  final TfArg<BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode>
-  evaluationMode;
+  final TfArg<BinaryAuthorizationPolicyEvaluationMode> evaluationMode;
 
   final TfArg<List<String>>? requireAttestationsBy;
 
@@ -99,33 +89,6 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
     'evaluation_mode': evaluationMode.toTfJson(),
     'require_attestations_by': ?requireAttestationsBy?.toTfJson(),
   };
-}
-
-/// `enforcement_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode
-    implements TerraformEnum {
-  enforcedBlockAndAuditLog('ENFORCED_BLOCK_AND_AUDIT_LOG'),
-  dryrunAuditLogOnly('DRYRUN_AUDIT_LOG_ONLY');
-
-  const BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `evaluation_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
-    implements TerraformEnum {
-  alwaysAllow('ALWAYS_ALLOW'),
-  requireAttestation('REQUIRE_ATTESTATION'),
-  alwaysDeny('ALWAYS_DENY');
-
-  const BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_binary_authorization_policy`.
@@ -145,10 +108,10 @@ enum BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
 ///   localName: 'project_policy',
 ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
 ///     evaluationMode: TfArg.literal(
-///       BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode.alwaysAllow,
+///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
 ///     ),
 ///     enforcementMode: TfArg.literal(
-///       BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode.enforcedBlockAndAuditLog,
+///       BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
 ///     ),
 ///   ),
 /// );

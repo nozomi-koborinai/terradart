@@ -20,9 +20,9 @@ final class DataSecretsStoreSecretFilter {
     this.search,
   });
 
-  final TfArg<DataSecretsStoreSecretFilterDirection>? direction;
+  final TfArg<DataSecretsStoreSecretDirection>? direction;
 
-  final TfArg<DataSecretsStoreSecretFilterOrder>? order;
+  final TfArg<DataSecretsStoreSecretOrder>? order;
 
   final TfArg<List<String>>? scopes;
 
@@ -37,24 +37,24 @@ final class DataSecretsStoreSecretFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSecretsStoreSecretFilterDirection implements TerraformEnum {
+enum DataSecretsStoreSecretDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataSecretsStoreSecretFilterDirection(this.terraformValue);
+  const DataSecretsStoreSecretDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSecretsStoreSecretFilterOrder implements TerraformEnum {
+enum DataSecretsStoreSecretOrder implements TerraformEnum {
   name('name'),
   comment('comment'),
   created('created'),
   modified('modified'),
   status('status');
 
-  const DataSecretsStoreSecretFilterOrder(this.terraformValue);
+  const DataSecretsStoreSecretOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

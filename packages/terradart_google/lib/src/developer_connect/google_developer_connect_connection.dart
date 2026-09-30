@@ -25,7 +25,7 @@ final class DeveloperConnectConnectionBitbucketCloudConfig {
   final DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential
   authorizerCredential;
 
-  final DeveloperConnectConnectionBitbucketCloudConfigReadAuthorizerCredential
+  final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
   Map<String, Object?> encode() => {
@@ -38,6 +38,7 @@ final class DeveloperConnectConnectionBitbucketCloudConfig {
 
 /// Typed helper for the `bitbucket_cloud_config.authorizer_credential` block of
 /// `google_developer_connect_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential {
   const DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential({
@@ -53,9 +54,10 @@ final class DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential {
 
 /// Typed helper for the `bitbucket_cloud_config.read_authorizer_credential` block of
 /// `google_developer_connect_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DeveloperConnectConnectionBitbucketCloudConfigReadAuthorizerCredential {
-  const DeveloperConnectConnectionBitbucketCloudConfigReadAuthorizerCredential({
+final class DeveloperConnectConnectionReadAuthorizerCredential {
+  const DeveloperConnectConnectionReadAuthorizerCredential({
     required this.userTokenSecretVersion,
   });
 
@@ -85,13 +87,13 @@ final class DeveloperConnectConnectionBitbucketDataCenterConfig {
 
   final TfArg<String> webhookSecretSecretVersion;
 
-  final DeveloperConnectConnectionBitbucketDataCenterConfigAuthorizerCredential
+  final DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential
   authorizerCredential;
 
-  final DeveloperConnectConnectionBitbucketDataCenterConfigReadAuthorizerCredential
+  final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
-  final DeveloperConnectConnectionBitbucketDataCenterConfigServiceDirectoryConfig?
+  final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
@@ -104,41 +106,12 @@ final class DeveloperConnectConnectionBitbucketDataCenterConfig {
   };
 }
 
-/// Typed helper for the `bitbucket_data_center_config.authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionBitbucketDataCenterConfigAuthorizerCredential {
-  const DeveloperConnectConnectionBitbucketDataCenterConfigAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `bitbucket_data_center_config.read_authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionBitbucketDataCenterConfigReadAuthorizerCredential {
-  const DeveloperConnectConnectionBitbucketDataCenterConfigReadAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
-  };
-}
-
 /// Typed helper for the `bitbucket_data_center_config.service_directory_config` block of
 /// `google_developer_connect_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DeveloperConnectConnectionBitbucketDataCenterConfigServiceDirectoryConfig {
-  const DeveloperConnectConnectionBitbucketDataCenterConfigServiceDirectoryConfig({
+final class DeveloperConnectConnectionServiceDirectoryConfig {
+  const DeveloperConnectConnectionServiceDirectoryConfig({
     required this.service,
   });
 
@@ -223,7 +196,7 @@ final class DeveloperConnectConnectionGithubEnterpriseConfig {
 
   final TfArg<String>? webhookSecretSecretVersion;
 
-  final DeveloperConnectConnectionGithubEnterpriseConfigServiceDirectoryConfig?
+  final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
@@ -235,19 +208,6 @@ final class DeveloperConnectConnectionGithubEnterpriseConfig {
     'webhook_secret_secret_version': ?webhookSecretSecretVersion?.toTfJson(),
     'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
-}
-
-/// Typed helper for the `github_enterprise_config.service_directory_config` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGithubEnterpriseConfigServiceDirectoryConfig {
-  const DeveloperConnectConnectionGithubEnterpriseConfigServiceDirectoryConfig({
-    required this.service,
-  });
-
-  final TfArg<String> service;
-
-  Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
 /// Typed helper for the `gitlab_config` block of
@@ -262,46 +222,16 @@ final class DeveloperConnectConnectionGitlabConfig {
 
   final TfArg<String> webhookSecretSecretVersion;
 
-  final DeveloperConnectConnectionGitlabConfigAuthorizerCredential
+  final DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential
   authorizerCredential;
 
-  final DeveloperConnectConnectionGitlabConfigReadAuthorizerCredential
+  final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
   Map<String, Object?> encode() => {
     'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
     'authorizer_credential': authorizerCredential.encode(),
     'read_authorizer_credential': readAuthorizerCredential.encode(),
-  };
-}
-
-/// Typed helper for the `gitlab_config.authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGitlabConfigAuthorizerCredential {
-  const DeveloperConnectConnectionGitlabConfigAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `gitlab_config.read_authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGitlabConfigReadAuthorizerCredential {
-  const DeveloperConnectConnectionGitlabConfigReadAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
   };
 }
 
@@ -324,13 +254,13 @@ final class DeveloperConnectConnectionGitlabEnterpriseConfig {
 
   final TfArg<String> webhookSecretSecretVersion;
 
-  final DeveloperConnectConnectionGitlabEnterpriseConfigAuthorizerCredential
+  final DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential
   authorizerCredential;
 
-  final DeveloperConnectConnectionGitlabEnterpriseConfigReadAuthorizerCredential
+  final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
-  final DeveloperConnectConnectionGitlabEnterpriseConfigServiceDirectoryConfig?
+  final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
@@ -341,49 +271,6 @@ final class DeveloperConnectConnectionGitlabEnterpriseConfig {
     'read_authorizer_credential': readAuthorizerCredential.encode(),
     'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
-}
-
-/// Typed helper for the `gitlab_enterprise_config.authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGitlabEnterpriseConfigAuthorizerCredential {
-  const DeveloperConnectConnectionGitlabEnterpriseConfigAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `gitlab_enterprise_config.read_authorizer_credential` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGitlabEnterpriseConfigReadAuthorizerCredential {
-  const DeveloperConnectConnectionGitlabEnterpriseConfigReadAuthorizerCredential({
-    required this.userTokenSecretVersion,
-  });
-
-  final TfArg<String> userTokenSecretVersion;
-
-  Map<String, Object?> encode() => {
-    'user_token_secret_version': userTokenSecretVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `gitlab_enterprise_config.service_directory_config` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionGitlabEnterpriseConfigServiceDirectoryConfig {
-  const DeveloperConnectConnectionGitlabEnterpriseConfigServiceDirectoryConfig({
-    required this.service,
-  });
-
-  final TfArg<String> service;
-
-  Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
 /// Typed helper for the `http_config` block of
@@ -402,13 +289,12 @@ final class DeveloperConnectConnectionHttpConfig {
 
   final TfArg<String>? sslCaCertificate;
 
-  final DeveloperConnectConnectionHttpConfigBasicAuthentication?
-  basicAuthentication;
+  final DeveloperConnectConnectionBasicAuthentication? basicAuthentication;
 
-  final DeveloperConnectConnectionHttpConfigBearerTokenAuthentication?
+  final DeveloperConnectConnectionBearerTokenAuthentication?
   bearerTokenAuthentication;
 
-  final DeveloperConnectConnectionHttpConfigServiceDirectoryConfig?
+  final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
@@ -423,8 +309,8 @@ final class DeveloperConnectConnectionHttpConfig {
 /// Typed helper for the `http_config.basic_authentication` block of
 /// `google_developer_connect_connection` (derived from provider schema).
 @immutable
-final class DeveloperConnectConnectionHttpConfigBasicAuthentication {
-  const DeveloperConnectConnectionHttpConfigBasicAuthentication({
+final class DeveloperConnectConnectionBasicAuthentication {
+  const DeveloperConnectConnectionBasicAuthentication({
     this.passwordSecretVersion,
     required this.username,
   });
@@ -442,8 +328,8 @@ final class DeveloperConnectConnectionHttpConfigBasicAuthentication {
 /// Typed helper for the `http_config.bearer_token_authentication` block of
 /// `google_developer_connect_connection` (derived from provider schema).
 @immutable
-final class DeveloperConnectConnectionHttpConfigBearerTokenAuthentication {
-  const DeveloperConnectConnectionHttpConfigBearerTokenAuthentication({
+final class DeveloperConnectConnectionBearerTokenAuthentication {
+  const DeveloperConnectConnectionBearerTokenAuthentication({
     this.tokenSecretVersion,
   });
 
@@ -452,19 +338,6 @@ final class DeveloperConnectConnectionHttpConfigBearerTokenAuthentication {
   Map<String, Object?> encode() => {
     'token_secret_version': ?tokenSecretVersion?.toTfJson(),
   };
-}
-
-/// Typed helper for the `http_config.service_directory_config` block of
-/// `google_developer_connect_connection` (derived from provider schema).
-@immutable
-final class DeveloperConnectConnectionHttpConfigServiceDirectoryConfig {
-  const DeveloperConnectConnectionHttpConfigServiceDirectoryConfig({
-    required this.service,
-  });
-
-  final TfArg<String> service;
-
-  Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
 /// Factory wrapper for `google_developer_connect_connection`.

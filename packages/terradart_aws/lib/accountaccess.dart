@@ -5,13 +5,13 @@ library;
 
 export 'src/accountaccess/aws_accountaccess_application.dart'
     show
+        AccountaccessApplicationIdentityCenter,
         AccountaccessApplicationIdentitySource,
-        AccountaccessApplicationIdentitySourceIdentityCenter,
         AwsAccountaccessApplication;
 export 'src/accountaccess/aws_accountaccess_entitlement.dart'
     show
         AccountaccessEntitlementEntitlement,
-        AccountaccessEntitlementEntitlementPrincipalRole,
-        AccountaccessEntitlementEntitlementPrincipalRolePrincipal,
-        AccountaccessEntitlementEntitlementPrincipalRolePrincipalIdentityCenter,
+        AccountaccessEntitlementIdentityCenter,
+        AccountaccessEntitlementPrincipal,
+        AccountaccessEntitlementPrincipalRole,
         AwsAccountaccessEntitlement;

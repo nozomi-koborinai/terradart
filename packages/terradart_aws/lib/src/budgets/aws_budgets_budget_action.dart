@@ -43,14 +43,13 @@ enum BudgetsBudgetActionNotificationType implements TerraformEnum {
 /// Typed helper for the `action_threshold` block of
 /// `aws_budgets_budget_action` (derived from provider schema).
 @immutable
-final class BudgetsBudgetActionActionThreshold {
-  const BudgetsBudgetActionActionThreshold({
+final class BudgetsBudgetActionThreshold {
+  const BudgetsBudgetActionThreshold({
     required this.actionThresholdType,
     required this.actionThresholdValue,
   });
 
-  final TfArg<BudgetsBudgetActionActionThresholdActionThresholdType>
-  actionThresholdType;
+  final TfArg<BudgetsBudgetActionThresholdType> actionThresholdType;
 
   final TfArg<num> actionThresholdValue;
 
@@ -61,14 +60,11 @@ final class BudgetsBudgetActionActionThreshold {
 }
 
 /// `action_threshold_type` — derived from the provider schema description.
-enum BudgetsBudgetActionActionThresholdActionThresholdType
-    implements TerraformEnum {
+enum BudgetsBudgetActionThresholdType implements TerraformEnum {
   percentage('PERCENTAGE'),
   absoluteValue('ABSOLUTE_VALUE');
 
-  const BudgetsBudgetActionActionThresholdActionThresholdType(
-    this.terraformValue,
-  );
+  const BudgetsBudgetActionThresholdType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -83,11 +79,11 @@ final class BudgetsBudgetActionDefinition {
     this.ssmActionDefinition,
   });
 
-  final BudgetsBudgetActionDefinitionIamActionDefinition? iamActionDefinition;
+  final BudgetsBudgetActionIamActionDefinition? iamActionDefinition;
 
-  final BudgetsBudgetActionDefinitionScpActionDefinition? scpActionDefinition;
+  final BudgetsBudgetActionScpActionDefinition? scpActionDefinition;
 
-  final BudgetsBudgetActionDefinitionSsmActionDefinition? ssmActionDefinition;
+  final BudgetsBudgetActionSsmActionDefinition? ssmActionDefinition;
 
   Map<String, Object?> encode() => {
     'iam_action_definition': ?iamActionDefinition?.encode(),
@@ -99,8 +95,8 @@ final class BudgetsBudgetActionDefinition {
 /// Typed helper for the `definition.iam_action_definition` block of
 /// `aws_budgets_budget_action` (derived from provider schema).
 @immutable
-final class BudgetsBudgetActionDefinitionIamActionDefinition {
-  const BudgetsBudgetActionDefinitionIamActionDefinition({
+final class BudgetsBudgetActionIamActionDefinition {
+  const BudgetsBudgetActionIamActionDefinition({
     this.groups,
     required this.policyArn,
     this.roles,
@@ -126,8 +122,8 @@ final class BudgetsBudgetActionDefinitionIamActionDefinition {
 /// Typed helper for the `definition.scp_action_definition` block of
 /// `aws_budgets_budget_action` (derived from provider schema).
 @immutable
-final class BudgetsBudgetActionDefinitionScpActionDefinition {
-  const BudgetsBudgetActionDefinitionScpActionDefinition({
+final class BudgetsBudgetActionScpActionDefinition {
+  const BudgetsBudgetActionScpActionDefinition({
     required this.policyId,
     required this.targetIds,
   });
@@ -145,15 +141,14 @@ final class BudgetsBudgetActionDefinitionScpActionDefinition {
 /// Typed helper for the `definition.ssm_action_definition` block of
 /// `aws_budgets_budget_action` (derived from provider schema).
 @immutable
-final class BudgetsBudgetActionDefinitionSsmActionDefinition {
-  const BudgetsBudgetActionDefinitionSsmActionDefinition({
+final class BudgetsBudgetActionSsmActionDefinition {
+  const BudgetsBudgetActionSsmActionDefinition({
     required this.actionSubType,
     required this.instanceIds,
     required this.region,
   });
 
-  final TfArg<BudgetsBudgetActionDefinitionSsmActionDefinitionActionSubType>
-  actionSubType;
+  final TfArg<BudgetsBudgetActionSubType> actionSubType;
 
   final TfArg<List<String>> instanceIds;
 
@@ -167,14 +162,11 @@ final class BudgetsBudgetActionDefinitionSsmActionDefinition {
 }
 
 /// `action_sub_type` — derived from the provider schema description.
-enum BudgetsBudgetActionDefinitionSsmActionDefinitionActionSubType
-    implements TerraformEnum {
+enum BudgetsBudgetActionSubType implements TerraformEnum {
   stopEc2Instances('STOP_EC2_INSTANCES'),
   stopRdsInstances('STOP_RDS_INSTANCES');
 
-  const BudgetsBudgetActionDefinitionSsmActionDefinitionActionSubType(
-    this.terraformValue,
-  );
+  const BudgetsBudgetActionSubType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -190,7 +182,7 @@ final class BudgetsBudgetActionSubscriber {
 
   final TfArg<String> address;
 
-  final TfArg<BudgetsBudgetActionSubscriberSubscriptionType> subscriptionType;
+  final TfArg<BudgetsBudgetActionSubscriptionType> subscriptionType;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
@@ -199,11 +191,11 @@ final class BudgetsBudgetActionSubscriber {
 }
 
 /// `subscription_type` — derived from the provider schema description.
-enum BudgetsBudgetActionSubscriberSubscriptionType implements TerraformEnum {
+enum BudgetsBudgetActionSubscriptionType implements TerraformEnum {
   sns('SNS'),
   email('EMAIL');
 
-  const BudgetsBudgetActionSubscriberSubscriptionType(this.terraformValue);
+  const BudgetsBudgetActionSubscriptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -221,7 +213,7 @@ final class AwsBudgetsBudgetAction extends Resource {
     required RefTo<AwsIamRole> executionRoleArn,
     required TfArg<BudgetsBudgetActionNotificationType> notificationType,
     TfArg<Map<String, String>>? tags,
-    required BudgetsBudgetActionActionThreshold actionThreshold,
+    required BudgetsBudgetActionThreshold actionThreshold,
     required BudgetsBudgetActionDefinition definition,
     required List<BudgetsBudgetActionSubscriber> subscriber,
     super.lifecycle,

@@ -40,7 +40,7 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeNetworkFirewallPolicyWithRulesRuleDirection>? direction;
+  final TfArg<ComputeNetworkFirewallPolicyWithRulesDirection>? direction;
 
   final TfArg<bool>? disabled;
 
@@ -56,9 +56,9 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<bool>? tlsInspect;
 
-  final ComputeNetworkFirewallPolicyWithRulesRuleMatch match;
+  final ComputeNetworkFirewallPolicyWithRulesMatch match;
 
-  final List<ComputeNetworkFirewallPolicyWithRulesRuleTargetSecureTag>?
+  final List<ComputeNetworkFirewallPolicyWithRulesTargetSecureTag>?
   targetSecureTag;
 
   Map<String, Object?> encode() => {
@@ -79,12 +79,11 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeNetworkFirewallPolicyWithRulesRuleDirection
-    implements TerraformEnum {
+enum ComputeNetworkFirewallPolicyWithRulesDirection implements TerraformEnum {
   ingress('INGRESS'),
   egress('EGRESS');
 
-  const ComputeNetworkFirewallPolicyWithRulesRuleDirection(this.terraformValue);
+  const ComputeNetworkFirewallPolicyWithRulesDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -92,8 +91,8 @@ enum ComputeNetworkFirewallPolicyWithRulesRuleDirection
 /// Typed helper for the `rule.match` block of
 /// `google_compute_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyWithRulesRuleMatch {
-  const ComputeNetworkFirewallPolicyWithRulesRuleMatch({
+final class ComputeNetworkFirewallPolicyWithRulesMatch {
+  const ComputeNetworkFirewallPolicyWithRulesMatch({
     this.destAddressGroups,
     this.destFqdns,
     this.destIpRanges,
@@ -128,11 +127,9 @@ final class ComputeNetworkFirewallPolicyWithRulesRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config>
-  layer4Config;
+  final List<ComputeNetworkFirewallPolicyWithRulesLayer4Config> layer4Config;
 
-  final List<ComputeNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag>?
-  srcSecureTag;
+  final List<ComputeNetworkFirewallPolicyWithRulesSrcSecureTag>? srcSecureTag;
 
   Map<String, Object?> encode() => {
     'dest_address_groups': ?destAddressGroups?.toTfJson(),
@@ -154,8 +151,8 @@ final class ComputeNetworkFirewallPolicyWithRulesRuleMatch {
 /// Typed helper for the `rule.match.layer4_config` block of
 /// `google_compute_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config {
-  const ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config({
+final class ComputeNetworkFirewallPolicyWithRulesLayer4Config {
+  const ComputeNetworkFirewallPolicyWithRulesLayer4Config({
     required this.ipProtocol,
     this.ports,
   });
@@ -173,8 +170,8 @@ final class ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config {
 /// Typed helper for the `rule.match.src_secure_tag` block of
 /// `google_compute_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag {
-  const ComputeNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag({this.name});
+final class ComputeNetworkFirewallPolicyWithRulesSrcSecureTag {
+  const ComputeNetworkFirewallPolicyWithRulesSrcSecureTag({this.name});
 
   final TfArg<String>? name;
 
@@ -184,8 +181,8 @@ final class ComputeNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag {
 /// Typed helper for the `rule.target_secure_tag` block of
 /// `google_compute_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyWithRulesRuleTargetSecureTag {
-  const ComputeNetworkFirewallPolicyWithRulesRuleTargetSecureTag({this.name});
+final class ComputeNetworkFirewallPolicyWithRulesTargetSecureTag {
+  const ComputeNetworkFirewallPolicyWithRulesTargetSecureTag({this.name});
 
   final TfArg<String>? name;
 

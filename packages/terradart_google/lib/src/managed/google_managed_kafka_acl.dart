@@ -10,8 +10,8 @@ const Set<String> _googleManagedKafkaAclSensitive = <String>{};
 /// Typed helper for the `acl_entries` block of
 /// `google_managed_kafka_acl` (derived from provider schema).
 @immutable
-final class ManagedKafkaAclAclEntries {
-  const ManagedKafkaAclAclEntries({
+final class ManagedKafkaAclEntries {
+  const ManagedKafkaAclEntries({
     this.host,
     required this.operation,
     this.permissionType,
@@ -55,7 +55,7 @@ final class ManagedKafkaAclAclEntries {
 ///   cluster: TfArg.ref(cluster.clusterIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   aclEntries: [
-///     ManagedKafkaAclAclEntries(
+///     ManagedKafkaAclEntries(
 ///       principal: TfArg.literal('User:serviceAccount:sa@proj.iam.gserviceaccount.com'),
 ///       operation: TfArg.literal('ALL'),
 ///       permissionType: TfArg.literal('ALLOW'),
@@ -71,7 +71,7 @@ final class GoogleManagedKafkaAcl extends Resource {
     required TfArg<String> aclId,
     required TfArg<String> cluster,
     required TfArg<String> location,
-    required List<ManagedKafkaAclAclEntries> aclEntries,
+    required List<ManagedKafkaAclEntries> aclEntries,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

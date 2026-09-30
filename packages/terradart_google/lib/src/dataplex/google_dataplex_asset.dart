@@ -28,9 +28,9 @@ final class DataplexAssetDiscoverySpec {
 
   final TfArg<String>? schedule;
 
-  final DataplexAssetDiscoverySpecCsvOptions? csvOptions;
+  final DataplexAssetCsvOptions? csvOptions;
 
-  final DataplexAssetDiscoverySpecJsonOptions? jsonOptions;
+  final DataplexAssetJsonOptions? jsonOptions;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -45,8 +45,8 @@ final class DataplexAssetDiscoverySpec {
 /// Typed helper for the `discovery_spec.csv_options` block of
 /// `google_dataplex_asset` (derived from provider schema).
 @immutable
-final class DataplexAssetDiscoverySpecCsvOptions {
-  const DataplexAssetDiscoverySpecCsvOptions({
+final class DataplexAssetCsvOptions {
+  const DataplexAssetCsvOptions({
     this.delimiter,
     this.disableTypeInference,
     this.encoding,
@@ -72,11 +72,8 @@ final class DataplexAssetDiscoverySpecCsvOptions {
 /// Typed helper for the `discovery_spec.json_options` block of
 /// `google_dataplex_asset` (derived from provider schema).
 @immutable
-final class DataplexAssetDiscoverySpecJsonOptions {
-  const DataplexAssetDiscoverySpecJsonOptions({
-    this.disableTypeInference,
-    this.encoding,
-  });
+final class DataplexAssetJsonOptions {
+  const DataplexAssetJsonOptions({this.disableTypeInference, this.encoding});
 
   final TfArg<bool>? disableTypeInference;
 
@@ -100,9 +97,9 @@ final class DataplexAssetResourceSpec {
 
   final TfArg<String>? name;
 
-  final TfArg<DataplexAssetResourceSpecReadAccessMode>? readAccessMode;
+  final TfArg<DataplexAssetReadAccessMode>? readAccessMode;
 
-  final TfArg<DataplexAssetResourceSpecType> type;
+  final TfArg<DataplexAssetType> type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -112,21 +109,21 @@ final class DataplexAssetResourceSpec {
 }
 
 /// `read_access_mode` — derived from the provider schema description.
-enum DataplexAssetResourceSpecReadAccessMode implements TerraformEnum {
+enum DataplexAssetReadAccessMode implements TerraformEnum {
   direct('DIRECT'),
   managed('MANAGED');
 
-  const DataplexAssetResourceSpecReadAccessMode(this.terraformValue);
+  const DataplexAssetReadAccessMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum DataplexAssetResourceSpecType implements TerraformEnum {
+enum DataplexAssetType implements TerraformEnum {
   storageBucket('STORAGE_BUCKET'),
   bigqueryDataset('BIGQUERY_DATASET');
 
-  const DataplexAssetResourceSpecType(this.terraformValue);
+  const DataplexAssetType(this.terraformValue);
   @override
   final String terraformValue;
 }

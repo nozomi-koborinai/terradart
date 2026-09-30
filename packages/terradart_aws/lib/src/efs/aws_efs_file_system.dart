@@ -40,12 +40,11 @@ final class EfsFileSystemLifecyclePolicy {
     this.transitionToPrimaryStorageClass,
   });
 
-  final TfArg<EfsFileSystemLifecyclePolicyTransitionToArchive>?
-  transitionToArchive;
+  final TfArg<EfsFileSystemTransitionToArchive>? transitionToArchive;
 
-  final TfArg<EfsFileSystemLifecyclePolicyTransitionToIa>? transitionToIa;
+  final TfArg<EfsFileSystemTransitionToIa>? transitionToIa;
 
-  final TfArg<EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass>?
+  final TfArg<EfsFileSystemTransitionToPrimaryStorageClass>?
   transitionToPrimaryStorageClass;
 
   Map<String, Object?> encode() => {
@@ -57,7 +56,7 @@ final class EfsFileSystemLifecyclePolicy {
 }
 
 /// `transition_to_archive` — derived from the provider schema description.
-enum EfsFileSystemLifecyclePolicyTransitionToArchive implements TerraformEnum {
+enum EfsFileSystemTransitionToArchive implements TerraformEnum {
   after1Day('AFTER_1_DAY'),
   after7Days('AFTER_7_DAYS'),
   after14Days('AFTER_14_DAYS'),
@@ -68,13 +67,13 @@ enum EfsFileSystemLifecyclePolicyTransitionToArchive implements TerraformEnum {
   after270Days('AFTER_270_DAYS'),
   after365Days('AFTER_365_DAYS');
 
-  const EfsFileSystemLifecyclePolicyTransitionToArchive(this.terraformValue);
+  const EfsFileSystemTransitionToArchive(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `transition_to_ia` — derived from the provider schema description.
-enum EfsFileSystemLifecyclePolicyTransitionToIa implements TerraformEnum {
+enum EfsFileSystemTransitionToIa implements TerraformEnum {
   after7Days('AFTER_7_DAYS'),
   after14Days('AFTER_14_DAYS'),
   after30Days('AFTER_30_DAYS'),
@@ -85,19 +84,16 @@ enum EfsFileSystemLifecyclePolicyTransitionToIa implements TerraformEnum {
   after270Days('AFTER_270_DAYS'),
   after365Days('AFTER_365_DAYS');
 
-  const EfsFileSystemLifecyclePolicyTransitionToIa(this.terraformValue);
+  const EfsFileSystemTransitionToIa(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `transition_to_primary_storage_class` — derived from the provider schema description.
-enum EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass
-    implements TerraformEnum {
+enum EfsFileSystemTransitionToPrimaryStorageClass implements TerraformEnum {
   after1Access('AFTER_1_ACCESS');
 
-  const EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass(
-    this.terraformValue,
-  );
+  const EfsFileSystemTransitionToPrimaryStorageClass(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,8 +104,7 @@ enum EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass
 final class EfsFileSystemProtection {
   const EfsFileSystemProtection({this.replicationOverwrite});
 
-  final TfArg<EfsFileSystemProtectionReplicationOverwrite>?
-  replicationOverwrite;
+  final TfArg<EfsFileSystemReplicationOverwrite>? replicationOverwrite;
 
   Map<String, Object?> encode() => {
     'replication_overwrite': ?replicationOverwrite?.toTfJson(),
@@ -117,11 +112,11 @@ final class EfsFileSystemProtection {
 }
 
 /// `replication_overwrite` — derived from the provider schema description.
-enum EfsFileSystemProtectionReplicationOverwrite implements TerraformEnum {
+enum EfsFileSystemReplicationOverwrite implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EfsFileSystemProtectionReplicationOverwrite(this.terraformValue);
+  const EfsFileSystemReplicationOverwrite(this.terraformValue);
   @override
   final String terraformValue;
 }

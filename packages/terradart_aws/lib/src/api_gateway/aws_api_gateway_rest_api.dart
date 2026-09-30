@@ -69,10 +69,9 @@ final class ApiGatewayRestApiEndpointConfiguration {
     this.vpcEndpointIds,
   });
 
-  final TfArg<ApiGatewayRestApiEndpointConfigurationIpAddressType>?
-  ipAddressType;
+  final TfArg<ApiGatewayRestApiIpAddressType>? ipAddressType;
 
-  final List<TfArg<ApiGatewayRestApiEndpointConfigurationTypes>> types;
+  final List<TfArg<ApiGatewayRestApiTypes>> types;
 
   final TfArg<List<String>>? vpcEndpointIds;
 
@@ -84,25 +83,22 @@ final class ApiGatewayRestApiEndpointConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApiGatewayRestApiEndpointConfigurationIpAddressType
-    implements TerraformEnum {
+enum ApiGatewayRestApiIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   dualstack('dualstack');
 
-  const ApiGatewayRestApiEndpointConfigurationIpAddressType(
-    this.terraformValue,
-  );
+  const ApiGatewayRestApiIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `types` — derived from the provider schema description.
-enum ApiGatewayRestApiEndpointConfigurationTypes implements TerraformEnum {
+enum ApiGatewayRestApiTypes implements TerraformEnum {
   regional('REGIONAL'),
   edge('EDGE'),
   private('PRIVATE');
 
-  const ApiGatewayRestApiEndpointConfigurationTypes(this.terraformValue);
+  const ApiGatewayRestApiTypes(this.terraformValue);
   @override
   final String terraformValue;
 }

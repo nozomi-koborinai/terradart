@@ -4,10 +4,7 @@
 library;
 
 export 'src/api_shield/cloudflare_api_shield.dart'
-    show
-        ApiShieldAuthIdCharacteristics,
-        ApiShieldAuthIdCharacteristicsType,
-        CloudflareApiShield;
+    show ApiShieldAuthIdCharacteristics, ApiShieldType, CloudflareApiShield;
 export 'src/api_shield/cloudflare_api_shield_discovery_operation.dart'
     show
         ApiShieldDiscoveryOperationState,
@@ -45,17 +42,17 @@ export 'src/api_shield/cloudflare_schema_validation_settings.dart'
 export 'src/api_shield/cloudflare_token_validation_config.dart'
     show
         CloudflareTokenValidationConfig,
+        TokenValidationConfigAlg,
         TokenValidationConfigCredentials,
-        TokenValidationConfigCredentialsKeys,
-        TokenValidationConfigCredentialsKeysAlg,
-        TokenValidationConfigCredentialsKeysCrv,
-        TokenValidationConfigCredentialsKeysKty,
+        TokenValidationConfigCrv,
+        TokenValidationConfigKeys,
+        TokenValidationConfigKty,
         TokenValidationConfigTokenType;
 export 'src/api_shield/cloudflare_token_validation_rules.dart'
     show
         CloudflareTokenValidationRules,
         TokenValidationRulesAction,
+        TokenValidationRulesExclude,
+        TokenValidationRulesInclude,
         TokenValidationRulesPosition,
-        TokenValidationRulesSelector,
-        TokenValidationRulesSelectorExclude,
-        TokenValidationRulesSelectorInclude;
+        TokenValidationRulesSelector;

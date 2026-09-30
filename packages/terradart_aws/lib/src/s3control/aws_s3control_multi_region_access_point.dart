@@ -21,8 +21,7 @@ final class S3controlMultiRegionAccessPointDetails {
 
   final TfArg<String> name;
 
-  final S3controlMultiRegionAccessPointDetailsPublicAccessBlock?
-  publicAccessBlock;
+  final S3controlMultiRegionAccessPointPublicAccessBlock? publicAccessBlock;
 
   final List<S3controlMultiRegionAccessPointDetailsRegion> region;
 
@@ -36,8 +35,8 @@ final class S3controlMultiRegionAccessPointDetails {
 /// Typed helper for the `details.public_access_block` block of
 /// `aws_s3control_multi_region_access_point` (derived from provider schema).
 @immutable
-final class S3controlMultiRegionAccessPointDetailsPublicAccessBlock {
-  const S3controlMultiRegionAccessPointDetailsPublicAccessBlock({
+final class S3controlMultiRegionAccessPointPublicAccessBlock {
+  const S3controlMultiRegionAccessPointPublicAccessBlock({
     this.blockPublicAcls,
     this.blockPublicPolicy,
     this.ignorePublicAcls,

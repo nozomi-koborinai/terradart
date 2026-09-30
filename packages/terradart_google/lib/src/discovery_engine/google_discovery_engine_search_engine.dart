@@ -58,8 +58,7 @@ final class DiscoveryEngineSearchEngineKnowledgeGraphConfig {
 
   final TfArg<bool>? enablePrivateKnowledgeGraph;
 
-  final DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig?
-  featureConfig;
+  final DiscoveryEngineSearchEngineFeatureConfig? featureConfig;
 
   Map<String, Object?> encode() => {
     'cloud_knowledge_graph_types': ?cloudKnowledgeGraphTypes?.toTfJson(),
@@ -72,8 +71,8 @@ final class DiscoveryEngineSearchEngineKnowledgeGraphConfig {
 /// Typed helper for the `knowledge_graph_config.feature_config` block of
 /// `google_discovery_engine_search_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig {
-  const DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig({
+final class DiscoveryEngineSearchEngineFeatureConfig {
+  const DiscoveryEngineSearchEngineFeatureConfig({
     this.disablePrivateKgAutoComplete,
     this.disablePrivateKgEnrichment,
     this.disablePrivateKgQueryUiChips,
@@ -102,16 +101,14 @@ final class DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig {
 /// Typed helper for the `search_engine_config` block of
 /// `google_discovery_engine_search_engine` (derived from provider schema).
 @immutable
-final class DiscoveryEngineSearchEngineSearchEngineConfig {
-  const DiscoveryEngineSearchEngineSearchEngineConfig({
+final class DiscoveryEngineSearchEngineConfig {
+  const DiscoveryEngineSearchEngineConfig({
     this.requiredSubscriptionTier,
     this.searchAddOns,
     this.searchTier,
   });
 
-  final TfArg<
-    DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier
-  >?
+  final TfArg<DiscoveryEngineSearchEngineRequiredSubscriptionTier>?
   requiredSubscriptionTier;
 
   final TfArg<List<String>>? searchAddOns;
@@ -126,7 +123,7 @@ final class DiscoveryEngineSearchEngineSearchEngineConfig {
 }
 
 /// `required_subscription_tier` — derived from the provider schema description.
-enum DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier
+enum DiscoveryEngineSearchEngineRequiredSubscriptionTier
     implements TerraformEnum {
   subscriptionTierUnspecified('SUBSCRIPTION_TIER_UNSPECIFIED'),
   subscriptionTierSearch('SUBSCRIPTION_TIER_SEARCH'),
@@ -142,7 +139,7 @@ enum DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier
   subscriptionTierEduProEmerging('SUBSCRIPTION_TIER_EDU_PRO_EMERGING'),
   subscriptionTierFrontlineStarter('SUBSCRIPTION_TIER_FRONTLINE_STARTER');
 
-  const DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier(
+  const DiscoveryEngineSearchEngineRequiredSubscriptionTier(
     this.terraformValue,
   );
   @override
@@ -163,7 +160,7 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
     required TfArg<String> engineId,
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
-    required DiscoveryEngineSearchEngineSearchEngineConfig searchEngineConfig,
+    required DiscoveryEngineSearchEngineConfig searchEngineConfig,
     TfArg<DiscoveryEngineSearchEngineIndustryVertical>? industryVertical,
     TfArg<String>? project,
     TfArg<String>? appType,

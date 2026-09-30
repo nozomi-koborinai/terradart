@@ -36,7 +36,7 @@ final class ServicecatalogServiceActionDefinition {
 
   final TfArg<String>? parameters;
 
-  final TfArg<ServicecatalogServiceActionDefinitionType>? type;
+  final TfArg<ServicecatalogServiceActionType>? type;
 
   final TfArg<String> version;
 
@@ -50,10 +50,10 @@ final class ServicecatalogServiceActionDefinition {
 }
 
 /// `type` — derived from the provider schema description.
-enum ServicecatalogServiceActionDefinitionType implements TerraformEnum {
+enum ServicecatalogServiceActionType implements TerraformEnum {
   ssmAutomation('SSM_AUTOMATION');
 
-  const ServicecatalogServiceActionDefinitionType(this.terraformValue);
+  const ServicecatalogServiceActionType(this.terraformValue);
   @override
   final String terraformValue;
 }

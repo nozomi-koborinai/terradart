@@ -94,7 +94,7 @@ enum FilestoreInstanceReplicationRole implements TerraformEnum {
 final class FilestoreInstanceDirectoryServices {
   const FilestoreInstanceDirectoryServices({this.ldap});
 
-  final FilestoreInstanceDirectoryServicesLdap? ldap;
+  final FilestoreInstanceLdap? ldap;
 
   Map<String, Object?> encode() => {'ldap': ?ldap?.encode()};
 }
@@ -102,8 +102,8 @@ final class FilestoreInstanceDirectoryServices {
 /// Typed helper for the `directory_services.ldap` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstanceDirectoryServicesLdap {
-  const FilestoreInstanceDirectoryServicesLdap({
+final class FilestoreInstanceLdap {
+  const FilestoreInstanceLdap({
     required this.domain,
     this.groupsOu,
     required this.servers,
@@ -146,7 +146,7 @@ final class FilestoreInstanceFileShares {
 
   final TfArg<String>? sourceBackupdrBackup;
 
-  final List<FilestoreInstanceFileSharesNfsExportOptions>? nfsExportOptions;
+  final List<FilestoreInstanceNfsExportOptions>? nfsExportOptions;
 
   Map<String, Object?> encode() => {
     'capacity_gb': capacityGb.toTfJson(),
@@ -161,8 +161,8 @@ final class FilestoreInstanceFileShares {
 /// Typed helper for the `file_shares.nfs_export_options` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstanceFileSharesNfsExportOptions {
-  const FilestoreInstanceFileSharesNfsExportOptions({
+final class FilestoreInstanceNfsExportOptions {
+  const FilestoreInstanceNfsExportOptions({
     this.accessMode,
     this.anonGid,
     this.anonUid,
@@ -201,7 +201,7 @@ final class FilestoreInstanceInitialReplication {
 
   final TfArg<FilestoreInstanceReplicationRole>? role;
 
-  final List<FilestoreInstanceInitialReplicationReplicas>? replicas;
+  final List<FilestoreInstanceReplicas>? replicas;
 
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
@@ -212,10 +212,8 @@ final class FilestoreInstanceInitialReplication {
 /// Typed helper for the `initial_replication.replicas` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstanceInitialReplicationReplicas {
-  const FilestoreInstanceInitialReplicationReplicas({
-    required this.peerInstance,
-  });
+final class FilestoreInstanceReplicas {
+  const FilestoreInstanceReplicas({required this.peerInstance});
 
   final TfArg<String> peerInstance;
 
@@ -236,13 +234,13 @@ final class FilestoreInstanceNetworks {
 
   final TfArg<FilestoreInstanceConnectMode>? connectMode;
 
-  final List<TfArg<FilestoreInstanceNetworksModes>> modes;
+  final List<TfArg<FilestoreInstanceModes>> modes;
 
   final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String>? reservedIpRange;
 
-  final FilestoreInstanceNetworksPscConfig? pscConfig;
+  final FilestoreInstancePscConfig? pscConfig;
 
   Map<String, Object?> encode() => {
     'connect_mode': ?connectMode?.toTfJson(),
@@ -254,12 +252,12 @@ final class FilestoreInstanceNetworks {
 }
 
 /// `modes` — derived from the provider schema description.
-enum FilestoreInstanceNetworksModes implements TerraformEnum {
+enum FilestoreInstanceModes implements TerraformEnum {
   addressModeUnspecified('ADDRESS_MODE_UNSPECIFIED'),
   modeIpv4('MODE_IPV4'),
   modeIpv6('MODE_IPV6');
 
-  const FilestoreInstanceNetworksModes(this.terraformValue);
+  const FilestoreInstanceModes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -267,8 +265,8 @@ enum FilestoreInstanceNetworksModes implements TerraformEnum {
 /// Typed helper for the `networks.psc_config` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstanceNetworksPscConfig {
-  const FilestoreInstanceNetworksPscConfig({this.endpointProject});
+final class FilestoreInstancePscConfig {
+  const FilestoreInstancePscConfig({this.endpointProject});
 
   final TfArg<String>? endpointProject;
 
@@ -287,13 +285,13 @@ sealed class FilestoreInstancePerformanceConfig {
 
   /// Sets `iops_per_tb`.
   const factory FilestoreInstancePerformanceConfig.iopsPerTb(
-    FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb,
-  ) = FilestoreInstancePerformanceConfigIopsPerTbChoice;
+    FilestoreInstanceIopsPerTb iopsPerTb,
+  ) = FilestoreInstancePerformanceConfigIopsPerTb;
 
   /// Sets `fixed_iops`.
   const factory FilestoreInstancePerformanceConfig.fixedIops(
-    FilestoreInstancePerformanceConfigFixedIops fixedIops,
-  ) = FilestoreInstancePerformanceConfigFixedIopsChoice;
+    FilestoreInstanceFixedIops fixedIops,
+  ) = FilestoreInstancePerformanceConfigFixedIops;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -302,11 +300,11 @@ sealed class FilestoreInstancePerformanceConfig {
 }
 
 /// The [FilestoreInstancePerformanceConfig.iopsPerTb] choice: sets `iops_per_tb`.
-final class FilestoreInstancePerformanceConfigIopsPerTbChoice
+final class FilestoreInstancePerformanceConfigIopsPerTb
     extends FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfigIopsPerTbChoice(this.iopsPerTb);
+  const FilestoreInstancePerformanceConfigIopsPerTb(this.iopsPerTb);
 
-  final FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb;
+  final FilestoreInstanceIopsPerTb iopsPerTb;
 
   @override
   String get blockKey => 'iops_per_tb';
@@ -316,11 +314,11 @@ final class FilestoreInstancePerformanceConfigIopsPerTbChoice
 }
 
 /// The [FilestoreInstancePerformanceConfig.fixedIops] choice: sets `fixed_iops`.
-final class FilestoreInstancePerformanceConfigFixedIopsChoice
+final class FilestoreInstancePerformanceConfigFixedIops
     extends FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfigFixedIopsChoice(this.fixedIops);
+  const FilestoreInstancePerformanceConfigFixedIops(this.fixedIops);
 
-  final FilestoreInstancePerformanceConfigFixedIops fixedIops;
+  final FilestoreInstanceFixedIops fixedIops;
 
   @override
   String get blockKey => 'fixed_iops';
@@ -332,8 +330,8 @@ final class FilestoreInstancePerformanceConfigFixedIopsChoice
 /// Typed helper for the `performance_config.fixed_iops` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstancePerformanceConfigFixedIops {
-  const FilestoreInstancePerformanceConfigFixedIops({this.maxIops});
+final class FilestoreInstanceFixedIops {
+  const FilestoreInstanceFixedIops({this.maxIops});
 
   final TfArg<num>? maxIops;
 
@@ -343,8 +341,8 @@ final class FilestoreInstancePerformanceConfigFixedIops {
 /// Typed helper for the `performance_config.iops_per_tb` block of
 /// `google_filestore_instance` (derived from provider schema).
 @immutable
-final class FilestoreInstancePerformanceConfigIopsPerTb {
-  const FilestoreInstancePerformanceConfigIopsPerTb({this.maxIopsPerTb});
+final class FilestoreInstanceIopsPerTb {
+  const FilestoreInstanceIopsPerTb({this.maxIopsPerTb});
 
   final TfArg<num>? maxIopsPerTb;
 

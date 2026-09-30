@@ -14,7 +14,7 @@ const Set<String> _awsAccountaccessEntitlementsSensitive = <String>{};
 final class DataAccountaccessEntitlementsFilter {
   const DataAccountaccessEntitlementsFilter({this.principalRole});
 
-  final List<DataAccountaccessEntitlementsFilterPrincipalRole>? principalRole;
+  final List<DataAccountaccessEntitlementsPrincipalRole>? principalRole;
 
   Map<String, Object?> encode() => {
     if (principalRole != null)
@@ -25,8 +25,8 @@ final class DataAccountaccessEntitlementsFilter {
 /// Typed helper for the `filter.principal_role` block of
 /// `aws_accountaccess_entitlements` (derived from provider schema).
 @immutable
-final class DataAccountaccessEntitlementsFilterPrincipalRole {
-  const DataAccountaccessEntitlementsFilterPrincipalRole({
+final class DataAccountaccessEntitlementsPrincipalRole {
+  const DataAccountaccessEntitlementsPrincipalRole({
     this.accountId,
     this.roleArn,
     this.principal,
@@ -36,8 +36,7 @@ final class DataAccountaccessEntitlementsFilterPrincipalRole {
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final List<DataAccountaccessEntitlementsFilterPrincipalRolePrincipal>?
-  principal;
+  final List<DataAccountaccessEntitlementsPrincipal>? principal;
 
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
@@ -50,15 +49,10 @@ final class DataAccountaccessEntitlementsFilterPrincipalRole {
 /// Typed helper for the `filter.principal_role.principal` block of
 /// `aws_accountaccess_entitlements` (derived from provider schema).
 @immutable
-final class DataAccountaccessEntitlementsFilterPrincipalRolePrincipal {
-  const DataAccountaccessEntitlementsFilterPrincipalRolePrincipal({
-    this.identityCenter,
-  });
+final class DataAccountaccessEntitlementsPrincipal {
+  const DataAccountaccessEntitlementsPrincipal({this.identityCenter});
 
-  final List<
-    DataAccountaccessEntitlementsFilterPrincipalRolePrincipalIdentityCenter
-  >?
-  identityCenter;
+  final List<DataAccountaccessEntitlementsIdentityCenter>? identityCenter;
 
   Map<String, Object?> encode() => {
     if (identityCenter != null)
@@ -69,8 +63,8 @@ final class DataAccountaccessEntitlementsFilterPrincipalRolePrincipal {
 /// Typed helper for the `filter.principal_role.principal.identity_center` block of
 /// `aws_accountaccess_entitlements` (derived from provider schema).
 @immutable
-final class DataAccountaccessEntitlementsFilterPrincipalRolePrincipalIdentityCenter {
-  const DataAccountaccessEntitlementsFilterPrincipalRolePrincipalIdentityCenter({
+final class DataAccountaccessEntitlementsIdentityCenter {
+  const DataAccountaccessEntitlementsIdentityCenter({
     this.groupId,
     this.userId,
   });

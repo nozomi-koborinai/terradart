@@ -23,9 +23,9 @@ enum SsoadminApplicationStatus implements TerraformEnum {
 final class SsoadminApplicationPortalOptions {
   const SsoadminApplicationPortalOptions({this.visibility, this.signInOptions});
 
-  final TfArg<SsoadminApplicationPortalOptionsVisibility>? visibility;
+  final TfArg<SsoadminApplicationVisibility>? visibility;
 
-  final List<SsoadminApplicationPortalOptionsSignInOptions>? signInOptions;
+  final List<SsoadminApplicationSignInOptions>? signInOptions;
 
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
@@ -35,11 +35,11 @@ final class SsoadminApplicationPortalOptions {
 }
 
 /// `visibility` — derived from the provider schema description.
-enum SsoadminApplicationPortalOptionsVisibility implements TerraformEnum {
+enum SsoadminApplicationVisibility implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SsoadminApplicationPortalOptionsVisibility(this.terraformValue);
+  const SsoadminApplicationVisibility(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,15 +47,15 @@ enum SsoadminApplicationPortalOptionsVisibility implements TerraformEnum {
 /// Typed helper for the `portal_options.sign_in_options` block of
 /// `aws_ssoadmin_application` (derived from provider schema).
 @immutable
-final class SsoadminApplicationPortalOptionsSignInOptions {
-  const SsoadminApplicationPortalOptionsSignInOptions({
+final class SsoadminApplicationSignInOptions {
+  const SsoadminApplicationSignInOptions({
     this.applicationUrl,
     required this.origin,
   });
 
   final TfArg<String>? applicationUrl;
 
-  final TfArg<SsoadminApplicationPortalOptionsSignInOptionsOrigin> origin;
+  final TfArg<SsoadminApplicationOrigin> origin;
 
   Map<String, Object?> encode() => {
     'application_url': ?applicationUrl?.toTfJson(),
@@ -64,14 +64,11 @@ final class SsoadminApplicationPortalOptionsSignInOptions {
 }
 
 /// `origin` — derived from the provider schema description.
-enum SsoadminApplicationPortalOptionsSignInOptionsOrigin
-    implements TerraformEnum {
+enum SsoadminApplicationOrigin implements TerraformEnum {
   identityCenter('IDENTITY_CENTER'),
   application('APPLICATION');
 
-  const SsoadminApplicationPortalOptionsSignInOptionsOrigin(
-    this.terraformValue,
-  );
+  const SsoadminApplicationOrigin(this.terraformValue);
   @override
   final String terraformValue;
 }

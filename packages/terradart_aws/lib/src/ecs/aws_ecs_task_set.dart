@@ -172,7 +172,7 @@ final class EcsTaskSetNetworkConfiguration {
 final class EcsTaskSetScale {
   const EcsTaskSetScale({this.unit, this.value});
 
-  final TfArg<EcsTaskSetScaleUnit>? unit;
+  final TfArg<EcsTaskSetUnit>? unit;
 
   final TfArg<num>? value;
 
@@ -183,10 +183,10 @@ final class EcsTaskSetScale {
 }
 
 /// `unit` — derived from the provider schema description.
-enum EcsTaskSetScaleUnit implements TerraformEnum {
+enum EcsTaskSetUnit implements TerraformEnum {
   percent('PERCENT');
 
-  const EcsTaskSetScaleUnit(this.terraformValue);
+  const EcsTaskSetUnit(this.terraformValue);
   @override
   final String terraformValue;
 }

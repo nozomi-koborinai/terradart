@@ -15,7 +15,7 @@ final class PubsubLiteTopicPartitionConfig {
 
   final TfArg<num> count;
 
-  final PubsubLiteTopicPartitionConfigCapacity? capacity;
+  final PubsubLiteTopicCapacity? capacity;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
@@ -26,8 +26,8 @@ final class PubsubLiteTopicPartitionConfig {
 /// Typed helper for the `partition_config.capacity` block of
 /// `google_pubsub_lite_topic` (derived from provider schema).
 @immutable
-final class PubsubLiteTopicPartitionConfigCapacity {
-  const PubsubLiteTopicPartitionConfigCapacity({
+final class PubsubLiteTopicCapacity {
+  const PubsubLiteTopicCapacity({
     required this.publishMibPerSec,
     required this.subscribeMibPerSec,
   });

@@ -47,8 +47,8 @@ enum Kinesisanalyticsv2ApplicationRuntimeEnvironment implements TerraformEnum {
 /// Typed helper for the `application_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfiguration({
+final class Kinesisanalyticsv2ApplicationConfiguration {
+  const Kinesisanalyticsv2ApplicationConfiguration({
     required this.applicationCodeConfiguration,
     this.applicationEncryptionConfiguration,
     this.applicationSnapshotConfiguration,
@@ -59,29 +59,27 @@ final class Kinesisanalyticsv2ApplicationApplicationConfiguration {
     this.vpcConfiguration,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfiguration
+  final Kinesisanalyticsv2ApplicationCodeConfiguration
   applicationCodeConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfiguration?
+  final Kinesisanalyticsv2ApplicationEncryptionConfiguration?
   applicationEncryptionConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationSnapshotConfiguration?
+  final Kinesisanalyticsv2ApplicationSnapshotConfiguration?
   applicationSnapshotConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentProperties?
+  final Kinesisanalyticsv2ApplicationEnvironmentProperties?
   environmentProperties;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfiguration?
+  final Kinesisanalyticsv2ApplicationFlinkApplicationConfiguration?
   flinkApplicationConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguration?
-  runConfiguration;
+  final Kinesisanalyticsv2ApplicationRunConfiguration? runConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfiguration?
+  final Kinesisanalyticsv2ApplicationSqlApplicationConfiguration?
   sqlApplicationConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationVpcConfiguration?
-  vpcConfiguration;
+  final Kinesisanalyticsv2ApplicationVpcConfiguration? vpcConfiguration;
 
   Map<String, Object?> encode() => {
     'application_code_configuration': applicationCodeConfiguration.encode(),
@@ -100,19 +98,15 @@ final class Kinesisanalyticsv2ApplicationApplicationConfiguration {
 /// Typed helper for the `application_configuration.application_code_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfiguration({
+final class Kinesisanalyticsv2ApplicationCodeConfiguration {
+  const Kinesisanalyticsv2ApplicationCodeConfiguration({
     required this.codeContentType,
     this.codeContent,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType
-  >
-  codeContentType;
+  final TfArg<Kinesisanalyticsv2ApplicationCodeContentType> codeContentType;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent?
-  codeContent;
+  final Kinesisanalyticsv2ApplicationCodeContent? codeContent;
 
   Map<String, Object?> encode() => {
     'code_content_type': codeContentType.toTfJson(),
@@ -121,14 +115,11 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
 }
 
 /// `code_content_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationCodeContentType implements TerraformEnum {
   plaintext('PLAINTEXT'),
   zipfile('ZIPFILE');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationCodeContentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -138,19 +129,18 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigu
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.s3ContentLocation(...)`.
-sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent();
+sealed class Kinesisanalyticsv2ApplicationCodeContent {
+  const Kinesisanalyticsv2ApplicationCodeContent();
 
   /// Sets `s3_content_location`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent.s3ContentLocation(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation
-    s3ContentLocation,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationChoice;
+  const factory Kinesisanalyticsv2ApplicationCodeContent.s3ContentLocation(
+    Kinesisanalyticsv2ApplicationS3ContentLocation s3ContentLocation,
+  ) = Kinesisanalyticsv2ApplicationCodeContentS3ContentLocation;
 
   /// Sets `text_content`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent.textContent(
+  const factory Kinesisanalyticsv2ApplicationCodeContent.textContent(
     TfArg<String> textContent,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentTextContent;
+  ) = Kinesisanalyticsv2ApplicationCodeContentTextContent;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -158,16 +148,14 @@ sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCod
   Map<String, Object?> encode();
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent.s3ContentLocation] choice: sets `s3_content_location`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationChoice(
+/// The [Kinesisanalyticsv2ApplicationCodeContent.s3ContentLocation] choice: sets `s3_content_location`.
+final class Kinesisanalyticsv2ApplicationCodeContentS3ContentLocation
+    extends Kinesisanalyticsv2ApplicationCodeContent {
+  const Kinesisanalyticsv2ApplicationCodeContentS3ContentLocation(
     this.s3ContentLocation,
   );
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation
-  s3ContentLocation;
+  final Kinesisanalyticsv2ApplicationS3ContentLocation s3ContentLocation;
 
   @override
   String get blockKey => 's3_content_location';
@@ -178,13 +166,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
   };
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent.textContent] choice: sets `text_content`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentTextContent
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentTextContent(
-    this.textContent,
-  );
+/// The [Kinesisanalyticsv2ApplicationCodeContent.textContent] choice: sets `text_content`.
+final class Kinesisanalyticsv2ApplicationCodeContentTextContent
+    extends Kinesisanalyticsv2ApplicationCodeContent {
+  const Kinesisanalyticsv2ApplicationCodeContentTextContent(this.textContent);
 
   final TfArg<String> textContent;
 
@@ -198,8 +183,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
 /// Typed helper for the `application_configuration.application_code_configuration.code_content.s3_content_location` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation({
+final class Kinesisanalyticsv2ApplicationS3ContentLocation {
+  const Kinesisanalyticsv2ApplicationS3ContentLocation({
     required this.bucketArn,
     required this.fileKey,
     this.objectVersion,
@@ -221,18 +206,15 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
 /// Typed helper for the `application_configuration.application_encryption_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfiguration({
+final class Kinesisanalyticsv2ApplicationEncryptionConfiguration {
+  const Kinesisanalyticsv2ApplicationEncryptionConfiguration({
     this.keyId,
     required this.keyType,
   });
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType
-  >
-  keyType;
+  final TfArg<Kinesisanalyticsv2ApplicationKeyType> keyType;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -241,14 +223,11 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncr
 }
 
 /// `key_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationKeyType implements TerraformEnum {
   awsOwnedKey('AWS_OWNED_KEY'),
   customerManagedKey('CUSTOMER_MANAGED_KEY');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -256,8 +235,8 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionC
 /// Typed helper for the `application_configuration.application_snapshot_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationSnapshotConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationSnapshotConfiguration({
+final class Kinesisanalyticsv2ApplicationSnapshotConfiguration {
+  const Kinesisanalyticsv2ApplicationSnapshotConfiguration({
     required this.snapshotsEnabled,
   });
 
@@ -271,15 +250,12 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationSnap
 /// Typed helper for the `application_configuration.environment_properties` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentProperties {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentProperties({
+final class Kinesisanalyticsv2ApplicationEnvironmentProperties {
+  const Kinesisanalyticsv2ApplicationEnvironmentProperties({
     required this.propertyGroup,
   });
 
-  final List<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentPropertiesPropertyGroup
-  >
-  propertyGroup;
+  final List<Kinesisanalyticsv2ApplicationPropertyGroup> propertyGroup;
 
   Map<String, Object?> encode() => {
     'property_group': [for (final e in propertyGroup) e.encode()],
@@ -289,8 +265,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentProp
 /// Typed helper for the `application_configuration.environment_properties.property_group` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentPropertiesPropertyGroup {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentPropertiesPropertyGroup({
+final class Kinesisanalyticsv2ApplicationPropertyGroup {
+  const Kinesisanalyticsv2ApplicationPropertyGroup({
     required this.propertyGroupId,
     required this.propertyMap,
   });
@@ -308,20 +284,20 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationEnvironmentProp
 /// Typed helper for the `application_configuration.flink_application_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfiguration({
+final class Kinesisanalyticsv2ApplicationFlinkApplicationConfiguration {
+  const Kinesisanalyticsv2ApplicationFlinkApplicationConfiguration({
     this.checkpointConfiguration,
     this.monitoringConfiguration,
     this.parallelismConfiguration,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfiguration?
+  final Kinesisanalyticsv2ApplicationCheckpointConfiguration?
   checkpointConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfiguration?
+  final Kinesisanalyticsv2ApplicationMonitoringConfiguration?
   monitoringConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfiguration?
+  final Kinesisanalyticsv2ApplicationParallelismConfiguration?
   parallelismConfiguration;
 
   Map<String, Object?> encode() => {
@@ -334,8 +310,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 /// Typed helper for the `application_configuration.flink_application_configuration.checkpoint_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfiguration({
+final class Kinesisanalyticsv2ApplicationCheckpointConfiguration {
+  const Kinesisanalyticsv2ApplicationCheckpointConfiguration({
     this.checkpointInterval,
     this.checkpointingEnabled,
     required this.configurationType,
@@ -346,10 +322,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 
   final TfArg<bool>? checkpointingEnabled;
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType
-  >
-  configurationType;
+  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
 
   final TfArg<num>? minPauseBetweenCheckpoints;
 
@@ -362,14 +335,11 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 }
 
 /// `configuration_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationConfigurationType implements TerraformEnum {
   defaultCase('DEFAULT'),
   custom('CUSTOM');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -377,27 +347,18 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfig
 /// Typed helper for the `application_configuration.flink_application_configuration.monitoring_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfiguration({
+final class Kinesisanalyticsv2ApplicationMonitoringConfiguration {
+  const Kinesisanalyticsv2ApplicationMonitoringConfiguration({
     required this.configurationType,
     this.logLevel,
     this.metricsLevel,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType
-  >
-  configurationType;
+  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel
-  >?
-  logLevel;
+  final TfArg<Kinesisanalyticsv2ApplicationLogLevel>? logLevel;
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel
-  >?
-  metricsLevel;
+  final TfArg<Kinesisanalyticsv2ApplicationMetricsLevel>? metricsLevel;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
@@ -406,45 +367,26 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   };
 }
 
-/// `configuration_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType
-    implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  custom('CUSTOM');
-
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `log_level` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationLogLevel implements TerraformEnum {
   info('INFO'),
   warn('WARN'),
   error('ERROR'),
   debug('DEBUG');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `metrics_level` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationMetricsLevel implements TerraformEnum {
   application('APPLICATION'),
   task('TASK'),
   operator('OPERATOR'),
   parallelism('PARALLELISM');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationMetricsLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -452,8 +394,8 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfig
 /// Typed helper for the `application_configuration.flink_application_configuration.parallelism_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfiguration({
+final class Kinesisanalyticsv2ApplicationParallelismConfiguration {
+  const Kinesisanalyticsv2ApplicationParallelismConfiguration({
     this.autoScalingEnabled,
     required this.configurationType,
     this.parallelism,
@@ -462,10 +404,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 
   final TfArg<bool>? autoScalingEnabled;
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType
-  >
-  configurationType;
+  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
 
   final TfArg<num>? parallelism;
 
@@ -479,32 +418,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   };
 }
 
-/// `configuration_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType
-    implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  custom('CUSTOM');
-
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `application_configuration.run_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguration({
+final class Kinesisanalyticsv2ApplicationRunConfiguration {
+  const Kinesisanalyticsv2ApplicationRunConfiguration({
     this.applicationRestoreConfiguration,
     this.flinkRunConfiguration,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfiguration?
+  final Kinesisanalyticsv2ApplicationRestoreConfiguration?
   applicationRestoreConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationFlinkRunConfiguration?
+  final Kinesisanalyticsv2ApplicationFlinkRunConfiguration?
   flinkRunConfiguration;
 
   Map<String, Object?> encode() => {
@@ -517,16 +443,13 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
 /// Typed helper for the `application_configuration.run_configuration.application_restore_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfiguration({
+final class Kinesisanalyticsv2ApplicationRestoreConfiguration {
+  const Kinesisanalyticsv2ApplicationRestoreConfiguration({
     this.applicationRestoreType,
     this.snapshotName,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType
-  >?
-  applicationRestoreType;
+  final TfArg<Kinesisanalyticsv2ApplicationRestoreType>? applicationRestoreType;
 
   final TfArg<String>? snapshotName;
 
@@ -537,15 +460,12 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
 }
 
 /// `application_restore_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationRestoreType implements TerraformEnum {
   skipRestoreFromSnapshot('SKIP_RESTORE_FROM_SNAPSHOT'),
   restoreFromLatestSnapshot('RESTORE_FROM_LATEST_SNAPSHOT'),
   restoreFromCustomSnapshot('RESTORE_FROM_CUSTOM_SNAPSHOT');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationRestoreType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -553,8 +473,8 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplic
 /// Typed helper for the `application_configuration.run_configuration.flink_run_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationFlinkRunConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationFlinkRunConfiguration({
+final class Kinesisanalyticsv2ApplicationFlinkRunConfiguration {
+  const Kinesisanalyticsv2ApplicationFlinkRunConfiguration({
     this.allowNonRestoredState,
   });
 
@@ -568,23 +488,18 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
 /// Typed helper for the `application_configuration.sql_application_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfiguration({
+final class Kinesisanalyticsv2ApplicationSqlApplicationConfiguration {
+  const Kinesisanalyticsv2ApplicationSqlApplicationConfiguration({
     this.input,
     this.output,
     this.referenceDataSource,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInput?
-  input;
+  final Kinesisanalyticsv2ApplicationInput? input;
 
-  final List<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutput
-  >?
-  output;
+  final List<Kinesisanalyticsv2ApplicationOutput>? output;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSource?
-  referenceDataSource;
+  final Kinesisanalyticsv2ApplicationReferenceDataSource? referenceDataSource;
 
   Map<String, Object?> encode() => {
     'input': ?input?.encode(),
@@ -596,8 +511,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInput({
+final class Kinesisanalyticsv2ApplicationInput {
+  const Kinesisanalyticsv2ApplicationInput({
     required this.namePrefix,
     this.inputParallelism,
     this.inputProcessingConfiguration,
@@ -608,22 +523,17 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<String> namePrefix;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputParallelism?
-  inputParallelism;
+  final Kinesisanalyticsv2ApplicationInputParallelism? inputParallelism;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfiguration?
+  final Kinesisanalyticsv2ApplicationInputProcessingConfiguration?
   inputProcessingConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchema
-  inputSchema;
+  final Kinesisanalyticsv2ApplicationInputSchema inputSchema;
 
-  final List<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfiguration
-  >?
+  final List<Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration>?
   inputStartingPositionConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis
-  kinesis;
+  final Kinesisanalyticsv2ApplicationKinesis kinesis;
 
   Map<String, Object?> encode() => {
     'name_prefix': namePrefix.toTfJson(),
@@ -642,20 +552,18 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.kinesisFirehoseInput(...)`.
-sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis();
+sealed class Kinesisanalyticsv2ApplicationKinesis {
+  const Kinesisanalyticsv2ApplicationKinesis();
 
   /// Sets `kinesis_firehose_input`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis.kinesisFirehoseInput(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput
-    kinesisFirehoseInput,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputChoice;
+  const factory Kinesisanalyticsv2ApplicationKinesis.kinesisFirehoseInput(
+    Kinesisanalyticsv2ApplicationKinesisFirehoseInput kinesisFirehoseInput,
+  ) = Kinesisanalyticsv2ApplicationKinesisFirehoseInputChoice;
 
   /// Sets `kinesis_streams_input`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis.kinesisStreamsInput(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput
-    kinesisStreamsInput,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInputChoice;
+  const factory Kinesisanalyticsv2ApplicationKinesis.kinesisStreamsInput(
+    Kinesisanalyticsv2ApplicationKinesisStreamsInput kinesisStreamsInput,
+  ) = Kinesisanalyticsv2ApplicationKinesisStreamsInputChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -663,16 +571,14 @@ sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplication
   Map<String, Object?> encode();
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis.kinesisFirehoseInput] choice: sets `kinesis_firehose_input`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputChoice(
+/// The [Kinesisanalyticsv2ApplicationKinesis.kinesisFirehoseInput] choice: sets `kinesis_firehose_input`.
+final class Kinesisanalyticsv2ApplicationKinesisFirehoseInputChoice
+    extends Kinesisanalyticsv2ApplicationKinesis {
+  const Kinesisanalyticsv2ApplicationKinesisFirehoseInputChoice(
     this.kinesisFirehoseInput,
   );
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput
-  kinesisFirehoseInput;
+  final Kinesisanalyticsv2ApplicationKinesisFirehoseInput kinesisFirehoseInput;
 
   @override
   String get blockKey => 'kinesis_firehose_input';
@@ -683,16 +589,14 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   };
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis.kinesisStreamsInput] choice: sets `kinesis_streams_input`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInputChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInputChoice(
+/// The [Kinesisanalyticsv2ApplicationKinesis.kinesisStreamsInput] choice: sets `kinesis_streams_input`.
+final class Kinesisanalyticsv2ApplicationKinesisStreamsInputChoice
+    extends Kinesisanalyticsv2ApplicationKinesis {
+  const Kinesisanalyticsv2ApplicationKinesisStreamsInputChoice(
     this.kinesisStreamsInput,
   );
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput
-  kinesisStreamsInput;
+  final Kinesisanalyticsv2ApplicationKinesisStreamsInput kinesisStreamsInput;
 
   @override
   String get blockKey => 'kinesis_streams_input';
@@ -706,10 +610,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_parallelism` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputParallelism {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputParallelism({
-    this.count,
-  });
+final class Kinesisanalyticsv2ApplicationInputParallelism {
+  const Kinesisanalyticsv2ApplicationInputParallelism({this.count});
 
   final TfArg<num>? count;
 
@@ -719,13 +621,12 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_processing_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfiguration({
+final class Kinesisanalyticsv2ApplicationInputProcessingConfiguration {
+  const Kinesisanalyticsv2ApplicationInputProcessingConfiguration({
     required this.inputLambdaProcessor,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfigurationInputLambdaProcessor
-  inputLambdaProcessor;
+  final Kinesisanalyticsv2ApplicationInputLambdaProcessor inputLambdaProcessor;
 
   Map<String, Object?> encode() => {
     'input_lambda_processor': inputLambdaProcessor.encode(),
@@ -735,8 +636,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_processing_configuration.input_lambda_processor` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfigurationInputLambdaProcessor {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputProcessingConfigurationInputLambdaProcessor({
+final class Kinesisanalyticsv2ApplicationInputLambdaProcessor {
+  const Kinesisanalyticsv2ApplicationInputLambdaProcessor({
     required this.resourceArn,
   });
 
@@ -748,8 +649,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchema {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchema({
+final class Kinesisanalyticsv2ApplicationInputSchema {
+  const Kinesisanalyticsv2ApplicationInputSchema({
     this.recordEncoding,
     required this.recordColumn,
     required this.recordFormat,
@@ -757,13 +658,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<String>? recordEncoding;
 
-  final List<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordColumn
-  >
-  recordColumn;
+  final List<Kinesisanalyticsv2ApplicationRecordColumn> recordColumn;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormat
-  recordFormat;
+  final Kinesisanalyticsv2ApplicationRecordFormat recordFormat;
 
   Map<String, Object?> encode() => {
     'record_encoding': ?recordEncoding?.toTfJson(),
@@ -774,9 +671,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema.record_column` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordColumn {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordColumn({
+final class Kinesisanalyticsv2ApplicationRecordColumn {
+  const Kinesisanalyticsv2ApplicationRecordColumn({
     this.mapping,
     required this.name,
     required this.sqlType,
@@ -797,20 +695,17 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema.record_format` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormat {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormat({
+final class Kinesisanalyticsv2ApplicationRecordFormat {
+  const Kinesisanalyticsv2ApplicationRecordFormat({
     required this.recordFormatType,
     required this.mappingParameters,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType
-  >
-  recordFormatType;
+  final TfArg<Kinesisanalyticsv2ApplicationRecordFormatType> recordFormatType;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters
-  mappingParameters;
+  final Kinesisanalyticsv2ApplicationMappingParameters mappingParameters;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
@@ -819,14 +714,11 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 }
 
 /// `record_format_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType
-    implements TerraformEnum {
+enum Kinesisanalyticsv2ApplicationRecordFormatType implements TerraformEnum {
   json('JSON'),
   csv('CSV');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationRecordFormatType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -835,20 +727,18 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigur
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.csvMappingParameters(...)`.
-sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters();
+sealed class Kinesisanalyticsv2ApplicationMappingParameters {
+  const Kinesisanalyticsv2ApplicationMappingParameters();
 
   /// Sets `csv_mapping_parameters`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters.csvMappingParameters(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters
-    csvMappingParameters,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersChoice;
+  const factory Kinesisanalyticsv2ApplicationMappingParameters.csvMappingParameters(
+    Kinesisanalyticsv2ApplicationCsvMappingParameters csvMappingParameters,
+  ) = Kinesisanalyticsv2ApplicationCsvMappingParametersChoice;
 
   /// Sets `json_mapping_parameters`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters.jsonMappingParameters(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters
-    jsonMappingParameters,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParametersChoice;
+  const factory Kinesisanalyticsv2ApplicationMappingParameters.jsonMappingParameters(
+    Kinesisanalyticsv2ApplicationJsonMappingParameters jsonMappingParameters,
+  ) = Kinesisanalyticsv2ApplicationJsonMappingParametersChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -856,16 +746,14 @@ sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplication
   Map<String, Object?> encode();
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters.csvMappingParameters] choice: sets `csv_mapping_parameters`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersChoice(
+/// The [Kinesisanalyticsv2ApplicationMappingParameters.csvMappingParameters] choice: sets `csv_mapping_parameters`.
+final class Kinesisanalyticsv2ApplicationCsvMappingParametersChoice
+    extends Kinesisanalyticsv2ApplicationMappingParameters {
+  const Kinesisanalyticsv2ApplicationCsvMappingParametersChoice(
     this.csvMappingParameters,
   );
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters
-  csvMappingParameters;
+  final Kinesisanalyticsv2ApplicationCsvMappingParameters csvMappingParameters;
 
   @override
   String get blockKey => 'csv_mapping_parameters';
@@ -876,15 +764,14 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   };
 }
 
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters.jsonMappingParameters] choice: sets `json_mapping_parameters`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParametersChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParametersChoice(
+/// The [Kinesisanalyticsv2ApplicationMappingParameters.jsonMappingParameters] choice: sets `json_mapping_parameters`.
+final class Kinesisanalyticsv2ApplicationJsonMappingParametersChoice
+    extends Kinesisanalyticsv2ApplicationMappingParameters {
+  const Kinesisanalyticsv2ApplicationJsonMappingParametersChoice(
     this.jsonMappingParameters,
   );
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters
+  final Kinesisanalyticsv2ApplicationJsonMappingParameters
   jsonMappingParameters;
 
   @override
@@ -898,9 +785,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters.csv_mapping_parameters` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters({
+final class Kinesisanalyticsv2ApplicationCsvMappingParameters {
+  const Kinesisanalyticsv2ApplicationCsvMappingParameters({
     required this.recordColumnDelimiter,
     required this.recordRowDelimiter,
   });
@@ -917,9 +805,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters.json_mapping_parameters` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters({
+final class Kinesisanalyticsv2ApplicationJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationJsonMappingParameters({
     required this.recordRowPath,
   });
 
@@ -933,14 +822,12 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_starting_position_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfiguration({
+final class Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration {
+  const Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration({
     this.inputStartingPosition,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition
-  >?
+  final TfArg<Kinesisanalyticsv2ApplicationInputStartingPosition>?
   inputStartingPosition;
 
   Map<String, Object?> encode() => {
@@ -949,15 +836,13 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 }
 
 /// `input_starting_position` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition
+enum Kinesisanalyticsv2ApplicationInputStartingPosition
     implements TerraformEnum {
   now('NOW'),
   trimHorizon('TRIM_HORIZON'),
   lastStoppedPoint('LAST_STOPPED_POINT');
 
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition(
-    this.terraformValue,
-  );
+  const Kinesisanalyticsv2ApplicationInputStartingPosition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -965,8 +850,8 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigur
 /// Typed helper for the `application_configuration.sql_application_configuration.input.kinesis_firehose_input` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput({
+final class Kinesisanalyticsv2ApplicationKinesisFirehoseInput {
+  const Kinesisanalyticsv2ApplicationKinesisFirehoseInput({
     required this.resourceArn,
   });
 
@@ -978,8 +863,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.input.kinesis_streams_input` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput({
+final class Kinesisanalyticsv2ApplicationKinesisStreamsInput {
+  const Kinesisanalyticsv2ApplicationKinesisStreamsInput({
     required this.resourceArn,
   });
 
@@ -991,8 +876,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.output` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutput({
+final class Kinesisanalyticsv2ApplicationOutput {
+  const Kinesisanalyticsv2ApplicationOutput({
     required this.name,
     required this.destinationSchema,
     this.kinesisFirehoseOutput,
@@ -1002,17 +887,14 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<String> name;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchema
-  destinationSchema;
+  final Kinesisanalyticsv2ApplicationDestinationSchema destinationSchema;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisFirehoseOutput?
+  final Kinesisanalyticsv2ApplicationKinesisFirehoseOutput?
   kinesisFirehoseOutput;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisStreamsOutput?
-  kinesisStreamsOutput;
+  final Kinesisanalyticsv2ApplicationKinesisStreamsOutput? kinesisStreamsOutput;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputLambdaOutput?
-  lambdaOutput;
+  final Kinesisanalyticsv2ApplicationLambdaOutput? lambdaOutput;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1026,39 +908,23 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.output.destination_schema` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchema {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchema({
+final class Kinesisanalyticsv2ApplicationDestinationSchema {
+  const Kinesisanalyticsv2ApplicationDestinationSchema({
     required this.recordFormatType,
   });
 
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType
-  >
-  recordFormatType;
+  final TfArg<Kinesisanalyticsv2ApplicationRecordFormatType> recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
   };
 }
 
-/// `record_format_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType
-    implements TerraformEnum {
-  json('JSON'),
-  csv('CSV');
-
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `application_configuration.sql_application_configuration.output.kinesis_firehose_output` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisFirehoseOutput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisFirehoseOutput({
+final class Kinesisanalyticsv2ApplicationKinesisFirehoseOutput {
+  const Kinesisanalyticsv2ApplicationKinesisFirehoseOutput({
     required this.resourceArn,
   });
 
@@ -1070,8 +936,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.output.kinesis_streams_output` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisStreamsOutput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputKinesisStreamsOutput({
+final class Kinesisanalyticsv2ApplicationKinesisStreamsOutput {
+  const Kinesisanalyticsv2ApplicationKinesisStreamsOutput({
     required this.resourceArn,
   });
 
@@ -1083,10 +949,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.output.lambda_output` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputLambdaOutput {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputLambdaOutput({
-    required this.resourceArn,
-  });
+final class Kinesisanalyticsv2ApplicationLambdaOutput {
+  const Kinesisanalyticsv2ApplicationLambdaOutput({required this.resourceArn});
 
   final TfArg<String> resourceArn;
 
@@ -1096,8 +960,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSource {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSource({
+final class Kinesisanalyticsv2ApplicationReferenceDataSource {
+  const Kinesisanalyticsv2ApplicationReferenceDataSource({
     required this.tableName,
     required this.referenceSchema,
     required this.s3ReferenceDataSource,
@@ -1105,10 +969,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<String> tableName;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchema
-  referenceSchema;
+  final Kinesisanalyticsv2ApplicationReferenceSchema referenceSchema;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceS3ReferenceDataSource
+  final Kinesisanalyticsv2ApplicationS3ReferenceDataSource
   s3ReferenceDataSource;
 
   Map<String, Object?> encode() => {
@@ -1121,8 +984,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchema {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchema({
+final class Kinesisanalyticsv2ApplicationReferenceSchema {
+  const Kinesisanalyticsv2ApplicationReferenceSchema({
     this.recordEncoding,
     required this.recordColumn,
     required this.recordFormat,
@@ -1130,13 +993,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<String>? recordEncoding;
 
-  final List<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordColumn
-  >
-  recordColumn;
+  final List<Kinesisanalyticsv2ApplicationRecordColumn> recordColumn;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormat
-  recordFormat;
+  final Kinesisanalyticsv2ApplicationRecordFormat recordFormat;
 
   Map<String, Object?> encode() => {
     'record_encoding': ?recordEncoding?.toTfJson(),
@@ -1145,169 +1004,11 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   };
 }
 
-/// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_column` block of
-/// `aws_kinesisanalyticsv2_application` (derived from provider schema).
-@immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordColumn {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordColumn({
-    this.mapping,
-    required this.name,
-    required this.sqlType,
-  });
-
-  final TfArg<String>? mapping;
-
-  final TfArg<String> name;
-
-  final TfArg<String> sqlType;
-
-  Map<String, Object?> encode() => {
-    'mapping': ?mapping?.toTfJson(),
-    'name': name.toTfJson(),
-    'sql_type': sqlType.toTfJson(),
-  };
-}
-
-/// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format` block of
-/// `aws_kinesisanalyticsv2_application` (derived from provider schema).
-@immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormat {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormat({
-    required this.recordFormatType,
-    required this.mappingParameters,
-  });
-
-  final TfArg<
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType
-  >
-  recordFormatType;
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters
-  mappingParameters;
-
-  Map<String, Object?> encode() => {
-    'record_format_type': recordFormatType.toTfJson(),
-    'mapping_parameters': mappingParameters.encode(),
-  };
-}
-
-/// `record_format_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType
-    implements TerraformEnum {
-  json('JSON'),
-  csv('CSV');
-
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Exactly one of `csv_mapping_parameters`, `json_mapping_parameters` on the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters` block of `aws_kinesisanalyticsv2_application`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.csvMappingParameters(...)`.
-sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters();
-
-  /// Sets `csv_mapping_parameters`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters.csvMappingParameters(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters
-    csvMappingParameters,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersChoice;
-
-  /// Sets `json_mapping_parameters`.
-  const factory Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters.jsonMappingParameters(
-    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters
-    jsonMappingParameters,
-  ) = Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParametersChoice;
-
-  /// The Terraform argument this choice sets.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters.csvMappingParameters] choice: sets `csv_mapping_parameters`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersChoice(
-    this.csvMappingParameters,
-  );
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters
-  csvMappingParameters;
-
-  @override
-  String get blockKey => 'csv_mapping_parameters';
-
-  @override
-  Map<String, Object?> encode() => {
-    'csv_mapping_parameters': csvMappingParameters.encode(),
-  };
-}
-
-/// The [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters.jsonMappingParameters] choice: sets `json_mapping_parameters`.
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParametersChoice
-    extends
-        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParametersChoice(
-    this.jsonMappingParameters,
-  );
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters
-  jsonMappingParameters;
-
-  @override
-  String get blockKey => 'json_mapping_parameters';
-
-  @override
-  Map<String, Object?> encode() => {
-    'json_mapping_parameters': jsonMappingParameters.encode(),
-  };
-}
-
-/// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters.csv_mapping_parameters` block of
-/// `aws_kinesisanalyticsv2_application` (derived from provider schema).
-@immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters({
-    required this.recordColumnDelimiter,
-    required this.recordRowDelimiter,
-  });
-
-  final TfArg<String> recordColumnDelimiter;
-
-  final TfArg<String> recordRowDelimiter;
-
-  Map<String, Object?> encode() => {
-    'record_column_delimiter': recordColumnDelimiter.toTfJson(),
-    'record_row_delimiter': recordRowDelimiter.toTfJson(),
-  };
-}
-
-/// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters.json_mapping_parameters` block of
-/// `aws_kinesisanalyticsv2_application` (derived from provider schema).
-@immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters({
-    required this.recordRowPath,
-  });
-
-  final TfArg<String> recordRowPath;
-
-  Map<String, Object?> encode() => {
-    'record_row_path': recordRowPath.toTfJson(),
-  };
-}
-
 /// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.s3_reference_data_source` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceS3ReferenceDataSource {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceS3ReferenceDataSource({
+final class Kinesisanalyticsv2ApplicationS3ReferenceDataSource {
+  const Kinesisanalyticsv2ApplicationS3ReferenceDataSource({
     required this.bucketArn,
     required this.fileKey,
   });
@@ -1325,8 +1026,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 /// Typed helper for the `application_configuration.vpc_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
-final class Kinesisanalyticsv2ApplicationApplicationConfigurationVpcConfiguration {
-  const Kinesisanalyticsv2ApplicationApplicationConfigurationVpcConfiguration({
+final class Kinesisanalyticsv2ApplicationVpcConfiguration {
+  const Kinesisanalyticsv2ApplicationVpcConfiguration({
     required this.securityGroupIds,
     required this.subnetIds,
   });
@@ -1370,8 +1071,7 @@ final class AwsKinesisanalyticsv2Application extends Resource {
     required TfArg<String> serviceExecutionRole,
     TfArg<bool>? startApplication,
     TfArg<Map<String, String>>? tags,
-    Kinesisanalyticsv2ApplicationApplicationConfiguration?
-    applicationConfiguration,
+    Kinesisanalyticsv2ApplicationConfiguration? applicationConfiguration,
     Kinesisanalyticsv2ApplicationCloudwatchLoggingOptions?
     cloudwatchLoggingOptions,
     super.lifecycle,

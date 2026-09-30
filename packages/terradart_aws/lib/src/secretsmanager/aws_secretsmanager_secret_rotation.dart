@@ -29,13 +29,13 @@ final class SecretsmanagerSecretRotationExternalSecretRotationMetadata {
 /// Typed helper for the `rotation_rules` block of
 /// `aws_secretsmanager_secret_rotation` (derived from provider schema).
 @immutable
-final class SecretsmanagerSecretRotationRotationRules {
-  const SecretsmanagerSecretRotationRotationRules({
+final class SecretsmanagerSecretRotationRules {
+  const SecretsmanagerSecretRotationRules({
     required this.schedule,
     this.duration,
   });
 
-  final SecretsmanagerSecretRotationRotationRulesSchedule schedule;
+  final SecretsmanagerSecretRotationSchedule schedule;
 
   final TfArg<String>? duration;
 
@@ -49,18 +49,18 @@ final class SecretsmanagerSecretRotationRotationRules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.automaticallyAfterDays(...)`.
-sealed class SecretsmanagerSecretRotationRotationRulesSchedule {
-  const SecretsmanagerSecretRotationRotationRulesSchedule();
+sealed class SecretsmanagerSecretRotationSchedule {
+  const SecretsmanagerSecretRotationSchedule();
 
   /// Sets `automatically_after_days`.
-  const factory SecretsmanagerSecretRotationRotationRulesSchedule.automaticallyAfterDays(
+  const factory SecretsmanagerSecretRotationSchedule.automaticallyAfterDays(
     TfArg<num> automaticallyAfterDays,
-  ) = SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays;
+  ) = SecretsmanagerSecretRotationScheduleAutomaticallyAfterDays;
 
   /// Sets `schedule_expression`.
-  const factory SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression(
+  const factory SecretsmanagerSecretRotationSchedule.scheduleExpression(
     TfArg<String> scheduleExpression,
-  ) = SecretsmanagerSecretRotationRotationRulesScheduleExpression;
+  ) = SecretsmanagerSecretRotationScheduleExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -68,10 +68,10 @@ sealed class SecretsmanagerSecretRotationRotationRulesSchedule {
   Map<String, Object?> encode();
 }
 
-/// The [SecretsmanagerSecretRotationRotationRulesSchedule.automaticallyAfterDays] choice: sets `automatically_after_days`.
-final class SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays
-    extends SecretsmanagerSecretRotationRotationRulesSchedule {
-  const SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays(
+/// The [SecretsmanagerSecretRotationSchedule.automaticallyAfterDays] choice: sets `automatically_after_days`.
+final class SecretsmanagerSecretRotationScheduleAutomaticallyAfterDays
+    extends SecretsmanagerSecretRotationSchedule {
+  const SecretsmanagerSecretRotationScheduleAutomaticallyAfterDays(
     this.automaticallyAfterDays,
   );
 
@@ -86,12 +86,10 @@ final class SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterD
   };
 }
 
-/// The [SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression] choice: sets `schedule_expression`.
-final class SecretsmanagerSecretRotationRotationRulesScheduleExpression
-    extends SecretsmanagerSecretRotationRotationRulesSchedule {
-  const SecretsmanagerSecretRotationRotationRulesScheduleExpression(
-    this.scheduleExpression,
-  );
+/// The [SecretsmanagerSecretRotationSchedule.scheduleExpression] choice: sets `schedule_expression`.
+final class SecretsmanagerSecretRotationScheduleExpression
+    extends SecretsmanagerSecretRotationSchedule {
+  const SecretsmanagerSecretRotationScheduleExpression(this.scheduleExpression);
 
   final TfArg<String> scheduleExpression;
 
@@ -118,7 +116,7 @@ final class AwsSecretsmanagerSecretRotation extends Resource {
     required TfArg<String> secretId,
     List<SecretsmanagerSecretRotationExternalSecretRotationMetadata>?
     externalSecretRotationMetadata,
-    SecretsmanagerSecretRotationRotationRules? rotationRules,
+    SecretsmanagerSecretRotationRules? rotationRules,
     super.lifecycle,
     super.dependsOn,
     super.provider,

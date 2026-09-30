@@ -19,14 +19,10 @@ final class S3BucketMetadataConfigurationMetadataConfiguration {
     this.journalTableConfiguration,
   });
 
-  final List<
-    S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfiguration
-  >?
+  final List<S3BucketMetadataConfigurationInventoryTableConfiguration>?
   inventoryTableConfiguration;
 
-  final List<
-    S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfiguration
-  >?
+  final List<S3BucketMetadataConfigurationJournalTableConfiguration>?
   journalTableConfiguration;
 
   Map<String, Object?> encode() => {
@@ -44,20 +40,15 @@ final class S3BucketMetadataConfigurationMetadataConfiguration {
 /// Typed helper for the `metadata_configuration.inventory_table_configuration` block of
 /// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
 @immutable
-final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfiguration {
-  const S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfiguration({
+final class S3BucketMetadataConfigurationInventoryTableConfiguration {
+  const S3BucketMetadataConfigurationInventoryTableConfiguration({
     required this.configurationState,
     this.encryptionConfiguration,
   });
 
-  final TfArg<
-    S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationConfigurationState
-  >
-  configurationState;
+  final TfArg<S3BucketMetadataConfigurationState> configurationState;
 
-  final List<
-    S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfiguration
-  >?
+  final List<S3BucketMetadataConfigurationEncryptionConfiguration>?
   encryptionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -70,33 +61,28 @@ final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConf
 }
 
 /// `configuration_state` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationConfigurationState
-    implements TerraformEnum {
+enum S3BucketMetadataConfigurationState implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationConfigurationState(
-    this.terraformValue,
-  );
+  const S3BucketMetadataConfigurationState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `metadata_configuration.inventory_table_configuration.encryption_configuration` block of
 /// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfiguration {
-  const S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfiguration({
+final class S3BucketMetadataConfigurationEncryptionConfiguration {
+  const S3BucketMetadataConfigurationEncryptionConfiguration({
     this.kmsKeyArn,
     required this.sseAlgorithm,
   });
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<
-    S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfigurationSseAlgorithm
-  >
-  sseAlgorithm;
+  final TfArg<S3BucketMetadataConfigurationSseAlgorithm> sseAlgorithm;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -105,14 +91,11 @@ final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConf
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfigurationSseAlgorithm
-    implements TerraformEnum {
+enum S3BucketMetadataConfigurationSseAlgorithm implements TerraformEnum {
   awsKms('aws:kms'),
   aes256('AES256');
 
-  const S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfigurationSseAlgorithm(
-    this.terraformValue,
-  );
+  const S3BucketMetadataConfigurationSseAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -120,21 +103,16 @@ enum S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurati
 /// Typed helper for the `metadata_configuration.journal_table_configuration` block of
 /// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
 @immutable
-final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfiguration {
-  const S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfiguration({
+final class S3BucketMetadataConfigurationJournalTableConfiguration {
+  const S3BucketMetadataConfigurationJournalTableConfiguration({
     this.encryptionConfiguration,
     this.recordExpiration,
   });
 
-  final List<
-    S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfiguration
-  >?
+  final List<S3BucketMetadataConfigurationEncryptionConfiguration>?
   encryptionConfiguration;
 
-  final List<
-    S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpiration
-  >?
-  recordExpiration;
+  final List<S3BucketMetadataConfigurationRecordExpiration>? recordExpiration;
 
   Map<String, Object?> encode() => {
     if (encryptionConfiguration != null)
@@ -146,56 +124,18 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
   };
 }
 
-/// Typed helper for the `metadata_configuration.journal_table_configuration.encryption_configuration` block of
-/// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
-@immutable
-final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfiguration {
-  const S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfiguration({
-    this.kmsKeyArn,
-    required this.sseAlgorithm,
-  });
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<
-    S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfigurationSseAlgorithm
-  >
-  sseAlgorithm;
-
-  Map<String, Object?> encode() => {
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'sse_algorithm': sseAlgorithm.toTfJson(),
-  };
-}
-
-/// `sse_algorithm` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfigurationSseAlgorithm
-    implements TerraformEnum {
-  awsKms('aws:kms'),
-  aes256('AES256');
-
-  const S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfigurationSseAlgorithm(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `metadata_configuration.journal_table_configuration.record_expiration` block of
 /// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
 @immutable
-final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpiration {
-  const S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpiration({
+final class S3BucketMetadataConfigurationRecordExpiration {
+  const S3BucketMetadataConfigurationRecordExpiration({
     this.days,
     required this.expiration,
   });
 
   final TfArg<num>? days;
 
-  final TfArg<
-    S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpirationExpiration
-  >
-  expiration;
+  final TfArg<S3BucketMetadataConfigurationExpiration> expiration;
 
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
@@ -204,14 +144,11 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
 }
 
 /// `expiration` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpirationExpiration
-    implements TerraformEnum {
+enum S3BucketMetadataConfigurationExpiration implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpirationExpiration(
-    this.terraformValue,
-  );
+  const S3BucketMetadataConfigurationExpiration(this.terraformValue);
   @override
   final String terraformValue;
 }

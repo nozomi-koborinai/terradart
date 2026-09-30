@@ -113,7 +113,7 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<NetworkfirewallFirewallEncryptionConfigurationType> type;
+  final TfArg<NetworkfirewallFirewallType> type;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -122,12 +122,11 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkfirewallFirewallEncryptionConfigurationType
-    implements TerraformEnum {
+enum NetworkfirewallFirewallType implements TerraformEnum {
   customerKms('CUSTOMER_KMS'),
   awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
 
-  const NetworkfirewallFirewallEncryptionConfigurationType(this.terraformValue);
+  const NetworkfirewallFirewallType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -141,7 +140,7 @@ final class NetworkfirewallFirewallSubnetMapping {
     required this.subnetId,
   });
 
-  final TfArg<NetworkfirewallFirewallSubnetMappingIpAddressType>? ipAddressType;
+  final TfArg<NetworkfirewallFirewallIpAddressType>? ipAddressType;
 
   final RefTo<AwsSubnet> subnetId;
 
@@ -152,13 +151,12 @@ final class NetworkfirewallFirewallSubnetMapping {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum NetworkfirewallFirewallSubnetMappingIpAddressType
-    implements TerraformEnum {
+enum NetworkfirewallFirewallIpAddressType implements TerraformEnum {
   dualstack('DUALSTACK'),
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const NetworkfirewallFirewallSubnetMappingIpAddressType(this.terraformValue);
+  const NetworkfirewallFirewallIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -211,10 +211,9 @@ final class NetworkConnectivitySpokeGateway {
     required this.ipRangeReservations,
   });
 
-  final TfArg<NetworkConnectivitySpokeGatewayCapacity> capacity;
+  final TfArg<NetworkConnectivitySpokeCapacity> capacity;
 
-  final List<NetworkConnectivitySpokeGatewayIpRangeReservations>
-  ipRangeReservations;
+  final List<NetworkConnectivitySpokeIpRangeReservations> ipRangeReservations;
 
   Map<String, Object?> encode() => {
     'capacity': capacity.toTfJson(),
@@ -223,12 +222,12 @@ final class NetworkConnectivitySpokeGateway {
 }
 
 /// `capacity` — derived from the provider schema description.
-enum NetworkConnectivitySpokeGatewayCapacity implements TerraformEnum {
+enum NetworkConnectivitySpokeCapacity implements TerraformEnum {
   capacity1Gbps('CAPACITY_1_GBPS'),
   capacity10Gbps('CAPACITY_10_GBPS'),
   capacity100Gbps('CAPACITY_100_GBPS');
 
-  const NetworkConnectivitySpokeGatewayCapacity(this.terraformValue);
+  const NetworkConnectivitySpokeCapacity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -236,10 +235,8 @@ enum NetworkConnectivitySpokeGatewayCapacity implements TerraformEnum {
 /// Typed helper for the `gateway.ip_range_reservations` block of
 /// `google_network_connectivity_spoke` (derived from provider schema).
 @immutable
-final class NetworkConnectivitySpokeGatewayIpRangeReservations {
-  const NetworkConnectivitySpokeGatewayIpRangeReservations({
-    required this.ipRange,
-  });
+final class NetworkConnectivitySpokeIpRangeReservations {
+  const NetworkConnectivitySpokeIpRangeReservations({required this.ipRange});
 
   final TfArg<String> ipRange;
 
@@ -331,8 +328,7 @@ final class NetworkConnectivitySpokeLinkedRouterApplianceInstances {
 
   final TfArg<bool> siteToSiteDataTransfer;
 
-  final List<NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances>
-  instances;
+  final List<NetworkConnectivitySpokeInstances> instances;
 
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
@@ -347,8 +343,8 @@ final class NetworkConnectivitySpokeLinkedRouterApplianceInstances {
 /// Typed helper for the `linked_router_appliance_instances.instances` block of
 /// `google_network_connectivity_spoke` (derived from provider schema).
 @immutable
-final class NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances {
-  const NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances({
+final class NetworkConnectivitySpokeInstances {
+  const NetworkConnectivitySpokeInstances({
     required this.ipAddress,
     required this.virtualMachine,
   });

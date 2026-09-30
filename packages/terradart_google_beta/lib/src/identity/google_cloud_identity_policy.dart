@@ -10,8 +10,8 @@ const Set<String> _googleCloudIdentityPolicySensitive = <String>{};
 /// Typed helper for the `policy_query` block of
 /// `google_cloud_identity_policy` (derived from provider schema).
 @immutable
-final class CloudIdentityPolicyPolicyQuery {
-  const CloudIdentityPolicyPolicyQuery({
+final class CloudIdentityPolicyQuery {
+  const CloudIdentityPolicyQuery({
     this.group,
     required this.orgUnit,
     this.query,
@@ -60,7 +60,7 @@ final class GoogleCloudIdentityPolicy extends Resource {
     required super.localName,
     required TfArg<String> customer,
     TfArg<String>? deletionPolicy,
-    required CloudIdentityPolicyPolicyQuery policyQuery,
+    required CloudIdentityPolicyQuery policyQuery,
     required CloudIdentityPolicySetting setting,
     super.lifecycle,
     super.dependsOn,

@@ -15,9 +15,7 @@ final class DataBedrockagentAgentVersionsAgentVersionSummaries {
     this.guardrailConfiguration,
   });
 
-  final List<
-    DataBedrockagentAgentVersionsAgentVersionSummariesGuardrailConfiguration
-  >?
+  final List<DataBedrockagentAgentVersionsGuardrailConfiguration>?
   guardrailConfiguration;
 
   Map<String, Object?> encode() => {
@@ -31,8 +29,8 @@ final class DataBedrockagentAgentVersionsAgentVersionSummaries {
 /// Typed helper for the `agent_version_summaries.guardrail_configuration` block of
 /// `aws_bedrockagent_agent_versions` (derived from provider schema).
 @immutable
-final class DataBedrockagentAgentVersionsAgentVersionSummariesGuardrailConfiguration {
-  const DataBedrockagentAgentVersionsAgentVersionSummariesGuardrailConfiguration();
+final class DataBedrockagentAgentVersionsGuardrailConfiguration {
+  const DataBedrockagentAgentVersionsGuardrailConfiguration();
 
   Map<String, Object?> encode() => {};
 }

@@ -49,7 +49,7 @@ enum CloudRunV2JobExecutionEnvironment implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Egress policy for [CloudRunV2JobTemplateTemplateVpcAccess.egress] (`template.template.vpc_access.egress`).
+/// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
 enum CloudRunV2JobVpcAccessEgress implements TerraformEnum {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
@@ -104,12 +104,12 @@ sealed class CloudRunV2JobExecutionToken {
   /// Sets `start_execution_token`.
   const factory CloudRunV2JobExecutionToken.startExecutionToken(
     TfArg<String> startExecutionToken,
-  ) = CloudRunV2JobExecutionTokenStartExecutionToken;
+  ) = CloudRunV2JobStartExecutionToken;
 
   /// Sets `run_execution_token`.
   const factory CloudRunV2JobExecutionToken.runExecutionToken(
     TfArg<String> runExecutionToken,
-  ) = CloudRunV2JobExecutionTokenRunExecutionToken;
+  ) = CloudRunV2JobRunExecutionToken;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -122,11 +122,9 @@ sealed class CloudRunV2JobExecutionToken {
 }
 
 /// The [CloudRunV2JobExecutionToken.startExecutionToken] choice: sets `start_execution_token`.
-final class CloudRunV2JobExecutionTokenStartExecutionToken
+final class CloudRunV2JobStartExecutionToken
     extends CloudRunV2JobExecutionToken {
-  const CloudRunV2JobExecutionTokenStartExecutionToken(
-    this.startExecutionToken,
-  );
+  const CloudRunV2JobStartExecutionToken(this.startExecutionToken);
 
   final TfArg<String> startExecutionToken;
 
@@ -145,9 +143,8 @@ final class CloudRunV2JobExecutionTokenStartExecutionToken
 }
 
 /// The [CloudRunV2JobExecutionToken.runExecutionToken] choice: sets `run_execution_token`.
-final class CloudRunV2JobExecutionTokenRunExecutionToken
-    extends CloudRunV2JobExecutionToken {
-  const CloudRunV2JobExecutionTokenRunExecutionToken(this.runExecutionToken);
+final class CloudRunV2JobRunExecutionToken extends CloudRunV2JobExecutionToken {
+  const CloudRunV2JobRunExecutionToken(this.runExecutionToken);
 
   final TfArg<String> runExecutionToken;
 
@@ -176,7 +173,7 @@ final class CloudRunV2JobBinaryAuthorization {
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2JobBinaryAuthorizationPolicy? policy;
+  final CloudRunV2JobPolicy? policy;
 
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
@@ -189,18 +186,16 @@ final class CloudRunV2JobBinaryAuthorization {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2JobBinaryAuthorizationPolicy {
-  const CloudRunV2JobBinaryAuthorizationPolicy();
+sealed class CloudRunV2JobPolicy {
+  const CloudRunV2JobPolicy();
 
   /// Sets `use_default`.
-  const factory CloudRunV2JobBinaryAuthorizationPolicy.useDefault(
-    TfArg<bool> useDefault,
-  ) = CloudRunV2JobBinaryAuthorizationPolicyUseDefault;
+  const factory CloudRunV2JobPolicy.useDefault(TfArg<bool> useDefault) =
+      CloudRunV2JobPolicyUseDefault;
 
   /// Sets `policy`.
-  const factory CloudRunV2JobBinaryAuthorizationPolicy.policy(
-    TfArg<String> policy,
-  ) = CloudRunV2JobBinaryAuthorizationPolicyChoice;
+  const factory CloudRunV2JobPolicy.policy(TfArg<String> policy) =
+      CloudRunV2JobPolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -208,10 +203,9 @@ sealed class CloudRunV2JobBinaryAuthorizationPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2JobBinaryAuthorizationPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2JobBinaryAuthorizationPolicyUseDefault
-    extends CloudRunV2JobBinaryAuthorizationPolicy {
-  const CloudRunV2JobBinaryAuthorizationPolicyUseDefault(this.useDefault);
+/// The [CloudRunV2JobPolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2JobPolicyUseDefault extends CloudRunV2JobPolicy {
+  const CloudRunV2JobPolicyUseDefault(this.useDefault);
 
   final TfArg<bool> useDefault;
 
@@ -222,10 +216,9 @@ final class CloudRunV2JobBinaryAuthorizationPolicyUseDefault
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
 
-/// The [CloudRunV2JobBinaryAuthorizationPolicy.policy] choice: sets `policy`.
-final class CloudRunV2JobBinaryAuthorizationPolicyChoice
-    extends CloudRunV2JobBinaryAuthorizationPolicy {
-  const CloudRunV2JobBinaryAuthorizationPolicyChoice(this.policy);
+/// The [CloudRunV2JobPolicy.policy] choice: sets `policy`.
+final class CloudRunV2JobPolicyChoice extends CloudRunV2JobPolicy {
+  const CloudRunV2JobPolicyChoice(this.policy);
 
   final TfArg<String> policy;
 
@@ -300,13 +293,13 @@ final class CloudRunV2JobTemplateTemplate {
 
   final TfArg<String>? timeout;
 
-  final List<CloudRunV2JobTemplateTemplateContainers>? containers;
+  final List<CloudRunV2JobContainers>? containers;
 
-  final CloudRunV2JobTemplateTemplateNodeSelector? nodeSelector;
+  final CloudRunV2JobNodeSelector? nodeSelector;
 
-  final List<CloudRunV2JobTemplateTemplateVolumes>? volumes;
+  final List<CloudRunV2JobVolumes>? volumes;
 
-  final CloudRunV2JobTemplateTemplateVpcAccess? vpcAccess;
+  final CloudRunV2JobVpcAccess? vpcAccess;
 
   Map<String, Object?> encode() => {
     'encryption_key': ?encryptionKey?.toTfJson(),
@@ -326,8 +319,8 @@ final class CloudRunV2JobTemplateTemplate {
 /// Typed helper for the `template.template.containers` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainers {
-  const CloudRunV2JobTemplateTemplateContainers({
+final class CloudRunV2JobContainers {
+  const CloudRunV2JobContainers({
     this.args,
     this.command,
     this.dependsOn,
@@ -356,15 +349,15 @@ final class CloudRunV2JobTemplateTemplateContainers {
 
   final TfArg<String>? workingDir;
 
-  final List<CloudRunV2JobTemplateTemplateContainersEnv>? env;
+  final List<CloudRunV2JobEnv>? env;
 
-  final List<CloudRunV2JobTemplateTemplateContainersPorts>? ports;
+  final List<CloudRunV2JobPorts>? ports;
 
-  final CloudRunV2JobTemplateTemplateContainersResources? resources;
+  final CloudRunV2JobResources? resources;
 
-  final CloudRunV2JobTemplateTemplateContainersStartupProbe? startupProbe;
+  final CloudRunV2JobStartupProbe? startupProbe;
 
-  final List<CloudRunV2JobTemplateTemplateContainersVolumeMounts>? volumeMounts;
+  final List<CloudRunV2JobVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -386,15 +379,12 @@ final class CloudRunV2JobTemplateTemplateContainers {
 /// Typed helper for the `template.template.containers.env` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersEnv {
-  const CloudRunV2JobTemplateTemplateContainersEnv({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2JobEnv {
+  const CloudRunV2JobEnv({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2JobTemplateTemplateContainersEnvSource source;
+  final CloudRunV2JobEnvSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -406,18 +396,17 @@ final class CloudRunV2JobTemplateTemplateContainersEnv {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class CloudRunV2JobTemplateTemplateContainersEnvSource {
-  const CloudRunV2JobTemplateTemplateContainersEnvSource();
+sealed class CloudRunV2JobEnvSource {
+  const CloudRunV2JobEnvSource();
 
   /// Sets `value`.
-  const factory CloudRunV2JobTemplateTemplateContainersEnvSource.value(
-    TfArg<String> value,
-  ) = CloudRunV2JobTemplateTemplateContainersEnvSourceValue;
+  const factory CloudRunV2JobEnvSource.value(TfArg<String> value) =
+      CloudRunV2JobEnvSourceValue;
 
   /// Sets `value_source`.
-  const factory CloudRunV2JobTemplateTemplateContainersEnvSource.valueSource(
-    CloudRunV2JobTemplateTemplateContainersEnvValueSource valueSource,
-  ) = CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource;
+  const factory CloudRunV2JobEnvSource.valueSource(
+    CloudRunV2JobValueSource valueSource,
+  ) = CloudRunV2JobEnvValueSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -425,10 +414,9 @@ sealed class CloudRunV2JobTemplateTemplateContainersEnvSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2JobTemplateTemplateContainersEnvSource.value] choice: sets `value`.
-final class CloudRunV2JobTemplateTemplateContainersEnvSourceValue
-    extends CloudRunV2JobTemplateTemplateContainersEnvSource {
-  const CloudRunV2JobTemplateTemplateContainersEnvSourceValue(this.value);
+/// The [CloudRunV2JobEnvSource.value] choice: sets `value`.
+final class CloudRunV2JobEnvSourceValue extends CloudRunV2JobEnvSource {
+  const CloudRunV2JobEnvSourceValue(this.value);
 
   final TfArg<String> value;
 
@@ -439,14 +427,11 @@ final class CloudRunV2JobTemplateTemplateContainersEnvSourceValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [CloudRunV2JobTemplateTemplateContainersEnvSource.valueSource] choice: sets `value_source`.
-final class CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource
-    extends CloudRunV2JobTemplateTemplateContainersEnvSource {
-  const CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource(
-    this.valueSource,
-  );
+/// The [CloudRunV2JobEnvSource.valueSource] choice: sets `value_source`.
+final class CloudRunV2JobEnvValueSource extends CloudRunV2JobEnvSource {
+  const CloudRunV2JobEnvValueSource(this.valueSource);
 
-  final CloudRunV2JobTemplateTemplateContainersEnvValueSource valueSource;
+  final CloudRunV2JobValueSource valueSource;
 
   @override
   String get blockKey => 'value_source';
@@ -458,13 +443,10 @@ final class CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource
 /// Typed helper for the `template.template.containers.env.value_source` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersEnvValueSource {
-  const CloudRunV2JobTemplateTemplateContainersEnvValueSource({
-    this.secretKeyRef,
-  });
+final class CloudRunV2JobValueSource {
+  const CloudRunV2JobValueSource({this.secretKeyRef});
 
-  final CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef?
-  secretKeyRef;
+  final CloudRunV2JobSecretKeyRef? secretKeyRef;
 
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
@@ -472,8 +454,8 @@ final class CloudRunV2JobTemplateTemplateContainersEnvValueSource {
 /// Typed helper for the `template.template.containers.env.value_source.secret_key_ref` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef {
-  const CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef({
+final class CloudRunV2JobSecretKeyRef {
+  const CloudRunV2JobSecretKeyRef({
     required this.secret,
     required this.version,
   });
@@ -491,11 +473,8 @@ final class CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef {
 /// Typed helper for the `template.template.containers.ports` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersPorts {
-  const CloudRunV2JobTemplateTemplateContainersPorts({
-    this.containerPort,
-    this.name,
-  });
+final class CloudRunV2JobPorts {
+  const CloudRunV2JobPorts({this.containerPort, this.name});
 
   final TfArg<num>? containerPort;
 
@@ -510,8 +489,8 @@ final class CloudRunV2JobTemplateTemplateContainersPorts {
 /// Typed helper for the `template.template.containers.resources` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersResources {
-  const CloudRunV2JobTemplateTemplateContainersResources({this.limits});
+final class CloudRunV2JobResources {
+  const CloudRunV2JobResources({this.limits});
 
   final TfArg<Map<String, String>>? limits;
 
@@ -521,8 +500,8 @@ final class CloudRunV2JobTemplateTemplateContainersResources {
 /// Typed helper for the `template.template.containers.startup_probe` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersStartupProbe {
-  const CloudRunV2JobTemplateTemplateContainersStartupProbe({
+final class CloudRunV2JobStartupProbe {
+  const CloudRunV2JobStartupProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -540,11 +519,11 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc? grpc;
+  final CloudRunV2JobGrpc? grpc;
 
-  final CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet? httpGet;
+  final CloudRunV2JobHttpGet? httpGet;
 
-  final CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket? tcpSocket;
+  final CloudRunV2JobTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -560,11 +539,8 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbe {
 /// Typed helper for the `template.template.containers.startup_probe.grpc` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc {
-  const CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc({
-    this.port,
-    this.service,
-  });
+final class CloudRunV2JobGrpc {
+  const CloudRunV2JobGrpc({this.port, this.service});
 
   final TfArg<num>? port;
 
@@ -579,21 +555,14 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc {
 /// Typed helper for the `template.template.containers.startup_probe.http_get` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet {
-  const CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet({
-    this.path,
-    this.port,
-    this.httpHeaders,
-  });
+final class CloudRunV2JobHttpGet {
+  const CloudRunV2JobHttpGet({this.path, this.port, this.httpHeaders});
 
   final TfArg<String>? path;
 
   final TfArg<num>? port;
 
-  final List<
-    CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
+  final List<CloudRunV2JobHttpHeaders>? httpHeaders;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -606,11 +575,8 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet {
 /// Typed helper for the `template.template.containers.startup_probe.http_get.http_headers` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders {
-  const CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
+final class CloudRunV2JobHttpHeaders {
+  const CloudRunV2JobHttpHeaders({required this.name, this.value});
 
   final TfArg<String> name;
 
@@ -625,10 +591,8 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeader
 /// Typed helper for the `template.template.containers.startup_probe.tcp_socket` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket {
-  const CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket({
-    this.port,
-  });
+final class CloudRunV2JobTcpSocket {
+  const CloudRunV2JobTcpSocket({this.port});
 
   final TfArg<num>? port;
 
@@ -638,8 +602,8 @@ final class CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket {
 /// Typed helper for the `template.template.containers.volume_mounts` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateContainersVolumeMounts {
-  const CloudRunV2JobTemplateTemplateContainersVolumeMounts({
+final class CloudRunV2JobVolumeMounts {
+  const CloudRunV2JobVolumeMounts({
     required this.mountPath,
     required this.name,
     this.subPath,
@@ -661,8 +625,8 @@ final class CloudRunV2JobTemplateTemplateContainersVolumeMounts {
 /// Typed helper for the `template.template.node_selector` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateNodeSelector {
-  const CloudRunV2JobTemplateTemplateNodeSelector({required this.accelerator});
+final class CloudRunV2JobNodeSelector {
+  const CloudRunV2JobNodeSelector({required this.accelerator});
 
   final TfArg<String> accelerator;
 
@@ -672,15 +636,12 @@ final class CloudRunV2JobTemplateTemplateNodeSelector {
 /// Typed helper for the `template.template.volumes` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumes {
-  const CloudRunV2JobTemplateTemplateVolumes({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2JobVolumes {
+  const CloudRunV2JobVolumes({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2JobTemplateTemplateVolumesSource source;
+  final CloudRunV2JobSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -692,33 +653,29 @@ final class CloudRunV2JobTemplateTemplateVolumes {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudSqlInstance(...)`.
-sealed class CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSource();
+sealed class CloudRunV2JobSource {
+  const CloudRunV2JobSource();
 
   /// Sets `cloud_sql_instance`.
-  const factory CloudRunV2JobTemplateTemplateVolumesSource.cloudSqlInstance(
-    CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance cloudSqlInstance,
-  ) = CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance;
+  const factory CloudRunV2JobSource.cloudSqlInstance(
+    CloudRunV2JobCloudSqlInstance cloudSqlInstance,
+  ) = CloudRunV2JobSourceCloudSqlInstance;
 
   /// Sets `empty_dir`.
-  const factory CloudRunV2JobTemplateTemplateVolumesSource.emptyDir(
-    CloudRunV2JobTemplateTemplateVolumesEmptyDir emptyDir,
-  ) = CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir;
+  const factory CloudRunV2JobSource.emptyDir(CloudRunV2JobEmptyDir emptyDir) =
+      CloudRunV2JobSourceEmptyDir;
 
   /// Sets `gcs`.
-  const factory CloudRunV2JobTemplateTemplateVolumesSource.gcs(
-    CloudRunV2JobTemplateTemplateVolumesGcs gcs,
-  ) = CloudRunV2JobTemplateTemplateVolumesSourceGcs;
+  const factory CloudRunV2JobSource.gcs(CloudRunV2JobGcs gcs) =
+      CloudRunV2JobSourceGcs;
 
   /// Sets `nfs`.
-  const factory CloudRunV2JobTemplateTemplateVolumesSource.nfs(
-    CloudRunV2JobTemplateTemplateVolumesNfs nfs,
-  ) = CloudRunV2JobTemplateTemplateVolumesSourceNfs;
+  const factory CloudRunV2JobSource.nfs(CloudRunV2JobNfs nfs) =
+      CloudRunV2JobSourceNfs;
 
   /// Sets `secret`.
-  const factory CloudRunV2JobTemplateTemplateVolumesSource.secret(
-    CloudRunV2JobTemplateTemplateVolumesSecret secret,
-  ) = CloudRunV2JobTemplateTemplateVolumesSourceSecret;
+  const factory CloudRunV2JobSource.secret(CloudRunV2JobSecret secret) =
+      CloudRunV2JobSourceSecret;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -726,14 +683,11 @@ sealed class CloudRunV2JobTemplateTemplateVolumesSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2JobTemplateTemplateVolumesSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
-final class CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance
-    extends CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance(
-    this.cloudSqlInstance,
-  );
+/// The [CloudRunV2JobSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
+final class CloudRunV2JobSourceCloudSqlInstance extends CloudRunV2JobSource {
+  const CloudRunV2JobSourceCloudSqlInstance(this.cloudSqlInstance);
 
-  final CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance cloudSqlInstance;
+  final CloudRunV2JobCloudSqlInstance cloudSqlInstance;
 
   @override
   String get blockKey => 'cloud_sql_instance';
@@ -744,12 +698,11 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance
   };
 }
 
-/// The [CloudRunV2JobTemplateTemplateVolumesSource.emptyDir] choice: sets `empty_dir`.
-final class CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir
-    extends CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir(this.emptyDir);
+/// The [CloudRunV2JobSource.emptyDir] choice: sets `empty_dir`.
+final class CloudRunV2JobSourceEmptyDir extends CloudRunV2JobSource {
+  const CloudRunV2JobSourceEmptyDir(this.emptyDir);
 
-  final CloudRunV2JobTemplateTemplateVolumesEmptyDir emptyDir;
+  final CloudRunV2JobEmptyDir emptyDir;
 
   @override
   String get blockKey => 'empty_dir';
@@ -758,12 +711,11 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
 
-/// The [CloudRunV2JobTemplateTemplateVolumesSource.gcs] choice: sets `gcs`.
-final class CloudRunV2JobTemplateTemplateVolumesSourceGcs
-    extends CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSourceGcs(this.gcs);
+/// The [CloudRunV2JobSource.gcs] choice: sets `gcs`.
+final class CloudRunV2JobSourceGcs extends CloudRunV2JobSource {
+  const CloudRunV2JobSourceGcs(this.gcs);
 
-  final CloudRunV2JobTemplateTemplateVolumesGcs gcs;
+  final CloudRunV2JobGcs gcs;
 
   @override
   String get blockKey => 'gcs';
@@ -772,12 +724,11 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceGcs
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
 
-/// The [CloudRunV2JobTemplateTemplateVolumesSource.nfs] choice: sets `nfs`.
-final class CloudRunV2JobTemplateTemplateVolumesSourceNfs
-    extends CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSourceNfs(this.nfs);
+/// The [CloudRunV2JobSource.nfs] choice: sets `nfs`.
+final class CloudRunV2JobSourceNfs extends CloudRunV2JobSource {
+  const CloudRunV2JobSourceNfs(this.nfs);
 
-  final CloudRunV2JobTemplateTemplateVolumesNfs nfs;
+  final CloudRunV2JobNfs nfs;
 
   @override
   String get blockKey => 'nfs';
@@ -786,12 +737,11 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceNfs
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
-/// The [CloudRunV2JobTemplateTemplateVolumesSource.secret] choice: sets `secret`.
-final class CloudRunV2JobTemplateTemplateVolumesSourceSecret
-    extends CloudRunV2JobTemplateTemplateVolumesSource {
-  const CloudRunV2JobTemplateTemplateVolumesSourceSecret(this.secret);
+/// The [CloudRunV2JobSource.secret] choice: sets `secret`.
+final class CloudRunV2JobSourceSecret extends CloudRunV2JobSource {
+  const CloudRunV2JobSourceSecret(this.secret);
 
-  final CloudRunV2JobTemplateTemplateVolumesSecret secret;
+  final CloudRunV2JobSecret secret;
 
   @override
   String get blockKey => 'secret';
@@ -803,8 +753,8 @@ final class CloudRunV2JobTemplateTemplateVolumesSourceSecret
 /// Typed helper for the `template.template.volumes.cloud_sql_instance` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance {
-  const CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance({this.instances});
+final class CloudRunV2JobCloudSqlInstance {
+  const CloudRunV2JobCloudSqlInstance({this.instances});
 
   final TfArg<List<String>>? instances;
 
@@ -814,11 +764,8 @@ final class CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance {
 /// Typed helper for the `template.template.volumes.empty_dir` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesEmptyDir {
-  const CloudRunV2JobTemplateTemplateVolumesEmptyDir({
-    this.medium,
-    this.sizeLimit,
-  });
+final class CloudRunV2JobEmptyDir {
+  const CloudRunV2JobEmptyDir({this.medium, this.sizeLimit});
 
   final TfArg<CloudRunV2JobEmptyDirMedium>? medium;
 
@@ -833,8 +780,8 @@ final class CloudRunV2JobTemplateTemplateVolumesEmptyDir {
 /// Typed helper for the `template.template.volumes.gcs` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesGcs {
-  const CloudRunV2JobTemplateTemplateVolumesGcs({
+final class CloudRunV2JobGcs {
+  const CloudRunV2JobGcs({
     required this.bucket,
     this.mountOptions,
     this.readOnly,
@@ -856,12 +803,8 @@ final class CloudRunV2JobTemplateTemplateVolumesGcs {
 /// Typed helper for the `template.template.volumes.nfs` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesNfs {
-  const CloudRunV2JobTemplateTemplateVolumesNfs({
-    this.path,
-    this.readOnly,
-    required this.server,
-  });
+final class CloudRunV2JobNfs {
+  const CloudRunV2JobNfs({this.path, this.readOnly, required this.server});
 
   final TfArg<String>? path;
 
@@ -879,8 +822,8 @@ final class CloudRunV2JobTemplateTemplateVolumesNfs {
 /// Typed helper for the `template.template.volumes.secret` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesSecret {
-  const CloudRunV2JobTemplateTemplateVolumesSecret({
+final class CloudRunV2JobSecret {
+  const CloudRunV2JobSecret({
     this.defaultMode,
     required this.secret,
     this.items,
@@ -890,7 +833,7 @@ final class CloudRunV2JobTemplateTemplateVolumesSecret {
 
   final TfArg<String> secret;
 
-  final List<CloudRunV2JobTemplateTemplateVolumesSecretItems>? items;
+  final List<CloudRunV2JobItems>? items;
 
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
@@ -902,8 +845,8 @@ final class CloudRunV2JobTemplateTemplateVolumesSecret {
 /// Typed helper for the `template.template.volumes.secret.items` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVolumesSecretItems {
-  const CloudRunV2JobTemplateTemplateVolumesSecretItems({
+final class CloudRunV2JobItems {
+  const CloudRunV2JobItems({
     this.mode,
     required this.path,
     required this.version,
@@ -925,8 +868,8 @@ final class CloudRunV2JobTemplateTemplateVolumesSecretItems {
 /// Typed helper for the `template.template.vpc_access` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVpcAccess {
-  const CloudRunV2JobTemplateTemplateVpcAccess({
+final class CloudRunV2JobVpcAccess {
+  const CloudRunV2JobVpcAccess({
     this.connector,
     this.egress,
     this.networkInterfaces,
@@ -936,8 +879,7 @@ final class CloudRunV2JobTemplateTemplateVpcAccess {
 
   final TfArg<CloudRunV2JobVpcAccessEgress>? egress;
 
-  final List<CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces>?
-  networkInterfaces;
+  final List<CloudRunV2JobNetworkInterfaces>? networkInterfaces;
 
   Map<String, Object?> encode() => {
     'connector': ?connector?.toTfJson(),
@@ -950,8 +892,8 @@ final class CloudRunV2JobTemplateTemplateVpcAccess {
 /// Typed helper for the `template.template.vpc_access.network_interfaces` block of
 /// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces {
-  const CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces({
+final class CloudRunV2JobNetworkInterfaces {
+  const CloudRunV2JobNetworkInterfaces({
     this.network,
     this.subnetwork,
     this.tags,
@@ -984,7 +926,7 @@ final class CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces {
 ///   template: CloudRunV2JobTemplate(
 ///     template: CloudRunV2JobTemplateTemplate(
 ///       containers: [
-///         CloudRunV2JobTemplateTemplateContainers(
+///         CloudRunV2JobContainers(
 ///           image: .literal('gcr.io/p/etl:v1'),
 ///         ),
 ///       ],

@@ -15,7 +15,7 @@ final class EcrReplicationConfigurationReplicationConfiguration {
     required this.rule,
   });
 
-  final List<EcrReplicationConfigurationReplicationConfigurationRule> rule;
+  final List<EcrReplicationConfigurationRule> rule;
 
   Map<String, Object?> encode() => {
     'rule': [for (final e in rule) e.encode()],
@@ -25,19 +25,15 @@ final class EcrReplicationConfigurationReplicationConfiguration {
 /// Typed helper for the `replication_configuration.rule` block of
 /// `aws_ecr_replication_configuration` (derived from provider schema).
 @immutable
-final class EcrReplicationConfigurationReplicationConfigurationRule {
-  const EcrReplicationConfigurationReplicationConfigurationRule({
+final class EcrReplicationConfigurationRule {
+  const EcrReplicationConfigurationRule({
     required this.destination,
     this.repositoryFilter,
   });
 
-  final List<EcrReplicationConfigurationReplicationConfigurationRuleDestination>
-  destination;
+  final List<EcrReplicationConfigurationDestination> destination;
 
-  final List<
-    EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilter
-  >?
-  repositoryFilter;
+  final List<EcrReplicationConfigurationRepositoryFilter>? repositoryFilter;
 
   Map<String, Object?> encode() => {
     'destination': [for (final e in destination) e.encode()],
@@ -49,8 +45,8 @@ final class EcrReplicationConfigurationReplicationConfigurationRule {
 /// Typed helper for the `replication_configuration.rule.destination` block of
 /// `aws_ecr_replication_configuration` (derived from provider schema).
 @immutable
-final class EcrReplicationConfigurationReplicationConfigurationRuleDestination {
-  const EcrReplicationConfigurationReplicationConfigurationRuleDestination({
+final class EcrReplicationConfigurationDestination {
+  const EcrReplicationConfigurationDestination({
     required this.region,
     required this.registryId,
   });
@@ -68,18 +64,15 @@ final class EcrReplicationConfigurationReplicationConfigurationRuleDestination {
 /// Typed helper for the `replication_configuration.rule.repository_filter` block of
 /// `aws_ecr_replication_configuration` (derived from provider schema).
 @immutable
-final class EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilter {
-  const EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilter({
+final class EcrReplicationConfigurationRepositoryFilter {
+  const EcrReplicationConfigurationRepositoryFilter({
     required this.filter,
     required this.filterType,
   });
 
   final TfArg<String> filter;
 
-  final TfArg<
-    EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType
-  >
-  filterType;
+  final TfArg<EcrReplicationConfigurationFilterType> filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
@@ -88,13 +81,10 @@ final class EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFil
 }
 
 /// `filter_type` — derived from the provider schema description.
-enum EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType
-    implements TerraformEnum {
+enum EcrReplicationConfigurationFilterType implements TerraformEnum {
   prefixMatch('PREFIX_MATCH');
 
-  const EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType(
-    this.terraformValue,
-  );
+  const EcrReplicationConfigurationFilterType(this.terraformValue);
   @override
   final String terraformValue;
 }

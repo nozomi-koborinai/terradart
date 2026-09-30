@@ -6,15 +6,15 @@ library;
 export 'src/kms/google_kms_folder_kaj_policy_config.dart'
     show
         GoogleKmsFolderKajPolicyConfig,
-        KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy,
-        KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;
+        KmsFolderKajPolicyConfigAllowedAccessReasons,
+        KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy;
 export 'src/kms/google_kms_organization_kaj_policy_config.dart'
     show
         GoogleKmsOrganizationKajPolicyConfig,
-        KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy,
-        KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;
+        KmsOrganizationKajPolicyConfigAllowedAccessReasons,
+        KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy;
 export 'src/kms/google_kms_project_kaj_policy_config.dart'
     show
         GoogleKmsProjectKajPolicyConfig,
-        KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy,
-        KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;
+        KmsProjectKajPolicyConfigAllowedAccessReasons,
+        KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy;

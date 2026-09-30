@@ -213,7 +213,7 @@ final class AlbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<AlbTargetGroupStickinessType> type;
+  final TfArg<AlbTargetGroupType> type;
 
   Map<String, Object?> encode() => {
     'cookie_duration': ?cookieDuration?.toTfJson(),
@@ -224,14 +224,14 @@ final class AlbTargetGroupStickiness {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbTargetGroupStickinessType implements TerraformEnum {
+enum AlbTargetGroupType implements TerraformEnum {
   lbCookie('lb_cookie'),
   appCookie('app_cookie'),
   sourceIp('source_ip'),
   sourceIpDestIp('source_ip_dest_ip'),
   sourceIpDestIpProto('source_ip_dest_ip_proto');
 
-  const AlbTargetGroupStickinessType(this.terraformValue);
+  const AlbTargetGroupType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -245,9 +245,9 @@ final class AlbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<AlbTargetGroupTargetFailoverOnDeregistration> onDeregistration;
+  final TfArg<AlbTargetGroupOnDeregistration> onDeregistration;
 
-  final TfArg<AlbTargetGroupTargetFailoverOnUnhealthy> onUnhealthy;
+  final TfArg<AlbTargetGroupOnUnhealthy> onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
@@ -256,21 +256,21 @@ final class AlbTargetGroupTargetFailover {
 }
 
 /// `on_deregistration` — derived from the provider schema description.
-enum AlbTargetGroupTargetFailoverOnDeregistration implements TerraformEnum {
+enum AlbTargetGroupOnDeregistration implements TerraformEnum {
   rebalance('rebalance'),
   noRebalance('no_rebalance');
 
-  const AlbTargetGroupTargetFailoverOnDeregistration(this.terraformValue);
+  const AlbTargetGroupOnDeregistration(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `on_unhealthy` — derived from the provider schema description.
-enum AlbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
+enum AlbTargetGroupOnUnhealthy implements TerraformEnum {
   rebalance('rebalance'),
   noRebalance('no_rebalance');
 
-  const AlbTargetGroupTargetFailoverOnUnhealthy(this.terraformValue);
+  const AlbTargetGroupOnUnhealthy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -278,16 +278,12 @@ enum AlbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
 /// Typed helper for the `target_group_health` block of
 /// `aws_alb_target_group` (derived from provider schema).
 @immutable
-final class AlbTargetGroupTargetGroupHealth {
-  const AlbTargetGroupTargetGroupHealth({
-    this.dnsFailover,
-    this.unhealthyStateRouting,
-  });
+final class AlbTargetGroupHealth {
+  const AlbTargetGroupHealth({this.dnsFailover, this.unhealthyStateRouting});
 
-  final AlbTargetGroupTargetGroupHealthDnsFailover? dnsFailover;
+  final AlbTargetGroupDnsFailover? dnsFailover;
 
-  final AlbTargetGroupTargetGroupHealthUnhealthyStateRouting?
-  unhealthyStateRouting;
+  final AlbTargetGroupUnhealthyStateRouting? unhealthyStateRouting;
 
   Map<String, Object?> encode() => {
     'dns_failover': ?dnsFailover?.encode(),
@@ -298,8 +294,8 @@ final class AlbTargetGroupTargetGroupHealth {
 /// Typed helper for the `target_group_health.dns_failover` block of
 /// `aws_alb_target_group` (derived from provider schema).
 @immutable
-final class AlbTargetGroupTargetGroupHealthDnsFailover {
-  const AlbTargetGroupTargetGroupHealthDnsFailover({
+final class AlbTargetGroupDnsFailover {
+  const AlbTargetGroupDnsFailover({
     this.minimumHealthyTargetsCount,
     this.minimumHealthyTargetsPercentage,
   });
@@ -318,8 +314,8 @@ final class AlbTargetGroupTargetGroupHealthDnsFailover {
 /// Typed helper for the `target_group_health.unhealthy_state_routing` block of
 /// `aws_alb_target_group` (derived from provider schema).
 @immutable
-final class AlbTargetGroupTargetGroupHealthUnhealthyStateRouting {
-  const AlbTargetGroupTargetGroupHealthUnhealthyStateRouting({
+final class AlbTargetGroupUnhealthyStateRouting {
+  const AlbTargetGroupUnhealthyStateRouting({
     this.minimumHealthyTargetsCount,
     this.minimumHealthyTargetsPercentage,
   });
@@ -385,7 +381,7 @@ final class AwsAlbTargetGroup extends Resource {
     AlbTargetGroupHealthCheck? healthCheck,
     AlbTargetGroupStickiness? stickiness,
     List<AlbTargetGroupTargetFailover>? targetFailover,
-    AlbTargetGroupTargetGroupHealth? targetGroupHealth,
+    AlbTargetGroupHealth? targetGroupHealth,
     List<AlbTargetGroupTargetHealthState>? targetHealthState,
     super.lifecycle,
     super.dependsOn,

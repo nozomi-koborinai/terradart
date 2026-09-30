@@ -18,13 +18,13 @@ sealed class SecurityhubConnectorV2ConnectorProvider {
 
   /// Sets `jira_cloud`.
   const factory SecurityhubConnectorV2ConnectorProvider.jiraCloud(
-    List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud,
-  ) = SecurityhubConnectorV2ConnectorProviderJiraCloudChoice;
+    List<SecurityhubConnectorV2JiraCloud> jiraCloud,
+  ) = SecurityhubConnectorV2ConnectorProviderJiraCloud;
 
   /// Sets `service_now`.
   const factory SecurityhubConnectorV2ConnectorProvider.serviceNow(
-    List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow,
-  ) = SecurityhubConnectorV2ConnectorProviderServiceNowChoice;
+    List<SecurityhubConnectorV2ServiceNow> serviceNow,
+  ) = SecurityhubConnectorV2ConnectorProviderServiceNow;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,11 +33,11 @@ sealed class SecurityhubConnectorV2ConnectorProvider {
 }
 
 /// The [SecurityhubConnectorV2ConnectorProvider.jiraCloud] choice: sets `jira_cloud`.
-final class SecurityhubConnectorV2ConnectorProviderJiraCloudChoice
+final class SecurityhubConnectorV2ConnectorProviderJiraCloud
     extends SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderJiraCloudChoice(this.jiraCloud);
+  const SecurityhubConnectorV2ConnectorProviderJiraCloud(this.jiraCloud);
 
-  final List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud;
+  final List<SecurityhubConnectorV2JiraCloud> jiraCloud;
 
   @override
   String get blockKey => 'jira_cloud';
@@ -49,13 +49,11 @@ final class SecurityhubConnectorV2ConnectorProviderJiraCloudChoice
 }
 
 /// The [SecurityhubConnectorV2ConnectorProvider.serviceNow] choice: sets `service_now`.
-final class SecurityhubConnectorV2ConnectorProviderServiceNowChoice
+final class SecurityhubConnectorV2ConnectorProviderServiceNow
     extends SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderServiceNowChoice(
-    this.serviceNow,
-  );
+  const SecurityhubConnectorV2ConnectorProviderServiceNow(this.serviceNow);
 
-  final List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow;
+  final List<SecurityhubConnectorV2ServiceNow> serviceNow;
 
   @override
   String get blockKey => 'service_now';
@@ -69,10 +67,8 @@ final class SecurityhubConnectorV2ConnectorProviderServiceNowChoice
 /// Typed helper for the `connector_provider.jira_cloud` block of
 /// `aws_securityhub_connector_v2` (derived from provider schema).
 @immutable
-final class SecurityhubConnectorV2ConnectorProviderJiraCloud {
-  const SecurityhubConnectorV2ConnectorProviderJiraCloud({
-    required this.projectKey,
-  });
+final class SecurityhubConnectorV2JiraCloud {
+  const SecurityhubConnectorV2JiraCloud({required this.projectKey});
 
   final TfArg<String> projectKey;
 
@@ -82,8 +78,8 @@ final class SecurityhubConnectorV2ConnectorProviderJiraCloud {
 /// Typed helper for the `connector_provider.service_now` block of
 /// `aws_securityhub_connector_v2` (derived from provider schema).
 @immutable
-final class SecurityhubConnectorV2ConnectorProviderServiceNow {
-  const SecurityhubConnectorV2ConnectorProviderServiceNow({
+final class SecurityhubConnectorV2ServiceNow {
+  const SecurityhubConnectorV2ServiceNow({
     required this.instanceName,
     required this.secretArn,
   });

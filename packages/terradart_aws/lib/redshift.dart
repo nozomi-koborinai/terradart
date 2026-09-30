@@ -9,9 +9,9 @@ export 'src/redshift/aws_redshift_cluster.dart'
     show
         AwsRedshiftCluster,
         RedshiftClusterAquaConfigurationStatus,
+        RedshiftClusterManageMasterPassword,
         RedshiftClusterMasterPassword,
         RedshiftClusterMasterPasswordChoice,
-        RedshiftClusterMasterPasswordManageMasterPassword,
         RedshiftClusterMasterPasswordWo,
         RedshiftClusterSnapshot,
         RedshiftClusterSnapshotArn,
@@ -47,17 +47,15 @@ export 'src/redshift/aws_redshift_idc_application.dart'
     show
         AwsRedshiftIdcApplication,
         RedshiftIdcApplicationApplicationType,
+        RedshiftIdcApplicationAuthorization,
         RedshiftIdcApplicationAuthorizedTokenIssuer,
-        RedshiftIdcApplicationServiceIntegration,
-        RedshiftIdcApplicationServiceIntegrationLakeFormation,
-        RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQuery,
-        RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization,
-        RedshiftIdcApplicationServiceIntegrationRedshift,
-        RedshiftIdcApplicationServiceIntegrationRedshiftConnect,
-        RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization,
-        RedshiftIdcApplicationServiceIntegrationS3AccessGrants,
-        RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess,
-        RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization;
+        RedshiftIdcApplicationConnect,
+        RedshiftIdcApplicationLakeFormation,
+        RedshiftIdcApplicationLakeFormationQuery,
+        RedshiftIdcApplicationReadWriteAccess,
+        RedshiftIdcApplicationRedshift,
+        RedshiftIdcApplicationS3AccessGrants,
+        RedshiftIdcApplicationServiceIntegration;
 export 'src/redshift/aws_redshift_integration.dart' show AwsRedshiftIntegration;
 export 'src/redshift/aws_redshift_logging.dart'
     show
@@ -74,13 +72,13 @@ export 'src/redshift/aws_redshift_resource_policy.dart'
 export 'src/redshift/aws_redshift_scheduled_action.dart'
     show
         AwsRedshiftScheduledAction,
+        RedshiftScheduledActionPauseCluster,
+        RedshiftScheduledActionResizeCluster,
+        RedshiftScheduledActionResumeCluster,
         RedshiftScheduledActionTargetAction,
         RedshiftScheduledActionTargetActionPauseCluster,
-        RedshiftScheduledActionTargetActionPauseClusterChoice,
         RedshiftScheduledActionTargetActionResizeCluster,
-        RedshiftScheduledActionTargetActionResizeClusterChoice,
-        RedshiftScheduledActionTargetActionResumeCluster,
-        RedshiftScheduledActionTargetActionResumeClusterChoice;
+        RedshiftScheduledActionTargetActionResumeCluster;
 export 'src/redshift/aws_redshift_snapshot_copy.dart'
     show AwsRedshiftSnapshotCopy;
 export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'

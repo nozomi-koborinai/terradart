@@ -19,15 +19,15 @@ final class ApphubServiceAttributes {
     this.operatorOwners,
   });
 
-  final List<ApphubServiceAttributesBusinessOwners>? businessOwners;
+  final List<ApphubServiceBusinessOwners>? businessOwners;
 
-  final ApphubServiceAttributesCriticality? criticality;
+  final ApphubServiceCriticality? criticality;
 
-  final List<ApphubServiceAttributesDeveloperOwners>? developerOwners;
+  final List<ApphubServiceDeveloperOwners>? developerOwners;
 
-  final ApphubServiceAttributesEnvironment? environment;
+  final ApphubServiceEnvironment? environment;
 
-  final List<ApphubServiceAttributesOperatorOwners>? operatorOwners;
+  final List<ApphubServiceOperatorOwners>? operatorOwners;
 
   Map<String, Object?> encode() => {
     if (businessOwners != null)
@@ -44,11 +44,8 @@ final class ApphubServiceAttributes {
 /// Typed helper for the `attributes.business_owners` block of
 /// `google_apphub_service` (derived from provider schema).
 @immutable
-final class ApphubServiceAttributesBusinessOwners {
-  const ApphubServiceAttributesBusinessOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubServiceBusinessOwners {
+  const ApphubServiceBusinessOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 
@@ -63,22 +60,22 @@ final class ApphubServiceAttributesBusinessOwners {
 /// Typed helper for the `attributes.criticality` block of
 /// `google_apphub_service` (derived from provider schema).
 @immutable
-final class ApphubServiceAttributesCriticality {
-  const ApphubServiceAttributesCriticality({required this.type});
+final class ApphubServiceCriticality {
+  const ApphubServiceCriticality({required this.type});
 
-  final TfArg<ApphubServiceAttributesCriticalityType> type;
+  final TfArg<ApphubServiceCriticalityType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubServiceAttributesCriticalityType implements TerraformEnum {
+enum ApphubServiceCriticalityType implements TerraformEnum {
   missionCritical('MISSION_CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const ApphubServiceAttributesCriticalityType(this.terraformValue);
+  const ApphubServiceCriticalityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,11 +83,8 @@ enum ApphubServiceAttributesCriticalityType implements TerraformEnum {
 /// Typed helper for the `attributes.developer_owners` block of
 /// `google_apphub_service` (derived from provider schema).
 @immutable
-final class ApphubServiceAttributesDeveloperOwners {
-  const ApphubServiceAttributesDeveloperOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubServiceDeveloperOwners {
+  const ApphubServiceDeveloperOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 
@@ -105,22 +99,22 @@ final class ApphubServiceAttributesDeveloperOwners {
 /// Typed helper for the `attributes.environment` block of
 /// `google_apphub_service` (derived from provider schema).
 @immutable
-final class ApphubServiceAttributesEnvironment {
-  const ApphubServiceAttributesEnvironment({required this.type});
+final class ApphubServiceEnvironment {
+  const ApphubServiceEnvironment({required this.type});
 
-  final TfArg<ApphubServiceAttributesEnvironmentType> type;
+  final TfArg<ApphubServiceEnvironmentType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubServiceAttributesEnvironmentType implements TerraformEnum {
+enum ApphubServiceEnvironmentType implements TerraformEnum {
   production('PRODUCTION'),
   staging('STAGING'),
   test('TEST'),
   development('DEVELOPMENT');
 
-  const ApphubServiceAttributesEnvironmentType(this.terraformValue);
+  const ApphubServiceEnvironmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,11 +122,8 @@ enum ApphubServiceAttributesEnvironmentType implements TerraformEnum {
 /// Typed helper for the `attributes.operator_owners` block of
 /// `google_apphub_service` (derived from provider schema).
 @immutable
-final class ApphubServiceAttributesOperatorOwners {
-  const ApphubServiceAttributesOperatorOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubServiceOperatorOwners {
+  const ApphubServiceOperatorOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 

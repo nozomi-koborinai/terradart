@@ -21,7 +21,7 @@ final class WafregionalRulePredicate {
 
   final TfArg<bool> negated;
 
-  final TfArg<WafregionalRulePredicateType> type;
+  final TfArg<WafregionalRuleType> type;
 
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
@@ -31,7 +31,7 @@ final class WafregionalRulePredicate {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalRulePredicateType implements TerraformEnum {
+enum WafregionalRuleType implements TerraformEnum {
   ipmatch('IPMatch'),
   bytematch('ByteMatch'),
   sqlinjectionmatch('SqlInjectionMatch'),
@@ -40,7 +40,7 @@ enum WafregionalRulePredicateType implements TerraformEnum {
   xssmatch('XssMatch'),
   regexmatch('RegexMatch');
 
-  const WafregionalRulePredicateType(this.terraformValue);
+  const WafregionalRuleType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -86,12 +86,12 @@ sealed class RedisClusterSource {
 
   /// Sets `gcs_source`.
   const factory RedisClusterSource.gcsSource(RedisClusterGcsSource gcsSource) =
-      RedisClusterSourceGcsSource;
+      RedisClusterGcsSourceChoice;
 
   /// Sets `managed_backup_source`.
   const factory RedisClusterSource.managedBackupSource(
     RedisClusterManagedBackupSource managedBackupSource,
-  ) = RedisClusterSourceManagedBackupSource;
+  ) = RedisClusterManagedBackupSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -104,8 +104,8 @@ sealed class RedisClusterSource {
 }
 
 /// The [RedisClusterSource.gcsSource] choice: sets `gcs_source`.
-final class RedisClusterSourceGcsSource extends RedisClusterSource {
-  const RedisClusterSourceGcsSource(this.gcsSource);
+final class RedisClusterGcsSourceChoice extends RedisClusterSource {
+  const RedisClusterGcsSourceChoice(this.gcsSource);
 
   final RedisClusterGcsSource gcsSource;
 
@@ -122,8 +122,8 @@ final class RedisClusterSourceGcsSource extends RedisClusterSource {
 }
 
 /// The [RedisClusterSource.managedBackupSource] choice: sets `managed_backup_source`.
-final class RedisClusterSourceManagedBackupSource extends RedisClusterSource {
-  const RedisClusterSourceManagedBackupSource(this.managedBackupSource);
+final class RedisClusterManagedBackupSourceChoice extends RedisClusterSource {
+  const RedisClusterManagedBackupSourceChoice(this.managedBackupSource);
 
   final RedisClusterManagedBackupSource managedBackupSource;
 
@@ -152,8 +152,7 @@ final class RedisClusterAutomatedBackupConfig {
 
   final TfArg<String> retention;
 
-  final RedisClusterAutomatedBackupConfigFixedFrequencySchedule
-  fixedFrequencySchedule;
+  final RedisClusterFixedFrequencySchedule fixedFrequencySchedule;
 
   Map<String, Object?> encode() => {
     'retention': retention.toTfJson(),
@@ -164,13 +163,10 @@ final class RedisClusterAutomatedBackupConfig {
 /// Typed helper for the `automated_backup_config.fixed_frequency_schedule` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterAutomatedBackupConfigFixedFrequencySchedule {
-  const RedisClusterAutomatedBackupConfigFixedFrequencySchedule({
-    required this.startTime,
-  });
+final class RedisClusterFixedFrequencySchedule {
+  const RedisClusterFixedFrequencySchedule({required this.startTime});
 
-  final RedisClusterAutomatedBackupConfigFixedFrequencyScheduleStartTime
-  startTime;
+  final RedisClusterFixedFrequencyScheduleStartTime startTime;
 
   Map<String, Object?> encode() => {'start_time': startTime.encode()};
 }
@@ -178,10 +174,8 @@ final class RedisClusterAutomatedBackupConfigFixedFrequencySchedule {
 /// Typed helper for the `automated_backup_config.fixed_frequency_schedule.start_time` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterAutomatedBackupConfigFixedFrequencyScheduleStartTime {
-  const RedisClusterAutomatedBackupConfigFixedFrequencyScheduleStartTime({
-    required this.hours,
-  });
+final class RedisClusterFixedFrequencyScheduleStartTime {
+  const RedisClusterFixedFrequencyScheduleStartTime({required this.hours});
 
   final TfArg<num> hours;
 
@@ -198,13 +192,11 @@ final class RedisClusterCrossClusterReplicationConfig {
     this.secondaryClusters,
   });
 
-  final TfArg<RedisClusterCrossClusterReplicationConfigClusterRole>?
-  clusterRole;
+  final TfArg<RedisClusterRole>? clusterRole;
 
-  final RedisClusterCrossClusterReplicationConfigPrimaryCluster? primaryCluster;
+  final RedisClusterPrimaryCluster? primaryCluster;
 
-  final List<RedisClusterCrossClusterReplicationConfigSecondaryClusters>?
-  secondaryClusters;
+  final List<RedisClusterSecondaryClusters>? secondaryClusters;
 
   Map<String, Object?> encode() => {
     'cluster_role': ?clusterRole?.toTfJson(),
@@ -215,16 +207,13 @@ final class RedisClusterCrossClusterReplicationConfig {
 }
 
 /// `cluster_role` — derived from the provider schema description.
-enum RedisClusterCrossClusterReplicationConfigClusterRole
-    implements TerraformEnum {
+enum RedisClusterRole implements TerraformEnum {
   clusterRoleUnspecified('CLUSTER_ROLE_UNSPECIFIED'),
   none('NONE'),
   primary('PRIMARY'),
   secondary('SECONDARY');
 
-  const RedisClusterCrossClusterReplicationConfigClusterRole(
-    this.terraformValue,
-  );
+  const RedisClusterRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -232,8 +221,8 @@ enum RedisClusterCrossClusterReplicationConfigClusterRole
 /// Typed helper for the `cross_cluster_replication_config.primary_cluster` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterCrossClusterReplicationConfigPrimaryCluster {
-  const RedisClusterCrossClusterReplicationConfigPrimaryCluster({this.cluster});
+final class RedisClusterPrimaryCluster {
+  const RedisClusterPrimaryCluster({this.cluster});
 
   final TfArg<String>? cluster;
 
@@ -243,10 +232,8 @@ final class RedisClusterCrossClusterReplicationConfigPrimaryCluster {
 /// Typed helper for the `cross_cluster_replication_config.secondary_clusters` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterCrossClusterReplicationConfigSecondaryClusters {
-  const RedisClusterCrossClusterReplicationConfigSecondaryClusters({
-    this.cluster,
-  });
+final class RedisClusterSecondaryClusters {
+  const RedisClusterSecondaryClusters({this.cluster});
 
   final TfArg<String>? cluster;
 
@@ -270,8 +257,7 @@ final class RedisClusterGcsSource {
 final class RedisClusterMaintenancePolicy {
   const RedisClusterMaintenancePolicy({this.weeklyMaintenanceWindow});
 
-  final List<RedisClusterMaintenancePolicyWeeklyMaintenanceWindow>?
-  weeklyMaintenanceWindow;
+  final List<RedisClusterWeeklyMaintenanceWindow>? weeklyMaintenanceWindow;
 
   Map<String, Object?> encode() => {
     if (weeklyMaintenanceWindow != null)
@@ -284,15 +270,15 @@ final class RedisClusterMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterMaintenancePolicyWeeklyMaintenanceWindow {
-  const RedisClusterMaintenancePolicyWeeklyMaintenanceWindow({
+final class RedisClusterWeeklyMaintenanceWindow {
+  const RedisClusterWeeklyMaintenanceWindow({
     required this.day,
     required this.startTime,
   });
 
-  final TfArg<RedisClusterMaintenancePolicyWeeklyMaintenanceWindowDay> day;
+  final TfArg<RedisClusterDay> day;
 
-  final RedisClusterMaintenancePolicyWeeklyMaintenanceWindowStartTime startTime;
+  final RedisClusterWeeklyMaintenanceWindowStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
@@ -301,8 +287,7 @@ final class RedisClusterMaintenancePolicyWeeklyMaintenanceWindow {
 }
 
 /// `day` — derived from the provider schema description.
-enum RedisClusterMaintenancePolicyWeeklyMaintenanceWindowDay
-    implements TerraformEnum {
+enum RedisClusterDay implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -312,9 +297,7 @@ enum RedisClusterMaintenancePolicyWeeklyMaintenanceWindowDay
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const RedisClusterMaintenancePolicyWeeklyMaintenanceWindowDay(
-    this.terraformValue,
-  );
+  const RedisClusterDay(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -322,8 +305,8 @@ enum RedisClusterMaintenancePolicyWeeklyMaintenanceWindowDay
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window.start_time` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterMaintenancePolicyWeeklyMaintenanceWindowStartTime {
-  const RedisClusterMaintenancePolicyWeeklyMaintenanceWindowStartTime({
+final class RedisClusterWeeklyMaintenanceWindowStartTime {
+  const RedisClusterWeeklyMaintenanceWindowStartTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -369,9 +352,9 @@ final class RedisClusterPersistenceConfig {
 
   final TfArg<RedisClusterPersistenceConfigMode>? mode;
 
-  final RedisClusterPersistenceConfigAofConfig? aofConfig;
+  final RedisClusterAofConfig? aofConfig;
 
-  final RedisClusterPersistenceConfigRdbConfig? rdbConfig;
+  final RedisClusterRdbConfig? rdbConfig;
 
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
@@ -395,23 +378,22 @@ enum RedisClusterPersistenceConfigMode implements TerraformEnum {
 /// Typed helper for the `persistence_config.aof_config` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterPersistenceConfigAofConfig {
-  const RedisClusterPersistenceConfigAofConfig({this.appendFsync});
+final class RedisClusterAofConfig {
+  const RedisClusterAofConfig({this.appendFsync});
 
-  final TfArg<RedisClusterPersistenceConfigAofConfigAppendFsync>? appendFsync;
+  final TfArg<RedisClusterAppendFsync>? appendFsync;
 
   Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
 }
 
 /// `append_fsync` — derived from the provider schema description.
-enum RedisClusterPersistenceConfigAofConfigAppendFsync
-    implements TerraformEnum {
+enum RedisClusterAppendFsync implements TerraformEnum {
   appendFsyncUnspecified('APPEND_FSYNC_UNSPECIFIED'),
   no('NO'),
   everysec('EVERYSEC'),
   always('ALWAYS');
 
-  const RedisClusterPersistenceConfigAofConfigAppendFsync(this.terraformValue);
+  const RedisClusterAppendFsync(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -419,14 +401,13 @@ enum RedisClusterPersistenceConfigAofConfigAppendFsync
 /// Typed helper for the `persistence_config.rdb_config` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
-final class RedisClusterPersistenceConfigRdbConfig {
-  const RedisClusterPersistenceConfigRdbConfig({
+final class RedisClusterRdbConfig {
+  const RedisClusterRdbConfig({
     this.rdbSnapshotPeriod,
     this.rdbSnapshotStartTime,
   });
 
-  final TfArg<RedisClusterPersistenceConfigRdbConfigRdbSnapshotPeriod>?
-  rdbSnapshotPeriod;
+  final TfArg<RedisClusterRdbSnapshotPeriod>? rdbSnapshotPeriod;
 
   final TfArg<String>? rdbSnapshotStartTime;
 
@@ -437,17 +418,14 @@ final class RedisClusterPersistenceConfigRdbConfig {
 }
 
 /// `rdb_snapshot_period` — derived from the provider schema description.
-enum RedisClusterPersistenceConfigRdbConfigRdbSnapshotPeriod
-    implements TerraformEnum {
+enum RedisClusterRdbSnapshotPeriod implements TerraformEnum {
   snapshotPeriodUnspecified('SNAPSHOT_PERIOD_UNSPECIFIED'),
   oneHour('ONE_HOUR'),
   sixHours('SIX_HOURS'),
   twelveHours('TWELVE_HOURS'),
   twentyFourHours('TWENTY_FOUR_HOURS');
 
-  const RedisClusterPersistenceConfigRdbConfigRdbSnapshotPeriod(
-    this.terraformValue,
-  );
+  const RedisClusterRdbSnapshotPeriod(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -25,7 +25,7 @@ enum MskconnectCustomPluginContentType implements TerraformEnum {
 final class MskconnectCustomPluginLocation {
   const MskconnectCustomPluginLocation({required this.s3});
 
-  final MskconnectCustomPluginLocationS3 s3;
+  final MskconnectCustomPluginS3 s3;
 
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
@@ -33,8 +33,8 @@ final class MskconnectCustomPluginLocation {
 /// Typed helper for the `location.s3` block of
 /// `aws_mskconnect_custom_plugin` (derived from provider schema).
 @immutable
-final class MskconnectCustomPluginLocationS3 {
-  const MskconnectCustomPluginLocationS3({
+final class MskconnectCustomPluginS3 {
+  const MskconnectCustomPluginS3({
     required this.bucketArn,
     required this.fileKey,
     this.objectVersion,

@@ -33,7 +33,7 @@ final class ComputeInterconnectAttachmentGroupAttachments {
 final class ComputeInterconnectAttachmentGroupIntent {
   const ComputeInterconnectAttachmentGroupIntent({this.availabilitySla});
 
-  final TfArg<ComputeInterconnectAttachmentGroupIntentAvailabilitySla>?
+  final TfArg<ComputeInterconnectAttachmentGroupAvailabilitySla>?
   availabilitySla;
 
   Map<String, Object?> encode() => {
@@ -42,16 +42,14 @@ final class ComputeInterconnectAttachmentGroupIntent {
 }
 
 /// `availability_sla` — derived from the provider schema description.
-enum ComputeInterconnectAttachmentGroupIntentAvailabilitySla
+enum ComputeInterconnectAttachmentGroupAvailabilitySla
     implements TerraformEnum {
   productionNonCritical('PRODUCTION_NON_CRITICAL'),
   productionCritical('PRODUCTION_CRITICAL'),
   noSla('NO_SLA'),
   availabilitySlaUnspecified('AVAILABILITY_SLA_UNSPECIFIED');
 
-  const ComputeInterconnectAttachmentGroupIntentAvailabilitySla(
-    this.terraformValue,
-  );
+  const ComputeInterconnectAttachmentGroupAvailabilitySla(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -17,12 +17,12 @@ sealed class FirestoreChangeStreamScope {
   /// Sets `database_scope`.
   const factory FirestoreChangeStreamScope.databaseScope(
     FirestoreChangeStreamDatabaseScope databaseScope,
-  ) = FirestoreChangeStreamScopeDatabaseScope;
+  ) = FirestoreChangeStreamDatabaseScopeChoice;
 
   /// Sets `collection_group_scope`.
   const factory FirestoreChangeStreamScope.collectionGroupScope(
     FirestoreChangeStreamCollectionGroupScope collectionGroupScope,
-  ) = FirestoreChangeStreamScopeCollectionGroupScope;
+  ) = FirestoreChangeStreamCollectionGroupScopeChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class FirestoreChangeStreamScope {
 }
 
 /// The [FirestoreChangeStreamScope.databaseScope] choice: sets `database_scope`.
-final class FirestoreChangeStreamScopeDatabaseScope
+final class FirestoreChangeStreamDatabaseScopeChoice
     extends FirestoreChangeStreamScope {
-  const FirestoreChangeStreamScopeDatabaseScope(this.databaseScope);
+  const FirestoreChangeStreamDatabaseScopeChoice(this.databaseScope);
 
   final FirestoreChangeStreamDatabaseScope databaseScope;
 
@@ -54,9 +54,9 @@ final class FirestoreChangeStreamScopeDatabaseScope
 }
 
 /// The [FirestoreChangeStreamScope.collectionGroupScope] choice: sets `collection_group_scope`.
-final class FirestoreChangeStreamScopeCollectionGroupScope
+final class FirestoreChangeStreamCollectionGroupScopeChoice
     extends FirestoreChangeStreamScope {
-  const FirestoreChangeStreamScopeCollectionGroupScope(
+  const FirestoreChangeStreamCollectionGroupScopeChoice(
     this.collectionGroupScope,
   );
 

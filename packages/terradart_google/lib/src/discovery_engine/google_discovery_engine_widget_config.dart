@@ -45,7 +45,7 @@ final class DiscoveryEngineWidgetConfigAccessSettings {
 final class DiscoveryEngineWidgetConfigHomepageSetting {
   const DiscoveryEngineWidgetConfigHomepageSetting({this.shortcuts});
 
-  final List<DiscoveryEngineWidgetConfigHomepageSettingShortcuts>? shortcuts;
+  final List<DiscoveryEngineWidgetConfigShortcuts>? shortcuts;
 
   Map<String, Object?> encode() => {
     if (shortcuts != null)
@@ -56,8 +56,8 @@ final class DiscoveryEngineWidgetConfigHomepageSetting {
 /// Typed helper for the `homepage_setting.shortcuts` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigHomepageSettingShortcuts {
-  const DiscoveryEngineWidgetConfigHomepageSettingShortcuts({
+final class DiscoveryEngineWidgetConfigShortcuts {
+  const DiscoveryEngineWidgetConfigShortcuts({
     this.destinationUri,
     this.title,
     this.icon,
@@ -67,7 +67,7 @@ final class DiscoveryEngineWidgetConfigHomepageSettingShortcuts {
 
   final TfArg<String>? title;
 
-  final DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon? icon;
+  final DiscoveryEngineWidgetConfigIcon? icon;
 
   Map<String, Object?> encode() => {
     'destination_uri': ?destinationUri?.toTfJson(),
@@ -79,8 +79,8 @@ final class DiscoveryEngineWidgetConfigHomepageSettingShortcuts {
 /// Typed helper for the `homepage_setting.shortcuts.icon` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon {
-  const DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon({this.url});
+final class DiscoveryEngineWidgetConfigIcon {
+  const DiscoveryEngineWidgetConfigIcon({this.url});
 
   final TfArg<String>? url;
 
@@ -93,7 +93,7 @@ final class DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon {
 final class DiscoveryEngineWidgetConfigUiBranding {
   const DiscoveryEngineWidgetConfigUiBranding({this.logo});
 
-  final DiscoveryEngineWidgetConfigUiBrandingLogo? logo;
+  final DiscoveryEngineWidgetConfigLogo? logo;
 
   Map<String, Object?> encode() => {'logo': ?logo?.encode()};
 }
@@ -101,8 +101,8 @@ final class DiscoveryEngineWidgetConfigUiBranding {
 /// Typed helper for the `ui_branding.logo` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiBrandingLogo {
-  const DiscoveryEngineWidgetConfigUiBrandingLogo({this.url});
+final class DiscoveryEngineWidgetConfigLogo {
+  const DiscoveryEngineWidgetConfigLogo({this.url});
 
   final TfArg<String>? url;
 
@@ -149,21 +149,19 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 
   final TfArg<bool>? enableVisualContentSummary;
 
-  final TfArg<DiscoveryEngineWidgetConfigUiSettingsInteractionType>?
-  interactionType;
+  final TfArg<DiscoveryEngineWidgetConfigInteractionType>? interactionType;
 
-  final TfArg<DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType>?
+  final TfArg<DiscoveryEngineWidgetConfigResultDescriptionType>?
   resultDescriptionType;
 
   final TfArg<bool>? sourceAdminDisplayNameEnabled;
 
-  final List<DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs>?
-  dataStoreUiConfigs;
+  final List<DiscoveryEngineWidgetConfigDataStoreUiConfigs>? dataStoreUiConfigs;
 
-  final DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig?
+  final DiscoveryEngineWidgetConfigGenerativeAnswerConfig?
   generativeAnswerConfig;
 
-  final DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec? searchAddonSpec;
+  final DiscoveryEngineWidgetConfigSearchAddonSpec? searchAddonSpec;
 
   Map<String, Object?> encode() => {
     'default_search_request_order_by': ?defaultSearchRequestOrderBy?.toTfJson(),
@@ -189,28 +187,22 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 }
 
 /// `interaction_type` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigUiSettingsInteractionType
-    implements TerraformEnum {
+enum DiscoveryEngineWidgetConfigInteractionType implements TerraformEnum {
   searchOnly('SEARCH_ONLY'),
   searchWithAnswer('SEARCH_WITH_ANSWER'),
   searchWithFollowUps('SEARCH_WITH_FOLLOW_UPS');
 
-  const DiscoveryEngineWidgetConfigUiSettingsInteractionType(
-    this.terraformValue,
-  );
+  const DiscoveryEngineWidgetConfigInteractionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `result_description_type` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType
-    implements TerraformEnum {
+enum DiscoveryEngineWidgetConfigResultDescriptionType implements TerraformEnum {
   snippet('SNIPPET'),
   extractiveAnswer('EXTRACTIVE_ANSWER');
 
-  const DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType(
-    this.terraformValue,
-  );
+  const DiscoveryEngineWidgetConfigResultDescriptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -218,8 +210,8 @@ enum DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType
 /// Typed helper for the `ui_settings.data_store_ui_configs` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs {
-  const DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs({
+final class DiscoveryEngineWidgetConfigDataStoreUiConfigs {
+  const DiscoveryEngineWidgetConfigDataStoreUiConfigs({
     this.name,
     this.facetField,
     this.fieldsUiComponentsMap,
@@ -227,12 +219,9 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs {
 
   final TfArg<String>? name;
 
-  final List<DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField>?
-  facetField;
+  final List<DiscoveryEngineWidgetConfigFacetField>? facetField;
 
-  final List<
-    DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMap
-  >?
+  final List<DiscoveryEngineWidgetConfigFieldsUiComponentsMap>?
   fieldsUiComponentsMap;
 
   Map<String, Object?> encode() => {
@@ -249,8 +238,8 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs {
 /// Typed helper for the `ui_settings.data_store_ui_configs.facet_field` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField {
-  const DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField({
+final class DiscoveryEngineWidgetConfigFacetField {
+  const DiscoveryEngineWidgetConfigFacetField({
     this.displayName,
     required this.field,
   });
@@ -268,19 +257,15 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField {
 /// Typed helper for the `ui_settings.data_store_ui_configs.fields_ui_components_map` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMap {
-  const DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMap({
+final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
+  const DiscoveryEngineWidgetConfigFieldsUiComponentsMap({
     this.deviceVisibility,
     this.displayTemplate,
     required this.field,
     required this.uiComponent,
   });
 
-  final List<
-    TfArg<
-      DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMapDeviceVisibility
-    >
-  >?
+  final List<TfArg<DiscoveryEngineWidgetConfigDeviceVisibility>>?
   deviceVisibility;
 
   final TfArg<String>? displayTemplate;
@@ -299,14 +284,11 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiCompo
 }
 
 /// `device_visibility` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMapDeviceVisibility
-    implements TerraformEnum {
+enum DiscoveryEngineWidgetConfigDeviceVisibility implements TerraformEnum {
   mobile('MOBILE'),
   desktop('DESKTOP');
 
-  const DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMapDeviceVisibility(
-    this.terraformValue,
-  );
+  const DiscoveryEngineWidgetConfigDeviceVisibility(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -314,8 +296,8 @@ enum DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMa
 /// Typed helper for the `ui_settings.generative_answer_config` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig {
-  const DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig({
+final class DiscoveryEngineWidgetConfigGenerativeAnswerConfig {
+  const DiscoveryEngineWidgetConfigGenerativeAnswerConfig({
     this.disableRelatedQuestions,
     this.ignoreAdversarialQuery,
     this.ignoreLowRelevantContent,
@@ -336,10 +318,7 @@ final class DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig {
 
   final TfArg<bool>? ignoreNonAnswerSeekingQuery;
 
-  final TfArg<
-    DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource
-  >?
-  imageSource;
+  final TfArg<DiscoveryEngineWidgetConfigImageSource>? imageSource;
 
   final TfArg<String>? languageCode;
 
@@ -366,15 +345,12 @@ final class DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig {
 }
 
 /// `image_source` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource
-    implements TerraformEnum {
+enum DiscoveryEngineWidgetConfigImageSource implements TerraformEnum {
   allAvailableSources('ALL_AVAILABLE_SOURCES'),
   corpusImageOnly('CORPUS_IMAGE_ONLY'),
   figureGenerationOnly('FIGURE_GENERATION_ONLY');
 
-  const DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource(
-    this.terraformValue,
-  );
+  const DiscoveryEngineWidgetConfigImageSource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -382,8 +358,8 @@ enum DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource
 /// Typed helper for the `ui_settings.search_addon_spec` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec {
-  const DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec({
+final class DiscoveryEngineWidgetConfigSearchAddonSpec {
+  const DiscoveryEngineWidgetConfigSearchAddonSpec({
     this.generativeAnswerAddOnDisabled,
     this.kpiPersonalizationAddOnDisabled,
     this.semanticAddOnDisabled,

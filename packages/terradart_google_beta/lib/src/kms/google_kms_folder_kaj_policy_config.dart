@@ -15,11 +15,7 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
     this.allowedAccessReasons,
   });
 
-  final List<
-    TfArg<
-      KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons
-    >
-  >?
+  final List<TfArg<KmsFolderKajPolicyConfigAllowedAccessReasons>>?
   allowedAccessReasons;
 
   Map<String, Object?> encode() => {
@@ -31,8 +27,7 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
 }
 
 /// `allowed_access_reasons` — derived from the provider schema description.
-enum KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons
-    implements TerraformEnum {
+enum KmsFolderKajPolicyConfigAllowedAccessReasons implements TerraformEnum {
   customerInitiatedSupport('CUSTOMER_INITIATED_SUPPORT'),
   googleInitiatedService('GOOGLE_INITIATED_SERVICE'),
   thirdPartyDataRequest('THIRD_PARTY_DATA_REQUEST'),
@@ -47,9 +42,7 @@ enum KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessRea
   googleResponseToProductionAlert('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
   customerAuthorizedWorkflowServicing('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING');
 
-  const KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons(
-    this.terraformValue,
-  );
+  const KmsFolderKajPolicyConfigAllowedAccessReasons(this.terraformValue);
   @override
   final String terraformValue;
 }

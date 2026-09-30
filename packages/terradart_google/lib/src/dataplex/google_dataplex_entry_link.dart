@@ -18,7 +18,7 @@ final class DataplexEntryLinkAspects {
 
   final TfArg<String> aspectKey;
 
-  final DataplexEntryLinkAspectsAspect aspect;
+  final DataplexEntryLinkAspect aspect;
 
   Map<String, Object?> encode() => {
     'aspect_key': aspectKey.toTfJson(),
@@ -29,8 +29,8 @@ final class DataplexEntryLinkAspects {
 /// Typed helper for the `aspects.aspect` block of
 /// `google_dataplex_entry_link` (derived from provider schema).
 @immutable
-final class DataplexEntryLinkAspectsAspect {
-  const DataplexEntryLinkAspectsAspect({required this.data});
+final class DataplexEntryLinkAspect {
+  const DataplexEntryLinkAspect({required this.data});
 
   final TfArg<String> data;
 
@@ -51,7 +51,7 @@ final class DataplexEntryLinkEntryReferences {
 
   final TfArg<String>? path;
 
-  final TfArg<DataplexEntryLinkEntryReferencesType>? type;
+  final TfArg<DataplexEntryLinkType>? type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -61,11 +61,11 @@ final class DataplexEntryLinkEntryReferences {
 }
 
 /// `type` — derived from the provider schema description.
-enum DataplexEntryLinkEntryReferencesType implements TerraformEnum {
+enum DataplexEntryLinkType implements TerraformEnum {
   source('SOURCE'),
   target('TARGET');
 
-  const DataplexEntryLinkEntryReferencesType(this.terraformValue);
+  const DataplexEntryLinkType(this.terraformValue);
   @override
   final String terraformValue;
 }

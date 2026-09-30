@@ -15,7 +15,7 @@ const Set<String> _cloudflareCustomSslSensitive = <String>{};
 final class DataCustomSslFilter {
   const DataCustomSslFilter({this.match, this.status});
 
-  final TfArg<DataCustomSslFilterMatch>? match;
+  final TfArg<DataCustomSslMatch>? match;
 
   final TfArg<DataCustomSslFilterStatus>? status;
 
@@ -26,11 +26,11 @@ final class DataCustomSslFilter {
 }
 
 /// `match` — derived from the provider schema description.
-enum DataCustomSslFilterMatch implements TerraformEnum {
+enum DataCustomSslMatch implements TerraformEnum {
   any('any'),
   all('all');
 
-  const DataCustomSslFilterMatch(this.terraformValue);
+  const DataCustomSslMatch(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -27,7 +27,7 @@ final class GlueUserDefinedFunctionResourceUris {
     required this.uri,
   });
 
-  final TfArg<GlueUserDefinedFunctionResourceUrisResourceType> resourceType;
+  final TfArg<GlueUserDefinedFunctionResourceType> resourceType;
 
   final TfArg<String> uri;
 
@@ -38,12 +38,12 @@ final class GlueUserDefinedFunctionResourceUris {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum GlueUserDefinedFunctionResourceUrisResourceType implements TerraformEnum {
+enum GlueUserDefinedFunctionResourceType implements TerraformEnum {
   jar('JAR'),
   file('FILE'),
   archive('ARCHIVE');
 
-  const GlueUserDefinedFunctionResourceUrisResourceType(this.terraformValue);
+  const GlueUserDefinedFunctionResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
