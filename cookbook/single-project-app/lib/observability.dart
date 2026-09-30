@@ -53,11 +53,13 @@ GoogleMonitoringUptimeCheckConfig buildUptimeCheck(
   timeout: .literal('10s'),
   period: .literal('60s'),
   target: .monitoredResource(
-    type: .literal('uptime_url'),
-    labels: {
-      'host':
-          '\${replace(replace(google_cloud_run_v2_service.coffee_service.uri, "https://", ""), "/", "")}',
-    },
+    MonitoringUptimeCheckConfigMonitoredResource(
+      type: .literal('uptime_url'),
+      labels: .literal({
+        'host':
+            '\${replace(replace(google_cloud_run_v2_service.coffee_service.uri, "https://", ""), "/", "")}',
+      }),
+    ),
   ),
   httpCheck: MonitoringUptimeCheckConfigHttpCheck(
     path: .literal('/'),
@@ -73,9 +75,9 @@ GoogleMonitoringAlertPolicy buildDownAlert(
   displayName: .literal('Coffee Shop down'),
   combiner: .literal(.or),
   conditions: [
-    MonitoringAlertPolicyAlertCondition(
+    MonitoringAlertPolicyConditions(
       displayName: .literal('uptime check failing'),
-      conditionThreshold: MonitoringAlertPolicyConditionThreshold(
+      conditionThreshold: MonitoringAlertPolicyConditionsConditionThreshold(
         filter: .literal(
           'metric.type="monitoring.googleapis.com/uptime_check/check_passed" AND resource.type="uptime_url" AND metric.labels.check_id="\${google_monitoring_uptime_check_config.coffee_uptime.uptime_check_id}"',
         ),
@@ -83,9 +85,9 @@ GoogleMonitoringAlertPolicy buildDownAlert(
         thresholdValue: .literal(1),
         duration: .literal('60s'),
         aggregations: [
-          MonitoringAlertPolicyAggregation(
+          MonitoringAlertPolicyConditionsConditionThresholdAggregations(
             alignmentPeriod: .literal('60s'),
-            perSeriesAligner: Aligner.alignNextOlder,
+            perSeriesAligner: .literal(.alignNextOlder),
           ),
         ],
       ),

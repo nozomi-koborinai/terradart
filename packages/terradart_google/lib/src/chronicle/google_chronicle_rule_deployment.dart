@@ -55,6 +55,7 @@ final class GoogleChronicleRuleDeployment extends Resource {
     TfArg<bool>? archived,
     TfArg<String>? runFrequency,
     TfArg<String>? project,
+    ChronicleRuleDeploymentScheduleCustomizations? scheduleCustomizations,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -70,6 +71,10 @@ final class GoogleChronicleRuleDeployment extends Resource {
            'archived': ?archived,
            'run_frequency': ?runFrequency,
            'project': ?project,
+           if (scheduleCustomizations != null)
+             'schedule_customizations': TfArg.literal(
+               scheduleCustomizations.encode(),
+             ),
          },
        );
 

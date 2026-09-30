@@ -1060,13 +1060,14 @@ void main() {
         expect(out, isNot(contains('osPolicies!')));
         expect(out, isNot(contains('if (osPolicies != null)')));
 
-        // The excluded `resources` grandchild keeps its real schema
-        // cardinality (required + repeated) rather than the collector's
-        // pre-fix scalar-optional default — see nested_type_collector.dart's
-        // `ExcludedNestedBlock`.
+        // The `resources` grandchild keeps its real schema cardinality
+        // (required + repeated).
         expect(
           out,
-          contains('final TfArg<List<Map<String, dynamic>>> resources;'),
+          contains(
+            'final List<OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResources> '
+            'resources;',
+          ),
         );
       });
     });

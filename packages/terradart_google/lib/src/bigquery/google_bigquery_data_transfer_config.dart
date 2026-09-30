@@ -69,21 +69,77 @@ final class BigqueryDataTransferConfigScheduleOptions {
 @immutable
 final class BigqueryDataTransferConfigSensitiveParams {
   const BigqueryDataTransferConfigSensitiveParams({
-    this.secretAccessKey,
-    this.secretAccessKeyWo,
+    required this.secretAccessKey,
     this.secretAccessKeyWoVersion,
   });
 
-  final TfArg<String>? secretAccessKey;
-
-  final TfArg<String>? secretAccessKeyWo;
+  final BigqueryDataTransferConfigSensitiveParamsSecretAccessKey
+  secretAccessKey;
 
   final TfArg<String>? secretAccessKeyWoVersion;
 
   Map<String, Object?> encode() => {
-    'secret_access_key': ?secretAccessKey?.toTfJson(),
-    'secret_access_key_wo': ?secretAccessKeyWo?.toTfJson(),
+    ...secretAccessKey.encode(),
     'secret_access_key_wo_version': ?secretAccessKeyWoVersion?.toTfJson(),
+  };
+}
+
+/// Exactly one of `secret_access_key`, `secret_access_key_wo` on the `sensitive_params` block of `google_bigquery_data_transfer_config`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.secretAccessKey(...)`.
+sealed class BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
+  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKey();
+
+  /// Sets `secret_access_key`.
+  const factory BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKey(
+    TfArg<String> secretAccessKey,
+  ) = BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice;
+
+  /// Sets `secret_access_key_wo`.
+  const factory BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKeyWo(
+    TfArg<String> secretAccessKeyWo,
+  ) = BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKey] choice: sets `secret_access_key`.
+final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice
+    extends BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
+  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice(
+    this.secretAccessKey,
+  );
+
+  final TfArg<String> secretAccessKey;
+
+  @override
+  String get blockKey => 'secret_access_key';
+
+  @override
+  Map<String, Object?> encode() => {
+    'secret_access_key': secretAccessKey.toTfJson(),
+  };
+}
+
+/// The [BigqueryDataTransferConfigSensitiveParamsSecretAccessKey.secretAccessKeyWo] choice: sets `secret_access_key_wo`.
+final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo
+    extends BigqueryDataTransferConfigSensitiveParamsSecretAccessKey {
+  const BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo(
+    this.secretAccessKeyWo,
+  );
+
+  final TfArg<String> secretAccessKeyWo;
+
+  @override
+  String get blockKey => 'secret_access_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'secret_access_key_wo': secretAccessKeyWo.toTfJson(),
   };
 }
 
@@ -155,7 +211,7 @@ final class BigqueryDataTransferConfigSensitiveParams {
 ///   'file_format': 'CSV',
 /// }),
 /// sensitiveParams: BigqueryDataTransferConfigSensitiveParams(
-///   secretAccessKeyWo: .literal(awsSecretAccessKey),
+///   secretAccessKey: .secretAccessKeyWo(.literal(awsSecretAccessKey)),
 ///   secretAccessKeyWoVersion: .literal('1'),
 /// ),
 /// ```
@@ -174,10 +230,11 @@ final class BigqueryDataTransferConfigSensitiveParams {
 /// `transferConfigs.startManualRuns`.
 ///
 /// Credentials handling: the S3 secret access key MUST be placed in
-/// [sensitiveParams] rather than [params], as exactly one of
-/// `secretAccessKeyWo` (Terraform 1.11+; keeps the key out of Terraform
-/// state, bump `secretAccessKeyWoVersion` to rotate) or `secretAccessKey`
-/// (schema-flagged sensitive, but stored in state).
+/// [sensitiveParams] rather than [params], as `secretAccessKey:`
+/// `.secretAccessKeyWo(...)` (Terraform 1.11+; keeps the key out of
+/// Terraform state, bump `secretAccessKeyWoVersion` to rotate) or
+/// `.secretAccessKey(...)` (schema-flagged sensitive, but stored in
+/// state).
 ///
 /// Example (daily GCS → BigQuery import):
 /// ```dart

@@ -31,7 +31,7 @@ curatedDoc: |-
   ///   cluster: TfArg.ref(cluster.id),
   ///   userId: TfArg.literal('app'),
   ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
-  ///   passwordWo: TfArg.literal(dbPassword),
+  ///   password: .passwordWo(.literal(dbPassword)),
   ///   passwordWoVersion: TfArg.literal('1'),
   /// );
   /// ```

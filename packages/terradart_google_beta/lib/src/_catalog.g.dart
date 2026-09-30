@@ -1149,6 +1149,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'FirebaseAiLogicConfigGenerativeLanguageConfig',
+      'FirebaseAiLogicConfigGenerativeLanguageConfigApiKey',
+      'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice',
+      'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo',
       'FirebaseAiLogicConfigTelemetryConfig',
       'FirebaseAiLogicConfigTrafficFilter',
     ],

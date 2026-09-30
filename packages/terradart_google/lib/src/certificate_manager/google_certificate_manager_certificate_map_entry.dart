@@ -1,66 +1,71 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
-import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_certificate_manager_certificate_map_entry`.
 const Set<String> _googleCertificateManagerCertificateMapEntrySensitive =
     <String>{};
 
-/// Selects which traffic a [GoogleCertificateManagerCertificateMapEntry]
-/// matches. The provider's `exactly_one_of` on `hostname` / `matcher` is
-/// enforced at compile time: pass exactly one variant.
+/// Exactly one of `hostname`, `matcher` on `google_certificate_manager_certificate_map_entry`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.hostname(...)`.
 sealed class CertificateManagerCertificateMapEntryMatch {
   const CertificateManagerCertificateMapEntryMatch();
 
-  /// Match by SNI hostname — an FQDN (`app.example.com`) or a wildcard
-  /// suffix expression (`*.example.com`).
+  /// Sets `hostname`.
   const factory CertificateManagerCertificateMapEntryMatch.hostname(
     TfArg<String> hostname,
-  ) = CertificateManagerCertificateMapEntryHostname;
+  ) = CertificateManagerCertificateMapEntryMatchHostname;
 
-  /// Match by a predefined matcher (e.g. `PRIMARY` — the fallback entry
-  /// used when no hostname matches).
+  /// Sets `matcher`.
   const factory CertificateManagerCertificateMapEntryMatch.matcher(
     TfArg<String> matcher,
-  ) = CertificateManagerCertificateMapEntryMatcher;
+  ) = CertificateManagerCertificateMapEntryMatchMatcher;
 
-  /// argMap key this variant emits under (`hostname` or `matcher`).
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// Value emitted under [blockKey].
-  TfArg<String> get value;
+  Map<String, Object?> encode();
 
-  /// Flat `{blockKey: value}` payload, value unwrapped via `toTfJson()`
-  /// (the Gate 6 encode round-trip shape).
-  Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `hostname` variant of [CertificateManagerCertificateMapEntryMatch].
-@immutable
-final class CertificateManagerCertificateMapEntryHostname
+/// The [CertificateManagerCertificateMapEntryMatch.hostname] choice: sets `hostname`.
+final class CertificateManagerCertificateMapEntryMatchHostname
     extends CertificateManagerCertificateMapEntryMatch {
-  const CertificateManagerCertificateMapEntryHostname(this.value);
+  const CertificateManagerCertificateMapEntryMatchHostname(this.hostname);
 
-  @override
-  final TfArg<String> value;
+  final TfArg<String> hostname;
 
   @override
   String get blockKey => 'hostname';
-}
-
-/// `matcher` variant of [CertificateManagerCertificateMapEntryMatch].
-@immutable
-final class CertificateManagerCertificateMapEntryMatcher
-    extends CertificateManagerCertificateMapEntryMatch {
-  const CertificateManagerCertificateMapEntryMatcher(this.value);
 
   @override
-  final TfArg<String> value;
+  Map<String, Object?> encode() => {'hostname': hostname.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'hostname': hostname};
+}
+
+/// The [CertificateManagerCertificateMapEntryMatch.matcher] choice: sets `matcher`.
+final class CertificateManagerCertificateMapEntryMatchMatcher
+    extends CertificateManagerCertificateMapEntryMatch {
+  const CertificateManagerCertificateMapEntryMatchMatcher(this.matcher);
+
+  final TfArg<String> matcher;
 
   @override
   String get blockKey => 'matcher';
+
+  @override
+  Map<String, Object?> encode() => {'matcher': matcher.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'matcher': matcher};
 }
 
 /// Factory wrapper for `google_certificate_manager_certificate_map_entry`.
@@ -110,6 +115,7 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
     required CertificateManagerCertificateMapEntryMatch match,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -122,7 +128,8 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
            'certificates': certificates,
            'description': ?description,
            'labels': ?labels,
-           match.blockKey: match.value,
+           ...match.argMap,
+           'project': ?project,
          },
        );
 

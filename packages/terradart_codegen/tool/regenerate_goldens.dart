@@ -9,6 +9,7 @@
 /// only needs this one tool to refresh the snapshot pins.
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
@@ -38,12 +39,30 @@ ResourceDef _loadDataSource(String dataSource, String schemaFile) {
   return ir.dataSources[dataSource]!;
 }
 
+/// The raw provider-schema blocks of [schemaFile], which an override with
+/// `deriveNestedTypes: true` needs.
+Map<String, Map<String, dynamic>> _rawResourceBlocks(String schemaFile) {
+  final root =
+      jsonDecode(File('test/fixtures/schema/$schemaFile').readAsStringSync())
+          as Map<String, dynamic>;
+  final body = (root['provider_schemas'] as Map).values.single as Map;
+  return {
+    for (final e in ((body['resource_schemas'] as Map?) ?? const {}).entries)
+      e.key as String: ((e.value as Map)['block'] as Map)
+          .cast<String, dynamic>(),
+  };
+}
+
 void _emitResource(
   Map<String, WrapperOverride> overrides,
   String goldenPath,
   ResourceDef def,
+  String schemaFile,
 ) {
-  final emitter = WrapperEmitter(overrides: overrides);
+  final emitter = WrapperEmitter(
+    overrides: overrides,
+    rawResourceSchemas: _rawResourceBlocks(schemaFile),
+  );
   final raw = emitter.emit(def, providerSource: 'hashicorp/google');
   final formatter = DartFormatter(
     languageVersion: DartFormatter.latestLanguageVersion,
@@ -140,7 +159,7 @@ void main() {
 
   for (final entry in resourceCases.entries) {
     final def = _loadResource(entry.key, entry.value.schemaFile);
-    _emitResource(overrides, entry.value.golden, def);
+    _emitResource(overrides, entry.value.golden, def, entry.value.schemaFile);
   }
 
   final dataSourceCases = {

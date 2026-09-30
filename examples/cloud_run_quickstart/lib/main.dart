@@ -79,9 +79,15 @@ final class ApiServiceStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'db_password',
         secretId: .literal('api-db-password'),
-        replication: SecretManagerSecretReplication.userManaged([
-          SecretManagerSecretReplica(location: .literal('asia-northeast1')),
-        ]),
+        replication: .userManaged(
+          SecretManagerSecretReplicationUserManaged(
+            replicas: [
+              SecretManagerSecretReplicationUserManagedReplicas(
+                location: .literal('asia-northeast1'),
+              ),
+            ],
+          ),
+        ),
         dependsOn: apiDeps,
       ),
     );

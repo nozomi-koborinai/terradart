@@ -9,6 +9,67 @@ const Set<String> _googleComputeRegionSslCertificateSensitive = <String>{
   'private_key',
 };
 
+/// Exactly one of `private_key`, `private_key_wo` on `google_compute_region_ssl_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.privateKey(...)`.
+sealed class ComputeRegionSslCertificatePrivateKey {
+  const ComputeRegionSslCertificatePrivateKey();
+
+  /// Sets `private_key`.
+  const factory ComputeRegionSslCertificatePrivateKey.privateKey(
+    TfArg<String> privateKey,
+  ) = ComputeRegionSslCertificatePrivateKeyChoice;
+
+  /// Sets `private_key_wo`.
+  const factory ComputeRegionSslCertificatePrivateKey.privateKeyWo(
+    TfArg<String> privateKeyWo,
+  ) = ComputeRegionSslCertificatePrivateKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeRegionSslCertificatePrivateKey.privateKey] choice: sets `private_key`.
+final class ComputeRegionSslCertificatePrivateKeyChoice
+    extends ComputeRegionSslCertificatePrivateKey {
+  const ComputeRegionSslCertificatePrivateKeyChoice(this.privateKey);
+
+  final TfArg<String> privateKey;
+
+  @override
+  String get blockKey => 'private_key';
+
+  @override
+  Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
+}
+
+/// The [ComputeRegionSslCertificatePrivateKey.privateKeyWo] choice: sets `private_key_wo`.
+final class ComputeRegionSslCertificatePrivateKeyWo
+    extends ComputeRegionSslCertificatePrivateKey {
+  const ComputeRegionSslCertificatePrivateKeyWo(this.privateKeyWo);
+
+  final TfArg<String> privateKeyWo;
+
+  @override
+  String get blockKey => 'private_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'private_key_wo': privateKeyWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key_wo': privateKeyWo};
+}
+
 /// Factory wrapper for `google_compute_region_ssl_certificate`.
 ///
 /// A RegionSslCertificate resource, used for HTTPS load balancing. This
@@ -24,7 +85,7 @@ const Set<String> _googleComputeRegionSslCertificateSensitive = <String>{
 ///   localName: 'regional_cert',
 ///   name: TfArg.literal('regional-cert'),
 ///   certificate: TfArg.literal(pemCertificate),
-///   privateKey: TfArg.literal(pemPrivateKey),
+///   privateKey: .privateKey(.literal(pemPrivateKey)),
 ///   region: TfArg.literal('asia-northeast1'),
 /// );
 /// ```
@@ -34,11 +95,12 @@ final class GoogleComputeRegionSslCertificate extends Resource {
   GoogleComputeRegionSslCertificate({
     required super.localName,
     required TfArg<String> certificate,
-    TfArg<String>? privateKey,
+    required ComputeRegionSslCertificatePrivateKey privateKey,
     TfArg<String>? name,
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<String>? project,
+    TfArg<String>? privateKeyWoVersion,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -47,11 +109,12 @@ final class GoogleComputeRegionSslCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate': certificate,
-           'private_key': ?privateKey,
+           ...privateKey.argMap,
            'name': ?name,
            'description': ?description,
            'region': ?region,
            'project': ?project,
+           'private_key_wo_version': ?privateKeyWoVersion,
          },
        );
 

@@ -2,6 +2,7 @@ outputDir: logging
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - bucket_id
@@ -11,6 +12,8 @@ paramOrder:
   - enable_analytics
   - retention_days
   - locked
+  - cmek_settings
+  - index_configs
 
 curatedDoc: |-
   /// Project-scoped log bucket configuration (retention, analytics, CMEK).
@@ -20,10 +23,11 @@ curatedDoc: |-
   /// ```dart
   /// final auditBucket = GoogleLoggingProjectBucketConfig(
   ///   localName: 'audit_bucket',
-  ///   bucketId: TfArg.literal('audit-logs'),
-  ///   location: TfArg.literal('global'),
-  ///   retentionDays: TfArg.literal(30),
-  ///   enableAnalytics: TfArg.literal(true),
+  ///   project: .literal('my-project'),
+  ///   bucketId: .literal('audit-logs'),
+  ///   location: .literal('global'),
+  ///   retentionDays: .literal(30),
+  ///   enableAnalytics: .literal(true),
   /// );
   /// ```
 

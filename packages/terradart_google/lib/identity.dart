@@ -19,7 +19,32 @@ export 'src/identity/google_cloud_identity_group_membership.dart'
         CloudIdentityGroupMembershipRolesName,
         GoogleCloudIdentityGroupMembership;
 export 'src/identity/google_identity_platform_config.dart'
-    show GoogleIdentityPlatformConfig;
+    show
+        GoogleIdentityPlatformConfig,
+        IdentityPlatformConfigBlockingFunctions,
+        IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials,
+        IdentityPlatformConfigBlockingFunctionsTriggers,
+        IdentityPlatformConfigClient,
+        IdentityPlatformConfigClientPermissions,
+        IdentityPlatformConfigMfa,
+        IdentityPlatformConfigMfaProviderConfigs,
+        IdentityPlatformConfigMfaProviderConfigsState,
+        IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig,
+        IdentityPlatformConfigMfaState,
+        IdentityPlatformConfigMonitoring,
+        IdentityPlatformConfigMonitoringRequestLogging,
+        IdentityPlatformConfigMultiTenant,
+        IdentityPlatformConfigQuota,
+        IdentityPlatformConfigQuotaSignUpQuotaConfig,
+        IdentityPlatformConfigSignIn,
+        IdentityPlatformConfigSignInAnonymous,
+        IdentityPlatformConfigSignInEmail,
+        IdentityPlatformConfigSignInPhoneNumber,
+        IdentityPlatformConfigSmsRegionConfig,
+        IdentityPlatformConfigSmsRegionConfigAllowByDefault,
+        IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice,
+        IdentityPlatformConfigSmsRegionConfigAllowlistOnly,
+        IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice;
 export 'src/identity/google_identity_platform_default_supported_idp_config.dart'
     show GoogleIdentityPlatformDefaultSupportedIdpConfig;
 export 'src/identity/google_identity_platform_inbound_saml_config.dart'

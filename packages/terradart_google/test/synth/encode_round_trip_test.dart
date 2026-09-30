@@ -30,21 +30,16 @@ import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
-import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/data_catalog.dart';
-import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/edgecontainer.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
-import 'package:terradart_google/iam.dart';
-import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/network.dart';
-import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
 import 'package:terradart_google/vertex_ai.dart';
@@ -59,11 +54,6 @@ import 'package:test/test.dart';
 /// fails loudly when a sealed-class is extracted from yaml but no entry
 /// exists here — keeping the table in lockstep with yaml is a curator
 /// responsibility.
-///
-/// SecretManagerSecretReplication members are private (`_AutoReplication` / `_UserManagedReplication`);
-/// the lookup key uses the literal private-class name produced by the
-/// extractor, but thunk bodies construct via the public `SecretManagerSecretReplication.auto()` /
-/// `SecretManagerSecretReplication.userManaged(...)` factories.
 final Map<String, Object Function()> _syntheticInstances = {
   // --- AgentRegistryServiceSpec (3) — google_agent_registry_service -------
   'AgentRegistryServiceAgentSpec': () => const AgentRegistryServiceAgentSpec(
@@ -321,34 +311,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'EdgecontainerClusterControlPlaneLocal': () =>
       const EdgecontainerClusterControlPlaneLocal(),
 
-  // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
-  'MonitoringUptimeCheckConfigMonitoredResource': () =>
-      MonitoringUptimeCheckConfigMonitoredResource(
-        type: TfArg.literal('uptime_url'),
-        labels: {'host': 'example.com'},
-      ),
-  'MonitoringUptimeCheckConfigResourceGroup': () =>
-      MonitoringUptimeCheckConfigResourceGroup(
-        groupId: TfArg.literal('my-group'),
-      ),
-  'MonitoringUptimeCheckConfigSyntheticMonitor': () =>
-      MonitoringUptimeCheckConfigSyntheticMonitor(
-        cloudFunctionV2: MonitoringUptimeCheckConfigCloudFunctionV2(
-          name: TfArg.literal('projects/p/locations/us-central1/functions/f'),
-        ),
-      ),
-
-  // --- MonitoringUptimeCheckConfigHttpAuthPassword (2) — uptime_check -----
-  'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword': () =>
-      MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword(
-        passwordWo: TfArg.literal('mock-password'),
-        passwordWoVersion: TfArg.literal('1'),
-      ),
-  'MonitoringUptimeCheckConfigHttpAuthPlaintextPassword': () =>
-      MonitoringUptimeCheckConfigHttpAuthPlaintextPassword(
-        password: TfArg.literal('mock-password'),
-      ),
-
   // --- SecretManagerSecretVersionPayload (2) — secret_manager_secret_version
   'SecretManagerSecretVersionWriteOnlyPayload': () =>
       SecretManagerSecretVersionWriteOnlyPayload(
@@ -377,78 +339,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'FirestoreBackupScheduleWeeklyRecurrence': () =>
       const FirestoreBackupScheduleWeeklyRecurrence(),
 
-  // --- StoredInfoTypeDefinition (3) — data_loss_prevention_stored_info_type -
-  'DataLossPreventionStoredInfoTypeRegex': () =>
-      DataLossPreventionStoredInfoTypeRegex(
-        pattern: TfArg.literal(r'patient-\d{4}'),
-      ),
-  'DataLossPreventionStoredInfoTypeDictionary': () =>
-      DataLossPreventionStoredInfoTypeDictionary(
-        words: TfArg.literal(const ['ALPHA', 'BRAVO']),
-      ),
-  'DataLossPreventionStoredInfoTypeLargeCustomDictionary': () =>
-      DataLossPreventionStoredInfoTypeLargeCustomDictionary(
-        outputPath: TfArg.literal('gs://bucket/dlp-dict/'),
-        cloudStorageFileSet: TfArg.literal('gs://bucket/phrases.txt'),
-      ),
-
-  // --- OsConfigPatchDeploymentSchedule (2) — os_config_patch_deployment ------
-  'OsConfigPatchDeploymentOneTimeSchedule': () =>
-      OsConfigPatchDeploymentOneTimeSchedule(
-        executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
-      ),
-  'OsConfigPatchDeploymentRecurringSchedule': () =>
-      OsConfigPatchDeploymentRecurringSchedule(
-        timeZone: OsConfigPatchDeploymentRecurringScheduleTimeZone(
-          id: TfArg.literal('America/New_York'),
-        ),
-        weekly: const OsConfigPatchDeploymentRecurringScheduleWeekly(
-          dayOfWeek: OsConfigPatchDeploymentDayOfWeek.monday,
-        ),
-      ),
-
-  // --- MonitoringSloSli (3) — monitoring_slo ---------------------------------
-  'MonitoringSloBasicSli': () => MonitoringSloBasicSli(
-    availability: MonitoringSloBasicSliAvailability(
-      enabled: TfArg.literal(true),
-    ),
-  ),
-  'MonitoringSloRequestBasedSli': () => MonitoringSloRequestBasedSli(
-    goodTotalRatio: MonitoringSloGoodTotalRatio(
-      goodServiceFilter: TfArg.literal('metric.type="test"'),
-    ),
-  ),
-  'MonitoringSloWindowsBasedSli': () => MonitoringSloWindowsBasedSli(
-    goodBadMetricFilter: TfArg.literal('metric.type="test"'),
-    windowPeriod: TfArg.literal('3600s'),
-    goodTotalRatioThreshold: MonitoringSloWindowsGoodTotalRatioThreshold(
-      threshold: TfArg.literal(0.95),
-    ),
-  ),
-
-  // --- IamWorkloadIdentityPoolProviderTrustSource (4) — iam WIF provider ---
-  'IamWorkloadIdentityPoolProviderOidcTrust': () =>
-      IamWorkloadIdentityPoolProviderOidcTrust(
-        issuerUri: TfArg.literal('https://token.actions.githubusercontent.com'),
-      ),
-  'IamWorkloadIdentityPoolProviderAwsTrust': () =>
-      const IamWorkloadIdentityPoolProviderAwsTrust(),
-  'IamWorkloadIdentityPoolProviderSamlTrust': () =>
-      IamWorkloadIdentityPoolProviderSamlTrust(
-        idpMetadataXml: TfArg.literal('<xml/>'),
-      ),
-  'IamWorkloadIdentityPoolProviderX509Trust': () =>
-      const IamWorkloadIdentityPoolProviderX509Trust(),
-
-  // --- IamWorkforcePoolProviderTrustSource (2) — leftover workforce IdP ---
-  'IamWorkforcePoolProviderOidcTrust': () => IamWorkforcePoolProviderOidcTrust(
-    issuerUri: TfArg.literal('https://accounts.google.com'),
-    clientId: TfArg.literal('client.apps.googleusercontent.com'),
-  ),
-  'IamWorkforcePoolProviderSamlTrust': () => IamWorkforcePoolProviderSamlTrust(
-    idpMetadataXml: TfArg.literal('<xml/>'),
-  ),
-
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
   'FirestoreIndexIndexFieldOrder': () =>
       const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
@@ -460,17 +350,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const FirestoreIndexIndexFieldVectorConfig(
         dimension: TfArgLiteral<int>(768),
       ),
-
-  // --- SecretManagerSecretReplication (2) — secret_manager_secret ------------
-  // After v1.0 naming audit the subclasses are now public:
-  // SecretManagerSecretAutoReplication / SecretManagerSecretUserManagedReplication.
-  // Thunks construct via the public factories.
-  'SecretManagerSecretAutoReplication': () =>
-      SecretManagerSecretReplication.auto(),
-  'SecretManagerSecretUserManagedReplication': () =>
-      SecretManagerSecretReplication.userManaged([
-        SecretManagerSecretReplica(location: TfArg.literal('us-east1')),
-      ]),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBodySource': () =>
@@ -566,31 +445,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
     ],
   ),
-
-  // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
-  'CertificateManagerCertificateManagedProvisioning': () =>
-      CertificateManagerCertificateManagedProvisioning(
-        domains: ['app.example.com'],
-        dnsAuthorizations: [
-          TfArg.literal('projects/p/locations/global/dnsAuthorizations/auth'),
-        ],
-      ),
-  'CertificateManagerCertificateSelfManagedProvisioning': () =>
-      CertificateManagerCertificateSelfManagedProvisioning(
-        pemCertificate: TfArg.literal(
-          '-----BEGIN CERTIFICATE-----\nMOCK\n-----END CERTIFICATE-----',
-        ),
-        pemPrivateKey: TfArg.literal(
-          '-----BEGIN PRIVATE KEY-----\nMOCK\n-----END PRIVATE KEY-----',
-        ),
-      ),
-  // --- CertificateManagerCertificateMapEntryMatch (2) — cert map entry -----
-  'CertificateManagerCertificateMapEntryHostname': () =>
-      CertificateManagerCertificateMapEntryHostname(
-        TfArg.literal('app.example.com'),
-      ),
-  'CertificateManagerCertificateMapEntryMatcher': () =>
-      CertificateManagerCertificateMapEntryMatcher(TfArg.literal('PRIMARY')),
 
   // --- NetworkSecurityMirroringEndpointGroupDeploymentLink (2) — OOB ------
   'NetworkSecurityMirroringEndpointGroupDirectDeploymentLink': () =>

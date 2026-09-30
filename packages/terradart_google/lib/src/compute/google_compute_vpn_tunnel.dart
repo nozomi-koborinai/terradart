@@ -6,6 +6,71 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_vpn_tunnel`.
 const Set<String> _googleComputeVpnTunnelSensitive = <String>{'shared_secret'};
 
+/// Exactly one of `shared_secret`, `shared_secret_wo` on `google_compute_vpn_tunnel`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sharedSecret(...)`.
+sealed class ComputeVpnTunnelSharedSecret {
+  const ComputeVpnTunnelSharedSecret();
+
+  /// Sets `shared_secret`.
+  const factory ComputeVpnTunnelSharedSecret.sharedSecret(
+    TfArg<String> sharedSecret,
+  ) = ComputeVpnTunnelSharedSecretChoice;
+
+  /// Sets `shared_secret_wo`.
+  const factory ComputeVpnTunnelSharedSecret.sharedSecretWo(
+    TfArg<String> sharedSecretWo,
+  ) = ComputeVpnTunnelSharedSecretWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeVpnTunnelSharedSecret.sharedSecret] choice: sets `shared_secret`.
+final class ComputeVpnTunnelSharedSecretChoice
+    extends ComputeVpnTunnelSharedSecret {
+  const ComputeVpnTunnelSharedSecretChoice(this.sharedSecret);
+
+  final TfArg<String> sharedSecret;
+
+  @override
+  String get blockKey => 'shared_secret';
+
+  @override
+  Map<String, Object?> encode() => {'shared_secret': sharedSecret.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'shared_secret': sharedSecret};
+}
+
+/// The [ComputeVpnTunnelSharedSecret.sharedSecretWo] choice: sets `shared_secret_wo`.
+final class ComputeVpnTunnelSharedSecretWo
+    extends ComputeVpnTunnelSharedSecret {
+  const ComputeVpnTunnelSharedSecretWo(this.sharedSecretWo);
+
+  final TfArg<String> sharedSecretWo;
+
+  @override
+  String get blockKey => 'shared_secret_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'shared_secret_wo': sharedSecretWo.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'shared_secret_wo': sharedSecretWo,
+  };
+}
+
 /// At most one of `peer_external_gateway`, `peer_gcp_gateway` on `google_compute_vpn_tunnel`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -93,8 +158,7 @@ final class GoogleComputeVpnTunnel extends Resource {
     TfArg<String>? peerIp,
     ComputeVpnTunnelPeer? peer,
     TfArg<num>? peerExternalGatewayInterface,
-    TfArg<String>? sharedSecret,
-    TfArg<String>? sharedSecretWo,
+    required ComputeVpnTunnelSharedSecret sharedSecret,
     TfArg<String>? sharedSecretWoVersion,
     TfArg<String>? router,
     TfArg<String>? description,
@@ -119,8 +183,7 @@ final class GoogleComputeVpnTunnel extends Resource {
            'peer_ip': ?peerIp,
            ...?peer?.argMap,
            'peer_external_gateway_interface': ?peerExternalGatewayInterface,
-           'shared_secret': ?sharedSecret,
-           'shared_secret_wo': ?sharedSecretWo,
+           ...sharedSecret.argMap,
            'shared_secret_wo_version': ?sharedSecretWoVersion,
            'router': ?router,
            'description': ?description,

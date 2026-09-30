@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_monitoring_alert_policy`.
@@ -126,486 +127,797 @@ enum NotificationPrompt implements TerraformEnum {
 }
 
 // ===========================================================================
-// MonitoringAlertPolicyAggregation helper (shared by condition_threshold + condition_absent)
+// MonitoringAlertPolicyConditionsConditionThresholdAggregations helper (shared by condition_threshold + condition_absent)
 // ===========================================================================
-
-/// One entry in an `aggregations` / `denominator_aggregations` list.
-/// Multiple [MonitoringAlertPolicyAggregation]s are applied in order.
-class MonitoringAlertPolicyAggregation {
-  const MonitoringAlertPolicyAggregation({
-    this.alignmentPeriod,
-    this.perSeriesAligner,
-    this.crossSeriesReducer,
-    this.groupByFields,
-  });
-
-  /// Per-time-series alignment period (Duration string, e.g. `'60s'`).
-  final TfArg<String>? alignmentPeriod;
-  final Aligner? perSeriesAligner;
-  final Reducer? crossSeriesReducer;
-  final TfArg<List<String>>? groupByFields;
-
-  Map<String, Object?> toArgMap() => {
-    if (alignmentPeriod != null)
-      'alignment_period': alignmentPeriod!.toTfJson(),
-    if (perSeriesAligner != null)
-      'per_series_aligner': perSeriesAligner!.terraformValue,
-    if (crossSeriesReducer != null)
-      'cross_series_reducer': crossSeriesReducer!.terraformValue,
-    if (groupByFields != null) 'group_by_fields': groupByFields!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // Shared trigger helper (used by 3 condition types)
 // ===========================================================================
 
-/// `trigger` sub-block — number / percentage of time series that must fail
-/// the predicate for the condition to fire. Both fields are optional; if
-/// neither is set, any single failing time series triggers the condition.
-class MonitoringAlertPolicyConditionTrigger {
-  const MonitoringAlertPolicyConditionTrigger({this.count, this.percent});
-  final TfArg<num>? count;
-  final TfArg<num>? percent;
-  Map<String, Object?> toArgMap() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (percent != null) 'percent': percent!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // condition_threshold + condition_absent sub-blocks
 // ===========================================================================
-
-/// `condition_threshold.forecast_options` (max=1).
-class MonitoringAlertPolicyForecastOptions {
-  const MonitoringAlertPolicyForecastOptions({required this.forecastHorizon});
-  final TfArg<String> forecastHorizon;
-  Map<String, Object?> toArgMap() => {
-    'forecast_horizon': forecastHorizon.toTfJson(),
-  };
-}
-
-/// `condition_threshold` block — compares a time series against a fixed
-/// threshold (or a numerator/denominator ratio when [denominatorFilter] is
-/// set). `forecastOptions` flips the semantics to "predict whether the
-/// timeseries will violate within forecastHorizon".
-class MonitoringAlertPolicyConditionThreshold {
-  const MonitoringAlertPolicyConditionThreshold({
-    required this.filter,
-    required this.comparison,
-    required this.duration,
-    this.thresholdValue,
-    this.denominatorFilter,
-    this.evaluationMissingData,
-    this.aggregations,
-    this.denominatorAggregations,
-    this.trigger,
-    this.forecastOptions,
-  });
-
-  final TfArg<String> filter;
-  final TfArg<Comparison> comparison;
-
-  /// Duration string (seconds + `'s'`), e.g. `'300s'`.
-  final TfArg<String> duration;
-  final TfArg<num>? thresholdValue;
-  final TfArg<String>? denominatorFilter;
-  final TfArg<EvaluationMissingData>? evaluationMissingData;
-  final List<MonitoringAlertPolicyAggregation>? aggregations;
-  final List<MonitoringAlertPolicyAggregation>? denominatorAggregations;
-  final MonitoringAlertPolicyConditionTrigger? trigger;
-  final MonitoringAlertPolicyForecastOptions? forecastOptions;
-
-  Map<String, Object?> toArgMap() => {
-    'filter': filter.toTfJson(),
-    'comparison': comparison.toTfJson(),
-    'duration': duration.toTfJson(),
-    if (thresholdValue != null) 'threshold_value': thresholdValue!.toTfJson(),
-    if (denominatorFilter != null)
-      'denominator_filter': denominatorFilter!.toTfJson(),
-    if (evaluationMissingData != null)
-      'evaluation_missing_data': evaluationMissingData!.toTfJson(),
-    if (aggregations != null)
-      'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
-    if (denominatorAggregations != null)
-      'denominator_aggregations': denominatorAggregations!
-          .map((a) => a.toArgMap())
-          .toList(),
-    if (trigger != null) 'trigger': [trigger!.toArgMap()],
-    if (forecastOptions != null)
-      'forecast_options': [forecastOptions!.toArgMap()],
-  };
-}
-
-/// `condition_absent` block — fires when a time series stops receiving
-/// data points for [duration]. Currently only multiples of a minute are
-/// accepted by the API for [duration].
-class MonitoringAlertPolicyConditionAbsent {
-  const MonitoringAlertPolicyConditionAbsent({
-    required this.duration,
-    this.filter,
-    this.aggregations,
-    this.trigger,
-  });
-  final TfArg<String> duration;
-  final TfArg<String>? filter;
-  final List<MonitoringAlertPolicyAggregation>? aggregations;
-  final MonitoringAlertPolicyConditionTrigger? trigger;
-  Map<String, Object?> toArgMap() => {
-    'duration': duration.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (aggregations != null)
-      'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
-    if (trigger != null) 'trigger': [trigger!.toArgMap()],
-  };
-}
 
 // ===========================================================================
 // condition_matched_log
 // ===========================================================================
 
-/// `condition_matched_log` block — fires on log entries matching [filter].
-/// If set, no other conditions can be present in the parent
-/// [MonitoringAlertPolicyAlertCondition] (the alert policy must use a `notification_rate_limit`
-/// in [MonitoringAlertPolicyAlertStrategy] when this condition type is used).
-class MonitoringAlertPolicyConditionMatchedLog {
-  const MonitoringAlertPolicyConditionMatchedLog({
-    required this.filter,
-    this.labelExtractors,
-  });
-  final TfArg<String> filter;
-  final TfArg<Map<String, String>>? labelExtractors;
-  Map<String, Object?> toArgMap() => {
-    'filter': filter.toTfJson(),
-    if (labelExtractors != null)
-      'label_extractors': labelExtractors!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // condition_monitoring_query_language
 // ===========================================================================
-
-/// `condition_monitoring_query_language` block — MQL-driven condition.
-/// [query] must produce a boolean stream.
-class MonitoringAlertPolicyConditionMonitoringQueryLanguage {
-  const MonitoringAlertPolicyConditionMonitoringQueryLanguage({
-    required this.query,
-    required this.duration,
-    this.evaluationMissingData,
-    this.trigger,
-  });
-  final TfArg<String> query;
-  final TfArg<String> duration;
-  final TfArg<EvaluationMissingData>? evaluationMissingData;
-  final MonitoringAlertPolicyConditionTrigger? trigger;
-  Map<String, Object?> toArgMap() => {
-    'query': query.toTfJson(),
-    'duration': duration.toTfJson(),
-    if (evaluationMissingData != null)
-      'evaluation_missing_data': evaluationMissingData!.toTfJson(),
-    if (trigger != null) 'trigger': [trigger!.toArgMap()],
-  };
-}
 
 // ===========================================================================
 // condition_prometheus_query_language
 // ===========================================================================
 
-/// `condition_prometheus_query_language` block — PromQL-driven condition.
-/// [duration] is optional (default 0) but represents how long the PromQL
-/// expression must evaluate to true before the alert fires.
-class MonitoringAlertPolicyConditionPrometheusQueryLanguage {
-  const MonitoringAlertPolicyConditionPrometheusQueryLanguage({
-    required this.query,
-    this.duration,
-    this.evaluationInterval,
-    this.alertRule,
-    this.labels,
-    this.ruleGroup,
-    this.disableMetricValidation,
-  });
-  final TfArg<String> query;
-  final TfArg<String>? duration;
-  final TfArg<String>? evaluationInterval;
-  final TfArg<String>? alertRule;
-  final TfArg<Map<String, String>>? labels;
-  final TfArg<String>? ruleGroup;
-  final TfArg<bool>? disableMetricValidation;
-  Map<String, Object?> toArgMap() => {
-    'query': query.toTfJson(),
-    if (duration != null) 'duration': duration!.toTfJson(),
-    if (evaluationInterval != null)
-      'evaluation_interval': evaluationInterval!.toTfJson(),
-    if (alertRule != null) 'alert_rule': alertRule!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (ruleGroup != null) 'rule_group': ruleGroup!.toTfJson(),
-    if (disableMetricValidation != null)
-      'disable_metric_validation': disableMetricValidation!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // condition_sql + schedule / test sub-blocks
 // ===========================================================================
 
-/// `condition_sql.minutes` schedule.
-class MonitoringAlertPolicySqlScheduleMinutes {
-  const MonitoringAlertPolicySqlScheduleMinutes({required this.periodicity});
-  final TfArg<num> periodicity;
-  Map<String, Object?> toArgMap() => {'periodicity': periodicity.toTfJson()};
-}
-
-/// `condition_sql.hourly` schedule.
-class MonitoringAlertPolicySqlScheduleHourly {
-  const MonitoringAlertPolicySqlScheduleHourly({
-    required this.periodicity,
-    this.minuteOffset,
-  });
-  final TfArg<num> periodicity;
-  final TfArg<num>? minuteOffset;
-  Map<String, Object?> toArgMap() => {
-    'periodicity': periodicity.toTfJson(),
-    if (minuteOffset != null) 'minute_offset': minuteOffset!.toTfJson(),
-  };
-}
-
-/// `condition_sql.daily.execution_time` (max=1) — wall-clock time of day
-/// (UTC) for the daily run.
-class MonitoringAlertPolicySqlExecutionTime {
-  const MonitoringAlertPolicySqlExecutionTime({
-    this.hours,
-    this.minutes,
-    this.seconds,
-    this.nanos,
-  });
-  final TfArg<num>? hours;
-  final TfArg<num>? minutes;
-  final TfArg<num>? seconds;
-  final TfArg<num>? nanos;
-  Map<String, Object?> toArgMap() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-  };
-}
-
-/// `condition_sql.daily` schedule.
-class MonitoringAlertPolicySqlScheduleDaily {
-  const MonitoringAlertPolicySqlScheduleDaily({
-    required this.periodicity,
-    this.executionTime,
-  });
-  final TfArg<num> periodicity;
-  final MonitoringAlertPolicySqlExecutionTime? executionTime;
-  Map<String, Object?> toArgMap() => {
-    'periodicity': periodicity.toTfJson(),
-    if (executionTime != null) 'execution_time': [executionTime!.toArgMap()],
-  };
-}
-
-/// `condition_sql.boolean_test` — the SQL query returns a boolean column;
-/// rows where [column] is `true` are treated as violations.
-class MonitoringAlertPolicySqlBooleanTest {
-  const MonitoringAlertPolicySqlBooleanTest({required this.column});
-  final TfArg<String> column;
-  Map<String, Object?> toArgMap() => {'column': column.toTfJson()};
-}
-
-/// `condition_sql.row_count_test` — fires when the result row count
-/// satisfies `count [comparison] threshold`.
-class MonitoringAlertPolicySqlRowCountTest {
-  const MonitoringAlertPolicySqlRowCountTest({
-    required this.comparison,
-    required this.threshold,
-  });
-  final TfArg<Comparison> comparison;
-  final TfArg<num> threshold;
-  Map<String, Object?> toArgMap() => {
-    'comparison': comparison.toTfJson(),
-    'threshold': threshold.toTfJson(),
-  };
-}
-
-/// `condition_sql` block — Log Analytics SQL-driven condition. Pick
-/// exactly one of [minutes] / [hourly] / [daily] for the schedule, and
-/// exactly one of [booleanTest] / [rowCountTest] for the alerting rule
-/// (Terraform enforces both exactly_one_of contracts).
-class MonitoringAlertPolicyConditionSql {
-  const MonitoringAlertPolicyConditionSql({
-    required this.query,
-    this.minutes,
-    this.hourly,
-    this.daily,
-    this.booleanTest,
-    this.rowCountTest,
-  });
-  final TfArg<String> query;
-  final MonitoringAlertPolicySqlScheduleMinutes? minutes;
-  final MonitoringAlertPolicySqlScheduleHourly? hourly;
-  final MonitoringAlertPolicySqlScheduleDaily? daily;
-  final MonitoringAlertPolicySqlBooleanTest? booleanTest;
-  final MonitoringAlertPolicySqlRowCountTest? rowCountTest;
-  Map<String, Object?> toArgMap() => {
-    'query': query.toTfJson(),
-    if (minutes != null) 'minutes': [minutes!.toArgMap()],
-    if (hourly != null) 'hourly': [hourly!.toArgMap()],
-    if (daily != null) 'daily': [daily!.toArgMap()],
-    if (booleanTest != null) 'boolean_test': [booleanTest!.toArgMap()],
-    if (rowCountTest != null) 'row_count_test': [rowCountTest!.toArgMap()],
-  };
-}
-
 // ===========================================================================
-// MonitoringAlertPolicyAlertCondition — one entry in conditions list
+// MonitoringAlertPolicyConditions — one entry in conditions list
 // ===========================================================================
-
-/// One entry in `google_monitoring_alert_policy.conditions`. Carries a
-/// human-readable [displayName] plus EXACTLY one of the 6 condition-type
-/// sub-blocks. Terraform enforces the exactly_one_of contract at apply
-/// time; the Dart shape leaves all 6 sub-fields nullable to keep the
-/// class count manageable.
-class MonitoringAlertPolicyAlertCondition {
-  const MonitoringAlertPolicyAlertCondition({
-    required this.displayName,
-    this.conditionThreshold,
-    this.conditionAbsent,
-    this.conditionMatchedLog,
-    this.conditionMonitoringQueryLanguage,
-    this.conditionPrometheusQueryLanguage,
-    this.conditionSql,
-  });
-
-  final TfArg<String> displayName;
-  final MonitoringAlertPolicyConditionThreshold? conditionThreshold;
-  final MonitoringAlertPolicyConditionAbsent? conditionAbsent;
-  final MonitoringAlertPolicyConditionMatchedLog? conditionMatchedLog;
-  final MonitoringAlertPolicyConditionMonitoringQueryLanguage?
-  conditionMonitoringQueryLanguage;
-  final MonitoringAlertPolicyConditionPrometheusQueryLanguage?
-  conditionPrometheusQueryLanguage;
-  final MonitoringAlertPolicyConditionSql? conditionSql;
-
-  Map<String, Object?> toArgMap() => {
-    'display_name': displayName.toTfJson(),
-    if (conditionThreshold != null)
-      'condition_threshold': [conditionThreshold!.toArgMap()],
-    if (conditionAbsent != null)
-      'condition_absent': [conditionAbsent!.toArgMap()],
-    if (conditionMatchedLog != null)
-      'condition_matched_log': [conditionMatchedLog!.toArgMap()],
-    if (conditionMonitoringQueryLanguage != null)
-      'condition_monitoring_query_language': [
-        conditionMonitoringQueryLanguage!.toArgMap(),
-      ],
-    if (conditionPrometheusQueryLanguage != null)
-      'condition_prometheus_query_language': [
-        conditionPrometheusQueryLanguage!.toArgMap(),
-      ],
-    if (conditionSql != null) 'condition_sql': [conditionSql!.toArgMap()],
-  };
-}
 
 // ===========================================================================
 // MonitoringAlertPolicyAlertStrategy + sub-blocks
 // ===========================================================================
 
-/// `alert_strategy.notification_rate_limit` (max=1).
-/// [period] is a Duration string (e.g. `'300s'`). Required when the
-/// parent policy uses a [MonitoringAlertPolicyConditionMatchedLog] condition.
-class MonitoringAlertPolicyNotificationRateLimit {
-  const MonitoringAlertPolicyNotificationRateLimit({this.period});
-  final TfArg<String>? period;
-  Map<String, Object?> toArgMap() => {
-    if (period != null) 'period': period!.toTfJson(),
-  };
-}
-
-/// `alert_strategy.notification_channel_strategy` (list) — per-channel
-/// notification controls. Each entry pairs a subset of the alert's
-/// notification channels with a [renotifyInterval] cadence.
-class MonitoringAlertPolicyNotificationChannelStrategy {
-  const MonitoringAlertPolicyNotificationChannelStrategy({
-    this.notificationChannelNames,
-    this.renotifyInterval,
-  });
-  final TfArg<List<String>>? notificationChannelNames;
-  final TfArg<String>? renotifyInterval;
-  Map<String, Object?> toArgMap() => {
-    if (notificationChannelNames != null)
-      'notification_channel_names': notificationChannelNames!.toTfJson(),
-    if (renotifyInterval != null)
-      'renotify_interval': renotifyInterval!.toTfJson(),
-  };
-}
-
-/// `alert_strategy` block (max=1) — controls notification cadence,
-/// auto-close timing, and notification prompts.
-class MonitoringAlertPolicyAlertStrategy {
-  const MonitoringAlertPolicyAlertStrategy({
-    this.notificationRateLimit,
-    this.notificationPrompts,
-    this.autoClose,
-    this.notificationChannelStrategy,
-  });
-  final MonitoringAlertPolicyNotificationRateLimit? notificationRateLimit;
-  final List<NotificationPrompt>? notificationPrompts;
-
-  /// Duration string (e.g. `'1800s'` for 30 minutes).
-  final TfArg<String>? autoClose;
-  final List<MonitoringAlertPolicyNotificationChannelStrategy>?
-  notificationChannelStrategy;
-  Map<String, Object?> toArgMap() => {
-    if (notificationRateLimit != null)
-      'notification_rate_limit': [notificationRateLimit!.toArgMap()],
-    if (notificationPrompts != null)
-      'notification_prompts': notificationPrompts!
-          .map((p) => p.terraformValue)
-          .toList(),
-    if (autoClose != null) 'auto_close': autoClose!.toTfJson(),
-    if (notificationChannelStrategy != null)
-      'notification_channel_strategy': notificationChannelStrategy!
-          .map((s) => s.toArgMap())
-          .toList(),
-  };
-}
-
 // ===========================================================================
 // MonitoringAlertPolicyDocumentation + link sub-block
 // ===========================================================================
 
-/// `documentation.links` entry — a labeled URL surfaced in notifications.
-/// Up to 3 link entries per policy.
-class MonitoringAlertPolicyDocumentationLink {
-  const MonitoringAlertPolicyDocumentationLink({this.displayName, this.url});
-  final TfArg<String>? displayName;
-  final TfArg<String>? url;
-  Map<String, Object?> toArgMap() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
+/// Typed helper for the `alert_strategy` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyAlertStrategy {
+  const MonitoringAlertPolicyAlertStrategy({
+    this.autoClose,
+    this.notificationPrompts,
+    this.notificationChannelStrategy,
+    this.notificationRateLimit,
+  });
+
+  final TfArg<String>? autoClose;
+
+  final List<TfArg<MonitoringAlertPolicyAlertStrategyNotificationPrompts>>?
+  notificationPrompts;
+
+  final List<MonitoringAlertPolicyAlertStrategyNotificationChannelStrategy>?
+  notificationChannelStrategy;
+
+  final MonitoringAlertPolicyAlertStrategyNotificationRateLimit?
+  notificationRateLimit;
+
+  Map<String, Object?> encode() => {
+    'auto_close': ?autoClose?.toTfJson(),
+    if (notificationPrompts != null)
+      'notification_prompts': [
+        for (final e in notificationPrompts!) e.toTfJson(),
+      ],
+    if (notificationChannelStrategy != null)
+      'notification_channel_strategy': [
+        for (final e in notificationChannelStrategy!) e.encode(),
+      ],
+    'notification_rate_limit': ?notificationRateLimit?.encode(),
   };
 }
 
-/// `documentation` block (max=1) — notification-side context: content body,
-/// subject line, and optional playbook / runbook links.
-class MonitoringAlertPolicyDocumentation {
+/// `notification_prompts` — derived from the provider schema description.
+enum MonitoringAlertPolicyAlertStrategyNotificationPrompts
+    implements TerraformEnum {
+  notificationPromptUnspecified('NOTIFICATION_PROMPT_UNSPECIFIED'),
+  opened('OPENED'),
+  closed('CLOSED');
+
+  const MonitoringAlertPolicyAlertStrategyNotificationPrompts(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `alert_strategy.notification_channel_strategy` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyAlertStrategyNotificationChannelStrategy {
+  const MonitoringAlertPolicyAlertStrategyNotificationChannelStrategy({
+    this.notificationChannelNames,
+    this.renotifyInterval,
+  });
+
+  final TfArg<List<Object?>>? notificationChannelNames;
+
+  final TfArg<String>? renotifyInterval;
+
+  Map<String, Object?> encode() => {
+    'notification_channel_names': ?notificationChannelNames?.toTfJson(),
+    'renotify_interval': ?renotifyInterval?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `alert_strategy.notification_rate_limit` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyAlertStrategyNotificationRateLimit {
+  const MonitoringAlertPolicyAlertStrategyNotificationRateLimit({this.period});
+
+  final TfArg<String>? period;
+
+  Map<String, Object?> encode() => {'period': ?period?.toTfJson()};
+}
+
+/// Typed helper for the `conditions` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditions {
+  const MonitoringAlertPolicyConditions({
+    required this.displayName,
+    this.conditionAbsent,
+    this.conditionMatchedLog,
+    this.conditionMonitoringQueryLanguage,
+    this.conditionPrometheusQueryLanguage,
+    this.conditionSql,
+    this.conditionThreshold,
+  });
+
+  final TfArg<String> displayName;
+
+  final MonitoringAlertPolicyConditionsConditionAbsent? conditionAbsent;
+
+  final MonitoringAlertPolicyConditionsConditionMatchedLog? conditionMatchedLog;
+
+  final MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguage?
+  conditionMonitoringQueryLanguage;
+
+  final MonitoringAlertPolicyConditionsConditionPrometheusQueryLanguage?
+  conditionPrometheusQueryLanguage;
+
+  final MonitoringAlertPolicyConditionsConditionSql? conditionSql;
+
+  final MonitoringAlertPolicyConditionsConditionThreshold? conditionThreshold;
+
+  Map<String, Object?> encode() => {
+    'display_name': displayName.toTfJson(),
+    'condition_absent': ?conditionAbsent?.encode(),
+    'condition_matched_log': ?conditionMatchedLog?.encode(),
+    'condition_monitoring_query_language': ?conditionMonitoringQueryLanguage
+        ?.encode(),
+    'condition_prometheus_query_language': ?conditionPrometheusQueryLanguage
+        ?.encode(),
+    'condition_sql': ?conditionSql?.encode(),
+    'condition_threshold': ?conditionThreshold?.encode(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_absent` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionAbsent {
+  const MonitoringAlertPolicyConditionsConditionAbsent({
+    required this.duration,
+    this.filter,
+    this.aggregations,
+    this.trigger,
+  });
+
+  final TfArg<String> duration;
+
+  final TfArg<String>? filter;
+
+  final List<MonitoringAlertPolicyConditionsConditionAbsentAggregations>?
+  aggregations;
+
+  final MonitoringAlertPolicyConditionsConditionAbsentTrigger? trigger;
+
+  Map<String, Object?> encode() => {
+    'duration': duration.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    if (aggregations != null)
+      'aggregations': [for (final e in aggregations!) e.encode()],
+    'trigger': ?trigger?.encode(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_absent.aggregations` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionAbsentAggregations {
+  const MonitoringAlertPolicyConditionsConditionAbsentAggregations({
+    this.alignmentPeriod,
+    this.crossSeriesReducer,
+    this.groupByFields,
+    this.perSeriesAligner,
+  });
+
+  final TfArg<String>? alignmentPeriod;
+
+  final TfArg<Reducer>? crossSeriesReducer;
+
+  final TfArg<List<Object?>>? groupByFields;
+
+  final TfArg<Aligner>? perSeriesAligner;
+
+  Map<String, Object?> encode() => {
+    'alignment_period': ?alignmentPeriod?.toTfJson(),
+    'cross_series_reducer': ?crossSeriesReducer?.toTfJson(),
+    'group_by_fields': ?groupByFields?.toTfJson(),
+    'per_series_aligner': ?perSeriesAligner?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_absent.trigger` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionAbsentTrigger {
+  const MonitoringAlertPolicyConditionsConditionAbsentTrigger({
+    this.count,
+    this.percent,
+  });
+
+  final TfArg<num>? count;
+
+  final TfArg<num>? percent;
+
+  Map<String, Object?> encode() => {
+    'count': ?count?.toTfJson(),
+    'percent': ?percent?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_matched_log` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionMatchedLog {
+  const MonitoringAlertPolicyConditionsConditionMatchedLog({
+    required this.filter,
+    this.labelExtractors,
+  });
+
+  final TfArg<String> filter;
+
+  final TfArg<Map<String, String>>? labelExtractors;
+
+  Map<String, Object?> encode() => {
+    'filter': filter.toTfJson(),
+    'label_extractors': ?labelExtractors?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_monitoring_query_language` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguage {
+  const MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguage({
+    required this.duration,
+    this.evaluationMissingData,
+    required this.query,
+    this.trigger,
+  });
+
+  final TfArg<String> duration;
+
+  final TfArg<EvaluationMissingData>? evaluationMissingData;
+
+  final TfArg<String> query;
+
+  final MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguageTrigger?
+  trigger;
+
+  Map<String, Object?> encode() => {
+    'duration': duration.toTfJson(),
+    'evaluation_missing_data': ?evaluationMissingData?.toTfJson(),
+    'query': query.toTfJson(),
+    'trigger': ?trigger?.encode(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_monitoring_query_language.trigger` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguageTrigger {
+  const MonitoringAlertPolicyConditionsConditionMonitoringQueryLanguageTrigger({
+    this.count,
+    this.percent,
+  });
+
+  final TfArg<num>? count;
+
+  final TfArg<num>? percent;
+
+  Map<String, Object?> encode() => {
+    'count': ?count?.toTfJson(),
+    'percent': ?percent?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_prometheus_query_language` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionPrometheusQueryLanguage {
+  const MonitoringAlertPolicyConditionsConditionPrometheusQueryLanguage({
+    this.alertRule,
+    this.disableMetricValidation,
+    this.duration,
+    this.evaluationInterval,
+    this.labels,
+    required this.query,
+    this.ruleGroup,
+  });
+
+  final TfArg<String>? alertRule;
+
+  final TfArg<bool>? disableMetricValidation;
+
+  final TfArg<String>? duration;
+
+  final TfArg<String>? evaluationInterval;
+
+  final TfArg<Map<String, String>>? labels;
+
+  final TfArg<String> query;
+
+  final TfArg<String>? ruleGroup;
+
+  Map<String, Object?> encode() => {
+    'alert_rule': ?alertRule?.toTfJson(),
+    'disable_metric_validation': ?disableMetricValidation?.toTfJson(),
+    'duration': ?duration?.toTfJson(),
+    'evaluation_interval': ?evaluationInterval?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'query': query.toTfJson(),
+    'rule_group': ?ruleGroup?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_sql` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSql {
+  const MonitoringAlertPolicyConditionsConditionSql({
+    required this.query,
+    required this.test,
+    required this.schedule,
+  });
+
+  final TfArg<String> query;
+
+  final MonitoringAlertPolicyConditionsConditionSqlTest test;
+
+  final MonitoringAlertPolicyConditionsConditionSqlSchedule schedule;
+
+  Map<String, Object?> encode() => {
+    'query': query.toTfJson(),
+    ...test.encode(),
+    ...schedule.encode(),
+  };
+}
+
+/// Exactly one of `minutes`, `hourly`, `daily` on the `conditions.condition_sql` block of `google_monitoring_alert_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.minutes(...)`.
+sealed class MonitoringAlertPolicyConditionsConditionSqlSchedule {
+  const MonitoringAlertPolicyConditionsConditionSqlSchedule();
+
+  /// Sets `minutes`.
+  const factory MonitoringAlertPolicyConditionsConditionSqlSchedule.minutes(
+    MonitoringAlertPolicyConditionsConditionSqlMinutes minutes,
+  ) = MonitoringAlertPolicyConditionsConditionSqlScheduleMinutes;
+
+  /// Sets `hourly`.
+  const factory MonitoringAlertPolicyConditionsConditionSqlSchedule.hourly(
+    MonitoringAlertPolicyConditionsConditionSqlHourly hourly,
+  ) = MonitoringAlertPolicyConditionsConditionSqlScheduleHourly;
+
+  /// Sets `daily`.
+  const factory MonitoringAlertPolicyConditionsConditionSqlSchedule.daily(
+    MonitoringAlertPolicyConditionsConditionSqlDaily daily,
+  ) = MonitoringAlertPolicyConditionsConditionSqlScheduleDaily;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [MonitoringAlertPolicyConditionsConditionSqlSchedule.minutes] choice: sets `minutes`.
+final class MonitoringAlertPolicyConditionsConditionSqlScheduleMinutes
+    extends MonitoringAlertPolicyConditionsConditionSqlSchedule {
+  const MonitoringAlertPolicyConditionsConditionSqlScheduleMinutes(
+    this.minutes,
+  );
+
+  final MonitoringAlertPolicyConditionsConditionSqlMinutes minutes;
+
+  @override
+  String get blockKey => 'minutes';
+
+  @override
+  Map<String, Object?> encode() => {'minutes': minutes.encode()};
+}
+
+/// The [MonitoringAlertPolicyConditionsConditionSqlSchedule.hourly] choice: sets `hourly`.
+final class MonitoringAlertPolicyConditionsConditionSqlScheduleHourly
+    extends MonitoringAlertPolicyConditionsConditionSqlSchedule {
+  const MonitoringAlertPolicyConditionsConditionSqlScheduleHourly(this.hourly);
+
+  final MonitoringAlertPolicyConditionsConditionSqlHourly hourly;
+
+  @override
+  String get blockKey => 'hourly';
+
+  @override
+  Map<String, Object?> encode() => {'hourly': hourly.encode()};
+}
+
+/// The [MonitoringAlertPolicyConditionsConditionSqlSchedule.daily] choice: sets `daily`.
+final class MonitoringAlertPolicyConditionsConditionSqlScheduleDaily
+    extends MonitoringAlertPolicyConditionsConditionSqlSchedule {
+  const MonitoringAlertPolicyConditionsConditionSqlScheduleDaily(this.daily);
+
+  final MonitoringAlertPolicyConditionsConditionSqlDaily daily;
+
+  @override
+  String get blockKey => 'daily';
+
+  @override
+  Map<String, Object?> encode() => {'daily': daily.encode()};
+}
+
+/// Exactly one of `row_count_test`, `boolean_test` on the `conditions.condition_sql` block of `google_monitoring_alert_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.rowCountTest(...)`.
+sealed class MonitoringAlertPolicyConditionsConditionSqlTest {
+  const MonitoringAlertPolicyConditionsConditionSqlTest();
+
+  /// Sets `row_count_test`.
+  const factory MonitoringAlertPolicyConditionsConditionSqlTest.rowCountTest(
+    MonitoringAlertPolicyConditionsConditionSqlRowCountTest rowCountTest,
+  ) = MonitoringAlertPolicyConditionsConditionSqlTestRowCountTest;
+
+  /// Sets `boolean_test`.
+  const factory MonitoringAlertPolicyConditionsConditionSqlTest.booleanTest(
+    MonitoringAlertPolicyConditionsConditionSqlBooleanTest booleanTest,
+  ) = MonitoringAlertPolicyConditionsConditionSqlTestBooleanTest;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [MonitoringAlertPolicyConditionsConditionSqlTest.rowCountTest] choice: sets `row_count_test`.
+final class MonitoringAlertPolicyConditionsConditionSqlTestRowCountTest
+    extends MonitoringAlertPolicyConditionsConditionSqlTest {
+  const MonitoringAlertPolicyConditionsConditionSqlTestRowCountTest(
+    this.rowCountTest,
+  );
+
+  final MonitoringAlertPolicyConditionsConditionSqlRowCountTest rowCountTest;
+
+  @override
+  String get blockKey => 'row_count_test';
+
+  @override
+  Map<String, Object?> encode() => {'row_count_test': rowCountTest.encode()};
+}
+
+/// The [MonitoringAlertPolicyConditionsConditionSqlTest.booleanTest] choice: sets `boolean_test`.
+final class MonitoringAlertPolicyConditionsConditionSqlTestBooleanTest
+    extends MonitoringAlertPolicyConditionsConditionSqlTest {
+  const MonitoringAlertPolicyConditionsConditionSqlTestBooleanTest(
+    this.booleanTest,
+  );
+
+  final MonitoringAlertPolicyConditionsConditionSqlBooleanTest booleanTest;
+
+  @override
+  String get blockKey => 'boolean_test';
+
+  @override
+  Map<String, Object?> encode() => {'boolean_test': booleanTest.encode()};
+}
+
+/// Typed helper for the `conditions.condition_sql.boolean_test` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlBooleanTest {
+  const MonitoringAlertPolicyConditionsConditionSqlBooleanTest({
+    required this.column,
+  });
+
+  final TfArg<String> column;
+
+  Map<String, Object?> encode() => {'column': column.toTfJson()};
+}
+
+/// Typed helper for the `conditions.condition_sql.daily` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlDaily {
+  const MonitoringAlertPolicyConditionsConditionSqlDaily({
+    required this.periodicity,
+    this.executionTime,
+  });
+
+  final TfArg<num> periodicity;
+
+  final MonitoringAlertPolicyConditionsConditionSqlDailyExecutionTime?
+  executionTime;
+
+  Map<String, Object?> encode() => {
+    'periodicity': periodicity.toTfJson(),
+    'execution_time': ?executionTime?.encode(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_sql.daily.execution_time` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlDailyExecutionTime {
+  const MonitoringAlertPolicyConditionsConditionSqlDailyExecutionTime({
+    this.hours,
+    this.minutes,
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? hours;
+
+  final TfArg<num>? minutes;
+
+  final TfArg<num>? nanos;
+
+  final TfArg<num>? seconds;
+
+  Map<String, Object?> encode() => {
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_sql.hourly` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlHourly {
+  const MonitoringAlertPolicyConditionsConditionSqlHourly({
+    this.minuteOffset,
+    required this.periodicity,
+  });
+
+  final TfArg<num>? minuteOffset;
+
+  final TfArg<num> periodicity;
+
+  Map<String, Object?> encode() => {
+    'minute_offset': ?minuteOffset?.toTfJson(),
+    'periodicity': periodicity.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_sql.minutes` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlMinutes {
+  const MonitoringAlertPolicyConditionsConditionSqlMinutes({
+    required this.periodicity,
+  });
+
+  final TfArg<num> periodicity;
+
+  Map<String, Object?> encode() => {'periodicity': periodicity.toTfJson()};
+}
+
+/// Typed helper for the `conditions.condition_sql.row_count_test` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionSqlRowCountTest {
+  const MonitoringAlertPolicyConditionsConditionSqlRowCountTest({
+    required this.comparison,
+    required this.threshold,
+  });
+
+  final TfArg<Comparison> comparison;
+
+  final TfArg<num> threshold;
+
+  Map<String, Object?> encode() => {
+    'comparison': comparison.toTfJson(),
+    'threshold': threshold.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_threshold` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionThreshold {
+  const MonitoringAlertPolicyConditionsConditionThreshold({
+    required this.comparison,
+    this.denominatorFilter,
+    required this.duration,
+    this.evaluationMissingData,
+    this.filter,
+    this.thresholdValue,
+    this.aggregations,
+    this.denominatorAggregations,
+    this.forecastOptions,
+    this.trigger,
+  });
+
+  final TfArg<Comparison> comparison;
+
+  final TfArg<String>? denominatorFilter;
+
+  final TfArg<String> duration;
+
+  final TfArg<EvaluationMissingData>? evaluationMissingData;
+
+  final TfArg<String>? filter;
+
+  final TfArg<num>? thresholdValue;
+
+  final List<MonitoringAlertPolicyConditionsConditionThresholdAggregations>?
+  aggregations;
+
+  final List<
+    MonitoringAlertPolicyConditionsConditionThresholdDenominatorAggregations
+  >?
+  denominatorAggregations;
+
+  final MonitoringAlertPolicyConditionsConditionThresholdForecastOptions?
+  forecastOptions;
+
+  final MonitoringAlertPolicyConditionsConditionThresholdTrigger? trigger;
+
+  Map<String, Object?> encode() => {
+    'comparison': comparison.toTfJson(),
+    'denominator_filter': ?denominatorFilter?.toTfJson(),
+    'duration': duration.toTfJson(),
+    'evaluation_missing_data': ?evaluationMissingData?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'threshold_value': ?thresholdValue?.toTfJson(),
+    if (aggregations != null)
+      'aggregations': [for (final e in aggregations!) e.encode()],
+    if (denominatorAggregations != null)
+      'denominator_aggregations': [
+        for (final e in denominatorAggregations!) e.encode(),
+      ],
+    'forecast_options': ?forecastOptions?.encode(),
+    'trigger': ?trigger?.encode(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_threshold.aggregations` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionThresholdAggregations {
+  const MonitoringAlertPolicyConditionsConditionThresholdAggregations({
+    this.alignmentPeriod,
+    this.crossSeriesReducer,
+    this.groupByFields,
+    this.perSeriesAligner,
+  });
+
+  final TfArg<String>? alignmentPeriod;
+
+  final TfArg<Reducer>? crossSeriesReducer;
+
+  final TfArg<List<Object?>>? groupByFields;
+
+  final TfArg<Aligner>? perSeriesAligner;
+
+  Map<String, Object?> encode() => {
+    'alignment_period': ?alignmentPeriod?.toTfJson(),
+    'cross_series_reducer': ?crossSeriesReducer?.toTfJson(),
+    'group_by_fields': ?groupByFields?.toTfJson(),
+    'per_series_aligner': ?perSeriesAligner?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_threshold.denominator_aggregations` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionThresholdDenominatorAggregations {
+  const MonitoringAlertPolicyConditionsConditionThresholdDenominatorAggregations({
+    this.alignmentPeriod,
+    this.crossSeriesReducer,
+    this.groupByFields,
+    this.perSeriesAligner,
+  });
+
+  final TfArg<String>? alignmentPeriod;
+
+  final TfArg<Reducer>? crossSeriesReducer;
+
+  final TfArg<List<Object?>>? groupByFields;
+
+  final TfArg<Aligner>? perSeriesAligner;
+
+  Map<String, Object?> encode() => {
+    'alignment_period': ?alignmentPeriod?.toTfJson(),
+    'cross_series_reducer': ?crossSeriesReducer?.toTfJson(),
+    'group_by_fields': ?groupByFields?.toTfJson(),
+    'per_series_aligner': ?perSeriesAligner?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_threshold.forecast_options` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionThresholdForecastOptions {
+  const MonitoringAlertPolicyConditionsConditionThresholdForecastOptions({
+    required this.forecastHorizon,
+  });
+
+  final TfArg<String> forecastHorizon;
+
+  Map<String, Object?> encode() => {
+    'forecast_horizon': forecastHorizon.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.condition_threshold.trigger` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyConditionsConditionThresholdTrigger {
+  const MonitoringAlertPolicyConditionsConditionThresholdTrigger({
+    this.count,
+    this.percent,
+  });
+
+  final TfArg<num>? count;
+
+  final TfArg<num>? percent;
+
+  Map<String, Object?> encode() => {
+    'count': ?count?.toTfJson(),
+    'percent': ?percent?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `documentation` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyDocumentation {
   const MonitoringAlertPolicyDocumentation({
     this.content,
     this.mimeType,
     this.subject,
     this.links,
   });
+
   final TfArg<String>? content;
+
   final TfArg<String>? mimeType;
+
   final TfArg<String>? subject;
-  final List<MonitoringAlertPolicyDocumentationLink>? links;
-  Map<String, Object?> toArgMap() => {
-    if (content != null) 'content': content!.toTfJson(),
-    if (mimeType != null) 'mime_type': mimeType!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
-    if (links != null) 'links': links!.map((l) => l.toArgMap()).toList(),
+
+  final List<MonitoringAlertPolicyDocumentationLinks>? links;
+
+  Map<String, Object?> encode() => {
+    'content': ?content?.toTfJson(),
+    'mime_type': ?mimeType?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
+    if (links != null) 'links': [for (final e in links!) e.encode()],
+  };
+}
+
+/// Typed helper for the `documentation.links` block of
+/// `google_monitoring_alert_policy` (derived from provider schema).
+@immutable
+final class MonitoringAlertPolicyDocumentationLinks {
+  const MonitoringAlertPolicyDocumentationLinks({this.displayName, this.url});
+
+  final TfArg<String>? displayName;
+
+  final TfArg<String>? url;
+
+  Map<String, Object?> encode() => {
+    'display_name': ?displayName?.toTfJson(),
+    'url': ?url?.toTfJson(),
   };
 }
 
@@ -620,13 +932,13 @@ class MonitoringAlertPolicyDocumentation {
 ///   (<= 512 Unicode characters).
 /// - `combiner`: how multiple [conditions] combine into an incident. Use
 ///   [AlertCombiner.and] / [AlertCombiner.or] / [AlertCombiner.andWithMatchingResource].
-/// - `conditions`: non-empty list. Each [MonitoringAlertPolicyAlertCondition] carries a
+/// - `conditions`: non-empty list. Each [MonitoringAlertPolicyConditions] carries a
 ///   `displayName` plus EXACTLY one of the 6 condition-type sub-blocks
-///   ([MonitoringAlertPolicyAlertCondition.conditionThreshold], `conditionAbsent`,
+///   ([MonitoringAlertPolicyConditions.conditionThreshold], `conditionAbsent`,
 ///   `conditionMatchedLog`, `conditionMonitoringQueryLanguage`,
 ///   `conditionPrometheusQueryLanguage`, `conditionSql`).
 ///
-/// Modeling choice for `conditions`: each entry is a single [MonitoringAlertPolicyAlertCondition]
+/// Modeling choice for `conditions`: each entry is a single [MonitoringAlertPolicyConditions]
 /// helper with one required `displayName` plus 6 mutually-exclusive nullable
 /// sub-fields. Terraform enforces the exactly_one_of contract at apply time,
 /// so we keep the Dart shape flat (and the count of generated classes
@@ -639,9 +951,9 @@ class MonitoringAlertPolicyDocumentation {
 ///   displayName: TfArg.literal('Compute instance uptime SLO'),
 ///   combiner: TfArg.literal(AlertCombiner.or),
 ///   conditions: const [
-///     MonitoringAlertPolicyAlertCondition(
+///     MonitoringAlertPolicyConditions(
 ///       displayName: TfArgLiteral('uptime < 95% over 5 min'),
-///       conditionThreshold: MonitoringAlertPolicyConditionThreshold(
+///       conditionThreshold: MonitoringAlertPolicyConditionsConditionThreshold(
 ///         filter: TfArgLiteral(
 ///           'metric.type="compute.googleapis.com/instance/uptime" '
 ///           'resource.type="gce_instance"',
@@ -664,7 +976,7 @@ final class GoogleMonitoringAlertPolicy extends Resource {
     required super.localName,
     required TfArg<String> displayName,
     required TfArg<AlertCombiner> combiner,
-    required List<MonitoringAlertPolicyAlertCondition> conditions,
+    required List<MonitoringAlertPolicyConditions> conditions,
     TfArg<List<String>>? notificationChannels,
     MonitoringAlertPolicyAlertStrategy? alertStrategy,
     MonitoringAlertPolicyDocumentation? documentation,
@@ -681,14 +993,14 @@ final class GoogleMonitoringAlertPolicy extends Resource {
          argMap: {
            'display_name': displayName,
            'combiner': combiner,
-           'conditions': TfArg.literal(
-             conditions.map((c) => c.toArgMap()).toList(),
-           ),
+           'conditions': TfArg.literal([
+             for (final e in conditions) e.encode(),
+           ]),
            'notification_channels': ?notificationChannels,
            if (alertStrategy != null)
-             'alert_strategy': TfArg.literal([alertStrategy.toArgMap()]),
+             'alert_strategy': TfArg.literal(alertStrategy.encode()),
            if (documentation != null)
-             'documentation': TfArg.literal([documentation.toArgMap()]),
+             'documentation': TfArg.literal(documentation.encode()),
            'enabled': ?enabled,
            'severity': ?severity,
            'user_labels': ?userLabels,

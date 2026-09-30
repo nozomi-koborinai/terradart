@@ -50,7 +50,7 @@ GoogleSqlUser buildSqlUser(
 GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
   localName: 'db_password',
   secretId: .literal('coffee-shop-db-password'),
-  replication: SecretManagerSecretReplication.auto(),
+  replication: const .auto(SecretManagerSecretReplicationAuto()),
 );
 
 GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(

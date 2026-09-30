@@ -63,6 +63,12 @@ export 'src/compute/google_compute_backend_service.dart'
         ComputeBackendServiceConsistentHashHttpCookieTtl,
         ComputeBackendServiceCustomMetrics,
         ComputeBackendServiceIap,
+        ComputeBackendServiceIapOauth2ClientId,
+        ComputeBackendServiceIapOauth2ClientIdChoice,
+        ComputeBackendServiceIapOauth2ClientIdWo,
+        ComputeBackendServiceIapOauth2ClientSecret,
+        ComputeBackendServiceIapOauth2ClientSecretChoice,
+        ComputeBackendServiceIapOauth2ClientSecretWo,
         ComputeBackendServiceLocalityLbPolicies,
         ComputeBackendServiceLocalityLbPoliciesCustomPolicy,
         ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice,
@@ -839,7 +845,11 @@ export 'src/compute/google_compute_region_security_policy_rule.dart'
         ComputeRegionSecurityPolicyRuleRateLimitOptions,
         GoogleComputeRegionSecurityPolicyRule;
 export 'src/compute/google_compute_region_ssl_certificate.dart'
-    show GoogleComputeRegionSslCertificate;
+    show
+        ComputeRegionSslCertificatePrivateKey,
+        ComputeRegionSslCertificatePrivateKeyChoice,
+        ComputeRegionSslCertificatePrivateKeyWo,
+        GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_ssl_policy.dart'
     show
         GoogleComputeRegionSslPolicy,
@@ -1135,7 +1145,11 @@ export 'src/compute/google_compute_snapshot_settings.dart'
         ComputeSnapshotSettingsStorageLocationPolicy,
         GoogleComputeSnapshotSettings;
 export 'src/compute/google_compute_ssl_certificate.dart'
-    show GoogleComputeSslCertificate;
+    show
+        ComputeSslCertificatePrivateKey,
+        ComputeSslCertificatePrivateKeyChoice,
+        ComputeSslCertificatePrivateKeyWo,
+        GoogleComputeSslCertificate;
 export 'src/compute/google_compute_ssl_policy.dart'
     show GoogleComputeSslPolicy, SslPolicyMinTlsVersion, SslPolicyProfile;
 export 'src/compute/google_compute_storage_pool.dart'
@@ -1336,6 +1350,9 @@ export 'src/compute/google_compute_vpn_tunnel.dart'
         ComputeVpnTunnelPeer,
         ComputeVpnTunnelPeerExternalGateway,
         ComputeVpnTunnelPeerGcpGateway,
+        ComputeVpnTunnelSharedSecret,
+        ComputeVpnTunnelSharedSecretChoice,
+        ComputeVpnTunnelSharedSecretWo,
         GoogleComputeVpnTunnel;
 export 'src/compute/google_compute_wire_group.dart'
     show

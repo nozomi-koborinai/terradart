@@ -92,11 +92,12 @@ class MmYamlParser {
           kept,
     ];
     final combined = exclusiveGroups(
-      exactlyOne: inputsOnly(paths.exactlyOne),
-      atLeastOne: inputsOnly(paths.atLeastOne),
+      exactlyOne: inputsOnly(paths.withWriteOnlySiblings(paths.exactlyOne)),
+      atLeastOne: inputsOnly(paths.withWriteOnlySiblings(paths.atLeastOne)),
       conflicts: [
         for (final c in paths.conflicts)
           if (!paths.outputs.contains(c.$1) && !paths.outputs.contains(c.$2)) c,
+        for (final m in paths.writeOnly) (m, '${m}_wo'),
       ],
     );
     return MmResourceOverrides(
@@ -189,6 +190,16 @@ class MmYamlParser {
     if (prop['output'] == true || pathSink.outputs.contains(prefix)) {
       pathSink.outputs.add(fullKey);
     } else {
+      if (prop['write_only'] == true) {
+        final path = pathSink.terraformPath([
+          ...prefix.split('.').where((s) => s.isNotEmpty),
+          _toSnakeCase(prop['name'] as String),
+        ]);
+        pathSink.writeOnly.add(path);
+        if (prop['required'] == true) {
+          pathSink.exactlyOne.add([path, '${path}_wo']);
+        }
+      }
       // Per-property exactly_one_of (siblings of this property's nested kids).
       final propGroup = _readExactlyOneOf(prop, prefix: childPrefix);
       if (propGroup != null) groupSink?.add(propGroup);
@@ -271,6 +282,20 @@ final class _Relations {
 
   /// Paths of `output: true` properties.
   final outputs = <String>{};
+
+  /// Paths of `write_only: true` properties. The provider generator gives
+  /// each one a `<name>_wo` sibling that joins the property's
+  /// `exactly_one_of` / `at_least_one_of` sets and conflicts with it; a
+  /// `required` one becomes exactly one of the two.
+  final writeOnly = <String>{};
+
+  /// [groups] with each [writeOnly] member's `_wo` sibling added.
+  List<List<String>> withWriteOnlySiblings(List<List<String>> groups) => [
+    for (final g in groups)
+      [
+        for (final m in g) ...[m, if (writeOnly.contains(m)) '${m}_wo'],
+      ],
+  ];
 
   /// Paths of `flatten_object` properties, which Terraform does not have:
   /// upstream rules still name them (`service_level_indicator.0.basic_sli`

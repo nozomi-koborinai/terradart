@@ -24,11 +24,11 @@ curatedDoc: |-
   ///   shorter suffix and so are more collision-prone. Conflicts with
   ///   `name`.
   ///
-  /// Private key — choose one path:
-  /// - `privateKey`: PEM-encoded key, stored in Terraform state. Schema-
-  ///   flagged sensitive; prefer a secret-management source via
-  ///   `TfArg.ref(...)` rather than embedding the PEM as a literal.
-  /// - `privateKeyWo` + `privateKeyWoVersion`: write-only variant
+  /// Private key — `privateKey` is sealed, exactly one of:
+  /// - `.privateKey(...)`: PEM-encoded key, stored in Terraform state.
+  ///   Schema-flagged sensitive; prefer a secret-management source via
+  ///   `.ref(...)` rather than embedding the PEM as a literal.
+  /// - `.privateKeyWo(...)` + `privateKeyWoVersion`: write-only variant
   ///   (Terraform 1.11+). The key never enters state — bump
   ///   `privateKeyWoVersion` to force rotation.
   ///
@@ -41,7 +41,7 @@ curatedDoc: |-
   ///   localName: 'lb_cert',
   ///   namePrefix: TfArg.literal('lb-cert-'),
   ///   certificate: TfArg.literal(certPem),
-  ///   privateKey: TfArg.literal(keyPem),
+  ///   privateKey: .privateKey(.literal(keyPem)),
   /// );
   /// ```
   ///
@@ -51,8 +51,8 @@ curatedDoc: |-
   ///   localName: 'lb_cert',
   ///   name: TfArg.literal('lb-cert'),
   ///   certificate: TfArg.ref(certVar),
-  ///   privateKeyWo: TfArg.ref(secretVersion.secretData),
-  ///   privateKeyWoVersion: TfArg.literal('1'),
+  ///   privateKey: .privateKeyWo(.ref(secretVersion.secretData)),
+  ///   privateKeyWoVersion: .literal('1'),
   /// );
   /// ```
 

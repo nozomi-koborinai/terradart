@@ -7,6 +7,9 @@ library;
 export 'src/firebase/google_firebase_ai_logic_config.dart'
     show
         FirebaseAiLogicConfigGenerativeLanguageConfig,
+        FirebaseAiLogicConfigGenerativeLanguageConfigApiKey,
+        FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice,
+        FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo,
         FirebaseAiLogicConfigTelemetryConfig,
         FirebaseAiLogicConfigTrafficFilter,
         GoogleFirebaseAiLogicConfig;

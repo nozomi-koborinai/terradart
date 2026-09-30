@@ -13,8 +13,14 @@ export 'src/agent/google_agent_identity_auth_provider.dart'
         AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice,
         AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth,
         AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoice,
+        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret,
+        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice,
+        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo,
         AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth,
         AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice,
+        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret,
+        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice,
+        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo,
         GoogleAgentIdentityAuthProvider;
 export 'src/agent/google_agent_registry_binding.dart'
     show

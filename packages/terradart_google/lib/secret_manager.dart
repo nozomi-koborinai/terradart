@@ -4,7 +4,11 @@
 library;
 
 export 'src/secret_manager/google_secret_manager_regional_secret.dart'
-    show GoogleSecretManagerRegionalSecret;
+    show
+        GoogleSecretManagerRegionalSecret,
+        SecretManagerRegionalSecretCustomerManagedEncryption,
+        SecretManagerRegionalSecretRotation,
+        SecretManagerRegionalSecretTopics;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_binding.dart'
     show GoogleSecretManagerRegionalSecretIamBinding;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_member.dart'
@@ -16,13 +20,16 @@ export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
 export 'src/secret_manager/google_secret_manager_secret.dart'
     show
         GoogleSecretManagerSecret,
-        SecretManagerSecretAutoReplication,
-        SecretManagerSecretCustomerManagedEncryption,
-        SecretManagerSecretReplica,
         SecretManagerSecretReplication,
+        SecretManagerSecretReplicationAuto,
+        SecretManagerSecretReplicationAutoChoice,
+        SecretManagerSecretReplicationAutoCustomerManagedEncryption,
+        SecretManagerSecretReplicationUserManaged,
+        SecretManagerSecretReplicationUserManagedChoice,
+        SecretManagerSecretReplicationUserManagedReplicas,
+        SecretManagerSecretReplicationUserManagedReplicasCustomerManagedEncryption,
         SecretManagerSecretRotation,
-        SecretManagerSecretSecretTopic,
-        SecretManagerSecretUserManagedReplication;
+        SecretManagerSecretTopics;
 export 'src/secret_manager/google_secret_manager_secret_iam_binding.dart'
     show GoogleSecretManagerSecretIamBinding;
 export 'src/secret_manager/google_secret_manager_secret_iam_member.dart'
