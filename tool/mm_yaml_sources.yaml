@@ -2771,7 +2771,7 @@ files:
   google_monitoring_snooze:
     upstream: mmv1/products/monitoring/Snooze.yaml
   google_network_management_network_monitoring_provider:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+    upstream: mmv1/products/networkmanagementv1/NetworkMonitoringProvider.yaml
   google_observability_bucket:
     upstream: mmv1/products/observability/Bucket.yaml
   google_scc_notification_service_account:

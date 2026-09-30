@@ -17,14 +17,14 @@ final class GoogleGeminiGibqObservabilitySettingBinding extends Resource {
 
   GoogleGeminiGibqObservabilitySettingBinding({
     required super.localName,
-    TfArg<String>? deletionPolicy,
     required TfArg<String> gibqObservabilitySettingId,
-    TfArg<Map<String, String>>? labels,
-    TfArg<String>? location,
-    TfArg<String>? product,
-    TfArg<String>? project,
     required TfArg<String> settingBindingId,
+    TfArg<String>? location,
     required TfArg<String> target,
+    TfArg<String>? product,
+    TfArg<Map<String, String>>? labels,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,14 +32,14 @@ final class GoogleGeminiGibqObservabilitySettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'deletion_policy': ?deletionPolicy,
            'gibq_observability_setting_id': gibqObservabilitySettingId,
-           'labels': ?labels,
-           'location': ?location,
-           'product': ?product,
-           'project': ?project,
            'setting_binding_id': settingBindingId,
+           'location': ?location,
            'target': target,
+           'product': ?product,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -50,4 +50,24 @@ final class GoogleGeminiGibqObservabilitySettingBinding extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleGeminiGibqObservabilitySettingBinding>`.
   RefTo<GoogleGeminiGibqObservabilitySettingBinding> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

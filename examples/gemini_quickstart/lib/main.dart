@@ -128,19 +128,23 @@ final class GeminiStack extends Stack {
 
     // Observability (metrics / traces / logging / feedback) for Conversational
     // Analytics in Gemini Data Analytics and in Gemini in BigQuery.
-    const analyticsObservability = <String, dynamic>{
-      'metrics_enabled': true,
-      'traces_enabled': true,
-      'logging_enabled': false,
-      'feedback_enabled': false,
-    };
+    final metricsEnabled = TfArg.literal(true);
+    final tracesEnabled = TfArg.literal(true);
+    final loggingEnabled = TfArg.literal(false);
+    final feedbackEnabled = TfArg.literal(false);
 
     final gdaObservability = add(
       GoogleGeminiGdaObservabilitySetting(
         localName: 'gda_observability',
         gdaObservabilitySettingId: .literal('terradart-gda-observability'),
         location: .literal('global'),
-        conversationalAnalyticsSetting: .literal(analyticsObservability),
+        conversationalAnalyticsSetting:
+            GeminiGdaObservabilitySettingConversationalAnalyticsSetting(
+              metricsEnabled: metricsEnabled,
+              tracesEnabled: tracesEnabled,
+              loggingEnabled: loggingEnabled,
+              feedbackEnabled: feedbackEnabled,
+            ),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
@@ -161,7 +165,13 @@ final class GeminiStack extends Stack {
         localName: 'gibq_observability',
         gibqObservabilitySettingId: .literal('terradart-gibq-observability'),
         location: .literal('global'),
-        conversationalAnalyticsSetting: .literal(analyticsObservability),
+        conversationalAnalyticsSetting:
+            GeminiGibqObservabilitySettingConversationalAnalyticsSetting(
+              metricsEnabled: metricsEnabled,
+              tracesEnabled: tracesEnabled,
+              loggingEnabled: loggingEnabled,
+              feedbackEnabled: feedbackEnabled,
+            ),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
