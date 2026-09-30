@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_bulk_per_instance_config`.
 const Set<String> _googleComputeBulkPerInstanceConfigSensitive = <String>{};
+
+/// Typed helper for the `instances` block of
+/// `google_compute_bulk_per_instance_config` (derived from provider schema).
+@immutable
+final class ComputeBulkPerInstanceConfigInstances {
+  const ComputeBulkPerInstanceConfigInstances({required this.name});
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
 
 /// Factory wrapper for `google_compute_bulk_per_instance_config`.
 final class GoogleComputeBulkPerInstanceConfig extends Resource {
@@ -13,7 +25,7 @@ final class GoogleComputeBulkPerInstanceConfig extends Resource {
   GoogleComputeBulkPerInstanceConfig({
     required super.localName,
     required TfArg<String> instanceGroupManager,
-    TfArg<List<Map<String, dynamic>>>? instances,
+    List<ComputeBulkPerInstanceConfigInstances>? instances,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
     TfArg<String>? project,
@@ -25,7 +37,10 @@ final class GoogleComputeBulkPerInstanceConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_group_manager': instanceGroupManager,
-           'instances': ?instances,
+           if (instances != null)
+             'instances': TfArg.literal([
+               for (final e in instances) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'zone': ?zone,
            'project': ?project,
