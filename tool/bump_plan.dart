@@ -34,6 +34,7 @@ class BumpLane {
     required this.dataSources,
     required this.rideAlong,
     required this.exampleGenerator,
+    required this.exampleCovers,
     required this.mm,
   });
 
@@ -51,6 +52,10 @@ class BumpLane {
   final bool dataSources;
   final WrapLane? rideAlong;
   final String? exampleGenerator;
+
+  /// The catalog kinds (`resource`, `dataSource`) [exampleGenerator] covers
+  /// in its example; empty without one.
+  final Set<String> exampleCovers;
   final bool mm;
 
   /// The keys schema-bump.yml reads as `matrix.<key>`.
@@ -114,6 +119,20 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
     if (generator != null && generator is! String) {
       throw FormatException('lane $name: bump.exampleGenerator not a path');
     }
+    final covers = bump['exampleCovers'];
+    if (covers != null && generator == null) {
+      throw FormatException(
+        'lane $name: bump.exampleCovers needs bump.exampleGenerator',
+      );
+    }
+    final coveredKinds = switch (covers ?? 'all') {
+      _ when generator == null => const <String>{},
+      'all' => const {'resource', 'dataSource'},
+      'dataSources' => const {'dataSource'},
+      _ => throw FormatException(
+        'lane $name: bump.exampleCovers must be one of all, dataSources',
+      ),
+    };
     out.add(
       BumpLane(
         lane: lanes[name]!,
@@ -124,6 +143,7 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
         dataSources: bump['dataSources'] == true,
         rideAlong: rideAlong,
         exampleGenerator: generator as String?,
+        exampleCovers: coveredKinds,
         mm: entry['mm'] == true,
       ),
     );

@@ -27,11 +27,12 @@
 // record runs after the regenerate. Every added type the lane's catalog now
 // lists is a new factory: it gets a tool/curation_backlog.yaml entry with a
 // note asking for API polish and — unless the lane's `bump.exampleGenerator`
-// covers every factory — a `ClassName: awaiting-example: ...` line in
-// tool/example_debt.yaml (tool/example_synth_gates.dart requires the
-// backlog entry). `--example-generator-ok=false` (the generator failed and
-// the example was reverted) writes the debt lines anyway. --out receives `{factories: [{tf_type, class_name,
-// kind}]}` for the drift report.
+// covers its kind (`bump.exampleCovers`) — a `ClassName: awaiting-example:
+// ...` line in tool/example_debt.yaml (tool/example_synth_gates.dart
+// requires the backlog entry). `--example-generator-ok=false` (the generator
+// failed and the example was reverted) writes the debt lines anyway. --out
+// receives `{factories: [{tf_type, class_name, kind, example_covered}],
+// example_generator}` for the drift report.
 //
 // exit: 0 success; 1 scaffolding failed; 64 usage error.
 // ignore_for_file: avoid_print
@@ -306,6 +307,17 @@ List<CatalogFactory> newFactories(
   ];
 }
 
+/// The [factories] whose kind is not in [coveredKinds] — those the lane's
+/// example generator leaves awaiting an example.
+@visibleForTesting
+List<CatalogFactory> awaitingExample(
+  List<CatalogFactory> factories,
+  Set<String> coveredKinds,
+) => [
+  for (final f in factories)
+    if (!coveredKinds.contains(f.kind)) f,
+];
+
 /// [debtYaml] with an `awaiting-example:` line for every factory in
 /// [factories] it does not list yet, under one section at the end.
 @visibleForTesting
@@ -387,9 +399,9 @@ Future<void> main(List<String> args) async {
         outPath,
         detectedAt,
         version,
-        exampleCovered:
-            lane.exampleGenerator != null &&
-            flags['example-generator-ok'] != 'false',
+        coveredKinds: flags['example-generator-ok'] == 'false'
+            ? const {}
+            : lane.exampleCovers,
       );
     default:
       _usage();
@@ -513,7 +525,7 @@ void _record(
   String outPath,
   String detectedAt,
   String version, {
-  required bool exampleCovered,
+  required Set<String> coveredKinds,
 }) {
   final catalog = readCatalog(
     File(
@@ -521,6 +533,7 @@ void _record(
     ).readAsStringSync(),
   );
   final factories = newFactories(diff, catalog);
+  final uncovered = awaitingExample(factories, coveredKinds);
   if (factories.isNotEmpty) {
     final backlog = File(curationBacklogPath);
     final text = backlog.readAsStringSync();
@@ -543,12 +556,12 @@ void _record(
         ),
       ),
     );
-    if (!exampleCovered) {
+    if (uncovered.isNotEmpty) {
       final debt = File(exampleDebtPath);
       debt.writeAsStringSync(
         appendAwaitingExampleDebt(
           debt.readAsStringSync(),
-          factories: factories,
+          factories: uncovered,
           source: lane.lane.source,
           providerVersion: version,
           detectedAt: detectedAt,
@@ -564,10 +577,17 @@ void _record(
     ..createSync(recursive: true)
     ..writeAsStringSync(
       jsonEncode({
-        'example_generator': exampleCovered ? lane.exampleGenerator : null,
+        'example_generator': coveredKinds.isEmpty
+            ? null
+            : lane.exampleGenerator,
         'factories': [
           for (final f in factories)
-            {'tf_type': f.tfType, 'class_name': f.className, 'kind': f.kind},
+            {
+              'tf_type': f.tfType,
+              'class_name': f.className,
+              'kind': f.kind,
+              'example_covered': !uncovered.contains(f),
+            },
         ],
       }),
     );
