@@ -194,7 +194,9 @@ class WrapperEmitter {
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
       if (!paramOrder.contains(spec.tfName) &&
-          !preludeSource.contains(spec.className)) {
+          !RegExp(
+            '\\b${RegExp.escape(spec.className)}\\b',
+          ).hasMatch(preludeSource)) {
         unreachableHelpers.add(spec.tfName);
       }
     }
