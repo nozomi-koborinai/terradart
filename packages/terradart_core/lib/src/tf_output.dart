@@ -20,10 +20,12 @@ final class TfOutput<T> {
 
   /// The value's Dart type in the generated reader: [T] when supported,
   /// `Object?` otherwise.
+  @internal
   DartValueType get valueType =>
       DartValueType.tryParse('$T') ??
       const ScalarValueType('Object', nullable: true);
 
+  @internal
   Map<String, Object?> toTfJson(Object? encodedValue) => {
     'value': encodedValue,
     if (sensitive) 'sensitive': true,

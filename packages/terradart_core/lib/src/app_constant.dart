@@ -57,6 +57,7 @@ sealed class AppConstant<T> {
   final String? description;
 
   /// The constant's Dart type, or `null` when [T] is not supported.
+  @internal
   DartValueType? get valueType => DartValueType.tryParse('$T');
 }
 
