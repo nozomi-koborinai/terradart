@@ -4,3 +4,14 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Email Sending subdomain: a name inside the zone that Cloudflare Email
+  /// Sending sends from. A wildcard is allowed only as the whole leftmost
+  /// label (`*.example.com`) and needs the account's wildcard entitlement.
+
+paramOrder:
+  - zone_id
+  - name
+  - drop_suppressed_recipients
+  - preview_enabled

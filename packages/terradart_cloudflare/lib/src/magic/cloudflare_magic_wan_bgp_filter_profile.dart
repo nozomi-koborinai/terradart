@@ -19,16 +19,20 @@ enum MagicWanBgpFilterProfileMatchAction implements TerraformEnum {
 }
 
 /// Factory wrapper for `cloudflare_magic_wan_bgp_filter_profile`.
+///
+/// Magic WAN BGP filter profile: allows or denies (`matchAction`) the
+/// routes that match one of the CIDR prefixes in `targets`. A target may
+/// carry a `{X,Y}` suffix to match a range of prefix lengths.
 final class CloudflareMagicWanBgpFilterProfile extends Resource {
   static const String tfType = 'cloudflare_magic_wan_bgp_filter_profile';
 
   CloudflareMagicWanBgpFilterProfile({
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? description,
-    required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,
     required TfArg<String> name,
+    required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,
     required TfArg<List<String>> targets,
+    TfArg<String>? description,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -37,10 +41,10 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           'description': ?description,
-           'match_action': matchAction,
            'name': name,
+           'match_action': matchAction,
            'targets': targets,
+           'description': ?description,
          },
        );
 

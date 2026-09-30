@@ -2033,11 +2033,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'ct',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `cloudflare_ct_alerting`.',
-    constructorParams: <String>['localName', 'emails', 'enabled', 'zoneId'],
+    constructorParams: <String>['localName', 'zoneId', 'enabled', 'emails'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_ct_alerting`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',
+        'Factory wrapper for `cloudflare_ct_alerting`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`\n\nCertificate Transparency alerting for a zone: Cloudflare emails the\nlisted addresses (up to 100) when a certificate for one of the zone\'s\nhostnames appears in a public CT log.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_ct_alerting',
@@ -3087,22 +3087,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'comments',
-      'isAcceptableSender',
-      'isExemptRecipient',
-      'isRecipient',
-      'isRegex',
-      'isSender',
-      'isSpoof',
-      'isTrustedSender',
       'pattern',
       'patternType',
+      'isRegex',
+      'isTrustedSender',
+      'isAcceptableSender',
+      'isExemptRecipient',
       'verifySender',
+      'comments',
     ],
     nestedTypes: <String>['EmailSecurityAllowPolicyPatternType'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_email_security_allow_policy`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
+        'Factory wrapper for `cloudflare_email_security_allow_policy`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`\n\nEmail Security allow policy: exempts messages matching `pattern`\n(an email address, domain or IP / CIDR, per `patternType`) from\ndetections.\n\n`isTrustedSender` bypasses every detection for the sender,\n`isAcceptableSender` only Spam / Spoof / Bulk, and `isExemptRecipient`\nevery detection for the recipient; `verifySender` honors the policy\nonly for mail that passes DMARC, SPF or DKIM. The deprecated\n`is_sender`, `is_spoof` and `is_recipient` inputs (end of life\n2026-07-01) are not exposed.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_email_security_allow_policy',
@@ -3192,14 +3189,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'allowedDeliveryModes',
       'domain',
+      'allowedDeliveryModes',
       'dropDispositions',
+      'ipRestrictions',
+      'regions',
       'folder',
       'integrationId',
-      'ipRestrictions',
       'lookbackHops',
-      'regions',
       'requireTlsInbound',
       'requireTlsOutbound',
       'transport',
@@ -3392,14 +3389,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_email_sending_subdomain`.',
     constructorParams: <String>[
       'localName',
-      'dropSuppressedRecipients',
-      'name',
-      'previewEnabled',
       'zoneId',
+      'name',
+      'dropSuppressedRecipients',
+      'previewEnabled',
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `cloudflare_email_sending_subdomain`.',
+    docComment:
+        'Factory wrapper for `cloudflare_email_sending_subdomain`.\n\nEmail Sending subdomain: a name inside the zone that Cloudflare Email\nSending sends from. A wildcard is allowed only as the whole leftmost\nlabel (`*.example.com`) and needs the account\'s wildcard entitlement.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_email_sending_subdomain',
@@ -4953,15 +4951,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'description',
-      'matchAction',
       'name',
+      'matchAction',
       'targets',
+      'description',
     ],
     nestedTypes: <String>['MagicWanBgpFilterProfileMatchAction'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_magic_wan_bgp_filter_profile`.',
+        'Factory wrapper for `cloudflare_magic_wan_bgp_filter_profile`.\n\nMagic WAN BGP filter profile: allows or denies (`matchAction`) the\nroutes that match one of the CIDR prefixes in `targets`. A target may\ncarry a `{X,Y}` suffix to match a range of prefix lengths.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_magic_wan_bgp_filter_profile',
@@ -5249,7 +5247,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['NelSettingValue'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_nel_setting`.\n\nAccepted Permissions\n\n- `Zone Settings Read` - `Zone Settings Write`',
+        'Factory wrapper for `cloudflare_nel_setting`.\n\nAccepted Permissions\n\n- `Zone Settings Read` - `Zone Settings Write`\n\nNetwork Error Logging for a zone: when `value.enabled` is true,\nbrowsers report network errors for the zone to Cloudflare\'s NEL\nendpoint.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_nel_setting',
@@ -6208,8 +6206,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_precursor`.',
     constructorParams: <String>[
       'localName',
-      'defaultMode',
       'zoneId',
+      'defaultMode',
       'enforcementRules',
     ],
     nestedTypes: <String>[
@@ -6218,7 +6216,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'PrecursorEnforcementRulesMode',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `cloudflare_precursor`.',
+    docComment:
+        'Factory wrapper for `cloudflare_precursor`.\n\nPrecursor enforcement for a zone: `defaultMode` applies to every\nrequest no `enforcementRules` entry matches; rules are evaluated in\norder and cannot use `off`.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_precursor',
@@ -10702,13 +10701,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'appliesToAllIntegrations',
-      'description',
       'displayName',
-      'enabled',
       'findingTypeId',
+      'enabled',
+      'appliesToAllIntegrations',
       'integrationIds',
       'actions',
+      'description',
     ],
     nestedTypes: <String>[
       'ZeroTrustCasbPolicyActions',
@@ -10717,7 +10716,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_zero_trust_casb_policy`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`',
+        'Factory wrapper for `cloudflare_zero_trust_casb_policy`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`\n\nCASB policy: runs [ZeroTrustCasbPolicyActions] (webhooks and at most\none remediation) when a finding of `findingTypeId` is raised.\n\nSet `appliesToAllIntegrations: .literal(true)`, or `false` together\nwith `integrationIds` — the provider requires the list when the flag\nis false.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_zero_trust_casb_policy',
@@ -10740,12 +10739,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'authenticationType',
-      'destinationUrl',
       'label',
+      'destinationUrl',
+      'authenticationType',
       'signingSecret',
-      'status',
       'headers',
+      'status',
     ],
     nestedTypes: <String>[
       'ZeroTrustCasbWebhookAuthenticationType',
@@ -10754,7 +10753,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['headers.value', 'signing_secret'],
     docComment:
-        'Factory wrapper for `cloudflare_zero_trust_casb_webhook`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`',
+        'Factory wrapper for `cloudflare_zero_trust_casb_webhook`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`\n\nCASB webhook: where a `CloudflareZeroTrustCasbPolicy` action sends\nits data. `signingSecret` is used only with the `HMAC-Signing`\nauthentication type; it and the header values are sensitive.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_zero_trust_casb_webhook',
@@ -12735,13 +12734,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accountId',
-      'categoryId',
-      'hostnames',
-      'humanId',
-      'ipSubnets',
       'name',
+      'hostnames',
+      'ipSubnets',
       'portProtocols',
       'supportDomains',
+      'categoryId',
+      'humanId',
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
@@ -13565,17 +13564,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_zone_tracing`.',
     constructorParams: <String>[
       'localName',
-      'destinations',
+      'zoneId',
       'enabled',
+      'samplingRatio',
+      'destinations',
+      'propagationPolicy',
       'forwardContext',
       'persist',
-      'propagationPolicy',
-      'samplingRatio',
-      'zoneId',
     ],
     nestedTypes: <String>['ZoneTracingPropagationPolicy'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `cloudflare_zone_tracing`.',
+    docComment:
+        'Factory wrapper for `cloudflare_zone_tracing`.\n\nCloudflare Traces for a zone: samples `samplingRatio` (0 to 1) of\nrequests and sends the traces to up to 100 OpenTelemetry\n`destinations`. Per-request overrides live on\n`CloudflareZoneTracingRules`.',
   ),
   CatalogEntry(
     tfType: 'cloudflare_zone_tracing',

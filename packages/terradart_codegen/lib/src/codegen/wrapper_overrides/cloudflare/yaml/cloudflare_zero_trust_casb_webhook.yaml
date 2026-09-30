@@ -4,3 +4,17 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// CASB webhook: where a `CloudflareZeroTrustCasbPolicy` action sends
+  /// its data. `signingSecret` is used only with the `HMAC-Signing`
+  /// authentication type; it and the header values are sensitive.
+
+paramOrder:
+  - account_id
+  - label
+  - destination_url
+  - authentication_type
+  - signing_secret
+  - headers
+  - status

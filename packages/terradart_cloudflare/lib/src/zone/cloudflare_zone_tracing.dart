@@ -20,18 +20,23 @@ enum ZoneTracingPropagationPolicy implements TerraformEnum {
 }
 
 /// Factory wrapper for `cloudflare_zone_tracing`.
+///
+/// Cloudflare Traces for a zone: samples `samplingRatio` (0 to 1) of
+/// requests and sends the traces to up to 100 OpenTelemetry
+/// `destinations`. Per-request overrides live on
+/// `CloudflareZoneTracingRules`.
 final class CloudflareZoneTracing extends Resource {
   static const String tfType = 'cloudflare_zone_tracing';
 
   CloudflareZoneTracing({
     required super.localName,
-    TfArg<List<String>>? destinations,
+    required RefTo<CloudflareZone> zoneId,
     TfArg<bool>? enabled,
+    TfArg<num>? samplingRatio,
+    TfArg<List<String>>? destinations,
+    TfArg<ZoneTracingPropagationPolicy>? propagationPolicy,
     TfArg<bool>? forwardContext,
     TfArg<bool>? persist,
-    TfArg<ZoneTracingPropagationPolicy>? propagationPolicy,
-    TfArg<num>? samplingRatio,
-    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -39,13 +44,13 @@ final class CloudflareZoneTracing extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'destinations': ?destinations,
+           'zone_id': zoneId.encodeAs('id'),
            'enabled': ?enabled,
+           'sampling_ratio': ?samplingRatio,
+           'destinations': ?destinations,
+           'propagation_policy': ?propagationPolicy,
            'forward_context': ?forwardContext,
            'persist': ?persist,
-           'propagation_policy': ?propagationPolicy,
-           'sampling_ratio': ?samplingRatio,
-           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

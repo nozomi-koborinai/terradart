@@ -58,13 +58,17 @@ enum PrecursorEnforcementRulesMode implements TerraformEnum {
 }
 
 /// Factory wrapper for `cloudflare_precursor`.
+///
+/// Precursor enforcement for a zone: `defaultMode` applies to every
+/// request no `enforcementRules` entry matches; rules are evaluated in
+/// order and cannot use `off`.
 final class CloudflarePrecursor extends Resource {
   static const String tfType = 'cloudflare_precursor';
 
   CloudflarePrecursor({
     required super.localName,
-    TfArg<PrecursorDefaultMode>? defaultMode,
     required RefTo<CloudflareZone> zoneId,
+    TfArg<PrecursorDefaultMode>? defaultMode,
     List<PrecursorEnforcementRules>? enforcementRules,
     super.lifecycle,
     super.dependsOn,
@@ -73,8 +77,8 @@ final class CloudflarePrecursor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'default_mode': ?defaultMode,
            'zone_id': zoneId.encodeAs('id'),
+           'default_mode': ?defaultMode,
            if (enforcementRules != null)
              'enforcement_rules': TfArg.literal([
                for (final e in enforcementRules) e.encode(),

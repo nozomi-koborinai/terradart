@@ -9,15 +9,19 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareEmailSendingSubdomainSensitive = <String>{};
 
 /// Factory wrapper for `cloudflare_email_sending_subdomain`.
+///
+/// Email Sending subdomain: a name inside the zone that Cloudflare Email
+/// Sending sends from. A wildcard is allowed only as the whole leftmost
+/// label (`*.example.com`) and needs the account's wildcard entitlement.
 final class CloudflareEmailSendingSubdomain extends Resource {
   static const String tfType = 'cloudflare_email_sending_subdomain';
 
   CloudflareEmailSendingSubdomain({
     required super.localName,
-    TfArg<bool>? dropSuppressedRecipients,
-    required TfArg<String> name,
-    TfArg<bool>? previewEnabled,
     required RefTo<CloudflareZone> zoneId,
+    required TfArg<String> name,
+    TfArg<bool>? dropSuppressedRecipients,
+    TfArg<bool>? previewEnabled,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -25,10 +29,10 @@ final class CloudflareEmailSendingSubdomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'drop_suppressed_recipients': ?dropSuppressedRecipients,
-           'name': name,
-           'preview_enabled': ?previewEnabled,
            'zone_id': zoneId.encodeAs('id'),
+           'name': name,
+           'drop_suppressed_recipients': ?dropSuppressedRecipients,
+           'preview_enabled': ?previewEnabled,
          },
        );
 
