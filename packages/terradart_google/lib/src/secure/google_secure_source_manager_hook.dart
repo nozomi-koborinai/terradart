@@ -87,6 +87,34 @@ final class GoogleSecureSourceManagerHook extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `events` attribute.
+  TfRef<List<String>> get eventsRef =>
+      TfRef.attribute<List<String>>(this, 'events');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
+
+  /// Reference to `sensitive_query_string` attribute.
+  TfRef<String> get sensitiveQueryStringRef =>
+      TfRef.attribute<String>(this, 'sensitive_query_string');
+
+  /// Reference to `target_uri` attribute.
+  TfRef<String> get targetUriRef => TfRef.attribute<String>(this, 'target_uri');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

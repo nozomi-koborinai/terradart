@@ -85,4 +85,11 @@ final class AwsCodecommitTrigger extends Resource {
   /// Reference to `configuration_id` attribute.
   TfRef<String> get configurationId =>
       TfRef.attribute<String>(this, 'configuration_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `repository_name` attribute.
+  TfRef<String> get repositoryNameRef =>
+      TfRef.attribute<String>(this, 'repository_name');
 }

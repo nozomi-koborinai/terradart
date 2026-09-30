@@ -209,4 +209,32 @@ final class AwsEc2NetworkInsightsPath extends Resource {
 
   /// Reference to `source_arn` attribute.
   TfRef<String> get sourceArn => TfRef.attribute<String>(this, 'source_arn');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `destination_ip` attribute.
+  TfRef<String> get destinationIpRef =>
+      TfRef.attribute<String>(this, 'destination_ip');
+
+  /// Reference to `destination_port` attribute.
+  TfRef<num> get destinationPortRef =>
+      TfRef.attribute<num>(this, 'destination_port');
+
+  /// Reference to `protocol` attribute.
+  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `source_ip` attribute.
+  TfRef<String> get sourceIpRef => TfRef.attribute<String>(this, 'source_ip');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

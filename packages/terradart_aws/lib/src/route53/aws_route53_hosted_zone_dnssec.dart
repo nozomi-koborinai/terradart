@@ -45,4 +45,12 @@ final class AwsRoute53HostedZoneDnssec extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `hosted_zone_id` attribute.
+  TfRef<String> get hostedZoneIdRef =>
+      TfRef.attribute<String>(this, 'hosted_zone_id');
+
+  /// Reference to `signing_status` attribute.
+  TfRef<String> get signingStatusRef =>
+      TfRef.attribute<String>(this, 'signing_status');
 }

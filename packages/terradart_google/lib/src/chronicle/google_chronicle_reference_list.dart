@@ -116,6 +116,27 @@ final class GoogleChronicleReferenceList extends Resource {
   /// Reference to `rules` attribute.
   TfRef<List<String>> get rules => TfRef.attribute<List<String>>(this, 'rules');
 
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reference_list_id` attribute.
+  TfRef<String> get referenceListIdRef =>
+      TfRef.attribute<String>(this, 'reference_list_id');
+
+  /// Reference to `syntax_type` attribute.
+  TfRef<String> get syntaxTypeRef =>
+      TfRef.attribute<String>(this, 'syntax_type');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

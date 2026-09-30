@@ -74,4 +74,14 @@ final class AwsS3tablesTableBucketReplication extends Resource {
   /// Reference to `version_token` attribute.
   TfRef<String> get versionToken =>
       TfRef.attribute<String>(this, 'version_token');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `table_bucket_arn` attribute.
+  TfRef<String> get tableBucketArnRef =>
+      TfRef.attribute<String>(this, 'table_bucket_arn');
 }

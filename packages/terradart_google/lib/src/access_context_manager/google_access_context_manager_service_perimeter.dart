@@ -1111,6 +1111,28 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `perimeter_type` attribute.
+  TfRef<String> get perimeterTypeRef =>
+      TfRef.attribute<String>(this, 'perimeter_type');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `use_explicit_dry_run_spec` attribute.
+  TfRef<bool> get useExplicitDryRunSpecRef =>
+      TfRef.attribute<bool>(this, 'use_explicit_dry_run_spec');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

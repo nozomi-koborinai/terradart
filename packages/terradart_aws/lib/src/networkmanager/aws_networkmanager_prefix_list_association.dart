@@ -35,4 +35,16 @@ final class AwsNetworkmanagerPrefixListAssociation extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsNetworkmanagerPrefixListAssociation>`.
   RefTo<AwsNetworkmanagerPrefixListAssociation> get ref => RefTo.of(this);
+
+  /// Reference to `core_network_id` attribute.
+  TfRef<String> get coreNetworkIdRef =>
+      TfRef.attribute<String>(this, 'core_network_id');
+
+  /// Reference to `prefix_list_alias` attribute.
+  TfRef<String> get prefixListAliasRef =>
+      TfRef.attribute<String>(this, 'prefix_list_alias');
+
+  /// Reference to `prefix_list_arn` attribute.
+  TfRef<String> get prefixListArnRef =>
+      TfRef.attribute<String>(this, 'prefix_list_arn');
 }

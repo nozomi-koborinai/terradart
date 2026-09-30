@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 586 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - **Breaking** — 39 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Synth output is unchanged. See `MIGRATING.md`.
 - **Breaking** — a Magic Modules `write_only` input and its plaintext sibling are one nullable sealed argument, as the provider rejects setting both: `FirebaseAiLogicConfigGenerativeLanguageConfig(apiKey: .apiKeyWo(...))` instead of separate `apiKey` / `apiKeyWo` fields.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource will take. Additive.

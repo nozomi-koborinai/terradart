@@ -40,4 +40,15 @@ final class AwsConnectLambdaFunctionAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `function_arn` attribute.
+  TfRef<String> get functionArnRef =>
+      TfRef.attribute<String>(this, 'function_arn');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

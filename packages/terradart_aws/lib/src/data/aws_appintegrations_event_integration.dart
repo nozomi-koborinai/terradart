@@ -51,4 +51,11 @@ final class DataAwsAppintegrationsEventIntegration extends Data {
   /// Reference to `eventbridge_bus` attribute.
   TfRef<String> get eventbridgeBus =>
       TfRef.attribute<String>(this, 'eventbridge_bus');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

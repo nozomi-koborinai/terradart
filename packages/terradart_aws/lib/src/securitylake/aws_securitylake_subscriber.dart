@@ -194,4 +194,23 @@ final class AwsSecuritylakeSubscriber extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `access_type` attribute.
+  TfRef<String> get accessTypeRef =>
+      TfRef.attribute<String>(this, 'access_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subscriber_description` attribute.
+  TfRef<String> get subscriberDescriptionRef =>
+      TfRef.attribute<String>(this, 'subscriber_description');
+
+  /// Reference to `subscriber_name` attribute.
+  TfRef<String> get subscriberNameRef =>
+      TfRef.attribute<String>(this, 'subscriber_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

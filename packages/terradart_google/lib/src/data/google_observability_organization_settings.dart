@@ -51,4 +51,11 @@ final class DataGoogleObservabilityOrganizationSettings extends Data {
   /// Reference to `service_account_id` attribute.
   TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
 }

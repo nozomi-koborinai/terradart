@@ -59,4 +59,11 @@ final class DataCloudflarePipeline extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `pipeline_id` attribute.
+  TfRef<String> get pipelineIdRef =>
+      TfRef.attribute<String>(this, 'pipeline_id');
 }

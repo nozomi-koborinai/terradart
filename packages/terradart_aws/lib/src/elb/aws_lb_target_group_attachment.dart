@@ -43,4 +43,25 @@ final class AwsLbTargetGroupAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `quic_server_id` attribute.
+  TfRef<String> get quicServerIdRef =>
+      TfRef.attribute<String>(this, 'quic_server_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_group_arn` attribute.
+  TfRef<String> get targetGroupArnRef =>
+      TfRef.attribute<String>(this, 'target_group_arn');
+
+  /// Reference to `target_id` attribute.
+  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
 }

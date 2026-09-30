@@ -137,4 +137,11 @@ final class DataAwsDynamodbTable extends Data {
 
   /// Reference to `write_capacity` attribute.
   TfRef<num> get writeCapacity => TfRef.attribute<num>(this, 'write_capacity');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

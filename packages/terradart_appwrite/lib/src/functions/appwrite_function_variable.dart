@@ -55,4 +55,20 @@ final class AppwriteFunctionVariable extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `function_id` attribute.
+  TfRef<String> get functionIdRef =>
+      TfRef.attribute<String>(this, 'function_id');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `secret` attribute.
+  TfRef<bool> get secretRef => TfRef.attribute<bool>(this, 'secret');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

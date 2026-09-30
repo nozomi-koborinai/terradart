@@ -78,4 +78,21 @@ final class AwsKendraThesaurus extends Resource {
   /// Reference to `thesaurus_id` attribute.
   TfRef<String> get thesaurusId =>
       TfRef.attribute<String>(this, 'thesaurus_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `index_id` attribute.
+  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

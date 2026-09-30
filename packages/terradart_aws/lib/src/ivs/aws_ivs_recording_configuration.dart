@@ -121,4 +121,15 @@ final class AwsIvsRecordingConfiguration extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `recording_reconnect_window_seconds` attribute.
+  TfRef<num> get recordingReconnectWindowSecondsRef =>
+      TfRef.attribute<num>(this, 'recording_reconnect_window_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

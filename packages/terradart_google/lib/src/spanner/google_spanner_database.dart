@@ -145,4 +145,37 @@ final class GoogleSpannerDatabase extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `database_dialect` attribute.
+  TfRef<String> get databaseDialectRef =>
+      TfRef.attribute<String>(this, 'database_dialect');
+
+  /// Reference to `ddl` attribute.
+  TfRef<List<String>> get ddlRef => TfRef.attribute<List<String>>(this, 'ddl');
+
+  /// Reference to `default_time_zone` attribute.
+  TfRef<String> get defaultTimeZoneRef =>
+      TfRef.attribute<String>(this, 'default_time_zone');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `enable_drop_protection` attribute.
+  TfRef<bool> get enableDropProtectionRef =>
+      TfRef.attribute<bool>(this, 'enable_drop_protection');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `version_retention_period` attribute.
+  TfRef<String> get versionRetentionPeriodRef =>
+      TfRef.attribute<String>(this, 'version_retention_period');
 }

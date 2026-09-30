@@ -44,4 +44,11 @@ final class GoogleSccNotificationServiceAccount extends Resource {
 
   /// Reference to `member` attribute.
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

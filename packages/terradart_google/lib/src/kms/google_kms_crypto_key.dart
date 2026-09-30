@@ -159,4 +159,37 @@ final class GoogleKmsCryptoKey extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `crypto_key_backend` attribute.
+  TfRef<String> get cryptoKeyBackendRef =>
+      TfRef.attribute<String>(this, 'crypto_key_backend');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `destroy_scheduled_duration` attribute.
+  TfRef<String> get destroyScheduledDurationRef =>
+      TfRef.attribute<String>(this, 'destroy_scheduled_duration');
+
+  /// Reference to `import_only` attribute.
+  TfRef<bool> get importOnlyRef => TfRef.attribute<bool>(this, 'import_only');
+
+  /// Reference to `key_ring` attribute.
+  TfRef<String> get keyRingRef => TfRef.attribute<String>(this, 'key_ring');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `purpose` attribute.
+  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+
+  /// Reference to `rotation_period` attribute.
+  TfRef<String> get rotationPeriodRef =>
+      TfRef.attribute<String>(this, 'rotation_period');
+
+  /// Reference to `skip_initial_version_creation` attribute.
+  TfRef<bool> get skipInitialVersionCreationRef =>
+      TfRef.attribute<bool>(this, 'skip_initial_version_creation');
 }

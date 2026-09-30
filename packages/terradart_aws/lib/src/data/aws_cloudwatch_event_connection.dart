@@ -46,4 +46,7 @@ final class DataAwsCloudwatchEventConnection extends Data {
 
   /// Reference to `secret_arn` attribute.
   TfRef<String> get secretArn => TfRef.attribute<String>(this, 'secret_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

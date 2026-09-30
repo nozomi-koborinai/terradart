@@ -44,4 +44,22 @@ final class AwsQuicksightTemplateAlias extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `alias_name` attribute.
+  TfRef<String> get aliasNameRef => TfRef.attribute<String>(this, 'alias_name');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `template_id` attribute.
+  TfRef<String> get templateIdRef =>
+      TfRef.attribute<String>(this, 'template_id');
+
+  /// Reference to `template_version_number` attribute.
+  TfRef<num> get templateVersionNumberRef =>
+      TfRef.attribute<num>(this, 'template_version_number');
 }

@@ -174,4 +174,10 @@ final class DataGoogleRedisInstance extends Data {
   /// Reference to `transit_encryption_mode` attribute.
   TfRef<String> get transitEncryptionMode =>
       TfRef.attribute<String>(this, 'transit_encryption_mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -58,4 +58,11 @@ final class DataAwsPrefixList extends Data {
   /// Reference to `cidr_blocks` attribute.
   TfRef<List<String>> get cidrBlocks =>
       TfRef.attribute<List<String>>(this, 'cidr_blocks');
+
+  /// Reference to `prefix_list_id` attribute.
+  TfRef<String> get prefixListIdRef =>
+      TfRef.attribute<String>(this, 'prefix_list_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

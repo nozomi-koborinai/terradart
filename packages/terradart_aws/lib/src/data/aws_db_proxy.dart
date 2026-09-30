@@ -82,4 +82,7 @@ final class DataAwsDbProxy extends Data {
   /// Reference to `vpc_subnet_ids` attribute.
   TfRef<List<String>> get vpcSubnetIds =>
       TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

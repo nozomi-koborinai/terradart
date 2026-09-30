@@ -185,4 +185,53 @@ final class AwsElasticacheServerlessCache extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `daily_snapshot_time` attribute.
+  TfRef<String> get dailySnapshotTimeRef =>
+      TfRef.attribute<String>(this, 'daily_snapshot_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `major_engine_version` attribute.
+  TfRef<String> get majorEngineVersionRef =>
+      TfRef.attribute<String>(this, 'major_engine_version');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkTypeRef =>
+      TfRef.attribute<String>(this, 'network_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `snapshot_arns_to_restore` attribute.
+  TfRef<List<String>> get snapshotArnsToRestoreRef =>
+      TfRef.attribute<List<String>>(this, 'snapshot_arns_to_restore');
+
+  /// Reference to `snapshot_retention_limit` attribute.
+  TfRef<num> get snapshotRetentionLimitRef =>
+      TfRef.attribute<num>(this, 'snapshot_retention_limit');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_group_id` attribute.
+  TfRef<String> get userGroupIdRef =>
+      TfRef.attribute<String>(this, 'user_group_id');
 }

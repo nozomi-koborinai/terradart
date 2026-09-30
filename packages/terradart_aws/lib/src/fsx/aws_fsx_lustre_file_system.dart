@@ -285,4 +285,100 @@ final class AwsFsxLustreFileSystem extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `auto_import_policy` attribute.
+  TfRef<String> get autoImportPolicyRef =>
+      TfRef.attribute<String>(this, 'auto_import_policy');
+
+  /// Reference to `automatic_backup_retention_days` attribute.
+  TfRef<num> get automaticBackupRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'automatic_backup_retention_days');
+
+  /// Reference to `backup_id` attribute.
+  TfRef<String> get backupIdRef => TfRef.attribute<String>(this, 'backup_id');
+
+  /// Reference to `copy_tags_to_backups` attribute.
+  TfRef<bool> get copyTagsToBackupsRef =>
+      TfRef.attribute<bool>(this, 'copy_tags_to_backups');
+
+  /// Reference to `daily_automatic_backup_start_time` attribute.
+  TfRef<String> get dailyAutomaticBackupStartTimeRef =>
+      TfRef.attribute<String>(this, 'daily_automatic_backup_start_time');
+
+  /// Reference to `data_compression_type` attribute.
+  TfRef<String> get dataCompressionTypeRef =>
+      TfRef.attribute<String>(this, 'data_compression_type');
+
+  /// Reference to `deployment_type` attribute.
+  TfRef<String> get deploymentTypeRef =>
+      TfRef.attribute<String>(this, 'deployment_type');
+
+  /// Reference to `drive_cache_type` attribute.
+  TfRef<String> get driveCacheTypeRef =>
+      TfRef.attribute<String>(this, 'drive_cache_type');
+
+  /// Reference to `efa_enabled` attribute.
+  TfRef<bool> get efaEnabledRef => TfRef.attribute<bool>(this, 'efa_enabled');
+
+  /// Reference to `export_path` attribute.
+  TfRef<String> get exportPathRef =>
+      TfRef.attribute<String>(this, 'export_path');
+
+  /// Reference to `file_system_type_version` attribute.
+  TfRef<String> get fileSystemTypeVersionRef =>
+      TfRef.attribute<String>(this, 'file_system_type_version');
+
+  /// Reference to `final_backup_tags` attribute.
+  TfRef<Map<String, String>> get finalBackupTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'final_backup_tags');
+
+  /// Reference to `import_path` attribute.
+  TfRef<String> get importPathRef =>
+      TfRef.attribute<String>(this, 'import_path');
+
+  /// Reference to `imported_file_chunk_size` attribute.
+  TfRef<num> get importedFileChunkSizeRef =>
+      TfRef.attribute<num>(this, 'imported_file_chunk_size');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `per_unit_storage_throughput` attribute.
+  TfRef<num> get perUnitStorageThroughputRef =>
+      TfRef.attribute<num>(this, 'per_unit_storage_throughput');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `skip_final_backup` attribute.
+  TfRef<bool> get skipFinalBackupRef =>
+      TfRef.attribute<bool>(this, 'skip_final_backup');
+
+  /// Reference to `storage_capacity` attribute.
+  TfRef<num> get storageCapacityRef =>
+      TfRef.attribute<num>(this, 'storage_capacity');
+
+  /// Reference to `storage_type` attribute.
+  TfRef<String> get storageTypeRef =>
+      TfRef.attribute<String>(this, 'storage_type');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `throughput_capacity` attribute.
+  TfRef<num> get throughputCapacityRef =>
+      TfRef.attribute<num>(this, 'throughput_capacity');
+
+  /// Reference to `weekly_maintenance_start_time` attribute.
+  TfRef<String> get weeklyMaintenanceStartTimeRef =>
+      TfRef.attribute<String>(this, 'weekly_maintenance_start_time');
 }

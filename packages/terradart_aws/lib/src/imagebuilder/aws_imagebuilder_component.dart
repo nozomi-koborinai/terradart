@@ -144,4 +144,41 @@ final class AwsImagebuilderComponent extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `change_description` attribute.
+  TfRef<String> get changeDescriptionRef =>
+      TfRef.attribute<String>(this, 'change_description');
+
+  /// Reference to `data` attribute.
+  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `platform` attribute.
+  TfRef<String> get platformRef => TfRef.attribute<String>(this, 'platform');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `supported_os_versions` attribute.
+  TfRef<List<String>> get supportedOsVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'supported_os_versions');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `uri` attribute.
+  TfRef<String> get uriRef => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

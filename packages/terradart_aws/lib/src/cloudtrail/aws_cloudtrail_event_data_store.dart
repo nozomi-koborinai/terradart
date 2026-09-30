@@ -158,4 +158,37 @@ final class AwsCloudtrailEventDataStore extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `billing_mode` attribute.
+  TfRef<String> get billingModeRef =>
+      TfRef.attribute<String>(this, 'billing_mode');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `multi_region_enabled` attribute.
+  TfRef<bool> get multiRegionEnabledRef =>
+      TfRef.attribute<bool>(this, 'multi_region_enabled');
+
+  /// Reference to `organization_enabled` attribute.
+  TfRef<bool> get organizationEnabledRef =>
+      TfRef.attribute<bool>(this, 'organization_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_period` attribute.
+  TfRef<num> get retentionPeriodRef =>
+      TfRef.attribute<num>(this, 'retention_period');
+
+  /// Reference to `suspend` attribute.
+  TfRef<String> get suspendRef => TfRef.attribute<String>(this, 'suspend');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `termination_protection_enabled` attribute.
+  TfRef<bool> get terminationProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'termination_protection_enabled');
 }

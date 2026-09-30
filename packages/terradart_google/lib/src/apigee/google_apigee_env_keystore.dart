@@ -44,6 +44,13 @@ final class GoogleApigeeEnvKeystore extends Resource {
   TfRef<List<String>> get aliases =>
       TfRef.attribute<List<String>>(this, 'aliases');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `env_id` attribute.
+  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

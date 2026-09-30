@@ -41,4 +41,19 @@ final class AwsAcmpcaCertificateAuthorityCertificate extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `certificate_authority_arn` attribute.
+  TfRef<String> get certificateAuthorityArnRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_arn');
+
+  /// Reference to `certificate_chain` attribute.
+  TfRef<String> get certificateChainRef =>
+      TfRef.attribute<String>(this, 'certificate_chain');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

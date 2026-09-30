@@ -41,4 +41,11 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ipsec_tunnel_id` attribute.
+  TfRef<String> get ipsecTunnelIdRef =>
+      TfRef.attribute<String>(this, 'ipsec_tunnel_id');
 }

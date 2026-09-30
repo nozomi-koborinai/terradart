@@ -63,4 +63,22 @@ final class AwsCognitoUserPoolDomain extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `certificate_arn` attribute.
+  TfRef<String> get certificateArnRef =>
+      TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `managed_login_version` attribute.
+  TfRef<num> get managedLoginVersionRef =>
+      TfRef.attribute<num>(this, 'managed_login_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

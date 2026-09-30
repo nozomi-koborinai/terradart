@@ -97,4 +97,33 @@ final class AwsConnectQueue extends Resource {
 
   /// Reference to `queue_id` attribute.
   TfRef<String> get queueId => TfRef.attribute<String>(this, 'queue_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hours_of_operation_id` attribute.
+  TfRef<String> get hoursOfOperationIdRef =>
+      TfRef.attribute<String>(this, 'hours_of_operation_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `max_contacts` attribute.
+  TfRef<num> get maxContactsRef => TfRef.attribute<num>(this, 'max_contacts');
+
+  /// Reference to `quick_connect_ids` attribute.
+  TfRef<List<String>> get quickConnectIdsRef =>
+      TfRef.attribute<List<String>>(this, 'quick_connect_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

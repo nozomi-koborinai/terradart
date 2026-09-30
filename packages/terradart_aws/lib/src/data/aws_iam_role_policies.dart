@@ -27,4 +27,7 @@ final class DataAwsIamRolePolicies extends Data {
   /// Reference to `policy_names` attribute.
   TfRef<List<String>> get policyNames =>
       TfRef.attribute<List<String>>(this, 'policy_names');
+
+  /// Reference to `role_name` attribute.
+  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
 }

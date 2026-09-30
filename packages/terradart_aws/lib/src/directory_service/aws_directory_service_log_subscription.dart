@@ -40,4 +40,15 @@ final class AwsDirectoryServiceLogSubscription extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `log_group_name` attribute.
+  TfRef<String> get logGroupNameRef =>
+      TfRef.attribute<String>(this, 'log_group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

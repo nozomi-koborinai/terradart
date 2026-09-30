@@ -115,4 +115,19 @@ final class GoogleApigeeDatastore extends Resource {
 
   /// Reference to `self` attribute.
   TfRef<String> get self => TfRef.attribute<String>(this, 'self');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `target_type` attribute.
+  TfRef<String> get targetTypeRef =>
+      TfRef.attribute<String>(this, 'target_type');
 }

@@ -96,4 +96,25 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `detail_type` attribute.
+  TfRef<String> get detailTypeRef =>
+      TfRef.attribute<String>(this, 'detail_type');
+
+  /// Reference to `event_type_ids` attribute.
+  TfRef<List<String>> get eventTypeIdsRef =>
+      TfRef.attribute<List<String>>(this, 'event_type_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource` attribute.
+  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

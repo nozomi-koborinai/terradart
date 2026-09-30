@@ -97,4 +97,37 @@ final class AwsWorkspacesPool extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `application_settings` attribute.
+  TfRef<List<Map<String, Object?>>> get applicationSettingsRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'application_settings');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `pool_name` attribute.
+  TfRef<String> get poolNameRef => TfRef.attribute<String>(this, 'pool_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `running_mode` attribute.
+  TfRef<String> get runningModeRef =>
+      TfRef.attribute<String>(this, 'running_mode');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timeout_settings` attribute.
+  TfRef<List<Map<String, Object?>>> get timeoutSettingsRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'timeout_settings');
 }

@@ -67,4 +67,14 @@ final class DataGoogleGkeHubMembership extends Data {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `membership_id` attribute.
+  TfRef<String> get membershipIdRef =>
+      TfRef.attribute<String>(this, 'membership_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

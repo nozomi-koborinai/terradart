@@ -185,4 +185,22 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `api_key` attribute.
+  TfRef<String> get apiKeyRef => TfRef.attribute<String>(this, 'api_key');
+
+  /// Reference to `api_key_secret_source` attribute.
+  TfRef<String> get apiKeySecretSourceRef =>
+      TfRef.attribute<String>(this, 'api_key_secret_source');
+
+  /// Reference to `api_key_wo_version` attribute.
+  TfRef<num> get apiKeyWoVersionRef =>
+      TfRef.attribute<num>(this, 'api_key_wo_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

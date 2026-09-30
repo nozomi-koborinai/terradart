@@ -150,4 +150,11 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
 
   /// Reference to `provenance` attribute.
   TfRef<String> get provenance => TfRef.attribute<String>(this, 'provenance');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `impersonation_registry_id` attribute.
+  TfRef<String> get impersonationRegistryIdRef =>
+      TfRef.attribute<String>(this, 'impersonation_registry_id');
 }

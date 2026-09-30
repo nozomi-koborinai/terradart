@@ -170,4 +170,38 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `data_exchange_id` attribute.
+  TfRef<String> get dataExchangeIdRef =>
+      TfRef.attribute<String>(this, 'data_exchange_id');
+
+  /// Reference to `data_exchange_location` attribute.
+  TfRef<String> get dataExchangeLocationRef =>
+      TfRef.attribute<String>(this, 'data_exchange_location');
+
+  /// Reference to `data_exchange_project` attribute.
+  TfRef<String> get dataExchangeProjectRef =>
+      TfRef.attribute<String>(this, 'data_exchange_project');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `refresh_policy` attribute.
+  TfRef<String> get refreshPolicyRef =>
+      TfRef.attribute<String>(this, 'refresh_policy');
+
+  /// Reference to `subscriber_contact` attribute.
+  TfRef<String> get subscriberContactRef =>
+      TfRef.attribute<String>(this, 'subscriber_contact');
+
+  /// Reference to `subscription_id` attribute.
+  TfRef<String> get subscriptionIdRef =>
+      TfRef.attribute<String>(this, 'subscription_id');
 }

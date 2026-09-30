@@ -786,4 +786,11 @@ final class AwsCloudwatchLogTransformer extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsCloudwatchLogTransformer>`.
   RefTo<AwsCloudwatchLogTransformer> get ref => RefTo.of(this);
+
+  /// Reference to `log_group_arn` attribute.
+  TfRef<String> get logGroupArnRef =>
+      TfRef.attribute<String>(this, 'log_group_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -37,4 +37,11 @@ final class DataAwsPrometheusWorkspaces extends Data {
   /// Reference to `workspace_ids` attribute.
   TfRef<List<String>> get workspaceIds =>
       TfRef.attribute<List<String>>(this, 'workspace_ids');
+
+  /// Reference to `alias_prefix` attribute.
+  TfRef<String> get aliasPrefixRef =>
+      TfRef.attribute<String>(this, 'alias_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -83,5 +83,15 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   TfRef<String> get protectionLevel =>
       TfRef.attribute<String>(this, 'protection_level');
 
+  /// Reference to `crypto_key` attribute.
+  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

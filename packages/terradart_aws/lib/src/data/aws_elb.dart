@@ -103,4 +103,11 @@ final class DataAwsElb extends Data {
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

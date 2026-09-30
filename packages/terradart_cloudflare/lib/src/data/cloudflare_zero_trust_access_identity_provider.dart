@@ -73,4 +73,14 @@ final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `identity_provider_id` attribute.
+  TfRef<String> get identityProviderIdRef =>
+      TfRef.attribute<String>(this, 'identity_provider_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -137,4 +137,20 @@ final class AwsCeAnomalyMonitor extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `monitor_dimension` attribute.
+  TfRef<String> get monitorDimensionRef =>
+      TfRef.attribute<String>(this, 'monitor_dimension');
+
+  /// Reference to `monitor_specification` attribute.
+  TfRef<String> get monitorSpecificationRef =>
+      TfRef.attribute<String>(this, 'monitor_specification');
+
+  /// Reference to `monitor_type` attribute.
+  TfRef<String> get monitorTypeRef =>
+      TfRef.attribute<String>(this, 'monitor_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

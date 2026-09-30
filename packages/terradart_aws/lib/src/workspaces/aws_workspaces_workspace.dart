@@ -141,4 +141,33 @@ final class AwsWorkspacesWorkspace extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `root_volume_encryption_enabled` attribute.
+  TfRef<bool> get rootVolumeEncryptionEnabledRef =>
+      TfRef.attribute<bool>(this, 'root_volume_encryption_enabled');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+
+  /// Reference to `user_volume_encryption_enabled` attribute.
+  TfRef<bool> get userVolumeEncryptionEnabledRef =>
+      TfRef.attribute<bool>(this, 'user_volume_encryption_enabled');
+
+  /// Reference to `volume_encryption_key` attribute.
+  TfRef<String> get volumeEncryptionKeyRef =>
+      TfRef.attribute<String>(this, 'volume_encryption_key');
 }

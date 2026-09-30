@@ -57,4 +57,30 @@ final class GoogleFirebaseAndroidApp extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `api_key_id` attribute.
+  TfRef<String> get apiKeyIdRef => TfRef.attribute<String>(this, 'api_key_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `package_name` attribute.
+  TfRef<String> get packageNameRef =>
+      TfRef.attribute<String>(this, 'package_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `sha1_hashes` attribute.
+  TfRef<List<String>> get sha1HashesRef =>
+      TfRef.attribute<List<String>>(this, 'sha1_hashes');
+
+  /// Reference to `sha256_hashes` attribute.
+  TfRef<List<String>> get sha256HashesRef =>
+      TfRef.attribute<List<String>>(this, 'sha256_hashes');
 }

@@ -78,4 +78,16 @@ final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
 
   /// Reference to `word_list` attribute.
   TfRef<String> get wordList => TfRef.attribute<String>(this, 'word_list');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `entry_id` attribute.
+  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
+
+  /// Reference to `profile_id` attribute.
+  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
 }

@@ -244,4 +244,33 @@ final class GoogleSaasRuntimeUnitKind extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `default_release` attribute.
+  TfRef<String> get defaultReleaseRef =>
+      TfRef.attribute<String>(this, 'default_release');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `saas` attribute.
+  TfRef<String> get saasRef => TfRef.attribute<String>(this, 'saas');
+
+  /// Reference to `unit_kind_id` attribute.
+  TfRef<String> get unitKindIdRef =>
+      TfRef.attribute<String>(this, 'unit_kind_id');
 }

@@ -1002,4 +1002,23 @@ final class AwsAppautoscalingPolicy extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `policy_type` attribute.
+  TfRef<String> get policyTypeRef =>
+      TfRef.attribute<String>(this, 'policy_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `scalable_dimension` attribute.
+  TfRef<String> get scalableDimensionRef =>
+      TfRef.attribute<String>(this, 'scalable_dimension');
+
+  /// Reference to `service_namespace` attribute.
+  TfRef<String> get serviceNamespaceRef =>
+      TfRef.attribute<String>(this, 'service_namespace');
 }

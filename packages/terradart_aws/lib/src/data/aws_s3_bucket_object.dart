@@ -122,4 +122,23 @@ final class DataAwsS3BucketObject extends Data {
   /// Reference to `website_redirect_location` attribute.
   TfRef<String> get websiteRedirectLocation =>
       TfRef.attribute<String>(this, 'website_redirect_location');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `range` attribute.
+  TfRef<String> get rangeRef => TfRef.attribute<String>(this, 'range');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version_id` attribute.
+  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
 }

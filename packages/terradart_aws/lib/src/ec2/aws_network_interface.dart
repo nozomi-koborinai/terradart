@@ -387,4 +387,85 @@ final class AwsNetworkInterface extends Resource {
   /// Reference to `private_dns_name` attribute.
   TfRef<String> get privateDnsName =>
       TfRef.attribute<String>(this, 'private_dns_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_primary_ipv6` attribute.
+  TfRef<bool> get enablePrimaryIpv6Ref =>
+      TfRef.attribute<bool>(this, 'enable_primary_ipv6');
+
+  /// Reference to `interface_type` attribute.
+  TfRef<String> get interfaceTypeRef =>
+      TfRef.attribute<String>(this, 'interface_type');
+
+  /// Reference to `ipv4_prefix_count` attribute.
+  TfRef<num> get ipv4PrefixCountRef =>
+      TfRef.attribute<num>(this, 'ipv4_prefix_count');
+
+  /// Reference to `ipv4_prefixes` attribute.
+  TfRef<List<String>> get ipv4PrefixesRef =>
+      TfRef.attribute<List<String>>(this, 'ipv4_prefixes');
+
+  /// Reference to `ipv6_address_count` attribute.
+  TfRef<num> get ipv6AddressCountRef =>
+      TfRef.attribute<num>(this, 'ipv6_address_count');
+
+  /// Reference to `ipv6_address_list` attribute.
+  TfRef<List<String>> get ipv6AddressListRef =>
+      TfRef.attribute<List<String>>(this, 'ipv6_address_list');
+
+  /// Reference to `ipv6_address_list_enabled` attribute.
+  TfRef<bool> get ipv6AddressListEnabledRef =>
+      TfRef.attribute<bool>(this, 'ipv6_address_list_enabled');
+
+  /// Reference to `ipv6_addresses` attribute.
+  TfRef<List<String>> get ipv6AddressesRef =>
+      TfRef.attribute<List<String>>(this, 'ipv6_addresses');
+
+  /// Reference to `ipv6_prefix_count` attribute.
+  TfRef<num> get ipv6PrefixCountRef =>
+      TfRef.attribute<num>(this, 'ipv6_prefix_count');
+
+  /// Reference to `ipv6_prefixes` attribute.
+  TfRef<List<String>> get ipv6PrefixesRef =>
+      TfRef.attribute<List<String>>(this, 'ipv6_prefixes');
+
+  /// Reference to `private_ip` attribute.
+  TfRef<String> get privateIpRef => TfRef.attribute<String>(this, 'private_ip');
+
+  /// Reference to `private_ip_list` attribute.
+  TfRef<List<String>> get privateIpListRef =>
+      TfRef.attribute<List<String>>(this, 'private_ip_list');
+
+  /// Reference to `private_ip_list_enabled` attribute.
+  TfRef<bool> get privateIpListEnabledRef =>
+      TfRef.attribute<bool>(this, 'private_ip_list_enabled');
+
+  /// Reference to `private_ips` attribute.
+  TfRef<List<String>> get privateIpsRef =>
+      TfRef.attribute<List<String>>(this, 'private_ips');
+
+  /// Reference to `private_ips_count` attribute.
+  TfRef<num> get privateIpsCountRef =>
+      TfRef.attribute<num>(this, 'private_ips_count');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `source_dest_check` attribute.
+  TfRef<bool> get sourceDestCheckRef =>
+      TfRef.attribute<bool>(this, 'source_dest_check');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

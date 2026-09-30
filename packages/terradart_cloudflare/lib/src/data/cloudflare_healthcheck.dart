@@ -89,4 +89,11 @@ final class DataCloudflareHealthcheck extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `healthcheck_id` attribute.
+  TfRef<String> get healthcheckIdRef =>
+      TfRef.attribute<String>(this, 'healthcheck_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

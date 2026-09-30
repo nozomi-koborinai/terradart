@@ -38,4 +38,15 @@ final class AwsPrometheusAlertManagerDefinition extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `definition` attribute.
+  TfRef<String> get definitionRef =>
+      TfRef.attribute<String>(this, 'definition');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workspace_id` attribute.
+  TfRef<String> get workspaceIdRef =>
+      TfRef.attribute<String>(this, 'workspace_id');
 }

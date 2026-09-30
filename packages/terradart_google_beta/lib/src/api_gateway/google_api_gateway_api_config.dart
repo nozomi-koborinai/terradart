@@ -278,4 +278,30 @@ final class GoogleApiGatewayApiConfig extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `api` attribute.
+  TfRef<String> get apiRef => TfRef.attribute<String>(this, 'api');
+
+  /// Reference to `api_config_id` attribute.
+  TfRef<String> get apiConfigIdRef =>
+      TfRef.attribute<String>(this, 'api_config_id');
+
+  /// Reference to `api_config_id_prefix` attribute.
+  TfRef<String> get apiConfigIdPrefixRef =>
+      TfRef.attribute<String>(this, 'api_config_id_prefix');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -180,6 +180,36 @@ final class GoogleNetworkServicesEndpointPolicy extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `authorization_policy` attribute.
+  TfRef<String> get authorizationPolicyRef =>
+      TfRef.attribute<String>(this, 'authorization_policy');
+
+  /// Reference to `client_tls_policy` attribute.
+  TfRef<String> get clientTlsPolicyRef =>
+      TfRef.attribute<String>(this, 'client_tls_policy');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `server_tls_policy` attribute.
+  TfRef<String> get serverTlsPolicyRef =>
+      TfRef.attribute<String>(this, 'server_tls_policy');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

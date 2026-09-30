@@ -50,4 +50,18 @@ final class AwsIamUserLoginProfile extends Resource {
 
   /// Reference to `password` attribute.
   TfRef<String> get password => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `password_length` attribute.
+  TfRef<num> get passwordLengthRef =>
+      TfRef.attribute<num>(this, 'password_length');
+
+  /// Reference to `password_reset_required` attribute.
+  TfRef<bool> get passwordResetRequiredRef =>
+      TfRef.attribute<bool>(this, 'password_reset_required');
+
+  /// Reference to `pgp_key` attribute.
+  TfRef<String> get pgpKeyRef => TfRef.attribute<String>(this, 'pgp_key');
+
+  /// Reference to `user` attribute.
+  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
 }

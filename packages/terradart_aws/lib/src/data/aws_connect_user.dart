@@ -71,4 +71,18 @@ final class DataAwsConnectUser extends Data {
   /// Reference to `security_profile_ids` attribute.
   TfRef<List<String>> get securityProfileIds =>
       TfRef.attribute<List<String>>(this, 'security_profile_ids');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_id` attribute.
+  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
 }

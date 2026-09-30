@@ -614,4 +614,21 @@ final class AwsElastictranscoderPreset extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `container` attribute.
+  TfRef<String> get containerRef => TfRef.attribute<String>(this, 'container');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `video_codec_options` attribute.
+  TfRef<Map<String, String>> get videoCodecOptionsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'video_codec_options');
 }

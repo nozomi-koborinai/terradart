@@ -100,4 +100,29 @@ final class AwsLambdaCapacityProvider extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `capacity_provider_scaling_config` attribute.
+  TfRef<List<Map<String, Object?>>> get capacityProviderScalingConfigRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'capacity_provider_scaling_config',
+      );
+
+  /// Reference to `instance_requirements` attribute.
+  TfRef<List<Map<String, Object?>>> get instanceRequirementsRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'instance_requirements',
+      );
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -1259,6 +1259,39 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `connector_version` attribute.
+  TfRef<String> get connectorVersionRef =>
+      TfRef.attribute<String>(this, 'connector_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `eventing_enablement_type` attribute.
+  TfRef<String> get eventingEnablementTypeRef =>
+      TfRef.attribute<String>(this, 'eventing_enablement_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `suspended` attribute.
+  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

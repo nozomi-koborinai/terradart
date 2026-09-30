@@ -57,4 +57,19 @@ final class DataAwsConnectHoursOfOperation extends Data {
 
   /// Reference to `time_zone` attribute.
   TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
+
+  /// Reference to `hours_of_operation_id` attribute.
+  TfRef<String> get hoursOfOperationIdRef =>
+      TfRef.attribute<String>(this, 'hours_of_operation_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -38,8 +38,6 @@ final class RegistryStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/registry_stack.app.dart'),
       ) {
-    const registryNamespaceId = 'terradart-registry';
-
     final apiServiceDirectory = add(
       GoogleProjectService(
         localName: 'api_servicedirectory',
@@ -61,7 +59,7 @@ final class RegistryStack extends Stack {
     final namespace = add(
       GoogleServiceDirectoryNamespace(
         localName: 'registry',
-        namespaceId: .literal(registryNamespaceId),
+        namespaceId: .literal('terradart-registry'),
         location: .literal('us-central1'),
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiServiceDirectory)],
@@ -178,7 +176,7 @@ final class RegistryStack extends Stack {
     );
 
     // Literal namespace id -- emitted as a Dart constant at synth time.
-    addConstant('registryNamespaceId', const .value(registryNamespaceId));
+    addConstant('registryNamespaceId', .ref(namespace.namespaceIdRef));
 
     // Full service resource id -- Terraform output only (computed).
     addOutput('registry_service_id', .ref(service.id));

@@ -49,4 +49,14 @@ final class AwsFsxOpenzfsSnapshot extends Resource {
   /// Reference to `creation_time` attribute.
   TfRef<String> get creationTime =>
       TfRef.attribute<String>(this, 'creation_time');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `volume_id` attribute.
+  TfRef<String> get volumeIdRef => TfRef.attribute<String>(this, 'volume_id');
 }

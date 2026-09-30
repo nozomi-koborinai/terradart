@@ -146,4 +146,64 @@ final class AwsVpcIpamPool extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `address_family` attribute.
+  TfRef<String> get addressFamilyRef =>
+      TfRef.attribute<String>(this, 'address_family');
+
+  /// Reference to `allocation_default_netmask_length` attribute.
+  TfRef<num> get allocationDefaultNetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'allocation_default_netmask_length');
+
+  /// Reference to `allocation_max_netmask_length` attribute.
+  TfRef<num> get allocationMaxNetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'allocation_max_netmask_length');
+
+  /// Reference to `allocation_min_netmask_length` attribute.
+  TfRef<num> get allocationMinNetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'allocation_min_netmask_length');
+
+  /// Reference to `allocation_resource_tags` attribute.
+  TfRef<Map<String, String>> get allocationResourceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'allocation_resource_tags');
+
+  /// Reference to `auto_import` attribute.
+  TfRef<bool> get autoImportRef => TfRef.attribute<bool>(this, 'auto_import');
+
+  /// Reference to `aws_service` attribute.
+  TfRef<String> get awsServiceRef =>
+      TfRef.attribute<String>(this, 'aws_service');
+
+  /// Reference to `cascade` attribute.
+  TfRef<bool> get cascadeRef => TfRef.attribute<bool>(this, 'cascade');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ipam_scope_id` attribute.
+  TfRef<String> get ipamScopeIdRef =>
+      TfRef.attribute<String>(this, 'ipam_scope_id');
+
+  /// Reference to `locale` attribute.
+  TfRef<String> get localeRef => TfRef.attribute<String>(this, 'locale');
+
+  /// Reference to `public_ip_source` attribute.
+  TfRef<String> get publicIpSourceRef =>
+      TfRef.attribute<String>(this, 'public_ip_source');
+
+  /// Reference to `publicly_advertisable` attribute.
+  TfRef<bool> get publiclyAdvertisableRef =>
+      TfRef.attribute<bool>(this, 'publicly_advertisable');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_ipam_pool_id` attribute.
+  TfRef<String> get sourceIpamPoolIdRef =>
+      TfRef.attribute<String>(this, 'source_ipam_pool_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -49,4 +49,21 @@ final class GoogleDataplexZoneIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `dataplex_zone` attribute.
+  TfRef<String> get dataplexZoneRef =>
+      TfRef.attribute<String>(this, 'dataplex_zone');
+
+  /// Reference to `lake` attribute.
+  TfRef<String> get lakeRef => TfRef.attribute<String>(this, 'lake');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

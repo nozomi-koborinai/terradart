@@ -43,4 +43,21 @@ final class AwsVpcIpv4CidrBlockAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cidr_block` attribute.
+  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+
+  /// Reference to `ipv4_ipam_pool_id` attribute.
+  TfRef<String> get ipv4IpamPoolIdRef =>
+      TfRef.attribute<String>(this, 'ipv4_ipam_pool_id');
+
+  /// Reference to `ipv4_netmask_length` attribute.
+  TfRef<num> get ipv4NetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'ipv4_netmask_length');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

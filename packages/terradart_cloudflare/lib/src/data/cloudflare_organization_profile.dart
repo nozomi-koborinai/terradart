@@ -48,4 +48,8 @@ final class DataCloudflareOrganizationProfile extends Data {
   /// Reference to `external_metadata` attribute.
   TfRef<String> get externalMetadata =>
       TfRef.attribute<String>(this, 'external_metadata');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
 }

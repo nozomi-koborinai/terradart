@@ -165,4 +165,28 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `asserted_controls` attribute.
+  TfRef<List<String>> get assertedControlsRef =>
+      TfRef.attribute<List<String>>(this, 'asserted_controls');
+
+  /// Reference to `control_panel_arn` attribute.
+  TfRef<String> get controlPanelArnRef =>
+      TfRef.attribute<String>(this, 'control_panel_arn');
+
+  /// Reference to `gating_controls` attribute.
+  TfRef<List<String>> get gatingControlsRef =>
+      TfRef.attribute<List<String>>(this, 'gating_controls');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_controls` attribute.
+  TfRef<List<String>> get targetControlsRef =>
+      TfRef.attribute<List<String>>(this, 'target_controls');
+
+  /// Reference to `wait_period_ms` attribute.
+  TfRef<num> get waitPeriodMsRef =>
+      TfRef.attribute<num>(this, 'wait_period_ms');
 }

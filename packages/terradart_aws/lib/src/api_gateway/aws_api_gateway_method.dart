@@ -55,4 +55,51 @@ final class AwsApiGatewayMethod extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `api_key_required` attribute.
+  TfRef<bool> get apiKeyRequiredRef =>
+      TfRef.attribute<bool>(this, 'api_key_required');
+
+  /// Reference to `authorization` attribute.
+  TfRef<String> get authorizationRef =>
+      TfRef.attribute<String>(this, 'authorization');
+
+  /// Reference to `authorization_scopes` attribute.
+  TfRef<List<String>> get authorizationScopesRef =>
+      TfRef.attribute<List<String>>(this, 'authorization_scopes');
+
+  /// Reference to `authorizer_id` attribute.
+  TfRef<String> get authorizerIdRef =>
+      TfRef.attribute<String>(this, 'authorizer_id');
+
+  /// Reference to `http_method` attribute.
+  TfRef<String> get httpMethodRef =>
+      TfRef.attribute<String>(this, 'http_method');
+
+  /// Reference to `operation_name` attribute.
+  TfRef<String> get operationNameRef =>
+      TfRef.attribute<String>(this, 'operation_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_models` attribute.
+  TfRef<Map<String, String>> get requestModelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'request_models');
+
+  /// Reference to `request_parameters` attribute.
+  TfRef<Map<String, bool>> get requestParametersRef =>
+      TfRef.attribute<Map<String, bool>>(this, 'request_parameters');
+
+  /// Reference to `request_validator_id` attribute.
+  TfRef<String> get requestValidatorIdRef =>
+      TfRef.attribute<String>(this, 'request_validator_id');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
 }

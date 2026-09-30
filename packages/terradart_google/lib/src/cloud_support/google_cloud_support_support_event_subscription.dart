@@ -78,4 +78,16 @@ final class GoogleCloudSupportSupportEventSubscription extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `pub_sub_topic` attribute.
+  TfRef<String> get pubSubTopicRef =>
+      TfRef.attribute<String>(this, 'pub_sub_topic');
 }

@@ -64,4 +64,11 @@ final class DataAwsEc2InstanceTypeOfferings extends Data {
   /// Reference to `locations` attribute.
   TfRef<List<String>> get locations =>
       TfRef.attribute<List<String>>(this, 'locations');
+
+  /// Reference to `location_type` attribute.
+  TfRef<String> get locationTypeRef =>
+      TfRef.attribute<String>(this, 'location_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

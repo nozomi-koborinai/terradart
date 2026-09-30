@@ -36,4 +36,10 @@ final class CloudflareLeakedCredentialCheck extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareLeakedCredentialCheck>`.
   RefTo<CloudflareLeakedCredentialCheck> get ref => RefTo.of(this);
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -52,4 +52,19 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamPolicy
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `security_gateway_id` attribute.
+  TfRef<String> get securityGatewayIdRef =>
+      TfRef.attribute<String>(this, 'security_gateway_id');
 }

@@ -64,4 +64,23 @@ final class CloudflareImage extends Resource {
   /// Reference to `variants` attribute.
   TfRef<List<String>> get variants =>
       TfRef.attribute<List<String>>(this, 'variants');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `creator` attribute.
+  TfRef<String> get creatorRef => TfRef.attribute<String>(this, 'creator');
+
+  /// Reference to `file` attribute.
+  TfRef<String> get fileRef => TfRef.attribute<String>(this, 'file');
+
+  /// Reference to `metadata` attribute.
+  TfRef<String> get metadataRef => TfRef.attribute<String>(this, 'metadata');
+
+  /// Reference to `require_signed_urls` attribute.
+  TfRef<bool> get requireSignedUrlsRef =>
+      TfRef.attribute<bool>(this, 'require_signed_urls');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

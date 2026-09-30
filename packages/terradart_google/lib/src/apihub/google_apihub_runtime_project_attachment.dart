@@ -62,6 +62,24 @@ final class GoogleApihubRuntimeProjectAttachment extends Resource {
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `runtime_project` attribute.
+  TfRef<String> get runtimeProjectRef =>
+      TfRef.attribute<String>(this, 'runtime_project');
+
+  /// Reference to `runtime_project_attachment_id` attribute.
+  TfRef<String> get runtimeProjectAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'runtime_project_attachment_id');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

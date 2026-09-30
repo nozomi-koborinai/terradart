@@ -29,4 +29,7 @@ final class DataAwsSsoadminApplicationProviders extends Data {
         this,
         'application_providers',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

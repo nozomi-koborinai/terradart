@@ -130,4 +130,11 @@ final class GoogleFirebaserulesRuleset extends Resource {
   /// Reference to `metadata` attribute.
   TfRef<List<Map<String, Object?>>> get metadata =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'metadata');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

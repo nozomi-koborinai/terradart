@@ -45,4 +45,14 @@ final class DataGoogleApphubDiscoveredWorkload extends Data {
   /// Reference to `workload_reference` attribute.
   TfRef<List<Map<String, Object?>>> get workloadReference =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'workload_reference');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_uri` attribute.
+  TfRef<String> get workloadUriRef =>
+      TfRef.attribute<String>(this, 'workload_uri');
 }

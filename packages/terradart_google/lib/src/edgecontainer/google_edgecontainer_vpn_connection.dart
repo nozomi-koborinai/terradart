@@ -101,6 +101,37 @@ final class GoogleEdgecontainerVpnConnection extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_high_availability` attribute.
+  TfRef<bool> get enableHighAvailabilityRef =>
+      TfRef.attribute<bool>(this, 'enable_high_availability');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `nat_gateway_ip` attribute.
+  TfRef<String> get natGatewayIpRef =>
+      TfRef.attribute<String>(this, 'nat_gateway_ip');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+
+  /// Reference to `vpc` attribute.
+  TfRef<String> get vpcRef => TfRef.attribute<String>(this, 'vpc');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -58,4 +58,7 @@ final class DataAwsCloudfrontFunction extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `stage` attribute.
+  TfRef<String> get stageRef => TfRef.attribute<String>(this, 'stage');
 }

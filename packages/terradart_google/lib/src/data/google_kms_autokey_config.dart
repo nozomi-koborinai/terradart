@@ -45,4 +45,7 @@ final class DataGoogleKmsAutokeyConfig extends Data {
   /// Reference to `key_project_resolution_mode` attribute.
   TfRef<String> get keyProjectResolutionMode =>
       TfRef.attribute<String>(this, 'key_project_resolution_mode');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
 }

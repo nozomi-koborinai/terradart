@@ -69,4 +69,19 @@ final class AwsLambdaAlias extends Resource {
 
   /// Reference to `invoke_arn` attribute.
   TfRef<String> get invokeArn => TfRef.attribute<String>(this, 'invoke_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `function_version` attribute.
+  TfRef<String> get functionVersionRef =>
+      TfRef.attribute<String>(this, 'function_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

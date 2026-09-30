@@ -321,4 +321,27 @@ final class AwsSesReceiptRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `after` attribute.
+  TfRef<String> get afterRef => TfRef.attribute<String>(this, 'after');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `recipients` attribute.
+  TfRef<List<String>> get recipientsRef =>
+      TfRef.attribute<List<String>>(this, 'recipients');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_set_name` attribute.
+  TfRef<String> get ruleSetNameRef =>
+      TfRef.attribute<String>(this, 'rule_set_name');
+
+  /// Reference to `scan_enabled` attribute.
+  TfRef<bool> get scanEnabledRef => TfRef.attribute<bool>(this, 'scan_enabled');
+
+  /// Reference to `tls_policy` attribute.
+  TfRef<String> get tlsPolicyRef => TfRef.attribute<String>(this, 'tls_policy');
 }

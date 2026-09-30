@@ -104,4 +104,11 @@ final class DataCloudflareMagicTransitConnector extends Data {
 
   /// Reference to `timezone` attribute.
   TfRef<String> get timezone => TfRef.attribute<String>(this, 'timezone');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `connector_id` attribute.
+  TfRef<String> get connectorIdRef =>
+      TfRef.attribute<String>(this, 'connector_id');
 }

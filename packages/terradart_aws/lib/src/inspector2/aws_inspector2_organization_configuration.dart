@@ -72,4 +72,7 @@ final class AwsInspector2OrganizationConfiguration extends Resource {
   /// Reference to `max_account_limit_reached` attribute.
   TfRef<bool> get maxAccountLimitReached =>
       TfRef.attribute<bool>(this, 'max_account_limit_reached');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

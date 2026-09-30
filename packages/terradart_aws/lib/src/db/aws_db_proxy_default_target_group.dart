@@ -96,4 +96,11 @@ final class AwsDbProxyDefaultTargetGroup extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `db_proxy_name` attribute.
+  TfRef<String> get dbProxyNameRef =>
+      TfRef.attribute<String>(this, 'db_proxy_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -54,4 +54,17 @@ final class CloudflareCustomPageAsset extends Resource {
 
   /// Reference to `size_bytes` attribute.
   TfRef<num> get sizeBytes => TfRef.attribute<num>(this, 'size_bytes');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

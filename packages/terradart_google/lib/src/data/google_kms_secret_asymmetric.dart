@@ -37,4 +37,15 @@ final class DataGoogleKmsSecretAsymmetric extends Data {
 
   /// Reference to `plaintext` attribute.
   TfRef<String> get plaintext => TfRef.attribute<String>(this, 'plaintext');
+
+  /// Reference to `ciphertext` attribute.
+  TfRef<String> get ciphertextRef =>
+      TfRef.attribute<String>(this, 'ciphertext');
+
+  /// Reference to `crc32` attribute.
+  TfRef<String> get crc32Ref => TfRef.attribute<String>(this, 'crc32');
+
+  /// Reference to `crypto_key_version` attribute.
+  TfRef<String> get cryptoKeyVersionRef =>
+      TfRef.attribute<String>(this, 'crypto_key_version');
 }

@@ -209,6 +209,13 @@ final class GoogleDialogflowCxGenerativeSettings extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `language_code` attribute.
+  TfRef<String> get languageCodeRef =>
+      TfRef.attribute<String>(this, 'language_code');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

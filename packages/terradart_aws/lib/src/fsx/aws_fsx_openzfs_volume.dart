@@ -202,4 +202,46 @@ final class AwsFsxOpenzfsVolume extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `copy_tags_to_snapshots` attribute.
+  TfRef<bool> get copyTagsToSnapshotsRef =>
+      TfRef.attribute<bool>(this, 'copy_tags_to_snapshots');
+
+  /// Reference to `data_compression_type` attribute.
+  TfRef<String> get dataCompressionTypeRef =>
+      TfRef.attribute<String>(this, 'data_compression_type');
+
+  /// Reference to `delete_volume_options` attribute.
+  TfRef<List<String>> get deleteVolumeOptionsRef =>
+      TfRef.attribute<List<String>>(this, 'delete_volume_options');
+
+  /// Reference to `parent_volume_id` attribute.
+  TfRef<String> get parentVolumeIdRef =>
+      TfRef.attribute<String>(this, 'parent_volume_id');
+
+  /// Reference to `read_only` attribute.
+  TfRef<bool> get readOnlyRef => TfRef.attribute<bool>(this, 'read_only');
+
+  /// Reference to `record_size_kib` attribute.
+  TfRef<num> get recordSizeKibRef =>
+      TfRef.attribute<num>(this, 'record_size_kib');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `storage_capacity_quota_gib` attribute.
+  TfRef<num> get storageCapacityQuotaGibRef =>
+      TfRef.attribute<num>(this, 'storage_capacity_quota_gib');
+
+  /// Reference to `storage_capacity_reservation_gib` attribute.
+  TfRef<num> get storageCapacityReservationGibRef =>
+      TfRef.attribute<num>(this, 'storage_capacity_reservation_gib');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `volume_type` attribute.
+  TfRef<String> get volumeTypeRef =>
+      TfRef.attribute<String>(this, 'volume_type');
 }

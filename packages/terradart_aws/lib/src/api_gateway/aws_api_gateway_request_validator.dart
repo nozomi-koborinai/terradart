@@ -44,4 +44,19 @@ final class AwsApiGatewayRequestValidator extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
+
+  /// Reference to `validate_request_body` attribute.
+  TfRef<bool> get validateRequestBodyRef =>
+      TfRef.attribute<bool>(this, 'validate_request_body');
+
+  /// Reference to `validate_request_parameters` attribute.
+  TfRef<bool> get validateRequestParametersRef =>
+      TfRef.attribute<bool>(this, 'validate_request_parameters');
 }

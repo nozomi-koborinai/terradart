@@ -89,4 +89,52 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `aggregation_interval` attribute.
+  TfRef<String> get aggregationIntervalRef =>
+      TfRef.attribute<String>(this, 'aggregation_interval');
+
+  /// Reference to `cross_project_metadata` attribute.
+  TfRef<String> get crossProjectMetadataRef =>
+      TfRef.attribute<String>(this, 'cross_project_metadata');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `filter_expr` attribute.
+  TfRef<String> get filterExprRef =>
+      TfRef.attribute<String>(this, 'filter_expr');
+
+  /// Reference to `flow_sampling` attribute.
+  TfRef<num> get flowSamplingRef => TfRef.attribute<num>(this, 'flow_sampling');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `metadata` attribute.
+  TfRef<String> get metadataRef => TfRef.attribute<String>(this, 'metadata');
+
+  /// Reference to `metadata_fields` attribute.
+  TfRef<List<String>> get metadataFieldsRef =>
+      TfRef.attribute<List<String>>(this, 'metadata_fields');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `vpc_flow_logs_config_id` attribute.
+  TfRef<String> get vpcFlowLogsConfigIdRef =>
+      TfRef.attribute<String>(this, 'vpc_flow_logs_config_id');
 }

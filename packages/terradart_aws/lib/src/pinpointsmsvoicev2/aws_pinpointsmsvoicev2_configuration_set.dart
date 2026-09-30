@@ -66,4 +66,19 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `default_message_type` attribute.
+  TfRef<String> get defaultMessageTypeRef =>
+      TfRef.attribute<String>(this, 'default_message_type');
+
+  /// Reference to `default_sender_id` attribute.
+  TfRef<String> get defaultSenderIdRef =>
+      TfRef.attribute<String>(this, 'default_sender_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

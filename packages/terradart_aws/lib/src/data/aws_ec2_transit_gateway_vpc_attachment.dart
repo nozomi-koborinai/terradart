@@ -91,4 +91,11 @@ final class DataAwsEc2TransitGatewayVpcAttachment extends Data {
 
   /// Reference to `vpc_owner_id` attribute.
   TfRef<String> get vpcOwnerId => TfRef.attribute<String>(this, 'vpc_owner_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

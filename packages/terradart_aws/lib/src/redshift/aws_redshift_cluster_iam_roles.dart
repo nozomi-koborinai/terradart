@@ -39,4 +39,19 @@ final class AwsRedshiftClusterIamRoles extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `default_iam_role_arn` attribute.
+  TfRef<String> get defaultIamRoleArnRef =>
+      TfRef.attribute<String>(this, 'default_iam_role_arn');
+
+  /// Reference to `iam_role_arns` attribute.
+  TfRef<List<String>> get iamRoleArnsRef =>
+      TfRef.attribute<List<String>>(this, 'iam_role_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

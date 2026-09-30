@@ -46,4 +46,17 @@ final class DataAwsSsmParametersByPath extends Data {
   /// Reference to `values` attribute.
   TfRef<List<String>> get values =>
       TfRef.attribute<List<String>>(this, 'values');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `recursive` attribute.
+  TfRef<bool> get recursiveRef => TfRef.attribute<bool>(this, 'recursive');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `with_decryption` attribute.
+  TfRef<bool> get withDecryptionRef =>
+      TfRef.attribute<bool>(this, 'with_decryption');
 }

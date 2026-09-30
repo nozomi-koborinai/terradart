@@ -78,4 +78,23 @@ final class GoogleSccNotificationConfig extends Resource {
   /// Reference to `service_account` attribute.
   TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `config_id` attribute.
+  TfRef<String> get configIdRef => TfRef.attribute<String>(this, 'config_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `pubsub_topic` attribute.
+  TfRef<String> get pubsubTopicRef =>
+      TfRef.attribute<String>(this, 'pubsub_topic');
 }

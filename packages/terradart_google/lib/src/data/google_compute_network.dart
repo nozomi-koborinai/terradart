@@ -66,4 +66,14 @@ final class DataGoogleComputeNetwork extends Data {
   /// Reference to `subnetworks_self_links` attribute.
   TfRef<List<String>> get subnetworksSelfLinks =>
       TfRef.attribute<List<String>>(this, 'subnetworks_self_links');
+
+  /// Reference to `network_profile` attribute.
+  TfRef<String> get networkProfileRef =>
+      TfRef.attribute<String>(this, 'network_profile');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
 }

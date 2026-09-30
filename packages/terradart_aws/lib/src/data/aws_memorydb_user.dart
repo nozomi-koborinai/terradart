@@ -48,4 +48,14 @@ final class DataAwsMemorydbUser extends Data {
   /// Reference to `minimum_engine_version` attribute.
   TfRef<String> get minimumEngineVersion =>
       TfRef.attribute<String>(this, 'minimum_engine_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

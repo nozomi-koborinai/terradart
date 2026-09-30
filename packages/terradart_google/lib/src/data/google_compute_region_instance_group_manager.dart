@@ -173,4 +173,13 @@ final class DataGoogleComputeRegionInstanceGroupManager extends Data {
   /// Reference to `wait_for_instances_status` attribute.
   TfRef<String> get waitForInstancesStatus =>
       TfRef.attribute<String>(this, 'wait_for_instances_status');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
 }

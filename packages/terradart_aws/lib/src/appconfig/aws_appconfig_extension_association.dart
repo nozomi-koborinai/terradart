@@ -46,4 +46,19 @@ final class AwsAppconfigExtensionAssociation extends Resource {
   /// Reference to `extension_version` attribute.
   TfRef<num> get extensionVersion =>
       TfRef.attribute<num>(this, 'extension_version');
+
+  /// Reference to `extension_arn` attribute.
+  TfRef<String> get extensionArnRef =>
+      TfRef.attribute<String>(this, 'extension_arn');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

@@ -64,4 +64,26 @@ final class AwsWorkspaceswebIdentityProvider extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `identity_provider_details` attribute.
+  TfRef<Map<String, String>> get identityProviderDetailsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'identity_provider_details');
+
+  /// Reference to `identity_provider_name` attribute.
+  TfRef<String> get identityProviderNameRef =>
+      TfRef.attribute<String>(this, 'identity_provider_name');
+
+  /// Reference to `identity_provider_type` attribute.
+  TfRef<String> get identityProviderTypeRef =>
+      TfRef.attribute<String>(this, 'identity_provider_type');
+
+  /// Reference to `portal_arn` attribute.
+  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

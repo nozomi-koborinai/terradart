@@ -49,4 +49,14 @@ final class AwsIotPolicy extends Resource {
   /// Reference to `default_version_id` attribute.
   TfRef<String> get defaultVersionId =>
       TfRef.attribute<String>(this, 'default_version_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

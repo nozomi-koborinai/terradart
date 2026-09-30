@@ -41,4 +41,11 @@ final class AwsAuditmanagerOrganizationAdminAccountRegistration
   /// Reference to `organization_id` attribute.
   TfRef<String> get organizationId =>
       TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `admin_account_id` attribute.
+  TfRef<String> get adminAccountIdRef =>
+      TfRef.attribute<String>(this, 'admin_account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

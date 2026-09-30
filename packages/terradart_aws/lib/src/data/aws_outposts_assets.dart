@@ -37,4 +37,18 @@ final class DataAwsOutpostsAssets extends Data {
   /// Reference to `asset_ids` attribute.
   TfRef<List<String>> get assetIds =>
       TfRef.attribute<List<String>>(this, 'asset_ids');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `host_id_filter` attribute.
+  TfRef<List<String>> get hostIdFilterRef =>
+      TfRef.attribute<List<String>>(this, 'host_id_filter');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status_id_filter` attribute.
+  TfRef<List<String>> get statusIdFilterRef =>
+      TfRef.attribute<List<String>>(this, 'status_id_filter');
 }

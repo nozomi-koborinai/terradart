@@ -27,4 +27,7 @@ final class DataAwsOdbCloudExadataInfrastructures extends Data {
         this,
         'cloud_exadata_infrastructures',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

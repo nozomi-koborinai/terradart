@@ -159,6 +159,37 @@ final class GoogleComputeGlobalAddress extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `address_type` attribute.
+  TfRef<String> get addressTypeRef =>
+      TfRef.attribute<String>(this, 'address_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ip_version` attribute.
+  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `prefix_length` attribute.
+  TfRef<num> get prefixLengthRef => TfRef.attribute<num>(this, 'prefix_length');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `purpose` attribute.
+  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+
   /// Reference to the allocated `address` attribute (the actual IP or
   /// CIDR base GCP picks when [address] is omitted). Available after
   /// apply. Use this to pass the IP to downstream resources like load

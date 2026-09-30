@@ -61,4 +61,18 @@ final class DataGoogleFirestoreDocument extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `collection` attribute.
+  TfRef<String> get collectionRef =>
+      TfRef.attribute<String>(this, 'collection');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `document_id` attribute.
+  TfRef<String> get documentIdRef =>
+      TfRef.attribute<String>(this, 'document_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

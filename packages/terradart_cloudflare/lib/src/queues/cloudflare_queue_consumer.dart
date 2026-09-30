@@ -149,4 +149,21 @@ final class CloudflareQueueConsumer extends Resource {
 
   /// Reference to `queue_name` attribute.
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dead_letter_queue` attribute.
+  TfRef<String> get deadLetterQueueRef =>
+      TfRef.attribute<String>(this, 'dead_letter_queue');
+
+  /// Reference to `queue_id` attribute.
+  TfRef<String> get queueIdRef => TfRef.attribute<String>(this, 'queue_id');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

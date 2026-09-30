@@ -40,4 +40,15 @@ final class AwsEbsFastSnapshotRestore extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_id` attribute.
+  TfRef<String> get snapshotIdRef =>
+      TfRef.attribute<String>(this, 'snapshot_id');
 }

@@ -60,4 +60,31 @@ final class AwsDynamodbTableReplica extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `deletion_protection_enabled` attribute.
+  TfRef<bool> get deletionProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection_enabled');
+
+  /// Reference to `global_table_arn` attribute.
+  TfRef<String> get globalTableArnRef =>
+      TfRef.attribute<String>(this, 'global_table_arn');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `point_in_time_recovery` attribute.
+  TfRef<bool> get pointInTimeRecoveryRef =>
+      TfRef.attribute<bool>(this, 'point_in_time_recovery');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_class_override` attribute.
+  TfRef<String> get tableClassOverrideRef =>
+      TfRef.attribute<String>(this, 'table_class_override');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

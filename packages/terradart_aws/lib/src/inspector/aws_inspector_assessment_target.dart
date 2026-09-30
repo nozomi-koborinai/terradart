@@ -43,4 +43,11 @@ final class AwsInspectorAssessmentTarget extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_group_arn` attribute.
+  TfRef<String> get resourceGroupArnRef =>
+      TfRef.attribute<String>(this, 'resource_group_arn');
 }

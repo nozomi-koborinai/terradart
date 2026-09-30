@@ -153,4 +153,16 @@ final class AwsRoute53recoveryreadinessResourceSet extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `resource_set_name` attribute.
+  TfRef<String> get resourceSetNameRef =>
+      TfRef.attribute<String>(this, 'resource_set_name');
+
+  /// Reference to `resource_set_type` attribute.
+  TfRef<String> get resourceSetTypeRef =>
+      TfRef.attribute<String>(this, 'resource_set_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

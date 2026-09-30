@@ -46,4 +46,15 @@ final class GoogleHealthcareConsentStoreIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `consent_store_id` attribute.
+  TfRef<String> get consentStoreIdRef =>
+      TfRef.attribute<String>(this, 'consent_store_id');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
 }

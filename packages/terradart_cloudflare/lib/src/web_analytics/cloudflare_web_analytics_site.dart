@@ -61,4 +61,22 @@ final class CloudflareWebAnalyticsSite extends Resource {
 
   /// Reference to `snippet` attribute.
   TfRef<String> get snippet => TfRef.attribute<String>(this, 'snippet');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `auto_install` attribute.
+  TfRef<bool> get autoInstallRef => TfRef.attribute<bool>(this, 'auto_install');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `lite` attribute.
+  TfRef<bool> get liteRef => TfRef.attribute<bool>(this, 'lite');
+
+  /// Reference to `zone_tag` attribute.
+  TfRef<String> get zoneTagRef => TfRef.attribute<String>(this, 'zone_tag');
 }

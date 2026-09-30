@@ -76,4 +76,10 @@ final class DataCloudflareMagicNetworkMonitoringRule extends Data {
   /// Reference to `zscore_target` attribute.
   TfRef<String> get zscoreTarget =>
       TfRef.attribute<String>(this, 'zscore_target');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `rule_id` attribute.
+  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
 }

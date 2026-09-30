@@ -49,4 +49,41 @@ final class DataCloudflareZoneLockdowns extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneLockdownsSensitive;
+
+  /// Reference to `created_on` attribute.
+  TfRef<String> get createdOnRef => TfRef.attribute<String>(this, 'created_on');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `description_search` attribute.
+  TfRef<String> get descriptionSearchRef =>
+      TfRef.attribute<String>(this, 'description_search');
+
+  /// Reference to `ip` attribute.
+  TfRef<String> get ipRef => TfRef.attribute<String>(this, 'ip');
+
+  /// Reference to `ip_range_search` attribute.
+  TfRef<String> get ipRangeSearchRef =>
+      TfRef.attribute<String>(this, 'ip_range_search');
+
+  /// Reference to `ip_search` attribute.
+  TfRef<String> get ipSearchRef => TfRef.attribute<String>(this, 'ip_search');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `modified_on` attribute.
+  TfRef<String> get modifiedOnRef =>
+      TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `uri_search` attribute.
+  TfRef<String> get uriSearchRef => TfRef.attribute<String>(this, 'uri_search');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

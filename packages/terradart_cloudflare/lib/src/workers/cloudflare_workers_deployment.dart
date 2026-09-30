@@ -102,4 +102,17 @@ final class CloudflareWorkersDeployment extends Resource {
 
   /// Reference to `source` attribute.
   TfRef<String> get source => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `force` attribute.
+  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
+
+  /// Reference to `strategy` attribute.
+  TfRef<String> get strategyRef => TfRef.attribute<String>(this, 'strategy');
 }

@@ -227,4 +227,7 @@ final class DataAwsOdbCloudAutonomousVmCluster extends Data {
   /// Reference to `total_container_databases` attribute.
   TfRef<num> get totalContainerDatabases =>
       TfRef.attribute<num>(this, 'total_container_databases');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

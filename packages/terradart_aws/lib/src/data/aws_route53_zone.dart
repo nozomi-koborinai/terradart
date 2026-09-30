@@ -77,4 +77,21 @@ final class DataAwsRoute53Zone extends Data {
   /// Reference to `resource_record_set_count` attribute.
   TfRef<num> get resourceRecordSetCount =>
       TfRef.attribute<num>(this, 'resource_record_set_count');
+
+  /// Reference to `enable_accelerated_recovery` attribute.
+  TfRef<bool> get enableAcceleratedRecoveryRef =>
+      TfRef.attribute<bool>(this, 'enable_accelerated_recovery');
+
+  /// Reference to `private_zone` attribute.
+  TfRef<bool> get privateZoneRef => TfRef.attribute<bool>(this, 'private_zone');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

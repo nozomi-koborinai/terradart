@@ -40,4 +40,11 @@ final class AwsWafregionalRegexPatternSet extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `regex_pattern_strings` attribute.
+  TfRef<List<String>> get regexPatternStringsRef =>
+      TfRef.attribute<List<String>>(this, 'regex_pattern_strings');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

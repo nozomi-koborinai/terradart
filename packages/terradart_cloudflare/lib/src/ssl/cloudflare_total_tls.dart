@@ -58,4 +58,14 @@ final class CloudflareTotalTls extends Resource {
   /// Reference to `validity_period` attribute.
   TfRef<num> get validityPeriod =>
       TfRef.attribute<num>(this, 'validity_period');
+
+  /// Reference to `certificate_authority` attribute.
+  TfRef<String> get certificateAuthorityRef =>
+      TfRef.attribute<String>(this, 'certificate_authority');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

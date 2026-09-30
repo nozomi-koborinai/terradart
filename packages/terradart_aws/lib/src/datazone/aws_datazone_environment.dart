@@ -97,4 +97,39 @@ final class AwsDatazoneEnvironment extends Resource {
         this,
         'provisioned_resources',
       );
+
+  /// Reference to `account_identifier` attribute.
+  TfRef<String> get accountIdentifierRef =>
+      TfRef.attribute<String>(this, 'account_identifier');
+
+  /// Reference to `account_region` attribute.
+  TfRef<String> get accountRegionRef =>
+      TfRef.attribute<String>(this, 'account_region');
+
+  /// Reference to `blueprint_identifier` attribute.
+  TfRef<String> get blueprintIdentifierRef =>
+      TfRef.attribute<String>(this, 'blueprint_identifier');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_identifier` attribute.
+  TfRef<String> get domainIdentifierRef =>
+      TfRef.attribute<String>(this, 'domain_identifier');
+
+  /// Reference to `glossary_terms` attribute.
+  TfRef<List<String>> get glossaryTermsRef =>
+      TfRef.attribute<List<String>>(this, 'glossary_terms');
+
+  /// Reference to `profile_identifier` attribute.
+  TfRef<String> get profileIdentifierRef =>
+      TfRef.attribute<String>(this, 'profile_identifier');
+
+  /// Reference to `project_identifier` attribute.
+  TfRef<String> get projectIdentifierRef =>
+      TfRef.attribute<String>(this, 'project_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -559,4 +559,33 @@ final class AwsRoute53Record extends Resource {
 
   /// Reference to `fqdn` attribute.
   TfRef<String> get fqdn => TfRef.attribute<String>(this, 'fqdn');
+
+  /// Reference to `allow_overwrite` attribute.
+  TfRef<bool> get allowOverwriteRef =>
+      TfRef.attribute<bool>(this, 'allow_overwrite');
+
+  /// Reference to `health_check_id` attribute.
+  TfRef<String> get healthCheckIdRef =>
+      TfRef.attribute<String>(this, 'health_check_id');
+
+  /// Reference to `multivalue_answer_routing_policy` attribute.
+  TfRef<bool> get multivalueAnswerRoutingPolicyRef =>
+      TfRef.attribute<bool>(this, 'multivalue_answer_routing_policy');
+
+  /// Reference to `records` attribute.
+  TfRef<List<String>> get recordsRef =>
+      TfRef.attribute<List<String>>(this, 'records');
+
+  /// Reference to `set_identifier` attribute.
+  TfRef<String> get setIdentifierRef =>
+      TfRef.attribute<String>(this, 'set_identifier');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

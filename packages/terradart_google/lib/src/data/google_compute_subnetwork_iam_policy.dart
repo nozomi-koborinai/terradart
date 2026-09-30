@@ -47,4 +47,14 @@ final class DataGoogleComputeSubnetworkIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnetwork` attribute.
+  TfRef<String> get subnetworkRef =>
+      TfRef.attribute<String>(this, 'subnetwork');
 }

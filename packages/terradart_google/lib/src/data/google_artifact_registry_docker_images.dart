@@ -39,4 +39,14 @@ final class DataGoogleArtifactRegistryDockerImages extends Data {
   /// Reference to `docker_images` attribute.
   TfRef<List<Map<String, Object?>>> get dockerImages =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'docker_images');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
 }

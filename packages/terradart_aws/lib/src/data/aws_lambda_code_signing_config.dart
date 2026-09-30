@@ -47,4 +47,10 @@ final class DataAwsLambdaCodeSigningConfig extends Data {
   /// Reference to `policies` attribute.
   TfRef<List<Map<String, Object?>>> get policies =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'policies');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

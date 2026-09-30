@@ -62,4 +62,10 @@ final class DataCloudflareZeroTrustGatewayPacfile extends Data {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `pacfile_id` attribute.
+  TfRef<String> get pacfileIdRef => TfRef.attribute<String>(this, 'pacfile_id');
 }

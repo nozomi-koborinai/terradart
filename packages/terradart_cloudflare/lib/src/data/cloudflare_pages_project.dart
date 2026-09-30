@@ -84,4 +84,11 @@ final class DataCloudflarePagesProject extends Data {
   /// Reference to `uses_functions` attribute.
   TfRef<bool> get usesFunctions =>
       TfRef.attribute<bool>(this, 'uses_functions');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `project_name` attribute.
+  TfRef<String> get projectNameRef =>
+      TfRef.attribute<String>(this, 'project_name');
 }

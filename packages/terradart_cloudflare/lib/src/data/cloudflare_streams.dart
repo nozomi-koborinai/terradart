@@ -65,4 +65,51 @@ final class DataCloudflareStreams extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `after` attribute.
+  TfRef<String> get afterRef => TfRef.attribute<String>(this, 'after');
+
+  /// Reference to `asc` attribute.
+  TfRef<bool> get ascRef => TfRef.attribute<bool>(this, 'asc');
+
+  /// Reference to `before` attribute.
+  TfRef<String> get beforeRef => TfRef.attribute<String>(this, 'before');
+
+  /// Reference to `creator` attribute.
+  TfRef<String> get creatorRef => TfRef.attribute<String>(this, 'creator');
+
+  /// Reference to `end` attribute.
+  TfRef<String> get endRef => TfRef.attribute<String>(this, 'end');
+
+  /// Reference to `include_counts` attribute.
+  TfRef<bool> get includeCountsRef =>
+      TfRef.attribute<bool>(this, 'include_counts');
+
+  /// Reference to `limit` attribute.
+  TfRef<num> get limitRef => TfRef.attribute<num>(this, 'limit');
+
+  /// Reference to `live_input_id` attribute.
+  TfRef<String> get liveInputIdRef =>
+      TfRef.attribute<String>(this, 'live_input_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `search` attribute.
+  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+
+  /// Reference to `start` attribute.
+  TfRef<String> get startRef => TfRef.attribute<String>(this, 'start');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `video_name` attribute.
+  TfRef<String> get videoNameRef => TfRef.attribute<String>(this, 'video_name');
 }

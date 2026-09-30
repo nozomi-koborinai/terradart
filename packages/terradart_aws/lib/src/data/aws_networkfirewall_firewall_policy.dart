@@ -48,4 +48,14 @@ final class DataAwsNetworkfirewallFirewallPolicy extends Data {
   /// Reference to `update_token` attribute.
   TfRef<String> get updateToken =>
       TfRef.attribute<String>(this, 'update_token');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

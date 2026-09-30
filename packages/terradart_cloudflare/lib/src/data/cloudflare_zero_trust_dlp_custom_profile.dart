@@ -86,4 +86,10 @@ final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `profile_id` attribute.
+  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
 }

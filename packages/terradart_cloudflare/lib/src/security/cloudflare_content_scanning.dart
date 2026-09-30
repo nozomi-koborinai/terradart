@@ -49,4 +49,10 @@ final class CloudflareContentScanning extends Resource {
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

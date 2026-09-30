@@ -58,4 +58,21 @@ final class AwsRdsClusterActivityStream extends Resource {
   /// Reference to `kinesis_stream_name` attribute.
   TfRef<String> get kinesisStreamName =>
       TfRef.attribute<String>(this, 'kinesis_stream_name');
+
+  /// Reference to `engine_native_audit_fields_included` attribute.
+  TfRef<bool> get engineNativeAuditFieldsIncludedRef =>
+      TfRef.attribute<bool>(this, 'engine_native_audit_fields_included');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

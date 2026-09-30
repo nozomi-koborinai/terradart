@@ -102,6 +102,41 @@ final class GoogleEdgenetworkSubnet extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ipv4_cidr` attribute.
+  TfRef<List<String>> get ipv4CidrRef =>
+      TfRef.attribute<List<String>>(this, 'ipv4_cidr');
+
+  /// Reference to `ipv6_cidr` attribute.
+  TfRef<List<String>> get ipv6CidrRef =>
+      TfRef.attribute<List<String>>(this, 'ipv6_cidr');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `vlan_id` attribute.
+  TfRef<num> get vlanIdRef => TfRef.attribute<num>(this, 'vlan_id');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `subnet_id` / name segment.
   TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 

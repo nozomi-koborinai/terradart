@@ -85,6 +85,40 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `exadata_infrastructure` attribute.
+  TfRef<String> get exadataInfrastructureRef =>
+      TfRef.attribute<String>(this, 'exadata_infrastructure');
+
+  /// Reference to `exascale_db_storage_vault_id` attribute.
+  TfRef<String> get exascaleDbStorageVaultIdRef =>
+      TfRef.attribute<String>(this, 'exascale_db_storage_vault_id');
+
+  /// Reference to `gcp_oracle_zone` attribute.
+  TfRef<String> get gcpOracleZoneRef =>
+      TfRef.attribute<String>(this, 'gcp_oracle_zone');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

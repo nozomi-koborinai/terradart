@@ -26,4 +26,7 @@ final class DataAwsOdbNetworkPeeringConnections extends Data {
         this,
         'odb_peering_connections',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -77,4 +77,28 @@ final class DataCloudflareAccessRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAccessRulesSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `match` attribute.
+  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `notes` attribute.
+  TfRef<String> get notesRef => TfRef.attribute<String>(this, 'notes');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

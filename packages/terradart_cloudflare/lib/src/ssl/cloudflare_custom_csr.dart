@@ -85,4 +85,42 @@ final class CloudflareCustomCsr extends Resource {
 
   /// Reference to `csr` attribute.
   TfRef<String> get csr => TfRef.attribute<String>(this, 'csr');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `common_name` attribute.
+  TfRef<String> get commonNameRef =>
+      TfRef.attribute<String>(this, 'common_name');
+
+  /// Reference to `country` attribute.
+  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `key_type` attribute.
+  TfRef<String> get keyTypeRef => TfRef.attribute<String>(this, 'key_type');
+
+  /// Reference to `locality` attribute.
+  TfRef<String> get localityRef => TfRef.attribute<String>(this, 'locality');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `organizational_unit` attribute.
+  TfRef<String> get organizationalUnitRef =>
+      TfRef.attribute<String>(this, 'organizational_unit');
+
+  /// Reference to `sans` attribute.
+  TfRef<List<String>> get sansRef =>
+      TfRef.attribute<List<String>>(this, 'sans');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

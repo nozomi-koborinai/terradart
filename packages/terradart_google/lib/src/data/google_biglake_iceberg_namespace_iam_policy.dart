@@ -47,4 +47,14 @@ final class DataGoogleBiglakeIcebergNamespaceIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `namespace_id` attribute.
+  TfRef<String> get namespaceIdRef =>
+      TfRef.attribute<String>(this, 'namespace_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

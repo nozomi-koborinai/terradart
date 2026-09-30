@@ -138,4 +138,55 @@ final class AwsDmsReplicationTask extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `cdc_start_position` attribute.
+  TfRef<String> get cdcStartPositionRef =>
+      TfRef.attribute<String>(this, 'cdc_start_position');
+
+  /// Reference to `cdc_start_time` attribute.
+  TfRef<String> get cdcStartTimeRef =>
+      TfRef.attribute<String>(this, 'cdc_start_time');
+
+  /// Reference to `migration_type` attribute.
+  TfRef<String> get migrationTypeRef =>
+      TfRef.attribute<String>(this, 'migration_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_instance_arn` attribute.
+  TfRef<String> get replicationInstanceArnRef =>
+      TfRef.attribute<String>(this, 'replication_instance_arn');
+
+  /// Reference to `replication_task_id` attribute.
+  TfRef<String> get replicationTaskIdRef =>
+      TfRef.attribute<String>(this, 'replication_task_id');
+
+  /// Reference to `replication_task_settings` attribute.
+  TfRef<String> get replicationTaskSettingsRef =>
+      TfRef.attribute<String>(this, 'replication_task_settings');
+
+  /// Reference to `resource_identifier` attribute.
+  TfRef<String> get resourceIdentifierRef =>
+      TfRef.attribute<String>(this, 'resource_identifier');
+
+  /// Reference to `source_endpoint_arn` attribute.
+  TfRef<String> get sourceEndpointArnRef =>
+      TfRef.attribute<String>(this, 'source_endpoint_arn');
+
+  /// Reference to `start_replication_task` attribute.
+  TfRef<bool> get startReplicationTaskRef =>
+      TfRef.attribute<bool>(this, 'start_replication_task');
+
+  /// Reference to `table_mappings` attribute.
+  TfRef<String> get tableMappingsRef =>
+      TfRef.attribute<String>(this, 'table_mappings');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_endpoint_arn` attribute.
+  TfRef<String> get targetEndpointArnRef =>
+      TfRef.attribute<String>(this, 'target_endpoint_arn');
 }

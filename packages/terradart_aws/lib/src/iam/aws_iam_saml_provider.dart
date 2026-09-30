@@ -50,4 +50,12 @@ final class AwsIamSamlProvider extends Resource {
 
   /// Reference to `valid_until` attribute.
   TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
+
+  /// Reference to `saml_metadata_document` attribute.
+  TfRef<String> get samlMetadataDocumentRef =>
+      TfRef.attribute<String>(this, 'saml_metadata_document');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

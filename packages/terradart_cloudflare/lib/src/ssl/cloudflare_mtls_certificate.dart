@@ -65,4 +65,18 @@ final class CloudflareMtlsCertificate extends Resource {
 
   /// Reference to `uploaded_on` attribute.
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ca` attribute.
+  TfRef<bool> get caRef => TfRef.attribute<bool>(this, 'ca');
+
+  /// Reference to `certificates` attribute.
+  TfRef<String> get certificatesRef =>
+      TfRef.attribute<String>(this, 'certificates');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKeyRef =>
+      TfRef.attribute<String>(this, 'private_key');
 }

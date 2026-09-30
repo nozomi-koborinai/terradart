@@ -122,4 +122,13 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ha_mode` attribute.
+  TfRef<String> get haModeRef => TfRef.attribute<String>(this, 'ha_mode');
+
+  /// Reference to `tunnel_id` attribute.
+  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
 }

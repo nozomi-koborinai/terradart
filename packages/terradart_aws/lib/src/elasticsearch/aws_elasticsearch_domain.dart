@@ -557,4 +557,27 @@ final class AwsElasticsearchDomain extends Resource {
   /// Reference to `kibana_endpoint` attribute.
   TfRef<String> get kibanaEndpoint =>
       TfRef.attribute<String>(this, 'kibana_endpoint');
+
+  /// Reference to `access_policies` attribute.
+  TfRef<String> get accessPoliciesRef =>
+      TfRef.attribute<String>(this, 'access_policies');
+
+  /// Reference to `advanced_options` attribute.
+  TfRef<Map<String, String>> get advancedOptionsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'advanced_options');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `elasticsearch_version` attribute.
+  TfRef<String> get elasticsearchVersionRef =>
+      TfRef.attribute<String>(this, 'elasticsearch_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

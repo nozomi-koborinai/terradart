@@ -44,4 +44,7 @@ final class DataAwsS3AccountPublicAccessBlock extends Data {
   /// Reference to `restrict_public_buckets` attribute.
   TfRef<bool> get restrictPublicBuckets =>
       TfRef.attribute<bool>(this, 'restrict_public_buckets');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

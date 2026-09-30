@@ -81,4 +81,10 @@ final class DataCloudflareMoqRelay extends Data {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `relay_id` attribute.
+  TfRef<String> get relayIdRef => TfRef.attribute<String>(this, 'relay_id');
 }

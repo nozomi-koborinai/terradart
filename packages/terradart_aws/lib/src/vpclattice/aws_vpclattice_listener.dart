@@ -137,4 +137,25 @@ final class AwsVpclatticeListener extends Resource {
 
   /// Reference to `listener_id` attribute.
   TfRef<String> get listenerId => TfRef.attribute<String>(this, 'listener_id');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `protocol` attribute.
+  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_arn` attribute.
+  TfRef<String> get serviceArnRef =>
+      TfRef.attribute<String>(this, 'service_arn');
+
+  /// Reference to `service_identifier` attribute.
+  TfRef<String> get serviceIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

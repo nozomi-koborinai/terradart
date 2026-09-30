@@ -48,4 +48,7 @@ final class DataCloudflareMagicNetworkMonitoringConfiguration extends Data {
   /// Reference to `router_ips` attribute.
   TfRef<List<String>> get routerIps =>
       TfRef.attribute<List<String>>(this, 'router_ips');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

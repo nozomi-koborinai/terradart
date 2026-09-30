@@ -41,4 +41,14 @@ final class AwsS3controlAccessPointPolicy extends Resource {
   /// Reference to `has_public_access_policy` attribute.
   TfRef<bool> get hasPublicAccessPolicy =>
       TfRef.attribute<bool>(this, 'has_public_access_policy');
+
+  /// Reference to `access_point_arn` attribute.
+  TfRef<String> get accessPointArnRef =>
+      TfRef.attribute<String>(this, 'access_point_arn');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

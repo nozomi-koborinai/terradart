@@ -31,4 +31,7 @@ final class DataAwsEbsDefaultKmsKey extends Data {
 
   /// Reference to `key_arn` attribute.
   TfRef<String> get keyArn => TfRef.attribute<String>(this, 'key_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

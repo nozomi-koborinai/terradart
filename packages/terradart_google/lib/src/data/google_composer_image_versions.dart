@@ -33,4 +33,10 @@ final class DataGoogleComposerImageVersions extends Data {
   /// Reference to `image_versions` attribute.
   TfRef<List<Map<String, Object?>>> get imageVersions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'image_versions');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

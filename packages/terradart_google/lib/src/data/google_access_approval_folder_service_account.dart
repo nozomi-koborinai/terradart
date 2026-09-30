@@ -34,4 +34,7 @@ final class DataGoogleAccessApprovalFolderServiceAccount extends Data {
   /// Reference to `account_email` attribute.
   TfRef<String> get accountEmail =>
       TfRef.attribute<String>(this, 'account_email');
+
+  /// Reference to `folder_id` attribute.
+  TfRef<String> get folderIdRef => TfRef.attribute<String>(this, 'folder_id');
 }

@@ -549,4 +549,23 @@ final class AwsLexIntent extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `create_version` attribute.
+  TfRef<bool> get createVersionRef =>
+      TfRef.attribute<bool>(this, 'create_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parent_intent_signature` attribute.
+  TfRef<String> get parentIntentSignatureRef =>
+      TfRef.attribute<String>(this, 'parent_intent_signature');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sample_utterances` attribute.
+  TfRef<List<String>> get sampleUtterancesRef =>
+      TfRef.attribute<List<String>>(this, 'sample_utterances');
 }

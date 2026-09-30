@@ -45,4 +45,22 @@ final class AwsDbInstanceAutomatedBackupsReplication extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `pre_signed_url` attribute.
+  TfRef<String> get preSignedUrlRef =>
+      TfRef.attribute<String>(this, 'pre_signed_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_period` attribute.
+  TfRef<num> get retentionPeriodRef =>
+      TfRef.attribute<num>(this, 'retention_period');
+
+  /// Reference to `source_db_instance_arn` attribute.
+  TfRef<String> get sourceDbInstanceArnRef =>
+      TfRef.attribute<String>(this, 'source_db_instance_arn');
 }

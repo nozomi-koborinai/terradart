@@ -70,4 +70,25 @@ final class GoogleIapTunnelDestGroup extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cidrs` attribute.
+  TfRef<List<String>> get cidrsRef =>
+      TfRef.attribute<List<String>>(this, 'cidrs');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `fqdns` attribute.
+  TfRef<List<String>> get fqdnsRef =>
+      TfRef.attribute<List<String>>(this, 'fqdns');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

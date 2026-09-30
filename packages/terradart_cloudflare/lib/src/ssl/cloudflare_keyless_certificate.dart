@@ -111,4 +111,24 @@ final class CloudflareKeylessCertificate extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `bundle_method` attribute.
+  TfRef<String> get bundleMethodRef =>
+      TfRef.attribute<String>(this, 'bundle_method');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

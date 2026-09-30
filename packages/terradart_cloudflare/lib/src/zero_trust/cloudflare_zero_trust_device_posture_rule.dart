@@ -492,4 +492,21 @@ final class CloudflareZeroTrustDevicePostureRule extends Resource {
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `expiration` attribute.
+  TfRef<String> get expirationRef =>
+      TfRef.attribute<String>(this, 'expiration');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

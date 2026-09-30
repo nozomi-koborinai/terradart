@@ -243,4 +243,50 @@ final class CloudflareLogpushJob extends Resource {
 
   /// Reference to `last_error` attribute.
   TfRef<String> get lastError => TfRef.attribute<String>(this, 'last_error');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `destination_conf` attribute.
+  TfRef<String> get destinationConfRef =>
+      TfRef.attribute<String>(this, 'destination_conf');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `filter_attack_traffic` attribute.
+  TfRef<bool> get filterAttackTrafficRef =>
+      TfRef.attribute<bool>(this, 'filter_attack_traffic');
+
+  /// Reference to `frequency` attribute.
+  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+
+  /// Reference to `logpull_options` attribute.
+  TfRef<String> get logpullOptionsRef =>
+      TfRef.attribute<String>(this, 'logpull_options');
+
+  /// Reference to `max_upload_bytes` attribute.
+  TfRef<num> get maxUploadBytesRef =>
+      TfRef.attribute<num>(this, 'max_upload_bytes');
+
+  /// Reference to `max_upload_interval_seconds` attribute.
+  TfRef<num> get maxUploadIntervalSecondsRef =>
+      TfRef.attribute<num>(this, 'max_upload_interval_seconds');
+
+  /// Reference to `max_upload_records` attribute.
+  TfRef<num> get maxUploadRecordsRef =>
+      TfRef.attribute<num>(this, 'max_upload_records');
+
+  /// Reference to `ownership_challenge` attribute.
+  TfRef<String> get ownershipChallengeRef =>
+      TfRef.attribute<String>(this, 'ownership_challenge');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

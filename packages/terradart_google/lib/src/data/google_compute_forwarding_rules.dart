@@ -33,4 +33,10 @@ final class DataGoogleComputeForwardingRules extends Data {
   /// Reference to `rules` attribute.
   TfRef<List<Map<String, Object?>>> get rules =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rules');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

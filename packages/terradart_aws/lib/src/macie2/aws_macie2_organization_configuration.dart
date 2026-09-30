@@ -30,4 +30,10 @@ final class AwsMacie2OrganizationConfiguration extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsMacie2OrganizationConfiguration>`.
   RefTo<AwsMacie2OrganizationConfiguration> get ref => RefTo.of(this);
+
+  /// Reference to `auto_enable` attribute.
+  TfRef<bool> get autoEnableRef => TfRef.attribute<bool>(this, 'auto_enable');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -56,4 +56,11 @@ final class AwsVerifiedpermissionsSchema extends Resource {
   /// Reference to `namespaces` attribute.
   TfRef<List<String>> get namespaces =>
       TfRef.attribute<List<String>>(this, 'namespaces');
+
+  /// Reference to `policy_store_id` attribute.
+  TfRef<String> get policyStoreIdRef =>
+      TfRef.attribute<String>(this, 'policy_store_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

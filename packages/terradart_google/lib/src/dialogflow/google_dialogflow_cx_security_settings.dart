@@ -241,6 +241,48 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `deidentify_template` attribute.
+  TfRef<String> get deidentifyTemplateRef =>
+      TfRef.attribute<String>(this, 'deidentify_template');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `inspect_template` attribute.
+  TfRef<String> get inspectTemplateRef =>
+      TfRef.attribute<String>(this, 'inspect_template');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `purge_data_types` attribute.
+  TfRef<List<String>> get purgeDataTypesRef =>
+      TfRef.attribute<List<String>>(this, 'purge_data_types');
+
+  /// Reference to `redaction_scope` attribute.
+  TfRef<String> get redactionScopeRef =>
+      TfRef.attribute<String>(this, 'redaction_scope');
+
+  /// Reference to `redaction_strategy` attribute.
+  TfRef<String> get redactionStrategyRef =>
+      TfRef.attribute<String>(this, 'redaction_strategy');
+
+  /// Reference to `retention_strategy` attribute.
+  TfRef<String> get retentionStrategyRef =>
+      TfRef.attribute<String>(this, 'retention_strategy');
+
+  /// Reference to `retention_window_days` attribute.
+  TfRef<num> get retentionWindowDaysRef =>
+      TfRef.attribute<num>(this, 'retention_window_days');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

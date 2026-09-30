@@ -40,4 +40,7 @@ final class DataCloudflareWaitingRoomSettings extends Data {
   /// Reference to `search_engine_crawler_bypass` attribute.
   TfRef<bool> get searchEngineCrawlerBypass =>
       TfRef.attribute<bool>(this, 'search_engine_crawler_bypass');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

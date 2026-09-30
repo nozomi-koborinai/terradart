@@ -117,4 +117,11 @@ final class AwsAccountaccessEntitlement extends Resource {
   /// Reference to `entitlement_id` attribute.
   TfRef<String> get entitlementId =>
       TfRef.attribute<String>(this, 'entitlement_id');
+
+  /// Reference to `application_arn` attribute.
+  TfRef<String> get applicationArnRef =>
+      TfRef.attribute<String>(this, 'application_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

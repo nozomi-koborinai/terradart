@@ -43,4 +43,7 @@ final class DataAwsKmsAlias extends Data {
   /// Reference to `target_key_id` attribute.
   TfRef<String> get targetKeyId =>
       TfRef.attribute<String>(this, 'target_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

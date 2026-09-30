@@ -155,4 +155,15 @@ final class AwsSignerSigningJob extends Resource {
   /// Reference to `status_reason` attribute.
   TfRef<String> get statusReason =>
       TfRef.attribute<String>(this, 'status_reason');
+
+  /// Reference to `ignore_signing_job_failure` attribute.
+  TfRef<bool> get ignoreSigningJobFailureRef =>
+      TfRef.attribute<bool>(this, 'ignore_signing_job_failure');
+
+  /// Reference to `profile_name` attribute.
+  TfRef<String> get profileNameRef =>
+      TfRef.attribute<String>(this, 'profile_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

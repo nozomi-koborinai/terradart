@@ -69,4 +69,13 @@ final class AwsIamAccessKey extends Resource {
   /// Reference to `ses_smtp_password_v4` attribute.
   TfRef<String> get sesSmtpPasswordV4 =>
       TfRef.attribute<String>(this, 'ses_smtp_password_v4');
+
+  /// Reference to `pgp_key` attribute.
+  TfRef<String> get pgpKeyRef => TfRef.attribute<String>(this, 'pgp_key');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `user` attribute.
+  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
 }

@@ -65,4 +65,26 @@ final class AwsCloudwatchLogAccountPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `policy_name` attribute.
+  TfRef<String> get policyNameRef =>
+      TfRef.attribute<String>(this, 'policy_name');
+
+  /// Reference to `policy_type` attribute.
+  TfRef<String> get policyTypeRef =>
+      TfRef.attribute<String>(this, 'policy_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+
+  /// Reference to `selection_criteria` attribute.
+  TfRef<String> get selectionCriteriaRef =>
+      TfRef.attribute<String>(this, 'selection_criteria');
 }

@@ -109,6 +109,80 @@ final class GoogleDataflowJob extends Resource {
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
+  /// Reference to `additional_experiments` attribute.
+  TfRef<List<String>> get additionalExperimentsRef =>
+      TfRef.attribute<List<String>>(this, 'additional_experiments');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_streaming_engine` attribute.
+  TfRef<bool> get enableStreamingEngineRef =>
+      TfRef.attribute<bool>(this, 'enable_streaming_engine');
+
+  /// Reference to `ip_configuration` attribute.
+  TfRef<String> get ipConfigurationRef =>
+      TfRef.attribute<String>(this, 'ip_configuration');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `machine_type` attribute.
+  TfRef<String> get machineTypeRef =>
+      TfRef.attribute<String>(this, 'machine_type');
+
+  /// Reference to `max_workers` attribute.
+  TfRef<num> get maxWorkersRef => TfRef.attribute<num>(this, 'max_workers');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `on_delete` attribute.
+  TfRef<String> get onDeleteRef => TfRef.attribute<String>(this, 'on_delete');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
+
+  /// Reference to `skip_wait_on_job_termination` attribute.
+  TfRef<bool> get skipWaitOnJobTerminationRef =>
+      TfRef.attribute<bool>(this, 'skip_wait_on_job_termination');
+
+  /// Reference to `subnetwork` attribute.
+  TfRef<String> get subnetworkRef =>
+      TfRef.attribute<String>(this, 'subnetwork');
+
+  /// Reference to `temp_gcs_location` attribute.
+  TfRef<String> get tempGcsLocationRef =>
+      TfRef.attribute<String>(this, 'temp_gcs_location');
+
+  /// Reference to `template_gcs_path` attribute.
+  TfRef<String> get templateGcsPathRef =>
+      TfRef.attribute<String>(this, 'template_gcs_path');
+
+  /// Reference to `transform_name_mapping` attribute.
+  TfRef<Map<String, String>> get transformNameMappingRef =>
+      TfRef.attribute<Map<String, String>>(this, 'transform_name_mapping');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

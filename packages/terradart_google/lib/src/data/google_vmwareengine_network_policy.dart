@@ -75,4 +75,10 @@ final class DataGoogleVmwareengineNetworkPolicy extends Data {
   /// Reference to `vmware_engine_network_canonical` attribute.
   TfRef<String> get vmwareEngineNetworkCanonical =>
       TfRef.attribute<String>(this, 'vmware_engine_network_canonical');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

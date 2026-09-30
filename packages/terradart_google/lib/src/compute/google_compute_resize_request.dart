@@ -106,6 +106,27 @@ final class GoogleComputeResizeRequest extends Resource {
   TfRef<List<Map<String, Object?>>> get status =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_group_manager` attribute.
+  TfRef<String> get instanceGroupManagerRef =>
+      TfRef.attribute<String>(this, 'instance_group_manager');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `resize_by` attribute.
+  TfRef<num> get resizeByRef => TfRef.attribute<num>(this, 'resize_by');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

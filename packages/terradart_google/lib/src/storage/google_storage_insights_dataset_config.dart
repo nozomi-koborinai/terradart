@@ -494,6 +494,43 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `activity_data_retention_period_days` attribute.
+  TfRef<num> get activityDataRetentionPeriodDaysRef =>
+      TfRef.attribute<num>(this, 'activity_data_retention_period_days');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `include_newly_created_buckets` attribute.
+  TfRef<bool> get includeNewlyCreatedBucketsRef =>
+      TfRef.attribute<bool>(this, 'include_newly_created_buckets');
+
+  /// Reference to `link_dataset` attribute.
+  TfRef<bool> get linkDatasetRef => TfRef.attribute<bool>(this, 'link_dataset');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization_number` attribute.
+  TfRef<String> get organizationNumberRef =>
+      TfRef.attribute<String>(this, 'organization_number');
+
+  /// Reference to `organization_scope` attribute.
+  TfRef<bool> get organizationScopeRef =>
+      TfRef.attribute<bool>(this, 'organization_scope');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `retention_period_days` attribute.
+  TfRef<num> get retentionPeriodDaysRef =>
+      TfRef.attribute<num>(this, 'retention_period_days');
+
   /// Reference to `dataset_config_id` attribute.
   TfRef<String> get datasetConfigIdRef =>
       TfRef.attribute<String>(this, 'dataset_config_id');

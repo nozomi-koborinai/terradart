@@ -86,4 +86,19 @@ final class DataAwsAppstreamImage extends Data {
   /// Reference to `state_change_reason` attribute.
   TfRef<List<Map<String, Object?>>> get stateChangeReason =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'state_change_reason');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `name_regex` attribute.
+  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

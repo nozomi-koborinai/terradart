@@ -201,4 +201,37 @@ final class AwsEfsFileSystem extends Resource {
   /// Reference to `size_in_bytes` attribute.
   TfRef<List<Map<String, Object?>>> get sizeInBytes =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'size_in_bytes');
+
+  /// Reference to `availability_zone_name` attribute.
+  TfRef<String> get availabilityZoneNameRef =>
+      TfRef.attribute<String>(this, 'availability_zone_name');
+
+  /// Reference to `creation_token` attribute.
+  TfRef<String> get creationTokenRef =>
+      TfRef.attribute<String>(this, 'creation_token');
+
+  /// Reference to `encrypted` attribute.
+  TfRef<bool> get encryptedRef => TfRef.attribute<bool>(this, 'encrypted');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `performance_mode` attribute.
+  TfRef<String> get performanceModeRef =>
+      TfRef.attribute<String>(this, 'performance_mode');
+
+  /// Reference to `provisioned_throughput_in_mibps` attribute.
+  TfRef<num> get provisionedThroughputInMibpsRef =>
+      TfRef.attribute<num>(this, 'provisioned_throughput_in_mibps');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `throughput_mode` attribute.
+  TfRef<String> get throughputModeRef =>
+      TfRef.attribute<String>(this, 'throughput_mode');
 }

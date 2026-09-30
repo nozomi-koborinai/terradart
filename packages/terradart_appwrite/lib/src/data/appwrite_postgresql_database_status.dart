@@ -81,4 +81,11 @@ final class DataAppwritePostgresqlDatabaseStatus extends Data {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

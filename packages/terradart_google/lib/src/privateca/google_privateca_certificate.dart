@@ -384,4 +384,35 @@ final class GooglePrivatecaCertificate extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `certificate_authority` attribute.
+  TfRef<String> get certificateAuthorityRef =>
+      TfRef.attribute<String>(this, 'certificate_authority');
+
+  /// Reference to `certificate_template` attribute.
+  TfRef<String> get certificateTemplateRef =>
+      TfRef.attribute<String>(this, 'certificate_template');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `lifetime` attribute.
+  TfRef<String> get lifetimeRef => TfRef.attribute<String>(this, 'lifetime');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `pem_csr` attribute.
+  TfRef<String> get pemCsrRef => TfRef.attribute<String>(this, 'pem_csr');
+
+  /// Reference to `pool` attribute.
+  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

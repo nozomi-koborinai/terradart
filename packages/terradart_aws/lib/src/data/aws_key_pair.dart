@@ -76,4 +76,22 @@ final class DataAwsKeyPair extends Data {
 
   /// Reference to `public_key` attribute.
   TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `include_public_key` attribute.
+  TfRef<bool> get includePublicKeyRef =>
+      TfRef.attribute<bool>(this, 'include_public_key');
+
+  /// Reference to `key_name` attribute.
+  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+
+  /// Reference to `key_pair_id` attribute.
+  TfRef<String> get keyPairIdRef =>
+      TfRef.attribute<String>(this, 'key_pair_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -128,4 +128,23 @@ final class AwsDbProxyTarget extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `db_cluster_identifier` attribute.
+  TfRef<String> get dbClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_cluster_identifier');
+
+  /// Reference to `db_instance_identifier` attribute.
+  TfRef<String> get dbInstanceIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_instance_identifier');
+
+  /// Reference to `db_proxy_name` attribute.
+  TfRef<String> get dbProxyNameRef =>
+      TfRef.attribute<String>(this, 'db_proxy_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_group_name` attribute.
+  TfRef<String> get targetGroupNameRef =>
+      TfRef.attribute<String>(this, 'target_group_name');
 }

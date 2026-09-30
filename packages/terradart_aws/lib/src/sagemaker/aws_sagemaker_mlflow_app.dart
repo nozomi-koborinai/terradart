@@ -78,4 +78,34 @@ final class AwsSagemakerMlflowApp extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `account_default_status` attribute.
+  TfRef<String> get accountDefaultStatusRef =>
+      TfRef.attribute<String>(this, 'account_default_status');
+
+  /// Reference to `artifact_store_uri` attribute.
+  TfRef<String> get artifactStoreUriRef =>
+      TfRef.attribute<String>(this, 'artifact_store_uri');
+
+  /// Reference to `default_domain_id_list` attribute.
+  TfRef<List<String>> get defaultDomainIdListRef =>
+      TfRef.attribute<List<String>>(this, 'default_domain_id_list');
+
+  /// Reference to `model_registration_mode` attribute.
+  TfRef<String> get modelRegistrationModeRef =>
+      TfRef.attribute<String>(this, 'model_registration_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `weekly_maintenance_window_start` attribute.
+  TfRef<String> get weeklyMaintenanceWindowStartRef =>
+      TfRef.attribute<String>(this, 'weekly_maintenance_window_start');
 }

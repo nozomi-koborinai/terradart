@@ -59,4 +59,7 @@ final class DataCloudflareDnsZoneTransfersOutgoing extends Data {
 
   /// Reference to `soa_serial` attribute.
   TfRef<num> get soaSerial => TfRef.attribute<num>(this, 'soa_serial');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

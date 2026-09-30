@@ -58,4 +58,15 @@ final class DataAwsIamPolicy extends Data {
 
   /// Reference to `policy_id` attribute.
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `path_prefix` attribute.
+  TfRef<String> get pathPrefixRef =>
+      TfRef.attribute<String>(this, 'path_prefix');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

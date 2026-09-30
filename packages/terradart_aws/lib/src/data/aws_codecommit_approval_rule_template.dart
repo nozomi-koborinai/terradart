@@ -59,4 +59,7 @@ final class DataAwsCodecommitApprovalRuleTemplate extends Data {
   /// Reference to `rule_content_sha256` attribute.
   TfRef<String> get ruleContentSha256 =>
       TfRef.attribute<String>(this, 'rule_content_sha256');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

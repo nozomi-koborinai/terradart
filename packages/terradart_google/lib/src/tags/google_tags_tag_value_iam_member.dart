@@ -67,4 +67,13 @@ final class GoogleTagsTagValueIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `tag_value` attribute.
+  TfRef<String> get tagValueRef => TfRef.attribute<String>(this, 'tag_value');
 }

@@ -37,4 +37,10 @@ final class AwsInspector2DelegatedAdminAccount extends Resource {
   /// Reference to `relationship_status` attribute.
   TfRef<String> get relationshipStatus =>
       TfRef.attribute<String>(this, 'relationship_status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

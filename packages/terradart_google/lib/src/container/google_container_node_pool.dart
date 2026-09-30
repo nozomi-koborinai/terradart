@@ -1799,4 +1799,43 @@ final class GoogleContainerNodePool extends Resource {
 
   /// Reference to `operation` attribute.
   TfRef<String> get operation => TfRef.attribute<String>(this, 'operation');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `ignore_node_count_changes` attribute.
+  TfRef<bool> get ignoreNodeCountChangesRef =>
+      TfRef.attribute<bool>(this, 'ignore_node_count_changes');
+
+  /// Reference to `initial_node_count` attribute.
+  TfRef<num> get initialNodeCountRef =>
+      TfRef.attribute<num>(this, 'initial_node_count');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `max_pods_per_node` attribute.
+  TfRef<num> get maxPodsPerNodeRef =>
+      TfRef.attribute<num>(this, 'max_pods_per_node');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `node_locations` attribute.
+  TfRef<List<String>> get nodeLocationsRef =>
+      TfRef.attribute<List<String>>(this, 'node_locations');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

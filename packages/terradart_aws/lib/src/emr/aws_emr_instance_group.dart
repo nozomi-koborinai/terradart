@@ -92,4 +92,33 @@ final class AwsEmrInstanceGroup extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `autoscaling_policy` attribute.
+  TfRef<String> get autoscalingPolicyRef =>
+      TfRef.attribute<String>(this, 'autoscaling_policy');
+
+  /// Reference to `bid_price` attribute.
+  TfRef<String> get bidPriceRef => TfRef.attribute<String>(this, 'bid_price');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `configurations_json` attribute.
+  TfRef<String> get configurationsJsonRef =>
+      TfRef.attribute<String>(this, 'configurations_json');
+
+  /// Reference to `ebs_optimized` attribute.
+  TfRef<bool> get ebsOptimizedRef =>
+      TfRef.attribute<bool>(this, 'ebs_optimized');
+
+  /// Reference to `instance_count` attribute.
+  TfRef<num> get instanceCountRef =>
+      TfRef.attribute<num>(this, 'instance_count');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

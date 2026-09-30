@@ -57,4 +57,22 @@ final class AwsTransferProfile extends Resource {
 
   /// Reference to `profile_id` attribute.
   TfRef<String> get profileId => TfRef.attribute<String>(this, 'profile_id');
+
+  /// Reference to `as2_id` attribute.
+  TfRef<String> get as2IdRef => TfRef.attribute<String>(this, 'as2_id');
+
+  /// Reference to `certificate_ids` attribute.
+  TfRef<List<String>> get certificateIdsRef =>
+      TfRef.attribute<List<String>>(this, 'certificate_ids');
+
+  /// Reference to `profile_type` attribute.
+  TfRef<String> get profileTypeRef =>
+      TfRef.attribute<String>(this, 'profile_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -40,4 +40,15 @@ final class AwsRoute53ResolverQueryLogConfigAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resolver_query_log_config_id` attribute.
+  TfRef<String> get resolverQueryLogConfigIdRef =>
+      TfRef.attribute<String>(this, 'resolver_query_log_config_id');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
 }

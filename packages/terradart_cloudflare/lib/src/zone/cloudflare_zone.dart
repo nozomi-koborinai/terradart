@@ -137,4 +137,14 @@ final class CloudflareZone extends Resource {
   /// Reference to `verification_key` attribute.
   TfRef<String> get verificationKey =>
       TfRef.attribute<String>(this, 'verification_key');
+
+  /// Reference to `paused` attribute.
+  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `vanity_name_servers` attribute.
+  TfRef<List<String>> get vanityNameServersRef =>
+      TfRef.attribute<List<String>>(this, 'vanity_name_servers');
 }

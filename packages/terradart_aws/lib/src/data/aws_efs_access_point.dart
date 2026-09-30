@@ -59,4 +59,15 @@ final class DataAwsEfsAccessPoint extends Data {
   /// Reference to `root_directory` attribute.
   TfRef<List<Map<String, Object?>>> get rootDirectory =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'root_directory');
+
+  /// Reference to `access_point_id` attribute.
+  TfRef<String> get accessPointIdRef =>
+      TfRef.attribute<String>(this, 'access_point_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

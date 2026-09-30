@@ -96,4 +96,25 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `membership_id` attribute.
+  TfRef<String> get membershipIdRef =>
+      TfRef.attribute<String>(this, 'membership_id');
+
+  /// Reference to `membership_rbac_role_binding_id` attribute.
+  TfRef<String> get membershipRbacRoleBindingIdRef =>
+      TfRef.attribute<String>(this, 'membership_rbac_role_binding_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `user` attribute.
+  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
 }

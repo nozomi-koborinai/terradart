@@ -132,4 +132,22 @@ final class AwsConnectHoursOfOperation extends Resource {
   /// Reference to `hours_of_operation_id` attribute.
   TfRef<String> get hoursOfOperationId =>
       TfRef.attribute<String>(this, 'hours_of_operation_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

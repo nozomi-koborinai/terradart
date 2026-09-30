@@ -57,4 +57,12 @@ final class GoogleMonitoringMonitoredProject extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `metrics_scope` attribute.
+  TfRef<String> get metricsScopeRef =>
+      TfRef.attribute<String>(this, 'metrics_scope');
 }

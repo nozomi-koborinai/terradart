@@ -58,4 +58,31 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `dimensions` attribute.
+  TfRef<Map<String, String>> get dimensionsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'dimensions');
+
+  /// Reference to `force` attribute.
+  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+
+  /// Reference to `limit` attribute.
+  TfRef<String> get limitRef => TfRef.attribute<String>(this, 'limit');
+
+  /// Reference to `metric` attribute.
+  TfRef<String> get metricRef => TfRef.attribute<String>(this, 'metric');
+
+  /// Reference to `override_value` attribute.
+  TfRef<String> get overrideValueRef =>
+      TfRef.attribute<String>(this, 'override_value');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

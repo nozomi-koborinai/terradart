@@ -71,4 +71,7 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareZeroTrustRiskBehavior>`.
   RefTo<CloudflareZeroTrustRiskBehavior> get ref => RefTo.of(this);
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

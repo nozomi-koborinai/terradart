@@ -39,4 +39,19 @@ final class AwsSsoadminManagedPolicyAttachmentsExclusive extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsSsoadminManagedPolicyAttachmentsExclusive>`.
   RefTo<AwsSsoadminManagedPolicyAttachmentsExclusive> get ref => RefTo.of(this);
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `managed_policy_arns` attribute.
+  TfRef<List<String>> get managedPolicyArnsRef =>
+      TfRef.attribute<List<String>>(this, 'managed_policy_arns');
+
+  /// Reference to `permission_set_arn` attribute.
+  TfRef<String> get permissionSetArnRef =>
+      TfRef.attribute<String>(this, 'permission_set_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

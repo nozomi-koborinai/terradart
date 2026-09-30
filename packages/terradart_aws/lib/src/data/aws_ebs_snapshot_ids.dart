@@ -54,4 +54,15 @@ final class DataAwsEbsSnapshotIds extends Data {
 
   /// Reference to `ids` attribute.
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
+
+  /// Reference to `owners` attribute.
+  TfRef<List<String>> get ownersRef =>
+      TfRef.attribute<List<String>>(this, 'owners');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `restorable_by_user_ids` attribute.
+  TfRef<List<String>> get restorableByUserIdsRef =>
+      TfRef.attribute<List<String>>(this, 'restorable_by_user_ids');
 }

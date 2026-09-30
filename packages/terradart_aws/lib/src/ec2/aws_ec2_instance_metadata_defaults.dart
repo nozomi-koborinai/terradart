@@ -41,4 +41,23 @@ final class AwsEc2InstanceMetadataDefaults extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `http_endpoint` attribute.
+  TfRef<String> get httpEndpointRef =>
+      TfRef.attribute<String>(this, 'http_endpoint');
+
+  /// Reference to `http_put_response_hop_limit` attribute.
+  TfRef<num> get httpPutResponseHopLimitRef =>
+      TfRef.attribute<num>(this, 'http_put_response_hop_limit');
+
+  /// Reference to `http_tokens` attribute.
+  TfRef<String> get httpTokensRef =>
+      TfRef.attribute<String>(this, 'http_tokens');
+
+  /// Reference to `instance_metadata_tags` attribute.
+  TfRef<String> get instanceMetadataTagsRef =>
+      TfRef.attribute<String>(this, 'instance_metadata_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

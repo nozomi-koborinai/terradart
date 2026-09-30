@@ -88,6 +88,40 @@ final class GoogleEdgenetworkInterconnectAttachment extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interconnect` attribute.
+  TfRef<String> get interconnectRef =>
+      TfRef.attribute<String>(this, 'interconnect');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `mtu` attribute.
+  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `vlan_id` attribute.
+  TfRef<num> get vlanIdRef => TfRef.attribute<num>(this, 'vlan_id');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `interconnect_attachment_id` / name segment.
   TfRef<String> get interconnectAttachmentIdRef =>
       TfRef.attribute<String>(this, 'interconnect_attachment_id');

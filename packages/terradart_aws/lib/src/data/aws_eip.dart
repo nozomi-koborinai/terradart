@@ -108,4 +108,14 @@ final class DataAwsEip extends Data {
   /// Reference to `public_ipv4_pool` attribute.
   TfRef<String> get publicIpv4Pool =>
       TfRef.attribute<String>(this, 'public_ipv4_pool');
+
+  /// Reference to `public_ip` attribute.
+  TfRef<String> get publicIpRef => TfRef.attribute<String>(this, 'public_ip');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

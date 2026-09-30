@@ -108,4 +108,34 @@ final class AwsAppconfigConfigurationProfile extends Resource {
   /// Reference to `configuration_profile_id` attribute.
   TfRef<String> get configurationProfileId =>
       TfRef.attribute<String>(this, 'configuration_profile_id');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_identifier` attribute.
+  TfRef<String> get kmsKeyIdentifierRef =>
+      TfRef.attribute<String>(this, 'kms_key_identifier');
+
+  /// Reference to `location_uri` attribute.
+  TfRef<String> get locationUriRef =>
+      TfRef.attribute<String>(this, 'location_uri');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retrieval_role_arn` attribute.
+  TfRef<String> get retrievalRoleArnRef =>
+      TfRef.attribute<String>(this, 'retrieval_role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

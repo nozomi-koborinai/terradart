@@ -44,4 +44,21 @@ final class AwsPinpointAdmChannel extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `client_id` attribute.
+  TfRef<String> get clientIdRef => TfRef.attribute<String>(this, 'client_id');
+
+  /// Reference to `client_secret` attribute.
+  TfRef<String> get clientSecretRef =>
+      TfRef.attribute<String>(this, 'client_secret');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

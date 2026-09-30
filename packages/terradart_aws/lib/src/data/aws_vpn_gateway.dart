@@ -66,4 +66,26 @@ final class DataAwsVpnGateway extends Data {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `amazon_side_asn` attribute.
+  TfRef<String> get amazonSideAsnRef =>
+      TfRef.attribute<String>(this, 'amazon_side_asn');
+
+  /// Reference to `attached_vpc_id` attribute.
+  TfRef<String> get attachedVpcIdRef =>
+      TfRef.attribute<String>(this, 'attached_vpc_id');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -96,4 +96,18 @@ final class DataGoogleDiscoveryEngineDataStore extends Data {
   /// Reference to `solution_types` attribute.
   TfRef<List<String>> get solutionTypes =>
       TfRef.attribute<List<String>>(this, 'solution_types');
+
+  /// Reference to `data_store_id` attribute.
+  TfRef<String> get dataStoreIdRef =>
+      TfRef.attribute<String>(this, 'data_store_id');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

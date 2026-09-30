@@ -40,4 +40,10 @@ final class DataAwsSfnActivity extends Data {
   /// Reference to `creation_date` attribute.
   TfRef<String> get creationDate =>
       TfRef.attribute<String>(this, 'creation_date');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

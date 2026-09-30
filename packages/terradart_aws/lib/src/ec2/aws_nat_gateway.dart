@@ -212,4 +212,44 @@ final class AwsNatGateway extends Resource {
   /// Reference to `route_table_id` attribute.
   TfRef<String> get routeTableId =>
       TfRef.attribute<String>(this, 'route_table_id');
+
+  /// Reference to `allocation_id` attribute.
+  TfRef<String> get allocationIdRef =>
+      TfRef.attribute<String>(this, 'allocation_id');
+
+  /// Reference to `availability_mode` attribute.
+  TfRef<String> get availabilityModeRef =>
+      TfRef.attribute<String>(this, 'availability_mode');
+
+  /// Reference to `connectivity_type` attribute.
+  TfRef<String> get connectivityTypeRef =>
+      TfRef.attribute<String>(this, 'connectivity_type');
+
+  /// Reference to `private_ip` attribute.
+  TfRef<String> get privateIpRef => TfRef.attribute<String>(this, 'private_ip');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secondary_allocation_ids` attribute.
+  TfRef<List<String>> get secondaryAllocationIdsRef =>
+      TfRef.attribute<List<String>>(this, 'secondary_allocation_ids');
+
+  /// Reference to `secondary_private_ip_address_count` attribute.
+  TfRef<num> get secondaryPrivateIpAddressCountRef =>
+      TfRef.attribute<num>(this, 'secondary_private_ip_address_count');
+
+  /// Reference to `secondary_private_ip_addresses` attribute.
+  TfRef<List<String>> get secondaryPrivateIpAddressesRef =>
+      TfRef.attribute<List<String>>(this, 'secondary_private_ip_addresses');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

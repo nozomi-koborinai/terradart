@@ -39,4 +39,10 @@ final class DataGoogleOracleDatabaseExascaleDbStorageVaults extends Data {
         this,
         'exascale_db_storage_vaults',
       );
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

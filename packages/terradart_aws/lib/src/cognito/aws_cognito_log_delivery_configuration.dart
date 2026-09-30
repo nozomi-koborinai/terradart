@@ -158,4 +158,11 @@ final class AwsCognitoLogDeliveryConfiguration extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsCognitoLogDeliveryConfiguration>`.
   RefTo<AwsCognitoLogDeliveryConfiguration> get ref => RefTo.of(this);
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

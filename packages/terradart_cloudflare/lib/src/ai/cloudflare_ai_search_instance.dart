@@ -624,4 +624,104 @@ final class CloudflareAiSearchInstance extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ai_gateway_id` attribute.
+  TfRef<String> get aiGatewayIdRef =>
+      TfRef.attribute<String>(this, 'ai_gateway_id');
+
+  /// Reference to `aisearch_model` attribute.
+  TfRef<String> get aisearchModelRef =>
+      TfRef.attribute<String>(this, 'aisearch_model');
+
+  /// Reference to `cache` attribute.
+  TfRef<bool> get cacheRef => TfRef.attribute<bool>(this, 'cache');
+
+  /// Reference to `cache_threshold` attribute.
+  TfRef<String> get cacheThresholdRef =>
+      TfRef.attribute<String>(this, 'cache_threshold');
+
+  /// Reference to `cache_ttl` attribute.
+  TfRef<num> get cacheTtlRef => TfRef.attribute<num>(this, 'cache_ttl');
+
+  /// Reference to `chunk` attribute.
+  TfRef<bool> get chunkRef => TfRef.attribute<bool>(this, 'chunk');
+
+  /// Reference to `chunk_overlap` attribute.
+  TfRef<num> get chunkOverlapRef => TfRef.attribute<num>(this, 'chunk_overlap');
+
+  /// Reference to `chunk_size` attribute.
+  TfRef<num> get chunkSizeRef => TfRef.attribute<num>(this, 'chunk_size');
+
+  /// Reference to `embedding_model` attribute.
+  TfRef<String> get embeddingModelRef =>
+      TfRef.attribute<String>(this, 'embedding_model');
+
+  /// Reference to `fusion_method` attribute.
+  TfRef<String> get fusionMethodRef =>
+      TfRef.attribute<String>(this, 'fusion_method');
+
+  /// Reference to `hybrid_search_enabled` attribute.
+  TfRef<bool> get hybridSearchEnabledRef =>
+      TfRef.attribute<bool>(this, 'hybrid_search_enabled');
+
+  /// Reference to `max_num_results` attribute.
+  TfRef<num> get maxNumResultsRef =>
+      TfRef.attribute<num>(this, 'max_num_results');
+
+  /// Reference to `paused` attribute.
+  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+
+  /// Reference to `reranking` attribute.
+  TfRef<bool> get rerankingRef => TfRef.attribute<bool>(this, 'reranking');
+
+  /// Reference to `reranking_model` attribute.
+  TfRef<String> get rerankingModelRef =>
+      TfRef.attribute<String>(this, 'reranking_model');
+
+  /// Reference to `rewrite_model` attribute.
+  TfRef<String> get rewriteModelRef =>
+      TfRef.attribute<String>(this, 'rewrite_model');
+
+  /// Reference to `rewrite_query` attribute.
+  TfRef<bool> get rewriteQueryRef =>
+      TfRef.attribute<bool>(this, 'rewrite_query');
+
+  /// Reference to `score_threshold` attribute.
+  TfRef<num> get scoreThresholdRef =>
+      TfRef.attribute<num>(this, 'score_threshold');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `summarization` attribute.
+  TfRef<bool> get summarizationRef =>
+      TfRef.attribute<bool>(this, 'summarization');
+
+  /// Reference to `summarization_model` attribute.
+  TfRef<String> get summarizationModelRef =>
+      TfRef.attribute<String>(this, 'summarization_model');
+
+  /// Reference to `sync_interval` attribute.
+  TfRef<num> get syncIntervalRef => TfRef.attribute<num>(this, 'sync_interval');
+
+  /// Reference to `system_prompt_aisearch` attribute.
+  TfRef<String> get systemPromptAisearchRef =>
+      TfRef.attribute<String>(this, 'system_prompt_aisearch');
+
+  /// Reference to `system_prompt_index_summarization` attribute.
+  TfRef<String> get systemPromptIndexSummarizationRef =>
+      TfRef.attribute<String>(this, 'system_prompt_index_summarization');
+
+  /// Reference to `system_prompt_rewrite_query` attribute.
+  TfRef<String> get systemPromptRewriteQueryRef =>
+      TfRef.attribute<String>(this, 'system_prompt_rewrite_query');
+
+  /// Reference to `token_id` attribute.
+  TfRef<String> get tokenIdRef => TfRef.attribute<String>(this, 'token_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

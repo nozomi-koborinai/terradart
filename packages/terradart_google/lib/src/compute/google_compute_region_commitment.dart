@@ -199,6 +199,32 @@ final class GoogleComputeRegionCommitment extends Resource {
   TfRef<String> get statusMessage =>
       TfRef.attribute<String>(this, 'status_message');
 
+  /// Reference to `auto_renew` attribute.
+  TfRef<bool> get autoRenewRef => TfRef.attribute<bool>(this, 'auto_renew');
+
+  /// Reference to `category` attribute.
+  TfRef<String> get categoryRef => TfRef.attribute<String>(this, 'category');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `existing_reservations` attribute.
+  TfRef<String> get existingReservationsRef =>
+      TfRef.attribute<String>(this, 'existing_reservations');
+
+  /// Reference to `plan` attribute.
+  TfRef<String> get planRef => TfRef.attribute<String>(this, 'plan');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

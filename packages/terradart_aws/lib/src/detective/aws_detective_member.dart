@@ -66,4 +66,24 @@ final class AwsDetectiveMember extends Resource {
   /// Reference to `volume_usage_in_bytes` attribute.
   TfRef<String> get volumeUsageInBytes =>
       TfRef.attribute<String>(this, 'volume_usage_in_bytes');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `disable_email_notification` attribute.
+  TfRef<bool> get disableEmailNotificationRef =>
+      TfRef.attribute<bool>(this, 'disable_email_notification');
+
+  /// Reference to `email_address` attribute.
+  TfRef<String> get emailAddressRef =>
+      TfRef.attribute<String>(this, 'email_address');
+
+  /// Reference to `graph_arn` attribute.
+  TfRef<String> get graphArnRef => TfRef.attribute<String>(this, 'graph_arn');
+
+  /// Reference to `message` attribute.
+  TfRef<String> get messageRef => TfRef.attribute<String>(this, 'message');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

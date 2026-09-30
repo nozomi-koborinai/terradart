@@ -100,6 +100,27 @@ final class GoogleApigeeAppGroup extends Resource {
   TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
+  /// Reference to `channel_id` attribute.
+  TfRef<String> get channelIdRef => TfRef.attribute<String>(this, 'channel_id');
+
+  /// Reference to `channel_uri` attribute.
+  TfRef<String> get channelUriRef =>
+      TfRef.attribute<String>(this, 'channel_uri');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

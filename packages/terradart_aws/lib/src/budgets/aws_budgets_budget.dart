@@ -1859,4 +1859,45 @@ final class AwsBudgetsBudget extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `billing_view_arn` attribute.
+  TfRef<String> get billingViewArnRef =>
+      TfRef.attribute<String>(this, 'billing_view_arn');
+
+  /// Reference to `budget_type` attribute.
+  TfRef<String> get budgetTypeRef =>
+      TfRef.attribute<String>(this, 'budget_type');
+
+  /// Reference to `limit_amount` attribute.
+  TfRef<String> get limitAmountRef =>
+      TfRef.attribute<String>(this, 'limit_amount');
+
+  /// Reference to `limit_unit` attribute.
+  TfRef<String> get limitUnitRef => TfRef.attribute<String>(this, 'limit_unit');
+
+  /// Reference to `metrics` attribute.
+  TfRef<List<String>> get metricsRef =>
+      TfRef.attribute<List<String>>(this, 'metrics');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `time_period_end` attribute.
+  TfRef<String> get timePeriodEndRef =>
+      TfRef.attribute<String>(this, 'time_period_end');
+
+  /// Reference to `time_period_start` attribute.
+  TfRef<String> get timePeriodStartRef =>
+      TfRef.attribute<String>(this, 'time_period_start');
+
+  /// Reference to `time_unit` attribute.
+  TfRef<String> get timeUnitRef => TfRef.attribute<String>(this, 'time_unit');
 }

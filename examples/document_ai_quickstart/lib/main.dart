@@ -24,8 +24,6 @@ final class DocAiStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/doc_ai_stack.app.dart'),
       ) {
-    const ocrProcessorDisplayName = 'terradart-ocr';
-
     final apiDocumentAi = add(
       GoogleProjectService(
         localName: 'api_documentai',
@@ -40,7 +38,7 @@ final class DocAiStack extends Stack {
         // Document AI processors live in a multi-region (`us` or `eu`), not a
         // compute region.
         location: .literal('us'),
-        displayName: .literal(ocrProcessorDisplayName),
+        displayName: .literal('terradart-ocr'),
         type: .literal('OCR_PROCESSOR'),
         dependsOn: [ResourceDependency(apiDocumentAi)],
       ),
@@ -68,10 +66,7 @@ final class DocAiStack extends Stack {
     );
 
     // Literal processor display name -- emitted as a Dart constant at synth.
-    addConstant(
-      'ocrProcessorDisplayName',
-      const .value(ocrProcessorDisplayName),
-    );
+    addConstant('ocrProcessorDisplayName', .ref(ocr.displayNameRef));
 
     // Full processor resource id -- Terraform output only (computed).
     addOutput('ocr_processor_id', .ref(ocr.id));

@@ -38,4 +38,8 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
   /// Reference to `account_email` attribute.
   TfRef<String> get accountEmail =>
       TfRef.attribute<String>(this, 'account_email');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
 }

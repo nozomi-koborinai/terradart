@@ -113,4 +113,31 @@ final class AwsTransferUser extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `home_directory` attribute.
+  TfRef<String> get homeDirectoryRef =>
+      TfRef.attribute<String>(this, 'home_directory');
+
+  /// Reference to `home_directory_type` attribute.
+  TfRef<String> get homeDirectoryTypeRef =>
+      TfRef.attribute<String>(this, 'home_directory_type');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `server_id` attribute.
+  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

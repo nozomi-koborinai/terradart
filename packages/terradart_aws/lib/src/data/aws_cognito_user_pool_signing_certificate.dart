@@ -30,4 +30,11 @@ final class DataAwsCognitoUserPoolSigningCertificate extends Data {
 
   /// Reference to `certificate` attribute.
   TfRef<String> get certificate => TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

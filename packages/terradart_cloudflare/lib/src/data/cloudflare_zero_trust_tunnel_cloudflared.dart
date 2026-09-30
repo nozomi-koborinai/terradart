@@ -140,4 +140,10 @@ final class DataCloudflareZeroTrustTunnelCloudflared extends Data {
 
   /// Reference to `tun_type` attribute.
   TfRef<String> get tunType => TfRef.attribute<String>(this, 'tun_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `tunnel_id` attribute.
+  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
 }

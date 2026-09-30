@@ -63,4 +63,17 @@ final class DataAwsAppmeshVirtualService extends Data {
   /// Reference to `spec` attribute.
   TfRef<List<Map<String, Object?>>> get spec =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'spec');
+
+  /// Reference to `mesh_name` attribute.
+  TfRef<String> get meshNameRef => TfRef.attribute<String>(this, 'mesh_name');
+
+  /// Reference to `mesh_owner` attribute.
+  TfRef<String> get meshOwnerRef => TfRef.attribute<String>(this, 'mesh_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

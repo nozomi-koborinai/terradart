@@ -147,4 +147,14 @@ final class AwsCloudwatchEventEndpoint extends Resource {
   /// Reference to `endpoint_url` attribute.
   TfRef<String> get endpointUrl =>
       TfRef.attribute<String>(this, 'endpoint_url');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
 }

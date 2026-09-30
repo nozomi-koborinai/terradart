@@ -178,4 +178,48 @@ final class AwsSsmParameter extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `allowed_pattern` attribute.
+  TfRef<String> get allowedPatternRef =>
+      TfRef.attribute<String>(this, 'allowed_pattern');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `data_type` attribute.
+  TfRef<String> get dataTypeRef => TfRef.attribute<String>(this, 'data_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `insecure_value` attribute.
+  TfRef<String> get insecureValueRef =>
+      TfRef.attribute<String>(this, 'insecure_value');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `overwrite` attribute.
+  TfRef<bool> get overwriteRef => TfRef.attribute<bool>(this, 'overwrite');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tier` attribute.
+  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `value_wo_version` attribute.
+  TfRef<num> get valueWoVersionRef =>
+      TfRef.attribute<num>(this, 'value_wo_version');
 }

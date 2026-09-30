@@ -43,4 +43,13 @@ final class AwsSyntheticsGroupAssociation extends Resource {
 
   /// Reference to `group_id` attribute.
   TfRef<String> get groupId => TfRef.attribute<String>(this, 'group_id');
+
+  /// Reference to `canary_arn` attribute.
+  TfRef<String> get canaryArnRef => TfRef.attribute<String>(this, 'canary_arn');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

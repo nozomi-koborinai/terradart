@@ -735,4 +735,33 @@ final class AwsEksCluster extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `bootstrap_self_managed_addons` attribute.
+  TfRef<bool> get bootstrapSelfManagedAddonsRef =>
+      TfRef.attribute<bool>(this, 'bootstrap_self_managed_addons');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `enabled_cluster_log_types` attribute.
+  TfRef<List<String>> get enabledClusterLogTypesRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_cluster_log_types');
+
+  /// Reference to `force_update_version` attribute.
+  TfRef<bool> get forceUpdateVersionRef =>
+      TfRef.attribute<bool>(this, 'force_update_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

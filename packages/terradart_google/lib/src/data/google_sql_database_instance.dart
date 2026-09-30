@@ -190,4 +190,7 @@ final class DataGoogleSqlDatabaseInstance extends Data {
         this,
         'switch_transaction_logs_to_cloud_storage_enabled',
       );
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

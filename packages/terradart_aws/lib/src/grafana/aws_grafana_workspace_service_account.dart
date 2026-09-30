@@ -58,4 +58,15 @@ final class AwsGrafanaWorkspaceServiceAccount extends Resource {
   /// Reference to `service_account_id` attribute.
   TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
+
+  /// Reference to `grafana_role` attribute.
+  TfRef<String> get grafanaRoleRef =>
+      TfRef.attribute<String>(this, 'grafana_role');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workspace_id` attribute.
+  TfRef<String> get workspaceIdRef =>
+      TfRef.attribute<String>(this, 'workspace_id');
 }

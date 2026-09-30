@@ -67,4 +67,34 @@ final class AwsIotAuthorizer extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `authorizer_function_arn` attribute.
+  TfRef<String> get authorizerFunctionArnRef =>
+      TfRef.attribute<String>(this, 'authorizer_function_arn');
+
+  /// Reference to `enable_caching_for_http` attribute.
+  TfRef<bool> get enableCachingForHttpRef =>
+      TfRef.attribute<bool>(this, 'enable_caching_for_http');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `signing_disabled` attribute.
+  TfRef<bool> get signingDisabledRef =>
+      TfRef.attribute<bool>(this, 'signing_disabled');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `token_key_name` attribute.
+  TfRef<String> get tokenKeyNameRef =>
+      TfRef.attribute<String>(this, 'token_key_name');
+
+  /// Reference to `token_signing_public_keys` attribute.
+  TfRef<Map<String, String>> get tokenSigningPublicKeysRef =>
+      TfRef.attribute<Map<String, String>>(this, 'token_signing_public_keys');
 }

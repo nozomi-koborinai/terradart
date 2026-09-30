@@ -41,4 +41,10 @@ final class DataGoogleComputeImageIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `image` attribute.
+  TfRef<String> get imageRef => TfRef.attribute<String>(this, 'image');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

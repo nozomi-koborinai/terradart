@@ -36,4 +36,19 @@ final class AwsDsqlClusterPeering extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsDsqlClusterPeering>`.
   RefTo<AwsDsqlClusterPeering> get ref => RefTo.of(this);
+
+  /// Reference to `clusters` attribute.
+  TfRef<List<String>> get clustersRef =>
+      TfRef.attribute<List<String>>(this, 'clusters');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `witness_region` attribute.
+  TfRef<String> get witnessRegionRef =>
+      TfRef.attribute<String>(this, 'witness_region');
 }

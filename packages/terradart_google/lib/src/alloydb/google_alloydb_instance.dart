@@ -381,4 +381,46 @@ final class GoogleAlloydbInstance extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `activation_policy` attribute.
+  TfRef<String> get activationPolicyRef =>
+      TfRef.attribute<String>(this, 'activation_policy');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `availability_type` attribute.
+  TfRef<String> get availabilityTypeRef =>
+      TfRef.attribute<String>(this, 'availability_type');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `database_flags` attribute.
+  TfRef<Map<String, String>> get databaseFlagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'database_flags');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `gce_zone` attribute.
+  TfRef<String> get gceZoneRef => TfRef.attribute<String>(this, 'gce_zone');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
 }

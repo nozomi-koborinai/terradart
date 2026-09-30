@@ -109,6 +109,39 @@ final class GoogleApigeeInstance extends Resource {
   TfRef<String> get serviceAttachment =>
       TfRef.attribute<String>(this, 'service_attachment');
 
+  /// Reference to `consumer_accept_list` attribute.
+  TfRef<List<String>> get consumerAcceptListRef =>
+      TfRef.attribute<List<String>>(this, 'consumer_accept_list');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disk_encryption_key_name` attribute.
+  TfRef<String> get diskEncryptionKeyNameRef =>
+      TfRef.attribute<String>(this, 'disk_encryption_key_name');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `ip_range` attribute.
+  TfRef<String> get ipRangeRef => TfRef.attribute<String>(this, 'ip_range');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `peering_cidr_range` attribute.
+  TfRef<String> get peeringCidrRangeRef =>
+      TfRef.attribute<String>(this, 'peering_cidr_range');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

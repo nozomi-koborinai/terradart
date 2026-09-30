@@ -87,4 +87,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
   /// Reference to `secure_web_gateway` attribute.
   TfRef<bool> get secureWebGateway =>
       TfRef.attribute<bool>(this, 'secure_web_gateway');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

@@ -148,4 +148,27 @@ final class AwsAuditmanagerControl extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `action_plan_instructions` attribute.
+  TfRef<String> get actionPlanInstructionsRef =>
+      TfRef.attribute<String>(this, 'action_plan_instructions');
+
+  /// Reference to `action_plan_title` attribute.
+  TfRef<String> get actionPlanTitleRef =>
+      TfRef.attribute<String>(this, 'action_plan_title');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `testing_information` attribute.
+  TfRef<String> get testingInformationRef =>
+      TfRef.attribute<String>(this, 'testing_information');
 }

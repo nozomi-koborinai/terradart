@@ -105,4 +105,15 @@ final class AwsCloudfrontPublicKey extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `encoded_key` attribute.
+  TfRef<String> get encodedKeyRef =>
+      TfRef.attribute<String>(this, 'encoded_key');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
 }

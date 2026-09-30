@@ -39,4 +39,18 @@ final class AwsServiceDiscoveryInstance extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `attributes` attribute.
+  TfRef<Map<String, String>> get attributesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'attributes');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_id` attribute.
+  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
 }

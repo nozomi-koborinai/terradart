@@ -29,4 +29,7 @@ final class DataGoogleBigqueryDatasets extends Data {
   /// Reference to `datasets` attribute.
   TfRef<List<Map<String, Object?>>> get datasets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'datasets');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

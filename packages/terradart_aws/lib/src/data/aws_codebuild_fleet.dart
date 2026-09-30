@@ -90,4 +90,11 @@ final class DataAwsCodebuildFleet extends Data {
   /// Reference to `vpc_config` attribute.
   TfRef<List<Map<String, Object?>>> get vpcConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_config');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

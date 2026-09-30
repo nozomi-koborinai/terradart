@@ -93,4 +93,19 @@ final class GoogleAppEngineDomainMapping extends Resource {
   /// Reference to `resource_records` attribute.
   TfRef<List<Map<String, Object?>>> get resourceRecords =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'resource_records');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `override_strategy` attribute.
+  TfRef<String> get overrideStrategyRef =>
+      TfRef.attribute<String>(this, 'override_strategy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

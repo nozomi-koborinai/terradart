@@ -47,4 +47,10 @@ final class DataGoogleProjectService extends Data {
   /// Reference to `disable_on_destroy` attribute.
   TfRef<bool> get disableOnDestroy =>
       TfRef.attribute<bool>(this, 'disable_on_destroy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

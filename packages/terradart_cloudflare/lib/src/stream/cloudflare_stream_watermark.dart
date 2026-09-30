@@ -72,4 +72,26 @@ final class CloudflareStreamWatermark extends Resource {
 
   /// Reference to `width` attribute.
   TfRef<num> get width => TfRef.attribute<num>(this, 'width');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `opacity` attribute.
+  TfRef<num> get opacityRef => TfRef.attribute<num>(this, 'opacity');
+
+  /// Reference to `padding` attribute.
+  TfRef<num> get paddingRef => TfRef.attribute<num>(this, 'padding');
+
+  /// Reference to `position` attribute.
+  TfRef<String> get positionRef => TfRef.attribute<String>(this, 'position');
+
+  /// Reference to `scale` attribute.
+  TfRef<num> get scaleRef => TfRef.attribute<num>(this, 'scale');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

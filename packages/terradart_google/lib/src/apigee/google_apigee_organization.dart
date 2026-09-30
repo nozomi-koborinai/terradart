@@ -159,6 +159,60 @@ final class GoogleApigeeOrganization extends Resource {
   TfRef<String> get subscriptionType =>
       TfRef.attribute<String>(this, 'subscription_type');
 
+  /// Reference to `analytics_region` attribute.
+  TfRef<String> get analyticsRegionRef =>
+      TfRef.attribute<String>(this, 'analytics_region');
+
+  /// Reference to `api_consumer_data_encryption_key_name` attribute.
+  TfRef<String> get apiConsumerDataEncryptionKeyNameRef =>
+      TfRef.attribute<String>(this, 'api_consumer_data_encryption_key_name');
+
+  /// Reference to `api_consumer_data_location` attribute.
+  TfRef<String> get apiConsumerDataLocationRef =>
+      TfRef.attribute<String>(this, 'api_consumer_data_location');
+
+  /// Reference to `authorized_network` attribute.
+  TfRef<String> get authorizedNetworkRef =>
+      TfRef.attribute<String>(this, 'authorized_network');
+
+  /// Reference to `billing_type` attribute.
+  TfRef<String> get billingTypeRef =>
+      TfRef.attribute<String>(this, 'billing_type');
+
+  /// Reference to `control_plane_encryption_key_name` attribute.
+  TfRef<String> get controlPlaneEncryptionKeyNameRef =>
+      TfRef.attribute<String>(this, 'control_plane_encryption_key_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_vpc_peering` attribute.
+  TfRef<bool> get disableVpcPeeringRef =>
+      TfRef.attribute<bool>(this, 'disable_vpc_peering');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `retention` attribute.
+  TfRef<String> get retentionRef => TfRef.attribute<String>(this, 'retention');
+
+  /// Reference to `runtime_database_encryption_key_name` attribute.
+  TfRef<String> get runtimeDatabaseEncryptionKeyNameRef =>
+      TfRef.attribute<String>(this, 'runtime_database_encryption_key_name');
+
+  /// Reference to `runtime_type` attribute.
+  TfRef<String> get runtimeTypeRef =>
+      TfRef.attribute<String>(this, 'runtime_type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -97,4 +97,13 @@ final class AwsRoute53ZoneAssociation extends Resource {
   /// Reference to `owning_account` attribute.
   TfRef<String> get owningAccount =>
       TfRef.attribute<String>(this, 'owning_account');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `vpc_region` attribute.
+  TfRef<String> get vpcRegionRef => TfRef.attribute<String>(this, 'vpc_region');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

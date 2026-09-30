@@ -241,6 +241,72 @@ final class GoogleComputeRegionDisk extends Resource {
   /// Reference to `users` attribute.
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
+  /// Reference to `access_mode` attribute.
+  TfRef<String> get accessModeRef =>
+      TfRef.attribute<String>(this, 'access_mode');
+
+  /// Reference to `create_snapshot_before_destroy` attribute.
+  TfRef<bool> get createSnapshotBeforeDestroyRef =>
+      TfRef.attribute<bool>(this, 'create_snapshot_before_destroy');
+
+  /// Reference to `create_snapshot_before_destroy_prefix` attribute.
+  TfRef<String> get createSnapshotBeforeDestroyPrefixRef =>
+      TfRef.attribute<String>(this, 'create_snapshot_before_destroy_prefix');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `image` attribute.
+  TfRef<String> get imageRef => TfRef.attribute<String>(this, 'image');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `licenses` attribute.
+  TfRef<List<String>> get licensesRef =>
+      TfRef.attribute<List<String>>(this, 'licenses');
+
+  /// Reference to `physical_block_size_bytes` attribute.
+  TfRef<num> get physicalBlockSizeBytesRef =>
+      TfRef.attribute<num>(this, 'physical_block_size_bytes');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provisioned_iops` attribute.
+  TfRef<num> get provisionedIopsRef =>
+      TfRef.attribute<num>(this, 'provisioned_iops');
+
+  /// Reference to `provisioned_throughput` attribute.
+  TfRef<num> get provisionedThroughputRef =>
+      TfRef.attribute<num>(this, 'provisioned_throughput');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replica_zones` attribute.
+  TfRef<List<String>> get replicaZonesRef =>
+      TfRef.attribute<List<String>>(this, 'replica_zones');
+
+  /// Reference to `size` attribute.
+  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+
+  /// Reference to `snapshot` attribute.
+  TfRef<String> get snapshotRef => TfRef.attribute<String>(this, 'snapshot');
+
+  /// Reference to `source_disk` attribute.
+  TfRef<String> get sourceDiskRef =>
+      TfRef.attribute<String>(this, 'source_disk');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

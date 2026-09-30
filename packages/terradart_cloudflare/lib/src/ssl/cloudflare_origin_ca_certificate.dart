@@ -56,4 +56,19 @@ final class CloudflareOriginCaCertificate extends Resource {
 
   /// Reference to `expires_on` attribute.
   TfRef<String> get expiresOn => TfRef.attribute<String>(this, 'expires_on');
+
+  /// Reference to `csr` attribute.
+  TfRef<String> get csrRef => TfRef.attribute<String>(this, 'csr');
+
+  /// Reference to `hostnames` attribute.
+  TfRef<List<String>> get hostnamesRef =>
+      TfRef.attribute<List<String>>(this, 'hostnames');
+
+  /// Reference to `request_type` attribute.
+  TfRef<String> get requestTypeRef =>
+      TfRef.attribute<String>(this, 'request_type');
+
+  /// Reference to `requested_validity` attribute.
+  TfRef<num> get requestedValidityRef =>
+      TfRef.attribute<num>(this, 'requested_validity');
 }

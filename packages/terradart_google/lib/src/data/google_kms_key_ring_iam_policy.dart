@@ -37,4 +37,8 @@ final class DataGoogleKmsKeyRingIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `key_ring_id` attribute.
+  TfRef<String> get keyRingIdRef =>
+      TfRef.attribute<String>(this, 'key_ring_id');
 }

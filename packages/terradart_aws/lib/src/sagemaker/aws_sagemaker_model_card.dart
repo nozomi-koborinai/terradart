@@ -79,4 +79,22 @@ final class AwsSagemakerModelCard extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `model_card_name` attribute.
+  TfRef<String> get modelCardNameRef =>
+      TfRef.attribute<String>(this, 'model_card_name');
+
+  /// Reference to `model_card_status` attribute.
+  TfRef<String> get modelCardStatusRef =>
+      TfRef.attribute<String>(this, 'model_card_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

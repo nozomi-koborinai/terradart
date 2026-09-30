@@ -46,4 +46,15 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsLambdaFunctionRecursionConfig>`.
   RefTo<AwsLambdaFunctionRecursionConfig> get ref => RefTo.of(this);
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `recursive_loop` attribute.
+  TfRef<String> get recursiveLoopRef =>
+      TfRef.attribute<String>(this, 'recursive_loop');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

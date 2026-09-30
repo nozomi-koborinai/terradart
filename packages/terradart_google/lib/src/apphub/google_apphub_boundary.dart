@@ -63,4 +63,13 @@ final class GoogleApphubBoundary extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `crm_node` attribute.
+  TfRef<String> get crmNodeRef => TfRef.attribute<String>(this, 'crm_node');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

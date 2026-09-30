@@ -54,4 +54,11 @@ final class DataAwsEcrPullThroughCacheRule extends Data {
   /// Reference to `upstream_repository_prefix` attribute.
   TfRef<String> get upstreamRepositoryPrefix =>
       TfRef.attribute<String>(this, 'upstream_repository_prefix');
+
+  /// Reference to `ecr_repository_prefix` attribute.
+  TfRef<String> get ecrRepositoryPrefixRef =>
+      TfRef.attribute<String>(this, 'ecr_repository_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

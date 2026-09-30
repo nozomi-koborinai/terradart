@@ -45,4 +45,17 @@ final class AwsApiGatewayUsagePlanKey extends Resource {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `key_type` attribute.
+  TfRef<String> get keyTypeRef => TfRef.attribute<String>(this, 'key_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `usage_plan_id` attribute.
+  TfRef<String> get usagePlanIdRef =>
+      TfRef.attribute<String>(this, 'usage_plan_id');
 }

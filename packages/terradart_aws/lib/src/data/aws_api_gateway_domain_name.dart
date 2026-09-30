@@ -96,4 +96,19 @@ final class DataAwsApiGatewayDomainName extends Data {
   /// Reference to `security_policy` attribute.
   TfRef<String> get securityPolicy =>
       TfRef.attribute<String>(this, 'security_policy');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `domain_name_id` attribute.
+  TfRef<String> get domainNameIdRef =>
+      TfRef.attribute<String>(this, 'domain_name_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

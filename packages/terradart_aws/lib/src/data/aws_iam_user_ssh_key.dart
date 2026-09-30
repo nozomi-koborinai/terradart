@@ -46,4 +46,14 @@ final class DataAwsIamUserSshKey extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `encoding` attribute.
+  TfRef<String> get encodingRef => TfRef.attribute<String>(this, 'encoding');
+
+  /// Reference to `ssh_public_key_id` attribute.
+  TfRef<String> get sshPublicKeyIdRef =>
+      TfRef.attribute<String>(this, 'ssh_public_key_id');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
 }

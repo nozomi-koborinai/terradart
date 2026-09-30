@@ -81,4 +81,39 @@ final class AwsCognitoIdentityPool extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `allow_classic_flow` attribute.
+  TfRef<bool> get allowClassicFlowRef =>
+      TfRef.attribute<bool>(this, 'allow_classic_flow');
+
+  /// Reference to `allow_unauthenticated_identities` attribute.
+  TfRef<bool> get allowUnauthenticatedIdentitiesRef =>
+      TfRef.attribute<bool>(this, 'allow_unauthenticated_identities');
+
+  /// Reference to `developer_provider_name` attribute.
+  TfRef<String> get developerProviderNameRef =>
+      TfRef.attribute<String>(this, 'developer_provider_name');
+
+  /// Reference to `identity_pool_name` attribute.
+  TfRef<String> get identityPoolNameRef =>
+      TfRef.attribute<String>(this, 'identity_pool_name');
+
+  /// Reference to `openid_connect_provider_arns` attribute.
+  TfRef<List<String>> get openidConnectProviderArnsRef =>
+      TfRef.attribute<List<String>>(this, 'openid_connect_provider_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `saml_provider_arns` attribute.
+  TfRef<List<String>> get samlProviderArnsRef =>
+      TfRef.attribute<List<String>>(this, 'saml_provider_arns');
+
+  /// Reference to `supported_login_providers` attribute.
+  TfRef<Map<String, String>> get supportedLoginProvidersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'supported_login_providers');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -49,4 +49,15 @@ final class AwsServiceDiscoveryPublicDnsNamespace extends Resource {
 
   /// Reference to `hosted_zone` attribute.
   TfRef<String> get hostedZone => TfRef.attribute<String>(this, 'hosted_zone');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

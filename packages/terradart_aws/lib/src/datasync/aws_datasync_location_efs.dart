@@ -83,4 +83,31 @@ final class AwsDatasyncLocationEfs extends Resource {
 
   /// Reference to `uri` attribute.
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `access_point_arn` attribute.
+  TfRef<String> get accessPointArnRef =>
+      TfRef.attribute<String>(this, 'access_point_arn');
+
+  /// Reference to `efs_file_system_arn` attribute.
+  TfRef<String> get efsFileSystemArnRef =>
+      TfRef.attribute<String>(this, 'efs_file_system_arn');
+
+  /// Reference to `file_system_access_role_arn` attribute.
+  TfRef<String> get fileSystemAccessRoleArnRef =>
+      TfRef.attribute<String>(this, 'file_system_access_role_arn');
+
+  /// Reference to `in_transit_encryption` attribute.
+  TfRef<String> get inTransitEncryptionRef =>
+      TfRef.attribute<String>(this, 'in_transit_encryption');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subdirectory` attribute.
+  TfRef<String> get subdirectoryRef =>
+      TfRef.attribute<String>(this, 'subdirectory');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

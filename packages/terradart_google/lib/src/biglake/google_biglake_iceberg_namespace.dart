@@ -50,6 +50,20 @@ final class GoogleBiglakeIcebergNamespace extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `properties` attribute.
+  TfRef<Map<String, String>> get propertiesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'properties');
+
   /// Reference to `namespace_id` attribute.
   TfRef<String> get namespaceIdRef =>
       TfRef.attribute<String>(this, 'namespace_id');

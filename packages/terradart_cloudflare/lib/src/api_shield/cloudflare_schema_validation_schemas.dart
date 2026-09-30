@@ -72,4 +72,17 @@ final class CloudflareSchemaValidationSchemas extends Resource {
 
   /// Reference to `schema_id` attribute.
   TfRef<String> get schemaId => TfRef.attribute<String>(this, 'schema_id');
+
+  /// Reference to `omit_source` attribute.
+  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `validation_enabled` attribute.
+  TfRef<bool> get validationEnabledRef =>
+      TfRef.attribute<bool>(this, 'validation_enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

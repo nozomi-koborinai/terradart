@@ -94,4 +94,13 @@ final class DataCloudflareOrganizations extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `page_size` attribute.
+  TfRef<num> get pageSizeRef => TfRef.attribute<num>(this, 'page_size');
+
+  /// Reference to `page_token` attribute.
+  TfRef<String> get pageTokenRef => TfRef.attribute<String>(this, 'page_token');
 }

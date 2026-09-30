@@ -158,4 +158,39 @@ final class GoogleBigqueryReservation extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `concurrency` attribute.
+  TfRef<num> get concurrencyRef => TfRef.attribute<num>(this, 'concurrency');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `edition` attribute.
+  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+
+  /// Reference to `ignore_idle_slots` attribute.
+  TfRef<bool> get ignoreIdleSlotsRef =>
+      TfRef.attribute<bool>(this, 'ignore_idle_slots');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reservation_group` attribute.
+  TfRef<String> get reservationGroupRef =>
+      TfRef.attribute<String>(this, 'reservation_group');
+
+  /// Reference to `secondary_location` attribute.
+  TfRef<String> get secondaryLocationRef =>
+      TfRef.attribute<String>(this, 'secondary_location');
+
+  /// Reference to `slot_capacity` attribute.
+  TfRef<num> get slotCapacityRef => TfRef.attribute<num>(this, 'slot_capacity');
 }

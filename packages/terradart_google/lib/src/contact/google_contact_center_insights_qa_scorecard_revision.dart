@@ -70,6 +70,20 @@ final class GoogleContactCenterInsightsQaScorecardRevision extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `qa_scorecard` attribute.
+  TfRef<String> get qaScorecardRef =>
+      TfRef.attribute<String>(this, 'qa_scorecard');
+
+  /// Reference to `qa_scorecard_revision_id` attribute.
+  TfRef<String> get qaScorecardRevisionIdRef =>
+      TfRef.attribute<String>(this, 'qa_scorecard_revision_id');
+
   /// Reference to `qa_scorecard_revision_id` attribute.
   TfRef<String> get qaScorecardRevisionId =>
       TfRef.attribute<String>(this, 'qa_scorecard_revision_id');

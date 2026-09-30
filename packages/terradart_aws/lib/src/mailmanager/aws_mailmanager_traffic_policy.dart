@@ -636,4 +636,19 @@ final class AwsMailmanagerTrafficPolicy extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `default_action` attribute.
+  TfRef<String> get defaultActionRef =>
+      TfRef.attribute<String>(this, 'default_action');
+
+  /// Reference to `max_message_size_bytes` attribute.
+  TfRef<num> get maxMessageSizeBytesRef =>
+      TfRef.attribute<num>(this, 'max_message_size_bytes');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -140,4 +140,34 @@ final class AwsDocdbGlobalCluster extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `global_cluster_identifier` attribute.
+  TfRef<String> get globalClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'global_cluster_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_db_cluster_identifier` attribute.
+  TfRef<String> get sourceDbClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'source_db_cluster_identifier');
+
+  /// Reference to `storage_encrypted` attribute.
+  TfRef<bool> get storageEncryptedRef =>
+      TfRef.attribute<bool>(this, 'storage_encrypted');
 }

@@ -26,8 +26,6 @@ final class ParamsStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/params_stack.app.dart'),
       ) {
-    const appConfigParameterId = 'terradart-app-config';
-
     final apiParams = add(
       GoogleProjectService(
         localName: 'api_parametermanager',
@@ -39,7 +37,7 @@ final class ParamsStack extends Stack {
     final appConfig = add(
       GoogleParameterManagerParameter(
         localName: 'app_config',
-        parameterId: .literal(appConfigParameterId),
+        parameterId: .literal('terradart-app-config'),
         format: .literal(.json),
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiParams)],
@@ -58,7 +56,7 @@ final class ParamsStack extends Stack {
     );
 
     // Literal parameter id -- emitted as a Dart constant at synth time.
-    addConstant('appConfigParameterId', const .value(appConfigParameterId));
+    addConstant('appConfigParameterId', .ref(appConfig.parameterIdRef));
 
     // Full parameter resource name -- Terraform output only (computed).
     addOutput('app_config_parameter_name', .ref(appConfig.id));

@@ -70,4 +70,7 @@ final class DataAwsKmsSecrets extends Data {
   /// Reference to `plaintext` attribute.
   TfRef<Map<String, String>> get plaintext =>
       TfRef.attribute<Map<String, String>>(this, 'plaintext');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

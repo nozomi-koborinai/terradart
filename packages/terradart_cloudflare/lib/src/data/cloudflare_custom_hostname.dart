@@ -229,4 +229,11 @@ final class DataCloudflareCustomHostname extends Data {
   /// Reference to `verification_errors` attribute.
   TfRef<List<String>> get verificationErrors =>
       TfRef.attribute<List<String>>(this, 'verification_errors');
+
+  /// Reference to `custom_hostname_id` attribute.
+  TfRef<String> get customHostnameIdRef =>
+      TfRef.attribute<String>(this, 'custom_hostname_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

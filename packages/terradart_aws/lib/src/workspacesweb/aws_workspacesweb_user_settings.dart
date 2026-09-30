@@ -309,4 +309,54 @@ final class AwsWorkspaceswebUserSettings extends Resource {
   /// Reference to `user_settings_arn` attribute.
   TfRef<String> get userSettingsArn =>
       TfRef.attribute<String>(this, 'user_settings_arn');
+
+  /// Reference to `additional_encryption_context` attribute.
+  TfRef<Map<String, String>> get additionalEncryptionContextRef =>
+      TfRef.attribute<Map<String, String>>(
+        this,
+        'additional_encryption_context',
+      );
+
+  /// Reference to `copy_allowed` attribute.
+  TfRef<String> get copyAllowedRef =>
+      TfRef.attribute<String>(this, 'copy_allowed');
+
+  /// Reference to `customer_managed_key` attribute.
+  TfRef<String> get customerManagedKeyRef =>
+      TfRef.attribute<String>(this, 'customer_managed_key');
+
+  /// Reference to `deep_link_allowed` attribute.
+  TfRef<String> get deepLinkAllowedRef =>
+      TfRef.attribute<String>(this, 'deep_link_allowed');
+
+  /// Reference to `disconnect_timeout_in_minutes` attribute.
+  TfRef<num> get disconnectTimeoutInMinutesRef =>
+      TfRef.attribute<num>(this, 'disconnect_timeout_in_minutes');
+
+  /// Reference to `download_allowed` attribute.
+  TfRef<String> get downloadAllowedRef =>
+      TfRef.attribute<String>(this, 'download_allowed');
+
+  /// Reference to `idle_disconnect_timeout_in_minutes` attribute.
+  TfRef<num> get idleDisconnectTimeoutInMinutesRef =>
+      TfRef.attribute<num>(this, 'idle_disconnect_timeout_in_minutes');
+
+  /// Reference to `paste_allowed` attribute.
+  TfRef<String> get pasteAllowedRef =>
+      TfRef.attribute<String>(this, 'paste_allowed');
+
+  /// Reference to `print_allowed` attribute.
+  TfRef<String> get printAllowedRef =>
+      TfRef.attribute<String>(this, 'print_allowed');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `upload_allowed` attribute.
+  TfRef<String> get uploadAllowedRef =>
+      TfRef.attribute<String>(this, 'upload_allowed');
 }

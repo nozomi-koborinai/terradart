@@ -25,4 +25,7 @@ final class DataAwsResourcegroupstaggingapiRequiredTags extends Data {
   /// Reference to `required_tags` attribute.
   TfRef<List<Map<String, Object?>>> get requiredTags =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'required_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

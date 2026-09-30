@@ -192,4 +192,33 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `unit` attribute.
+  TfRef<String> get unitRef => TfRef.attribute<String>(this, 'unit');
+
+  /// Reference to `unit_operation_id` attribute.
+  TfRef<String> get unitOperationIdRef =>
+      TfRef.attribute<String>(this, 'unit_operation_id');
+
+  /// Reference to `wait_for_completion` attribute.
+  TfRef<bool> get waitForCompletionRef =>
+      TfRef.attribute<bool>(this, 'wait_for_completion');
 }

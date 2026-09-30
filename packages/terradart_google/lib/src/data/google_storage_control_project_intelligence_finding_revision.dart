@@ -50,4 +50,17 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevision
   /// Reference to `snapshot` attribute.
   TfRef<List<Map<String, Object?>>> get snapshot =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'snapshot');
+
+  /// Reference to `finding_id` attribute.
+  TfRef<String> get findingIdRef => TfRef.attribute<String>(this, 'finding_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `revision_id` attribute.
+  TfRef<String> get revisionIdRef =>
+      TfRef.attribute<String>(this, 'revision_id');
 }

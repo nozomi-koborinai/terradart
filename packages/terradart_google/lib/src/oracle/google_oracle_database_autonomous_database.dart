@@ -132,6 +132,52 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `admin_password` attribute.
+  TfRef<String> get adminPasswordRef =>
+      TfRef.attribute<String>(this, 'admin_password');
+
+  /// Reference to `autonomous_database_id` attribute.
+  TfRef<String> get autonomousDatabaseIdRef =>
+      TfRef.attribute<String>(this, 'autonomous_database_id');
+
+  /// Reference to `cidr` attribute.
+  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `odb_network` attribute.
+  TfRef<String> get odbNetworkRef =>
+      TfRef.attribute<String>(this, 'odb_network');
+
+  /// Reference to `odb_subnet` attribute.
+  TfRef<String> get odbSubnetRef => TfRef.attribute<String>(this, 'odb_subnet');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

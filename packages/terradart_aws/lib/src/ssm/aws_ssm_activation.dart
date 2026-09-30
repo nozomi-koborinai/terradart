@@ -59,4 +59,26 @@ final class AwsSsmActivation extends Resource {
   /// Reference to `registration_count` attribute.
   TfRef<num> get registrationCount =>
       TfRef.attribute<num>(this, 'registration_count');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `expiration_date` attribute.
+  TfRef<String> get expirationDateRef =>
+      TfRef.attribute<String>(this, 'expiration_date');
+
+  /// Reference to `iam_role` attribute.
+  TfRef<String> get iamRoleRef => TfRef.attribute<String>(this, 'iam_role');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registration_limit` attribute.
+  TfRef<num> get registrationLimitRef =>
+      TfRef.attribute<num>(this, 'registration_limit');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

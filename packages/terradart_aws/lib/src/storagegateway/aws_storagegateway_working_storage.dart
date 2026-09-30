@@ -37,4 +37,14 @@ final class AwsStoragegatewayWorkingStorage extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `disk_id` attribute.
+  TfRef<String> get diskIdRef => TfRef.attribute<String>(this, 'disk_id');
+
+  /// Reference to `gateway_arn` attribute.
+  TfRef<String> get gatewayArnRef =>
+      TfRef.attribute<String>(this, 'gateway_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

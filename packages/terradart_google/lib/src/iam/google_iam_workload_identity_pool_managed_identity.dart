@@ -101,4 +101,33 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_identity_pool_id` attribute.
+  TfRef<String> get workloadIdentityPoolIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_id');
+
+  /// Reference to `workload_identity_pool_managed_identity_id` attribute.
+  TfRef<String> get workloadIdentityPoolManagedIdentityIdRef =>
+      TfRef.attribute<String>(
+        this,
+        'workload_identity_pool_managed_identity_id',
+      );
+
+  /// Reference to `workload_identity_pool_namespace_id` attribute.
+  TfRef<String> get workloadIdentityPoolNamespaceIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_namespace_id');
 }

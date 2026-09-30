@@ -72,4 +72,10 @@ final class DataCloudflareMagicTransitSite extends Data {
   /// Reference to `secondary_connector_id` attribute.
   TfRef<String> get secondaryConnectorId =>
       TfRef.attribute<String>(this, 'secondary_connector_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

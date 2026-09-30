@@ -37,4 +37,10 @@ final class DataGoogleSqlCaCerts extends Data {
   /// Reference to `certs` attribute.
   TfRef<List<Map<String, Object?>>> get certs =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'certs');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

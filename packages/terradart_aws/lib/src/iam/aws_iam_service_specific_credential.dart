@@ -80,4 +80,18 @@ final class AwsIamServiceSpecificCredential extends Resource {
   /// Reference to `service_user_name` attribute.
   TfRef<String> get serviceUserName =>
       TfRef.attribute<String>(this, 'service_user_name');
+
+  /// Reference to `credential_age_days` attribute.
+  TfRef<num> get credentialAgeDaysRef =>
+      TfRef.attribute<num>(this, 'credential_age_days');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

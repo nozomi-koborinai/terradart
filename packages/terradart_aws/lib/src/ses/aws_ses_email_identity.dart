@@ -35,4 +35,10 @@ final class AwsSesEmailIdentity extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

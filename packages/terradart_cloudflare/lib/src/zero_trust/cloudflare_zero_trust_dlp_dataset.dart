@@ -72,4 +72,25 @@ final class CloudflareZeroTrustDlpDataset extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `case_sensitive` attribute.
+  TfRef<bool> get caseSensitiveRef =>
+      TfRef.attribute<bool>(this, 'case_sensitive');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encoding_version` attribute.
+  TfRef<num> get encodingVersionRef =>
+      TfRef.attribute<num>(this, 'encoding_version');
+
+  /// Reference to `secret` attribute.
+  TfRef<bool> get secretRef => TfRef.attribute<bool>(this, 'secret');
 }

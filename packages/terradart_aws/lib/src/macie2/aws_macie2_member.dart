@@ -79,4 +79,31 @@ final class AwsMacie2Member extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `invitation_disable_email_notification` attribute.
+  TfRef<bool> get invitationDisableEmailNotificationRef =>
+      TfRef.attribute<bool>(this, 'invitation_disable_email_notification');
+
+  /// Reference to `invitation_message` attribute.
+  TfRef<String> get invitationMessageRef =>
+      TfRef.attribute<String>(this, 'invitation_message');
+
+  /// Reference to `invite` attribute.
+  TfRef<bool> get inviteRef => TfRef.attribute<bool>(this, 'invite');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

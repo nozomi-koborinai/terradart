@@ -537,6 +537,20 @@ final class GoogleDataprocBatch extends Resource {
   /// Reference to `uuid` attribute.
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `batch_id` for cross-stack refs.
   TfRef<String> get batchIdRef => TfRef.attribute<String>(this, 'batch_id');
 

@@ -132,4 +132,35 @@ final class AwsFsxDataRepositoryAssociation extends Resource {
   /// Reference to `association_id` attribute.
   TfRef<String> get associationId =>
       TfRef.attribute<String>(this, 'association_id');
+
+  /// Reference to `batch_import_meta_data_on_create` attribute.
+  TfRef<bool> get batchImportMetaDataOnCreateRef =>
+      TfRef.attribute<bool>(this, 'batch_import_meta_data_on_create');
+
+  /// Reference to `data_repository_path` attribute.
+  TfRef<String> get dataRepositoryPathRef =>
+      TfRef.attribute<String>(this, 'data_repository_path');
+
+  /// Reference to `delete_data_in_filesystem` attribute.
+  TfRef<bool> get deleteDataInFilesystemRef =>
+      TfRef.attribute<bool>(this, 'delete_data_in_filesystem');
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `file_system_path` attribute.
+  TfRef<String> get fileSystemPathRef =>
+      TfRef.attribute<String>(this, 'file_system_path');
+
+  /// Reference to `imported_file_chunk_size` attribute.
+  TfRef<num> get importedFileChunkSizeRef =>
+      TfRef.attribute<num>(this, 'imported_file_chunk_size');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

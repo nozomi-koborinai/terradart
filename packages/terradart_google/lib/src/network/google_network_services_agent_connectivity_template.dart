@@ -151,4 +151,34 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `access_path` attribute.
+  TfRef<String> get accessPathRef =>
+      TfRef.attribute<String>(this, 'access_path');
+
+  /// Reference to `access_types` attribute.
+  TfRef<List<String>> get accessTypesRef =>
+      TfRef.attribute<List<String>>(this, 'access_types');
+
+  /// Reference to `agent_connectivity_template_id` attribute.
+  TfRef<String> get agentConnectivityTemplateIdRef =>
+      TfRef.attribute<String>(this, 'agent_connectivity_template_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -196,7 +196,10 @@ class DataSourceWrapperEmitter {
     final twinDir = resourceDirs[def.terraformType];
     final twinClass = twinDir == null ? null : snakeToPascal(def.terraformType);
     final derivedGetters = override.deriveOutputGetters
-        ? emitDerivedOutputGetters(def)
+        ? emitDerivedOutputGetters(
+            def,
+            excludeNames: extraGetterNames(override.extraGetters),
+          )
         : '';
     final emitsRef =
         twinClass != null &&

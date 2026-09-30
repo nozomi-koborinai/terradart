@@ -110,4 +110,19 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
   /// Reference to `update_deadline_seconds` attribute.
   TfRef<num> get updateDeadlineSeconds =>
       TfRef.attribute<num>(this, 'update_deadline_seconds');
+
+  /// Reference to `data_source_id` attribute.
+  TfRef<String> get dataSourceIdRef =>
+      TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `unenroll_location` attribute.
+  TfRef<String> get unenrollLocationRef =>
+      TfRef.attribute<String>(this, 'unenroll_location');
 }

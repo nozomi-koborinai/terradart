@@ -35,4 +35,8 @@ final class AwsRoute53DelegationSet extends Resource {
   /// Reference to `name_servers` attribute.
   TfRef<List<String>> get nameServers =>
       TfRef.attribute<List<String>>(this, 'name_servers');
+
+  /// Reference to `reference_name` attribute.
+  TfRef<String> get referenceNameRef =>
+      TfRef.attribute<String>(this, 'reference_name');
 }

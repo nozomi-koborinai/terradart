@@ -47,4 +47,14 @@ final class AwsEc2ClientVpnNetworkAssociation extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `client_vpn_endpoint_id` attribute.
+  TfRef<String> get clientVpnEndpointIdRef =>
+      TfRef.attribute<String>(this, 'client_vpn_endpoint_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 }

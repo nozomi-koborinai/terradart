@@ -40,4 +40,26 @@ final class AwsApiGatewayRestApiPut extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsApiGatewayRestApiPut>`.
   RefTo<AwsApiGatewayRestApiPut> get ref => RefTo.of(this);
+
+  /// Reference to `body` attribute.
+  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+
+  /// Reference to `fail_on_warnings` attribute.
+  TfRef<bool> get failOnWarningsRef =>
+      TfRef.attribute<bool>(this, 'fail_on_warnings');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
+
+  /// Reference to `triggers` attribute.
+  TfRef<Map<String, String>> get triggersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

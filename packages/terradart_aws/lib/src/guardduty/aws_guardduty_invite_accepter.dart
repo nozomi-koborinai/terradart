@@ -37,4 +37,15 @@ final class AwsGuarddutyInviteAccepter extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `detector_id` attribute.
+  TfRef<String> get detectorIdRef =>
+      TfRef.attribute<String>(this, 'detector_id');
+
+  /// Reference to `master_account_id` attribute.
+  TfRef<String> get masterAccountIdRef =>
+      TfRef.attribute<String>(this, 'master_account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

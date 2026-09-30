@@ -356,4 +356,47 @@ final class AwsVerifiedaccessEndpoint extends Resource {
   /// Reference to `verified_access_instance_id` attribute.
   TfRef<String> get verifiedAccessInstanceId =>
       TfRef.attribute<String>(this, 'verified_access_instance_id');
+
+  /// Reference to `application_domain` attribute.
+  TfRef<String> get applicationDomainRef =>
+      TfRef.attribute<String>(this, 'application_domain');
+
+  /// Reference to `attachment_type` attribute.
+  TfRef<String> get attachmentTypeRef =>
+      TfRef.attribute<String>(this, 'attachment_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_certificate_arn` attribute.
+  TfRef<String> get domainCertificateArnRef =>
+      TfRef.attribute<String>(this, 'domain_certificate_arn');
+
+  /// Reference to `endpoint_domain_prefix` attribute.
+  TfRef<String> get endpointDomainPrefixRef =>
+      TfRef.attribute<String>(this, 'endpoint_domain_prefix');
+
+  /// Reference to `endpoint_type` attribute.
+  TfRef<String> get endpointTypeRef =>
+      TfRef.attribute<String>(this, 'endpoint_type');
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `verified_access_group_id` attribute.
+  TfRef<String> get verifiedAccessGroupIdRef =>
+      TfRef.attribute<String>(this, 'verified_access_group_id');
 }

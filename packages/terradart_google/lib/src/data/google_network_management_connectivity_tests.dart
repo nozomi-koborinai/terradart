@@ -35,4 +35,10 @@ final class DataGoogleNetworkManagementConnectivityTests extends Data {
   /// Reference to `connectivity_tests` attribute.
   TfRef<List<Map<String, Object?>>> get connectivityTests =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'connectivity_tests');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

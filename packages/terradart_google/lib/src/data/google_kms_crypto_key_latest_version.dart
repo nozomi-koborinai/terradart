@@ -50,4 +50,10 @@ final class DataGoogleKmsCryptoKeyLatestVersion extends Data {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `crypto_key` attribute.
+  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
 }

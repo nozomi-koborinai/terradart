@@ -89,4 +89,29 @@ final class CloudflareCertificatePack extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `certificate_authority` attribute.
+  TfRef<String> get certificateAuthorityRef =>
+      TfRef.attribute<String>(this, 'certificate_authority');
+
+  /// Reference to `cloudflare_branding` attribute.
+  TfRef<bool> get cloudflareBrandingRef =>
+      TfRef.attribute<bool>(this, 'cloudflare_branding');
+
+  /// Reference to `hosts` attribute.
+  TfRef<List<String>> get hostsRef =>
+      TfRef.attribute<List<String>>(this, 'hosts');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `validation_method` attribute.
+  TfRef<String> get validationMethodRef =>
+      TfRef.attribute<String>(this, 'validation_method');
+
+  /// Reference to `validity_days` attribute.
+  TfRef<num> get validityDaysRef => TfRef.attribute<num>(this, 'validity_days');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

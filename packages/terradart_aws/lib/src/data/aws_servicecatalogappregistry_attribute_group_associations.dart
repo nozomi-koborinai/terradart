@@ -34,4 +34,7 @@ final class DataAwsServicecatalogappregistryAttributeGroupAssociations
   /// Reference to `attribute_group_ids` attribute.
   TfRef<List<String>> get attributeGroupIds =>
       TfRef.attribute<List<String>>(this, 'attribute_group_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -214,4 +214,10 @@ final class DataCloudflareEmailSecurityDomain extends Data {
 
   /// Reference to `transport` attribute.
   TfRef<String> get transport => TfRef.attribute<String>(this, 'transport');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
 }

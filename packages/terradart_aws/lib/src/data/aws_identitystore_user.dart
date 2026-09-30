@@ -152,4 +152,14 @@ final class DataAwsIdentitystoreUser extends Data {
 
   /// Reference to `user_type` attribute.
   TfRef<String> get userType => TfRef.attribute<String>(this, 'user_type');
+
+  /// Reference to `identity_store_id` attribute.
+  TfRef<String> get identityStoreIdRef =>
+      TfRef.attribute<String>(this, 'identity_store_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_id` attribute.
+  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
 }

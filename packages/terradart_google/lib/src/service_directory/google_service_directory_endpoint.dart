@@ -50,4 +50,28 @@ final class GoogleServiceDirectoryEndpoint extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `address` attribute.
+  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `endpoint_id` attribute.
+  TfRef<String> get endpointIdRef =>
+      TfRef.attribute<String>(this, 'endpoint_id');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Map<String, String>> get metadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'metadata');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

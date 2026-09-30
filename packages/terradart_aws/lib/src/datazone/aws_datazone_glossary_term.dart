@@ -86,4 +86,26 @@ final class AwsDatazoneGlossaryTerm extends Resource {
 
   /// Reference to `created_by` attribute.
   TfRef<String> get createdBy => TfRef.attribute<String>(this, 'created_by');
+
+  /// Reference to `domain_identifier` attribute.
+  TfRef<String> get domainIdentifierRef =>
+      TfRef.attribute<String>(this, 'domain_identifier');
+
+  /// Reference to `glossary_identifier` attribute.
+  TfRef<String> get glossaryIdentifierRef =>
+      TfRef.attribute<String>(this, 'glossary_identifier');
+
+  /// Reference to `long_description` attribute.
+  TfRef<String> get longDescriptionRef =>
+      TfRef.attribute<String>(this, 'long_description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `short_description` attribute.
+  TfRef<String> get shortDescriptionRef =>
+      TfRef.attribute<String>(this, 'short_description');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

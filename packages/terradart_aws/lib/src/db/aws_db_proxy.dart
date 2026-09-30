@@ -183,4 +183,49 @@ final class AwsDbProxy extends Resource {
 
   /// Reference to `endpoint` attribute.
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
+
+  /// Reference to `debug_logging` attribute.
+  TfRef<bool> get debugLoggingRef =>
+      TfRef.attribute<bool>(this, 'debug_logging');
+
+  /// Reference to `default_auth_scheme` attribute.
+  TfRef<String> get defaultAuthSchemeRef =>
+      TfRef.attribute<String>(this, 'default_auth_scheme');
+
+  /// Reference to `endpoint_network_type` attribute.
+  TfRef<String> get endpointNetworkTypeRef =>
+      TfRef.attribute<String>(this, 'endpoint_network_type');
+
+  /// Reference to `engine_family` attribute.
+  TfRef<String> get engineFamilyRef =>
+      TfRef.attribute<String>(this, 'engine_family');
+
+  /// Reference to `idle_client_timeout` attribute.
+  TfRef<num> get idleClientTimeoutRef =>
+      TfRef.attribute<num>(this, 'idle_client_timeout');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `require_tls` attribute.
+  TfRef<bool> get requireTlsRef => TfRef.attribute<bool>(this, 'require_tls');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_connection_network_type` attribute.
+  TfRef<String> get targetConnectionNetworkTypeRef =>
+      TfRef.attribute<String>(this, 'target_connection_network_type');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
+
+  /// Reference to `vpc_subnet_ids` attribute.
+  TfRef<List<String>> get vpcSubnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
 }

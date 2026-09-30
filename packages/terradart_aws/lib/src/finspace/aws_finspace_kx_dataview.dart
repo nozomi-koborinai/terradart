@@ -109,4 +109,40 @@ final class AwsFinspaceKxDataview extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `auto_update` attribute.
+  TfRef<bool> get autoUpdateRef => TfRef.attribute<bool>(this, 'auto_update');
+
+  /// Reference to `availability_zone_id` attribute.
+  TfRef<String> get availabilityZoneIdRef =>
+      TfRef.attribute<String>(this, 'availability_zone_id');
+
+  /// Reference to `az_mode` attribute.
+  TfRef<String> get azModeRef => TfRef.attribute<String>(this, 'az_mode');
+
+  /// Reference to `changeset_id` attribute.
+  TfRef<String> get changesetIdRef =>
+      TfRef.attribute<String>(this, 'changeset_id');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `read_write` attribute.
+  TfRef<bool> get readWriteRef => TfRef.attribute<bool>(this, 'read_write');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

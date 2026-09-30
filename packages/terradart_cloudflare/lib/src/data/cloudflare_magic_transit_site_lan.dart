@@ -65,4 +65,13 @@ final class DataCloudflareMagicTransitSiteLan extends Data {
 
   /// Reference to `vlan_tag` attribute.
   TfRef<num> get vlanTag => TfRef.attribute<num>(this, 'vlan_tag');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `lan_id` attribute.
+  TfRef<String> get lanIdRef => TfRef.attribute<String>(this, 'lan_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

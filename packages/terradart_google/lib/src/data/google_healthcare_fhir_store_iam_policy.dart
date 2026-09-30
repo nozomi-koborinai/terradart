@@ -38,4 +38,8 @@ final class DataGoogleHealthcareFhirStoreIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `fhir_store_id` attribute.
+  TfRef<String> get fhirStoreIdRef =>
+      TfRef.attribute<String>(this, 'fhir_store_id');
 }

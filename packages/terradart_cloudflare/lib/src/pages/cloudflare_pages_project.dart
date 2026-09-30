@@ -1002,4 +1002,11 @@ final class CloudflarePagesProject extends Resource {
   /// Reference to `uses_functions` attribute.
   TfRef<bool> get usesFunctions =>
       TfRef.attribute<bool>(this, 'uses_functions');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `production_branch` attribute.
+  TfRef<String> get productionBranchRef =>
+      TfRef.attribute<String>(this, 'production_branch');
 }

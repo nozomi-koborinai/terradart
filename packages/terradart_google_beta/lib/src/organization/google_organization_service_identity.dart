@@ -47,4 +47,11 @@ final class GoogleOrganizationServiceIdentity extends Resource {
 
   /// Reference to `member` attribute.
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

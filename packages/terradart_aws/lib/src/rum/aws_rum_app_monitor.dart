@@ -201,4 +201,22 @@ final class AwsRumAppMonitor extends Resource {
 
   /// Reference to `cw_log_group` attribute.
   TfRef<String> get cwLogGroup => TfRef.attribute<String>(this, 'cw_log_group');
+
+  /// Reference to `cw_log_enabled` attribute.
+  TfRef<bool> get cwLogEnabledRef =>
+      TfRef.attribute<bool>(this, 'cw_log_enabled');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `domain_list` attribute.
+  TfRef<List<String>> get domainListRef =>
+      TfRef.attribute<List<String>>(this, 'domain_list');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

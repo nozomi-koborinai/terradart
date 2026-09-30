@@ -54,4 +54,15 @@ final class DataAwsEcrpublicImages extends Data {
   /// Reference to `images` attribute.
   TfRef<List<Map<String, Object?>>> get images =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'images');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_id` attribute.
+  TfRef<String> get registryIdRef =>
+      TfRef.attribute<String>(this, 'registry_id');
+
+  /// Reference to `repository_name` attribute.
+  TfRef<String> get repositoryNameRef =>
+      TfRef.attribute<String>(this, 'repository_name');
 }

@@ -34,4 +34,15 @@ final class AwsS3tablesTableBucketPolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsS3tablesTableBucketPolicy>`.
   RefTo<AwsS3tablesTableBucketPolicy> get ref => RefTo.of(this);
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_policy` attribute.
+  TfRef<String> get resourcePolicyRef =>
+      TfRef.attribute<String>(this, 'resource_policy');
+
+  /// Reference to `table_bucket_arn` attribute.
+  TfRef<String> get tableBucketArnRef =>
+      TfRef.attribute<String>(this, 'table_bucket_arn');
 }

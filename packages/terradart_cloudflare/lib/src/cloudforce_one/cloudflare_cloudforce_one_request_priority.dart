@@ -91,4 +91,21 @@ final class CloudflareCloudforceOneRequestPriority extends Resource {
 
   /// Reference to `updated` attribute.
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<List<String>> get labelsRef =>
+      TfRef.attribute<List<String>>(this, 'labels');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `requirement` attribute.
+  TfRef<String> get requirementRef =>
+      TfRef.attribute<String>(this, 'requirement');
+
+  /// Reference to `tlp` attribute.
+  TfRef<String> get tlpRef => TfRef.attribute<String>(this, 'tlp');
 }

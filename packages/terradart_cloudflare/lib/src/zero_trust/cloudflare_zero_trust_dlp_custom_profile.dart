@@ -234,4 +234,34 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ai_context_enabled` attribute.
+  TfRef<bool> get aiContextEnabledRef =>
+      TfRef.attribute<bool>(this, 'ai_context_enabled');
+
+  /// Reference to `allowed_match_count` attribute.
+  TfRef<num> get allowedMatchCountRef =>
+      TfRef.attribute<num>(this, 'allowed_match_count');
+
+  /// Reference to `confidence_threshold` attribute.
+  TfRef<String> get confidenceThresholdRef =>
+      TfRef.attribute<String>(this, 'confidence_threshold');
+
+  /// Reference to `data_classes` attribute.
+  TfRef<List<String>> get dataClassesRef =>
+      TfRef.attribute<List<String>>(this, 'data_classes');
+
+  /// Reference to `data_tags` attribute.
+  TfRef<List<String>> get dataTagsRef =>
+      TfRef.attribute<List<String>>(this, 'data_tags');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ocr_enabled` attribute.
+  TfRef<bool> get ocrEnabledRef => TfRef.attribute<bool>(this, 'ocr_enabled');
 }

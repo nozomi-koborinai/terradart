@@ -99,4 +99,10 @@ final class DataCloudflareWorker extends Data {
 
   /// Reference to `updated_on` attribute.
   TfRef<String> get updatedOn => TfRef.attribute<String>(this, 'updated_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `worker_id` attribute.
+  TfRef<String> get workerIdRef => TfRef.attribute<String>(this, 'worker_id');
 }

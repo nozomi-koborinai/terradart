@@ -211,4 +211,18 @@ final class AwsPrometheusScraper extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `alias` attribute.
+  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scrape_configuration` attribute.
+  TfRef<String> get scrapeConfigurationRef =>
+      TfRef.attribute<String>(this, 'scrape_configuration');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -86,4 +86,29 @@ final class GoogleCesAppVersion extends Resource {
   /// Reference to `snapshot` attribute.
   TfRef<List<Map<String, Object?>>> get snapshot =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'snapshot');
+
+  /// Reference to `app` attribute.
+  TfRef<String> get appRef => TfRef.attribute<String>(this, 'app');
+
+  /// Reference to `app_version_id` attribute.
+  TfRef<String> get appVersionIdRef =>
+      TfRef.attribute<String>(this, 'app_version_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

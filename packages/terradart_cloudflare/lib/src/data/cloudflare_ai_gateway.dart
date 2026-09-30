@@ -129,4 +129,7 @@ final class DataCloudflareAiGateway extends Data {
 
   /// Reference to `zdr` attribute.
   TfRef<bool> get zdr => TfRef.attribute<bool>(this, 'zdr');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

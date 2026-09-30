@@ -64,4 +64,27 @@ final class AwsAppstreamUser extends Resource {
   /// Reference to `created_time` attribute.
   TfRef<String> get createdTime =>
       TfRef.attribute<String>(this, 'created_time');
+
+  /// Reference to `authentication_type` attribute.
+  TfRef<String> get authenticationTypeRef =>
+      TfRef.attribute<String>(this, 'authentication_type');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `first_name` attribute.
+  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+
+  /// Reference to `last_name` attribute.
+  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `send_email_notification` attribute.
+  TfRef<bool> get sendEmailNotificationRef =>
+      TfRef.attribute<bool>(this, 'send_email_notification');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

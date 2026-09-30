@@ -1586,4 +1586,49 @@ final class GoogleCloudSecurityComplianceCloudControl extends Resource {
   /// Reference to `supported_target_resource_types` attribute.
   TfRef<List<String>> get supportedTargetResourceTypes =>
       TfRef.attribute<List<String>>(this, 'supported_target_resource_types');
+
+  /// Reference to `categories` attribute.
+  TfRef<List<String>> get categoriesRef =>
+      TfRef.attribute<List<String>>(this, 'categories');
+
+  /// Reference to `cloud_control_id` attribute.
+  TfRef<String> get cloudControlIdRef =>
+      TfRef.attribute<String>(this, 'cloud_control_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `finding_category` attribute.
+  TfRef<String> get findingCategoryRef =>
+      TfRef.attribute<String>(this, 'finding_category');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `remediation_steps` attribute.
+  TfRef<String> get remediationStepsRef =>
+      TfRef.attribute<String>(this, 'remediation_steps');
+
+  /// Reference to `severity` attribute.
+  TfRef<String> get severityRef => TfRef.attribute<String>(this, 'severity');
+
+  /// Reference to `supported_cloud_providers` attribute.
+  TfRef<List<String>> get supportedCloudProvidersRef =>
+      TfRef.attribute<List<String>>(this, 'supported_cloud_providers');
 }

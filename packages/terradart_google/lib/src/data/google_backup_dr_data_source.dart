@@ -89,4 +89,18 @@ final class DataGoogleBackupDrDataSource extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `backup_vault_id` attribute.
+  TfRef<String> get backupVaultIdRef =>
+      TfRef.attribute<String>(this, 'backup_vault_id');
+
+  /// Reference to `data_source_id` attribute.
+  TfRef<String> get dataSourceIdRef =>
+      TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

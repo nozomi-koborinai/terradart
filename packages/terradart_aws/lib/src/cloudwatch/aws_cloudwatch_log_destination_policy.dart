@@ -40,4 +40,18 @@ final class AwsCloudwatchLogDestinationPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `access_policy` attribute.
+  TfRef<String> get accessPolicyRef =>
+      TfRef.attribute<String>(this, 'access_policy');
+
+  /// Reference to `destination_name` attribute.
+  TfRef<String> get destinationNameRef =>
+      TfRef.attribute<String>(this, 'destination_name');
+
+  /// Reference to `force_update` attribute.
+  TfRef<bool> get forceUpdateRef => TfRef.attribute<bool>(this, 'force_update');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

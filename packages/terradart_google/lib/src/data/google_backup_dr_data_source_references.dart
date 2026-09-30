@@ -37,4 +37,10 @@ final class DataGoogleBackupDrDataSourceReferences extends Data {
         this,
         'data_source_references',
       );
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

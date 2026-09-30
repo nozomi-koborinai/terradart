@@ -65,4 +65,16 @@ final class CloudflareHostnameTlsSetting extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `setting_id` attribute.
+  TfRef<String> get settingIdRef => TfRef.attribute<String>(this, 'setting_id');
+
+  /// Reference to `value` attribute.
+  TfRef<Object?> get valueRef => TfRef.attribute<Object?>(this, 'value');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -84,4 +84,19 @@ final class CloudflareMagicTransitSiteWan extends Resource {
   /// Reference to `health_check_rate` attribute.
   TfRef<String> get healthCheckRate =>
       TfRef.attribute<String>(this, 'health_check_rate');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `physport` attribute.
+  TfRef<num> get physportRef => TfRef.attribute<num>(this, 'physport');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+
+  /// Reference to `vlan_tag` attribute.
+  TfRef<num> get vlanTagRef => TfRef.attribute<num>(this, 'vlan_tag');
 }

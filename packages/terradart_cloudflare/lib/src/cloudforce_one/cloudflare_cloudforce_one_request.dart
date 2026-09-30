@@ -86,4 +86,23 @@ final class CloudflareCloudforceOneRequest extends Resource {
 
   /// Reference to `updated` attribute.
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `priority` attribute.
+  TfRef<String> get priorityRef => TfRef.attribute<String>(this, 'priority');
+
+  /// Reference to `request_type` attribute.
+  TfRef<String> get requestTypeRef =>
+      TfRef.attribute<String>(this, 'request_type');
+
+  /// Reference to `summary` attribute.
+  TfRef<String> get summaryRef => TfRef.attribute<String>(this, 'summary');
+
+  /// Reference to `tlp` attribute.
+  TfRef<String> get tlpRef => TfRef.attribute<String>(this, 'tlp');
 }

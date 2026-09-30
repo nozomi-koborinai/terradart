@@ -112,4 +112,18 @@ final class AwsLexBotAlias extends Resource {
   /// Reference to `last_updated_date` attribute.
   TfRef<String> get lastUpdatedDate =>
       TfRef.attribute<String>(this, 'last_updated_date');
+
+  /// Reference to `bot_name` attribute.
+  TfRef<String> get botNameRef => TfRef.attribute<String>(this, 'bot_name');
+
+  /// Reference to `bot_version` attribute.
+  TfRef<String> get botVersionRef =>
+      TfRef.attribute<String>(this, 'bot_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

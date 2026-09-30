@@ -41,4 +41,8 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `service_account_id` attribute.
+  TfRef<String> get serviceAccountIdRef =>
+      TfRef.attribute<String>(this, 'service_account_id');
 }

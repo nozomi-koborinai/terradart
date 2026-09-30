@@ -40,4 +40,15 @@ final class AwsCloudwatchLogDataProtectionPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `log_group_name` attribute.
+  TfRef<String> get logGroupNameRef =>
+      TfRef.attribute<String>(this, 'log_group_name');
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

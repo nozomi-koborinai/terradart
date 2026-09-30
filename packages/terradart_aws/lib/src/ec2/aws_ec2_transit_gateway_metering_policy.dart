@@ -48,4 +48,19 @@ final class AwsEc2TransitGatewayMeteringPolicy extends Resource {
   /// Reference to `transit_gateway_metering_policy_id` attribute.
   TfRef<String> get transitGatewayMeteringPolicyId =>
       TfRef.attribute<String>(this, 'transit_gateway_metering_policy_id');
+
+  /// Reference to `middlebox_attachment_ids` attribute.
+  TfRef<List<String>> get middleboxAttachmentIdsRef =>
+      TfRef.attribute<List<String>>(this, 'middlebox_attachment_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
 }

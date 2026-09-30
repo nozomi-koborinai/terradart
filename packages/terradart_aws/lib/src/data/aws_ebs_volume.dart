@@ -102,4 +102,14 @@ final class DataAwsEbsVolume extends Data {
 
   /// Reference to `volume_type` attribute.
   TfRef<String> get volumeType => TfRef.attribute<String>(this, 'volume_type');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

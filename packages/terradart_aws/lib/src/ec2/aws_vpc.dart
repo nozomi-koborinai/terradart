@@ -161,4 +161,58 @@ final class AwsVpc extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `assign_generated_ipv6_cidr_block` attribute.
+  TfRef<bool> get assignGeneratedIpv6CidrBlockRef =>
+      TfRef.attribute<bool>(this, 'assign_generated_ipv6_cidr_block');
+
+  /// Reference to `cidr_block` attribute.
+  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+
+  /// Reference to `enable_dns_hostnames` attribute.
+  TfRef<bool> get enableDnsHostnamesRef =>
+      TfRef.attribute<bool>(this, 'enable_dns_hostnames');
+
+  /// Reference to `enable_dns_support` attribute.
+  TfRef<bool> get enableDnsSupportRef =>
+      TfRef.attribute<bool>(this, 'enable_dns_support');
+
+  /// Reference to `enable_network_address_usage_metrics` attribute.
+  TfRef<bool> get enableNetworkAddressUsageMetricsRef =>
+      TfRef.attribute<bool>(this, 'enable_network_address_usage_metrics');
+
+  /// Reference to `instance_tenancy` attribute.
+  TfRef<String> get instanceTenancyRef =>
+      TfRef.attribute<String>(this, 'instance_tenancy');
+
+  /// Reference to `ipv4_ipam_pool_id` attribute.
+  TfRef<String> get ipv4IpamPoolIdRef =>
+      TfRef.attribute<String>(this, 'ipv4_ipam_pool_id');
+
+  /// Reference to `ipv4_netmask_length` attribute.
+  TfRef<num> get ipv4NetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'ipv4_netmask_length');
+
+  /// Reference to `ipv6_cidr_block` attribute.
+  TfRef<String> get ipv6CidrBlockRef =>
+      TfRef.attribute<String>(this, 'ipv6_cidr_block');
+
+  /// Reference to `ipv6_cidr_block_network_border_group` attribute.
+  TfRef<String> get ipv6CidrBlockNetworkBorderGroupRef =>
+      TfRef.attribute<String>(this, 'ipv6_cidr_block_network_border_group');
+
+  /// Reference to `ipv6_ipam_pool_id` attribute.
+  TfRef<String> get ipv6IpamPoolIdRef =>
+      TfRef.attribute<String>(this, 'ipv6_ipam_pool_id');
+
+  /// Reference to `ipv6_netmask_length` attribute.
+  TfRef<num> get ipv6NetmaskLengthRef =>
+      TfRef.attribute<num>(this, 'ipv6_netmask_length');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

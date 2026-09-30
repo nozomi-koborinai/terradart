@@ -92,4 +92,14 @@ final class DataGoogleComputeReservationBlock extends Data {
   /// Reference to `sub_block_names` attribute.
   TfRef<List<String>> get subBlockNames =>
       TfRef.attribute<List<String>>(this, 'sub_block_names');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reservation` attribute.
+  TfRef<String> get reservationRef =>
+      TfRef.attribute<String>(this, 'reservation');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

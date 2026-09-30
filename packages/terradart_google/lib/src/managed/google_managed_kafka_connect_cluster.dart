@@ -170,6 +170,24 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `kafka_cluster` attribute.
+  TfRef<String> get kafkaClusterRef =>
+      TfRef.attribute<String>(this, 'kafka_cluster');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `connect_cluster_id` attribute.
   TfRef<String> get connectClusterIdRef =>
       TfRef.attribute<String>(this, 'connect_cluster_id');

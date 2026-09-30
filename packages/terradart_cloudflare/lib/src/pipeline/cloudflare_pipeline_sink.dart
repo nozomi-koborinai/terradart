@@ -370,4 +370,10 @@ final class CloudflarePipelineSink extends Resource {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

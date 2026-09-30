@@ -70,4 +70,22 @@ final class AwsCloudfrontConnectionGroup extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `anycast_ip_list_id` attribute.
+  TfRef<String> get anycastIpListIdRef =>
+      TfRef.attribute<String>(this, 'anycast_ip_list_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `ipv6_enabled` attribute.
+  TfRef<bool> get ipv6EnabledRef => TfRef.attribute<bool>(this, 'ipv6_enabled');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `wait_for_deployment` attribute.
+  TfRef<bool> get waitForDeploymentRef =>
+      TfRef.attribute<bool>(this, 'wait_for_deployment');
 }

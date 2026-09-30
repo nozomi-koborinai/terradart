@@ -125,4 +125,10 @@ final class DataCloudflareSpectrumApplication extends Data {
   /// Reference to `virtual_network_id` attribute.
   TfRef<String> get virtualNetworkId =>
       TfRef.attribute<String>(this, 'virtual_network_id');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

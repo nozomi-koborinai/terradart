@@ -47,4 +47,25 @@ final class AwsM2Deployment extends Resource {
   /// Reference to `deployment_id` attribute.
   TfRef<String> get deploymentId =>
       TfRef.attribute<String>(this, 'deployment_id');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `application_version` attribute.
+  TfRef<num> get applicationVersionRef =>
+      TfRef.attribute<num>(this, 'application_version');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `force_stop` attribute.
+  TfRef<bool> get forceStopRef => TfRef.attribute<bool>(this, 'force_stop');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `start` attribute.
+  TfRef<bool> get startRef => TfRef.attribute<bool>(this, 'start');
 }

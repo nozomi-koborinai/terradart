@@ -46,4 +46,13 @@ final class DataGooglePrivatecaCaPoolIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `ca_pool` attribute.
+  TfRef<String> get caPoolRef => TfRef.attribute<String>(this, 'ca_pool');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

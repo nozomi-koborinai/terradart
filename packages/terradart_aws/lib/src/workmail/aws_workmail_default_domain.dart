@@ -34,4 +34,15 @@ final class AwsWorkmailDefaultDomain extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsWorkmailDefaultDomain>`.
   RefTo<AwsWorkmailDefaultDomain> get ref => RefTo.of(this);
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

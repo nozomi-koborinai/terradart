@@ -93,4 +93,47 @@ final class AwsDxHostedPrivateVirtualInterface extends Resource {
   /// Reference to `prefix_pool_allocated_count_ipv6` attribute.
   TfRef<num> get prefixPoolAllocatedCountIpv6 =>
       TfRef.attribute<num>(this, 'prefix_pool_allocated_count_ipv6');
+
+  /// Reference to `address_family` attribute.
+  TfRef<String> get addressFamilyRef =>
+      TfRef.attribute<String>(this, 'address_family');
+
+  /// Reference to `amazon_address` attribute.
+  TfRef<String> get amazonAddressRef =>
+      TfRef.attribute<String>(this, 'amazon_address');
+
+  /// Reference to `bgp_asn` attribute.
+  TfRef<num> get bgpAsnRef => TfRef.attribute<num>(this, 'bgp_asn');
+
+  /// Reference to `bgp_asn_long` attribute.
+  TfRef<String> get bgpAsnLongRef =>
+      TfRef.attribute<String>(this, 'bgp_asn_long');
+
+  /// Reference to `bgp_auth_key` attribute.
+  TfRef<String> get bgpAuthKeyRef =>
+      TfRef.attribute<String>(this, 'bgp_auth_key');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `customer_address` attribute.
+  TfRef<String> get customerAddressRef =>
+      TfRef.attribute<String>(this, 'customer_address');
+
+  /// Reference to `mtu` attribute.
+  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+
+  /// Reference to `owner_account_id` attribute.
+  TfRef<String> get ownerAccountIdRef =>
+      TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `rate_limit` attribute.
+  TfRef<String> get rateLimitRef => TfRef.attribute<String>(this, 'rate_limit');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vlan` attribute.
+  TfRef<num> get vlanRef => TfRef.attribute<num>(this, 'vlan');
 }

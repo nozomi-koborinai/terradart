@@ -36,4 +36,10 @@ final class AwsServicequotasTemplateAssociation extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
 }

@@ -78,4 +78,10 @@ final class DataAwsLakeformationDataLakeSettings extends Data {
   /// Reference to `trusted_resource_owners` attribute.
   TfRef<List<String>> get trustedResourceOwners =>
       TfRef.attribute<List<String>>(this, 'trusted_resource_owners');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

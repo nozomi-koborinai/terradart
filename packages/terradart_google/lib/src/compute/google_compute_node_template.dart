@@ -233,6 +233,31 @@ final class GoogleComputeNodeTemplate extends Resource {
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
 
+  /// Reference to `cpu_overcommit_type` attribute.
+  TfRef<String> get cpuOvercommitTypeRef =>
+      TfRef.attribute<String>(this, 'cpu_overcommit_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `node_affinity_labels` attribute.
+  TfRef<Map<String, String>> get nodeAffinityLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'node_affinity_labels');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

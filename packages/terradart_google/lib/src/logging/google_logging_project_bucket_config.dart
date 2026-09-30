@@ -108,6 +108,31 @@ final class GoogleLoggingProjectBucketConfig extends Resource {
   TfRef<String> get lifecycleState =>
       TfRef.attribute<String>(this, 'lifecycle_state');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_analytics` attribute.
+  TfRef<bool> get enableAnalyticsRef =>
+      TfRef.attribute<bool>(this, 'enable_analytics');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `locked` attribute.
+  TfRef<bool> get lockedRef => TfRef.attribute<bool>(this, 'locked');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `retention_days` attribute.
+  TfRef<num> get retentionDaysRef =>
+      TfRef.attribute<num>(this, 'retention_days');
+
   TfRef<String> get bucketIdRef => TfRef.attribute<String>(this, 'bucket_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

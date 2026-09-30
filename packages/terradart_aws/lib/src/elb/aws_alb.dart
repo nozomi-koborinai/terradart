@@ -434,4 +434,110 @@ final class AwsAlb extends Resource {
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
+
+  /// Reference to `client_keep_alive` attribute.
+  TfRef<num> get clientKeepAliveRef =>
+      TfRef.attribute<num>(this, 'client_keep_alive');
+
+  /// Reference to `customer_owned_ipv4_pool` attribute.
+  TfRef<String> get customerOwnedIpv4PoolRef =>
+      TfRef.attribute<String>(this, 'customer_owned_ipv4_pool');
+
+  /// Reference to `desync_mitigation_mode` attribute.
+  TfRef<String> get desyncMitigationModeRef =>
+      TfRef.attribute<String>(this, 'desync_mitigation_mode');
+
+  /// Reference to `dns_record_client_routing_policy` attribute.
+  TfRef<String> get dnsRecordClientRoutingPolicyRef =>
+      TfRef.attribute<String>(this, 'dns_record_client_routing_policy');
+
+  /// Reference to `drop_invalid_header_fields` attribute.
+  TfRef<bool> get dropInvalidHeaderFieldsRef =>
+      TfRef.attribute<bool>(this, 'drop_invalid_header_fields');
+
+  /// Reference to `enable_cross_zone_load_balancing` attribute.
+  TfRef<bool> get enableCrossZoneLoadBalancingRef =>
+      TfRef.attribute<bool>(this, 'enable_cross_zone_load_balancing');
+
+  /// Reference to `enable_deletion_protection` attribute.
+  TfRef<bool> get enableDeletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'enable_deletion_protection');
+
+  /// Reference to `enable_http2` attribute.
+  TfRef<bool> get enableHttp2Ref => TfRef.attribute<bool>(this, 'enable_http2');
+
+  /// Reference to `enable_prefix_for_ipv6_source_nat` attribute.
+  TfRef<String> get enablePrefixForIpv6SourceNatRef =>
+      TfRef.attribute<String>(this, 'enable_prefix_for_ipv6_source_nat');
+
+  /// Reference to `enable_tls_version_and_cipher_suite_headers` attribute.
+  TfRef<bool> get enableTlsVersionAndCipherSuiteHeadersRef =>
+      TfRef.attribute<bool>(
+        this,
+        'enable_tls_version_and_cipher_suite_headers',
+      );
+
+  /// Reference to `enable_waf_fail_open` attribute.
+  TfRef<bool> get enableWafFailOpenRef =>
+      TfRef.attribute<bool>(this, 'enable_waf_fail_open');
+
+  /// Reference to `enable_xff_client_port` attribute.
+  TfRef<bool> get enableXffClientPortRef =>
+      TfRef.attribute<bool>(this, 'enable_xff_client_port');
+
+  /// Reference to `enable_zonal_shift` attribute.
+  TfRef<bool> get enableZonalShiftRef =>
+      TfRef.attribute<bool>(this, 'enable_zonal_shift');
+
+  /// Reference to `enforce_security_group_inbound_rules_on_private_link_traffic` attribute.
+  TfRef<String> get enforceSecurityGroupInboundRulesOnPrivateLinkTrafficRef =>
+      TfRef.attribute<String>(
+        this,
+        'enforce_security_group_inbound_rules_on_private_link_traffic',
+      );
+
+  /// Reference to `idle_timeout` attribute.
+  TfRef<num> get idleTimeoutRef => TfRef.attribute<num>(this, 'idle_timeout');
+
+  /// Reference to `internal` attribute.
+  TfRef<bool> get internalRef => TfRef.attribute<bool>(this, 'internal');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `load_balancer_type` attribute.
+  TfRef<String> get loadBalancerTypeRef =>
+      TfRef.attribute<String>(this, 'load_balancer_type');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `preserve_host_header` attribute.
+  TfRef<bool> get preserveHostHeaderRef =>
+      TfRef.attribute<bool>(this, 'preserve_host_header');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secondary_ips_auto_assigned_per_subnet` attribute.
+  TfRef<num> get secondaryIpsAutoAssignedPerSubnetRef =>
+      TfRef.attribute<num>(this, 'secondary_ips_auto_assigned_per_subnet');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `subnets` attribute.
+  TfRef<List<String>> get subnetsRef =>
+      TfRef.attribute<List<String>>(this, 'subnets');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `xff_header_processing_mode` attribute.
+  TfRef<String> get xffHeaderProcessingModeRef =>
+      TfRef.attribute<String>(this, 'xff_header_processing_mode');
 }

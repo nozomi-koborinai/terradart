@@ -96,4 +96,32 @@ final class AwsRedshiftUsageLimit extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `amount` attribute.
+  TfRef<num> get amountRef => TfRef.attribute<num>(this, 'amount');
+
+  /// Reference to `breach_action` attribute.
+  TfRef<String> get breachActionRef =>
+      TfRef.attribute<String>(this, 'breach_action');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `feature_type` attribute.
+  TfRef<String> get featureTypeRef =>
+      TfRef.attribute<String>(this, 'feature_type');
+
+  /// Reference to `limit_type` attribute.
+  TfRef<String> get limitTypeRef => TfRef.attribute<String>(this, 'limit_type');
+
+  /// Reference to `period` attribute.
+  TfRef<String> get periodRef => TfRef.attribute<String>(this, 'period');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

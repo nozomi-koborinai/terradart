@@ -131,4 +131,26 @@ final class AwsS3controlAccessGrant extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `access_grants_location_id` attribute.
+  TfRef<String> get accessGrantsLocationIdRef =>
+      TfRef.attribute<String>(this, 'access_grants_location_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `permission` attribute.
+  TfRef<String> get permissionRef =>
+      TfRef.attribute<String>(this, 'permission');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_prefix_type` attribute.
+  TfRef<String> get s3PrefixTypeRef =>
+      TfRef.attribute<String>(this, 's3_prefix_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

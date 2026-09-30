@@ -42,4 +42,7 @@ final class AwsLightsailStaticIp extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

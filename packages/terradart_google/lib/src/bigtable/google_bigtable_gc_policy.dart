@@ -117,4 +117,32 @@ final class GoogleBigtableGcPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `column_family` attribute.
+  TfRef<String> get columnFamilyRef =>
+      TfRef.attribute<String>(this, 'column_family');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `gc_rules` attribute.
+  TfRef<String> get gcRulesRef => TfRef.attribute<String>(this, 'gc_rules');
+
+  /// Reference to `ignore_warnings` attribute.
+  TfRef<bool> get ignoreWarningsRef =>
+      TfRef.attribute<bool>(this, 'ignore_warnings');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `table` attribute.
+  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
 }

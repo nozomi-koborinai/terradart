@@ -120,4 +120,17 @@ final class AwsAppmeshVirtualRouter extends Resource {
   /// Reference to `resource_owner` attribute.
   TfRef<String> get resourceOwner =>
       TfRef.attribute<String>(this, 'resource_owner');
+
+  /// Reference to `mesh_name` attribute.
+  TfRef<String> get meshNameRef => TfRef.attribute<String>(this, 'mesh_name');
+
+  /// Reference to `mesh_owner` attribute.
+  TfRef<String> get meshOwnerRef => TfRef.attribute<String>(this, 'mesh_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

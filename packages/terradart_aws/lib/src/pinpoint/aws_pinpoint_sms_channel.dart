@@ -49,4 +49,20 @@ final class AwsPinpointSmsChannel extends Resource {
   /// Reference to `transactional_messages_per_second` attribute.
   TfRef<num> get transactionalMessagesPerSecond =>
       TfRef.attribute<num>(this, 'transactional_messages_per_second');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sender_id` attribute.
+  TfRef<String> get senderIdRef => TfRef.attribute<String>(this, 'sender_id');
+
+  /// Reference to `short_code` attribute.
+  TfRef<String> get shortCodeRef => TfRef.attribute<String>(this, 'short_code');
 }

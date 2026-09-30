@@ -33,4 +33,10 @@ final class DataGoogleCloudQuotasQuotaInfos extends Data {
   /// Reference to `quota_infos` attribute.
   TfRef<List<Map<String, Object?>>> get quotaInfos =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'quota_infos');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

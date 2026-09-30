@@ -50,4 +50,42 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareEmailSecurityAllowPoliciesSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `is_acceptable_sender` attribute.
+  TfRef<bool> get isAcceptableSenderRef =>
+      TfRef.attribute<bool>(this, 'is_acceptable_sender');
+
+  /// Reference to `is_exempt_recipient` attribute.
+  TfRef<bool> get isExemptRecipientRef =>
+      TfRef.attribute<bool>(this, 'is_exempt_recipient');
+
+  /// Reference to `is_trusted_sender` attribute.
+  TfRef<bool> get isTrustedSenderRef =>
+      TfRef.attribute<bool>(this, 'is_trusted_sender');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `pattern` attribute.
+  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+
+  /// Reference to `pattern_type` attribute.
+  TfRef<String> get patternTypeRef =>
+      TfRef.attribute<String>(this, 'pattern_type');
+
+  /// Reference to `search` attribute.
+  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+
+  /// Reference to `verify_sender` attribute.
+  TfRef<bool> get verifySenderRef =>
+      TfRef.attribute<bool>(this, 'verify_sender');
 }

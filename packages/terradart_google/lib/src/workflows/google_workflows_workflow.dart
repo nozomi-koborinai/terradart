@@ -122,4 +122,58 @@ final class GoogleWorkflowsWorkflow extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `call_log_level` attribute.
+  TfRef<String> get callLogLevelRef =>
+      TfRef.attribute<String>(this, 'call_log_level');
+
+  /// Reference to `crypto_key_name` attribute.
+  TfRef<String> get cryptoKeyNameRef =>
+      TfRef.attribute<String>(this, 'crypto_key_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `execution_history_level` attribute.
+  TfRef<String> get executionHistoryLevelRef =>
+      TfRef.attribute<String>(this, 'execution_history_level');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `source_contents` attribute.
+  TfRef<String> get sourceContentsRef =>
+      TfRef.attribute<String>(this, 'source_contents');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_env_vars` attribute.
+  TfRef<Map<String, String>> get userEnvVarsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_env_vars');
 }

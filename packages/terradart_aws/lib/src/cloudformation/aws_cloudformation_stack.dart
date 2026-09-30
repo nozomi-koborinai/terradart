@@ -93,4 +93,53 @@ final class AwsCloudformationStack extends Resource {
   /// Reference to `outputs` attribute.
   TfRef<Map<String, String>> get outputs =>
       TfRef.attribute<Map<String, String>>(this, 'outputs');
+
+  /// Reference to `capabilities` attribute.
+  TfRef<List<String>> get capabilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'capabilities');
+
+  /// Reference to `disable_rollback` attribute.
+  TfRef<bool> get disableRollbackRef =>
+      TfRef.attribute<bool>(this, 'disable_rollback');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `notification_arns` attribute.
+  TfRef<List<String>> get notificationArnsRef =>
+      TfRef.attribute<List<String>>(this, 'notification_arns');
+
+  /// Reference to `on_failure` attribute.
+  TfRef<String> get onFailureRef => TfRef.attribute<String>(this, 'on_failure');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `policy_body` attribute.
+  TfRef<String> get policyBodyRef =>
+      TfRef.attribute<String>(this, 'policy_body');
+
+  /// Reference to `policy_url` attribute.
+  TfRef<String> get policyUrlRef => TfRef.attribute<String>(this, 'policy_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `template_body` attribute.
+  TfRef<String> get templateBodyRef =>
+      TfRef.attribute<String>(this, 'template_body');
+
+  /// Reference to `template_url` attribute.
+  TfRef<String> get templateUrlRef =>
+      TfRef.attribute<String>(this, 'template_url');
+
+  /// Reference to `timeout_in_minutes` attribute.
+  TfRef<num> get timeoutInMinutesRef =>
+      TfRef.attribute<num>(this, 'timeout_in_minutes');
 }

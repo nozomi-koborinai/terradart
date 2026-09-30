@@ -34,4 +34,13 @@ final class DataAwsElasticBeanstalkSolutionStack extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `name_regex` attribute.
+  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -174,4 +174,7 @@ final class DataAwsOdbCloudExadataInfrastructure extends Data {
   /// Reference to `total_storage_size_in_gbs` attribute.
   TfRef<num> get totalStorageSizeInGbs =>
       TfRef.attribute<num>(this, 'total_storage_size_in_gbs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

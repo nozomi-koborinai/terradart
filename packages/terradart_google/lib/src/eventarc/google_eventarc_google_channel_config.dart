@@ -50,4 +50,14 @@ final class GoogleEventarcGoogleChannelConfig extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `crypto_key_name` attribute.
+  TfRef<String> get cryptoKeyNameRef =>
+      TfRef.attribute<String>(this, 'crypto_key_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

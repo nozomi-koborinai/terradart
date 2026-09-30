@@ -330,6 +330,24 @@ final class GoogleDialogflowCxTestCase extends Resource {
   TfRef<List<Map<String, Object?>>> get lastTestResult =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'last_test_result');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `notes` attribute.
+  TfRef<String> get notesRef => TfRef.attribute<String>(this, 'notes');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

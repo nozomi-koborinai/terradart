@@ -45,4 +45,10 @@ final class AwsRoute53TrafficPolicy extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `document` attribute.
+  TfRef<String> get documentRef => TfRef.attribute<String>(this, 'document');
 }

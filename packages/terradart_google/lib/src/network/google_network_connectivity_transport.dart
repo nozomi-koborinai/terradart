@@ -128,4 +128,50 @@ final class GoogleNetworkConnectivityTransport extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `advertised_routes` attribute.
+  TfRef<List<String>> get advertisedRoutesRef =>
+      TfRef.attribute<List<String>>(this, 'advertised_routes');
+
+  /// Reference to `bandwidth` attribute.
+  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `mtu_limit` attribute.
+  TfRef<num> get mtuLimitRef => TfRef.attribute<num>(this, 'mtu_limit');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provided_activation_key` attribute.
+  TfRef<String> get providedActivationKeyRef =>
+      TfRef.attribute<String>(this, 'provided_activation_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remote_account_id` attribute.
+  TfRef<String> get remoteAccountIdRef =>
+      TfRef.attribute<String>(this, 'remote_account_id');
+
+  /// Reference to `remote_profile` attribute.
+  TfRef<String> get remoteProfileRef =>
+      TfRef.attribute<String>(this, 'remote_profile');
+
+  /// Reference to `stack_type` attribute.
+  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
 }

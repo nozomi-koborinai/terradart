@@ -1112,4 +1112,83 @@ final class AwsEcsService extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `availability_zone_rebalancing` attribute.
+  TfRef<String> get availabilityZoneRebalancingRef =>
+      TfRef.attribute<String>(this, 'availability_zone_rebalancing');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `deployment_maximum_percent` attribute.
+  TfRef<num> get deploymentMaximumPercentRef =>
+      TfRef.attribute<num>(this, 'deployment_maximum_percent');
+
+  /// Reference to `deployment_minimum_healthy_percent` attribute.
+  TfRef<num> get deploymentMinimumHealthyPercentRef =>
+      TfRef.attribute<num>(this, 'deployment_minimum_healthy_percent');
+
+  /// Reference to `desired_count` attribute.
+  TfRef<num> get desiredCountRef => TfRef.attribute<num>(this, 'desired_count');
+
+  /// Reference to `enable_ecs_managed_tags` attribute.
+  TfRef<bool> get enableEcsManagedTagsRef =>
+      TfRef.attribute<bool>(this, 'enable_ecs_managed_tags');
+
+  /// Reference to `enable_execute_command` attribute.
+  TfRef<bool> get enableExecuteCommandRef =>
+      TfRef.attribute<bool>(this, 'enable_execute_command');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `force_new_deployment` attribute.
+  TfRef<bool> get forceNewDeploymentRef =>
+      TfRef.attribute<bool>(this, 'force_new_deployment');
+
+  /// Reference to `health_check_grace_period_seconds` attribute.
+  TfRef<num> get healthCheckGracePeriodSecondsRef =>
+      TfRef.attribute<num>(this, 'health_check_grace_period_seconds');
+
+  /// Reference to `iam_role` attribute.
+  TfRef<String> get iamRoleRef => TfRef.attribute<String>(this, 'iam_role');
+
+  /// Reference to `launch_type` attribute.
+  TfRef<String> get launchTypeRef =>
+      TfRef.attribute<String>(this, 'launch_type');
+
+  /// Reference to `platform_version` attribute.
+  TfRef<String> get platformVersionRef =>
+      TfRef.attribute<String>(this, 'platform_version');
+
+  /// Reference to `propagate_tags` attribute.
+  TfRef<String> get propagateTagsRef =>
+      TfRef.attribute<String>(this, 'propagate_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scheduling_strategy` attribute.
+  TfRef<String> get schedulingStrategyRef =>
+      TfRef.attribute<String>(this, 'scheduling_strategy');
+
+  /// Reference to `sigint_rollback` attribute.
+  TfRef<bool> get sigintRollbackRef =>
+      TfRef.attribute<bool>(this, 'sigint_rollback');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `task_definition` attribute.
+  TfRef<String> get taskDefinitionRef =>
+      TfRef.attribute<String>(this, 'task_definition');
+
+  /// Reference to `triggers` attribute.
+  TfRef<Map<String, String>> get triggersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'triggers');
+
+  /// Reference to `wait_for_steady_state` attribute.
+  TfRef<bool> get waitForSteadyStateRef =>
+      TfRef.attribute<bool>(this, 'wait_for_steady_state');
 }

@@ -128,4 +128,34 @@ final class AwsConnectUser extends Resource {
 
   /// Reference to `user_id` attribute.
   TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `directory_user_id` attribute.
+  TfRef<String> get directoryUserIdRef =>
+      TfRef.attribute<String>(this, 'directory_user_id');
+
+  /// Reference to `hierarchy_group_id` attribute.
+  TfRef<String> get hierarchyGroupIdRef =>
+      TfRef.attribute<String>(this, 'hierarchy_group_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `routing_profile_id` attribute.
+  TfRef<String> get routingProfileIdRef =>
+      TfRef.attribute<String>(this, 'routing_profile_id');
+
+  /// Reference to `security_profile_ids` attribute.
+  TfRef<List<String>> get securityProfileIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_profile_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

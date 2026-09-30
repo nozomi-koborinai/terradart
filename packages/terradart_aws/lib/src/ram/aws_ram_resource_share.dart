@@ -69,4 +69,19 @@ final class AwsRamResourceShare extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `allow_external_principals` attribute.
+  TfRef<bool> get allowExternalPrincipalsRef =>
+      TfRef.attribute<bool>(this, 'allow_external_principals');
+
+  /// Reference to `permission_arns` attribute.
+  TfRef<List<String>> get permissionArnsRef =>
+      TfRef.attribute<List<String>>(this, 'permission_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

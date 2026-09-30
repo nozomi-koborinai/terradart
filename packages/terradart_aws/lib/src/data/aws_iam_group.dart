@@ -41,4 +41,7 @@ final class DataAwsIamGroup extends Data {
   /// Reference to `users` attribute.
   TfRef<List<Map<String, Object?>>> get users =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'users');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
 }

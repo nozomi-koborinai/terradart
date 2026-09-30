@@ -56,4 +56,16 @@ final class CloudflareOriginCloudRegion extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `origin_ip` attribute.
+  TfRef<String> get originIpRef => TfRef.attribute<String>(this, 'origin_ip');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vendor` attribute.
+  TfRef<String> get vendorRef => TfRef.attribute<String>(this, 'vendor');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

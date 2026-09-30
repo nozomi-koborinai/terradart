@@ -509,4 +509,50 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `dump_path` attribute.
+  TfRef<String> get dumpPathRef => TfRef.attribute<String>(this, 'dump_path');
+
+  /// Reference to `dump_type` attribute.
+  TfRef<String> get dumpTypeRef => TfRef.attribute<String>(this, 'dump_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `migration_job_id` attribute.
+  TfRef<String> get migrationJobIdRef =>
+      TfRef.attribute<String>(this, 'migration_job_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `stop_on_warnings` attribute.
+  TfRef<bool> get stopOnWarningsRef =>
+      TfRef.attribute<bool>(this, 'stop_on_warnings');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

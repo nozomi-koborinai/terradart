@@ -68,4 +68,23 @@ final class DataAwsResourcegroupstaggingapiResources extends Data {
         this,
         'resource_tag_mapping_list',
       );
+
+  /// Reference to `exclude_compliant_resources` attribute.
+  TfRef<bool> get excludeCompliantResourcesRef =>
+      TfRef.attribute<bool>(this, 'exclude_compliant_resources');
+
+  /// Reference to `include_compliance_details` attribute.
+  TfRef<bool> get includeComplianceDetailsRef =>
+      TfRef.attribute<bool>(this, 'include_compliance_details');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn_list` attribute.
+  TfRef<List<String>> get resourceArnListRef =>
+      TfRef.attribute<List<String>>(this, 'resource_arn_list');
+
+  /// Reference to `resource_type_filters` attribute.
+  TfRef<List<String>> get resourceTypeFiltersRef =>
+      TfRef.attribute<List<String>>(this, 'resource_type_filters');
 }

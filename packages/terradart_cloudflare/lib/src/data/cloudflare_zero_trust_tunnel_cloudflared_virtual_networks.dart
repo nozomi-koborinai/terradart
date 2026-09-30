@@ -50,4 +50,20 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `is_default` attribute.
+  TfRef<bool> get isDefaultRef => TfRef.attribute<bool>(this, 'is_default');
+
+  /// Reference to `is_default_network` attribute.
+  TfRef<bool> get isDefaultNetworkRef =>
+      TfRef.attribute<bool>(this, 'is_default_network');
+
+  /// Reference to `is_deleted` attribute.
+  TfRef<bool> get isDeletedRef => TfRef.attribute<bool>(this, 'is_deleted');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
 }

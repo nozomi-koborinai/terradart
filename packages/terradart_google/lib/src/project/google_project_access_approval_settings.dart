@@ -92,4 +92,22 @@ final class GoogleProjectAccessApprovalSettings extends Resource {
   /// Reference to `invalid_key_version` attribute.
   TfRef<bool> get invalidKeyVersion =>
       TfRef.attribute<bool>(this, 'invalid_key_version');
+
+  /// Reference to `active_key_version` attribute.
+  TfRef<String> get activeKeyVersionRef =>
+      TfRef.attribute<String>(this, 'active_key_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `notification_emails` attribute.
+  TfRef<List<String>> get notificationEmailsRef =>
+      TfRef.attribute<List<String>>(this, 'notification_emails');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

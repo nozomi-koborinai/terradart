@@ -448,4 +448,26 @@ final class GoogleClouddomainsRegistration extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `contact_notices` attribute.
+  TfRef<List<String>> get contactNoticesRef =>
+      TfRef.attribute<List<String>>(this, 'contact_notices');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `domain_notices` attribute.
+  TfRef<List<String>> get domainNoticesRef =>
+      TfRef.attribute<List<String>>(this, 'domain_notices');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

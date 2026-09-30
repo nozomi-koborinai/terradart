@@ -36,4 +36,19 @@ final class AwsPrometheusResourcePolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsPrometheusResourcePolicy>`.
   RefTo<AwsPrometheusResourcePolicy> get ref => RefTo.of(this);
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `revision_id` attribute.
+  TfRef<String> get revisionIdRef =>
+      TfRef.attribute<String>(this, 'revision_id');
+
+  /// Reference to `workspace_id` attribute.
+  TfRef<String> get workspaceIdRef =>
+      TfRef.attribute<String>(this, 'workspace_id');
 }
