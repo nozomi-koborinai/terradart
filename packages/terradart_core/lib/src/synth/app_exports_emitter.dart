@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 
 import '../app_constant.dart';
@@ -23,6 +25,73 @@ abstract final class AppExportsEmitter {
         name: o.toTfJson(TfJsonEncoder.encodeArg(o.value)),
     };
   }
+
+  /// The environment variable a non-sensitive [output] of [stack] is read
+  /// from by the generated reader's `fromEnvironment`, and its value.
+  static MapEntry<String, TfArg<String>> environmentEntry(
+    Stack stack,
+    String output,
+  ) {
+    final o = stack.outputs[output]!;
+    final type = o.valueType;
+    final encoded = TfJsonEncoder.encodeArg(o.value);
+    final TfArg<String> value;
+    if (type is ScalarValueType && type.name == 'String') {
+      value = switch ((o.value, encoded)) {
+        (TfArgLiteral(), final String s) => TfArg.literal(s),
+        (TfArgLiteral(), _) => throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" is null, which no environment variable holds.',
+        ),
+        (_, final String s) => TfArg.expression<String>(s),
+        _ => throw StateError('Output "$output" encodes to $encoded.'),
+      };
+    } else if (o.value is TfArgLiteral) {
+      if (_holdsTemplate(encoded)) {
+        throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" is a literal holding references; its JSON is '
+              'only known at apply. Pass it as one .expression instead.',
+        );
+      }
+      value = TfArg.literal(jsonEncode(encoded));
+    } else {
+      final template = encoded as String;
+      final inner = template.startsWith(r'${') && template.endsWith('}')
+          ? template.substring(2, template.length - 1)
+          : null;
+      if (inner == null || inner.contains(r'${') || !_balanced(inner)) {
+        throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" of type ${type.source} is the template '
+              '"$template", which has no JSON encoding; make it one '
+              r'interpolation ("${...}").',
+        );
+      }
+      value = TfArg.expression<String>('\${jsonencode($inner)}');
+    }
+    return MapEntry(outputEnvironmentName(output), value);
+  }
+
+  /// True when no `}` in [body] closes the sequence before its end.
+  static bool _balanced(String body) {
+    var depth = 0;
+    for (final c in body.split('')) {
+      if (c == '{') depth++;
+      if (c == '}' && --depth < 0) return false;
+    }
+    return depth == 0;
+  }
+
+  static bool _holdsTemplate(Object? encoded) => switch (encoded) {
+    String() => hasTemplateSequence(encoded),
+    List() => encoded.any(_holdsTemplate),
+    Map() => encoded.values.any(_holdsTemplate),
+    _ => false,
+  };
 
   /// The generated Dart source, or `null` when the Stack has no
   /// [Stack.appExports] file.
