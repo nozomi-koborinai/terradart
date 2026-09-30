@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class HealthcareStackExports {
-  HealthcareStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class HealthcareStackConstants {
+  HealthcareStackConstants._();
 
-  static const String HEALTHCARE_DATASET_NAME = r'terradart-records';
+  static const String healthcareDatasetName = r'terradart-records';
 }

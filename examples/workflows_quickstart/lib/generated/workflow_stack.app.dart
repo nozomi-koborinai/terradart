@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class WorkflowStackExports {
-  WorkflowStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class WorkflowStackConstants {
+  WorkflowStackConstants._();
 
-  static const String HELLO_WORKFLOW_NAME = r'terradart-hello';
+  static const String helloWorkflowName = r'terradart-hello';
 }

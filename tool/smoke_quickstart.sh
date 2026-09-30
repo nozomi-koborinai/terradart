@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Smoke-test the pubsub quickstart (boundary / AppExport path).
+# Smoke-test the pubsub quickstart (boundary / AppExports path).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

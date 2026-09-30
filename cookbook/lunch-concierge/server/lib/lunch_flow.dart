@@ -19,8 +19,8 @@ Future<LunchFlowBundle> createLunchFlow() async {
   final ai = Genkit(
     plugins: [
       vertexAI(
-        projectId: LunchStackExports.PROJECT_ID,
-        location: LunchStackExports.REGION,
+        projectId: LunchStackConstants.projectId,
+        location: LunchStackConstants.region,
       ),
     ],
   );

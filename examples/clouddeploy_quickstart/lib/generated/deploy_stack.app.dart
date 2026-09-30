@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class DeployStackExports {
-  DeployStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class DeployStackConstants {
+  DeployStackConstants._();
 
-  static const String PIPELINE_NAME = r'terradart-pipeline';
+  static const String pipelineName = r'terradart-pipeline';
 }

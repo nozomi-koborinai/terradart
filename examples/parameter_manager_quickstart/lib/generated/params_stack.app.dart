@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class ParamsStackExports {
-  ParamsStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class ParamsStackConstants {
+  ParamsStackConstants._();
 
-  static const String APP_CONFIG_PARAMETER_ID = r'terradart-app-config';
+  static const String appConfigParameterId = r'terradart-app-config';
 }

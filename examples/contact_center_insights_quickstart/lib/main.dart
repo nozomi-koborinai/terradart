@@ -146,33 +146,12 @@ final class ContactCenterInsightsStack extends Stack {
       ),
     );
 
-    addExport(
-      'CCI_ANALYSIS_RULE_ID',
-      ResourceIdExport(rule.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_VIEW_ID',
-      ResourceIdExport(view.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_QA_SCORECARD_ID',
-      ResourceIdExport(scorecard.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_QA_REVISION_ID',
-      ResourceIdExport(revision.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_QA_QUESTION_ID',
-      ResourceIdExport(question.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_ASSESSMENT_RULE_ID',
-      ResourceIdExport(assessment.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'CCI_AUTO_LABELING_RULE_ID',
-      ResourceIdExport(autoLabel.id, emitTerraformOutput: true),
-    );
+    addOutput('cci_analysis_rule_id', .ref(rule.id));
+    addOutput('cci_view_id', .ref(view.id));
+    addOutput('cci_qa_scorecard_id', .ref(scorecard.id));
+    addOutput('cci_qa_revision_id', .ref(revision.id));
+    addOutput('cci_qa_question_id', .ref(question.id));
+    addOutput('cci_assessment_rule_id', .ref(assessment.id));
+    addOutput('cci_auto_labeling_rule_id', .ref(autoLabel.id));
   }
 }

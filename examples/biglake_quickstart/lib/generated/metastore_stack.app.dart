@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class MetastoreStackExports {
-  MetastoreStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class MetastoreStackConstants {
+  MetastoreStackConstants._();
 
-  static const String CATALOG_NAME = r'terradart_catalog';
+  static const String catalogName = r'terradart_catalog';
 }

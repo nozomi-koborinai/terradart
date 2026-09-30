@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class GeminiStackExports {
-  GeminiStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class GeminiStackConstants {
+  GeminiStackConstants._();
 
-  static const String ENABLEMENT_SETTING_ID = r'terradart-enablement';
+  static const String enablementSettingId = r'terradart-enablement';
 }

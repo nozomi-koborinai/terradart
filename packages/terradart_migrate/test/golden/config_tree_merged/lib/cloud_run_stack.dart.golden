@@ -35,13 +35,6 @@ final class CloudRunStack extends Stack {
         location: .ref(thisCloudRunV2Service.locationRef),
       ),
     );
-    addExport(
-      r'service_name',
-      ResourceIdExport(
-        thisCloudRunV2Service.nameRef,
-        emitTerraformOutput: true,
-      ),
-    );
-    setAppExportsOutputPath(r'lib/generated/cloud_run_stack.app.dart');
+    addOutput(r'service_name', .ref(thisCloudRunV2Service.nameRef));
   }
 }

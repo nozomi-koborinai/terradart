@@ -5,7 +5,7 @@
 /// trace data. Trace scopes are free, project-scoped config, so the stack
 /// creates and destroys cleanly in a single project.
 ///
-/// Exports the trace scope id as a typed Dart constant via `Stack.addExport`.
+/// Exports the trace scope id as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -19,7 +19,10 @@ final class ObservabilityStack extends Stack {
   ObservabilityStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/observability_stack.app.dart'),
       ) {
+    const traceScopeId = 'terradart-traces';
+
     final apiObservability = add(
       GoogleProjectService(
         localName: 'api_observability',
@@ -31,7 +34,7 @@ final class ObservabilityStack extends Stack {
     final traceScope = add(
       GoogleObservabilityTraceScope(
         localName: 'app_traces',
-        traceScopeId: .literal('terradart-traces'),
+        traceScopeId: .literal(traceScopeId),
         location: .literal('global'),
         // A trace scope groups the trace data of one or more projects; here it
         // covers just the current project.
@@ -42,14 +45,9 @@ final class ObservabilityStack extends Stack {
     );
 
     // Literal trace-scope id -- emitted as a Dart constant at synth time.
-    addExport('TRACE_SCOPE_ID', StringExport('terradart-traces'));
+    addConstant('traceScopeId', const .value(traceScopeId));
 
     // Full trace-scope resource name -- Terraform output only (computed).
-    addExport(
-      'TRACE_SCOPE_NAME',
-      ResourceIdExport(traceScope.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/observability_stack.app.dart');
+    addOutput('trace_scope_name', .ref(traceScope.id));
   }
 }
