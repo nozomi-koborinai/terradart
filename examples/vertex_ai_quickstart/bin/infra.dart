@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/feature_stack.app.dart`
-/// (literal exports such as `FEATURE_GROUP_NAME`). Computed exports like
-/// `FEATURE_GROUP_ID` appear as Terraform outputs only.
+/// (with `FeatureStackConstants.featureGroupName`). Computed values such as
+/// `feature_group_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

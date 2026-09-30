@@ -3,12 +3,13 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class SingleProjectAppStackExports {
-  SingleProjectAppStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class SingleProjectAppStackConstants {
+  SingleProjectAppStackConstants._();
 
   /// Cloud Run v2 service name. Matches the Terraform resource name.
-  static const String SERVICE_NAME = r'coffee-shop';
+  static const String serviceName = r'coffee-shop';
 
   /// GCP region this recipe deploys into.
-  static const String REGION = r'asia-northeast1';
+  static const String region = r'asia-northeast1';
 }

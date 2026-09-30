@@ -8,7 +8,7 @@
 ///   service account (serialized so destroy cannot race SetIamPolicy),
 ///
 /// and exports the tag key's short name as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'dart:convert';
@@ -36,7 +36,10 @@ final class TagsStack extends Stack {
   TagsStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/tags_stack.app.dart'),
       ) {
+    const envTagKeyShortName = 'terradart-env';
+
     final current = addData(GoogleProject(localName: 'current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
@@ -55,7 +58,7 @@ final class TagsStack extends Stack {
     final envKey = add(
       GoogleTagsTagKey(
         localName: 'env',
-        shortName: .literal('terradart-env'),
+        shortName: .literal(envTagKeyShortName),
         parent: .literal('projects/${current.number.interpolation}'),
         description: .literal('Deployment environment (terradart demo)'),
       ),
@@ -167,14 +170,9 @@ final class TagsStack extends Stack {
     );
 
     // Literal tag-key short name -- emitted as a Dart constant at synth time.
-    addExport('ENV_TAG_KEY_SHORT_NAME', StringExport('terradart-env'));
+    addConstant('envTagKeyShortName', const .value(envTagKeyShortName));
 
     // Full tag-key resource id (`tagKeys/...`) -- Terraform output only.
-    addExport(
-      'ENV_TAG_KEY_ID',
-      ResourceIdExport(envKey.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/tags_stack.app.dart');
+    addOutput('env_tag_key_id', .ref(envKey.id));
   }
 }

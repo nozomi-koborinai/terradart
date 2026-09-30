@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/tags_stack.app.dart`
-/// (literal exports such as `ENV_TAG_KEY_SHORT_NAME`). Computed exports like
-/// `ENV_TAG_KEY_ID` appear as Terraform outputs only.
+/// (with `TagsStackConstants.envTagKeyShortName`). Computed values such as
+/// `env_tag_key_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

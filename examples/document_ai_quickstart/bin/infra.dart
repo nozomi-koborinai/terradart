@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/doc_ai_stack.app.dart`
-/// (literal exports such as `OCR_PROCESSOR_DISPLAY_NAME`). Computed exports
-/// like `OCR_PROCESSOR_ID` appear as Terraform outputs only.
+/// (with `DocAiStackConstants.ocrProcessorDisplayName`). Computed values such as
+/// `ocr_processor_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

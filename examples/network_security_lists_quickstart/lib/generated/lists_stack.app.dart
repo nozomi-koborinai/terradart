@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class ListsStackExports {
-  ListsStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class ListsStackConstants {
+  ListsStackConstants._();
 
-  static const String BLOCKLIST_NAME = r'terradart-blocklist';
+  static const String blocklistName = r'terradart-blocklist';
 }

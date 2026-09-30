@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class OrdersStackExports {
-  OrdersStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class OrdersStackConstants {
+  OrdersStackConstants._();
 
-  static const String ORDERS_TOPIC_NAME = r'orders-prod';
+  static const String ordersTopicName = r'orders-prod';
 }

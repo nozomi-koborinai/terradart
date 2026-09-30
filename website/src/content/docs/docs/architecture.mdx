@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: How TerraDart Stacks generate Terraform JSON, how synth() and writeTo() fit together, and how provider coverage and AppExport work.
+description: How TerraDart Stacks generate Terraform JSON, how synth() and writeTo() fit together, and how provider coverage and the outputs / constants seam work.
 ---
 
 import Pipeline from "../../../components/Pipeline.astro";
@@ -25,7 +25,7 @@ TerraDart is a thin authoring layer that produces standard Terraform JSON. The D
     },
     {
       title: "Hand off (optional)",
-      body: "Surface <code>AppExport</code> values as typed Dart constants and Terraform outputs for downstream apps.",
+      body: "Hand values to downstream apps as typed Dart constants (<code>addConstant</code>) and Terraform outputs (<code>addOutput</code>).",
     },
   ]}
 />
@@ -49,7 +49,7 @@ graph LR
 
 `synth()` is the pure, in-memory step. It walks the resources you registered with `add(...)`, applies lifecycle wiring, dedups, and produces a `SynthResult` whose `tfJson` field carries the Terraform JSON tree.
 
-`writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. If you registered `AppExport`s via `addExport(...)` AND called `setAppExportsOutputPath(...)`, it also writes a generated `.app.dart` file with typed Dart constants. If you registered exports but forgot to set the output path, `writeTo` throws `StateError` *before* writing anything — the failure mode is atomic, never partial.
+`writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. When the Stack was constructed with `appExports: AppExports('lib/generated/<stack>.app.dart')`, it also writes that generated Dart file, rewritten in full on every synth. Synth runs before any write, so a constant that cannot resolve throws `StateError` with nothing written — the failure mode is atomic, never partial.
 
 `Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
 
@@ -92,27 +92,45 @@ A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) bumps eac
 
 You don't need to track this loop to use TerraDart. The reason it's documented here is so that, when a v0.x.x release adds new curated factories or shifts an existing one, you can see exactly which upstream change drove it.
 
-## AppExport: the IaC ↔ application seam
+## Outputs and constants: the IaC ↔ application seam
 
-`AppExport` is the typed handoff from your Stack to whatever Dart application code consumes the resources it provisions (for example Cloud Run functions handlers).
+A Stack hands values to the Dart application code that uses its resources (for example a Cloud Run service) in two ways, each with its own method:
 
 ```mermaid
 graph LR
-  AE["addExport(name, AppExport)"]
-  AE --> TFO["Terraform output block (main.tf.json)"]
-  AE --> DC[".app.dart const class"]
+  AO["addOutput(name, value)"] --> TFO["Terraform output block (main.tf.json)"]
+  AC["addConstant(name, constant)"] --> DC[".app.dart const class"]
   ST[Application code] --> DC
   TF[Terraform CLI] --> TFO
 ```
 
-Two export kinds cover most cases:
+- **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL. It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', .ref(service.uri), description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field. Read it with `terraform output -raw service_url`.
+- **`addConstant`** declares a `static const` on the generated `<StackName>Constants` class, for a value known at synth. The value is a sealed `AppConstant<T>`, picked with a dot shorthand:
+  - `.ref(topic.nameRef)` — the literal an attribute of the Stack is set to (`name: .literal('orders-prod')`), so the string is written once. Synth fails with a `StateError` that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
+  - `.value(5)` — a value that belongs to no resource, such as an API version.
+  - `.fromEnvironment('API_BASE_URL')` — a `String.fromEnvironment` read at the app's compile time.
 
-- **`ResourceIdExport`** — exports a resource attribute. When the attribute is set by a literal in the Stack (`ResourceIdExport(topic.nameRef)` with `name: .literal('orders-prod')`), it becomes a typed Dart constant. When it is only known after apply (`ResourceIdExport(topic.id)`, a Cloud Run service URL), it becomes a Terraform `output` automatically; application code can fetch it via `terraform output -raw <name>`. `emitTerraformOutput: true` additionally emits the output for an export that is also a constant.
-- **`StringExport`** — a plain value that belongs to no resource (an API version). It materializes as a `static const` on the generated `<StackName>Exports` class. For a value a resource also uses, prefer `ResourceIdExport` on that resource's attribute, so the string is written once.
+  `T` can be `String`, `int`, `double`, `num`, `bool`, `Object`, or a `List` / `String`-keyed `Map` of them, each optionally nullable; `addConstant` rejects any other type, a name that is not a public Dart identifier, and a duplicate.
 
-Calling `setAppExportsOutputPath(...)` sets where the `.app.dart` file goes; `writeTo` rewrites it on every synth, so a constant that stops resolving disappears from it. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+The constants file is configured once, on the constructor, and `addConstant` throws when it is missing:
 
-A worked end-to-end example lives in the [cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
+```dart
+final class OrdersStack extends Stack {
+  OrdersStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
+  }
+}
+```
+
+`AppExports(path, name: 'Orders')` renames the generated class (`OrdersConstants`). The path is relative to the directory `bin/infra.dart` runs in, and the generated file imports nothing, so it can live in a small package the app and the infra package both depend on, keeping the app free of provider packages — the [Lunch Concierge recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/lunch-concierge) writes it into its `shared/` package. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+
+A worked end-to-end example lives in the [cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app): the Terraform output `coffee_service_uri`, and the constants `serviceName` and `region` read from the Cloud Run service's own `name` and `location`.
 
 ## Non-goals
 
@@ -126,7 +144,7 @@ See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goa
 ## Further reading
 
 - [How it's built](/docs/how-its-built/) — the generation pipeline and verification harness behind these factories.
-- [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppExport API reference.
+- [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppConstant API reference.
 - [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated Google factory catalog.
 - [`terradart_appwrite` on pub.dev](https://pub.dev/packages/terradart_appwrite) — curated Appwrite factories.
 - [`terradart_cloudflare` on pub.dev](https://pub.dev/packages/terradart_cloudflare) — curated Cloudflare factories.

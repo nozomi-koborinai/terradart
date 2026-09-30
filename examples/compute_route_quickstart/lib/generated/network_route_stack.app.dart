@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class NetworkRouteStackExports {
-  NetworkRouteStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class NetworkRouteStackConstants {
+  NetworkRouteStackConstants._();
 
-  static const String DEMO_VPC_NAME = r'terradart-route-demo';
+  static const String demoVpcName = r'terradart-route-demo';
 }

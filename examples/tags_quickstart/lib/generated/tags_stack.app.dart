@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class TagsStackExports {
-  TagsStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class TagsStackConstants {
+  TagsStackConstants._();
 
-  static const String ENV_TAG_KEY_SHORT_NAME = r'terradart-env';
+  static const String envTagKeyShortName = r'terradart-env';
 }

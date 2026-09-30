@@ -259,16 +259,8 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         ),
       );
       expect(src, contains("addData(GoogleProject(localName: r'current'))"));
-      expect(
-        src,
-        contains("ResourceIdExport(orders.id, emitTerraformOutput: true)"),
-      );
-      expect(
-        src,
-        contains(
-          "setAppExportsOutputPath(r'lib/generated/pubsub_quickstart_stack.app.dart')",
-        ),
-      );
+      expect(src, contains("addOutput(r'ORDERS_TOPIC_ID', .ref(orders.id));"));
+      expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
       expect(src, isNot(contains('final ordersPush =')));
       expect(src, contains('final orders = add('));
@@ -1238,7 +1230,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings.single, contains('"other"'));
     });
 
-    test('outputs: one attribute becomes an export, anything else is kept', () {
+    test('outputs: one attribute becomes addOutput, anything else is kept', () {
       final r = _migrateJson({
         'terraform': _google,
         'resource': {
@@ -1259,13 +1251,13 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addExport(r'topicId', ResourceIdExport(x.id, emitTerraformOutput: true, description: r'the id', sensitive: true, terraformOutputName: r'topic-id'));",
+          "addOutput(r'topic-id', .ref(x.id), description: r'the id', sensitive: true);",
         ),
       );
       expect(
         r.stackSource,
         contains(
-          "addExport(r'labels', ResourceIdExport(TfRef.attribute<String>(x, r'labels'), emitTerraformOutput: true));",
+          "addOutput(r'labels', .ref(TfRef.attribute<Object?>(x, r'labels')));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');
@@ -1371,7 +1363,7 @@ output "first" {
           "addMoved(r'google_pubsub_topic.t[1]', r'google_pubsub_topic.t_1');",
         ),
       );
-      expect(src, contains("addExport(r'first', ResourceIdExport(t0.id"));
+      expect(src, contains("addOutput(r'first', .ref(t0.id));"));
       expect(r.report.renderText(), contains('Unrolled (1):'));
     });
 
@@ -2154,9 +2146,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "addExport(r'topic_prefix', ResourceIdExport("
-          "TfRef.attribute<String>(naming, r'prefix'), "
-          'emitTerraformOutput: true))',
+          "addOutput(r'topic_prefix', .ref("
+          "TfRef.attribute<Object?>(naming, r'prefix')))",
         ),
       );
     });

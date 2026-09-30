@@ -77,4 +77,4 @@ The version field tells Terraform "the upstream value changed -- push a new Secr
 }
 ```
 
-The `DB_PASSWORD_SECRET_ID` Terraform output is the **secret's resource path** (the lookup key). It is only known after apply, so it is an output rather than a Dart constant; the application resolves the live value at runtime via the Secret Manager client library.
+The `db_password_secret_id` Terraform output is the **secret's resource path** (the lookup key). It is only known after apply, so it is an output rather than a Dart constant; the application resolves the live value at runtime via the Secret Manager client library.

@@ -3,10 +3,11 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class EmailJobsStackExports {
-  EmailJobsStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class EmailJobsStackConstants {
+  EmailJobsStackConstants._();
 
-  static const String EMAIL_QUEUE_NAME = r'email-jobs';
+  static const String emailQueueName = r'email-jobs';
 
-  static const String EMAIL_QUEUE_LOCATION = r'us-central1';
+  static const String emailQueueLocation = r'us-central1';
 }

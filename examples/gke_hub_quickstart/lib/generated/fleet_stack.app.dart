@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class FleetStackExports {
-  FleetStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class FleetStackConstants {
+  FleetStackConstants._();
 
-  static const String FLEET_SCOPE_ID = r'terradart-scope';
+  static const String fleetScopeId = r'terradart-scope';
 }
