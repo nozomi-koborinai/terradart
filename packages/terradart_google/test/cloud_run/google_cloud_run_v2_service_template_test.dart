@@ -3,14 +3,12 @@ import 'package:test/test.dart';
 
 void main() {
   group('CloudRunV2ServiceTemplate.workloadIdentityConfig', () {
-    final container = CloudRunV2ServiceTemplateContainers(
-      image: .literal('img'),
-    );
+    final container = CloudRunV2ServiceContainers(image: .literal('img'));
 
     test('encodes a single workload_identity_config block', () {
       final template = CloudRunV2ServiceTemplate(
         containers: [container],
-        workloadIdentityConfig: CloudRunV2ServiceTemplateWorkloadIdentityConfig(
+        workloadIdentityConfig: CloudRunV2ServiceWorkloadIdentityConfig(
           identity: .literal('spiffe://example'),
           identityCertificateEnabled: .literal(true),
           identityType: .literal(.workloadIdentity),

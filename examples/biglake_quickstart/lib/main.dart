@@ -80,7 +80,7 @@ final class MetastoreStack extends Stack {
         type: .literal('HIVE'),
         hiveOptions: BiglakeTableHiveOptions(
           tableType: .literal('MANAGED_TABLE'),
-          storageDescriptor: BiglakeTableHiveOptionsStorageDescriptor(
+          storageDescriptor: BiglakeTableStorageDescriptor(
             locationUri: .literal('$warehouse/terradart_db/orders'),
             inputFormat: .literal('org.apache.hadoop.mapred.TextInputFormat'),
             outputFormat: .literal(

@@ -247,7 +247,7 @@ final class AnalyticsStack extends Stack {
           BigqueryAnalyticsHubListingSubscriptionDestinationDataset(
             location: .literal('asia-northeast1'),
             datasetReference:
-                BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference(
+                BigqueryAnalyticsHubListingSubscriptionDatasetReference(
                   datasetId: .literal('analytics_prod'),
                   projectId: .literal(projectId),
                 ),
@@ -288,7 +288,7 @@ final class AnalyticsStack extends Stack {
               'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
             ),
             useLegacySql: .literal(false),
-            destinationTable: BigqueryJobQueryDestinationTable(
+            destinationTable: BigqueryJobDestinationTable(
               projectId: .literal(projectId),
               datasetId: dataset.ref,
               tableId: .literal('events_daily_count'),

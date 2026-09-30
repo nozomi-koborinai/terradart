@@ -102,7 +102,7 @@ final class AnalystPersonaStack extends Stack {
               'One row per account and day, with the closing balance.',
             ),
             bigqueryResource:
-                AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource(
+                AgenticApplicationsAnalystAgentPersonaBigqueryResource(
                   bigqueryDataset: .literal(datasetPath),
                   bigqueryTable: .literal(tablePath),
                   columnDescriptions: .literal({
@@ -118,7 +118,7 @@ final class AnalystPersonaStack extends Stack {
             ),
             useRag: .literal(true),
             rawFileResource:
-                AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource(
+                AgenticApplicationsAnalystAgentPersonaRawFileResource(
                   fileTitle: .literal('liquidity_policy.md'),
                   mimeType: .literal('text/markdown'),
                   fileContent: .literal(
@@ -136,12 +136,12 @@ final class AnalystPersonaStack extends Stack {
             name: .literal('cash_positions'),
             description: .literal('Daily closing balances per account.'),
             columns: [
-              AgenticApplicationsAnalystAgentPersonaTablesColumns(
+              AgenticApplicationsAnalystAgentPersonaColumns(
                 name: .literal('account_id'),
                 dataType: .literal('STRING'),
                 description: .literal('Internal treasury account identifier.'),
               ),
-              AgenticApplicationsAnalystAgentPersonaTablesColumns(
+              AgenticApplicationsAnalystAgentPersonaColumns(
                 name: .literal('closing_balance'),
                 dataType: .literal('NUMERIC'),
                 description: .literal(
@@ -164,7 +164,7 @@ final class AnalystPersonaStack extends Stack {
               '3. Call out any account below the 30-day policy threshold.\n',
             ),
             references: [
-              AgenticApplicationsAnalystAgentPersonaSkillsReferences(
+              AgenticApplicationsAnalystAgentPersonaReferences(
                 referenceId: .literal('policy-threshold'),
                 content: .literal(
                   'The 30-day threshold is defined in liquidity_policy.md.',
@@ -177,34 +177,33 @@ final class AnalystPersonaStack extends Stack {
           AgenticApplicationsAnalystAgentPersonaExternalDataSources(
             enabled: .literal(true),
             treasurySecuritiesAuctions:
-                const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySecuritiesAuctions(),
+                const AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions(),
           ),
         ],
         artifactExamples: [
           AgenticApplicationsAnalystAgentPersonaArtifactExamples(
-            resource:
-                AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource(
-                  displayLabel: .literal('Weekly liquidity brief'),
-                  modelDescription: .literal(
-                    'Shape of the weekly brief the analyst produces.',
+            resource: AgenticApplicationsAnalystAgentPersonaResource(
+              displayLabel: .literal('Weekly liquidity brief'),
+              modelDescription: .literal(
+                'Shape of the weekly brief the analyst produces.',
+              ),
+              rawFileResource:
+                  AgenticApplicationsAnalystAgentPersonaRawFileResource(
+                    fileTitle: .literal('weekly_brief_example.md'),
+                    mimeType: .literal('text/markdown'),
+                    fileContent: .literal(
+                      '# Weekly liquidity brief\n\n'
+                      '## Position by currency\n\n## Accounts to watch\n',
+                    ),
                   ),
-                  rawFileResource:
-                      AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource(
-                        fileTitle: .literal('weekly_brief_example.md'),
-                        mimeType: .literal('text/markdown'),
-                        fileContent: .literal(
-                          '# Weekly liquidity brief\n\n'
-                          '## Position by currency\n\n## Accounts to watch\n',
-                        ),
-                      ),
-                ),
+            ),
           ),
         ],
         // Document export accepts PDF, DOCX or GOOGLE_DOCS; the schema types
         // it as a plain string, so an invalid value only fails at apply.
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
           documentGenerationOptions:
-              AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions(
+              AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions(
                 exportFormat: .literal('PDF'),
               ),
         ),

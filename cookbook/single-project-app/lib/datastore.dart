@@ -18,7 +18,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
   deletionProtection: .literal(false),
   settings: SqlDatabaseInstanceSettings(
     tier: .literal('db-f1-micro'),
-    ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
+    ipConfiguration: SqlDatabaseInstanceIpConfiguration(
       ipv4Enabled: .literal(false),
       privateNetwork: .ref(vpc.selfLink),
     ),
@@ -50,7 +50,7 @@ GoogleSqlUser buildSqlUser(
 GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
   localName: 'db_password',
   secretId: .literal('coffee-shop-db-password'),
-  replication: const .auto(SecretManagerSecretReplicationAuto()),
+  replication: const .auto(SecretManagerSecretAuto()),
 );
 
 GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(

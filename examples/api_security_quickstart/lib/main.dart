@@ -30,7 +30,7 @@ final class ApiSecurityStack extends Stack {
         displayName: .literal('Browser Maps API key'),
         restrictions: ApikeysKeyRestrictions(
           apiTargets: [
-            ApikeysKeyRestrictionsApiTargets(
+            ApikeysKeyApiTargets(
               service: .literal('maps-backend.googleapis.com'),
             ),
           ],

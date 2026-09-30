@@ -149,25 +149,24 @@ final class ColabStack extends Stack {
         desiredState: .literal(.paused),
         request: .createNotebookExecutionJobRequest(
           ColabScheduleCreateNotebookExecutionJobRequest(
-            notebookExecutionJob:
-                ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob(
-                  displayName: .literal('TerraDart hello notebook'),
-                  source: .gcsNotebookSource(
-                    ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource(
-                      uri: .literal(
-                        'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
-                      ),
-                      generation: .literal(notebook.generation.interpolation),
-                    ),
+            notebookExecutionJob: ColabScheduleNotebookExecutionJob(
+              displayName: .literal('TerraDart hello notebook'),
+              source: .gcsNotebookSource(
+                ColabScheduleGcsNotebookSource(
+                  uri: .literal(
+                    'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
                   ),
-                  compute: .notebookRuntimeTemplateResourceName(
-                    .literal(templateResourceName),
-                  ),
-                  gcsOutputUri: .literal(
-                    'gs://${bucket.nameRef.interpolation}/out',
-                  ),
-                  identity: .serviceAccount(.of(runner)),
+                  generation: .literal(notebook.generation.interpolation),
                 ),
+              ),
+              compute: .notebookRuntimeTemplateResourceName(
+                .literal(templateResourceName),
+              ),
+              gcsOutputUri: .literal(
+                'gs://${bucket.nameRef.interpolation}/out',
+              ),
+              identity: .serviceAccount(.of(runner)),
+            ),
           ),
         ),
         dependsOn: [

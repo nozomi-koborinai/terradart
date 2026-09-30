@@ -34,38 +34,36 @@ final class TranscoderStack extends Stack {
         jobTemplateId: .literal('terradart-sd'),
         location: .literal('us-central1'),
         config: TranscoderJobTemplateConfig(
-          inputs: [TranscoderJobTemplateConfigInputs(key: .literal('input0'))],
+          inputs: [TranscoderJobTemplateInputs(key: .literal('input0'))],
           editList: [
-            TranscoderJobTemplateConfigEditList(
+            TranscoderJobTemplateEditList(
               key: .literal('atom0'),
               inputs: .literal(['input0']),
               startTimeOffset: .literal('0s'),
             ),
           ],
           elementaryStreams: [
-            TranscoderJobTemplateConfigElementaryStreams(
+            TranscoderJobTemplateElementaryStreams(
               key: .literal('video-stream0'),
-              videoStream: TranscoderJobTemplateConfigElementaryStreamsVideoStream(
-                h264:
-                    TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264(
-                      widthPixels: .literal(640),
-                      heightPixels: .literal(360),
-                      bitrateBps: .literal(550000),
-                      frameRate: .literal(60),
-                    ),
+              videoStream: TranscoderJobTemplateVideoStream(
+                h264: TranscoderJobTemplateH264(
+                  widthPixels: .literal(640),
+                  heightPixels: .literal(360),
+                  bitrateBps: .literal(550000),
+                  frameRate: .literal(60),
+                ),
               ),
             ),
-            TranscoderJobTemplateConfigElementaryStreams(
+            TranscoderJobTemplateElementaryStreams(
               key: .literal('audio-stream0'),
-              audioStream:
-                  TranscoderJobTemplateConfigElementaryStreamsAudioStream(
-                    codec: .literal('aac'),
-                    bitrateBps: .literal(64000),
-                  ),
+              audioStream: TranscoderJobTemplateAudioStream(
+                codec: .literal('aac'),
+                bitrateBps: .literal(64000),
+              ),
             ),
           ],
           muxStreams: [
-            TranscoderJobTemplateConfigMuxStreams(
+            TranscoderJobTemplateMuxStreams(
               key: .literal('sd'),
               fileName: .literal('sd.mp4'),
               container: .literal('mp4'),

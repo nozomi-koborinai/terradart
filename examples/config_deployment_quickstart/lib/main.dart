@@ -60,7 +60,7 @@ final class ConfigDeploymentStack extends Stack {
         forceDestroy: .literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
           source: .gitSource(
-            ConfigDeploymentTerraformBlueprintGitSource(
+            ConfigDeploymentGitSource(
               repo: .literal(
                 'https://github.com/terraform-google-modules/terraform-google-network',
               ),
@@ -69,11 +69,11 @@ final class ConfigDeploymentStack extends Stack {
             ),
           ),
           inputValues: [
-            ConfigDeploymentTerraformBlueprintInputValues(
+            ConfigDeploymentInputValues(
               variableName: .literal('project_id'),
               inputValue: .literal(jsonEncode(projectId)),
             ),
-            ConfigDeploymentTerraformBlueprintInputValues(
+            ConfigDeploymentInputValues(
               variableName: .literal('network_name'),
               inputValue: .literal(jsonEncode('terradart-test-network')),
             ),

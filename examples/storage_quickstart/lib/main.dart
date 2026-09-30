@@ -66,11 +66,11 @@ final class AssetsStack extends Stack {
       timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
       lifecycleRule: [
         StorageBucketLifecycleRule(
-          action: StorageBucketLifecycleRuleAction(
+          action: StorageBucketAction(
             type: .literal(.setStorageClass),
             storageClass: .literal(.archive),
           ),
-          condition: StorageBucketLifecycleRuleCondition(age: .literal(365)),
+          condition: StorageBucketCondition(age: .literal(365)),
         ),
       ],
     );
@@ -232,10 +232,10 @@ final class AssetsStack extends Stack {
         jobId: .literal('stamp-config-meta'),
         deleteProtection: .literal(false),
         bucketList: StorageBatchOperationsJobBucketList(
-          buckets: StorageBatchOperationsJobBucketListBuckets(
+          buckets: StorageBatchOperationsJobBuckets(
             bucket: assets.ref,
             objects: .prefixList(
-              StorageBatchOperationsJobBucketListBucketsPrefixList(
+              StorageBatchOperationsJobPrefixList(
                 includedObjectPrefixes: .literal(['config/']),
               ),
             ),

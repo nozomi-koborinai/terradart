@@ -80,11 +80,10 @@ final class CloudAssetStack extends Stack {
           'cloudresourcemanager.googleapis.com/Project',
         ]),
         contentType: .literal(.resource),
-        feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
-          pubsubDestination:
-              CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
-                topic: topic.ref,
-              ),
+        feedOutputConfig: CloudAssetProjectFeedOutputConfig(
+          pubsubDestination: CloudAssetProjectFeedPubsubDestination(
+            topic: topic.ref,
+          ),
         ),
         dependsOn: [ResourceDependency(feedIamReady)],
       ),

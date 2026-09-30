@@ -117,7 +117,7 @@ final class AwsEcsExpressStack extends Stack {
             ),
             containerPort: .literal(_port),
             environment: [
-              EcsExpressGatewayServicePrimaryContainerEnvironment(
+              EcsExpressGatewayServiceEnvironment(
                 name: .literal('PORT'),
                 value: .literal('$_port'),
               ),
@@ -152,7 +152,7 @@ final class AwsEcsExpressStack extends Stack {
           effect: .literal('Allow'),
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentStatementPrincipals(
+            DataIamPolicyDocumentPrincipals(
               type: .literal('Service'),
               identifiers: .literal([service]),
             ),

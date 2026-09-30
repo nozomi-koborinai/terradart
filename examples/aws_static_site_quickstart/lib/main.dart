@@ -125,8 +125,7 @@ final class AwsStaticSiteStack extends Stack {
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
         targetOriginId: .literal(_originId),
         viewerProtocolPolicy: .literal(
-          CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy
-              .redirectToHttps,
+          CloudfrontDistributionViewerProtocolPolicy.redirectToHttps,
         ),
         allowedMethods: .literal(['GET', 'HEAD']),
         cachedMethods: .literal(['GET', 'HEAD']),
@@ -142,19 +141,15 @@ final class AwsStaticSiteStack extends Stack {
           ),
       ],
       restrictions: CloudfrontDistributionRestrictions(
-        geoRestriction: CloudfrontDistributionRestrictionsGeoRestriction(
-          restrictionType: .literal(
-            CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType
-                .none,
-          ),
+        geoRestriction: CloudfrontDistributionGeoRestriction(
+          restrictionType: .literal(CloudfrontDistributionRestrictionType.none),
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
         acmCertificateArn: .ref(cert.arn),
         sslSupportMethod: .literal(.sniOnly),
         minimumProtocolVersion: .literal(
-          CloudfrontDistributionViewerCertificateMinimumProtocolVersion
-              .tlsv1p2x2021,
+          CloudfrontDistributionMinimumProtocolVersion.tlsv1p2x2021,
         ),
       ),
       dependsOn: [ResourceDependency(validation)],
@@ -170,13 +165,13 @@ final class AwsStaticSiteStack extends Stack {
           actions: .literal(['s3:GetObject']),
           resources: .literal(['${bucket.arn.interpolation}/*']),
           principals: [
-            DataIamPolicyDocumentStatementPrincipals(
+            DataIamPolicyDocumentPrincipals(
               type: .literal('Service'),
               identifiers: .literal(['cloudfront.amazonaws.com']),
             ),
           ],
           condition: [
-            DataIamPolicyDocumentStatementCondition(
+            DataIamPolicyDocumentCondition(
               test: .literal('StringEquals'),
               variable: .literal('AWS:SourceArn'),
               values: .literal([distribution.arn.interpolation]),

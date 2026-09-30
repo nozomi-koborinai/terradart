@@ -80,9 +80,9 @@ final class ApiServiceStack extends Stack {
         localName: 'db_password',
         secretId: .literal('api-db-password'),
         replication: .userManaged(
-          SecretManagerSecretReplicationUserManaged(
+          SecretManagerSecretUserManaged(
             replicas: [
-              SecretManagerSecretReplicationUserManagedReplicas(
+              SecretManagerSecretReplicas(
                 location: .literal('asia-northeast1'),
               ),
             ],
@@ -247,42 +247,39 @@ final class ApiServiceStack extends Stack {
         // Runtime identity for the revision — must be able to read the
         // secret-backed env var below (see the IAM member above).
         serviceAccount: .of(runtimeSa),
-        vpcAccess: CloudRunV2ServiceTemplateVpcAccess(
+        vpcAccess: CloudRunV2ServiceVpcAccess(
           connection: .connector(.ref(runConnector.selfLink)),
           egress: .literal(.privateRangesOnly),
         ),
         containers: [
-          CloudRunV2ServiceTemplateContainers(
+          CloudRunV2ServiceContainers(
             image: .literal('gcr.io/cloudrun/hello'),
             env: [
-              CloudRunV2ServiceTemplateContainersEnv(
+              CloudRunV2ServiceEnv(
                 name: .literal('LOG_LEVEL'),
                 source: .value(.literal('info')),
               ),
-              CloudRunV2ServiceTemplateContainersEnv(
+              CloudRunV2ServiceEnv(
                 name: .literal('DB_PASSWORD'),
                 source: .valueSource(
-                  CloudRunV2ServiceTemplateContainersEnvValueSource(
-                    secretKeyRef:
-                        CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
-                          secret: .literal('api-db-password'),
-                          version: .literal('latest'),
-                        ),
+                  CloudRunV2ServiceValueSource(
+                    secretKeyRef: CloudRunV2ServiceSecretKeyRef(
+                      secret: .literal('api-db-password'),
+                      version: .literal('latest'),
+                    ),
                   ),
                 ),
               ),
               // Reaches the cache through the VPC connector below; the
               // interpolation also gives Terraform the redis -> service
               // ordering without an explicit dependsOn entry.
-              CloudRunV2ServiceTemplateContainersEnv(
+              CloudRunV2ServiceEnv(
                 name: .literal('REDIS_HOST'),
                 source: .value(.ref(cache.host)),
               ),
             ],
-            ports: CloudRunV2ServiceTemplateContainersPorts(
-              containerPort: .literal(8080),
-            ),
-            resources: CloudRunV2ServiceTemplateContainersResources(
+            ports: CloudRunV2ServicePorts(containerPort: .literal(8080)),
+            resources: CloudRunV2ServiceResources(
               limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: .literal(true),
               startupCpuBoost: .literal(true),
@@ -317,7 +314,7 @@ final class ApiServiceStack extends Stack {
         deletionProtection: .literal(false),
         template: CloudRunV2WorkerPoolTemplate(
           containers: [
-            CloudRunV2WorkerPoolTemplateContainers(
+            CloudRunV2WorkerPoolContainers(
               image: .literal('gcr.io/cloudrun/hello'),
             ),
           ],
@@ -345,14 +342,14 @@ final class ApiServiceStack extends Stack {
           maxRetries: .literal(2),
           timeout: .literal('600s'),
           containers: [
-            CloudRunV2JobTemplateTemplateContainers(
+            CloudRunV2JobContainers(
               image: .literal('gcr.io/cloudrun/hello'),
               args: .literal([
                 '/bin/sh',
                 '-c',
                 'echo "nightly cleanup running"',
               ]),
-              resources: CloudRunV2JobTemplateTemplateContainersResources(
+              resources: CloudRunV2JobResources(
                 limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               ),
             ),

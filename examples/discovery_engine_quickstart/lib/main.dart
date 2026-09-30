@@ -65,7 +65,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         engineId: .literal('quickstart-search'),
         displayName: .literal('Quickstart site search'),
         dataStoreIds: .literal([dataStore.dataStoreIdRef.interpolation]),
-        searchEngineConfig: DiscoveryEngineSearchEngineSearchEngineConfig(
+        searchEngineConfig: DiscoveryEngineSearchEngineConfig(
           searchTier: .literal(.searchTierStandard),
         ),
         dependsOn: [ResourceDependency(dataStore)],

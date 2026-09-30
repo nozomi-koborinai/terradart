@@ -7,7 +7,7 @@ void main() {
     test('SecretManagerSecretReplication.auto encodes empty auto block', () {
       expect(
         const SecretManagerSecretReplication.auto(
-          SecretManagerSecretReplicationAuto(),
+          SecretManagerSecretAuto(),
         ).encode(),
         equals({'auto': <String, Object?>{}}),
       );
@@ -16,12 +16,12 @@ void main() {
     test('SecretManagerSecretReplication.userManaged with two replicas', () {
       expect(
         const SecretManagerSecretReplication.userManaged(
-          SecretManagerSecretReplicationUserManaged(
+          SecretManagerSecretUserManaged(
             replicas: [
-              SecretManagerSecretReplicationUserManagedReplicas(
+              SecretManagerSecretReplicas(
                 location: TfArgLiteral<String>('us-central1'),
               ),
-              SecretManagerSecretReplicationUserManagedReplicas(
+              SecretManagerSecretReplicas(
                 location: TfArgLiteral<String>('us-east1'),
               ),
             ],
@@ -41,9 +41,9 @@ void main() {
     test('SecretManagerSecretReplication.auto with CMEK', () {
       expect(
         SecretManagerSecretReplication.auto(
-          SecretManagerSecretReplicationAuto(
+          SecretManagerSecretAuto(
             customerManagedEncryption:
-                SecretManagerSecretReplicationAutoCustomerManagedEncryption(
+                SecretManagerSecretCustomerManagedEncryption(
                   kmsKeyName: .literal(
                     'projects/p/locations/l/keyRings/r/cryptoKeys/k',
                   ),
@@ -66,7 +66,7 @@ void main() {
       final s = GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),
-        replication: const .auto(SecretManagerSecretReplicationAuto()),
+        replication: const .auto(SecretManagerSecretAuto()),
       );
       expect(
         s.argMap.keys.toList(),
@@ -87,7 +87,7 @@ void main() {
       final s = GoogleSecretManagerSecret(
         localName: 'rotated',
         secretId: TfArg.literal('rotated'),
-        replication: const .auto(SecretManagerSecretReplicationAuto()),
+        replication: const .auto(SecretManagerSecretAuto()),
         topics: [SecretManagerSecretTopics(name: TfArg.ref(notifyTopic.id))],
         rotation: const SecretManagerSecretRotation(
           nextRotationTime: TfArgLiteral<String>('2026-06-01T00:00:00Z'),
@@ -112,7 +112,7 @@ void main() {
       final s = GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),
-        replication: const .auto(SecretManagerSecretReplicationAuto()),
+        replication: const .auto(SecretManagerSecretAuto()),
       );
       expect(
         s.secretIdRef.interpolation,

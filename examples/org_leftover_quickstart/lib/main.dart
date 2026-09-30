@@ -37,10 +37,10 @@ final class OrgLeftoverStack extends Stack {
           ComputeFirewallPolicyWithRulesRule(
             action: .literal('allow'),
             priority: .literal(1000),
-            match: ComputeFirewallPolicyWithRulesRuleMatch(
+            match: ComputeFirewallPolicyWithRulesMatch(
               srcIpRanges: .literal(['192.0.2.0/24']),
               layer4Config: [
-                ComputeFirewallPolicyWithRulesRuleMatchLayer4Config(
+                ComputeFirewallPolicyWithRulesLayer4Config(
                   ipProtocol: .literal('tcp'),
                   ports: .literal(['443']),
                 ),
@@ -79,7 +79,7 @@ final class OrgLeftoverStack extends Stack {
         action: .literal('allow'),
         priority: .literal(1000),
         match: ComputeOrganizationSecurityPolicyRuleMatch(
-          config: ComputeOrganizationSecurityPolicyRuleMatchConfig(
+          config: ComputeOrganizationSecurityPolicyRuleConfig(
             srcIpRanges: .literal(['192.0.2.0/24']),
           ),
         ),

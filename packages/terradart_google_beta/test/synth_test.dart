@@ -41,7 +41,7 @@ final class _TypedStack extends Stack {
         api: TfArg.literal('api'),
         spec: .grpcServices([
           ApiGatewayApiConfigGrpcServices(
-            fileDescriptorSet: ApiGatewayApiConfigGrpcServicesFileDescriptorSet(
+            fileDescriptorSet: ApiGatewayApiConfigFileDescriptorSet(
               contents: TfArg.literal('ZGVzYw=='),
               path: TfArg.literal('api.pb'),
             ),
@@ -60,7 +60,7 @@ final class _TypedStack extends Stack {
         priority: TfArg.literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
           layer4Configs: [
-            ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs(
+            ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs(
               ipProtocol: TfArg.literal('tcp'),
             ),
           ],
