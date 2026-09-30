@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -8,6 +9,234 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_lustre_instance`.
 const Set<String> _googleLustreInstanceSensitive = <String>{};
+
+/// Typed helper for the `access_rules_options` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceAccessRulesOptions {
+  const LustreInstanceAccessRulesOptions({
+    this.defaultSquashGid,
+    required this.defaultSquashMode,
+    this.defaultSquashUid,
+    this.accessRules,
+  });
+
+  final TfArg<num>? defaultSquashGid;
+
+  final TfArg<String> defaultSquashMode;
+
+  final TfArg<num>? defaultSquashUid;
+
+  final List<LustreInstanceAccessRulesOptionsAccessRules>? accessRules;
+
+  Map<String, Object?> encode() => {
+    'default_squash_gid': ?defaultSquashGid?.toTfJson(),
+    'default_squash_mode': defaultSquashMode.toTfJson(),
+    'default_squash_uid': ?defaultSquashUid?.toTfJson(),
+    if (accessRules != null)
+      'access_rules': [for (final e in accessRules!) e.encode()],
+  };
+}
+
+/// Typed helper for the `access_rules_options.access_rules` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceAccessRulesOptionsAccessRules {
+  const LustreInstanceAccessRulesOptionsAccessRules({
+    required this.ipAddressRanges,
+    required this.name,
+    required this.squashMode,
+  });
+
+  final TfArg<List<String>> ipAddressRanges;
+
+  final TfArg<String> name;
+
+  final TfArg<String> squashMode;
+
+  Map<String, Object?> encode() => {
+    'ip_address_ranges': ipAddressRanges.toTfJson(),
+    'name': name.toTfJson(),
+    'squash_mode': squashMode.toTfJson(),
+  };
+}
+
+/// Typed helper for the `dynamic_tier_options` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceDynamicTierOptions {
+  const LustreInstanceDynamicTierOptions({required this.mode});
+
+  final TfArg<String> mode;
+
+  Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// Typed helper for the `maintenance_policy` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicy {
+  const LustreInstanceMaintenancePolicy({
+    this.maintenanceExclusionWindow,
+    required this.weeklyMaintenanceWindows,
+  });
+
+  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindow?
+  maintenanceExclusionWindow;
+
+  final LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows
+  weeklyMaintenanceWindows;
+
+  Map<String, Object?> encode() => {
+    'maintenance_exclusion_window': ?maintenanceExclusionWindow?.encode(),
+    'weekly_maintenance_windows': weeklyMaintenanceWindows.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_exclusion_window` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindow {
+  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindow({
+    required this.endDate,
+    required this.startDate,
+    required this.time,
+  });
+
+  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate
+  endDate;
+
+  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate
+  startDate;
+
+  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime time;
+
+  Map<String, Object?> encode() => {
+    'end_date': endDate.encode(),
+    'start_date': startDate.encode(),
+    'time': time.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_exclusion_window.end_date` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate {
+  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate({
+    this.day,
+    this.month,
+    this.year,
+  });
+
+  final TfArg<num>? day;
+
+  final TfArg<num>? month;
+
+  final TfArg<num>? year;
+
+  Map<String, Object?> encode() => {
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_exclusion_window.start_date` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate {
+  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate({
+    this.day,
+    this.month,
+    this.year,
+  });
+
+  final TfArg<num>? day;
+
+  final TfArg<num>? month;
+
+  final TfArg<num>? year;
+
+  Map<String, Object?> encode() => {
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_exclusion_window.time` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime {
+  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime({
+    this.hours,
+    this.minutes,
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? hours;
+
+  final TfArg<num>? minutes;
+
+  final TfArg<num>? nanos;
+
+  final TfArg<num>? seconds;
+
+  Map<String, Object?> encode() => {
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.weekly_maintenance_windows` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows {
+  const LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows({
+    required this.dayOfWeek,
+    required this.startTime,
+  });
+
+  final TfArg<String> dayOfWeek;
+
+  final LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime
+  startTime;
+
+  Map<String, Object?> encode() => {
+    'day_of_week': dayOfWeek.toTfJson(),
+    'start_time': startTime.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.weekly_maintenance_windows.start_time` block of
+/// `google_lustre_instance` (derived from provider schema).
+@immutable
+final class LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime {
+  const LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime({
+    this.hours,
+    this.minutes,
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? hours;
+
+  final TfArg<num>? minutes;
+
+  final TfArg<num>? nanos;
+
+  final TfArg<num>? seconds;
+
+  Map<String, Object?> encode() => {
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_lustre_instance`.
 ///
@@ -41,9 +270,9 @@ final class GoogleLustreInstance extends Resource {
     TfArg<bool>? gkeSupportEnabled,
     RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<String>? placementPolicy,
-    TfArg<Map<String, dynamic>>? accessRulesOptions,
-    TfArg<Map<String, dynamic>>? dynamicTierOptions,
-    TfArg<Map<String, dynamic>>? maintenancePolicy,
+    LustreInstanceAccessRulesOptions? accessRulesOptions,
+    LustreInstanceDynamicTierOptions? dynamicTierOptions,
+    LustreInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -64,9 +293,12 @@ final class GoogleLustreInstance extends Resource {
            'gke_support_enabled': ?gkeSupportEnabled,
            'kms_key': ?kmsKey?.encodeAs('id'),
            'placement_policy': ?placementPolicy,
-           'access_rules_options': ?accessRulesOptions,
-           'dynamic_tier_options': ?dynamicTierOptions,
-           'maintenance_policy': ?maintenancePolicy,
+           if (accessRulesOptions != null)
+             'access_rules_options': TfArg.literal(accessRulesOptions.encode()),
+           if (dynamicTierOptions != null)
+             'dynamic_tier_options': TfArg.literal(dynamicTierOptions.encode()),
+           if (maintenancePolicy != null)
+             'maintenance_policy': TfArg.literal(maintenancePolicy.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

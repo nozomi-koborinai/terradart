@@ -1864,6 +1864,33 @@ provider inputs, or modelled them wrongly, now expose every input:
 `PrivatecaCertificatePublicKeyFormat` is
 `PrivatecaCertificateConfigPublicKeyFormat`.
 
+### The last Google `TfArg<Map>` blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the seven factories whose overrides
+kept blocks as literal maps take the derived helpers instead, so no
+`terradart_google` constructor or helper field takes a `TfArg<Map>` or a
+list of maps any more. Synth output is unchanged.
+
+- `GoogleBiglakeIcebergTable` `schema` / `partitionSpec` / `sortOrder`.
+- `GoogleClouddeployDeployPolicy` `selectors` / `rules` (lists of helpers).
+- `GoogleDataLossPreventionInspectTemplate.inspectConfig`.
+- `GoogleLustreInstance` `accessRulesOptions` / `dynamicTierOptions` /
+  `maintenancePolicy`.
+- `GoogleComputeOrganizationSecurityPolicy.advancedOptionsConfig`.
+- `GoogleDataprocGdcServiceInstance.sparkServiceInstanceConfig`.
+- `GoogleDataplexDatascan.scanSpec`: the hand-written `DataplexDatascanSpec`
+  is replaced by `DataplexDatascanScanSpec`, sealed from the Magic Modules
+  group; each variant takes the block's helper, whose map fields
+  (`rules`, `postScanActions`, `storageConfig`, ...) are typed too.
+
+| Before | After |
+|--------|-------|
+| `schema: .literal({'type': 'struct', 'fields': [{'id': 1, 'name': 'id', 'type': 'long', 'required': true}]})` | `schema: BiglakeIcebergTableSchema(type: .literal('struct'), fields: [BiglakeIcebergTableSchemaFields(id: .literal(1), name: .literal('id'), type: .literal('long'), required: .literal(true))])` |
+| `rules: .literal([{'rollout_restriction': {'id': 'r', 'invokers': ['DEPLOY_AUTOMATION']}}])` | `rules: [ClouddeployDeployPolicyRules(rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(id: .literal('r'), invokers: [.literal(.deployAutomation)]))]` |
+| `inspectConfig: .literal({'info_types': [{'name': 'EMAIL_ADDRESS'}], 'min_likelihood': 'POSSIBLE'})` | `inspectConfig: DataLossPreventionInspectTemplateInspectConfig(infoTypes: [DataLossPreventionInspectTemplateInspectConfigInfoTypes(name: .literal('EMAIL_ADDRESS'))], minLikelihood: .literal(.possible))` |
+| `scanSpec: .dataProfileSpec(samplingPercent: .literal(10))` | `scanSpec: .dataProfileSpec(DataplexDatascanDataProfileSpec(samplingPercent: .literal(10)))` |
+| `scanSpec: const .dataDiscoverySpec()` | `scanSpec: const .dataDiscoverySpec(DataplexDatascanDataDiscoverySpec())` |
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
