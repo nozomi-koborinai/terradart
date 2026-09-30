@@ -50,4 +50,10 @@ final class DataAwsWafv2IpSet extends Data {
   /// Reference to `ip_address_version` attribute.
   TfRef<String> get ipAddressVersion =>
       TfRef.attribute<String>(this, 'ip_address_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
 }

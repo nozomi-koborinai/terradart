@@ -45,4 +45,10 @@ final class DataCloudflareDlsPrefixBinding extends Data {
 
   /// Reference to `region_key` attribute.
   TfRef<String> get regionKey => TfRef.attribute<String>(this, 'region_key');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `binding_id` attribute.
+  TfRef<String> get bindingIdRef => TfRef.attribute<String>(this, 'binding_id');
 }

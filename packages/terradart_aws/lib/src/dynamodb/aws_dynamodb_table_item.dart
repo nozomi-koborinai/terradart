@@ -49,4 +49,19 @@ final class AwsDynamodbTableItem extends Resource {
   /// Reference to `range_key_value` attribute.
   TfRef<String> get rangeKeyValue =>
       TfRef.attribute<String>(this, 'range_key_value');
+
+  /// Reference to `hash_key` attribute.
+  TfRef<String> get hashKeyRef => TfRef.attribute<String>(this, 'hash_key');
+
+  /// Reference to `item` attribute.
+  TfRef<String> get itemRef => TfRef.attribute<String>(this, 'item');
+
+  /// Reference to `range_key` attribute.
+  TfRef<String> get rangeKeyRef => TfRef.attribute<String>(this, 'range_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_name` attribute.
+  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
 }

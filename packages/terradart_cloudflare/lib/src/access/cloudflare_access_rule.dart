@@ -102,4 +102,16 @@ final class CloudflareAccessRule extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `notes` attribute.
+  TfRef<String> get notesRef => TfRef.attribute<String>(this, 'notes');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

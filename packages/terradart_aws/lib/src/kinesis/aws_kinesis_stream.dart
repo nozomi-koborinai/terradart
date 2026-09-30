@@ -176,4 +176,44 @@ final class AwsKinesisStream extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `encryption_type` attribute.
+  TfRef<String> get encryptionTypeRef =>
+      TfRef.attribute<String>(this, 'encryption_type');
+
+  /// Reference to `enforce_consumer_deletion` attribute.
+  TfRef<bool> get enforceConsumerDeletionRef =>
+      TfRef.attribute<bool>(this, 'enforce_consumer_deletion');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `max_record_size_in_kib` attribute.
+  TfRef<num> get maxRecordSizeInKibRef =>
+      TfRef.attribute<num>(this, 'max_record_size_in_kib');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_period` attribute.
+  TfRef<num> get retentionPeriodRef =>
+      TfRef.attribute<num>(this, 'retention_period');
+
+  /// Reference to `shard_count` attribute.
+  TfRef<num> get shardCountRef => TfRef.attribute<num>(this, 'shard_count');
+
+  /// Reference to `shard_level_metrics` attribute.
+  TfRef<List<String>> get shardLevelMetricsRef =>
+      TfRef.attribute<List<String>>(this, 'shard_level_metrics');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `warm_throughput_mib_ps` attribute.
+  TfRef<num> get warmThroughputMibPsRef =>
+      TfRef.attribute<num>(this, 'warm_throughput_mib_ps');
 }

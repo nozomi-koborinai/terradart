@@ -113,4 +113,102 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `additional_experiments` attribute.
+  TfRef<List<String>> get additionalExperimentsRef =>
+      TfRef.attribute<List<String>>(this, 'additional_experiments');
+
+  /// Reference to `additional_pipeline_options` attribute.
+  TfRef<List<String>> get additionalPipelineOptionsRef =>
+      TfRef.attribute<List<String>>(this, 'additional_pipeline_options');
+
+  /// Reference to `autoscaling_algorithm` attribute.
+  TfRef<String> get autoscalingAlgorithmRef =>
+      TfRef.attribute<String>(this, 'autoscaling_algorithm');
+
+  /// Reference to `container_spec_gcs_path` attribute.
+  TfRef<String> get containerSpecGcsPathRef =>
+      TfRef.attribute<String>(this, 'container_spec_gcs_path');
+
+  /// Reference to `create_ignore_already_exists` attribute.
+  TfRef<bool> get createIgnoreAlreadyExistsRef =>
+      TfRef.attribute<bool>(this, 'create_ignore_already_exists');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_streaming_engine` attribute.
+  TfRef<bool> get enableStreamingEngineRef =>
+      TfRef.attribute<bool>(this, 'enable_streaming_engine');
+
+  /// Reference to `ip_configuration` attribute.
+  TfRef<String> get ipConfigurationRef =>
+      TfRef.attribute<String>(this, 'ip_configuration');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `launcher_machine_type` attribute.
+  TfRef<String> get launcherMachineTypeRef =>
+      TfRef.attribute<String>(this, 'launcher_machine_type');
+
+  /// Reference to `machine_type` attribute.
+  TfRef<String> get machineTypeRef =>
+      TfRef.attribute<String>(this, 'machine_type');
+
+  /// Reference to `max_workers` attribute.
+  TfRef<num> get maxWorkersRef => TfRef.attribute<num>(this, 'max_workers');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `num_workers` attribute.
+  TfRef<num> get numWorkersRef => TfRef.attribute<num>(this, 'num_workers');
+
+  /// Reference to `on_delete` attribute.
+  TfRef<String> get onDeleteRef => TfRef.attribute<String>(this, 'on_delete');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sdk_container_image` attribute.
+  TfRef<String> get sdkContainerImageRef =>
+      TfRef.attribute<String>(this, 'sdk_container_image');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
+
+  /// Reference to `skip_wait_on_job_termination` attribute.
+  TfRef<bool> get skipWaitOnJobTerminationRef =>
+      TfRef.attribute<bool>(this, 'skip_wait_on_job_termination');
+
+  /// Reference to `staging_location` attribute.
+  TfRef<String> get stagingLocationRef =>
+      TfRef.attribute<String>(this, 'staging_location');
+
+  /// Reference to `subnetwork` attribute.
+  TfRef<String> get subnetworkRef =>
+      TfRef.attribute<String>(this, 'subnetwork');
+
+  /// Reference to `temp_location` attribute.
+  TfRef<String> get tempLocationRef =>
+      TfRef.attribute<String>(this, 'temp_location');
+
+  /// Reference to `transform_name_mapping` attribute.
+  TfRef<Map<String, String>> get transformNameMappingRef =>
+      TfRef.attribute<Map<String, String>>(this, 'transform_name_mapping');
 }

@@ -44,4 +44,10 @@ final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `network_id` attribute.
+  TfRef<String> get networkIdRef => TfRef.attribute<String>(this, 'network_id');
 }

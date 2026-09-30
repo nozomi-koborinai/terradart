@@ -98,4 +98,52 @@ final class AppwriteFunctionDeployment extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `activate` attribute.
+  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+
+  /// Reference to `code_hash` attribute.
+  TfRef<String> get codeHashRef => TfRef.attribute<String>(this, 'code_hash');
+
+  /// Reference to `code_path` attribute.
+  TfRef<String> get codePathRef => TfRef.attribute<String>(this, 'code_path');
+
+  /// Reference to `commands` attribute.
+  TfRef<String> get commandsRef => TfRef.attribute<String>(this, 'commands');
+
+  /// Reference to `entrypoint` attribute.
+  TfRef<String> get entrypointRef =>
+      TfRef.attribute<String>(this, 'entrypoint');
+
+  /// Reference to `function_id` attribute.
+  TfRef<String> get functionIdRef =>
+      TfRef.attribute<String>(this, 'function_id');
+
+  /// Reference to `owner` attribute.
+  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `reference` attribute.
+  TfRef<String> get referenceRef => TfRef.attribute<String>(this, 'reference');
+
+  /// Reference to `repository` attribute.
+  TfRef<String> get repositoryRef =>
+      TfRef.attribute<String>(this, 'repository');
+
+  /// Reference to `root_directory` attribute.
+  TfRef<String> get rootDirectoryRef =>
+      TfRef.attribute<String>(this, 'root_directory');
+
+  /// Reference to `source_type` attribute.
+  TfRef<String> get sourceTypeRef =>
+      TfRef.attribute<String>(this, 'source_type');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `wait_for_ready` attribute.
+  TfRef<bool> get waitForReadyRef =>
+      TfRef.attribute<bool>(this, 'wait_for_ready');
 }

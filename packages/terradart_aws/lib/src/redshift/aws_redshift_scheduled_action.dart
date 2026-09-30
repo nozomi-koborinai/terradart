@@ -190,4 +190,26 @@ final class AwsRedshiftScheduledAction extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable` attribute.
+  TfRef<bool> get enableRef => TfRef.attribute<bool>(this, 'enable');
+
+  /// Reference to `end_time` attribute.
+  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+
+  /// Reference to `iam_role` attribute.
+  TfRef<String> get iamRoleRef => TfRef.attribute<String>(this, 'iam_role');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `start_time` attribute.
+  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
 }

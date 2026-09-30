@@ -107,4 +107,19 @@ final class AwsMemorydbAcl extends Resource {
   /// Reference to `minimum_engine_version` attribute.
   TfRef<String> get minimumEngineVersion =>
       TfRef.attribute<String>(this, 'minimum_engine_version');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_names` attribute.
+  TfRef<List<String>> get userNamesRef =>
+      TfRef.attribute<List<String>>(this, 'user_names');
 }

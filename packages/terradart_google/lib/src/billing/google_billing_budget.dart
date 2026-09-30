@@ -353,4 +353,20 @@ final class GoogleBillingBudget extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccountRef =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `ownership_scope` attribute.
+  TfRef<String> get ownershipScopeRef =>
+      TfRef.attribute<String>(this, 'ownership_scope');
 }

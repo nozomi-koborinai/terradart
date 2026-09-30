@@ -60,4 +60,11 @@ final class DataCloudflareHyperdriveConfig extends Data {
   /// Reference to `restarted_on` attribute.
   TfRef<String> get restartedOn =>
       TfRef.attribute<String>(this, 'restarted_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `hyperdrive_id` attribute.
+  TfRef<String> get hyperdriveIdRef =>
+      TfRef.attribute<String>(this, 'hyperdrive_id');
 }

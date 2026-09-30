@@ -58,4 +58,10 @@ final class DataAwsLexSlotType extends Data {
   /// Reference to `value_selection_strategy` attribute.
   TfRef<String> get valueSelectionStrategy =>
       TfRef.attribute<String>(this, 'value_selection_strategy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

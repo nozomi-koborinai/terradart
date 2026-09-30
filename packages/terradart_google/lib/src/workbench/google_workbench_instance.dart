@@ -593,6 +593,48 @@ final class GoogleWorkbenchInstance extends Resource {
   TfRef<List<Map<String, Object?>>> get upgradeHistory =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'upgrade_history');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `disable_proxy_access` attribute.
+  TfRef<bool> get disableProxyAccessRef =>
+      TfRef.attribute<bool>(this, 'disable_proxy_access');
+
+  /// Reference to `enable_deletion_protection` attribute.
+  TfRef<bool> get enableDeletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'enable_deletion_protection');
+
+  /// Reference to `enable_managed_euc` attribute.
+  TfRef<bool> get enableManagedEucRef =>
+      TfRef.attribute<bool>(this, 'enable_managed_euc');
+
+  /// Reference to `enable_third_party_identity` attribute.
+  TfRef<bool> get enableThirdPartyIdentityRef =>
+      TfRef.attribute<bool>(this, 'enable_third_party_identity');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `instance_owners` attribute.
+  TfRef<List<String>> get instanceOwnersRef =>
+      TfRef.attribute<List<String>>(this, 'instance_owners');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -108,4 +108,58 @@ final class AwsDaxCluster extends Resource {
 
   /// Reference to `port` attribute.
   TfRef<num> get port => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `cluster_endpoint_encryption_type` attribute.
+  TfRef<String> get clusterEndpointEncryptionTypeRef =>
+      TfRef.attribute<String>(this, 'cluster_endpoint_encryption_type');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `maintenance_window` attribute.
+  TfRef<String> get maintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'maintenance_window');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `notification_topic_arn` attribute.
+  TfRef<String> get notificationTopicArnRef =>
+      TfRef.attribute<String>(this, 'notification_topic_arn');
+
+  /// Reference to `parameter_group_name` attribute.
+  TfRef<String> get parameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'parameter_group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_factor` attribute.
+  TfRef<num> get replicationFactorRef =>
+      TfRef.attribute<num>(this, 'replication_factor');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `subnet_group_name` attribute.
+  TfRef<String> get subnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'subnet_group_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

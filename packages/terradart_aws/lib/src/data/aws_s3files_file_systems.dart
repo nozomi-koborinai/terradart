@@ -39,4 +39,7 @@ final class DataAwsS3filesFileSystems extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsS3filesFileSystemsSensitive;
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

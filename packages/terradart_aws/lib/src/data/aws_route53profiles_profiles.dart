@@ -23,4 +23,7 @@ final class DataAwsRoute53profilesProfiles extends Data {
   /// Reference to `profiles` attribute.
   TfRef<List<Map<String, Object?>>> get profiles =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'profiles');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

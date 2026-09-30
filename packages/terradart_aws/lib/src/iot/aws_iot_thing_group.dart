@@ -83,4 +83,15 @@ final class AwsIotThingGroup extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `parent_group_name` attribute.
+  TfRef<String> get parentGroupNameRef =>
+      TfRef.attribute<String>(this, 'parent_group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

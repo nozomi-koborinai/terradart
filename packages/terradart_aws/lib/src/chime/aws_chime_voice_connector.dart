@@ -69,4 +69,18 @@ final class AwsChimeVoiceConnector extends Resource {
   /// Reference to `outbound_host_name` attribute.
   TfRef<String> get outboundHostName =>
       TfRef.attribute<String>(this, 'outbound_host_name');
+
+  /// Reference to `aws_region` attribute.
+  TfRef<String> get awsRegionRef => TfRef.attribute<String>(this, 'aws_region');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `require_encryption` attribute.
+  TfRef<bool> get requireEncryptionRef =>
+      TfRef.attribute<bool>(this, 'require_encryption');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

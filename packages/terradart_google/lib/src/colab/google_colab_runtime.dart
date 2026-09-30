@@ -114,6 +114,35 @@ final class GoogleColabRuntime extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `auto_upgrade` attribute.
+  TfRef<bool> get autoUpgradeRef => TfRef.attribute<bool>(this, 'auto_upgrade');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `runtime_user` attribute.
+  TfRef<String> get runtimeUserRef =>
+      TfRef.attribute<String>(this, 'runtime_user');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

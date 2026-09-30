@@ -80,4 +80,21 @@ final class GoogleBiglakeIcebergNamespaceIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `namespace_id` attribute.
+  TfRef<String> get namespaceIdRef =>
+      TfRef.attribute<String>(this, 'namespace_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

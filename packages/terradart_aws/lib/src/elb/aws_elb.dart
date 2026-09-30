@@ -244,4 +244,57 @@ final class AwsElb extends Resource {
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `connection_draining` attribute.
+  TfRef<bool> get connectionDrainingRef =>
+      TfRef.attribute<bool>(this, 'connection_draining');
+
+  /// Reference to `connection_draining_timeout` attribute.
+  TfRef<num> get connectionDrainingTimeoutRef =>
+      TfRef.attribute<num>(this, 'connection_draining_timeout');
+
+  /// Reference to `cross_zone_load_balancing` attribute.
+  TfRef<bool> get crossZoneLoadBalancingRef =>
+      TfRef.attribute<bool>(this, 'cross_zone_load_balancing');
+
+  /// Reference to `desync_mitigation_mode` attribute.
+  TfRef<String> get desyncMitigationModeRef =>
+      TfRef.attribute<String>(this, 'desync_mitigation_mode');
+
+  /// Reference to `idle_timeout` attribute.
+  TfRef<num> get idleTimeoutRef => TfRef.attribute<num>(this, 'idle_timeout');
+
+  /// Reference to `instances` attribute.
+  TfRef<List<String>> get instancesRef =>
+      TfRef.attribute<List<String>>(this, 'instances');
+
+  /// Reference to `internal` attribute.
+  TfRef<bool> get internalRef => TfRef.attribute<bool>(this, 'internal');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `source_security_group` attribute.
+  TfRef<String> get sourceSecurityGroupRef =>
+      TfRef.attribute<String>(this, 'source_security_group');
+
+  /// Reference to `subnets` attribute.
+  TfRef<List<String>> get subnetsRef =>
+      TfRef.attribute<List<String>>(this, 'subnets');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

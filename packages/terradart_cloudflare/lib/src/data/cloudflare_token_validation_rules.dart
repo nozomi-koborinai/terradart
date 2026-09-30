@@ -111,4 +111,10 @@ final class DataCloudflareTokenValidationRules extends Data {
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `rule_id` attribute.
+  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -133,4 +133,34 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `egress_network_connectors` attribute.
+  TfRef<List<String>> get egressNetworkConnectorsRef =>
+      TfRef.attribute<List<String>>(this, 'egress_network_connectors');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `image_arn` attribute.
+  TfRef<String> get imageArnRef => TfRef.attribute<String>(this, 'image_arn');
+
+  /// Reference to `image_version` attribute.
+  TfRef<String> get imageVersionRef =>
+      TfRef.attribute<String>(this, 'image_version');
+
+  /// Reference to `ingress_network_connectors` attribute.
+  TfRef<List<String>> get ingressNetworkConnectorsRef =>
+      TfRef.attribute<List<String>>(this, 'ingress_network_connectors');
+
+  /// Reference to `maximum_duration_in_seconds` attribute.
+  TfRef<num> get maximumDurationInSecondsRef =>
+      TfRef.attribute<num>(this, 'maximum_duration_in_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `run_hook_payload` attribute.
+  TfRef<String> get runHookPayloadRef =>
+      TfRef.attribute<String>(this, 'run_hook_payload');
 }

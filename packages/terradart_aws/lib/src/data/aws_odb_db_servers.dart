@@ -30,4 +30,11 @@ final class DataAwsOdbDbServers extends Data {
   /// Reference to `db_servers` attribute.
   TfRef<List<Map<String, Object?>>> get dbServers =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'db_servers');
+
+  /// Reference to `cloud_exadata_infrastructure_id` attribute.
+  TfRef<String> get cloudExadataInfrastructureIdRef =>
+      TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

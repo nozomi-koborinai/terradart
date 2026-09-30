@@ -1620,4 +1620,19 @@ final class AwsBedrockagentDataSource extends Resource {
   /// Reference to `data_source_id` attribute.
   TfRef<String> get dataSourceId =>
       TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `data_deletion_policy` attribute.
+  TfRef<String> get dataDeletionPolicyRef =>
+      TfRef.attribute<String>(this, 'data_deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `knowledge_base_id` attribute.
+  TfRef<String> get knowledgeBaseIdRef =>
+      TfRef.attribute<String>(this, 'knowledge_base_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

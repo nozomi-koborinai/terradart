@@ -108,4 +108,10 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoute extends Data {
   /// Reference to `virtual_network_id` attribute.
   TfRef<String> get virtualNetworkId =>
       TfRef.attribute<String>(this, 'virtual_network_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `route_id` attribute.
+  TfRef<String> get routeIdRef => TfRef.attribute<String>(this, 'route_id');
 }

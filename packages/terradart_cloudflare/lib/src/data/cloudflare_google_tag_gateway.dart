@@ -50,4 +50,7 @@ final class DataCloudflareGoogleTagGateway extends Data {
 
   /// Reference to `set_up_tag` attribute.
   TfRef<bool> get setUpTag => TfRef.attribute<bool>(this, 'set_up_tag');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

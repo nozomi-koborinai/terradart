@@ -245,4 +245,34 @@ final class GoogleComputePerInstanceConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `instance_group_manager` attribute.
+  TfRef<String> get instanceGroupManagerRef =>
+      TfRef.attribute<String>(this, 'instance_group_manager');
+
+  /// Reference to `minimal_action` attribute.
+  TfRef<String> get minimalActionRef =>
+      TfRef.attribute<String>(this, 'minimal_action');
+
+  /// Reference to `most_disruptive_allowed_action` attribute.
+  TfRef<String> get mostDisruptiveAllowedActionRef =>
+      TfRef.attribute<String>(this, 'most_disruptive_allowed_action');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `remove_instance_on_destroy` attribute.
+  TfRef<bool> get removeInstanceOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'remove_instance_on_destroy');
+
+  /// Reference to `remove_instance_state_on_destroy` attribute.
+  TfRef<bool> get removeInstanceStateOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'remove_instance_state_on_destroy');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

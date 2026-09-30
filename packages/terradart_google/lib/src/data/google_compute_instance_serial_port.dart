@@ -39,4 +39,16 @@ final class DataGoogleComputeInstanceSerialPort extends Data {
 
   /// Reference to `contents` attribute.
   TfRef<String> get contents => TfRef.attribute<String>(this, 'contents');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

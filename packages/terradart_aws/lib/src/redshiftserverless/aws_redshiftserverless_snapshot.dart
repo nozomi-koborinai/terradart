@@ -68,4 +68,19 @@ final class AwsRedshiftserverlessSnapshot extends Resource {
   /// Reference to `owner_account` attribute.
   TfRef<String> get ownerAccount =>
       TfRef.attribute<String>(this, 'owner_account');
+
+  /// Reference to `namespace_name` attribute.
+  TfRef<String> get namespaceNameRef =>
+      TfRef.attribute<String>(this, 'namespace_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_period` attribute.
+  TfRef<num> get retentionPeriodRef =>
+      TfRef.attribute<num>(this, 'retention_period');
+
+  /// Reference to `snapshot_name` attribute.
+  TfRef<String> get snapshotNameRef =>
+      TfRef.attribute<String>(this, 'snapshot_name');
 }

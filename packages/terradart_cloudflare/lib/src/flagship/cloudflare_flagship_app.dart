@@ -50,4 +50,7 @@ final class CloudflareFlagshipApp extends Resource {
 
   /// Reference to `updated_by` attribute.
   TfRef<String> get updatedBy => TfRef.attribute<String>(this, 'updated_by');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

@@ -58,6 +58,17 @@ final class GoogleApigeeNatAddress extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `activate` attribute.
+  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

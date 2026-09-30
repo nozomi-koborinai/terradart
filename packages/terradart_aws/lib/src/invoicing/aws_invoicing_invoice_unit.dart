@@ -71,4 +71,23 @@ final class AwsInvoicingInvoiceUnit extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `invoice_receiver` attribute.
+  TfRef<String> get invoiceReceiverRef =>
+      TfRef.attribute<String>(this, 'invoice_receiver');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tax_inheritance_disabled` attribute.
+  TfRef<bool> get taxInheritanceDisabledRef =>
+      TfRef.attribute<bool>(this, 'tax_inheritance_disabled');
 }

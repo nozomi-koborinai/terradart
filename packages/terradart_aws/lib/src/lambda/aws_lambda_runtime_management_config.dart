@@ -55,4 +55,22 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
   /// Reference to `function_arn` attribute.
   TfRef<String> get functionArn =>
       TfRef.attribute<String>(this, 'function_arn');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `runtime_version_arn` attribute.
+  TfRef<String> get runtimeVersionArnRef =>
+      TfRef.attribute<String>(this, 'runtime_version_arn');
+
+  /// Reference to `update_runtime_on` attribute.
+  TfRef<String> get updateRuntimeOnRef =>
+      TfRef.attribute<String>(this, 'update_runtime_on');
 }

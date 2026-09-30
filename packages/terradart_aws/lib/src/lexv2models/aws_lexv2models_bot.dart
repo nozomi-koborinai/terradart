@@ -120,4 +120,29 @@ final class AwsLexv2modelsBot extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `idle_session_ttl_in_seconds` attribute.
+  TfRef<num> get idleSessionTtlInSecondsRef =>
+      TfRef.attribute<num>(this, 'idle_session_ttl_in_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `test_bot_alias_tags` attribute.
+  TfRef<Map<String, String>> get testBotAliasTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'test_bot_alias_tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

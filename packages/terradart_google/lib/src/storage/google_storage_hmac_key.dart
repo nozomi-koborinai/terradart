@@ -79,5 +79,19 @@ final class GoogleStorageHmacKey extends Resource {
   /// Reference to `updated` attribute.
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
   TfRef<String> get accessIdRef => TfRef.attribute<String>(this, 'access_id');
 }

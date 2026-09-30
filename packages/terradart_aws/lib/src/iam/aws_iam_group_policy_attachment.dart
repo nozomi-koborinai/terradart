@@ -32,4 +32,10 @@ final class AwsIamGroupPolicyAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `group` attribute.
+  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+
+  /// Reference to `policy_arn` attribute.
+  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
 }

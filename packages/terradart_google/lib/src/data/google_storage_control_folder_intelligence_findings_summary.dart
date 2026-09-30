@@ -44,4 +44,17 @@ final class DataGoogleStorageControlFolderIntelligenceFindingsSummary
   /// Reference to `finding_summaries` attribute.
   TfRef<List<Map<String, Object?>>> get findingSummaries =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'finding_summaries');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `resource_scope` attribute.
+  TfRef<String> get resourceScopeRef =>
+      TfRef.attribute<String>(this, 'resource_scope');
 }

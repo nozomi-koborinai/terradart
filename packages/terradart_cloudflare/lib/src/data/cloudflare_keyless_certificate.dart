@@ -76,4 +76,11 @@ final class DataCloudflareKeylessCertificate extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `keyless_certificate_id` attribute.
+  TfRef<String> get keylessCertificateIdRef =>
+      TfRef.attribute<String>(this, 'keyless_certificate_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

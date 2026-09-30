@@ -79,4 +79,10 @@ final class DataCloudflareZeroTrustDlpCustomEntry extends Data {
 
   /// Reference to `word_list` attribute.
   TfRef<String> get wordList => TfRef.attribute<String>(this, 'word_list');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `entry_id` attribute.
+  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
 }

@@ -205,4 +205,41 @@ final class AwsServicecatalogProduct extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `distributor` attribute.
+  TfRef<String> get distributorRef =>
+      TfRef.attribute<String>(this, 'distributor');
+
+  /// Reference to `owner` attribute.
+  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `support_description` attribute.
+  TfRef<String> get supportDescriptionRef =>
+      TfRef.attribute<String>(this, 'support_description');
+
+  /// Reference to `support_email` attribute.
+  TfRef<String> get supportEmailRef =>
+      TfRef.attribute<String>(this, 'support_email');
+
+  /// Reference to `support_url` attribute.
+  TfRef<String> get supportUrlRef =>
+      TfRef.attribute<String>(this, 'support_url');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

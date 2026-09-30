@@ -163,4 +163,29 @@ final class AwsS3tablesTable extends Resource {
   /// Reference to `warehouse_location` attribute.
   TfRef<String> get warehouseLocation =>
       TfRef.attribute<String>(this, 'warehouse_location');
+
+  /// Reference to `encryption_configuration` attribute.
+  TfRef<Map<String, Object?>> get encryptionConfigurationRef =>
+      TfRef.attribute<Map<String, Object?>>(this, 'encryption_configuration');
+
+  /// Reference to `format` attribute.
+  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+
+  /// Reference to `maintenance_configuration` attribute.
+  TfRef<Map<String, Object?>> get maintenanceConfigurationRef =>
+      TfRef.attribute<Map<String, Object?>>(this, 'maintenance_configuration');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_bucket_arn` attribute.
+  TfRef<String> get tableBucketArnRef =>
+      TfRef.attribute<String>(this, 'table_bucket_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

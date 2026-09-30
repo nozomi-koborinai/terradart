@@ -1172,6 +1172,32 @@ final class GoogleGkeonpremBareMetalCluster extends Resource {
   TfRef<List<Map<String, Object?>>> get validationCheck =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_check');
 
+  /// Reference to `admin_cluster_membership` attribute.
+  TfRef<String> get adminClusterMembershipRef =>
+      TfRef.attribute<String>(this, 'admin_cluster_membership');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `bare_metal_version` attribute.
+  TfRef<String> get bareMetalVersionRef =>
+      TfRef.attribute<String>(this, 'bare_metal_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

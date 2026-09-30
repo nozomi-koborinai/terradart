@@ -38,8 +38,6 @@ final class TagsStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/tags_stack.app.dart'),
       ) {
-    const envTagKeyShortName = 'terradart-env';
-
     final current = addData(GoogleProject(localName: 'current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
@@ -58,7 +56,7 @@ final class TagsStack extends Stack {
     final envKey = add(
       GoogleTagsTagKey(
         localName: 'env',
-        shortName: .literal(envTagKeyShortName),
+        shortName: .literal('terradart-env'),
         parent: .literal('projects/${current.number.interpolation}'),
         description: .literal('Deployment environment (terradart demo)'),
       ),
@@ -170,7 +168,7 @@ final class TagsStack extends Stack {
     );
 
     // Literal tag-key short name -- emitted as a Dart constant at synth time.
-    addConstant('envTagKeyShortName', const .value(envTagKeyShortName));
+    addConstant('envTagKeyShortName', .ref(envKey.shortNameRef));
 
     // Full tag-key resource id (`tagKeys/...`) -- Terraform output only.
     addOutput('env_tag_key_id', .ref(envKey.id));

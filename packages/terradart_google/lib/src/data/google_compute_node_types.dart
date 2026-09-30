@@ -32,4 +32,10 @@ final class DataGoogleComputeNodeTypes extends Data {
 
   /// Reference to `names` attribute.
   TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

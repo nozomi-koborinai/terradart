@@ -105,4 +105,66 @@ final class AwsLightsailDatabase extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `backup_retention_enabled` attribute.
+  TfRef<bool> get backupRetentionEnabledRef =>
+      TfRef.attribute<bool>(this, 'backup_retention_enabled');
+
+  /// Reference to `blueprint_id` attribute.
+  TfRef<String> get blueprintIdRef =>
+      TfRef.attribute<String>(this, 'blueprint_id');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `final_snapshot_name` attribute.
+  TfRef<String> get finalSnapshotNameRef =>
+      TfRef.attribute<String>(this, 'final_snapshot_name');
+
+  /// Reference to `master_database_name` attribute.
+  TfRef<String> get masterDatabaseNameRef =>
+      TfRef.attribute<String>(this, 'master_database_name');
+
+  /// Reference to `master_password` attribute.
+  TfRef<String> get masterPasswordRef =>
+      TfRef.attribute<String>(this, 'master_password');
+
+  /// Reference to `master_username` attribute.
+  TfRef<String> get masterUsernameRef =>
+      TfRef.attribute<String>(this, 'master_username');
+
+  /// Reference to `preferred_backup_window` attribute.
+  TfRef<String> get preferredBackupWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_backup_window');
+
+  /// Reference to `preferred_maintenance_window` attribute.
+  TfRef<String> get preferredMaintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessibleRef =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `relational_database_name` attribute.
+  TfRef<String> get relationalDatabaseNameRef =>
+      TfRef.attribute<String>(this, 'relational_database_name');
+
+  /// Reference to `skip_final_snapshot` attribute.
+  TfRef<bool> get skipFinalSnapshotRef =>
+      TfRef.attribute<bool>(this, 'skip_final_snapshot');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

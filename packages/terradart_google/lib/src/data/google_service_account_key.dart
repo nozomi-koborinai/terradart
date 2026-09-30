@@ -45,4 +45,8 @@ final class DataGoogleServiceAccountKey extends Data {
 
   /// Reference to `public_key` attribute.
   TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `public_key_type` attribute.
+  TfRef<String> get publicKeyTypeRef =>
+      TfRef.attribute<String>(this, 'public_key_type');
 }

@@ -119,4 +119,29 @@ final class DataAwsVpcEndpoint extends Data {
   /// Reference to `subnet_ids` attribute.
   TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `service_region` attribute.
+  TfRef<String> get serviceRegionRef =>
+      TfRef.attribute<String>(this, 'service_region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_endpoint_type` attribute.
+  TfRef<String> get vpcEndpointTypeRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_type');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

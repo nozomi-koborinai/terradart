@@ -68,4 +68,15 @@ final class AwsCodedeployApp extends Resource {
   /// Reference to `linked_to_github` attribute.
   TfRef<bool> get linkedToGithub =>
       TfRef.attribute<bool>(this, 'linked_to_github');
+
+  /// Reference to `compute_platform` attribute.
+  TfRef<String> get computePlatformRef =>
+      TfRef.attribute<String>(this, 'compute_platform');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

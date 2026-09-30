@@ -185,4 +185,16 @@ final class DataGoogleComputeRegionInstanceTemplate extends Data {
         this,
         'workload_identity_config',
       );
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

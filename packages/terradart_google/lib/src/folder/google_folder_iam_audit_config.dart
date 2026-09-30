@@ -69,4 +69,10 @@ final class GoogleFolderIamAuditConfig extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

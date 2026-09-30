@@ -116,4 +116,37 @@ final class AwsEc2TrafficMirrorFilterRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination_cidr_block` attribute.
+  TfRef<String> get destinationCidrBlockRef =>
+      TfRef.attribute<String>(this, 'destination_cidr_block');
+
+  /// Reference to `protocol` attribute.
+  TfRef<num> get protocolRef => TfRef.attribute<num>(this, 'protocol');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_action` attribute.
+  TfRef<String> get ruleActionRef =>
+      TfRef.attribute<String>(this, 'rule_action');
+
+  /// Reference to `rule_number` attribute.
+  TfRef<num> get ruleNumberRef => TfRef.attribute<num>(this, 'rule_number');
+
+  /// Reference to `source_cidr_block` attribute.
+  TfRef<String> get sourceCidrBlockRef =>
+      TfRef.attribute<String>(this, 'source_cidr_block');
+
+  /// Reference to `traffic_direction` attribute.
+  TfRef<String> get trafficDirectionRef =>
+      TfRef.attribute<String>(this, 'traffic_direction');
+
+  /// Reference to `traffic_mirror_filter_id` attribute.
+  TfRef<String> get trafficMirrorFilterIdRef =>
+      TfRef.attribute<String>(this, 'traffic_mirror_filter_id');
 }

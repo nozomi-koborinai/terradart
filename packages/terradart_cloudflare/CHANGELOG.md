@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 2,595 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - **Breaking** — 200 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Synth output is unchanged. See `MIGRATING.md`.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
 - **Breaking** — 292 arguments that name another resource (account and zone) take a `RefTo<Target>` instead of a `TfArg<String>`: `CloudflareDnsRecord(zoneId: zone.ref)`. The argument picks the attribute it emits; `.literal(...)`, `.variable(...)`, `.expression(...)` and `.arg(...)` take a value outside the Stack, and `.pinned('attr')` keeps emitting another attribute. See `MIGRATING.md`.

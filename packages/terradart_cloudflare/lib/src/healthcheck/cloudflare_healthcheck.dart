@@ -187,4 +187,41 @@ final class CloudflareHealthcheck extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `address` attribute.
+  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+
+  /// Reference to `check_regions` attribute.
+  TfRef<List<String>> get checkRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'check_regions');
+
+  /// Reference to `consecutive_fails` attribute.
+  TfRef<num> get consecutiveFailsRef =>
+      TfRef.attribute<num>(this, 'consecutive_fails');
+
+  /// Reference to `consecutive_successes` attribute.
+  TfRef<num> get consecutiveSuccessesRef =>
+      TfRef.attribute<num>(this, 'consecutive_successes');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interval` attribute.
+  TfRef<num> get intervalRef => TfRef.attribute<num>(this, 'interval');
+
+  /// Reference to `retries` attribute.
+  TfRef<num> get retriesRef => TfRef.attribute<num>(this, 'retries');
+
+  /// Reference to `suspended` attribute.
+  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
+
+  /// Reference to `timeout` attribute.
+  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

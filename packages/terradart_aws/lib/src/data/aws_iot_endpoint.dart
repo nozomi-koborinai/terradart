@@ -30,4 +30,11 @@ final class DataAwsIotEndpoint extends Data {
   /// Reference to `endpoint_address` attribute.
   TfRef<String> get endpointAddress =>
       TfRef.attribute<String>(this, 'endpoint_address');
+
+  /// Reference to `endpoint_type` attribute.
+  TfRef<String> get endpointTypeRef =>
+      TfRef.attribute<String>(this, 'endpoint_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

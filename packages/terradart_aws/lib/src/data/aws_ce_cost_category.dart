@@ -59,4 +59,12 @@ final class DataAwsCeCostCategory extends Data {
   /// Reference to `split_charge_rule` attribute.
   TfRef<List<Map<String, Object?>>> get splitChargeRule =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'split_charge_rule');
+
+  /// Reference to `cost_category_arn` attribute.
+  TfRef<String> get costCategoryArnRef =>
+      TfRef.attribute<String>(this, 'cost_category_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

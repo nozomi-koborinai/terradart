@@ -64,4 +64,15 @@ final class CloudflareApiShieldOperationSchemaValidationSettings
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `mitigation_action` attribute.
+  TfRef<String> get mitigationActionRef =>
+      TfRef.attribute<String>(this, 'mitigation_action');
+
+  /// Reference to `operation_id` attribute.
+  TfRef<String> get operationIdRef =>
+      TfRef.attribute<String>(this, 'operation_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

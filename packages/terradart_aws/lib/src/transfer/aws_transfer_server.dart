@@ -386,4 +386,79 @@ final class AwsTransferServer extends Resource {
   /// Reference to `host_key_fingerprint` attribute.
   TfRef<String> get hostKeyFingerprint =>
       TfRef.attribute<String>(this, 'host_key_fingerprint');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `endpoint_type` attribute.
+  TfRef<String> get endpointTypeRef =>
+      TfRef.attribute<String>(this, 'endpoint_type');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `function` attribute.
+  TfRef<String> get functionRef => TfRef.attribute<String>(this, 'function');
+
+  /// Reference to `host_key` attribute.
+  TfRef<String> get hostKeyRef => TfRef.attribute<String>(this, 'host_key');
+
+  /// Reference to `identity_provider_type` attribute.
+  TfRef<String> get identityProviderTypeRef =>
+      TfRef.attribute<String>(this, 'identity_provider_type');
+
+  /// Reference to `invocation_role` attribute.
+  TfRef<String> get invocationRoleRef =>
+      TfRef.attribute<String>(this, 'invocation_role');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `logging_role` attribute.
+  TfRef<String> get loggingRoleRef =>
+      TfRef.attribute<String>(this, 'logging_role');
+
+  /// Reference to `post_authentication_login_banner` attribute.
+  TfRef<String> get postAuthenticationLoginBannerRef =>
+      TfRef.attribute<String>(this, 'post_authentication_login_banner');
+
+  /// Reference to `pre_authentication_login_banner` attribute.
+  TfRef<String> get preAuthenticationLoginBannerRef =>
+      TfRef.attribute<String>(this, 'pre_authentication_login_banner');
+
+  /// Reference to `protocols` attribute.
+  TfRef<List<String>> get protocolsRef =>
+      TfRef.attribute<List<String>>(this, 'protocols');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_policy_name` attribute.
+  TfRef<String> get securityPolicyNameRef =>
+      TfRef.attribute<String>(this, 'security_policy_name');
+
+  /// Reference to `sftp_authentication_methods` attribute.
+  TfRef<String> get sftpAuthenticationMethodsRef =>
+      TfRef.attribute<String>(this, 'sftp_authentication_methods');
+
+  /// Reference to `structured_log_destinations` attribute.
+  TfRef<List<String>> get structuredLogDestinationsRef =>
+      TfRef.attribute<List<String>>(this, 'structured_log_destinations');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
 }

@@ -80,4 +80,23 @@ final class GoogleIapAppEngineVersionIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `version_id` attribute.
+  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
 }

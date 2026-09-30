@@ -93,4 +93,10 @@ final class DataCloudflareWorkersCustomDomain extends Data {
 
   /// Reference to `zone_name` attribute.
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
 }

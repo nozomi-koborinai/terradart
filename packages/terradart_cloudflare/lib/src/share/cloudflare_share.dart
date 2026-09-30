@@ -148,4 +148,15 @@ final class CloudflareShare extends Resource {
 
   /// Reference to `target_type` attribute.
   TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `include_recipient_counts` attribute.
+  TfRef<bool> get includeRecipientCountsRef =>
+      TfRef.attribute<bool>(this, 'include_recipient_counts');
+
+  /// Reference to `include_resources` attribute.
+  TfRef<bool> get includeResourcesRef =>
+      TfRef.attribute<bool>(this, 'include_resources');
 }

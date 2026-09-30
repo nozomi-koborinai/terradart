@@ -55,4 +55,13 @@ final class DataCloudflareCloudforceOneRequestAsset extends Data {
 
   /// Reference to `file_type` attribute.
   TfRef<String> get fileType => TfRef.attribute<String>(this, 'file_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `asset_id` attribute.
+  TfRef<String> get assetIdRef => TfRef.attribute<String>(this, 'asset_id');
+
+  /// Reference to `request_id` attribute.
+  TfRef<String> get requestIdRef => TfRef.attribute<String>(this, 'request_id');
 }

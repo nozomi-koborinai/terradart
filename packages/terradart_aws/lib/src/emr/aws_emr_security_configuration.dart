@@ -105,4 +105,15 @@ final class AwsEmrSecurityConfiguration extends Resource {
   /// Reference to `creation_date` attribute.
   TfRef<String> get creationDate =>
       TfRef.attribute<String>(this, 'creation_date');
+
+  /// Reference to `configuration` attribute.
+  TfRef<String> get configurationRef =>
+      TfRef.attribute<String>(this, 'configuration');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

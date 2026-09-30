@@ -249,4 +249,46 @@ final class AwsNetworkfirewallFirewall extends Resource {
   /// Reference to `update_token` attribute.
   TfRef<String> get updateToken =>
       TfRef.attribute<String>(this, 'update_token');
+
+  /// Reference to `availability_zone_change_protection` attribute.
+  TfRef<bool> get availabilityZoneChangeProtectionRef =>
+      TfRef.attribute<bool>(this, 'availability_zone_change_protection');
+
+  /// Reference to `delete_protection` attribute.
+  TfRef<bool> get deleteProtectionRef =>
+      TfRef.attribute<bool>(this, 'delete_protection');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled_analysis_types` attribute.
+  TfRef<List<String>> get enabledAnalysisTypesRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_analysis_types');
+
+  /// Reference to `firewall_policy_arn` attribute.
+  TfRef<String> get firewallPolicyArnRef =>
+      TfRef.attribute<String>(this, 'firewall_policy_arn');
+
+  /// Reference to `firewall_policy_change_protection` attribute.
+  TfRef<bool> get firewallPolicyChangeProtectionRef =>
+      TfRef.attribute<bool>(this, 'firewall_policy_change_protection');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnet_change_protection` attribute.
+  TfRef<bool> get subnetChangeProtectionRef =>
+      TfRef.attribute<bool>(this, 'subnet_change_protection');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

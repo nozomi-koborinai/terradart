@@ -88,6 +88,22 @@ final class GoogleApigeeDeveloper extends Resource {
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `first_name` attribute.
+  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+
+  /// Reference to `last_name` attribute.
+  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

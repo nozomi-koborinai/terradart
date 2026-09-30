@@ -166,4 +166,60 @@ final class AwsAppstreamFleet extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disconnect_timeout_in_seconds` attribute.
+  TfRef<num> get disconnectTimeoutInSecondsRef =>
+      TfRef.attribute<num>(this, 'disconnect_timeout_in_seconds');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_default_internet_access` attribute.
+  TfRef<bool> get enableDefaultInternetAccessRef =>
+      TfRef.attribute<bool>(this, 'enable_default_internet_access');
+
+  /// Reference to `fleet_type` attribute.
+  TfRef<String> get fleetTypeRef => TfRef.attribute<String>(this, 'fleet_type');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `idle_disconnect_timeout_in_seconds` attribute.
+  TfRef<num> get idleDisconnectTimeoutInSecondsRef =>
+      TfRef.attribute<num>(this, 'idle_disconnect_timeout_in_seconds');
+
+  /// Reference to `image_arn` attribute.
+  TfRef<String> get imageArnRef => TfRef.attribute<String>(this, 'image_arn');
+
+  /// Reference to `image_name` attribute.
+  TfRef<String> get imageNameRef => TfRef.attribute<String>(this, 'image_name');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `max_sessions_per_instance` attribute.
+  TfRef<num> get maxSessionsPerInstanceRef =>
+      TfRef.attribute<num>(this, 'max_sessions_per_instance');
+
+  /// Reference to `max_user_duration_in_seconds` attribute.
+  TfRef<num> get maxUserDurationInSecondsRef =>
+      TfRef.attribute<num>(this, 'max_user_duration_in_seconds');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stream_view` attribute.
+  TfRef<String> get streamViewRef =>
+      TfRef.attribute<String>(this, 'stream_view');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

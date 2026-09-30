@@ -50,4 +50,10 @@ final class GoogleProjectServiceIdentity extends Resource {
 
   /// Reference to `member` attribute.
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

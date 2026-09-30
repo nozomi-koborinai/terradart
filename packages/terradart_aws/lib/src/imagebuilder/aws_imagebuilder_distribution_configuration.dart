@@ -428,4 +428,15 @@ final class AwsImagebuilderDistributionConfiguration extends Resource {
   /// Reference to `date_updated` attribute.
   TfRef<String> get dateUpdated =>
       TfRef.attribute<String>(this, 'date_updated');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

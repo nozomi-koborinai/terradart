@@ -98,4 +98,29 @@ final class DataAwsNeptuneOrderableDbInstance extends Data {
   /// Reference to `supports_storage_encryption` attribute.
   TfRef<bool> get supportsStorageEncryption =>
       TfRef.attribute<bool>(this, 'supports_storage_encryption');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `instance_class` attribute.
+  TfRef<String> get instanceClassRef =>
+      TfRef.attribute<String>(this, 'instance_class');
+
+  /// Reference to `license_model` attribute.
+  TfRef<String> get licenseModelRef =>
+      TfRef.attribute<String>(this, 'license_model');
+
+  /// Reference to `preferred_instance_classes` attribute.
+  TfRef<List<String>> get preferredInstanceClassesRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_instance_classes');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc` attribute.
+  TfRef<bool> get vpcRef => TfRef.attribute<bool>(this, 'vpc');
 }

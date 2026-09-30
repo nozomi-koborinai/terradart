@@ -53,4 +53,23 @@ final class AwsRumMetricsDestination extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `app_monitor_name` attribute.
+  TfRef<String> get appMonitorNameRef =>
+      TfRef.attribute<String>(this, 'app_monitor_name');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `destination_arn` attribute.
+  TfRef<String> get destinationArnRef =>
+      TfRef.attribute<String>(this, 'destination_arn');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

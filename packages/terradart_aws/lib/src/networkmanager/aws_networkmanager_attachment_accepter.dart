@@ -85,4 +85,12 @@ final class AwsNetworkmanagerAttachmentAccepter extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `attachment_id` attribute.
+  TfRef<String> get attachmentIdRef =>
+      TfRef.attribute<String>(this, 'attachment_id');
+
+  /// Reference to `attachment_type` attribute.
+  TfRef<String> get attachmentTypeRef =>
+      TfRef.attribute<String>(this, 'attachment_type');
 }

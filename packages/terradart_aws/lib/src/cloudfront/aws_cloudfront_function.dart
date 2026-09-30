@@ -71,4 +71,24 @@ final class AwsCloudfrontFunction extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `code` attribute.
+  TfRef<String> get codeRef => TfRef.attribute<String>(this, 'code');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `key_value_store_associations` attribute.
+  TfRef<List<String>> get keyValueStoreAssociationsRef =>
+      TfRef.attribute<List<String>>(this, 'key_value_store_associations');
+
+  /// Reference to `publish` attribute.
+  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+
+  /// Reference to `runtime` attribute.
+  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

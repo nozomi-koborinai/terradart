@@ -75,4 +75,54 @@ final class AwsDevicefarmNetworkProfile extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `downlink_bandwidth_bits` attribute.
+  TfRef<num> get downlinkBandwidthBitsRef =>
+      TfRef.attribute<num>(this, 'downlink_bandwidth_bits');
+
+  /// Reference to `downlink_delay_ms` attribute.
+  TfRef<num> get downlinkDelayMsRef =>
+      TfRef.attribute<num>(this, 'downlink_delay_ms');
+
+  /// Reference to `downlink_jitter_ms` attribute.
+  TfRef<num> get downlinkJitterMsRef =>
+      TfRef.attribute<num>(this, 'downlink_jitter_ms');
+
+  /// Reference to `downlink_loss_percent` attribute.
+  TfRef<num> get downlinkLossPercentRef =>
+      TfRef.attribute<num>(this, 'downlink_loss_percent');
+
+  /// Reference to `project_arn` attribute.
+  TfRef<String> get projectArnRef =>
+      TfRef.attribute<String>(this, 'project_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `uplink_bandwidth_bits` attribute.
+  TfRef<num> get uplinkBandwidthBitsRef =>
+      TfRef.attribute<num>(this, 'uplink_bandwidth_bits');
+
+  /// Reference to `uplink_delay_ms` attribute.
+  TfRef<num> get uplinkDelayMsRef =>
+      TfRef.attribute<num>(this, 'uplink_delay_ms');
+
+  /// Reference to `uplink_jitter_ms` attribute.
+  TfRef<num> get uplinkJitterMsRef =>
+      TfRef.attribute<num>(this, 'uplink_jitter_ms');
+
+  /// Reference to `uplink_loss_percent` attribute.
+  TfRef<num> get uplinkLossPercentRef =>
+      TfRef.attribute<num>(this, 'uplink_loss_percent');
 }

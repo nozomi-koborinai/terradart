@@ -135,4 +135,22 @@ final class AwsWafv2RegexPatternSet extends Resource {
 
   /// Reference to `lock_token` attribute.
   TfRef<String> get lockToken => TfRef.attribute<String>(this, 'lock_token');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

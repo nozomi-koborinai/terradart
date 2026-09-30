@@ -299,4 +299,20 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `read_only` attribute.
+  TfRef<bool> get readOnlyRef => TfRef.attribute<bool>(this, 'read_only');
+
+  /// Reference to `saml_certificate_set_id` attribute.
+  TfRef<String> get samlCertificateSetIdRef =>
+      TfRef.attribute<String>(this, 'saml_certificate_set_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

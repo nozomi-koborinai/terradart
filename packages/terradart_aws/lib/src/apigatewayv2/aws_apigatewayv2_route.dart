@@ -93,4 +93,48 @@ final class AwsApigatewayv2Route extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `api_key_required` attribute.
+  TfRef<bool> get apiKeyRequiredRef =>
+      TfRef.attribute<bool>(this, 'api_key_required');
+
+  /// Reference to `authorization_scopes` attribute.
+  TfRef<List<String>> get authorizationScopesRef =>
+      TfRef.attribute<List<String>>(this, 'authorization_scopes');
+
+  /// Reference to `authorization_type` attribute.
+  TfRef<String> get authorizationTypeRef =>
+      TfRef.attribute<String>(this, 'authorization_type');
+
+  /// Reference to `authorizer_id` attribute.
+  TfRef<String> get authorizerIdRef =>
+      TfRef.attribute<String>(this, 'authorizer_id');
+
+  /// Reference to `model_selection_expression` attribute.
+  TfRef<String> get modelSelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'model_selection_expression');
+
+  /// Reference to `operation_name` attribute.
+  TfRef<String> get operationNameRef =>
+      TfRef.attribute<String>(this, 'operation_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_models` attribute.
+  TfRef<Map<String, String>> get requestModelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'request_models');
+
+  /// Reference to `route_key` attribute.
+  TfRef<String> get routeKeyRef => TfRef.attribute<String>(this, 'route_key');
+
+  /// Reference to `route_response_selection_expression` attribute.
+  TfRef<String> get routeResponseSelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'route_response_selection_expression');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
 }

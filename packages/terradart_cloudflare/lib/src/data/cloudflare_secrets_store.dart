@@ -89,4 +89,10 @@ final class DataCloudflareSecretsStore extends Data {
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `store_id` attribute.
+  TfRef<String> get storeIdRef => TfRef.attribute<String>(this, 'store_id');
 }

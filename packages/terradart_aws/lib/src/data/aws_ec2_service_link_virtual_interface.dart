@@ -89,4 +89,7 @@ final class DataAwsEc2ServiceLinkVirtualInterface extends Data {
 
   /// Reference to `vlan` attribute.
   TfRef<num> get vlan => TfRef.attribute<num>(this, 'vlan');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

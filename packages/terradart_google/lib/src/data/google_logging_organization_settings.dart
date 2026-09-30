@@ -54,4 +54,8 @@ final class DataGoogleLoggingOrganizationSettings extends Data {
   /// Reference to `storage_location` attribute.
   TfRef<String> get storageLocation =>
       TfRef.attribute<String>(this, 'storage_location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
 }

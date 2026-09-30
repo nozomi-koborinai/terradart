@@ -272,4 +272,22 @@ final class AwsElastictranscoderPipeline extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `aws_kms_key_arn` attribute.
+  TfRef<String> get awsKmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'aws_kms_key_arn');
+
+  /// Reference to `input_bucket` attribute.
+  TfRef<String> get inputBucketRef =>
+      TfRef.attribute<String>(this, 'input_bucket');
+
+  /// Reference to `output_bucket` attribute.
+  TfRef<String> get outputBucketRef =>
+      TfRef.attribute<String>(this, 'output_bucket');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

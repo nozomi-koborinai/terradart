@@ -38,4 +38,14 @@ final class DataGoogleKmsKeyHandles extends Data {
   /// Reference to `key_handles` attribute.
   TfRef<List<Map<String, Object?>>> get keyHandles =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'key_handles');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `resource_type_selector` attribute.
+  TfRef<String> get resourceTypeSelectorRef =>
+      TfRef.attribute<String>(this, 'resource_type_selector');
 }

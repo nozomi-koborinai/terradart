@@ -58,4 +58,31 @@ final class GoogleObservabilityLink extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `link_id` attribute.
+  TfRef<String> get linkIdRef => TfRef.attribute<String>(this, 'link_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

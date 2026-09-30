@@ -148,4 +148,39 @@ final class AwsIamRole extends Resource {
 
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
+
+  /// Reference to `assume_role_policy` attribute.
+  TfRef<String> get assumeRolePolicyRef =>
+      TfRef.attribute<String>(this, 'assume_role_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `force_detach_policies` attribute.
+  TfRef<bool> get forceDetachPoliciesRef =>
+      TfRef.attribute<bool>(this, 'force_detach_policies');
+
+  /// Reference to `managed_policy_arns` attribute.
+  TfRef<List<String>> get managedPolicyArnsRef =>
+      TfRef.attribute<List<String>>(this, 'managed_policy_arns');
+
+  /// Reference to `max_session_duration` attribute.
+  TfRef<num> get maxSessionDurationRef =>
+      TfRef.attribute<num>(this, 'max_session_duration');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `permissions_boundary` attribute.
+  TfRef<String> get permissionsBoundaryRef =>
+      TfRef.attribute<String>(this, 'permissions_boundary');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

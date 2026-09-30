@@ -522,4 +522,44 @@ final class GoogleSpannerInstance extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `config` attribute.
+  TfRef<String> get configRef => TfRef.attribute<String>(this, 'config');
+
+  /// Reference to `default_backup_schedule_type` attribute.
+  TfRef<String> get defaultBackupScheduleTypeRef =>
+      TfRef.attribute<String>(this, 'default_backup_schedule_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `edition` attribute.
+  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `num_nodes` attribute.
+  TfRef<num> get numNodesRef => TfRef.attribute<num>(this, 'num_nodes');
+
+  /// Reference to `processing_units` attribute.
+  TfRef<num> get processingUnitsRef =>
+      TfRef.attribute<num>(this, 'processing_units');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

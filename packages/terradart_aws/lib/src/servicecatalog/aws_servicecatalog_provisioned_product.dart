@@ -491,4 +491,48 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `ignore_errors` attribute.
+  TfRef<bool> get ignoreErrorsRef =>
+      TfRef.attribute<bool>(this, 'ignore_errors');
+
+  /// Reference to `notification_arns` attribute.
+  TfRef<List<String>> get notificationArnsRef =>
+      TfRef.attribute<List<String>>(this, 'notification_arns');
+
+  /// Reference to `path_id` attribute.
+  TfRef<String> get pathIdRef => TfRef.attribute<String>(this, 'path_id');
+
+  /// Reference to `path_name` attribute.
+  TfRef<String> get pathNameRef => TfRef.attribute<String>(this, 'path_name');
+
+  /// Reference to `product_id` attribute.
+  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+
+  /// Reference to `product_name` attribute.
+  TfRef<String> get productNameRef =>
+      TfRef.attribute<String>(this, 'product_name');
+
+  /// Reference to `provisioning_artifact_id` attribute.
+  TfRef<String> get provisioningArtifactIdRef =>
+      TfRef.attribute<String>(this, 'provisioning_artifact_id');
+
+  /// Reference to `provisioning_artifact_name` attribute.
+  TfRef<String> get provisioningArtifactNameRef =>
+      TfRef.attribute<String>(this, 'provisioning_artifact_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retain_physical_resources` attribute.
+  TfRef<bool> get retainPhysicalResourcesRef =>
+      TfRef.attribute<bool>(this, 'retain_physical_resources');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

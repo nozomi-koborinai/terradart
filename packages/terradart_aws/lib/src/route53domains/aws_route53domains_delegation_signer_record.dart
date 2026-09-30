@@ -69,4 +69,8 @@ final class AwsRoute53domainsDelegationSignerRecord extends Resource {
   /// Reference to `dnssec_key_id` attribute.
   TfRef<String> get dnssecKeyId =>
       TfRef.attribute<String>(this, 'dnssec_key_id');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
 }

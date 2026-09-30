@@ -676,6 +676,63 @@ final class GoogleRedisCluster extends Resource {
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
+  /// Reference to `acl_policy` attribute.
+  TfRef<String> get aclPolicyRef => TfRef.attribute<String>(this, 'acl_policy');
+
+  /// Reference to `authorization_mode` attribute.
+  TfRef<String> get authorizationModeRef =>
+      TfRef.attribute<String>(this, 'authorization_mode');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection_enabled` attribute.
+  TfRef<bool> get deletionProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection_enabled');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `maintenance_version` attribute.
+  TfRef<String> get maintenanceVersionRef =>
+      TfRef.attribute<String>(this, 'maintenance_version');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `redis_configs` attribute.
+  TfRef<Map<String, String>> get redisConfigsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'redis_configs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replica_count` attribute.
+  TfRef<num> get replicaCountRef => TfRef.attribute<num>(this, 'replica_count');
+
+  /// Reference to `server_ca_mode` attribute.
+  TfRef<String> get serverCaModeRef =>
+      TfRef.attribute<String>(this, 'server_ca_mode');
+
+  /// Reference to `server_ca_pool` attribute.
+  TfRef<String> get serverCaPoolRef =>
+      TfRef.attribute<String>(this, 'server_ca_pool');
+
+  /// Reference to `shard_count` attribute.
+  TfRef<num> get shardCountRef => TfRef.attribute<num>(this, 'shard_count');
+
+  /// Reference to `transit_encryption_mode` attribute.
+  TfRef<String> get transitEncryptionModeRef =>
+      TfRef.attribute<String>(this, 'transit_encryption_mode');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

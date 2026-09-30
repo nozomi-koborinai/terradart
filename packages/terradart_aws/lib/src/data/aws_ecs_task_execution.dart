@@ -284,4 +284,55 @@ final class DataAwsEcsTaskExecution extends Data {
   /// Reference to `task_arns` attribute.
   TfRef<List<String>> get taskArns =>
       TfRef.attribute<List<String>>(this, 'task_arns');
+
+  /// Reference to `client_token` attribute.
+  TfRef<String> get clientTokenRef =>
+      TfRef.attribute<String>(this, 'client_token');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `desired_count` attribute.
+  TfRef<num> get desiredCountRef => TfRef.attribute<num>(this, 'desired_count');
+
+  /// Reference to `enable_ecs_managed_tags` attribute.
+  TfRef<bool> get enableEcsManagedTagsRef =>
+      TfRef.attribute<bool>(this, 'enable_ecs_managed_tags');
+
+  /// Reference to `enable_execute_command` attribute.
+  TfRef<bool> get enableExecuteCommandRef =>
+      TfRef.attribute<bool>(this, 'enable_execute_command');
+
+  /// Reference to `group` attribute.
+  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+
+  /// Reference to `launch_type` attribute.
+  TfRef<String> get launchTypeRef =>
+      TfRef.attribute<String>(this, 'launch_type');
+
+  /// Reference to `platform_version` attribute.
+  TfRef<String> get platformVersionRef =>
+      TfRef.attribute<String>(this, 'platform_version');
+
+  /// Reference to `propagate_tags` attribute.
+  TfRef<String> get propagateTagsRef =>
+      TfRef.attribute<String>(this, 'propagate_tags');
+
+  /// Reference to `reference_id` attribute.
+  TfRef<String> get referenceIdRef =>
+      TfRef.attribute<String>(this, 'reference_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `started_by` attribute.
+  TfRef<String> get startedByRef => TfRef.attribute<String>(this, 'started_by');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `task_definition` attribute.
+  TfRef<String> get taskDefinitionRef =>
+      TfRef.attribute<String>(this, 'task_definition');
 }

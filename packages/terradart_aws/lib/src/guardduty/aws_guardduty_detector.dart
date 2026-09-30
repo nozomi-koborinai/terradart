@@ -160,4 +160,18 @@ final class AwsGuarddutyDetector extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `enable` attribute.
+  TfRef<bool> get enableRef => TfRef.attribute<bool>(this, 'enable');
+
+  /// Reference to `finding_publishing_frequency` attribute.
+  TfRef<String> get findingPublishingFrequencyRef =>
+      TfRef.attribute<String>(this, 'finding_publishing_frequency');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

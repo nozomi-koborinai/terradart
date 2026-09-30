@@ -596,4 +596,19 @@ final class AwsApprunnerService extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `auto_scaling_configuration_arn` attribute.
+  TfRef<String> get autoScalingConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'auto_scaling_configuration_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -67,4 +67,13 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

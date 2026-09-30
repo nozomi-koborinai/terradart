@@ -77,4 +77,10 @@ final class GooglePublicCaExternalAccountKey extends Resource {
 
   /// Reference to `mac_key` attribute.
   TfRef<String> get macKey => TfRef.attribute<String>(this, 'mac_key');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

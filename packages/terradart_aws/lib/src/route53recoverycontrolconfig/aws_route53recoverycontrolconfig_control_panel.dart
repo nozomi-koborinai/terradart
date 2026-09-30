@@ -52,4 +52,12 @@ final class AwsRoute53recoverycontrolconfigControlPanel extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

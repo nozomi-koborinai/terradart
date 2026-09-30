@@ -265,4 +265,54 @@ final class GoogleFirestoreDatabase extends Resource {
   /// Reference to `version_retention_period` attribute.
   TfRef<String> get versionRetentionPeriod =>
       TfRef.attribute<String>(this, 'version_retention_period');
+
+  /// Reference to `app_engine_integration_mode` attribute.
+  TfRef<String> get appEngineIntegrationModeRef =>
+      TfRef.attribute<String>(this, 'app_engine_integration_mode');
+
+  /// Reference to `concurrency_mode` attribute.
+  TfRef<String> get concurrencyModeRef =>
+      TfRef.attribute<String>(this, 'concurrency_mode');
+
+  /// Reference to `database_edition` attribute.
+  TfRef<String> get databaseEditionRef =>
+      TfRef.attribute<String>(this, 'database_edition');
+
+  /// Reference to `delete_protection_state` attribute.
+  TfRef<String> get deleteProtectionStateRef =>
+      TfRef.attribute<String>(this, 'delete_protection_state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `firestore_data_access_mode` attribute.
+  TfRef<String> get firestoreDataAccessModeRef =>
+      TfRef.attribute<String>(this, 'firestore_data_access_mode');
+
+  /// Reference to `location_id` attribute.
+  TfRef<String> get locationIdRef =>
+      TfRef.attribute<String>(this, 'location_id');
+
+  /// Reference to `mongodb_compatible_data_access_mode` attribute.
+  TfRef<String> get mongodbCompatibleDataAccessModeRef =>
+      TfRef.attribute<String>(this, 'mongodb_compatible_data_access_mode');
+
+  /// Reference to `point_in_time_recovery_enablement` attribute.
+  TfRef<String> get pointInTimeRecoveryEnablementRef =>
+      TfRef.attribute<String>(this, 'point_in_time_recovery_enablement');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `realtime_updates_mode` attribute.
+  TfRef<String> get realtimeUpdatesModeRef =>
+      TfRef.attribute<String>(this, 'realtime_updates_mode');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

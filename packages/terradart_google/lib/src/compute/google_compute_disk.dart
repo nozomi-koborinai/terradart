@@ -271,6 +271,88 @@ final class GoogleComputeDisk extends Resource {
   /// Reference to `users` attribute.
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
+  /// Reference to `access_mode` attribute.
+  TfRef<String> get accessModeRef =>
+      TfRef.attribute<String>(this, 'access_mode');
+
+  /// Reference to `architecture` attribute.
+  TfRef<String> get architectureRef =>
+      TfRef.attribute<String>(this, 'architecture');
+
+  /// Reference to `create_snapshot_before_destroy` attribute.
+  TfRef<bool> get createSnapshotBeforeDestroyRef =>
+      TfRef.attribute<bool>(this, 'create_snapshot_before_destroy');
+
+  /// Reference to `create_snapshot_before_destroy_prefix` attribute.
+  TfRef<String> get createSnapshotBeforeDestroyPrefixRef =>
+      TfRef.attribute<String>(this, 'create_snapshot_before_destroy_prefix');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_confidential_compute` attribute.
+  TfRef<bool> get enableConfidentialComputeRef =>
+      TfRef.attribute<bool>(this, 'enable_confidential_compute');
+
+  /// Reference to `image` attribute.
+  TfRef<String> get imageRef => TfRef.attribute<String>(this, 'image');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `licenses` attribute.
+  TfRef<List<String>> get licensesRef =>
+      TfRef.attribute<List<String>>(this, 'licenses');
+
+  /// Reference to `physical_block_size_bytes` attribute.
+  TfRef<num> get physicalBlockSizeBytesRef =>
+      TfRef.attribute<num>(this, 'physical_block_size_bytes');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provisioned_iops` attribute.
+  TfRef<num> get provisionedIopsRef =>
+      TfRef.attribute<num>(this, 'provisioned_iops');
+
+  /// Reference to `provisioned_throughput` attribute.
+  TfRef<num> get provisionedThroughputRef =>
+      TfRef.attribute<num>(this, 'provisioned_throughput');
+
+  /// Reference to `size` attribute.
+  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+
+  /// Reference to `snapshot` attribute.
+  TfRef<String> get snapshotRef => TfRef.attribute<String>(this, 'snapshot');
+
+  /// Reference to `source_disk` attribute.
+  TfRef<String> get sourceDiskRef =>
+      TfRef.attribute<String>(this, 'source_disk');
+
+  /// Reference to `source_instant_snapshot` attribute.
+  TfRef<String> get sourceInstantSnapshotRef =>
+      TfRef.attribute<String>(this, 'source_instant_snapshot');
+
+  /// Reference to `source_storage_object` attribute.
+  TfRef<String> get sourceStorageObjectRef =>
+      TfRef.attribute<String>(this, 'source_storage_object');
+
+  /// Reference to `storage_pool` attribute.
+  TfRef<String> get storagePoolRef =>
+      TfRef.attribute<String>(this, 'storage_pool');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -93,4 +93,35 @@ final class AwsGlueSchema extends Resource {
   /// Reference to `schema_checkpoint` attribute.
   TfRef<num> get schemaCheckpoint =>
       TfRef.attribute<num>(this, 'schema_checkpoint');
+
+  /// Reference to `compatibility` attribute.
+  TfRef<String> get compatibilityRef =>
+      TfRef.attribute<String>(this, 'compatibility');
+
+  /// Reference to `data_format` attribute.
+  TfRef<String> get dataFormatRef =>
+      TfRef.attribute<String>(this, 'data_format');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_arn` attribute.
+  TfRef<String> get registryArnRef =>
+      TfRef.attribute<String>(this, 'registry_arn');
+
+  /// Reference to `schema_definition` attribute.
+  TfRef<String> get schemaDefinitionRef =>
+      TfRef.attribute<String>(this, 'schema_definition');
+
+  /// Reference to `schema_name` attribute.
+  TfRef<String> get schemaNameRef =>
+      TfRef.attribute<String>(this, 'schema_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

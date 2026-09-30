@@ -72,4 +72,11 @@ final class AwsBedrockagentcoreTokenVaultCmk extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsBedrockagentcoreTokenVaultCmk>`.
   RefTo<AwsBedrockagentcoreTokenVaultCmk> get ref => RefTo.of(this);
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `token_vault_id` attribute.
+  TfRef<String> get tokenVaultIdRef =>
+      TfRef.attribute<String>(this, 'token_vault_id');
 }

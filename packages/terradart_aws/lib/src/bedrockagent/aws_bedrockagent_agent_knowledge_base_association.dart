@@ -72,4 +72,26 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `agent_id` attribute.
+  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+
+  /// Reference to `agent_version` attribute.
+  TfRef<String> get agentVersionRef =>
+      TfRef.attribute<String>(this, 'agent_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `knowledge_base_id` attribute.
+  TfRef<String> get knowledgeBaseIdRef =>
+      TfRef.attribute<String>(this, 'knowledge_base_id');
+
+  /// Reference to `knowledge_base_state` attribute.
+  TfRef<String> get knowledgeBaseStateRef =>
+      TfRef.attribute<String>(this, 'knowledge_base_state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

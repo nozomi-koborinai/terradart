@@ -178,6 +178,69 @@ final class GoogleBackupDrBackupVault extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `access_restriction` attribute.
+  TfRef<String> get accessRestrictionRef =>
+      TfRef.attribute<String>(this, 'access_restriction');
+
+  /// Reference to `allow_missing` attribute.
+  TfRef<bool> get allowMissingRef =>
+      TfRef.attribute<bool>(this, 'allow_missing');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `backup_minimum_enforced_retention_duration` attribute.
+  TfRef<String> get backupMinimumEnforcedRetentionDurationRef =>
+      TfRef.attribute<String>(
+        this,
+        'backup_minimum_enforced_retention_duration',
+      );
+
+  /// Reference to `backup_retention_inheritance` attribute.
+  TfRef<String> get backupRetentionInheritanceRef =>
+      TfRef.attribute<String>(this, 'backup_retention_inheritance');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `effective_time` attribute.
+  TfRef<String> get effectiveTimeRef =>
+      TfRef.attribute<String>(this, 'effective_time');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `force_update` attribute.
+  TfRef<bool> get forceUpdateRef => TfRef.attribute<bool>(this, 'force_update');
+
+  /// Reference to `force_update_access_restriction` attribute.
+  TfRef<bool> get forceUpdateAccessRestrictionRef =>
+      TfRef.attribute<bool>(this, 'force_update_access_restriction');
+
+  /// Reference to `ignore_backup_plan_references` attribute.
+  TfRef<bool> get ignoreBackupPlanReferencesRef =>
+      TfRef.attribute<bool>(this, 'ignore_backup_plan_references');
+
+  /// Reference to `ignore_inactive_datasources` attribute.
+  TfRef<bool> get ignoreInactiveDatasourcesRef =>
+      TfRef.attribute<bool>(this, 'ignore_inactive_datasources');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

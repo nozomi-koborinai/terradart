@@ -161,4 +161,44 @@ final class AwsDirectoryServiceDirectory extends Resource {
   /// Reference to `security_group_id` attribute.
   TfRef<String> get securityGroupId =>
       TfRef.attribute<String>(this, 'security_group_id');
+
+  /// Reference to `alias` attribute.
+  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `desired_number_of_domain_controllers` attribute.
+  TfRef<num> get desiredNumberOfDomainControllersRef =>
+      TfRef.attribute<num>(this, 'desired_number_of_domain_controllers');
+
+  /// Reference to `edition` attribute.
+  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+
+  /// Reference to `enable_directory_data_access` attribute.
+  TfRef<bool> get enableDirectoryDataAccessRef =>
+      TfRef.attribute<bool>(this, 'enable_directory_data_access');
+
+  /// Reference to `enable_sso` attribute.
+  TfRef<bool> get enableSsoRef => TfRef.attribute<bool>(this, 'enable_sso');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `short_name` attribute.
+  TfRef<String> get shortNameRef => TfRef.attribute<String>(this, 'short_name');
+
+  /// Reference to `size` attribute.
+  TfRef<String> get sizeRef => TfRef.attribute<String>(this, 'size');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

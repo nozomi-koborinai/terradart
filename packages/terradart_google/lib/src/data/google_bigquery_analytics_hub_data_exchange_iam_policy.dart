@@ -49,4 +49,14 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `data_exchange_id` attribute.
+  TfRef<String> get dataExchangeIdRef =>
+      TfRef.attribute<String>(this, 'data_exchange_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -49,4 +49,17 @@ final class AwsIotThingPrincipalAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `thing` attribute.
+  TfRef<String> get thingRef => TfRef.attribute<String>(this, 'thing');
+
+  /// Reference to `thing_principal_type` attribute.
+  TfRef<String> get thingPrincipalTypeRef =>
+      TfRef.attribute<String>(this, 'thing_principal_type');
 }

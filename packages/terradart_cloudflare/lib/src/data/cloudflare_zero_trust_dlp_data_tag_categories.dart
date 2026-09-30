@@ -33,4 +33,10 @@ final class DataCloudflareZeroTrustDlpDataTagCategories extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpDataTagCategoriesSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
 }

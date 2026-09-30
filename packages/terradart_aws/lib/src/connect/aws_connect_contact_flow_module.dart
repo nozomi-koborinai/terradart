@@ -116,4 +116,29 @@ final class AwsConnectContactFlowModule extends Resource {
   /// Reference to `contact_flow_module_id` attribute.
   TfRef<String> get contactFlowModuleId =>
       TfRef.attribute<String>(this, 'contact_flow_module_id');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `content_hash` attribute.
+  TfRef<String> get contentHashRef =>
+      TfRef.attribute<String>(this, 'content_hash');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `filename` attribute.
+  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

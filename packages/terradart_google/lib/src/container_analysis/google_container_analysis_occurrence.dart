@@ -123,4 +123,22 @@ final class GoogleContainerAnalysisOccurrence extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `note_name` attribute.
+  TfRef<String> get noteNameRef => TfRef.attribute<String>(this, 'note_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `remediation` attribute.
+  TfRef<String> get remediationRef =>
+      TfRef.attribute<String>(this, 'remediation');
+
+  /// Reference to `resource_uri` attribute.
+  TfRef<String> get resourceUriRef =>
+      TfRef.attribute<String>(this, 'resource_uri');
 }

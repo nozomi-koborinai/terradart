@@ -84,4 +84,28 @@ final class GoogleChronicleCustomList extends Resource {
   /// Reference to `custom_list_id` attribute.
   TfRef<String> get customListId =>
       TfRef.attribute<String>(this, 'custom_list_id');
+
+  /// Reference to `category` attribute.
+  TfRef<String> get categoryRef => TfRef.attribute<String>(this, 'category');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `entity_identifier` attribute.
+  TfRef<String> get entityIdentifierRef =>
+      TfRef.attribute<String>(this, 'entity_identifier');
+
+  /// Reference to `environments` attribute.
+  TfRef<String> get environmentsRef =>
+      TfRef.attribute<String>(this, 'environments');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

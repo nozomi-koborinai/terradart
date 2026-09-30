@@ -58,4 +58,18 @@ final class DataAwsSsoadminPermissionSet extends Data {
   /// Reference to `session_duration` attribute.
   TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -167,4 +167,23 @@ final class AwsConnectRoutingProfile extends Resource {
   /// Reference to `routing_profile_id` attribute.
   TfRef<String> get routingProfileId =>
       TfRef.attribute<String>(this, 'routing_profile_id');
+
+  /// Reference to `default_outbound_queue_id` attribute.
+  TfRef<String> get defaultOutboundQueueIdRef =>
+      TfRef.attribute<String>(this, 'default_outbound_queue_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

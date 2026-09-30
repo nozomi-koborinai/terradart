@@ -56,6 +56,33 @@ final class GoogleApigeeFlowhook extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `continue_on_error` attribute.
+  TfRef<bool> get continueOnErrorRef =>
+      TfRef.attribute<bool>(this, 'continue_on_error');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environmentRef =>
+      TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `flow_hook_point` attribute.
+  TfRef<String> get flowHookPointRef =>
+      TfRef.attribute<String>(this, 'flow_hook_point');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `sharedflow` attribute.
+  TfRef<String> get sharedflowRef =>
+      TfRef.attribute<String>(this, 'sharedflow');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

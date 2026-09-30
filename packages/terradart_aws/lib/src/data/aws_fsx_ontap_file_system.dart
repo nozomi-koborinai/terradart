@@ -118,4 +118,11 @@ final class DataAwsFsxOntapFileSystem extends Data {
   /// Reference to `weekly_maintenance_start_time` attribute.
   TfRef<String> get weeklyMaintenanceStartTime =>
       TfRef.attribute<String>(this, 'weekly_maintenance_start_time');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

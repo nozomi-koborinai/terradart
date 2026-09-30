@@ -53,4 +53,15 @@ final class DataAwsEmrcontainersVirtualCluster extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `virtual_cluster_id` attribute.
+  TfRef<String> get virtualClusterIdRef =>
+      TfRef.attribute<String>(this, 'virtual_cluster_id');
 }

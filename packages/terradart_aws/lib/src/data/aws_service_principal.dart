@@ -32,4 +32,11 @@ final class DataAwsServicePrincipal extends Data {
 
   /// Reference to `suffix` attribute.
   TfRef<String> get suffix => TfRef.attribute<String>(this, 'suffix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
 }

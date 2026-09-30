@@ -282,4 +282,26 @@ final class GoogleDialogflowEnvironment extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `agent_version` attribute.
+  TfRef<String> get agentVersionRef =>
+      TfRef.attribute<String>(this, 'agent_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environmentid` attribute.
+  TfRef<String> get environmentidRef =>
+      TfRef.attribute<String>(this, 'environmentid');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

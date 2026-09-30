@@ -90,4 +90,21 @@ final class AwsInspectorAssessmentTemplate extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `duration` attribute.
+  TfRef<num> get durationRef => TfRef.attribute<num>(this, 'duration');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rules_package_arns` attribute.
+  TfRef<List<String>> get rulesPackageArnsRef =>
+      TfRef.attribute<List<String>>(this, 'rules_package_arns');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_arn` attribute.
+  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
 }

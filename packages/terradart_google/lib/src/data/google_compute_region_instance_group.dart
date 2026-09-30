@@ -46,4 +46,13 @@ final class DataGoogleComputeRegionInstanceGroup extends Data {
 
   /// Reference to `size` attribute.
   TfRef<num> get size => TfRef.attribute<num>(this, 'size');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
 }

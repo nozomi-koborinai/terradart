@@ -33,4 +33,11 @@ final class DataCloudflareR2BucketCors extends Data {
   /// arguments typed `RefTo<CloudflareR2BucketCors>`.
   RefTo<CloudflareR2BucketCors> get ref =>
       RefTo.read(this); // ignore: invalid_use_of_internal_member
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
 }

@@ -75,4 +75,17 @@ final class DataAwsKendraFaq extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `faq_id` attribute.
+  TfRef<String> get faqIdRef => TfRef.attribute<String>(this, 'faq_id');
+
+  /// Reference to `index_id` attribute.
+  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

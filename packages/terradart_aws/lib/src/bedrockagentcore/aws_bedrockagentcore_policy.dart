@@ -87,4 +87,19 @@ final class AwsBedrockagentcorePolicy extends Resource {
 
   /// Reference to `policy_id` attribute.
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `policy_engine_id` attribute.
+  TfRef<String> get policyEngineIdRef =>
+      TfRef.attribute<String>(this, 'policy_engine_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `validation_mode` attribute.
+  TfRef<String> get validationModeRef =>
+      TfRef.attribute<String>(this, 'validation_mode');
 }

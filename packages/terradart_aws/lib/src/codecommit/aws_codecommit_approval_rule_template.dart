@@ -63,4 +63,14 @@ final class AwsCodecommitApprovalRuleTemplate extends Resource {
   /// Reference to `rule_content_sha256` attribute.
   TfRef<String> get ruleContentSha256 =>
       TfRef.attribute<String>(this, 'rule_content_sha256');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

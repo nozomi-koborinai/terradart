@@ -95,6 +95,39 @@ final class GoogleNetappBackupPolicy extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `daily_backup_limit` attribute.
+  TfRef<num> get dailyBackupLimitRef =>
+      TfRef.attribute<num>(this, 'daily_backup_limit');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `monthly_backup_limit` attribute.
+  TfRef<num> get monthlyBackupLimitRef =>
+      TfRef.attribute<num>(this, 'monthly_backup_limit');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `weekly_backup_limit` attribute.
+  TfRef<num> get weeklyBackupLimitRef =>
+      TfRef.attribute<num>(this, 'weekly_backup_limit');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

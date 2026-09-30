@@ -163,4 +163,32 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `certificates` attribute.
+  TfRef<List<String>> get certificatesRef =>
+      TfRef.attribute<List<String>>(this, 'certificates');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `map` attribute.
+  TfRef<String> get mapRef => TfRef.attribute<String>(this, 'map');
+
+  /// Reference to `matcher` attribute.
+  TfRef<String> get matcherRef => TfRef.attribute<String>(this, 'matcher');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

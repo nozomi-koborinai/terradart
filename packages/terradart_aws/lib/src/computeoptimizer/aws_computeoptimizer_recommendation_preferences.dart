@@ -387,4 +387,27 @@ final class AwsComputeoptimizerRecommendationPreferences extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `enhanced_infrastructure_metrics` attribute.
+  TfRef<String> get enhancedInfrastructureMetricsRef =>
+      TfRef.attribute<String>(this, 'enhanced_infrastructure_metrics');
+
+  /// Reference to `inferred_workload_types` attribute.
+  TfRef<String> get inferredWorkloadTypesRef =>
+      TfRef.attribute<String>(this, 'inferred_workload_types');
+
+  /// Reference to `look_back_period` attribute.
+  TfRef<String> get lookBackPeriodRef =>
+      TfRef.attribute<String>(this, 'look_back_period');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
+
+  /// Reference to `savings_estimation_mode` attribute.
+  TfRef<String> get savingsEstimationModeRef =>
+      TfRef.attribute<String>(this, 'savings_estimation_mode');
 }

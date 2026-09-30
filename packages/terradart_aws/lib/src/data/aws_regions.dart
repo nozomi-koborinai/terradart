@@ -50,4 +50,7 @@ final class DataAwsRegions extends Data {
 
   /// Reference to `names` attribute.
   TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
+
+  /// Reference to `all_regions` attribute.
+  TfRef<bool> get allRegionsRef => TfRef.attribute<bool>(this, 'all_regions');
 }

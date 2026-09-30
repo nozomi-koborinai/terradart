@@ -29,4 +29,7 @@ final class DataGoogleOrganizations extends Data {
   /// Reference to `organizations` attribute.
   TfRef<List<Map<String, Object?>>> get organizations =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'organizations');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
 }

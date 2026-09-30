@@ -68,4 +68,10 @@ final class DataGoogleVmwareengineNetwork extends Data {
   /// Reference to `vpc_networks` attribute.
   TfRef<List<Map<String, Object?>>> get vpcNetworks =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_networks');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

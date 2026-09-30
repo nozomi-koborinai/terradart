@@ -45,4 +45,14 @@ final class DataCloudflareWorkersKv extends Data {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `key_name` attribute.
+  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+
+  /// Reference to `namespace_id` attribute.
+  TfRef<String> get namespaceIdRef =>
+      TfRef.attribute<String>(this, 'namespace_id');
 }

@@ -63,4 +63,22 @@ final class GoogleMigrationCenterSettings extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disable_cloud_logging` attribute.
+  TfRef<bool> get disableCloudLoggingRef =>
+      TfRef.attribute<bool>(this, 'disable_cloud_logging');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `preference_set` attribute.
+  TfRef<String> get preferenceSetRef =>
+      TfRef.attribute<String>(this, 'preference_set');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -53,4 +53,15 @@ final class DataAwsLocationRouteCalculator extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `calculator_name` attribute.
+  TfRef<String> get calculatorNameRef =>
+      TfRef.attribute<String>(this, 'calculator_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

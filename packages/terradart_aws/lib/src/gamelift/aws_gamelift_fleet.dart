@@ -837,4 +837,40 @@ final class AwsGameliftFleet extends Resource {
 
   /// Reference to `script_arn` attribute.
   TfRef<String> get scriptArn => TfRef.attribute<String>(this, 'script_arn');
+
+  /// Reference to `build_id` attribute.
+  TfRef<String> get buildIdRef => TfRef.attribute<String>(this, 'build_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ec2_instance_type` attribute.
+  TfRef<String> get ec2InstanceTypeRef =>
+      TfRef.attribute<String>(this, 'ec2_instance_type');
+
+  /// Reference to `fleet_type` attribute.
+  TfRef<String> get fleetTypeRef => TfRef.attribute<String>(this, 'fleet_type');
+
+  /// Reference to `instance_role_arn` attribute.
+  TfRef<String> get instanceRoleArnRef =>
+      TfRef.attribute<String>(this, 'instance_role_arn');
+
+  /// Reference to `metric_groups` attribute.
+  TfRef<List<String>> get metricGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'metric_groups');
+
+  /// Reference to `new_game_session_protection_policy` attribute.
+  TfRef<String> get newGameSessionProtectionPolicyRef =>
+      TfRef.attribute<String>(this, 'new_game_session_protection_policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `script_id` attribute.
+  TfRef<String> get scriptIdRef => TfRef.attribute<String>(this, 'script_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

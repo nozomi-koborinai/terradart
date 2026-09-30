@@ -2658,4 +2658,11 @@ final class AwsSecurityhubInsight extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `group_by_attribute` attribute.
+  TfRef<String> get groupByAttributeRef =>
+      TfRef.attribute<String>(this, 'group_by_attribute');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

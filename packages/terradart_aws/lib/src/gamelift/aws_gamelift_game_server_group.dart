@@ -311,4 +311,36 @@ final class AwsGameliftGameServerGroup extends Resource {
   /// Reference to `auto_scaling_group_arn` attribute.
   TfRef<String> get autoScalingGroupArn =>
       TfRef.attribute<String>(this, 'auto_scaling_group_arn');
+
+  /// Reference to `balancing_strategy` attribute.
+  TfRef<String> get balancingStrategyRef =>
+      TfRef.attribute<String>(this, 'balancing_strategy');
+
+  /// Reference to `game_server_group_name` attribute.
+  TfRef<String> get gameServerGroupNameRef =>
+      TfRef.attribute<String>(this, 'game_server_group_name');
+
+  /// Reference to `game_server_protection_policy` attribute.
+  TfRef<String> get gameServerProtectionPolicyRef =>
+      TfRef.attribute<String>(this, 'game_server_protection_policy');
+
+  /// Reference to `max_size` attribute.
+  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+
+  /// Reference to `min_size` attribute.
+  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_subnets` attribute.
+  TfRef<List<String>> get vpcSubnetsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_subnets');
 }

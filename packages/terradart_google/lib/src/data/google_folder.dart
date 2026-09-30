@@ -75,4 +75,11 @@ final class DataGoogleFolder extends Data {
 
   /// Reference to `parent` attribute.
   TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `lookup_organization` attribute.
+  TfRef<bool> get lookupOrganizationRef =>
+      TfRef.attribute<bool>(this, 'lookup_organization');
 }

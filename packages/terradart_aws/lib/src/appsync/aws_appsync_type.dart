@@ -58,4 +58,17 @@ final class AwsAppsyncType extends Resource {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `definition` attribute.
+  TfRef<String> get definitionRef =>
+      TfRef.attribute<String>(this, 'definition');
+
+  /// Reference to `format` attribute.
+  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

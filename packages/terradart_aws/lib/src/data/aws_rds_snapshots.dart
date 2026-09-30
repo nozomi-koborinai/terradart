@@ -58,4 +58,27 @@ final class DataAwsRdsSnapshots extends Data {
   /// Reference to `snapshots` attribute.
   TfRef<List<Map<String, Object?>>> get snapshots =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'snapshots');
+
+  /// Reference to `db_instance_identifier` attribute.
+  TfRef<String> get dbInstanceIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_instance_identifier');
+
+  /// Reference to `db_snapshot_identifier` attribute.
+  TfRef<String> get dbSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_snapshot_identifier');
+
+  /// Reference to `include_public` attribute.
+  TfRef<bool> get includePublicRef =>
+      TfRef.attribute<bool>(this, 'include_public');
+
+  /// Reference to `include_shared` attribute.
+  TfRef<bool> get includeSharedRef =>
+      TfRef.attribute<bool>(this, 'include_shared');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_type` attribute.
+  TfRef<String> get snapshotTypeRef =>
+      TfRef.attribute<String>(this, 'snapshot_type');
 }

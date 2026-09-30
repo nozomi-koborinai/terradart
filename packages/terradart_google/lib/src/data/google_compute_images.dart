@@ -33,4 +33,10 @@ final class DataGoogleComputeImages extends Data {
   /// Reference to `images` attribute.
   TfRef<List<Map<String, Object?>>> get images =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'images');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

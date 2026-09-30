@@ -52,4 +52,15 @@ final class AwsIotThing extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `attributes` attribute.
+  TfRef<Map<String, String>> get attributesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'attributes');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `thing_type_name` attribute.
+  TfRef<String> get thingTypeNameRef =>
+      TfRef.attribute<String>(this, 'thing_type_name');
 }

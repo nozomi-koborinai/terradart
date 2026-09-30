@@ -50,4 +50,7 @@ final class DataAwsSsmInstances extends Data {
 
   /// Reference to `ids` attribute.
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

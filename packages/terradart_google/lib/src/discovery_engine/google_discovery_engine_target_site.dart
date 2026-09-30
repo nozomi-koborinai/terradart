@@ -113,4 +113,28 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `data_store_id` attribute.
+  TfRef<String> get dataStoreIdRef =>
+      TfRef.attribute<String>(this, 'data_store_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `exact_match` attribute.
+  TfRef<bool> get exactMatchRef => TfRef.attribute<bool>(this, 'exact_match');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provided_uri_pattern` attribute.
+  TfRef<String> get providedUriPatternRef =>
+      TfRef.attribute<String>(this, 'provided_uri_pattern');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

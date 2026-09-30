@@ -57,4 +57,19 @@ final class DataAwsEc2TransitGatewayVpnAttachment extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
+
+  /// Reference to `vpn_connection_id` attribute.
+  TfRef<String> get vpnConnectionIdRef =>
+      TfRef.attribute<String>(this, 'vpn_connection_id');
 }

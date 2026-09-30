@@ -1055,4 +1055,32 @@ final class CloudflareWorkerVersion extends Resource {
 
   /// Reference to `urls` attribute.
   TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `compatibility_date` attribute.
+  TfRef<String> get compatibilityDateRef =>
+      TfRef.attribute<String>(this, 'compatibility_date');
+
+  /// Reference to `compatibility_flags` attribute.
+  TfRef<List<String>> get compatibilityFlagsRef =>
+      TfRef.attribute<List<String>>(this, 'compatibility_flags');
+
+  /// Reference to `deploy` attribute.
+  TfRef<bool> get deployRef => TfRef.attribute<bool>(this, 'deploy');
+
+  /// Reference to `include` attribute.
+  TfRef<String> get includeRef => TfRef.attribute<String>(this, 'include');
+
+  /// Reference to `main_module` attribute.
+  TfRef<String> get mainModuleRef =>
+      TfRef.attribute<String>(this, 'main_module');
+
+  /// Reference to `usage_model` attribute.
+  TfRef<String> get usageModelRef =>
+      TfRef.attribute<String>(this, 'usage_model');
+
+  /// Reference to `worker_id` attribute.
+  TfRef<String> get workerIdRef => TfRef.attribute<String>(this, 'worker_id');
 }

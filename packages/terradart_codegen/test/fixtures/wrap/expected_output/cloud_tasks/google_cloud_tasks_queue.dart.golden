@@ -366,5 +366,16 @@ final class GoogleCloudTasksQueue extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

@@ -60,4 +60,10 @@ final class DataCloudflareImage extends Data {
   /// Reference to `variants` attribute.
   TfRef<List<String>> get variants =>
       TfRef.attribute<List<String>>(this, 'variants');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
 }

@@ -62,4 +62,17 @@ final class DataGoogleArtifactRegistryDockerImage extends Data {
 
   /// Reference to `upload_time` attribute.
   TfRef<String> get uploadTime => TfRef.attribute<String>(this, 'upload_time');
+
+  /// Reference to `image_name` attribute.
+  TfRef<String> get imageNameRef => TfRef.attribute<String>(this, 'image_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
 }

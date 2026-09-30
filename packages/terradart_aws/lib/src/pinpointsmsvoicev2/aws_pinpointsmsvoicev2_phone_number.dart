@@ -116,4 +116,63 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `deletion_protection_enabled` attribute.
+  TfRef<bool> get deletionProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection_enabled');
+
+  /// Reference to `force_disassociate` attribute.
+  TfRef<bool> get forceDisassociateRef =>
+      TfRef.attribute<bool>(this, 'force_disassociate');
+
+  /// Reference to `iso_country_code` attribute.
+  TfRef<String> get isoCountryCodeRef =>
+      TfRef.attribute<String>(this, 'iso_country_code');
+
+  /// Reference to `message_type` attribute.
+  TfRef<String> get messageTypeRef =>
+      TfRef.attribute<String>(this, 'message_type');
+
+  /// Reference to `number_capabilities` attribute.
+  TfRef<List<String>> get numberCapabilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'number_capabilities');
+
+  /// Reference to `number_type` attribute.
+  TfRef<String> get numberTypeRef =>
+      TfRef.attribute<String>(this, 'number_type');
+
+  /// Reference to `opt_out_list_name` attribute.
+  TfRef<String> get optOutListNameRef =>
+      TfRef.attribute<String>(this, 'opt_out_list_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registration_id` attribute.
+  TfRef<String> get registrationIdRef =>
+      TfRef.attribute<String>(this, 'registration_id');
+
+  /// Reference to `self_managed_opt_outs_enabled` attribute.
+  TfRef<bool> get selfManagedOptOutsEnabledRef =>
+      TfRef.attribute<bool>(this, 'self_managed_opt_outs_enabled');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `two_way_channel_arn` attribute.
+  TfRef<String> get twoWayChannelArnRef =>
+      TfRef.attribute<String>(this, 'two_way_channel_arn');
+
+  /// Reference to `two_way_channel_enabled` attribute.
+  TfRef<bool> get twoWayChannelEnabledRef =>
+      TfRef.attribute<bool>(this, 'two_way_channel_enabled');
+
+  /// Reference to `two_way_channel_role` attribute.
+  TfRef<String> get twoWayChannelRoleRef =>
+      TfRef.attribute<String>(this, 'two_way_channel_role');
+
+  /// Reference to `wait_for_active` attribute.
+  TfRef<bool> get waitForActiveRef =>
+      TfRef.attribute<bool>(this, 'wait_for_active');
 }

@@ -130,4 +130,11 @@ final class DataAwsMemorydbCluster extends Data {
 
   /// Reference to `tls_enabled` attribute.
   TfRef<bool> get tlsEnabled => TfRef.attribute<bool>(this, 'tls_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

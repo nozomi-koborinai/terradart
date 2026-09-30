@@ -60,4 +60,14 @@ final class DataAwsSsmincidentsResponsePlan extends Data {
   /// Reference to `integration` attribute.
   TfRef<List<Map<String, Object?>>> get integration =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'integration');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

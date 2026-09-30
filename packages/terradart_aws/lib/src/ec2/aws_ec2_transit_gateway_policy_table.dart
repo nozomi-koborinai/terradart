@@ -43,4 +43,15 @@ final class AwsEc2TransitGatewayPolicyTable extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
 }

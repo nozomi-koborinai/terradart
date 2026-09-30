@@ -473,4 +473,22 @@ final class AwsEmrserverlessApplication extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `architecture` attribute.
+  TfRef<String> get architectureRef =>
+      TfRef.attribute<String>(this, 'architecture');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_label` attribute.
+  TfRef<String> get releaseLabelRef =>
+      TfRef.attribute<String>(this, 'release_label');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

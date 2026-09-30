@@ -99,4 +99,24 @@ final class AwsSavingsplansSavingsPlan extends Resource {
   /// Reference to `term_duration_in_seconds` attribute.
   TfRef<num> get termDurationInSeconds =>
       TfRef.attribute<num>(this, 'term_duration_in_seconds');
+
+  /// Reference to `commitment` attribute.
+  TfRef<String> get commitmentRef =>
+      TfRef.attribute<String>(this, 'commitment');
+
+  /// Reference to `purchase_time` attribute.
+  TfRef<String> get purchaseTimeRef =>
+      TfRef.attribute<String>(this, 'purchase_time');
+
+  /// Reference to `savings_plan_offering_id` attribute.
+  TfRef<String> get savingsPlanOfferingIdRef =>
+      TfRef.attribute<String>(this, 'savings_plan_offering_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `upfront_payment_amount` attribute.
+  TfRef<String> get upfrontPaymentAmountRef =>
+      TfRef.attribute<String>(this, 'upfront_payment_amount');
 }

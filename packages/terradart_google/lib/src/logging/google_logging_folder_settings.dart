@@ -64,4 +64,19 @@ final class GoogleLoggingFolderSettings extends Resource {
   /// Reference to `logging_service_account_id` attribute.
   TfRef<String> get loggingServiceAccountId =>
       TfRef.attribute<String>(this, 'logging_service_account_id');
+
+  /// Reference to `disable_default_sink` attribute.
+  TfRef<bool> get disableDefaultSinkRef =>
+      TfRef.attribute<bool>(this, 'disable_default_sink');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `storage_location` attribute.
+  TfRef<String> get storageLocationRef =>
+      TfRef.attribute<String>(this, 'storage_location');
 }

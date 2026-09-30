@@ -55,4 +55,23 @@ final class GoogleHealthcareConsentStore extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `default_consent_ttl` attribute.
+  TfRef<String> get defaultConsentTtlRef =>
+      TfRef.attribute<String>(this, 'default_consent_ttl');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_consent_create_on_update` attribute.
+  TfRef<bool> get enableConsentCreateOnUpdateRef =>
+      TfRef.attribute<bool>(this, 'enable_consent_create_on_update');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
 }

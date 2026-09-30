@@ -57,4 +57,21 @@ final class AppwriteTablesdbTable extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `permissions` attribute.
+  TfRef<List<String>> get permissionsRef =>
+      TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `row_security` attribute.
+  TfRef<bool> get rowSecurityRef => TfRef.attribute<bool>(this, 'row_security');
 }

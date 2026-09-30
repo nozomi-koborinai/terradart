@@ -56,4 +56,15 @@ final class DataAwsSfnAlias extends Data {
         this,
         'routing_configuration',
       );
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `statemachine_arn` attribute.
+  TfRef<String> get statemachineArnRef =>
+      TfRef.attribute<String>(this, 'statemachine_arn');
 }

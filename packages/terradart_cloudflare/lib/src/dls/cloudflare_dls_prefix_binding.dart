@@ -45,4 +45,16 @@ final class CloudflareDlsPrefixBinding extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `cidr` attribute.
+  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+
+  /// Reference to `prefix_id` attribute.
+  TfRef<String> get prefixIdRef => TfRef.attribute<String>(this, 'prefix_id');
+
+  /// Reference to `region_key` attribute.
+  TfRef<String> get regionKeyRef => TfRef.attribute<String>(this, 'region_key');
 }

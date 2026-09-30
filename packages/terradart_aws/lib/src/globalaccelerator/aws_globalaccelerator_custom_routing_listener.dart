@@ -60,4 +60,8 @@ final class AwsGlobalacceleratorCustomRoutingListener extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `accelerator_arn` attribute.
+  TfRef<String> get acceleratorArnRef =>
+      TfRef.attribute<String>(this, 'accelerator_arn');
 }

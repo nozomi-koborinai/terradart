@@ -30,4 +30,11 @@ final class DataAwsSecurityhubSecurityControls extends Data {
         this,
         'security_control_definitions',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `standards_arn` attribute.
+  TfRef<String> get standardsArnRef =>
+      TfRef.attribute<String>(this, 'standards_arn');
 }

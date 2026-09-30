@@ -86,4 +86,14 @@ final class DataGoogleComputeStoragePoolTypes extends Data {
   /// Reference to `supported_disk_types` attribute.
   TfRef<List<String>> get supportedDiskTypes =>
       TfRef.attribute<List<String>>(this, 'supported_disk_types');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `storage_pool_type` attribute.
+  TfRef<String> get storagePoolTypeRef =>
+      TfRef.attribute<String>(this, 'storage_pool_type');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

@@ -47,4 +47,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
 
   /// Reference to `suffix` attribute.
   TfRef<String> get suffix => TfRef.attribute<String>(this, 'suffix');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

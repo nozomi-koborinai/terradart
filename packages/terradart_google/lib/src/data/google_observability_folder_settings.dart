@@ -50,4 +50,10 @@ final class DataGoogleObservabilityFolderSettings extends Data {
   /// Reference to `service_account_id` attribute.
   TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

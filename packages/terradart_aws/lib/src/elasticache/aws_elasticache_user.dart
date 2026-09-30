@@ -99,4 +99,36 @@ final class AwsElasticacheUser extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `access_string` attribute.
+  TfRef<String> get accessStringRef =>
+      TfRef.attribute<String>(this, 'access_string');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `no_password_required` attribute.
+  TfRef<bool> get noPasswordRequiredRef =>
+      TfRef.attribute<bool>(this, 'no_password_required');
+
+  /// Reference to `passwords` attribute.
+  TfRef<List<String>> get passwordsRef =>
+      TfRef.attribute<List<String>>(this, 'passwords');
+
+  /// Reference to `passwords_wo_version` attribute.
+  TfRef<num> get passwordsWoVersionRef =>
+      TfRef.attribute<num>(this, 'passwords_wo_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_id` attribute.
+  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

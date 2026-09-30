@@ -116,6 +116,36 @@ final class GoogleNetworkServicesMulticastGroupRangeActivation
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `multicast_domain_activation` attribute.
+  TfRef<String> get multicastDomainActivationRef =>
+      TfRef.attribute<String>(this, 'multicast_domain_activation');
+
+  /// Reference to `multicast_group_range` attribute.
+  TfRef<String> get multicastGroupRangeRef =>
+      TfRef.attribute<String>(this, 'multicast_group_range');
+
+  /// Reference to `multicast_group_range_activation_id` attribute.
+  TfRef<String> get multicastGroupRangeActivationIdRef =>
+      TfRef.attribute<String>(this, 'multicast_group_range_activation_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

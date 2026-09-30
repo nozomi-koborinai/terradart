@@ -479,4 +479,32 @@ final class GoogleDataPipelinePipeline extends Resource {
   /// Reference to `last_update_time` attribute.
   TfRef<String> get lastUpdateTime =>
       TfRef.attribute<String>(this, 'last_update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `pipeline_sources` attribute.
+  TfRef<Map<String, String>> get pipelineSourcesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'pipeline_sources');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scheduler_service_account_email` attribute.
+  TfRef<String> get schedulerServiceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'scheduler_service_account_email');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

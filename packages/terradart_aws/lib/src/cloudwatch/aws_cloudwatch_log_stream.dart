@@ -45,4 +45,11 @@ final class AwsCloudwatchLogStream extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `log_group_name` attribute.
+  TfRef<String> get logGroupNameRef =>
+      TfRef.attribute<String>(this, 'log_group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

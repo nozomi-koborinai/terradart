@@ -34,4 +34,10 @@ final class DataGoogleCertificateManagerCertificates extends Data {
   /// Reference to `certificates` attribute.
   TfRef<List<Map<String, Object?>>> get certificates =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'certificates');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

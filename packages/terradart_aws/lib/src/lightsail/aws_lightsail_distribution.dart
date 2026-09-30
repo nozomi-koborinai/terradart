@@ -268,4 +268,25 @@ final class AwsLightsailDistribution extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `certificate_name` attribute.
+  TfRef<String> get certificateNameRef =>
+      TfRef.attribute<String>(this, 'certificate_name');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `is_enabled` attribute.
+  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -286,4 +286,35 @@ final class AwsImagebuilderImage extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `container_recipe_arn` attribute.
+  TfRef<String> get containerRecipeArnRef =>
+      TfRef.attribute<String>(this, 'container_recipe_arn');
+
+  /// Reference to `distribution_configuration_arn` attribute.
+  TfRef<String> get distributionConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'distribution_configuration_arn');
+
+  /// Reference to `enhanced_image_metadata_enabled` attribute.
+  TfRef<bool> get enhancedImageMetadataEnabledRef =>
+      TfRef.attribute<bool>(this, 'enhanced_image_metadata_enabled');
+
+  /// Reference to `execution_role` attribute.
+  TfRef<String> get executionRoleRef =>
+      TfRef.attribute<String>(this, 'execution_role');
+
+  /// Reference to `image_recipe_arn` attribute.
+  TfRef<String> get imageRecipeArnRef =>
+      TfRef.attribute<String>(this, 'image_recipe_arn');
+
+  /// Reference to `infrastructure_configuration_arn` attribute.
+  TfRef<String> get infrastructureConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'infrastructure_configuration_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

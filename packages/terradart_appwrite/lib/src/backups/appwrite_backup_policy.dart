@@ -58,4 +58,24 @@ final class AppwriteBackupPolicy extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `retention` attribute.
+  TfRef<num> get retentionRef => TfRef.attribute<num>(this, 'retention');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `services` attribute.
+  TfRef<List<String>> get servicesRef =>
+      TfRef.attribute<List<String>>(this, 'services');
 }

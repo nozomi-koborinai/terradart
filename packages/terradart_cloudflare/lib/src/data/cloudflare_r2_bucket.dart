@@ -54,4 +54,11 @@ final class DataCloudflareR2Bucket extends Data {
   /// Reference to `storage_class` attribute.
   TfRef<String> get storageClass =>
       TfRef.attribute<String>(this, 'storage_class');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
 }

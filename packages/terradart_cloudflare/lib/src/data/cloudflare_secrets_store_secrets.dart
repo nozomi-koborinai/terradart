@@ -41,4 +41,26 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareSecretsStoreSecretsSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `search` attribute.
+  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+
+  /// Reference to `store_id` attribute.
+  TfRef<String> get storeIdRef => TfRef.attribute<String>(this, 'store_id');
 }

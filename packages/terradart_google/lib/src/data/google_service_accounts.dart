@@ -34,4 +34,13 @@ final class DataGoogleServiceAccounts extends Data {
   /// Reference to `accounts` attribute.
   TfRef<List<Map<String, Object?>>> get accounts =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'accounts');
+
+  /// Reference to `prefix` attribute.
+  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `regex` attribute.
+  TfRef<String> get regexRef => TfRef.attribute<String>(this, 'regex');
 }

@@ -66,4 +66,25 @@ final class AwsBedrockProvisionedModelThroughput extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `commitment_duration` attribute.
+  TfRef<String> get commitmentDurationRef =>
+      TfRef.attribute<String>(this, 'commitment_duration');
+
+  /// Reference to `model_arn` attribute.
+  TfRef<String> get modelArnRef => TfRef.attribute<String>(this, 'model_arn');
+
+  /// Reference to `model_units` attribute.
+  TfRef<num> get modelUnitsRef => TfRef.attribute<num>(this, 'model_units');
+
+  /// Reference to `provisioned_model_name` attribute.
+  TfRef<String> get provisionedModelNameRef =>
+      TfRef.attribute<String>(this, 'provisioned_model_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

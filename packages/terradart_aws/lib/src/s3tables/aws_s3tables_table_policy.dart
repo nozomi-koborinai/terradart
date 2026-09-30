@@ -41,4 +41,18 @@ final class AwsS3tablesTablePolicy extends Resource {
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_policy` attribute.
+  TfRef<String> get resourcePolicyRef =>
+      TfRef.attribute<String>(this, 'resource_policy');
+
+  /// Reference to `table_bucket_arn` attribute.
+  TfRef<String> get tableBucketArnRef =>
+      TfRef.attribute<String>(this, 'table_bucket_arn');
 }

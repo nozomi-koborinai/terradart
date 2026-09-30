@@ -124,4 +124,11 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
 
   /// Reference to `pattern` attribute.
   TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `trusted_domain_id` attribute.
+  TfRef<String> get trustedDomainIdRef =>
+      TfRef.attribute<String>(this, 'trusted_domain_id');
 }

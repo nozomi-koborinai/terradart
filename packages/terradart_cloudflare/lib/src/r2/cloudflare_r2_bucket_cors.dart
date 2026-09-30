@@ -114,4 +114,15 @@ final class CloudflareR2BucketCors extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareR2BucketCors>`.
   RefTo<CloudflareR2BucketCors> get ref => RefTo.of(this);
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdictionRef =>
+      TfRef.attribute<String>(this, 'jurisdiction');
 }

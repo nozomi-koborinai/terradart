@@ -30,4 +30,11 @@ final class DataAwsMqBrokerEngineTypes extends Data {
   /// Reference to `broker_engine_types` attribute.
   TfRef<List<Map<String, Object?>>> get brokerEngineTypes =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'broker_engine_types');
+
+  /// Reference to `engine_type` attribute.
+  TfRef<String> get engineTypeRef =>
+      TfRef.attribute<String>(this, 'engine_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

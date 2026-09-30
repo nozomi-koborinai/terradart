@@ -66,4 +66,27 @@ final class AwsCloudwatchEventApiDestination extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `connection_arn` attribute.
+  TfRef<String> get connectionArnRef =>
+      TfRef.attribute<String>(this, 'connection_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `http_method` attribute.
+  TfRef<String> get httpMethodRef =>
+      TfRef.attribute<String>(this, 'http_method');
+
+  /// Reference to `invocation_endpoint` attribute.
+  TfRef<String> get invocationEndpointRef =>
+      TfRef.attribute<String>(this, 'invocation_endpoint');
+
+  /// Reference to `invocation_rate_limit_per_second` attribute.
+  TfRef<num> get invocationRateLimitPerSecondRef =>
+      TfRef.attribute<num>(this, 'invocation_rate_limit_per_second');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

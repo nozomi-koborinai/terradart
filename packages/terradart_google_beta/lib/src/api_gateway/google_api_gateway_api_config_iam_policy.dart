@@ -49,4 +49,17 @@ final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `api` attribute.
+  TfRef<String> get apiRef => TfRef.attribute<String>(this, 'api');
+
+  /// Reference to `api_config` attribute.
+  TfRef<String> get apiConfigRef => TfRef.attribute<String>(this, 'api_config');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

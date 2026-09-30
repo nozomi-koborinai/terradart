@@ -74,4 +74,30 @@ final class AwsLicensemanagerLicenseConfiguration extends Resource {
   /// Reference to `owner_account_id` attribute.
   TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `license_count` attribute.
+  TfRef<num> get licenseCountRef => TfRef.attribute<num>(this, 'license_count');
+
+  /// Reference to `license_count_hard_limit` attribute.
+  TfRef<bool> get licenseCountHardLimitRef =>
+      TfRef.attribute<bool>(this, 'license_count_hard_limit');
+
+  /// Reference to `license_counting_type` attribute.
+  TfRef<String> get licenseCountingTypeRef =>
+      TfRef.attribute<String>(this, 'license_counting_type');
+
+  /// Reference to `license_rules` attribute.
+  TfRef<List<String>> get licenseRulesRef =>
+      TfRef.attribute<List<String>>(this, 'license_rules');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -100,4 +100,46 @@ final class AwsRdsGlobalCluster extends Resource {
   /// Reference to `global_cluster_resource_id` attribute.
   TfRef<String> get globalClusterResourceId =>
       TfRef.attribute<String>(this, 'global_cluster_resource_id');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_lifecycle_support` attribute.
+  TfRef<String> get engineLifecycleSupportRef =>
+      TfRef.attribute<String>(this, 'engine_lifecycle_support');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `global_cluster_identifier` attribute.
+  TfRef<String> get globalClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'global_cluster_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_db_cluster_identifier` attribute.
+  TfRef<String> get sourceDbClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'source_db_cluster_identifier');
+
+  /// Reference to `storage_encrypted` attribute.
+  TfRef<bool> get storageEncryptedRef =>
+      TfRef.attribute<bool>(this, 'storage_encrypted');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

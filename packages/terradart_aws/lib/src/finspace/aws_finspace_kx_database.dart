@@ -55,4 +55,19 @@ final class AwsFinspaceKxDatabase extends Resource {
   /// Reference to `last_modified_timestamp` attribute.
   TfRef<String> get lastModifiedTimestamp =>
       TfRef.attribute<String>(this, 'last_modified_timestamp');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

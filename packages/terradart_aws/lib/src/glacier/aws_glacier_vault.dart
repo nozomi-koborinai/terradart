@@ -83,4 +83,15 @@ final class AwsGlacierVault extends Resource {
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `access_policy` attribute.
+  TfRef<String> get accessPolicyRef =>
+      TfRef.attribute<String>(this, 'access_policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

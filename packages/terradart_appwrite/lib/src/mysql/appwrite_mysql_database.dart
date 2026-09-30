@@ -215,4 +215,82 @@ final class AppwriteMysqlDatabase extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `idle_timeout_minutes` attribute.
+  TfRef<num> get idleTimeoutMinutesRef =>
+      TfRef.attribute<num>(this, 'idle_timeout_minutes');
+
+  /// Reference to `maintenance_window_day` attribute.
+  TfRef<String> get maintenanceWindowDayRef =>
+      TfRef.attribute<String>(this, 'maintenance_window_day');
+
+  /// Reference to `maintenance_window_hour_utc` attribute.
+  TfRef<num> get maintenanceWindowHourUtcRef =>
+      TfRef.attribute<num>(this, 'maintenance_window_hour_utc');
+
+  /// Reference to `network_idle_timeout_seconds` attribute.
+  TfRef<num> get networkIdleTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'network_idle_timeout_seconds');
+
+  /// Reference to `network_ip_allowlist` attribute.
+  TfRef<List<String>> get networkIpAllowlistRef =>
+      TfRef.attribute<List<String>>(this, 'network_ip_allowlist');
+
+  /// Reference to `pitr` attribute.
+  TfRef<bool> get pitrRef => TfRef.attribute<bool>(this, 'pitr');
+
+  /// Reference to `pitr_retention_days` attribute.
+  TfRef<num> get pitrRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'pitr_retention_days');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `replicas` attribute.
+  TfRef<num> get replicasRef => TfRef.attribute<num>(this, 'replicas');
+
+  /// Reference to `specification` attribute.
+  TfRef<String> get specificationRef =>
+      TfRef.attribute<String>(this, 'specification');
+
+  /// Reference to `sql_api_allowed_statements` attribute.
+  TfRef<List<String>> get sqlApiAllowedStatementsRef =>
+      TfRef.attribute<List<String>>(this, 'sql_api_allowed_statements');
+
+  /// Reference to `sql_api_enabled` attribute.
+  TfRef<bool> get sqlApiEnabledRef =>
+      TfRef.attribute<bool>(this, 'sql_api_enabled');
+
+  /// Reference to `sql_api_max_bytes` attribute.
+  TfRef<num> get sqlApiMaxBytesRef =>
+      TfRef.attribute<num>(this, 'sql_api_max_bytes');
+
+  /// Reference to `sql_api_max_rows` attribute.
+  TfRef<num> get sqlApiMaxRowsRef =>
+      TfRef.attribute<num>(this, 'sql_api_max_rows');
+
+  /// Reference to `sql_api_timeout_seconds` attribute.
+  TfRef<num> get sqlApiTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'sql_api_timeout_seconds');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `storage_autoscaling` attribute.
+  TfRef<bool> get storageAutoscalingRef =>
+      TfRef.attribute<bool>(this, 'storage_autoscaling');
+
+  /// Reference to `storage_autoscaling_max_gb` attribute.
+  TfRef<num> get storageAutoscalingMaxGbRef =>
+      TfRef.attribute<num>(this, 'storage_autoscaling_max_gb');
+
+  /// Reference to `storage_autoscaling_threshold_percent` attribute.
+  TfRef<num> get storageAutoscalingThresholdPercentRef =>
+      TfRef.attribute<num>(this, 'storage_autoscaling_threshold_percent');
+
+  /// Reference to `sync_mode` attribute.
+  TfRef<String> get syncModeRef => TfRef.attribute<String>(this, 'sync_mode');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

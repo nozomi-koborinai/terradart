@@ -1247,6 +1247,7 @@ resource "aws_cloudwatch_log_group" "fn" {
             'sensitive': true,
           },
           'labels': {'value': r'${google_pubsub_topic.x.labels}'},
+          'unknown': {'value': r'${google_pubsub_topic.x.not_in_schema}'},
           'literal': {'value': 'plain'},
         },
       });
@@ -1258,8 +1259,13 @@ resource "aws_cloudwatch_log_group" "fn" {
       );
       expect(
         r.stackSource,
+        contains("addOutput(r'labels', .ref(x.labelsRef));"),
+      );
+      expect(
+        r.stackSource,
         contains(
-          "addOutput(r'labels', .ref(TfRef.attribute<Object?>(x, r'labels')));",
+          "addOutput(r'unknown', "
+          ".ref(TfRef.attribute<Object?>(x, r'not_in_schema')));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');

@@ -58,4 +58,10 @@ final class DataCloudflareTokenValidationConfig extends Data {
 
   /// Reference to `token_type` attribute.
   TfRef<String> get tokenType => TfRef.attribute<String>(this, 'token_type');
+
+  /// Reference to `config_id` attribute.
+  TfRef<String> get configIdRef => TfRef.attribute<String>(this, 'config_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

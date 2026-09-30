@@ -61,4 +61,17 @@ final class AwsLightsailBucket extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

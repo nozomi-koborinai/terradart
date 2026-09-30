@@ -35,4 +35,13 @@ final class DataGoogleNetworkSecurityAddressGroups extends Data {
   /// Reference to `address_groups` attribute.
   TfRef<List<Map<String, Object?>>> get addressGroups =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'address_groups');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -74,4 +74,15 @@ final class GoogleHealthcareDicomStoreIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `dicom_store_id` attribute.
+  TfRef<String> get dicomStoreIdRef =>
+      TfRef.attribute<String>(this, 'dicom_store_id');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

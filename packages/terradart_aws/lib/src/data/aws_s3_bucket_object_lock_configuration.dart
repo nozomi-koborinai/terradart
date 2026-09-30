@@ -44,4 +44,14 @@ final class DataAwsS3BucketObjectLockConfiguration extends Data {
   /// Reference to `rule` attribute.
   TfRef<List<Map<String, Object?>>> get rule =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rule');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `expected_bucket_owner` attribute.
+  TfRef<String> get expectedBucketOwnerRef =>
+      TfRef.attribute<String>(this, 'expected_bucket_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

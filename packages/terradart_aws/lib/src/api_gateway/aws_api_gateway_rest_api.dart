@@ -185,4 +185,57 @@ final class AwsApiGatewayRestApi extends Resource {
   /// Reference to `root_resource_id` attribute.
   TfRef<String> get rootResourceId =>
       TfRef.attribute<String>(this, 'root_resource_id');
+
+  /// Reference to `api_key_source` attribute.
+  TfRef<String> get apiKeySourceRef =>
+      TfRef.attribute<String>(this, 'api_key_source');
+
+  /// Reference to `binary_media_types` attribute.
+  TfRef<List<String>> get binaryMediaTypesRef =>
+      TfRef.attribute<List<String>>(this, 'binary_media_types');
+
+  /// Reference to `body` attribute.
+  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_execute_api_endpoint` attribute.
+  TfRef<bool> get disableExecuteApiEndpointRef =>
+      TfRef.attribute<bool>(this, 'disable_execute_api_endpoint');
+
+  /// Reference to `endpoint_access_mode` attribute.
+  TfRef<String> get endpointAccessModeRef =>
+      TfRef.attribute<String>(this, 'endpoint_access_mode');
+
+  /// Reference to `fail_on_warnings` attribute.
+  TfRef<bool> get failOnWarningsRef =>
+      TfRef.attribute<bool>(this, 'fail_on_warnings');
+
+  /// Reference to `minimum_compression_size` attribute.
+  TfRef<String> get minimumCompressionSizeRef =>
+      TfRef.attribute<String>(this, 'minimum_compression_size');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `put_rest_api_mode` attribute.
+  TfRef<String> get putRestApiModeRef =>
+      TfRef.attribute<String>(this, 'put_rest_api_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_policy` attribute.
+  TfRef<String> get securityPolicyRef =>
+      TfRef.attribute<String>(this, 'security_policy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

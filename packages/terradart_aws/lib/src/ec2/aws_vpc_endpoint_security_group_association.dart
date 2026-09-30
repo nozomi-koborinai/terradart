@@ -42,4 +42,19 @@ final class AwsVpcEndpointSecurityGroupAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replace_default_association` attribute.
+  TfRef<bool> get replaceDefaultAssociationRef =>
+      TfRef.attribute<bool>(this, 'replace_default_association');
+
+  /// Reference to `security_group_id` attribute.
+  TfRef<String> get securityGroupIdRef =>
+      TfRef.attribute<String>(this, 'security_group_id');
+
+  /// Reference to `vpc_endpoint_id` attribute.
+  TfRef<String> get vpcEndpointIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

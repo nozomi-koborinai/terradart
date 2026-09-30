@@ -56,4 +56,10 @@ final class DataAwsLexBotAlias extends Data {
   /// Reference to `last_updated_date` attribute.
   TfRef<String> get lastUpdatedDate =>
       TfRef.attribute<String>(this, 'last_updated_date');
+
+  /// Reference to `bot_name` attribute.
+  TfRef<String> get botNameRef => TfRef.attribute<String>(this, 'bot_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

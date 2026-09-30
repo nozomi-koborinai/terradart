@@ -55,4 +55,18 @@ final class CloudflareR2ManagedDomain extends Resource {
 
   /// Reference to `domain` attribute.
   TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdictionRef =>
+      TfRef.attribute<String>(this, 'jurisdiction');
 }

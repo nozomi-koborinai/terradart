@@ -119,4 +119,10 @@ final class DataGoogleFilestoreInstance extends Data {
 
   /// Reference to `zone` attribute.
   TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

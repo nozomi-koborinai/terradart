@@ -50,4 +50,10 @@ final class DataAwsSsmcontactsRotation extends Data {
 
   /// Reference to `time_zone_id` attribute.
   TfRef<String> get timeZoneId => TfRef.attribute<String>(this, 'time_zone_id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

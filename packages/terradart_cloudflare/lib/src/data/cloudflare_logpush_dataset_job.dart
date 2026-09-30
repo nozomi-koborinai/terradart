@@ -89,4 +89,13 @@ final class DataCloudflareLogpushDatasetJob extends Data {
   /// Reference to `max_upload_records` attribute.
   TfRef<num> get maxUploadRecords =>
       TfRef.attribute<num>(this, 'max_upload_records');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -85,5 +85,26 @@ final class GoogleBigtableSchemaBundle extends Resource {
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `ignore_warnings` attribute.
+  TfRef<bool> get ignoreWarningsRef =>
+      TfRef.attribute<bool>(this, 'ignore_warnings');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `schema_bundle_id` attribute.
+  TfRef<String> get schemaBundleIdRef =>
+      TfRef.attribute<String>(this, 'schema_bundle_id');
+
+  /// Reference to `table` attribute.
+  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
+
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

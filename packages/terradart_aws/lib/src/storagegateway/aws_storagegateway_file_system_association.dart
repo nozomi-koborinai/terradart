@@ -70,4 +70,29 @@ final class AwsStoragegatewayFileSystemAssociation extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `audit_destination_arn` attribute.
+  TfRef<String> get auditDestinationArnRef =>
+      TfRef.attribute<String>(this, 'audit_destination_arn');
+
+  /// Reference to `gateway_arn` attribute.
+  TfRef<String> get gatewayArnRef =>
+      TfRef.attribute<String>(this, 'gateway_arn');
+
+  /// Reference to `location_arn` attribute.
+  TfRef<String> get locationArnRef =>
+      TfRef.attribute<String>(this, 'location_arn');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
 }

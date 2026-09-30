@@ -73,4 +73,52 @@ final class AwsSnsTopicSubscription extends Resource {
   /// Reference to `pending_confirmation` attribute.
   TfRef<bool> get pendingConfirmation =>
       TfRef.attribute<bool>(this, 'pending_confirmation');
+
+  /// Reference to `confirmation_timeout_in_minutes` attribute.
+  TfRef<num> get confirmationTimeoutInMinutesRef =>
+      TfRef.attribute<num>(this, 'confirmation_timeout_in_minutes');
+
+  /// Reference to `delivery_policy` attribute.
+  TfRef<String> get deliveryPolicyRef =>
+      TfRef.attribute<String>(this, 'delivery_policy');
+
+  /// Reference to `endpoint` attribute.
+  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+
+  /// Reference to `endpoint_auto_confirms` attribute.
+  TfRef<bool> get endpointAutoConfirmsRef =>
+      TfRef.attribute<bool>(this, 'endpoint_auto_confirms');
+
+  /// Reference to `filter_policy` attribute.
+  TfRef<String> get filterPolicyRef =>
+      TfRef.attribute<String>(this, 'filter_policy');
+
+  /// Reference to `filter_policy_scope` attribute.
+  TfRef<String> get filterPolicyScopeRef =>
+      TfRef.attribute<String>(this, 'filter_policy_scope');
+
+  /// Reference to `protocol` attribute.
+  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+
+  /// Reference to `raw_message_delivery` attribute.
+  TfRef<bool> get rawMessageDeliveryRef =>
+      TfRef.attribute<bool>(this, 'raw_message_delivery');
+
+  /// Reference to `redrive_policy` attribute.
+  TfRef<String> get redrivePolicyRef =>
+      TfRef.attribute<String>(this, 'redrive_policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replay_policy` attribute.
+  TfRef<String> get replayPolicyRef =>
+      TfRef.attribute<String>(this, 'replay_policy');
+
+  /// Reference to `subscription_role_arn` attribute.
+  TfRef<String> get subscriptionRoleArnRef =>
+      TfRef.attribute<String>(this, 'subscription_role_arn');
+
+  /// Reference to `topic_arn` attribute.
+  TfRef<String> get topicArnRef => TfRef.attribute<String>(this, 'topic_arn');
 }

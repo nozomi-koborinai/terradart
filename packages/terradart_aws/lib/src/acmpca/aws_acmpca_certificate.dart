@@ -106,4 +106,27 @@ final class AwsAcmpcaCertificate extends Resource {
   /// Reference to `certificate_chain` attribute.
   TfRef<String> get certificateChain =>
       TfRef.attribute<String>(this, 'certificate_chain');
+
+  /// Reference to `api_passthrough` attribute.
+  TfRef<String> get apiPassthroughRef =>
+      TfRef.attribute<String>(this, 'api_passthrough');
+
+  /// Reference to `certificate_authority_arn` attribute.
+  TfRef<String> get certificateAuthorityArnRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_arn');
+
+  /// Reference to `certificate_signing_request` attribute.
+  TfRef<String> get certificateSigningRequestRef =>
+      TfRef.attribute<String>(this, 'certificate_signing_request');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `signing_algorithm` attribute.
+  TfRef<String> get signingAlgorithmRef =>
+      TfRef.attribute<String>(this, 'signing_algorithm');
+
+  /// Reference to `template_arn` attribute.
+  TfRef<String> get templateArnRef =>
+      TfRef.attribute<String>(this, 'template_arn');
 }

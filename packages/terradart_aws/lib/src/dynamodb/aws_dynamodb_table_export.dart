@@ -151,4 +151,40 @@ final class AwsDynamodbTableExport extends Resource {
 
   /// Reference to `start_time` attribute.
   TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
+
+  /// Reference to `export_format` attribute.
+  TfRef<String> get exportFormatRef =>
+      TfRef.attribute<String>(this, 'export_format');
+
+  /// Reference to `export_time` attribute.
+  TfRef<String> get exportTimeRef =>
+      TfRef.attribute<String>(this, 'export_time');
+
+  /// Reference to `export_type` attribute.
+  TfRef<String> get exportTypeRef =>
+      TfRef.attribute<String>(this, 'export_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_bucket` attribute.
+  TfRef<String> get s3BucketRef => TfRef.attribute<String>(this, 's3_bucket');
+
+  /// Reference to `s3_bucket_owner` attribute.
+  TfRef<String> get s3BucketOwnerRef =>
+      TfRef.attribute<String>(this, 's3_bucket_owner');
+
+  /// Reference to `s3_prefix` attribute.
+  TfRef<String> get s3PrefixRef => TfRef.attribute<String>(this, 's3_prefix');
+
+  /// Reference to `s3_sse_algorithm` attribute.
+  TfRef<String> get s3SseAlgorithmRef =>
+      TfRef.attribute<String>(this, 's3_sse_algorithm');
+
+  /// Reference to `s3_sse_kms_key_id` attribute.
+  TfRef<String> get s3SseKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 's3_sse_kms_key_id');
+
+  /// Reference to `table_arn` attribute.
+  TfRef<String> get tableArnRef => TfRef.attribute<String>(this, 'table_arn');
 }

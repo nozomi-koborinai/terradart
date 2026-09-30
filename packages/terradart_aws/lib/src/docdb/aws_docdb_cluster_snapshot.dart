@@ -76,4 +76,15 @@ final class AwsDocdbClusterSnapshot extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `db_cluster_identifier` attribute.
+  TfRef<String> get dbClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_cluster_identifier');
+
+  /// Reference to `db_cluster_snapshot_identifier` attribute.
+  TfRef<String> get dbClusterSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_cluster_snapshot_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

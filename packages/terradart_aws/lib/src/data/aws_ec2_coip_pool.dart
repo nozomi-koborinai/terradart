@@ -60,4 +60,18 @@ final class DataAwsEc2CoipPool extends Data {
   /// Reference to `pool_cidrs` attribute.
   TfRef<List<String>> get poolCidrs =>
       TfRef.attribute<List<String>>(this, 'pool_cidrs');
+
+  /// Reference to `local_gateway_route_table_id` attribute.
+  TfRef<String> get localGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_route_table_id');
+
+  /// Reference to `pool_id` attribute.
+  TfRef<String> get poolIdRef => TfRef.attribute<String>(this, 'pool_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

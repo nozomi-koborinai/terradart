@@ -241,4 +241,39 @@ final class GoogleVpcAccessConnector extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `ip_cidr_range` attribute.
+  TfRef<String> get ipCidrRangeRef =>
+      TfRef.attribute<String>(this, 'ip_cidr_range');
+
+  /// Reference to `machine_type` attribute.
+  TfRef<String> get machineTypeRef =>
+      TfRef.attribute<String>(this, 'machine_type');
+
+  /// Reference to `max_instances` attribute.
+  TfRef<num> get maxInstancesRef => TfRef.attribute<num>(this, 'max_instances');
+
+  /// Reference to `max_throughput` attribute.
+  TfRef<num> get maxThroughputRef =>
+      TfRef.attribute<num>(this, 'max_throughput');
+
+  /// Reference to `min_instances` attribute.
+  TfRef<num> get minInstancesRef => TfRef.attribute<num>(this, 'min_instances');
+
+  /// Reference to `min_throughput` attribute.
+  TfRef<num> get minThroughputRef =>
+      TfRef.attribute<num>(this, 'min_throughput');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -55,4 +55,19 @@ final class AwsSesv2EmailIdentityMailFromAttributes extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `behavior_on_mx_failure` attribute.
+  TfRef<String> get behaviorOnMxFailureRef =>
+      TfRef.attribute<String>(this, 'behavior_on_mx_failure');
+
+  /// Reference to `email_identity` attribute.
+  TfRef<String> get emailIdentityRef =>
+      TfRef.attribute<String>(this, 'email_identity');
+
+  /// Reference to `mail_from_domain` attribute.
+  TfRef<String> get mailFromDomainRef =>
+      TfRef.attribute<String>(this, 'mail_from_domain');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

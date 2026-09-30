@@ -297,4 +297,46 @@ final class AwsSsmPatchBaseline extends Resource {
 
   /// Reference to `json` attribute.
   TfRef<String> get json => TfRef.attribute<String>(this, 'json');
+
+  /// Reference to `approved_patches` attribute.
+  TfRef<List<String>> get approvedPatchesRef =>
+      TfRef.attribute<List<String>>(this, 'approved_patches');
+
+  /// Reference to `approved_patches_compliance_level` attribute.
+  TfRef<String> get approvedPatchesComplianceLevelRef =>
+      TfRef.attribute<String>(this, 'approved_patches_compliance_level');
+
+  /// Reference to `approved_patches_enable_non_security` attribute.
+  TfRef<bool> get approvedPatchesEnableNonSecurityRef =>
+      TfRef.attribute<bool>(this, 'approved_patches_enable_non_security');
+
+  /// Reference to `available_security_updates_compliance_status` attribute.
+  TfRef<String> get availableSecurityUpdatesComplianceStatusRef =>
+      TfRef.attribute<String>(
+        this,
+        'available_security_updates_compliance_status',
+      );
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `operating_system` attribute.
+  TfRef<String> get operatingSystemRef =>
+      TfRef.attribute<String>(this, 'operating_system');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rejected_patches` attribute.
+  TfRef<List<String>> get rejectedPatchesRef =>
+      TfRef.attribute<List<String>>(this, 'rejected_patches');
+
+  /// Reference to `rejected_patches_action` attribute.
+  TfRef<String> get rejectedPatchesActionRef =>
+      TfRef.attribute<String>(this, 'rejected_patches_action');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

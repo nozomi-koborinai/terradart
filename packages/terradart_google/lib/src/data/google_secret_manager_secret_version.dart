@@ -62,4 +62,21 @@ final class DataGoogleSecretManagerSecretVersion extends Data {
 
   /// Reference to `secret_data` attribute.
   TfRef<String> get secretData => TfRef.attribute<String>(this, 'secret_data');
+
+  /// Reference to `fetch_secret_data` attribute.
+  TfRef<bool> get fetchSecretDataRef =>
+      TfRef.attribute<bool>(this, 'fetch_secret_data');
+
+  /// Reference to `is_secret_data_base64` attribute.
+  TfRef<bool> get isSecretDataBase64Ref =>
+      TfRef.attribute<bool>(this, 'is_secret_data_base64');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `secret` attribute.
+  TfRef<String> get secretRef => TfRef.attribute<String>(this, 'secret');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

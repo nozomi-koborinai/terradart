@@ -128,4 +128,47 @@ final class CloudflareStream extends Resource {
 
   /// Reference to `uploaded` attribute.
   TfRef<String> get uploaded => TfRef.attribute<String>(this, 'uploaded');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `allowed_origins` attribute.
+  TfRef<List<String>> get allowedOriginsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_origins');
+
+  /// Reference to `creator` attribute.
+  TfRef<String> get creatorRef => TfRef.attribute<String>(this, 'creator');
+
+  /// Reference to `direct_user` attribute.
+  TfRef<bool> get directUserRef => TfRef.attribute<bool>(this, 'direct_user');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `max_duration_seconds` attribute.
+  TfRef<num> get maxDurationSecondsRef =>
+      TfRef.attribute<num>(this, 'max_duration_seconds');
+
+  /// Reference to `meta` attribute.
+  TfRef<String> get metaRef => TfRef.attribute<String>(this, 'meta');
+
+  /// Reference to `require_signed_urls` attribute.
+  TfRef<bool> get requireSignedUrlsRef =>
+      TfRef.attribute<bool>(this, 'require_signed_urls');
+
+  /// Reference to `scheduled_deletion` attribute.
+  TfRef<String> get scheduledDeletionRef =>
+      TfRef.attribute<String>(this, 'scheduled_deletion');
+
+  /// Reference to `thumbnail_timestamp_pct` attribute.
+  TfRef<num> get thumbnailTimestampPctRef =>
+      TfRef.attribute<num>(this, 'thumbnail_timestamp_pct');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uidRef => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `upload_expiry` attribute.
+  TfRef<String> get uploadExpiryRef =>
+      TfRef.attribute<String>(this, 'upload_expiry');
 }

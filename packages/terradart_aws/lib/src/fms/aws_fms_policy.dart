@@ -515,4 +515,51 @@ final class AwsFmsPolicy extends Resource {
   /// Reference to `policy_update_token` attribute.
   TfRef<String> get policyUpdateToken =>
       TfRef.attribute<String>(this, 'policy_update_token');
+
+  /// Reference to `delete_all_policy_resources` attribute.
+  TfRef<bool> get deleteAllPolicyResourcesRef =>
+      TfRef.attribute<bool>(this, 'delete_all_policy_resources');
+
+  /// Reference to `delete_unused_fm_managed_resources` attribute.
+  TfRef<bool> get deleteUnusedFmManagedResourcesRef =>
+      TfRef.attribute<bool>(this, 'delete_unused_fm_managed_resources');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `exclude_resource_tags` attribute.
+  TfRef<bool> get excludeResourceTagsRef =>
+      TfRef.attribute<bool>(this, 'exclude_resource_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remediation_enabled` attribute.
+  TfRef<bool> get remediationEnabledRef =>
+      TfRef.attribute<bool>(this, 'remediation_enabled');
+
+  /// Reference to `resource_set_ids` attribute.
+  TfRef<List<String>> get resourceSetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'resource_set_ids');
+
+  /// Reference to `resource_tag_logical_operator` attribute.
+  TfRef<String> get resourceTagLogicalOperatorRef =>
+      TfRef.attribute<String>(this, 'resource_tag_logical_operator');
+
+  /// Reference to `resource_tags` attribute.
+  TfRef<Map<String, String>> get resourceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'resource_tags');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
+
+  /// Reference to `resource_type_list` attribute.
+  TfRef<List<String>> get resourceTypeListRef =>
+      TfRef.attribute<List<String>>(this, 'resource_type_list');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

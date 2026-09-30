@@ -48,4 +48,11 @@ final class DataCloudflareZeroTrustDevicePostureIntegration extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationIdRef =>
+      TfRef.attribute<String>(this, 'integration_id');
 }

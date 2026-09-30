@@ -26,4 +26,11 @@ final class DataAwsLbs extends Data {
 
   /// Reference to `arns` attribute.
   TfRef<List<String>> get arns => TfRef.attribute<List<String>>(this, 'arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

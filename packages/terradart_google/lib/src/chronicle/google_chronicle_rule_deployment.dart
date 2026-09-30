@@ -108,6 +108,31 @@ final class GoogleChronicleRuleDeployment extends Resource {
   TfRef<List<String>> get producerRules =>
       TfRef.attribute<List<String>>(this, 'producer_rules');
 
+  /// Reference to `alerting` attribute.
+  TfRef<bool> get alertingRef => TfRef.attribute<bool>(this, 'alerting');
+
+  /// Reference to `archived` attribute.
+  TfRef<bool> get archivedRef => TfRef.attribute<bool>(this, 'archived');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `rule` attribute.
+  TfRef<String> get ruleRef => TfRef.attribute<String>(this, 'rule');
+
+  /// Reference to `run_frequency` attribute.
+  TfRef<String> get runFrequencyRef =>
+      TfRef.attribute<String>(this, 'run_frequency');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

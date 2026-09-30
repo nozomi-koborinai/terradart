@@ -50,4 +50,23 @@ final class AwsDefaultRouteTable extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `default_route_table_id` attribute.
+  TfRef<String> get defaultRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'default_route_table_id');
+
+  /// Reference to `propagating_vgws` attribute.
+  TfRef<List<String>> get propagatingVgwsRef =>
+      TfRef.attribute<List<String>>(this, 'propagating_vgws');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route` attribute.
+  TfRef<List<Map<String, Object?>>> get routeRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'route');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

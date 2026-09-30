@@ -33,4 +33,7 @@ final class DataAwsCloudformationExport extends Data {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -139,4 +139,18 @@ final class CloudflareWorkflow extends Resource {
 
   /// Reference to `version_id` attribute.
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `class_name` attribute.
+  TfRef<String> get classNameRef => TfRef.attribute<String>(this, 'class_name');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
+
+  /// Reference to `workflow_name` attribute.
+  TfRef<String> get workflowNameRef =>
+      TfRef.attribute<String>(this, 'workflow_name');
 }

@@ -349,4 +349,15 @@ final class DataCloudflareDnsRecord extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `dns_record_id` attribute.
+  TfRef<String> get dnsRecordIdRef =>
+      TfRef.attribute<String>(this, 'dns_record_id');
+
+  /// Reference to `include_shadow_metadata` attribute.
+  TfRef<bool> get includeShadowMetadataRef =>
+      TfRef.attribute<bool>(this, 'include_shadow_metadata');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

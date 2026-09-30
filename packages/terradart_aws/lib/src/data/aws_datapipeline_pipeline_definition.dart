@@ -59,4 +59,11 @@ final class DataAwsDatapipelinePipelineDefinition extends Data {
   /// Reference to `pipeline_object` attribute.
   TfRef<List<Map<String, Object?>>> get pipelineObject =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'pipeline_object');
+
+  /// Reference to `pipeline_id` attribute.
+  TfRef<String> get pipelineIdRef =>
+      TfRef.attribute<String>(this, 'pipeline_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

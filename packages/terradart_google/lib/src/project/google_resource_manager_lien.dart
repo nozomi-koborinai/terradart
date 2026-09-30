@@ -57,4 +57,21 @@ final class GoogleResourceManagerLien extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `origin` attribute.
+  TfRef<String> get originRef => TfRef.attribute<String>(this, 'origin');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `reason` attribute.
+  TfRef<String> get reasonRef => TfRef.attribute<String>(this, 'reason');
+
+  /// Reference to `restrictions` attribute.
+  TfRef<List<String>> get restrictionsRef =>
+      TfRef.attribute<List<String>>(this, 'restrictions');
 }

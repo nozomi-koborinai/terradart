@@ -43,4 +43,16 @@ final class DataGoogleStorageControlProjectIntelligenceFindings extends Data {
   /// Reference to `findings` attribute.
   TfRef<List<Map<String, Object?>>> get findings =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'findings');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `page_size` attribute.
+  TfRef<num> get pageSizeRef => TfRef.attribute<num>(this, 'page_size');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

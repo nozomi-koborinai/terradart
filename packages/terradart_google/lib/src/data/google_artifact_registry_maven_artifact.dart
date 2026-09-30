@@ -54,4 +54,21 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `artifact_id` attribute.
+  TfRef<String> get artifactIdRef =>
+      TfRef.attribute<String>(this, 'artifact_id');
+
+  /// Reference to `group_id` attribute.
+  TfRef<String> get groupIdRef => TfRef.attribute<String>(this, 'group_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
 }

@@ -101,4 +101,23 @@ final class AwsGlueUserDefinedFunction extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `class_name` attribute.
+  TfRef<String> get classNameRef => TfRef.attribute<String>(this, 'class_name');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `owner_name` attribute.
+  TfRef<String> get ownerNameRef => TfRef.attribute<String>(this, 'owner_name');
+
+  /// Reference to `owner_type` attribute.
+  TfRef<String> get ownerTypeRef => TfRef.attribute<String>(this, 'owner_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

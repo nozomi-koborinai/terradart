@@ -150,4 +150,26 @@ final class AwsSecretsmanagerSecretRotation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `external_secret_rotation_role_arn` attribute.
+  TfRef<String> get externalSecretRotationRoleArnRef =>
+      TfRef.attribute<String>(this, 'external_secret_rotation_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rotate_immediately` attribute.
+  TfRef<bool> get rotateImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'rotate_immediately');
+
+  /// Reference to `rotation_enabled` attribute.
+  TfRef<bool> get rotationEnabledRef =>
+      TfRef.attribute<bool>(this, 'rotation_enabled');
+
+  /// Reference to `rotation_lambda_arn` attribute.
+  TfRef<String> get rotationLambdaArnRef =>
+      TfRef.attribute<String>(this, 'rotation_lambda_arn');
+
+  /// Reference to `secret_id` attribute.
+  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
 }

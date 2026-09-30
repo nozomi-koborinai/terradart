@@ -176,4 +176,33 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   /// Reference to `tools` attribute.
   TfRef<List<Map<String, String>>> get tools =>
       TfRef.attribute<List<Map<String, String>>>(this, 'tools');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `auth_credentials` attribute.
+  TfRef<String> get authCredentialsRef =>
+      TfRef.attribute<String>(this, 'auth_credentials');
+
+  /// Reference to `auth_type` attribute.
+  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+
+  /// Reference to `client_secret` attribute.
+  TfRef<String> get clientSecretRef =>
+      TfRef.attribute<String>(this, 'client_secret');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `is_shared_oauth_callback_enabled` attribute.
+  TfRef<bool> get isSharedOauthCallbackEnabledRef =>
+      TfRef.attribute<bool>(this, 'is_shared_oauth_callback_enabled');
+
+  /// Reference to `secure_web_gateway` attribute.
+  TfRef<bool> get secureWebGatewayRef =>
+      TfRef.attribute<bool>(this, 'secure_web_gateway');
 }

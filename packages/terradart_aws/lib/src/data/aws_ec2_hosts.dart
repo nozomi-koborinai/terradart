@@ -51,4 +51,15 @@ final class DataAwsEc2Hosts extends Data {
 
   /// Reference to `ids` attribute.
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
+
+  /// Reference to `outpost_arn` attribute.
+  TfRef<String> get outpostArnRef =>
+      TfRef.attribute<String>(this, 'outpost_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

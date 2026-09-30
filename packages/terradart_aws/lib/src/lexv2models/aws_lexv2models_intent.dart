@@ -21533,4 +21533,25 @@ final class AwsLexv2modelsIntent extends Resource {
   /// Reference to `last_updated_date_time` attribute.
   TfRef<String> get lastUpdatedDateTime =>
       TfRef.attribute<String>(this, 'last_updated_date_time');
+
+  /// Reference to `bot_id` attribute.
+  TfRef<String> get botIdRef => TfRef.attribute<String>(this, 'bot_id');
+
+  /// Reference to `bot_version` attribute.
+  TfRef<String> get botVersionRef =>
+      TfRef.attribute<String>(this, 'bot_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `locale_id` attribute.
+  TfRef<String> get localeIdRef => TfRef.attribute<String>(this, 'locale_id');
+
+  /// Reference to `parent_intent_signature` attribute.
+  TfRef<String> get parentIntentSignatureRef =>
+      TfRef.attribute<String>(this, 'parent_intent_signature');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

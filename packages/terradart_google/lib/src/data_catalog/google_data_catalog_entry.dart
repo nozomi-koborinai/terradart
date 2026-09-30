@@ -165,4 +165,41 @@ final class GoogleDataCatalogEntry extends Resource {
   /// Reference to `integrated_system` attribute.
   TfRef<String> get integratedSystem =>
       TfRef.attribute<String>(this, 'integrated_system');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `entry_group` attribute.
+  TfRef<String> get entryGroupRef =>
+      TfRef.attribute<String>(this, 'entry_group');
+
+  /// Reference to `entry_id` attribute.
+  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
+
+  /// Reference to `linked_resource` attribute.
+  TfRef<String> get linkedResourceRef =>
+      TfRef.attribute<String>(this, 'linked_resource');
+
+  /// Reference to `schema` attribute.
+  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `user_specified_system` attribute.
+  TfRef<String> get userSpecifiedSystemRef =>
+      TfRef.attribute<String>(this, 'user_specified_system');
+
+  /// Reference to `user_specified_type` attribute.
+  TfRef<String> get userSpecifiedTypeRef =>
+      TfRef.attribute<String>(this, 'user_specified_type');
 }

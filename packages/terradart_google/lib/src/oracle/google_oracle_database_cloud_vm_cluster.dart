@@ -228,6 +228,61 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `backup_odb_subnet` attribute.
+  TfRef<String> get backupOdbSubnetRef =>
+      TfRef.attribute<String>(this, 'backup_odb_subnet');
+
+  /// Reference to `backup_subnet_cidr` attribute.
+  TfRef<String> get backupSubnetCidrRef =>
+      TfRef.attribute<String>(this, 'backup_subnet_cidr');
+
+  /// Reference to `cidr` attribute.
+  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+
+  /// Reference to `cloud_vm_cluster_id` attribute.
+  TfRef<String> get cloudVmClusterIdRef =>
+      TfRef.attribute<String>(this, 'cloud_vm_cluster_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `exadata_infrastructure` attribute.
+  TfRef<String> get exadataInfrastructureRef =>
+      TfRef.attribute<String>(this, 'exadata_infrastructure');
+
+  /// Reference to `exascale_db_storage_vault` attribute.
+  TfRef<String> get exascaleDbStorageVaultRef =>
+      TfRef.attribute<String>(this, 'exascale_db_storage_vault');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `odb_network` attribute.
+  TfRef<String> get odbNetworkRef =>
+      TfRef.attribute<String>(this, 'odb_network');
+
+  /// Reference to `odb_subnet` attribute.
+  TfRef<String> get odbSubnetRef => TfRef.attribute<String>(this, 'odb_subnet');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

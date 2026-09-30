@@ -1465,4 +1465,22 @@ final class AwsAppflowConnectorProfile extends Resource {
   /// Reference to `credentials_arn` attribute.
   TfRef<String> get credentialsArn =>
       TfRef.attribute<String>(this, 'credentials_arn');
+
+  /// Reference to `connection_mode` attribute.
+  TfRef<String> get connectionModeRef =>
+      TfRef.attribute<String>(this, 'connection_mode');
+
+  /// Reference to `connector_label` attribute.
+  TfRef<String> get connectorLabelRef =>
+      TfRef.attribute<String>(this, 'connector_label');
+
+  /// Reference to `connector_type` attribute.
+  TfRef<String> get connectorTypeRef =>
+      TfRef.attribute<String>(this, 'connector_type');
+
+  /// Reference to `kms_arn` attribute.
+  TfRef<String> get kmsArnRef => TfRef.attribute<String>(this, 'kms_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

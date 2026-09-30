@@ -54,4 +54,7 @@ final class DataGoogleDnsManagedZone extends Data {
 
   /// Reference to `visibility` attribute.
   TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

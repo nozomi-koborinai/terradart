@@ -95,4 +95,15 @@ final class DataAwsDmsReplicationInstance extends Data {
   /// Reference to `vpc_security_group_ids` attribute.
   TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_instance_id` attribute.
+  TfRef<String> get replicationInstanceIdRef =>
+      TfRef.attribute<String>(this, 'replication_instance_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

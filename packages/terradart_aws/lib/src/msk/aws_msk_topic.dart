@@ -50,4 +50,22 @@ final class AwsMskTopic extends Resource {
   /// Reference to `configs_actual` attribute.
   TfRef<String> get configsActual =>
       TfRef.attribute<String>(this, 'configs_actual');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `configs` attribute.
+  TfRef<String> get configsRef => TfRef.attribute<String>(this, 'configs');
+
+  /// Reference to `partition_count` attribute.
+  TfRef<num> get partitionCountRef =>
+      TfRef.attribute<num>(this, 'partition_count');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_factor` attribute.
+  TfRef<num> get replicationFactorRef =>
+      TfRef.attribute<num>(this, 'replication_factor');
 }

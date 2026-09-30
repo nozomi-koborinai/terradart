@@ -69,4 +69,44 @@ final class DataAwsSavingsplansOfferings extends Data {
   /// Reference to `offerings` attribute.
   TfRef<List<Map<String, Object?>>> get offerings =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'offerings');
+
+  /// Reference to `currencies` attribute.
+  TfRef<List<String>> get currenciesRef =>
+      TfRef.attribute<List<String>>(this, 'currencies');
+
+  /// Reference to `descriptions` attribute.
+  TfRef<List<String>> get descriptionsRef =>
+      TfRef.attribute<List<String>>(this, 'descriptions');
+
+  /// Reference to `durations` attribute.
+  TfRef<List<num>> get durationsRef =>
+      TfRef.attribute<List<num>>(this, 'durations');
+
+  /// Reference to `offering_ids` attribute.
+  TfRef<List<String>> get offeringIdsRef =>
+      TfRef.attribute<List<String>>(this, 'offering_ids');
+
+  /// Reference to `operations` attribute.
+  TfRef<List<String>> get operationsRef =>
+      TfRef.attribute<List<String>>(this, 'operations');
+
+  /// Reference to `payment_options` attribute.
+  TfRef<List<String>> get paymentOptionsRef =>
+      TfRef.attribute<List<String>>(this, 'payment_options');
+
+  /// Reference to `plan_types` attribute.
+  TfRef<List<String>> get planTypesRef =>
+      TfRef.attribute<List<String>>(this, 'plan_types');
+
+  /// Reference to `product_type` attribute.
+  TfRef<String> get productTypeRef =>
+      TfRef.attribute<String>(this, 'product_type');
+
+  /// Reference to `service_codes` attribute.
+  TfRef<List<String>> get serviceCodesRef =>
+      TfRef.attribute<List<String>>(this, 'service_codes');
+
+  /// Reference to `usage_types` attribute.
+  TfRef<List<String>> get usageTypesRef =>
+      TfRef.attribute<List<String>>(this, 'usage_types');
 }

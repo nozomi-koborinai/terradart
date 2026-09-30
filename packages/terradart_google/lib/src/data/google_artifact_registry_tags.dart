@@ -42,4 +42,21 @@ final class DataGoogleArtifactRegistryTags extends Data {
   /// Reference to `tags` attribute.
   TfRef<List<Map<String, Object?>>> get tags =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'tags');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `package_name` attribute.
+  TfRef<String> get packageNameRef =>
+      TfRef.attribute<String>(this, 'package_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
 }

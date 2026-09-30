@@ -703,4 +703,246 @@ final class AwsRdsCluster extends Resource {
   /// Reference to `upgrade_rollout_order` attribute.
   TfRef<String> get upgradeRolloutOrder =>
       TfRef.attribute<String>(this, 'upgrade_rollout_order');
+
+  /// Reference to `allocated_storage` attribute.
+  TfRef<num> get allocatedStorageRef =>
+      TfRef.attribute<num>(this, 'allocated_storage');
+
+  /// Reference to `allow_major_version_upgrade` attribute.
+  TfRef<bool> get allowMajorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'allow_major_version_upgrade');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `auto_minor_version_upgrade` attribute.
+  TfRef<bool> get autoMinorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `backtrack_window` attribute.
+  TfRef<num> get backtrackWindowRef =>
+      TfRef.attribute<num>(this, 'backtrack_window');
+
+  /// Reference to `backup_retention_period` attribute.
+  TfRef<num> get backupRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'backup_retention_period');
+
+  /// Reference to `ca_certificate_identifier` attribute.
+  TfRef<String> get caCertificateIdentifierRef =>
+      TfRef.attribute<String>(this, 'ca_certificate_identifier');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `cluster_identifier_prefix` attribute.
+  TfRef<String> get clusterIdentifierPrefixRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier_prefix');
+
+  /// Reference to `cluster_members` attribute.
+  TfRef<List<String>> get clusterMembersRef =>
+      TfRef.attribute<List<String>>(this, 'cluster_members');
+
+  /// Reference to `cluster_scalability_type` attribute.
+  TfRef<String> get clusterScalabilityTypeRef =>
+      TfRef.attribute<String>(this, 'cluster_scalability_type');
+
+  /// Reference to `copy_tags_to_snapshot` attribute.
+  TfRef<bool> get copyTagsToSnapshotRef =>
+      TfRef.attribute<bool>(this, 'copy_tags_to_snapshot');
+
+  /// Reference to `database_insights_mode` attribute.
+  TfRef<String> get databaseInsightsModeRef =>
+      TfRef.attribute<String>(this, 'database_insights_mode');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `db_cluster_instance_class` attribute.
+  TfRef<String> get dbClusterInstanceClassRef =>
+      TfRef.attribute<String>(this, 'db_cluster_instance_class');
+
+  /// Reference to `db_cluster_parameter_group_name` attribute.
+  TfRef<String> get dbClusterParameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'db_cluster_parameter_group_name');
+
+  /// Reference to `db_instance_parameter_group_name` attribute.
+  TfRef<String> get dbInstanceParameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'db_instance_parameter_group_name');
+
+  /// Reference to `db_subnet_group_name` attribute.
+  TfRef<String> get dbSubnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'db_subnet_group_name');
+
+  /// Reference to `db_system_id` attribute.
+  TfRef<String> get dbSystemIdRef =>
+      TfRef.attribute<String>(this, 'db_system_id');
+
+  /// Reference to `delete_automated_backups` attribute.
+  TfRef<bool> get deleteAutomatedBackupsRef =>
+      TfRef.attribute<bool>(this, 'delete_automated_backups');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `domain_iam_role_name` attribute.
+  TfRef<String> get domainIamRoleNameRef =>
+      TfRef.attribute<String>(this, 'domain_iam_role_name');
+
+  /// Reference to `enable_global_write_forwarding` attribute.
+  TfRef<bool> get enableGlobalWriteForwardingRef =>
+      TfRef.attribute<bool>(this, 'enable_global_write_forwarding');
+
+  /// Reference to `enable_http_endpoint` attribute.
+  TfRef<bool> get enableHttpEndpointRef =>
+      TfRef.attribute<bool>(this, 'enable_http_endpoint');
+
+  /// Reference to `enable_local_write_forwarding` attribute.
+  TfRef<bool> get enableLocalWriteForwardingRef =>
+      TfRef.attribute<bool>(this, 'enable_local_write_forwarding');
+
+  /// Reference to `enabled_cloudwatch_logs_exports` attribute.
+  TfRef<List<String>> get enabledCloudwatchLogsExportsRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_cloudwatch_logs_exports');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_lifecycle_support` attribute.
+  TfRef<String> get engineLifecycleSupportRef =>
+      TfRef.attribute<String>(this, 'engine_lifecycle_support');
+
+  /// Reference to `engine_mode` attribute.
+  TfRef<String> get engineModeRef =>
+      TfRef.attribute<String>(this, 'engine_mode');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `final_snapshot_identifier` attribute.
+  TfRef<String> get finalSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'final_snapshot_identifier');
+
+  /// Reference to `global_cluster_identifier` attribute.
+  TfRef<String> get globalClusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'global_cluster_identifier');
+
+  /// Reference to `iam_database_authentication_enabled` attribute.
+  TfRef<bool> get iamDatabaseAuthenticationEnabledRef =>
+      TfRef.attribute<bool>(this, 'iam_database_authentication_enabled');
+
+  /// Reference to `iam_roles` attribute.
+  TfRef<List<String>> get iamRolesRef =>
+      TfRef.attribute<List<String>>(this, 'iam_roles');
+
+  /// Reference to `iops` attribute.
+  TfRef<num> get iopsRef => TfRef.attribute<num>(this, 'iops');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `manage_master_user_password` attribute.
+  TfRef<bool> get manageMasterUserPasswordRef =>
+      TfRef.attribute<bool>(this, 'manage_master_user_password');
+
+  /// Reference to `master_password` attribute.
+  TfRef<String> get masterPasswordRef =>
+      TfRef.attribute<String>(this, 'master_password');
+
+  /// Reference to `master_password_wo_version` attribute.
+  TfRef<num> get masterPasswordWoVersionRef =>
+      TfRef.attribute<num>(this, 'master_password_wo_version');
+
+  /// Reference to `master_user_secret_kms_key_id` attribute.
+  TfRef<String> get masterUserSecretKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'master_user_secret_kms_key_id');
+
+  /// Reference to `master_username` attribute.
+  TfRef<String> get masterUsernameRef =>
+      TfRef.attribute<String>(this, 'master_username');
+
+  /// Reference to `monitoring_interval` attribute.
+  TfRef<num> get monitoringIntervalRef =>
+      TfRef.attribute<num>(this, 'monitoring_interval');
+
+  /// Reference to `monitoring_role_arn` attribute.
+  TfRef<String> get monitoringRoleArnRef =>
+      TfRef.attribute<String>(this, 'monitoring_role_arn');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkTypeRef =>
+      TfRef.attribute<String>(this, 'network_type');
+
+  /// Reference to `performance_insights_enabled` attribute.
+  TfRef<bool> get performanceInsightsEnabledRef =>
+      TfRef.attribute<bool>(this, 'performance_insights_enabled');
+
+  /// Reference to `performance_insights_kms_key_id` attribute.
+  TfRef<String> get performanceInsightsKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'performance_insights_kms_key_id');
+
+  /// Reference to `performance_insights_retention_period` attribute.
+  TfRef<num> get performanceInsightsRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'performance_insights_retention_period');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `preferred_backup_window` attribute.
+  TfRef<String> get preferredBackupWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_backup_window');
+
+  /// Reference to `preferred_maintenance_window` attribute.
+  TfRef<String> get preferredMaintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_source_identifier` attribute.
+  TfRef<String> get replicationSourceIdentifierRef =>
+      TfRef.attribute<String>(this, 'replication_source_identifier');
+
+  /// Reference to `skip_final_snapshot` attribute.
+  TfRef<bool> get skipFinalSnapshotRef =>
+      TfRef.attribute<bool>(this, 'skip_final_snapshot');
+
+  /// Reference to `snapshot_identifier` attribute.
+  TfRef<String> get snapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'snapshot_identifier');
+
+  /// Reference to `source_region` attribute.
+  TfRef<String> get sourceRegionRef =>
+      TfRef.attribute<String>(this, 'source_region');
+
+  /// Reference to `storage_encrypted` attribute.
+  TfRef<bool> get storageEncryptedRef =>
+      TfRef.attribute<bool>(this, 'storage_encrypted');
+
+  /// Reference to `storage_type` attribute.
+  TfRef<String> get storageTypeRef =>
+      TfRef.attribute<String>(this, 'storage_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
+
+  /// Reference to `warning_event_categories` attribute.
+  TfRef<List<String>> get warningEventCategoriesRef =>
+      TfRef.attribute<List<String>>(this, 'warning_event_categories');
 }

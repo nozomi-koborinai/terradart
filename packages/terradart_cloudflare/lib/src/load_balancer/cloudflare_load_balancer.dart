@@ -579,4 +579,56 @@ final class CloudflareLoadBalancer extends Resource {
 
   /// Reference to `zone_name` attribute.
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
+
+  /// Reference to `country_pools` attribute.
+  TfRef<Map<String, List<String>>> get countryPoolsRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'country_pools');
+
+  /// Reference to `default_pools` attribute.
+  TfRef<List<String>> get defaultPoolsRef =>
+      TfRef.attribute<List<String>>(this, 'default_pools');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `fallback_pool` attribute.
+  TfRef<String> get fallbackPoolRef =>
+      TfRef.attribute<String>(this, 'fallback_pool');
+
+  /// Reference to `networks` attribute.
+  TfRef<List<String>> get networksRef =>
+      TfRef.attribute<List<String>>(this, 'networks');
+
+  /// Reference to `pop_pools` attribute.
+  TfRef<Map<String, List<String>>> get popPoolsRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'pop_pools');
+
+  /// Reference to `proxied` attribute.
+  TfRef<bool> get proxiedRef => TfRef.attribute<bool>(this, 'proxied');
+
+  /// Reference to `region_pools` attribute.
+  TfRef<Map<String, List<String>>> get regionPoolsRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'region_pools');
+
+  /// Reference to `session_affinity` attribute.
+  TfRef<String> get sessionAffinityRef =>
+      TfRef.attribute<String>(this, 'session_affinity');
+
+  /// Reference to `session_affinity_ttl` attribute.
+  TfRef<num> get sessionAffinityTtlRef =>
+      TfRef.attribute<num>(this, 'session_affinity_ttl');
+
+  /// Reference to `steering_policy` attribute.
+  TfRef<String> get steeringPolicyRef =>
+      TfRef.attribute<String>(this, 'steering_policy');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -133,4 +133,7 @@ final class DataGoogleStorageBucketObject extends Data {
   /// Reference to `temporary_hold` attribute.
   TfRef<bool> get temporaryHold =>
       TfRef.attribute<bool>(this, 'temporary_hold');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
 }

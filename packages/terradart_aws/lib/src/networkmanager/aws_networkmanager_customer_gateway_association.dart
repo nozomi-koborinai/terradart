@@ -42,4 +42,18 @@ final class AwsNetworkmanagerCustomerGatewayAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `customer_gateway_arn` attribute.
+  TfRef<String> get customerGatewayArnRef =>
+      TfRef.attribute<String>(this, 'customer_gateway_arn');
+
+  /// Reference to `device_id` attribute.
+  TfRef<String> get deviceIdRef => TfRef.attribute<String>(this, 'device_id');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `link_id` attribute.
+  TfRef<String> get linkIdRef => TfRef.attribute<String>(this, 'link_id');
 }

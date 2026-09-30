@@ -390,4 +390,52 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `application_environment` attribute.
+  TfRef<String> get applicationEnvironmentRef =>
+      TfRef.attribute<String>(this, 'application_environment');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `dependency_images` attribute.
+  TfRef<List<String>> get dependencyImagesRef =>
+      TfRef.attribute<List<String>>(this, 'dependency_images');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `properties` attribute.
+  TfRef<Map<String, String>> get propertiesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'properties');
+
+  /// Reference to `serviceinstance` attribute.
+  TfRef<String> get serviceinstanceRef =>
+      TfRef.attribute<String>(this, 'serviceinstance');
+
+  /// Reference to `spark_application_id` attribute.
+  TfRef<String> get sparkApplicationIdRef =>
+      TfRef.attribute<String>(this, 'spark_application_id');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

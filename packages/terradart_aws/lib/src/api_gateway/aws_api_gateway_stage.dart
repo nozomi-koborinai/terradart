@@ -137,4 +137,50 @@ final class AwsApiGatewayStage extends Resource {
 
   /// Reference to `web_acl_arn` attribute.
   TfRef<String> get webAclArn => TfRef.attribute<String>(this, 'web_acl_arn');
+
+  /// Reference to `cache_cluster_enabled` attribute.
+  TfRef<bool> get cacheClusterEnabledRef =>
+      TfRef.attribute<bool>(this, 'cache_cluster_enabled');
+
+  /// Reference to `cache_cluster_size` attribute.
+  TfRef<String> get cacheClusterSizeRef =>
+      TfRef.attribute<String>(this, 'cache_cluster_size');
+
+  /// Reference to `client_certificate_id` attribute.
+  TfRef<String> get clientCertificateIdRef =>
+      TfRef.attribute<String>(this, 'client_certificate_id');
+
+  /// Reference to `deployment_id` attribute.
+  TfRef<String> get deploymentIdRef =>
+      TfRef.attribute<String>(this, 'deployment_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `documentation_version` attribute.
+  TfRef<String> get documentationVersionRef =>
+      TfRef.attribute<String>(this, 'documentation_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
+
+  /// Reference to `stage_name` attribute.
+  TfRef<String> get stageNameRef => TfRef.attribute<String>(this, 'stage_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `variables` attribute.
+  TfRef<Map<String, String>> get variablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'variables');
+
+  /// Reference to `xray_tracing_enabled` attribute.
+  TfRef<bool> get xrayTracingEnabledRef =>
+      TfRef.attribute<bool>(this, 'xray_tracing_enabled');
 }

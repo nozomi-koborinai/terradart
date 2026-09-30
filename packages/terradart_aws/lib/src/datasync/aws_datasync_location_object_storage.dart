@@ -71,4 +71,44 @@ final class AwsDatasyncLocationObjectStorage extends Resource {
 
   /// Reference to `uri` attribute.
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `access_key` attribute.
+  TfRef<String> get accessKeyRef => TfRef.attribute<String>(this, 'access_key');
+
+  /// Reference to `agent_arns` attribute.
+  TfRef<List<String>> get agentArnsRef =>
+      TfRef.attribute<List<String>>(this, 'agent_arns');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secret_key` attribute.
+  TfRef<String> get secretKeyRef => TfRef.attribute<String>(this, 'secret_key');
+
+  /// Reference to `server_certificate` attribute.
+  TfRef<String> get serverCertificateRef =>
+      TfRef.attribute<String>(this, 'server_certificate');
+
+  /// Reference to `server_hostname` attribute.
+  TfRef<String> get serverHostnameRef =>
+      TfRef.attribute<String>(this, 'server_hostname');
+
+  /// Reference to `server_port` attribute.
+  TfRef<num> get serverPortRef => TfRef.attribute<num>(this, 'server_port');
+
+  /// Reference to `server_protocol` attribute.
+  TfRef<String> get serverProtocolRef =>
+      TfRef.attribute<String>(this, 'server_protocol');
+
+  /// Reference to `subdirectory` attribute.
+  TfRef<String> get subdirectoryRef =>
+      TfRef.attribute<String>(this, 'subdirectory');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

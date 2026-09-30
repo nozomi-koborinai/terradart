@@ -61,4 +61,17 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
 
   /// Reference to `deleted_at` attribute.
   TfRef<String> get deletedAt => TfRef.attribute<String>(this, 'deleted_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `is_default` attribute.
+  TfRef<bool> get isDefaultRef => TfRef.attribute<bool>(this, 'is_default');
+
+  /// Reference to `is_default_network` attribute.
+  TfRef<bool> get isDefaultNetworkRef =>
+      TfRef.attribute<bool>(this, 'is_default_network');
 }

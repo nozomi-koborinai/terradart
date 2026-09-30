@@ -129,4 +129,31 @@ final class AwsCleanroomsCollaboration extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `analytics_engine` attribute.
+  TfRef<String> get analyticsEngineRef =>
+      TfRef.attribute<String>(this, 'analytics_engine');
+
+  /// Reference to `creator_display_name` attribute.
+  TfRef<String> get creatorDisplayNameRef =>
+      TfRef.attribute<String>(this, 'creator_display_name');
+
+  /// Reference to `creator_member_abilities` attribute.
+  TfRef<List<String>> get creatorMemberAbilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'creator_member_abilities');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `query_log_status` attribute.
+  TfRef<String> get queryLogStatusRef =>
+      TfRef.attribute<String>(this, 'query_log_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

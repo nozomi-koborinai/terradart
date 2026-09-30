@@ -8,6 +8,21 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **A reference getter for every input** (`terradart_codegen`,
+  `terradart_google`, `terradart_google_beta`, `terradart_aws`,
+  `terradart_cloudflare`, `terradart_appwrite`, `terradart_migrate`) — each
+  argument a wrapper takes has a `<name>Ref` getter of its schema type
+  (`scope.scopeIdRef`, `TfRef<String>`), beside the existing `nameRef` and
+  computed getters: 9,164 google, 586 google-beta, 11,760 aws, 2,595
+  cloudflare and 377 appwrite. Another resource, an `addOutput` or an
+  `addConstant` reads what the argument is set to without repeating it, and
+  `addConstant('fleetScopeId', .ref(scope.scopeIdRef))` still resolves a
+  literal argument to a Dart constant at synth. A write-only argument has
+  none (Terraform cannot reference it), and a name an existing getter holds
+  keeps it. `terradart-migrate` uses the getters for references it used to
+  write as `TfRef.attribute<Object?>(...)`; the seven examples that repeated
+  a literal through a local `const` read it with `.ref(...)`.
+
 - **Typed outputs reader** (`terradart_core`) — the `appExports` file also
   holds `<Stack>Outputs`: one getter per non-sensitive `addOutput`, typed
   like its value and named in lowerCamelCase, built from `terraform output

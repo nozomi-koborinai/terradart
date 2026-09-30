@@ -1,4 +1,5 @@
 import '../ir/resource_def.dart';
+import 'constructor_params.dart';
 import 'dart_type_writer.dart';
 import 'naming.dart';
 
@@ -22,9 +23,12 @@ import 'naming.dart';
 ///   other than `id`/`name`/`kind`/`local_name` → a camelCase getter of its
 ///   rendered Dart type.
 ///
-/// `optional + computed` attributes are intentionally skipped: they are
-/// settable constructor inputs, and exposing a reference getter for them is
-/// a genuine judgment call that stays in `extraGetters`.
+/// - Every **input** (a constructor argument, `optional + computed`
+///   included) → `<camelCase>Ref` of its schema type (`scope_id` →
+///   `scopeIdRef`), so another resource, an output or a constant reads what
+///   the argument is set to without repeating the value. Skipped for a
+///   write-only argument (Terraform cannot reference it) and when the name
+///   is already a getter above (a computed-only `scope_id_ref`).
 ///
 /// The Google identity convention (`name→nameRef`, `id→id`) is encoded here.
 /// A multi-provider generalisation (e.g. AWS `arn→arnRef`) is deferred until
@@ -74,18 +78,38 @@ String emitDerivedOutputGetters(
   if (attrNames.contains('id')) {
     writeGetter('id', 'id', 'String');
   }
+  final getters = <String>{'nameRef', 'kindRef', 'localNameRef', 'id'};
   for (final attr in def.root.attributes) {
     if (emitted.contains(attr.name)) continue;
     if (!attr.constraints.computedOnly) continue;
-    writeGetter(
-      attr.name,
-      snakeToDartIdent(attr.name),
-      writeDartType(attr.type),
-    );
+    final getter = snakeToDartIdent(attr.name);
+    getters.add(getter);
+    writeGetter(attr.name, getter, writeDartType(attr.type));
+  }
+  for (final attr in def.root.attributes) {
+    if (emitted.contains(attr.name) || skipAttribute(attr)) continue;
+    if (attr.constraints.writeOnly) continue;
+    final getter = '${snakeToCamel(attr.name)}Ref';
+    if (!_publicMember.hasMatch(getter) || !getters.add(getter)) continue;
+    writeGetter(attr.name, getter, writeDartType(attr.type));
   }
 
   return buf.toString();
 }
+
+/// The Dart getter names declared in a hand-written `extraGetters` snippet
+/// (e.g. `executionCount` from `TfRef<int> get executionCount =>`). These are
+/// excluded from derivation so a hand-written getter (kept for a semantic
+/// rename or a narrower type) shadows the derived one instead of colliding
+/// with it.
+Set<String> extraGetterNames(String? extraGetters) {
+  if (extraGetters == null) return const {};
+  return RegExp(
+    r'\bget (\w+)',
+  ).allMatches(extraGetters).map((m) => m.group(1)!).toSet();
+}
+
+final _publicMember = RegExp(r'^[a-z][A-Za-z0-9]*$');
 
 /// The `ref` getter every resource wrapper [className] carries: the
 /// `RefTo<className>` its reference-typed arguments take.

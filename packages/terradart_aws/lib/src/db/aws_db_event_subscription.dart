@@ -136,4 +136,33 @@ final class AwsDbEventSubscription extends Resource {
   /// Reference to `customer_aws_id` attribute.
   TfRef<String> get customerAwsId =>
       TfRef.attribute<String>(this, 'customer_aws_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `event_categories` attribute.
+  TfRef<List<String>> get eventCategoriesRef =>
+      TfRef.attribute<List<String>>(this, 'event_categories');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sns_topic` attribute.
+  TfRef<String> get snsTopicRef => TfRef.attribute<String>(this, 'sns_topic');
+
+  /// Reference to `source_ids` attribute.
+  TfRef<List<String>> get sourceIdsRef =>
+      TfRef.attribute<List<String>>(this, 'source_ids');
+
+  /// Reference to `source_type` attribute.
+  TfRef<String> get sourceTypeRef =>
+      TfRef.attribute<String>(this, 'source_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

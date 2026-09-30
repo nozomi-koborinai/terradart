@@ -1160,4 +1160,58 @@ final class CloudflareWorkersScript extends Resource {
 
   /// Reference to `startup_time_ms` attribute.
   TfRef<num> get startupTimeMs => TfRef.attribute<num>(this, 'startup_time_ms');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `body_part` attribute.
+  TfRef<String> get bodyPartRef => TfRef.attribute<String>(this, 'body_part');
+
+  /// Reference to `compatibility_date` attribute.
+  TfRef<String> get compatibilityDateRef =>
+      TfRef.attribute<String>(this, 'compatibility_date');
+
+  /// Reference to `compatibility_flags` attribute.
+  TfRef<List<String>> get compatibilityFlagsRef =>
+      TfRef.attribute<List<String>>(this, 'compatibility_flags');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `content_file` attribute.
+  TfRef<String> get contentFileRef =>
+      TfRef.attribute<String>(this, 'content_file');
+
+  /// Reference to `content_sha256` attribute.
+  TfRef<String> get contentSha256Ref =>
+      TfRef.attribute<String>(this, 'content_sha256');
+
+  /// Reference to `content_type` attribute.
+  TfRef<String> get contentTypeRef =>
+      TfRef.attribute<String>(this, 'content_type');
+
+  /// Reference to `force` attribute.
+  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+
+  /// Reference to `keep_assets` attribute.
+  TfRef<bool> get keepAssetsRef => TfRef.attribute<bool>(this, 'keep_assets');
+
+  /// Reference to `keep_bindings` attribute.
+  TfRef<List<String>> get keepBindingsRef =>
+      TfRef.attribute<List<String>>(this, 'keep_bindings');
+
+  /// Reference to `logpush` attribute.
+  TfRef<bool> get logpushRef => TfRef.attribute<bool>(this, 'logpush');
+
+  /// Reference to `main_module` attribute.
+  TfRef<String> get mainModuleRef =>
+      TfRef.attribute<String>(this, 'main_module');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
+
+  /// Reference to `usage_model` attribute.
+  TfRef<String> get usageModelRef =>
+      TfRef.attribute<String>(this, 'usage_model');
 }

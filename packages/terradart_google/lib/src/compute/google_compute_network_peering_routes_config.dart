@@ -51,4 +51,29 @@ final class GoogleComputeNetworkPeeringRoutesConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `export_custom_routes` attribute.
+  TfRef<bool> get exportCustomRoutesRef =>
+      TfRef.attribute<bool>(this, 'export_custom_routes');
+
+  /// Reference to `export_subnet_routes_with_public_ip` attribute.
+  TfRef<bool> get exportSubnetRoutesWithPublicIpRef =>
+      TfRef.attribute<bool>(this, 'export_subnet_routes_with_public_ip');
+
+  /// Reference to `import_custom_routes` attribute.
+  TfRef<bool> get importCustomRoutesRef =>
+      TfRef.attribute<bool>(this, 'import_custom_routes');
+
+  /// Reference to `import_subnet_routes_with_public_ip` attribute.
+  TfRef<bool> get importSubnetRoutesWithPublicIpRef =>
+      TfRef.attribute<bool>(this, 'import_subnet_routes_with_public_ip');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `peering` attribute.
+  TfRef<String> get peeringRef => TfRef.attribute<String>(this, 'peering');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

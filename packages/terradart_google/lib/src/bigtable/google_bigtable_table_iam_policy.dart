@@ -47,4 +47,18 @@ final class GoogleBigtableTableIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `table` attribute.
+  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
 }

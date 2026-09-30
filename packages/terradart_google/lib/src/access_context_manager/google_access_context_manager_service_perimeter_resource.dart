@@ -68,4 +68,15 @@ final class GoogleAccessContextManagerServicePerimeterResource
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `perimeter_name` attribute.
+  TfRef<String> get perimeterNameRef =>
+      TfRef.attribute<String>(this, 'perimeter_name');
+
+  /// Reference to `resource` attribute.
+  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
 }

@@ -55,4 +55,38 @@ final class AwsEc2TrafficMirrorSession extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `network_interface_id` attribute.
+  TfRef<String> get networkInterfaceIdRef =>
+      TfRef.attribute<String>(this, 'network_interface_id');
+
+  /// Reference to `packet_length` attribute.
+  TfRef<num> get packetLengthRef => TfRef.attribute<num>(this, 'packet_length');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `session_number` attribute.
+  TfRef<num> get sessionNumberRef =>
+      TfRef.attribute<num>(this, 'session_number');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `traffic_mirror_filter_id` attribute.
+  TfRef<String> get trafficMirrorFilterIdRef =>
+      TfRef.attribute<String>(this, 'traffic_mirror_filter_id');
+
+  /// Reference to `traffic_mirror_target_id` attribute.
+  TfRef<String> get trafficMirrorTargetIdRef =>
+      TfRef.attribute<String>(this, 'traffic_mirror_target_id');
+
+  /// Reference to `virtual_network_id` attribute.
+  TfRef<num> get virtualNetworkIdRef =>
+      TfRef.attribute<num>(this, 'virtual_network_id');
 }

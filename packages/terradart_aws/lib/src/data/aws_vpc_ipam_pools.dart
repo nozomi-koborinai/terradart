@@ -51,4 +51,7 @@ final class DataAwsVpcIpamPools extends Data {
   /// Reference to `ipam_pools` attribute.
   TfRef<List<Map<String, Object?>>> get ipamPools =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ipam_pools');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -54,4 +54,10 @@ final class DataGoogleServiceAccount extends Data {
 
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

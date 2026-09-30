@@ -66,4 +66,36 @@ final class AwsEksPodIdentityAssociation extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `disable_session_tags` attribute.
+  TfRef<bool> get disableSessionTagsRef =>
+      TfRef.attribute<bool>(this, 'disable_session_tags');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_role_arn` attribute.
+  TfRef<String> get targetRoleArnRef =>
+      TfRef.attribute<String>(this, 'target_role_arn');
 }

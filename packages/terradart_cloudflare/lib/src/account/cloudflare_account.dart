@@ -111,4 +111,10 @@ final class CloudflareAccount extends Resource {
 
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
+
+  /// Reference to `standalone` attribute.
+  TfRef<bool> get standaloneRef => TfRef.attribute<bool>(this, 'standalone');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -233,6 +233,59 @@ final class GoogleComputeInterconnect extends Resource {
   TfRef<List<String>> get wireGroups =>
       TfRef.attribute<List<String>>(this, 'wire_groups');
 
+  /// Reference to `admin_enabled` attribute.
+  TfRef<bool> get adminEnabledRef =>
+      TfRef.attribute<bool>(this, 'admin_enabled');
+
+  /// Reference to `customer_name` attribute.
+  TfRef<String> get customerNameRef =>
+      TfRef.attribute<String>(this, 'customer_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interconnect_type` attribute.
+  TfRef<String> get interconnectTypeRef =>
+      TfRef.attribute<String>(this, 'interconnect_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `link_type` attribute.
+  TfRef<String> get linkTypeRef => TfRef.attribute<String>(this, 'link_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `macsec_enabled` attribute.
+  TfRef<bool> get macsecEnabledRef =>
+      TfRef.attribute<bool>(this, 'macsec_enabled');
+
+  /// Reference to `noc_contact_email` attribute.
+  TfRef<String> get nocContactEmailRef =>
+      TfRef.attribute<String>(this, 'noc_contact_email');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `remote_location` attribute.
+  TfRef<String> get remoteLocationRef =>
+      TfRef.attribute<String>(this, 'remote_location');
+
+  /// Reference to `requested_features` attribute.
+  TfRef<List<String>> get requestedFeaturesRef =>
+      TfRef.attribute<List<String>>(this, 'requested_features');
+
+  /// Reference to `requested_link_count` attribute.
+  TfRef<num> get requestedLinkCountRef =>
+      TfRef.attribute<num>(this, 'requested_link_count');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

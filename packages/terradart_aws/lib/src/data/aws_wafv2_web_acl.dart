@@ -48,4 +48,14 @@ final class DataAwsWafv2WebAcl extends Data {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
 }

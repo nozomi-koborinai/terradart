@@ -82,4 +82,18 @@ final class AwsChimesdkvoiceSipRule extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `trigger_type` attribute.
+  TfRef<String> get triggerTypeRef =>
+      TfRef.attribute<String>(this, 'trigger_type');
+
+  /// Reference to `trigger_value` attribute.
+  TfRef<String> get triggerValueRef =>
+      TfRef.attribute<String>(this, 'trigger_value');
 }

@@ -118,4 +118,23 @@ final class AwsBackupRestoreTestingPlan extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule_expression` attribute.
+  TfRef<String> get scheduleExpressionRef =>
+      TfRef.attribute<String>(this, 'schedule_expression');
+
+  /// Reference to `schedule_expression_timezone` attribute.
+  TfRef<String> get scheduleExpressionTimezoneRef =>
+      TfRef.attribute<String>(this, 'schedule_expression_timezone');
+
+  /// Reference to `start_window_hours` attribute.
+  TfRef<num> get startWindowHoursRef =>
+      TfRef.attribute<num>(this, 'start_window_hours');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

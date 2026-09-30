@@ -250,4 +250,23 @@ final class AwsConfigConfigRule extends Resource {
 
   /// Reference to `rule_id` attribute.
   TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `input_parameters` attribute.
+  TfRef<String> get inputParametersRef =>
+      TfRef.attribute<String>(this, 'input_parameters');
+
+  /// Reference to `maximum_execution_frequency` attribute.
+  TfRef<String> get maximumExecutionFrequencyRef =>
+      TfRef.attribute<String>(this, 'maximum_execution_frequency');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

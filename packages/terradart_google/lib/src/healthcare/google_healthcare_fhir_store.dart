@@ -315,4 +315,42 @@ final class GoogleHealthcareFhirStore extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `complex_data_type_reference_parsing` attribute.
+  TfRef<String> get complexDataTypeReferenceParsingRef =>
+      TfRef.attribute<String>(this, 'complex_data_type_reference_parsing');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `default_search_handling_strict` attribute.
+  TfRef<bool> get defaultSearchHandlingStrictRef =>
+      TfRef.attribute<bool>(this, 'default_search_handling_strict');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disable_referential_integrity` attribute.
+  TfRef<bool> get disableReferentialIntegrityRef =>
+      TfRef.attribute<bool>(this, 'disable_referential_integrity');
+
+  /// Reference to `disable_resource_versioning` attribute.
+  TfRef<bool> get disableResourceVersioningRef =>
+      TfRef.attribute<bool>(this, 'disable_resource_versioning');
+
+  /// Reference to `enable_history_import` attribute.
+  TfRef<bool> get enableHistoryImportRef =>
+      TfRef.attribute<bool>(this, 'enable_history_import');
+
+  /// Reference to `enable_update_create` attribute.
+  TfRef<bool> get enableUpdateCreateRef =>
+      TfRef.attribute<bool>(this, 'enable_update_create');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

@@ -50,4 +50,11 @@ final class AwsCloudfrontAnycastIpList extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `ip_count` attribute.
+  TfRef<num> get ipCountRef => TfRef.attribute<num>(this, 'ip_count');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

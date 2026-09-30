@@ -85,4 +85,15 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
   /// Reference to `x509` attribute.
   TfRef<List<Map<String, Object?>>> get x509 =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'x509');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_identity_pool_id` attribute.
+  TfRef<String> get workloadIdentityPoolIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_id');
+
+  /// Reference to `workload_identity_pool_provider_id` attribute.
+  TfRef<String> get workloadIdentityPoolProviderIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_provider_id');
 }

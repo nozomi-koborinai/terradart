@@ -79,4 +79,11 @@ final class DataCloudflareDnsFirewall extends Data {
   /// Reference to `upstream_ips` attribute.
   TfRef<List<String>> get upstreamIps =>
       TfRef.attribute<List<String>>(this, 'upstream_ips');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dns_firewall_id` attribute.
+  TfRef<String> get dnsFirewallIdRef =>
+      TfRef.attribute<String>(this, 'dns_firewall_id');
 }

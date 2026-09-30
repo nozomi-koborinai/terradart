@@ -45,4 +45,14 @@ final class AwsLakeformationIdentityCenterConfiguration extends Resource {
   /// Reference to `resource_share` attribute.
   TfRef<String> get resourceShare =>
       TfRef.attribute<String>(this, 'resource_share');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

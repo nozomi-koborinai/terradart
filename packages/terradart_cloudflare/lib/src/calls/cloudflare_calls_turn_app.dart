@@ -55,4 +55,10 @@ final class CloudflareCallsTurnApp extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
 }

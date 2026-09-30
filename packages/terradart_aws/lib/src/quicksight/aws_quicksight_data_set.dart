@@ -935,4 +935,26 @@ final class AwsQuicksightDataSet extends Resource {
   /// Reference to `output_columns` attribute.
   TfRef<List<Map<String, Object?>>> get outputColumns =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'output_columns');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `import_mode` attribute.
+  TfRef<String> get importModeRef =>
+      TfRef.attribute<String>(this, 'import_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `use_as` attribute.
+  TfRef<String> get useAsRef => TfRef.attribute<String>(this, 'use_as');
 }

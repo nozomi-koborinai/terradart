@@ -67,4 +67,15 @@ final class DataAwsNetworkmanagerDevice extends Data {
 
   /// Reference to `vendor` attribute.
   TfRef<String> get vendor => TfRef.attribute<String>(this, 'vendor');
+
+  /// Reference to `device_id` attribute.
+  TfRef<String> get deviceIdRef => TfRef.attribute<String>(this, 'device_id');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

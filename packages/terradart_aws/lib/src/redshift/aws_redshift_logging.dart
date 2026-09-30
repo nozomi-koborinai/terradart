@@ -70,4 +70,27 @@ final class AwsRedshiftLogging extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `log_destination_type` attribute.
+  TfRef<String> get logDestinationTypeRef =>
+      TfRef.attribute<String>(this, 'log_destination_type');
+
+  /// Reference to `log_exports` attribute.
+  TfRef<List<String>> get logExportsRef =>
+      TfRef.attribute<List<String>>(this, 'log_exports');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_key_prefix` attribute.
+  TfRef<String> get s3KeyPrefixRef =>
+      TfRef.attribute<String>(this, 's3_key_prefix');
 }

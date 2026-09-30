@@ -77,4 +77,18 @@ final class DataGoogleOracleDatabaseOdbSubnet extends Data {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `odb_subnet_id` attribute.
+  TfRef<String> get odbSubnetIdRef =>
+      TfRef.attribute<String>(this, 'odb_subnet_id');
+
+  /// Reference to `odbnetwork` attribute.
+  TfRef<String> get odbnetworkRef =>
+      TfRef.attribute<String>(this, 'odbnetwork');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -78,4 +78,38 @@ final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `claim_mapping` attribute.
+  TfRef<Map<String, String>> get claimMappingRef =>
+      TfRef.attribute<Map<String, String>>(this, 'claim_mapping');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `hard_delete` attribute.
+  TfRef<bool> get hardDeleteRef => TfRef.attribute<bool>(this, 'hard_delete');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_id` attribute.
+  TfRef<String> get providerIdRef =>
+      TfRef.attribute<String>(this, 'provider_id');
+
+  /// Reference to `scim_tenant_id` attribute.
+  TfRef<String> get scimTenantIdRef =>
+      TfRef.attribute<String>(this, 'scim_tenant_id');
+
+  /// Reference to `workforce_pool_id` attribute.
+  TfRef<String> get workforcePoolIdRef =>
+      TfRef.attribute<String>(this, 'workforce_pool_id');
 }

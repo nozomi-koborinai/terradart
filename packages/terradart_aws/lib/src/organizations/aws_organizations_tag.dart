@@ -33,4 +33,14 @@ final class AwsOrganizationsTag extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

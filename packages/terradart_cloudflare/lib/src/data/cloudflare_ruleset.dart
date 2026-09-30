@@ -58,4 +58,13 @@ final class DataCloudflareRuleset extends Data {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ruleset_id` attribute.
+  TfRef<String> get rulesetIdRef => TfRef.attribute<String>(this, 'ruleset_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

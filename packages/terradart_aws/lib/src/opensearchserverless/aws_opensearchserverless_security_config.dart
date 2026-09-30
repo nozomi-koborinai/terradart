@@ -274,4 +274,14 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
   /// Reference to `config_version` attribute.
   TfRef<String> get configVersion =>
       TfRef.attribute<String>(this, 'config_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

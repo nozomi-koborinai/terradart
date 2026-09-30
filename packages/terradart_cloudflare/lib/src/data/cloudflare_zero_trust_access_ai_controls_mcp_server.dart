@@ -112,4 +112,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServer extends Data {
   /// Reference to `tools` attribute.
   TfRef<List<Map<String, String>>> get tools =>
       TfRef.attribute<List<Map<String, String>>>(this, 'tools');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

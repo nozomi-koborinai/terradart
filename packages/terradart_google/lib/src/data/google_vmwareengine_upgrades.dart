@@ -33,4 +33,7 @@ final class DataGoogleVmwareengineUpgrades extends Data {
   /// Reference to `upgrades` attribute.
   TfRef<List<Map<String, Object?>>> get upgrades =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'upgrades');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

@@ -53,6 +53,20 @@ final class GoogleAccessContextManagerAccessPolicy extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 }

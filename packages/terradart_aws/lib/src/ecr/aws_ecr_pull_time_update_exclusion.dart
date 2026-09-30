@@ -29,4 +29,11 @@ final class AwsEcrPullTimeUpdateExclusion extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsEcrPullTimeUpdateExclusion>`.
   RefTo<AwsEcrPullTimeUpdateExclusion> get ref => RefTo.of(this);
+
+  /// Reference to `principal_arn` attribute.
+  TfRef<String> get principalArnRef =>
+      TfRef.attribute<String>(this, 'principal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

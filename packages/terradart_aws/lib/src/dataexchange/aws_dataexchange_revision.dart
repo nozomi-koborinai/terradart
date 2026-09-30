@@ -45,4 +45,18 @@ final class AwsDataexchangeRevision extends Resource {
 
   /// Reference to `revision_id` attribute.
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

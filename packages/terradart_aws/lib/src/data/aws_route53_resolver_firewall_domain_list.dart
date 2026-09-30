@@ -68,4 +68,11 @@ final class DataAwsRoute53ResolverFirewallDomainList extends Data {
   /// Reference to `status_message` attribute.
   TfRef<String> get statusMessage =>
       TfRef.attribute<String>(this, 'status_message');
+
+  /// Reference to `firewall_domain_list_id` attribute.
+  TfRef<String> get firewallDomainListIdRef =>
+      TfRef.attribute<String>(this, 'firewall_domain_list_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

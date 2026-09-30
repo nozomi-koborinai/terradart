@@ -111,4 +111,35 @@ final class AwsDatazoneDomain extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_execution_role` attribute.
+  TfRef<String> get domainExecutionRoleRef =>
+      TfRef.attribute<String>(this, 'domain_execution_role');
+
+  /// Reference to `domain_version` attribute.
+  TfRef<String> get domainVersionRef =>
+      TfRef.attribute<String>(this, 'domain_version');
+
+  /// Reference to `kms_key_identifier` attribute.
+  TfRef<String> get kmsKeyIdentifierRef =>
+      TfRef.attribute<String>(this, 'kms_key_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_role` attribute.
+  TfRef<String> get serviceRoleRef =>
+      TfRef.attribute<String>(this, 'service_role');
+
+  /// Reference to `skip_deletion_check` attribute.
+  TfRef<bool> get skipDeletionCheckRef =>
+      TfRef.attribute<bool>(this, 'skip_deletion_check');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

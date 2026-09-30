@@ -255,4 +255,15 @@ final class AwsSesv2ConfigurationSet extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `configuration_set_name` attribute.
+  TfRef<String> get configurationSetNameRef =>
+      TfRef.attribute<String>(this, 'configuration_set_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

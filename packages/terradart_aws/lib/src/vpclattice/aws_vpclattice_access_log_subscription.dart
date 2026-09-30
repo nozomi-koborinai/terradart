@@ -63,4 +63,23 @@ final class AwsVpclatticeAccessLogSubscription extends Resource {
   /// Reference to `resource_arn` attribute.
   TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `destination_arn` attribute.
+  TfRef<String> get destinationArnRef =>
+      TfRef.attribute<String>(this, 'destination_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_identifier` attribute.
+  TfRef<String> get resourceIdentifierRef =>
+      TfRef.attribute<String>(this, 'resource_identifier');
+
+  /// Reference to `service_network_log_type` attribute.
+  TfRef<String> get serviceNetworkLogTypeRef =>
+      TfRef.attribute<String>(this, 'service_network_log_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

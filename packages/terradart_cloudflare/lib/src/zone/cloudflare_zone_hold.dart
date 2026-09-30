@@ -57,4 +57,14 @@ final class CloudflareZoneHold extends Resource {
 
   /// Reference to `hold` attribute.
   TfRef<bool> get hold => TfRef.attribute<bool>(this, 'hold');
+
+  /// Reference to `hold_after` attribute.
+  TfRef<String> get holdAfterRef => TfRef.attribute<String>(this, 'hold_after');
+
+  /// Reference to `include_subdomains` attribute.
+  TfRef<bool> get includeSubdomainsRef =>
+      TfRef.attribute<bool>(this, 'include_subdomains');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -109,4 +109,7 @@ final class DataGoogleComputeHealthCheck extends Data {
   /// Reference to `unhealthy_threshold` attribute.
   TfRef<num> get unhealthyThreshold =>
       TfRef.attribute<num>(this, 'unhealthy_threshold');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

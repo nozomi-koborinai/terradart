@@ -36,4 +36,11 @@ final class DataAwsConnectPrompt extends Data {
 
   /// Reference to `prompt_id` attribute.
   TfRef<String> get promptId => TfRef.attribute<String>(this, 'prompt_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

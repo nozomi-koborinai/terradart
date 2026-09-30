@@ -33,4 +33,17 @@ final class GoogleComputeProjectMetadataItem extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

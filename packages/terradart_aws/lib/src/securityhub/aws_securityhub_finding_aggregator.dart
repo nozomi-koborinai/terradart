@@ -52,4 +52,15 @@ final class AwsSecurityhubFindingAggregator extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `linking_mode` attribute.
+  TfRef<String> get linkingModeRef =>
+      TfRef.attribute<String>(this, 'linking_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `specified_regions` attribute.
+  TfRef<List<String>> get specifiedRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'specified_regions');
 }

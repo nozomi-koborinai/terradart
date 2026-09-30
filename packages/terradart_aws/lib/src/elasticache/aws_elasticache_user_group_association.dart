@@ -38,4 +38,14 @@ final class AwsElasticacheUserGroupAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_group_id` attribute.
+  TfRef<String> get userGroupIdRef =>
+      TfRef.attribute<String>(this, 'user_group_id');
+
+  /// Reference to `user_id` attribute.
+  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
 }

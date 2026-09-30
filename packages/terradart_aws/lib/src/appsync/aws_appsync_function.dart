@@ -164,4 +164,37 @@ final class AwsAppsyncFunction extends Resource {
 
   /// Reference to `function_id` attribute.
   TfRef<String> get functionId => TfRef.attribute<String>(this, 'function_id');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `code` attribute.
+  TfRef<String> get codeRef => TfRef.attribute<String>(this, 'code');
+
+  /// Reference to `data_source` attribute.
+  TfRef<String> get dataSourceRef =>
+      TfRef.attribute<String>(this, 'data_source');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `function_version` attribute.
+  TfRef<String> get functionVersionRef =>
+      TfRef.attribute<String>(this, 'function_version');
+
+  /// Reference to `max_batch_size` attribute.
+  TfRef<num> get maxBatchSizeRef =>
+      TfRef.attribute<num>(this, 'max_batch_size');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_mapping_template` attribute.
+  TfRef<String> get requestMappingTemplateRef =>
+      TfRef.attribute<String>(this, 'request_mapping_template');
+
+  /// Reference to `response_mapping_template` attribute.
+  TfRef<String> get responseMappingTemplateRef =>
+      TfRef.attribute<String>(this, 'response_mapping_template');
 }

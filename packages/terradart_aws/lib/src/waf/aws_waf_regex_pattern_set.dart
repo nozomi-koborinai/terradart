@@ -38,4 +38,8 @@ final class AwsWafRegexPatternSet extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `regex_pattern_strings` attribute.
+  TfRef<List<String>> get regexPatternStringsRef =>
+      TfRef.attribute<List<String>>(this, 'regex_pattern_strings');
 }

@@ -559,4 +559,29 @@ final class AwsBedrockagentcoreMemoryStrategy extends Resource {
   /// Reference to `memory_strategy_id` attribute.
   TfRef<String> get memoryStrategyId =>
       TfRef.attribute<String>(this, 'memory_strategy_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `memory_execution_role_arn` attribute.
+  TfRef<String> get memoryExecutionRoleArnRef =>
+      TfRef.attribute<String>(this, 'memory_execution_role_arn');
+
+  /// Reference to `memory_id` attribute.
+  TfRef<String> get memoryIdRef => TfRef.attribute<String>(this, 'memory_id');
+
+  /// Reference to `namespace_templates` attribute.
+  TfRef<List<String>> get namespaceTemplatesRef =>
+      TfRef.attribute<List<String>>(this, 'namespace_templates');
+
+  /// Reference to `namespaces` attribute.
+  TfRef<List<String>> get namespacesRef =>
+      TfRef.attribute<List<String>>(this, 'namespaces');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

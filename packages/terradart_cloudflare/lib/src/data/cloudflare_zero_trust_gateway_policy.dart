@@ -143,4 +143,10 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
   /// Reference to `warning_status` attribute.
   TfRef<String> get warningStatus =>
       TfRef.attribute<String>(this, 'warning_status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `rule_id` attribute.
+  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
 }

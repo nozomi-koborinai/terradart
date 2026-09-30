@@ -114,4 +114,23 @@ final class GoogleKmsKeyRingImportJob extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `import_job_id` attribute.
+  TfRef<String> get importJobIdRef =>
+      TfRef.attribute<String>(this, 'import_job_id');
+
+  /// Reference to `import_method` attribute.
+  TfRef<String> get importMethodRef =>
+      TfRef.attribute<String>(this, 'import_method');
+
+  /// Reference to `key_ring` attribute.
+  TfRef<String> get keyRingRef => TfRef.attribute<String>(this, 'key_ring');
+
+  /// Reference to `protection_level` attribute.
+  TfRef<String> get protectionLevelRef =>
+      TfRef.attribute<String>(this, 'protection_level');
 }

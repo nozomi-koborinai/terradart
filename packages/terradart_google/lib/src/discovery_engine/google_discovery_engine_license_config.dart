@@ -150,6 +150,33 @@ final class GoogleDiscoveryEngineLicenseConfig extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `auto_renew` attribute.
+  TfRef<bool> get autoRenewRef => TfRef.attribute<bool>(this, 'auto_renew');
+
+  /// Reference to `free_trial` attribute.
+  TfRef<bool> get freeTrialRef => TfRef.attribute<bool>(this, 'free_trial');
+
+  /// Reference to `last_user_update_time` attribute.
+  TfRef<String> get lastUserUpdateTimeRef =>
+      TfRef.attribute<String>(this, 'last_user_update_time');
+
+  /// Reference to `license_count` attribute.
+  TfRef<num> get licenseCountRef => TfRef.attribute<num>(this, 'license_count');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `subscription_term` attribute.
+  TfRef<String> get subscriptionTermRef =>
+      TfRef.attribute<String>(this, 'subscription_term');
+
+  /// Reference to `subscription_tier` attribute.
+  TfRef<String> get subscriptionTierRef =>
+      TfRef.attribute<String>(this, 'subscription_tier');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

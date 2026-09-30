@@ -309,6 +309,47 @@ final class GoogleComputeImage extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disk_size_gb` attribute.
+  TfRef<num> get diskSizeGbRef => TfRef.attribute<num>(this, 'disk_size_gb');
+
+  /// Reference to `family` attribute.
+  TfRef<String> get familyRef => TfRef.attribute<String>(this, 'family');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `licenses` attribute.
+  TfRef<List<String>> get licensesRef =>
+      TfRef.attribute<List<String>>(this, 'licenses');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_disk` attribute.
+  TfRef<String> get sourceDiskRef =>
+      TfRef.attribute<String>(this, 'source_disk');
+
+  /// Reference to `source_image` attribute.
+  TfRef<String> get sourceImageRef =>
+      TfRef.attribute<String>(this, 'source_image');
+
+  /// Reference to `source_snapshot` attribute.
+  TfRef<String> get sourceSnapshotRef =>
+      TfRef.attribute<String>(this, 'source_snapshot');
+
+  /// Reference to `storage_locations` attribute.
+  TfRef<List<String>> get storageLocationsRef =>
+      TfRef.attribute<List<String>>(this, 'storage_locations');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

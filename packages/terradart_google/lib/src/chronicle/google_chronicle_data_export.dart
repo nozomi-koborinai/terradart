@@ -113,6 +113,32 @@ final class GoogleChronicleDataExport extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `end_time` attribute.
+  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+
+  /// Reference to `gcs_bucket` attribute.
+  TfRef<String> get gcsBucketRef => TfRef.attribute<String>(this, 'gcs_bucket');
+
+  /// Reference to `include_log_types` attribute.
+  TfRef<List<String>> get includeLogTypesRef =>
+      TfRef.attribute<List<String>>(this, 'include_log_types');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `namespaces` attribute.
+  TfRef<List<String>> get namespacesRef =>
+      TfRef.attribute<List<String>>(this, 'namespaces');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `start_time` attribute.
+  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

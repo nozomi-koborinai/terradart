@@ -88,4 +88,15 @@ final class AwsRoute53KeySigningKey extends Resource {
   /// Reference to `signing_algorithm_type` attribute.
   TfRef<num> get signingAlgorithmType =>
       TfRef.attribute<num>(this, 'signing_algorithm_type');
+
+  /// Reference to `hosted_zone_id` attribute.
+  TfRef<String> get hostedZoneIdRef =>
+      TfRef.attribute<String>(this, 'hosted_zone_id');
+
+  /// Reference to `key_management_service_arn` attribute.
+  TfRef<String> get keyManagementServiceArnRef =>
+      TfRef.attribute<String>(this, 'key_management_service_arn');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

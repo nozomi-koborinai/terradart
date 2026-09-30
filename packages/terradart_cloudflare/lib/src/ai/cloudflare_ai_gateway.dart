@@ -893,4 +893,76 @@ final class CloudflareAiGateway extends Resource {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `authentication` attribute.
+  TfRef<bool> get authenticationRef =>
+      TfRef.attribute<bool>(this, 'authentication');
+
+  /// Reference to `byok_only` attribute.
+  TfRef<bool> get byokOnlyRef => TfRef.attribute<bool>(this, 'byok_only');
+
+  /// Reference to `cache_invalidate_on_update` attribute.
+  TfRef<bool> get cacheInvalidateOnUpdateRef =>
+      TfRef.attribute<bool>(this, 'cache_invalidate_on_update');
+
+  /// Reference to `cache_ttl` attribute.
+  TfRef<num> get cacheTtlRef => TfRef.attribute<num>(this, 'cache_ttl');
+
+  /// Reference to `collect_logs` attribute.
+  TfRef<bool> get collectLogsRef => TfRef.attribute<bool>(this, 'collect_logs');
+
+  /// Reference to `log_classification` attribute.
+  TfRef<bool> get logClassificationRef =>
+      TfRef.attribute<bool>(this, 'log_classification');
+
+  /// Reference to `log_management` attribute.
+  TfRef<num> get logManagementRef =>
+      TfRef.attribute<num>(this, 'log_management');
+
+  /// Reference to `log_management_strategy` attribute.
+  TfRef<String> get logManagementStrategyRef =>
+      TfRef.attribute<String>(this, 'log_management_strategy');
+
+  /// Reference to `logpush` attribute.
+  TfRef<bool> get logpushRef => TfRef.attribute<bool>(this, 'logpush');
+
+  /// Reference to `logpush_public_key` attribute.
+  TfRef<String> get logpushPublicKeyRef =>
+      TfRef.attribute<String>(this, 'logpush_public_key');
+
+  /// Reference to `rate_limiting_interval` attribute.
+  TfRef<num> get rateLimitingIntervalRef =>
+      TfRef.attribute<num>(this, 'rate_limiting_interval');
+
+  /// Reference to `rate_limiting_limit` attribute.
+  TfRef<num> get rateLimitingLimitRef =>
+      TfRef.attribute<num>(this, 'rate_limiting_limit');
+
+  /// Reference to `rate_limiting_technique` attribute.
+  TfRef<String> get rateLimitingTechniqueRef =>
+      TfRef.attribute<String>(this, 'rate_limiting_technique');
+
+  /// Reference to `retry_backoff` attribute.
+  TfRef<String> get retryBackoffRef =>
+      TfRef.attribute<String>(this, 'retry_backoff');
+
+  /// Reference to `retry_delay` attribute.
+  TfRef<num> get retryDelayRef => TfRef.attribute<num>(this, 'retry_delay');
+
+  /// Reference to `retry_max_attempts` attribute.
+  TfRef<num> get retryMaxAttemptsRef =>
+      TfRef.attribute<num>(this, 'retry_max_attempts');
+
+  /// Reference to `store_id` attribute.
+  TfRef<String> get storeIdRef => TfRef.attribute<String>(this, 'store_id');
+
+  /// Reference to `workers_ai_billing_mode` attribute.
+  TfRef<String> get workersAiBillingModeRef =>
+      TfRef.attribute<String>(this, 'workers_ai_billing_mode');
+
+  /// Reference to `zdr` attribute.
+  TfRef<bool> get zdrRef => TfRef.attribute<bool>(this, 'zdr');
 }

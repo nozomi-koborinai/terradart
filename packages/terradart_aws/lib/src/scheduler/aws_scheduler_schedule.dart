@@ -550,4 +550,43 @@ final class AwsSchedulerSchedule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `action_after_completion` attribute.
+  TfRef<String> get actionAfterCompletionRef =>
+      TfRef.attribute<String>(this, 'action_after_completion');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `end_date` attribute.
+  TfRef<String> get endDateRef => TfRef.attribute<String>(this, 'end_date');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule_expression` attribute.
+  TfRef<String> get scheduleExpressionRef =>
+      TfRef.attribute<String>(this, 'schedule_expression');
+
+  /// Reference to `schedule_expression_timezone` attribute.
+  TfRef<String> get scheduleExpressionTimezoneRef =>
+      TfRef.attribute<String>(this, 'schedule_expression_timezone');
+
+  /// Reference to `start_date` attribute.
+  TfRef<String> get startDateRef => TfRef.attribute<String>(this, 'start_date');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
 }

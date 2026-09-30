@@ -37,4 +37,11 @@ final class DataGoogleStorageProjectServiceAccount extends Data {
 
   /// Reference to `member` attribute.
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `user_project` attribute.
+  TfRef<String> get userProjectRef =>
+      TfRef.attribute<String>(this, 'user_project');
 }

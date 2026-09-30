@@ -61,4 +61,13 @@ final class DataCloudflareMagicTransitSiteAcl extends Data {
   /// Reference to `unidirectional` attribute.
   TfRef<bool> get unidirectional =>
       TfRef.attribute<bool>(this, 'unidirectional');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `acl_id` attribute.
+  TfRef<String> get aclIdRef => TfRef.attribute<String>(this, 'acl_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

@@ -112,4 +112,26 @@ final class AwsEmrStudioSessionMapping extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `identity_id` attribute.
+  TfRef<String> get identityIdRef =>
+      TfRef.attribute<String>(this, 'identity_id');
+
+  /// Reference to `identity_name` attribute.
+  TfRef<String> get identityNameRef =>
+      TfRef.attribute<String>(this, 'identity_name');
+
+  /// Reference to `identity_type` attribute.
+  TfRef<String> get identityTypeRef =>
+      TfRef.attribute<String>(this, 'identity_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `session_policy_arn` attribute.
+  TfRef<String> get sessionPolicyArnRef =>
+      TfRef.attribute<String>(this, 'session_policy_arn');
+
+  /// Reference to `studio_id` attribute.
+  TfRef<String> get studioIdRef => TfRef.attribute<String>(this, 'studio_id');
 }

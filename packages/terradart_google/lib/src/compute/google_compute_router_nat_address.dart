@@ -59,4 +59,28 @@ final class GoogleComputeRouterNatAddress extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `drain_nat_ips` attribute.
+  TfRef<List<String>> get drainNatIpsRef =>
+      TfRef.attribute<List<String>>(this, 'drain_nat_ips');
+
+  /// Reference to `nat_ips` attribute.
+  TfRef<List<String>> get natIpsRef =>
+      TfRef.attribute<List<String>>(this, 'nat_ips');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+
+  /// Reference to `router_nat` attribute.
+  TfRef<String> get routerNatRef => TfRef.attribute<String>(this, 'router_nat');
 }

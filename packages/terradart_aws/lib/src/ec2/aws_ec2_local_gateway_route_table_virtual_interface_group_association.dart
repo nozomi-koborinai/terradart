@@ -64,4 +64,19 @@ final class AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `local_gateway_route_table_id` attribute.
+  TfRef<String> get localGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_route_table_id');
+
+  /// Reference to `local_gateway_virtual_interface_group_id` attribute.
+  TfRef<String> get localGatewayVirtualInterfaceGroupIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_virtual_interface_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

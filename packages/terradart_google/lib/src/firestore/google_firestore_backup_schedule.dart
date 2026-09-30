@@ -164,4 +164,17 @@ final class GoogleFirestoreBackupSchedule extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `retention` attribute.
+  TfRef<String> get retentionRef => TfRef.attribute<String>(this, 'retention');
 }

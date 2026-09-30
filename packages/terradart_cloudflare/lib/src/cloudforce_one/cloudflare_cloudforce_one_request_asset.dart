@@ -60,4 +60,19 @@ final class CloudflareCloudforceOneRequestAsset extends Resource {
 
   /// Reference to `file_type` attribute.
   TfRef<String> get fileType => TfRef.attribute<String>(this, 'file_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `page` attribute.
+  TfRef<num> get pageRef => TfRef.attribute<num>(this, 'page');
+
+  /// Reference to `per_page` attribute.
+  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+
+  /// Reference to `request_id` attribute.
+  TfRef<String> get requestIdRef => TfRef.attribute<String>(this, 'request_id');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
 }

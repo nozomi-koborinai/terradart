@@ -111,4 +111,25 @@ final class AwsCodecatalystDevEnvironment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `alias` attribute.
+  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+
+  /// Reference to `inactivity_timeout_minutes` attribute.
+  TfRef<num> get inactivityTimeoutMinutesRef =>
+      TfRef.attribute<num>(this, 'inactivity_timeout_minutes');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `project_name` attribute.
+  TfRef<String> get projectNameRef =>
+      TfRef.attribute<String>(this, 'project_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `space_name` attribute.
+  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
 }

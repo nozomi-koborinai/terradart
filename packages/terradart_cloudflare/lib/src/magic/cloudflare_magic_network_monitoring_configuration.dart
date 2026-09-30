@@ -79,4 +79,15 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `default_sampling` attribute.
+  TfRef<num> get defaultSamplingRef =>
+      TfRef.attribute<num>(this, 'default_sampling');
+
+  /// Reference to `router_ips` attribute.
+  TfRef<List<String>> get routerIpsRef =>
+      TfRef.attribute<List<String>>(this, 'router_ips');
 }

@@ -42,4 +42,16 @@ final class AwsRoute53recoveryreadinessRecoveryGroup extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `cells` attribute.
+  TfRef<List<String>> get cellsRef =>
+      TfRef.attribute<List<String>>(this, 'cells');
+
+  /// Reference to `recovery_group_name` attribute.
+  TfRef<String> get recoveryGroupNameRef =>
+      TfRef.attribute<String>(this, 'recovery_group_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

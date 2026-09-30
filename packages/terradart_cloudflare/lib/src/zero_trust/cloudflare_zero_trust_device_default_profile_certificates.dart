@@ -40,4 +40,10 @@ final class CloudflareZeroTrustDeviceDefaultProfileCertificates
   /// `RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates>`.
   RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates> get ref =>
       RefTo.of(this);
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

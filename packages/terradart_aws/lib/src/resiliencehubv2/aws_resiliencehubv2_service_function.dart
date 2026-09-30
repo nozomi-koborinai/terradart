@@ -56,4 +56,19 @@ final class AwsResiliencehubv2ServiceFunction extends Resource {
   /// Reference to `service_function_id` attribute.
   TfRef<String> get serviceFunctionId =>
       TfRef.attribute<String>(this, 'service_function_id');
+
+  /// Reference to `criticality` attribute.
+  TfRef<String> get criticalityRef =>
+      TfRef.attribute<String>(this, 'criticality');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_arn` attribute.
+  TfRef<String> get serviceArnRef =>
+      TfRef.attribute<String>(this, 'service_arn');
 }

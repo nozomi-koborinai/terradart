@@ -136,4 +136,13 @@ final class DataGoogleComputeRouterNat extends Data {
   /// Reference to `udp_idle_timeout_sec` attribute.
   TfRef<num> get udpIdleTimeoutSec =>
       TfRef.attribute<num>(this, 'udp_idle_timeout_sec');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
 }

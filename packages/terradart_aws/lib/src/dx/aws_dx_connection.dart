@@ -119,4 +119,32 @@ final class AwsDxConnection extends Resource {
 
   /// Reference to `vlan_id` attribute.
   TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
+
+  /// Reference to `bandwidth` attribute.
+  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+
+  /// Reference to `encryption_mode` attribute.
+  TfRef<String> get encryptionModeRef =>
+      TfRef.attribute<String>(this, 'encryption_mode');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_name` attribute.
+  TfRef<String> get providerNameRef =>
+      TfRef.attribute<String>(this, 'provider_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `request_macsec` attribute.
+  TfRef<bool> get requestMacsecRef =>
+      TfRef.attribute<bool>(this, 'request_macsec');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

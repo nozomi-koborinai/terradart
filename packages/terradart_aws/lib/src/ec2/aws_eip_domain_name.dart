@@ -40,4 +40,15 @@ final class AwsEipDomainName extends Resource {
 
   /// Reference to `ptr_record` attribute.
   TfRef<String> get ptrRecord => TfRef.attribute<String>(this, 'ptr_record');
+
+  /// Reference to `allocation_id` attribute.
+  TfRef<String> get allocationIdRef =>
+      TfRef.attribute<String>(this, 'allocation_id');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

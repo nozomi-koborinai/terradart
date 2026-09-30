@@ -102,4 +102,30 @@ final class AwsIotCaCertificate extends Resource {
   /// Reference to `validity` attribute.
   TfRef<List<Map<String, Object?>>> get validity =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validity');
+
+  /// Reference to `active` attribute.
+  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+
+  /// Reference to `allow_auto_registration` attribute.
+  TfRef<bool> get allowAutoRegistrationRef =>
+      TfRef.attribute<bool>(this, 'allow_auto_registration');
+
+  /// Reference to `ca_certificate_pem` attribute.
+  TfRef<String> get caCertificatePemRef =>
+      TfRef.attribute<String>(this, 'ca_certificate_pem');
+
+  /// Reference to `certificate_mode` attribute.
+  TfRef<String> get certificateModeRef =>
+      TfRef.attribute<String>(this, 'certificate_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `verification_certificate_pem` attribute.
+  TfRef<String> get verificationCertificatePemRef =>
+      TfRef.attribute<String>(this, 'verification_certificate_pem');
 }

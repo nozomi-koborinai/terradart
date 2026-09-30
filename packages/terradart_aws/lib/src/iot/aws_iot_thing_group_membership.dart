@@ -39,4 +39,18 @@ final class AwsIotThingGroupMembership extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `override_dynamic_group` attribute.
+  TfRef<bool> get overrideDynamicGroupRef =>
+      TfRef.attribute<bool>(this, 'override_dynamic_group');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `thing_group_name` attribute.
+  TfRef<String> get thingGroupNameRef =>
+      TfRef.attribute<String>(this, 'thing_group_name');
+
+  /// Reference to `thing_name` attribute.
+  TfRef<String> get thingNameRef => TfRef.attribute<String>(this, 'thing_name');
 }

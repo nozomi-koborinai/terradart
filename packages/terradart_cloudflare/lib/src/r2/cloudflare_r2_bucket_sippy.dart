@@ -169,4 +169,15 @@ final class CloudflareR2BucketSippy extends Resource {
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdictionRef =>
+      TfRef.attribute<String>(this, 'jurisdiction');
 }

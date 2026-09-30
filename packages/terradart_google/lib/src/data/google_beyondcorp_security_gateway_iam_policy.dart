@@ -48,4 +48,14 @@ final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `security_gateway_id` attribute.
+  TfRef<String> get securityGatewayIdRef =>
+      TfRef.attribute<String>(this, 'security_gateway_id');
 }

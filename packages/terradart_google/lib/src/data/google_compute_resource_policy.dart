@@ -81,4 +81,10 @@ final class DataGoogleComputeResourcePolicy extends Data {
   /// Reference to `workload_policy` attribute.
   TfRef<List<Map<String, Object?>>> get workloadPolicy =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'workload_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

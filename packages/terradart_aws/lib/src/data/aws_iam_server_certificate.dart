@@ -63,4 +63,15 @@ final class DataAwsIamServerCertificate extends Data {
 
   /// Reference to `upload_date` attribute.
   TfRef<String> get uploadDate => TfRef.attribute<String>(this, 'upload_date');
+
+  /// Reference to `latest` attribute.
+  TfRef<bool> get latestRef => TfRef.attribute<bool>(this, 'latest');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `path_prefix` attribute.
+  TfRef<String> get pathPrefixRef =>
+      TfRef.attribute<String>(this, 'path_prefix');
 }

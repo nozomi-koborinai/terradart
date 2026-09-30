@@ -167,4 +167,32 @@ final class GoogleDataplexEntry extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `entry_group_id` attribute.
+  TfRef<String> get entryGroupIdRef =>
+      TfRef.attribute<String>(this, 'entry_group_id');
+
+  /// Reference to `entry_id` attribute.
+  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
+
+  /// Reference to `entry_type` attribute.
+  TfRef<String> get entryTypeRef => TfRef.attribute<String>(this, 'entry_type');
+
+  /// Reference to `fully_qualified_name` attribute.
+  TfRef<String> get fullyQualifiedNameRef =>
+      TfRef.attribute<String>(this, 'fully_qualified_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent_entry` attribute.
+  TfRef<String> get parentEntryRef =>
+      TfRef.attribute<String>(this, 'parent_entry');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

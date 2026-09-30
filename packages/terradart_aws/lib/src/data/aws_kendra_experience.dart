@@ -70,4 +70,14 @@ final class DataAwsKendraExperience extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `experience_id` attribute.
+  TfRef<String> get experienceIdRef =>
+      TfRef.attribute<String>(this, 'experience_id');
+
+  /// Reference to `index_id` attribute.
+  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

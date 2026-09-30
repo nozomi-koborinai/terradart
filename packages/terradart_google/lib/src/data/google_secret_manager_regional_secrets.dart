@@ -35,4 +35,13 @@ final class DataGoogleSecretManagerRegionalSecrets extends Data {
   /// Reference to `secrets` attribute.
   TfRef<List<Map<String, Object?>>> get secrets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'secrets');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

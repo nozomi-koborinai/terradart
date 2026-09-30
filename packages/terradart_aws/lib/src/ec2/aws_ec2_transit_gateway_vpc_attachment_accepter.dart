@@ -75,4 +75,29 @@ final class AwsEc2TransitGatewayVpcAttachmentAccepter extends Resource {
 
   /// Reference to `vpc_owner_id` attribute.
   TfRef<String> get vpcOwnerId => TfRef.attribute<String>(this, 'vpc_owner_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_attachment_id` attribute.
+  TfRef<String> get transitGatewayAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
+
+  /// Reference to `transit_gateway_default_route_table_association` attribute.
+  TfRef<bool> get transitGatewayDefaultRouteTableAssociationRef =>
+      TfRef.attribute<bool>(
+        this,
+        'transit_gateway_default_route_table_association',
+      );
+
+  /// Reference to `transit_gateway_default_route_table_propagation` attribute.
+  TfRef<bool> get transitGatewayDefaultRouteTablePropagationRef =>
+      TfRef.attribute<bool>(
+        this,
+        'transit_gateway_default_route_table_propagation',
+      );
 }

@@ -2348,4 +2348,14 @@ final class AwsWafv2WebAclRule extends Resource {
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `web_acl_arn` attribute.
+  TfRef<String> get webAclArnRef =>
+      TfRef.attribute<String>(this, 'web_acl_arn');
 }

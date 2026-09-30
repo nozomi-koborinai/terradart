@@ -105,4 +105,29 @@ final class AwsIotProvisioningTemplate extends Resource {
   /// Reference to `default_version_id` attribute.
   TfRef<num> get defaultVersionId =>
       TfRef.attribute<num>(this, 'default_version_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `provisioning_role_arn` attribute.
+  TfRef<String> get provisioningRoleArnRef =>
+      TfRef.attribute<String>(this, 'provisioning_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `template_body` attribute.
+  TfRef<String> get templateBodyRef =>
+      TfRef.attribute<String>(this, 'template_body');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

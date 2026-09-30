@@ -347,4 +347,21 @@ final class AwsAppsyncDatasource extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_role_arn` attribute.
+  TfRef<String> get serviceRoleArnRef =>
+      TfRef.attribute<String>(this, 'service_role_arn');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -59,4 +59,15 @@ final class GoogleStorageDefaultObjectAcl extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `role_entity` attribute.
+  TfRef<List<String>> get roleEntityRef =>
+      TfRef.attribute<List<String>>(this, 'role_entity');
 }

@@ -106,6 +106,81 @@ final class GoogleNetappActiveDirectory extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `administrators` attribute.
+  TfRef<List<String>> get administratorsRef =>
+      TfRef.attribute<List<String>>(this, 'administrators');
+
+  /// Reference to `aes_encryption` attribute.
+  TfRef<bool> get aesEncryptionRef =>
+      TfRef.attribute<bool>(this, 'aes_encryption');
+
+  /// Reference to `backup_operators` attribute.
+  TfRef<List<String>> get backupOperatorsRef =>
+      TfRef.attribute<List<String>>(this, 'backup_operators');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `dns` attribute.
+  TfRef<String> get dnsRef => TfRef.attribute<String>(this, 'dns');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `encrypt_dc_connections` attribute.
+  TfRef<bool> get encryptDcConnectionsRef =>
+      TfRef.attribute<bool>(this, 'encrypt_dc_connections');
+
+  /// Reference to `kdc_hostname` attribute.
+  TfRef<String> get kdcHostnameRef =>
+      TfRef.attribute<String>(this, 'kdc_hostname');
+
+  /// Reference to `kdc_ip` attribute.
+  TfRef<String> get kdcIpRef => TfRef.attribute<String>(this, 'kdc_ip');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `ldap_signing` attribute.
+  TfRef<bool> get ldapSigningRef => TfRef.attribute<bool>(this, 'ldap_signing');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `net_bios_prefix` attribute.
+  TfRef<String> get netBiosPrefixRef =>
+      TfRef.attribute<String>(this, 'net_bios_prefix');
+
+  /// Reference to `nfs_users_with_ldap` attribute.
+  TfRef<bool> get nfsUsersWithLdapRef =>
+      TfRef.attribute<bool>(this, 'nfs_users_with_ldap');
+
+  /// Reference to `organizational_unit` attribute.
+  TfRef<String> get organizationalUnitRef =>
+      TfRef.attribute<String>(this, 'organizational_unit');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `security_operators` attribute.
+  TfRef<List<String>> get securityOperatorsRef =>
+      TfRef.attribute<List<String>>(this, 'security_operators');
+
+  /// Reference to `site` attribute.
+  TfRef<String> get siteRef => TfRef.attribute<String>(this, 'site');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

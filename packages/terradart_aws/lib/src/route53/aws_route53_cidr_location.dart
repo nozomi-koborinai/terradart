@@ -40,4 +40,12 @@ final class AwsRoute53CidrLocation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cidr_blocks` attribute.
+  TfRef<List<String>> get cidrBlocksRef =>
+      TfRef.attribute<List<String>>(this, 'cidr_blocks');
+
+  /// Reference to `cidr_collection_id` attribute.
+  TfRef<String> get cidrCollectionIdRef =>
+      TfRef.attribute<String>(this, 'cidr_collection_id');
 }

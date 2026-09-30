@@ -40,4 +40,11 @@ final class AwsApprunnerDefaultAutoScalingConfigurationVersion
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `auto_scaling_configuration_arn` attribute.
+  TfRef<String> get autoScalingConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'auto_scaling_configuration_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

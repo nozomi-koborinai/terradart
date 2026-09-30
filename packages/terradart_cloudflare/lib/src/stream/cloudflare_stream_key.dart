@@ -49,4 +49,7 @@ final class CloudflareStreamKey extends Resource {
 
   /// Reference to `pem` attribute.
   TfRef<String> get pem => TfRef.attribute<String>(this, 'pem');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

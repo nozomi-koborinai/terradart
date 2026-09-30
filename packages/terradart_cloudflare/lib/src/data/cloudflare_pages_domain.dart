@@ -61,4 +61,15 @@ final class DataCloudflarePagesDomain extends Data {
 
   /// Reference to `zone_tag` attribute.
   TfRef<String> get zoneTag => TfRef.attribute<String>(this, 'zone_tag');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `project_name` attribute.
+  TfRef<String> get projectNameRef =>
+      TfRef.attribute<String>(this, 'project_name');
 }

@@ -103,4 +103,54 @@ final class AwsKmsKey extends Resource {
 
   /// Reference to `key_id` attribute.
   TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `bypass_policy_lockout_safety_check` attribute.
+  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+      TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
+
+  /// Reference to `custom_key_store_id` attribute.
+  TfRef<String> get customKeyStoreIdRef =>
+      TfRef.attribute<String>(this, 'custom_key_store_id');
+
+  /// Reference to `customer_master_key_spec` attribute.
+  TfRef<String> get customerMasterKeySpecRef =>
+      TfRef.attribute<String>(this, 'customer_master_key_spec');
+
+  /// Reference to `deletion_window_in_days` attribute.
+  TfRef<num> get deletionWindowInDaysRef =>
+      TfRef.attribute<num>(this, 'deletion_window_in_days');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_key_rotation` attribute.
+  TfRef<bool> get enableKeyRotationRef =>
+      TfRef.attribute<bool>(this, 'enable_key_rotation');
+
+  /// Reference to `is_enabled` attribute.
+  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+
+  /// Reference to `key_usage` attribute.
+  TfRef<String> get keyUsageRef => TfRef.attribute<String>(this, 'key_usage');
+
+  /// Reference to `multi_region` attribute.
+  TfRef<bool> get multiRegionRef => TfRef.attribute<bool>(this, 'multi_region');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rotation_period_in_days` attribute.
+  TfRef<num> get rotationPeriodInDaysRef =>
+      TfRef.attribute<num>(this, 'rotation_period_in_days');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `xks_key_id` attribute.
+  TfRef<String> get xksKeyIdRef => TfRef.attribute<String>(this, 'xks_key_id');
 }

@@ -65,4 +65,26 @@ final class AwsNetworkmanagerLink extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `provider_name` attribute.
+  TfRef<String> get providerNameRef =>
+      TfRef.attribute<String>(this, 'provider_name');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

@@ -76,4 +76,11 @@ final class DataGoogleIamWorkloadIdentityPool extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_identity_pool_id` attribute.
+  TfRef<String> get workloadIdentityPoolIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_id');
 }

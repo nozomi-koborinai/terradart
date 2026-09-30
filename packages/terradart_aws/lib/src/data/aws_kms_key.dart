@@ -113,4 +113,14 @@ final class DataAwsKmsKey extends Data {
         this,
         'xks_key_configuration',
       );
+
+  /// Reference to `grant_tokens` attribute.
+  TfRef<List<String>> get grantTokensRef =>
+      TfRef.attribute<List<String>>(this, 'grant_tokens');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

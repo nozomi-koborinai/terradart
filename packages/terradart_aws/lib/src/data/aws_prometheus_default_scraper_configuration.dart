@@ -25,4 +25,7 @@ final class DataAwsPrometheusDefaultScraperConfiguration extends Data {
   /// Reference to `configuration` attribute.
   TfRef<String> get configuration =>
       TfRef.attribute<String>(this, 'configuration');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

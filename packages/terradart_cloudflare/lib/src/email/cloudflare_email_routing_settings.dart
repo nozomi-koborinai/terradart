@@ -62,4 +62,11 @@ final class CloudflareEmailRoutingSettings extends Resource {
 
   /// Reference to `tag` attribute.
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
+
+  /// Reference to `support_subaddress` attribute.
+  TfRef<bool> get supportSubaddressRef =>
+      TfRef.attribute<bool>(this, 'support_subaddress');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

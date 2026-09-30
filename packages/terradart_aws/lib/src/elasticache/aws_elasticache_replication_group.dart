@@ -503,4 +503,162 @@ final class AwsElasticacheReplicationGroup extends Resource {
   /// Reference to `reader_endpoint_address` attribute.
   TfRef<String> get readerEndpointAddress =>
       TfRef.attribute<String>(this, 'reader_endpoint_address');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `at_rest_encryption_enabled` attribute.
+  TfRef<String> get atRestEncryptionEnabledRef =>
+      TfRef.attribute<String>(this, 'at_rest_encryption_enabled');
+
+  /// Reference to `auth_token` attribute.
+  TfRef<String> get authTokenRef => TfRef.attribute<String>(this, 'auth_token');
+
+  /// Reference to `auth_token_update_strategy` attribute.
+  TfRef<String> get authTokenUpdateStrategyRef =>
+      TfRef.attribute<String>(this, 'auth_token_update_strategy');
+
+  /// Reference to `auth_token_wo_version` attribute.
+  TfRef<num> get authTokenWoVersionRef =>
+      TfRef.attribute<num>(this, 'auth_token_wo_version');
+
+  /// Reference to `auto_minor_version_upgrade` attribute.
+  TfRef<String> get autoMinorVersionUpgradeRef =>
+      TfRef.attribute<String>(this, 'auto_minor_version_upgrade');
+
+  /// Reference to `automatic_failover_enabled` attribute.
+  TfRef<bool> get automaticFailoverEnabledRef =>
+      TfRef.attribute<bool>(this, 'automatic_failover_enabled');
+
+  /// Reference to `cluster_mode` attribute.
+  TfRef<String> get clusterModeRef =>
+      TfRef.attribute<String>(this, 'cluster_mode');
+
+  /// Reference to `data_tiering_enabled` attribute.
+  TfRef<bool> get dataTieringEnabledRef =>
+      TfRef.attribute<bool>(this, 'data_tiering_enabled');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `durability` attribute.
+  TfRef<String> get durabilityRef =>
+      TfRef.attribute<String>(this, 'durability');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `final_snapshot_identifier` attribute.
+  TfRef<String> get finalSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'final_snapshot_identifier');
+
+  /// Reference to `global_replication_group_id` attribute.
+  TfRef<String> get globalReplicationGroupIdRef =>
+      TfRef.attribute<String>(this, 'global_replication_group_id');
+
+  /// Reference to `ip_discovery` attribute.
+  TfRef<String> get ipDiscoveryRef =>
+      TfRef.attribute<String>(this, 'ip_discovery');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `maintenance_window` attribute.
+  TfRef<String> get maintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'maintenance_window');
+
+  /// Reference to `multi_az_enabled` attribute.
+  TfRef<bool> get multiAzEnabledRef =>
+      TfRef.attribute<bool>(this, 'multi_az_enabled');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkTypeRef =>
+      TfRef.attribute<String>(this, 'network_type');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `notification_topic_arn` attribute.
+  TfRef<String> get notificationTopicArnRef =>
+      TfRef.attribute<String>(this, 'notification_topic_arn');
+
+  /// Reference to `num_cache_clusters` attribute.
+  TfRef<num> get numCacheClustersRef =>
+      TfRef.attribute<num>(this, 'num_cache_clusters');
+
+  /// Reference to `num_node_groups` attribute.
+  TfRef<num> get numNodeGroupsRef =>
+      TfRef.attribute<num>(this, 'num_node_groups');
+
+  /// Reference to `parameter_group_name` attribute.
+  TfRef<String> get parameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'parameter_group_name');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `preferred_cache_cluster_azs` attribute.
+  TfRef<List<String>> get preferredCacheClusterAzsRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_cache_cluster_azs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replicas_per_node_group` attribute.
+  TfRef<num> get replicasPerNodeGroupRef =>
+      TfRef.attribute<num>(this, 'replicas_per_node_group');
+
+  /// Reference to `replication_group_id` attribute.
+  TfRef<String> get replicationGroupIdRef =>
+      TfRef.attribute<String>(this, 'replication_group_id');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `security_group_names` attribute.
+  TfRef<List<String>> get securityGroupNamesRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_names');
+
+  /// Reference to `snapshot_arns` attribute.
+  TfRef<List<String>> get snapshotArnsRef =>
+      TfRef.attribute<List<String>>(this, 'snapshot_arns');
+
+  /// Reference to `snapshot_name` attribute.
+  TfRef<String> get snapshotNameRef =>
+      TfRef.attribute<String>(this, 'snapshot_name');
+
+  /// Reference to `snapshot_retention_limit` attribute.
+  TfRef<num> get snapshotRetentionLimitRef =>
+      TfRef.attribute<num>(this, 'snapshot_retention_limit');
+
+  /// Reference to `snapshot_window` attribute.
+  TfRef<String> get snapshotWindowRef =>
+      TfRef.attribute<String>(this, 'snapshot_window');
+
+  /// Reference to `subnet_group_name` attribute.
+  TfRef<String> get subnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'subnet_group_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_encryption_enabled` attribute.
+  TfRef<bool> get transitEncryptionEnabledRef =>
+      TfRef.attribute<bool>(this, 'transit_encryption_enabled');
+
+  /// Reference to `transit_encryption_mode` attribute.
+  TfRef<String> get transitEncryptionModeRef =>
+      TfRef.attribute<String>(this, 'transit_encryption_mode');
+
+  /// Reference to `user_group_ids` attribute.
+  TfRef<List<String>> get userGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'user_group_ids');
 }

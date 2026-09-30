@@ -75,4 +75,34 @@ final class AwsAutoscalingLifecycleHook extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `autoscaling_group_name` attribute.
+  TfRef<String> get autoscalingGroupNameRef =>
+      TfRef.attribute<String>(this, 'autoscaling_group_name');
+
+  /// Reference to `default_result` attribute.
+  TfRef<String> get defaultResultRef =>
+      TfRef.attribute<String>(this, 'default_result');
+
+  /// Reference to `heartbeat_timeout` attribute.
+  TfRef<num> get heartbeatTimeoutRef =>
+      TfRef.attribute<num>(this, 'heartbeat_timeout');
+
+  /// Reference to `lifecycle_transition` attribute.
+  TfRef<String> get lifecycleTransitionRef =>
+      TfRef.attribute<String>(this, 'lifecycle_transition');
+
+  /// Reference to `notification_metadata` attribute.
+  TfRef<String> get notificationMetadataRef =>
+      TfRef.attribute<String>(this, 'notification_metadata');
+
+  /// Reference to `notification_target_arn` attribute.
+  TfRef<String> get notificationTargetArnRef =>
+      TfRef.attribute<String>(this, 'notification_target_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
 }

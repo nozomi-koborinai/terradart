@@ -88,6 +88,27 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
+  /// Reference to `data_product_id` attribute.
+  TfRef<String> get dataProductIdRef =>
+      TfRef.attribute<String>(this, 'data_product_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `resource` attribute.
+  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
+
   /// Reference to `data_asset_id` attribute.
   TfRef<String> get dataAssetIdRef =>
       TfRef.attribute<String>(this, 'data_asset_id');

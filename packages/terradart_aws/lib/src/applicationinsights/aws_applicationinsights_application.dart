@@ -62,4 +62,38 @@ final class AwsApplicationinsightsApplication extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `auto_config_enabled` attribute.
+  TfRef<bool> get autoConfigEnabledRef =>
+      TfRef.attribute<bool>(this, 'auto_config_enabled');
+
+  /// Reference to `auto_create` attribute.
+  TfRef<bool> get autoCreateRef => TfRef.attribute<bool>(this, 'auto_create');
+
+  /// Reference to `cwe_monitor_enabled` attribute.
+  TfRef<bool> get cweMonitorEnabledRef =>
+      TfRef.attribute<bool>(this, 'cwe_monitor_enabled');
+
+  /// Reference to `grouping_type` attribute.
+  TfRef<String> get groupingTypeRef =>
+      TfRef.attribute<String>(this, 'grouping_type');
+
+  /// Reference to `ops_center_enabled` attribute.
+  TfRef<bool> get opsCenterEnabledRef =>
+      TfRef.attribute<bool>(this, 'ops_center_enabled');
+
+  /// Reference to `ops_item_sns_topic_arn` attribute.
+  TfRef<String> get opsItemSnsTopicArnRef =>
+      TfRef.attribute<String>(this, 'ops_item_sns_topic_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_group_name` attribute.
+  TfRef<String> get resourceGroupNameRef =>
+      TfRef.attribute<String>(this, 'resource_group_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

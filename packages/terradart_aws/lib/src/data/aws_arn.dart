@@ -37,4 +37,7 @@ final class DataAwsArn extends Data {
 
   /// Reference to `service` attribute.
   TfRef<String> get service => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
 }

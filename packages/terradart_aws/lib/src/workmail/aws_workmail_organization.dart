@@ -77,4 +77,35 @@ final class AwsWorkmailOrganization extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `delete_directory` attribute.
+  TfRef<bool> get deleteDirectoryRef =>
+      TfRef.attribute<bool>(this, 'delete_directory');
+
+  /// Reference to `delete_identity_center_application` attribute.
+  TfRef<bool> get deleteIdentityCenterApplicationRef =>
+      TfRef.attribute<bool>(this, 'delete_identity_center_application');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `interoperability_enabled` attribute.
+  TfRef<bool> get interoperabilityEnabledRef =>
+      TfRef.attribute<bool>(this, 'interoperability_enabled');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `organization_alias` attribute.
+  TfRef<String> get organizationAliasRef =>
+      TfRef.attribute<String>(this, 'organization_alias');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

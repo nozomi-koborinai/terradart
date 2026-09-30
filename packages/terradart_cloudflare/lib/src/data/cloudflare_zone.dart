@@ -209,4 +209,7 @@ final class DataCloudflareZone extends Data {
   /// Reference to `verification_key` attribute.
   TfRef<String> get verificationKey =>
       TfRef.attribute<String>(this, 'verification_key');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

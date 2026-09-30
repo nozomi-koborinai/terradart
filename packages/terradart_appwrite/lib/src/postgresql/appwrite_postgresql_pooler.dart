@@ -78,4 +78,38 @@ final class AppwritePostgresqlPooler extends Resource {
 
   /// Reference to `port` attribute.
   TfRef<num> get port => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `default_pool_size` attribute.
+  TfRef<num> get defaultPoolSizeRef =>
+      TfRef.attribute<num>(this, 'default_pool_size');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `pooler_cpu_limit` attribute.
+  TfRef<String> get poolerCpuLimitRef =>
+      TfRef.attribute<String>(this, 'pooler_cpu_limit');
+
+  /// Reference to `pooler_cpu_request` attribute.
+  TfRef<String> get poolerCpuRequestRef =>
+      TfRef.attribute<String>(this, 'pooler_cpu_request');
+
+  /// Reference to `pooler_memory_limit` attribute.
+  TfRef<String> get poolerMemoryLimitRef =>
+      TfRef.attribute<String>(this, 'pooler_memory_limit');
+
+  /// Reference to `pooler_memory_request` attribute.
+  TfRef<String> get poolerMemoryRequestRef =>
+      TfRef.attribute<String>(this, 'pooler_memory_request');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `read_write_splitting` attribute.
+  TfRef<bool> get readWriteSplittingRef =>
+      TfRef.attribute<bool>(this, 'read_write_splitting');
 }

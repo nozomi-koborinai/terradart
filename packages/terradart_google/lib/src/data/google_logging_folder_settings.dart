@@ -53,4 +53,7 @@ final class DataGoogleLoggingFolderSettings extends Data {
   /// Reference to `storage_location` attribute.
   TfRef<String> get storageLocation =>
       TfRef.attribute<String>(this, 'storage_location');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
 }

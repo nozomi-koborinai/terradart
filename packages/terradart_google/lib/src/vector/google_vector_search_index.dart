@@ -179,6 +179,48 @@ final class GoogleVectorSearchIndex extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `collection_id` attribute.
+  TfRef<String> get collectionIdRef =>
+      TfRef.attribute<String>(this, 'collection_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `distance_metric` attribute.
+  TfRef<String> get distanceMetricRef =>
+      TfRef.attribute<String>(this, 'distance_metric');
+
+  /// Reference to `filter_fields` attribute.
+  TfRef<List<String>> get filterFieldsRef =>
+      TfRef.attribute<List<String>>(this, 'filter_fields');
+
+  /// Reference to `index_field` attribute.
+  TfRef<String> get indexFieldRef =>
+      TfRef.attribute<String>(this, 'index_field');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `store_fields` attribute.
+  TfRef<List<String>> get storeFieldsRef =>
+      TfRef.attribute<List<String>>(this, 'store_fields');
+
   /// Reference to `index_id` attribute.
   TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
 

@@ -62,4 +62,31 @@ final class AppwriteAuthUser extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `email_verification` attribute.
+  TfRef<bool> get emailVerificationRef =>
+      TfRef.attribute<bool>(this, 'email_verification');
+
+  /// Reference to `labels` attribute.
+  TfRef<List<String>> get labelsRef =>
+      TfRef.attribute<List<String>>(this, 'labels');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `phone` attribute.
+  TfRef<String> get phoneRef => TfRef.attribute<String>(this, 'phone');
+
+  /// Reference to `phone_verification` attribute.
+  TfRef<bool> get phoneVerificationRef =>
+      TfRef.attribute<bool>(this, 'phone_verification');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `status` attribute.
+  TfRef<bool> get statusRef => TfRef.attribute<bool>(this, 'status');
 }

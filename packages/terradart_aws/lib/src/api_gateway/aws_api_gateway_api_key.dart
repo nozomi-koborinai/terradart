@@ -59,4 +59,25 @@ final class AwsApiGatewayApiKey extends Resource {
   /// Reference to `last_updated_date` attribute.
   TfRef<String> get lastUpdatedDate =>
       TfRef.attribute<String>(this, 'last_updated_date');
+
+  /// Reference to `customer_id` attribute.
+  TfRef<String> get customerIdRef =>
+      TfRef.attribute<String>(this, 'customer_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

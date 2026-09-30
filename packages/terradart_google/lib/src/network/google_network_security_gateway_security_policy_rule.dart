@@ -116,4 +116,44 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `application_matcher` attribute.
+  TfRef<String> get applicationMatcherRef =>
+      TfRef.attribute<String>(this, 'application_matcher');
+
+  /// Reference to `basic_profile` attribute.
+  TfRef<String> get basicProfileRef =>
+      TfRef.attribute<String>(this, 'basic_profile');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `gateway_security_policy` attribute.
+  TfRef<String> get gatewaySecurityPolicyRef =>
+      TfRef.attribute<String>(this, 'gateway_security_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `session_matcher` attribute.
+  TfRef<String> get sessionMatcherRef =>
+      TfRef.attribute<String>(this, 'session_matcher');
+
+  /// Reference to `tls_inspection_enabled` attribute.
+  TfRef<bool> get tlsInspectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'tls_inspection_enabled');
 }

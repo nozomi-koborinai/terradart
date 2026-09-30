@@ -88,4 +88,22 @@ final class CloudflareZoneDnssec extends Resource {
 
   /// Reference to `public_key` attribute.
   TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `dnssec_multi_signer` attribute.
+  TfRef<bool> get dnssecMultiSignerRef =>
+      TfRef.attribute<bool>(this, 'dnssec_multi_signer');
+
+  /// Reference to `dnssec_presigned` attribute.
+  TfRef<bool> get dnssecPresignedRef =>
+      TfRef.attribute<bool>(this, 'dnssec_presigned');
+
+  /// Reference to `dnssec_use_nsec3` attribute.
+  TfRef<bool> get dnssecUseNsec3Ref =>
+      TfRef.attribute<bool>(this, 'dnssec_use_nsec3');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

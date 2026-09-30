@@ -83,4 +83,19 @@ final class DataAwsEfsMountTarget extends Data {
 
   /// Reference to `subnet_id` attribute.
   TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `access_point_id` attribute.
+  TfRef<String> get accessPointIdRef =>
+      TfRef.attribute<String>(this, 'access_point_id');
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `mount_target_id` attribute.
+  TfRef<String> get mountTargetIdRef =>
+      TfRef.attribute<String>(this, 'mount_target_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

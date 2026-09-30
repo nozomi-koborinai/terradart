@@ -329,6 +329,36 @@ final class GoogleBackupDrBackupPlan extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `backup_vault` attribute.
+  TfRef<String> get backupVaultRef =>
+      TfRef.attribute<String>(this, 'backup_vault');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `log_retention_days` attribute.
+  TfRef<num> get logRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'log_retention_days');
+
+  /// Reference to `max_custom_on_demand_retention_days` attribute.
+  TfRef<num> get maxCustomOnDemandRetentionDaysRef =>
+      TfRef.attribute<num>(this, 'max_custom_on_demand_retention_days');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `resource_type` attribute.
+  TfRef<String> get resourceTypeRef =>
+      TfRef.attribute<String>(this, 'resource_type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

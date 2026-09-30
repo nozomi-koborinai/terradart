@@ -59,4 +59,10 @@ final class CloudflarePipeline extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `sql` attribute.
+  TfRef<String> get sqlRef => TfRef.attribute<String>(this, 'sql');
 }

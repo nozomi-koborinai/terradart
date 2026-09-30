@@ -46,4 +46,10 @@ final class CloudflareDnsZoneTransfersAcl extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `ip_range` attribute.
+  TfRef<String> get ipRangeRef => TfRef.attribute<String>(this, 'ip_range');
 }

@@ -28,4 +28,10 @@ final class DataAwsS3controlMultiRegionAccessPoints extends Data {
   /// Reference to `access_points` attribute.
   TfRef<List<Map<String, Object?>>> get accessPoints =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'access_points');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -162,4 +162,30 @@ final class GoogleComputeSslPolicy extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `custom_features` attribute.
+  TfRef<List<String>> get customFeaturesRef =>
+      TfRef.attribute<List<String>>(this, 'custom_features');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `min_tls_version` attribute.
+  TfRef<String> get minTlsVersionRef =>
+      TfRef.attribute<String>(this, 'min_tls_version');
+
+  /// Reference to `post_quantum_key_exchange` attribute.
+  TfRef<String> get postQuantumKeyExchangeRef =>
+      TfRef.attribute<String>(this, 'post_quantum_key_exchange');
+
+  /// Reference to `profile` attribute.
+  TfRef<String> get profileRef => TfRef.attribute<String>(this, 'profile');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

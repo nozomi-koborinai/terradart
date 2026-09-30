@@ -65,4 +65,38 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disable_web_grounding` attribute.
+  TfRef<bool> get disableWebGroundingRef =>
+      TfRef.attribute<bool>(this, 'disable_web_grounding');
+
+  /// Reference to `enable_customer_data_sharing` attribute.
+  TfRef<bool> get enableCustomerDataSharingRef =>
+      TfRef.attribute<bool>(this, 'enable_customer_data_sharing');
+
+  /// Reference to `gemini_gcp_enablement_setting_id` attribute.
+  TfRef<String> get geminiGcpEnablementSettingIdRef =>
+      TfRef.attribute<String>(this, 'gemini_gcp_enablement_setting_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `mutations_enabled` attribute.
+  TfRef<bool> get mutationsEnabledRef =>
+      TfRef.attribute<bool>(this, 'mutations_enabled');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `web_grounding_type` attribute.
+  TfRef<String> get webGroundingTypeRef =>
+      TfRef.attribute<String>(this, 'web_grounding_type');
 }

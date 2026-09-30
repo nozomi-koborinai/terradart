@@ -858,4 +858,101 @@ final class AwsEmrCluster extends Resource {
   /// Reference to `master_public_dns` attribute.
   TfRef<String> get masterPublicDns =>
       TfRef.attribute<String>(this, 'master_public_dns');
+
+  /// Reference to `additional_info` attribute.
+  TfRef<String> get additionalInfoRef =>
+      TfRef.attribute<String>(this, 'additional_info');
+
+  /// Reference to `applications` attribute.
+  TfRef<List<String>> get applicationsRef =>
+      TfRef.attribute<List<String>>(this, 'applications');
+
+  /// Reference to `autoscaling_role` attribute.
+  TfRef<String> get autoscalingRoleRef =>
+      TfRef.attribute<String>(this, 'autoscaling_role');
+
+  /// Reference to `configurations` attribute.
+  TfRef<String> get configurationsRef =>
+      TfRef.attribute<String>(this, 'configurations');
+
+  /// Reference to `configurations_json` attribute.
+  TfRef<String> get configurationsJsonRef =>
+      TfRef.attribute<String>(this, 'configurations_json');
+
+  /// Reference to `custom_ami_id` attribute.
+  TfRef<String> get customAmiIdRef =>
+      TfRef.attribute<String>(this, 'custom_ami_id');
+
+  /// Reference to `ebs_root_volume_size` attribute.
+  TfRef<num> get ebsRootVolumeSizeRef =>
+      TfRef.attribute<num>(this, 'ebs_root_volume_size');
+
+  /// Reference to `keep_job_flow_alive_when_no_steps` attribute.
+  TfRef<bool> get keepJobFlowAliveWhenNoStepsRef =>
+      TfRef.attribute<bool>(this, 'keep_job_flow_alive_when_no_steps');
+
+  /// Reference to `list_steps_states` attribute.
+  TfRef<List<String>> get listStepsStatesRef =>
+      TfRef.attribute<List<String>>(this, 'list_steps_states');
+
+  /// Reference to `log_encryption_kms_key_id` attribute.
+  TfRef<String> get logEncryptionKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'log_encryption_kms_key_id');
+
+  /// Reference to `log_uri` attribute.
+  TfRef<String> get logUriRef => TfRef.attribute<String>(this, 'log_uri');
+
+  /// Reference to `os_release_label` attribute.
+  TfRef<String> get osReleaseLabelRef =>
+      TfRef.attribute<String>(this, 'os_release_label');
+
+  /// Reference to `placement_group_config` attribute.
+  TfRef<List<Map<String, Object?>>> get placementGroupConfigRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'placement_group_config',
+      );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_label` attribute.
+  TfRef<String> get releaseLabelRef =>
+      TfRef.attribute<String>(this, 'release_label');
+
+  /// Reference to `scale_down_behavior` attribute.
+  TfRef<String> get scaleDownBehaviorRef =>
+      TfRef.attribute<String>(this, 'scale_down_behavior');
+
+  /// Reference to `security_configuration` attribute.
+  TfRef<String> get securityConfigurationRef =>
+      TfRef.attribute<String>(this, 'security_configuration');
+
+  /// Reference to `service_role` attribute.
+  TfRef<String> get serviceRoleRef =>
+      TfRef.attribute<String>(this, 'service_role');
+
+  /// Reference to `step` attribute.
+  TfRef<List<Map<String, Object?>>> get stepRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'step');
+
+  /// Reference to `step_concurrency_level` attribute.
+  TfRef<num> get stepConcurrencyLevelRef =>
+      TfRef.attribute<num>(this, 'step_concurrency_level');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `termination_protection` attribute.
+  TfRef<bool> get terminationProtectionRef =>
+      TfRef.attribute<bool>(this, 'termination_protection');
+
+  /// Reference to `unhealthy_node_replacement` attribute.
+  TfRef<bool> get unhealthyNodeReplacementRef =>
+      TfRef.attribute<bool>(this, 'unhealthy_node_replacement');
+
+  /// Reference to `visible_to_all_users` attribute.
+  TfRef<bool> get visibleToAllUsersRef =>
+      TfRef.attribute<bool>(this, 'visible_to_all_users');
 }

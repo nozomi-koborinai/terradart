@@ -42,4 +42,26 @@ final class DataCloudflareWorkersCustomDomains extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersCustomDomainsSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environmentRef =>
+      TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+
+  /// Reference to `zone_name` attribute.
+  TfRef<String> get zoneNameRef => TfRef.attribute<String>(this, 'zone_name');
 }

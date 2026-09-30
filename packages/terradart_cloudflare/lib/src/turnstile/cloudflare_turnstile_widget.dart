@@ -145,4 +145,46 @@ final class CloudflareTurnstileWidget extends Resource {
 
   /// Reference to `sitekey` attribute.
   TfRef<String> get sitekey => TfRef.attribute<String>(this, 'sitekey');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bot_fight_mode` attribute.
+  TfRef<bool> get botFightModeRef =>
+      TfRef.attribute<bool>(this, 'bot_fight_mode');
+
+  /// Reference to `clearance_level` attribute.
+  TfRef<String> get clearanceLevelRef =>
+      TfRef.attribute<String>(this, 'clearance_level');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `domains` attribute.
+  TfRef<List<String>> get domainsRef =>
+      TfRef.attribute<List<String>>(this, 'domains');
+
+  /// Reference to `ephemeral_id` attribute.
+  TfRef<bool> get ephemeralIdRef => TfRef.attribute<bool>(this, 'ephemeral_id');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `offlabel` attribute.
+  TfRef<bool> get offlabelRef => TfRef.attribute<bool>(this, 'offlabel');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `page` attribute.
+  TfRef<num> get pageRef => TfRef.attribute<num>(this, 'page');
+
+  /// Reference to `per_page` attribute.
+  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

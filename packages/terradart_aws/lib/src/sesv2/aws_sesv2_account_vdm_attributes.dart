@@ -112,4 +112,11 @@ final class AwsSesv2AccountVdmAttributes extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vdm_enabled` attribute.
+  TfRef<String> get vdmEnabledRef =>
+      TfRef.attribute<String>(this, 'vdm_enabled');
 }

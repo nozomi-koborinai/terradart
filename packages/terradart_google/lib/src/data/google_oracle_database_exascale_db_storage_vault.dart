@@ -89,4 +89,14 @@ final class DataGoogleOracleDatabaseExascaleDbStorageVault extends Data {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `exascale_db_storage_vault_id` attribute.
+  TfRef<String> get exascaleDbStorageVaultIdRef =>
+      TfRef.attribute<String>(this, 'exascale_db_storage_vault_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

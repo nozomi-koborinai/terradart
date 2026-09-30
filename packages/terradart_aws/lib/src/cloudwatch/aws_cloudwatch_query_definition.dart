@@ -49,4 +49,15 @@ final class AwsCloudwatchQueryDefinition extends Resource {
   /// Reference to `query_definition_id` attribute.
   TfRef<String> get queryDefinitionId =>
       TfRef.attribute<String>(this, 'query_definition_id');
+
+  /// Reference to `log_group_names` attribute.
+  TfRef<List<String>> get logGroupNamesRef =>
+      TfRef.attribute<List<String>>(this, 'log_group_names');
+
+  /// Reference to `query_string` attribute.
+  TfRef<String> get queryStringRef =>
+      TfRef.attribute<String>(this, 'query_string');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -737,4 +737,30 @@ final class GoogleBigqueryConnection extends Resource {
   /// Reference to `has_credential` attribute.
   TfRef<bool> get hasCredential =>
       TfRef.attribute<bool>(this, 'has_credential');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `friendly_name` attribute.
+  TfRef<String> get friendlyNameRef =>
+      TfRef.attribute<String>(this, 'friendly_name');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

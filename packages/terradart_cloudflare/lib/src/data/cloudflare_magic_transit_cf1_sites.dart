@@ -32,4 +32,10 @@ final class DataCloudflareMagicTransitCf1Sites extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareMagicTransitCf1SitesSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
 }

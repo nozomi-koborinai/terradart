@@ -89,4 +89,11 @@ final class AwsSfnActivity extends Resource {
   /// Reference to `creation_date` attribute.
   TfRef<String> get creationDate =>
       TfRef.attribute<String>(this, 'creation_date');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

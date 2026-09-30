@@ -77,4 +77,31 @@ final class AwsOdbNetworkPeeringConnection extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `odb_network_arn` attribute.
+  TfRef<String> get odbNetworkArnRef =>
+      TfRef.attribute<String>(this, 'odb_network_arn');
+
+  /// Reference to `odb_network_id` attribute.
+  TfRef<String> get odbNetworkIdRef =>
+      TfRef.attribute<String>(this, 'odb_network_id');
+
+  /// Reference to `peer_network_cidrs` attribute.
+  TfRef<List<String>> get peerNetworkCidrsRef =>
+      TfRef.attribute<List<String>>(this, 'peer_network_cidrs');
+
+  /// Reference to `peer_network_id` attribute.
+  TfRef<String> get peerNetworkIdRef =>
+      TfRef.attribute<String>(this, 'peer_network_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

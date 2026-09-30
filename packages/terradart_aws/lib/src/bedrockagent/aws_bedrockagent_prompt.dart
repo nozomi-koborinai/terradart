@@ -942,4 +942,23 @@ final class AwsBedrockagentPrompt extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `customer_encryption_key_arn` attribute.
+  TfRef<String> get customerEncryptionKeyArnRef =>
+      TfRef.attribute<String>(this, 'customer_encryption_key_arn');
+
+  /// Reference to `default_variant` attribute.
+  TfRef<String> get defaultVariantRef =>
+      TfRef.attribute<String>(this, 'default_variant');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

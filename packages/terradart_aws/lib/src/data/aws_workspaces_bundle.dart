@@ -51,4 +51,13 @@ final class DataAwsWorkspacesBundle extends Data {
   /// Reference to `user_storage` attribute.
   TfRef<List<Map<String, Object?>>> get userStorage =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'user_storage');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `owner` attribute.
+  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

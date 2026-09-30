@@ -37,4 +37,20 @@ final class DataCloudflareUserAgentBlockingRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareUserAgentBlockingRulesSensitive;
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `paused` attribute.
+  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+
+  /// Reference to `user_agent` attribute.
+  TfRef<String> get userAgentRef => TfRef.attribute<String>(this, 'user_agent');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

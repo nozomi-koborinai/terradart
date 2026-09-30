@@ -43,4 +43,7 @@ final class DataCloudflareStreamWebhook extends Data {
 
   /// Reference to `secret` attribute.
   TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

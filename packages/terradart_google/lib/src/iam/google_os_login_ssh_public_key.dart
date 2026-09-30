@@ -71,4 +71,21 @@ final class GoogleOsLoginSshPublicKey extends Resource {
 
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `expiration_time_usec` attribute.
+  TfRef<String> get expirationTimeUsecRef =>
+      TfRef.attribute<String>(this, 'expiration_time_usec');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `user` attribute.
+  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
 }

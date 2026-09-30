@@ -45,4 +45,11 @@ final class DataAwsServiceDiscoveryHttpNamespace extends Data {
 
   /// Reference to `http_name` attribute.
   TfRef<String> get httpName => TfRef.attribute<String>(this, 'http_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

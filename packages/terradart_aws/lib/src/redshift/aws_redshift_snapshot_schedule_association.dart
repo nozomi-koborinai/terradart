@@ -38,4 +38,15 @@ final class AwsRedshiftSnapshotScheduleAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule_identifier` attribute.
+  TfRef<String> get scheduleIdentifierRef =>
+      TfRef.attribute<String>(this, 'schedule_identifier');
 }

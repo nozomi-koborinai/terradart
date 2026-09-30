@@ -46,4 +46,15 @@ final class GoogleSccV2OrganizationSourceIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
 }

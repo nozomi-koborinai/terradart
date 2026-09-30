@@ -290,4 +290,35 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
   /// Reference to `rule_tuple_count` attribute.
   TfRef<num> get ruleTupleCount =>
       TfRef.attribute<num>(this, 'rule_tuple_count');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `network_policy` attribute.
+  TfRef<String> get networkPolicyRef =>
+      TfRef.attribute<String>(this, 'network_policy');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_name` attribute.
+  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+
+  /// Reference to `target_service_accounts` attribute.
+  TfRef<List<String>> get targetServiceAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'target_service_accounts');
 }

@@ -146,6 +146,26 @@ final class GoogleVectorSearchDataObject extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `collection_id` attribute.
+  TfRef<String> get collectionIdRef =>
+      TfRef.attribute<String>(this, 'collection_id');
+
+  /// Reference to `data` attribute.
+  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `data_object_id` attribute.
   TfRef<String> get dataObjectIdRef =>
       TfRef.attribute<String>(this, 'data_object_id');

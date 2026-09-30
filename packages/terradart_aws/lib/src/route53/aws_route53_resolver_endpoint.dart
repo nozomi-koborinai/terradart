@@ -124,4 +124,34 @@ final class AwsRoute53ResolverEndpoint extends Resource {
 
   /// Reference to `host_vpc_id` attribute.
   TfRef<String> get hostVpcId => TfRef.attribute<String>(this, 'host_vpc_id');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `protocols` attribute.
+  TfRef<List<String>> get protocolsRef =>
+      TfRef.attribute<List<String>>(this, 'protocols');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resolver_endpoint_type` attribute.
+  TfRef<String> get resolverEndpointTypeRef =>
+      TfRef.attribute<String>(this, 'resolver_endpoint_type');
+
+  /// Reference to `rni_enhanced_metrics_enabled` attribute.
+  TfRef<bool> get rniEnhancedMetricsEnabledRef =>
+      TfRef.attribute<bool>(this, 'rni_enhanced_metrics_enabled');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_name_server_metrics_enabled` attribute.
+  TfRef<bool> get targetNameServerMetricsEnabledRef =>
+      TfRef.attribute<bool>(this, 'target_name_server_metrics_enabled');
 }

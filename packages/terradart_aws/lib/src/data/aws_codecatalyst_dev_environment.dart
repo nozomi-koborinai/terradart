@@ -87,4 +87,27 @@ final class DataAwsCodecatalystDevEnvironment extends Data {
   /// Reference to `status_reason` attribute.
   TfRef<String> get statusReason =>
       TfRef.attribute<String>(this, 'status_reason');
+
+  /// Reference to `alias` attribute.
+  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+
+  /// Reference to `creator_id` attribute.
+  TfRef<String> get creatorIdRef => TfRef.attribute<String>(this, 'creator_id');
+
+  /// Reference to `env_id` attribute.
+  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+
+  /// Reference to `project_name` attribute.
+  TfRef<String> get projectNameRef =>
+      TfRef.attribute<String>(this, 'project_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `space_name` attribute.
+  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

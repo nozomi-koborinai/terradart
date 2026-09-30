@@ -119,4 +119,21 @@ final class AwsLightsailKeyPair extends Resource {
 
   /// Reference to `private_key` attribute.
   TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `pgp_key` attribute.
+  TfRef<String> get pgpKeyRef => TfRef.attribute<String>(this, 'pgp_key');
+
+  /// Reference to `public_key` attribute.
+  TfRef<String> get publicKeyRef => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

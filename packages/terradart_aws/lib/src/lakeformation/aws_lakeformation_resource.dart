@@ -51,4 +51,29 @@ final class AwsLakeformationResource extends Resource {
   /// Reference to `last_modified` attribute.
   TfRef<String> get lastModified =>
       TfRef.attribute<String>(this, 'last_modified');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `hybrid_access_enabled` attribute.
+  TfRef<bool> get hybridAccessEnabledRef =>
+      TfRef.attribute<bool>(this, 'hybrid_access_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `use_service_linked_role` attribute.
+  TfRef<bool> get useServiceLinkedRoleRef =>
+      TfRef.attribute<bool>(this, 'use_service_linked_role');
+
+  /// Reference to `with_federation` attribute.
+  TfRef<bool> get withFederationRef =>
+      TfRef.attribute<bool>(this, 'with_federation');
+
+  /// Reference to `with_privileged_access` attribute.
+  TfRef<bool> get withPrivilegedAccessRef =>
+      TfRef.attribute<bool>(this, 'with_privileged_access');
 }

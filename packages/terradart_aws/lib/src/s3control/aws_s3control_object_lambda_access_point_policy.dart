@@ -49,4 +49,13 @@ final class AwsS3controlObjectLambdaAccessPointPolicy extends Resource {
   /// Reference to `has_public_access_policy` attribute.
   TfRef<bool> get hasPublicAccessPolicy =>
       TfRef.attribute<bool>(this, 'has_public_access_policy');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

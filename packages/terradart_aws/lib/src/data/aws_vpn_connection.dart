@@ -109,4 +109,11 @@ final class DataAwsVpnConnection extends Data {
   /// Reference to `vpn_gateway_id` attribute.
   TfRef<String> get vpnGatewayId =>
       TfRef.attribute<String>(this, 'vpn_gateway_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpn_connection_id` attribute.
+  TfRef<String> get vpnConnectionIdRef =>
+      TfRef.attribute<String>(this, 'vpn_connection_id');
 }

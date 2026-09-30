@@ -166,4 +166,75 @@ final class AwsOdbNetwork extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `availability_zone_id` attribute.
+  TfRef<String> get availabilityZoneIdRef =>
+      TfRef.attribute<String>(this, 'availability_zone_id');
+
+  /// Reference to `backup_subnet_cidr` attribute.
+  TfRef<String> get backupSubnetCidrRef =>
+      TfRef.attribute<String>(this, 'backup_subnet_cidr');
+
+  /// Reference to `client_subnet_cidr` attribute.
+  TfRef<String> get clientSubnetCidrRef =>
+      TfRef.attribute<String>(this, 'client_subnet_cidr');
+
+  /// Reference to `cross_region_s3_restore_sources_access` attribute.
+  TfRef<List<String>> get crossRegionS3RestoreSourcesAccessRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'cross_region_s3_restore_sources_access',
+      );
+
+  /// Reference to `custom_domain_name` attribute.
+  TfRef<String> get customDomainNameRef =>
+      TfRef.attribute<String>(this, 'custom_domain_name');
+
+  /// Reference to `default_dns_prefix` attribute.
+  TfRef<String> get defaultDnsPrefixRef =>
+      TfRef.attribute<String>(this, 'default_dns_prefix');
+
+  /// Reference to `delete_associated_resources` attribute.
+  TfRef<bool> get deleteAssociatedResourcesRef =>
+      TfRef.attribute<bool>(this, 'delete_associated_resources');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `kms_access` attribute.
+  TfRef<String> get kmsAccessRef => TfRef.attribute<String>(this, 'kms_access');
+
+  /// Reference to `kms_policy_document` attribute.
+  TfRef<String> get kmsPolicyDocumentRef =>
+      TfRef.attribute<String>(this, 'kms_policy_document');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_access` attribute.
+  TfRef<String> get s3AccessRef => TfRef.attribute<String>(this, 's3_access');
+
+  /// Reference to `s3_policy_document` attribute.
+  TfRef<String> get s3PolicyDocumentRef =>
+      TfRef.attribute<String>(this, 's3_policy_document');
+
+  /// Reference to `sts_access` attribute.
+  TfRef<String> get stsAccessRef => TfRef.attribute<String>(this, 'sts_access');
+
+  /// Reference to `sts_policy_document` attribute.
+  TfRef<String> get stsPolicyDocumentRef =>
+      TfRef.attribute<String>(this, 'sts_policy_document');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `zero_etl_access` attribute.
+  TfRef<String> get zeroEtlAccessRef =>
+      TfRef.attribute<String>(this, 'zero_etl_access');
 }

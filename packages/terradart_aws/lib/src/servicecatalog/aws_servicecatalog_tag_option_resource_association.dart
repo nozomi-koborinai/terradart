@@ -57,4 +57,15 @@ final class AwsServicecatalogTagOptionResourceAssociation extends Resource {
   /// Reference to `resource_name` attribute.
   TfRef<String> get resourceName =>
       TfRef.attribute<String>(this, 'resource_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `tag_option_id` attribute.
+  TfRef<String> get tagOptionIdRef =>
+      TfRef.attribute<String>(this, 'tag_option_id');
 }

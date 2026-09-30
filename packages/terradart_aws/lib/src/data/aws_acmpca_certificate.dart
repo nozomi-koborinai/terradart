@@ -44,4 +44,14 @@ final class DataAwsAcmpcaCertificate extends Data {
   /// Reference to `certificate_chain` attribute.
   TfRef<String> get certificateChain =>
       TfRef.attribute<String>(this, 'certificate_chain');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `certificate_authority_arn` attribute.
+  TfRef<String> get certificateAuthorityArnRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

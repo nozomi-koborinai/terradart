@@ -47,4 +47,18 @@ final class AwsTimestreamwriteDatabase extends Resource {
 
   /// Reference to `table_count` attribute.
   TfRef<num> get tableCount => TfRef.attribute<num>(this, 'table_count');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }
