@@ -4,6 +4,9 @@ End-to-end terradart example for Chronicle (Google SecOps) factories:
 
 - `google_chronicle_custom_list`
 - `google_chronicle_soar_network`
+- `google_chronicle_case_close_definition`
+- `google_chronicle_case_stage_definition`
+- `google_chronicle_case_tag_definition`
 - `google_chronicle_native_dashboard`
 - `google_chronicle_dashboard_chart`
 

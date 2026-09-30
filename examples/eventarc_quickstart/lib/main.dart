@@ -102,6 +102,17 @@ final class EventarcStack extends Stack {
       ),
     );
 
+    add(
+      GoogleEventarcPipelineIamMember(
+        localName: 'ingest_pipeline_viewer',
+        location: .literal(location),
+        pipelineId: .ref(TfRef.attribute<String>(pipeline, 'pipeline_id')),
+        role: .literal('roles/viewer'),
+        member: .ref(triggerSa.iamMember),
+        dependsOn: [ResourceDependency(pipeline)],
+      ),
+    );
+
     // An enrollment's destination is the *pipeline* that processes matched
     // messages — not a Workflow directly. Pointing it at a Workflow fails with
     // "invalid destination" (field enrollment.destination).

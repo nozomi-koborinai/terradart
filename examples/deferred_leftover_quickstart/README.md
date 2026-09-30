@@ -5,8 +5,13 @@ billing account, or external artifact, plus the 16 types `hashicorp/google`
 8.2 / 8.3 promoted from google-beta (BigLake Hive catalogs, databases and
 tables with their IAM, Observability folder / organization / project
 settings, the network edge security service), carried over from
-`beta_leftover_quickstart` with the same dummy values. Synth +
-`terraform validate` only.
+`beta_leftover_quickstart` with the same dummy values. It also covers the
+8.1 / 8.4 additions whose apply needs something the stack cannot create: an
+Observability bucket and link (the linked dataset only exists once
+telemetry lands), a Monitoring snooze (cannot be deleted), a Network
+Monitoring provider, an Agent Gateway connectivity template, a Vertex AI
+RAG corpus (bills the project's RagManagedDb tier), and the authoritative
+Eventarc pipeline IAM binding / policy. Synth + `terraform validate` only.
 
 ```bash
 export GCP_PROJECT_ID=your-project-id

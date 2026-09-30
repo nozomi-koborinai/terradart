@@ -5,7 +5,9 @@
 /// - a GCP enablement setting + project binding,
 /// - a logging setting (log metadata, not prompts/responses) + binding,
 /// - a release-channel setting + binding,
-/// - a data-sharing-with-Google setting (both flags off for smoke) + binding.
+/// - a data-sharing-with-Google setting (both flags off for smoke) + binding,
+/// - Conversational Analytics observability settings for Gemini Data
+///   Analytics (GDA) and Gemini in BigQuery (GIBQ) + bindings.
 ///
 /// Settings and bindings are free, project/location-scoped config resources,
 /// so the stack creates and destroys cleanly in a single project. Binding
@@ -121,6 +123,58 @@ final class GeminiStack extends Stack {
         location: .literal('global'),
         target: .literal(projectTarget),
         dependsOn: [ResourceDependency(dataSharing)],
+      ),
+    );
+
+    // Observability (metrics / traces / logging / feedback) for Conversational
+    // Analytics in Gemini Data Analytics and in Gemini in BigQuery.
+    const analyticsObservability = <String, dynamic>{
+      'metrics_enabled': true,
+      'traces_enabled': true,
+      'logging_enabled': false,
+      'feedback_enabled': false,
+    };
+
+    final gdaObservability = add(
+      GoogleGeminiGdaObservabilitySetting(
+        localName: 'gda_observability',
+        gdaObservabilitySettingId: .literal('terradart-gda-observability'),
+        location: .literal('global'),
+        conversationalAnalyticsSetting: .literal(analyticsObservability),
+        dependsOn: [ResourceDependency(apiGemini)],
+      ),
+    );
+
+    add(
+      GoogleGeminiGdaObservabilitySettingBinding(
+        localName: 'gda_observability_bind',
+        gdaObservabilitySettingId: .literal('terradart-gda-observability'),
+        settingBindingId: .literal('terradart-gda-observability-bind'),
+        location: .literal('global'),
+        target: .literal(projectTarget),
+        dependsOn: [ResourceDependency(gdaObservability)],
+      ),
+    );
+
+    final gibqObservability = add(
+      GoogleGeminiGibqObservabilitySetting(
+        localName: 'gibq_observability',
+        gibqObservabilitySettingId: .literal('terradart-gibq-observability'),
+        location: .literal('global'),
+        conversationalAnalyticsSetting: .literal(analyticsObservability),
+        dependsOn: [ResourceDependency(apiGemini)],
+      ),
+    );
+
+    add(
+      GoogleGeminiGibqObservabilitySettingBinding(
+        localName: 'gibq_observability_bind',
+        gibqObservabilitySettingId: .literal('terradart-gibq-observability'),
+        settingBindingId: .literal('terradart-gibq-observability-bind'),
+        location: .literal('global'),
+        product: .literal('GEMINI_IN_BIGQUERY'),
+        target: .literal(projectTarget),
+        dependsOn: [ResourceDependency(gibqObservability)],
       ),
     );
 

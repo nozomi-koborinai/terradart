@@ -6,6 +6,8 @@ End-to-end terradart example for Cloud Storage. Provisions a GCS bucket with a t
 
 The bucket objects upload local files (`config/app.json`, `legacy/readme.txt`) that are not part of the generated `tf-out/`. Provide them next to `main.tf.json` before applying.
 
+The managed SFTP server (`google_storage_ftp_server`) only accepts connections from its `allowed_cidr_blocks`; replace the documentation range `203.0.113.0/24` with your client's range, and check that Cloud Storage SFTP is offered in `asia-northeast1` for your project.
+
 ## Prerequisites
 
 - Dart SDK >= 3.10
