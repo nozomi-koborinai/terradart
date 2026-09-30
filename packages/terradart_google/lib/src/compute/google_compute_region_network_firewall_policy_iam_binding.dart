@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_region_network_firewall_policy_iam_binding`.
 const Set<String> _googleComputeRegionNetworkFirewallPolicyIamBindingSensitive =
     <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_compute_region_network_firewall_policy_iam_binding` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkFirewallPolicyIamBindingCondition {
+  const ComputeRegionNetworkFirewallPolicyIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_region_network_firewall_policy_iam_binding`.
 ///
@@ -24,7 +48,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamBinding
     required TfArg<String> name,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    ComputeRegionNetworkFirewallPolicyIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,
     super.lifecycle,
@@ -37,7 +61,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamBinding
            'name': name,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'region': ?region,
            'project': ?project,
          },

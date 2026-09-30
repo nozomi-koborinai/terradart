@@ -1496,6 +1496,45 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 | `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
 | *(not available)* | `principal: .group(.literal('team@example.com'))` |
 
+### The last hand-written Google sealed helpers are derived
+
+**Breaking (`terradart_google`)** — six factories that kept a hand-written
+sealed helper take the helpers `terradart wrap` derives, so each variant
+wraps the block's own helper class and nested enum fields are
+`TfArg<Enum>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `ConfigDeploymentTerraformBlueprint(source: .git(repo: ..., ref: ...))` | `ConfigDeploymentTerraformBlueprint(source: .gitSource(ConfigDeploymentTerraformBlueprintGitSource(repo: ..., ref: ...)))` |
+| `source: .gcs(gcsSource: .literal('gs://b/bp.zip'))` | `source: .gcsSource(.literal('gs://b/bp.zip'))` |
+| `ConfigDeploymentInputValue(variableName: ..., inputValue: ...)` | `ConfigDeploymentTerraformBlueprintInputValues(variableName: ..., inputValue: ...)` |
+| `controlPlane: .remote(nodeLocation: ...)` | `controlPlane: .remote(EdgecontainerClusterControlPlaneRemote(nodeLocation: ...))` |
+| `EdgecontainerClusterSharedDeploymentPolicy.allowed` | `EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy.allowed` |
+| `source: .codebase(branch: .literal('main'))` | `source: .codebase(FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')))` |
+| `GkeBackupRestorePlanRestoreConfig(allNamespaces: .literal(true), namespacedResourceRestoreMode: GkeBackupRestorePlanNamespacedResourceRestoreMode.deleteAndRestore)` | `GkeBackupRestorePlanRestoreConfig(namespaces: .allNamespaces(.literal(true)), namespacedResourceRestoreMode: .literal(.deleteAndRestore))` |
+| `ragManagedDbConfig: const .basic()` | `ragManagedDbConfig: const .basic(VertexAiRagEngineConfigRagManagedDbConfigBasic())` |
+| `attachment: .linkedVpcNetwork(uri: .ref(vpc.id))` | `attachment: .linkedVpcNetwork(NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)))` |
+
+`GkeBackupRestorePlanRestoreConfig`'s five namespace selectors are one
+required sealed `namespaces` argument, and the restore plan's other hand
+enums are named after their block (`GkeBackupRestorePlanRestoreConfig*`).
+`GoogleEdgecontainerCluster.controlPlane` is optional, as in the provider
+schema. The spoke's `linked_producer_vpc_network` `network` takes
+`RefTo<GoogleComputeNetwork>`; `attachment` stays required.
+
+`GoogleIamWorkforcePoolProvider` takes `extendedAttributesOauth2Client` and
+`scimUsage` as one nullable sealed argument, because the API rejects a
+provider that sets both:
+
+| Before | After |
+|--------|-------|
+| `scimUsage: .literal(IamWorkforcePoolProviderScimUsage.enabledForGroups)` | `groupSource: .scimUsage(.literal(.enabledForGroups))` |
+| `extendedAttributesOauth2Client: IamWorkforcePoolProviderExtendedAttributesOauth2Client(...)` | `groupSource: .extendedAttributesOauth2Client(IamWorkforcePoolProviderExtendedAttributesOauth2Client(...))` |
+
+`GoogleCesApp` no longer takes `dataStoreSettings`, and
+`ChronicleFeedFailureDetails` is gone: both blocks are output-only, and
+the API ignored them.
+
 ### Value lists inside helper classes take their element type
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
@@ -1523,6 +1562,35 @@ parameter declaration's `defaultValues` takes
 `integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
 (was `...ParametersDateTimeParameters`).
 
+### Remaining Compute, networking and DNS blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every Compute, networking, DNS and
+certificate override now sets `deriveNestedTypes`, so the blocks that
+still took `TfArg<Map>` take the helper `terradart wrap` derives from the
+provider schema (a repeated block is a `List` of helpers). Most are IAM
+conditions: `condition` on the 26 Compute, DNS and network IAM
+member / binding factories takes `<Resource>Condition`. Synth output is
+unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: ComputeDiskIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `instances: .literal([{'name': 'vm-1'}])` | `instances: [ComputeBulkPerInstanceConfigInstances(name: .literal('vm-1'))]` |
+| `secondaryDisk: .literal({'disk': disk.id.interpolation})` | `secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(disk: .ref(disk.id))` |
+| `interface: .literal([{'id': 0, 'ip_address': '203.0.113.1'}])` | `interface: [ComputeExternalVpnGatewayInterface(id: .literal(0), ipAddress: .literal('203.0.113.1'))]` |
+| `extensionPolicies: .literal([{'extension_name': 'ops-agent'}])` | `extensionPolicies: [ComputeZoneVmExtensionPolicyExtensionPolicies(extensionName: .literal('ops-agent'))]` |
+
+`GoogleComputeInstanceGroup.namedPort` and `GoogleDnsResponsePolicy`'s
+`networks` / `gkeClusters` are typed the same way.
+
+Newly exposed inputs: `params` (resource manager tags) on
+`GoogleComputeExternalVpnGateway`, `GoogleComputeHaVpnGateway`,
+`GoogleComputeInstantSnapshot`, `GoogleComputeInterconnect`,
+`GoogleComputeVpnGateway` and `GoogleComputeVpnTunnel`;
+`GoogleComputeHaVpnGateway.vpnInterfaces`,
+`GoogleComputeInterconnect.macsec`, `GoogleComputeVpnTunnel.cipherSuite`,
+`GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
+on the two network firewall policy IAM members.
 ### Remaining data, analytics and storage blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,

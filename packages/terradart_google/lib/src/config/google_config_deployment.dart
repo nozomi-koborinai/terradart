@@ -30,96 +30,116 @@ enum ConfigDeploymentQuotaValidation implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Blueprint input variable (`terraform_blueprint.input_values` entry).
+/// Typed helper for the `terraform_blueprint` block of
+/// `google_config_deployment` (derived from provider schema).
 @immutable
-class ConfigDeploymentInputValue {
-  const ConfigDeploymentInputValue({
-    required this.variableName,
-    required this.inputValue,
-  });
-
-  final TfArg<String> variableName;
-  final TfArg<String> inputValue;
-
-  Map<String, Object?> toArgMap() => {
-    'variable_name': variableName.toTfJson(),
-    'input_value': inputValue.toTfJson(),
-  };
-}
-
-/// Sealed dispatch for `terraform_blueprint` source — `gcs_source` or
-/// `git_source` (exactly one required).
-sealed class ConfigDeploymentBlueprintSource {
-  const ConfigDeploymentBlueprintSource();
-
-  /// GCS object URI containing a zipped Terraform blueprint.
-  const factory ConfigDeploymentBlueprintSource.gcs({
-    required TfArg<String> gcsSource,
-  }) = ConfigDeploymentBlueprintFromGcs;
-
-  /// Public Git repository containing the blueprint.
-  const factory ConfigDeploymentBlueprintSource.git({
-    required TfArg<String> repo,
-    TfArg<String>? directory,
-    TfArg<String>? ref,
-  }) = ConfigDeploymentBlueprintFromGit;
-
-  Map<String, Object?> encode();
-}
-
-/// GCS object URI containing a zipped Terraform blueprint.
-@immutable
-final class ConfigDeploymentBlueprintFromGcs
-    extends ConfigDeploymentBlueprintSource {
-  const ConfigDeploymentBlueprintFromGcs({required this.gcsSource});
-
-  final TfArg<String> gcsSource;
-
-  @override
-  Map<String, Object?> encode() => {'gcs_source': gcsSource.toTfJson()};
-}
-
-/// Public Git repository containing the blueprint.
-@immutable
-final class ConfigDeploymentBlueprintFromGit
-    extends ConfigDeploymentBlueprintSource {
-  const ConfigDeploymentBlueprintFromGit({
-    required this.repo,
-    this.directory,
-    this.ref,
-  });
-
-  final TfArg<String> repo;
-  final TfArg<String>? directory;
-  final TfArg<String>? ref;
-
-  @override
-  Map<String, Object?> encode() => {
-    'git_source': [
-      {
-        'repo': repo.toTfJson(),
-        if (directory != null) 'directory': directory!.toTfJson(),
-        if (ref != null) 'ref': ref!.toTfJson(),
-      },
-    ],
-  };
-}
-
-/// `terraform_blueprint` block — blueprint source plus optional input values.
-@immutable
-class ConfigDeploymentTerraformBlueprint {
+final class ConfigDeploymentTerraformBlueprint {
   const ConfigDeploymentTerraformBlueprint({
     required this.source,
     this.inputValues,
   });
 
-  final ConfigDeploymentBlueprintSource source;
-  final List<ConfigDeploymentInputValue>? inputValues;
+  final ConfigDeploymentTerraformBlueprintSource source;
 
-  Map<String, Object?> toArgMap() => {
+  final List<ConfigDeploymentTerraformBlueprintInputValues>? inputValues;
+
+  Map<String, Object?> encode() => {
     ...source.encode(),
     if (inputValues != null)
-      'input_values': inputValues!.map((v) => v.toArgMap()).toList(),
+      'input_values': [for (final e in inputValues!) e.encode()],
+  };
+}
+
+/// Exactly one of `gcs_source`, `git_source` on the `terraform_blueprint` block of `google_config_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.gcsSource(...)`.
+sealed class ConfigDeploymentTerraformBlueprintSource {
+  const ConfigDeploymentTerraformBlueprintSource();
+
+  /// Sets `gcs_source`.
+  const factory ConfigDeploymentTerraformBlueprintSource.gcsSource(
+    TfArg<String> gcsSource,
+  ) = ConfigDeploymentTerraformBlueprintSourceGcsSource;
+
+  /// Sets `git_source`.
+  const factory ConfigDeploymentTerraformBlueprintSource.gitSource(
+    ConfigDeploymentTerraformBlueprintGitSource gitSource,
+  ) = ConfigDeploymentTerraformBlueprintSourceGitSource;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ConfigDeploymentTerraformBlueprintSource.gcsSource] choice: sets `gcs_source`.
+final class ConfigDeploymentTerraformBlueprintSourceGcsSource
+    extends ConfigDeploymentTerraformBlueprintSource {
+  const ConfigDeploymentTerraformBlueprintSourceGcsSource(this.gcsSource);
+
+  final TfArg<String> gcsSource;
+
+  @override
+  String get blockKey => 'gcs_source';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_source': gcsSource.toTfJson()};
+}
+
+/// The [ConfigDeploymentTerraformBlueprintSource.gitSource] choice: sets `git_source`.
+final class ConfigDeploymentTerraformBlueprintSourceGitSource
+    extends ConfigDeploymentTerraformBlueprintSource {
+  const ConfigDeploymentTerraformBlueprintSourceGitSource(this.gitSource);
+
+  final ConfigDeploymentTerraformBlueprintGitSource gitSource;
+
+  @override
+  String get blockKey => 'git_source';
+
+  @override
+  Map<String, Object?> encode() => {'git_source': gitSource.encode()};
+}
+
+/// Typed helper for the `terraform_blueprint.git_source` block of
+/// `google_config_deployment` (derived from provider schema).
+@immutable
+final class ConfigDeploymentTerraformBlueprintGitSource {
+  const ConfigDeploymentTerraformBlueprintGitSource({
+    this.directory,
+    this.ref,
+    required this.repo,
+  });
+
+  final TfArg<String>? directory;
+
+  final TfArg<String>? ref;
+
+  final TfArg<String> repo;
+
+  Map<String, Object?> encode() => {
+    'directory': ?directory?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
+    'repo': repo.toTfJson(),
+  };
+}
+
+/// Typed helper for the `terraform_blueprint.input_values` block of
+/// `google_config_deployment` (derived from provider schema).
+@immutable
+final class ConfigDeploymentTerraformBlueprintInputValues {
+  const ConfigDeploymentTerraformBlueprintInputValues({
+    required this.inputValue,
+    required this.variableName,
+  });
+
+  final TfArg<String> inputValue;
+
+  final TfArg<String> variableName;
+
+  Map<String, Object?> encode() => {
+    'input_value': inputValue.toTfJson(),
+    'variable_name': variableName.toTfJson(),
   };
 }
 
@@ -144,17 +164,19 @@ class ConfigDeploymentTerraformBlueprint {
 ///     'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com',
 ///   ),
 ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-///     source: ConfigDeploymentBlueprintFromGit(
-///       repo: TfArg.literal(
-///         'https://github.com/terraform-google-modules/terraform-google-network',
+///     source: .gitSource(
+///       ConfigDeploymentTerraformBlueprintGitSource(
+///         repo: .literal(
+///           'https://github.com/terraform-google-modules/terraform-google-network',
+///         ),
+///         directory: .literal('modules/vpc'),
+///         ref: .literal('main'),
 ///       ),
-///       directory: TfArg.literal('modules/vpc'),
-///       ref: TfArg.literal('main'),
 ///     ),
 ///     inputValues: [
-///       ConfigDeploymentInputValue(
-///         variableName: TfArg.literal('project_id'),
-///         inputValue: TfArg.literal('"my-project"'),
+///       ConfigDeploymentTerraformBlueprintInputValues(
+///         variableName: .literal('project_id'),
+///         inputValue: .literal('"my-project"'),
 ///       ),
 ///     ],
 ///   ),
@@ -189,9 +211,7 @@ final class GoogleConfigDeployment extends Resource {
            'location': location,
            'name': name,
            'service_account': serviceAccount.encodeAs('name'),
-           'terraform_blueprint': TfArg.literal([
-             terraformBlueprint.toArgMap(),
-           ]),
+           'terraform_blueprint': TfArg.literal(terraformBlueprint.encode()),
            'labels': ?labels,
            'annotations': ?annotations,
            'tf_version_constraint': ?tfVersionConstraint,
