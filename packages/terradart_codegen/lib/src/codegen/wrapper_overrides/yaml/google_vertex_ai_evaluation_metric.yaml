@@ -1,0 +1,18 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveExactlyOne: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+paramOrder:
+  - evaluation_metric_id
+  - region
+  - display_name
+  - metric
+  - description
+  - gcs_uri
+  - labels
+  - encryption_spec
+  - deletion_policy
+  - project

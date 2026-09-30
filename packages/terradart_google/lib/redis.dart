@@ -36,6 +36,8 @@ export 'src/redis/google_redis_cluster.dart'
         RedisClusterTransitEncryptionMode,
         RedisClusterZoneDistributionConfig,
         RedisClusterZoneDistributionConfigMode;
+export 'src/redis/google_redis_cluster_acl_policy.dart'
+    show GoogleRedisClusterAclPolicy, RedisClusterAclPolicyRules;
 export 'src/redis/google_redis_cluster_user_created_connections.dart'
     show
         GoogleRedisClusterUserCreatedConnections,

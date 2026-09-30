@@ -253,7 +253,7 @@ Docs: [terradart.dev/docs/migrate-from-hcl/](https://terradart.dev/docs/migrate-
 
 ## Coverage & Examples
 
-- [`terradart_google`](packages/terradart_google/README.md) ships **1359 curated resource factories + 468 data sources** (1827 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
+- [`terradart_google`](packages/terradart_google/README.md) ships **1366 curated resource factories + 468 data sources** (1834 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 - [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**112 resource factories**, schema pin tracking the weekly GA bump).
 - [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at its exact provider pin (every resource and data source). Nested plugin-framework objects are typed Dart helpers.

@@ -35,12 +35,14 @@ import 'package:terradart_google/healthcare.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/logging.dart';
+import 'package:terradart_google/memorystore.dart';
 import 'package:terradart_google/model_armor.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/observability.dart';
 import 'package:terradart_google/organization.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/project.dart';
+import 'package:terradart_google/redis.dart';
 import 'package:terradart_google/securityposture.dart';
 import 'package:terradart_google/service_networking.dart';
 import 'package:terradart_google/site_verification.dart';
@@ -1213,6 +1215,70 @@ final class DeferredLeftoverStack extends Stack {
       GoogleObservabilityProjectSettings(
         localName: 'observability_project_settings',
         location: .literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleIamFolderAccessPolicy(
+        localName: 'folder_access_policy',
+        accessPolicyId: .literal('terradart-leftover'),
+        location: .literal('global'),
+        folder: .literal('123456789'),
+        details: IamFolderAccessPolicyDetails(
+          rules: [
+            IamFolderAccessPolicyDetailsRules(
+              effect: .literal(.deny),
+              principals: .literal(['principalSet://goog/public:all']),
+              operation: IamFolderAccessPolicyDetailsRulesOperation(
+                permissions: .literal(['storage.googleapis.com/objects.get']),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    add(
+      GoogleIamOrganizationAccessPolicy(
+        localName: 'organization_access_policy',
+        accessPolicyId: .literal('terradart-leftover'),
+        location: .literal('global'),
+        organization: .literal('123456789'),
+        details: IamOrganizationAccessPolicyDetails(
+          rules: [
+            IamOrganizationAccessPolicyDetailsRules(
+              effect: .literal(.deny),
+              principals: .literal(['principalSet://goog/public:all']),
+              operation: IamOrganizationAccessPolicyDetailsRulesOperation(
+                permissions: .literal(['storage.googleapis.com/objects.get']),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    add(
+      GoogleMemorystoreAclPolicy(
+        localName: 'memorystore_acl_policy',
+        aclPolicyId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        rules: [
+          MemorystoreAclPolicyRules(
+            username: .literal('terradart-leftover'),
+            rule: .literal('on ~* +@read'),
+          ),
+        ],
+      ),
+    );
+    add(
+      GoogleRedisClusterAclPolicy(
+        localName: 'redis_cluster_acl_policy',
+        aclPolicyId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        rules: [
+          RedisClusterAclPolicyRules(
+            username: .literal('terradart-leftover'),
+            rule: .literal('on ~* +@read'),
+          ),
+        ],
       ),
     );
   }
