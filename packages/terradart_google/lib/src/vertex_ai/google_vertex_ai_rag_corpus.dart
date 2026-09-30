@@ -419,13 +419,13 @@ final class GoogleVertexAiRagCorpus extends Resource {
 
   GoogleVertexAiRagCorpus({
     required super.localName,
-    TfArg<String>? deletionPolicy,
-    TfArg<String>? description,
     required TfArg<String> displayName,
-    TfArg<String>? project,
     required TfArg<String> region,
-    VertexAiRagCorpusEncryptionSpec? encryptionSpec,
+    TfArg<String>? description,
     VertexAiRagCorpusBackend? backend,
+    VertexAiRagCorpusEncryptionSpec? encryptionSpec,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -433,14 +433,14 @@ final class GoogleVertexAiRagCorpus extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'deletion_policy': ?deletionPolicy,
-           'description': ?description,
            'display_name': displayName,
-           'project': ?project,
            'region': region,
+           'description': ?description,
+           ...?backend?.argMap,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
-           ...?backend?.argMap,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -450,4 +450,20 @@ final class GoogleVertexAiRagCorpus extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleVertexAiRagCorpus>`.
   RefTo<GoogleVertexAiRagCorpus> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `corpus_status` attribute.
+  TfRef<List<Map<String, Object?>>> get corpusStatus =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'corpus_status');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

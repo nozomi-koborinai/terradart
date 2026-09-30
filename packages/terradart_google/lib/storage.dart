@@ -80,10 +80,12 @@ export 'src/storage/google_storage_ftp_server.dart'
         GoogleStorageFtpServer,
         StorageFtpServerAccessType,
         StorageFtpServerConfig,
-        StorageFtpServerConsumerAccept,
-        StorageFtpServerConsumerReject,
+        StorageFtpServerConfigExternalConfig,
+        StorageFtpServerConfigInternalConfig,
         StorageFtpServerExternalConfig,
-        StorageFtpServerInternalConfig;
+        StorageFtpServerInternalConfig,
+        StorageFtpServerInternalConfigConsumerAcceptList,
+        StorageFtpServerInternalConfigConsumerRejectList;
 export 'src/storage/google_storage_ftp_user.dart'
     show
         GoogleStorageFtpUser,
