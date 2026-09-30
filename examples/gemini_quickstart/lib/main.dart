@@ -31,8 +31,6 @@ final class GeminiStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/gemini_stack.app.dart'),
       ) {
-    const enablementSettingId = 'terradart-enablement';
-
     final current = addData(GoogleProject(localName: 'current'));
     final projectTarget = 'projects/${current.number.interpolation}';
 
@@ -47,7 +45,7 @@ final class GeminiStack extends Stack {
     final enablement = add(
       GoogleGeminiGeminiGcpEnablementSetting(
         localName: 'enablement',
-        geminiGcpEnablementSettingId: .literal(enablementSettingId),
+        geminiGcpEnablementSettingId: .literal('terradart-enablement'),
         location: .literal('global'),
         enableCustomerDataSharing: .literal(false),
         dependsOn: [ResourceDependency(apiGemini)],
@@ -186,7 +184,10 @@ final class GeminiStack extends Stack {
     );
 
     // Literal enablement setting id -- emitted as a Dart constant at synth.
-    addConstant('enablementSettingId', const .value(enablementSettingId));
+    addConstant(
+      'enablementSettingId',
+      .ref(enablement.geminiGcpEnablementSettingIdRef),
+    );
 
     // Full enablement setting resource name -- Terraform output only.
     addOutput('enablement_setting_name', .ref(enablement.id));

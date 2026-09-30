@@ -29,8 +29,6 @@ final class FleetStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/fleet_stack.app.dart'),
       ) {
-    const fleetScopeId = 'terradart-scope';
-
     final apiGkeHub = add(
       GoogleProjectService(
         localName: 'api_gkehub',
@@ -42,7 +40,7 @@ final class FleetStack extends Stack {
     final scope = add(
       GoogleGkeHubScope(
         localName: 'team_scope',
-        scopeId: .literal(fleetScopeId),
+        scopeId: .literal('terradart-scope'),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),
     );
@@ -51,7 +49,7 @@ final class FleetStack extends Stack {
       GoogleGkeHubNamespace(
         localName: 'team_namespace',
         scopeNamespaceId: .literal('terradart-team'),
-        scopeId: .literal(fleetScopeId),
+        scopeId: .ref(scope.scopeIdRef),
         scope: .ref(scope.id),
         dependsOn: [ResourceDependency(scope)],
       ),
@@ -64,7 +62,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeRbacRoleBinding(
         localName: 'team_view',
-        scopeId: .literal(fleetScopeId),
+        scopeId: .ref(scope.scopeIdRef),
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),
@@ -103,7 +101,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeIamMember(
         localName: 'team_scope_viewer',
-        scopeId: .literal(fleetScopeId),
+        scopeId: .ref(scope.scopeIdRef),
         role: .literal('roles/viewer'),
         member: .ref(teamReader.iamMember),
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
@@ -111,7 +109,7 @@ final class FleetStack extends Stack {
     );
 
     // Literal scope id -- emitted as a Dart constant at synth time.
-    addConstant('fleetScopeId', const .value(fleetScopeId));
+    addConstant('fleetScopeId', .ref(scope.scopeIdRef));
 
     // Full scope resource name -- Terraform output only (computed).
     addOutput('fleet_scope_name', .ref(scope.id));

@@ -21,8 +21,6 @@ final class ObservabilityStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/observability_stack.app.dart'),
       ) {
-    const traceScopeId = 'terradart-traces';
-
     final apiObservability = add(
       GoogleProjectService(
         localName: 'api_observability',
@@ -34,7 +32,7 @@ final class ObservabilityStack extends Stack {
     final traceScope = add(
       GoogleObservabilityTraceScope(
         localName: 'app_traces',
-        traceScopeId: .literal(traceScopeId),
+        traceScopeId: .literal('terradart-traces'),
         location: .literal('global'),
         // A trace scope groups the trace data of one or more projects; here it
         // covers just the current project.
@@ -45,7 +43,7 @@ final class ObservabilityStack extends Stack {
     );
 
     // Literal trace-scope id -- emitted as a Dart constant at synth time.
-    addConstant('traceScopeId', const .value(traceScopeId));
+    addConstant('traceScopeId', .ref(traceScope.traceScopeIdRef));
 
     // Full trace-scope resource name -- Terraform output only (computed).
     addOutput('trace_scope_name', .ref(traceScope.id));
