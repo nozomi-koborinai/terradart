@@ -231,6 +231,15 @@ Per-package changelogs live alongside each package and are the system of record 
   derived helpers, 15 inputs a hand `paramOrder` hid are exposed, and the
   Oracle and Migration Center hand enums type the derived fields. Hand
   helpers are unchanged. Synth output is unchanged. See `MIGRATING.md`.
+- **Hidden and mis-modelled blocks on hand-curated Google factories**
+  (**breaking**; `terradart_google`) — `GoogleBigtableAppProfile` splits
+  its hand `routing` into the provider's two groups (`routing` with
+  multi-cluster routing, and an optional `isolation`);
+  `GooglePrivatecaCaPool` exposes `issuancePolicy`, `publishingOptions`
+  and `encryptionSpec`; `GooglePrivatecaCertificate`'s inline config uses
+  derived helpers; the health checks gain a `.grpcTls(...)` protocol; and
+  `GoogleComputeRegionNetworkEndpointGroup.pscData` and
+  `GoogleBigqueryDatasetAccess.condition` are exposed. See `MIGRATING.md`.
 - **The last hand-written Google sealed helpers are derived**
   (**breaking**; `terradart_google`) — `GoogleConfigDeployment`,
   `GoogleEdgecontainerCluster`, `GoogleFirebaseAppHostingBuild`,

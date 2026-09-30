@@ -2,13 +2,19 @@ outputDir: privateca
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:
   - name
   - location
   - tier
+  - issuance_policy
+  - publishing_options
+  - encryption_spec
   - labels
+  - deletion_policy
+  - project
 
 dartTypeOverrides:
   tier: PrivatecaCaPoolTier
@@ -61,57 +67,4 @@ prelude: |
     const PrivatecaCaPoolTier(this.terraformValue);
     @override
     final String terraformValue;
-  }
-
-  /// `encoding_format` on [PrivatecaCaPoolPublishingOptions].
-  enum PrivatecaCaPoolPublishingOptionsEncodingFormat implements TerraformEnum {
-    pem('PEM'),
-    der('DER');
-
-    const PrivatecaCaPoolPublishingOptionsEncodingFormat(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
-
-  /// `publishing_options` block — CRL / CA cert publication settings.
-  final class PrivatecaCaPoolPublishingOptions {
-    const PrivatecaCaPoolPublishingOptions({
-      this.publishCaCert,
-      this.publishCrl,
-      this.encodingFormat,
-    });
-
-    final TfArg<bool>? publishCaCert;
-    final TfArg<bool>? publishCrl;
-    final TfArg<PrivatecaCaPoolPublishingOptionsEncodingFormat>? encodingFormat;
-
-    Map<String, Object?> encode() => {
-      if (publishCaCert != null) 'publish_ca_cert': publishCaCert,
-      if (publishCrl != null) 'publish_crl': publishCrl,
-      if (encodingFormat != null) 'encoding_format': encodingFormat,
-    };
-  }
-
-  /// `signature_algorithm` on elliptic-curve key types in issuance policy.
-  enum PrivatecaCaPoolEllipticCurveSignatureAlgorithm implements TerraformEnum {
-    ecdsaP256('ECDSA_P256'),
-    ecdsaP384('ECDSA_P384'),
-    eddsa25519('EDDSA_25519');
-
-    const PrivatecaCaPoolEllipticCurveSignatureAlgorithm(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
-
-  /// `allowed_key_types.elliptic_curve` issuance-policy helper.
-  final class PrivatecaCaPoolEllipticCurveKeyType {
-    const PrivatecaCaPoolEllipticCurveKeyType({this.signatureAlgorithm});
-
-    final TfArg<PrivatecaCaPoolEllipticCurveSignatureAlgorithm>?
-        signatureAlgorithm;
-
-    Map<String, Object?> encode() => {
-      if (signatureAlgorithm != null)
-        'signature_algorithm': signatureAlgorithm,
-    };
   }

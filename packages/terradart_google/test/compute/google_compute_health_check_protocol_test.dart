@@ -3,7 +3,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:test/test.dart';
 
 /// Wire-precision tests for the unified health-check protocol sealed type:
-/// six per-protocol config blocks whose exactly-one-of constraint the
+/// seven per-protocol config blocks whose exactly-one-of constraint the
 /// resource enforces at the type level (a single `protocol` parameter).
 ///
 /// Gate 6 asserts each config encodes something well-formed; these tests
@@ -47,6 +47,12 @@ void main() {
           port: TfArg.literal(50051),
         ),
         port: 50051,
+      ),
+      'grpc_tls_health_check': (
+        config: ComputeHealthCheckGrpcTlsHealthCheckConfig(
+          port: TfArg.literal(50052),
+        ),
+        port: 50052,
       ),
     };
     for (final entry in variants.entries) {

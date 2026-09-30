@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
+import '../bigquery/google_bigquery_dataset.dart'
+    show BigqueryDatasetAccessCondition;
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
@@ -356,6 +358,7 @@ final class GoogleBigqueryDatasetAccess extends Resource {
     required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? role,
     required BigqueryDatasetAccessGrantee grantee,
+    BigqueryDatasetAccessCondition? condition,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -368,6 +371,8 @@ final class GoogleBigqueryDatasetAccess extends Resource {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'role': ?role,
            ...grantee.argMap,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
