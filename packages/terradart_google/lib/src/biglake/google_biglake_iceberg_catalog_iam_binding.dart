@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_biglake_iceberg_catalog_iam_binding`.
 const Set<String> _googleBiglakeIcebergCatalogIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_biglake_iceberg_catalog_iam_binding` (derived from provider schema).
+@immutable
+final class BiglakeIcebergCatalogIamBindingCondition {
+  const BiglakeIcebergCatalogIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_biglake_iceberg_catalog_iam_binding`.
 ///
@@ -23,7 +47,7 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? condition,
+    BiglakeIcebergCatalogIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -35,7 +59,8 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
            'role': role,
            'members': members,
            'project': ?project,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

@@ -1,10 +1,76 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_biglake_table`.
 const Set<String> _googleBiglakeTableSensitive = <String>{};
+
+/// Typed helper for the `hive_options` block of
+/// `google_biglake_table` (derived from provider schema).
+@immutable
+final class BiglakeTableHiveOptions {
+  const BiglakeTableHiveOptions({
+    this.parameters,
+    this.tableType,
+    this.storageDescriptor,
+  });
+
+  final TfArg<Map<String, String>>? parameters;
+
+  final TfArg<String>? tableType;
+
+  final BiglakeTableHiveOptionsStorageDescriptor? storageDescriptor;
+
+  Map<String, Object?> encode() => {
+    'parameters': ?parameters?.toTfJson(),
+    'table_type': ?tableType?.toTfJson(),
+    'storage_descriptor': ?storageDescriptor?.encode(),
+  };
+}
+
+/// Typed helper for the `hive_options.storage_descriptor` block of
+/// `google_biglake_table` (derived from provider schema).
+@immutable
+final class BiglakeTableHiveOptionsStorageDescriptor {
+  const BiglakeTableHiveOptionsStorageDescriptor({
+    this.inputFormat,
+    this.locationUri,
+    this.outputFormat,
+    this.serdeInfo,
+  });
+
+  final TfArg<String>? inputFormat;
+
+  final TfArg<String>? locationUri;
+
+  final TfArg<String>? outputFormat;
+
+  final BiglakeTableHiveOptionsStorageDescriptorSerdeInfo? serdeInfo;
+
+  Map<String, Object?> encode() => {
+    'input_format': ?inputFormat?.toTfJson(),
+    'location_uri': ?locationUri?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'serde_info': ?serdeInfo?.encode(),
+  };
+}
+
+/// Typed helper for the `hive_options.storage_descriptor.serde_info` block of
+/// `google_biglake_table` (derived from provider schema).
+@immutable
+final class BiglakeTableHiveOptionsStorageDescriptorSerdeInfo {
+  const BiglakeTableHiveOptionsStorageDescriptorSerdeInfo({
+    this.serializationLib,
+  });
+
+  final TfArg<String>? serializationLib;
+
+  Map<String, Object?> encode() => {
+    'serialization_lib': ?serializationLib?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_biglake_table`.
 ///
@@ -17,7 +83,7 @@ final class GoogleBiglakeTable extends Resource {
     required TfArg<String> name,
     TfArg<String>? database,
     TfArg<String>? type,
-    TfArg<Map<String, dynamic>>? hiveOptions,
+    BiglakeTableHiveOptions? hiveOptions,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -29,7 +95,8 @@ final class GoogleBiglakeTable extends Resource {
            'name': name,
            'database': ?database,
            'type': ?type,
-           'hive_options': ?hiveOptions,
+           if (hiveOptions != null)
+             'hive_options': TfArg.literal(hiveOptions.encode()),
            'deletion_policy': ?deletionPolicy,
          },
        );

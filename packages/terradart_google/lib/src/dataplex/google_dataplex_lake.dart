@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_lake`.
 const Set<String> _googleDataplexLakeSensitive = <String>{};
+
+/// Typed helper for the `metastore` block of
+/// `google_dataplex_lake` (derived from provider schema).
+@immutable
+final class DataplexLakeMetastore {
+  const DataplexLakeMetastore({this.service});
+
+  final TfArg<String>? service;
+
+  Map<String, Object?> encode() => {'service': ?service?.toTfJson()};
+}
 
 /// Factory wrapper for `google_dataplex_lake`.
 ///
@@ -19,6 +31,7 @@ final class GoogleDataplexLake extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
+    DataplexLakeMetastore? metastore,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -33,6 +46,8 @@ final class GoogleDataplexLake extends Resource {
            'display_name': ?displayName,
            'description': ?description,
            'labels': ?labels,
+           if (metastore != null)
+             'metastore': TfArg.literal(metastore.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
