@@ -69,8 +69,7 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 /// - [localName]: Terraform local name.
 /// - `name`: GCP-internal NEG resource name. Must comply with RFC1035.
 /// - `zone`: the zone the NEG (and its member endpoints) lives in.
-/// - `network`: self-link of the VPC the endpoints belong to. Pass
-///   `TfArg.ref(vpc.selfLink)`.
+/// - `network`: the VPC the endpoints belong to. Pass `vpc.ref`.
 ///
 /// When renaming or recreating an in-use NEG, detaching it from the backend
 /// service first avoids the `create_before_destroy` cascade to dependents.
@@ -81,8 +80,8 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 ///   localName: 'app_neg',
 ///   name: TfArg.literal('app-neg-usc1a'),
 ///   zone: TfArg.literal('us-central1-a'),
-///   network: TfArg.ref(vpc.selfLink),
-///   subnetwork: TfArg.ref(subnet.selfLink),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
 ///   networkEndpointType:
 ///       TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),
 ///   defaultPort: TfArg.literal(8080),

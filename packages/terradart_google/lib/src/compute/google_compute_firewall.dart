@@ -156,7 +156,7 @@ final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
 ///   `google_compute_firewall.`).
 /// - `name`: GCP firewall rule name.
 /// - `network`: VPC network this rule attaches to. Typically
-///   `TfArg.ref(vpc.selfLink)` where `vpc` is a `GoogleComputeNetwork`.
+///   `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.
 ///
 /// Choose exactly one [ComputeFirewallRulePolicy]:
 /// - [ComputeFirewallAllowPolicy] — permit matching traffic.
@@ -167,7 +167,7 @@ final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
 /// final allowSsh = GoogleComputeFirewall(
 ///   localName: 'allow_ssh',
 ///   name: TfArg.literal('allow-ssh'),
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   direction: TfArg.literal(FirewallDirection.ingress),
 ///   priority: TfArg.literal(1000),
 ///   rulePolicy: ComputeFirewallAllowPolicy(

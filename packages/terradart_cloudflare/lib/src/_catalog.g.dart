@@ -2616,7 +2616,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `cloudflare_dns_record`.\n\nAccepted Permissions\n\n- `DNS Read` - `DNS Write`\n\nCloudflare **DNS record** — points a name inside a zone at your\nbackend (e.g. a `CNAME` for `api.example.com` toward Cloud Run\'s\n`ghs.googlehosted.com`).\n\nReference the parent zone with `zoneId: TfArg.ref(zone.id)`.\n`ttl: 1` means\n"automatic" in Cloudflare\'s API; proxied records always use it.\nStructured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]\nhelper; flattening / IPv4-only / IPv6-only flags live on\n[DnsRecordSettings].',
+        'Factory wrapper for `cloudflare_dns_record`.\n\nAccepted Permissions\n\n- `DNS Read` - `DNS Write`\n\nCloudflare **DNS record** — points a name inside a zone at your\nbackend (e.g. a `CNAME` for `api.example.com` toward Cloud Run\'s\n`ghs.googlehosted.com`).\n\nReference the parent zone with `zoneId: zone.ref`.\n`ttl: 1` means\n"automatic" in Cloudflare\'s API; proxied records always use it.\nStructured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]\nhelper; flattening / IPv4-only / IPv6-only flags live on\n[DnsRecordSettings].',
   ),
   CatalogEntry(
     tfType: 'cloudflare_dns_record',
