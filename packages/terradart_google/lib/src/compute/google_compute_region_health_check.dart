@@ -64,7 +64,7 @@ enum RegionHealthCheckPortSpecification implements TerraformEnum {
 }
 
 // ===========================================================================
-// ComputeRegionHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc)
+// ComputeRegionHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc | grpcTls)
 // ===========================================================================
 
 sealed class ComputeRegionHealthCheckProtocol {
@@ -130,6 +130,13 @@ sealed class ComputeRegionHealthCheckProtocol {
     RegionHealthCheckPortSpecification? portSpecification,
     TfArg<String>? grpcServiceName,
   }) = ComputeRegionHealthCheckGrpcHealthCheckConfig;
+
+  /// `grpc_tls_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.grpcTls({
+    TfArg<int>? port,
+    RegionHealthCheckPortSpecification? portSpecification,
+    TfArg<String>? grpcServiceName,
+  }) = ComputeRegionHealthCheckGrpcTlsHealthCheckConfig;
 
   String get blockKey;
 
@@ -406,6 +413,41 @@ final class ComputeRegionHealthCheckGrpcHealthCheckConfig
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
+/// `grpc_tls_health_check` block. Probes via the gRPC Health Checking
+/// Protocol over TLS.
+@immutable
+final class ComputeRegionHealthCheckGrpcTlsHealthCheckConfig
+    extends ComputeRegionHealthCheckProtocol {
+  const ComputeRegionHealthCheckGrpcTlsHealthCheckConfig({
+    this.port,
+    this.portSpecification,
+    this.grpcServiceName,
+  });
+
+  /// Port number. Must be set if `port_specification` is
+  /// [RegionHealthCheckPortSpecification.useFixedPort]. Valid 1-65535.
+  final TfArg<int>? port;
+  final RegionHealthCheckPortSpecification? portSpecification;
+
+  /// gRPC service name passed in the `service` field of the Check RPC.
+  /// Empty means "report aggregate server health". ASCII only.
+  final TfArg<String>? grpcServiceName;
+
+  Map<String, Object?> toArgMap() => {
+    if (port != null) 'port': port!.toTfJson(),
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+    if (grpcServiceName != null)
+      'grpc_service_name': grpcServiceName!.toTfJson(),
+  };
+
+  @override
+  String get blockKey => 'grpc_tls_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
+}
+
 // ===========================================================================
 // log_config (max_items=1)
 // ===========================================================================
@@ -445,13 +487,11 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 /// load balancers use the regionless `google_compute_health_check`
 /// (curated separately).
 ///
-/// **Protocol invariant**: exactly one of the per-protocol config blocks
-/// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
-/// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
-/// and the choice determines the value the GCP API will compute for
-/// `type` (which is read-only on this resource — accessible via the
-/// derived `type` getter). The Terraform provider rejects configurations
-/// with multiple blocks or none.
+/// **Protocol invariant**: [protocol] takes exactly one
+/// [ComputeRegionHealthCheckProtocol] variant (HTTP, HTTPS, HTTP2, TCP,
+/// SSL, gRPC, or gRPC over TLS), and the choice determines the value
+/// the GCP API will compute for `type` (which is read-only on this
+/// resource — accessible via the derived `type` getter).
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

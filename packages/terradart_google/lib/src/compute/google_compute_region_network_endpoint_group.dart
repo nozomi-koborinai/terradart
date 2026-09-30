@@ -267,6 +267,17 @@ final class ComputeRegionNetworkEndpointGroupServerlessAppEngine
   };
 }
 
+/// Typed helper for the `psc_data` block of
+/// `google_compute_region_network_endpoint_group` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkEndpointGroupPscData {
+  const ComputeRegionNetworkEndpointGroupPscData({this.producerPort});
+
+  final TfArg<String>? producerPort;
+
+  Map<String, Object?> encode() => {'producer_port': ?producerPort?.toTfJson()};
+}
+
 /// Factory wrapper for `google_compute_region_network_endpoint_group`.
 ///
 /// A regional NEG that can support Serverless Products, proxying traffic to
@@ -341,6 +352,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     TfArg<RegionNetworkEndpointGroupType>? networkEndpointType,
     ComputeRegionNetworkEndpointGroupServerless? serverless,
     TfArg<String>? pscTargetService,
+    ComputeRegionNetworkEndpointGroupPscData? pscData,
     RefTo<GoogleComputeNetwork>? network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? description,
@@ -357,6 +369,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
            'network_endpoint_type': ?networkEndpointType,
            ...?serverless?.argMap,
            'psc_target_service': ?pscTargetService,
+           if (pscData != null) 'psc_data': TfArg.literal(pscData.encode()),
            'network': ?network?.encodeAs('id'),
            'subnetwork': ?subnetwork?.encodeAs('id'),
            'description': ?description,

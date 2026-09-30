@@ -25,6 +25,7 @@ curatedDoc: |-
 
 extraImports:
   - "import 'package:meta/meta.dart';"
+  - "import '../bigquery/google_bigquery_dataset.dart' show BigqueryDatasetAccessCondition;"
 
 dartTypeOverrides:
   special_group: BigqueryDatasetAccessPredefinedGroup
@@ -150,6 +151,9 @@ customSlots:
   dataset:
     paramDeclaration: "BigqueryDatasetAccessAuthorizedDataset? authorizedDataset"
     argMapEntry: "if (authorizedDataset != null) 'dataset': TfArg.literal(authorizedDataset.encode()),"
+  condition:
+    paramDeclaration: "BigqueryDatasetAccessCondition? condition"
+    argMapEntry: "if (condition != null) 'condition': TfArg.literal(condition.encode()),"
 
 paramOrder:
   - dataset_id
@@ -162,6 +166,7 @@ paramOrder:
   - view
   - routine
   - dataset
+  - condition
   - deletion_policy
   - project
 

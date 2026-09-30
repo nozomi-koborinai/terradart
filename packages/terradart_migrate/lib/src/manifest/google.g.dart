@@ -15322,6 +15322,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           },
         ),
         MigrateSlot(
+          tfName: 'condition',
+          dartName: 'condition',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'BigqueryDatasetAccessCondition',
+        ),
+        MigrateSlot(
           tfName: 'deletion_policy',
           dartName: 'deletionPolicy',
           kind: MigrateSlotKind.scalar,
@@ -16948,10 +16956,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'single_cluster_routing': 'BigtableAppProfileSingleClusterRouting',
-            'standard_isolation': 'BigtableAppProfileStandardIsolation',
+            'single_cluster_routing':
+                'BigtableAppProfileRoutingSingleClusterRouting',
+            'multi_cluster_routing_use_any':
+                'BigtableAppProfileRoutingMultiClusterRoutingUseAny',
+          },
+        ),
+        MigrateSlot(
+          tfName: 'multi_cluster_routing_cluster_ids',
+          dartName: 'multiClusterRoutingClusterIds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'isolation',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'standard_isolation':
+                'BigtableAppProfileIsolationStandardIsolation',
             'data_boost_isolation_read_only':
-                'BigtableAppProfileDataBoostIsolation',
+                'BigtableAppProfileIsolationDataBoostIsolationReadOnly',
           },
         ),
         MigrateSlot(
@@ -35031,6 +35060,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'tcp_health_check': 'ComputeHealthCheckTcpHealthCheckConfig',
             'ssl_health_check': 'ComputeHealthCheckSslHealthCheckConfig',
             'grpc_health_check': 'ComputeHealthCheckGrpcHealthCheckConfig',
+            'grpc_tls_health_check':
+                'ComputeHealthCheckGrpcTlsHealthCheckConfig',
           },
         ),
         MigrateSlot(
@@ -43447,6 +43478,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'ssl_health_check': 'ComputeRegionHealthCheckSslHealthCheckConfig',
             'grpc_health_check':
                 'ComputeRegionHealthCheckGrpcHealthCheckConfig',
+            'grpc_tls_health_check':
+                'ComputeRegionHealthCheckGrpcTlsHealthCheckConfig',
           },
         ),
         MigrateSlot(
@@ -44967,6 +45000,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'psc_data',
+          dartName: 'pscData',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionNetworkEndpointGroupPscData',
         ),
         MigrateSlot(
           tfName: 'network',
@@ -109952,11 +109993,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'PrivatecaCaPoolTier',
         ),
         MigrateSlot(
+          tfName: 'issuance_policy',
+          dartName: 'issuancePolicy',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicy',
+        ),
+        MigrateSlot(
+          tfName: 'publishing_options',
+          dartName: 'publishingOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolPublishingOptions',
+        ),
+        MigrateSlot(
+          tfName: 'encryption_spec',
+          dartName: 'encryptionSpec',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolEncryptionSpec',
+        ),
+        MigrateSlot(
           tfName: 'labels',
           dartName: 'labels',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[
@@ -110184,6 +110263,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[
@@ -148939,8 +149032,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BigtableAppProfileDataBoostIsolation': MigrateHelper(
-      className: 'BigtableAppProfileDataBoostIsolation',
+    'BigtableAppProfileDataBoostIsolationReadOnly': MigrateHelper(
+      className: 'BigtableAppProfileDataBoostIsolationReadOnly',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'compute_billing_owner',
@@ -148950,18 +149043,69 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'BigtableAppProfileComputeBillingOwner',
         ),
       ],
-      shorthand: 'dataBoostIsolation',
+    ),
+    'BigtableAppProfileIsolationDataBoostIsolationReadOnly': MigrateHelper(
+      className: 'BigtableAppProfileIsolationDataBoostIsolationReadOnly',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_boost_isolation_read_only',
+          dartName: 'dataBoostIsolationReadOnly',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigtableAppProfileDataBoostIsolationReadOnly',
+        ),
+      ],
+      shorthand: 'dataBoostIsolationReadOnly',
+    ),
+    'BigtableAppProfileIsolationStandardIsolation': MigrateHelper(
+      className: 'BigtableAppProfileIsolationStandardIsolation',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'standard_isolation',
+          dartName: 'standardIsolation',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigtableAppProfileStandardIsolation',
+        ),
+      ],
+      shorthand: 'standardIsolation',
+    ),
+    'BigtableAppProfileRoutingMultiClusterRoutingUseAny': MigrateHelper(
+      className: 'BigtableAppProfileRoutingMultiClusterRoutingUseAny',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'multi_cluster_routing_use_any',
+          dartName: 'multiClusterRoutingUseAny',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'multiClusterRoutingUseAny',
+    ),
+    'BigtableAppProfileRoutingSingleClusterRouting': MigrateHelper(
+      className: 'BigtableAppProfileRoutingSingleClusterRouting',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'single_cluster_routing',
+          dartName: 'singleClusterRouting',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigtableAppProfileSingleClusterRouting',
+        ),
+      ],
+      shorthand: 'singleClusterRouting',
     ),
     'BigtableAppProfileSingleClusterRouting': MigrateHelper(
       className: 'BigtableAppProfileSingleClusterRouting',
       slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'cluster_id',
-          dartName: 'clusterId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
         MigrateSlot(
           tfName: 'allow_transactional_writes',
           dartName: 'allowTransactionalWrites',
@@ -148969,8 +149113,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'bool',
         ),
+        MigrateSlot(
+          tfName: 'cluster_id',
+          dartName: 'clusterId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
       ],
-      shorthand: 'singleClusterRouting',
     ),
     'BigtableAppProfileStandardIsolation': MigrateHelper(
       className: 'BigtableAppProfileStandardIsolation',
@@ -148980,10 +149130,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'priority',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'BigtableAppProfileIsolationPriority',
+          dartType: 'BigtableAppProfileStandardIsolationPriority',
         ),
       ],
-      shorthand: 'standardIsolation',
     ),
     'BigtableAuthorizedViewSubsetView': MigrateHelper(
       className: 'BigtableAuthorizedViewSubsetView',
@@ -177217,6 +177366,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'grpc',
     ),
+    'ComputeHealthCheckGrpcTlsHealthCheckConfig': MigrateHelper(
+      className: 'ComputeHealthCheckGrpcTlsHealthCheckConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'port_specification',
+          dartName: 'portSpecification',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'HealthCheckPortSpecification',
+        ),
+        MigrateSlot(
+          tfName: 'grpc_service_name',
+          dartName: 'grpcServiceName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'grpcTls',
+    ),
     'ComputeHealthCheckHealthCheckLogConfig': MigrateHelper(
       className: 'ComputeHealthCheckHealthCheckLogConfig',
       slots: <MigrateSlot>[
@@ -183395,6 +183572,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'grpc',
     ),
+    'ComputeRegionHealthCheckGrpcTlsHealthCheckConfig': MigrateHelper(
+      className: 'ComputeRegionHealthCheckGrpcTlsHealthCheckConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'port_specification',
+          dartName: 'portSpecification',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'RegionHealthCheckPortSpecification',
+        ),
+        MigrateSlot(
+          tfName: 'grpc_service_name',
+          dartName: 'grpcServiceName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'grpcTls',
+    ),
     'ComputeRegionHealthCheckHttp2HealthCheckConfig': MigrateHelper(
       className: 'ComputeRegionHealthCheckHttp2HealthCheckConfig',
       slots: <MigrateSlot>[
@@ -184858,6 +185063,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           dartType: 'Map<String, String>',
+        ),
+      ],
+    ),
+    'ComputeRegionNetworkEndpointGroupPscData': MigrateHelper(
+      className: 'ComputeRegionNetworkEndpointGroupPscData',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'producer_port',
+          dartName: 'producerPort',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
     ),
@@ -273789,41 +274006,606 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'PrivatecaCaPoolEllipticCurveKeyType': MigrateHelper(
-      className: 'PrivatecaCaPoolEllipticCurveKeyType',
+    'PrivatecaCaPoolEncryptionSpec': MigrateHelper(
+      className: 'PrivatecaCaPoolEncryptionSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_kms_key',
+          dartName: 'cloudKmsKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicy': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'backdate_duration',
+          dartName: 'backdateDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'maximum_lifetime',
+          dartName: 'maximumLifetime',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'allowed_issuance_modes',
+          dartName: 'allowedIssuanceModes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes',
+        ),
+        MigrateSlot(
+          tfName: 'allowed_key_types',
+          dartName: 'allowedKeyTypes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypes',
+        ),
+        MigrateSlot(
+          tfName: 'baseline_values',
+          dartName: 'baselineValues',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyBaselineValues',
+        ),
+        MigrateSlot(
+          tfName: 'identity_constraints',
+          dartName: 'identityConstraints',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyIdentityConstraints',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allow_config_based_issuance',
+          dartName: 'allowConfigBasedIssuance',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'allow_csr_based_issuance',
+          dartName: 'allowCsrBasedIssuance',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyAllowedKeyTypes': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'elliptic_curve',
+          dartName: 'ellipticCurve',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve',
+        ),
+        MigrateSlot(
+          tfName: 'rsa',
+          dartName: 'rsa',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'signature_algorithm',
           dartName: 'signatureAlgorithm',
           kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'PrivatecaCaPoolEllipticCurveSignatureAlgorithm',
+          required: true,
+          dartType:
+              'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm',
         ),
       ],
     ),
+    'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_modulus_size',
+          dartName: 'maxModulusSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'min_modulus_size',
+          dartName: 'minModulusSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValues': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyBaselineValues',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aia_ocsp_servers',
+          dartName: 'aiaOcspServers',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'additional_extensions',
+          dartName: 'additionalExtensions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions',
+        ),
+        MigrateSlot(
+          tfName: 'ca_options',
+          dartName: 'caOptions',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions',
+        ),
+        MigrateSlot(
+          tfName: 'key_usage',
+          dartName: 'keyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'name_constraints',
+          dartName: 'nameConstraints',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints',
+        ),
+        MigrateSlot(
+          tfName: 'policy_ids',
+          dartName: 'policyIds',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'critical',
+              dartName: 'critical',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'object_id',
+              dartName: 'objectId',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId',
+            ),
+          ],
+        ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'object_id_path',
+              dartName: 'objectIdPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<num>',
+            ),
+          ],
+        ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'is_ca',
+          dartName: 'isCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'max_issuer_path_length',
+          dartName: 'maxIssuerPathLength',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'non_ca',
+          dartName: 'nonCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'zero_max_issuer_path_length',
+          dartName: 'zeroMaxIssuerPathLength',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'base_key_usage',
+          dartName: 'baseKeyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'extended_key_usage',
+          dartName: 'extendedKeyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'unknown_extended_key_usages',
+          dartName: 'unknownExtendedKeyUsages',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cert_sign',
+              dartName: 'certSign',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'content_commitment',
+              dartName: 'contentCommitment',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'crl_sign',
+              dartName: 'crlSign',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'data_encipherment',
+              dartName: 'dataEncipherment',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'decipher_only',
+              dartName: 'decipherOnly',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'digital_signature',
+              dartName: 'digitalSignature',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'encipher_only',
+              dartName: 'encipherOnly',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'key_agreement',
+              dartName: 'keyAgreement',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'key_encipherment',
+              dartName: 'keyEncipherment',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_auth',
+              dartName: 'clientAuth',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'code_signing',
+              dartName: 'codeSigning',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'email_protection',
+              dartName: 'emailProtection',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'ocsp_signing',
+              dartName: 'ocspSigning',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'server_auth',
+              dartName: 'serverAuth',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'time_stamping',
+              dartName: 'timeStamping',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'object_id_path',
+              dartName: 'objectIdPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<num>',
+            ),
+          ],
+        ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'critical',
+          dartName: 'critical',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_dns_names',
+          dartName: 'excludedDnsNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_email_addresses',
+          dartName: 'excludedEmailAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_ip_ranges',
+          dartName: 'excludedIpRanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_uris',
+          dartName: 'excludedUris',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_dns_names',
+          dartName: 'permittedDnsNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_email_addresses',
+          dartName: 'permittedEmailAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_ip_ranges',
+          dartName: 'permittedIpRanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_uris',
+          dartName: 'permittedUris',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'object_id_path',
+          dartName: 'objectIdPath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<num>',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyIdentityConstraints': MigrateHelper(
+      className: 'PrivatecaCaPoolIssuancePolicyIdentityConstraints',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allow_subject_alt_names_passthrough',
+          dartName: 'allowSubjectAltNamesPassthrough',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'allow_subject_passthrough',
+          dartName: 'allowSubjectPassthrough',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cel_expression',
+          dartName: 'celExpression',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression',
+        ),
+      ],
+    ),
+    'PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'description',
+              dartName: 'description',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'expression',
+              dartName: 'expression',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'location',
+              dartName: 'location',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'title',
+              dartName: 'title',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'PrivatecaCaPoolPublishingOptions': MigrateHelper(
       className: 'PrivatecaCaPoolPublishingOptions',
       slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'publish_ca_cert',
-          dartName: 'publishCaCert',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'publish_crl',
-          dartName: 'publishCrl',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
         MigrateSlot(
           tfName: 'encoding_format',
           dartName: 'encodingFormat',
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'PrivatecaCaPoolPublishingOptionsEncodingFormat',
+        ),
+        MigrateSlot(
+          tfName: 'publish_ca_cert',
+          dartName: 'publishCaCert',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'publish_crl',
+          dartName: 'publishCrl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -274462,12 +275244,405 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PrivatecaCertificateBaseKeyUsage': MigrateHelper(
-      className: 'PrivatecaCertificateBaseKeyUsage',
+    'PrivatecaCertificateConfig': MigrateHelper(
+      className: 'PrivatecaCertificateConfig',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'public_key',
+          dartName: 'publicKey',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigPublicKey',
+        ),
+        MigrateSlot(
+          tfName: 'subject_config',
+          dartName: 'subjectConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigSubjectConfig',
+        ),
+        MigrateSlot(
+          tfName: 'subject_key_id',
+          dartName: 'subjectKeyId',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigSubjectKeyId',
+        ),
+        MigrateSlot(
+          tfName: 'x509_config',
+          dartName: 'x509Config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509Config',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigPublicKey': MigrateHelper(
+      className: 'PrivatecaCertificateConfigPublicKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'format',
+          dartName: 'format',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'PrivatecaCertificateConfigPublicKeyFormat',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigSubjectConfig': MigrateHelper(
+      className: 'PrivatecaCertificateConfigSubjectConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'subject',
+          dartName: 'subject',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigSubjectConfigSubject',
+        ),
+        MigrateSlot(
+          tfName: 'subject_alt_name',
+          dartName: 'subjectAltName',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigSubjectConfigSubjectAltName',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigSubjectConfigSubject': MigrateHelper(
+      className: 'PrivatecaCertificateConfigSubjectConfigSubject',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'common_name',
+          dartName: 'commonName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'country_code',
+          dartName: 'countryCode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'locality',
+          dartName: 'locality',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'organization',
+          dartName: 'organization',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'organizational_unit',
+          dartName: 'organizationalUnit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'postal_code',
+          dartName: 'postalCode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'province',
+          dartName: 'province',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'street_address',
+          dartName: 'streetAddress',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigSubjectConfigSubjectAltName': MigrateHelper(
+      className: 'PrivatecaCertificateConfigSubjectConfigSubjectAltName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dns_names',
+          dartName: 'dnsNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'email_addresses',
+          dartName: 'emailAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'ip_addresses',
+          dartName: 'ipAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'uris',
+          dartName: 'uris',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigSubjectKeyId': MigrateHelper(
+      className: 'PrivatecaCertificateConfigSubjectKeyId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_id',
+          dartName: 'keyId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigX509Config': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509Config',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aia_ocsp_servers',
+          dartName: 'aiaOcspServers',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'additional_extensions',
+          dartName: 'additionalExtensions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigAdditionalExtensions',
+        ),
+        MigrateSlot(
+          tfName: 'ca_options',
+          dartName: 'caOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigCaOptions',
+        ),
+        MigrateSlot(
+          tfName: 'key_usage',
+          dartName: 'keyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'name_constraints',
+          dartName: 'nameConstraints',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigNameConstraints',
+        ),
+        MigrateSlot(
+          tfName: 'policy_ids',
+          dartName: 'policyIds',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigPolicyIds',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigX509ConfigAdditionalExtensions': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigAdditionalExtensions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'critical',
+          dartName: 'critical',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'object_id',
+          dartName: 'objectId',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId':
+        MigrateHelper(
+          className:
+              'PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'object_id_path',
+              dartName: 'objectIdPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<num>',
+            ),
+          ],
+        ),
+    'PrivatecaCertificateConfigX509ConfigCaOptions': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigCaOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'is_ca',
+          dartName: 'isCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'max_issuer_path_length',
+          dartName: 'maxIssuerPathLength',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'non_ca',
+          dartName: 'nonCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'zero_max_issuer_path_length',
+          dartName: 'zeroMaxIssuerPathLength',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigX509ConfigKeyUsage': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigKeyUsage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'base_key_usage',
+          dartName: 'baseKeyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'extended_key_usage',
+          dartName: 'extendedKeyUsage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage',
+        ),
+        MigrateSlot(
+          tfName: 'unknown_extended_key_usages',
+          dartName: 'unknownExtendedKeyUsages',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages',
+        ),
+      ],
+    ),
+    'PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cert_sign',
+          dartName: 'certSign',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'content_commitment',
+          dartName: 'contentCommitment',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'crl_sign',
+          dartName: 'crlSign',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'data_encipherment',
+          dartName: 'dataEncipherment',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'decipher_only',
+          dartName: 'decipherOnly',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
         MigrateSlot(
           tfName: 'digital_signature',
           dartName: 'digitalSignature',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'encipher_only',
+          dartName: 'encipherOnly',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'key_agreement',
+          dartName: 'keyAgreement',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
@@ -274481,103 +275656,146 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PrivatecaCertificateCaOptions': MigrateHelper(
-      className: 'PrivatecaCertificateCaOptions',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'is_ca',
-          dartName: 'isCa',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+    'PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage':
+        MigrateHelper(
+          className:
+              'PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_auth',
+              dartName: 'clientAuth',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'code_signing',
+              dartName: 'codeSigning',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'email_protection',
+              dartName: 'emailProtection',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'ocsp_signing',
+              dartName: 'ocspSigning',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'server_auth',
+              dartName: 'serverAuth',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'time_stamping',
+              dartName: 'timeStamping',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
         ),
-      ],
-    ),
-    'PrivatecaCertificateConfig': MigrateHelper(
-      className: 'PrivatecaCertificateConfig',
+    'PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages':
+        MigrateHelper(
+          className:
+              'PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'object_id_path',
+              dartName: 'objectIdPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<num>',
+            ),
+          ],
+        ),
+    'PrivatecaCertificateConfigX509ConfigNameConstraints': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigNameConstraints',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'subject_config',
-          dartName: 'subjectConfig',
-          kind: MigrateSlotKind.helper,
+          tfName: 'critical',
+          dartName: 'critical',
+          kind: MigrateSlotKind.scalar,
           required: true,
-          wrapped: false,
-          helper: 'PrivatecaCertificateSubjectConfig',
-        ),
-        MigrateSlot(
-          tfName: 'x509_config',
-          dartName: 'x509Config',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateX509Config',
-        ),
-        MigrateSlot(
-          tfName: 'public_key',
-          dartName: 'publicKey',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificatePublicKey',
-        ),
-      ],
-    ),
-    'PrivatecaCertificateExtendedKeyUsage': MigrateHelper(
-      className: 'PrivatecaCertificateExtendedKeyUsage',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'server_auth',
-          dartName: 'serverAuth',
-          kind: MigrateSlotKind.scalar,
-          required: false,
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'client_auth',
-          dartName: 'clientAuth',
+          tfName: 'excluded_dns_names',
+          dartName: 'excludedDnsNames',
           kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'bool',
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_email_addresses',
+          dartName: 'excludedEmailAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_ip_ranges',
+          dartName: 'excludedIpRanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'excluded_uris',
+          dartName: 'excludedUris',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_dns_names',
+          dartName: 'permittedDnsNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_email_addresses',
+          dartName: 'permittedEmailAddresses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_ip_ranges',
+          dartName: 'permittedIpRanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'permitted_uris',
+          dartName: 'permittedUris',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
         ),
       ],
     ),
-    'PrivatecaCertificateKeyUsage': MigrateHelper(
-      className: 'PrivatecaCertificateKeyUsage',
+    'PrivatecaCertificateConfigX509ConfigPolicyIds': MigrateHelper(
+      className: 'PrivatecaCertificateConfigX509ConfigPolicyIds',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'base_key_usage',
-          dartName: 'baseKeyUsage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateBaseKeyUsage',
-        ),
-        MigrateSlot(
-          tfName: 'extended_key_usage',
-          dartName: 'extendedKeyUsage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateExtendedKeyUsage',
-        ),
-      ],
-    ),
-    'PrivatecaCertificatePublicKey': MigrateHelper(
-      className: 'PrivatecaCertificatePublicKey',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'format',
-          dartName: 'format',
-          kind: MigrateSlotKind.enumValue,
+          tfName: 'object_id_path',
+          dartName: 'objectIdPath',
+          kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'PrivatecaCertificatePublicKeyFormat',
-        ),
-        MigrateSlot(
-          tfName: 'key',
-          dartName: 'key',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          dartType: 'List<num>',
         ),
       ],
     ),
@@ -274609,125 +275827,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'pemCsr',
-    ),
-    'PrivatecaCertificateSubject': MigrateHelper(
-      className: 'PrivatecaCertificateSubject',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'common_name',
-          dartName: 'commonName',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'organization',
-          dartName: 'organization',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'organizational_unit',
-          dartName: 'organizationalUnit',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'country_code',
-          dartName: 'countryCode',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'locality',
-          dartName: 'locality',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'province',
-          dartName: 'province',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'street_address',
-          dartName: 'streetAddress',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'postal_code',
-          dartName: 'postalCode',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-    ),
-    'PrivatecaCertificateSubjectAltName': MigrateHelper(
-      className: 'PrivatecaCertificateSubjectAltName',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'dns_names',
-          dartName: 'dnsNames',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'email_addresses',
-          dartName: 'emailAddresses',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'ip_addresses',
-          dartName: 'ipAddresses',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'uris',
-          dartName: 'uris',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          dartType: 'String',
-        ),
-      ],
-    ),
-    'PrivatecaCertificateSubjectConfig': MigrateHelper(
-      className: 'PrivatecaCertificateSubjectConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'subject',
-          dartName: 'subject',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          helper: 'PrivatecaCertificateSubject',
-        ),
-        MigrateSlot(
-          tfName: 'subject_alt_name',
-          dartName: 'subjectAltName',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateSubjectAltName',
-        ),
-      ],
     ),
     'PrivatecaCertificateTemplateCelExpression': MigrateHelper(
       className: 'PrivatecaCertificateTemplateCelExpression',
@@ -274786,27 +275885,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'PrivatecaCertificateTemplateCelExpression',
-        ),
-      ],
-    ),
-    'PrivatecaCertificateX509Config': MigrateHelper(
-      className: 'PrivatecaCertificateX509Config',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'ca_options',
-          dartName: 'caOptions',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateCaOptions',
-        ),
-        MigrateSlot(
-          tfName: 'key_usage',
-          dartName: 'keyUsage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PrivatecaCertificateKeyUsage',
         ),
       ],
     ),
@@ -293348,10 +294426,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'BigtableAppProfileComputeBillingOwner',
       members: <String, String>{'HOST_PAYS': 'hostPays'},
     ),
-    'BigtableAppProfileIsolationPriority': MigrateEnum(
-      name: 'BigtableAppProfileIsolationPriority',
+    'BigtableAppProfileStandardIsolationPriority': MigrateEnum(
+      name: 'BigtableAppProfileStandardIsolationPriority',
       members: <String, String>{
-        'PRIORITY_UNSPECIFIED': 'priorityUnspecified',
         'PRIORITY_LOW': 'priorityLow',
         'PRIORITY_MEDIUM': 'priorityMedium',
         'PRIORITY_HIGH': 'priorityHigh',
@@ -300202,14 +301279,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TYPE_GOOGLE_CREDENTIALS_FILE': 'googleCredentialsFile',
       },
     ),
-    'PrivatecaCaPoolEllipticCurveSignatureAlgorithm': MigrateEnum(
-      name: 'PrivatecaCaPoolEllipticCurveSignatureAlgorithm',
-      members: <String, String>{
-        'ECDSA_P256': 'ecdsaP256',
-        'ECDSA_P384': 'ecdsaP384',
-        'EDDSA_25519': 'eddsa25519',
-      },
-    ),
+    'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm':
+        MigrateEnum(
+          name:
+              'PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm',
+          members: <String, String>{
+            'ECDSA_P256': 'ecdsaP256',
+            'ECDSA_P384': 'ecdsaP384',
+            'EDDSA_25519': 'eddsa25519',
+          },
+        ),
     'PrivatecaCaPoolPublishingOptionsEncodingFormat': MigrateEnum(
       name: 'PrivatecaCaPoolPublishingOptionsEncodingFormat',
       members: <String, String>{'PEM': 'pem', 'DER': 'der'},
@@ -300247,8 +301326,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SUBORDINATE': 'subordinate',
       },
     ),
-    'PrivatecaCertificatePublicKeyFormat': MigrateEnum(
-      name: 'PrivatecaCertificatePublicKeyFormat',
+    'PrivatecaCertificateConfigPublicKeyFormat': MigrateEnum(
+      name: 'PrivatecaCertificateConfigPublicKeyFormat',
       members: <String, String>{
         'KEY_TYPE_UNSPECIFIED': 'keyTypeUnspecified',
         'PEM': 'pem',

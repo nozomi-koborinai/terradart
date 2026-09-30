@@ -6,11 +6,16 @@ library;
 export 'src/bigtable/google_bigtable_app_profile.dart'
     show
         BigtableAppProfileComputeBillingOwner,
-        BigtableAppProfileDataBoostIsolation,
-        BigtableAppProfileIsolationPriority,
+        BigtableAppProfileDataBoostIsolationReadOnly,
+        BigtableAppProfileIsolation,
+        BigtableAppProfileIsolationDataBoostIsolationReadOnly,
+        BigtableAppProfileIsolationStandardIsolation,
         BigtableAppProfileRouting,
+        BigtableAppProfileRoutingMultiClusterRoutingUseAny,
+        BigtableAppProfileRoutingSingleClusterRouting,
         BigtableAppProfileSingleClusterRouting,
         BigtableAppProfileStandardIsolation,
+        BigtableAppProfileStandardIsolationPriority,
         GoogleBigtableAppProfile;
 export 'src/bigtable/google_bigtable_authorized_view.dart'
     show BigtableAuthorizedViewSubsetView, GoogleBigtableAuthorizedView;

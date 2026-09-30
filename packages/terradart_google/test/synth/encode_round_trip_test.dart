@@ -117,22 +117,6 @@ final Map<String, Object Function()> _syntheticInstances = {
     ),
   ),
 
-  // --- BigtableAppProfileRouting (3) — google_bigtable_app_profile -----------
-  'BigtableAppProfileSingleClusterRouting': () =>
-      BigtableAppProfileSingleClusterRouting(clusterId: TfArg.literal('c1')),
-  'BigtableAppProfileStandardIsolation': () =>
-      BigtableAppProfileStandardIsolation(
-        priority: TfArg.literal(
-          BigtableAppProfileIsolationPriority.priorityHigh,
-        ),
-      ),
-  'BigtableAppProfileDataBoostIsolation': () =>
-      BigtableAppProfileDataBoostIsolation(
-        computeBillingOwner: TfArg.literal(
-          BigtableAppProfileComputeBillingOwner.hostPays,
-        ),
-      ),
-
   // --- BigtableGcPolicyRule (2) — google_bigtable_gc_policy -----------------
   'BigtableGcPolicyMaxAge': () =>
       BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
@@ -165,7 +149,7 @@ final Map<String, Object Function()> _syntheticInstances = {
   'StorageInsightsReportConfigParquetFormat': () =>
       const StorageInsightsReportConfigParquetFormat(),
 
-  // --- ComputeHealthCheckProtocol (6) — compute_health_check ----------------
+  // --- ComputeHealthCheckProtocol (7) — compute_health_check ----------------
   'ComputeHealthCheckHttpHealthCheckConfig': () =>
       ComputeHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
   'ComputeHealthCheckHttpsHealthCheckConfig': () =>
@@ -178,8 +162,10 @@ final Map<String, Object Function()> _syntheticInstances = {
       ComputeHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeHealthCheckGrpcHealthCheckConfig': () =>
       ComputeHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
+  'ComputeHealthCheckGrpcTlsHealthCheckConfig': () =>
+      ComputeHealthCheckGrpcTlsHealthCheckConfig(port: TfArg.literal(50052)),
 
-  // --- ComputeRegionHealthCheckProtocol (6) — region_health_check -----------
+  // --- ComputeRegionHealthCheckProtocol (7) — region_health_check -----------
   'ComputeRegionHealthCheckHttpHealthCheckConfig': () =>
       ComputeRegionHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
   'ComputeRegionHealthCheckHttpsHealthCheckConfig': () =>
@@ -192,6 +178,10 @@ final Map<String, Object Function()> _syntheticInstances = {
       ComputeRegionHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeRegionHealthCheckGrpcHealthCheckConfig': () =>
       ComputeRegionHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
+  'ComputeRegionHealthCheckGrpcTlsHealthCheckConfig': () =>
+      ComputeRegionHealthCheckGrpcTlsHealthCheckConfig(
+        port: TfArg.literal(50052),
+      ),
 
   // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
   'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
