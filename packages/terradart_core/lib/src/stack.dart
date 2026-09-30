@@ -14,6 +14,7 @@ import 'tf_moved.dart';
 import 'tf_output.dart';
 import 'tf_ref.dart';
 import 'tf_variable.dart';
+import 'synth/app_exports_emitter.dart';
 import 'synth/stack_synth.dart';
 
 /// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
@@ -76,7 +77,10 @@ abstract interface class StackProvider {
 ///
 /// Coordination surface for synth and concrete providers:
 ///
-/// - `addOutput(...)` / `outputs` — `output "<name>" { ... }` blocks.
+/// - `addOutput(...)` / `outputs` — `output "<name>" { ... }` blocks, and
+///   the getters of the generated `<name>Outputs` reader in the
+///   [appExports] file, which the app builds from `terraform output -json`
+///   (`fromTerraformJson`) or its environment (`fromEnvironment`).
 /// - `addConstant(...)` / `constants` — `static const` values of the
 ///   generated `<name>Constants` class, written to the [appExports] file.
 /// - `setRequiredVersion(...)` / `requiredVersion` — overrides the default
@@ -192,9 +196,17 @@ abstract base class Stack {
   /// addOutput('db_password', .ref(secret.secretDataRef), sensitive: true);
   /// ```
   ///
+  /// With [appExports] set, a non-sensitive output is also a getter of the
+  /// generated `<name>Outputs` reader, named in lowerCamelCase
+  /// (`ordersTopicId`) and read from the environment variable in
+  /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`). A sensitive output has no
+  /// getter: read a secret from its secret store instead.
+  ///
   /// Throws [ArgumentError] when [name] is not a Terraform identifier, is already
   /// registered, or [value] reads a sensitive field and [sensitive] is
-  /// `false` (Terraform rejects that output at plan).
+  /// `false` (Terraform rejects that output at plan); and, with [appExports]
+  /// set, when its getter is not a Dart identifier or its getter or
+  /// environment variable is another output's.
   void addOutput<T>(
     String name,
     TfArg<T> value, {
@@ -227,11 +239,120 @@ abstract base class Stack {
         );
       }
     }
+    if (appExports != null && !sensitive) _checkReaderNames(name);
     _outputs[name] = TfOutput<T>(
       value,
       description: description,
       sensitive: sensitive,
     );
+  }
+
+  /// The environment of an app that reads this Stack's outputs with the
+  /// generated reader's `fromEnvironment`: the variable of each
+  /// non-sensitive output registered so far (or of each output in [only]),
+  /// in registration order, and its value — the output's value for a
+  /// `String` output, its JSON for any other.
+  ///
+  /// ```dart
+  /// addOutput('orders_topic_id', .ref(topic.id));
+  /// final service = add(GoogleCloudRunV2Service(
+  ///   // ...
+  ///   template: CloudRunV2ServiceTemplate(containers: [
+  ///     CloudRunV2ServiceTemplateContainers(
+  ///       image: .literal(image),
+  ///       env: [
+  ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
+  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///             name: .literal(key),
+  ///             source: .value(value),
+  ///           ),
+  ///       ],
+  ///     ),
+  ///   ]),
+  /// ));
+  /// addOutput('service_uri', .ref(service.uri));
+  /// ```
+  ///
+  /// Register the outputs that read the service itself after the call: a
+  /// resource whose environment references its own attributes is a
+  /// Terraform cycle.
+  ///
+  /// Throws [StateError] when the Stack has no [appExports] file (no reader
+  /// reads the environment), and [ArgumentError] when a name in [only] is
+  /// not a registered non-sensitive output, or an output has no environment
+  /// value (a `null` literal, or a non-`String` output whose JSON is not one
+  /// interpolation).
+  Map<String, TfArg<String>> outputEnvironment({Iterable<String>? only}) {
+    if (appExports == null) {
+      throw StateError(
+        'outputEnvironment() is read by the generated reader: pass '
+        "appExports: AppExports('lib/generated/<stack>.g.dart') to the "
+        'Stack constructor.',
+      );
+    }
+    final names =
+        only?.toList() ??
+        [
+          for (final MapEntry(:key, :value) in _outputs.entries)
+            if (!value.sensitive) key,
+        ];
+    for (final name in names) {
+      final o = _outputs[name];
+      if (o == null || o.sensitive) {
+        throw ArgumentError.value(
+          name,
+          'only',
+          o == null
+              ? 'Output "$name" is not registered on this Stack (yet).'
+              : 'Output "$name" is sensitive; read it from its secret store.',
+        );
+      }
+    }
+    return Map.fromEntries(
+      names.map((name) => AppExportsEmitter.environmentEntry(this, name)),
+    );
+  }
+
+  /// Members every generated reader has, which no getter may shadow.
+  static const _readerMembers = {
+    'hashCode',
+    'runtimeType',
+    'toString',
+    'noSuchMethod',
+  };
+
+  /// Throws when the output [name] would not map to its own getter and
+  /// environment variable in the generated reader.
+  void _checkReaderNames(String name) {
+    final getter = outputGetterName(name);
+    if (!isDartIdentifier(getter) || _readerMembers.contains(getter)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Output "$name" would be the reader getter "$getter", which is not a '
+            'usable Dart identifier; rename the output, e.g. "${name}_value".',
+      );
+    }
+    final variable = outputEnvironmentName(name);
+    for (final MapEntry(key: other, value: o) in _outputs.entries) {
+      if (o.sensitive) continue;
+      if (outputGetterName(other) == getter) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be the reader getter '
+              '"$getter"; rename one.',
+        );
+      }
+      if (outputEnvironmentName(other) == variable) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be read from the '
+              'environment variable $variable; rename one.',
+        );
+      }
+    }
   }
 
   /// `owner.attr` when [value] references a field its owner marks

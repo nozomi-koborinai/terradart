@@ -71,6 +71,18 @@ What changes in behavior:
 - **The file is always written** when `appExports` is set, rewritten in full
   on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
   The Stack's class name drops a leading `_`.
+- **The file also holds a typed outputs reader**, `<Stack>Outputs`, with a
+  getter per non-sensitive output (`ordersTopicId` for `orders_topic_id`).
+  Replace code that shells out to `terraform output -raw` or reads a
+  hand-named environment variable with
+  `<Stack>Outputs.fromTerraformJson(...)` /
+  `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
+  set, an output name whose getter would not be a Dart identifier
+  (`class`), or that shares its getter or variable with another output
+  (`topic_id` / `topic-id`), throws; rename it. A Cloud Run `env` list that
+  hand-copies output values (`name: .literal('DB_INSTANCE'), source:
+  .value(.ref(sql.connectionName))`) can become `addOutput('db_instance',
+  ...)` plus a loop over `outputEnvironment()`.
 - `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
   no longer exported from `package:terradart_core/terradart_core.dart`; they
   were synth internals.
@@ -1699,6 +1711,29 @@ helpers of the resource of the same type.
 Newly exposed inputs: `GoogleDataplexEntryType.requiredAspects`,
 `GoogleDataplexLake.metastore`, and `condition` on
 `GoogleHealthcareFhirStoreIamMember`.
+
+### Gemini setting bindings and the Observability link take `RefTo<R>`
+
+**Breaking (`terradart_google`)** — these inputs name another resource and
+take a `RefTo<Target>` instead of a `TfArg<String>`. Each emits the
+parent's own id attribute.
+
+| Input | Target (attribute) |
+|-------|--------------------|
+| `<setting>SettingId` on the seven `GoogleGemini*SettingBinding` | the matching `GoogleGemini*Setting` (`*_setting_id`) |
+| `codeRepositoryIndex` on `GoogleGeminiRepositoryGroup` and its IAM adjuncts | `GoogleGeminiCodeRepositoryIndex` (`code_repository_index_id`) |
+| `repositoryGroupId` on the `GoogleGeminiRepositoryGroup` IAM adjuncts | `GoogleGeminiRepositoryGroup` (`repository_group_id`) |
+| `bucket` on `GoogleObservabilityLink` | `GoogleObservabilityBucket` (`bucket_id`) |
+
+| Before | After |
+|--------|-------|
+| `loggingSettingId: .literal('terradart-logging')` | `loggingSettingId: logging.ref` (or keep `.literal('terradart-logging')`) |
+| `bucket: .literal('telemetry')` beside a `GoogleObservabilityBucket` | `bucket: observabilityBucket.ref` |
+
+`.literal(...)`, `.variable(...)` and `.expression(...)` keep compiling with
+the same synth output; only code that passed a `TfArg<String>` value needs a
+change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
+attribute instead of the literal id, so Terraform orders the two.
 
 ## 0.29.x → 0.30.0
 

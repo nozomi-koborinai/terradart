@@ -867,10 +867,10 @@ final class StorageTransferJobTransferSpecTransferOptionsMetadataOptions {
 ///   status: TfArg.literal('DISABLED'),
 ///   transferSpec: StorageTransferJobTransferSpec(
 ///     gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
-///       bucketName: TfArg.ref(src.nameRef),
+///       bucketName: src.ref,
 ///     ),
 ///     gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
-///       bucketName: TfArg.ref(dst.nameRef),
+///       bucketName: dst.ref,
 ///     ),
 ///   ),
 /// );

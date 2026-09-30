@@ -1732,8 +1732,8 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleGeminiRepositoryGroupIamPolicy(
         localName: 'gemini_repository_group_iam_policy',
-        codeRepositoryIndex: TfArg.literal(leftover),
-        repositoryGroupId: TfArg.literal(leftover),
+        codeRepositoryIndex: RefTo.literal(leftover),
+        repositoryGroupId: RefTo.literal(leftover),
       ),
     );
 

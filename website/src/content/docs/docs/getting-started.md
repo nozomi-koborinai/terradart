@@ -100,6 +100,12 @@ bool acceptsTopic(String eventTopic) =>
     eventTopic == OrdersStackConstants.ordersTopicName;
 ```
 
+Values known only after apply, such as the topic's full ID, come from the generated `OrdersStackOutputs` reader. A deployed service reads them from its environment (`ORDERS_TOPIC_ID`); a script can read `terraform output -json`:
+
+```dart
+final topicId = OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
+```
+
 Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 ## 6. Composing GA and Beta providers (Firebase + Google Cloud)

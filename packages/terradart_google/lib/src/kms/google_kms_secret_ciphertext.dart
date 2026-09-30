@@ -36,7 +36,7 @@ const Set<String> _googleKmsSecretCiphertextSensitive = <String>{
 /// ```dart
 /// GoogleKmsSecretCiphertext(
 ///   localName: 'db_password',
-///   cryptoKey: TfArg.ref(paymentsKey.id),
+///   cryptoKey: paymentsKey.ref,
 ///   plaintext: TfArg.literal('change-me'),
 /// );
 /// ```

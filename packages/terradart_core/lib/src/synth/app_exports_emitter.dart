@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 
 import '../app_constant.dart';
+import '../dart_source.dart';
+import '../dart_value_type.dart';
 import '../data.dart';
 import '../resource.dart';
 import '../stack.dart';
@@ -22,13 +26,79 @@ abstract final class AppExportsEmitter {
     };
   }
 
+  /// The environment variable a non-sensitive [output] of [stack] is read
+  /// from by the generated reader's `fromEnvironment`, and its value.
+  static MapEntry<String, TfArg<String>> environmentEntry(
+    Stack stack,
+    String output,
+  ) {
+    final o = stack.outputs[output]!;
+    final type = o.valueType;
+    final encoded = TfJsonEncoder.encodeArg(o.value);
+    final TfArg<String> value;
+    if (type is ScalarValueType && type.name == 'String') {
+      value = switch ((o.value, encoded)) {
+        (TfArgLiteral(), final String s) => TfArg.literal(s),
+        (TfArgLiteral(), _) => throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" is null, which no environment variable holds.',
+        ),
+        (_, final String s) => TfArg.expression<String>(s),
+        _ => throw StateError('Output "$output" encodes to $encoded.'),
+      };
+    } else if (o.value is TfArgLiteral) {
+      if (_holdsTemplate(encoded)) {
+        throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" is a literal holding references; its JSON is '
+              'only known at apply. Pass it as one .expression instead.',
+        );
+      }
+      value = TfArg.literal(jsonEncode(encoded));
+    } else {
+      final template = encoded as String;
+      final inner = template.startsWith(r'${') && template.endsWith('}')
+          ? template.substring(2, template.length - 1)
+          : null;
+      if (inner == null || inner.contains(r'${') || !_balanced(inner)) {
+        throw ArgumentError.value(
+          output,
+          'output',
+          'Output "$output" of type ${type.source} is the template '
+              '"$template", which has no JSON encoding; make it one '
+              r'interpolation ("${...}").',
+        );
+      }
+      value = TfArg.expression<String>('\${jsonencode($inner)}');
+    }
+    return MapEntry(outputEnvironmentName(output), value);
+  }
+
+  /// True when no `}` in [body] closes the sequence before its end.
+  static bool _balanced(String body) {
+    var depth = 0;
+    for (final c in body.split('')) {
+      if (c == '{') depth++;
+      if (c == '}' && --depth < 0) return false;
+    }
+    return depth == 0;
+  }
+
+  static bool _holdsTemplate(Object? encoded) => switch (encoded) {
+    String() => hasTemplateSequence(encoded),
+    List() => encoded.any(_holdsTemplate),
+    Map() => encoded.values.any(_holdsTemplate),
+    _ => false,
+  };
+
   /// The generated Dart source, or `null` when the Stack has no
   /// [Stack.appExports] file.
   static String? dartSource(Stack stack) {
     final file = stack.appExports;
     if (file == null) return null;
     final prefix = file.name ?? _className(stack);
-    final constants = '${prefix}Constants';
 
     final buf = StringBuffer()
       ..writeln('// GENERATED CODE - DO NOT MODIFY BY HAND')
@@ -36,19 +106,128 @@ abstract final class AppExportsEmitter {
       ..writeln('// dart format off')
       ..writeln('// ignore_for_file: type=lint')
       ..writeln()
+      ..writeln("import 'dart:convert';")
+      ..writeln();
+    _constantsClass(buf, stack, '${prefix}Constants');
+    buf.writeln();
+    _outputsClass(buf, stack, '${prefix}Outputs');
+    return buf.toString();
+  }
+
+  static void _constantsClass(StringBuffer buf, Stack stack, String name) {
+    buf
       ..writeln('/// The constants of the stack, known when synth ran.')
-      ..writeln('abstract final class $constants {')
-      ..writeln('  $constants._();');
-    for (final MapEntry(key: name, value: c) in stack.constants.entries) {
+      ..writeln('abstract final class $name {')
+      ..writeln('  $name._();');
+    for (final MapEntry(key: constant, value: c) in stack.constants.entries) {
       buf.writeln();
       _doc(buf, c.description);
       buf.writeln(
-        '  static const ${c.valueType!.source} $name = '
-        '${_constantLiteral(stack, name, c)};',
+        '  static const ${c.valueType!.source} $constant = '
+        '${_constantLiteral(stack, constant, c)};',
       );
     }
     buf.writeln('}');
-    return buf.toString();
+  }
+
+  static void _outputsClass(StringBuffer buf, Stack stack, String name) {
+    buf.write("""
+/// The Terraform outputs of the stack, read when the app runs.
+///
+/// Each getter reads its output when called, so a reader over an
+/// environment that sets only some of the variables serves those. A
+/// sensitive output has no getter.
+final class $name {
+  $name._(this._read);
+
+  /// Reads the outputs of `terraform output -json`:
+  /// `$name.fromTerraformJson(jsonDecode(stdout) as Map<String, Object?>)`.
+  factory $name.fromTerraformJson(Map<String, Object?> outputs) =>
+      $name._((output, variable, json) {
+        final entry = outputs[output];
+        if (entry is Map && entry.containsKey('value')) return entry['value'];
+        throw StateError(
+          'Terraform output "\$output" is missing; apply the stack first.',
+        );
+      });
+
+  /// Reads environment variables named after the outputs in
+  /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID` for `orders_topic_id`), such as
+  /// `Platform.environment`. A `String` output is the variable's value; any
+  /// other type is JSON.
+  factory $name.fromEnvironment(Map<String, String> environment) =>
+      $name._((output, variable, json) {
+        final raw = environment[variable];
+        if (raw == null) {
+          throw StateError(
+            'Environment variable \$variable (Terraform output "\$output") '
+            'is not set.',
+          );
+        }
+        if (!json) return raw;
+        try {
+          return jsonDecode(raw);
+        } on FormatException catch (e) {
+          throw StateError(
+            'Environment variable \$variable (Terraform output "\$output") '
+            'is not JSON: \${e.message}',
+          );
+        }
+      });
+
+  final Object? Function(String output, String variable, bool json) _read;
+""");
+    for (final MapEntry(key: output, value: o) in stack.outputs.entries) {
+      if (o.sensitive) continue;
+      final type = o.valueType;
+      final json = !(type is ScalarValueType && type.name == 'String');
+      buf.writeln();
+      _doc(buf, o.description);
+      buf
+        ..writeln('  ${type.source} get ${outputGetterName(output)} {')
+        ..writeln(
+          '    final value = _read(${dartStringLiteral(output)}, '
+          "'${outputEnvironmentName(output)}', $json);",
+        )
+        ..writeln(
+          '    return ${_convert(type, 'value', dartStringLiteral(output), 0)};',
+        )
+        ..writeln('  }');
+    }
+    buf
+      ..writeln()
+      ..write(r"""
+  static T _as<T>(Object? value, String output) {
+    if (value is T) return value;
+    throw StateError(
+      'Terraform output "$output" is ${value.runtimeType} $value, not $T.',
+    );
+  }
+}
+""");
+  }
+
+  /// An expression converting the decoded JSON [value] to [type].
+  static String _convert(
+    DartValueType type,
+    String value,
+    String output,
+    int depth,
+  ) {
+    final nonNull = switch (type) {
+      ScalarValueType(name: 'double') => '_as<num>($value, $output).toDouble()',
+      ScalarValueType(:final name) => '_as<$name>($value, $output)',
+      ListValueType(:final element) =>
+        '[for (final e$depth in _as<List<Object?>>($value, $output)) '
+            '${_convert(element, 'e$depth', output, depth + 1)}]',
+      MapValueType(value: final v) =>
+        '{for (final MapEntry(:key, value: v$depth) in '
+            '_as<Map<String, Object?>>($value, $output).entries) '
+            'key: ${_convert(v, 'v$depth', output, depth + 1)}}',
+    };
+    if (!type.nullable) return nonNull;
+    if (type case ScalarValueType(name: 'Object')) return value;
+    return '$value == null ? null : $nonNull';
   }
 
   static void _doc(StringBuffer buf, String? doc) {

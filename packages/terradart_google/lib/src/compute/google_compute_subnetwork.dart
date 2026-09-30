@@ -214,9 +214,8 @@ class ComputeSubnetworkSubnetworkLogConfig {
 /// - [localName]: Terraform local name.
 /// - `name`: GCP subnetwork name. Pass `TfArg.literal('main-subnet')` or
 ///   `TfArg.ref(otherSubnet.nameRef)`.
-/// - `network`: full self-link of the parent VPC. Pass
-///   `TfArg.ref(vpc.selfLink)` so the value resolves to
-///   `${google_compute_network.<localName>.self_link}`.
+/// - `network`: the parent VPC. Pass `vpc.ref` so the value resolves to
+///   `${google_compute_network.<localName>.id}`.
 ///
 /// Secondary ranges ([secondaryIpRange]) define alias IP ranges consumed by
 /// GKE pods/services. Flow logs are configured via [logConfig]; not supported
@@ -235,7 +234,7 @@ class ComputeSubnetworkSubnetworkLogConfig {
 ///   localName: 'main_subnet',
 ///   name: TfArg.literal('main-subnet'),
 ///   region: TfArg.literal('us-central1'),
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   ipCidrRange: TfArg.literal('10.0.0.0/16'),
 ///   privateIpGoogleAccess: TfArg.literal(true),
 /// );

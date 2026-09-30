@@ -37,8 +37,8 @@ enum NetworkConnectivityRegionalEndpointAccessType implements TerraformEnum {
 ///   accessType: TfArg.literal(
 ///     NetworkConnectivityRegionalEndpointAccessType.regional,
 ///   ),
-///   network: TfArg.ref(vpc.id),
-///   subnetwork: TfArg.ref(subnet.id),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
 /// );
 /// ```
 final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {

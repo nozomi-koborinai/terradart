@@ -5399,8 +5399,8 @@ final class ContainerClusterWorkloadIdentityConfig {
 ///   location: TfArg.literal('asia-northeast1'),
 ///   initialNodeCount: TfArg.literal(1),
 ///   removeDefaultNodePool: TfArg.literal(true),
-///   network: TfArg.ref(vpc.nameRef),
-///   subnetwork: TfArg.ref(subnet.nameRef),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
 /// );
 /// ```
 ///

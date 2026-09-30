@@ -8,6 +8,22 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Typed outputs reader** (`terradart_core`) — the `appExports` file also
+  holds `<Stack>Outputs`: one getter per non-sensitive `addOutput`, typed
+  like its value and named in lowerCamelCase, built from `terraform output
+  -json` (`fromTerraformJson`) or the app's environment (`fromEnvironment`,
+  one SCREAMING_SNAKE_CASE variable per output, JSON for non-`String`
+  values). Getters read lazily and throw a `StateError` naming the output
+  and variable when a value is missing or mistyped. With `appExports` set,
+  `addOutput` rejects a name whose getter is not a usable identifier or
+  whose getter or variable another output has.
+- **`Stack.outputEnvironment()`** (`terradart_core`, cookbook) — the
+  variables that reader's `fromEnvironment` reads, as a
+  `Map<String, TfArg<String>>` of the non-sensitive outputs registered so far
+  (`only:` picks some): a `String` output as is, any other as
+  `jsonencode(...)`. Pass it to a Cloud Run service's `env` and the app reads
+  the outputs without a variable name written twice; the `single-project-app`
+  recipe passes its Cloud SQL outputs this way.
 - **Typed resource references, part 2** (`terradart_codegen`,
   `terradart_migrate`, `tool/`) — `tool/reference_targets.yaml` lists which
   string inputs name another resource: name patterns per referenced type
@@ -79,6 +95,16 @@ Per-package changelogs live alongside each package and are the system of record 
   (`DartConstantsEmitter`, `LiteralResolver`, `OutputEmitter`) are removed;
   see [MIGRATING.md](MIGRATING.md).
 
+- **Gemini setting bindings and the Observability link take `RefTo<R>`**
+  (**breaking**; `terradart_google`) — `tool/reference_targets.yaml` gains
+  rules for the parent setting id of the seven Gemini setting bindings, the
+  Code Repository Index and Repository Group ids of `google_gemini_repository_group`
+  and its IAM adjuncts, and the `bucket` of `google_observability_link`
+  (an Observability bucket's `bucket_id`): 17 more typed inputs. Pass
+  `setting.ref`; `.literal('id')` still compiles. Synth output changes only
+  where an example now wires the parent: `gemini_quickstart` and
+  `deferred_leftover_quickstart` emit the parent's id attribute instead of
+  the same literal. See `MIGRATING.md`.
 - **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
   wherever the argument has a static type, a migrated Stack reads like the
   examples: `name: .literal('orders')`, `instance: .ref(db.nameRef)`,

@@ -34,9 +34,8 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_service_networking_connection.`).
-/// - `network`: full self_link of a [GoogleComputeNetwork]
-///   (`TfArg.ref(vpc.selfLink)`). The provider rejects short network
-///   names here.
+/// - `network`: a [GoogleComputeNetwork] (`vpc.ref`, which emits its
+///   full `id` path). The provider rejects short network names here.
 /// - `service`: the producer service ID. The only documented value at
 ///   the time of writing is `'servicenetworking.googleapis.com'`; passed
 ///   as a plain string so callers can target other producer services
@@ -51,7 +50,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// ```dart
 /// final psaPeering = GoogleServiceNetworkingConnection(
 ///   localName: 'psa',
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   service: TfArg.literal('servicenetworking.googleapis.com'),
 ///   reservedPeeringRanges: TfArg.literal([
 ///     '\${google_compute_global_address.psa_range.name}',

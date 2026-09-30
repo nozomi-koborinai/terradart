@@ -76750,9 +76750,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'code_tools_setting_id',
           dartName: 'codeToolsSettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeToolsSetting',
+          attribute: 'code_tools_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -76913,9 +76914,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_sharing_with_google_setting_id',
           dartName: 'dataSharingWithGoogleSettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiDataSharingWithGoogleSetting',
+          attribute: 'data_sharing_with_google_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77077,9 +77079,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gda_observability_setting_id',
           dartName: 'gdaObservabilitySettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiGdaObservabilitySetting',
+          attribute: 'gda_observability_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77246,9 +77249,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gemini_gcp_enablement_setting_id',
           dartName: 'geminiGcpEnablementSettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiGeminiGcpEnablementSetting',
+          attribute: 'gemini_gcp_enablement_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77411,9 +77415,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gibq_observability_setting_id',
           dartName: 'gibqObservabilitySettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiGibqObservabilitySetting',
+          attribute: 'gibq_observability_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77573,9 +77578,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'logging_setting_id',
           dartName: 'loggingSettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiLoggingSetting',
+          attribute: 'logging_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77729,9 +77735,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'release_channel_setting_id',
           dartName: 'releaseChannelSettingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiReleaseChannelSetting',
+          attribute: 'release_channel_setting_id',
         ),
         MigrateSlot(
           tfName: 'setting_binding_id',
@@ -77818,9 +77825,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'code_repository_index',
           dartName: 'codeRepositoryIndex',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeRepositoryIndex',
+          attribute: 'code_repository_index_id',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -77901,16 +77909,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_group_id',
           dartName: 'repositoryGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiRepositoryGroup',
+          attribute: 'repository_group_id',
         ),
         MigrateSlot(
           tfName: 'code_repository_index',
           dartName: 'codeRepositoryIndex',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeRepositoryIndex',
+          attribute: 'code_repository_index_id',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -77962,16 +77972,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_group_id',
           dartName: 'repositoryGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiRepositoryGroup',
+          attribute: 'repository_group_id',
         ),
         MigrateSlot(
           tfName: 'code_repository_index',
           dartName: 'codeRepositoryIndex',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeRepositoryIndex',
+          attribute: 'code_repository_index_id',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -78023,16 +78035,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_group_id',
           dartName: 'repositoryGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiRepositoryGroup',
+          attribute: 'repository_group_id',
         ),
         MigrateSlot(
           tfName: 'code_repository_index',
           dartName: 'codeRepositoryIndex',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeRepositoryIndex',
+          attribute: 'code_repository_index_id',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -78070,9 +78084,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'code_repository_index',
           dartName: 'codeRepositoryIndex',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiCodeRepositoryIndex',
+          attribute: 'code_repository_index_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -78091,9 +78106,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_group_id',
           dartName: 'repositoryGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGeminiRepositoryGroup',
+          attribute: 'repository_group_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -105712,9 +105728,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleObservabilityBucket',
+          attribute: 'bucket_id',
         ),
         MigrateSlot(
           tfName: 'dataset',

@@ -31,7 +31,7 @@ const Set<String> _googleProjectUsageExportBucketSensitive = <String>{};
 /// );
 /// GoogleProjectUsageExportBucket(
 ///   localName: 'usage_export',
-///   bucketName: TfArg.ref(reports.nameRef),
+///   bucketName: reports.ref,
 ///   prefix: TfArg.literal('gce-usage'),
 /// );
 /// ```

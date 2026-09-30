@@ -1,15 +1,17 @@
 /// Tier 5: Cloud Run v2 service.
 library;
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
-import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/secret_manager.dart';
 
+/// [outputEnvironment] is `Stack.outputEnvironment()`: the Stack's outputs
+/// as the variables the app's generated `SingleProjectAppOutputs.fromEnvironment`
+/// reads.
 GoogleCloudRunV2Service buildCloudRunService({
   required GoogleServiceAccount runSa,
-  required GoogleSqlDatabaseInstance sqlInstance,
-  required GoogleSqlDatabase sqlDatabase,
+  required Map<String, TfArg<String>> outputEnvironment,
   required GoogleSecretManagerSecret dbPasswordSecret,
 }) => GoogleCloudRunV2Service(
   localName: 'coffee_service',
@@ -23,14 +25,11 @@ GoogleCloudRunV2Service buildCloudRunService({
       CloudRunV2ServiceTemplateContainers(
         image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
         env: [
-          CloudRunV2ServiceTemplateContainersEnv(
-            name: .literal('DB_INSTANCE'),
-            source: .value(.ref(sqlInstance.connectionName)),
-          ),
-          CloudRunV2ServiceTemplateContainersEnv(
-            name: .literal('DB_NAME'),
-            source: .value(.ref(sqlDatabase.nameRef)),
-          ),
+          for (final MapEntry(:key, :value) in outputEnvironment.entries)
+            CloudRunV2ServiceTemplateContainersEnv(
+              name: .literal(key),
+              source: .value(value),
+            ),
           CloudRunV2ServiceTemplateContainersEnv(
             name: .literal('DB_USER'),
             source: .value(.literal('coffee_app')),

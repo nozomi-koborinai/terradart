@@ -85,7 +85,7 @@ final class ApigeeOrganizationPropertiesProperty {
 ///   localName: 'org',
 ///   projectId: TfArg.literal(projectId),
 ///   analyticsRegion: TfArg.literal('us-central1'),
-///   authorizedNetwork: TfArg.ref(network.id),
+///   authorizedNetwork: network.ref,
 ///   runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),
 /// );
 /// ```
