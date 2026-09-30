@@ -1,13 +1,20 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'app_export.dart';
+import 'app_constant.dart';
+import 'app_exports.dart';
+import 'dart_source.dart';
+import 'dart_value_type.dart';
 import 'data.dart';
 import 'duplicate_resource_error.dart';
 import 'module_call.dart';
 import 'resource.dart';
+import 'tf_arg.dart';
 import 'tf_moved.dart';
+import 'tf_output.dart';
+import 'tf_ref.dart';
 import 'tf_variable.dart';
+import 'synth/app_exports_emitter.dart';
 import 'synth/stack_synth.dart';
 
 /// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
@@ -65,15 +72,17 @@ abstract interface class StackProvider {
 ///
 /// User subclasses construct resources inside their own constructor and
 /// register them via `add` / `addData`. `synth()` returns the in-memory
-/// [SynthResult] bundle (Terraform JSON map plus any generated Dart
-/// constants source); `writeTo(outDir)` persists that bundle to disk.
+/// [SynthResult] bundle (Terraform JSON map plus the generated Dart source
+/// for [appExports]); `writeTo(outDir)` persists that bundle to disk.
 ///
 /// Coordination surface for synth and concrete providers:
 ///
-/// - `addExport(...)` / `appExports` — register Dart-side constants for the
-///   synth-time AppExport emitter to write into a `.dart` file.
-/// - `setAppExportsOutputPath(...)` / `appExportsOutputPath` — destination
-///   path for the generated `.dart` constants file.
+/// - `addOutput(...)` / `outputs` — `output "<name>" { ... }` blocks, and
+///   the getters of the generated `<name>Outputs` reader in the
+///   [appExports] file, which the app builds from `terraform output -json`
+///   (`fromTerraformJson`) or its environment (`fromEnvironment`).
+/// - `addConstant(...)` / `constants` — `static const` values of the
+///   generated `<name>Constants` class, written to the [appExports] file.
 /// - `setRequiredVersion(...)` / `requiredVersion` — overrides the default
 ///   `>= 1.11.0` Terraform version constraint (Terraform 1.11+ is required
 ///   for write-only argument support).
@@ -92,6 +101,7 @@ abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
     StackBackend? backend,
+    this.appExports,
     this.devMode = false,
   }) : _providers = List<StackProvider>.unmodifiable(providers),
        _backend = backend;
@@ -103,6 +113,10 @@ abstract base class Stack {
   /// production stacks leave this false (the provider default of
   /// `true` then applies).
   final bool devMode;
+
+  /// The Dart file application code imports, holding the [constants].
+  /// `null` writes no file, and then [addConstant] throws.
+  final AppExports? appExports;
 
   final List<StackProvider> _providers;
 
@@ -116,11 +130,9 @@ abstract base class Stack {
   /// Mutable so `setBackend` can replace it post-construction.
   StackBackend? _backend;
 
-  /// Synth's AppExport emitter reads this in Pass 2. Insertion-ordered
-  /// map so generated `app_exports.g.dart` has stable output.
-  final Map<String, AppExport> _appExports = {};
-
-  String? _appExportsOutputPath;
+  /// Insertion-ordered so the generated file and `output` block are stable.
+  final Map<String, AppConstant<Object?>> _constants = {};
+  final Map<String, TfOutput<Object?>> _outputs = {};
 
   /// Insertion-ordered so the emitted `variable` block is stable.
   final Map<String, TfVariable> _variables = {};
@@ -147,10 +159,15 @@ abstract base class Stack {
   List<ModuleCall> get modules =>
       List<ModuleCall>.unmodifiable(_modules.values);
 
-  /// Read-only map of registered exports, keyed by user-supplied name.
-  /// Insertion order is preserved for deterministic generated output.
-  Map<String, AppExport> get appExports =>
-      Map<String, AppExport>.unmodifiable(_appExports);
+  /// The constants registered with [addConstant], by name, in registration
+  /// order.
+  Map<String, AppConstant<Object?>> get constants =>
+      Map<String, AppConstant<Object?>>.unmodifiable(_constants);
+
+  /// The outputs registered with [addOutput], by name, in registration
+  /// order.
+  Map<String, TfOutput<Object?>> get outputs =>
+      Map<String, TfOutput<Object?>>.unmodifiable(_outputs);
 
   /// Read-only map of declared Terraform variables, keyed by variable
   /// name. Insertion order is preserved for deterministic output.
@@ -165,53 +182,260 @@ abstract base class Stack {
   /// The `moved` entries registered with [addMoved], in registration order.
   List<TfMoved> get moved => List<TfMoved>.unmodifiable(_moved);
 
-  /// Output path for synth's `.dart` constants file. Null means "do not
-  /// emit a constants file" (the default behavior).
-  String? get appExportsOutputPath => _appExportsOutputPath;
-
   /// Terraform version constraint for `terraform { required_version }`.
   /// Defaults to `'>= 1.11.0'`.
   String get requiredVersion => _requiredVersion;
 
   // ---- Coordination mutators ---------------------------------------------
 
-  /// Register an export for synth's AppExport emitter. Order is preserved
-  /// for deterministic output. Throws [ArgumentError] if `name` is already
-  /// registered, or if the Terraform `output` name the export may emit
-  /// (`terraformOutputName ?? name`) is already taken by another export.
-  void addExport(String name, AppExport export) {
-    if (_appExports.containsKey(name)) {
+  /// Declare `output "<name>" { value = <value> }`.
+  ///
+  /// ```dart
+  /// addOutput('orders_topic_id', .ref(topic.id));
+  /// addOutput('service_url', .ref(service.uri), description: 'Cloud Run URL');
+  /// addOutput('db_password', .ref(secret.secretDataRef), sensitive: true);
+  /// ```
+  ///
+  /// With [appExports] set, a non-sensitive output is also a getter of the
+  /// generated `<name>Outputs` reader, named in lowerCamelCase
+  /// (`ordersTopicId`) and read from the environment variable in
+  /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`). A sensitive output has no
+  /// getter: read a secret from its secret store instead.
+  ///
+  /// Throws [ArgumentError] when [name] is not a Terraform identifier, is already
+  /// registered, or [value] reads a sensitive field and [sensitive] is
+  /// `false` (Terraform rejects that output at plan); and, with [appExports]
+  /// set, when its getter is not a Dart identifier or its getter or
+  /// environment variable is another output's.
+  void addOutput<T>(
+    String name,
+    TfArg<T> value, {
+    String? description,
+    bool sensitive = false,
+  }) {
+    if (!isTerraformIdentifier(name)) {
       throw ArgumentError.value(
         name,
         'name',
-        'AppExport "$name" is already registered on this Stack.',
+        'must be a Terraform identifier (letters, digits, underscores and '
+            'hyphens; not starting with a digit), e.g. "orders_topic_id"',
       );
     }
-    final outputName = _outputNameOf(name, export);
-    if (outputName != null) {
-      for (final MapEntry(key: other, value: registered)
-          in _appExports.entries) {
-        if (_outputNameOf(other, registered) == outputName) {
-          throw ArgumentError.value(
-            name,
-            'name',
-            'AppExport "$name" would emit Terraform output "$outputName", '
-                'which AppExport "$other" already emits. Set a distinct '
-                'terraformOutputName.',
-          );
-        }
+    if (_outputs.containsKey(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Output "$name" is already registered on this Stack.',
+      );
+    }
+    if (!sensitive) {
+      final field = _sensitiveFieldRead(value);
+      if (field != null) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Output "$name" reads the sensitive field $field; pass '
+              'sensitive: true.',
+        );
       }
     }
-    _appExports[name] = export;
+    if (appExports != null && !sensitive) _checkReaderNames(name);
+    _outputs[name] = TfOutput<T>(
+      value,
+      description: description,
+      sensitive: sensitive,
+    );
   }
 
-  /// The Terraform `output` name [export] may emit, or `null` for the
-  /// variants that never emit one.
-  static String? _outputNameOf(String name, AppExport export) =>
-      switch (export) {
-        StringExport() || EnvBackedExport() => null,
-        _ => export.terraformOutputName ?? name,
-      };
+  /// The environment of an app that reads this Stack's outputs with the
+  /// generated reader's `fromEnvironment`: the variable of each
+  /// non-sensitive output registered so far (or of each output in [only]),
+  /// in registration order, and its value — the output's value for a
+  /// `String` output, its JSON for any other.
+  ///
+  /// ```dart
+  /// addOutput('orders_topic_id', .ref(topic.id));
+  /// final service = add(GoogleCloudRunV2Service(
+  ///   // ...
+  ///   template: CloudRunV2ServiceTemplate(containers: [
+  ///     CloudRunV2ServiceTemplateContainers(
+  ///       image: .literal(image),
+  ///       env: [
+  ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
+  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///             name: .literal(key),
+  ///             source: .value(value),
+  ///           ),
+  ///       ],
+  ///     ),
+  ///   ]),
+  /// ));
+  /// addOutput('service_uri', .ref(service.uri));
+  /// ```
+  ///
+  /// Register the outputs that read the service itself after the call: a
+  /// resource whose environment references its own attributes is a
+  /// Terraform cycle.
+  ///
+  /// Throws [StateError] when the Stack has no [appExports] file (no reader
+  /// reads the environment), and [ArgumentError] when a name in [only] is
+  /// not a registered non-sensitive output, or an output has no environment
+  /// value (a `null` literal, or a non-`String` output whose JSON is not one
+  /// interpolation).
+  Map<String, TfArg<String>> outputEnvironment({Iterable<String>? only}) {
+    if (appExports == null) {
+      throw StateError(
+        'outputEnvironment() is read by the generated reader: pass '
+        "appExports: AppExports('lib/generated/<stack>.g.dart') to the "
+        'Stack constructor.',
+      );
+    }
+    final names =
+        only?.toList() ??
+        [
+          for (final MapEntry(:key, :value) in _outputs.entries)
+            if (!value.sensitive) key,
+        ];
+    for (final name in names) {
+      final o = _outputs[name];
+      if (o == null || o.sensitive) {
+        throw ArgumentError.value(
+          name,
+          'only',
+          o == null
+              ? 'Output "$name" is not registered on this Stack (yet).'
+              : 'Output "$name" is sensitive; read it from its secret store.',
+        );
+      }
+    }
+    return Map.fromEntries(
+      names.map((name) => AppExportsEmitter.environmentEntry(this, name)),
+    );
+  }
+
+  /// Members every generated reader has, which no getter may shadow.
+  static const _readerMembers = {
+    'hashCode',
+    'runtimeType',
+    'toString',
+    'noSuchMethod',
+  };
+
+  /// Throws when the output [name] would not map to its own getter and
+  /// environment variable in the generated reader.
+  void _checkReaderNames(String name) {
+    final getter = outputGetterName(name);
+    if (!isDartIdentifier(getter) || _readerMembers.contains(getter)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Output "$name" would be the reader getter "$getter", which is not a '
+            'usable Dart identifier; rename the output, e.g. "${name}_value".',
+      );
+    }
+    final variable = outputEnvironmentName(name);
+    for (final MapEntry(key: other, value: o) in _outputs.entries) {
+      if (o.sensitive) continue;
+      if (outputGetterName(other) == getter) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be the reader getter '
+              '"$getter"; rename one.',
+        );
+      }
+      if (outputEnvironmentName(other) == variable) {
+        throw ArgumentError.value(
+          name,
+          'name',
+          'Outputs "$other" and "$name" would both be read from the '
+              'environment variable $variable; rename one.',
+        );
+      }
+    }
+  }
+
+  /// `owner.attr` when [value] references a field its owner marks
+  /// sensitive, else `null`.
+  static String? _sensitiveFieldRead(TfArg<Object?> value) {
+    final (owner, attr) = switch (value) {
+      TfArgRef(ref: AttributeRef(:final owner, :final attr)) => (owner, attr),
+      TfArgRef(ref: DataRef(:final owner, :final attr)) => (owner, attr),
+      _ => (null, null),
+    };
+    // ignore: invalid_use_of_protected_member
+    if (owner is Resource && owner.sensitiveFields.contains(attr)) {
+      return '${owner.tfAddress}.$attr';
+    }
+    return null;
+  }
+
+  /// Declare `static const <T> <name>` in the generated `<name>Constants`
+  /// class of the [appExports] file.
+  ///
+  /// ```dart
+  /// addConstant('ordersTopicName', .ref(topic.nameRef));
+  /// addConstant('maxRetries', .value(5));
+  /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));
+  /// ```
+  ///
+  /// Throws [StateError] when the Stack has no [appExports] file, and
+  /// [ArgumentError] when [name] is not a public Dart identifier or is
+  /// already registered, [T] is not a supported type, a `.value` is not a
+  /// value of [T], or a `.ref` names no single attribute. Whether a `.ref`
+  /// attribute is a literal is checked at synth, once every resource is
+  /// registered.
+  void addConstant<T>(String name, AppConstant<T> constant) {
+    if (appExports == null) {
+      throw StateError(
+        'addConstant("$name") needs a file to write the constant to: pass '
+        "appExports: AppExports('lib/generated/<stack>.g.dart') to the "
+        'Stack constructor.',
+      );
+    }
+    if (!isDartIdentifier(name) || name.startsWith('_')) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'must be a public Dart identifier (letters, digits and underscores; '
+            'not a reserved word or private), e.g. "ordersTopicName"',
+      );
+    }
+    if (_constants.containsKey(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Constant "$name" is already registered on this Stack.',
+      );
+    }
+    final type = constant.valueType;
+    if (type == null) {
+      throw ArgumentError.value(
+        constant,
+        'constant',
+        'Constant "$name" has type $T; supported: $supportedDartValueTypes.',
+      );
+    }
+    switch (constant) {
+      case ValueConstant(:final value) when !type.conforms(value):
+        throw ArgumentError.value(
+          value,
+          'constant',
+          'Constant "$name" value is not a ${type.source} with a Dart '
+              'literal (non-finite numbers have none).',
+        );
+      case RefConstant(ref: ResourceRef()):
+        throw ArgumentError.value(
+          constant,
+          'constant',
+          'Constant "$name" references a whole resource; reference one '
+              'attribute, e.g. .ref(topic.nameRef).',
+        );
+      default:
+        break;
+    }
+    _constants[name] = constant;
+  }
 
   /// Declare a `variable "<name>" { ... }` block, making
   /// `TfArg.variable('<name>')` references in this stack resolvable.
@@ -291,9 +515,6 @@ abstract base class Stack {
     _externalVariables.add(name);
   }
 
-  /// Set destination path for the generated `.dart` constants file.
-  void setAppExportsOutputPath(String path) => _appExportsOutputPath = path;
-
   /// Override the default `>= 1.11.0` version constraint.
   void setRequiredVersion(String constraint) => _requiredVersion = constraint;
 
@@ -369,54 +590,37 @@ abstract base class Stack {
 
   /// Synthesise this Stack into an in-memory [SynthResult] bundle.
   ///
-  /// Pure / side-effect-free: produces the Terraform JSON map plus any
-  /// generated Dart constants source as values, without touching the
+  /// Pure / side-effect-free: produces the Terraform JSON map plus the
+  /// generated Dart source for [appExports] as values, without touching the
   /// filesystem. Use [writeTo] to persist the result to disk under a
   /// chosen output directory.
   ///
-  /// `stackName` overrides the generated Dart class name when AppExports
-  /// are emitted. Defaults to the runtime type name of the Stack
-  /// subclass (e.g. `OrdersStack` → `OrdersStackExports`).
-  SynthResult synth({String? stackName}) =>
-      StackSynth.synth(this, stackName: stackName);
+  /// Throws [StateError] when a constant cannot be resolved (see
+  /// [AppConstant.ref]).
+  SynthResult synth() => StackSynth.synth(this);
 
   /// Synthesise this Stack and write the result to [outDir].
   ///
   /// Always writes `${outDir}/main.tf.json` with two-space indentation,
-  /// creating [outDir] recursively if it does not exist. When
-  /// [setAppExportsOutputPath] was called, also writes the generated
-  /// constants file at that path (creating its parent directories
-  /// recursively) — an empty class when no export resolved to a
-  /// constant, so a stale constant never survives a re-synth.
-  ///
-  /// Throws [StateError] when exports were registered via [addExport]
-  /// but no output path was set via [setAppExportsOutputPath] — the
-  /// generated constants would otherwise be silently dropped.
+  /// creating [outDir] recursively if it does not exist. With [appExports]
+  /// set, also writes the generated Dart file at its path (creating its
+  /// parent directories), rewritten in full on every synth so a removed
+  /// constant or output never survives in it. Synth runs before any write,
+  /// so a failure leaves both files untouched.
   Future<void> writeTo(String outDir) async {
     final result = synth();
-
-    // Guard before any I/O so the failure mode is atomic — a writeTo call
-    // that throws StateError must NOT have produced a partial main.tf.json
-    // on disk. Otherwise users see a confusing tf-out/ directory next to
-    // the exception and assume the synth half-succeeded.
-    if (result.dartConstants != null && result.dartConstantsPath == null) {
-      final names = _appExports.keys.map((n) => '"$n"').join(', ');
-      throw StateError(
-        'AppExports $names produce Dart constants, but no output path was '
-        'set. Call setAppExportsOutputPath(...) in the Stack constructor, '
-        "e.g. setAppExportsOutputPath('lib/generated/<stack>.app.dart').",
-      );
-    }
 
     await Directory(outDir).create(recursive: true);
     await File(
       '$outDir/main.tf.json',
     ).writeAsString(const JsonEncoder.withIndent('  ').convert(result.tfJson));
 
-    if (result.dartConstants != null) {
-      final f = File(result.dartConstantsPath!);
+    final path = result.dartSourcePath;
+    final source = result.dartSource;
+    if (path != null && source != null) {
+      final f = File(path);
       await f.parent.create(recursive: true);
-      await f.writeAsString(result.dartConstants!);
+      await f.writeAsString(source);
     }
   }
 }

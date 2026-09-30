@@ -681,20 +681,20 @@ final class StackEmitter {
       }
     }
 
-    // --- outputs (resolved first: an export keeps its target's Dart local) --
+    // --- outputs (resolved first: an output keeps its target's Dart local) --
     final outputStatements = <StackStatement>[];
     for (final o in module.outputs) {
       if (noStack) {
         _keep('output.${o.name}', _noStackReason);
         continue;
       }
-      final export = _output(o);
-      if (export != null) {
+      final output = _output(o);
+      if (output != null) {
         outputStatements.add(
           StackStatement(
             tag: 'output.${o.name}',
-            text: export.statement,
-            uses: {export.address},
+            text: output.statement,
+            uses: {output.address},
           ),
         );
         _migrated.add(MigratedItem(address: 'output.${o.name}'));
@@ -771,12 +771,6 @@ final class StackEmitter {
     }
 
     body.addAll(outputStatements);
-    if (outputStatements.isNotEmpty) {
-      write(
-        'appExports',
-        'setAppExportsOutputPath(${dartString('lib/generated/$stackFile.app.dart')});',
-      );
-    }
 
     // --- everything else stays in Terraform ------------------------------
     for (final l in module.locals) {
@@ -1793,7 +1787,7 @@ final class StackEmitter {
       if (address == null || attribute.isEmpty) {
         throw MigrateBlocker(
           'only an output whose value is one resource or module attribute '
-          'becomes an export; this one stays in outputs.tf',
+          'becomes addOutput; this one stays in outputs.tf',
         );
       }
       final target = isModule ? null : ctx.targets[address];
@@ -1803,7 +1797,7 @@ final class StackEmitter {
           'output references "$address", which is not migrated',
         );
       }
-      final args = <String>['emitTerraformOutput: true'];
+      final args = <String>[];
       for (final entry in values.entries) {
         final v = entry.value;
         switch (entry.key) {
@@ -1820,27 +1814,22 @@ final class StackEmitter {
             if (v.value == true) args.add('sensitive: true');
           default:
             throw MigrateBlocker(
-              '"${entry.key}" has no export equivalent; the output stays in '
-              'outputs.tf',
+              '"${entry.key}" has no addOutput equivalent; the output stays '
+              'in outputs.tf',
             );
         }
       }
       final dartName = target?.dartName ?? moduleTarget!.dartName;
       final getterName = target != null
-          ? (target.getter(attribute)?.dartType == 'String'
-                ? target.getter(attribute)!.dartName
-                : null)
+          ? target.getter(attribute)?.dartName
           : moduleTarget!.getter(attribute)?.dartName;
       final ref = getterName != null
           ? '$dartName.$getterName'
-          : 'TfRef.attribute<String>($dartName, ${dartString(attribute)})';
-      final key = isDartIdentifier(o.name) ? o.name : lowerCamel(o.name);
-      if (key != o.name) args.add('terraformOutputName: ${dartString(o.name)}');
+          : 'TfRef.attribute<Object?>($dartName, ${dartString(attribute)})';
       _outputRefs.add(address);
       return (
         statement:
-            'addExport(${dartString(key)}, '
-            "ResourceIdExport($ref, ${args.join(', ')}));",
+            'addOutput(${[dartString(o.name), '.ref($ref)', ...args].join(', ')});',
         address: address,
       );
     } on MigrateBlocker catch (e) {

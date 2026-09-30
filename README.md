@@ -149,7 +149,7 @@ Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_qui
 - A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
 - A renamed topic or secret silently breaks runtime resolution because the reference is a string.
 
-TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), exports whose value is a literal in the Stack are emitted as typed Dart constants in `<stack>.app.dart` that your app/function code imports directly — while values only known after apply (IDs, URLs) become standard Terraform outputs.
+TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), each `addConstant` becomes a typed Dart constant in `<stack>.app.dart` that your app/function code imports directly — `.ref` reads the literal a resource attribute is set to, so the value is written once — while `addOutput` declares a standard Terraform output for values only known after apply (IDs, URLs).
 
 ```dart
 // infra/lib/orders_stack.dart
@@ -159,15 +159,17 @@ import 'package:terradart_google/pubsub.dart';
 
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
-      : super(providers: [GoogleProvider(project: projectId)]) {
-    final orders = GooglePubsubTopic(
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final orders = add(GooglePubsubTopic(
       localName: 'orders',
       name: .literal('orders-prod'),
       messageRetentionDuration: .literal('604800s'),
-    );
-    add(orders);
-    addExport('ORDERS_TOPIC', ResourceIdExport(orders.nameRef));
-    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+    ));
+    addConstant('ordersTopic', .ref(orders.nameRef));
+    addOutput('orders_topic_id', .ref(orders.id));
   }
 }
 ```
@@ -177,13 +179,15 @@ final class OrdersStack extends Stack {
 import 'package:my_app_infra/generated/orders_stack.app.dart';
 
 Future<void> handle(PubsubEvent event) async {
-  if (event.topic == OrdersStackExports.ORDERS_TOPIC) {
+  if (event.topic == OrdersStackConstants.ordersTopic) {
     // ... process event
   }
 }
 ```
 
-Rename `orders-prod` in the Stack and the handler follows on the next synth — there is no second copy of the string to update. Rename or remove the export and the handler stops compiling.
+Values known only after apply are typed too: the same file holds `OrdersStackOutputs`, with a getter per output (`ordersTopicId`), built from `terraform output -json` (`OrdersStackOutputs.fromTerraformJson(...)`) or the service's environment (`OrdersStackOutputs.fromEnvironment(Platform.environment)`, reading `ORDERS_TOPIC_ID`).
+
+Rename `orders-prod` in the Stack and the handler follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and the handler stops compiling.
 
 ### Typed enums for every fixed-value field
 

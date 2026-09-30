@@ -205,7 +205,7 @@ output "label" {
       expect(sidecar.placements['local.suffix'], localsFileName);
       expect(sidecar.files[outputsFileName], contains('output "label" {'));
       expect(sidecar.files[outputsFileName], isNot(contains('output "topic"')));
-      expect(r.stackSource, contains("addExport(r'topic'"));
+      expect(r.stackSource, contains("addOutput(r'topic'"));
     });
   });
 
@@ -270,7 +270,7 @@ output "id" {
 ''', childModule: true);
     expect(r.stackSource, contains('providers: [const GoogleProvider()]'));
     expect(r.stackSource, isNot(contains('GcsBackend')));
-    expect(r.stackSource, contains("addExport(r'id'"));
+    expect(r.stackSource, contains("addOutput(r'id'"));
     expect(
       r.report.kept.map((k) => k.address),
       unorderedEquals(['provider.google', 'terraform.backend']),

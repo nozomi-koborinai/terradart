@@ -45,13 +45,16 @@ import 'package:terradart_google/pubsub.dart';
 
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
-      : super(providers: [GoogleProvider(project: projectId)]) {
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
     final topic = add(GooglePubsubTopic(
       localName: 'orders',
       name: .literal('orders-prod'),
     ));
-    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
-    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
   }
 }
 ```
@@ -73,7 +76,7 @@ Future<void> main() async {
 dart run bin/infra.dart
 ```
 
-This writes `tf-out/main.tf.json` and, when exports are literal-resolvable, `lib/generated/orders_stack.app.dart`.
+This writes `tf-out/main.tf.json` (with the `orders_topic_id` output) and `lib/generated/orders_stack.app.dart` (with the `ordersTopicName` constant).
 
 ## 4. Plan and apply
 
@@ -94,10 +97,16 @@ Import generated constants in app code instead of string literals:
 import 'generated/orders_stack.app.dart';
 
 bool acceptsTopic(String eventTopic) =>
-    eventTopic == OrdersStackExports.ORDERS_TOPIC_NAME;
+    eventTopic == OrdersStackConstants.ordersTopicName;
 ```
 
-Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the export and `dart analyze` fails. See [Architecture — AppExport](/docs/architecture/#appexport-the-iac--app-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+Values known only after apply, such as the topic's full ID, come from the generated `OrdersStackOutputs` reader. A deployed service reads them from its environment (`ORDERS_TOPIC_ID`); a script can read `terraform output -json`:
+
+```dart
+final topicId = OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
+```
+
+Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 ## 6. Composing GA and Beta providers (Firebase + Google Cloud)
 

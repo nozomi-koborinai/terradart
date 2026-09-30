@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_logging_setting.dart'
+    show GoogleGeminiLoggingSetting;
+
 /// Sensitive field paths for `google_gemini_logging_setting_binding`.
 const Set<String> _googleGeminiLoggingSettingBindingSensitive = <String>{};
 
@@ -45,7 +48,7 @@ final class GoogleGeminiLoggingSettingBinding extends Resource {
 
   GoogleGeminiLoggingSettingBinding({
     required super.localName,
-    required TfArg<String> loggingSettingId,
+    required RefTo<GoogleGeminiLoggingSetting> loggingSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -60,7 +63,9 @@ final class GoogleGeminiLoggingSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'logging_setting_id': loggingSettingId,
+           'logging_setting_id': loggingSettingId.encodeAs(
+             'logging_setting_id',
+           ),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,

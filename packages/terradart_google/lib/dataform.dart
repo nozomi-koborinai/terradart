@@ -17,9 +17,13 @@ export 'src/dataform/google_dataform_repository.dart'
         DataformRepositoryWorkspaceCompilationOverrides,
         GoogleDataformRepository;
 export 'src/dataform/google_dataform_repository_iam_binding.dart'
-    show GoogleDataformRepositoryIamBinding;
+    show
+        DataformRepositoryIamBindingCondition,
+        GoogleDataformRepositoryIamBinding;
 export 'src/dataform/google_dataform_repository_iam_member.dart'
-    show GoogleDataformRepositoryIamMember;
+    show
+        DataformRepositoryIamMemberCondition,
+        GoogleDataformRepositoryIamMember;
 export 'src/dataform/google_dataform_repository_iam_policy.dart'
     show GoogleDataformRepositoryIamPolicy;
 export 'src/dataform/google_dataform_team_folder.dart'

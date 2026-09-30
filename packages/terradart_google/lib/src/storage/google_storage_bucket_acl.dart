@@ -24,7 +24,7 @@ const Set<String> _googleStorageBucketAclSensitive = <String>{};
 /// ```dart
 /// GoogleStorageBucketAcl(
 ///   localName: 'legacy_acl',
-///   bucket: TfArg.ref(legacy.nameRef),
+///   bucket: legacy.ref,
 ///   predefinedAcl: TfArg.literal('private'),
 /// );
 /// ```

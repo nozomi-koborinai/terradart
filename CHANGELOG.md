@@ -8,6 +8,22 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Typed outputs reader** (`terradart_core`) — the `appExports` file also
+  holds `<Stack>Outputs`: one getter per non-sensitive `addOutput`, typed
+  like its value and named in lowerCamelCase, built from `terraform output
+  -json` (`fromTerraformJson`) or the app's environment (`fromEnvironment`,
+  one SCREAMING_SNAKE_CASE variable per output, JSON for non-`String`
+  values). Getters read lazily and throw a `StateError` naming the output
+  and variable when a value is missing or mistyped. With `appExports` set,
+  `addOutput` rejects a name whose getter is not a usable identifier or
+  whose getter or variable another output has.
+- **`Stack.outputEnvironment()`** (`terradart_core`, cookbook) — the
+  variables that reader's `fromEnvironment` reads, as a
+  `Map<String, TfArg<String>>` of the non-sensitive outputs registered so far
+  (`only:` picks some): a `String` output as is, any other as
+  `jsonencode(...)`. Pass it to a Cloud Run service's `env` and the app reads
+  the outputs without a variable name written twice; the `single-project-app`
+  recipe passes its Cloud SQL outputs this way.
 - **Typed resource references, part 2** (`terradart_codegen`,
   `terradart_migrate`, `tool/`) — `tool/reference_targets.yaml` lists which
   string inputs name another resource: name patterns per referenced type
@@ -57,6 +73,38 @@ Per-package changelogs live alongside each package and are the system of record 
   `allowedCidrBlocks` is a string list again). Five AWS QuickSight helpers
   split where the element type tells two block shapes apart. Synth output
   is unchanged. See `MIGRATING.md`.
+
+- **`addOutput` and `addConstant` replace `addExport`** (`terradart_core`,
+  `terradart_migrate`, examples, cookbook) — **Breaking.** A Terraform
+  output and a Dart constant are two methods now, both written with dot
+  shorthands: `addOutput('orders_topic_id', .ref(topic.id), description:
+  ..., sensitive: ...)` takes any `TfArg`, and `addConstant('ordersTopicName',
+  .ref(topic.nameRef))` takes a sealed `AppConstant<T>` — `.ref` (the literal
+  an attribute is set to), `.value` (any `String` / `int` / `double` / `num` /
+  `bool` / `Object` value, or a `List` / `String`-keyed `Map` of them) or
+  `.fromEnvironment` (`String.fromEnvironment`). The constants file moves to
+  the constructor (`appExports: AppExports('lib/generated/<stack>.app.dart')`)
+  and its class is `<Stack>Constants`. Both methods validate at registration
+  (identifier, duplicate, type, a sensitive field read by a non-sensitive
+  output), and synth fails with a `StateError` saying what a `.ref`
+  constant's attribute is set by when it is not a literal, instead of
+  silently dropping the constant. The file is rewritten on every synth.
+  `terradart-migrate` writes `addOutput` for a translated `output` block.
+  `AppExport`, `ResourceIdExport`, `ResourceAttributeExport`, `StringExport`, `EnvBackedExport`,
+  `setAppExportsOutputPath`, and the synth internals the barrel exported
+  (`DartConstantsEmitter`, `LiteralResolver`, `OutputEmitter`) are removed;
+  see [MIGRATING.md](MIGRATING.md).
+
+- **Gemini setting bindings and the Observability link take `RefTo<R>`**
+  (**breaking**; `terradart_google`) — `tool/reference_targets.yaml` gains
+  rules for the parent setting id of the seven Gemini setting bindings, the
+  Code Repository Index and Repository Group ids of `google_gemini_repository_group`
+  and its IAM adjuncts, and the `bucket` of `google_observability_link`
+  (an Observability bucket's `bucket_id`): 17 more typed inputs. Pass
+  `setting.ref`; `.literal('id')` still compiles. Synth output changes only
+  where an example now wires the parent: `gemini_quickstart` and
+  `deferred_leftover_quickstart` emit the parent's id attribute instead of
+  the same literal. See `MIGRATING.md`.
 - **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
   wherever the argument has a static type, a migrated Stack reads like the
   examples: `name: .literal('orders')`, `instance: .ref(db.nameRef)`,
@@ -161,6 +209,35 @@ Per-package changelogs live alongside each package and are the system of record 
   `ContainerCluster*` / `ContainerNodePool*` helpers for every block.
   A `max_items = 1` block a hand helper emitted as a one-element list is an
   object. See `MIGRATING.md`.
+- **The last hand-written Google sealed helpers are derived**
+  (**breaking**; `terradart_google`) — `GoogleConfigDeployment`,
+  `GoogleEdgecontainerCluster`, `GoogleFirebaseAppHostingBuild`,
+  `GoogleGkeBackupRestorePlan`, `GoogleVertexAiRagEngineConfig` and
+  `GoogleNetworkConnectivitySpoke` take derived helpers, so their groups
+  are sealed by the generator and the spoke's producer VPC `network` takes
+  `RefTo<GoogleComputeNetwork>`. An override's `exactlyOneOf` entry now
+  tightens a Magic Modules `conflicts` group to exactly one, which keeps
+  the spoke's `attachment` required. `GoogleIamWorkforcePoolProvider`'s
+  `extendedAttributesOauth2Client` / `scimUsage` are one nullable sealed
+  `groupSource`. The Magic Modules parser treats an object whose fields
+  are all output as output, so `GoogleChronicleFeed` no longer derives a
+  helper for `failure_details` and `GoogleCesApp` no longer takes the
+  output-only `dataStoreSettings`. See `MIGRATING.md`.
+- **Remaining Compute, networking and DNS blocks use derived helper
+  types** (**breaking**; `terradart_google`) — the 97 Compute, networking,
+  DNS and certificate overrides without `deriveNestedTypes` set it: 37
+  `TfArg<Map>` inputs on 36 factories (mostly IAM `condition`) take
+  derived helpers, and 12 inputs a hand `paramOrder` hid are exposed
+  (`params`, `macsec`, `cipherSuite`, `vpnInterfaces`, ...). Synth
+- **Remaining data, analytics and storage blocks use derived helper
+  types** (**breaking**; `terradart_google`) — the 156 data, analytics,
+  storage, database, Pub/Sub and data-source overrides without
+  `deriveNestedTypes` set it: 111 `TfArg<Map>` inputs on 109 factories
+  (mostly IAM `condition`) take derived helpers, and 3 inputs a hand
+  `paramOrder` hid are exposed (`requiredAspects`, `metastore`, and the
+  FHIR store IAM member's `condition`). The data-source leftover example
+  generator fills a required derived helper from a reviewed table. Synth
+  output is unchanged. See `MIGRATING.md`.
 - **Remaining security, IAM and resource-manager blocks use derived
   helper types** (**breaking**; `terradart_google`) — the 124 security,
   IAM, KMS, secrets, org-policy and resource-manager overrides without
@@ -267,20 +344,6 @@ Per-package changelogs live alongside each package and are the system of record 
   exactly-one groups are sealed. The weekly schema bump re-syncs the MM YAML
   with the google-beta ride-along. Synth output is unchanged; see
   [MIGRATING.md](MIGRATING.md).
-
-### Fixed
-
-- **No stale AppExport constants** (`terradart_core`) — with
-  `setAppExportsOutputPath` set, `writeTo` rewrites the constants file on
-  every synth, as an empty class when no export resolves to a constant.
-  Before, a constant that stopped resolving (a `.literal` name changed to
-  `.variable`) left the old file behind and the app compiled against the
-  old value.
-- **Terraform output name collisions** (`terradart_core`) — `addExport`
-  throws `ArgumentError` when a second export would emit the same `output`
-  name (`terraformOutputName ?? name`); the later one used to overwrite the
-  earlier one silently. The missing-output-path `StateError` now names the
-  exports concerned.
 
 ## [0.30.0] - 2026-09-28
 

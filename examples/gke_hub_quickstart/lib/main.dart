@@ -12,7 +12,7 @@
 /// (the project's default fleet is auto-created), so the stack creates and
 /// destroys cleanly in a single project.
 ///
-/// Exports the scope id as a typed Dart constant via `Stack.addExport`.
+/// Exports the scope id as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -27,7 +27,10 @@ final class FleetStack extends Stack {
   FleetStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/fleet_stack.app.dart'),
       ) {
+    const fleetScopeId = 'terradart-scope';
+
     final apiGkeHub = add(
       GoogleProjectService(
         localName: 'api_gkehub',
@@ -39,7 +42,7 @@ final class FleetStack extends Stack {
     final scope = add(
       GoogleGkeHubScope(
         localName: 'team_scope',
-        scopeId: .literal('terradart-scope'),
+        scopeId: .literal(fleetScopeId),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),
     );
@@ -48,7 +51,7 @@ final class FleetStack extends Stack {
       GoogleGkeHubNamespace(
         localName: 'team_namespace',
         scopeNamespaceId: .literal('terradart-team'),
-        scopeId: .literal('terradart-scope'),
+        scopeId: .literal(fleetScopeId),
         scope: .ref(scope.id),
         dependsOn: [ResourceDependency(scope)],
       ),
@@ -61,7 +64,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeRbacRoleBinding(
         localName: 'team_view',
-        scopeId: .literal('terradart-scope'),
+        scopeId: .literal(fleetScopeId),
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),
@@ -100,7 +103,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeIamMember(
         localName: 'team_scope_viewer',
-        scopeId: .literal('terradart-scope'),
+        scopeId: .literal(fleetScopeId),
         role: .literal('roles/viewer'),
         member: .ref(teamReader.iamMember),
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
@@ -108,14 +111,9 @@ final class FleetStack extends Stack {
     );
 
     // Literal scope id -- emitted as a Dart constant at synth time.
-    addExport('FLEET_SCOPE_ID', StringExport('terradart-scope'));
+    addConstant('fleetScopeId', const .value(fleetScopeId));
 
     // Full scope resource name -- Terraform output only (computed).
-    addExport(
-      'FLEET_SCOPE_NAME',
-      ResourceIdExport(scope.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/fleet_stack.app.dart');
+    addOutput('fleet_scope_name', .ref(scope.id));
   }
 }

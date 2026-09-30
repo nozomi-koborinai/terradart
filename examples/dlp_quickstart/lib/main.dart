@@ -196,21 +196,9 @@ final class DlpStack extends Stack {
       ),
     );
 
-    addExport(
-      'DLP_INSPECT_TEMPLATE_ID',
-      ResourceIdExport(inspect.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'DLP_DEIDENTIFY_TEMPLATE_ID',
-      ResourceIdExport(deidentify.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'DLP_STORED_INFO_TYPE_ID',
-      ResourceIdExport(stored.id, emitTerraformOutput: true),
-    );
-    addExport(
-      'DLP_JOB_TRIGGER_ID',
-      ResourceIdExport(trigger.id, emitTerraformOutput: true),
-    );
+    addOutput('dlp_inspect_template_id', .ref(inspect.id));
+    addOutput('dlp_deidentify_template_id', .ref(deidentify.id));
+    addOutput('dlp_stored_info_type_id', .ref(stored.id));
+    addOutput('dlp_job_trigger_id', .ref(trigger.id));
   }
 }

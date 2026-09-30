@@ -11,7 +11,7 @@ curatedDoc: |-
   /// `bootstrap`, zip it, and pass the zip as `code: .filename(...)` with
   /// `handler: TfArg.literal('bootstrap')`.
   ///
-  /// `role` takes the execution role's ARN (`TfArg.ref(role.arn)`).
+  /// `role` takes the execution role (`role.ref`) and emits its ARN.
   /// `code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with
   /// `s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`
   /// zip so a rebuilt zip redeploys.

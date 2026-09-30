@@ -1,5 +1,6 @@
 outputDir: healthcare
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -13,3 +14,4 @@ paramOrder:
   - fhir_store_id
   - role
   - member
+  - condition

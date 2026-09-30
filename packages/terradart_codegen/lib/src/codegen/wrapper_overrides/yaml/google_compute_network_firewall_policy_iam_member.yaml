@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -8,4 +9,5 @@ paramOrder:
   - name
   - role
   - member
+  - condition
   - project

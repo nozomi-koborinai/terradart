@@ -69,7 +69,7 @@ enum PublicKeyType implements TerraformEnum {
 /// - `serviceAccountId`: the parent SA. Accepts either the bare account
 ///   email/uniqueId (project is inferred from the provider) or the full
 ///   `projects/{project}/serviceAccounts/{email}` path. Passing
-///   `TfArg.ref(sa.name)` is the canonical form.
+///   `sa.ref` (it emits the SA's `name`) is the canonical form.
 ///
 /// Optional knobs:
 /// - `keyAlgorithm`: signing algorithm ([KeyAlgorithm]).

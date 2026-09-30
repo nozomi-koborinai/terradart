@@ -25076,7 +25076,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `aws_iam_role_policy_attachment`.\n\nAttaches one managed IAM policy to an [AwsIamRole]. Additive: other\nattachments on the role are left alone.\n\n`role` takes the role **name** (`TfArg.ref(role.nameRef)`), not its ARN.\nAWS-managed policies use ARNs such as\n`arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.',
+        'Factory wrapper for `aws_iam_role_policy_attachment`.\n\nAttaches one managed IAM policy to an [AwsIamRole]. Additive: other\nattachments on the role are left alone.\n\n`role` takes the role (`role.ref`) and emits its **name**, not its ARN.\nAWS-managed policies use ARNs such as\n`arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.',
   ),
   CatalogEntry(
     tfType: 'aws_iam_role_policy_attachments',
@@ -28791,7 +28791,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `aws_lambda_function`.\n\nAWS **Lambda function**. A Dart backend runs on the `provided.al2023`\ncustom runtime: compile it with `dart compile exe` to a binary named\n`bootstrap`, zip it, and pass the zip as `code: .filename(...)` with\n`handler: TfArg.literal(\'bootstrap\')`.\n\n`role` takes the execution role\'s ARN (`TfArg.ref(role.arn)`).\n`code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with\n`s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`\nzip so a rebuilt zip redeploys.',
+        'Factory wrapper for `aws_lambda_function`.\n\nAWS **Lambda function**. A Dart backend runs on the `provided.al2023`\ncustom runtime: compile it with `dart compile exe` to a binary named\n`bootstrap`, zip it, and pass the zip as `code: .filename(...)` with\n`handler: TfArg.literal(\'bootstrap\')`.\n\n`role` takes the execution role (`role.ref`) and emits its ARN.\n`code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with\n`s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`\nzip so a rebuilt zip redeploys.',
   ),
   CatalogEntry(
     tfType: 'aws_lambda_function',

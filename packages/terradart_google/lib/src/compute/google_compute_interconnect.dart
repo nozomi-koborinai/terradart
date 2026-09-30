@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_interconnect`.
@@ -50,6 +51,58 @@ enum ComputeInterconnectState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `macsec` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectMacsec {
+  const ComputeInterconnectMacsec({this.failOpen, required this.preSharedKeys});
+
+  final TfArg<bool>? failOpen;
+
+  final List<ComputeInterconnectMacsecPreSharedKeys> preSharedKeys;
+
+  Map<String, Object?> encode() => {
+    'fail_open': ?failOpen?.toTfJson(),
+    'pre_shared_keys': [for (final e in preSharedKeys) e.encode()],
+  };
+}
+
+/// Typed helper for the `macsec.pre_shared_keys` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectMacsecPreSharedKeys {
+  const ComputeInterconnectMacsecPreSharedKeys({
+    this.failOpen,
+    required this.name,
+    this.startTime,
+  });
+
+  final TfArg<bool>? failOpen;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? startTime;
+
+  Map<String, Object?> encode() => {
+    'fail_open': ?failOpen?.toTfJson(),
+    'name': name.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectParams {
+  const ComputeInterconnectParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_interconnect`.
 ///
 /// Represents an Interconnect resource. The Interconnect resource is a
@@ -72,6 +125,8 @@ final class GoogleComputeInterconnect extends Resource {
     TfArg<String>? remoteLocation,
     TfArg<List<String>>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
+    ComputeInterconnectMacsec? macsec,
+    ComputeInterconnectParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -94,6 +149,8 @@ final class GoogleComputeInterconnect extends Resource {
            'remote_location': ?remoteLocation,
            'requested_features': ?requestedFeatures,
            'labels': ?labels,
+           if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

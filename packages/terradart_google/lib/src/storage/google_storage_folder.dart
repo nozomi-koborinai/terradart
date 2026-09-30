@@ -27,7 +27,7 @@ const Set<String> _googleStorageFolderSensitive = <String>{};
 /// ```dart
 /// GoogleStorageFolder(
 ///   localName: 'reports',
-///   bucket: TfArg.ref(assets.nameRef),
+///   bucket: assets.ref,
 ///   name: TfArg.literal('reports/'),
 ///   forceDestroy: TfArg.literal(true),
 /// );

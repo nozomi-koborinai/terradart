@@ -1,5 +1,6 @@
 outputDir: storage
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -21,7 +22,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleStorageHmacKey(
   ///   localName: 'backup_hmac',
-  ///   serviceAccountEmail: TfArg.ref(sa.emailRef),
+  ///   serviceAccountEmail: sa.ref,
   /// );
   /// ```
 

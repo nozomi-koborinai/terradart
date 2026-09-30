@@ -27,6 +27,7 @@ final class MetastoreStack extends Stack {
   MetastoreStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/metastore_stack.app.dart'),
       ) {
     final warehouse = 'gs://$projectId-terradart-biglake';
     // Globally unique GCS bucket name (= Iceberg catalog name).
@@ -63,10 +64,10 @@ final class MetastoreStack extends Stack {
         name: .literal('terradart_db'),
         catalog: .ref(catalog.id),
         type: .literal('HIVE'),
-        hiveOptions: .literal(<String, Object?>{
-          'location_uri': '$warehouse/terradart_db',
-          'parameters': {'owner': 'terradart'},
-        }),
+        hiveOptions: BiglakeDatabaseHiveOptions(
+          locationUri: .literal('$warehouse/terradart_db'),
+          parameters: .literal({'owner': 'terradart'}),
+        ),
         dependsOn: [ResourceDependency(catalog)],
       ),
     );
@@ -77,15 +78,16 @@ final class MetastoreStack extends Stack {
         name: .literal('terradart_orders'),
         database: .ref(database.id),
         type: .literal('HIVE'),
-        hiveOptions: .literal(<String, Object?>{
-          'table_type': 'MANAGED_TABLE',
-          'storage_descriptor': {
-            'location_uri': '$warehouse/terradart_db/orders',
-            'input_format': 'org.apache.hadoop.mapred.TextInputFormat',
-            'output_format':
-                'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat',
-          },
-        }),
+        hiveOptions: BiglakeTableHiveOptions(
+          tableType: .literal('MANAGED_TABLE'),
+          storageDescriptor: BiglakeTableHiveOptionsStorageDescriptor(
+            locationUri: .literal('$warehouse/terradart_db/orders'),
+            inputFormat: .literal('org.apache.hadoop.mapred.TextInputFormat'),
+            outputFormat: .literal(
+              'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat',
+            ),
+          ),
+        ),
         dependsOn: [ResourceDependency(database)],
       ),
     );
@@ -206,14 +208,9 @@ final class MetastoreStack extends Stack {
     );
 
     // Literal catalog name -- emitted as a Dart constant at synth time.
-    addExport('CATALOG_NAME', StringExport('terradart_catalog'));
+    addConstant('catalogName', .ref(catalog.nameRef));
 
     // Full catalog resource id -- Terraform output only (computed).
-    addExport(
-      'CATALOG_ID',
-      ResourceIdExport(catalog.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/metastore_stack.app.dart');
+    addOutput('catalog_id', .ref(catalog.id));
   }
 }

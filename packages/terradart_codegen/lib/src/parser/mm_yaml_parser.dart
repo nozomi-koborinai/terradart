@@ -49,6 +49,10 @@ class MmResourceOverrides {
   /// [fieldOverrides] leaves out.
   final Map<String, List<String>> enumValuesByPath;
 
+  /// Dotted Terraform paths of the `output: true` properties, and of every
+  /// property below one.
+  final Set<String> outputPaths;
+
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
@@ -57,6 +61,7 @@ class MmResourceOverrides {
     this.exactlyOneOfPaths = const [],
     this.atMostOneOfPaths = const [],
     this.enumValuesByPath = const {},
+    this.outputPaths = const {},
   });
 }
 
@@ -108,6 +113,9 @@ class MmYamlParser {
       exactlyOneOfPaths: combined.exactlyOne,
       atMostOneOfPaths: combined.atMostOne,
       enumValuesByPath: enums,
+      outputPaths: {
+        for (final o in paths.outputs) paths.terraformPath(o.split('.')),
+      },
     );
   }
 
@@ -217,6 +225,21 @@ class MmYamlParser {
           pathSink,
           enumSink,
         );
+      }
+      // An object of output fields is an output itself, unless its empty
+      // form is a value the caller sends (`allow_empty_object`).
+      if (nested.isNotEmpty &&
+          prop['allow_empty_object'] != true &&
+          nested.every(
+            (n) => pathSink.outputs.contains(
+              [
+                if (childPrefix.isNotEmpty) childPrefix,
+                (n as YamlMap)['api_name'] as String? ??
+                    _toSnakeCase(n['name'] as String),
+              ].join('.'),
+            ),
+          )) {
+        pathSink.outputs.add(fullKey);
       }
     }
     final item = prop['item_type'];

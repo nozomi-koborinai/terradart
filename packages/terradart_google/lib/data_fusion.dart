@@ -21,8 +21,12 @@ export 'src/data_fusion/google_data_fusion_instance.dart'
         DataFusionInstanceType,
         GoogleDataFusionInstance;
 export 'src/data_fusion/google_data_fusion_instance_iam_binding.dart'
-    show GoogleDataFusionInstanceIamBinding;
+    show
+        DataFusionInstanceIamBindingCondition,
+        GoogleDataFusionInstanceIamBinding;
 export 'src/data_fusion/google_data_fusion_instance_iam_member.dart'
-    show GoogleDataFusionInstanceIamMember;
+    show
+        DataFusionInstanceIamMemberCondition,
+        GoogleDataFusionInstanceIamMember;
 export 'src/data_fusion/google_data_fusion_instance_iam_policy.dart'
     show GoogleDataFusionInstanceIamPolicy;

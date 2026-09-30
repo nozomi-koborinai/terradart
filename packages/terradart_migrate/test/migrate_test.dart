@@ -37,7 +37,8 @@ const _google = {
 void main() {
   group('passthrough slots', () {
     // The two passthrough parameter shapes a catalog carries: a
-    // `TfArg<Map<String, dynamic>>` (an IAM `condition`) and a bare
+    // `TfArg<Map<String, dynamic>>` (`aws_s3_bucket`'s deprecated
+    // `object_lock_configuration`) and a bare
     // `Map<String, Object?>` spread into its block (`advancedExtra` on a
     // hand-written helper). The manifest's `wrapped` flag tells them apart;
     // emitting `TfArg.literal` for the bare one produced a Stack that did
@@ -130,16 +131,22 @@ void main() {
 
     test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
       const expected =
-          "condition: .literal({r'title': r'expires', r'expression': r'true'})";
+          "objectLockConfiguration: .literal({r'object_lock_enabled': r'Enabled'})";
+      final aws = {
+        'required_providers': {
+          'aws': {
+            'source': 'hashicorp/aws',
+            'version': kAwsProviderVersionConstraint,
+          },
+        },
+      };
       final json = _migrateJson({
-        'terraform': _google,
+        'terraform': aws,
         'resource': {
-          'google_pubsub_topic_iam_member': {
-            'viewer': {
-              'topic': 'orders',
-              'role': 'roles/pubsub.viewer',
-              'member': 'user:a@example.com',
-              'condition': {'title': 'expires', 'expression': 'true'},
+          'aws_s3_bucket': {
+            'logs': {
+              'bucket': 'logs',
+              'object_lock_configuration': {'object_lock_enabled': 'Enabled'},
             },
           },
         },
@@ -151,17 +158,14 @@ void main() {
       final hcl = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 8.0" }
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
   }
 }
 
-resource "google_pubsub_topic_iam_member" "viewer" {
-  topic  = "orders"
-  role   = "roles/pubsub.viewer"
-  member = "user:a@example.com"
-  condition {
-    title      = "expires"
-    expression = "true"
+resource "aws_s3_bucket" "logs" {
+  bucket = "logs"
+  object_lock_configuration {
+    object_lock_enabled = "Enabled"
   }
 }
 ''');
@@ -170,15 +174,13 @@ resource "google_pubsub_topic_iam_member" "viewer" {
 
       // The tf.json list form of a block written once fits a Map parameter.
       final listForm = _migrateJson({
-        'terraform': _google,
+        'terraform': aws,
         'resource': {
-          'google_pubsub_topic_iam_member': {
-            'viewer': {
-              'topic': 'orders',
-              'role': 'roles/pubsub.viewer',
-              'member': 'user:a@example.com',
-              'condition': [
-                {'title': 'expires', 'expression': 'true'},
+          'aws_s3_bucket': {
+            'logs': {
+              'bucket': 'logs',
+              'object_lock_configuration': [
+                {'object_lock_enabled': 'Enabled'},
               ],
             },
           },
@@ -259,16 +261,8 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         ),
       );
       expect(src, contains("addData(GoogleProject(localName: r'current'))"));
-      expect(
-        src,
-        contains("ResourceIdExport(orders.id, emitTerraformOutput: true)"),
-      );
-      expect(
-        src,
-        contains(
-          "setAppExportsOutputPath(r'lib/generated/pubsub_quickstart_stack.app.dart')",
-        ),
-      );
+      expect(src, contains("addOutput(r'ORDERS_TOPIC_ID', .ref(orders.id));"));
+      expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
       expect(src, isNot(contains('final ordersPush =')));
       expect(src, contains('final orders = add('));
@@ -1238,7 +1232,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings.single, contains('"other"'));
     });
 
-    test('outputs: one attribute becomes an export, anything else is kept', () {
+    test('outputs: one attribute becomes addOutput, anything else is kept', () {
       final r = _migrateJson({
         'terraform': _google,
         'resource': {
@@ -1259,13 +1253,13 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addExport(r'topicId', ResourceIdExport(x.id, emitTerraformOutput: true, description: r'the id', sensitive: true, terraformOutputName: r'topic-id'));",
+          "addOutput(r'topic-id', .ref(x.id), description: r'the id', sensitive: true);",
         ),
       );
       expect(
         r.stackSource,
         contains(
-          "addExport(r'labels', ResourceIdExport(TfRef.attribute<String>(x, r'labels'), emitTerraformOutput: true));",
+          "addOutput(r'labels', .ref(TfRef.attribute<Object?>(x, r'labels')));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');
@@ -1371,7 +1365,7 @@ output "first" {
           "addMoved(r'google_pubsub_topic.t[1]', r'google_pubsub_topic.t_1');",
         ),
       );
-      expect(src, contains("addExport(r'first', ResourceIdExport(t0.id"));
+      expect(src, contains("addOutput(r'first', .ref(t0.id));"));
       expect(r.report.renderText(), contains('Unrolled (1):'));
     });
 
@@ -2154,9 +2148,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "addExport(r'topic_prefix', ResourceIdExport("
-          "TfRef.attribute<String>(naming, r'prefix'), "
-          'emitTerraformOutput: true))',
+          "addOutput(r'topic_prefix', .ref("
+          "TfRef.attribute<Object?>(naming, r'prefix')))",
         ),
       );
     });

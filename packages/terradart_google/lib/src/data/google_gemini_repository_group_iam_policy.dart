@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../gemini/google_gemini_repository_group_iam_policy.dart';
+import '../gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+import '../gemini/google_gemini_repository_group.dart'
+    show GoogleGeminiRepositoryGroup;
 
 /// Sensitive field paths for `google_gemini_repository_group_iam_policy`.
 const Set<String> _googleGeminiRepositoryGroupIamPolicySensitive = <String>{};
@@ -16,19 +20,23 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
 
   DataGoogleGeminiRepositoryGroupIamPolicy({
     required super.localName,
-    required TfArg<String> codeRepositoryIndex,
+    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     TfArg<String>? location,
     TfArg<String>? project,
-    required TfArg<String> repositoryGroupId,
+    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'code_repository_index': codeRepositoryIndex,
+           'code_repository_index': codeRepositoryIndex.encodeAs(
+             'code_repository_index_id',
+           ),
            'location': ?location,
            'project': ?project,
-           'repository_group_id': repositoryGroupId,
+           'repository_group_id': repositoryGroupId.encodeAs(
+             'repository_group_id',
+           ),
          },
        );
 

@@ -8,7 +8,7 @@
 ///   service account (serialized so destroy cannot race SetIamPolicy),
 ///
 /// and exports the namespace id as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'dart:convert';
@@ -36,7 +36,10 @@ final class RegistryStack extends Stack {
   RegistryStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/registry_stack.app.dart'),
       ) {
+    const registryNamespaceId = 'terradart-registry';
+
     final apiServiceDirectory = add(
       GoogleProjectService(
         localName: 'api_servicedirectory',
@@ -58,7 +61,7 @@ final class RegistryStack extends Stack {
     final namespace = add(
       GoogleServiceDirectoryNamespace(
         localName: 'registry',
-        namespaceId: .literal('terradart-registry'),
+        namespaceId: .literal(registryNamespaceId),
         location: .literal('us-central1'),
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiServiceDirectory)],
@@ -175,14 +178,9 @@ final class RegistryStack extends Stack {
     );
 
     // Literal namespace id -- emitted as a Dart constant at synth time.
-    addExport('REGISTRY_NAMESPACE_ID', StringExport('terradart-registry'));
+    addConstant('registryNamespaceId', const .value(registryNamespaceId));
 
     // Full service resource id -- Terraform output only (computed).
-    addExport(
-      'REGISTRY_SERVICE_ID',
-      ResourceIdExport(service.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/registry_stack.app.dart');
+    addOutput('registry_service_id', .ref(service.id));
   }
 }

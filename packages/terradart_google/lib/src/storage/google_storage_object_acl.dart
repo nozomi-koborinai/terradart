@@ -24,7 +24,7 @@ const Set<String> _googleStorageObjectAclSensitive = <String>{};
 /// ```dart
 /// GoogleStorageObjectAcl(
 ///   localName: 'legacy_object_acl',
-///   bucket: TfArg.ref(legacy.nameRef),
+///   bucket: legacy.ref,
 ///   object: TfArg.literal('acl-marker.txt'),
 ///   predefinedAcl: TfArg.literal('private'),
 /// );

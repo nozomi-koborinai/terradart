@@ -2,6 +2,97 @@
 
 ## 0.30.x → next release
 
+### `addOutput` and `addConstant` replace `addExport`
+
+**Breaking (`terradart_core`)** — a Terraform output and a Dart constant are
+separate methods, and the constants file is a constructor parameter.
+`AppExport`, `ResourceIdExport`, `ResourceAttributeExport`, `StringExport`,
+`EnvBackedExport` and `setAppExportsOutputPath` are gone.
+
+```dart
+// Before
+final class OrdersStack extends Stack {
+  OrdersStack() : super(providers: [...]) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
+    addExport('ORDERS_TOPIC_ID', ResourceIdExport(topic.id, emitTerraformOutput: true));
+    addExport('API_VERSION', StringExport('v1'));
+    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+  }
+}
+// OrdersStackExports.ORDERS_TOPIC_NAME
+
+// After
+final class OrdersStack extends Stack {
+  OrdersStack()
+    : super(
+        providers: [...],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
+    addConstant('apiVersion', const .value('v1'));
+  }
+}
+// OrdersStackConstants.ordersTopicName
+```
+
+| Before | After |
+|--------|-------|
+| `ResourceIdExport(x.attr)` on a literal attribute | `addConstant('name', .ref(x.attr))` |
+| `ResourceIdExport(x.attr)` on an apply-time attribute (it became an output) | `addOutput('name', .ref(x.attr))` |
+| `emitTerraformOutput: true` | a separate `addOutput` |
+| `terraformOutputName: 'x'` | `addOutput('x', ...)` — the output name is the first argument |
+| `StringExport('v')` | `addConstant('name', const .value('v'))` — any `String` / `int` / `double` / `num` / `bool` / `Object`, or a `List` / `String`-keyed `Map` of them |
+| `EnvBackedExport(envVarName: 'X')` | `addConstant('name', .fromEnvironment('X'))` |
+| `setAppExportsOutputPath(path)` | `appExports: AppExports(path)` on the `super(...)` call |
+| `synth(stackName: 'Custom')` | `AppExports(path, name: 'Custom')` |
+| `SynthResult.dartConstants` | `SynthResult.dartSource` (and `dartSourcePath`) |
+| `OrdersStackExports.ORDERS_TOPIC_NAME` | `OrdersStackConstants.ordersTopicName` |
+
+What changes in behavior:
+
+- **A `.ref` constant that cannot resolve fails synth.** `ResourceIdExport`
+  silently dropped the constant when its attribute was not a literal (and
+  emitted an output instead). `addConstant(.ref(...))` throws a `StateError`
+  that says what the attribute is set by — a reference, a variable, an
+  expression, or nothing (the provider computes it) — or that it is a
+  sensitive field. Use `addOutput` for those values.
+- **Names are checked at registration.** A constant name must be a public
+  Dart identifier (`ordersTopicName`, not `ORDERS_TOPIC_NAME`, although that
+  still compiles); an output name a Terraform identifier. A duplicate of
+  either throws `ArgumentError`, as does an output that reads a sensitive
+  field without `sensitive: true` (Terraform rejects it at plan).
+- **Output names are yours.** An export used to emit its Dart name as the
+  output name; rename outputs to snake_case when you migrate if you like, and
+  update anything that reads them (`terraform output -raw orders_topic_id`,
+  `terraform_remote_state`).
+- **The file is always written** when `appExports` is set, rewritten in full
+  on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
+  The Stack's class name drops a leading `_`.
+- **The file also holds a typed outputs reader**, `<Stack>Outputs`, with a
+  getter per non-sensitive output (`ordersTopicId` for `orders_topic_id`).
+  Replace code that shells out to `terraform output -raw` or reads a
+  hand-named environment variable with
+  `<Stack>Outputs.fromTerraformJson(...)` /
+  `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
+  set, an output name whose getter would not be a Dart identifier
+  (`class`), or that shares its getter or variable with another output
+  (`topic_id` / `topic-id`), throws; rename it. A Cloud Run `env` list that
+  hand-copies output values (`name: .literal('DB_INSTANCE'), source:
+  .value(.ref(sql.connectionName))`) can become `addOutput('db_instance',
+  ...)` plus a loop over `outputEnvironment()`.
+- `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
+  no longer exported from `package:terradart_core/terradart_core.dart`; they
+  were synth internals.
+
+A Stack `terradart-migrate` wrote before this release has an `addExport` per
+`output` block; re-run the migration, or replace each
+`addExport(r'key', ResourceIdExport(x.attr, emitTerraformOutput: true, ...))`
+with `addOutput(r'<output name>', .ref(x.attr), ...)` and delete the
+`setAppExportsOutputPath` line.
+
 ### Dart 3.10 is the minimum SDK
 
 **Breaking (every package)** — all `terradart_*` packages declare
@@ -1496,6 +1587,45 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 | `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
 | *(not available)* | `principal: .group(.literal('team@example.com'))` |
 
+### The last hand-written Google sealed helpers are derived
+
+**Breaking (`terradart_google`)** — six factories that kept a hand-written
+sealed helper take the helpers `terradart wrap` derives, so each variant
+wraps the block's own helper class and nested enum fields are
+`TfArg<Enum>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `ConfigDeploymentTerraformBlueprint(source: .git(repo: ..., ref: ...))` | `ConfigDeploymentTerraformBlueprint(source: .gitSource(ConfigDeploymentTerraformBlueprintGitSource(repo: ..., ref: ...)))` |
+| `source: .gcs(gcsSource: .literal('gs://b/bp.zip'))` | `source: .gcsSource(.literal('gs://b/bp.zip'))` |
+| `ConfigDeploymentInputValue(variableName: ..., inputValue: ...)` | `ConfigDeploymentTerraformBlueprintInputValues(variableName: ..., inputValue: ...)` |
+| `controlPlane: .remote(nodeLocation: ...)` | `controlPlane: .remote(EdgecontainerClusterControlPlaneRemote(nodeLocation: ...))` |
+| `EdgecontainerClusterSharedDeploymentPolicy.allowed` | `EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy.allowed` |
+| `source: .codebase(branch: .literal('main'))` | `source: .codebase(FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')))` |
+| `GkeBackupRestorePlanRestoreConfig(allNamespaces: .literal(true), namespacedResourceRestoreMode: GkeBackupRestorePlanNamespacedResourceRestoreMode.deleteAndRestore)` | `GkeBackupRestorePlanRestoreConfig(namespaces: .allNamespaces(.literal(true)), namespacedResourceRestoreMode: .literal(.deleteAndRestore))` |
+| `ragManagedDbConfig: const .basic()` | `ragManagedDbConfig: const .basic(VertexAiRagEngineConfigRagManagedDbConfigBasic())` |
+| `attachment: .linkedVpcNetwork(uri: .ref(vpc.id))` | `attachment: .linkedVpcNetwork(NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)))` |
+
+`GkeBackupRestorePlanRestoreConfig`'s five namespace selectors are one
+required sealed `namespaces` argument, and the restore plan's other hand
+enums are named after their block (`GkeBackupRestorePlanRestoreConfig*`).
+`GoogleEdgecontainerCluster.controlPlane` is optional, as in the provider
+schema. The spoke's `linked_producer_vpc_network` `network` takes
+`RefTo<GoogleComputeNetwork>`; `attachment` stays required.
+
+`GoogleIamWorkforcePoolProvider` takes `extendedAttributesOauth2Client` and
+`scimUsage` as one nullable sealed argument, because the API rejects a
+provider that sets both:
+
+| Before | After |
+|--------|-------|
+| `scimUsage: .literal(IamWorkforcePoolProviderScimUsage.enabledForGroups)` | `groupSource: .scimUsage(.literal(.enabledForGroups))` |
+| `extendedAttributesOauth2Client: IamWorkforcePoolProviderExtendedAttributesOauth2Client(...)` | `groupSource: .extendedAttributesOauth2Client(IamWorkforcePoolProviderExtendedAttributesOauth2Client(...))` |
+
+`GoogleCesApp` no longer takes `dataStoreSettings`, and
+`ChronicleFeedFailureDetails` is gone: both blocks are output-only, and
+the API ignored them.
+
 ### Value lists inside helper classes take their element type
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
@@ -1523,6 +1653,87 @@ parameter declaration's `defaultValues` takes
 `integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
 (was `...ParametersDateTimeParameters`).
 
+### Remaining Compute, networking and DNS blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every Compute, networking, DNS and
+certificate override now sets `deriveNestedTypes`, so the blocks that
+still took `TfArg<Map>` take the helper `terradart wrap` derives from the
+provider schema (a repeated block is a `List` of helpers). Most are IAM
+conditions: `condition` on the 26 Compute, DNS and network IAM
+member / binding factories takes `<Resource>Condition`. Synth output is
+unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: ComputeDiskIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `instances: .literal([{'name': 'vm-1'}])` | `instances: [ComputeBulkPerInstanceConfigInstances(name: .literal('vm-1'))]` |
+| `secondaryDisk: .literal({'disk': disk.id.interpolation})` | `secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(disk: .ref(disk.id))` |
+| `interface: .literal([{'id': 0, 'ip_address': '203.0.113.1'}])` | `interface: [ComputeExternalVpnGatewayInterface(id: .literal(0), ipAddress: .literal('203.0.113.1'))]` |
+| `extensionPolicies: .literal([{'extension_name': 'ops-agent'}])` | `extensionPolicies: [ComputeZoneVmExtensionPolicyExtensionPolicies(extensionName: .literal('ops-agent'))]` |
+
+`GoogleComputeInstanceGroup.namedPort` and `GoogleDnsResponsePolicy`'s
+`networks` / `gkeClusters` are typed the same way.
+
+Newly exposed inputs: `params` (resource manager tags) on
+`GoogleComputeExternalVpnGateway`, `GoogleComputeHaVpnGateway`,
+`GoogleComputeInstantSnapshot`, `GoogleComputeInterconnect`,
+`GoogleComputeVpnGateway` and `GoogleComputeVpnTunnel`;
+`GoogleComputeHaVpnGateway.vpnInterfaces`,
+`GoogleComputeInterconnect.macsec`, `GoogleComputeVpnTunnel.cipherSuite`,
+`GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
+on the two network firewall policy IAM members.
+### Remaining data, analytics and storage blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,
+Dataproc, Cloud Storage, Healthcare, Data Catalog, Bigtable, Spanner,
+Cloud SQL, Firestore, Filestore, Data Fusion, Dataform, Pub/Sub, Document
+AI and Discovery Engine override, plus the Google data sources, now sets
+`deriveNestedTypes`, so the blocks that still took `TfArg<Map>` take the
+helper `terradart wrap` derives from the provider schema. Most are IAM
+conditions: `condition` on the 104 IAM member / binding factories of these
+services takes `<Resource>Condition`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: PubsubTopicIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `hiveOptions: .literal({'location_uri': uri, 'parameters': {...}})` | `hiveOptions: BiglakeDatabaseHiveOptions(locationUri: .literal(uri), parameters: .literal({...}))` |
+| `hiveOptions: .literal({'table_type': 'MANAGED_TABLE', 'storage_descriptor': {...}})` | `hiveOptions: BiglakeTableHiveOptions(tableType: .literal('MANAGED_TABLE'), storageDescriptor: BiglakeTableHiveOptionsStorageDescriptor(...))` |
+| `entrySource: .literal({'display_name': 'd'})` | `entrySource: DataplexEntryEntrySource(displayName: .literal('d'))` |
+| `groupKey: .literal({'id': 'g@example.com'})` | `groupKey: DataCloudIdentityGroupLookupGroupKey(id: .literal('g@example.com'))` |
+
+`GoogleDataplexEntry.aspects`,
+`GoogleDataplexDataProductDataAsset.accessGroupConfigs` and
+`DataGoogleIamPolicy`'s `binding` / `auditConfig` are typed the same way.
+A data source's helpers carry its `Data` prefix
+(`DataCloudIdentityGroupLookupGroupKey`), so they never clash with the
+helpers of the resource of the same type.
+
+Newly exposed inputs: `GoogleDataplexEntryType.requiredAspects`,
+`GoogleDataplexLake.metastore`, and `condition` on
+`GoogleHealthcareFhirStoreIamMember`.
+
+### Gemini setting bindings and the Observability link take `RefTo<R>`
+
+**Breaking (`terradart_google`)** — these inputs name another resource and
+take a `RefTo<Target>` instead of a `TfArg<String>`. Each emits the
+parent's own id attribute.
+
+| Input | Target (attribute) |
+|-------|--------------------|
+| `<setting>SettingId` on the seven `GoogleGemini*SettingBinding` | the matching `GoogleGemini*Setting` (`*_setting_id`) |
+| `codeRepositoryIndex` on `GoogleGeminiRepositoryGroup` and its IAM adjuncts | `GoogleGeminiCodeRepositoryIndex` (`code_repository_index_id`) |
+| `repositoryGroupId` on the `GoogleGeminiRepositoryGroup` IAM adjuncts | `GoogleGeminiRepositoryGroup` (`repository_group_id`) |
+| `bucket` on `GoogleObservabilityLink` | `GoogleObservabilityBucket` (`bucket_id`) |
+
+| Before | After |
+|--------|-------|
+| `loggingSettingId: .literal('terradart-logging')` | `loggingSettingId: logging.ref` (or keep `.literal('terradart-logging')`) |
+| `bucket: .literal('telemetry')` beside a `GoogleObservabilityBucket` | `bucket: observabilityBucket.ref` |
+
+`.literal(...)`, `.variable(...)` and `.expression(...)` keep compiling with
+the same synth output; only code that passed a `TfArg<String>` value needs a
+change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
+attribute instead of the literal id, so Terraform orders the two.
 ### Remaining security, IAM and resource-manager blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every IAP, IAM, KMS, Secret Manager,

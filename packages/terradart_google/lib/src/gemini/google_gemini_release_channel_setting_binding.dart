@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_release_channel_setting.dart'
+    show GoogleGeminiReleaseChannelSetting;
+
 /// Sensitive field paths for `google_gemini_release_channel_setting_binding`.
 const Set<String> _googleGeminiReleaseChannelSettingBindingSensitive =
     <String>{};
@@ -49,7 +52,7 @@ final class GoogleGeminiReleaseChannelSettingBinding extends Resource {
 
   GoogleGeminiReleaseChannelSettingBinding({
     required super.localName,
-    required TfArg<String> releaseChannelSettingId,
+    required RefTo<GoogleGeminiReleaseChannelSetting> releaseChannelSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -64,7 +67,9 @@ final class GoogleGeminiReleaseChannelSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'release_channel_setting_id': releaseChannelSettingId,
+           'release_channel_setting_id': releaseChannelSettingId.encodeAs(
+             'release_channel_setting_id',
+           ),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,

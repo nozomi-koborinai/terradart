@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_external_vpn_gateway`.
@@ -17,6 +18,42 @@ enum ComputeExternalVpnGatewayRedundancyType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `interface` block of
+/// `google_compute_external_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeExternalVpnGatewayInterface {
+  const ComputeExternalVpnGatewayInterface({
+    this.id,
+    this.ipAddress,
+    this.ipv6Address,
+  });
+
+  final TfArg<num>? id;
+
+  final TfArg<String>? ipAddress;
+
+  final TfArg<String>? ipv6Address;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'ipv6_address': ?ipv6Address?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_external_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeExternalVpnGatewayParams {
+  const ComputeExternalVpnGatewayParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_external_vpn_gateway`.
 ///
 /// Represents a VPN gateway managed outside of GCP.
@@ -29,7 +66,8 @@ final class GoogleComputeExternalVpnGateway extends Resource {
     TfArg<String>? description,
     TfArg<ComputeExternalVpnGatewayRedundancyType>? redundancyType,
     TfArg<Map<String, String>>? labels,
-    TfArg<List<Map<String, dynamic>>>? interface,
+    List<ComputeExternalVpnGatewayInterface>? interface,
+    ComputeExternalVpnGatewayParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -42,7 +80,11 @@ final class GoogleComputeExternalVpnGateway extends Resource {
            'description': ?description,
            'redundancy_type': ?redundancyType,
            'labels': ?labels,
-           'interface': ?interface,
+           if (interface != null)
+             'interface': TfArg.literal([
+               for (final e in interface) e.encode(),
+             ]),
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
          },
        );

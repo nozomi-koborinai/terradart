@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: false
 
@@ -9,6 +10,7 @@ paramOrder:
   - zone
   - extension_policies
   - description
+  - instance_selectors
   - project
 
 extraGetters: |2

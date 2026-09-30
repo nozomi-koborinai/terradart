@@ -42,8 +42,14 @@ prelude: |
 dartTypeOverrides:
   scim_usage: IamWorkforcePoolProviderScimUsage
 
+# The API rejects a provider that sets both (the `scim_usage` description);
+# Magic Modules declares no group for it.
+atMostOneOf:
+  - "extended_attributes_oauth2_client, scim_usage"
+
 sealedNames:
   "oidc, saml": trust_source
+  "extended_attributes_oauth2_client, scim_usage": group_source
 
 paramOrder:
   - location

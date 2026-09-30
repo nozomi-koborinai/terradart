@@ -25,7 +25,7 @@ TerraDart is organized as a multi-package monorepo:
 
 - [Getting Started](/docs/getting-started/) — install, first `*.tf.json`, boundary export
 - [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
-- [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
+- [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, outputs and constants
 - [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
 - [How it's built](/docs/how-its-built/) — the generation pipeline, verification harness, and sustainability
 - [Dart apps on AWS](/docs/aws/) — Lambda custom runtime, ECS Express Mode, and Flutter Web on S3 + CloudFront with `terradart_aws`

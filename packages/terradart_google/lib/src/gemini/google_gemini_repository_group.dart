@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+
 /// Sensitive field paths for `google_gemini_repository_group`.
 const Set<String> _googleGeminiRepositoryGroupSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleGeminiRepositoryGroup extends Resource {
 
   GoogleGeminiRepositoryGroup({
     required super.localName,
-    required TfArg<String> codeRepositoryIndex,
+    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
@@ -55,7 +58,9 @@ final class GoogleGeminiRepositoryGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'code_repository_index': codeRepositoryIndex,
+           'code_repository_index': codeRepositoryIndex.encodeAs(
+             'code_repository_index_id',
+           ),
            'deletion_policy': ?deletionPolicy,
            'labels': ?labels,
            'location': location,

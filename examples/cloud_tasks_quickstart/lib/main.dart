@@ -21,6 +21,7 @@ final class EmailJobsStack extends Stack {
           GoogleProvider(project: projectId, region: 'us-central1'),
           const TimeProvider(),
         ],
+        appExports: AppExports('lib/generated/email_jobs_stack.app.dart'),
       ) {
     // ---- API enablement ---------------------------------------------------
     //
@@ -80,15 +81,7 @@ final class EmailJobsStack extends Stack {
     );
 
     // Export queue identifiers as typed Dart constants.
-    addExport(
-      'EMAIL_QUEUE_NAME',
-      ResourceIdExport(queue.nameRef, emitTerraformOutput: true),
-    );
-    addExport(
-      'EMAIL_QUEUE_LOCATION',
-      ResourceIdExport(queue.locationRef, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/email_jobs_stack.app.dart');
+    addConstant('emailQueueName', .ref(queue.nameRef));
+    addConstant('emailQueueLocation', .ref(queue.locationRef));
   }
 }

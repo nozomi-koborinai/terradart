@@ -89,6 +89,18 @@ void main() {
         '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
       );
     }
+    for (final m in RegExp(r'required (\w+) (\w+),').allMatches(ctor)) {
+      final helperType = m.group(1)!;
+      final value = _requiredHelpers[helperType];
+      if (value == null) {
+        stderr.writeln(
+          '$className.${m.group(2)} takes a required $helperType: add a '
+          'dummy value to _requiredHelpers',
+        );
+        exit(1);
+      }
+      args.add('      ${m.group(2)}: $value,');
+    }
     final extras = _extraOptionals[className] ?? const {};
     extras.forEach((name, value) {
       args.add('      $name: $value,');
@@ -191,6 +203,13 @@ const _extraOptionals = <String, Map<String, String>>{
   'DataGoogleDiscoveryEngineDataStore': {
     'dataStoreId': 'TfArg.literal(leftover)',
   },
+};
+
+/// Dummy values for required derived-helper parameters, keyed by helper
+/// class.
+const _requiredHelpers = <String, String>{
+  'DataCloudIdentityGroupLookupGroupKey':
+      'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
 };
 
 String _literal(String className, String name, String dartType) {

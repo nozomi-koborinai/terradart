@@ -1,3 +1,4 @@
+import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
@@ -341,22 +342,30 @@ ${_bucket('a')}
     });
 
     test('a lifted value the emitter cannot read explains itself', () {
-      // An IAM member's `condition` is a passthrough argument: the factory
-      // takes its JSON verbatim, so there is no typed parameter to read a
-      // constant from, and the plan's lift goes unused. The refusal says so
-      // instead of reporting a bare difference.
+      // `aws_s3_bucket`'s deprecated `object_lock_configuration` is a
+      // passthrough argument: the factory takes its JSON verbatim, so there
+      // is no typed parameter to read a constant from, and the plan's lift
+      // goes unused. The refusal says so instead of reporting a bare
+      // difference.
       String body(String value) =>
           '''
-resource "google_pubsub_topic_iam_member" "m" {
-  topic     = "t"
-  role      = "roles/viewer"
-  member    = "user:a@example.com"
-  condition = "$value"
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
+  }
+}
+
+resource "aws_s3_bucket" "m" {
+  bucket                    = "logs"
+  object_lock_configuration = "$value"
 }
 ''';
-      final m = _merge({'dev': body('a'), 'prod': body('b')});
+      final m = _merge(
+        {'dev': body('a'), 'prod': body('b')},
+        raw: {'dev', 'prod'},
+      );
       expect(m.isMerged, isFalse);
-      expect(m.refusal, contains('google_pubsub_topic_iam_member.m'));
+      expect(m.refusal, contains('aws_s3_bucket.m'));
       expect(m.refusal, contains('no plain argument to take it from the'));
     });
 

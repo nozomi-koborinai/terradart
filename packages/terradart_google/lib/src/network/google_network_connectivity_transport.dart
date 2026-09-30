@@ -46,7 +46,7 @@ enum NetworkConnectivityTransportStackType implements TerraformEnum {
 ///   localName: 'aws_cci',
 ///   name: TfArg.literal('my-transport'),
 ///   region: TfArg.literal('us-east4'),
-///   network: TfArg.ref(vpc.nameRef),
+///   network: vpc.ref,
 ///   remoteProfile: TfArg.literal(
 ///     'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1',
 ///   ),

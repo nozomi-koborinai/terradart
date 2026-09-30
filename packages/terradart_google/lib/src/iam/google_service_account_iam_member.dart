@@ -56,8 +56,8 @@ final class ServiceAccountIamMemberCondition {
 /// - [localName]: Terraform local name.
 /// - `serviceAccountId`: the **fully-qualified resource path** of the
 ///   target SA, i.e. `projects/{project}/serviceAccounts/{email}`. Pass
-///   `TfArg.ref(sa.id)` (or `sa.name`, same value) rather than the bare
-///   email — short forms are rejected by the API.
+///   `sa.ref`, which emits the SA's `name` (that path), rather than the
+///   bare email — short forms are rejected by the API.
 /// - `role`: role name, typically `'roles/iam.serviceAccountUser'`
 ///   (impersonation) or `'roles/iam.serviceAccountTokenCreator'`
 ///   (generate access tokens).

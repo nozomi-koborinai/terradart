@@ -428,7 +428,10 @@ class WrapCommand extends Command<int> {
       (o) => o.deriveNestedTypes,
     );
     final rawResourceSchemas = needsRawResourceSchemas
-        ? _rawSchemaBlocks(schemaSrc, schemasKey: 'resource_schemas')
+        ? _withoutOutputBlocks(
+            _rawSchemaBlocks(schemaSrc, schemasKey: 'resource_schemas'),
+            mmOverrides,
+          )
         : const <String, Map<String, dynamic>>{};
     final rawDataSourceSchemas = needsRawDataSourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
@@ -1014,4 +1017,39 @@ Map<String, Map<String, dynamic>> _rawSchemaBlocks(
     for (final entry in typed.entries)
       entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
   };
+}
+
+/// [blocks] without the nested blocks Magic Modules marks `output: true`
+/// whose attributes all are computed-only. SDKv2 cannot mark a block
+/// computed, so the schema alone reads such a block
+/// (`google_chronicle_feed.failure_details`) as an input.
+Map<String, Map<String, dynamic>> _withoutOutputBlocks(
+  Map<String, Map<String, dynamic>> blocks,
+  Map<String, MmResourceOverrides> mm,
+) {
+  bool computedOnly(Object? attr) =>
+      attr is Map &&
+      attr['computed'] == true &&
+      attr['optional'] != true &&
+      attr['required'] != true;
+  for (final MapEntry(key: type, value: root) in blocks.entries) {
+    final outputs = mm[type]?.outputPaths ?? const <String>{};
+    for (final path in outputs) {
+      final segments = path.split('.');
+      Map<String, dynamic>? parent = root;
+      for (final s in segments.take(segments.length - 1)) {
+        final child = (parent?['block_types'] as Map?)?[s];
+        parent = child is Map ? (child['block'] as Map?)?.cast() : null;
+      }
+      final blockTypes = parent?['block_types'];
+      if (blockTypes is! Map) continue;
+      final body = blockTypes[segments.last];
+      if (body is! Map) continue;
+      final attrs = ((body['block'] as Map?)?['attributes'] as Map?) ?? {};
+      if (attrs.isNotEmpty && attrs.values.every(computedOnly)) {
+        blockTypes.remove(segments.last);
+      }
+    }
+  }
+  return blocks;
 }

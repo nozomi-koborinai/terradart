@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -29,6 +30,38 @@ enum ComputeHaVpnGatewayStackType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_ha_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeHaVpnGatewayParams {
+  const ComputeHaVpnGatewayParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `vpn_interfaces` block of
+/// `google_compute_ha_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeHaVpnGatewayVpnInterfaces {
+  const ComputeHaVpnGatewayVpnInterfaces({
+    this.id,
+    this.interconnectAttachment,
+  });
+
+  final TfArg<num>? id;
+
+  final TfArg<String>? interconnectAttachment;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'interconnect_attachment': ?interconnectAttachment?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_ha_vpn_gateway`.
 ///
 /// Represents a VPN gateway running in GCP. This virtual device is managed by
@@ -47,6 +80,8 @@ final class GoogleComputeHaVpnGateway extends Resource {
     TfArg<ComputeHaVpnGatewayGatewayIpVersion>? gatewayIpVersion,
     TfArg<ComputeHaVpnGatewayStackType>? stackType,
     TfArg<Map<String, String>>? labels,
+    ComputeHaVpnGatewayParams? params,
+    List<ComputeHaVpnGatewayVpnInterfaces>? vpnInterfaces,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -63,6 +98,11 @@ final class GoogleComputeHaVpnGateway extends Resource {
            'gateway_ip_version': ?gatewayIpVersion,
            'stack_type': ?stackType,
            'labels': ?labels,
+           if (params != null) 'params': TfArg.literal(params.encode()),
+           if (vpnInterfaces != null)
+             'vpn_interfaces': TfArg.literal([
+               for (final e in vpnInterfaces) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
