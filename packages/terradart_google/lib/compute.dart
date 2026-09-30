@@ -132,9 +132,7 @@ export 'src/compute/google_compute_external_vpn_gateway.dart'
         GoogleComputeExternalVpnGateway;
 export 'src/compute/google_compute_firewall.dart'
     show
-        ComputeFirewallAllow,
         ComputeFirewallAllowPolicy,
-        ComputeFirewallDeny,
         ComputeFirewallDenyPolicy,
         ComputeFirewallFirewallAllowRule,
         ComputeFirewallFirewallDenyRule,

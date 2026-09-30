@@ -135,38 +135,6 @@ final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
   ];
 }
 
-/// Typed helper for the `allow` block of
-/// `google_compute_firewall` (derived from provider schema).
-@immutable
-final class ComputeFirewallAllow {
-  const ComputeFirewallAllow({this.ports, required this.protocol});
-
-  final TfArg<List<String>>? ports;
-
-  final TfArg<String> protocol;
-
-  Map<String, Object?> encode() => {
-    'ports': ?ports?.toTfJson(),
-    'protocol': protocol.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deny` block of
-/// `google_compute_firewall` (derived from provider schema).
-@immutable
-final class ComputeFirewallDeny {
-  const ComputeFirewallDeny({this.ports, required this.protocol});
-
-  final TfArg<List<String>>? ports;
-
-  final TfArg<String> protocol;
-
-  Map<String, Object?> encode() => {
-    'ports': ?ports?.toTfJson(),
-    'protocol': protocol.toTfJson(),
-  };
-}
-
 /// Typed helper for the `params` block of
 /// `google_compute_firewall` (derived from provider schema).
 @immutable

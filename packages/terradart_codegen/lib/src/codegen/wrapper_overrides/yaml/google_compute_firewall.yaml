@@ -76,6 +76,9 @@ argMapOrder:
   - rule_policy
 
 deriveNestedTypes: true
+nestedTypeExcludes:
+  - allow
+  - deny
 deriveOutputGetters: true
 
 extraImports:

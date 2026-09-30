@@ -11629,8 +11629,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeFirewallFirewallLogConfig',
       'ComputeFirewallAllowPolicy',
       'ComputeFirewallDenyPolicy',
-      'ComputeFirewallAllow',
-      'ComputeFirewallDeny',
       'ComputeFirewallParams',
     ],
     sensitiveFields: <String>[],
