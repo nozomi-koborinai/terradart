@@ -1523,6 +1523,36 @@ parameter declaration's `defaultValues` takes
 `integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
 (was `...ParametersDateTimeParameters`).
 
+### Remaining data, analytics and storage blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,
+Dataproc, Cloud Storage, Healthcare, Data Catalog, Bigtable, Spanner,
+Cloud SQL, Firestore, Filestore, Data Fusion, Dataform, Pub/Sub, Document
+AI and Discovery Engine override, plus the Google data sources, now sets
+`deriveNestedTypes`, so the blocks that still took `TfArg<Map>` take the
+helper `terradart wrap` derives from the provider schema. Most are IAM
+conditions: `condition` on the 104 IAM member / binding factories of these
+services takes `<Resource>Condition`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: PubsubTopicIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `hiveOptions: .literal({'location_uri': uri, 'parameters': {...}})` | `hiveOptions: BiglakeDatabaseHiveOptions(locationUri: .literal(uri), parameters: .literal({...}))` |
+| `hiveOptions: .literal({'table_type': 'MANAGED_TABLE', 'storage_descriptor': {...}})` | `hiveOptions: BiglakeTableHiveOptions(tableType: .literal('MANAGED_TABLE'), storageDescriptor: BiglakeTableHiveOptionsStorageDescriptor(...))` |
+| `entrySource: .literal({'display_name': 'd'})` | `entrySource: DataplexEntryEntrySource(displayName: .literal('d'))` |
+| `groupKey: .literal({'id': 'g@example.com'})` | `groupKey: DataCloudIdentityGroupLookupGroupKey(id: .literal('g@example.com'))` |
+
+`GoogleDataplexEntry.aspects`,
+`GoogleDataplexDataProductDataAsset.accessGroupConfigs` and
+`DataGoogleIamPolicy`'s `binding` / `auditConfig` are typed the same way.
+A data source's helpers carry its `Data` prefix
+(`DataCloudIdentityGroupLookupGroupKey`), so they never clash with the
+helpers of the resource of the same type.
+
+Newly exposed inputs: `GoogleDataplexEntryType.requiredAspects`,
+`GoogleDataplexLake.metastore`, and `condition` on
+`GoogleHealthcareFhirStoreIamMember`.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
