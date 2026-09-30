@@ -161,6 +161,12 @@ Per-package changelogs live alongside each package and are the system of record 
   `ContainerCluster*` / `ContainerNodePool*` helpers for every block.
   A `max_items = 1` block a hand helper emitted as a one-element list is an
   object. See `MIGRATING.md`.
+- **Remaining security, IAM and resource-manager blocks use derived
+  helper types** (**breaking**; `terradart_google`) — the 124 security,
+  IAM, KMS, secrets, org-policy and resource-manager overrides without
+  `deriveNestedTypes` set it: 87 `TfArg<Map>` inputs on 87 factories
+  (mostly IAM `condition`) take derived helpers. Synth output is
+  unchanged. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets
