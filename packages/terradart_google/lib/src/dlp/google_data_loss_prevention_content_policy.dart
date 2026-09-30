@@ -1268,17 +1268,17 @@ final class GoogleDataLossPreventionContentPolicy extends Resource {
 
   GoogleDataLossPreventionContentPolicy({
     required super.localName,
-    TfArg<String>? deletionPolicy,
-    TfArg<String>? displayName,
     required TfArg<String> parent,
+    TfArg<String>? displayName,
+    required List<DataLossPreventionContentPolicyRules> rules,
     DataLossPreventionContentPolicyDefaultAction? defaultAction,
+    DataLossPreventionContentPolicyInspectConfig? inspectConfig,
+    DataLossPreventionContentPolicyInputTooLarge? inputTooLarge,
+    DataLossPreventionContentPolicyUnsupportedFileType? unsupportedFileType,
     DataLossPreventionContentPolicyFailedToScanSupportedFileType?
     failedToScanSupportedFileType,
-    DataLossPreventionContentPolicyInputTooLarge? inputTooLarge,
-    DataLossPreventionContentPolicyInspectConfig? inspectConfig,
     List<DataLossPreventionContentPolicyLoggingConfigs>? loggingConfigs,
-    required List<DataLossPreventionContentPolicyRules> rules,
-    DataLossPreventionContentPolicyUnsupportedFileType? unsupportedFileType,
+    TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1286,28 +1286,28 @@ final class GoogleDataLossPreventionContentPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'deletion_policy': ?deletionPolicy,
-           'display_name': ?displayName,
            'parent': parent,
+           'display_name': ?displayName,
+           'rules': TfArg.literal([for (final e in rules) e.encode()]),
            if (defaultAction != null)
              'default_action': TfArg.literal(defaultAction.encode()),
-           if (failedToScanSupportedFileType != null)
-             'failed_to_scan_supported_file_type': TfArg.literal(
-               failedToScanSupportedFileType.encode(),
-             ),
-           if (inputTooLarge != null)
-             'input_too_large': TfArg.literal(inputTooLarge.encode()),
            if (inspectConfig != null)
              'inspect_config': TfArg.literal(inspectConfig.encode()),
-           if (loggingConfigs != null)
-             'logging_configs': TfArg.literal([
-               for (final e in loggingConfigs) e.encode(),
-             ]),
-           'rules': TfArg.literal([for (final e in rules) e.encode()]),
+           if (inputTooLarge != null)
+             'input_too_large': TfArg.literal(inputTooLarge.encode()),
            if (unsupportedFileType != null)
              'unsupported_file_type': TfArg.literal(
                unsupportedFileType.encode(),
              ),
+           if (failedToScanSupportedFileType != null)
+             'failed_to_scan_supported_file_type': TfArg.literal(
+               failedToScanSupportedFileType.encode(),
+             ),
+           if (loggingConfigs != null)
+             'logging_configs': TfArg.literal([
+               for (final e in loggingConfigs) e.encode(),
+             ]),
+           'deletion_policy': ?deletionPolicy,
          },
        );
 
@@ -1318,4 +1318,20 @@ final class GoogleDataLossPreventionContentPolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataLossPreventionContentPolicy>`.
   RefTo<GoogleDataLossPreventionContentPolicy> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `errors` attribute.
+  TfRef<List<Map<String, Object?>>> get errors =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'errors');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

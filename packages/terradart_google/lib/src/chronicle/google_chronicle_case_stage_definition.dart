@@ -14,11 +14,11 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
 
   GoogleChronicleCaseStageDefinition({
     required super.localName,
-    TfArg<String>? deletionPolicy,
-    required TfArg<String> displayName,
-    required TfArg<String> instance,
     required TfArg<String> location,
+    required TfArg<String> instance,
+    required TfArg<String> displayName,
     required TfArg<num> order,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -27,11 +27,11 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'deletion_policy': ?deletionPolicy,
-           'display_name': displayName,
-           'instance': instance,
            'location': location,
+           'instance': instance,
+           'display_name': displayName,
            'order': order,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );
@@ -43,4 +43,14 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleChronicleCaseStageDefinition>`.
   RefTo<GoogleChronicleCaseStageDefinition> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `case_stage_definition_id` attribute.
+  TfRef<String> get caseStageDefinitionId =>
+      TfRef.attribute<String>(this, 'case_stage_definition_id');
 }
