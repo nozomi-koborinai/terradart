@@ -61,6 +61,18 @@ final class SingleProjectAppStackOutputs {
 
   final Object? Function(String output, String variable, bool json) _read;
 
+  /// Cloud SQL connection name (project:region:instance).
+  String get dbInstance {
+    final value = _read(r'db_instance', 'DB_INSTANCE', false);
+    return _as<String>(value, r'db_instance');
+  }
+
+  /// Cloud SQL database the service connects to.
+  String get dbName {
+    final value = _read(r'db_name', 'DB_NAME', false);
+    return _as<String>(value, r'db_name');
+  }
+
   /// URL of the Cloud Run v2 service. Populated after terraform apply.
   String get coffeeServiceUri {
     final value = _read(r'coffee_service_uri', 'COFFEE_SERVICE_URI', false);

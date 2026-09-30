@@ -175,6 +175,100 @@ void main() {
     });
   });
 
+  group('outputEnvironment', () {
+    Map<String, Object?> encoded(Map<String, TfArg<String>> environment) => {
+      for (final MapEntry(:key, :value) in environment.entries)
+        key: TfJsonEncoder.encodeArg(value),
+    };
+
+    test('passes a String as is and anything else as jsonencode', () {
+      final environment = _typedStack().outputEnvironment();
+      expect(encoded(environment), {
+        'TOPIC_ID': r'${google_pubsub_topic.t.id}',
+        'REPLICAS': r'${jsonencode(google_pubsub_topic.t.replicas)}',
+        'RATIO': r'${jsonencode(google_pubsub_topic.t.ratio)}',
+        'ENABLED': r'${jsonencode(google_pubsub_topic.t.enabled)}',
+        'ZONES': r'${jsonencode(google_pubsub_topic.t.zones)}',
+        'LABELS': r'${jsonencode(google_pubsub_topic.t.labels)}',
+        'MATRIX': r'${jsonencode(google_pubsub_topic.t.matrix)}',
+        'MAYBE': r'${google_pubsub_topic.t.maybe}',
+        'MAYBE_LIST': r'${jsonencode(google_pubsub_topic.t.maybe_list)}',
+        'ANYTHING': r'${jsonencode(google_pubsub_topic.t.labels)}',
+      }, reason: 'the sensitive output is left out');
+      expect(
+        encoded(_typedStack().outputEnvironment(only: ['zones', 'topic_id'])),
+        {
+          'ZONES': r'${jsonencode(google_pubsub_topic.t.zones)}',
+          'TOPIC_ID': r'${google_pubsub_topic.t.id}',
+        },
+      );
+    });
+
+    test('is what the generated reader reads', () async {
+      final stack = _stack()
+        ..addOutput('region', .literal('us-central1'))
+        ..addOutput('replicas', .literal(3))
+        ..addOutput('ratio', .literal(2.5))
+        ..addOutput('zones', .literal(['a', 'b']))
+        ..addOutput('limits', .literal({'cpu': 1, 'memory': 2}))
+        ..addOutput('maybe', TfArg.literal<List<int>?>(null));
+      final environment = encoded(stack.outputEnvironment());
+      final lines = await _run(stack.synth().dartSource!, '''
+  final o = OrdersOutputs.fromEnvironment(${jsonEncode(environment)});
+  print(jsonEncode([o.region, o.replicas, o.ratio, o.zones, o.limits, o.maybe]));
+''');
+      expect(lines, [
+        '["us-central1",3,2.5,["a","b"],{"cpu":1,"memory":2},null]',
+      ]);
+    });
+
+    test('covers the outputs registered so far', () {
+      final stack = _stack()..addOutput('a', .literal('1'));
+      final environment = stack.outputEnvironment();
+      stack.addOutput('b', .literal('2'));
+      expect(environment.keys, ['A']);
+    });
+
+    test('rejects an output with no environment value', () {
+      final stack = _stack()
+        ..addOutput('secret', .literal('s'), sensitive: true)
+        ..addOutput('pair', .expression<List<String>>(r'${a.b}-${c.d}'))
+        ..addOutput(
+          'mixed',
+          .literal(<String, Object?>{
+            'id': TfArg.expression<String>(r'${a.b}'),
+          }),
+        );
+      Matcher fails(String message) => throwsA(
+        isA<ArgumentError>().having(
+          (e) => e.message,
+          'message',
+          contains(message),
+        ),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['missing']),
+        fails('is not registered'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['secret']),
+        fails('is sensitive'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['pair']),
+        fails('has no JSON encoding'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['mixed']),
+        fails('holding references'),
+      );
+      expect(
+        () => TestStack(providers: const [_provider]).outputEnvironment(),
+        throwsStateError,
+      );
+    });
+  });
+
   group('output names with appExports', () {
     test('map to lowerCamel getters and SCREAMING_SNAKE variables', () {
       final source =
