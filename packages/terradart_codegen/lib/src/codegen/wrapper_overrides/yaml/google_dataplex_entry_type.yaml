@@ -1,5 +1,6 @@
 outputDir: dataplex
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -11,5 +12,6 @@ paramOrder:
   - platform
   - system
   - type_aliases
+  - required_aspects
   - deletion_policy
   - project

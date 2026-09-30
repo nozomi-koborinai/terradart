@@ -37,7 +37,12 @@ class NestedHelperPrefix {
         // The resource class itself is `Google<expectedPrefix>`; helpers
         // should start with `<expectedPrefix>`.
         if (name == 'Google$expectedPrefix') continue;
-        if (name.startsWith(expectedPrefix)) continue;
+        // A data source's helpers carry its `Data` prefix, so they never
+        // clash with the helpers of the resource of the same type.
+        if (name.startsWith(expectedPrefix) ||
+            name.startsWith('Data$expectedPrefix')) {
+          continue;
+        }
         violations.add(
           '$filename: class $name (expected prefix $expectedPrefix)',
         );

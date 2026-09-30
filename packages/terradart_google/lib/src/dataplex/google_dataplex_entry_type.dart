@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_entry_type`.
 const Set<String> _googleDataplexEntryTypeSensitive = <String>{};
+
+/// Typed helper for the `required_aspects` block of
+/// `google_dataplex_entry_type` (derived from provider schema).
+@immutable
+final class DataplexEntryTypeRequiredAspects {
+  const DataplexEntryTypeRequiredAspects({this.type});
+
+  final TfArg<String>? type;
+
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
 
 /// Factory wrapper for `google_dataplex_entry_type`.
 ///
@@ -21,6 +33,7 @@ final class GoogleDataplexEntryType extends Resource {
     TfArg<String>? platform,
     TfArg<String>? system,
     TfArg<List<String>>? typeAliases,
+    List<DataplexEntryTypeRequiredAspects>? requiredAspects,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -37,6 +50,10 @@ final class GoogleDataplexEntryType extends Resource {
            'platform': ?platform,
            'system': ?system,
            'type_aliases': ?typeAliases,
+           if (requiredAspects != null)
+             'required_aspects': TfArg.literal([
+               for (final e in requiredAspects) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

@@ -64,10 +64,10 @@ final class MetastoreStack extends Stack {
         name: .literal('terradart_db'),
         catalog: .ref(catalog.id),
         type: .literal('HIVE'),
-        hiveOptions: .literal(<String, Object?>{
-          'location_uri': '$warehouse/terradart_db',
-          'parameters': {'owner': 'terradart'},
-        }),
+        hiveOptions: BiglakeDatabaseHiveOptions(
+          locationUri: .literal('$warehouse/terradart_db'),
+          parameters: .literal({'owner': 'terradart'}),
+        ),
         dependsOn: [ResourceDependency(catalog)],
       ),
     );
@@ -78,15 +78,16 @@ final class MetastoreStack extends Stack {
         name: .literal('terradart_orders'),
         database: .ref(database.id),
         type: .literal('HIVE'),
-        hiveOptions: .literal(<String, Object?>{
-          'table_type': 'MANAGED_TABLE',
-          'storage_descriptor': {
-            'location_uri': '$warehouse/terradart_db/orders',
-            'input_format': 'org.apache.hadoop.mapred.TextInputFormat',
-            'output_format':
-                'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat',
-          },
-        }),
+        hiveOptions: BiglakeTableHiveOptions(
+          tableType: .literal('MANAGED_TABLE'),
+          storageDescriptor: BiglakeTableHiveOptionsStorageDescriptor(
+            locationUri: .literal('$warehouse/terradart_db/orders'),
+            inputFormat: .literal('org.apache.hadoop.mapred.TextInputFormat'),
+            outputFormat: .literal(
+              'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat',
+            ),
+          ),
+        ),
         dependsOn: [ResourceDependency(database)],
       ),
     );
