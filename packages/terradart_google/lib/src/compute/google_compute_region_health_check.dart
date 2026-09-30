@@ -27,7 +27,8 @@ enum RegionHealthCheckType implements TerraformEnum {
   tcp('TCP'),
   ssl('SSL'),
   http2('HTTP2'),
-  grpc('GRPC');
+  grpc('GRPC'),
+  grpcWithTls('GRPC_WITH_TLS');
 
   const RegionHealthCheckType(this.terraformValue);
   @override

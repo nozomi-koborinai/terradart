@@ -22,7 +22,8 @@ enum HealthCheckType implements TerraformEnum {
   tcp('TCP'),
   ssl('SSL'),
   http2('HTTP2'),
-  grpc('GRPC');
+  grpc('GRPC'),
+  grpcWithTls('GRPC_WITH_TLS');
 
   const HealthCheckType(this.terraformValue);
   @override

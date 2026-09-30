@@ -355562,6 +355562,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SSL': 'ssl',
         'HTTP2': 'http2',
         'GRPC': 'grpc',
+        'GRPC_WITH_TLS': 'grpcWithTls',
       },
     ),
     'HealthcareFhirStoreComplexDataTypeReferenceParsing': MigrateEnum(
@@ -358196,6 +358197,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SSL': 'ssl',
         'HTTP2': 'http2',
         'GRPC': 'grpc',
+        'GRPC_WITH_TLS': 'grpcWithTls',
       },
     ),
     'RegionInstanceGroupManagerDistributionPolicyTargetShape': MigrateEnum(
