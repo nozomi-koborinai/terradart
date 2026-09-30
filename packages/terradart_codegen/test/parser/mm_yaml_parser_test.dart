@@ -305,14 +305,11 @@ properties:
       - name: runtimeVersion
         output: true
 ''');
-      expect(
-        result.outputPaths,
-        {
-          'failure_details',
-          'failure_details.error_code',
-          'on_deploy_update_policy.runtime_version',
-        },
-      );
+      expect(result.outputPaths, {
+        'failure_details',
+        'failure_details.error_code',
+        'on_deploy_update_policy.runtime_version',
+      });
     });
 
     test('names the _wo sibling after the Terraform name, not api_name', () {
