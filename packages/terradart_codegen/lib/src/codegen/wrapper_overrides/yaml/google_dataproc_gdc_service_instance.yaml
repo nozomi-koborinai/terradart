@@ -7,10 +7,6 @@ deriveNestedTypes: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-# Empty Spark config block stays Map if present; GDCE cluster is typed.
-nestedTypeExcludes:
-  - spark_service_instance_config
-
 curatedDoc: |-
   /// Dataproc on Google Distributed Cloud (GDC) **service instance** — the
   /// Dataproc operator running on a GDCE cluster.

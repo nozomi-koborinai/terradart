@@ -35,154 +35,127 @@ enum DataplexDatascanType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Scan-type spec block. Exactly one of the four provider `*_spec` blocks.
-sealed class DataplexDatascanSpec {
-  const DataplexDatascanSpec();
+/// Exactly one of `data_quality_spec`, `data_profile_spec`, `data_discovery_spec`, `data_documentation_spec` on `google_dataplex_datascan`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dataQualitySpec(...)`.
+sealed class DataplexDatascanScanSpec {
+  const DataplexDatascanScanSpec();
 
-  /// `data_profile_spec` — column statistics for BigQuery tables or entities.
-  const factory DataplexDatascanSpec.dataProfileSpec({
-    TfArg<double>? samplingPercent,
-    TfArg<String>? rowFilter,
-    TfArg<bool>? catalogPublishingEnabled,
-    TfArg<Map<String, Object?>>? postScanActions,
-    TfArg<Map<String, Object?>>? includeFields,
-    TfArg<Map<String, Object?>>? excludeFields,
-  }) = DataplexDatascanDataProfileSpec;
+  /// Sets `data_quality_spec`.
+  const factory DataplexDatascanScanSpec.dataQualitySpec(
+    DataplexDatascanDataQualitySpec dataQualitySpec,
+  ) = DataplexDatascanScanSpecDataQualitySpec;
 
-  /// `data_quality_spec` — rule-based quality checks.
-  const factory DataplexDatascanSpec.dataQualitySpec({
-    TfArg<List<Map<String, Object?>>>? rules,
-    TfArg<double>? samplingPercent,
-    TfArg<String>? rowFilter,
-    TfArg<String>? filter,
-    TfArg<bool>? catalogPublishingEnabled,
-    TfArg<bool>? enableCatalogBasedRules,
-    TfArg<Map<String, Object?>>? postScanActions,
-  }) = DataplexDatascanDataQualitySpec;
+  /// Sets `data_profile_spec`.
+  const factory DataplexDatascanScanSpec.dataProfileSpec(
+    DataplexDatascanDataProfileSpec dataProfileSpec,
+  ) = DataplexDatascanScanSpecDataProfileSpec;
 
-  /// `data_discovery_spec` — infer schema from Cloud Storage objects.
-  const factory DataplexDatascanSpec.dataDiscoverySpec({
-    TfArg<Map<String, Object?>>? storageConfig,
-    TfArg<Map<String, Object?>>? bigqueryPublishingConfig,
-  }) = DataplexDatascanDataDiscoverySpec;
+  /// Sets `data_discovery_spec`.
+  const factory DataplexDatascanScanSpec.dataDiscoverySpec(
+    DataplexDatascanDataDiscoverySpec dataDiscoverySpec,
+  ) = DataplexDatascanScanSpecDataDiscoverySpec;
 
-  /// `data_documentation_spec` — generate data documentation.
-  const factory DataplexDatascanSpec.dataDocumentationSpec() =
-      DataplexDatascanDataDocumentationSpec;
+  /// Sets `data_documentation_spec`.
+  const factory DataplexDatascanScanSpec.dataDocumentationSpec(
+    DataplexDatascanDataDocumentationSpec dataDocumentationSpec,
+  ) = DataplexDatascanScanSpecDataDocumentationSpec;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `data_profile_spec` — column statistics for BigQuery tables or entities.
-@immutable
-final class DataplexDatascanDataProfileSpec extends DataplexDatascanSpec {
-  const DataplexDatascanDataProfileSpec({
-    this.samplingPercent,
-    this.rowFilter,
-    this.catalogPublishingEnabled,
-    this.postScanActions,
-    this.includeFields,
-    this.excludeFields,
-  });
+/// The [DataplexDatascanScanSpec.dataQualitySpec] choice: sets `data_quality_spec`.
+final class DataplexDatascanScanSpecDataQualitySpec
+    extends DataplexDatascanScanSpec {
+  const DataplexDatascanScanSpecDataQualitySpec(this.dataQualitySpec);
 
-  final TfArg<double>? samplingPercent;
-  final TfArg<String>? rowFilter;
-  final TfArg<bool>? catalogPublishingEnabled;
-  final TfArg<Map<String, Object?>>? postScanActions;
-  final TfArg<Map<String, Object?>>? includeFields;
-  final TfArg<Map<String, Object?>>? excludeFields;
-
-  @override
-  String get blockKey => 'data_profile_spec';
-
-  @override
-  Map<String, Object?> encode() => {
-    if (samplingPercent != null)
-      'sampling_percent': samplingPercent!.toTfJson(),
-    if (rowFilter != null) 'row_filter': rowFilter!.toTfJson(),
-    if (catalogPublishingEnabled != null)
-      'catalog_publishing_enabled': catalogPublishingEnabled!.toTfJson(),
-    if (postScanActions != null)
-      'post_scan_actions': postScanActions!.toTfJson(),
-    if (includeFields != null) 'include_fields': includeFields!.toTfJson(),
-    if (excludeFields != null) 'exclude_fields': excludeFields!.toTfJson(),
-  };
-}
-
-/// `data_quality_spec` — rule-based quality checks.
-@immutable
-final class DataplexDatascanDataQualitySpec extends DataplexDatascanSpec {
-  const DataplexDatascanDataQualitySpec({
-    this.rules,
-    this.samplingPercent,
-    this.rowFilter,
-    this.filter,
-    this.catalogPublishingEnabled,
-    this.enableCatalogBasedRules,
-    this.postScanActions,
-  });
-
-  final TfArg<List<Map<String, Object?>>>? rules;
-  final TfArg<double>? samplingPercent;
-  final TfArg<String>? rowFilter;
-  final TfArg<String>? filter;
-  final TfArg<bool>? catalogPublishingEnabled;
-  final TfArg<bool>? enableCatalogBasedRules;
-  final TfArg<Map<String, Object?>>? postScanActions;
+  final DataplexDatascanDataQualitySpec dataQualitySpec;
 
   @override
   String get blockKey => 'data_quality_spec';
 
   @override
   Map<String, Object?> encode() => {
-    if (rules != null) 'rules': rules!.toTfJson(),
-    if (samplingPercent != null)
-      'sampling_percent': samplingPercent!.toTfJson(),
-    if (rowFilter != null) 'row_filter': rowFilter!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (catalogPublishingEnabled != null)
-      'catalog_publishing_enabled': catalogPublishingEnabled!.toTfJson(),
-    if (enableCatalogBasedRules != null)
-      'enable_catalog_based_rules': enableCatalogBasedRules!.toTfJson(),
-    if (postScanActions != null)
-      'post_scan_actions': postScanActions!.toTfJson(),
+    'data_quality_spec': dataQualitySpec.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_quality_spec': TfArg.literal(dataQualitySpec.encode()),
   };
 }
 
-/// `data_discovery_spec` — infer schema from Cloud Storage objects.
-@immutable
-final class DataplexDatascanDataDiscoverySpec extends DataplexDatascanSpec {
-  const DataplexDatascanDataDiscoverySpec({
-    this.storageConfig,
-    this.bigqueryPublishingConfig,
-  });
+/// The [DataplexDatascanScanSpec.dataProfileSpec] choice: sets `data_profile_spec`.
+final class DataplexDatascanScanSpecDataProfileSpec
+    extends DataplexDatascanScanSpec {
+  const DataplexDatascanScanSpecDataProfileSpec(this.dataProfileSpec);
 
-  final TfArg<Map<String, Object?>>? storageConfig;
-  final TfArg<Map<String, Object?>>? bigqueryPublishingConfig;
+  final DataplexDatascanDataProfileSpec dataProfileSpec;
+
+  @override
+  String get blockKey => 'data_profile_spec';
+
+  @override
+  Map<String, Object?> encode() => {
+    'data_profile_spec': dataProfileSpec.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_profile_spec': TfArg.literal(dataProfileSpec.encode()),
+  };
+}
+
+/// The [DataplexDatascanScanSpec.dataDiscoverySpec] choice: sets `data_discovery_spec`.
+final class DataplexDatascanScanSpecDataDiscoverySpec
+    extends DataplexDatascanScanSpec {
+  const DataplexDatascanScanSpecDataDiscoverySpec(this.dataDiscoverySpec);
+
+  final DataplexDatascanDataDiscoverySpec dataDiscoverySpec;
 
   @override
   String get blockKey => 'data_discovery_spec';
 
   @override
   Map<String, Object?> encode() => {
-    if (storageConfig != null) 'storage_config': storageConfig!.toTfJson(),
-    if (bigqueryPublishingConfig != null)
-      'bigquery_publishing_config': bigqueryPublishingConfig!.toTfJson(),
+    'data_discovery_spec': dataDiscoverySpec.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_discovery_spec': TfArg.literal(dataDiscoverySpec.encode()),
   };
 }
 
-/// `data_documentation_spec` — generate data documentation.
-@immutable
-final class DataplexDatascanDataDocumentationSpec extends DataplexDatascanSpec {
-  const DataplexDatascanDataDocumentationSpec();
+/// The [DataplexDatascanScanSpec.dataDocumentationSpec] choice: sets `data_documentation_spec`.
+final class DataplexDatascanScanSpecDataDocumentationSpec
+    extends DataplexDatascanScanSpec {
+  const DataplexDatascanScanSpecDataDocumentationSpec(
+    this.dataDocumentationSpec,
+  );
+
+  final DataplexDatascanDataDocumentationSpec dataDocumentationSpec;
 
   @override
   String get blockKey => 'data_documentation_spec';
 
   @override
-  Map<String, Object?> encode() => {};
+  Map<String, Object?> encode() => {
+    'data_documentation_spec': dataDocumentationSpec.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_documentation_spec': TfArg.literal(dataDocumentationSpec.encode()),
+  };
 }
 
 /// Exactly one of `entity`, `resource` on the `data` block of `google_dataplex_datascan`: the provider rejects
@@ -230,6 +203,697 @@ final class DataplexDatascanDataResource extends DataplexDatascanData {
 
   @override
   Map<String, Object?> encode() => {'resource': resource.toTfJson()};
+}
+
+/// Typed helper for the `data_discovery_spec` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDiscoverySpec {
+  const DataplexDatascanDataDiscoverySpec({
+    this.bigqueryPublishingConfig,
+    this.storageConfig,
+  });
+
+  final DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig?
+  bigqueryPublishingConfig;
+
+  final DataplexDatascanDataDiscoverySpecStorageConfig? storageConfig;
+
+  Map<String, Object?> encode() => {
+    'bigquery_publishing_config': ?bigqueryPublishingConfig?.encode(),
+    'storage_config': ?storageConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `data_discovery_spec.bigquery_publishing_config` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig {
+  const DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig({
+    this.connection,
+    this.location,
+    this.project,
+    this.tableType,
+  });
+
+  final TfArg<String>? connection;
+
+  final TfArg<String>? location;
+
+  final TfArg<String>? project;
+
+  final TfArg<
+    DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType
+  >?
+  tableType;
+
+  Map<String, Object?> encode() => {
+    'connection': ?connection?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'project': ?project?.toTfJson(),
+    'table_type': ?tableType?.toTfJson(),
+  };
+}
+
+/// `table_type` — derived from the provider schema description.
+enum DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType
+    implements TerraformEnum {
+  tableTypeUnspecified('TABLE_TYPE_UNSPECIFIED'),
+  external('EXTERNAL'),
+  biglake('BIGLAKE');
+
+  const DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `data_discovery_spec.storage_config` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDiscoverySpecStorageConfig {
+  const DataplexDatascanDataDiscoverySpecStorageConfig({
+    this.excludePatterns,
+    this.includePatterns,
+    this.csvOptions,
+    this.jsonOptions,
+  });
+
+  final TfArg<List<String>>? excludePatterns;
+
+  final TfArg<List<String>>? includePatterns;
+
+  final DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions? csvOptions;
+
+  final DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions? jsonOptions;
+
+  Map<String, Object?> encode() => {
+    'exclude_patterns': ?excludePatterns?.toTfJson(),
+    'include_patterns': ?includePatterns?.toTfJson(),
+    'csv_options': ?csvOptions?.encode(),
+    'json_options': ?jsonOptions?.encode(),
+  };
+}
+
+/// Typed helper for the `data_discovery_spec.storage_config.csv_options` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions {
+  const DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions({
+    this.delimiter,
+    this.encoding,
+    this.headerRows,
+    this.quote,
+    this.typeInferenceDisabled,
+  });
+
+  final TfArg<String>? delimiter;
+
+  final TfArg<String>? encoding;
+
+  final TfArg<num>? headerRows;
+
+  final TfArg<String>? quote;
+
+  final TfArg<bool>? typeInferenceDisabled;
+
+  Map<String, Object?> encode() => {
+    'delimiter': ?delimiter?.toTfJson(),
+    'encoding': ?encoding?.toTfJson(),
+    'header_rows': ?headerRows?.toTfJson(),
+    'quote': ?quote?.toTfJson(),
+    'type_inference_disabled': ?typeInferenceDisabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_discovery_spec.storage_config.json_options` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions {
+  const DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions({
+    this.encoding,
+    this.typeInferenceDisabled,
+  });
+
+  final TfArg<String>? encoding;
+
+  final TfArg<bool>? typeInferenceDisabled;
+
+  Map<String, Object?> encode() => {
+    'encoding': ?encoding?.toTfJson(),
+    'type_inference_disabled': ?typeInferenceDisabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_documentation_spec` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataDocumentationSpec {
+  const DataplexDatascanDataDocumentationSpec({
+    this.catalogPublishingEnabled,
+    this.sqlDialect,
+  });
+
+  final TfArg<bool>? catalogPublishingEnabled;
+
+  final TfArg<DataplexDatascanDataDocumentationSpecSqlDialect>? sqlDialect;
+
+  Map<String, Object?> encode() => {
+    'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
+    'sql_dialect': ?sqlDialect?.toTfJson(),
+  };
+}
+
+/// `sql_dialect` — derived from the provider schema description.
+enum DataplexDatascanDataDocumentationSpecSqlDialect implements TerraformEnum {
+  googleSql('GOOGLE_SQL'),
+  sparkSql('SPARK_SQL');
+
+  const DataplexDatascanDataDocumentationSpecSqlDialect(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `data_profile_spec` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataProfileSpec {
+  const DataplexDatascanDataProfileSpec({
+    this.catalogPublishingEnabled,
+    this.rowFilter,
+    this.samplingPercent,
+    this.excludeFields,
+    this.includeFields,
+    this.postScanActions,
+  });
+
+  final TfArg<bool>? catalogPublishingEnabled;
+
+  final TfArg<String>? rowFilter;
+
+  final TfArg<num>? samplingPercent;
+
+  final DataplexDatascanDataProfileSpecExcludeFields? excludeFields;
+
+  final DataplexDatascanDataProfileSpecIncludeFields? includeFields;
+
+  final DataplexDatascanDataProfileSpecPostScanActions? postScanActions;
+
+  Map<String, Object?> encode() => {
+    'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
+    'row_filter': ?rowFilter?.toTfJson(),
+    'sampling_percent': ?samplingPercent?.toTfJson(),
+    'exclude_fields': ?excludeFields?.encode(),
+    'include_fields': ?includeFields?.encode(),
+    'post_scan_actions': ?postScanActions?.encode(),
+  };
+}
+
+/// Typed helper for the `data_profile_spec.exclude_fields` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataProfileSpecExcludeFields {
+  const DataplexDatascanDataProfileSpecExcludeFields({this.fieldNames});
+
+  final TfArg<List<String>>? fieldNames;
+
+  Map<String, Object?> encode() => {'field_names': ?fieldNames?.toTfJson()};
+}
+
+/// Typed helper for the `data_profile_spec.include_fields` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataProfileSpecIncludeFields {
+  const DataplexDatascanDataProfileSpecIncludeFields({this.fieldNames});
+
+  final TfArg<List<String>>? fieldNames;
+
+  Map<String, Object?> encode() => {'field_names': ?fieldNames?.toTfJson()};
+}
+
+/// Typed helper for the `data_profile_spec.post_scan_actions` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataProfileSpecPostScanActions {
+  const DataplexDatascanDataProfileSpecPostScanActions({this.bigqueryExport});
+
+  final DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport?
+  bigqueryExport;
+
+  Map<String, Object?> encode() => {
+    'bigquery_export': ?bigqueryExport?.encode(),
+  };
+}
+
+/// Typed helper for the `data_profile_spec.post_scan_actions.bigquery_export` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport {
+  const DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport({
+    this.resultsTable,
+  });
+
+  final TfArg<String>? resultsTable;
+
+  Map<String, Object?> encode() => {'results_table': ?resultsTable?.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpec {
+  const DataplexDatascanDataQualitySpec({
+    this.catalogPublishingEnabled,
+    this.enableCatalogBasedRules,
+    this.filter,
+    this.rowFilter,
+    this.samplingPercent,
+    this.postScanActions,
+    this.rules,
+  });
+
+  final TfArg<bool>? catalogPublishingEnabled;
+
+  final TfArg<bool>? enableCatalogBasedRules;
+
+  final TfArg<String>? filter;
+
+  final TfArg<String>? rowFilter;
+
+  final TfArg<num>? samplingPercent;
+
+  final DataplexDatascanDataQualitySpecPostScanActions? postScanActions;
+
+  final List<DataplexDatascanDataQualitySpecRules>? rules;
+
+  Map<String, Object?> encode() => {
+    'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
+    'enable_catalog_based_rules': ?enableCatalogBasedRules?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'row_filter': ?rowFilter?.toTfJson(),
+    'sampling_percent': ?samplingPercent?.toTfJson(),
+    'post_scan_actions': ?postScanActions?.encode(),
+    if (rules != null) 'rules': [for (final e in rules!) e.encode()],
+  };
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActions {
+  const DataplexDatascanDataQualitySpecPostScanActions({
+    this.bigqueryExport,
+    this.notificationReport,
+  });
+
+  final DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport?
+  bigqueryExport;
+
+  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReport?
+  notificationReport;
+
+  Map<String, Object?> encode() => {
+    'bigquery_export': ?bigqueryExport?.encode(),
+    'notification_report': ?notificationReport?.encode(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.bigquery_export` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport {
+  const DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport({
+    this.resultsTable,
+  });
+
+  final TfArg<String>? resultsTable;
+
+  Map<String, Object?> encode() => {'results_table': ?resultsTable?.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.notification_report` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReport {
+  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReport({
+    this.jobEndTrigger,
+    this.jobFailureTrigger,
+    required this.recipients,
+    this.scoreThresholdTrigger,
+  });
+
+  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger?
+  jobEndTrigger;
+
+  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger?
+  jobFailureTrigger;
+
+  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients
+  recipients;
+
+  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger?
+  scoreThresholdTrigger;
+
+  Map<String, Object?> encode() => {
+    'job_end_trigger': ?jobEndTrigger?.encode(),
+    'job_failure_trigger': ?jobFailureTrigger?.encode(),
+    'recipients': recipients.encode(),
+    'score_threshold_trigger': ?scoreThresholdTrigger?.encode(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.job_end_trigger` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger {
+  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.job_failure_trigger` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger {
+  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.recipients` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients {
+  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients({
+    this.emails,
+  });
+
+  final TfArg<List<String>>? emails;
+
+  Map<String, Object?> encode() => {'emails': ?emails?.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.score_threshold_trigger` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger {
+  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger({
+    this.scoreThreshold,
+  });
+
+  final TfArg<num>? scoreThreshold;
+
+  Map<String, Object?> encode() => {
+    'score_threshold': ?scoreThreshold?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRules {
+  const DataplexDatascanDataQualitySpecRules({
+    this.attributes,
+    this.column,
+    this.description,
+    required this.dimension,
+    this.ignoreNull,
+    this.name,
+    this.suspended,
+    this.threshold,
+    this.nonNullExpectation,
+    this.rangeExpectation,
+    this.regexExpectation,
+    this.rowConditionExpectation,
+    this.setExpectation,
+    this.sqlAssertion,
+    this.statisticRangeExpectation,
+    this.tableConditionExpectation,
+    this.templateReference,
+    this.uniquenessExpectation,
+  });
+
+  final TfArg<Map<String, String>>? attributes;
+
+  final TfArg<String>? column;
+
+  final TfArg<String>? description;
+
+  final TfArg<String> dimension;
+
+  final TfArg<bool>? ignoreNull;
+
+  final TfArg<String>? name;
+
+  final TfArg<bool>? suspended;
+
+  final TfArg<num>? threshold;
+
+  final DataplexDatascanDataQualitySpecRulesNonNullExpectation?
+  nonNullExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesRangeExpectation? rangeExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesRegexExpectation? regexExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesRowConditionExpectation?
+  rowConditionExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesSetExpectation? setExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesSqlAssertion? sqlAssertion;
+
+  final DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation?
+  statisticRangeExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesTableConditionExpectation?
+  tableConditionExpectation;
+
+  final DataplexDatascanDataQualitySpecRulesTemplateReference?
+  templateReference;
+
+  final DataplexDatascanDataQualitySpecRulesUniquenessExpectation?
+  uniquenessExpectation;
+
+  Map<String, Object?> encode() => {
+    'attributes': ?attributes?.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'dimension': dimension.toTfJson(),
+    'ignore_null': ?ignoreNull?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'suspended': ?suspended?.toTfJson(),
+    'threshold': ?threshold?.toTfJson(),
+    'non_null_expectation': ?nonNullExpectation?.encode(),
+    'range_expectation': ?rangeExpectation?.encode(),
+    'regex_expectation': ?regexExpectation?.encode(),
+    'row_condition_expectation': ?rowConditionExpectation?.encode(),
+    'set_expectation': ?setExpectation?.encode(),
+    'sql_assertion': ?sqlAssertion?.encode(),
+    'statistic_range_expectation': ?statisticRangeExpectation?.encode(),
+    'table_condition_expectation': ?tableConditionExpectation?.encode(),
+    'template_reference': ?templateReference?.encode(),
+    'uniqueness_expectation': ?uniquenessExpectation?.encode(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules.non_null_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesNonNullExpectation {
+  const DataplexDatascanDataQualitySpecRulesNonNullExpectation();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `data_quality_spec.rules.range_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesRangeExpectation {
+  const DataplexDatascanDataQualitySpecRulesRangeExpectation({
+    this.maxValue,
+    this.minValue,
+    this.strictMaxEnabled,
+    this.strictMinEnabled,
+  });
+
+  final TfArg<String>? maxValue;
+
+  final TfArg<String>? minValue;
+
+  final TfArg<bool>? strictMaxEnabled;
+
+  final TfArg<bool>? strictMinEnabled;
+
+  Map<String, Object?> encode() => {
+    'max_value': ?maxValue?.toTfJson(),
+    'min_value': ?minValue?.toTfJson(),
+    'strict_max_enabled': ?strictMaxEnabled?.toTfJson(),
+    'strict_min_enabled': ?strictMinEnabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules.regex_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesRegexExpectation {
+  const DataplexDatascanDataQualitySpecRulesRegexExpectation({
+    required this.regex,
+  });
+
+  final TfArg<String> regex;
+
+  Map<String, Object?> encode() => {'regex': regex.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.rules.row_condition_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesRowConditionExpectation {
+  const DataplexDatascanDataQualitySpecRulesRowConditionExpectation({
+    required this.sqlExpression,
+  });
+
+  final TfArg<String> sqlExpression;
+
+  Map<String, Object?> encode() => {'sql_expression': sqlExpression.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.rules.set_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesSetExpectation {
+  const DataplexDatascanDataQualitySpecRulesSetExpectation({
+    required this.values,
+  });
+
+  final TfArg<List<String>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.rules.sql_assertion` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesSqlAssertion {
+  const DataplexDatascanDataQualitySpecRulesSqlAssertion({
+    required this.sqlStatement,
+  });
+
+  final TfArg<String> sqlStatement;
+
+  Map<String, Object?> encode() => {'sql_statement': sqlStatement.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.rules.statistic_range_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation {
+  const DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation({
+    this.maxValue,
+    this.minValue,
+    required this.statistic,
+    this.strictMaxEnabled,
+    this.strictMinEnabled,
+  });
+
+  final TfArg<String>? maxValue;
+
+  final TfArg<String>? minValue;
+
+  final TfArg<
+    DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic
+  >
+  statistic;
+
+  final TfArg<bool>? strictMaxEnabled;
+
+  final TfArg<bool>? strictMinEnabled;
+
+  Map<String, Object?> encode() => {
+    'max_value': ?maxValue?.toTfJson(),
+    'min_value': ?minValue?.toTfJson(),
+    'statistic': statistic.toTfJson(),
+    'strict_max_enabled': ?strictMaxEnabled?.toTfJson(),
+    'strict_min_enabled': ?strictMinEnabled?.toTfJson(),
+  };
+}
+
+/// `statistic` — derived from the provider schema description.
+enum DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic
+    implements TerraformEnum {
+  statisticUndefined('STATISTIC_UNDEFINED'),
+  mean('MEAN'),
+  min('MIN'),
+  max('MAX');
+
+  const DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `data_quality_spec.rules.table_condition_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesTableConditionExpectation {
+  const DataplexDatascanDataQualitySpecRulesTableConditionExpectation({
+    required this.sqlExpression,
+  });
+
+  final TfArg<String> sqlExpression;
+
+  Map<String, Object?> encode() => {'sql_expression': sqlExpression.toTfJson()};
+}
+
+/// Typed helper for the `data_quality_spec.rules.template_reference` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesTemplateReference {
+  const DataplexDatascanDataQualitySpecRulesTemplateReference({
+    required this.name,
+    this.values,
+  });
+
+  final TfArg<String> name;
+
+  final List<DataplexDatascanDataQualitySpecRulesTemplateReferenceValues>?
+  values;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    if (values != null) 'values': [for (final e in values!) e.encode()],
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules.template_reference.values` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesTemplateReferenceValues {
+  const DataplexDatascanDataQualitySpecRulesTemplateReferenceValues({
+    required this.name,
+    required this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules.uniqueness_expectation` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDataQualitySpecRulesUniquenessExpectation {
+  const DataplexDatascanDataQualitySpecRulesUniquenessExpectation();
+
+  Map<String, Object?> encode() => {};
 }
 
 /// Exactly one of `dataplex_service_agent`, `user_credential`, `service_account` on the `execution_identity` block of `google_dataplex_datascan`: the provider rejects
@@ -470,9 +1134,8 @@ final class DataplexDatascanExecutionSpecTriggerSchedule {
 ///
 /// A Dataplex data scan (profile, quality, discovery, or documentation).
 ///
-/// Choose exactly one [DataplexDatascanSpec] variant via [scanSpec]. Provide
-/// [data] (entity or resource) and [executionSpec] (trigger) as literal maps
-/// matching the provider nested blocks.
+/// Choose exactly one scan type via [scanSpec]; [data] names the entity or
+/// resource to scan and [executionSpec] its trigger.
 final class GoogleDataplexDatascan extends Resource {
   static const String tfType = 'google_dataplex_datascan';
 
@@ -480,7 +1143,7 @@ final class GoogleDataplexDatascan extends Resource {
     required super.localName,
     required TfArg<String> dataScanId,
     required TfArg<String> location,
-    required DataplexDatascanSpec scanSpec,
+    required DataplexDatascanScanSpec scanSpec,
     required DataplexDatascanData data,
     required DataplexDatascanExecutionSpec executionSpec,
     TfArg<String>? displayName,
@@ -507,7 +1170,7 @@ final class GoogleDataplexDatascan extends Resource {
              'execution_identity': TfArg.literal(executionIdentity.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           scanSpec.blockKey: TfArg.literal(scanSpec.encode()),
+           ...scanSpec.argMap,
          },
        );
 

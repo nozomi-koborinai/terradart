@@ -50,12 +50,14 @@ final class DlpStack extends Stack {
         templateId: .literal('terradart-email-inspect'),
         displayName: .literal('terradart-email-inspect'),
         description: .literal('Quickstart inspect template'),
-        inspectConfig: .literal({
-          'info_types': [
-            {'name': 'EMAIL_ADDRESS'},
+        inspectConfig: DataLossPreventionInspectTemplateInspectConfig(
+          infoTypes: [
+            DataLossPreventionInspectTemplateInspectConfigInfoTypes(
+              name: .literal('EMAIL_ADDRESS'),
+            ),
           ],
-          'min_likelihood': 'POSSIBLE',
-        }),
+          minLikelihood: .literal(.possible),
+        ),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );

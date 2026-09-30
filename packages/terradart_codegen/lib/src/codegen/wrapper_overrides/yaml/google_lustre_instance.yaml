@@ -5,12 +5,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-# Access rules / dynamic tier / maintenance stay Map for this thin Wave.
-nestedTypeExcludes:
-  - access_rules_options
-  - dynamic_tier_options
-  - maintenance_policy
-
 curatedDoc: |-
   /// Managed Lustre **instance** — Google-managed Lustre parallel file
   /// system capacity.

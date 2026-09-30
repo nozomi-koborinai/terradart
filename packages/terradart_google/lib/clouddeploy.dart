@@ -122,7 +122,25 @@ export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_member.dart'
 export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_policy.dart'
     show GoogleClouddeployDeliveryPipelineIamPolicy;
 export 'src/clouddeploy/google_clouddeploy_deploy_policy.dart'
-    show GoogleClouddeployDeployPolicy;
+    show
+        ClouddeployDeployPolicyRules,
+        ClouddeployDeployPolicyRulesRolloutRestriction,
+        ClouddeployDeployPolicyRulesRolloutRestrictionActions,
+        ClouddeployDeployPolicyRulesRolloutRestrictionInvokers,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindows,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindows,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndDate,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsEndTime,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartDate,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsOneTimeWindowsStartTime,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindows,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsDaysOfWeek,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsEndTime,
+        ClouddeployDeployPolicyRulesRolloutRestrictionTimeWindowsWeeklyWindowsStartTime,
+        ClouddeployDeployPolicySelectors,
+        ClouddeployDeployPolicySelectorsDeliveryPipeline,
+        ClouddeployDeployPolicySelectorsTarget,
+        GoogleClouddeployDeployPolicy;
 export 'src/clouddeploy/google_clouddeploy_target.dart'
     show
         ClouddeployTargetAnthosCluster,
