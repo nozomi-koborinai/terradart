@@ -854,4 +854,24 @@ final class AwsNetworkfirewallRuleGroup extends Resource {
   /// Reference to `update_token` attribute.
   TfRef<String> get updateToken =>
       TfRef.attribute<String>(this, 'update_token');
+
+  /// Reference to `capacity` attribute.
+  TfRef<num> get capacityRef => TfRef.attribute<num>(this, 'capacity');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rules` attribute.
+  TfRef<String> get rulesRef => TfRef.attribute<String>(this, 'rules');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

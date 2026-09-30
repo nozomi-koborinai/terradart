@@ -62,4 +62,10 @@ final class DataCloudflareZeroTrustDeviceSubnet extends Data {
 
   /// Reference to `subnet_type` attribute.
   TfRef<String> get subnetType => TfRef.attribute<String>(this, 'subnet_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 }

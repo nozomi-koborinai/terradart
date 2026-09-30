@@ -225,4 +225,36 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
   /// Reference to `monitored_resource_types` attribute.
   TfRef<List<String>> get monitoredResourceTypes =>
       TfRef.attribute<List<String>>(this, 'monitored_resource_types');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `launch_stage` attribute.
+  TfRef<String> get launchStageRef =>
+      TfRef.attribute<String>(this, 'launch_stage');
+
+  /// Reference to `metric_kind` attribute.
+  TfRef<String> get metricKindRef =>
+      TfRef.attribute<String>(this, 'metric_kind');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `unit` attribute.
+  TfRef<String> get unitRef => TfRef.attribute<String>(this, 'unit');
+
+  /// Reference to `value_type` attribute.
+  TfRef<String> get valueTypeRef => TfRef.attribute<String>(this, 'value_type');
 }

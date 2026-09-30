@@ -69,4 +69,21 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
   /// Reference to `well_known_url` attribute.
   TfRef<String> get wellKnownUrl =>
       TfRef.attribute<String>(this, 'well_known_url');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `active` attribute.
+  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+
+  /// Reference to `integration_type` attribute.
+  TfRef<String> get integrationTypeRef =>
+      TfRef.attribute<String>(this, 'integration_type');
+
+  /// Reference to `reference_id` attribute.
+  TfRef<String> get referenceIdRef =>
+      TfRef.attribute<String>(this, 'reference_id');
+
+  /// Reference to `tenant_url` attribute.
+  TfRef<String> get tenantUrlRef => TfRef.attribute<String>(this, 'tenant_url');
 }

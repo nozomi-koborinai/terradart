@@ -78,4 +78,19 @@ final class DataAwsRamResourceShare extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_owner` attribute.
+  TfRef<String> get resourceOwnerRef =>
+      TfRef.attribute<String>(this, 'resource_owner');
+
+  /// Reference to `resource_share_status` attribute.
+  TfRef<String> get resourceShareStatusRef =>
+      TfRef.attribute<String>(this, 'resource_share_status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

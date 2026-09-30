@@ -39,4 +39,15 @@ final class DataAwsApigatewayv2Apis extends Data {
 
   /// Reference to `ids` attribute.
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
+
+  /// Reference to `protocol_type` attribute.
+  TfRef<String> get protocolTypeRef =>
+      TfRef.attribute<String>(this, 'protocol_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

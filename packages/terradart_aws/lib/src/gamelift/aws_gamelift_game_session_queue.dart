@@ -77,4 +77,27 @@ final class AwsGameliftGameSessionQueue extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `custom_event_data` attribute.
+  TfRef<String> get customEventDataRef =>
+      TfRef.attribute<String>(this, 'custom_event_data');
+
+  /// Reference to `destinations` attribute.
+  TfRef<List<String>> get destinationsRef =>
+      TfRef.attribute<List<String>>(this, 'destinations');
+
+  /// Reference to `notification_target` attribute.
+  TfRef<String> get notificationTargetRef =>
+      TfRef.attribute<String>(this, 'notification_target');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timeout_in_seconds` attribute.
+  TfRef<num> get timeoutInSecondsRef =>
+      TfRef.attribute<num>(this, 'timeout_in_seconds');
 }

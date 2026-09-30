@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_bigtable_table`.
@@ -13,6 +14,29 @@ class BigtableTableColumnFamily {
   final TfArg<String> family;
 
   Map<String, Object?> toArgMap() => {'family': family.toTfJson()};
+}
+
+/// Typed helper for the `automated_backup_policy` block of
+/// `google_bigtable_table` (derived from provider schema).
+@immutable
+final class BigtableTableAutomatedBackupPolicy {
+  const BigtableTableAutomatedBackupPolicy({
+    this.frequency,
+    this.locations,
+    this.retentionPeriod,
+  });
+
+  final TfArg<String>? frequency;
+
+  final TfArg<List<String>>? locations;
+
+  final TfArg<String>? retentionPeriod;
+
+  Map<String, Object?> encode() => {
+    'frequency': ?frequency?.toTfJson(),
+    'locations': ?locations?.toTfJson(),
+    'retention_period': ?retentionPeriod?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_bigtable_table`.
@@ -44,6 +68,7 @@ final class GoogleBigtableTable extends Resource {
     required TfArg<String> instanceName,
     required TfArg<String> name,
     List<BigtableTableColumnFamily>? columnFamily,
+    BigtableTableAutomatedBackupPolicy? automatedBackupPolicy,
     TfArg<String>? deletionPolicy,
     TfArg<String>? deletionProtection,
     TfArg<String>? changeStreamRetention,
@@ -60,6 +85,10 @@ final class GoogleBigtableTable extends Resource {
            if (columnFamily != null)
              'column_family': TfArg.literal(
                columnFamily.map((c) => c.toArgMap()).toList(),
+             ),
+           if (automatedBackupPolicy != null)
+             'automated_backup_policy': TfArg.literal(
+               automatedBackupPolicy.encode(),
              ),
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,
@@ -80,6 +109,33 @@ final class GoogleBigtableTable extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `change_stream_retention` attribute.
+  TfRef<String> get changeStreamRetentionRef =>
+      TfRef.attribute<String>(this, 'change_stream_retention');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<String> get deletionProtectionRef =>
+      TfRef.attribute<String>(this, 'deletion_protection');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `row_key_schema` attribute.
+  TfRef<String> get rowKeySchemaRef =>
+      TfRef.attribute<String>(this, 'row_key_schema');
+
+  /// Reference to `split_keys` attribute.
+  TfRef<List<String>> get splitKeysRef =>
+      TfRef.attribute<List<String>>(this, 'split_keys');
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

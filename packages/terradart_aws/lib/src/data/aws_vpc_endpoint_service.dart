@@ -112,4 +112,23 @@ final class DataAwsVpcEndpointService extends Data {
   /// Reference to `vpc_endpoint_policy_supported` attribute.
   TfRef<bool> get vpcEndpointPolicySupported =>
       TfRef.attribute<bool>(this, 'vpc_endpoint_policy_supported');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `service_regions` attribute.
+  TfRef<List<String>> get serviceRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'service_regions');
+
+  /// Reference to `service_type` attribute.
+  TfRef<String> get serviceTypeRef =>
+      TfRef.attribute<String>(this, 'service_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

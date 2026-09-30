@@ -367,4 +367,46 @@ final class AwsCloudformationStackSet extends Resource {
 
   /// Reference to `stack_set_id` attribute.
   TfRef<String> get stackSetId => TfRef.attribute<String>(this, 'stack_set_id');
+
+  /// Reference to `administration_role_arn` attribute.
+  TfRef<String> get administrationRoleArnRef =>
+      TfRef.attribute<String>(this, 'administration_role_arn');
+
+  /// Reference to `call_as` attribute.
+  TfRef<String> get callAsRef => TfRef.attribute<String>(this, 'call_as');
+
+  /// Reference to `capabilities` attribute.
+  TfRef<List<String>> get capabilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'capabilities');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `execution_role_name` attribute.
+  TfRef<String> get executionRoleNameRef =>
+      TfRef.attribute<String>(this, 'execution_role_name');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `permission_model` attribute.
+  TfRef<String> get permissionModelRef =>
+      TfRef.attribute<String>(this, 'permission_model');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `template_body` attribute.
+  TfRef<String> get templateBodyRef =>
+      TfRef.attribute<String>(this, 'template_body');
+
+  /// Reference to `template_url` attribute.
+  TfRef<String> get templateUrlRef =>
+      TfRef.attribute<String>(this, 'template_url');
 }

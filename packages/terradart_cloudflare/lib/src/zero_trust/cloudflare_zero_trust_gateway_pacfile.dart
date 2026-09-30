@@ -60,4 +60,17 @@ final class CloudflareZeroTrustGatewayPacfile extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `contents` attribute.
+  TfRef<String> get contentsRef => TfRef.attribute<String>(this, 'contents');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `slug` attribute.
+  TfRef<String> get slugRef => TfRef.attribute<String>(this, 'slug');
 }

@@ -34,4 +34,15 @@ final class AwsVpcRouteServerPropagation extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsVpcRouteServerPropagation>`.
   RefTo<AwsVpcRouteServerPropagation> get ref => RefTo.of(this);
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_server_id` attribute.
+  TfRef<String> get routeServerIdRef =>
+      TfRef.attribute<String>(this, 'route_server_id');
+
+  /// Reference to `route_table_id` attribute.
+  TfRef<String> get routeTableIdRef =>
+      TfRef.attribute<String>(this, 'route_table_id');
 }

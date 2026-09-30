@@ -1,6 +1,7 @@
 outputDir: network
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -22,8 +23,8 @@ curatedDoc: |-
   ///   accessType: TfArg.literal(
   ///     NetworkConnectivityRegionalEndpointAccessType.regional,
   ///   ),
-  ///   network: TfArg.ref(vpc.id),
-  ///   subnetwork: TfArg.ref(subnet.id),
+  ///   network: vpc.ref,
+  ///   subnetwork: subnet.ref,
   /// );
   /// ```
 

@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_bigquery_datapolicyv2_data_policy_iam_member`.
 const Set<String> _googleBigqueryDatapolicyv2DataPolicyIamMemberSensitive =
     <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_bigquery_datapolicyv2_data_policy_iam_member` (derived from provider schema).
+@immutable
+final class BigqueryDatapolicyv2DataPolicyIamMemberCondition {
+  const BigqueryDatapolicyv2DataPolicyIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_bigquery_datapolicyv2_data_policy_iam_member`.
 ///
@@ -31,7 +55,7 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
     required TfArg<String> dataPolicyId,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    BigqueryDatapolicyv2DataPolicyIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,
     super.lifecycle,
@@ -44,7 +68,8 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
            'data_policy_id': dataPolicyId,
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'location': ?location,
            'project': ?project,
          },
@@ -64,4 +89,20 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `data_policy_id` attribute.
+  TfRef<String> get dataPolicyIdRef =>
+      TfRef.attribute<String>(this, 'data_policy_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

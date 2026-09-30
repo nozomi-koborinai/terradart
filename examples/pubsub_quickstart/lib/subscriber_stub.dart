@@ -7,4 +7,10 @@ import 'generated/orders_stack.app.dart';
 
 /// Example handler shape (not wired to a real Pub/Sub runtime).
 bool acceptsTopic(String eventTopic) =>
-    eventTopic == OrdersStackExports.ORDERS_TOPIC_NAME;
+    eventTopic == OrdersStackConstants.ordersTopicName;
+
+/// The topic's full resource path is only known after apply, so it is an
+/// output: the deployment sets `ORDERS_TOPIC_ID`, and the generated reader
+/// types it (`OrdersStackOutputs.fromEnvironment(Platform.environment)`).
+String ordersTopicId(Map<String, String> environment) =>
+    OrdersStackOutputs.fromEnvironment(environment).ordersTopicId;

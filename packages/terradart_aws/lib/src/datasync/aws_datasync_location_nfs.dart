@@ -85,4 +85,19 @@ final class AwsDatasyncLocationNfs extends Resource {
 
   /// Reference to `uri` attribute.
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_hostname` attribute.
+  TfRef<String> get serverHostnameRef =>
+      TfRef.attribute<String>(this, 'server_hostname');
+
+  /// Reference to `subdirectory` attribute.
+  TfRef<String> get subdirectoryRef =>
+      TfRef.attribute<String>(this, 'subdirectory');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -85,4 +85,23 @@ final class AwsRdsReservedInstance extends Resource {
 
   /// Reference to `usage_price` attribute.
   TfRef<num> get usagePrice => TfRef.attribute<num>(this, 'usage_price');
+
+  /// Reference to `instance_count` attribute.
+  TfRef<num> get instanceCountRef =>
+      TfRef.attribute<num>(this, 'instance_count');
+
+  /// Reference to `offering_id` attribute.
+  TfRef<String> get offeringIdRef =>
+      TfRef.attribute<String>(this, 'offering_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reservation_id` attribute.
+  TfRef<String> get reservationIdRef =>
+      TfRef.attribute<String>(this, 'reservation_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

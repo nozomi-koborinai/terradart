@@ -63,4 +63,14 @@ final class DataGoogleParameterManagerParameterVersion extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `parameter` attribute.
+  TfRef<String> get parameterRef => TfRef.attribute<String>(this, 'parameter');
+
+  /// Reference to `parameter_version_id` attribute.
+  TfRef<String> get parameterVersionIdRef =>
+      TfRef.attribute<String>(this, 'parameter_version_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

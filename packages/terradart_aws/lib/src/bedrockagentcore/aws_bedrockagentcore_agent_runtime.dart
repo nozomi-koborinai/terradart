@@ -857,4 +857,33 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
         this,
         'workload_identity_details',
       );
+
+  /// Reference to `agent_runtime_name` attribute.
+  TfRef<String> get agentRuntimeNameRef =>
+      TfRef.attribute<String>(this, 'agent_runtime_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `environment_variables` attribute.
+  TfRef<Map<String, String>> get environmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment_variables');
+
+  /// Reference to `lifecycle_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get lifecycleConfigurationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'lifecycle_configuration',
+      );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

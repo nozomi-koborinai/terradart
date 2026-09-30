@@ -26,8 +26,8 @@ export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
         CloudTasksQueueStackdriverLoggingConfig,
         GoogleCloudTasksQueue;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_binding.dart'
-    show GoogleCloudTasksQueueIamBinding;
+    show CloudTasksQueueIamBindingCondition, GoogleCloudTasksQueueIamBinding;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_member.dart'
-    show GoogleCloudTasksQueueIamMember;
+    show CloudTasksQueueIamMemberCondition, GoogleCloudTasksQueueIamMember;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_policy.dart'
     show GoogleCloudTasksQueueIamPolicy;

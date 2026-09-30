@@ -70,15 +70,16 @@ final class VmComplianceStack extends Stack {
         localName: 'ci_attestor',
         name: .literal('ci-attestor'),
         description: .literal('CI image signing attestor'),
-        attestationAuthorityNote: .literal({
-          'note_reference': 'projects/$projectId/notes/ci-attestor',
-          'public_keys': [
-            {
-              'comment': 'TerraDart quickstart test key',
-              'ascii_armored_pgp_public_key': _quickstartPgpPublicKey,
-            },
-          ],
-        }),
+        attestationAuthorityNote:
+            BinaryAuthorizationAttestorAttestationAuthorityNote(
+              noteReference: .literal('projects/$projectId/notes/ci-attestor'),
+              publicKeys: [
+                BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys(
+                  comment: .literal('TerraDart quickstart test key'),
+                  asciiArmoredPgpPublicKey: .literal(_quickstartPgpPublicKey),
+                ),
+              ],
+            ),
         dependsOn: apiDeps,
       ),
     );

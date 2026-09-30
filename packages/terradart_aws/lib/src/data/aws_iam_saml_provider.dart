@@ -46,4 +46,11 @@ final class DataAwsIamSamlProvider extends Data {
 
   /// Reference to `valid_until` attribute.
   TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -12,7 +12,7 @@
 /// (the project's default fleet is auto-created), so the stack creates and
 /// destroys cleanly in a single project.
 ///
-/// Exports the scope id as a typed Dart constant via `Stack.addExport`.
+/// Exports the scope id as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -27,6 +27,7 @@ final class FleetStack extends Stack {
   FleetStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/fleet_stack.app.dart'),
       ) {
     final apiGkeHub = add(
       GoogleProjectService(
@@ -48,7 +49,7 @@ final class FleetStack extends Stack {
       GoogleGkeHubNamespace(
         localName: 'team_namespace',
         scopeNamespaceId: .literal('terradart-team'),
-        scopeId: .literal('terradart-scope'),
+        scopeId: .ref(scope.scopeIdRef),
         scope: .ref(scope.id),
         dependsOn: [ResourceDependency(scope)],
       ),
@@ -61,7 +62,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeRbacRoleBinding(
         localName: 'team_view',
-        scopeId: .literal('terradart-scope'),
+        scopeId: .ref(scope.scopeIdRef),
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),
@@ -73,15 +74,15 @@ final class FleetStack extends Stack {
       GoogleGkeHubRolloutSequence(
         localName: 'upgrade_sequence',
         rolloutSequenceId: .literal('terradart-rollout'),
-        stages: .literal([
-          {
-            'fleet_projects': ['projects/$projectId'],
+        stages: [
+          GkeHubRolloutSequenceStages(
+            fleetProjects: .literal(['projects/$projectId']),
             // The API requires a soak duration per stage even though the
             // schema marks it optional ("rollout sequence stage must have
             // a soak duration").
-            'soak_duration': '60s',
-          },
-        ]),
+            soakDuration: .literal('60s'),
+          ),
+        ],
         displayName: .literal('TerraDart upgrade sequence'),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),
@@ -100,7 +101,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeIamMember(
         localName: 'team_scope_viewer',
-        scopeId: .literal('terradart-scope'),
+        scopeId: .ref(scope.scopeIdRef),
         role: .literal('roles/viewer'),
         member: .ref(teamReader.iamMember),
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
@@ -108,14 +109,9 @@ final class FleetStack extends Stack {
     );
 
     // Literal scope id -- emitted as a Dart constant at synth time.
-    addExport('FLEET_SCOPE_ID', StringExport('terradart-scope'));
+    addConstant('fleetScopeId', .ref(scope.scopeIdRef));
 
     // Full scope resource name -- Terraform output only (computed).
-    addExport(
-      'FLEET_SCOPE_NAME',
-      ResourceIdExport(scope.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/fleet_stack.app.dart');
+    addOutput('fleet_scope_name', .ref(scope.id));
   }
 }

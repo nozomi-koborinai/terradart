@@ -183,6 +183,19 @@ class ComputeSubnetworkSubnetworkLogConfig {
   };
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_subnetwork` (derived from provider schema).
+@immutable
+final class ComputeSubnetworkParams {
+  const ComputeSubnetworkParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_subnetwork`.
 ///
 /// A VPC network is a virtual version of the traditional physical networks that
@@ -214,9 +227,8 @@ class ComputeSubnetworkSubnetworkLogConfig {
 /// - [localName]: Terraform local name.
 /// - `name`: GCP subnetwork name. Pass `TfArg.literal('main-subnet')` or
 ///   `TfArg.ref(otherSubnet.nameRef)`.
-/// - `network`: full self-link of the parent VPC. Pass
-///   `TfArg.ref(vpc.selfLink)` so the value resolves to
-///   `${google_compute_network.<localName>.self_link}`.
+/// - `network`: the parent VPC. Pass `vpc.ref` so the value resolves to
+///   `${google_compute_network.<localName>.id}`.
 ///
 /// Secondary ranges ([secondaryIpRange]) define alias IP ranges consumed by
 /// GKE pods/services. Flow logs are configured via [logConfig]; not supported
@@ -235,7 +247,7 @@ class ComputeSubnetworkSubnetworkLogConfig {
 ///   localName: 'main_subnet',
 ///   name: TfArg.literal('main-subnet'),
 ///   region: TfArg.literal('us-central1'),
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   ipCidrRange: TfArg.literal('10.0.0.0/16'),
 ///   privateIpGoogleAccess: TfArg.literal(true),
 /// );
@@ -265,6 +277,7 @@ final class GoogleComputeSubnetwork extends Resource {
     TfArg<bool>? sendSecondaryIpRangeIfEmpty,
     TfArg<bool>? allowSubnetCidrRoutesOverlap,
     TfArg<String>? description,
+    ComputeSubnetworkParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -297,6 +310,7 @@ final class GoogleComputeSubnetwork extends Resource {
            'send_secondary_ip_range_if_empty': ?sendSecondaryIpRangeIfEmpty,
            'allow_subnet_cidr_routes_overlap': ?allowSubnetCidrRoutesOverlap,
            'description': ?description,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
          },
        );
@@ -341,4 +355,74 @@ final class GoogleComputeSubnetwork extends Resource {
 
   /// Reference to `subnetwork_id` attribute.
   TfRef<num> get subnetworkId => TfRef.attribute<num>(this, 'subnetwork_id');
+
+  /// Reference to `allow_subnet_cidr_routes_overlap` attribute.
+  TfRef<bool> get allowSubnetCidrRoutesOverlapRef =>
+      TfRef.attribute<bool>(this, 'allow_subnet_cidr_routes_overlap');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `external_ipv6_prefix` attribute.
+  TfRef<String> get externalIpv6PrefixRef =>
+      TfRef.attribute<String>(this, 'external_ipv6_prefix');
+
+  /// Reference to `internal_ipv6_prefix` attribute.
+  TfRef<String> get internalIpv6PrefixRef =>
+      TfRef.attribute<String>(this, 'internal_ipv6_prefix');
+
+  /// Reference to `ip_cidr_range` attribute.
+  TfRef<String> get ipCidrRangeRef =>
+      TfRef.attribute<String>(this, 'ip_cidr_range');
+
+  /// Reference to `ip_collection` attribute.
+  TfRef<String> get ipCollectionRef =>
+      TfRef.attribute<String>(this, 'ip_collection');
+
+  /// Reference to `ipv6_access_type` attribute.
+  TfRef<String> get ipv6AccessTypeRef =>
+      TfRef.attribute<String>(this, 'ipv6_access_type');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `private_ip_google_access` attribute.
+  TfRef<bool> get privateIpGoogleAccessRef =>
+      TfRef.attribute<bool>(this, 'private_ip_google_access');
+
+  /// Reference to `private_ipv6_google_access` attribute.
+  TfRef<String> get privateIpv6GoogleAccessRef =>
+      TfRef.attribute<String>(this, 'private_ipv6_google_access');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `purpose` attribute.
+  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reserved_internal_range` attribute.
+  TfRef<String> get reservedInternalRangeRef =>
+      TfRef.attribute<String>(this, 'reserved_internal_range');
+
+  /// Reference to `resolve_subnet_mask` attribute.
+  TfRef<String> get resolveSubnetMaskRef =>
+      TfRef.attribute<String>(this, 'resolve_subnet_mask');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `send_secondary_ip_range_if_empty` attribute.
+  TfRef<bool> get sendSecondaryIpRangeIfEmptyRef =>
+      TfRef.attribute<bool>(this, 'send_secondary_ip_range_if_empty');
+
+  /// Reference to `stack_type` attribute.
+  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
 }

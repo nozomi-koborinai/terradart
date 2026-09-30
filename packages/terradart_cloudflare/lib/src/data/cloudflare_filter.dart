@@ -80,4 +80,10 @@ final class DataCloudflareFilter extends Data {
 
   /// Reference to `ref` attribute.
   TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+
+  /// Reference to `filter_id` attribute.
+  TfRef<String> get filterIdRef => TfRef.attribute<String>(this, 'filter_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

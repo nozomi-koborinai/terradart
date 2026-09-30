@@ -1,5 +1,6 @@
 outputDir: vertex_ai
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 

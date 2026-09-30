@@ -239,4 +239,28 @@ final class AwsSfnStateMachine extends Resource {
   /// Reference to `version_description` attribute.
   TfRef<String> get versionDescription =>
       TfRef.attribute<String>(this, 'version_description');
+
+  /// Reference to `definition` attribute.
+  TfRef<String> get definitionRef =>
+      TfRef.attribute<String>(this, 'definition');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `publish` attribute.
+  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

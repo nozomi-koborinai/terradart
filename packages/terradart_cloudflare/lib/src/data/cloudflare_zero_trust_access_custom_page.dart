@@ -57,4 +57,11 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `custom_page_id` attribute.
+  TfRef<String> get customPageIdRef =>
+      TfRef.attribute<String>(this, 'custom_page_id');
 }

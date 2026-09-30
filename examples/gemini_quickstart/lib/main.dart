@@ -14,7 +14,7 @@
 /// [target] uses the project *number* (`projects/<number>`).
 ///
 /// Exports the enablement setting id as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -29,6 +29,7 @@ final class GeminiStack extends Stack {
   GeminiStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/gemini_stack.app.dart'),
       ) {
     final current = addData(GoogleProject(localName: 'current'));
     final projectTarget = 'projects/${current.number.interpolation}';
@@ -54,11 +55,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiGeminiGcpEnablementSettingBinding(
         localName: 'enablement_bind',
-        geminiGcpEnablementSettingId: .literal('terradart-enablement'),
+        geminiGcpEnablementSettingId: enablement.ref,
         settingBindingId: .literal('terradart-enablement-bind'),
         location: .literal('global'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(enablement)],
       ),
     );
 
@@ -76,11 +76,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiLoggingSettingBinding(
         localName: 'logging_bind',
-        loggingSettingId: .literal('terradart-logging'),
+        loggingSettingId: logging.ref,
         settingBindingId: .literal('terradart-logging-bind'),
         location: .literal('global'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(logging)],
       ),
     );
 
@@ -96,11 +95,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiReleaseChannelSettingBinding(
         localName: 'channel_bind',
-        releaseChannelSettingId: .literal('terradart-channel'),
+        releaseChannelSettingId: releaseChannel.ref,
         settingBindingId: .literal('terradart-channel-bind'),
         location: .literal('global'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(releaseChannel)],
       ),
     );
 
@@ -118,11 +116,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiDataSharingWithGoogleSettingBinding(
         localName: 'sharing_bind',
-        dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
+        dataSharingWithGoogleSettingId: dataSharing.ref,
         settingBindingId: .literal('terradart-sharing-bind'),
         location: .literal('global'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(dataSharing)],
       ),
     );
 
@@ -152,11 +149,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiGdaObservabilitySettingBinding(
         localName: 'gda_observability_bind',
-        gdaObservabilitySettingId: .literal('terradart-gda-observability'),
+        gdaObservabilitySettingId: gdaObservability.ref,
         settingBindingId: .literal('terradart-gda-observability-bind'),
         location: .literal('global'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(gdaObservability)],
       ),
     );
 
@@ -179,24 +175,21 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiGibqObservabilitySettingBinding(
         localName: 'gibq_observability_bind',
-        gibqObservabilitySettingId: .literal('terradart-gibq-observability'),
+        gibqObservabilitySettingId: gibqObservability.ref,
         settingBindingId: .literal('terradart-gibq-observability-bind'),
         location: .literal('global'),
         product: .literal('GEMINI_IN_BIGQUERY'),
         target: .literal(projectTarget),
-        dependsOn: [ResourceDependency(gibqObservability)],
       ),
     );
 
     // Literal enablement setting id -- emitted as a Dart constant at synth.
-    addExport('ENABLEMENT_SETTING_ID', StringExport('terradart-enablement'));
-
-    // Full enablement setting resource name -- Terraform output only.
-    addExport(
-      'ENABLEMENT_SETTING_NAME',
-      ResourceIdExport(enablement.id, emitTerraformOutput: true),
+    addConstant(
+      'enablementSettingId',
+      .ref(enablement.geminiGcpEnablementSettingIdRef),
     );
 
-    setAppExportsOutputPath('lib/generated/gemini_stack.app.dart');
+    // Full enablement setting resource name -- Terraform output only.
+    addOutput('enablement_setting_name', .ref(enablement.id));
   }
 }

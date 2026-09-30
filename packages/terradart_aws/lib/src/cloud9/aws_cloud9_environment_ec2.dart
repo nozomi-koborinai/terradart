@@ -100,4 +100,36 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `automatic_stop_time_minutes` attribute.
+  TfRef<num> get automaticStopTimeMinutesRef =>
+      TfRef.attribute<num>(this, 'automatic_stop_time_minutes');
+
+  /// Reference to `connection_type` attribute.
+  TfRef<String> get connectionTypeRef =>
+      TfRef.attribute<String>(this, 'connection_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `owner_arn` attribute.
+  TfRef<String> get ownerArnRef => TfRef.attribute<String>(this, 'owner_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

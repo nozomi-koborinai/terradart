@@ -56,4 +56,15 @@ final class CloudflareSnippets extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `files` attribute.
+  TfRef<List<String>> get filesRef =>
+      TfRef.attribute<List<String>>(this, 'files');
+
+  /// Reference to `snippet_name` attribute.
+  TfRef<String> get snippetNameRef =>
+      TfRef.attribute<String>(this, 'snippet_name');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

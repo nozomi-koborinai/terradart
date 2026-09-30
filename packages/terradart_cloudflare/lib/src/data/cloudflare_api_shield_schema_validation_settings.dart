@@ -48,4 +48,7 @@ final class DataCloudflareApiShieldSchemaValidationSettings extends Data {
   /// Reference to `validation_override_mitigation_action` attribute.
   TfRef<String> get validationOverrideMitigationAction =>
       TfRef.attribute<String>(this, 'validation_override_mitigation_action');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

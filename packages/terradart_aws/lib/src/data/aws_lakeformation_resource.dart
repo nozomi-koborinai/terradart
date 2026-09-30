@@ -48,4 +48,10 @@ final class DataAwsLakeformationResource extends Data {
   /// Reference to `with_privileged_access` attribute.
   TfRef<bool> get withPrivilegedAccess =>
       TfRef.attribute<bool>(this, 'with_privileged_access');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -94,4 +94,42 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
   /// Reference to `transit_encryption_enabled` attribute.
   TfRef<bool> get transitEncryptionEnabled =>
       TfRef.attribute<bool>(this, 'transit_encryption_enabled');
+
+  /// Reference to `automatic_failover_enabled` attribute.
+  TfRef<bool> get automaticFailoverEnabledRef =>
+      TfRef.attribute<bool>(this, 'automatic_failover_enabled');
+
+  /// Reference to `cache_node_type` attribute.
+  TfRef<String> get cacheNodeTypeRef =>
+      TfRef.attribute<String>(this, 'cache_node_type');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `global_replication_group_description` attribute.
+  TfRef<String> get globalReplicationGroupDescriptionRef =>
+      TfRef.attribute<String>(this, 'global_replication_group_description');
+
+  /// Reference to `global_replication_group_id_suffix` attribute.
+  TfRef<String> get globalReplicationGroupIdSuffixRef =>
+      TfRef.attribute<String>(this, 'global_replication_group_id_suffix');
+
+  /// Reference to `num_node_groups` attribute.
+  TfRef<num> get numNodeGroupsRef =>
+      TfRef.attribute<num>(this, 'num_node_groups');
+
+  /// Reference to `parameter_group_name` attribute.
+  TfRef<String> get parameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'parameter_group_name');
+
+  /// Reference to `primary_replication_group_id` attribute.
+  TfRef<String> get primaryReplicationGroupIdRef =>
+      TfRef.attribute<String>(this, 'primary_replication_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

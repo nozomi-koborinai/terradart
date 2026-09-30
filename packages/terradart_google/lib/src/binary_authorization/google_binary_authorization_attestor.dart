@@ -1,10 +1,79 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_binary_authorization_attestor`.
 const Set<String> _googleBinaryAuthorizationAttestorSensitive = <String>{};
+
+/// Typed helper for the `attestation_authority_note` block of
+/// `google_binary_authorization_attestor` (derived from provider schema).
+@immutable
+final class BinaryAuthorizationAttestorAttestationAuthorityNote {
+  const BinaryAuthorizationAttestorAttestationAuthorityNote({
+    required this.noteReference,
+    this.publicKeys,
+  });
+
+  final TfArg<String> noteReference;
+
+  final List<BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys>?
+  publicKeys;
+
+  Map<String, Object?> encode() => {
+    'note_reference': noteReference.toTfJson(),
+    if (publicKeys != null)
+      'public_keys': [for (final e in publicKeys!) e.encode()],
+  };
+}
+
+/// Typed helper for the `attestation_authority_note.public_keys` block of
+/// `google_binary_authorization_attestor` (derived from provider schema).
+@immutable
+final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys {
+  const BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys({
+    this.asciiArmoredPgpPublicKey,
+    this.comment,
+    this.id,
+    this.pkixPublicKey,
+  });
+
+  final TfArg<String>? asciiArmoredPgpPublicKey;
+
+  final TfArg<String>? comment;
+
+  final TfArg<String>? id;
+
+  final BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey?
+  pkixPublicKey;
+
+  Map<String, Object?> encode() => {
+    'ascii_armored_pgp_public_key': ?asciiArmoredPgpPublicKey?.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'pkix_public_key': ?pkixPublicKey?.encode(),
+  };
+}
+
+/// Typed helper for the `attestation_authority_note.public_keys.pkix_public_key` block of
+/// `google_binary_authorization_attestor` (derived from provider schema).
+@immutable
+final class BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey {
+  const BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey({
+    this.publicKeyPem,
+    this.signatureAlgorithm,
+  });
+
+  final TfArg<String>? publicKeyPem;
+
+  final TfArg<String>? signatureAlgorithm;
+
+  Map<String, Object?> encode() => {
+    'public_key_pem': ?publicKeyPem?.toTfJson(),
+    'signature_algorithm': ?signatureAlgorithm?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_binary_authorization_attestor`.
 ///
@@ -36,7 +105,8 @@ final class GoogleBinaryAuthorizationAttestor extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? description,
-    required TfArg<Map<String, dynamic>> attestationAuthorityNote,
+    required BinaryAuthorizationAttestorAttestationAuthorityNote
+    attestationAuthorityNote,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -48,7 +118,9 @@ final class GoogleBinaryAuthorizationAttestor extends Resource {
          argMap: {
            'name': name,
            'description': ?description,
-           'attestation_authority_note': attestationAuthorityNote,
+           'attestation_authority_note': TfArg.literal(
+             attestationAuthorityNote.encode(),
+           ),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
          },
@@ -61,6 +133,17 @@ final class GoogleBinaryAuthorizationAttestor extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBinaryAuthorizationAttestor>`.
   RefTo<GoogleBinaryAuthorizationAttestor> get ref => RefTo.of(this);
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

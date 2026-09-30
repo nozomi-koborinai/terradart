@@ -392,4 +392,34 @@ final class AwsRoute53domainsRegisteredDomain extends Resource {
   /// Reference to `whois_server` attribute.
   TfRef<String> get whoisServer =>
       TfRef.attribute<String>(this, 'whois_server');
+
+  /// Reference to `admin_privacy` attribute.
+  TfRef<bool> get adminPrivacyRef =>
+      TfRef.attribute<bool>(this, 'admin_privacy');
+
+  /// Reference to `auto_renew` attribute.
+  TfRef<bool> get autoRenewRef => TfRef.attribute<bool>(this, 'auto_renew');
+
+  /// Reference to `billing_privacy` attribute.
+  TfRef<bool> get billingPrivacyRef =>
+      TfRef.attribute<bool>(this, 'billing_privacy');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `registrant_privacy` attribute.
+  TfRef<bool> get registrantPrivacyRef =>
+      TfRef.attribute<bool>(this, 'registrant_privacy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tech_privacy` attribute.
+  TfRef<bool> get techPrivacyRef => TfRef.attribute<bool>(this, 'tech_privacy');
+
+  /// Reference to `transfer_lock` attribute.
+  TfRef<bool> get transferLockRef =>
+      TfRef.attribute<bool>(this, 'transfer_lock');
 }

@@ -210,4 +210,25 @@ final class AwsDataexchangeRevisionAssets extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `finalized` attribute.
+  TfRef<bool> get finalizedRef => TfRef.attribute<bool>(this, 'finalized');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

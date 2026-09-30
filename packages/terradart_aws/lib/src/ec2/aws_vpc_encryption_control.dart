@@ -83,4 +83,49 @@ final class AwsVpcEncryptionControl extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `egress_only_internet_gateway_exclusion` attribute.
+  TfRef<String> get egressOnlyInternetGatewayExclusionRef =>
+      TfRef.attribute<String>(this, 'egress_only_internet_gateway_exclusion');
+
+  /// Reference to `elastic_file_system_exclusion` attribute.
+  TfRef<String> get elasticFileSystemExclusionRef =>
+      TfRef.attribute<String>(this, 'elastic_file_system_exclusion');
+
+  /// Reference to `internet_gateway_exclusion` attribute.
+  TfRef<String> get internetGatewayExclusionRef =>
+      TfRef.attribute<String>(this, 'internet_gateway_exclusion');
+
+  /// Reference to `lambda_exclusion` attribute.
+  TfRef<String> get lambdaExclusionRef =>
+      TfRef.attribute<String>(this, 'lambda_exclusion');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `nat_gateway_exclusion` attribute.
+  TfRef<String> get natGatewayExclusionRef =>
+      TfRef.attribute<String>(this, 'nat_gateway_exclusion');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `virtual_private_gateway_exclusion` attribute.
+  TfRef<String> get virtualPrivateGatewayExclusionRef =>
+      TfRef.attribute<String>(this, 'virtual_private_gateway_exclusion');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `vpc_lattice_exclusion` attribute.
+  TfRef<String> get vpcLatticeExclusionRef =>
+      TfRef.attribute<String>(this, 'vpc_lattice_exclusion');
+
+  /// Reference to `vpc_peering_exclusion` attribute.
+  TfRef<String> get vpcPeeringExclusionRef =>
+      TfRef.attribute<String>(this, 'vpc_peering_exclusion');
 }

@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_data_catalog_policy_tag_iam_binding`.
 const Set<String> _googleDataCatalogPolicyTagIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_data_catalog_policy_tag_iam_binding` (derived from provider schema).
+@immutable
+final class DataCatalogPolicyTagIamBindingCondition {
+  const DataCatalogPolicyTagIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_data_catalog_policy_tag_iam_binding`.
 ///
@@ -20,7 +44,7 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
     required TfArg<String> policyTag,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    DataCatalogPolicyTagIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -31,7 +55,8 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
            'policy_tag': policyTag,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
@@ -48,4 +73,14 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `policy_tag` attribute.
+  TfRef<String> get policyTagRef => TfRef.attribute<String>(this, 'policy_tag');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

@@ -45,4 +45,11 @@ final class DataAwsIamUser extends Data {
 
   /// Reference to `user_id` attribute.
   TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

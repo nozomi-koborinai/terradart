@@ -38,4 +38,15 @@ final class AwsVpcEndpointServiceAllowedPrincipal extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `principal_arn` attribute.
+  TfRef<String> get principalArnRef =>
+      TfRef.attribute<String>(this, 'principal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_endpoint_service_id` attribute.
+  TfRef<String> get vpcEndpointServiceIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_service_id');
 }

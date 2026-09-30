@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../gemini/google_gemini_repository_group_iam_policy.dart';
+import '../gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+import '../gemini/google_gemini_repository_group.dart'
+    show GoogleGeminiRepositoryGroup;
 
 /// Sensitive field paths for `google_gemini_repository_group_iam_policy`.
 const Set<String> _googleGeminiRepositoryGroupIamPolicySensitive = <String>{};
@@ -16,19 +20,23 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
 
   DataGoogleGeminiRepositoryGroupIamPolicy({
     required super.localName,
-    required TfArg<String> codeRepositoryIndex,
+    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     TfArg<String>? location,
     TfArg<String>? project,
-    required TfArg<String> repositoryGroupId,
+    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'code_repository_index': codeRepositoryIndex,
+           'code_repository_index': codeRepositoryIndex.encodeAs(
+             'code_repository_index_id',
+           ),
            'location': ?location,
            'project': ?project,
-           'repository_group_id': repositoryGroupId,
+           'repository_group_id': repositoryGroupId.encodeAs(
+             'repository_group_id',
+           ),
          },
        );
 
@@ -49,4 +57,18 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `code_repository_index` attribute.
+  TfRef<String> get codeRepositoryIndexRef =>
+      TfRef.attribute<String>(this, 'code_repository_index');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_group_id` attribute.
+  TfRef<String> get repositoryGroupIdRef =>
+      TfRef.attribute<String>(this, 'repository_group_id');
 }

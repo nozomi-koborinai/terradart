@@ -22,6 +22,7 @@ final class ListsStack extends Stack {
   ListsStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/lists_stack.app.dart'),
       ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
@@ -96,14 +97,9 @@ final class ListsStack extends Stack {
     );
 
     // Literal address-group name -- emitted as a Dart constant at synth time.
-    addExport('BLOCKLIST_NAME', StringExport('terradart-blocklist'));
+    addConstant('blocklistName', .ref(blocklist.nameRef));
 
     // Full address-group resource id -- Terraform output only (computed).
-    addExport(
-      'BLOCKLIST_ID',
-      ResourceIdExport(blocklist.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/lists_stack.app.dart');
+    addOutput('blocklist_id', .ref(blocklist.id));
   }
 }

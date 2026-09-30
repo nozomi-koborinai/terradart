@@ -45,4 +45,18 @@ final class AwsAuditmanagerAccountRegistration extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `delegated_admin_account` attribute.
+  TfRef<String> get delegatedAdminAccountRef =>
+      TfRef.attribute<String>(this, 'delegated_admin_account');
+
+  /// Reference to `deregister_on_destroy` attribute.
+  TfRef<bool> get deregisterOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'deregister_on_destroy');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

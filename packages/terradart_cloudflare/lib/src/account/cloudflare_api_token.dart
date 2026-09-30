@@ -146,4 +146,13 @@ final class CloudflareApiToken extends Resource {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `expires_on` attribute.
+  TfRef<String> get expiresOnRef => TfRef.attribute<String>(this, 'expires_on');
+
+  /// Reference to `not_before` attribute.
+  TfRef<String> get notBeforeRef => TfRef.attribute<String>(this, 'not_before');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

@@ -1999,4 +1999,23 @@ final class AwsBedrockagentFlow extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `customer_encryption_key_arn` attribute.
+  TfRef<String> get customerEncryptionKeyArnRef =>
+      TfRef.attribute<String>(this, 'customer_encryption_key_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

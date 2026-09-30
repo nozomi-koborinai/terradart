@@ -1471,4 +1471,42 @@ final class AwsBedrockagentcoreHarness extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `allowed_tools` attribute.
+  TfRef<List<String>> get allowedToolsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_tools');
+
+  /// Reference to `environment_variables` attribute.
+  TfRef<Map<String, String>> get environmentVariablesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'environment_variables');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `harness_name` attribute.
+  TfRef<String> get harnessNameRef =>
+      TfRef.attribute<String>(this, 'harness_name');
+
+  /// Reference to `max_iterations` attribute.
+  TfRef<num> get maxIterationsRef =>
+      TfRef.attribute<num>(this, 'max_iterations');
+
+  /// Reference to `max_tokens` attribute.
+  TfRef<num> get maxTokensRef => TfRef.attribute<num>(this, 'max_tokens');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timeout_seconds` attribute.
+  TfRef<num> get timeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'timeout_seconds');
+
+  /// Reference to `truncation` attribute.
+  TfRef<List<Map<String, Object?>>> get truncationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'truncation');
 }

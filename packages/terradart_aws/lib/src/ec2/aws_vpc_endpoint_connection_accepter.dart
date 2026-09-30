@@ -41,4 +41,15 @@ final class AwsVpcEndpointConnectionAccepter extends Resource {
   /// Reference to `vpc_endpoint_state` attribute.
   TfRef<String> get vpcEndpointState =>
       TfRef.attribute<String>(this, 'vpc_endpoint_state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_endpoint_id` attribute.
+  TfRef<String> get vpcEndpointIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_id');
+
+  /// Reference to `vpc_endpoint_service_id` attribute.
+  TfRef<String> get vpcEndpointServiceIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_service_id');
 }

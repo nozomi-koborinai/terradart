@@ -37,4 +37,15 @@ final class AwsMskScramSecretAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secret_arn_list` attribute.
+  TfRef<List<String>> get secretArnListRef =>
+      TfRef.attribute<List<String>>(this, 'secret_arn_list');
 }

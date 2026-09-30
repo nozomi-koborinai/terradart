@@ -121,4 +121,11 @@ final class AwsAppmeshMesh extends Resource {
   /// Reference to `resource_owner` attribute.
   TfRef<String> get resourceOwner =>
       TfRef.attribute<String>(this, 'resource_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

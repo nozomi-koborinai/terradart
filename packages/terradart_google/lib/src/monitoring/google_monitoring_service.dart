@@ -142,4 +142,22 @@ final class GoogleMonitoringService extends Resource {
   /// Reference to `telemetry` attribute.
   TfRef<List<Map<String, Object?>>> get telemetry =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'telemetry');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_id` attribute.
+  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+
+  /// Reference to `user_labels` attribute.
+  TfRef<Map<String, String>> get userLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_labels');
 }

@@ -117,6 +117,17 @@ final class GoogleComputeInterconnectGroup extends Resource {
   TfRef<List<Map<String, Object?>>> get physicalStructure =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'physical_structure');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

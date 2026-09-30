@@ -27,4 +27,11 @@ final class DataAwsChatbotSlackWorkspace extends Data {
   /// Reference to `slack_team_id` attribute.
   TfRef<String> get slackTeamId =>
       TfRef.attribute<String>(this, 'slack_team_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `slack_team_name` attribute.
+  TfRef<String> get slackTeamNameRef =>
+      TfRef.attribute<String>(this, 'slack_team_name');
 }

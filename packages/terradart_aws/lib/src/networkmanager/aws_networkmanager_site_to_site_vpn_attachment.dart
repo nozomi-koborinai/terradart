@@ -75,4 +75,20 @@ final class AwsNetworkmanagerSiteToSiteVpnAttachment extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `core_network_id` attribute.
+  TfRef<String> get coreNetworkIdRef =>
+      TfRef.attribute<String>(this, 'core_network_id');
+
+  /// Reference to `routing_policy_label` attribute.
+  TfRef<String> get routingPolicyLabelRef =>
+      TfRef.attribute<String>(this, 'routing_policy_label');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpn_connection_arn` attribute.
+  TfRef<String> get vpnConnectionArnRef =>
+      TfRef.attribute<String>(this, 'vpn_connection_arn');
 }

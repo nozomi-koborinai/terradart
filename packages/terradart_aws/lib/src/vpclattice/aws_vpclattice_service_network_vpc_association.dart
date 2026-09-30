@@ -97,4 +97,27 @@ final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `private_dns_enabled` attribute.
+  TfRef<bool> get privateDnsEnabledRef =>
+      TfRef.attribute<bool>(this, 'private_dns_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `service_network_identifier` attribute.
+  TfRef<String> get serviceNetworkIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_network_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_identifier` attribute.
+  TfRef<String> get vpcIdentifierRef =>
+      TfRef.attribute<String>(this, 'vpc_identifier');
 }

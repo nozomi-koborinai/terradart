@@ -80,4 +80,15 @@ final class DataAwsDmsReplicationTask extends Data {
   /// Reference to `target_endpoint_arn` attribute.
   TfRef<String> get targetEndpointArn =>
       TfRef.attribute<String>(this, 'target_endpoint_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_task_id` attribute.
+  TfRef<String> get replicationTaskIdRef =>
+      TfRef.attribute<String>(this, 'replication_task_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

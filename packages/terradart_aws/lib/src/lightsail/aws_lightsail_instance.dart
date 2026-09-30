@@ -118,4 +118,33 @@ final class AwsLightsailInstance extends Resource {
 
   /// Reference to `username` attribute.
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `blueprint_id` attribute.
+  TfRef<String> get blueprintIdRef =>
+      TfRef.attribute<String>(this, 'blueprint_id');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `key_pair_name` attribute.
+  TfRef<String> get keyPairNameRef =>
+      TfRef.attribute<String>(this, 'key_pair_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_data` attribute.
+  TfRef<String> get userDataRef => TfRef.attribute<String>(this, 'user_data');
 }

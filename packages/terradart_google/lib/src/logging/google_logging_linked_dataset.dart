@@ -74,4 +74,24 @@ final class GoogleLoggingLinkedDataset extends Resource {
   /// Reference to `lifecycle_state` attribute.
   TfRef<String> get lifecycleState =>
       TfRef.attribute<String>(this, 'lifecycle_state');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `link_id` attribute.
+  TfRef<String> get linkIdRef => TfRef.attribute<String>(this, 'link_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

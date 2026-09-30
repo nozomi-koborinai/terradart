@@ -571,6 +571,40 @@ final class GoogleColabNotebookExecution extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `execution_timeout` attribute.
+  TfRef<String> get executionTimeoutRef =>
+      TfRef.attribute<String>(this, 'execution_timeout');
+
+  /// Reference to `execution_user` attribute.
+  TfRef<String> get executionUserRef =>
+      TfRef.attribute<String>(this, 'execution_user');
+
+  /// Reference to `gcs_output_uri` attribute.
+  TfRef<String> get gcsOutputUriRef =>
+      TfRef.attribute<String>(this, 'gcs_output_uri');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `notebook_runtime_template_resource_name` attribute.
+  TfRef<String> get notebookRuntimeTemplateResourceNameRef =>
+      TfRef.attribute<String>(this, 'notebook_runtime_template_resource_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
   /// Reference to `notebook_execution_job_id`.
   TfRef<String> get notebookExecutionJobIdRef =>
       TfRef.attribute<String>(this, 'notebook_execution_job_id');

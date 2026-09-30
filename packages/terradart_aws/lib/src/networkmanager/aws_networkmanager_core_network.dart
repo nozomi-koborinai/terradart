@@ -128,4 +128,28 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `base_policy_document` attribute.
+  TfRef<String> get basePolicyDocumentRef =>
+      TfRef.attribute<String>(this, 'base_policy_document');
+
+  /// Reference to `base_policy_regions` attribute.
+  TfRef<List<String>> get basePolicyRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'base_policy_regions');
+
+  /// Reference to `create_base_policy` attribute.
+  TfRef<bool> get createBasePolicyRef =>
+      TfRef.attribute<bool>(this, 'create_base_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `global_network_id` attribute.
+  TfRef<String> get globalNetworkIdRef =>
+      TfRef.attribute<String>(this, 'global_network_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

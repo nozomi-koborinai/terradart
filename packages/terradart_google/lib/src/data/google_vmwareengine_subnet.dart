@@ -71,4 +71,7 @@ final class DataGoogleVmwareengineSubnet extends Data {
 
   /// Reference to `vlan_id` attribute.
   TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

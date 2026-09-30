@@ -2440,4 +2440,15 @@ final class AwsBedrockagentcoreGatewayTarget extends Resource {
 
   /// Reference to `target_id` attribute.
   TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `gateway_identifier` attribute.
+  TfRef<String> get gatewayIdentifierRef =>
+      TfRef.attribute<String>(this, 'gateway_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -88,4 +88,41 @@ final class AwsStoragegatewayStoredIscsiVolume extends Resource {
 
   /// Reference to `volume_type` attribute.
   TfRef<String> get volumeType => TfRef.attribute<String>(this, 'volume_type');
+
+  /// Reference to `disk_id` attribute.
+  TfRef<String> get diskIdRef => TfRef.attribute<String>(this, 'disk_id');
+
+  /// Reference to `gateway_arn` attribute.
+  TfRef<String> get gatewayArnRef =>
+      TfRef.attribute<String>(this, 'gateway_arn');
+
+  /// Reference to `kms_encrypted` attribute.
+  TfRef<bool> get kmsEncryptedRef =>
+      TfRef.attribute<bool>(this, 'kms_encrypted');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `network_interface_id` attribute.
+  TfRef<String> get networkInterfaceIdRef =>
+      TfRef.attribute<String>(this, 'network_interface_id');
+
+  /// Reference to `preserve_existing_data` attribute.
+  TfRef<bool> get preserveExistingDataRef =>
+      TfRef.attribute<bool>(this, 'preserve_existing_data');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_id` attribute.
+  TfRef<String> get snapshotIdRef =>
+      TfRef.attribute<String>(this, 'snapshot_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_name` attribute.
+  TfRef<String> get targetNameRef =>
+      TfRef.attribute<String>(this, 'target_name');
 }

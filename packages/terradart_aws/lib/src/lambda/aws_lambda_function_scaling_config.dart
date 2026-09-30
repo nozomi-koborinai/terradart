@@ -70,4 +70,14 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
   /// Reference to `function_state` attribute.
   TfRef<String> get functionState =>
       TfRef.attribute<String>(this, 'function_state');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

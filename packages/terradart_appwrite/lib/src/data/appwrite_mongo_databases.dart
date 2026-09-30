@@ -35,4 +35,11 @@ final class DataAppwriteMongoDatabases extends Data {
 
   /// Reference to `total` attribute.
   TfRef<num> get total => TfRef.attribute<num>(this, 'total');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `queries` attribute.
+  TfRef<List<String>> get queriesRef =>
+      TfRef.attribute<List<String>>(this, 'queries');
 }

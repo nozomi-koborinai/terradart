@@ -45,4 +45,17 @@ final class AwsAppsyncApiKey extends Resource {
 
   /// Reference to `key` attribute.
   TfRef<String> get key => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `expires` attribute.
+  TfRef<String> get expiresRef => TfRef.attribute<String>(this, 'expires');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

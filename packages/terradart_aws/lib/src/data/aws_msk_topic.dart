@@ -47,4 +47,11 @@ final class DataAwsMskTopic extends Data {
   /// Reference to `replication_factor` attribute.
   TfRef<num> get replicationFactor =>
       TfRef.attribute<num>(this, 'replication_factor');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

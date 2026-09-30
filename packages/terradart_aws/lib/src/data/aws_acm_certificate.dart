@@ -58,4 +58,29 @@ final class DataAwsAcmCertificate extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `key_types` attribute.
+  TfRef<List<String>> get keyTypesRef =>
+      TfRef.attribute<List<String>>(this, 'key_types');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `statuses` attribute.
+  TfRef<List<String>> get statusesRef =>
+      TfRef.attribute<List<String>>(this, 'statuses');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `types` attribute.
+  TfRef<List<String>> get typesRef =>
+      TfRef.attribute<List<String>>(this, 'types');
 }

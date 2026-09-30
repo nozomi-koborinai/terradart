@@ -93,4 +93,51 @@ final class GoogleDialogflowIntent extends Resource {
   /// Reference to `root_followup_intent_name` attribute.
   TfRef<String> get rootFollowupIntentName =>
       TfRef.attribute<String>(this, 'root_followup_intent_name');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `default_response_platforms` attribute.
+  TfRef<List<String>> get defaultResponsePlatformsRef =>
+      TfRef.attribute<List<String>>(this, 'default_response_platforms');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `events` attribute.
+  TfRef<List<String>> get eventsRef =>
+      TfRef.attribute<List<String>>(this, 'events');
+
+  /// Reference to `input_context_names` attribute.
+  TfRef<List<String>> get inputContextNamesRef =>
+      TfRef.attribute<List<String>>(this, 'input_context_names');
+
+  /// Reference to `is_fallback` attribute.
+  TfRef<bool> get isFallbackRef => TfRef.attribute<bool>(this, 'is_fallback');
+
+  /// Reference to `ml_disabled` attribute.
+  TfRef<bool> get mlDisabledRef => TfRef.attribute<bool>(this, 'ml_disabled');
+
+  /// Reference to `parent_followup_intent_name` attribute.
+  TfRef<String> get parentFollowupIntentNameRef =>
+      TfRef.attribute<String>(this, 'parent_followup_intent_name');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reset_contexts` attribute.
+  TfRef<bool> get resetContextsRef =>
+      TfRef.attribute<bool>(this, 'reset_contexts');
+
+  /// Reference to `webhook_state` attribute.
+  TfRef<String> get webhookStateRef =>
+      TfRef.attribute<String>(this, 'webhook_state');
 }

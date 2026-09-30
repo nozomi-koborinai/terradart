@@ -99,4 +99,45 @@ final class GoogleIamOauthClient extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `allowed_grant_types` attribute.
+  TfRef<List<String>> get allowedGrantTypesRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_grant_types');
+
+  /// Reference to `allowed_redirect_uris` attribute.
+  TfRef<List<String>> get allowedRedirectUrisRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_redirect_uris');
+
+  /// Reference to `allowed_scopes` attribute.
+  TfRef<List<String>> get allowedScopesRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_scopes');
+
+  /// Reference to `client_type` attribute.
+  TfRef<String> get clientTypeRef =>
+      TfRef.attribute<String>(this, 'client_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `oauth_client_id` attribute.
+  TfRef<String> get oauthClientIdRef =>
+      TfRef.attribute<String>(this, 'oauth_client_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

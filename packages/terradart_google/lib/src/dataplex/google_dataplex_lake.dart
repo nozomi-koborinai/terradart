@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_lake`.
 const Set<String> _googleDataplexLakeSensitive = <String>{};
+
+/// Typed helper for the `metastore` block of
+/// `google_dataplex_lake` (derived from provider schema).
+@immutable
+final class DataplexLakeMetastore {
+  const DataplexLakeMetastore({this.service});
+
+  final TfArg<String>? service;
+
+  Map<String, Object?> encode() => {'service': ?service?.toTfJson()};
+}
 
 /// Factory wrapper for `google_dataplex_lake`.
 ///
@@ -19,6 +31,7 @@ final class GoogleDataplexLake extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
+    DataplexLakeMetastore? metastore,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -33,6 +46,8 @@ final class GoogleDataplexLake extends Resource {
            'display_name': ?displayName,
            'description': ?description,
            'labels': ?labels,
+           if (metastore != null)
+             'metastore': TfArg.literal(metastore.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -82,4 +97,26 @@ final class GoogleDataplexLake extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

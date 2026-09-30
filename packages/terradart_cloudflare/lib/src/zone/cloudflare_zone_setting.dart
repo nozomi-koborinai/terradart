@@ -54,4 +54,16 @@ final class CloudflareZoneSetting extends Resource {
 
   /// Reference to `time_remaining` attribute.
   TfRef<num> get timeRemaining => TfRef.attribute<num>(this, 'time_remaining');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `setting_id` attribute.
+  TfRef<String> get settingIdRef => TfRef.attribute<String>(this, 'setting_id');
+
+  /// Reference to `value` attribute.
+  TfRef<Object?> get valueRef => TfRef.attribute<Object?>(this, 'value');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -37,4 +37,15 @@ final class AwsVpnConnectionRoute extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `destination_cidr_block` attribute.
+  TfRef<String> get destinationCidrBlockRef =>
+      TfRef.attribute<String>(this, 'destination_cidr_block');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpn_connection_id` attribute.
+  TfRef<String> get vpnConnectionIdRef =>
+      TfRef.attribute<String>(this, 'vpn_connection_id');
 }

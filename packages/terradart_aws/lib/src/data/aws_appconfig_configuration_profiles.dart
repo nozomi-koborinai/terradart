@@ -31,4 +31,11 @@ final class DataAwsAppconfigConfigurationProfiles extends Data {
   /// Reference to `configuration_profile_ids` attribute.
   TfRef<List<String>> get configurationProfileIds =>
       TfRef.attribute<List<String>>(this, 'configuration_profile_ids');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

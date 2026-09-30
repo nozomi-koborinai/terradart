@@ -125,4 +125,30 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `applies_to_all_integrations` attribute.
+  TfRef<bool> get appliesToAllIntegrationsRef =>
+      TfRef.attribute<bool>(this, 'applies_to_all_integrations');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `finding_type_id` attribute.
+  TfRef<String> get findingTypeIdRef =>
+      TfRef.attribute<String>(this, 'finding_type_id');
+
+  /// Reference to `integration_ids` attribute.
+  TfRef<List<String>> get integrationIdsRef =>
+      TfRef.attribute<List<String>>(this, 'integration_ids');
 }

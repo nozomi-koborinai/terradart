@@ -112,4 +112,10 @@ final class DataGoogleMemcacheInstance extends Data {
 
   /// Reference to `zones` attribute.
   TfRef<List<String>> get zones => TfRef.attribute<List<String>>(this, 'zones');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

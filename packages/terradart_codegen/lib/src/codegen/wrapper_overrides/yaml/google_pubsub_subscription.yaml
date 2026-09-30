@@ -5,9 +5,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 
 curatedDoc: |-
-  /// Pass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`
-  /// (NOT `topic.nameRef`) so it resolves to
-  /// `projects/{project}/topics/{name}`.
+  /// Pass `topic` as `otherTopic.ref`: it emits the topic `id`, the full
+  /// path `projects/{project}/topics/{name}`.
   ///
   /// Example (push subscription):
   /// ```dart

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_oracle_database_goldengate_connection_assignment`.
@@ -21,6 +22,25 @@ enum OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy
   final String terraformValue;
 }
 
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_goldengate_connection_assignment` (derived from provider schema).
+@immutable
+final class OracleDatabaseGoldengateConnectionAssignmentProperties {
+  const OracleDatabaseGoldengateConnectionAssignmentProperties({
+    required this.goldengateConnection,
+    required this.goldengateDeployment,
+  });
+
+  final TfArg<String> goldengateConnection;
+
+  final TfArg<String> goldengateDeployment;
+
+  Map<String, Object?> encode() => {
+    'goldengate_connection': goldengateConnection.toTfJson(),
+    'goldengate_deployment': goldengateDeployment.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_oracle_database_goldengate_connection_assignment`.
 ///
 /// This resource helps to assign a GoldengateConnection to a
@@ -39,7 +59,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> goldengateConnectionAssignmentId,
-    required TfArg<Map<String, dynamic>> properties,
+    required OracleDatabaseGoldengateConnectionAssignmentProperties properties,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy>?
@@ -56,7 +76,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
            'location': location,
            'goldengate_connection_assignment_id':
                goldengateConnectionAssignmentId,
-           'properties': properties,
+           'properties': TfArg.literal(properties.encode()),
            'display_name': ?displayName,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
@@ -91,6 +111,32 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `goldengate_connection_assignment_id` attribute.
+  TfRef<String> get goldengateConnectionAssignmentIdRef =>
+      TfRef.attribute<String>(this, 'goldengate_connection_assignment_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

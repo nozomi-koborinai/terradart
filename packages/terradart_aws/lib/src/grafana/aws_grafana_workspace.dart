@@ -194,4 +194,61 @@ final class AwsGrafanaWorkspace extends Resource {
   /// Reference to `saml_configuration_status` attribute.
   TfRef<String> get samlConfigurationStatus =>
       TfRef.attribute<String>(this, 'saml_configuration_status');
+
+  /// Reference to `account_access_type` attribute.
+  TfRef<String> get accountAccessTypeRef =>
+      TfRef.attribute<String>(this, 'account_access_type');
+
+  /// Reference to `authentication_providers` attribute.
+  TfRef<List<String>> get authenticationProvidersRef =>
+      TfRef.attribute<List<String>>(this, 'authentication_providers');
+
+  /// Reference to `configuration` attribute.
+  TfRef<String> get configurationRef =>
+      TfRef.attribute<String>(this, 'configuration');
+
+  /// Reference to `data_sources` attribute.
+  TfRef<List<String>> get dataSourcesRef =>
+      TfRef.attribute<List<String>>(this, 'data_sources');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `grafana_version` attribute.
+  TfRef<String> get grafanaVersionRef =>
+      TfRef.attribute<String>(this, 'grafana_version');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `notification_destinations` attribute.
+  TfRef<List<String>> get notificationDestinationsRef =>
+      TfRef.attribute<List<String>>(this, 'notification_destinations');
+
+  /// Reference to `organization_role_name` attribute.
+  TfRef<String> get organizationRoleNameRef =>
+      TfRef.attribute<String>(this, 'organization_role_name');
+
+  /// Reference to `organizational_units` attribute.
+  TfRef<List<String>> get organizationalUnitsRef =>
+      TfRef.attribute<List<String>>(this, 'organizational_units');
+
+  /// Reference to `permission_type` attribute.
+  TfRef<String> get permissionTypeRef =>
+      TfRef.attribute<String>(this, 'permission_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `stack_set_name` attribute.
+  TfRef<String> get stackSetNameRef =>
+      TfRef.attribute<String>(this, 'stack_set_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

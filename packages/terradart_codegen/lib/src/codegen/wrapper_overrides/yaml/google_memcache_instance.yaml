@@ -2,6 +2,7 @@ outputDir: memcache
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:
@@ -18,6 +19,7 @@ paramOrder:
   - maintenance_policy
   - labels
   - deletion_protection
+  - memcache_parameters
 
 curatedDoc: |-
   /// Memorystore for Memcached instance — managed Memcached for session caches.

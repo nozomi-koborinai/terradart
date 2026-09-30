@@ -34,4 +34,13 @@ final class DataAwsBedrockFoundationModelAgreementOffers extends Data {
   /// Reference to `offers` attribute.
   TfRef<List<Map<String, Object?>>> get offers =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'offers');
+
+  /// Reference to `model_id` attribute.
+  TfRef<String> get modelIdRef => TfRef.attribute<String>(this, 'model_id');
+
+  /// Reference to `offer_type` attribute.
+  TfRef<String> get offerTypeRef => TfRef.attribute<String>(this, 'offer_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -68,4 +68,26 @@ final class GoogleComputeTargetTcpProxy extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `backend_service` attribute.
+  TfRef<String> get backendServiceRef =>
+      TfRef.attribute<String>(this, 'backend_service');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `proxy_bind` attribute.
+  TfRef<bool> get proxyBindRef => TfRef.attribute<bool>(this, 'proxy_bind');
+
+  /// Reference to `proxy_header` attribute.
+  TfRef<String> get proxyHeaderRef =>
+      TfRef.attribute<String>(this, 'proxy_header');
 }

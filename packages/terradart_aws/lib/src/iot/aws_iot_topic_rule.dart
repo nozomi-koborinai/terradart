@@ -1483,4 +1483,25 @@ final class AwsIotTopicRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sql` attribute.
+  TfRef<String> get sqlRef => TfRef.attribute<String>(this, 'sql');
+
+  /// Reference to `sql_version` attribute.
+  TfRef<String> get sqlVersionRef =>
+      TfRef.attribute<String>(this, 'sql_version');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

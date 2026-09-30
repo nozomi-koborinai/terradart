@@ -64,4 +64,33 @@ final class GoogleActiveDirectoryPeering extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `authorized_network` attribute.
+  TfRef<String> get authorizedNetworkRef =>
+      TfRef.attribute<String>(this, 'authorized_network');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `domain_resource` attribute.
+  TfRef<String> get domainResourceRef =>
+      TfRef.attribute<String>(this, 'domain_resource');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `peering_id` attribute.
+  TfRef<String> get peeringIdRef => TfRef.attribute<String>(this, 'peering_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `status_message` attribute.
+  TfRef<String> get statusMessageRef =>
+      TfRef.attribute<String>(this, 'status_message');
 }

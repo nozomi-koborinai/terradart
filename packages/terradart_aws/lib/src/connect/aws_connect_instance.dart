@@ -81,4 +81,51 @@ final class AwsConnectInstance extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `auto_resolve_best_voices_enabled` attribute.
+  TfRef<bool> get autoResolveBestVoicesEnabledRef =>
+      TfRef.attribute<bool>(this, 'auto_resolve_best_voices_enabled');
+
+  /// Reference to `contact_flow_logs_enabled` attribute.
+  TfRef<bool> get contactFlowLogsEnabledRef =>
+      TfRef.attribute<bool>(this, 'contact_flow_logs_enabled');
+
+  /// Reference to `contact_lens_enabled` attribute.
+  TfRef<bool> get contactLensEnabledRef =>
+      TfRef.attribute<bool>(this, 'contact_lens_enabled');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `early_media_enabled` attribute.
+  TfRef<bool> get earlyMediaEnabledRef =>
+      TfRef.attribute<bool>(this, 'early_media_enabled');
+
+  /// Reference to `identity_management_type` attribute.
+  TfRef<String> get identityManagementTypeRef =>
+      TfRef.attribute<String>(this, 'identity_management_type');
+
+  /// Reference to `inbound_calls_enabled` attribute.
+  TfRef<bool> get inboundCallsEnabledRef =>
+      TfRef.attribute<bool>(this, 'inbound_calls_enabled');
+
+  /// Reference to `instance_alias` attribute.
+  TfRef<String> get instanceAliasRef =>
+      TfRef.attribute<String>(this, 'instance_alias');
+
+  /// Reference to `multi_party_conference_enabled` attribute.
+  TfRef<bool> get multiPartyConferenceEnabledRef =>
+      TfRef.attribute<bool>(this, 'multi_party_conference_enabled');
+
+  /// Reference to `outbound_calls_enabled` attribute.
+  TfRef<bool> get outboundCallsEnabledRef =>
+      TfRef.attribute<bool>(this, 'outbound_calls_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

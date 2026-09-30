@@ -106,4 +106,22 @@ final class GoogleComputeMachineImage extends Resource {
   /// Reference to `storage_locations` attribute.
   TfRef<List<String>> get storageLocations =>
       TfRef.attribute<List<String>>(this, 'storage_locations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `guest_flush` attribute.
+  TfRef<bool> get guestFlushRef => TfRef.attribute<bool>(this, 'guest_flush');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_instance` attribute.
+  TfRef<String> get sourceInstanceRef =>
+      TfRef.attribute<String>(this, 'source_instance');
 }

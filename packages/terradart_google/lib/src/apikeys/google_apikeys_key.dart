@@ -1,12 +1,137 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_apikeys_key`.
 const Set<String> _googleApikeysKeySensitive = <String>{'key_string'};
+
+/// Typed helper for the `restrictions` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictions {
+  const ApikeysKeyRestrictions({
+    this.androidKeyRestrictions,
+    this.apiTargets,
+    this.browserKeyRestrictions,
+    this.iosKeyRestrictions,
+    this.serverKeyRestrictions,
+  });
+
+  final ApikeysKeyRestrictionsAndroidKeyRestrictions? androidKeyRestrictions;
+
+  final List<ApikeysKeyRestrictionsApiTargets>? apiTargets;
+
+  final ApikeysKeyRestrictionsBrowserKeyRestrictions? browserKeyRestrictions;
+
+  final ApikeysKeyRestrictionsIosKeyRestrictions? iosKeyRestrictions;
+
+  final ApikeysKeyRestrictionsServerKeyRestrictions? serverKeyRestrictions;
+
+  Map<String, Object?> encode() => {
+    'android_key_restrictions': ?androidKeyRestrictions?.encode(),
+    if (apiTargets != null)
+      'api_targets': [for (final e in apiTargets!) e.encode()],
+    'browser_key_restrictions': ?browserKeyRestrictions?.encode(),
+    'ios_key_restrictions': ?iosKeyRestrictions?.encode(),
+    'server_key_restrictions': ?serverKeyRestrictions?.encode(),
+  };
+}
+
+/// Typed helper for the `restrictions.android_key_restrictions` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsAndroidKeyRestrictions {
+  const ApikeysKeyRestrictionsAndroidKeyRestrictions({
+    required this.allowedApplications,
+  });
+
+  final List<ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications>
+  allowedApplications;
+
+  Map<String, Object?> encode() => {
+    'allowed_applications': [for (final e in allowedApplications) e.encode()],
+  };
+}
+
+/// Typed helper for the `restrictions.android_key_restrictions.allowed_applications` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications {
+  const ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications({
+    required this.packageName,
+    required this.sha1Fingerprint,
+  });
+
+  final TfArg<String> packageName;
+
+  final TfArg<String> sha1Fingerprint;
+
+  Map<String, Object?> encode() => {
+    'package_name': packageName.toTfJson(),
+    'sha1_fingerprint': sha1Fingerprint.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restrictions.api_targets` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsApiTargets {
+  const ApikeysKeyRestrictionsApiTargets({this.methods, required this.service});
+
+  final TfArg<List<String>>? methods;
+
+  final TfArg<String> service;
+
+  Map<String, Object?> encode() => {
+    'methods': ?methods?.toTfJson(),
+    'service': service.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restrictions.browser_key_restrictions` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsBrowserKeyRestrictions {
+  const ApikeysKeyRestrictionsBrowserKeyRestrictions({
+    required this.allowedReferrers,
+  });
+
+  final TfArg<List<String>> allowedReferrers;
+
+  Map<String, Object?> encode() => {
+    'allowed_referrers': allowedReferrers.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restrictions.ios_key_restrictions` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsIosKeyRestrictions {
+  const ApikeysKeyRestrictionsIosKeyRestrictions({
+    required this.allowedBundleIds,
+  });
+
+  final TfArg<List<String>> allowedBundleIds;
+
+  Map<String, Object?> encode() => {
+    'allowed_bundle_ids': allowedBundleIds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restrictions.server_key_restrictions` block of
+/// `google_apikeys_key` (derived from provider schema).
+@immutable
+final class ApikeysKeyRestrictionsServerKeyRestrictions {
+  const ApikeysKeyRestrictionsServerKeyRestrictions({required this.allowedIps});
+
+  final TfArg<List<String>> allowedIps;
+
+  Map<String, Object?> encode() => {'allowed_ips': allowedIps.toTfJson()};
+}
 
 /// Factory wrapper for `google_apikeys_key`.
 ///
@@ -30,7 +155,7 @@ final class GoogleApikeysKey extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? displayName,
-    TfArg<Map<String, dynamic>>? restrictions,
+    ApikeysKeyRestrictions? restrictions,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     RefTo<GoogleServiceAccount>? serviceAccountEmail,
@@ -44,7 +169,8 @@ final class GoogleApikeysKey extends Resource {
          argMap: {
            'name': name,
            'display_name': ?displayName,
-           'restrictions': ?restrictions,
+           if (restrictions != null)
+             'restrictions': TfArg.literal(restrictions.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
            'service_account_email': ?serviceAccountEmail?.encodeAs('email'),
@@ -61,6 +187,25 @@ final class GoogleApikeysKey extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `check_existing_usage` attribute.
+  TfRef<String> get checkExistingUsageRef =>
+      TfRef.attribute<String>(this, 'check_existing_usage');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

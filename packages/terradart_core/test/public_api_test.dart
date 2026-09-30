@@ -25,20 +25,14 @@ void main() {
       Stack,
       StackBackend,
       StackProvider,
-      AppExport,
-      // AppExport variants:
-      StringExport,
-      ResourceIdExport,
-      ResourceAttributeExport,
-      EnvBackedExport,
+      AppConstant,
+      RefConstant,
+      ValueConstant,
+      EnvironmentConstant,
+      AppExports,
+      TfOutput,
       GcsBackend,
       S3Backend,
-      LiteralResolver,
-      OutputEmitter,
-      OutputEmissionResult,
-      DartConstantSpec,
-      TerraformOutputSpec,
-      DartConstantsEmitter,
       TfJsonEncoder,
       SynthResult,
       DuplicateResourceError,
@@ -48,7 +42,7 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(41));
+    expect(symbols, hasLength(36));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

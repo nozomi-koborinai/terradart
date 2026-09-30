@@ -489,4 +489,67 @@ final class AwsFsxOntapVolume extends Resource {
 
   /// Reference to `uuid` attribute.
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
+
+  /// Reference to `bypass_snaplock_enterprise_retention` attribute.
+  TfRef<bool> get bypassSnaplockEnterpriseRetentionRef =>
+      TfRef.attribute<bool>(this, 'bypass_snaplock_enterprise_retention');
+
+  /// Reference to `copy_tags_to_backups` attribute.
+  TfRef<bool> get copyTagsToBackupsRef =>
+      TfRef.attribute<bool>(this, 'copy_tags_to_backups');
+
+  /// Reference to `final_backup_tags` attribute.
+  TfRef<Map<String, String>> get finalBackupTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'final_backup_tags');
+
+  /// Reference to `junction_path` attribute.
+  TfRef<String> get junctionPathRef =>
+      TfRef.attribute<String>(this, 'junction_path');
+
+  /// Reference to `ontap_volume_type` attribute.
+  TfRef<String> get ontapVolumeTypeRef =>
+      TfRef.attribute<String>(this, 'ontap_volume_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_style` attribute.
+  TfRef<String> get securityStyleRef =>
+      TfRef.attribute<String>(this, 'security_style');
+
+  /// Reference to `size_in_bytes` attribute.
+  TfRef<String> get sizeInBytesRef =>
+      TfRef.attribute<String>(this, 'size_in_bytes');
+
+  /// Reference to `size_in_megabytes` attribute.
+  TfRef<num> get sizeInMegabytesRef =>
+      TfRef.attribute<num>(this, 'size_in_megabytes');
+
+  /// Reference to `skip_final_backup` attribute.
+  TfRef<bool> get skipFinalBackupRef =>
+      TfRef.attribute<bool>(this, 'skip_final_backup');
+
+  /// Reference to `snapshot_policy` attribute.
+  TfRef<String> get snapshotPolicyRef =>
+      TfRef.attribute<String>(this, 'snapshot_policy');
+
+  /// Reference to `storage_efficiency_enabled` attribute.
+  TfRef<bool> get storageEfficiencyEnabledRef =>
+      TfRef.attribute<bool>(this, 'storage_efficiency_enabled');
+
+  /// Reference to `storage_virtual_machine_id` attribute.
+  TfRef<String> get storageVirtualMachineIdRef =>
+      TfRef.attribute<String>(this, 'storage_virtual_machine_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `volume_style` attribute.
+  TfRef<String> get volumeStyleRef =>
+      TfRef.attribute<String>(this, 'volume_style');
+
+  /// Reference to `volume_type` attribute.
+  TfRef<String> get volumeTypeRef =>
+      TfRef.attribute<String>(this, 'volume_type');
 }

@@ -7,11 +7,15 @@ library;
 
 export 'src/app/google_app_engine_application.dart'
     show
+        AppEngineApplicationFeatureSettings,
+        AppEngineApplicationIap,
         AppEngineDatabaseType,
         AppEngineServingStatus,
         GoogleAppEngineApplication;
 export 'src/app/google_app_engine_application_url_dispatch_rules.dart'
-    show GoogleAppEngineApplicationUrlDispatchRules;
+    show
+        AppEngineApplicationUrlDispatchRulesDispatchRules,
+        GoogleAppEngineApplicationUrlDispatchRules;
 export 'src/app/google_app_engine_domain_mapping.dart'
     show
         AppEngineDomainMappingOverrideStrategy,

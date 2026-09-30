@@ -83,4 +83,11 @@ final class AwsEfsReplicationConfiguration extends Resource {
   /// Reference to `source_file_system_region` attribute.
   TfRef<String> get sourceFileSystemRegion =>
       TfRef.attribute<String>(this, 'source_file_system_region');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_file_system_id` attribute.
+  TfRef<String> get sourceFileSystemIdRef =>
+      TfRef.attribute<String>(this, 'source_file_system_id');
 }

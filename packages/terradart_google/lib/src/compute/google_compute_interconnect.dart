@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_interconnect`.
@@ -50,6 +51,58 @@ enum ComputeInterconnectState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `macsec` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectMacsec {
+  const ComputeInterconnectMacsec({this.failOpen, required this.preSharedKeys});
+
+  final TfArg<bool>? failOpen;
+
+  final List<ComputeInterconnectMacsecPreSharedKeys> preSharedKeys;
+
+  Map<String, Object?> encode() => {
+    'fail_open': ?failOpen?.toTfJson(),
+    'pre_shared_keys': [for (final e in preSharedKeys) e.encode()],
+  };
+}
+
+/// Typed helper for the `macsec.pre_shared_keys` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectMacsecPreSharedKeys {
+  const ComputeInterconnectMacsecPreSharedKeys({
+    this.failOpen,
+    required this.name,
+    this.startTime,
+  });
+
+  final TfArg<bool>? failOpen;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? startTime;
+
+  Map<String, Object?> encode() => {
+    'fail_open': ?failOpen?.toTfJson(),
+    'name': name.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectParams {
+  const ComputeInterconnectParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_interconnect`.
 ///
 /// Represents an Interconnect resource. The Interconnect resource is a
@@ -72,6 +125,8 @@ final class GoogleComputeInterconnect extends Resource {
     TfArg<String>? remoteLocation,
     TfArg<List<String>>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
+    ComputeInterconnectMacsec? macsec,
+    ComputeInterconnectParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -94,6 +149,8 @@ final class GoogleComputeInterconnect extends Resource {
            'remote_location': ?remoteLocation,
            'requested_features': ?requestedFeatures,
            'labels': ?labels,
+           if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -175,6 +232,59 @@ final class GoogleComputeInterconnect extends Resource {
   /// Reference to `wire_groups` attribute.
   TfRef<List<String>> get wireGroups =>
       TfRef.attribute<List<String>>(this, 'wire_groups');
+
+  /// Reference to `admin_enabled` attribute.
+  TfRef<bool> get adminEnabledRef =>
+      TfRef.attribute<bool>(this, 'admin_enabled');
+
+  /// Reference to `customer_name` attribute.
+  TfRef<String> get customerNameRef =>
+      TfRef.attribute<String>(this, 'customer_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interconnect_type` attribute.
+  TfRef<String> get interconnectTypeRef =>
+      TfRef.attribute<String>(this, 'interconnect_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `link_type` attribute.
+  TfRef<String> get linkTypeRef => TfRef.attribute<String>(this, 'link_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `macsec_enabled` attribute.
+  TfRef<bool> get macsecEnabledRef =>
+      TfRef.attribute<bool>(this, 'macsec_enabled');
+
+  /// Reference to `noc_contact_email` attribute.
+  TfRef<String> get nocContactEmailRef =>
+      TfRef.attribute<String>(this, 'noc_contact_email');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `remote_location` attribute.
+  TfRef<String> get remoteLocationRef =>
+      TfRef.attribute<String>(this, 'remote_location');
+
+  /// Reference to `requested_features` attribute.
+  TfRef<List<String>> get requestedFeaturesRef =>
+      TfRef.attribute<List<String>>(this, 'requested_features');
+
+  /// Reference to `requested_link_count` attribute.
+  TfRef<num> get requestedLinkCountRef =>
+      TfRef.attribute<num>(this, 'requested_link_count');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -73,6 +74,17 @@ class MemcacheInstanceMaintenancePolicy {
   };
 }
 
+/// Typed helper for the `memcache_parameters` block of
+/// `google_memcache_instance` (derived from provider schema).
+@immutable
+final class MemcacheInstanceMemcacheParameters {
+  const MemcacheInstanceMemcacheParameters({this.params});
+
+  final TfArg<Map<String, String>>? params;
+
+  Map<String, Object?> encode() => {'params': ?params?.toTfJson()};
+}
+
 /// Factory wrapper for `google_memcache_instance`.
 ///
 /// A Google Cloud Memcache instance.
@@ -119,6 +131,7 @@ final class GoogleMemcacheInstance extends Resource {
     MemcacheInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
+    MemcacheInstanceMemcacheParameters? memcacheParameters,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -139,6 +152,8 @@ final class GoogleMemcacheInstance extends Resource {
              ]),
            'labels': ?labels,
            'deletion_protection': ?deletionProtection,
+           if (memcacheParameters != null)
+             'memcache_parameters': TfArg.literal(memcacheParameters.encode()),
          },
        );
 
@@ -184,4 +199,45 @@ final class GoogleMemcacheInstance extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `authorized_network` attribute.
+  TfRef<String> get authorizedNetworkRef =>
+      TfRef.attribute<String>(this, 'authorized_network');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `memcache_version` attribute.
+  TfRef<String> get memcacheVersionRef =>
+      TfRef.attribute<String>(this, 'memcache_version');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reserved_ip_range_id` attribute.
+  TfRef<List<String>> get reservedIpRangeIdRef =>
+      TfRef.attribute<List<String>>(this, 'reserved_ip_range_id');
+
+  /// Reference to `zones` attribute.
+  TfRef<List<String>> get zonesRef =>
+      TfRef.attribute<List<String>>(this, 'zones');
 }

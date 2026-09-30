@@ -89,4 +89,22 @@ final class DataAwsGlueCatalogTable extends Data {
   /// Reference to `view_original_text` attribute.
   TfRef<String> get viewOriginalText =>
       TfRef.attribute<String>(this, 'view_original_text');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `query_as_of_time` attribute.
+  TfRef<String> get queryAsOfTimeRef =>
+      TfRef.attribute<String>(this, 'query_as_of_time');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `transaction_id` attribute.
+  TfRef<num> get transactionIdRef =>
+      TfRef.attribute<num>(this, 'transaction_id');
 }

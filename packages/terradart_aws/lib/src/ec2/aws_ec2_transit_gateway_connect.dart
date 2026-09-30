@@ -56,4 +56,36 @@ final class AwsEc2TransitGatewayConnect extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `protocol` attribute.
+  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_default_route_table_association` attribute.
+  TfRef<bool> get transitGatewayDefaultRouteTableAssociationRef =>
+      TfRef.attribute<bool>(
+        this,
+        'transit_gateway_default_route_table_association',
+      );
+
+  /// Reference to `transit_gateway_default_route_table_propagation` attribute.
+  TfRef<bool> get transitGatewayDefaultRouteTablePropagationRef =>
+      TfRef.attribute<bool>(
+        this,
+        'transit_gateway_default_route_table_propagation',
+      );
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
+
+  /// Reference to `transport_attachment_id` attribute.
+  TfRef<String> get transportAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'transport_attachment_id');
 }

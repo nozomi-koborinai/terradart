@@ -581,4 +581,49 @@ final class GoogleStorageBucket extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `default_event_based_hold` attribute.
+  TfRef<bool> get defaultEventBasedHoldRef =>
+      TfRef.attribute<bool>(this, 'default_event_based_hold');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_object_retention` attribute.
+  TfRef<bool> get enableObjectRetentionRef =>
+      TfRef.attribute<bool>(this, 'enable_object_retention');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `public_access_prevention` attribute.
+  TfRef<String> get publicAccessPreventionRef =>
+      TfRef.attribute<String>(this, 'public_access_prevention');
+
+  /// Reference to `requester_pays` attribute.
+  TfRef<bool> get requesterPaysRef =>
+      TfRef.attribute<bool>(this, 'requester_pays');
+
+  /// Reference to `rpo` attribute.
+  TfRef<String> get rpoRef => TfRef.attribute<String>(this, 'rpo');
+
+  /// Reference to `storage_class` attribute.
+  TfRef<String> get storageClassRef =>
+      TfRef.attribute<String>(this, 'storage_class');
+
+  /// Reference to `uniform_bucket_level_access` attribute.
+  TfRef<bool> get uniformBucketLevelAccessRef =>
+      TfRef.attribute<bool>(this, 'uniform_bucket_level_access');
 }

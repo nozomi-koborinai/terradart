@@ -460,4 +460,41 @@ final class AwsGlueCrawler extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `classifiers` attribute.
+  TfRef<List<String>> get classifiersRef =>
+      TfRef.attribute<List<String>>(this, 'classifiers');
+
+  /// Reference to `configuration` attribute.
+  TfRef<String> get configurationRef =>
+      TfRef.attribute<String>(this, 'configuration');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `security_configuration` attribute.
+  TfRef<String> get securityConfigurationRef =>
+      TfRef.attribute<String>(this, 'security_configuration');
+
+  /// Reference to `table_prefix` attribute.
+  TfRef<String> get tablePrefixRef =>
+      TfRef.attribute<String>(this, 'table_prefix');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

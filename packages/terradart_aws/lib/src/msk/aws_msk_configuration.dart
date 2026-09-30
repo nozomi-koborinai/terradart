@@ -51,4 +51,19 @@ final class AwsMskConfiguration extends Resource {
   /// Reference to `latest_revision` attribute.
   TfRef<num> get latestRevision =>
       TfRef.attribute<num>(this, 'latest_revision');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kafka_versions` attribute.
+  TfRef<List<String>> get kafkaVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'kafka_versions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_properties` attribute.
+  TfRef<String> get serverPropertiesRef =>
+      TfRef.attribute<String>(this, 'server_properties');
 }

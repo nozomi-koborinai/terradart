@@ -57,4 +57,11 @@ final class DataAwsEips extends Data {
   /// Reference to `public_ips` attribute.
   TfRef<List<String>> get publicIps =>
       TfRef.attribute<List<String>>(this, 'public_ips');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -33,4 +33,7 @@ final class DataGoogleVmwareengineAnnouncements extends Data {
   /// Reference to `announcements` attribute.
   TfRef<List<Map<String, Object?>>> get announcements =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'announcements');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

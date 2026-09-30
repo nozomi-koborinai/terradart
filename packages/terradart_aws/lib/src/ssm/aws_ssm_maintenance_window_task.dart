@@ -415,4 +415,38 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
   /// Reference to `window_task_id` attribute.
   TfRef<String> get windowTaskId =>
       TfRef.attribute<String>(this, 'window_task_id');
+
+  /// Reference to `cutoff_behavior` attribute.
+  TfRef<String> get cutoffBehaviorRef =>
+      TfRef.attribute<String>(this, 'cutoff_behavior');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `max_concurrency` attribute.
+  TfRef<String> get maxConcurrencyRef =>
+      TfRef.attribute<String>(this, 'max_concurrency');
+
+  /// Reference to `max_errors` attribute.
+  TfRef<String> get maxErrorsRef => TfRef.attribute<String>(this, 'max_errors');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_role_arn` attribute.
+  TfRef<String> get serviceRoleArnRef =>
+      TfRef.attribute<String>(this, 'service_role_arn');
+
+  /// Reference to `task_arn` attribute.
+  TfRef<String> get taskArnRef => TfRef.attribute<String>(this, 'task_arn');
+
+  /// Reference to `task_type` attribute.
+  TfRef<String> get taskTypeRef => TfRef.attribute<String>(this, 'task_type');
+
+  /// Reference to `window_id` attribute.
+  TfRef<String> get windowIdRef => TfRef.attribute<String>(this, 'window_id');
 }

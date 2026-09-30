@@ -78,4 +78,20 @@ final class GoogleApiGatewayApiConfigIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `api` attribute.
+  TfRef<String> get apiRef => TfRef.attribute<String>(this, 'api');
+
+  /// Reference to `api_config` attribute.
+  TfRef<String> get apiConfigRef => TfRef.attribute<String>(this, 'api_config');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

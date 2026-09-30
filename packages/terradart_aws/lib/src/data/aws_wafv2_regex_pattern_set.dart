@@ -46,4 +46,10 @@ final class DataAwsWafv2RegexPatternSet extends Data {
   /// Reference to `regular_expression` attribute.
   TfRef<List<Map<String, Object?>>> get regularExpression =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'regular_expression');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
 }

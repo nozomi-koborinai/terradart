@@ -79,4 +79,10 @@ final class DataCloudflareWebAnalyticsSite extends Data {
 
   /// Reference to `snippet` attribute.
   TfRef<String> get snippet => TfRef.attribute<String>(this, 'snippet');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

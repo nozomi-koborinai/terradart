@@ -39,4 +39,7 @@ final class DataAwsOrganizationsOrganizationalUnit extends Data {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
 }

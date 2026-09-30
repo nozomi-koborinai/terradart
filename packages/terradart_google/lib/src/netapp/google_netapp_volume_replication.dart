@@ -224,6 +224,48 @@ final class GoogleNetappVolumeReplication extends Resource {
   TfRef<List<Map<String, Object?>>> get transferStats =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'transfer_stats');
 
+  /// Reference to `delete_destination_volume` attribute.
+  TfRef<bool> get deleteDestinationVolumeRef =>
+      TfRef.attribute<bool>(this, 'delete_destination_volume');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `force_stopping` attribute.
+  TfRef<bool> get forceStoppingRef =>
+      TfRef.attribute<bool>(this, 'force_stopping');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `replication_enabled` attribute.
+  TfRef<bool> get replicationEnabledRef =>
+      TfRef.attribute<bool>(this, 'replication_enabled');
+
+  /// Reference to `replication_schedule` attribute.
+  TfRef<String> get replicationScheduleRef =>
+      TfRef.attribute<String>(this, 'replication_schedule');
+
+  /// Reference to `volume_name` attribute.
+  TfRef<String> get volumeNameRef =>
+      TfRef.attribute<String>(this, 'volume_name');
+
+  /// Reference to `wait_for_mirror` attribute.
+  TfRef<bool> get waitForMirrorRef =>
+      TfRef.attribute<bool>(this, 'wait_for_mirror');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

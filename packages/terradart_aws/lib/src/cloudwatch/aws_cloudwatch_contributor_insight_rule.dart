@@ -57,4 +57,21 @@ final class AwsCloudwatchContributorInsightRule extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_definition` attribute.
+  TfRef<String> get ruleDefinitionRef =>
+      TfRef.attribute<String>(this, 'rule_definition');
+
+  /// Reference to `rule_name` attribute.
+  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+
+  /// Reference to `rule_state` attribute.
+  TfRef<String> get ruleStateRef => TfRef.attribute<String>(this, 'rule_state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

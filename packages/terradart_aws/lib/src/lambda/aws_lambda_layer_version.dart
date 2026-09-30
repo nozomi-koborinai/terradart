@@ -161,4 +161,46 @@ final class AwsLambdaLayerVersion extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `compatible_architectures` attribute.
+  TfRef<List<String>> get compatibleArchitecturesRef =>
+      TfRef.attribute<List<String>>(this, 'compatible_architectures');
+
+  /// Reference to `compatible_runtimes` attribute.
+  TfRef<List<String>> get compatibleRuntimesRef =>
+      TfRef.attribute<List<String>>(this, 'compatible_runtimes');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `filename` attribute.
+  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+
+  /// Reference to `layer_name` attribute.
+  TfRef<String> get layerNameRef => TfRef.attribute<String>(this, 'layer_name');
+
+  /// Reference to `license_info` attribute.
+  TfRef<String> get licenseInfoRef =>
+      TfRef.attribute<String>(this, 'license_info');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_bucket` attribute.
+  TfRef<String> get s3BucketRef => TfRef.attribute<String>(this, 's3_bucket');
+
+  /// Reference to `s3_key` attribute.
+  TfRef<String> get s3KeyRef => TfRef.attribute<String>(this, 's3_key');
+
+  /// Reference to `s3_object_version` attribute.
+  TfRef<String> get s3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 's3_object_version');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `source_code_hash` attribute.
+  TfRef<String> get sourceCodeHashRef =>
+      TfRef.attribute<String>(this, 'source_code_hash');
 }

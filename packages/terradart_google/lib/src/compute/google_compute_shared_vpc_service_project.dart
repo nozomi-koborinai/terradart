@@ -36,4 +36,16 @@ final class GoogleComputeSharedVpcServiceProject extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `host_project` attribute.
+  TfRef<String> get hostProjectRef =>
+      TfRef.attribute<String>(this, 'host_project');
+
+  /// Reference to `service_project` attribute.
+  TfRef<String> get serviceProjectRef =>
+      TfRef.attribute<String>(this, 'service_project');
 }

@@ -82,4 +82,27 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `capacity_limits` attribute.
+  TfRef<List<Map<String, Object?>>> get capacityLimitsRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'capacity_limits');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `generation` attribute.
+  TfRef<String> get generationRef =>
+      TfRef.attribute<String>(this, 'generation');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `standby_replicas` attribute.
+  TfRef<String> get standbyReplicasRef =>
+      TfRef.attribute<String>(this, 'standby_replicas');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

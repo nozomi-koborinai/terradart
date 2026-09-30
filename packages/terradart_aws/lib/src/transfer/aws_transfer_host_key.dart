@@ -114,4 +114,22 @@ final class AwsTransferHostKey extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `host_key_body` attribute.
+  TfRef<String> get hostKeyBodyRef =>
+      TfRef.attribute<String>(this, 'host_key_body');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_id` attribute.
+  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

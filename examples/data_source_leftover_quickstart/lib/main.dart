@@ -638,7 +638,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleCloudIdentityGroupLookup(
         localName: 'cloud_identity_group_lookup',
-        groupKey: TfArg.literal(<String, dynamic>{'id': leftover}),
+        groupKey: DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover)),
       ),
     );
 
@@ -1732,8 +1732,8 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleGeminiRepositoryGroupIamPolicy(
         localName: 'gemini_repository_group_iam_policy',
-        codeRepositoryIndex: TfArg.literal(leftover),
-        repositoryGroupId: TfArg.literal(leftover),
+        codeRepositoryIndex: RefTo.literal(leftover),
+        repositoryGroupId: RefTo.literal(leftover),
       ),
     );
 

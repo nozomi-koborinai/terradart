@@ -226,4 +226,11 @@ final class AwsSagemakerWorkforce extends Resource {
 
   /// Reference to `subdomain` attribute.
   TfRef<String> get subdomain => TfRef.attribute<String>(this, 'subdomain');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workforce_name` attribute.
+  TfRef<String> get workforceNameRef =>
+      TfRef.attribute<String>(this, 'workforce_name');
 }

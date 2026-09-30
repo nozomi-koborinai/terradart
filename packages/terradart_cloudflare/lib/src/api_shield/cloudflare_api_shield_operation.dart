@@ -88,4 +88,23 @@ final class CloudflareApiShieldOperation extends Resource {
   /// Reference to `operation_id` attribute.
   TfRef<String> get operationId =>
       TfRef.attribute<String>(this, 'operation_id');
+
+  /// Reference to `endpoint` attribute.
+  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+
+  /// Reference to `feature` attribute.
+  TfRef<List<String>> get featureRef =>
+      TfRef.attribute<List<String>>(this, 'feature');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `method` attribute.
+  TfRef<String> get methodRef => TfRef.attribute<String>(this, 'method');
+
+  /// Reference to `with_schemas` attribute.
+  TfRef<bool> get withSchemasRef => TfRef.attribute<bool>(this, 'with_schemas');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

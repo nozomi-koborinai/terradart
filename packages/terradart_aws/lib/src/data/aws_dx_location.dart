@@ -42,4 +42,11 @@ final class DataAwsDxLocation extends Data {
   /// Reference to `location_name` attribute.
   TfRef<String> get locationName =>
       TfRef.attribute<String>(this, 'location_name');
+
+  /// Reference to `location_code` attribute.
+  TfRef<String> get locationCodeRef =>
+      TfRef.attribute<String>(this, 'location_code');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

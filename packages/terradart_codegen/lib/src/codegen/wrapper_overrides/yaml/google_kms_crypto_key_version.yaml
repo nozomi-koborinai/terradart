@@ -1,6 +1,7 @@
 outputDir: kms
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:
@@ -24,16 +25,17 @@ prelude: |
 paramOrder:
   - crypto_key
   - state
+  - external_protection_level_options
 
 curatedDoc: |-
   /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).
-  /// Pass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.
+  /// Pass `cryptoKey` as the parent key (`key.ref`) or its id path.
   ///
   /// Example:
   /// ```dart
   /// GoogleKmsCryptoKeyVersion(
   ///   localName: 'v1',
-  ///   cryptoKey: TfArg.ref(ringKey.id),
+  ///   cryptoKey: ringKey.ref,
   /// );
   /// ```
 

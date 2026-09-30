@@ -61,4 +61,19 @@ final class AwsSagemakerModelCardExportJob extends Resource {
   /// Reference to `model_card_export_job_arn` attribute.
   TfRef<String> get modelCardExportJobArn =>
       TfRef.attribute<String>(this, 'model_card_export_job_arn');
+
+  /// Reference to `model_card_export_job_name` attribute.
+  TfRef<String> get modelCardExportJobNameRef =>
+      TfRef.attribute<String>(this, 'model_card_export_job_name');
+
+  /// Reference to `model_card_name` attribute.
+  TfRef<String> get modelCardNameRef =>
+      TfRef.attribute<String>(this, 'model_card_name');
+
+  /// Reference to `model_card_version` attribute.
+  TfRef<num> get modelCardVersionRef =>
+      TfRef.attribute<num>(this, 'model_card_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

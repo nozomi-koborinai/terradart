@@ -69,4 +69,29 @@ final class GoogleContactCenterInsightsAnalysisRule extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `active` attribute.
+  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+
+  /// Reference to `analysis_percentage` attribute.
+  TfRef<num> get analysisPercentageRef =>
+      TfRef.attribute<num>(this, 'analysis_percentage');
+
+  /// Reference to `conversation_filter` attribute.
+  TfRef<String> get conversationFilterRef =>
+      TfRef.attribute<String>(this, 'conversation_filter');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -70,4 +70,7 @@ final class DataGoogleComputeGlobalAddress extends Data {
 
   /// Reference to `users` attribute.
   TfRef<String> get users => TfRef.attribute<String>(this, 'users');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

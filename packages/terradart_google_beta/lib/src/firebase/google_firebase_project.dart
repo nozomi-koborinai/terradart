@@ -46,4 +46,7 @@ final class GoogleFirebaseProject extends Resource {
   /// Reference to `project_number` attribute.
   TfRef<String> get projectNumber =>
       TfRef.attribute<String>(this, 'project_number');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

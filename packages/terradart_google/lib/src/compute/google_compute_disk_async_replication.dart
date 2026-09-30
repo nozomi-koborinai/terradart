@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_disk_async_replication`.
 const Set<String> _googleComputeDiskAsyncReplicationSensitive = <String>{};
+
+/// Typed helper for the `secondary_disk` block of
+/// `google_compute_disk_async_replication` (derived from provider schema).
+@immutable
+final class ComputeDiskAsyncReplicationSecondaryDisk {
+  const ComputeDiskAsyncReplicationSecondaryDisk({required this.disk});
+
+  final TfArg<String> disk;
+
+  Map<String, Object?> encode() => {'disk': disk.toTfJson()};
+}
 
 /// Factory wrapper for `google_compute_disk_async_replication`.
 ///
@@ -22,7 +34,7 @@ final class GoogleComputeDiskAsyncReplication extends Resource {
   GoogleComputeDiskAsyncReplication({
     required super.localName,
     required TfArg<String> primaryDisk,
-    required TfArg<Map<String, dynamic>> secondaryDisk,
+    required ComputeDiskAsyncReplicationSecondaryDisk secondaryDisk,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -32,7 +44,7 @@ final class GoogleComputeDiskAsyncReplication extends Resource {
          terraformType: tfType,
          argMap: {
            'primary_disk': primaryDisk,
-           'secondary_disk': secondaryDisk,
+           'secondary_disk': TfArg.literal(secondaryDisk.encode()),
            'deletion_policy': ?deletionPolicy,
          },
        );
@@ -47,4 +59,12 @@ final class GoogleComputeDiskAsyncReplication extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `primary_disk` attribute.
+  TfRef<String> get primaryDiskRef =>
+      TfRef.attribute<String>(this, 'primary_disk');
 }

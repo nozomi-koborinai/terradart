@@ -64,4 +64,14 @@ final class AwsChimesdkvoiceSipMediaApplication extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `aws_region` attribute.
+  TfRef<String> get awsRegionRef => TfRef.attribute<String>(this, 'aws_region');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

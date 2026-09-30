@@ -61,4 +61,10 @@ final class GoogleDocumentAiProcessorDefaultVersion extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `processor` attribute.
+  TfRef<String> get processorRef => TfRef.attribute<String>(this, 'processor');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

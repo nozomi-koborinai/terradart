@@ -45,4 +45,14 @@ final class DataGoogleApphubDiscoveredService extends Data {
   /// Reference to `service_reference` attribute.
   TfRef<List<Map<String, Object?>>> get serviceReference =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'service_reference');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_uri` attribute.
+  TfRef<String> get serviceUriRef =>
+      TfRef.attribute<String>(this, 'service_uri');
 }

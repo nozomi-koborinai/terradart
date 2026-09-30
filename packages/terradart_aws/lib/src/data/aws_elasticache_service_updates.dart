@@ -27,4 +27,11 @@ final class DataAwsElasticacheServiceUpdates extends Data {
   /// Reference to `service_updates` attribute.
   TfRef<List<Map<String, Object?>>> get serviceUpdates =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'service_updates');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<List<String>> get statusRef =>
+      TfRef.attribute<List<String>>(this, 'status');
 }

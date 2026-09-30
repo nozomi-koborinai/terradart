@@ -64,4 +64,12 @@ final class AwsCloudfrontkeyvaluestoreKeysExclusive extends Resource {
   /// Reference to `total_size_in_bytes` attribute.
   TfRef<num> get totalSizeInBytes =>
       TfRef.attribute<num>(this, 'total_size_in_bytes');
+
+  /// Reference to `key_value_store_arn` attribute.
+  TfRef<String> get keyValueStoreArnRef =>
+      TfRef.attribute<String>(this, 'key_value_store_arn');
+
+  /// Reference to `max_batch_size` attribute.
+  TfRef<num> get maxBatchSizeRef =>
+      TfRef.attribute<num>(this, 'max_batch_size');
 }

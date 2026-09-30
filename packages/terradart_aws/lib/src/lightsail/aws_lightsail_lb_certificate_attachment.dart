@@ -38,4 +38,14 @@ final class AwsLightsailLbCertificateAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `certificate_name` attribute.
+  TfRef<String> get certificateNameRef =>
+      TfRef.attribute<String>(this, 'certificate_name');
+
+  /// Reference to `lb_name` attribute.
+  TfRef<String> get lbNameRef => TfRef.attribute<String>(this, 'lb_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

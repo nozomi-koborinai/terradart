@@ -81,4 +81,25 @@ final class AwsIvsChannel extends Resource {
   /// Reference to `playback_url` attribute.
   TfRef<String> get playbackUrl =>
       TfRef.attribute<String>(this, 'playback_url');
+
+  /// Reference to `authorized` attribute.
+  TfRef<bool> get authorizedRef => TfRef.attribute<bool>(this, 'authorized');
+
+  /// Reference to `latency_mode` attribute.
+  TfRef<String> get latencyModeRef =>
+      TfRef.attribute<String>(this, 'latency_mode');
+
+  /// Reference to `recording_configuration_arn` attribute.
+  TfRef<String> get recordingConfigurationArnRef =>
+      TfRef.attribute<String>(this, 'recording_configuration_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

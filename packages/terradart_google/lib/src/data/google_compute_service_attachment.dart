@@ -109,4 +109,10 @@ final class DataGoogleComputeServiceAttachment extends Data {
   /// Reference to `target_service` attribute.
   TfRef<String> get targetService =>
       TfRef.attribute<String>(this, 'target_service');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -51,6 +51,17 @@ final class GoogleApigeeEnvironmentKeyvaluemapsEntries extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `env_keyvaluemap_id` attribute.
+  TfRef<String> get envKeyvaluemapIdRef =>
+      TfRef.attribute<String>(this, 'env_keyvaluemap_id');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

@@ -187,4 +187,22 @@ final class AwsResiliencehubResiliencyPolicy extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `data_location_constraint` attribute.
+  TfRef<String> get dataLocationConstraintRef =>
+      TfRef.attribute<String>(this, 'data_location_constraint');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tier` attribute.
+  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
 }

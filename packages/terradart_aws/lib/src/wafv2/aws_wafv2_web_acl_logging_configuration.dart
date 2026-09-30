@@ -267,4 +267,15 @@ final class AwsWafv2WebAclLoggingConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `log_destination_configs` attribute.
+  TfRef<List<String>> get logDestinationConfigsRef =>
+      TfRef.attribute<List<String>>(this, 'log_destination_configs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

@@ -33,4 +33,11 @@ final class DataAwsEmrSupportedInstanceTypes extends Data {
         this,
         'supported_instance_types',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_label` attribute.
+  TfRef<String> get releaseLabelRef =>
+      TfRef.attribute<String>(this, 'release_label');
 }

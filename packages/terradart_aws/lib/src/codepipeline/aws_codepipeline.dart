@@ -857,4 +857,22 @@ final class AwsCodepipeline extends Resource {
   /// Reference to `trigger_all` attribute.
   TfRef<List<Map<String, Object?>>> get triggerAll =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'trigger_all');
+
+  /// Reference to `execution_mode` attribute.
+  TfRef<String> get executionModeRef =>
+      TfRef.attribute<String>(this, 'execution_mode');
+
+  /// Reference to `pipeline_type` attribute.
+  TfRef<String> get pipelineTypeRef =>
+      TfRef.attribute<String>(this, 'pipeline_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

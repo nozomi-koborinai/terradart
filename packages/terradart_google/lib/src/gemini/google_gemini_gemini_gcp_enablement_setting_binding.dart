@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_gemini_gcp_enablement_setting.dart'
+    show GoogleGeminiGeminiGcpEnablementSetting;
+
 /// Sensitive field paths for `google_gemini_gemini_gcp_enablement_setting_binding`.
 const Set<String> _googleGeminiGeminiGcpEnablementSettingBindingSensitive =
     <String>{};
@@ -41,7 +44,8 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
 
   GoogleGeminiGeminiGcpEnablementSettingBinding({
     required super.localName,
-    required TfArg<String> geminiGcpEnablementSettingId,
+    required RefTo<GoogleGeminiGeminiGcpEnablementSetting>
+    geminiGcpEnablementSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -56,7 +60,8 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'gemini_gcp_enablement_setting_id': geminiGcpEnablementSettingId,
+           'gemini_gcp_enablement_setting_id': geminiGcpEnablementSettingId
+               .encodeAs('gemini_gcp_enablement_setting_id'),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,
@@ -92,6 +97,34 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `gemini_gcp_enablement_setting_id` attribute.
+  TfRef<String> get geminiGcpEnablementSettingIdRef =>
+      TfRef.attribute<String>(this, 'gemini_gcp_enablement_setting_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `product` attribute.
+  TfRef<String> get productRef => TfRef.attribute<String>(this, 'product');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `setting_binding_id` attribute.
+  TfRef<String> get settingBindingIdRef =>
+      TfRef.attribute<String>(this, 'setting_binding_id');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

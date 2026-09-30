@@ -35,4 +35,11 @@ final class AwsRdsCertificate extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `certificate_identifier` attribute.
+  TfRef<String> get certificateIdentifierRef =>
+      TfRef.attribute<String>(this, 'certificate_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

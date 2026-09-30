@@ -26,4 +26,7 @@ final class DataAwsSyntheticsRuntimeVersions extends Data {
   /// Reference to `runtime_versions` attribute.
   TfRef<List<Map<String, Object?>>> get runtimeVersions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'runtime_versions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

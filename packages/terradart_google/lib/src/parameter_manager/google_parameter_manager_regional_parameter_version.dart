@@ -64,4 +64,22 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `parameter` attribute.
+  TfRef<String> get parameterRef => TfRef.attribute<String>(this, 'parameter');
+
+  /// Reference to `parameter_data` attribute.
+  TfRef<String> get parameterDataRef =>
+      TfRef.attribute<String>(this, 'parameter_data');
+
+  /// Reference to `parameter_version_id` attribute.
+  TfRef<String> get parameterVersionIdRef =>
+      TfRef.attribute<String>(this, 'parameter_version_id');
 }

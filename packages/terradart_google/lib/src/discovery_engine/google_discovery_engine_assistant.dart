@@ -172,6 +172,39 @@ final class GoogleDiscoveryEngineAssistant extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `assistant_id` attribute.
+  TfRef<String> get assistantIdRef =>
+      TfRef.attribute<String>(this, 'assistant_id');
+
+  /// Reference to `collection_id` attribute.
+  TfRef<String> get collectionIdRef =>
+      TfRef.attribute<String>(this, 'collection_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `engine_id` attribute.
+  TfRef<String> get engineIdRef => TfRef.attribute<String>(this, 'engine_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `web_grounding_type` attribute.
+  TfRef<String> get webGroundingTypeRef =>
+      TfRef.attribute<String>(this, 'web_grounding_type');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

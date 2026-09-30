@@ -321,4 +321,48 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `data_refresh_window_days` attribute.
+  TfRef<num> get dataRefreshWindowDaysRef =>
+      TfRef.attribute<num>(this, 'data_refresh_window_days');
+
+  /// Reference to `data_source_id` attribute.
+  TfRef<String> get dataSourceIdRef =>
+      TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `destination_dataset_id` attribute.
+  TfRef<String> get destinationDatasetIdRef =>
+      TfRef.attribute<String>(this, 'destination_dataset_id');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `notification_pubsub_topic` attribute.
+  TfRef<String> get notificationPubsubTopicRef =>
+      TfRef.attribute<String>(this, 'notification_pubsub_topic');
+
+  /// Reference to `params` attribute.
+  TfRef<Map<String, String>> get paramsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'params');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `service_account_name` attribute.
+  TfRef<String> get serviceAccountNameRef =>
+      TfRef.attribute<String>(this, 'service_account_name');
 }

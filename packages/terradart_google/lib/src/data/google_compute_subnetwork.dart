@@ -85,4 +85,13 @@ final class DataGoogleComputeSubnetwork extends Data {
 
   /// Reference to `subnetwork_id` attribute.
   TfRef<num> get subnetworkId => TfRef.attribute<num>(this, 'subnetwork_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
 }

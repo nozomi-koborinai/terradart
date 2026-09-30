@@ -1,5 +1,6 @@
 outputDir: storage
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -15,7 +16,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleStorageObjectAccessControl(
   ///   localName: 'object_reader',
-  ///   bucket: TfArg.ref(legacy.nameRef),
+  ///   bucket: legacy.ref,
   ///   object: TfArg.literal('config/app.json'),
   ///   entity: TfArg.ref(reader.iamMember),
   ///   role: TfArg.literal(StorageObjectAccessControlRole.reader),

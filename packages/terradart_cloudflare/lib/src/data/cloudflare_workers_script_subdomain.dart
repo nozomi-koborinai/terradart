@@ -44,4 +44,11 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
   /// Reference to `previews_enabled` attribute.
   TfRef<bool> get previewsEnabled =>
       TfRef.attribute<bool>(this, 'previews_enabled');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `script_name` attribute.
+  TfRef<String> get scriptNameRef =>
+      TfRef.attribute<String>(this, 'script_name');
 }

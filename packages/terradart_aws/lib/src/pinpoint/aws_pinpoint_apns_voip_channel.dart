@@ -58,4 +58,39 @@ final class AwsPinpointApnsVoipChannel extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `default_authentication_method` attribute.
+  TfRef<String> get defaultAuthenticationMethodRef =>
+      TfRef.attribute<String>(this, 'default_authentication_method');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKeyRef =>
+      TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `team_id` attribute.
+  TfRef<String> get teamIdRef => TfRef.attribute<String>(this, 'team_id');
+
+  /// Reference to `token_key` attribute.
+  TfRef<String> get tokenKeyRef => TfRef.attribute<String>(this, 'token_key');
+
+  /// Reference to `token_key_id` attribute.
+  TfRef<String> get tokenKeyIdRef =>
+      TfRef.attribute<String>(this, 'token_key_id');
 }

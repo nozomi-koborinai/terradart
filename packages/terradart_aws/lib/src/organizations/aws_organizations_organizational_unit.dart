@@ -44,4 +44,11 @@ final class AwsOrganizationsOrganizationalUnit extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

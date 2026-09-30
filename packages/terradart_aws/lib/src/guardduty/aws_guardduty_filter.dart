@@ -124,4 +124,25 @@ final class AwsGuarddutyFilter extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `detector_id` attribute.
+  TfRef<String> get detectorIdRef =>
+      TfRef.attribute<String>(this, 'detector_id');
+
+  /// Reference to `rank` attribute.
+  TfRef<num> get rankRef => TfRef.attribute<num>(this, 'rank');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

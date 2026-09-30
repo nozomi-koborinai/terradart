@@ -539,4 +539,26 @@ final class AwsDatasyncTask extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `cloudwatch_log_group_arn` attribute.
+  TfRef<String> get cloudwatchLogGroupArnRef =>
+      TfRef.attribute<String>(this, 'cloudwatch_log_group_arn');
+
+  /// Reference to `destination_location_arn` attribute.
+  TfRef<String> get destinationLocationArnRef =>
+      TfRef.attribute<String>(this, 'destination_location_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_location_arn` attribute.
+  TfRef<String> get sourceLocationArnRef =>
+      TfRef.attribute<String>(this, 'source_location_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `task_mode` attribute.
+  TfRef<String> get taskModeRef => TfRef.attribute<String>(this, 'task_mode');
 }

@@ -97,4 +97,15 @@ final class AwsLambdaCodeSigningConfig extends Resource {
   /// Reference to `last_modified` attribute.
   TfRef<String> get lastModified =>
       TfRef.attribute<String>(this, 'last_modified');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

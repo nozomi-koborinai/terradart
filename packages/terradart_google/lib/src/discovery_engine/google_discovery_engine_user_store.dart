@@ -59,6 +59,28 @@ final class GoogleDiscoveryEngineUserStore extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `default_license_config` attribute.
+  TfRef<String> get defaultLicenseConfigRef =>
+      TfRef.attribute<String>(this, 'default_license_config');
+
+  /// Reference to `enable_expired_license_auto_update` attribute.
+  TfRef<bool> get enableExpiredLicenseAutoUpdateRef =>
+      TfRef.attribute<bool>(this, 'enable_expired_license_auto_update');
+
+  /// Reference to `enable_license_auto_register` attribute.
+  TfRef<bool> get enableLicenseAutoRegisterRef =>
+      TfRef.attribute<bool>(this, 'enable_license_auto_register');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `user_store_id` attribute.
+  TfRef<String> get userStoreIdRef =>
+      TfRef.attribute<String>(this, 'user_store_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

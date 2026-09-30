@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_service_attachment`.
@@ -14,6 +15,33 @@ enum ServiceAttachmentConnectionPreference implements TerraformEnum {
   const ServiceAttachmentConnectionPreference(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `consumer_accept_lists` block of
+/// `google_compute_service_attachment` (derived from provider schema).
+@immutable
+final class ComputeServiceAttachmentConsumerAcceptLists {
+  const ComputeServiceAttachmentConsumerAcceptLists({
+    required this.connectionLimit,
+    this.endpointUrl,
+    this.networkUrl,
+    this.projectIdOrNum,
+  });
+
+  final TfArg<num> connectionLimit;
+
+  final TfArg<String>? endpointUrl;
+
+  final TfArg<String>? networkUrl;
+
+  final TfArg<String>? projectIdOrNum;
+
+  Map<String, Object?> encode() => {
+    'connection_limit': connectionLimit.toTfJson(),
+    'endpoint_url': ?endpointUrl?.toTfJson(),
+    'network_url': ?networkUrl?.toTfJson(),
+    'project_id_or_num': ?projectIdOrNum?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_service_attachment`.
@@ -38,7 +66,7 @@ final class GoogleComputeServiceAttachment extends Resource {
     TfArg<bool>? sendPropagatedConnectionLimitIfZero,
     TfArg<bool>? showNatIps,
     required TfArg<String> targetService,
-    TfArg<List<Map<String, dynamic>>>? consumerAcceptLists,
+    List<ComputeServiceAttachmentConsumerAcceptLists>? consumerAcceptLists,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -61,7 +89,10 @@ final class GoogleComputeServiceAttachment extends Resource {
                ?sendPropagatedConnectionLimitIfZero,
            'show_nat_ips': ?showNatIps,
            'target_service': targetService,
-           'consumer_accept_lists': ?consumerAcceptLists,
+           if (consumerAcceptLists != null)
+             'consumer_accept_lists': TfArg.literal([
+               for (final e in consumerAcceptLists) e.encode(),
+             ]),
          },
        );
 
@@ -94,4 +125,57 @@ final class GoogleComputeServiceAttachment extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `connection_preference` attribute.
+  TfRef<String> get connectionPreferenceRef =>
+      TfRef.attribute<String>(this, 'connection_preference');
+
+  /// Reference to `consumer_reject_lists` attribute.
+  TfRef<List<String>> get consumerRejectListsRef =>
+      TfRef.attribute<List<String>>(this, 'consumer_reject_lists');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_names` attribute.
+  TfRef<List<String>> get domainNamesRef =>
+      TfRef.attribute<List<String>>(this, 'domain_names');
+
+  /// Reference to `enable_proxy_protocol` attribute.
+  TfRef<bool> get enableProxyProtocolRef =>
+      TfRef.attribute<bool>(this, 'enable_proxy_protocol');
+
+  /// Reference to `nat_subnets` attribute.
+  TfRef<List<String>> get natSubnetsRef =>
+      TfRef.attribute<List<String>>(this, 'nat_subnets');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `propagated_connection_limit` attribute.
+  TfRef<num> get propagatedConnectionLimitRef =>
+      TfRef.attribute<num>(this, 'propagated_connection_limit');
+
+  /// Reference to `reconcile_connections` attribute.
+  TfRef<bool> get reconcileConnectionsRef =>
+      TfRef.attribute<bool>(this, 'reconcile_connections');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `send_propagated_connection_limit_if_zero` attribute.
+  TfRef<bool> get sendPropagatedConnectionLimitIfZeroRef =>
+      TfRef.attribute<bool>(this, 'send_propagated_connection_limit_if_zero');
+
+  /// Reference to `show_nat_ips` attribute.
+  TfRef<bool> get showNatIpsRef => TfRef.attribute<bool>(this, 'show_nat_ips');
+
+  /// Reference to `target_service` attribute.
+  TfRef<String> get targetServiceRef =>
+      TfRef.attribute<String>(this, 'target_service');
 }

@@ -282,4 +282,58 @@ final class AwsDatasyncLocationHdfs extends Resource {
 
   /// Reference to `uri` attribute.
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `agent_arns` attribute.
+  TfRef<List<String>> get agentArnsRef =>
+      TfRef.attribute<List<String>>(this, 'agent_arns');
+
+  /// Reference to `authentication_type` attribute.
+  TfRef<String> get authenticationTypeRef =>
+      TfRef.attribute<String>(this, 'authentication_type');
+
+  /// Reference to `block_size` attribute.
+  TfRef<num> get blockSizeRef => TfRef.attribute<num>(this, 'block_size');
+
+  /// Reference to `kerberos_keytab` attribute.
+  TfRef<String> get kerberosKeytabRef =>
+      TfRef.attribute<String>(this, 'kerberos_keytab');
+
+  /// Reference to `kerberos_keytab_base64` attribute.
+  TfRef<String> get kerberosKeytabBase64Ref =>
+      TfRef.attribute<String>(this, 'kerberos_keytab_base64');
+
+  /// Reference to `kerberos_krb5_conf` attribute.
+  TfRef<String> get kerberosKrb5ConfRef =>
+      TfRef.attribute<String>(this, 'kerberos_krb5_conf');
+
+  /// Reference to `kerberos_krb5_conf_base64` attribute.
+  TfRef<String> get kerberosKrb5ConfBase64Ref =>
+      TfRef.attribute<String>(this, 'kerberos_krb5_conf_base64');
+
+  /// Reference to `kerberos_principal` attribute.
+  TfRef<String> get kerberosPrincipalRef =>
+      TfRef.attribute<String>(this, 'kerberos_principal');
+
+  /// Reference to `kms_key_provider_uri` attribute.
+  TfRef<String> get kmsKeyProviderUriRef =>
+      TfRef.attribute<String>(this, 'kms_key_provider_uri');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_factor` attribute.
+  TfRef<num> get replicationFactorRef =>
+      TfRef.attribute<num>(this, 'replication_factor');
+
+  /// Reference to `simple_user` attribute.
+  TfRef<String> get simpleUserRef =>
+      TfRef.attribute<String>(this, 'simple_user');
+
+  /// Reference to `subdirectory` attribute.
+  TfRef<String> get subdirectoryRef =>
+      TfRef.attribute<String>(this, 'subdirectory');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

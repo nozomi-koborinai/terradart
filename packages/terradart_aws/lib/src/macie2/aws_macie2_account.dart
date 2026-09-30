@@ -68,4 +68,14 @@ final class AwsMacie2Account extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `finding_publishing_frequency` attribute.
+  TfRef<String> get findingPublishingFrequencyRef =>
+      TfRef.attribute<String>(this, 'finding_publishing_frequency');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

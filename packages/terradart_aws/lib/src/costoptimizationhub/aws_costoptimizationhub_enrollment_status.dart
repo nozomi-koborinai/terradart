@@ -35,4 +35,8 @@ final class AwsCostoptimizationhubEnrollmentStatus extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `include_member_accounts` attribute.
+  TfRef<bool> get includeMemberAccountsRef =>
+      TfRef.attribute<bool>(this, 'include_member_accounts');
 }

@@ -131,4 +131,25 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `data_policy_id` attribute.
+  TfRef<String> get dataPolicyIdRef =>
+      TfRef.attribute<String>(this, 'data_policy_id');
+
+  /// Reference to `data_policy_type` attribute.
+  TfRef<String> get dataPolicyTypeRef =>
+      TfRef.attribute<String>(this, 'data_policy_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `policy_tag` attribute.
+  TfRef<String> get policyTagRef => TfRef.attribute<String>(this, 'policy_tag');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

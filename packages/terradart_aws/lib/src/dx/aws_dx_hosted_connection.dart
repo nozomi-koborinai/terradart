@@ -83,4 +83,18 @@ final class AwsDxHostedConnection extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `bandwidth` attribute.
+  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `owner_account_id` attribute.
+  TfRef<String> get ownerAccountIdRef =>
+      TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `vlan` attribute.
+  TfRef<num> get vlanRef => TfRef.attribute<num>(this, 'vlan');
 }

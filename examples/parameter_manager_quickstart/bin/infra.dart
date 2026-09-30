@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/params_stack.app.dart`
-/// (literal exports such as `APP_CONFIG_PARAMETER_ID`). Computed exports like
-/// `APP_CONFIG_PARAMETER_NAME` appear as Terraform outputs only.
+/// (with `ParamsStackConstants.appConfigParameterId`). Computed values such as
+/// `app_config_parameter_name` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

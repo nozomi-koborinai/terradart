@@ -39,4 +39,12 @@ final class DataAwsShieldProtection extends Data {
   /// Reference to `protection_arn` attribute.
   TfRef<String> get protectionArn =>
       TfRef.attribute<String>(this, 'protection_arn');
+
+  /// Reference to `protection_id` attribute.
+  TfRef<String> get protectionIdRef =>
+      TfRef.attribute<String>(this, 'protection_id');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

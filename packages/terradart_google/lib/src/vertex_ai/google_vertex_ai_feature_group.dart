@@ -1,10 +1,41 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_vertex_ai_feature_group`.
 const Set<String> _googleVertexAiFeatureGroupSensitive = <String>{};
+
+/// Typed helper for the `big_query` block of
+/// `google_vertex_ai_feature_group` (derived from provider schema).
+@immutable
+final class VertexAiFeatureGroupBigQuery {
+  const VertexAiFeatureGroupBigQuery({
+    this.entityIdColumns,
+    required this.bigQuerySource,
+  });
+
+  final TfArg<List<String>>? entityIdColumns;
+
+  final VertexAiFeatureGroupBigQueryBigQuerySource bigQuerySource;
+
+  Map<String, Object?> encode() => {
+    'entity_id_columns': ?entityIdColumns?.toTfJson(),
+    'big_query_source': bigQuerySource.encode(),
+  };
+}
+
+/// Typed helper for the `big_query.big_query_source` block of
+/// `google_vertex_ai_feature_group` (derived from provider schema).
+@immutable
+final class VertexAiFeatureGroupBigQueryBigQuerySource {
+  const VertexAiFeatureGroupBigQueryBigQuerySource({required this.inputUri});
+
+  final TfArg<String> inputUri;
+
+  Map<String, Object?> encode() => {'input_uri': inputUri.toTfJson()};
+}
 
 /// Factory wrapper for `google_vertex_ai_feature_group`.
 ///
@@ -16,7 +47,7 @@ final class GoogleVertexAiFeatureGroup extends Resource {
     required super.localName,
     TfArg<String>? name,
     TfArg<String>? region,
-    TfArg<Map<String, dynamic>>? bigQuery,
+    VertexAiFeatureGroupBigQuery? bigQuery,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
@@ -29,7 +60,7 @@ final class GoogleVertexAiFeatureGroup extends Resource {
          argMap: {
            'name': ?name,
            'region': ?region,
-           'big_query': ?bigQuery,
+           if (bigQuery != null) 'big_query': TfArg.literal(bigQuery.encode()),
            'description': ?description,
            'labels': ?labels,
            'project': ?project,
@@ -65,4 +96,22 @@ final class GoogleVertexAiFeatureGroup extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -323,4 +323,64 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `allow_only_metadata_sharing` attribute.
+  TfRef<bool> get allowOnlyMetadataSharingRef =>
+      TfRef.attribute<bool>(this, 'allow_only_metadata_sharing');
+
+  /// Reference to `categories` attribute.
+  TfRef<List<String>> get categoriesRef =>
+      TfRef.attribute<List<String>>(this, 'categories');
+
+  /// Reference to `data_exchange_id` attribute.
+  TfRef<String> get dataExchangeIdRef =>
+      TfRef.attribute<String>(this, 'data_exchange_id');
+
+  /// Reference to `delete_commercial` attribute.
+  TfRef<bool> get deleteCommercialRef =>
+      TfRef.attribute<bool>(this, 'delete_commercial');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `discovery_type` attribute.
+  TfRef<String> get discoveryTypeRef =>
+      TfRef.attribute<String>(this, 'discovery_type');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `documentation` attribute.
+  TfRef<String> get documentationRef =>
+      TfRef.attribute<String>(this, 'documentation');
+
+  /// Reference to `icon` attribute.
+  TfRef<String> get iconRef => TfRef.attribute<String>(this, 'icon');
+
+  /// Reference to `listing_id` attribute.
+  TfRef<String> get listingIdRef => TfRef.attribute<String>(this, 'listing_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `log_linked_dataset_query_user_email` attribute.
+  TfRef<bool> get logLinkedDatasetQueryUserEmailRef =>
+      TfRef.attribute<bool>(this, 'log_linked_dataset_query_user_email');
+
+  /// Reference to `primary_contact` attribute.
+  TfRef<String> get primaryContactRef =>
+      TfRef.attribute<String>(this, 'primary_contact');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `request_access` attribute.
+  TfRef<String> get requestAccessRef =>
+      TfRef.attribute<String>(this, 'request_access');
 }

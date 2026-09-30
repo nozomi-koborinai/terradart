@@ -107,6 +107,31 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `contact_email` attribute.
+  TfRef<String> get contactEmailRef =>
+      TfRef.attribute<String>(this, 'contact_email');
+
+  /// Reference to `dimensions` attribute.
+  TfRef<Map<String, String>> get dimensionsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'dimensions');
+
+  /// Reference to `ignore_safety_checks` attribute.
+  TfRef<String> get ignoreSafetyChecksRef =>
+      TfRef.attribute<String>(this, 'ignore_safety_checks');
+
+  /// Reference to `justification` attribute.
+  TfRef<String> get justificationRef =>
+      TfRef.attribute<String>(this, 'justification');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `quota_id` attribute.
+  TfRef<String> get quotaIdRef => TfRef.attribute<String>(this, 'quota_id');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -89,4 +89,20 @@ final class AwsCloudfrontOriginAccessControl extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `origin_access_control_origin_type` attribute.
+  TfRef<String> get originAccessControlOriginTypeRef =>
+      TfRef.attribute<String>(this, 'origin_access_control_origin_type');
+
+  /// Reference to `signing_behavior` attribute.
+  TfRef<String> get signingBehaviorRef =>
+      TfRef.attribute<String>(this, 'signing_behavior');
+
+  /// Reference to `signing_protocol` attribute.
+  TfRef<String> get signingProtocolRef =>
+      TfRef.attribute<String>(this, 'signing_protocol');
 }

@@ -139,4 +139,27 @@ final class AwsConfigOrganizationConformancePack extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `delivery_s3_bucket` attribute.
+  TfRef<String> get deliveryS3BucketRef =>
+      TfRef.attribute<String>(this, 'delivery_s3_bucket');
+
+  /// Reference to `delivery_s3_key_prefix` attribute.
+  TfRef<String> get deliveryS3KeyPrefixRef =>
+      TfRef.attribute<String>(this, 'delivery_s3_key_prefix');
+
+  /// Reference to `excluded_accounts` attribute.
+  TfRef<List<String>> get excludedAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'excluded_accounts');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `template_body` attribute.
+  TfRef<String> get templateBodyRef =>
+      TfRef.attribute<String>(this, 'template_body');
+
+  /// Reference to `template_s3_uri` attribute.
+  TfRef<String> get templateS3UriRef =>
+      TfRef.attribute<String>(this, 'template_s3_uri');
 }

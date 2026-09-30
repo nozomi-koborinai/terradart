@@ -71,4 +71,18 @@ final class AwsRekognitionProject extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `auto_update` attribute.
+  TfRef<String> get autoUpdateRef =>
+      TfRef.attribute<String>(this, 'auto_update');
+
+  /// Reference to `feature` attribute.
+  TfRef<String> get featureRef => TfRef.attribute<String>(this, 'feature');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

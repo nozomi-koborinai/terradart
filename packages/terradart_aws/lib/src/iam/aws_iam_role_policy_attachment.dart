@@ -13,7 +13,7 @@ const Set<String> _awsIamRolePolicyAttachmentSensitive = <String>{};
 /// Attaches one managed IAM policy to an [AwsIamRole]. Additive: other
 /// attachments on the role are left alone.
 ///
-/// `role` takes the role **name** (`TfArg.ref(role.nameRef)`), not its ARN.
+/// `role` takes the role (`role.ref`) and emits its **name**, not its ARN.
 /// AWS-managed policies use ARNs such as
 /// `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.
 final class AwsIamRolePolicyAttachment extends Resource {
@@ -41,4 +41,10 @@ final class AwsIamRolePolicyAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `policy_arn` attribute.
+  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

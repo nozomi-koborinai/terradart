@@ -253,4 +253,10 @@ final class CloudflareAiGatewayDynamicRouting extends Resource {
 
   /// Reference to `success` attribute.
   TfRef<bool> get success => TfRef.attribute<bool>(this, 'success');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `gateway_id` attribute.
+  TfRef<String> get gatewayIdRef => TfRef.attribute<String>(this, 'gateway_id');
 }

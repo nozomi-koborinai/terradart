@@ -100,4 +100,79 @@ final class AwsQuicksightAccountSubscription extends Resource {
   /// Reference to `account_subscription_status` attribute.
   TfRef<String> get accountSubscriptionStatus =>
       TfRef.attribute<String>(this, 'account_subscription_status');
+
+  /// Reference to `account_name` attribute.
+  TfRef<String> get accountNameRef =>
+      TfRef.attribute<String>(this, 'account_name');
+
+  /// Reference to `active_directory_name` attribute.
+  TfRef<String> get activeDirectoryNameRef =>
+      TfRef.attribute<String>(this, 'active_directory_name');
+
+  /// Reference to `admin_group` attribute.
+  TfRef<List<String>> get adminGroupRef =>
+      TfRef.attribute<List<String>>(this, 'admin_group');
+
+  /// Reference to `admin_pro_group` attribute.
+  TfRef<List<String>> get adminProGroupRef =>
+      TfRef.attribute<List<String>>(this, 'admin_pro_group');
+
+  /// Reference to `authentication_method` attribute.
+  TfRef<String> get authenticationMethodRef =>
+      TfRef.attribute<String>(this, 'authentication_method');
+
+  /// Reference to `author_group` attribute.
+  TfRef<List<String>> get authorGroupRef =>
+      TfRef.attribute<List<String>>(this, 'author_group');
+
+  /// Reference to `author_pro_group` attribute.
+  TfRef<List<String>> get authorProGroupRef =>
+      TfRef.attribute<List<String>>(this, 'author_pro_group');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `contact_number` attribute.
+  TfRef<String> get contactNumberRef =>
+      TfRef.attribute<String>(this, 'contact_number');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `edition` attribute.
+  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+
+  /// Reference to `email_address` attribute.
+  TfRef<String> get emailAddressRef =>
+      TfRef.attribute<String>(this, 'email_address');
+
+  /// Reference to `first_name` attribute.
+  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+
+  /// Reference to `iam_identity_center_instance_arn` attribute.
+  TfRef<String> get iamIdentityCenterInstanceArnRef =>
+      TfRef.attribute<String>(this, 'iam_identity_center_instance_arn');
+
+  /// Reference to `last_name` attribute.
+  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+
+  /// Reference to `notification_email` attribute.
+  TfRef<String> get notificationEmailRef =>
+      TfRef.attribute<String>(this, 'notification_email');
+
+  /// Reference to `reader_group` attribute.
+  TfRef<List<String>> get readerGroupRef =>
+      TfRef.attribute<List<String>>(this, 'reader_group');
+
+  /// Reference to `reader_pro_group` attribute.
+  TfRef<List<String>> get readerProGroupRef =>
+      TfRef.attribute<List<String>>(this, 'reader_pro_group');
+
+  /// Reference to `realm` attribute.
+  TfRef<String> get realmRef => TfRef.attribute<String>(this, 'realm');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

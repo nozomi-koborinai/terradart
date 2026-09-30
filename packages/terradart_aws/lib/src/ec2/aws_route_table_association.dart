@@ -103,4 +103,17 @@ final class AwsRouteTableAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `gateway_id` attribute.
+  TfRef<String> get gatewayIdRef => TfRef.attribute<String>(this, 'gateway_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_table_id` attribute.
+  TfRef<String> get routeTableIdRef =>
+      TfRef.attribute<String>(this, 'route_table_id');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 }

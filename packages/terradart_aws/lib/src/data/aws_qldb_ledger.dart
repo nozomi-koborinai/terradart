@@ -50,4 +50,11 @@ final class DataAwsQldbLedger extends Data {
   /// Reference to `permissions_mode` attribute.
   TfRef<String> get permissionsMode =>
       TfRef.attribute<String>(this, 'permissions_mode');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

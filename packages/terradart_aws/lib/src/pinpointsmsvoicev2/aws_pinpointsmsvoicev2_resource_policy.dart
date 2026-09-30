@@ -35,4 +35,14 @@ final class AwsPinpointsmsvoicev2ResourcePolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsPinpointsmsvoicev2ResourcePolicy>`.
   RefTo<AwsPinpointsmsvoicev2ResourcePolicy> get ref => RefTo.of(this);
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

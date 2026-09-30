@@ -117,6 +117,19 @@ final class GoogleManagedKafkaAcl extends Resource {
   TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `acl_id` attribute.
   TfRef<String> get aclIdRef => TfRef.attribute<String>(this, 'acl_id');
 

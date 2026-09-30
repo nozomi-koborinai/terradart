@@ -61,4 +61,11 @@ final class DataCloudflareAuthenticatedOriginPullsCertificate extends Data {
 
   /// Reference to `uploaded_on` attribute.
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+
+  /// Reference to `certificate_id` attribute.
+  TfRef<String> get certificateIdRef =>
+      TfRef.attribute<String>(this, 'certificate_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

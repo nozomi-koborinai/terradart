@@ -1,30 +1,6 @@
-import 'package:terradart_core/src/app_export.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/tf_moved.dart';
 import 'package:test/test.dart';
-
-final class _Export extends AppExport {
-  const _Export(this.name);
-  final String name;
-
-  @override
-  String? get dartLiteralExpression => null;
-
-  @override
-  String get dartType => 'String';
-
-  @override
-  bool get emitTerraformOutput => false;
-
-  @override
-  String? get terraformOutputName => null;
-
-  @override
-  bool get sensitive => false;
-
-  @override
-  String? get description => null;
-}
 
 class _Backend implements StackBackend {
   _Backend(this.bucket);
@@ -60,45 +36,6 @@ void main() {
       expect(p.source, 'hashicorp/google');
       expect(p.versionConstraint, '~> 7.0');
       expect(p.configArgs, {'project': 'demo'});
-    });
-  });
-
-  group('Stack.appExports', () {
-    test('addExport / appExports round-trip preserves insertion order', () {
-      final s = _S();
-      s.addExport('a', const _Export('A'));
-      s.addExport('b', const _Export('B'));
-      expect(s.appExports, hasLength(2));
-      expect(s.appExports.keys.toList(), equals(['a', 'b']));
-      expect((s.appExports['a']! as _Export).name, 'A');
-      expect((s.appExports['b']! as _Export).name, 'B');
-    });
-
-    test('appExports view is unmodifiable', () {
-      final s = _S();
-      s.addExport('a', const _Export('A'));
-      expect(
-        () => s.appExports['x'] = const _Export('X'),
-        throwsUnsupportedError,
-      );
-    });
-
-    test('addExport rejects duplicate keys', () {
-      final s = _S()..addExport('a', const _Export('A'));
-      expect(
-        () => s.addExport('a', const _Export('A2')),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-  });
-
-  group('Stack.appExportsOutputPath', () {
-    test('defaults to null', () {
-      expect(_S().appExportsOutputPath, isNull);
-    });
-    test('setter round-trips', () {
-      final s = _S()..setAppExportsOutputPath('lib/gen/exports.dart');
-      expect(s.appExportsOutputPath, 'lib/gen/exports.dart');
     });
   });
 

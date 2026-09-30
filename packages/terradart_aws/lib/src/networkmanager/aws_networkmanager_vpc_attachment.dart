@@ -106,4 +106,23 @@ final class AwsNetworkmanagerVpcAttachment extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `core_network_id` attribute.
+  TfRef<String> get coreNetworkIdRef =>
+      TfRef.attribute<String>(this, 'core_network_id');
+
+  /// Reference to `routing_policy_label` attribute.
+  TfRef<String> get routingPolicyLabelRef =>
+      TfRef.attribute<String>(this, 'routing_policy_label');
+
+  /// Reference to `subnet_arns` attribute.
+  TfRef<List<String>> get subnetArnsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_arns');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_arn` attribute.
+  TfRef<String> get vpcArnRef => TfRef.attribute<String>(this, 'vpc_arn');
 }

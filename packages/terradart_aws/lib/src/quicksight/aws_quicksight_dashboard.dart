@@ -11749,4 +11749,26 @@ final class AwsQuicksightDashboard extends Resource {
 
   /// Reference to `version_number` attribute.
   TfRef<num> get versionNumber => TfRef.attribute<num>(this, 'version_number');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `dashboard_id` attribute.
+  TfRef<String> get dashboardIdRef =>
+      TfRef.attribute<String>(this, 'dashboard_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `theme_arn` attribute.
+  TfRef<String> get themeArnRef => TfRef.attribute<String>(this, 'theme_arn');
+
+  /// Reference to `version_description` attribute.
+  TfRef<String> get versionDescriptionRef =>
+      TfRef.attribute<String>(this, 'version_description');
 }

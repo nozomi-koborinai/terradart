@@ -93,4 +93,7 @@ final class DataAwsLaunchConfiguration extends Data {
 
   /// Reference to `user_data` attribute.
   TfRef<String> get userData => TfRef.attribute<String>(this, 'user_data');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

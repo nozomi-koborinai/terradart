@@ -254,4 +254,22 @@ final class CloudflareCustomHostname extends Resource {
   /// Reference to `verification_errors` attribute.
   TfRef<List<String>> get verificationErrors =>
       TfRef.attribute<List<String>>(this, 'verification_errors');
+
+  /// Reference to `custom_metadata` attribute.
+  TfRef<Map<String, String>> get customMetadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'custom_metadata');
+
+  /// Reference to `custom_origin_server` attribute.
+  TfRef<String> get customOriginServerRef =>
+      TfRef.attribute<String>(this, 'custom_origin_server');
+
+  /// Reference to `custom_origin_sni` attribute.
+  TfRef<String> get customOriginSniRef =>
+      TfRef.attribute<String>(this, 'custom_origin_sni');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

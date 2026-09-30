@@ -81,4 +81,14 @@ final class DataGoogleParameterManagerRegionalParameter extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parameter_id` attribute.
+  TfRef<String> get parameterIdRef =>
+      TfRef.attribute<String>(this, 'parameter_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

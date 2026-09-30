@@ -1363,4 +1363,41 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `analyst_agent_persona_id` attribute.
+  TfRef<String> get analystAgentPersonaIdRef =>
+      TfRef.attribute<String>(this, 'analyst_agent_persona_id');
+
+  /// Reference to `customer_context` attribute.
+  TfRef<List<String>> get customerContextRef =>
+      TfRef.attribute<List<String>>(this, 'customer_context');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_description` attribute.
+  TfRef<String> get displayDescriptionRef =>
+      TfRef.attribute<String>(this, 'display_description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `gemini_enterprise_engine` attribute.
+  TfRef<String> get geminiEnterpriseEngineRef =>
+      TfRef.attribute<String>(this, 'gemini_enterprise_engine');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `model_description` attribute.
+  TfRef<String> get modelDescriptionRef =>
+      TfRef.attribute<String>(this, 'model_description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

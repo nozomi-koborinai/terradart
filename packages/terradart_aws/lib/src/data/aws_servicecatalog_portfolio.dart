@@ -56,4 +56,15 @@ final class DataAwsServicecatalogPortfolio extends Data {
   /// Reference to `provider_name` attribute.
   TfRef<String> get providerName =>
       TfRef.attribute<String>(this, 'provider_name');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

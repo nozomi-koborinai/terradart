@@ -83,9 +83,12 @@ final class OracleExadataStack extends Stack {
       location: .literal(location),
       exascaleDbStorageVaultId: .literal(vaultId),
       displayName: .literal('TerraDart Exascale vault'),
-      properties: .literal({
-        'exascale_db_storage_details': {'total_size_gbs': 512},
-      }),
+      properties: OracleDatabaseExascaleDbStorageVaultProperties(
+        exascaleDbStorageDetails:
+            OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails(
+              totalSizeGbs: .literal(512),
+            ),
+      ),
       dependsOn: apiDeps,
     );
     add(storageVault);
@@ -98,16 +101,19 @@ final class OracleExadataStack extends Stack {
       odbSubnet: .ref(clientSubnet.nameRef),
       backupOdbSubnet: .ref(backupSubnet.nameRef),
       odbNetwork: .ref(odbNetwork.nameRef),
-      properties: .literal({
-        'enabled_ecpu_count_per_node': 8,
-        'exascale_db_storage_vault': TfArg.ref(storageVault.id),
-        'grid_image_id': _placeholderGridImageId,
-        'hostname_prefix': 'exadb1',
-        'node_count': 1,
-        'shape_attribute': 'SMART_STORAGE',
-        'ssh_public_keys': [_placeholderSshPublicKey],
-        'vm_file_system_storage': {'size_in_gbs_per_node': 220},
-      }),
+      properties: OracleDatabaseExadbVmClusterProperties(
+        enabledEcpuCountPerNode: .literal(8),
+        exascaleDbStorageVault: .ref(storageVault.id),
+        gridImageId: .literal(_placeholderGridImageId),
+        hostnamePrefix: .literal('exadb1'),
+        nodeCount: .literal(1),
+        shapeAttribute: .literal('SMART_STORAGE'),
+        sshPublicKeys: .literal([_placeholderSshPublicKey]),
+        vmFileSystemStorage:
+            OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage(
+              sizeInGbsPerNode: .literal(220),
+            ),
+      ),
       dependsOn: [
         ...apiDeps,
         ResourceDependency(clientSubnet),
@@ -122,11 +128,11 @@ final class OracleExadataStack extends Stack {
       location: .literal(location),
       cloudExadataInfrastructureId: .literal(exadataId),
       displayName: .literal('TerraDart Exadata infrastructure'),
-      properties: .literal({
-        'shape': 'Exadata.X9M',
-        'compute_count': 2,
-        'storage_count': 3,
-      }),
+      properties: OracleDatabaseCloudExadataInfrastructureProperties(
+        shape: .literal('Exadata.X9M'),
+        computeCount: .literal(2),
+        storageCount: .literal(3),
+      ),
       dependsOn: apiDeps,
     );
     add(exadata);

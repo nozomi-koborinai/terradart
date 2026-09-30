@@ -41,4 +41,14 @@ final class AwsOpensearchPackageAssociation extends Resource {
   /// Reference to `reference_path` attribute.
   TfRef<String> get referencePath =>
       TfRef.attribute<String>(this, 'reference_path');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `package_id` attribute.
+  TfRef<String> get packageIdRef => TfRef.attribute<String>(this, 'package_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

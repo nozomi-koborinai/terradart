@@ -27,4 +27,7 @@ final class DataAwsOrganizationsOrganizationalUnits extends Data {
   /// Reference to `children` attribute.
   TfRef<List<Map<String, Object?>>> get children =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'children');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
 }

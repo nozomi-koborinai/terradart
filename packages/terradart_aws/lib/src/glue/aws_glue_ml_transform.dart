@@ -172,4 +172,39 @@ final class AwsGlueMlTransform extends Resource {
   /// Reference to `schema` attribute.
   TfRef<List<Map<String, Object?>>> get schema =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'schema');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `glue_version` attribute.
+  TfRef<String> get glueVersionRef =>
+      TfRef.attribute<String>(this, 'glue_version');
+
+  /// Reference to `max_capacity` attribute.
+  TfRef<num> get maxCapacityRef => TfRef.attribute<num>(this, 'max_capacity');
+
+  /// Reference to `max_retries` attribute.
+  TfRef<num> get maxRetriesRef => TfRef.attribute<num>(this, 'max_retries');
+
+  /// Reference to `number_of_workers` attribute.
+  TfRef<num> get numberOfWorkersRef =>
+      TfRef.attribute<num>(this, 'number_of_workers');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timeout` attribute.
+  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+
+  /// Reference to `worker_type` attribute.
+  TfRef<String> get workerTypeRef =>
+      TfRef.attribute<String>(this, 'worker_type');
 }

@@ -30,4 +30,11 @@ final class DataAwsAppconfigEnvironments extends Data {
   /// Reference to `environment_ids` attribute.
   TfRef<List<String>> get environmentIds =>
       TfRef.attribute<List<String>>(this, 'environment_ids');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

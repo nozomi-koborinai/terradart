@@ -39,4 +39,14 @@ final class AwsVpcDhcpOptionsAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `dhcp_options_id` attribute.
+  TfRef<String> get dhcpOptionsIdRef =>
+      TfRef.attribute<String>(this, 'dhcp_options_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

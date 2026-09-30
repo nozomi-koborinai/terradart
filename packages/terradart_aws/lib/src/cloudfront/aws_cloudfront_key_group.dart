@@ -39,4 +39,11 @@ final class AwsCloudfrontKeyGroup extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `items` attribute.
+  TfRef<List<String>> get itemsRef =>
+      TfRef.attribute<List<String>>(this, 'items');
 }

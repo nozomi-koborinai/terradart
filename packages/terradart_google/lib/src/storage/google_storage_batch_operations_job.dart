@@ -417,4 +417,22 @@ final class GoogleStorageBatchOperationsJob extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `delete_protection` attribute.
+  TfRef<bool> get deleteProtectionRef =>
+      TfRef.attribute<bool>(this, 'delete_protection');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `job_id` attribute.
+  TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -96,4 +96,18 @@ final class DataAwsImagebuilderInfrastructureConfiguration extends Data {
   /// Reference to `terminate_instance_on_failure` attribute.
   TfRef<bool> get terminateInstanceOnFailure =>
       TfRef.attribute<bool>(this, 'terminate_instance_on_failure');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_tags` attribute.
+  TfRef<Map<String, String>> get resourceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'resource_tags');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

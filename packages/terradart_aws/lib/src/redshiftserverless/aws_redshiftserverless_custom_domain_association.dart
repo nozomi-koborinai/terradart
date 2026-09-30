@@ -46,4 +46,19 @@ final class AwsRedshiftserverlessCustomDomainAssociation extends Resource {
   /// Reference to `custom_domain_certificate_expiry_time` attribute.
   TfRef<String> get customDomainCertificateExpiryTime =>
       TfRef.attribute<String>(this, 'custom_domain_certificate_expiry_time');
+
+  /// Reference to `custom_domain_certificate_arn` attribute.
+  TfRef<String> get customDomainCertificateArnRef =>
+      TfRef.attribute<String>(this, 'custom_domain_certificate_arn');
+
+  /// Reference to `custom_domain_name` attribute.
+  TfRef<String> get customDomainNameRef =>
+      TfRef.attribute<String>(this, 'custom_domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workgroup_name` attribute.
+  TfRef<String> get workgroupNameRef =>
+      TfRef.attribute<String>(this, 'workgroup_name');
 }

@@ -50,4 +50,7 @@ final class DataAwsCloudwatchEventBus extends Data {
   /// Reference to `log_config` attribute.
   TfRef<List<Map<String, Object?>>> get logConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'log_config');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

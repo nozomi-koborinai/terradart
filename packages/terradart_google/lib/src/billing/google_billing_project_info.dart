@@ -46,4 +46,15 @@ final class GoogleBillingProjectInfo extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccountRef =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

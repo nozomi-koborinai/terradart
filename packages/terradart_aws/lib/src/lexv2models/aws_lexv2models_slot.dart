@@ -3298,4 +3298,28 @@ final class AwsLexv2modelsSlot extends Resource {
 
   /// Reference to `slot_id` attribute.
   TfRef<String> get slotId => TfRef.attribute<String>(this, 'slot_id');
+
+  /// Reference to `bot_id` attribute.
+  TfRef<String> get botIdRef => TfRef.attribute<String>(this, 'bot_id');
+
+  /// Reference to `bot_version` attribute.
+  TfRef<String> get botVersionRef =>
+      TfRef.attribute<String>(this, 'bot_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `intent_id` attribute.
+  TfRef<String> get intentIdRef => TfRef.attribute<String>(this, 'intent_id');
+
+  /// Reference to `locale_id` attribute.
+  TfRef<String> get localeIdRef => TfRef.attribute<String>(this, 'locale_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `slot_type_id` attribute.
+  TfRef<String> get slotTypeIdRef =>
+      TfRef.attribute<String>(this, 'slot_type_id');
 }

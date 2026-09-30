@@ -123,4 +123,41 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `automatic_advertisement` attribute.
+  TfRef<bool> get automaticAdvertisementRef =>
+      TfRef.attribute<bool>(this, 'automatic_advertisement');
+
+  /// Reference to `bandwidth_threshold` attribute.
+  TfRef<num> get bandwidthThresholdRef =>
+      TfRef.attribute<num>(this, 'bandwidth_threshold');
+
+  /// Reference to `duration` attribute.
+  TfRef<String> get durationRef => TfRef.attribute<String>(this, 'duration');
+
+  /// Reference to `packet_threshold` attribute.
+  TfRef<num> get packetThresholdRef =>
+      TfRef.attribute<num>(this, 'packet_threshold');
+
+  /// Reference to `prefix_match` attribute.
+  TfRef<String> get prefixMatchRef =>
+      TfRef.attribute<String>(this, 'prefix_match');
+
+  /// Reference to `prefixes` attribute.
+  TfRef<List<String>> get prefixesRef =>
+      TfRef.attribute<List<String>>(this, 'prefixes');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zscore_sensitivity` attribute.
+  TfRef<String> get zscoreSensitivityRef =>
+      TfRef.attribute<String>(this, 'zscore_sensitivity');
+
+  /// Reference to `zscore_target` attribute.
+  TfRef<String> get zscoreTargetRef =>
+      TfRef.attribute<String>(this, 'zscore_target');
 }

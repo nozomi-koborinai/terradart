@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -43,6 +44,136 @@ enum OracleDatabaseAutonomousDatabaseLicenseType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_autonomous_database` (derived from provider schema).
+@immutable
+final class OracleDatabaseAutonomousDatabaseProperties {
+  const OracleDatabaseAutonomousDatabaseProperties({
+    this.backupRetentionPeriodDays,
+    this.characterSet,
+    this.computeCount,
+    this.cpuCoreCount,
+    this.dataStorageSizeGb,
+    this.dataStorageSizeTb,
+    this.dbEdition,
+    this.dbVersion,
+    required this.dbWorkload,
+    this.isAutoScalingEnabled,
+    this.isStorageAutoScalingEnabled,
+    required this.licenseType,
+    this.maintenanceScheduleType,
+    this.mtlsConnectionRequired,
+    this.nCharacterSet,
+    this.operationsInsightsState,
+    this.privateEndpointIp,
+    this.privateEndpointLabel,
+    this.secretId,
+    this.vaultId,
+    this.customerContacts,
+  });
+
+  final TfArg<num>? backupRetentionPeriodDays;
+
+  final TfArg<String>? characterSet;
+
+  final TfArg<num>? computeCount;
+
+  final TfArg<num>? cpuCoreCount;
+
+  final TfArg<num>? dataStorageSizeGb;
+
+  final TfArg<num>? dataStorageSizeTb;
+
+  final TfArg<String>? dbEdition;
+
+  final TfArg<String>? dbVersion;
+
+  final TfArg<OracleDatabaseAutonomousDatabaseDbWorkload> dbWorkload;
+
+  final TfArg<bool>? isAutoScalingEnabled;
+
+  final TfArg<bool>? isStorageAutoScalingEnabled;
+
+  final TfArg<OracleDatabaseAutonomousDatabaseLicenseType> licenseType;
+
+  final TfArg<String>? maintenanceScheduleType;
+
+  final TfArg<bool>? mtlsConnectionRequired;
+
+  final TfArg<String>? nCharacterSet;
+
+  final TfArg<String>? operationsInsightsState;
+
+  final TfArg<String>? privateEndpointIp;
+
+  final TfArg<String>? privateEndpointLabel;
+
+  final TfArg<String>? secretId;
+
+  final TfArg<String>? vaultId;
+
+  final List<OracleDatabaseAutonomousDatabasePropertiesCustomerContacts>?
+  customerContacts;
+
+  Map<String, Object?> encode() => {
+    'backup_retention_period_days': ?backupRetentionPeriodDays?.toTfJson(),
+    'character_set': ?characterSet?.toTfJson(),
+    'compute_count': ?computeCount?.toTfJson(),
+    'cpu_core_count': ?cpuCoreCount?.toTfJson(),
+    'data_storage_size_gb': ?dataStorageSizeGb?.toTfJson(),
+    'data_storage_size_tb': ?dataStorageSizeTb?.toTfJson(),
+    'db_edition': ?dbEdition?.toTfJson(),
+    'db_version': ?dbVersion?.toTfJson(),
+    'db_workload': dbWorkload.toTfJson(),
+    'is_auto_scaling_enabled': ?isAutoScalingEnabled?.toTfJson(),
+    'is_storage_auto_scaling_enabled': ?isStorageAutoScalingEnabled?.toTfJson(),
+    'license_type': licenseType.toTfJson(),
+    'maintenance_schedule_type': ?maintenanceScheduleType?.toTfJson(),
+    'mtls_connection_required': ?mtlsConnectionRequired?.toTfJson(),
+    'n_character_set': ?nCharacterSet?.toTfJson(),
+    'operations_insights_state': ?operationsInsightsState?.toTfJson(),
+    'private_endpoint_ip': ?privateEndpointIp?.toTfJson(),
+    'private_endpoint_label': ?privateEndpointLabel?.toTfJson(),
+    'secret_id': ?secretId?.toTfJson(),
+    'vault_id': ?vaultId?.toTfJson(),
+    if (customerContacts != null)
+      'customer_contacts': [for (final e in customerContacts!) e.encode()],
+  };
+}
+
+/// Typed helper for the `properties.customer_contacts` block of
+/// `google_oracle_database_autonomous_database` (derived from provider schema).
+@immutable
+final class OracleDatabaseAutonomousDatabasePropertiesCustomerContacts {
+  const OracleDatabaseAutonomousDatabasePropertiesCustomerContacts({
+    required this.email,
+  });
+
+  final TfArg<String> email;
+
+  Map<String, Object?> encode() => {'email': email.toTfJson()};
+}
+
+/// Typed helper for the `source_config` block of
+/// `google_oracle_database_autonomous_database` (derived from provider schema).
+@immutable
+final class OracleDatabaseAutonomousDatabaseSourceConfig {
+  const OracleDatabaseAutonomousDatabaseSourceConfig({
+    this.automaticBackupsReplicationEnabled,
+    this.autonomousDatabase,
+  });
+
+  final TfArg<bool>? automaticBackupsReplicationEnabled;
+
+  final TfArg<String>? autonomousDatabase;
+
+  Map<String, Object?> encode() => {
+    'automatic_backups_replication_enabled': ?automaticBackupsReplicationEnabled
+        ?.toTfJson(),
+    'autonomous_database': ?autonomousDatabase?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_oracle_database_autonomous_database`.
 ///
 /// An AutonomousDatabase resource.
@@ -62,12 +193,13 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
     TfArg<String>? database,
     TfArg<String>? displayName,
     TfArg<String>? adminPassword,
-    TfArg<Map<String, dynamic>>? properties,
+    OracleDatabaseAutonomousDatabaseProperties? properties,
     TfArg<String>? odbSubnet,
     TfArg<String>? odbNetwork,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? cidr,
     TfArg<Map<String, String>>? labels,
+    OracleDatabaseAutonomousDatabaseSourceConfig? sourceConfig,
     TfArg<OracleDatabaseAutonomousDatabaseDeletionPolicy>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
@@ -83,12 +215,15 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
            'database': ?database,
            'display_name': ?displayName,
            'admin_password': ?adminPassword,
-           'properties': ?properties,
+           if (properties != null)
+             'properties': TfArg.literal(properties.encode()),
            'odb_subnet': ?odbSubnet,
            'odb_network': ?odbNetwork,
            'network': ?network?.encodeAs('id'),
            'cidr': ?cidr,
            'labels': ?labels,
+           if (sourceConfig != null)
+             'source_config': TfArg.literal(sourceConfig.encode()),
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,
            'project': ?project,
@@ -131,6 +266,52 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `admin_password` attribute.
+  TfRef<String> get adminPasswordRef =>
+      TfRef.attribute<String>(this, 'admin_password');
+
+  /// Reference to `autonomous_database_id` attribute.
+  TfRef<String> get autonomousDatabaseIdRef =>
+      TfRef.attribute<String>(this, 'autonomous_database_id');
+
+  /// Reference to `cidr` attribute.
+  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `odb_network` attribute.
+  TfRef<String> get odbNetworkRef =>
+      TfRef.attribute<String>(this, 'odb_network');
+
+  /// Reference to `odb_subnet` attribute.
+  TfRef<String> get odbSubnetRef => TfRef.attribute<String>(this, 'odb_subnet');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

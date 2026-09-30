@@ -54,4 +54,14 @@ final class DataAwsAccountaccessApplication extends Data {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `identity_center_instance_arn` attribute.
+  TfRef<String> get identityCenterInstanceArnRef =>
+      TfRef.attribute<String>(this, 'identity_center_instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

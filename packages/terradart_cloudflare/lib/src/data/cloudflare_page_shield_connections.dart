@@ -79,4 +79,11 @@ final class DataCloudflarePageShieldConnections extends Data {
   /// Reference to `url_reported_malicious` attribute.
   TfRef<bool> get urlReportedMalicious =>
       TfRef.attribute<bool>(this, 'url_reported_malicious');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

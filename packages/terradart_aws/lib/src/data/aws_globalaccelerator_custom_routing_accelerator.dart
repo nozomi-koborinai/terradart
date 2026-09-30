@@ -61,4 +61,11 @@ final class DataAwsGlobalacceleratorCustomRoutingAccelerator extends Data {
   /// Reference to `ip_sets` attribute.
   TfRef<List<Map<String, Object?>>> get ipSets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ip_sets');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

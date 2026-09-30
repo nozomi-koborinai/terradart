@@ -2869,4 +2869,113 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
 
   /// Reference to `aud` attribute.
   TfRef<String> get aud => TfRef.attribute<String>(this, 'aud');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `allow_authenticate_via_warp` attribute.
+  TfRef<bool> get allowAuthenticateViaWarpRef =>
+      TfRef.attribute<bool>(this, 'allow_authenticate_via_warp');
+
+  /// Reference to `allow_iframe` attribute.
+  TfRef<bool> get allowIframeRef => TfRef.attribute<bool>(this, 'allow_iframe');
+
+  /// Reference to `allowed_idps` attribute.
+  TfRef<List<String>> get allowedIdpsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_idps');
+
+  /// Reference to `app_launcher_logo_url` attribute.
+  TfRef<String> get appLauncherLogoUrlRef =>
+      TfRef.attribute<String>(this, 'app_launcher_logo_url');
+
+  /// Reference to `app_launcher_visible` attribute.
+  TfRef<bool> get appLauncherVisibleRef =>
+      TfRef.attribute<bool>(this, 'app_launcher_visible');
+
+  /// Reference to `auto_redirect_to_identity` attribute.
+  TfRef<bool> get autoRedirectToIdentityRef =>
+      TfRef.attribute<bool>(this, 'auto_redirect_to_identity');
+
+  /// Reference to `bg_color` attribute.
+  TfRef<String> get bgColorRef => TfRef.attribute<String>(this, 'bg_color');
+
+  /// Reference to `custom_deny_message` attribute.
+  TfRef<String> get customDenyMessageRef =>
+      TfRef.attribute<String>(this, 'custom_deny_message');
+
+  /// Reference to `custom_deny_url` attribute.
+  TfRef<String> get customDenyUrlRef =>
+      TfRef.attribute<String>(this, 'custom_deny_url');
+
+  /// Reference to `custom_non_identity_deny_url` attribute.
+  TfRef<String> get customNonIdentityDenyUrlRef =>
+      TfRef.attribute<String>(this, 'custom_non_identity_deny_url');
+
+  /// Reference to `custom_pages` attribute.
+  TfRef<List<String>> get customPagesRef =>
+      TfRef.attribute<List<String>>(this, 'custom_pages');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `enable_binding_cookie` attribute.
+  TfRef<bool> get enableBindingCookieRef =>
+      TfRef.attribute<bool>(this, 'enable_binding_cookie');
+
+  /// Reference to `header_bg_color` attribute.
+  TfRef<String> get headerBgColorRef =>
+      TfRef.attribute<String>(this, 'header_bg_color');
+
+  /// Reference to `http_only_cookie_attribute` attribute.
+  TfRef<bool> get httpOnlyCookieAttributeRef =>
+      TfRef.attribute<bool>(this, 'http_only_cookie_attribute');
+
+  /// Reference to `logo_url` attribute.
+  TfRef<String> get logoUrlRef => TfRef.attribute<String>(this, 'logo_url');
+
+  /// Reference to `options_preflight_bypass` attribute.
+  TfRef<bool> get optionsPreflightBypassRef =>
+      TfRef.attribute<bool>(this, 'options_preflight_bypass');
+
+  /// Reference to `path_cookie_attribute` attribute.
+  TfRef<bool> get pathCookieAttributeRef =>
+      TfRef.attribute<bool>(this, 'path_cookie_attribute');
+
+  /// Reference to `read_service_tokens_from_header` attribute.
+  TfRef<String> get readServiceTokensFromHeaderRef =>
+      TfRef.attribute<String>(this, 'read_service_tokens_from_header');
+
+  /// Reference to `same_site_cookie_attribute` attribute.
+  TfRef<String> get sameSiteCookieAttributeRef =>
+      TfRef.attribute<String>(this, 'same_site_cookie_attribute');
+
+  /// Reference to `self_hosted_domains` attribute.
+  TfRef<List<String>> get selfHostedDomainsRef =>
+      TfRef.attribute<List<String>>(this, 'self_hosted_domains');
+
+  /// Reference to `service_auth_401_redirect` attribute.
+  TfRef<bool> get serviceAuth401RedirectRef =>
+      TfRef.attribute<bool>(this, 'service_auth_401_redirect');
+
+  /// Reference to `session_duration` attribute.
+  TfRef<String> get sessionDurationRef =>
+      TfRef.attribute<String>(this, 'session_duration');
+
+  /// Reference to `skip_app_launcher_login_page` attribute.
+  TfRef<bool> get skipAppLauncherLoginPageRef =>
+      TfRef.attribute<bool>(this, 'skip_app_launcher_login_page');
+
+  /// Reference to `skip_interstitial` attribute.
+  TfRef<bool> get skipInterstitialRef =>
+      TfRef.attribute<bool>(this, 'skip_interstitial');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

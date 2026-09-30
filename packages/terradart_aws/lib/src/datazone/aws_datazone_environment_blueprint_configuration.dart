@@ -47,4 +47,37 @@ final class AwsDatazoneEnvironmentBlueprintConfiguration extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsDatazoneEnvironmentBlueprintConfiguration>`.
   RefTo<AwsDatazoneEnvironmentBlueprintConfiguration> get ref => RefTo.of(this);
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+
+  /// Reference to `enabled_regions` attribute.
+  TfRef<List<String>> get enabledRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_regions');
+
+  /// Reference to `environment_blueprint_id` attribute.
+  TfRef<String> get environmentBlueprintIdRef =>
+      TfRef.attribute<String>(this, 'environment_blueprint_id');
+
+  /// Reference to `global_parameters` attribute.
+  TfRef<Map<String, String>> get globalParametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'global_parameters');
+
+  /// Reference to `manage_access_role_arn` attribute.
+  TfRef<String> get manageAccessRoleArnRef =>
+      TfRef.attribute<String>(this, 'manage_access_role_arn');
+
+  /// Reference to `provisioning_role_arn` attribute.
+  TfRef<String> get provisioningRoleArnRef =>
+      TfRef.attribute<String>(this, 'provisioning_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `regional_parameters` attribute.
+  TfRef<Map<String, Map<String, String>>> get regionalParametersRef =>
+      TfRef.attribute<Map<String, Map<String, String>>>(
+        this,
+        'regional_parameters',
+      );
 }

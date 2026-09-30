@@ -361,6 +361,8 @@ export 'src/chronicle/google_chronicle_findings_refinement_deployment.dart'
 export 'src/chronicle/google_chronicle_native_dashboard.dart'
     show
         ChronicleNativeDashboardAccess,
+        ChronicleNativeDashboardCharts,
+        ChronicleNativeDashboardChartsChartLayout,
         ChronicleNativeDashboardDeletionPolicy,
         ChronicleNativeDashboardFilter,
         ChronicleNativeDashboardFilterDataSource,

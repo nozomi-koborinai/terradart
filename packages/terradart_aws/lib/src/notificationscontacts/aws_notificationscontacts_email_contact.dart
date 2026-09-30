@@ -41,4 +41,12 @@ final class AwsNotificationscontactsEmailContact extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `email_address` attribute.
+  TfRef<String> get emailAddressRef =>
+      TfRef.attribute<String>(this, 'email_address');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

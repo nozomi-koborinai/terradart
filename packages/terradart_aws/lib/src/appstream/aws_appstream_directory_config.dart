@@ -109,4 +109,18 @@ final class AwsAppstreamDirectoryConfig extends Resource {
   /// Reference to `created_time` attribute.
   TfRef<String> get createdTime =>
       TfRef.attribute<String>(this, 'created_time');
+
+  /// Reference to `directory_name` attribute.
+  TfRef<String> get directoryNameRef =>
+      TfRef.attribute<String>(this, 'directory_name');
+
+  /// Reference to `organizational_unit_distinguished_names` attribute.
+  TfRef<List<String>> get organizationalUnitDistinguishedNamesRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'organizational_unit_distinguished_names',
+      );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

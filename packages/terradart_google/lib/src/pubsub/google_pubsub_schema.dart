@@ -90,4 +90,18 @@ final class GooglePubsubSchema extends Resource {
 
   /// Reference to `revision_id` attribute.
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
+
+  /// Reference to `definition` attribute.
+  TfRef<String> get definitionRef =>
+      TfRef.attribute<String>(this, 'definition');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

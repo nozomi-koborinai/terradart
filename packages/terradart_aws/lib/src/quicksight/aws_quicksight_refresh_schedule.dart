@@ -208,4 +208,19 @@ final class AwsQuicksightRefreshSchedule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule_id` attribute.
+  TfRef<String> get scheduleIdRef =>
+      TfRef.attribute<String>(this, 'schedule_id');
 }

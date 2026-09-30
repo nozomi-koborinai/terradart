@@ -220,4 +220,34 @@ final class GoogleApphubWorkload extends Resource {
   /// Reference to `workload_reference` attribute.
   TfRef<List<Map<String, Object?>>> get workloadReference =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'workload_reference');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `discovered_workload` attribute.
+  TfRef<String> get discoveredWorkloadRef =>
+      TfRef.attribute<String>(this, 'discovered_workload');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_id` attribute.
+  TfRef<String> get workloadIdRef =>
+      TfRef.attribute<String>(this, 'workload_id');
 }

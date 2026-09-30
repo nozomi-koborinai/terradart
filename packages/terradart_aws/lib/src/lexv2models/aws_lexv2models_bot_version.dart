@@ -41,4 +41,25 @@ final class AwsLexv2modelsBotVersion extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bot_id` attribute.
+  TfRef<String> get botIdRef => TfRef.attribute<String>(this, 'bot_id');
+
+  /// Reference to `bot_version` attribute.
+  TfRef<String> get botVersionRef =>
+      TfRef.attribute<String>(this, 'bot_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `locale_specification` attribute.
+  TfRef<Map<String, Map<String, Object?>>> get localeSpecificationRef =>
+      TfRef.attribute<Map<String, Map<String, Object?>>>(
+        this,
+        'locale_specification',
+      );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

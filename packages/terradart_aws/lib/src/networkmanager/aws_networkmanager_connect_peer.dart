@@ -83,4 +83,27 @@ final class AwsNetworkmanagerConnectPeer extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `connect_attachment_id` attribute.
+  TfRef<String> get connectAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'connect_attachment_id');
+
+  /// Reference to `core_network_address` attribute.
+  TfRef<String> get coreNetworkAddressRef =>
+      TfRef.attribute<String>(this, 'core_network_address');
+
+  /// Reference to `inside_cidr_blocks` attribute.
+  TfRef<List<String>> get insideCidrBlocksRef =>
+      TfRef.attribute<List<String>>(this, 'inside_cidr_blocks');
+
+  /// Reference to `peer_address` attribute.
+  TfRef<String> get peerAddressRef =>
+      TfRef.attribute<String>(this, 'peer_address');
+
+  /// Reference to `subnet_arn` attribute.
+  TfRef<String> get subnetArnRef => TfRef.attribute<String>(this, 'subnet_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

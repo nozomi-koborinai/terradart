@@ -47,4 +47,15 @@ final class AwsKinesisanalyticsv2ApplicationSnapshot extends Resource {
   /// Reference to `snapshot_creation_timestamp` attribute.
   TfRef<String> get snapshotCreationTimestamp =>
       TfRef.attribute<String>(this, 'snapshot_creation_timestamp');
+
+  /// Reference to `application_name` attribute.
+  TfRef<String> get applicationNameRef =>
+      TfRef.attribute<String>(this, 'application_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_name` attribute.
+  TfRef<String> get snapshotNameRef =>
+      TfRef.attribute<String>(this, 'snapshot_name');
 }

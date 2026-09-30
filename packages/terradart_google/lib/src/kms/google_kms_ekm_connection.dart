@@ -127,6 +127,23 @@ final class GoogleKmsEkmConnection extends Resource {
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
+  /// Reference to `crypto_space_path` attribute.
+  TfRef<String> get cryptoSpacePathRef =>
+      TfRef.attribute<String>(this, 'crypto_space_path');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `key_management_mode` attribute.
+  TfRef<String> get keyManagementModeRef =>
+      TfRef.attribute<String>(this, 'key_management_mode');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

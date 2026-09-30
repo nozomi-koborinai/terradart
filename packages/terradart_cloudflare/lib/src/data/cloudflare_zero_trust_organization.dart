@@ -97,4 +97,10 @@ final class DataCloudflareZeroTrustOrganization extends Data {
   /// Reference to `warp_auth_session_duration` attribute.
   TfRef<String> get warpAuthSessionDuration =>
       TfRef.attribute<String>(this, 'warp_auth_session_duration');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

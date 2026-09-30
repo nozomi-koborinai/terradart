@@ -37,4 +37,21 @@ final class DataAwsS3controlAccessPoints extends Data {
   /// Reference to `access_points` attribute.
   TfRef<List<Map<String, Object?>>> get accessPoints =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'access_points');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `data_source_id` attribute.
+  TfRef<String> get dataSourceIdRef =>
+      TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `data_source_type` attribute.
+  TfRef<String> get dataSourceTypeRef =>
+      TfRef.attribute<String>(this, 'data_source_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

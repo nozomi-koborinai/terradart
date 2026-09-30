@@ -1524,4 +1524,20 @@ final class AwsCeCostCategory extends Resource {
   /// Reference to `effective_end` attribute.
   TfRef<String> get effectiveEnd =>
       TfRef.attribute<String>(this, 'effective_end');
+
+  /// Reference to `default_value` attribute.
+  TfRef<String> get defaultValueRef =>
+      TfRef.attribute<String>(this, 'default_value');
+
+  /// Reference to `effective_start` attribute.
+  TfRef<String> get effectiveStartRef =>
+      TfRef.attribute<String>(this, 'effective_start');
+
+  /// Reference to `rule_version` attribute.
+  TfRef<String> get ruleVersionRef =>
+      TfRef.attribute<String>(this, 'rule_version');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

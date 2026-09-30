@@ -91,4 +91,18 @@ final class AwsWafRateBasedRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `metric_name` attribute.
+  TfRef<String> get metricNameRef =>
+      TfRef.attribute<String>(this, 'metric_name');
+
+  /// Reference to `rate_key` attribute.
+  TfRef<String> get rateKeyRef => TfRef.attribute<String>(this, 'rate_key');
+
+  /// Reference to `rate_limit` attribute.
+  TfRef<num> get rateLimitRef => TfRef.attribute<num>(this, 'rate_limit');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

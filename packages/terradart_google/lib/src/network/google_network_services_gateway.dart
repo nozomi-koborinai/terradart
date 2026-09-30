@@ -207,6 +207,78 @@ final class GoogleNetworkServicesGateway extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `addresses` attribute.
+  TfRef<List<String>> get addressesRef =>
+      TfRef.attribute<List<String>>(this, 'addresses');
+
+  /// Reference to `all_ports` attribute.
+  TfRef<bool> get allPortsRef => TfRef.attribute<bool>(this, 'all_ports');
+
+  /// Reference to `allow_global_access` attribute.
+  TfRef<bool> get allowGlobalAccessRef =>
+      TfRef.attribute<bool>(this, 'allow_global_access');
+
+  /// Reference to `certificate_urls` attribute.
+  TfRef<List<String>> get certificateUrlsRef =>
+      TfRef.attribute<List<String>>(this, 'certificate_urls');
+
+  /// Reference to `delete_swg_autogen_router_on_destroy` attribute.
+  TfRef<bool> get deleteSwgAutogenRouterOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'delete_swg_autogen_router_on_destroy');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `envoy_headers` attribute.
+  TfRef<String> get envoyHeadersRef =>
+      TfRef.attribute<String>(this, 'envoy_headers');
+
+  /// Reference to `gateway_security_policy` attribute.
+  TfRef<String> get gatewaySecurityPolicyRef =>
+      TfRef.attribute<String>(this, 'gateway_security_policy');
+
+  /// Reference to `ip_version` attribute.
+  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `ports` attribute.
+  TfRef<List<num>> get portsRef => TfRef.attribute<List<num>>(this, 'ports');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `routing_mode` attribute.
+  TfRef<String> get routingModeRef =>
+      TfRef.attribute<String>(this, 'routing_mode');
+
+  /// Reference to `scope` attribute.
+  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+
+  /// Reference to `server_tls_policy` attribute.
+  TfRef<String> get serverTlsPolicyRef =>
+      TfRef.attribute<String>(this, 'server_tls_policy');
+
+  /// Reference to `subnetwork` attribute.
+  TfRef<String> get subnetworkRef =>
+      TfRef.attribute<String>(this, 'subnetwork');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

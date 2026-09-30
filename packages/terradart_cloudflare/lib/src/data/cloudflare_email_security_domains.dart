@@ -47,4 +47,38 @@ final class DataCloudflareEmailSecurityDomains extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailSecurityDomainsSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `active_delivery_mode` attribute.
+  TfRef<String> get activeDeliveryModeRef =>
+      TfRef.attribute<String>(this, 'active_delivery_mode');
+
+  /// Reference to `allowed_delivery_mode` attribute.
+  TfRef<String> get allowedDeliveryModeRef =>
+      TfRef.attribute<String>(this, 'allowed_delivery_mode');
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `domain` attribute.
+  TfRef<List<String>> get domainRef =>
+      TfRef.attribute<List<String>>(this, 'domain');
+
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationIdRef =>
+      TfRef.attribute<String>(this, 'integration_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `search` attribute.
+  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

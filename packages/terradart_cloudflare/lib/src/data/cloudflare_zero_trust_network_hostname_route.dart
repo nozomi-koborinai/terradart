@@ -102,4 +102,11 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
 
   /// Reference to `tunnel_name` attribute.
   TfRef<String> get tunnelName => TfRef.attribute<String>(this, 'tunnel_name');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `hostname_route_id` attribute.
+  TfRef<String> get hostnameRouteIdRef =>
+      TfRef.attribute<String>(this, 'hostname_route_id');
 }

@@ -53,4 +53,31 @@ final class AwsLambdaLayerVersionPermission extends Resource {
 
   /// Reference to `revision_id` attribute.
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `layer_name` attribute.
+  TfRef<String> get layerNameRef => TfRef.attribute<String>(this, 'layer_name');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `statement_id` attribute.
+  TfRef<String> get statementIdRef =>
+      TfRef.attribute<String>(this, 'statement_id');
+
+  /// Reference to `version_number` attribute.
+  TfRef<num> get versionNumberRef =>
+      TfRef.attribute<num>(this, 'version_number');
 }

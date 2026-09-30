@@ -139,21 +139,90 @@ void main() {
       expect('get localNameRef'.allMatches(src).length, 1);
     });
 
-    test(
-      'does NOT emit getters for optional+computed (settable) attributes',
-      () {
-        final src = emitDerivedOutputGetters(
-          _def(const [
-            Attribute(
-              name: 'project',
-              type: StringType(),
-              constraints: Constraints(optional: true, computed: true),
-            ),
-          ]),
-        );
-        expect(src, isEmpty);
-      },
-    );
+    test('emits <name>Ref for every input, optional+computed included', () {
+      final src = emitDerivedOutputGetters(
+        _def(const [
+          Attribute(
+            name: 'project',
+            type: StringType(),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+          Attribute(
+            name: 'scope_id',
+            type: StringType(),
+            constraints: Constraints(required: true),
+          ),
+          Attribute(
+            name: 'labels',
+            type: MapType(StringType()),
+            constraints: Constraints(optional: true),
+          ),
+        ]),
+      );
+      expect(
+        src,
+        contains(
+          "TfRef<String> get projectRef => "
+          "TfRef.attribute<String>(this, 'project');",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "TfRef<String> get scopeIdRef => "
+          "TfRef.attribute<String>(this, 'scope_id');",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "TfRef<Map<String, String>> get labelsRef => "
+          "TfRef.attribute<Map<String, String>>(this, 'labels');",
+        ),
+      );
+    });
+
+    test('skips an input getter that is write-only, skipped or taken', () {
+      final src = emitDerivedOutputGetters(
+        _def(const [
+          Attribute(
+            name: 'password_wo',
+            type: StringType(),
+            constraints: Constraints(optional: true, writeOnly: true),
+          ),
+          Attribute(
+            name: 'tags_all',
+            type: MapType(StringType()),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+          Attribute(
+            name: 'etag',
+            type: StringType(),
+            constraints: Constraints(optional: true),
+          ),
+          Attribute(
+            name: 'etag_ref',
+            type: StringType(),
+            constraints: Constraints(computed: true),
+          ),
+          Attribute(
+            name: 'region',
+            type: StringType(),
+            constraints: Constraints(optional: true),
+          ),
+        ]),
+        excludeNames: const {'regionRef'},
+      );
+      expect(src, isNot(contains('passwordWo')));
+      expect(src, isNot(contains('tagsAll')));
+      expect(
+        RegExp(r'get etagRef\b').allMatches(src),
+        hasLength(1),
+        reason: 'the computed-only etag_ref keeps the name',
+      );
+      expect(src, contains("TfRef.attribute<String>(this, 'etag_ref')"));
+      expect(src, isNot(contains('regionRef')));
+    });
 
     test('emits a one-line template doc comment per getter', () {
       final src = emitDerivedOutputGetters(
@@ -172,9 +241,9 @@ void main() {
       final src = emitDerivedOutputGetters(
         _def(const [
           Attribute(
-            name: 'description',
+            name: 'secret_wo',
             type: StringType(),
-            constraints: Constraints(optional: true),
+            constraints: Constraints(optional: true, writeOnly: true),
           ),
         ]),
       );

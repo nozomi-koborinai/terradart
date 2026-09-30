@@ -66,4 +66,18 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `contract_version` attribute.
+  TfRef<num> get contractVersionRef =>
+      TfRef.attribute<num>(this, 'contract_version');
+
+  /// Reference to `custom_html` attribute.
+  TfRef<String> get customHtmlRef =>
+      TfRef.attribute<String>(this, 'custom_html');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

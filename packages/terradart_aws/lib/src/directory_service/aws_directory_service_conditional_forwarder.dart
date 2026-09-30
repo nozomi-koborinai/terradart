@@ -41,4 +41,19 @@ final class AwsDirectoryServiceConditionalForwarder extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `directory_id` attribute.
+  TfRef<String> get directoryIdRef =>
+      TfRef.attribute<String>(this, 'directory_id');
+
+  /// Reference to `dns_ips` attribute.
+  TfRef<List<String>> get dnsIpsRef =>
+      TfRef.attribute<List<String>>(this, 'dns_ips');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remote_domain_name` attribute.
+  TfRef<String> get remoteDomainNameRef =>
+      TfRef.attribute<String>(this, 'remote_domain_name');
 }

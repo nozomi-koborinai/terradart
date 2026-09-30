@@ -422,4 +422,28 @@ final class AwsCloudformationStackSetInstance extends Resource {
         this,
         'stack_instance_summaries',
       );
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `call_as` attribute.
+  TfRef<String> get callAsRef => TfRef.attribute<String>(this, 'call_as');
+
+  /// Reference to `parameter_overrides` attribute.
+  TfRef<Map<String, String>> get parameterOverridesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameter_overrides');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retain_stack` attribute.
+  TfRef<bool> get retainStackRef => TfRef.attribute<bool>(this, 'retain_stack');
+
+  /// Reference to `stack_set_instance_region` attribute.
+  TfRef<String> get stackSetInstanceRegionRef =>
+      TfRef.attribute<String>(this, 'stack_set_instance_region');
+
+  /// Reference to `stack_set_name` attribute.
+  TfRef<String> get stackSetNameRef =>
+      TfRef.attribute<String>(this, 'stack_set_name');
 }

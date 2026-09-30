@@ -51,4 +51,19 @@ final class AwsServicecatalogPortfolio extends Resource {
   /// Reference to `created_time` attribute.
   TfRef<String> get createdTime =>
       TfRef.attribute<String>(this, 'created_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `provider_name` attribute.
+  TfRef<String> get providerNameRef =>
+      TfRef.attribute<String>(this, 'provider_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

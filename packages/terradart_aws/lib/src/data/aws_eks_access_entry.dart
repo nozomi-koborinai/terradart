@@ -59,4 +59,19 @@ final class DataAwsEksAccessEntry extends Data {
 
   /// Reference to `user_name` attribute.
   TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `principal_arn` attribute.
+  TfRef<String> get principalArnRef =>
+      TfRef.attribute<String>(this, 'principal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

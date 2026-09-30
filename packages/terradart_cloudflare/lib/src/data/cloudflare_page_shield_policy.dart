@@ -53,4 +53,10 @@ final class DataCloudflarePageShieldPolicy extends Data {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `policy_id` attribute.
+  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

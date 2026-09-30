@@ -92,6 +92,36 @@ final class GoogleComputeNetworkAttachment extends Resource {
   TfRef<String> get selfLinkWithId =>
       TfRef.attribute<String>(this, 'self_link_with_id');
 
+  /// Reference to `connection_preference` attribute.
+  TfRef<String> get connectionPreferenceRef =>
+      TfRef.attribute<String>(this, 'connection_preference');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `producer_accept_lists` attribute.
+  TfRef<List<String>> get producerAcceptListsRef =>
+      TfRef.attribute<List<String>>(this, 'producer_accept_lists');
+
+  /// Reference to `producer_reject_lists` attribute.
+  TfRef<List<String>> get producerRejectListsRef =>
+      TfRef.attribute<List<String>>(this, 'producer_reject_lists');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subnetworks` attribute.
+  TfRef<List<String>> get subnetworksRef =>
+      TfRef.attribute<List<String>>(this, 'subnetworks');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -416,4 +416,11 @@ final class DataAwsCeTags extends Data {
 
   /// Reference to `tags` attribute.
   TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
+
+  /// Reference to `search_string` attribute.
+  TfRef<String> get searchStringRef =>
+      TfRef.attribute<String>(this, 'search_string');
+
+  /// Reference to `tag_key` attribute.
+  TfRef<String> get tagKeyRef => TfRef.attribute<String>(this, 'tag_key');
 }

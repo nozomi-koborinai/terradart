@@ -62,8 +62,8 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 ///   localName: 'ws',
 ///   workstationClusterId: TfArg.literal('terradart-ws'),
 ///   location: TfArg.literal('us-central1'),
-///   network: TfArg.ref(vpc.id),
-///   subnetwork: TfArg.ref(subnet.id),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
 /// );
 /// ```
 final class GoogleWorkstationsWorkstationCluster extends Resource {
@@ -154,6 +154,47 @@ final class GoogleWorkstationsWorkstationCluster extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `subnetwork` attribute.
+  TfRef<String> get subnetworkRef =>
+      TfRef.attribute<String>(this, 'subnetwork');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `workstation_authorization_url` attribute.
+  TfRef<String> get workstationAuthorizationUrlRef =>
+      TfRef.attribute<String>(this, 'workstation_authorization_url');
+
+  /// Reference to `workstation_launch_url` attribute.
+  TfRef<String> get workstationLaunchUrlRef =>
+      TfRef.attribute<String>(this, 'workstation_launch_url');
 
   /// Reference to `workstation_cluster_id` attribute.
   TfRef<String> get workstationClusterIdRef =>

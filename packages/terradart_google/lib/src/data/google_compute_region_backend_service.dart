@@ -176,4 +176,10 @@ final class DataGoogleComputeRegionBackendService extends Data {
   /// Reference to `tls_settings` attribute.
   TfRef<List<Map<String, Object?>>> get tlsSettings =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'tls_settings');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

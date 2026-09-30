@@ -52,4 +52,10 @@ final class DataCloudflareDnsZoneTransfersPeer extends Data {
 
   /// Reference to `tsig_id` attribute.
   TfRef<String> get tsigId => TfRef.attribute<String>(this, 'tsig_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `peer_id` attribute.
+  TfRef<String> get peerIdRef => TfRef.attribute<String>(this, 'peer_id');
 }

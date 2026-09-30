@@ -43,4 +43,15 @@ final class DataAwsDxRouterConfiguration extends Data {
   /// Reference to `virtual_interface_name` attribute.
   TfRef<String> get virtualInterfaceName =>
       TfRef.attribute<String>(this, 'virtual_interface_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `router_type_identifier` attribute.
+  TfRef<String> get routerTypeIdentifierRef =>
+      TfRef.attribute<String>(this, 'router_type_identifier');
+
+  /// Reference to `virtual_interface_id` attribute.
+  TfRef<String> get virtualInterfaceIdRef =>
+      TfRef.attribute<String>(this, 'virtual_interface_id');
 }

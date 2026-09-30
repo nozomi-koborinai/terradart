@@ -143,6 +143,27 @@ final class GoogleSecureSourceManagerRepository extends Resource {
   TfRef<List<Map<String, Object?>>> get uris =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'uris');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
   /// Reference to `repository_id` attribute.
   TfRef<String> get repositoryIdRef =>
       TfRef.attribute<String>(this, 'repository_id');

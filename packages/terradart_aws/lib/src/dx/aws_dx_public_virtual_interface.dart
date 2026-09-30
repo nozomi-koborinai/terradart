@@ -78,4 +78,44 @@ final class AwsDxPublicVirtualInterface extends Resource {
 
   /// Reference to `aws_device` attribute.
   TfRef<String> get awsDevice => TfRef.attribute<String>(this, 'aws_device');
+
+  /// Reference to `address_family` attribute.
+  TfRef<String> get addressFamilyRef =>
+      TfRef.attribute<String>(this, 'address_family');
+
+  /// Reference to `amazon_address` attribute.
+  TfRef<String> get amazonAddressRef =>
+      TfRef.attribute<String>(this, 'amazon_address');
+
+  /// Reference to `bgp_asn` attribute.
+  TfRef<num> get bgpAsnRef => TfRef.attribute<num>(this, 'bgp_asn');
+
+  /// Reference to `bgp_auth_key` attribute.
+  TfRef<String> get bgpAuthKeyRef =>
+      TfRef.attribute<String>(this, 'bgp_auth_key');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `customer_address` attribute.
+  TfRef<String> get customerAddressRef =>
+      TfRef.attribute<String>(this, 'customer_address');
+
+  /// Reference to `rate_limit` attribute.
+  TfRef<String> get rateLimitRef => TfRef.attribute<String>(this, 'rate_limit');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_filter_prefixes` attribute.
+  TfRef<List<String>> get routeFilterPrefixesRef =>
+      TfRef.attribute<List<String>>(this, 'route_filter_prefixes');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vlan` attribute.
+  TfRef<num> get vlanRef => TfRef.attribute<num>(this, 'vlan');
 }

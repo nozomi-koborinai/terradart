@@ -132,4 +132,32 @@ final class GoogleDataformRepositoryWorkflowConfig extends Resource {
         this,
         'recent_scheduled_execution_records',
       );
+
+  /// Reference to `cron_schedule` attribute.
+  TfRef<String> get cronScheduleRef =>
+      TfRef.attribute<String>(this, 'cron_schedule');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `release_config` attribute.
+  TfRef<String> get releaseConfigRef =>
+      TfRef.attribute<String>(this, 'release_config');
+
+  /// Reference to `repository` attribute.
+  TfRef<String> get repositoryRef =>
+      TfRef.attribute<String>(this, 'repository');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

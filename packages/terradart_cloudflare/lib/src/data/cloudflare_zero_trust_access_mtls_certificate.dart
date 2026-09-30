@@ -59,4 +59,14 @@ final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
 
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `certificate_id` attribute.
+  TfRef<String> get certificateIdRef =>
+      TfRef.attribute<String>(this, 'certificate_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

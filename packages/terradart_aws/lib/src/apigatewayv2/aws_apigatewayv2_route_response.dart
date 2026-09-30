@@ -43,4 +43,25 @@ final class AwsApigatewayv2RouteResponse extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `model_selection_expression` attribute.
+  TfRef<String> get modelSelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'model_selection_expression');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `response_models` attribute.
+  TfRef<Map<String, String>> get responseModelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'response_models');
+
+  /// Reference to `route_id` attribute.
+  TfRef<String> get routeIdRef => TfRef.attribute<String>(this, 'route_id');
+
+  /// Reference to `route_response_key` attribute.
+  TfRef<String> get routeResponseKeyRef =>
+      TfRef.attribute<String>(this, 'route_response_key');
 }

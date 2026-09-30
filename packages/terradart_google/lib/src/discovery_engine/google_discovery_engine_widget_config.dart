@@ -468,6 +468,23 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
   /// Reference to `config_id` attribute.
   TfRef<String> get configId => TfRef.attribute<String>(this, 'config_id');
 
+  /// Reference to `collection_id` attribute.
+  TfRef<String> get collectionIdRef =>
+      TfRef.attribute<String>(this, 'collection_id');
+
+  /// Reference to `engine_id` attribute.
+  TfRef<String> get engineIdRef => TfRef.attribute<String>(this, 'engine_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `widget_config_id` attribute.
+  TfRef<String> get widgetConfigIdRef =>
+      TfRef.attribute<String>(this, 'widget_config_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

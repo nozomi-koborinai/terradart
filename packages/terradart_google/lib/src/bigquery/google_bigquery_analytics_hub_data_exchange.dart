@@ -158,4 +158,45 @@ final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
 
   /// Reference to `listing_count` attribute.
   TfRef<num> get listingCount => TfRef.attribute<num>(this, 'listing_count');
+
+  /// Reference to `data_exchange_id` attribute.
+  TfRef<String> get dataExchangeIdRef =>
+      TfRef.attribute<String>(this, 'data_exchange_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `discovery_type` attribute.
+  TfRef<String> get discoveryTypeRef =>
+      TfRef.attribute<String>(this, 'discovery_type');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `documentation` attribute.
+  TfRef<String> get documentationRef =>
+      TfRef.attribute<String>(this, 'documentation');
+
+  /// Reference to `icon` attribute.
+  TfRef<String> get iconRef => TfRef.attribute<String>(this, 'icon');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `log_linked_dataset_query_user_email` attribute.
+  TfRef<bool> get logLinkedDatasetQueryUserEmailRef =>
+      TfRef.attribute<bool>(this, 'log_linked_dataset_query_user_email');
+
+  /// Reference to `primary_contact` attribute.
+  TfRef<String> get primaryContactRef =>
+      TfRef.attribute<String>(this, 'primary_contact');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

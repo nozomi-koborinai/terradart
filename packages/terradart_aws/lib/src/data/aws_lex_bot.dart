@@ -86,4 +86,10 @@ final class DataAwsLexBot extends Data {
 
   /// Reference to `voice_id` attribute.
   TfRef<String> get voiceId => TfRef.attribute<String>(this, 'voice_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

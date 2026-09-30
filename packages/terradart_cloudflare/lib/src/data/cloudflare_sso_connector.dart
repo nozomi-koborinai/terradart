@@ -57,4 +57,11 @@ final class DataCloudflareSsoConnector extends Data {
   /// Reference to `use_fedramp_language` attribute.
   TfRef<bool> get useFedrampLanguage =>
       TfRef.attribute<bool>(this, 'use_fedramp_language');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `sso_connector_id` attribute.
+  TfRef<String> get ssoConnectorIdRef =>
+      TfRef.attribute<String>(this, 'sso_connector_id');
 }

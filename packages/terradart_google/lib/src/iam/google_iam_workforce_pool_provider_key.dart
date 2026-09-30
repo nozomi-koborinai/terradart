@@ -89,4 +89,25 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_id` attribute.
+  TfRef<String> get providerIdRef =>
+      TfRef.attribute<String>(this, 'provider_id');
+
+  /// Reference to `use` attribute.
+  TfRef<String> get useRef => TfRef.attribute<String>(this, 'use');
+
+  /// Reference to `workforce_pool_id` attribute.
+  TfRef<String> get workforcePoolIdRef =>
+      TfRef.attribute<String>(this, 'workforce_pool_id');
 }

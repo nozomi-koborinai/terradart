@@ -23,7 +23,7 @@ const Set<String> _googleContactCenterInsightsEncryptionSpecSensitive =
 /// GoogleContactCenterInsightsEncryptionSpec(
 ///   localName: 'insights_cmek',
 ///   location: TfArg.literal('asia-northeast1'),
-///   kmsKey: TfArg.ref(paymentsKey.id),
+///   kmsKey: paymentsKey.ref,
 /// );
 /// ```
 final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
@@ -57,4 +57,13 @@ final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `kms_key` attribute.
+  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

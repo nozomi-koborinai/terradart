@@ -60,4 +60,35 @@ final class AwsRdsIntegration extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `additional_encryption_context` attribute.
+  TfRef<Map<String, String>> get additionalEncryptionContextRef =>
+      TfRef.attribute<Map<String, String>>(
+        this,
+        'additional_encryption_context',
+      );
+
+  /// Reference to `data_filter` attribute.
+  TfRef<String> get dataFilterRef =>
+      TfRef.attribute<String>(this, 'data_filter');
+
+  /// Reference to `integration_name` attribute.
+  TfRef<String> get integrationNameRef =>
+      TfRef.attribute<String>(this, 'integration_name');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_arn` attribute.
+  TfRef<String> get sourceArnRef => TfRef.attribute<String>(this, 'source_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_arn` attribute.
+  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
 }

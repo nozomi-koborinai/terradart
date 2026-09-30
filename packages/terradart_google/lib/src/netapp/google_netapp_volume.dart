@@ -731,6 +731,75 @@ final class GoogleNetappVolume extends Resource {
   /// Reference to `zone` attribute.
   TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
+  /// Reference to `capacity_gib` attribute.
+  TfRef<String> get capacityGibRef =>
+      TfRef.attribute<String>(this, 'capacity_gib');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kerberos_enabled` attribute.
+  TfRef<bool> get kerberosEnabledRef =>
+      TfRef.attribute<bool>(this, 'kerberos_enabled');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `large_capacity` attribute.
+  TfRef<bool> get largeCapacityRef =>
+      TfRef.attribute<bool>(this, 'large_capacity');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `multiple_endpoints` attribute.
+  TfRef<bool> get multipleEndpointsRef =>
+      TfRef.attribute<bool>(this, 'multiple_endpoints');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `protocols` attribute.
+  TfRef<List<String>> get protocolsRef =>
+      TfRef.attribute<List<String>>(this, 'protocols');
+
+  /// Reference to `restricted_actions` attribute.
+  TfRef<List<String>> get restrictedActionsRef =>
+      TfRef.attribute<List<String>>(this, 'restricted_actions');
+
+  /// Reference to `security_style` attribute.
+  TfRef<String> get securityStyleRef =>
+      TfRef.attribute<String>(this, 'security_style');
+
+  /// Reference to `share_name` attribute.
+  TfRef<String> get shareNameRef => TfRef.attribute<String>(this, 'share_name');
+
+  /// Reference to `smb_settings` attribute.
+  TfRef<List<String>> get smbSettingsRef =>
+      TfRef.attribute<List<String>>(this, 'smb_settings');
+
+  /// Reference to `snapshot_directory` attribute.
+  TfRef<bool> get snapshotDirectoryRef =>
+      TfRef.attribute<bool>(this, 'snapshot_directory');
+
+  /// Reference to `storage_pool` attribute.
+  TfRef<String> get storagePoolRef =>
+      TfRef.attribute<String>(this, 'storage_pool');
+
+  /// Reference to `throughput_mibps` attribute.
+  TfRef<num> get throughputMibpsRef =>
+      TfRef.attribute<num>(this, 'throughput_mibps');
+
+  /// Reference to `unix_permissions` attribute.
+  TfRef<String> get unixPermissionsRef =>
+      TfRef.attribute<String>(this, 'unix_permissions');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

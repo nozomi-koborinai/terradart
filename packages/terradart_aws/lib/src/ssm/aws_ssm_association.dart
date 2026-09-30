@@ -143,4 +143,58 @@ final class AwsSsmAssociation extends Resource {
   /// Reference to `association_id` attribute.
   TfRef<String> get associationId =>
       TfRef.attribute<String>(this, 'association_id');
+
+  /// Reference to `apply_only_at_cron_interval` attribute.
+  TfRef<bool> get applyOnlyAtCronIntervalRef =>
+      TfRef.attribute<bool>(this, 'apply_only_at_cron_interval');
+
+  /// Reference to `association_name` attribute.
+  TfRef<String> get associationNameRef =>
+      TfRef.attribute<String>(this, 'association_name');
+
+  /// Reference to `automation_target_parameter_name` attribute.
+  TfRef<String> get automationTargetParameterNameRef =>
+      TfRef.attribute<String>(this, 'automation_target_parameter_name');
+
+  /// Reference to `calendar_names` attribute.
+  TfRef<List<String>> get calendarNamesRef =>
+      TfRef.attribute<List<String>>(this, 'calendar_names');
+
+  /// Reference to `compliance_severity` attribute.
+  TfRef<String> get complianceSeverityRef =>
+      TfRef.attribute<String>(this, 'compliance_severity');
+
+  /// Reference to `document_version` attribute.
+  TfRef<String> get documentVersionRef =>
+      TfRef.attribute<String>(this, 'document_version');
+
+  /// Reference to `max_concurrency` attribute.
+  TfRef<String> get maxConcurrencyRef =>
+      TfRef.attribute<String>(this, 'max_concurrency');
+
+  /// Reference to `max_errors` attribute.
+  TfRef<String> get maxErrorsRef => TfRef.attribute<String>(this, 'max_errors');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule_expression` attribute.
+  TfRef<String> get scheduleExpressionRef =>
+      TfRef.attribute<String>(this, 'schedule_expression');
+
+  /// Reference to `sync_compliance` attribute.
+  TfRef<String> get syncComplianceRef =>
+      TfRef.attribute<String>(this, 'sync_compliance');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `wait_for_success_timeout_seconds` attribute.
+  TfRef<num> get waitForSuccessTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'wait_for_success_timeout_seconds');
 }

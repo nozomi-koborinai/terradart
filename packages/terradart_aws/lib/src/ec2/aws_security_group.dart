@@ -116,4 +116,34 @@ final class AwsSecurityGroup extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `egress` attribute.
+  TfRef<List<Map<String, Object?>>> get egressRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'egress');
+
+  /// Reference to `ingress` attribute.
+  TfRef<List<Map<String, Object?>>> get ingressRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'ingress');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `revoke_rules_on_delete` attribute.
+  TfRef<bool> get revokeRulesOnDeleteRef =>
+      TfRef.attribute<bool>(this, 'revoke_rules_on_delete');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

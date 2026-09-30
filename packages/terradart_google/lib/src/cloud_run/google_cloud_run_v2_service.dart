@@ -1673,6 +1673,62 @@ final class GoogleCloudRunV2Service extends Resource {
   /// Reference to `urls` attribute.
   TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
 
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `client` attribute.
+  TfRef<String> get clientRef => TfRef.attribute<String>(this, 'client');
+
+  /// Reference to `client_version` attribute.
+  TfRef<String> get clientVersionRef =>
+      TfRef.attribute<String>(this, 'client_version');
+
+  /// Reference to `custom_audiences` attribute.
+  TfRef<List<String>> get customAudiencesRef =>
+      TfRef.attribute<List<String>>(this, 'custom_audiences');
+
+  /// Reference to `default_uri_disabled` attribute.
+  TfRef<bool> get defaultUriDisabledRef =>
+      TfRef.attribute<bool>(this, 'default_uri_disabled');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `iap_enabled` attribute.
+  TfRef<bool> get iapEnabledRef => TfRef.attribute<bool>(this, 'iap_enabled');
+
+  /// Reference to `ingress` attribute.
+  TfRef<String> get ingressRef => TfRef.attribute<String>(this, 'ingress');
+
+  /// Reference to `invoker_iam_disabled` attribute.
+  TfRef<bool> get invokerIamDisabledRef =>
+      TfRef.attribute<bool>(this, 'invoker_iam_disabled');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `launch_stage` attribute.
+  TfRef<String> get launchStageRef =>
+      TfRef.attribute<String>(this, 'launch_stage');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
   /// Reference to `location` attribute — region the service is deployed in.
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

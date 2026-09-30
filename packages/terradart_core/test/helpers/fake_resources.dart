@@ -42,7 +42,12 @@ class FakeStackProvider implements StackProvider {
 /// Minimal concrete `Stack` subclass for tests. Uses the default
 /// [Stack.synth] implementation.
 final class TestStack extends Stack {
-  TestStack({super.providers = const [], super.backend, super.devMode});
+  TestStack({
+    super.providers = const [],
+    super.backend,
+    super.appExports,
+    super.devMode,
+  });
 }
 
 /// Generic non-capable fake resource for injection tests.
@@ -87,6 +92,14 @@ final class FakeSecretVersion extends Resource {
 
   @override
   Set<String> get sensitiveFields => const {'secret_data'};
+}
+
+final class FakeSecretData extends Data {
+  FakeSecretData({required super.localName, required super.argMap})
+    : super(terraformType: 'google_kms_secret');
+
+  @override
+  Set<String> get sensitiveFields => const {'plaintext'};
 }
 
 final class FakeProjectData extends Data {

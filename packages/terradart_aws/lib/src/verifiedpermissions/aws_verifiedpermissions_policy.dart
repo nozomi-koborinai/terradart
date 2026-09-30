@@ -148,4 +148,11 @@ final class AwsVerifiedpermissionsPolicy extends Resource {
 
   /// Reference to `policy_id` attribute.
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `policy_store_id` attribute.
+  TfRef<String> get policyStoreIdRef =>
+      TfRef.attribute<String>(this, 'policy_store_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

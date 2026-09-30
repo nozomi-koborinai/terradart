@@ -167,4 +167,10 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `target_id` attribute.
+  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
 }

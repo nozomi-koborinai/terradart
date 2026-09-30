@@ -265,4 +265,18 @@ final class AwsEmrInstanceFleet extends Resource {
   /// Reference to `provisioned_spot_capacity` attribute.
   TfRef<num> get provisionedSpotCapacity =>
       TfRef.attribute<num>(this, 'provisioned_spot_capacity');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_on_demand_capacity` attribute.
+  TfRef<num> get targetOnDemandCapacityRef =>
+      TfRef.attribute<num>(this, 'target_on_demand_capacity');
+
+  /// Reference to `target_spot_capacity` attribute.
+  TfRef<num> get targetSpotCapacityRef =>
+      TfRef.attribute<num>(this, 'target_spot_capacity');
 }

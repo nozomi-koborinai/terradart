@@ -110,4 +110,11 @@ final class DataAwsEc2TransitGateway extends Data {
   /// Reference to `vpn_ecmp_support` attribute.
   TfRef<String> get vpnEcmpSupport =>
       TfRef.attribute<String>(this, 'vpn_ecmp_support');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

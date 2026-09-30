@@ -38,4 +38,16 @@ final class AwsNetworkmanagerAttachmentRoutingPolicyLabel extends Resource {
   /// `RefTo<AwsNetworkmanagerAttachmentRoutingPolicyLabel>`.
   RefTo<AwsNetworkmanagerAttachmentRoutingPolicyLabel> get ref =>
       RefTo.of(this);
+
+  /// Reference to `attachment_id` attribute.
+  TfRef<String> get attachmentIdRef =>
+      TfRef.attribute<String>(this, 'attachment_id');
+
+  /// Reference to `core_network_id` attribute.
+  TfRef<String> get coreNetworkIdRef =>
+      TfRef.attribute<String>(this, 'core_network_id');
+
+  /// Reference to `routing_policy_label` attribute.
+  TfRef<String> get routingPolicyLabelRef =>
+      TfRef.attribute<String>(this, 'routing_policy_label');
 }

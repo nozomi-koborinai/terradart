@@ -109,4 +109,12 @@ final class GoogleSiteVerificationWebResource extends Resource {
   /// Reference to `web_resource_id` attribute.
   TfRef<String> get webResourceId =>
       TfRef.attribute<String>(this, 'web_resource_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `verification_method` attribute.
+  TfRef<String> get verificationMethodRef =>
+      TfRef.attribute<String>(this, 'verification_method');
 }

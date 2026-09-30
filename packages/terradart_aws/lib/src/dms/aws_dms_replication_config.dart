@@ -120,4 +120,47 @@ final class AwsDmsReplicationConfig extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replication_config_identifier` attribute.
+  TfRef<String> get replicationConfigIdentifierRef =>
+      TfRef.attribute<String>(this, 'replication_config_identifier');
+
+  /// Reference to `replication_settings` attribute.
+  TfRef<String> get replicationSettingsRef =>
+      TfRef.attribute<String>(this, 'replication_settings');
+
+  /// Reference to `replication_type` attribute.
+  TfRef<String> get replicationTypeRef =>
+      TfRef.attribute<String>(this, 'replication_type');
+
+  /// Reference to `resource_identifier` attribute.
+  TfRef<String> get resourceIdentifierRef =>
+      TfRef.attribute<String>(this, 'resource_identifier');
+
+  /// Reference to `source_endpoint_arn` attribute.
+  TfRef<String> get sourceEndpointArnRef =>
+      TfRef.attribute<String>(this, 'source_endpoint_arn');
+
+  /// Reference to `start_replication` attribute.
+  TfRef<bool> get startReplicationRef =>
+      TfRef.attribute<bool>(this, 'start_replication');
+
+  /// Reference to `supplemental_settings` attribute.
+  TfRef<String> get supplementalSettingsRef =>
+      TfRef.attribute<String>(this, 'supplemental_settings');
+
+  /// Reference to `table_mappings` attribute.
+  TfRef<String> get tableMappingsRef =>
+      TfRef.attribute<String>(this, 'table_mappings');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_endpoint_arn` attribute.
+  TfRef<String> get targetEndpointArnRef =>
+      TfRef.attribute<String>(this, 'target_endpoint_arn');
 }

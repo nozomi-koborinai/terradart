@@ -38,4 +38,14 @@ final class DataGoogleOracleDatabaseDbServers extends Data {
   /// Reference to `db_servers` attribute.
   TfRef<List<Map<String, Object?>>> get dbServers =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'db_servers');
+
+  /// Reference to `cloud_exadata_infrastructure` attribute.
+  TfRef<String> get cloudExadataInfrastructureRef =>
+      TfRef.attribute<String>(this, 'cloud_exadata_infrastructure');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

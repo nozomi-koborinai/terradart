@@ -165,4 +165,39 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
   /// Reference to `provisioning_artifact_id` attribute.
   TfRef<String> get provisioningArtifactId =>
       TfRef.attribute<String>(this, 'provisioning_artifact_id');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `active` attribute.
+  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_template_validation` attribute.
+  TfRef<bool> get disableTemplateValidationRef =>
+      TfRef.attribute<bool>(this, 'disable_template_validation');
+
+  /// Reference to `guidance` attribute.
+  TfRef<String> get guidanceRef => TfRef.attribute<String>(this, 'guidance');
+
+  /// Reference to `product_id` attribute.
+  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `template_physical_id` attribute.
+  TfRef<String> get templatePhysicalIdRef =>
+      TfRef.attribute<String>(this, 'template_physical_id');
+
+  /// Reference to `template_url` attribute.
+  TfRef<String> get templateUrlRef =>
+      TfRef.attribute<String>(this, 'template_url');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

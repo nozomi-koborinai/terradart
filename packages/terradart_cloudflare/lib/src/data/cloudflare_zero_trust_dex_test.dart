@@ -108,4 +108,11 @@ final class DataCloudflareZeroTrustDexTest extends Data {
 
   /// Reference to `updated` attribute.
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `dex_test_id` attribute.
+  TfRef<String> get dexTestIdRef =>
+      TfRef.attribute<String>(this, 'dex_test_id');
 }

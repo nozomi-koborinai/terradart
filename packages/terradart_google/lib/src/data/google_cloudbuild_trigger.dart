@@ -138,4 +138,13 @@ final class DataGoogleCloudbuildTrigger extends Data {
   /// Reference to `webhook_config` attribute.
   TfRef<List<Map<String, Object?>>> get webhookConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'webhook_config');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `trigger_id` attribute.
+  TfRef<String> get triggerIdRef => TfRef.attribute<String>(this, 'trigger_id');
 }

@@ -1,5 +1,6 @@
 outputDir: storage
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -16,7 +17,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleStorageFolder(
   ///   localName: 'reports',
-  ///   bucket: TfArg.ref(assets.nameRef),
+  ///   bucket: assets.ref,
   ///   name: TfArg.literal('reports/'),
   ///   forceDestroy: TfArg.literal(true),
   /// );

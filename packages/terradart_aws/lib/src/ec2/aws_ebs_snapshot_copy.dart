@@ -77,4 +77,45 @@ final class AwsEbsSnapshotCopy extends Resource {
 
   /// Reference to `volume_size` attribute.
   TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
+
+  /// Reference to `completion_duration_minutes` attribute.
+  TfRef<num> get completionDurationMinutesRef =>
+      TfRef.attribute<num>(this, 'completion_duration_minutes');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encrypted` attribute.
+  TfRef<bool> get encryptedRef => TfRef.attribute<bool>(this, 'encrypted');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `permanent_restore` attribute.
+  TfRef<bool> get permanentRestoreRef =>
+      TfRef.attribute<bool>(this, 'permanent_restore');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `source_region` attribute.
+  TfRef<String> get sourceRegionRef =>
+      TfRef.attribute<String>(this, 'source_region');
+
+  /// Reference to `source_snapshot_id` attribute.
+  TfRef<String> get sourceSnapshotIdRef =>
+      TfRef.attribute<String>(this, 'source_snapshot_id');
+
+  /// Reference to `storage_tier` attribute.
+  TfRef<String> get storageTierRef =>
+      TfRef.attribute<String>(this, 'storage_tier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `temporary_restore_days` attribute.
+  TfRef<num> get temporaryRestoreDaysRef =>
+      TfRef.attribute<num>(this, 'temporary_restore_days');
 }

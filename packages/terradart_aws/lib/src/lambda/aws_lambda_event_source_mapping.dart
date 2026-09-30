@@ -785,4 +785,77 @@ final class AwsLambdaEventSourceMapping extends Resource {
 
   /// Reference to `uuid` attribute.
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
+
+  /// Reference to `batch_size` attribute.
+  TfRef<num> get batchSizeRef => TfRef.attribute<num>(this, 'batch_size');
+
+  /// Reference to `bisect_batch_on_function_error` attribute.
+  TfRef<bool> get bisectBatchOnFunctionErrorRef =>
+      TfRef.attribute<bool>(this, 'bisect_batch_on_function_error');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `event_source_arn` attribute.
+  TfRef<String> get eventSourceArnRef =>
+      TfRef.attribute<String>(this, 'event_source_arn');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `function_response_types` attribute.
+  TfRef<List<String>> get functionResponseTypesRef =>
+      TfRef.attribute<List<String>>(this, 'function_response_types');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `maximum_batching_window_in_seconds` attribute.
+  TfRef<num> get maximumBatchingWindowInSecondsRef =>
+      TfRef.attribute<num>(this, 'maximum_batching_window_in_seconds');
+
+  /// Reference to `maximum_record_age_in_seconds` attribute.
+  TfRef<num> get maximumRecordAgeInSecondsRef =>
+      TfRef.attribute<num>(this, 'maximum_record_age_in_seconds');
+
+  /// Reference to `maximum_retry_attempts` attribute.
+  TfRef<num> get maximumRetryAttemptsRef =>
+      TfRef.attribute<num>(this, 'maximum_retry_attempts');
+
+  /// Reference to `parallelization_factor` attribute.
+  TfRef<num> get parallelizationFactorRef =>
+      TfRef.attribute<num>(this, 'parallelization_factor');
+
+  /// Reference to `queues` attribute.
+  TfRef<List<String>> get queuesRef =>
+      TfRef.attribute<List<String>>(this, 'queues');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `starting_position` attribute.
+  TfRef<String> get startingPositionRef =>
+      TfRef.attribute<String>(this, 'starting_position');
+
+  /// Reference to `starting_position_timestamp` attribute.
+  TfRef<String> get startingPositionTimestampRef =>
+      TfRef.attribute<String>(this, 'starting_position_timestamp');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `topics` attribute.
+  TfRef<List<String>> get topicsRef =>
+      TfRef.attribute<List<String>>(this, 'topics');
+
+  /// Reference to `tumbling_window_in_seconds` attribute.
+  TfRef<num> get tumblingWindowInSecondsRef =>
+      TfRef.attribute<num>(this, 'tumbling_window_in_seconds');
+
+  /// Reference to `use_resource_timeout_for_propagation` attribute.
+  TfRef<bool> get useResourceTimeoutForPropagationRef =>
+      TfRef.attribute<bool>(this, 'use_resource_timeout_for_propagation');
 }

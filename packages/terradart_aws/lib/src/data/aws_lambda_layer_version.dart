@@ -87,4 +87,25 @@ final class DataAwsLambdaLayerVersion extends Data {
   /// Reference to `source_code_size` attribute.
   TfRef<num> get sourceCodeSize =>
       TfRef.attribute<num>(this, 'source_code_size');
+
+  /// Reference to `compatible_architecture` attribute.
+  TfRef<String> get compatibleArchitectureRef =>
+      TfRef.attribute<String>(this, 'compatible_architecture');
+
+  /// Reference to `compatible_runtime` attribute.
+  TfRef<String> get compatibleRuntimeRef =>
+      TfRef.attribute<String>(this, 'compatible_runtime');
+
+  /// Reference to `layer_name` attribute.
+  TfRef<String> get layerNameRef => TfRef.attribute<String>(this, 'layer_name');
+
+  /// Reference to `layer_version_arn` attribute.
+  TfRef<String> get layerVersionArnRef =>
+      TfRef.attribute<String>(this, 'layer_version_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version` attribute.
+  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
 }

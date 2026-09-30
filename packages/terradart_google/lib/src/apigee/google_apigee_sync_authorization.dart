@@ -51,6 +51,10 @@ final class GoogleApigeeSyncAuthorization extends Resource {
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
+  /// Reference to `identities` attribute.
+  TfRef<List<String>> get identitiesRef =>
+      TfRef.attribute<List<String>>(this, 'identities');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

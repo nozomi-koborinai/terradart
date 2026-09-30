@@ -219,4 +219,10 @@ final class AwsCloudsearchDomain extends Resource {
   /// Reference to `search_service_endpoint` attribute.
   TfRef<String> get searchServiceEndpoint =>
       TfRef.attribute<String>(this, 'search_service_endpoint');
+
+  /// Reference to `multi_az` attribute.
+  TfRef<bool> get multiAzRef => TfRef.attribute<bool>(this, 'multi_az');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

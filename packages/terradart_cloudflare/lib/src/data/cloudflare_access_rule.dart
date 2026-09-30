@@ -170,4 +170,13 @@ final class DataCloudflareAccessRule extends Data {
 
   /// Reference to `notes` attribute.
   TfRef<String> get notes => TfRef.attribute<String>(this, 'notes');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `rule_id` attribute.
+  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

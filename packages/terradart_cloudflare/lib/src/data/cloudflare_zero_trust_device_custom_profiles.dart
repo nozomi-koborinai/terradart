@@ -31,4 +31,14 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceCustomProfilesSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `profile_type` attribute.
+  TfRef<String> get profileTypeRef =>
+      TfRef.attribute<String>(this, 'profile_type');
 }

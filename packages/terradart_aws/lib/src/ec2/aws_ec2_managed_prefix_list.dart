@@ -83,4 +83,18 @@ final class AwsEc2ManagedPrefixList extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `address_family` attribute.
+  TfRef<String> get addressFamilyRef =>
+      TfRef.attribute<String>(this, 'address_family');
+
+  /// Reference to `max_entries` attribute.
+  TfRef<num> get maxEntriesRef => TfRef.attribute<num>(this, 'max_entries');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -47,4 +47,11 @@ final class DataAwsMemorydbAcl extends Data {
   /// Reference to `user_names` attribute.
   TfRef<List<String>> get userNames =>
       TfRef.attribute<List<String>>(this, 'user_names');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -54,4 +54,18 @@ final class AwsLightsailDisk extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `size_in_gb` attribute.
+  TfRef<num> get sizeInGbRef => TfRef.attribute<num>(this, 'size_in_gb');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

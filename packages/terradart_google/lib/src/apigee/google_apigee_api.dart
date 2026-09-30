@@ -72,6 +72,21 @@ final class GoogleApigeeApi extends Resource {
   TfRef<List<String>> get revision =>
       TfRef.attribute<List<String>>(this, 'revision');
 
+  /// Reference to `config_bundle` attribute.
+  TfRef<String> get configBundleRef =>
+      TfRef.attribute<String>(this, 'config_bundle');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `detect_md5hash` attribute.
+  TfRef<String> get detectMd5hashRef =>
+      TfRef.attribute<String>(this, 'detect_md5hash');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

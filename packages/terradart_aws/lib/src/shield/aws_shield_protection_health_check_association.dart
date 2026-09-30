@@ -37,4 +37,12 @@ final class AwsShieldProtectionHealthCheckAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `health_check_arn` attribute.
+  TfRef<String> get healthCheckArnRef =>
+      TfRef.attribute<String>(this, 'health_check_arn');
+
+  /// Reference to `shield_protection_id` attribute.
+  TfRef<String> get shieldProtectionIdRef =>
+      TfRef.attribute<String>(this, 'shield_protection_id');
 }

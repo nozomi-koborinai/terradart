@@ -98,4 +98,43 @@ final class AwsKmsCustomKeyStore extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cloud_hsm_cluster_id` attribute.
+  TfRef<String> get cloudHsmClusterIdRef =>
+      TfRef.attribute<String>(this, 'cloud_hsm_cluster_id');
+
+  /// Reference to `custom_key_store_name` attribute.
+  TfRef<String> get customKeyStoreNameRef =>
+      TfRef.attribute<String>(this, 'custom_key_store_name');
+
+  /// Reference to `custom_key_store_type` attribute.
+  TfRef<String> get customKeyStoreTypeRef =>
+      TfRef.attribute<String>(this, 'custom_key_store_type');
+
+  /// Reference to `key_store_password` attribute.
+  TfRef<String> get keyStorePasswordRef =>
+      TfRef.attribute<String>(this, 'key_store_password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `trust_anchor_certificate` attribute.
+  TfRef<String> get trustAnchorCertificateRef =>
+      TfRef.attribute<String>(this, 'trust_anchor_certificate');
+
+  /// Reference to `xks_proxy_connectivity` attribute.
+  TfRef<String> get xksProxyConnectivityRef =>
+      TfRef.attribute<String>(this, 'xks_proxy_connectivity');
+
+  /// Reference to `xks_proxy_uri_endpoint` attribute.
+  TfRef<String> get xksProxyUriEndpointRef =>
+      TfRef.attribute<String>(this, 'xks_proxy_uri_endpoint');
+
+  /// Reference to `xks_proxy_uri_path` attribute.
+  TfRef<String> get xksProxyUriPathRef =>
+      TfRef.attribute<String>(this, 'xks_proxy_uri_path');
+
+  /// Reference to `xks_proxy_vpc_endpoint_service_name` attribute.
+  TfRef<String> get xksProxyVpcEndpointServiceNameRef =>
+      TfRef.attribute<String>(this, 'xks_proxy_vpc_endpoint_service_name');
 }

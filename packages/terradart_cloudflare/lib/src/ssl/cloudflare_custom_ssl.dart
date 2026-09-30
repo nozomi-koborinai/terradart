@@ -139,4 +139,32 @@ final class CloudflareCustomSsl extends Resource {
 
   /// Reference to `uploaded_on` attribute.
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+
+  /// Reference to `bundle_method` attribute.
+  TfRef<String> get bundleMethodRef =>
+      TfRef.attribute<String>(this, 'bundle_method');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `custom_csr_id` attribute.
+  TfRef<String> get customCsrIdRef =>
+      TfRef.attribute<String>(this, 'custom_csr_id');
+
+  /// Reference to `deploy` attribute.
+  TfRef<String> get deployRef => TfRef.attribute<String>(this, 'deploy');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKeyRef =>
+      TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

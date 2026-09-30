@@ -80,4 +80,19 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `data_tags` attribute.
+  TfRef<List<String>> get dataTagsRef =>
+      TfRef.attribute<List<String>>(this, 'data_tags');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `expression` attribute.
+  TfRef<String> get expressionRef =>
+      TfRef.attribute<String>(this, 'expression');
 }

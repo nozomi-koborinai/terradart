@@ -63,4 +63,21 @@ final class GoogleDiscoveryEngineSitemap extends Resource {
 
   /// Reference to `sitemap_id` attribute.
   TfRef<String> get sitemapId => TfRef.attribute<String>(this, 'sitemap_id');
+
+  /// Reference to `data_store_id` attribute.
+  TfRef<String> get dataStoreIdRef =>
+      TfRef.attribute<String>(this, 'data_store_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `uri` attribute.
+  TfRef<String> get uriRef => TfRef.attribute<String>(this, 'uri');
 }

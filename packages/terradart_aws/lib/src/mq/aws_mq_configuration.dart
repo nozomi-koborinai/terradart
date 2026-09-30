@@ -80,4 +80,33 @@ final class AwsMqConfiguration extends Resource {
   /// Reference to `latest_revision` attribute.
   TfRef<num> get latestRevision =>
       TfRef.attribute<num>(this, 'latest_revision');
+
+  /// Reference to `authentication_strategy` attribute.
+  TfRef<String> get authenticationStrategyRef =>
+      TfRef.attribute<String>(this, 'authentication_strategy');
+
+  /// Reference to `data` attribute.
+  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `engine_type` attribute.
+  TfRef<String> get engineTypeRef =>
+      TfRef.attribute<String>(this, 'engine_type');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

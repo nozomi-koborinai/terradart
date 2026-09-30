@@ -112,4 +112,23 @@ final class AwsDmsCertificate extends Resource {
   /// Reference to `certificate_arn` attribute.
   TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `certificate_id` attribute.
+  TfRef<String> get certificateIdRef =>
+      TfRef.attribute<String>(this, 'certificate_id');
+
+  /// Reference to `certificate_pem` attribute.
+  TfRef<String> get certificatePemRef =>
+      TfRef.attribute<String>(this, 'certificate_pem');
+
+  /// Reference to `certificate_wallet` attribute.
+  TfRef<String> get certificateWalletRef =>
+      TfRef.attribute<String>(this, 'certificate_wallet');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

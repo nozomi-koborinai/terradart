@@ -143,4 +143,10 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   /// Reference to `uninstall_protection` attribute.
   TfRef<bool> get uninstallProtection =>
       TfRef.attribute<bool>(this, 'uninstall_protection');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `policy_id` attribute.
+  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
 }

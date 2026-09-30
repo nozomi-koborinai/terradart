@@ -104,6 +104,28 @@ final class GoogleVmwareengineNetworkPolicy extends Resource {
   TfRef<String> get vmwareEngineNetworkCanonical =>
       TfRef.attribute<String>(this, 'vmware_engine_network_canonical');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `edge_services_cidr` attribute.
+  TfRef<String> get edgeServicesCidrRef =>
+      TfRef.attribute<String>(this, 'edge_services_cidr');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `vmware_engine_network` attribute.
+  TfRef<String> get vmwareEngineNetworkRef =>
+      TfRef.attribute<String>(this, 'vmware_engine_network');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

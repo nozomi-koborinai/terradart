@@ -67,4 +67,15 @@ final class AwsSsoadminCustomerManagedPolicyAttachmentsExclusive
   /// `RefTo<AwsSsoadminCustomerManagedPolicyAttachmentsExclusive>`.
   RefTo<AwsSsoadminCustomerManagedPolicyAttachmentsExclusive> get ref =>
       RefTo.of(this);
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `permission_set_arn` attribute.
+  TfRef<String> get permissionSetArnRef =>
+      TfRef.attribute<String>(this, 'permission_set_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

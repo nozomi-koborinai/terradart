@@ -60,4 +60,11 @@ final class AwsOrganizationsDelegatedAdministrator extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `service_principal` attribute.
+  TfRef<String> get servicePrincipalRef =>
+      TfRef.attribute<String>(this, 'service_principal');
 }

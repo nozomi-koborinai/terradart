@@ -562,4 +562,54 @@ final class GoogleComputeFutureReservation extends Resource {
   /// Reference to `status` attribute.
   TfRef<List<Map<String, Object?>>> get status =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
+
+  /// Reference to `auto_created_reservations_delete_time` attribute.
+  TfRef<String> get autoCreatedReservationsDeleteTimeRef =>
+      TfRef.attribute<String>(this, 'auto_created_reservations_delete_time');
+
+  /// Reference to `auto_delete_auto_created_reservations` attribute.
+  TfRef<bool> get autoDeleteAutoCreatedReservationsRef =>
+      TfRef.attribute<bool>(this, 'auto_delete_auto_created_reservations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deployment_type` attribute.
+  TfRef<String> get deploymentTypeRef =>
+      TfRef.attribute<String>(this, 'deployment_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `planning_status` attribute.
+  TfRef<String> get planningStatusRef =>
+      TfRef.attribute<String>(this, 'planning_status');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reservation_mode` attribute.
+  TfRef<String> get reservationModeRef =>
+      TfRef.attribute<String>(this, 'reservation_mode');
+
+  /// Reference to `reservation_name` attribute.
+  TfRef<String> get reservationNameRef =>
+      TfRef.attribute<String>(this, 'reservation_name');
+
+  /// Reference to `scheduling_type` attribute.
+  TfRef<String> get schedulingTypeRef =>
+      TfRef.attribute<String>(this, 'scheduling_type');
+
+  /// Reference to `specific_reservation_required` attribute.
+  TfRef<bool> get specificReservationRequiredRef =>
+      TfRef.attribute<bool>(this, 'specific_reservation_required');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

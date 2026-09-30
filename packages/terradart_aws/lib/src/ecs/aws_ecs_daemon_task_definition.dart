@@ -730,4 +730,28 @@ final class AwsEcsDaemonTaskDefinition extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `cpu` attribute.
+  TfRef<String> get cpuRef => TfRef.attribute<String>(this, 'cpu');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `family` attribute.
+  TfRef<String> get familyRef => TfRef.attribute<String>(this, 'family');
+
+  /// Reference to `memory` attribute.
+  TfRef<String> get memoryRef => TfRef.attribute<String>(this, 'memory');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `task_role_arn` attribute.
+  TfRef<String> get taskRoleArnRef =>
+      TfRef.attribute<String>(this, 'task_role_arn');
 }

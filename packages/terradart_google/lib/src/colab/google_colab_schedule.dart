@@ -819,4 +819,47 @@ final class GoogleColabSchedule extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `allow_queueing` attribute.
+  TfRef<bool> get allowQueueingRef =>
+      TfRef.attribute<bool>(this, 'allow_queueing');
+
+  /// Reference to `cron` attribute.
+  TfRef<String> get cronRef => TfRef.attribute<String>(this, 'cron');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `end_time` attribute.
+  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `max_concurrent_active_run_count` attribute.
+  TfRef<String> get maxConcurrentActiveRunCountRef =>
+      TfRef.attribute<String>(this, 'max_concurrent_active_run_count');
+
+  /// Reference to `max_concurrent_run_count` attribute.
+  TfRef<String> get maxConcurrentRunCountRef =>
+      TfRef.attribute<String>(this, 'max_concurrent_run_count');
+
+  /// Reference to `max_run_count` attribute.
+  TfRef<String> get maxRunCountRef =>
+      TfRef.attribute<String>(this, 'max_run_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `start_time` attribute.
+  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
 }

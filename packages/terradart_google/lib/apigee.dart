@@ -94,9 +94,11 @@ export 'src/apigee/google_apigee_environment_api_revision_deployment.dart'
 export 'src/apigee/google_apigee_environment_debugmask.dart'
     show GoogleApigeeEnvironmentDebugmask;
 export 'src/apigee/google_apigee_environment_iam_binding.dart'
-    show GoogleApigeeEnvironmentIamBinding;
+    show
+        ApigeeEnvironmentIamBindingCondition,
+        GoogleApigeeEnvironmentIamBinding;
 export 'src/apigee/google_apigee_environment_iam_member.dart'
-    show GoogleApigeeEnvironmentIamMember;
+    show ApigeeEnvironmentIamMemberCondition, GoogleApigeeEnvironmentIamMember;
 export 'src/apigee/google_apigee_environment_iam_policy.dart'
     show GoogleApigeeEnvironmentIamPolicy;
 export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'

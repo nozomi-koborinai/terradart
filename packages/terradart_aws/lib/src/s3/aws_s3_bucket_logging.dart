@@ -219,4 +219,22 @@ final class AwsS3BucketLogging extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `expected_bucket_owner` attribute.
+  TfRef<String> get expectedBucketOwnerRef =>
+      TfRef.attribute<String>(this, 'expected_bucket_owner');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_bucket` attribute.
+  TfRef<String> get targetBucketRef =>
+      TfRef.attribute<String>(this, 'target_bucket');
+
+  /// Reference to `target_prefix` attribute.
+  TfRef<String> get targetPrefixRef =>
+      TfRef.attribute<String>(this, 'target_prefix');
 }

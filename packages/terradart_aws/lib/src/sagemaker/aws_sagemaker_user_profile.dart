@@ -2704,4 +2704,26 @@ final class AwsSagemakerUserProfile extends Resource {
   /// Reference to `home_efs_file_system_uid` attribute.
   TfRef<String> get homeEfsFileSystemUid =>
       TfRef.attribute<String>(this, 'home_efs_file_system_uid');
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `single_sign_on_user_identifier` attribute.
+  TfRef<String> get singleSignOnUserIdentifierRef =>
+      TfRef.attribute<String>(this, 'single_sign_on_user_identifier');
+
+  /// Reference to `single_sign_on_user_value` attribute.
+  TfRef<String> get singleSignOnUserValueRef =>
+      TfRef.attribute<String>(this, 'single_sign_on_user_value');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_profile_name` attribute.
+  TfRef<String> get userProfileNameRef =>
+      TfRef.attribute<String>(this, 'user_profile_name');
 }

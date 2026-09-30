@@ -98,4 +98,55 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `debug_log_delivery_accounts` attribute.
+  TfRef<List<String>> get debugLogDeliveryAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'debug_log_delivery_accounts');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `excluded_accounts` attribute.
+  TfRef<List<String>> get excludedAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'excluded_accounts');
+
+  /// Reference to `input_parameters` attribute.
+  TfRef<String> get inputParametersRef =>
+      TfRef.attribute<String>(this, 'input_parameters');
+
+  /// Reference to `maximum_execution_frequency` attribute.
+  TfRef<String> get maximumExecutionFrequencyRef =>
+      TfRef.attribute<String>(this, 'maximum_execution_frequency');
+
+  /// Reference to `policy_runtime` attribute.
+  TfRef<String> get policyRuntimeRef =>
+      TfRef.attribute<String>(this, 'policy_runtime');
+
+  /// Reference to `policy_text` attribute.
+  TfRef<String> get policyTextRef =>
+      TfRef.attribute<String>(this, 'policy_text');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_id_scope` attribute.
+  TfRef<String> get resourceIdScopeRef =>
+      TfRef.attribute<String>(this, 'resource_id_scope');
+
+  /// Reference to `resource_types_scope` attribute.
+  TfRef<List<String>> get resourceTypesScopeRef =>
+      TfRef.attribute<List<String>>(this, 'resource_types_scope');
+
+  /// Reference to `tag_key_scope` attribute.
+  TfRef<String> get tagKeyScopeRef =>
+      TfRef.attribute<String>(this, 'tag_key_scope');
+
+  /// Reference to `tag_value_scope` attribute.
+  TfRef<String> get tagValueScopeRef =>
+      TfRef.attribute<String>(this, 'tag_value_scope');
+
+  /// Reference to `trigger_types` attribute.
+  TfRef<List<String>> get triggerTypesRef =>
+      TfRef.attribute<List<String>>(this, 'trigger_types');
 }

@@ -237,4 +237,29 @@ final class CloudflareMagicTransitSiteLan extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bond_id` attribute.
+  TfRef<num> get bondIdRef => TfRef.attribute<num>(this, 'bond_id');
+
+  /// Reference to `ha_link` attribute.
+  TfRef<bool> get haLinkRef => TfRef.attribute<bool>(this, 'ha_link');
+
+  /// Reference to `is_breakout` attribute.
+  TfRef<bool> get isBreakoutRef => TfRef.attribute<bool>(this, 'is_breakout');
+
+  /// Reference to `is_prioritized` attribute.
+  TfRef<bool> get isPrioritizedRef =>
+      TfRef.attribute<bool>(this, 'is_prioritized');
+
+  /// Reference to `physport` attribute.
+  TfRef<num> get physportRef => TfRef.attribute<num>(this, 'physport');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+
+  /// Reference to `vlan_tag` attribute.
+  TfRef<num> get vlanTagRef => TfRef.attribute<num>(this, 'vlan_tag');
 }

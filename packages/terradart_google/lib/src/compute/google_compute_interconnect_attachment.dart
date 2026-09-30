@@ -319,6 +319,85 @@ final class GoogleComputeInterconnectAttachment extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `admin_enabled` attribute.
+  TfRef<bool> get adminEnabledRef =>
+      TfRef.attribute<bool>(this, 'admin_enabled');
+
+  /// Reference to `bandwidth` attribute.
+  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+
+  /// Reference to `candidate_cloud_router_ip_address` attribute.
+  TfRef<String> get candidateCloudRouterIpAddressRef =>
+      TfRef.attribute<String>(this, 'candidate_cloud_router_ip_address');
+
+  /// Reference to `candidate_cloud_router_ipv6_address` attribute.
+  TfRef<String> get candidateCloudRouterIpv6AddressRef =>
+      TfRef.attribute<String>(this, 'candidate_cloud_router_ipv6_address');
+
+  /// Reference to `candidate_customer_router_ip_address` attribute.
+  TfRef<String> get candidateCustomerRouterIpAddressRef =>
+      TfRef.attribute<String>(this, 'candidate_customer_router_ip_address');
+
+  /// Reference to `candidate_customer_router_ipv6_address` attribute.
+  TfRef<String> get candidateCustomerRouterIpv6AddressRef =>
+      TfRef.attribute<String>(this, 'candidate_customer_router_ipv6_address');
+
+  /// Reference to `candidate_subnets` attribute.
+  TfRef<List<String>> get candidateSubnetsRef =>
+      TfRef.attribute<List<String>>(this, 'candidate_subnets');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `edge_availability_domain` attribute.
+  TfRef<String> get edgeAvailabilityDomainRef =>
+      TfRef.attribute<String>(this, 'edge_availability_domain');
+
+  /// Reference to `encryption` attribute.
+  TfRef<String> get encryptionRef =>
+      TfRef.attribute<String>(this, 'encryption');
+
+  /// Reference to `interconnect` attribute.
+  TfRef<String> get interconnectRef =>
+      TfRef.attribute<String>(this, 'interconnect');
+
+  /// Reference to `ipsec_internal_addresses` attribute.
+  TfRef<List<String>> get ipsecInternalAddressesRef =>
+      TfRef.attribute<List<String>>(this, 'ipsec_internal_addresses');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `mtu` attribute.
+  TfRef<String> get mtuRef => TfRef.attribute<String>(this, 'mtu');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+
+  /// Reference to `stack_type` attribute.
+  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
+
+  /// Reference to `subnet_length` attribute.
+  TfRef<num> get subnetLengthRef => TfRef.attribute<num>(this, 'subnet_length');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `vlan_tag8021q` attribute.
+  TfRef<num> get vlanTag8021qRef => TfRef.attribute<num>(this, 'vlan_tag8021q');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

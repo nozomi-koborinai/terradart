@@ -37,4 +37,17 @@ final class DataCloudflareSchemaValidationSchemasList extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareSchemaValidationSchemasListSensitive;
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `omit_source` attribute.
+  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+
+  /// Reference to `validation_enabled` attribute.
+  TfRef<bool> get validationEnabledRef =>
+      TfRef.attribute<bool>(this, 'validation_enabled');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

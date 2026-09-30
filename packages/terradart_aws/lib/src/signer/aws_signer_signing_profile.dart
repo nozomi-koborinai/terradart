@@ -187,4 +187,23 @@ final class AwsSignerSigningProfile extends Resource {
 
   /// Reference to `version_arn` attribute.
   TfRef<String> get versionArn => TfRef.attribute<String>(this, 'version_arn');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `platform_id` attribute.
+  TfRef<String> get platformIdRef =>
+      TfRef.attribute<String>(this, 'platform_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `signing_parameters` attribute.
+  TfRef<Map<String, String>> get signingParametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'signing_parameters');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

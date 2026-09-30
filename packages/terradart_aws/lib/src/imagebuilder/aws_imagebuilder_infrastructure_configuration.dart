@@ -246,4 +246,45 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
   /// Reference to `date_updated` attribute.
   TfRef<String> get dateUpdated =>
       TfRef.attribute<String>(this, 'date_updated');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_profile_name` attribute.
+  TfRef<String> get instanceProfileNameRef =>
+      TfRef.attribute<String>(this, 'instance_profile_name');
+
+  /// Reference to `instance_types` attribute.
+  TfRef<List<String>> get instanceTypesRef =>
+      TfRef.attribute<List<String>>(this, 'instance_types');
+
+  /// Reference to `key_pair` attribute.
+  TfRef<String> get keyPairRef => TfRef.attribute<String>(this, 'key_pair');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_tags` attribute.
+  TfRef<Map<String, String>> get resourceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'resource_tags');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `sns_topic_arn` attribute.
+  TfRef<String> get snsTopicArnRef =>
+      TfRef.attribute<String>(this, 'sns_topic_arn');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `terminate_instance_on_failure` attribute.
+  TfRef<bool> get terminateInstanceOnFailureRef =>
+      TfRef.attribute<bool>(this, 'terminate_instance_on_failure');
 }

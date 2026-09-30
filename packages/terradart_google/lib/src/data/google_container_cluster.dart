@@ -453,4 +453,14 @@ final class DataGoogleContainerCluster extends Data {
         this,
         'workload_identity_config',
       );
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `skip_node_pool_refresh` attribute.
+  TfRef<bool> get skipNodePoolRefreshRef =>
+      TfRef.attribute<bool>(this, 'skip_node_pool_refresh');
 }

@@ -79,4 +79,15 @@ final class DataAwsServicecatalogProduct extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `accept_language` attribute.
+  TfRef<String> get acceptLanguageRef =>
+      TfRef.attribute<String>(this, 'accept_language');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

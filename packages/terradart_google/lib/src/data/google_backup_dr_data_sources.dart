@@ -42,4 +42,20 @@ final class DataGoogleBackupDrDataSources extends Data {
   /// Reference to `data_sources` attribute.
   TfRef<List<Map<String, Object?>>> get dataSources =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'data_sources');
+
+  /// Reference to `backup_vault_id` attribute.
+  TfRef<String> get backupVaultIdRef =>
+      TfRef.attribute<String>(this, 'backup_vault_id');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `order_by` attribute.
+  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

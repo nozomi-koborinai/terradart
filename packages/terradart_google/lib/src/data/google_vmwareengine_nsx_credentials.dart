@@ -31,4 +31,7 @@ final class DataGoogleVmwareengineNsxCredentials extends Data {
 
   /// Reference to `username` attribute.
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

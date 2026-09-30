@@ -71,4 +71,11 @@ final class DataAwsRoute53ResolverFirewallRuleGroup extends Data {
   /// Reference to `status_message` attribute.
   TfRef<String> get statusMessage =>
       TfRef.attribute<String>(this, 'status_message');
+
+  /// Reference to `firewall_rule_group_id` attribute.
+  TfRef<String> get firewallRuleGroupIdRef =>
+      TfRef.attribute<String>(this, 'firewall_rule_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

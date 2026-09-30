@@ -332,4 +332,71 @@ final class AwsMqBroker extends Resource {
   /// Reference to `shared_resources` attribute.
   TfRef<List<Map<String, Object?>>> get sharedResources =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'shared_resources');
+
+  /// Reference to `apply_immediately` attribute.
+  TfRef<bool> get applyImmediatelyRef =>
+      TfRef.attribute<bool>(this, 'apply_immediately');
+
+  /// Reference to `authentication_strategy` attribute.
+  TfRef<String> get authenticationStrategyRef =>
+      TfRef.attribute<String>(this, 'authentication_strategy');
+
+  /// Reference to `auto_minor_version_upgrade` attribute.
+  TfRef<bool> get autoMinorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
+
+  /// Reference to `broker_name` attribute.
+  TfRef<String> get brokerNameRef =>
+      TfRef.attribute<String>(this, 'broker_name');
+
+  /// Reference to `data_replication_mode` attribute.
+  TfRef<String> get dataReplicationModeRef =>
+      TfRef.attribute<String>(this, 'data_replication_mode');
+
+  /// Reference to `data_replication_primary_broker_arn` attribute.
+  TfRef<String> get dataReplicationPrimaryBrokerArnRef =>
+      TfRef.attribute<String>(this, 'data_replication_primary_broker_arn');
+
+  /// Reference to `deployment_mode` attribute.
+  TfRef<String> get deploymentModeRef =>
+      TfRef.attribute<String>(this, 'deployment_mode');
+
+  /// Reference to `engine_type` attribute.
+  TfRef<String> get engineTypeRef =>
+      TfRef.attribute<String>(this, 'engine_type');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `host_instance_type` attribute.
+  TfRef<String> get hostInstanceTypeRef =>
+      TfRef.attribute<String>(this, 'host_instance_type');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessibleRef =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_share_arns` attribute.
+  TfRef<List<String>> get resourceShareArnsRef =>
+      TfRef.attribute<List<String>>(this, 'resource_share_arns');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `storage_type` attribute.
+  TfRef<String> get storageTypeRef =>
+      TfRef.attribute<String>(this, 'storage_type');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

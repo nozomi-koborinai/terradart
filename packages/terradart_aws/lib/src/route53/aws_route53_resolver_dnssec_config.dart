@@ -42,4 +42,11 @@ final class AwsRoute53ResolverDnssecConfig extends Resource {
   /// Reference to `validation_status` attribute.
   TfRef<String> get validationStatus =>
       TfRef.attribute<String>(this, 'validation_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
 }

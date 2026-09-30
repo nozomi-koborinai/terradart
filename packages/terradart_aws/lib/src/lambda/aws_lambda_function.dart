@@ -477,7 +477,7 @@ final class LambdaFunctionVpcConfig {
 /// `bootstrap`, zip it, and pass the zip as `code: .filename(...)` with
 /// `handler: TfArg.literal('bootstrap')`.
 ///
-/// `role` takes the execution role's ARN (`TfArg.ref(role.arn)`).
+/// `role` takes the execution role (`role.ref`) and emits its ARN.
 /// `code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with
 /// `s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`
 /// zip so a rebuilt zip redeploys.
@@ -639,4 +639,107 @@ final class AwsLambdaFunction extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `architectures` attribute.
+  TfRef<List<String>> get architecturesRef =>
+      TfRef.attribute<List<String>>(this, 'architectures');
+
+  /// Reference to `code_sha256` attribute.
+  TfRef<String> get codeSha256Ref =>
+      TfRef.attribute<String>(this, 'code_sha256');
+
+  /// Reference to `code_signing_config_arn` attribute.
+  TfRef<String> get codeSigningConfigArnRef =>
+      TfRef.attribute<String>(this, 'code_signing_config_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `filename` attribute.
+  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `handler` attribute.
+  TfRef<String> get handlerRef => TfRef.attribute<String>(this, 'handler');
+
+  /// Reference to `image_uri` attribute.
+  TfRef<String> get imageUriRef => TfRef.attribute<String>(this, 'image_uri');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `layers` attribute.
+  TfRef<List<String>> get layersRef =>
+      TfRef.attribute<List<String>>(this, 'layers');
+
+  /// Reference to `memory_size` attribute.
+  TfRef<num> get memorySizeRef => TfRef.attribute<num>(this, 'memory_size');
+
+  /// Reference to `package_type` attribute.
+  TfRef<String> get packageTypeRef =>
+      TfRef.attribute<String>(this, 'package_type');
+
+  /// Reference to `publish` attribute.
+  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+
+  /// Reference to `publish_to` attribute.
+  TfRef<String> get publishToRef => TfRef.attribute<String>(this, 'publish_to');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replace_security_groups_on_destroy` attribute.
+  TfRef<bool> get replaceSecurityGroupsOnDestroyRef =>
+      TfRef.attribute<bool>(this, 'replace_security_groups_on_destroy');
+
+  /// Reference to `replacement_security_group_ids` attribute.
+  TfRef<List<String>> get replacementSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'replacement_security_group_ids');
+
+  /// Reference to `reserved_concurrent_executions` attribute.
+  TfRef<num> get reservedConcurrentExecutionsRef =>
+      TfRef.attribute<num>(this, 'reserved_concurrent_executions');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `runtime` attribute.
+  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+
+  /// Reference to `s3_bucket` attribute.
+  TfRef<String> get s3BucketRef => TfRef.attribute<String>(this, 's3_bucket');
+
+  /// Reference to `s3_key` attribute.
+  TfRef<String> get s3KeyRef => TfRef.attribute<String>(this, 's3_key');
+
+  /// Reference to `s3_object_version` attribute.
+  TfRef<String> get s3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 's3_object_version');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `source_code_hash` attribute.
+  TfRef<String> get sourceCodeHashRef =>
+      TfRef.attribute<String>(this, 'source_code_hash');
+
+  /// Reference to `source_kms_key_arn` attribute.
+  TfRef<String> get sourceKmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'source_kms_key_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timeout` attribute.
+  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+
+  /// Reference to `use_resource_timeout_for_propagation` attribute.
+  TfRef<bool> get useResourceTimeoutForPropagationRef =>
+      TfRef.attribute<bool>(this, 'use_resource_timeout_for_propagation');
 }

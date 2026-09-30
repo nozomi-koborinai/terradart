@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_healthcare_dataset_iam_member`.
 const Set<String> _googleHealthcareDatasetIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_healthcare_dataset_iam_member` (derived from provider schema).
+@immutable
+final class HealthcareDatasetIamMemberCondition {
+  const HealthcareDatasetIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_healthcare_dataset_iam_member`.
 final class GoogleHealthcareDatasetIamMember extends Resource {
@@ -15,7 +39,7 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
     required TfArg<String> datasetId,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    HealthcareDatasetIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +50,8 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
            'dataset_id': datasetId,
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
@@ -42,4 +67,13 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

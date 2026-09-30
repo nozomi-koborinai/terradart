@@ -121,9 +121,13 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineApplicationUrlDispatchRules(
         localName: 'dispatch',
-        dispatchRules: .literal(<Map<String, dynamic>>[
-          <String, dynamic>{'domain': '*', 'path': '/*', 'service': 'default'},
-        ]),
+        dispatchRules: [
+          AppEngineApplicationUrlDispatchRulesDispatchRules(
+            domain: .literal('*'),
+            path: .literal('/*'),
+            service: .literal('default'),
+          ),
+        ],
         dependsOn: [ResourceDependency(app)],
       ),
     );
@@ -167,9 +171,6 @@ final class AppEngineStack extends Stack {
       ),
     );
 
-    addExport(
-      'APP_ENGINE_APP_ID',
-      ResourceIdExport(app.id, emitTerraformOutput: true),
-    );
+    addOutput('app_engine_app_id', .ref(app.id));
   }
 }

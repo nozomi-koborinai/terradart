@@ -39,4 +39,10 @@ final class DataGoogleOracleDatabaseGoldengateDeploymentTypes extends Data {
         this,
         'goldengate_deployment_types',
       );
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -38,4 +38,11 @@ final class AwsShieldDrtAccessLogBucketAssociation extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `log_bucket` attribute.
+  TfRef<String> get logBucketRef => TfRef.attribute<String>(this, 'log_bucket');
+
+  /// Reference to `role_arn_association_id` attribute.
+  TfRef<String> get roleArnAssociationIdRef =>
+      TfRef.attribute<String>(this, 'role_arn_association_id');
 }

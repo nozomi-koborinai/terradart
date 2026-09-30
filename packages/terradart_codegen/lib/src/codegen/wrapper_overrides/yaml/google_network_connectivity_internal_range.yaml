@@ -2,6 +2,7 @@ outputDir: network
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraImports:
@@ -23,7 +24,7 @@ curatedDoc: |-
   /// GoogleNetworkConnectivityInternalRange(
   ///   localName: 'reserved',
   ///   name: TfArg.literal('terradart-ir'),
-  ///   network: TfArg.ref(vpc.id),
+  ///   network: vpc.ref,
   ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
   ///   peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
   ///   ipCidrRange: TfArg.literal('10.9.0.0/24'),
@@ -105,4 +106,5 @@ paramOrder:
   - target_cidr_range
   - overlaps
   - labels
+  - migration
   - project

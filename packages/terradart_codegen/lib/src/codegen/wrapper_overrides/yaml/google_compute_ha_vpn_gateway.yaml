@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -16,5 +17,7 @@ paramOrder:
   - gateway_ip_version
   - stack_type
   - labels
+  - params
+  - vpn_interfaces
   - deletion_policy
   - project

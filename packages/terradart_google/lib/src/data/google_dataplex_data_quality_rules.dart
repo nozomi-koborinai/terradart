@@ -38,4 +38,14 @@ final class DataGoogleDataplexDataQualityRules extends Data {
   /// Reference to `rules` attribute.
   TfRef<List<Map<String, Object?>>> get rules =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rules');
+
+  /// Reference to `data_scan_id` attribute.
+  TfRef<String> get dataScanIdRef =>
+      TfRef.attribute<String>(this, 'data_scan_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

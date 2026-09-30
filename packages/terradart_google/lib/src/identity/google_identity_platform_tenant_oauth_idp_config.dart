@@ -90,4 +90,31 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `client_id` attribute.
+  TfRef<String> get clientIdRef => TfRef.attribute<String>(this, 'client_id');
+
+  /// Reference to `client_secret` attribute.
+  TfRef<String> get clientSecretRef =>
+      TfRef.attribute<String>(this, 'client_secret');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `issuer` attribute.
+  TfRef<String> get issuerRef => TfRef.attribute<String>(this, 'issuer');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `tenant` attribute.
+  TfRef<String> get tenantRef => TfRef.attribute<String>(this, 'tenant');
 }

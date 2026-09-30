@@ -271,4 +271,23 @@ final class AwsCloudfrontDistributionTenant extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `connection_group_id` attribute.
+  TfRef<String> get connectionGroupIdRef =>
+      TfRef.attribute<String>(this, 'connection_group_id');
+
+  /// Reference to `distribution_id` attribute.
+  TfRef<String> get distributionIdRef =>
+      TfRef.attribute<String>(this, 'distribution_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `wait_for_deployment` attribute.
+  TfRef<bool> get waitForDeploymentRef =>
+      TfRef.attribute<bool>(this, 'wait_for_deployment');
 }

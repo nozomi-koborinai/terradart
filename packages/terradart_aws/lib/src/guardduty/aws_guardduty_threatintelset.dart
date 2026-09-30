@@ -69,4 +69,24 @@ final class AwsGuarddutyThreatintelset extends Resource {
   /// Reference to `threat_intel_set_id` attribute.
   TfRef<String> get threatIntelSetId =>
       TfRef.attribute<String>(this, 'threat_intel_set_id');
+
+  /// Reference to `activate` attribute.
+  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+
+  /// Reference to `detector_id` attribute.
+  TfRef<String> get detectorIdRef =>
+      TfRef.attribute<String>(this, 'detector_id');
+
+  /// Reference to `format` attribute.
+  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -102,4 +102,10 @@ final class DataGoogleSecretManagerSecret extends Data {
   /// Reference to `version_destroy_ttl` attribute.
   TfRef<String> get versionDestroyTtl =>
       TfRef.attribute<String>(this, 'version_destroy_ttl');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `secret_id` attribute.
+  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
 }

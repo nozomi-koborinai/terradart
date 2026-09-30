@@ -117,4 +117,13 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `interval` attribute.
+  TfRef<String> get intervalRef => TfRef.attribute<String>(this, 'interval');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

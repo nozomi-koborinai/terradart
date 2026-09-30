@@ -125,4 +125,26 @@ final class GoogleDataplexEntryLink extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `entry_group_id` attribute.
+  TfRef<String> get entryGroupIdRef =>
+      TfRef.attribute<String>(this, 'entry_group_id');
+
+  /// Reference to `entry_link_id` attribute.
+  TfRef<String> get entryLinkIdRef =>
+      TfRef.attribute<String>(this, 'entry_link_id');
+
+  /// Reference to `entry_link_type` attribute.
+  TfRef<String> get entryLinkTypeRef =>
+      TfRef.attribute<String>(this, 'entry_link_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

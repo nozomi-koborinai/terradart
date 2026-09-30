@@ -2009,4 +2009,28 @@ final class AwsSecurityhubAutomationRule extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `is_terminal` attribute.
+  TfRef<bool> get isTerminalRef => TfRef.attribute<bool>(this, 'is_terminal');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rule_name` attribute.
+  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+
+  /// Reference to `rule_order` attribute.
+  TfRef<num> get ruleOrderRef => TfRef.attribute<num>(this, 'rule_order');
+
+  /// Reference to `rule_status` attribute.
+  TfRef<String> get ruleStatusRef =>
+      TfRef.attribute<String>(this, 'rule_status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

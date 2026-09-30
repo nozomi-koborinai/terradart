@@ -53,4 +53,27 @@ final class AwsCloudwatchEventArchive extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `event_pattern` attribute.
+  TfRef<String> get eventPatternRef =>
+      TfRef.attribute<String>(this, 'event_pattern');
+
+  /// Reference to `event_source_arn` attribute.
+  TfRef<String> get eventSourceArnRef =>
+      TfRef.attribute<String>(this, 'event_source_arn');
+
+  /// Reference to `kms_key_identifier` attribute.
+  TfRef<String> get kmsKeyIdentifierRef =>
+      TfRef.attribute<String>(this, 'kms_key_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_days` attribute.
+  TfRef<num> get retentionDaysRef =>
+      TfRef.attribute<num>(this, 'retention_days');
 }

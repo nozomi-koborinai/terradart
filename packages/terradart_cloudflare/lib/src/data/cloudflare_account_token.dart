@@ -90,4 +90,10 @@ final class DataCloudflareAccountToken extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `token_id` attribute.
+  TfRef<String> get tokenIdRef => TfRef.attribute<String>(this, 'token_id');
 }

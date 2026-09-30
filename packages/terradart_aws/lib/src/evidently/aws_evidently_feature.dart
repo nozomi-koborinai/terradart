@@ -129,4 +129,30 @@ final class AwsEvidentlyFeature extends Resource {
 
   /// Reference to `value_type` attribute.
   TfRef<String> get valueType => TfRef.attribute<String>(this, 'value_type');
+
+  /// Reference to `default_variation` attribute.
+  TfRef<String> get defaultVariationRef =>
+      TfRef.attribute<String>(this, 'default_variation');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `entity_overrides` attribute.
+  TfRef<Map<String, String>> get entityOverridesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'entity_overrides');
+
+  /// Reference to `evaluation_strategy` attribute.
+  TfRef<String> get evaluationStrategyRef =>
+      TfRef.attribute<String>(this, 'evaluation_strategy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -8,5 +9,6 @@ paramOrder:
   - network
   - region
   - description
+  - params
   - deletion_policy
   - project

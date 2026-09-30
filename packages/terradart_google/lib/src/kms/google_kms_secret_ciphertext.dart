@@ -36,7 +36,7 @@ const Set<String> _googleKmsSecretCiphertextSensitive = <String>{
 /// ```dart
 /// GoogleKmsSecretCiphertext(
 ///   localName: 'db_password',
-///   cryptoKey: TfArg.ref(paymentsKey.id),
+///   cryptoKey: paymentsKey.ref,
 ///   plaintext: TfArg.literal('change-me'),
 /// );
 /// ```
@@ -73,4 +73,14 @@ final class GoogleKmsSecretCiphertext extends Resource {
 
   /// Reference to `ciphertext` attribute.
   TfRef<String> get ciphertext => TfRef.attribute<String>(this, 'ciphertext');
+
+  /// Reference to `additional_authenticated_data` attribute.
+  TfRef<String> get additionalAuthenticatedDataRef =>
+      TfRef.attribute<String>(this, 'additional_authenticated_data');
+
+  /// Reference to `crypto_key` attribute.
+  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+
+  /// Reference to `plaintext` attribute.
+  TfRef<String> get plaintextRef => TfRef.attribute<String>(this, 'plaintext');
 }

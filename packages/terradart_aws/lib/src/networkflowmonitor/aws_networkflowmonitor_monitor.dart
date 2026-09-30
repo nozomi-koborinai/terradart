@@ -118,4 +118,18 @@ final class AwsNetworkflowmonitorMonitor extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `monitor_name` attribute.
+  TfRef<String> get monitorNameRef =>
+      TfRef.attribute<String>(this, 'monitor_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scope_arn` attribute.
+  TfRef<String> get scopeArnRef => TfRef.attribute<String>(this, 'scope_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -327,4 +327,7 @@ final class AwsRoute53RecordsExclusive extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsRoute53RecordsExclusive>`.
   RefTo<AwsRoute53RecordsExclusive> get ref => RefTo.of(this);
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

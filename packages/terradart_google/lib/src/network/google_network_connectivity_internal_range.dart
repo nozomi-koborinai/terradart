@@ -65,6 +65,25 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
   };
 }
 
+/// Typed helper for the `migration` block of
+/// `google_network_connectivity_internal_range` (derived from provider schema).
+@immutable
+final class NetworkConnectivityInternalRangeMigration {
+  const NetworkConnectivityInternalRangeMigration({
+    required this.source,
+    required this.target,
+  });
+
+  final TfArg<String> source;
+
+  final TfArg<String> target;
+
+  Map<String, Object?> encode() => {
+    'source': source.toTfJson(),
+    'target': target.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_network_connectivity_internal_range`.
 ///
 /// Network Connectivity **internal range** — reserves or allocates a CIDR
@@ -78,7 +97,7 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
 /// GoogleNetworkConnectivityInternalRange(
 ///   localName: 'reserved',
 ///   name: TfArg.literal('terradart-ir'),
-///   network: TfArg.ref(vpc.id),
+///   network: vpc.ref,
 ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
 ///   peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
 ///   ipCidrRange: TfArg.literal('10.9.0.0/24'),
@@ -100,6 +119,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
     TfArg<List<String>>? targetCidrRange,
     TfArg<List<String>>? overlaps,
     TfArg<Map<String, String>>? labels,
+    NetworkConnectivityInternalRangeMigration? migration,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -120,6 +140,8 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
            'target_cidr_range': ?targetCidrRange,
            'overlaps': ?overlaps,
            'labels': ?labels,
+           if (migration != null)
+             'migration': TfArg.literal(migration.encode()),
            'project': ?project,
          },
        );
@@ -148,4 +170,50 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
 
   /// Reference to `users` attribute.
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `exclude_cidr_ranges` attribute.
+  TfRef<List<String>> get excludeCidrRangesRef =>
+      TfRef.attribute<List<String>>(this, 'exclude_cidr_ranges');
+
+  /// Reference to `immutable` attribute.
+  TfRef<bool> get immutableRef => TfRef.attribute<bool>(this, 'immutable');
+
+  /// Reference to `ip_cidr_range` attribute.
+  TfRef<String> get ipCidrRangeRef =>
+      TfRef.attribute<String>(this, 'ip_cidr_range');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `overlaps` attribute.
+  TfRef<List<String>> get overlapsRef =>
+      TfRef.attribute<List<String>>(this, 'overlaps');
+
+  /// Reference to `peering` attribute.
+  TfRef<String> get peeringRef => TfRef.attribute<String>(this, 'peering');
+
+  /// Reference to `prefix_length` attribute.
+  TfRef<num> get prefixLengthRef => TfRef.attribute<num>(this, 'prefix_length');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `target_cidr_range` attribute.
+  TfRef<List<String>> get targetCidrRangeRef =>
+      TfRef.attribute<List<String>>(this, 'target_cidr_range');
+
+  /// Reference to `usage` attribute.
+  TfRef<String> get usageRef => TfRef.attribute<String>(this, 'usage');
 }

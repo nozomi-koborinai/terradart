@@ -57,6 +57,37 @@ final class GoogleApigeeEnvironmentDebugmask extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `env_id` attribute.
+  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+
+  /// Reference to `fault_x_paths` attribute.
+  TfRef<List<String>> get faultXPathsRef =>
+      TfRef.attribute<List<String>>(this, 'fault_x_paths');
+
+  /// Reference to `namespaces` attribute.
+  TfRef<Map<String, String>> get namespacesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'namespaces');
+
+  /// Reference to `request_json_paths` attribute.
+  TfRef<List<String>> get requestJsonPathsRef =>
+      TfRef.attribute<List<String>>(this, 'request_json_paths');
+
+  /// Reference to `request_x_paths` attribute.
+  TfRef<List<String>> get requestXPathsRef =>
+      TfRef.attribute<List<String>>(this, 'request_x_paths');
+
+  /// Reference to `response_json_paths` attribute.
+  TfRef<List<String>> get responseJsonPathsRef =>
+      TfRef.attribute<List<String>>(this, 'response_json_paths');
+
+  /// Reference to `response_x_paths` attribute.
+  TfRef<List<String>> get responseXPathsRef =>
+      TfRef.attribute<List<String>>(this, 'response_x_paths');
+
+  /// Reference to `variables` attribute.
+  TfRef<List<String>> get variablesRef =>
+      TfRef.attribute<List<String>>(this, 'variables');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

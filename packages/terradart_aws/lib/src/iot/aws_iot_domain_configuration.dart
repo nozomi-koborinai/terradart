@@ -145,4 +145,38 @@ final class AwsIotDomainConfiguration extends Resource {
 
   /// Reference to `domain_type` attribute.
   TfRef<String> get domainType => TfRef.attribute<String>(this, 'domain_type');
+
+  /// Reference to `application_protocol` attribute.
+  TfRef<String> get applicationProtocolRef =>
+      TfRef.attribute<String>(this, 'application_protocol');
+
+  /// Reference to `authentication_type` attribute.
+  TfRef<String> get authenticationTypeRef =>
+      TfRef.attribute<String>(this, 'authentication_type');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_certificate_arns` attribute.
+  TfRef<List<String>> get serverCertificateArnsRef =>
+      TfRef.attribute<List<String>>(this, 'server_certificate_arns');
+
+  /// Reference to `service_type` attribute.
+  TfRef<String> get serviceTypeRef =>
+      TfRef.attribute<String>(this, 'service_type');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `validation_certificate_arn` attribute.
+  TfRef<String> get validationCertificateArnRef =>
+      TfRef.attribute<String>(this, 'validation_certificate_arn');
 }

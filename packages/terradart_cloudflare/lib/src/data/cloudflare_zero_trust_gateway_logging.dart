@@ -36,4 +36,7 @@ final class DataCloudflareZeroTrustGatewayLogging extends Data {
 
   /// Reference to `redact_pii` attribute.
   TfRef<bool> get redactPii => TfRef.attribute<bool>(this, 'redact_pii');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

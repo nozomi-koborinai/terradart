@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/gemini_stack.app.dart`
-/// (literal exports such as `ENABLEMENT_SETTING_ID`). Computed exports like
-/// `ENABLEMENT_SETTING_NAME` appear as Terraform outputs only.
+/// (with `GeminiStackConstants.enablementSettingId`). Computed values such as
+/// `enablement_setting_name` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

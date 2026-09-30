@@ -34,4 +34,8 @@ final class DataAwsOrganizationsDelegatedAdministrators extends Data {
         this,
         'delegated_administrators',
       );
+
+  /// Reference to `service_principal` attribute.
+  TfRef<String> get servicePrincipalRef =>
+      TfRef.attribute<String>(this, 'service_principal');
 }

@@ -120,6 +120,38 @@ final class ComputeRouterNetworkNccGateway extends ComputeRouterNetwork {
   Map<String, TfArg<Object?>> get argMap => {'ncc_gateway': nccGateway};
 }
 
+/// Typed helper for the `md5_authentication_keys` block of
+/// `google_compute_router` (derived from provider schema).
+@immutable
+final class ComputeRouterMd5AuthenticationKeys {
+  const ComputeRouterMd5AuthenticationKeys({
+    required this.key,
+    required this.name,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'name': name.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_router` (derived from provider schema).
+@immutable
+final class ComputeRouterParams {
+  const ComputeRouterParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_router`.
 ///
 /// Represents a Router resource.
@@ -135,8 +167,8 @@ final class GoogleComputeRouter extends Resource {
     TfArg<String>? description,
     TfArg<bool>? encryptedInterconnectRouter,
     ComputeRouterBgp? bgp,
-    TfArg<Map<String, dynamic>>? md5AuthenticationKeys,
-    TfArg<Map<String, dynamic>>? params,
+    ComputeRouterMd5AuthenticationKeys? md5AuthenticationKeys,
+    ComputeRouterParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -151,8 +183,11 @@ final class GoogleComputeRouter extends Resource {
            'description': ?description,
            'encrypted_interconnect_router': ?encryptedInterconnectRouter,
            if (bgp != null) 'bgp': TfArg.literal([bgp.encode()]),
-           'md5_authentication_keys': ?md5AuthenticationKeys,
-           'params': ?params,
+           if (md5AuthenticationKeys != null)
+             'md5_authentication_keys': TfArg.literal(
+               md5AuthenticationKeys.encode(),
+             ),
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 
@@ -169,6 +204,31 @@ final class GoogleComputeRouter extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encrypted_interconnect_router` attribute.
+  TfRef<bool> get encryptedInterconnectRouterRef =>
+      TfRef.attribute<bool>(this, 'encrypted_interconnect_router');
+
+  /// Reference to `ncc_gateway` attribute.
+  TfRef<String> get nccGatewayRef =>
+      TfRef.attribute<String>(this, 'ncc_gateway');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

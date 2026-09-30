@@ -56,4 +56,13 @@ final class DataCloudflareApiShieldSchema extends Data {
   /// Reference to `validation_enabled` attribute.
   TfRef<bool> get validationEnabled =>
       TfRef.attribute<bool>(this, 'validation_enabled');
+
+  /// Reference to `omit_source` attribute.
+  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+
+  /// Reference to `schema_id` attribute.
+  TfRef<String> get schemaIdRef => TfRef.attribute<String>(this, 'schema_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

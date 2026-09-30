@@ -27,4 +27,11 @@ final class DataAwsVpcEndpointAssociations extends Data {
   /// Reference to `associations` attribute.
   TfRef<List<Map<String, Object?>>> get associations =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'associations');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_endpoint_id` attribute.
+  TfRef<String> get vpcEndpointIdRef =>
+      TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

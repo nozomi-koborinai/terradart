@@ -66,4 +66,26 @@ final class DataAwsEc2LocalGatewayRouteTable extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `local_gateway_id` attribute.
+  TfRef<String> get localGatewayIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_id');
+
+  /// Reference to `local_gateway_route_table_id` attribute.
+  TfRef<String> get localGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_route_table_id');
+
+  /// Reference to `outpost_arn` attribute.
+  TfRef<String> get outpostArnRef =>
+      TfRef.attribute<String>(this, 'outpost_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -116,4 +116,30 @@ final class GoogleDialogflowGenerator extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `generator_id` attribute.
+  TfRef<String> get generatorIdRef =>
+      TfRef.attribute<String>(this, 'generator_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `published_model` attribute.
+  TfRef<String> get publishedModelRef =>
+      TfRef.attribute<String>(this, 'published_model');
+
+  /// Reference to `trigger_event` attribute.
+  TfRef<String> get triggerEventRef =>
+      TfRef.attribute<String>(this, 'trigger_event');
 }

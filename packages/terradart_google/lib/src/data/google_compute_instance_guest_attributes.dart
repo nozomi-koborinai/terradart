@@ -52,4 +52,20 @@ final class DataGoogleComputeInstanceGuestAttributes extends Data {
   /// Reference to `variable_value` attribute.
   TfRef<String> get variableValue =>
       TfRef.attribute<String>(this, 'variable_value');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `query_path` attribute.
+  TfRef<String> get queryPathRef => TfRef.attribute<String>(this, 'query_path');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `variable_key` attribute.
+  TfRef<String> get variableKeyRef =>
+      TfRef.attribute<String>(this, 'variable_key');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

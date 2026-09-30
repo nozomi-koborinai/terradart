@@ -62,4 +62,18 @@ final class AwsEvidentlySegment extends Resource {
 
   /// Reference to `launch_count` attribute.
   TfRef<num> get launchCount => TfRef.attribute<num>(this, 'launch_count');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `pattern` attribute.
+  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

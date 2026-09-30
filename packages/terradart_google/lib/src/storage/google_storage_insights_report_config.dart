@@ -257,11 +257,11 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///     metadataFields: TfArg.literal(['name', 'size']),
 ///     storageDestinationOptions:
 ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
-///       bucket: TfArg.ref(reports.nameRef),
+///       bucket: reports.ref,
 ///     ),
 ///     storageFilters:
 ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-///       bucket: TfArg.ref(source.nameRef),
+///       bucket: source.ref,
 ///     ),
 ///   ),
 /// );
@@ -312,6 +312,24 @@ final class GoogleStorageInsightsReportConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `name` attribute (report config UUID).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

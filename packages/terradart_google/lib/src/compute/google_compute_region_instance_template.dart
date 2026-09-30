@@ -828,6 +828,68 @@ final class GoogleComputeRegionInstanceTemplate extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `can_ip_forward` attribute.
+  TfRef<bool> get canIpForwardRef =>
+      TfRef.attribute<bool>(this, 'can_ip_forward');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `instance_description` attribute.
+  TfRef<String> get instanceDescriptionRef =>
+      TfRef.attribute<String>(this, 'instance_description');
+
+  /// Reference to `key_revocation_action_type` attribute.
+  TfRef<String> get keyRevocationActionTypeRef =>
+      TfRef.attribute<String>(this, 'key_revocation_action_type');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `machine_type` attribute.
+  TfRef<String> get machineTypeRef =>
+      TfRef.attribute<String>(this, 'machine_type');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Map<String, String>> get metadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'metadata');
+
+  /// Reference to `metadata_startup_script` attribute.
+  TfRef<String> get metadataStartupScriptRef =>
+      TfRef.attribute<String>(this, 'metadata_startup_script');
+
+  /// Reference to `min_cpu_platform` attribute.
+  TfRef<String> get minCpuPlatformRef =>
+      TfRef.attribute<String>(this, 'min_cpu_platform');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_manager_tags` attribute.
+  TfRef<Map<String, String>> get resourceManagerTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'resource_manager_tags');
+
+  /// Reference to `resource_policies` attribute.
+  TfRef<List<String>> get resourcePoliciesRef =>
+      TfRef.attribute<List<String>>(this, 'resource_policies');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

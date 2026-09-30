@@ -106,4 +106,19 @@ final class DataAwsEksNodeGroup extends Data {
   /// Reference to `warm_pool_config` attribute.
   TfRef<List<Map<String, Object?>>> get warmPoolConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'warm_pool_config');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `node_group_name` attribute.
+  TfRef<String> get nodeGroupNameRef =>
+      TfRef.attribute<String>(this, 'node_group_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

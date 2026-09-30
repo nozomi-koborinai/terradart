@@ -47,4 +47,16 @@ final class AwsSesTemplate extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `html` attribute.
+  TfRef<String> get htmlRef => TfRef.attribute<String>(this, 'html');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subject` attribute.
+  TfRef<String> get subjectRef => TfRef.attribute<String>(this, 'subject');
+
+  /// Reference to `text` attribute.
+  TfRef<String> get textRef => TfRef.attribute<String>(this, 'text');
 }

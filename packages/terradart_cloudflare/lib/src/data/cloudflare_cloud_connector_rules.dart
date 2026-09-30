@@ -46,4 +46,7 @@ final class DataCloudflareCloudConnectorRules extends Data {
 
   /// Reference to `expression` attribute.
   TfRef<String> get expression => TfRef.attribute<String>(this, 'expression');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

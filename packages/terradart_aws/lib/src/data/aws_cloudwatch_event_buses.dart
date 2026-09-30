@@ -27,4 +27,11 @@ final class DataAwsCloudwatchEventBuses extends Data {
   /// Reference to `event_buses` attribute.
   TfRef<List<Map<String, Object?>>> get eventBuses =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'event_buses');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

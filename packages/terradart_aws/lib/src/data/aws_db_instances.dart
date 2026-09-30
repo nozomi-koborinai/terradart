@@ -57,4 +57,11 @@ final class DataAwsDbInstances extends Data {
   /// Reference to `instance_identifiers` attribute.
   TfRef<List<String>> get instanceIdentifiers =>
       TfRef.attribute<List<String>>(this, 'instance_identifiers');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

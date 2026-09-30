@@ -80,4 +80,19 @@ final class AwsMedialiveMultiplex extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `start_multiplex` attribute.
+  TfRef<bool> get startMultiplexRef =>
+      TfRef.attribute<bool>(this, 'start_multiplex');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

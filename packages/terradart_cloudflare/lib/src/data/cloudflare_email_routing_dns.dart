@@ -37,4 +37,10 @@ final class DataCloudflareEmailRoutingDns extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `subdomain` attribute.
+  TfRef<String> get subdomainRef => TfRef.attribute<String>(this, 'subdomain');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

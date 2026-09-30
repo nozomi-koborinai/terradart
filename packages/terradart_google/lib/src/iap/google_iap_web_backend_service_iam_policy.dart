@@ -47,4 +47,15 @@ final class GoogleIapWebBackendServiceIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `web_backend_service` attribute.
+  TfRef<String> get webBackendServiceRef =>
+      TfRef.attribute<String>(this, 'web_backend_service');
 }

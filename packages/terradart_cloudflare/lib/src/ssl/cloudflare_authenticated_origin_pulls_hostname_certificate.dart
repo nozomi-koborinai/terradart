@@ -65,4 +65,15 @@ final class CloudflareAuthenticatedOriginPullsHostnameCertificate
 
   /// Reference to `uploaded_on` attribute.
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+
+  /// Reference to `certificate` attribute.
+  TfRef<String> get certificateRef =>
+      TfRef.attribute<String>(this, 'certificate');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKeyRef =>
+      TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -378,6 +378,47 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
   TfRef<String> get defaultSchemaId =>
       TfRef.attribute<String>(this, 'default_schema_id');
 
+  /// Reference to `acl_enabled` attribute.
+  TfRef<bool> get aclEnabledRef => TfRef.attribute<bool>(this, 'acl_enabled');
+
+  /// Reference to `content_config` attribute.
+  TfRef<String> get contentConfigRef =>
+      TfRef.attribute<String>(this, 'content_config');
+
+  /// Reference to `create_advanced_site_search` attribute.
+  TfRef<bool> get createAdvancedSiteSearchRef =>
+      TfRef.attribute<bool>(this, 'create_advanced_site_search');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `industry_vertical` attribute.
+  TfRef<String> get industryVerticalRef =>
+      TfRef.attribute<String>(this, 'industry_vertical');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyNameRef =>
+      TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `skip_default_schema_creation` attribute.
+  TfRef<bool> get skipDefaultSchemaCreationRef =>
+      TfRef.attribute<bool>(this, 'skip_default_schema_creation');
+
+  /// Reference to `solution_types` attribute.
+  TfRef<List<String>> get solutionTypesRef =>
+      TfRef.attribute<List<String>>(this, 'solution_types');
+
   /// Reference to `data_store_id` attribute.
   TfRef<String> get dataStoreIdRef =>
       TfRef.attribute<String>(this, 'data_store_id');

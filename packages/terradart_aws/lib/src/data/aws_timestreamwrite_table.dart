@@ -67,4 +67,11 @@ final class DataAwsTimestreamwriteTable extends Data {
   /// Reference to `table_status` attribute.
   TfRef<String> get tableStatus =>
       TfRef.attribute<String>(this, 'table_status');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

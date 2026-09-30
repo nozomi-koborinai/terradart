@@ -121,6 +121,32 @@ final class GoogleDialogflowCxEntityType extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `auto_expansion_mode` attribute.
+  TfRef<String> get autoExpansionModeRef =>
+      TfRef.attribute<String>(this, 'auto_expansion_mode');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_fuzzy_extraction` attribute.
+  TfRef<bool> get enableFuzzyExtractionRef =>
+      TfRef.attribute<bool>(this, 'enable_fuzzy_extraction');
+
+  /// Reference to `language_code` attribute.
+  TfRef<String> get languageCodeRef =>
+      TfRef.attribute<String>(this, 'language_code');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `redact` attribute.
+  TfRef<bool> get redactRef => TfRef.attribute<bool>(this, 'redact');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

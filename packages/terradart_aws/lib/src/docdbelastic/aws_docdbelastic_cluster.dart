@@ -90,4 +90,56 @@ final class AwsDocdbelasticCluster extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `admin_user_name` attribute.
+  TfRef<String> get adminUserNameRef =>
+      TfRef.attribute<String>(this, 'admin_user_name');
+
+  /// Reference to `admin_user_password` attribute.
+  TfRef<String> get adminUserPasswordRef =>
+      TfRef.attribute<String>(this, 'admin_user_password');
+
+  /// Reference to `auth_type` attribute.
+  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+
+  /// Reference to `backup_retention_period` attribute.
+  TfRef<num> get backupRetentionPeriodRef =>
+      TfRef.attribute<num>(this, 'backup_retention_period');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `preferred_backup_window` attribute.
+  TfRef<String> get preferredBackupWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_backup_window');
+
+  /// Reference to `preferred_maintenance_window` attribute.
+  TfRef<String> get preferredMaintenanceWindowRef =>
+      TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `shard_capacity` attribute.
+  TfRef<num> get shardCapacityRef =>
+      TfRef.attribute<num>(this, 'shard_capacity');
+
+  /// Reference to `shard_count` attribute.
+  TfRef<num> get shardCountRef => TfRef.attribute<num>(this, 'shard_count');
+
+  /// Reference to `shard_instance_count` attribute.
+  TfRef<num> get shardInstanceCountRef =>
+      TfRef.attribute<num>(this, 'shard_instance_count');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

@@ -32,4 +32,10 @@ final class AwsIamUserPolicyAttachment extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `policy_arn` attribute.
+  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+
+  /// Reference to `user` attribute.
+  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
 }

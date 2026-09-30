@@ -977,4 +977,36 @@ final class GoogleMonitoringSlo extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `calendar_period` attribute.
+  TfRef<String> get calendarPeriodRef =>
+      TfRef.attribute<String>(this, 'calendar_period');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `goal` attribute.
+  TfRef<num> get goalRef => TfRef.attribute<num>(this, 'goal');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `rolling_period_days` attribute.
+  TfRef<num> get rollingPeriodDaysRef =>
+      TfRef.attribute<num>(this, 'rolling_period_days');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `slo_id` attribute.
+  TfRef<String> get sloIdRef => TfRef.attribute<String>(this, 'slo_id');
+
+  /// Reference to `user_labels` attribute.
+  TfRef<Map<String, String>> get userLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_labels');
 }

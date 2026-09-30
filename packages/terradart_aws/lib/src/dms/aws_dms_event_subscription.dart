@@ -65,4 +65,30 @@ final class AwsDmsEventSubscription extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `event_categories` attribute.
+  TfRef<List<String>> get eventCategoriesRef =>
+      TfRef.attribute<List<String>>(this, 'event_categories');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sns_topic_arn` attribute.
+  TfRef<String> get snsTopicArnRef =>
+      TfRef.attribute<String>(this, 'sns_topic_arn');
+
+  /// Reference to `source_ids` attribute.
+  TfRef<List<String>> get sourceIdsRef =>
+      TfRef.attribute<List<String>>(this, 'source_ids');
+
+  /// Reference to `source_type` attribute.
+  TfRef<String> get sourceTypeRef =>
+      TfRef.attribute<String>(this, 'source_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

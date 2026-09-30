@@ -79,4 +79,28 @@ final class AwsAppsyncApiCache extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `api_caching_behavior` attribute.
+  TfRef<String> get apiCachingBehaviorRef =>
+      TfRef.attribute<String>(this, 'api_caching_behavior');
+
+  /// Reference to `api_id` attribute.
+  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+
+  /// Reference to `at_rest_encryption_enabled` attribute.
+  TfRef<bool> get atRestEncryptionEnabledRef =>
+      TfRef.attribute<bool>(this, 'at_rest_encryption_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `transit_encryption_enabled` attribute.
+  TfRef<bool> get transitEncryptionEnabledRef =>
+      TfRef.attribute<bool>(this, 'transit_encryption_enabled');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

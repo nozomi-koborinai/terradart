@@ -69,4 +69,34 @@ final class AwsEbsSnapshot extends Resource {
 
   /// Reference to `volume_size` attribute.
   TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `outpost_arn` attribute.
+  TfRef<String> get outpostArnRef =>
+      TfRef.attribute<String>(this, 'outpost_arn');
+
+  /// Reference to `permanent_restore` attribute.
+  TfRef<bool> get permanentRestoreRef =>
+      TfRef.attribute<bool>(this, 'permanent_restore');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `storage_tier` attribute.
+  TfRef<String> get storageTierRef =>
+      TfRef.attribute<String>(this, 'storage_tier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `temporary_restore_days` attribute.
+  TfRef<num> get temporaryRestoreDaysRef =>
+      TfRef.attribute<num>(this, 'temporary_restore_days');
+
+  /// Reference to `volume_id` attribute.
+  TfRef<String> get volumeIdRef => TfRef.attribute<String>(this, 'volume_id');
 }

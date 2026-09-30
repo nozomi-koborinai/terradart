@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_network`.
@@ -53,6 +54,19 @@ enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_network` (derived from provider schema).
+@immutable
+final class ComputeNetworkParams {
+  const ComputeNetworkParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_network`.
 ///
 /// Manages a VPC network or legacy network resource on GCP.
@@ -91,6 +105,7 @@ final class GoogleComputeNetwork extends Resource {
     TfArg<BgpBestPathSelectionMode>? bgpBestPathSelectionMode,
     TfArg<BgpInterRegionCost>? bgpInterRegionCost,
     TfArg<String>? internalIpv6Range,
+    ComputeNetworkParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -114,6 +129,7 @@ final class GoogleComputeNetwork extends Resource {
            'bgp_best_path_selection_mode': ?bgpBestPathSelectionMode,
            'bgp_inter_region_cost': ?bgpInterRegionCost,
            'internal_ipv6_range': ?internalIpv6Range,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
          },
        );
@@ -143,4 +159,65 @@ final class GoogleComputeNetwork extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `auto_create_subnetworks` attribute.
+  TfRef<bool> get autoCreateSubnetworksRef =>
+      TfRef.attribute<bool>(this, 'auto_create_subnetworks');
+
+  /// Reference to `bgp_always_compare_med` attribute.
+  TfRef<bool> get bgpAlwaysCompareMedRef =>
+      TfRef.attribute<bool>(this, 'bgp_always_compare_med');
+
+  /// Reference to `bgp_best_path_selection_mode` attribute.
+  TfRef<String> get bgpBestPathSelectionModeRef =>
+      TfRef.attribute<String>(this, 'bgp_best_path_selection_mode');
+
+  /// Reference to `bgp_inter_region_cost` attribute.
+  TfRef<String> get bgpInterRegionCostRef =>
+      TfRef.attribute<String>(this, 'bgp_inter_region_cost');
+
+  /// Reference to `delete_bgp_always_compare_med` attribute.
+  TfRef<bool> get deleteBgpAlwaysCompareMedRef =>
+      TfRef.attribute<bool>(this, 'delete_bgp_always_compare_med');
+
+  /// Reference to `delete_default_routes_on_create` attribute.
+  TfRef<bool> get deleteDefaultRoutesOnCreateRef =>
+      TfRef.attribute<bool>(this, 'delete_default_routes_on_create');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_ula_internal_ipv6` attribute.
+  TfRef<bool> get enableUlaInternalIpv6Ref =>
+      TfRef.attribute<bool>(this, 'enable_ula_internal_ipv6');
+
+  /// Reference to `internal_ipv6_range` attribute.
+  TfRef<String> get internalIpv6RangeRef =>
+      TfRef.attribute<String>(this, 'internal_ipv6_range');
+
+  /// Reference to `mtu` attribute.
+  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+
+  /// Reference to `network_firewall_policy_enforcement_order` attribute.
+  TfRef<String> get networkFirewallPolicyEnforcementOrderRef =>
+      TfRef.attribute<String>(
+        this,
+        'network_firewall_policy_enforcement_order',
+      );
+
+  /// Reference to `network_profile` attribute.
+  TfRef<String> get networkProfileRef =>
+      TfRef.attribute<String>(this, 'network_profile');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `routing_mode` attribute.
+  TfRef<String> get routingModeRef =>
+      TfRef.attribute<String>(this, 'routing_mode');
 }

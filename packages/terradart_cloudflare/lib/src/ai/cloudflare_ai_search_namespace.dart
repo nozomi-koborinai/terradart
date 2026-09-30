@@ -180,4 +180,11 @@ final class CloudflareAiSearchNamespace extends Resource {
   /// Reference to `public_endpoint_id` attribute.
   TfRef<String> get publicEndpointId =>
       TfRef.attribute<String>(this, 'public_endpoint_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
 }

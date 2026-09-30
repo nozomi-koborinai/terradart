@@ -125,4 +125,15 @@ final class AwsCloudfrontConnectionFunction extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `connection_function_code` attribute.
+  TfRef<String> get connectionFunctionCodeRef =>
+      TfRef.attribute<String>(this, 'connection_function_code');
+
+  /// Reference to `publish` attribute.
+  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -574,4 +574,250 @@ final class AwsVpnConnection extends Resource {
   /// Reference to `vgw_telemetry` attribute.
   TfRef<List<Map<String, Object?>>> get vgwTelemetry =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vgw_telemetry');
+
+  /// Reference to `customer_gateway_id` attribute.
+  TfRef<String> get customerGatewayIdRef =>
+      TfRef.attribute<String>(this, 'customer_gateway_id');
+
+  /// Reference to `enable_acceleration` attribute.
+  TfRef<bool> get enableAccelerationRef =>
+      TfRef.attribute<bool>(this, 'enable_acceleration');
+
+  /// Reference to `local_ipv4_network_cidr` attribute.
+  TfRef<String> get localIpv4NetworkCidrRef =>
+      TfRef.attribute<String>(this, 'local_ipv4_network_cidr');
+
+  /// Reference to `local_ipv6_network_cidr` attribute.
+  TfRef<String> get localIpv6NetworkCidrRef =>
+      TfRef.attribute<String>(this, 'local_ipv6_network_cidr');
+
+  /// Reference to `outside_ip_address_type` attribute.
+  TfRef<String> get outsideIpAddressTypeRef =>
+      TfRef.attribute<String>(this, 'outside_ip_address_type');
+
+  /// Reference to `preshared_key_storage` attribute.
+  TfRef<String> get presharedKeyStorageRef =>
+      TfRef.attribute<String>(this, 'preshared_key_storage');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `remote_ipv4_network_cidr` attribute.
+  TfRef<String> get remoteIpv4NetworkCidrRef =>
+      TfRef.attribute<String>(this, 'remote_ipv4_network_cidr');
+
+  /// Reference to `remote_ipv6_network_cidr` attribute.
+  TfRef<String> get remoteIpv6NetworkCidrRef =>
+      TfRef.attribute<String>(this, 'remote_ipv6_network_cidr');
+
+  /// Reference to `static_routes_only` attribute.
+  TfRef<bool> get staticRoutesOnlyRef =>
+      TfRef.attribute<bool>(this, 'static_routes_only');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
+
+  /// Reference to `transport_transit_gateway_attachment_id` attribute.
+  TfRef<String> get transportTransitGatewayAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'transport_transit_gateway_attachment_id');
+
+  /// Reference to `tunnel1_dpd_timeout_action` attribute.
+  TfRef<String> get tunnel1DpdTimeoutActionRef =>
+      TfRef.attribute<String>(this, 'tunnel1_dpd_timeout_action');
+
+  /// Reference to `tunnel1_dpd_timeout_seconds` attribute.
+  TfRef<num> get tunnel1DpdTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel1_dpd_timeout_seconds');
+
+  /// Reference to `tunnel1_enable_tunnel_lifecycle_control` attribute.
+  TfRef<bool> get tunnel1EnableTunnelLifecycleControlRef =>
+      TfRef.attribute<bool>(this, 'tunnel1_enable_tunnel_lifecycle_control');
+
+  /// Reference to `tunnel1_ike_versions` attribute.
+  TfRef<List<String>> get tunnel1IkeVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'tunnel1_ike_versions');
+
+  /// Reference to `tunnel1_inside_cidr` attribute.
+  TfRef<String> get tunnel1InsideCidrRef =>
+      TfRef.attribute<String>(this, 'tunnel1_inside_cidr');
+
+  /// Reference to `tunnel1_inside_ipv6_cidr` attribute.
+  TfRef<String> get tunnel1InsideIpv6CidrRef =>
+      TfRef.attribute<String>(this, 'tunnel1_inside_ipv6_cidr');
+
+  /// Reference to `tunnel1_phase1_dh_group_numbers` attribute.
+  TfRef<List<num>> get tunnel1Phase1DhGroupNumbersRef =>
+      TfRef.attribute<List<num>>(this, 'tunnel1_phase1_dh_group_numbers');
+
+  /// Reference to `tunnel1_phase1_encryption_algorithms` attribute.
+  TfRef<List<String>> get tunnel1Phase1EncryptionAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel1_phase1_encryption_algorithms',
+      );
+
+  /// Reference to `tunnel1_phase1_integrity_algorithms` attribute.
+  TfRef<List<String>> get tunnel1Phase1IntegrityAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel1_phase1_integrity_algorithms',
+      );
+
+  /// Reference to `tunnel1_phase1_lifetime_seconds` attribute.
+  TfRef<num> get tunnel1Phase1LifetimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel1_phase1_lifetime_seconds');
+
+  /// Reference to `tunnel1_phase2_dh_group_numbers` attribute.
+  TfRef<List<num>> get tunnel1Phase2DhGroupNumbersRef =>
+      TfRef.attribute<List<num>>(this, 'tunnel1_phase2_dh_group_numbers');
+
+  /// Reference to `tunnel1_phase2_encryption_algorithms` attribute.
+  TfRef<List<String>> get tunnel1Phase2EncryptionAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel1_phase2_encryption_algorithms',
+      );
+
+  /// Reference to `tunnel1_phase2_integrity_algorithms` attribute.
+  TfRef<List<String>> get tunnel1Phase2IntegrityAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel1_phase2_integrity_algorithms',
+      );
+
+  /// Reference to `tunnel1_phase2_lifetime_seconds` attribute.
+  TfRef<num> get tunnel1Phase2LifetimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel1_phase2_lifetime_seconds');
+
+  /// Reference to `tunnel1_preshared_key` attribute.
+  TfRef<String> get tunnel1PresharedKeyRef =>
+      TfRef.attribute<String>(this, 'tunnel1_preshared_key');
+
+  /// Reference to `tunnel1_rekey_fuzz_percentage` attribute.
+  TfRef<num> get tunnel1RekeyFuzzPercentageRef =>
+      TfRef.attribute<num>(this, 'tunnel1_rekey_fuzz_percentage');
+
+  /// Reference to `tunnel1_rekey_margin_time_seconds` attribute.
+  TfRef<num> get tunnel1RekeyMarginTimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel1_rekey_margin_time_seconds');
+
+  /// Reference to `tunnel1_replay_window_size` attribute.
+  TfRef<num> get tunnel1ReplayWindowSizeRef =>
+      TfRef.attribute<num>(this, 'tunnel1_replay_window_size');
+
+  /// Reference to `tunnel1_startup_action` attribute.
+  TfRef<String> get tunnel1StartupActionRef =>
+      TfRef.attribute<String>(this, 'tunnel1_startup_action');
+
+  /// Reference to `tunnel2_dpd_timeout_action` attribute.
+  TfRef<String> get tunnel2DpdTimeoutActionRef =>
+      TfRef.attribute<String>(this, 'tunnel2_dpd_timeout_action');
+
+  /// Reference to `tunnel2_dpd_timeout_seconds` attribute.
+  TfRef<num> get tunnel2DpdTimeoutSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel2_dpd_timeout_seconds');
+
+  /// Reference to `tunnel2_enable_tunnel_lifecycle_control` attribute.
+  TfRef<bool> get tunnel2EnableTunnelLifecycleControlRef =>
+      TfRef.attribute<bool>(this, 'tunnel2_enable_tunnel_lifecycle_control');
+
+  /// Reference to `tunnel2_ike_versions` attribute.
+  TfRef<List<String>> get tunnel2IkeVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'tunnel2_ike_versions');
+
+  /// Reference to `tunnel2_inside_cidr` attribute.
+  TfRef<String> get tunnel2InsideCidrRef =>
+      TfRef.attribute<String>(this, 'tunnel2_inside_cidr');
+
+  /// Reference to `tunnel2_inside_ipv6_cidr` attribute.
+  TfRef<String> get tunnel2InsideIpv6CidrRef =>
+      TfRef.attribute<String>(this, 'tunnel2_inside_ipv6_cidr');
+
+  /// Reference to `tunnel2_phase1_dh_group_numbers` attribute.
+  TfRef<List<num>> get tunnel2Phase1DhGroupNumbersRef =>
+      TfRef.attribute<List<num>>(this, 'tunnel2_phase1_dh_group_numbers');
+
+  /// Reference to `tunnel2_phase1_encryption_algorithms` attribute.
+  TfRef<List<String>> get tunnel2Phase1EncryptionAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel2_phase1_encryption_algorithms',
+      );
+
+  /// Reference to `tunnel2_phase1_integrity_algorithms` attribute.
+  TfRef<List<String>> get tunnel2Phase1IntegrityAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel2_phase1_integrity_algorithms',
+      );
+
+  /// Reference to `tunnel2_phase1_lifetime_seconds` attribute.
+  TfRef<num> get tunnel2Phase1LifetimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel2_phase1_lifetime_seconds');
+
+  /// Reference to `tunnel2_phase2_dh_group_numbers` attribute.
+  TfRef<List<num>> get tunnel2Phase2DhGroupNumbersRef =>
+      TfRef.attribute<List<num>>(this, 'tunnel2_phase2_dh_group_numbers');
+
+  /// Reference to `tunnel2_phase2_encryption_algorithms` attribute.
+  TfRef<List<String>> get tunnel2Phase2EncryptionAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel2_phase2_encryption_algorithms',
+      );
+
+  /// Reference to `tunnel2_phase2_integrity_algorithms` attribute.
+  TfRef<List<String>> get tunnel2Phase2IntegrityAlgorithmsRef =>
+      TfRef.attribute<List<String>>(
+        this,
+        'tunnel2_phase2_integrity_algorithms',
+      );
+
+  /// Reference to `tunnel2_phase2_lifetime_seconds` attribute.
+  TfRef<num> get tunnel2Phase2LifetimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel2_phase2_lifetime_seconds');
+
+  /// Reference to `tunnel2_preshared_key` attribute.
+  TfRef<String> get tunnel2PresharedKeyRef =>
+      TfRef.attribute<String>(this, 'tunnel2_preshared_key');
+
+  /// Reference to `tunnel2_rekey_fuzz_percentage` attribute.
+  TfRef<num> get tunnel2RekeyFuzzPercentageRef =>
+      TfRef.attribute<num>(this, 'tunnel2_rekey_fuzz_percentage');
+
+  /// Reference to `tunnel2_rekey_margin_time_seconds` attribute.
+  TfRef<num> get tunnel2RekeyMarginTimeSecondsRef =>
+      TfRef.attribute<num>(this, 'tunnel2_rekey_margin_time_seconds');
+
+  /// Reference to `tunnel2_replay_window_size` attribute.
+  TfRef<num> get tunnel2ReplayWindowSizeRef =>
+      TfRef.attribute<num>(this, 'tunnel2_replay_window_size');
+
+  /// Reference to `tunnel2_startup_action` attribute.
+  TfRef<String> get tunnel2StartupActionRef =>
+      TfRef.attribute<String>(this, 'tunnel2_startup_action');
+
+  /// Reference to `tunnel_bandwidth` attribute.
+  TfRef<String> get tunnelBandwidthRef =>
+      TfRef.attribute<String>(this, 'tunnel_bandwidth');
+
+  /// Reference to `tunnel_inside_ip_version` attribute.
+  TfRef<String> get tunnelInsideIpVersionRef =>
+      TfRef.attribute<String>(this, 'tunnel_inside_ip_version');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `vpn_concentrator_id` attribute.
+  TfRef<String> get vpnConcentratorIdRef =>
+      TfRef.attribute<String>(this, 'vpn_concentrator_id');
+
+  /// Reference to `vpn_gateway_id` attribute.
+  TfRef<String> get vpnGatewayIdRef =>
+      TfRef.attribute<String>(this, 'vpn_gateway_id');
 }

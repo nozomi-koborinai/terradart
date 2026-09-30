@@ -83,4 +83,13 @@ final class DataGoogleCloudQuotasQuotaInfo extends Data {
   /// Reference to `service_request_quota_uri` attribute.
   TfRef<String> get serviceRequestQuotaUri =>
       TfRef.attribute<String>(this, 'service_request_quota_uri');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `quota_id` attribute.
+  TfRef<String> get quotaIdRef => TfRef.attribute<String>(this, 'quota_id');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

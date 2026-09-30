@@ -867,4 +867,39 @@ final class AwsGlueCatalogTable extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `owner` attribute.
+  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention` attribute.
+  TfRef<num> get retentionRef => TfRef.attribute<num>(this, 'retention');
+
+  /// Reference to `table_type` attribute.
+  TfRef<String> get tableTypeRef => TfRef.attribute<String>(this, 'table_type');
+
+  /// Reference to `view_expanded_text` attribute.
+  TfRef<String> get viewExpandedTextRef =>
+      TfRef.attribute<String>(this, 'view_expanded_text');
+
+  /// Reference to `view_original_text` attribute.
+  TfRef<String> get viewOriginalTextRef =>
+      TfRef.attribute<String>(this, 'view_original_text');
 }

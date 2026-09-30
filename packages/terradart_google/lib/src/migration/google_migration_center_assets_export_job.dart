@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_migration_center_assets_export_job`.
@@ -28,6 +29,41 @@ enum MigrationCenterAssetsExportJobFileFormat implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `condition` block of
+/// `google_migration_center_assets_export_job` (derived from provider schema).
+@immutable
+final class MigrationCenterAssetsExportJobCondition {
+  const MigrationCenterAssetsExportJobCondition({this.filter});
+
+  final TfArg<String>? filter;
+
+  Map<String, Object?> encode() => {'filter': ?filter?.toTfJson()};
+}
+
+/// Typed helper for the `performance_data` block of
+/// `google_migration_center_assets_export_job` (derived from provider schema).
+@immutable
+final class MigrationCenterAssetsExportJobPerformanceData {
+  const MigrationCenterAssetsExportJobPerformanceData({this.maxDays});
+
+  final TfArg<num>? maxDays;
+
+  Map<String, Object?> encode() => {'max_days': ?maxDays?.toTfJson()};
+}
+
+/// Typed helper for the `signed_uri_destination` block of
+/// `google_migration_center_assets_export_job` (derived from provider schema).
+@immutable
+final class MigrationCenterAssetsExportJobSignedUriDestination {
+  const MigrationCenterAssetsExportJobSignedUriDestination({
+    required this.fileFormat,
+  });
+
+  final TfArg<MigrationCenterAssetsExportJobFileFormat> fileFormat;
+
+  Map<String, Object?> encode() => {'file_format': fileFormat.toTfJson()};
+}
+
 /// Factory wrapper for `google_migration_center_assets_export_job`.
 ///
 /// AssetsExportJob represents a batch job that exports Migration Center assets
@@ -43,9 +79,9 @@ final class GoogleMigrationCenterAssetsExportJob extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> assetsExportJobId,
-    TfArg<Map<String, dynamic>>? condition,
-    TfArg<Map<String, dynamic>>? performanceData,
-    TfArg<Map<String, dynamic>>? signedUriDestination,
+    MigrationCenterAssetsExportJobCondition? condition,
+    MigrationCenterAssetsExportJobPerformanceData? performanceData,
+    MigrationCenterAssetsExportJobSignedUriDestination? signedUriDestination,
     TfArg<Map<String, String>>? labels,
     TfArg<MigrationCenterAssetsExportJobDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
@@ -58,9 +94,14 @@ final class GoogleMigrationCenterAssetsExportJob extends Resource {
          argMap: {
            'location': location,
            'assets_export_job_id': assetsExportJobId,
-           'condition': ?condition,
-           'performance_data': ?performanceData,
-           'signed_uri_destination': ?signedUriDestination,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
+           if (performanceData != null)
+             'performance_data': TfArg.literal(performanceData.encode()),
+           if (signedUriDestination != null)
+             'signed_uri_destination': TfArg.literal(
+               signedUriDestination.encode(),
+             ),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
@@ -106,4 +147,25 @@ final class GoogleMigrationCenterAssetsExportJob extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `assets_export_job_id` attribute.
+  TfRef<String> get assetsExportJobIdRef =>
+      TfRef.attribute<String>(this, 'assets_export_job_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `show_hidden` attribute.
+  TfRef<bool> get showHiddenRef => TfRef.attribute<bool>(this, 'show_hidden');
 }

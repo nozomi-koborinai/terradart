@@ -194,7 +194,9 @@ class WrapperEmitter {
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
       if (!paramOrder.contains(spec.tfName) &&
-          !preludeSource.contains(spec.className)) {
+          !RegExp(
+            '\\b${RegExp.escape(spec.className)}\\b',
+          ).hasMatch(preludeSource)) {
         unreachableHelpers.add(spec.tfName);
       }
     }
@@ -474,7 +476,7 @@ class WrapperEmitter {
       buf.writeln('  bool get supportsDeletionProtection => true;');
     }
 
-    final extraGetterNames = _extraGetterNames(override?.extraGetters);
+    final handGetters = extraGetterNames(override?.extraGetters);
     // Phase A3: derive output-attribute getters (nameRef, id, pure
     // computed-only) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
@@ -484,11 +486,11 @@ class WrapperEmitter {
     // in `extraGetters` is excluded from derivation so the hand-written one
     // wins (no `duplicate_definition`).
     final derived = (override?.deriveOutputGetters ?? false)
-        ? emitDerivedOutputGetters(def, excludeNames: extraGetterNames)
+        ? emitDerivedOutputGetters(def, excludeNames: handGetters)
         : '';
     // A resource with a `ref` output attribute keeps that getter; it has no
     // `RefTo` getter and so cannot be a reference target.
-    if (!extraGetterNames.contains('ref') &&
+    if (!handGetters.contains('ref') &&
         !RegExp(r'\bget ref\b').hasMatch(derived)) {
       buf
         ..writeln()
@@ -516,18 +518,6 @@ class WrapperEmitter {
     buf.writeln('}');
 
     return buf.toString();
-  }
-
-  /// Extracts the Dart getter names declared in a hand-written `extraGetters`
-  /// snippet (e.g. `executionCount` from `TfRef<int> get executionCount =>`).
-  /// These are excluded from output-getter derivation so a hand-written getter
-  /// (kept for a semantic rename or a narrower type) shadows the derived one
-  /// instead of colliding with it.
-  static Set<String> _extraGetterNames(String? extraGetters) {
-    if (extraGetters == null) return const {};
-    return RegExp(
-      r'\bget (\w+)',
-    ).allMatches(extraGetters).map((m) => m.group(1)!).toSet();
   }
 
   // ---------------------------------------------------------------------

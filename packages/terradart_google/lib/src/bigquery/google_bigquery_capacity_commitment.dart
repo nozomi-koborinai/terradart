@@ -170,4 +170,35 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `capacity_commitment_id` attribute.
+  TfRef<String> get capacityCommitmentIdRef =>
+      TfRef.attribute<String>(this, 'capacity_commitment_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `edition` attribute.
+  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+
+  /// Reference to `enforce_single_admin_project_per_org` attribute.
+  TfRef<String> get enforceSingleAdminProjectPerOrgRef =>
+      TfRef.attribute<String>(this, 'enforce_single_admin_project_per_org');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `plan` attribute.
+  TfRef<String> get planRef => TfRef.attribute<String>(this, 'plan');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `renewal_plan` attribute.
+  TfRef<String> get renewalPlanRef =>
+      TfRef.attribute<String>(this, 'renewal_plan');
+
+  /// Reference to `slot_count` attribute.
+  TfRef<num> get slotCountRef => TfRef.attribute<num>(this, 'slot_count');
 }

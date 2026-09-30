@@ -807,4 +807,27 @@ final class AwsBedrockGuardrail extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `blocked_input_messaging` attribute.
+  TfRef<String> get blockedInputMessagingRef =>
+      TfRef.attribute<String>(this, 'blocked_input_messaging');
+
+  /// Reference to `blocked_outputs_messaging` attribute.
+  TfRef<String> get blockedOutputsMessagingRef =>
+      TfRef.attribute<String>(this, 'blocked_outputs_messaging');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

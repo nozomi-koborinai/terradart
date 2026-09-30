@@ -49,4 +49,14 @@ final class DataGoogleIapAgentRegistryMcpServerIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `mcp_server_id` attribute.
+  TfRef<String> get mcpServerIdRef =>
+      TfRef.attribute<String>(this, 'mcp_server_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

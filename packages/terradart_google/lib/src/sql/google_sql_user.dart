@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_sql_user`.
@@ -38,6 +39,33 @@ enum SqlUserType implements TerraformEnum {
   const SqlUserType(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `password_policy` block of
+/// `google_sql_user` (derived from provider schema).
+@immutable
+final class SqlUserPasswordPolicy {
+  const SqlUserPasswordPolicy({
+    this.allowedFailedAttempts,
+    this.enableFailedAttemptsCheck,
+    this.enablePasswordVerification,
+    this.passwordExpirationDuration,
+  });
+
+  final TfArg<num>? allowedFailedAttempts;
+
+  final TfArg<bool>? enableFailedAttemptsCheck;
+
+  final TfArg<bool>? enablePasswordVerification;
+
+  final TfArg<String>? passwordExpirationDuration;
+
+  Map<String, Object?> encode() => {
+    'allowed_failed_attempts': ?allowedFailedAttempts?.toTfJson(),
+    'enable_failed_attempts_check': ?enableFailedAttemptsCheck?.toTfJson(),
+    'enable_password_verification': ?enablePasswordVerification?.toTfJson(),
+    'password_expiration_duration': ?passwordExpirationDuration?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_sql_user`.
@@ -103,6 +131,7 @@ final class GoogleSqlUser extends Resource {
     TfArg<num>? passwordWoVersion,
     TfArg<String>? host,
     TfArg<List<String>>? databaseRoles,
+    SqlUserPasswordPolicy? passwordPolicy,
     TfArg<SqlUserDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -120,6 +149,8 @@ final class GoogleSqlUser extends Resource {
            'password_wo_version': ?passwordWoVersion,
            'host': ?host,
            'database_roles': ?databaseRoles,
+           if (passwordPolicy != null)
+             'password_policy': TfArg.literal(passwordPolicy.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
@@ -147,4 +178,31 @@ final class GoogleSqlUser extends Resource {
         this,
         'sql_server_user_details',
       );
+
+  /// Reference to `database_roles` attribute.
+  TfRef<List<String>> get databaseRolesRef =>
+      TfRef.attribute<List<String>>(this, 'database_roles');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `password_wo_version` attribute.
+  TfRef<num> get passwordWoVersionRef =>
+      TfRef.attribute<num>(this, 'password_wo_version');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

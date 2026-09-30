@@ -27,4 +27,10 @@ final class DataAwsRoute53Records extends Data {
   /// Reference to `resource_record_sets` attribute.
   TfRef<List<Map<String, Object?>>> get resourceRecordSets =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'resource_record_sets');
+
+  /// Reference to `name_regex` attribute.
+  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

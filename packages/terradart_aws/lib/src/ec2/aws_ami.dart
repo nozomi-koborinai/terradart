@@ -254,4 +254,62 @@ final class AwsAmi extends Resource {
   /// Reference to `usage_operation` attribute.
   TfRef<String> get usageOperation =>
       TfRef.attribute<String>(this, 'usage_operation');
+
+  /// Reference to `architecture` attribute.
+  TfRef<String> get architectureRef =>
+      TfRef.attribute<String>(this, 'architecture');
+
+  /// Reference to `boot_mode` attribute.
+  TfRef<String> get bootModeRef => TfRef.attribute<String>(this, 'boot_mode');
+
+  /// Reference to `deprecation_time` attribute.
+  TfRef<String> get deprecationTimeRef =>
+      TfRef.attribute<String>(this, 'deprecation_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ena_support` attribute.
+  TfRef<bool> get enaSupportRef => TfRef.attribute<bool>(this, 'ena_support');
+
+  /// Reference to `image_location` attribute.
+  TfRef<String> get imageLocationRef =>
+      TfRef.attribute<String>(this, 'image_location');
+
+  /// Reference to `imds_support` attribute.
+  TfRef<String> get imdsSupportRef =>
+      TfRef.attribute<String>(this, 'imds_support');
+
+  /// Reference to `kernel_id` attribute.
+  TfRef<String> get kernelIdRef => TfRef.attribute<String>(this, 'kernel_id');
+
+  /// Reference to `ramdisk_id` attribute.
+  TfRef<String> get ramdiskIdRef => TfRef.attribute<String>(this, 'ramdisk_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `root_device_name` attribute.
+  TfRef<String> get rootDeviceNameRef =>
+      TfRef.attribute<String>(this, 'root_device_name');
+
+  /// Reference to `sriov_net_support` attribute.
+  TfRef<String> get sriovNetSupportRef =>
+      TfRef.attribute<String>(this, 'sriov_net_support');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tpm_support` attribute.
+  TfRef<String> get tpmSupportRef =>
+      TfRef.attribute<String>(this, 'tpm_support');
+
+  /// Reference to `uefi_data` attribute.
+  TfRef<String> get uefiDataRef => TfRef.attribute<String>(this, 'uefi_data');
+
+  /// Reference to `virtualization_type` attribute.
+  TfRef<String> get virtualizationTypeRef =>
+      TfRef.attribute<String>(this, 'virtualization_type');
 }

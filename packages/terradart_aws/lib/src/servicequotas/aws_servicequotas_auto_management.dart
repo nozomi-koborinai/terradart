@@ -60,4 +60,23 @@ final class AwsServicequotasAutoManagement extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `exclusion_list` attribute.
+  TfRef<Map<String, List<String>>> get exclusionListRef =>
+      TfRef.attribute<Map<String, List<String>>>(this, 'exclusion_list');
+
+  /// Reference to `notification_arn` attribute.
+  TfRef<String> get notificationArnRef =>
+      TfRef.attribute<String>(this, 'notification_arn');
+
+  /// Reference to `opt_in_level` attribute.
+  TfRef<String> get optInLevelRef =>
+      TfRef.attribute<String>(this, 'opt_in_level');
+
+  /// Reference to `opt_in_type` attribute.
+  TfRef<String> get optInTypeRef =>
+      TfRef.attribute<String>(this, 'opt_in_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

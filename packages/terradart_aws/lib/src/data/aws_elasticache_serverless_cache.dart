@@ -87,4 +87,7 @@ final class DataAwsElasticacheServerlessCache extends Data {
   /// Reference to `user_group_id` attribute.
   TfRef<String> get userGroupId =>
       TfRef.attribute<String>(this, 'user_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

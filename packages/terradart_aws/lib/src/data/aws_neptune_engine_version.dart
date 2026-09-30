@@ -99,4 +99,43 @@ final class DataAwsNeptuneEngineVersion extends Data {
   /// Reference to `version_description` attribute.
   TfRef<String> get versionDescription =>
       TfRef.attribute<String>(this, 'version_description');
+
+  /// Reference to `default_only` attribute.
+  TfRef<bool> get defaultOnlyRef => TfRef.attribute<bool>(this, 'default_only');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `has_major_target` attribute.
+  TfRef<bool> get hasMajorTargetRef =>
+      TfRef.attribute<bool>(this, 'has_major_target');
+
+  /// Reference to `has_minor_target` attribute.
+  TfRef<bool> get hasMinorTargetRef =>
+      TfRef.attribute<bool>(this, 'has_minor_target');
+
+  /// Reference to `latest` attribute.
+  TfRef<bool> get latestRef => TfRef.attribute<bool>(this, 'latest');
+
+  /// Reference to `parameter_group_family` attribute.
+  TfRef<String> get parameterGroupFamilyRef =>
+      TfRef.attribute<String>(this, 'parameter_group_family');
+
+  /// Reference to `preferred_major_targets` attribute.
+  TfRef<List<String>> get preferredMajorTargetsRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_major_targets');
+
+  /// Reference to `preferred_upgrade_targets` attribute.
+  TfRef<List<String>> get preferredUpgradeTargetsRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_upgrade_targets');
+
+  /// Reference to `preferred_versions` attribute.
+  TfRef<List<String>> get preferredVersionsRef =>
+      TfRef.attribute<List<String>>(this, 'preferred_versions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

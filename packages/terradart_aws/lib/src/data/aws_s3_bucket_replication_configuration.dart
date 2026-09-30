@@ -38,4 +38,10 @@ final class DataAwsS3BucketReplicationConfiguration extends Data {
   /// Reference to `rule` attribute.
   TfRef<List<Map<String, Object?>>> get rule =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rule');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

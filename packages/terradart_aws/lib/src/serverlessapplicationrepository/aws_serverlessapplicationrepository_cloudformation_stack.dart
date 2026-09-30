@@ -76,4 +76,27 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   /// Reference to `outputs` attribute.
   TfRef<Map<String, String>> get outputs =>
       TfRef.attribute<Map<String, String>>(this, 'outputs');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `capabilities` attribute.
+  TfRef<List<String>> get capabilitiesRef =>
+      TfRef.attribute<List<String>>(this, 'capabilities');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `semantic_version` attribute.
+  TfRef<String> get semanticVersionRef =>
+      TfRef.attribute<String>(this, 'semantic_version');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

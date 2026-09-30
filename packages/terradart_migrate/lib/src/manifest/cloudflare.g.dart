@@ -68,6 +68,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'notes',
+          dartName: 'notesRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -127,6 +143,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'notes', dartName: 'notes', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -202,7 +233,44 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'DataAccessRulesConfiguration',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'notes',
+          dartName: 'notesRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_account',
@@ -264,6 +332,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'createdOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'standalone',
+          dartName: 'standaloneRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -297,6 +371,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -330,6 +409,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scope',
+          dartName: 'scopeRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -370,6 +459,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'scope',
+          dartName: 'scopeRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -402,7 +506,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'AccountDnsSettingsZoneDefaults',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enforce_dns_only',
+          dartName: 'enforceDnsOnlyRef',
+          dartType: 'bool',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_account_dns_settings',
@@ -424,6 +539,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'enforce_dns_only',
           dartName: 'enforceDnsOnly',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -468,6 +588,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'modified_time',
           dartName: 'modifiedTime',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zones',
+          dartName: 'zonesRef',
+          dartType: 'List<String>',
         ),
       ],
     ),
@@ -518,6 +648,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'zones',
           dartName: 'zones',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'view_id',
+          dartName: 'viewIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -587,7 +727,43 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'DataAccountDnsSettingsInternalViewsName',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_name',
+          dartName: 'zoneNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_account_member',
@@ -632,6 +808,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'email',
+          dartName: 'emailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'roles',
+          dartName: 'rolesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -668,6 +864,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'email', dartName: 'email', dartType: 'String'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member_id',
+          dartName: 'memberIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -713,7 +919,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_account_permission_group',
@@ -740,6 +972,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'permission_group_id',
+          dartName: 'permissionGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -781,6 +1023,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'label',
+          dartName: 'labelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -813,6 +1070,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'description',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'role_id',
+          dartName: 'roleIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -837,7 +1104,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_account_subscription',
@@ -888,6 +1166,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'price', dartName: 'price', dartType: 'num'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'frequency',
+          dartName: 'frequencyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -937,6 +1225,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'price', dartName: 'price', dartType: 'num'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1018,6 +1316,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expires_on',
+          dartName: 'expiresOnRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'not_before',
+          dartName: 'notBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1079,6 +1397,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_id',
+          dartName: 'tokenIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1117,7 +1445,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_expired',
+          dartName: 'includeExpiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_accounts',
@@ -1149,6 +1498,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1225,6 +1584,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_sni',
+          dartName: 'defaultSniRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'ips',
+          dartName: 'ipsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1282,6 +1666,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'address_map_id',
+          dartName: 'addressMapIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1306,7 +1700,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ai_gateway',
@@ -1521,6 +1926,102 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'authentication',
+          dartName: 'authenticationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'byok_only',
+          dartName: 'byokOnlyRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'cache_invalidate_on_update',
+          dartName: 'cacheInvalidateOnUpdateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'cache_ttl',
+          dartName: 'cacheTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'collect_logs',
+          dartName: 'collectLogsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'log_classification',
+          dartName: 'logClassificationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'log_management',
+          dartName: 'logManagementRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'log_management_strategy',
+          dartName: 'logManagementStrategyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'logpush',
+          dartName: 'logpushRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'logpush_public_key',
+          dartName: 'logpushPublicKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rate_limiting_interval',
+          dartName: 'rateLimitingIntervalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'rate_limiting_limit',
+          dartName: 'rateLimitingLimitRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'rate_limiting_technique',
+          dartName: 'rateLimitingTechniqueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retry_backoff',
+          dartName: 'retryBackoffRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retry_delay',
+          dartName: 'retryDelayRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'retry_max_attempts',
+          dartName: 'retryMaxAttemptsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'store_id',
+          dartName: 'storeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'workers_ai_billing_mode',
+          dartName: 'workersAiBillingModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'zdr', dartName: 'zdrRef', dartType: 'bool'),
       ],
     ),
     MigrateEntry(
@@ -1650,6 +2151,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'zdr', dartName: 'zdr', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1704,6 +2210,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'success', dartName: 'success', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gateway_id',
+          dartName: 'gatewayIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1748,6 +2264,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gateway_id',
+          dartName: 'gatewayIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1779,7 +2305,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ai_search_instance',
@@ -2093,6 +2635,134 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_gateway_id',
+          dartName: 'aiGatewayIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'aisearch_model',
+          dartName: 'aisearchModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'cache', dartName: 'cacheRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'cache_threshold',
+          dartName: 'cacheThresholdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cache_ttl',
+          dartName: 'cacheTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'chunk', dartName: 'chunkRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'chunk_overlap',
+          dartName: 'chunkOverlapRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'chunk_size',
+          dartName: 'chunkSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'embedding_model',
+          dartName: 'embeddingModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fusion_method',
+          dartName: 'fusionMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hybrid_search_enabled',
+          dartName: 'hybridSearchEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_num_results',
+          dartName: 'maxNumResultsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'reranking',
+          dartName: 'rerankingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'reranking_model',
+          dartName: 'rerankingModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rewrite_model',
+          dartName: 'rewriteModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rewrite_query',
+          dartName: 'rewriteQueryRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'score_threshold',
+          dartName: 'scoreThresholdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'summarization',
+          dartName: 'summarizationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'summarization_model',
+          dartName: 'summarizationModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sync_interval',
+          dartName: 'syncIntervalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'system_prompt_aisearch',
+          dartName: 'systemPromptAisearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'system_prompt_index_summarization',
+          dartName: 'systemPromptIndexSummarizationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'system_prompt_rewrite_query',
+          dartName: 'systemPromptRewriteQueryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_id',
+          dartName: 'tokenIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2251,6 +2921,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2303,7 +2978,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'namespace',
+          dartName: 'namespaceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'order_by_direction',
+          dartName: 'orderByDirectionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ai_search_namespace',
@@ -2354,6 +3060,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'publicEndpointId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2395,6 +3111,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'publicEndpointId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2426,7 +3147,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ai_search_token',
@@ -2495,6 +3232,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedBy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cf_api_id',
+          dartName: 'cfApiIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cf_api_key',
+          dartName: 'cfApiKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'legacy',
+          dartName: 'legacyRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2550,6 +3307,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedBy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2581,7 +3343,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_api_shield',
@@ -2616,6 +3394,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'normalize',
+          dartName: 'normalizeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2642,6 +3430,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'normalize',
+          dartName: 'normalizeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2675,6 +3473,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'state',
+          dartName: 'stateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2755,7 +3568,54 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'diff', dartName: 'diffRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'host',
+          dartName: 'hostRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'method',
+          dartName: 'methodRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'origin',
+          dartName: 'originRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'state',
+          dartName: 'stateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_api_shield_operation',
@@ -2820,6 +3680,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'operationId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'feature',
+          dartName: 'featureRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'method',
+          dartName: 'methodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'with_schemas',
+          dartName: 'withSchemasRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2880,6 +3766,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'method', dartName: 'method', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature',
+          dartName: 'featureRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'with_schemas',
+          dartName: 'withSchemasRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2914,6 +3820,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'mitigation_action',
+          dartName: 'mitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2942,6 +3863,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'mitigation_action',
           dartName: 'mitigationAction',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -3010,7 +3941,48 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'feature',
+          dartName: 'featureRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'host',
+          dartName: 'hostRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'method',
+          dartName: 'methodRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_api_shield_schema',
@@ -3078,6 +4050,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'source', dartName: 'source', dartType: 'String'),
+        MigrateGetter(tfName: 'file', dartName: 'fileRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'schema_id',
+          dartName: 'schemaIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'validation_enabled',
+          dartName: 'validationEnabledRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3123,6 +4116,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'validationEnabled',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'schema_id',
+          dartName: 'schemaIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3158,6 +4166,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'validation_default_mitigation_action',
+          dartName: 'validationDefaultMitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'validation_override_mitigation_action',
+          dartName: 'validationOverrideMitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3185,6 +4208,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'validation_override_mitigation_action',
           dartName: 'validationOverrideMitigationAction',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -3225,7 +4253,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'validation_enabled',
+          dartName: 'validationEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_api_token',
@@ -3298,6 +4347,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'expires_on',
+          dartName: 'expiresOnRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'not_before',
+          dartName: 'notBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3351,6 +4415,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'token_id',
+          dartName: 'tokenIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3383,6 +4452,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'scope',
+          dartName: 'scopeRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3413,7 +4492,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_expired',
+          dartName: 'includeExpiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_argo_smart_routing',
@@ -3449,6 +4544,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3479,6 +4584,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3515,6 +4625,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3545,6 +4665,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3636,6 +4761,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3714,6 +4844,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3775,6 +4915,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'private_key',
+          dartName: 'privateKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3828,6 +4983,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'certificate_id',
+          dartName: 'certificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3852,7 +5017,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_hostname_certificate',
@@ -3905,6 +5081,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'uploaded_on',
           dartName: 'uploadedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'private_key',
+          dartName: 'privateKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -3960,6 +5151,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'certificate_id',
+          dartName: 'certificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3984,7 +5185,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_settings',
@@ -4010,6 +5222,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4030,6 +5252,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4201,6 +5428,116 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'usingLatestModel',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'ai_bots_migration_opt_out',
+          dartName: 'aiBotsMigrationOptOutRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'ai_bots_protection',
+          dartName: 'aiBotsProtectionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_training',
+          dartName: 'aiTrainingRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_user',
+          dartName: 'aiUserRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'aisearch',
+          dartName: 'aisearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_update_model',
+          dartName: 'autoUpdateModelRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bm_cookie_enabled',
+          dartName: 'bmCookieEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bot_preference_sync_enabled',
+          dartName: 'botPreferenceSyncEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'cf_robots_variant',
+          dartName: 'cfRobotsVariantRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content_bots_protection',
+          dartName: 'contentBotsProtectionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'crawler_protection',
+          dartName: 'crawlerProtectionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enable_js',
+          dartName: 'enableJsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'fight_mode',
+          dartName: 'fightModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_robots_txt_managed',
+          dartName: 'isRobotsTxtManagedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'jsd_api_results_enabled',
+          dartName: 'jsdApiResultsEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'optimize_wordpress',
+          dartName: 'optimizeWordpressRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sbfm_definitely_automated',
+          dartName: 'sbfmDefinitelyAutomatedRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sbfm_likely_automated',
+          dartName: 'sbfmLikelyAutomatedRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sbfm_static_resource_protection',
+          dartName: 'sbfmStaticResourceProtectionRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sbfm_verified_bots',
+          dartName: 'sbfmVerifiedBotsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'suppress_session_score',
+          dartName: 'suppressSessionScoreRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4330,6 +5667,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'usingLatestModel',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4349,6 +5691,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'asn', dartName: 'asn', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4458,6 +5805,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'rpkiValidationState',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'asn', dartName: 'asnRef', dartType: 'num'),
+        MigrateGetter(tfName: 'cidr', dartName: 'cidrRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'delegate_loa_creation',
+          dartName: 'delegateLoaCreationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'loa_document_id',
+          dartName: 'loaDocumentIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4556,6 +5925,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'rpkiValidationState',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefix_id',
+          dartName: 'prefixIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4580,7 +5959,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_calls_sfu_app',
@@ -4625,6 +6015,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4662,6 +6062,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4686,7 +6096,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_calls_turn_app',
@@ -4731,6 +6152,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_id',
+          dartName: 'keyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4768,6 +6199,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_id',
+          dartName: 'keyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4792,7 +6233,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_certificate_authorities_hostname_associations',
@@ -4825,6 +6277,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'hostnames',
+          dartName: 'hostnamesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'mtls_certificate_id',
+          dartName: 'mtlsCertificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4855,6 +6322,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'hostnames',
           dartName: 'hostnames',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'mtls_certificate_id',
+          dartName: 'mtlsCertificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -4923,6 +6400,37 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'certificate_authority',
+          dartName: 'certificateAuthorityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cloudflare_branding',
+          dartName: 'cloudflareBrandingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'hosts',
+          dartName: 'hostsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'validation_method',
+          dartName: 'validationMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'validity_days',
+          dartName: 'validityDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4989,6 +6497,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'validityDays',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'certificate_pack_id',
+          dartName: 'certificatePackIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5027,7 +6545,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'deploy',
+          dartName: 'deployRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_client_certificate',
@@ -5125,6 +6664,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'ski', dartName: 'ski', dartType: 'String'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(tfName: 'csr', dartName: 'csrRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'reactivate',
+          dartName: 'reactivateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'validity_days',
+          dartName: 'validityDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5223,6 +6778,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'validityDays',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'client_certificate_id',
+          dartName: 'clientCertificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5268,7 +6833,25 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'offset', dartName: 'offsetRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_cloud_connector_rules',
@@ -5296,6 +6879,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5329,6 +6917,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'expression',
           dartName: 'expression',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -5417,6 +7010,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content',
+          dartName: 'contentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'request_type',
+          dartName: 'requestTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'summary',
+          dartName: 'summaryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tlp', dartName: 'tlpRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5499,6 +7118,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'request_id',
+          dartName: 'requestIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5562,6 +7191,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'fileType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'request_id',
+          dartName: 'requestIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5611,6 +7261,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'fileType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'asset_id',
+          dartName: 'assetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'request_id',
+          dartName: 'requestIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5658,6 +7323,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated',
           dartName: 'updated',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content',
+          dartName: 'contentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'request_id',
+          dartName: 'requestIdRef',
           dartType: 'String',
         ),
       ],
@@ -5749,6 +7429,42 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'after',
+          dartName: 'afterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'before',
+          dartName: 'beforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'request_id',
+          dartName: 'requestIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sort_by',
+          dartName: 'sortByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sort_order',
+          dartName: 'sortOrderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5838,6 +7554,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'requirement',
+          dartName: 'requirementRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tlp', dartName: 'tlpRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5910,6 +7647,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated',
           dartName: 'updated',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority_id',
+          dartName: 'priorityIdRef',
           dartType: 'String',
         ),
       ],
@@ -6006,7 +7753,64 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'completed_after',
+          dartName: 'completedAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'completed_before',
+          dartName: 'completedBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_after',
+          dartName: 'createdAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_before',
+          dartName: 'createdBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'request_type',
+          dartName: 'requestTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sort_by',
+          dartName: 'sortByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sort_order',
+          dartName: 'sortOrderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_connectivity_directory_service',
@@ -6099,6 +7903,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_protocol',
+          dartName: 'appProtocolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'http_port',
+          dartName: 'httpPortRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'https_port',
+          dartName: 'httpsPortRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'tcp_port',
+          dartName: 'tcpPortRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6161,6 +7991,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_id',
+          dartName: 'serviceIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6192,7 +8032,19 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_content_scanning',
@@ -6222,6 +8074,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6246,6 +8108,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6281,6 +8148,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'payload',
+          dartName: 'payloadRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6305,7 +8182,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ct_alerting',
@@ -6338,6 +8226,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'emails',
+          dartName: 'emailsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6363,6 +8266,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6472,6 +8380,61 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'csr', dartName: 'csr', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'common_name',
+          dartName: 'commonNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'country',
+          dartName: 'countryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_type',
+          dartName: 'keyTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'locality',
+          dartName: 'localityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization',
+          dartName: 'organizationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organizational_unit',
+          dartName: 'organizationalUnitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sans',
+          dartName: 'sansRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'state',
+          dartName: 'stateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6567,6 +8530,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_csr_id',
+          dartName: 'customCsrIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6599,7 +8577,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_custom_hostname',
@@ -6664,6 +8658,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'verification_errors',
           dartName: 'verificationErrors',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'custom_metadata',
+          dartName: 'customMetadataRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'custom_origin_server',
+          dartName: 'customOriginServerRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_origin_sni',
+          dartName: 'customOriginSniRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -6730,6 +8749,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'verificationErrors',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'custom_hostname_id',
+          dartName: 'customHostnameIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6772,6 +8801,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'origin',
+          dartName: 'originRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6806,6 +8845,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -6898,6 +8942,52 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'certificate_authority',
+          dartName: 'certificateAuthorityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_origin_server',
+          dartName: 'customOriginServerRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname_status',
+          dartName: 'hostnameStatusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ssl', dartName: 'sslRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'ssl_status',
+          dartName: 'sslStatusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'wildcard',
+          dartName: 'wildcardRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6944,6 +9034,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'uploaded_on',
           dartName: 'uploadedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -7007,6 +9107,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'custom_origin_trust_store_id',
+          dartName: 'customOriginTrustStoreIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7045,7 +9155,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'offset', dartName: 'offsetRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_custom_page_asset',
@@ -7104,6 +9227,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'sizeBytes',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7155,6 +9294,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'asset_name',
+          dartName: 'assetNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7187,7 +9341,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_custom_pages',
@@ -7260,6 +9430,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'requiredTokens',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'state',
+          dartName: 'stateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7321,6 +9512,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7353,7 +9559,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_custom_ssl',
@@ -7466,6 +9688,42 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'bundle_method',
+          dartName: 'bundleMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_csr_id',
+          dartName: 'customCsrIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deploy',
+          dartName: 'deployRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy',
+          dartName: 'policyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'private_key',
+          dartName: 'privateKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7547,6 +9805,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'custom_certificate_id',
+          dartName: 'customCertificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7585,7 +9853,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_d1_database',
@@ -7663,6 +9952,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fields',
+          dartName: 'fieldsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'primary_location_hint',
+          dartName: 'primaryLocationHintRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7731,6 +10040,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database_id',
+          dartName: 'databaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fields',
+          dartName: 'fieldsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7764,6 +10088,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7783,6 +10117,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'uuid', dartName: 'uuid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7823,6 +10162,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'cidr', dartName: 'cidrRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'prefix_id',
+          dartName: 'prefixIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region_key',
+          dartName: 'regionKeyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7860,6 +10215,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'regionKey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'binding_id',
+          dartName: 'bindingIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7884,7 +10249,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_dns_firewall',
@@ -7992,6 +10368,56 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deprecate_any_requests',
+          dartName: 'deprecateAnyRequestsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'dns_firewall_ip_count',
+          dartName: 'dnsFirewallIpCountRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'ecs_fallback',
+          dartName: 'ecsFallbackRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'maximum_cache_ttl',
+          dartName: 'maximumCacheTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'minimum_cache_ttl',
+          dartName: 'minimumCacheTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'negative_cache_ttl',
+          dartName: 'negativeCacheTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'ratelimit',
+          dartName: 'ratelimitRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'retries',
+          dartName: 'retriesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'upstream_ips',
+          dartName: 'upstreamIpsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8065,6 +10491,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'upstreamIps',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dns_firewall_id',
+          dartName: 'dnsFirewallIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8089,7 +10525,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_dns_record',
@@ -8211,6 +10658,48 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tagsModifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content',
+          dartName: 'contentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_shadow_metadata',
+          dartName: 'includeShadowMetadataRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'private_routing',
+          dartName: 'privateRoutingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'proxied',
+          dartName: 'proxiedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8306,6 +10795,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'ttl', dartName: 'ttl', dartType: 'num'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'dns_record_id',
+          dartName: 'dnsRecordIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_shadow_metadata',
+          dartName: 'includeShadowMetadataRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8432,7 +10936,64 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'DataDnsRecordsTag',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_shadow_metadata',
+          dartName: 'includeShadowMetadataRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'proxied',
+          dartName: 'proxiedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'shadowed_by_name',
+          dartName: 'shadowedByNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'shadowing_name',
+          dartName: 'shadowingNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tag_match',
+          dartName: 'tagMatchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_acl',
@@ -8466,6 +11027,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_range',
+          dartName: 'ipRangeRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8498,6 +11069,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'ipRange',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'acl_id',
+          dartName: 'aclIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8522,7 +11103,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_incoming',
@@ -8583,6 +11175,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'soaSerial',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'auto_refresh_seconds',
+          dartName: 'autoRefreshSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'peers',
+          dartName: 'peersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8632,6 +11239,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'soa_serial',
           dartName: 'soaSerial',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -8687,6 +11299,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'soaSerial',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'peers',
+          dartName: 'peersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8731,6 +11353,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'soa_serial',
           dartName: 'soaSerial',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -8787,6 +11414,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ip', dartName: 'ipRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'ixfr_enable',
+          dartName: 'ixfrEnableRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'port', dartName: 'portRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'tsig_id',
+          dartName: 'tsigIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8826,6 +11470,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tsigId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'peer_id',
+          dartName: 'peerIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8850,7 +11504,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_tsig',
@@ -8891,6 +11556,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'algo', dartName: 'algoRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'secret',
+          dartName: 'secretRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8920,6 +11596,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'algo', dartName: 'algo', dartType: 'String'),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tsig_id',
+          dartName: 'tsigIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -8944,7 +11630,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_routing_address',
@@ -8991,6 +11688,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'verified',
           dartName: 'verified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'email',
+          dartName: 'emailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
           dartType: 'String',
         ),
       ],
@@ -9044,6 +11756,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'verified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destination_address_identifier',
+          dartName: 'destinationAddressIdentifierRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9082,7 +11804,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'verified',
+          dartName: 'verifiedRef',
+          dartType: 'bool',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_routing_catch_all',
@@ -9149,6 +11892,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'owner_worker_tag',
+          dartName: 'ownerWorkerTagRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9172,6 +11935,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
         MigrateGetter(tfName: 'source', dartName: 'source', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9229,6 +11997,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'subdomain',
+          dartName: 'subdomainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9255,6 +12033,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'subdomain',
+          dartName: 'subdomainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9329,6 +12117,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'owner_worker_tag',
+          dartName: 'ownerWorkerTagRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9372,6 +12185,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'source', dartName: 'source', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'rule_identifier',
+          dartName: 'ruleIdentifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9403,7 +12226,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_routing_settings',
@@ -9448,6 +12287,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'support_subaddress',
+          dartName: 'supportSubaddressRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9486,6 +12335,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9573,7 +12427,63 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSenderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipientRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSenderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_type',
+          dartName: 'patternTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'verify_sender',
+          dartName: 'verifySenderRef',
+          dartType: 'bool',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_security_allow_policy',
@@ -9662,6 +12572,66 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'modified_at',
           dartName: 'modifiedAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comments',
+          dartName: 'commentsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSenderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipientRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_recipient',
+          dartName: 'isRecipientRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_regex',
+          dartName: 'isRegexRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_sender',
+          dartName: 'isSenderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_spoof',
+          dartName: 'isSpoofRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSenderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_type',
+          dartName: 'patternTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'verify_sender',
+          dartName: 'verifySenderRef',
+          dartType: 'bool',
         ),
       ],
     ),
@@ -9767,6 +12737,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'verifySender',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9827,6 +12807,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified_at',
           dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comments',
+          dartName: 'commentsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_regex',
+          dartName: 'isRegexRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_type',
+          dartName: 'patternTypeRef',
           dartType: 'String',
         ),
       ],
@@ -9898,6 +12903,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'patternType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_id',
+          dartName: 'patternIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9957,7 +12972,43 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_type',
+          dartName: 'patternTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_security_domain',
@@ -10089,6 +13140,66 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_delivery_modes',
+          dartName: 'allowedDeliveryModesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'drop_dispositions',
+          dartName: 'dropDispositionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'folder',
+          dartName: 'folderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_restrictions',
+          dartName: 'ipRestrictionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'lookback_hops',
+          dartName: 'lookbackHopsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'regions',
+          dartName: 'regionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'require_tls_inbound',
+          dartName: 'requireTlsInboundRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'require_tls_outbound',
+          dartName: 'requireTlsOutboundRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'transport',
+          dartName: 'transportRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10206,6 +13317,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'transport',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_id',
+          dartName: 'domainIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10286,7 +13407,58 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'active_delivery_mode',
+          dartName: 'activeDeliveryModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_delivery_mode',
+          dartName: 'allowedDeliveryModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_security_impersonation_registries',
@@ -10338,7 +13510,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'provenance',
+          dartName: 'provenanceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_security_impersonation_registry',
@@ -10429,6 +13632,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comments',
+          dartName: 'commentsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'directory_id',
+          dartName: 'directoryIdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'directory_node_id',
+          dartName: 'directoryNodeIdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'email',
+          dartName: 'emailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'external_directory_node_id',
+          dartName: 'externalDirectoryNodeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_email_regex',
+          dartName: 'isEmailRegexRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'provenance',
+          dartName: 'provenanceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10510,6 +13753,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'provenance',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'impersonation_registry_id',
+          dartName: 'impersonationRegistryIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10577,6 +13830,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified_at',
           dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comments',
+          dartName: 'commentsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_recent',
+          dartName: 'isRecentRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_regex',
+          dartName: 'isRegexRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_similarity',
+          dartName: 'isSimilarityRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
           dartType: 'String',
         ),
       ],
@@ -10653,6 +13936,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'pattern',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'trusted_domain_id',
+          dartName: 'trustedDomainIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10719,7 +14012,48 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_recent',
+          dartName: 'isRecentRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_similarity',
+          dartName: 'isSimilarityRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_email_sending_subdomain',
@@ -10782,6 +14116,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'drop_suppressed_recipients',
+          dartName: 'dropSuppressedRecipientsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'preview_enabled',
+          dartName: 'previewEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10841,6 +14190,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'subdomain_id',
+          dartName: 'subdomainIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10865,7 +14224,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_field_extractor',
@@ -10900,6 +14270,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'extractor',
+          dartName: 'extractorRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -10924,7 +14304,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'extractor',
+          dartName: 'extractorRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_filter',
@@ -10980,6 +14371,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expressionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'ref', dartName: 'refRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11026,6 +14438,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'paused', dartName: 'paused', dartType: 'bool'),
         MigrateGetter(tfName: 'ref', dartName: 'ref', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'filter_id',
+          dartName: 'filterIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11080,6 +14502,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expressionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'ref', dartName: 'refRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11132,6 +14580,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'ref', dartName: 'ref', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11176,6 +14629,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'ref', dartName: 'ref', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11223,6 +14686,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11263,6 +14751,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_by',
           dartName: 'updatedBy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
           dartType: 'String',
         ),
       ],
@@ -11307,6 +14800,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedBy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11331,7 +14834,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_flagship_flag',
@@ -11418,6 +14932,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedBy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_variation',
+          dartName: 'defaultVariationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'key', dartName: 'keyRef', dartType: 'String'),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'variations',
+          dartName: 'variationsRef',
+          dartType: 'Map<String, String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11487,6 +15033,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'variations',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'flag_key',
+          dartName: 'flagKeyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11525,7 +15086,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'limit',
+          dartName: 'limitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_google_tag_gateway',
@@ -11579,6 +15161,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hide_original_ip',
+          dartName: 'hideOriginalIpRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'measurement_id',
+          dartName: 'measurementIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'set_up_tag',
+          dartName: 'setUpTagRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11618,6 +15230,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'set_up_tag',
           dartName: 'setUpTag',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -11749,6 +15366,57 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'address',
+          dartName: 'addressRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'check_regions',
+          dartName: 'checkRegionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'consecutive_fails',
+          dartName: 'consecutiveFailsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'consecutive_successes',
+          dartName: 'consecutiveSuccessesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interval',
+          dartName: 'intervalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'retries',
+          dartName: 'retriesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'suspended',
+          dartName: 'suspendedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'timeout',
+          dartName: 'timeoutRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11830,6 +15498,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'timeout', dartName: 'timeout', dartType: 'num'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'healthcheck_id',
+          dartName: 'healthcheckIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11854,7 +15532,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_hostname_tls_setting',
@@ -11905,6 +15594,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'setting_id',
+          dartName: 'settingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'Object?',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11949,6 +15658,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'setting_id',
+          dartName: 'settingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -11980,7 +15704,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'setting_id',
+          dartName: 'settingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_hyperdrive_config',
@@ -12060,6 +15800,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'restartedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration',
+          dartName: 'integrationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'origin_connection_limit',
+          dartName: 'originConnectionLimitRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12107,6 +15862,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'restartedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hyperdrive_id',
+          dartName: 'hyperdriveIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12131,7 +15896,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_image',
@@ -12208,6 +15984,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'variants',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'creator',
+          dartName: 'creatorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'file', dartName: 'fileRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'metadata',
+          dartName: 'metadataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'require_signed_urls',
+          dartName: 'requireSignedUrlsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -12260,6 +16058,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'variants',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'image_id',
+          dartName: 'imageIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12301,6 +16109,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'never_require_signed_urls',
+          dartName: 'neverRequireSignedUrlsRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12327,6 +16145,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'variant_id',
+          dartName: 'variantIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12358,7 +16186,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'creator',
+          dartName: 'creatorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_ip_ranges',
@@ -12390,6 +16234,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'jdcloud_cidrs',
           dartName: 'jdcloudCidrs',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'networks',
+          dartName: 'networksRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -12477,6 +16326,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'bundle_method',
+          dartName: 'bundleMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(tfName: 'port', dartName: 'portRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12523,6 +16394,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'port', dartName: 'port', dartType: 'num'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'keyless_certificate_id',
+          dartName: 'keylessCertificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12547,7 +16428,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_leaked_credential_check',
@@ -12571,7 +16463,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_leaked_credential_check',
@@ -12590,6 +16493,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12623,6 +16531,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'password',
+          dartName: 'passwordRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'username',
+          dartName: 'usernameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12659,6 +16582,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'username',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'detection_id',
+          dartName: 'detectionIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12683,7 +16616,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_list',
@@ -12754,6 +16698,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'numReferencingFilters',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12813,6 +16767,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'num_referencing_filters',
           dartName: 'numReferencingFilters',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'list_id',
+          dartName: 'listIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -12892,6 +16861,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'operationId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'asn', dartName: 'asnRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ip', dartName: 'ipRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'list_id',
+          dartName: 'listIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12942,6 +16928,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'item_id',
+          dartName: 'itemIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'list_id',
+          dartName: 'listIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -12987,7 +16988,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'list_id',
+          dartName: 'listIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_lists',
@@ -13011,7 +17038,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_load_balancer',
@@ -13185,6 +17223,72 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'country_pools',
+          dartName: 'countryPoolsRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'default_pools',
+          dartName: 'defaultPoolsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'fallback_pool',
+          dartName: 'fallbackPoolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'networks',
+          dartName: 'networksRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'pop_pools',
+          dartName: 'popPoolsRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'proxied',
+          dartName: 'proxiedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'region_pools',
+          dartName: 'regionPoolsRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'session_affinity',
+          dartName: 'sessionAffinityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'session_affinity_ttl',
+          dartName: 'sessionAffinityTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'steering_policy',
+          dartName: 'steeringPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13279,6 +17383,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'ttl', dartName: 'ttl', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'load_balancer_id',
+          dartName: 'loadBalancerIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pop_pools',
+          dartName: 'popPoolsRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'region_pools',
+          dartName: 'regionPoolsRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13420,6 +17544,79 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_insecure',
+          dartName: 'allowInsecureRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'consecutive_down',
+          dartName: 'consecutiveDownRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'consecutive_up',
+          dartName: 'consecutiveUpRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expected_body',
+          dartName: 'expectedBodyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expected_codes',
+          dartName: 'expectedCodesRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'follow_redirects',
+          dartName: 'followRedirectsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'header',
+          dartName: 'headerRef',
+          dartType: 'Map<String, List<String>>',
+        ),
+        MigrateGetter(
+          tfName: 'interval',
+          dartName: 'intervalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'method',
+          dartName: 'methodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'path', dartName: 'pathRef', dartType: 'String'),
+        MigrateGetter(tfName: 'port', dartName: 'portRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'probe_zone',
+          dartName: 'probeZoneRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'retries',
+          dartName: 'retriesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'timeout',
+          dartName: 'timeoutRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -13512,6 +17709,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'retries', dartName: 'retries', dartType: 'num'),
         MigrateGetter(tfName: 'timeout', dartName: 'timeout', dartType: 'num'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'monitor_id',
+          dartName: 'monitorIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13557,6 +17764,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13598,6 +17815,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'monitor_group_id',
+          dartName: 'monitorGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13622,7 +17849,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_monitors',
@@ -13646,7 +17884,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_pool',
@@ -13798,6 +18047,61 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'networks',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'check_regions',
+          dartName: 'checkRegionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'health_sources',
+          dartName: 'healthSourcesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'latitude',
+          dartName: 'latitudeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'longitude',
+          dartName: 'longitudeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'minimum_origins',
+          dartName: 'minimumOriginsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'monitor',
+          dartName: 'monitorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'monitor_group',
+          dartName: 'monitorGroupRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'notification_email',
+          dartName: 'notificationEmailRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13899,6 +18203,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'notificationEmail',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pool_id',
+          dartName: 'poolIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -13930,7 +18244,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'monitor',
+          dartName: 'monitorRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_load_balancers',
@@ -13954,7 +18284,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_logpull_retention',
@@ -13980,6 +18321,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'flag', dartName: 'flagRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14000,6 +18347,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'flag', dartName: 'flag', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14037,6 +18389,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'fields',
           dartName: 'fields',
           dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dataset_id',
+          dartName: 'datasetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -14129,6 +18496,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'max_upload_records',
           dartName: 'maxUploadRecords',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dataset_id',
+          dartName: 'datasetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -14273,6 +18655,71 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'lastError',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dataset',
+          dartName: 'datasetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destination_conf',
+          dartName: 'destinationConfRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter_attack_traffic',
+          dartName: 'filterAttackTrafficRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'frequency',
+          dartName: 'frequencyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'logpull_options',
+          dartName: 'logpullOptionsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_upload_bytes',
+          dartName: 'maxUploadBytesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'max_upload_interval_seconds',
+          dartName: 'maxUploadIntervalSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'max_upload_records',
+          dartName: 'maxUploadRecordsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'ownership_challenge',
+          dartName: 'ownershipChallengeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14365,6 +18812,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'maxUploadRecords',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'job_id', dartName: 'jobIdRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14397,7 +18855,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_logpush_ownership_challenge',
@@ -14441,6 +18915,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'valid', dartName: 'valid', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destination_conf',
+          dartName: 'destinationConfRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14490,6 +18979,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_sampling',
+          dartName: 'defaultSamplingRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'router_ips',
+          dartName: 'routerIpsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14518,6 +19022,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'router_ips',
           dartName: 'routerIps',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -14609,6 +19118,52 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'automatic_advertisement',
+          dartName: 'automaticAdvertisementRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bandwidth_threshold',
+          dartName: 'bandwidthThresholdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'duration',
+          dartName: 'durationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'packet_threshold',
+          dartName: 'packetThresholdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'prefix_match',
+          dartName: 'prefixMatchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefixes',
+          dartName: 'prefixesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zscore_sensitivity',
+          dartName: 'zscoreSensitivityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zscore_target',
+          dartName: 'zscoreTargetRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14677,6 +19232,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zscoreTarget',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14701,7 +19266,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_cf1_site',
@@ -14762,6 +19338,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14804,6 +19390,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cf1_site_id',
+          dartName: 'cf1SiteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -14828,7 +19424,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_connector',
@@ -14893,6 +19500,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'license_key',
           dartName: 'licenseKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'activated',
+          dartName: 'activatedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'interrupt_window_duration_hours',
+          dartName: 'interruptWindowDurationHoursRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'interrupt_window_hour_of_day',
+          dartName: 'interruptWindowHourOfDayRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'notes',
+          dartName: 'notesRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'timezone',
+          dartName: 'timezoneRef',
           dartType: 'String',
         ),
       ],
@@ -14980,6 +19617,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'timezone',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'connector_id',
+          dartName: 'connectorIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15011,7 +19658,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'device_type',
+          dartName: 'deviceTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site',
@@ -15074,6 +19737,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'connector_id',
+          dartName: 'connectorIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ha_mode',
+          dartName: 'haModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'secondary_connector_id',
+          dartName: 'secondaryConnectorIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15123,6 +19811,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'secondary_connector_id',
           dartName: 'secondaryConnectorId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
           dartType: 'String',
         ),
       ],
@@ -15204,6 +19902,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'forward_locally',
+          dartName: 'forwardLocallyRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'protocols',
+          dartName: 'protocolsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unidirectional',
+          dartName: 'unidirectionalRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15258,6 +19986,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'unidirectional',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'acl_id',
+          dartName: 'aclIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15289,7 +20032,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_lan',
@@ -15390,6 +20149,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bond_id',
+          dartName: 'bondIdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'ha_link',
+          dartName: 'haLinkRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_breakout',
+          dartName: 'isBreakoutRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_prioritized',
+          dartName: 'isPrioritizedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'physport',
+          dartName: 'physportRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'vlan_tag',
+          dartName: 'vlanTagRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15442,6 +20241,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'vlan_tag', dartName: 'vlanTag', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'lan_id',
+          dartName: 'lanIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15473,7 +20287,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_wan',
@@ -15541,6 +20371,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'healthCheckRate',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'physport',
+          dartName: 'physportRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'vlan_tag',
+          dartName: 'vlanTagRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15591,6 +20446,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'vlan_tag', dartName: 'vlanTag', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'wan_id',
+          dartName: 'wanIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15622,7 +20492,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_sites',
@@ -15653,7 +20539,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'connectorid',
+          dartName: 'connectoridRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_bgp_filter_profile',
@@ -15711,6 +20613,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match_action',
+          dartName: 'matchActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'targets',
+          dartName: 'targetsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15763,6 +20685,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'targets',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -15787,7 +20719,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_gre_tunnel',
@@ -15896,6 +20839,43 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'automatic_return_routing',
+          dartName: 'automaticReturnRoutingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'cloudflare_gre_endpoint',
+          dartName: 'cloudflareGreEndpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'customer_gre_endpoint',
+          dartName: 'customerGreEndpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interface_address',
+          dartName: 'interfaceAddressRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interface_address6',
+          dartName: 'interfaceAddress6Ref',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'mtu', dartName: 'mtuRef', dartType: 'num'),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'num'),
       ],
     ),
     MigrateEntry(
@@ -15922,6 +20902,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gre_tunnel_id',
+          dartName: 'greTunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16044,6 +21034,47 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'automatic_return_routing',
+          dartName: 'automaticReturnRoutingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'cloudflare_endpoint',
+          dartName: 'cloudflareEndpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'customer_endpoint',
+          dartName: 'customerEndpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interface_address',
+          dartName: 'interfaceAddressRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interface_address6',
+          dartName: 'interfaceAddress6Ref',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'psk', dartName: 'pskRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'replay_protection',
+          dartName: 'replayProtectionRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16070,6 +21101,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ipsec_tunnel_id',
+          dartName: 'ipsecTunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16142,6 +21183,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'nexthop',
+          dartName: 'nexthopRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'prefix',
+          dartName: 'prefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'weight', dartName: 'weightRef', dartType: 'num'),
       ],
     ),
     MigrateEntry(
@@ -16168,6 +21235,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'route_id',
+          dartName: 'routeIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16205,6 +21282,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16224,6 +21306,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16281,6 +21368,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16328,6 +21420,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'relay_id',
+          dartName: 'relayIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16380,7 +21482,34 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'asc', dartName: 'ascRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'created_after',
+          dartName: 'createdAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_before',
+          dartName: 'createdBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_mtls_certificate',
@@ -16454,6 +21583,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ca', dartName: 'caRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'certificates',
+          dartName: 'certificatesRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'private_key',
+          dartName: 'privateKeyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16508,6 +21653,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'mtls_certificate_id',
+          dartName: 'mtlsCertificateIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16539,6 +21694,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'mtls_certificate_id',
+          dartName: 'mtlsCertificateIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16563,7 +21728,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_nel_setting',
@@ -16600,6 +21776,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16629,6 +21810,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16653,7 +21839,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_notification_policy',
@@ -16734,6 +21931,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'alert_interval',
+          dartName: 'alertIntervalRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'alert_type',
+          dartName: 'alertTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16785,6 +22007,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified',
           dartName: 'modified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
           dartType: 'String',
         ),
       ],
@@ -16844,6 +22076,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret',
+          dartName: 'secretRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -16889,6 +22132,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'webhook_id',
+          dartName: 'webhookIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -16913,7 +22166,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_oauth_client',
@@ -17068,6 +22332,86 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_cors_origins',
+          dartName: 'allowedCorsOriginsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'client_name',
+          dartName: 'clientNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'client_uri',
+          dartName: 'clientUriRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'grant_types',
+          dartName: 'grantTypesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'logo_uri',
+          dartName: 'logoUriRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'oauth_client_id',
+          dartName: 'oauthClientIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'optional_scopes',
+          dartName: 'optionalScopesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'policy_uri',
+          dartName: 'policyUriRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'post_logout_redirect_uris',
+          dartName: 'postLogoutRedirectUrisRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'redirect_uris',
+          dartName: 'redirectUrisRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'response_types',
+          dartName: 'responseTypesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'token_endpoint_auth_method',
+          dartName: 'tokenEndpointAuthMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tos_uri',
+          dartName: 'tosUriRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'visibility',
+          dartName: 'visibilityRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17188,6 +22532,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'visibility',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'oauth_client_id',
+          dartName: 'oauthClientIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17212,7 +22566,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_oauth_scopes',
@@ -17228,7 +22593,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_observatory_scheduled_test',
@@ -17268,6 +22639,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'frequency',
+          dartName: 'frequencyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17303,6 +22690,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'frequency',
           dartName: 'frequency',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -17377,6 +22775,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'createTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17428,7 +22831,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'business_address',
+          dartName: 'businessAddressRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'business_email',
+          dartName: 'businessEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'business_name',
+          dartName: 'businessNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'business_phone',
+          dartName: 'businessPhoneRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'external_metadata',
+          dartName: 'externalMetadataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_organization_profile',
@@ -17468,6 +22902,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'external_metadata',
           dartName: 'externalMetadata',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
           dartType: 'String',
         ),
       ],
@@ -17526,6 +22965,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'page_size',
+          dartName: 'pageSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'page_token',
+          dartName: 'pageTokenRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17574,6 +23028,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'expires_on',
           dartName: 'expiresOn',
           dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'csr', dartName: 'csrRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'hostnames',
+          dartName: 'hostnamesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'request_type',
+          dartName: 'requestTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'requested_validity',
+          dartName: 'requestedValidityRef',
+          dartType: 'num',
         ),
       ],
     ),
@@ -17627,6 +23097,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'requestedValidity',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'certificate_id',
+          dartName: 'certificateIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17665,7 +23140,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'offset', dartName: 'offsetRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_origin_cloud_region',
@@ -17710,6 +23198,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'origin_ip',
+          dartName: 'originIpRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'vendor',
+          dartName: 'vendorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17743,6 +23251,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
         MigrateGetter(tfName: 'vendor', dartName: 'vendor', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'origin_ip',
+          dartName: 'originIpRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17767,7 +23285,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_origin_tls_compliance_modes',
@@ -17803,6 +23332,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17836,6 +23375,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'value',
           dartName: 'value',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -17895,6 +23439,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target',
+          dartName: 'targetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -17937,6 +23501,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'pagerule_id',
+          dartName: 'pageruleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18014,6 +23588,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'url_reported_malicious',
           dartName: 'urlReportedMalicious',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'connection_id',
+          dartName: 'connectionIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -18123,7 +23707,70 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_cdn_cgi',
+          dartName: 'excludeCdnCgiRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_urls',
+          dartName: 'excludeUrlsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'export',
+          dartName: 'exportRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hosts',
+          dartName: 'hostsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'page_url',
+          dartName: 'pageUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'prioritize_malicious',
+          dartName: 'prioritizeMaliciousRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'urls', dartName: 'urlsRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_page_shield_cookies',
@@ -18202,6 +23849,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'cookie_id',
+          dartName: 'cookieIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18326,6 +23983,69 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'export',
+          dartName: 'exportRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hosts',
+          dartName: 'hostsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'http_only',
+          dartName: 'httpOnlyRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'page_url',
+          dartName: 'pageUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'path', dartName: 'pathRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'same_site',
+          dartName: 'sameSiteRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secure',
+          dartName: 'secureRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18350,7 +24070,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_page_shield_policy',
@@ -18404,6 +24135,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expressionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18443,6 +24204,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18556,6 +24327,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'url_reported_malicious',
           dartName: 'urlReportedMalicious',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'script_id',
+          dartName: 'scriptIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -18672,7 +24453,75 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_cdn_cgi',
+          dartName: 'excludeCdnCgiRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_duplicates',
+          dartName: 'excludeDuplicatesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_urls',
+          dartName: 'excludeUrlsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'export',
+          dartName: 'exportRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hosts',
+          dartName: 'hostsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'page_url',
+          dartName: 'pageUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'prioritize_malicious',
+          dartName: 'prioritizeMaliciousRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'urls', dartName: 'urlsRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_pages_domain',
@@ -18725,6 +24574,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'zone_tag',
           dartName: 'zoneTag',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_name',
+          dartName: 'projectNameRef',
           dartType: 'String',
         ),
       ],
@@ -18782,6 +24641,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneTag',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_name',
+          dartName: 'domainNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_name',
+          dartName: 'projectNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18813,7 +24687,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project_name',
+          dartName: 'projectNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_pages_project',
@@ -18911,6 +24801,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'usesFunctions',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'production_branch',
+          dartName: 'productionBranchRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -18983,6 +24883,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'usesFunctions',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project_name',
+          dartName: 'projectNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19007,7 +24917,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_pipeline',
@@ -19057,6 +24978,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'sql', dartName: 'sqlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -19101,6 +25028,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'sql', dartName: 'sql', dartType: 'String'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pipeline_id',
+          dartName: 'pipelineIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19169,6 +25106,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -19215,6 +25158,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sink_id',
+          dartName: 'sinkIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19255,6 +25208,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'pipeline_id',
+          dartName: 'pipelineIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19330,6 +25298,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19381,6 +25354,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'stream_id',
+          dartName: 'streamIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19421,6 +25404,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'pipeline_id',
+          dartName: 'pipelineIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19456,6 +25454,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_mode',
+          dartName: 'defaultModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19478,6 +25486,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'default_mode',
           dartName: 'defaultMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -19546,6 +25559,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'queueId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_name',
+          dartName: 'queueNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19600,6 +25628,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'queue_name',
           dartName: 'queueName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
           dartType: 'String',
         ),
       ],
@@ -19671,6 +25709,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'queueName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dead_letter_queue',
+          dartName: 'deadLetterQueueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -19722,6 +25781,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19753,7 +25822,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_queues',
@@ -19777,7 +25862,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket',
@@ -19830,6 +25926,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'creationDate',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'storage_class',
+          dartName: 'storageClassRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19877,6 +25993,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'storageClass',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -19917,7 +26043,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'R2BucketCorsRules',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_cors',
@@ -19941,7 +26083,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_event_notification',
@@ -19994,6 +26147,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'queueName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20029,6 +26202,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'queue_name',
           dartName: 'queueName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queue_id',
+          dartName: 'queueIdRef',
           dartType: 'String',
         ),
       ],
@@ -20071,7 +26259,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'R2BucketLifecycleRules',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_lifecycle',
@@ -20095,7 +26299,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_lock',
@@ -20135,7 +26350,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'R2BucketLockRules',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_lock',
@@ -20159,7 +26390,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_sippy',
@@ -20208,6 +26450,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20234,6 +26491,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20307,6 +26574,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ciphers',
+          dartName: 'ciphersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'min_tls',
+          dartName: 'minTlsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20360,6 +26667,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20394,6 +26716,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20428,6 +26760,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20473,6 +26815,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'domain', dartName: 'domain', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20527,7 +26889,24 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'RateLimitMatch',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'period', dartName: 'periodRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'rate_limit_id',
+          dartName: 'rateLimitIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'threshold',
+          dartName: 'thresholdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_rate_limit',
@@ -20568,6 +26947,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'threshold',
           dartName: 'threshold',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'rate_limit_id',
+          dartName: 'rateLimitIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -20614,6 +27003,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'createdOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region_key',
+          dartName: 'regionKeyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'routing',
+          dartName: 'routingRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20655,6 +27064,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'routing',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20679,7 +27098,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_regional_tiered_cache',
@@ -20715,6 +27145,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20745,6 +27185,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20790,7 +27235,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_renew',
+          dartName: 'autoRenewRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'domain_name',
+          dartName: 'domainNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'locked',
+          dartName: 'lockedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'privacy',
+          dartName: 'privacyRef',
+          dartType: 'bool',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_registrar_domain',
@@ -20814,7 +27285,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_name',
+          dartName: 'domainNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_registrar_domains',
@@ -20838,7 +27320,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_resource_group',
@@ -20865,6 +27358,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_group_id',
+          dartName: 'resourceGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20899,6 +27402,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -20971,6 +27484,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'phase',
+          dartName: 'phaseRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21023,6 +27556,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ruleset_id',
+          dartName: 'rulesetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21055,7 +27603,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_operation_settings',
@@ -21086,7 +27650,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'mitigation_action',
+          dartName: 'mitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_operation_settings',
@@ -21116,6 +27696,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'mitigationAction',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'operation_id',
+          dartName: 'operationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21140,7 +27730,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_schemas',
@@ -21206,6 +27807,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'schemaId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'validation_enabled',
+          dartName: 'validationEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21260,6 +27881,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'validationEnabled',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'schema_id',
+          dartName: 'schemaIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21298,7 +27934,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'omit_source',
+          dartName: 'omitSourceRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'validation_enabled',
+          dartName: 'validationEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_settings',
@@ -21330,7 +27987,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'validation_default_mitigation_action',
+          dartName: 'validationDefaultMitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'validation_override_mitigation_action',
+          dartName: 'validationOverrideMitigationActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_settings',
@@ -21356,6 +28029,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'validation_override_mitigation_action',
           dartName: 'validationOverrideMitigationAction',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -21402,6 +28080,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'force', dartName: 'forceRef', dartType: 'bool'),
       ],
     ),
     MigrateEntry(
@@ -21445,6 +28129,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified',
           dartName: 'modified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'store_id',
+          dartName: 'storeIdRef',
           dartType: 'String',
         ),
       ],
@@ -21513,6 +28207,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'store_id',
+          dartName: 'storeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21576,6 +28295,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secret_id',
+          dartName: 'secretIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'store_id',
+          dartName: 'storeIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21635,7 +28369,43 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'store_id',
+          dartName: 'storeIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_secrets_stores',
@@ -21673,7 +28443,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_share',
@@ -21779,6 +28570,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'targetType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_recipient_counts',
+          dartName: 'includeRecipientCountsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21875,6 +28681,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'targetType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_recipient_counts',
+          dartName: 'includeRecipientCountsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21937,6 +28763,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'organization_id',
+          dartName: 'organizationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'recipient_account_id',
+          dartName: 'recipientAccountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -21992,6 +28843,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modified',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'recipient_id',
+          dartName: 'recipientIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22030,7 +28901,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_share_resource',
@@ -22100,6 +28992,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'meta', dartName: 'metaRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'resource_account_id',
+          dartName: 'resourceAccountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_id',
+          dartName: 'resourceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_type',
+          dartName: 'resourceTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22173,6 +29091,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_resource_id',
+          dartName: 'shareResourceIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22218,7 +29151,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'resource_type',
+          dartName: 'resourceTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'share_id',
+          dartName: 'shareIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_shares',
@@ -22307,6 +29266,56 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'kind', dartName: 'kindRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_recipient_counts',
+          dartName: 'includeRecipientCountsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'include_resources',
+          dartName: 'includeResourcesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_types',
+          dartName: 'resourceTypesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tag',
+          dartName: 'tagRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'target_type',
+          dartName: 'targetTypeRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22358,6 +29367,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'files',
+          dartName: 'filesRef',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'snippet_name',
+          dartName: 'snippetNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22394,6 +29418,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'snippet_name',
+          dartName: 'snippetNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22418,7 +29452,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_snippet_rules',
@@ -22446,6 +29491,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22465,6 +29515,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22489,7 +29544,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_snippets',
@@ -22539,6 +29605,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'files',
+          dartName: 'filesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'snippet_name',
+          dartName: 'snippetNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22574,6 +29655,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'snippet_name',
+          dartName: 'snippetNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22598,7 +29689,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_spectrum_application',
@@ -22721,6 +29823,57 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'argo_smart_routing',
+          dartName: 'argoSmartRoutingRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'ip_firewall',
+          dartName: 'ipFirewallRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'origin_direct',
+          dartName: 'originDirectRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'origin_port',
+          dartName: 'originPortRef',
+          dartType: 'Object?',
+        ),
+        MigrateGetter(
+          tfName: 'origin_worker_id',
+          dartName: 'originWorkerIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'protocol',
+          dartName: 'protocolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'proxy_protocol',
+          dartName: 'proxyProtocolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tls', dartName: 'tlsRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'traffic_type',
+          dartName: 'trafficTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22811,6 +29964,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'virtualNetworkId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22849,7 +30012,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_spectrum_protocols',
@@ -22873,7 +30057,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_sso_connector',
@@ -22930,6 +30125,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'begin_verification',
+          dartName: 'beginVerificationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'email_domain',
+          dartName: 'emailDomainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'use_fedramp_language',
+          dartName: 'useFedrampLanguageRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -22977,6 +30197,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'useFedrampLanguage',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sso_connector_id',
+          dartName: 'ssoConnectorIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23001,7 +30231,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_stream',
@@ -23160,6 +30401,58 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploaded',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_origins',
+          dartName: 'allowedOriginsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'creator',
+          dartName: 'creatorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direct_user',
+          dartName: 'directUserRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_duration_seconds',
+          dartName: 'maxDurationSecondsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'meta', dartName: 'metaRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'require_signed_urls',
+          dartName: 'requireSignedUrlsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'scheduled_deletion',
+          dartName: 'scheduledDeletionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'thumbnail_timestamp_pct',
+          dartName: 'thumbnailTimestampPctRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'uid', dartName: 'uidRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'upload_expiry',
+          dartName: 'uploadExpiryRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23278,6 +30571,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploaded',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23326,6 +30629,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'audio_identifier',
+          dartName: 'audioIdentifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default',
+          dartName: 'defaultRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'label',
+          dartName: 'labelRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23350,7 +30678,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_stream_caption_language',
@@ -23396,6 +30735,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'label', dartName: 'label', dartType: 'String'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'file', dartName: 'fileRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'language',
+          dartName: 'languageRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23435,6 +30790,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'label', dartName: 'label', dartType: 'String'),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'language',
+          dartName: 'languageRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23459,7 +30829,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_stream_download',
@@ -23483,7 +30864,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_stream_key',
@@ -23510,6 +30902,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'jwk', dartName: 'jwk', dartType: 'String'),
         MigrateGetter(tfName: 'key_id', dartName: 'keyId', dartType: 'String'),
         MigrateGetter(tfName: 'pem', dartName: 'pem', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23535,6 +30932,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'key_id', dartName: 'keyId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23620,6 +31022,37 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_creator',
+          dartName: 'defaultCreatorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'delete_recording_after_days',
+          dartName: 'deleteRecordingAfterDaysRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'live_input_identifier',
+          dartName: 'liveInputIdentifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'meta', dartName: 'metaRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'prefer_low_latency',
+          dartName: 'preferLowLatencyRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23674,6 +31107,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'live_input_identifier',
+          dartName: 'liveInputIdentifierRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23756,6 +31199,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'size', dartName: 'size', dartType: 'num'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
         MigrateGetter(tfName: 'width', dartName: 'width', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'opacity',
+          dartName: 'opacityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'padding',
+          dartName: 'paddingRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'position',
+          dartName: 'positionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'scale', dartName: 'scaleRef', dartType: 'num'),
+        MigrateGetter(tfName: 'url', dartName: 'urlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -23804,6 +31274,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'size', dartName: 'size', dartType: 'num'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
         MigrateGetter(tfName: 'width', dartName: 'width', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23828,7 +31308,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_stream_webhook',
@@ -23859,6 +31350,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'notification_url',
+          dartName: 'notificationUrlRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -23888,6 +31389,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24013,6 +31519,65 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'after',
+          dartName: 'afterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'asc', dartName: 'ascRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'before',
+          dartName: 'beforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'creator',
+          dartName: 'creatorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'end', dartName: 'endRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'include_counts',
+          dartName: 'includeCountsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'live_input_id',
+          dartName: 'liveInputIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'start',
+          dartName: 'startRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'video_name',
+          dartName: 'videoNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24049,6 +31614,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24079,6 +31654,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24144,6 +31724,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'lastUpdated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'title',
+          dartName: 'titleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_sources',
+          dartName: 'tokenSourcesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'token_type',
+          dartName: 'tokenTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24196,6 +31801,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tokenType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'config_id',
+          dartName: 'configIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24220,7 +31835,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_token_validation_rules',
@@ -24300,6 +31926,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'lastUpdated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expressionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'title',
+          dartName: 'titleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24357,6 +32013,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'title', dartName: 'title', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24425,6 +32091,42 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_configuration',
+          dartName: 'tokenConfigurationRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24463,6 +32165,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'validityPeriod',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'certificate_authority',
+          dartName: 'certificateAuthorityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24492,6 +32209,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'validity_period',
           dartName: 'validityPeriod',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -24630,6 +32352,63 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'sitekey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bot_fight_mode',
+          dartName: 'botFightModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'clearance_level',
+          dartName: 'clearanceLevelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domains',
+          dartName: 'domainsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'ephemeral_id',
+          dartName: 'ephemeralIdRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'offlabel',
+          dartName: 'offlabelRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24713,6 +32492,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sitekey',
+          dartName: 'sitekeyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24758,7 +32547,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_universal_ssl_setting',
@@ -24784,6 +32599,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24804,6 +32629,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24837,6 +32667,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'scope',
+          dartName: 'scopeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24858,6 +32699,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'scope', dartName: 'scope', dartType: 'String'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -24939,6 +32785,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'two_factor_authentication_locked',
           dartName: 'twoFactorAuthenticationLocked',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'country',
+          dartName: 'countryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'first_name',
+          dartName: 'firstNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'last_name',
+          dartName: 'lastNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'telephone',
+          dartName: 'telephoneRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zipcode',
+          dartName: 'zipcodeRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -25059,6 +32930,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'modeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25100,6 +32987,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'mode', dartName: 'mode', dartType: 'String'),
         MigrateGetter(tfName: 'paused', dartName: 'paused', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'ua_rule_id',
+          dartName: 'uaRuleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25145,7 +33042,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'user_agent',
+          dartName: 'userAgentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_user_group',
@@ -25191,6 +33114,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25234,6 +33162,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified_on',
           dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'user_group_id',
+          dartName: 'userGroupIdRef',
           dartType: 'String',
         ),
       ],
@@ -25299,6 +33237,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fuzzy_email',
+          dartName: 'fuzzyEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'page', dartName: 'pageRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'user_group_id',
+          dartName: 'userGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25339,6 +33303,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fuzzy_email',
+          dartName: 'fuzzyEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'user_group_id',
+          dartName: 'userGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25387,6 +33371,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fuzzy_name',
+          dartName: 'fuzzyNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25442,6 +33446,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'credential_set_id',
+          dartName: 'credentialSetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location_name',
+          dartName: 'locationNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25486,6 +33515,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'locationName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'credential_id',
+          dartName: 'credentialIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'credential_set_id',
+          dartName: 'credentialSetIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25513,6 +33557,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25540,6 +33589,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'credential_set_id',
+          dartName: 'credentialSetIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25564,7 +33623,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_credentials',
@@ -25595,7 +33665,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'credential_set_id',
+          dartName: 'credentialSetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_target_environment',
@@ -25637,6 +33723,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25669,6 +33765,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'description',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target_environment_id',
+          dartName: 'targetEnvironmentIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -25693,7 +33799,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_waiting_room',
@@ -25884,6 +34001,93 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'nextEventStartTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'cookie_suffix',
+          dartName: 'cookieSuffixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_page_html',
+          dartName: 'customPageHtmlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_template_language',
+          dartName: 'defaultTemplateLanguageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disable_session_renewal',
+          dartName: 'disableSessionRenewalRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'enabled_origin_commands',
+          dartName: 'enabledOriginCommandsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'json_response_enabled',
+          dartName: 'jsonResponseEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'new_users_per_minute',
+          dartName: 'newUsersPerMinuteRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'path', dartName: 'pathRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'queue_all',
+          dartName: 'queueAllRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'queueing_method',
+          dartName: 'queueingMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queueing_status_code',
+          dartName: 'queueingStatusCodeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'session_duration',
+          dartName: 'sessionDurationRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'suspended',
+          dartName: 'suspendedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'total_active_users',
+          dartName: 'totalActiveUsersRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'turnstile_action',
+          dartName: 'turnstileActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'turnstile_mode',
+          dartName: 'turnstileModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26011,6 +34215,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'turnstile_mode',
           dartName: 'turnstileMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -26155,6 +34369,86 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'custom_page_html',
+          dartName: 'customPageHtmlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disable_session_renewal',
+          dartName: 'disableSessionRenewalRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'event_end_time',
+          dartName: 'eventEndTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'event_start_time',
+          dartName: 'eventStartTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'new_users_per_minute',
+          dartName: 'newUsersPerMinuteRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'prequeue_start_time',
+          dartName: 'prequeueStartTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'queueing_method',
+          dartName: 'queueingMethodRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'session_duration',
+          dartName: 'sessionDurationRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'shuffle_at_event_start',
+          dartName: 'shuffleAtEventStartRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'suspended',
+          dartName: 'suspendedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'total_active_users',
+          dartName: 'totalActiveUsersRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'turnstile_action',
+          dartName: 'turnstileActionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'turnstile_mode',
+          dartName: 'turnstileModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26269,6 +34563,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'turnstileMode',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'event_id',
+          dartName: 'eventIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26300,7 +34609,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_waiting_room_rules',
@@ -26335,6 +34660,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26383,6 +34718,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'waiting_room_id',
+          dartName: 'waitingRoomIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26409,6 +34754,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'search_engine_crawler_bypass',
+          dartName: 'searchEngineCrawlerBypassRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26432,6 +34787,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'search_engine_crawler_bypass',
           dartName: 'searchEngineCrawlerBypass',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -26465,7 +34825,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_web3_hostname',
@@ -26524,6 +34900,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dnslink',
+          dartName: 'dnslinkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target',
+          dartName: 'targetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26573,6 +34969,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'target', dartName: 'target', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'identifier',
+          dartName: 'identifierRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26597,7 +35003,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_web_analytics_rule',
@@ -26660,6 +35077,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'priority',
           dartName: 'priority',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'inclusive',
+          dartName: 'inclusiveRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_paused',
+          dartName: 'isPausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'paths',
+          dartName: 'pathsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'ruleset_id',
+          dartName: 'rulesetIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -26735,6 +35178,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'snippet',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_install',
+          dartName: 'autoInstallRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'host', dartName: 'hostRef', dartType: 'String'),
+        MigrateGetter(tfName: 'lite', dartName: 'liteRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_tag',
+          dartName: 'zoneTagRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26794,6 +35259,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'snippet',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26825,7 +35300,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_worker',
@@ -26921,6 +35412,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'force', dartName: 'forceRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'logpush',
+          dartName: 'logpushRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -26975,6 +35482,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_on',
           dartName: 'updatedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'worker_id',
+          dartName: 'workerIdRef',
           dartType: 'String',
         ),
       ],
@@ -27175,6 +35692,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'urls',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'compatibility_date',
+          dartName: 'compatibilityDateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'compatibility_flags',
+          dartName: 'compatibilityFlagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'deploy',
+          dartName: 'deployRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'include',
+          dartName: 'includeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'main_module',
+          dartName: 'mainModuleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'usage_model',
+          dartName: 'usageModelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'worker_id',
+          dartName: 'workerIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27272,6 +35829,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'usageModel',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include',
+          dartName: 'includeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'version_id',
+          dartName: 'versionIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'worker_id',
+          dartName: 'workerIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27303,7 +35880,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'worker_id',
+          dartName: 'workerIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers',
@@ -27341,7 +35934,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_cron_trigger',
@@ -27376,6 +35990,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27402,6 +36026,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27460,6 +36094,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'cert_id',
           dartName: 'certId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'environment',
+          dartName: 'environmentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_name',
+          dartName: 'zoneNameRef',
           dartType: 'String',
         ),
       ],
@@ -27526,6 +36190,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_id',
+          dartName: 'domainIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27586,7 +36260,43 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'environment',
+          dartName: 'environmentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_name',
+          dartName: 'zoneNameRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_deployment',
@@ -27654,6 +36364,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'source', dartName: 'source', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'force', dartName: 'forceRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'strategy',
+          dartName: 'strategyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27703,6 +36429,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'strategy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deployment_id',
+          dartName: 'deploymentIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27748,7 +36489,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'since',
+          dartName: 'sinceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'until',
+          dartName: 'untilRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_for_platforms_dispatch_namespace',
@@ -27814,6 +36581,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'trusted_workers',
           dartName: 'trustedWorkers',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -27881,6 +36653,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'trustedWorkers',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dispatch_namespace',
+          dartName: 'dispatchNamespaceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -27905,7 +36687,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_kv',
@@ -27966,6 +36759,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expiration',
+          dartName: 'expirationRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'expiration_ttl',
+          dartName: 'expirationTtlRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'key_name',
+          dartName: 'keyNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'metadata',
+          dartName: 'metadataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'namespace_id',
+          dartName: 'namespaceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28000,6 +36828,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_name',
+          dartName: 'keyNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'namespace_id',
+          dartName: 'namespaceIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28037,6 +36880,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'supports_url_encoding',
           dartName: 'supportsUrlEncoding',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdictionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'title',
+          dartName: 'titleRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -28083,6 +36941,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(tfName: 'title', dartName: 'title', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'namespace_id',
+          dartName: 'namespaceIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28121,7 +36989,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_route',
@@ -28154,6 +37043,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'patternRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script',
+          dartName: 'scriptRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28186,6 +37090,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'script', dartName: 'script', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'route_id',
+          dartName: 'routeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28210,7 +37124,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_script',
@@ -28477,6 +37402,77 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'startupTimeMs',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'body_part',
+          dartName: 'bodyPartRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'compatibility_date',
+          dartName: 'compatibilityDateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'compatibility_flags',
+          dartName: 'compatibilityFlagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'content',
+          dartName: 'contentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content_file',
+          dartName: 'contentFileRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content_sha256',
+          dartName: 'contentSha256Ref',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'content_type',
+          dartName: 'contentTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'force', dartName: 'forceRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'keep_assets',
+          dartName: 'keepAssetsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'keep_bindings',
+          dartName: 'keepBindingsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'logpush',
+          dartName: 'logpushRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'main_module',
+          dartName: 'mainModuleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'usage_model',
+          dartName: 'usageModelRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28512,6 +37508,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'script', dartName: 'script', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28552,6 +37558,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'previews_enabled',
+          dartName: 'previewsEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28582,6 +37608,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'previews_enabled',
           dartName: 'previewsEnabled',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -28614,7 +37650,19 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'tags', dartName: 'tagsRef', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workflow',
@@ -28728,6 +37776,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'versionId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'class_name',
+          dartName: 'classNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_name',
+          dartName: 'scriptNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'workflow_name',
+          dartName: 'workflowNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28798,6 +37866,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'triggeredOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'workflow_name',
+          dartName: 'workflowNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -28829,7 +37907,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_portal',
@@ -28927,6 +38021,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedBy',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_code_mode',
+          dartName: 'allowCodeModeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'code_mode',
+          dartName: 'codeModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secure_web_gateway',
+          dartName: 'secureWebGatewayRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29000,6 +38124,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'secureWebGateway',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29031,7 +38160,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_server',
@@ -29179,6 +38324,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tools',
           dartType: 'List<Map<String, String>>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_credentials',
+          dartName: 'authCredentialsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auth_type',
+          dartName: 'authTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'client_secret',
+          dartName: 'clientSecretRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_shared_oauth_callback_enabled',
+          dartName: 'isSharedOauthCallbackEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'secure_web_gateway',
+          dartName: 'secureWebGatewayRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29279,6 +38464,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tools',
           dartType: 'List<Map<String, String>>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29310,7 +38500,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_application',
@@ -29616,6 +38822,147 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'aud', dartName: 'aud', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_authenticate_via_warp',
+          dartName: 'allowAuthenticateViaWarpRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allow_iframe',
+          dartName: 'allowIframeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_idps',
+          dartName: 'allowedIdpsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'app_launcher_logo_url',
+          dartName: 'appLauncherLogoUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_launcher_visible',
+          dartName: 'appLauncherVisibleRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'auto_redirect_to_identity',
+          dartName: 'autoRedirectToIdentityRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bg_color',
+          dartName: 'bgColorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_deny_message',
+          dartName: 'customDenyMessageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_deny_url',
+          dartName: 'customDenyUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_non_identity_deny_url',
+          dartName: 'customNonIdentityDenyUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_pages',
+          dartName: 'customPagesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enable_binding_cookie',
+          dartName: 'enableBindingCookieRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'header_bg_color',
+          dartName: 'headerBgColorRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'http_only_cookie_attribute',
+          dartName: 'httpOnlyCookieAttributeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'logo_url',
+          dartName: 'logoUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'options_preflight_bypass',
+          dartName: 'optionsPreflightBypassRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'path_cookie_attribute',
+          dartName: 'pathCookieAttributeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'read_service_tokens_from_header',
+          dartName: 'readServiceTokensFromHeaderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'same_site_cookie_attribute',
+          dartName: 'sameSiteCookieAttributeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'self_hosted_domains',
+          dartName: 'selfHostedDomainsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'service_auth_401_redirect',
+          dartName: 'serviceAuth401RedirectRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'session_duration',
+          dartName: 'sessionDurationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'skip_app_launcher_login_page',
+          dartName: 'skipAppLauncherLoginPageRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'skip_interstitial',
+          dartName: 'skipInterstitialRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29787,6 +39134,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29856,6 +39218,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'aud', dartName: 'audRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'domain',
+          dartName: 'domainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'exact', dartName: 'exactRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29905,6 +39294,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'contract_version',
+          dartName: 'contractVersionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'custom_html',
+          dartName: 'customHtmlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -29944,6 +39349,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_page_id',
+          dartName: 'customPageIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -29968,7 +39383,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_group',
@@ -30037,6 +39463,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_default',
+          dartName: 'isDefaultRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30080,6 +39521,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'group_id',
+          dartName: 'groupIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30128,6 +39584,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30200,6 +39676,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'read_only',
+          dartName: 'readOnlyRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'saml_certificate_set_id',
+          dartName: 'samlCertificateSetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30254,6 +39751,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identity_provider_id',
+          dartName: 'identityProviderIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30293,7 +39805,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'scim_enabled',
+          dartName: 'scimEnabledRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_infrastructure_target',
@@ -30343,6 +39876,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'modified_at',
           dartName: 'modifiedAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'Map<String, String>',
         ),
       ],
     ),
@@ -30397,6 +39945,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'tags',
           dartName: 'tags',
           dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target_id',
+          dartName: 'targetIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -30555,7 +40113,105 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_after',
+          dartName: 'createdAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_before',
+          dartName: 'createdBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname_contains',
+          dartName: 'hostnameContainsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_like',
+          dartName: 'ipLikeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ip_v4', dartName: 'ipV4Ref', dartType: 'String'),
+        MigrateGetter(tfName: 'ip_v6', dartName: 'ipV6Ref', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'ips',
+          dartName: 'ipsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'ipv4_end',
+          dartName: 'ipv4EndRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ipv4_start',
+          dartName: 'ipv4StartRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ipv6_end',
+          dartName: 'ipv6EndRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ipv6_start',
+          dartName: 'ipv6StartRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'modified_after',
+          dartName: 'modifiedAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_before',
+          dartName: 'modifiedBeforeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tag',
+          dartName: 'tagRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'target_ids',
+          dartName: 'targetIdsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_key_configuration',
@@ -30591,6 +40247,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'lastKeyRotationAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_rotation_interval_days',
+          dartName: 'keyRotationIntervalDaysRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30623,6 +40289,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'last_key_rotation_at',
           dartName: 'lastKeyRotationAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
           dartType: 'String',
         ),
       ],
@@ -30684,6 +40355,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'fingerprint',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'associated_hostnames',
+          dartName: 'associatedHostnamesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'certificate',
+          dartName: 'certificateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30734,6 +40425,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'fingerprint',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate_id',
+          dartName: 'certificateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30766,7 +40472,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_mtls_hostname_settings',
@@ -30816,6 +40538,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'hostname',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30857,6 +40589,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'hostname',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -30881,7 +40623,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_policy',
@@ -31022,6 +40775,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'approval_required',
+          dartName: 'approvalRequiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'decision',
+          dartName: 'decisionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'isolation_required',
+          dartName: 'isolationRequiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'purpose_justification_prompt',
+          dartName: 'purposeJustificationPromptRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'purpose_justification_required',
+          dartName: 'purposeJustificationRequiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'session_duration',
+          dartName: 'sessionDurationRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31097,6 +40885,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
           dartType: 'String',
         ),
       ],
@@ -31177,6 +40975,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'expiresAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'client_secret_version',
+          dartName: 'clientSecretVersionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'duration',
+          dartName: 'durationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'previous_client_secret_expires_at',
+          dartName: 'previousClientSecretExpiresAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31236,6 +41064,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'expiresAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_token_id',
+          dartName: 'serviceTokenIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31284,6 +41127,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31322,6 +41185,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'public_key',
           dartName: 'publicKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -31364,6 +41242,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'publicKey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31396,7 +41289,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_tag',
@@ -31423,6 +41332,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31450,6 +41364,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tag_name',
+          dartName: 'tagNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31474,7 +41398,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_policies',
@@ -31498,7 +41433,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_policy',
@@ -31587,6 +41533,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'applies_to_all_integrations',
+          dartName: 'appliesToAllIntegrationsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'finding_type_id',
+          dartName: 'findingTypeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_ids',
+          dartName: 'integrationIdsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31657,6 +41638,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
           dartType: 'String',
         ),
       ],
@@ -31733,6 +41724,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'authentication_type',
+          dartName: 'authenticationTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destination_url',
+          dartName: 'destinationUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'label',
+          dartName: 'labelRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'signing_secret',
+          dartName: 'signingSecretRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31782,6 +41803,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'webhook_id',
+          dartName: 'webhookIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31806,7 +41837,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_connectivity_settings',
@@ -31839,6 +41881,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'icmp_proxy_enabled',
+          dartName: 'icmpProxyEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'offramp_warp_enabled',
+          dartName: 'offrampWarpEnabledRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -31867,6 +41924,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'offramp_warp_enabled',
           dartName: 'offrampWarpEnabled',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -32103,6 +42165,111 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'policyId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_mode_switch',
+          dartName: 'allowModeSwitchRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allow_updates',
+          dartName: 'allowUpdatesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_to_leave',
+          dartName: 'allowedToLeaveRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'auto_connect',
+          dartName: 'autoConnectRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'captive_portal',
+          dartName: 'captivePortalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disable_auto_fallback',
+          dartName: 'disableAutoFallbackRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_office_ips',
+          dartName: 'excludeOfficeIpsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'lan_allow_minutes',
+          dartName: 'lanAllowMinutesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'lan_allow_subnet_size',
+          dartName: 'lanAllowSubnetSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'precedence',
+          dartName: 'precedenceRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'profile_type',
+          dartName: 'profileTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'register_interface_ip_with_dns',
+          dartName: 'registerInterfaceIpWithDnsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sccm_vpn_boundary_support',
+          dartName: 'sccmVpnBoundarySupportRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'support_url',
+          dartName: 'supportUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'switch_locked',
+          dartName: 'switchLockedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_protocol',
+          dartName: 'tunnelProtocolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtectionRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32240,6 +42407,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uninstallProtection',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32276,6 +42453,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32315,6 +42502,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'suffix', dartName: 'suffix', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_id',
+          dartName: 'policyIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32346,7 +42543,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'profile_type',
+          dartName: 'profileTypeRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_default_profile',
@@ -32536,6 +42749,86 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'profileType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_mode_switch',
+          dartName: 'allowModeSwitchRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allow_updates',
+          dartName: 'allowUpdatesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_to_leave',
+          dartName: 'allowedToLeaveRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'auto_connect',
+          dartName: 'autoConnectRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'captive_portal',
+          dartName: 'captivePortalRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'disable_auto_fallback',
+          dartName: 'disableAutoFallbackRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_office_ips',
+          dartName: 'excludeOfficeIpsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'lan_allow_minutes',
+          dartName: 'lanAllowMinutesRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'lan_allow_subnet_size',
+          dartName: 'lanAllowSubnetSizeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'register_interface_ip_with_dns',
+          dartName: 'registerInterfaceIpWithDnsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'sccm_vpn_boundary_support',
+          dartName: 'sccmVpnBoundarySupportRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'support_url',
+          dartName: 'supportUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'switch_locked',
+          dartName: 'switchLockedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_protocol',
+          dartName: 'tunnelProtocolRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtectionRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32641,6 +42934,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uninstallProtection',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32665,7 +42963,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_default_profile_certificates',
@@ -32684,6 +42993,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32713,6 +43027,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32745,6 +43064,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateGetter(tfName: 'suffix', dartName: 'suffix', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32798,6 +43122,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_ids',
+          dartName: 'policyIdsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32840,6 +43174,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'group_id',
+          dartName: 'groupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32864,7 +43208,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_ip_profile',
@@ -32936,6 +43291,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'precedence',
+          dartName: 'precedenceRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'subnet_id',
+          dartName: 'subnetIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -32998,6 +43383,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33029,7 +43424,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'per_page',
+          dartName: 'perPageRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_managed_networks',
@@ -33076,6 +43487,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'networkId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -33104,6 +43521,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'network_id',
+          dartName: 'networkIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33128,7 +43555,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_integration',
@@ -33177,6 +43615,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'interval',
+          dartName: 'intervalRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -33210,6 +43659,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33234,7 +43693,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_rule',
@@ -33307,6 +43777,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expiration',
+          dartName: 'expirationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'schedule',
+          dartName: 'scheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -33351,6 +43842,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33375,7 +43876,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_settings',
@@ -33455,7 +43967,58 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disable_for_time',
+          dartName: 'disableForTimeRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'external_emergency_signal_enabled',
+          dartName: 'externalEmergencySignalEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'external_emergency_signal_fingerprint',
+          dartName: 'externalEmergencySignalFingerprintRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'external_emergency_signal_interval',
+          dartName: 'externalEmergencySignalIntervalRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'external_emergency_signal_url',
+          dartName: 'externalEmergencySignalUrlRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gateway_proxy_enabled',
+          dartName: 'gatewayProxyEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'gateway_udp_proxy_enabled',
+          dartName: 'gatewayUdpProxyEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'root_certificate_installation_enabled',
+          dartName: 'rootCertificateInstallationEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'use_zt_virtual_ip',
+          dartName: 'useZtVirtualIpRef',
+          dartType: 'bool',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_settings',
@@ -33517,6 +44080,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'use_zt_virtual_ip',
           dartName: 'useZtVirtualIp',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -33581,6 +44149,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'subnetType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_default_network',
+          dartName: 'isDefaultNetworkRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'network',
+          dartName: 'networkRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33638,6 +44226,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'subnetType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'subnet_id',
+          dartName: 'subnetIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33689,6 +44287,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33730,6 +44343,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
           dartType: 'String',
         ),
       ],
@@ -33779,6 +44402,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sort_by',
+          dartName: 'sortByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sort_order',
+          dartName: 'sortOrderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33852,6 +44495,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'test_id',
           dartName: 'testId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'interval',
+          dartName: 'intervalRef',
           dartType: 'String',
         ),
       ],
@@ -33929,6 +44592,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updated',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dex_test_id',
+          dartName: 'dexTestIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33969,6 +44642,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'kind', dartName: 'kindRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'test_name',
+          dartName: 'testNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -33993,7 +44681,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_entry',
@@ -34081,6 +44780,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34149,6 +44868,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'word_list',
           dartName: 'wordList',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
           dartType: 'String',
         ),
       ],
@@ -34283,6 +45012,46 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_context_enabled',
+          dartName: 'aiContextEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_match_count',
+          dartName: 'allowedMatchCountRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'confidence_threshold',
+          dartName: 'confidenceThresholdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_classes',
+          dartName: 'dataClassesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'data_tags',
+          dartName: 'dataTagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ocr_enabled',
+          dartName: 'ocrEnabledRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34366,6 +45135,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34415,6 +45194,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34439,7 +45228,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_class',
@@ -34506,6 +45306,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_tags',
+          dartName: 'dataTagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expressionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34558,6 +45378,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_class_id',
+          dartName: 'dataClassIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34582,7 +45412,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tag',
@@ -34631,6 +45472,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
           dartType: 'String',
         ),
       ],
@@ -34682,6 +45538,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tag_id',
+          dartName: 'tagIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34706,7 +45577,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tag_category',
@@ -34753,6 +45635,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
           dartType: 'String',
         ),
       ],
@@ -34802,6 +45694,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34833,7 +45735,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_dataset',
@@ -34917,6 +45835,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'case_sensitive',
+          dartName: 'caseSensitiveRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'dataset_id',
+          dartName: 'datasetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'encoding_version',
+          dartName: 'encodingVersionRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'secret',
+          dartName: 'secretRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34976,6 +45924,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dataset_id',
+          dartName: 'datasetIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35000,7 +45958,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_entries',
@@ -35024,7 +45993,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_entry',
@@ -35118,6 +46098,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -35188,6 +46189,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35212,7 +46223,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_integration_entry',
@@ -35290,6 +46312,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35360,6 +46402,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35384,7 +46436,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_predefined_entry',
@@ -35462,6 +46525,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wordList',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35530,6 +46613,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'word_list',
           dartName: 'wordList',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'entry_id',
+          dartName: 'entryIdRef',
           dartType: 'String',
         ),
       ],
@@ -35608,6 +46701,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'openAccess',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_context_enabled',
+          dartName: 'aiContextEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'allowed_match_count',
+          dartName: 'allowedMatchCountRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'confidence_threshold',
+          dartName: 'confidenceThresholdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled_entries',
+          dartName: 'enabledEntriesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'ocr_enabled',
+          dartName: 'ocrEnabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35665,6 +46793,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'openAccess',
           dartType: 'bool',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_id',
+          dartName: 'profileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35714,6 +46852,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35761,6 +46909,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35785,7 +46943,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_level',
@@ -35834,6 +47003,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
           dartType: 'String',
         ),
       ],
@@ -35885,6 +47069,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_level_id',
+          dartName: 'sensitivityLevelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35918,6 +47117,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'level_ids',
+          dartName: 'levelIdsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -35948,6 +47162,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'level_ids',
           dartName: 'levelIds',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -35980,7 +47204,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'sensitivity_group_id',
+          dartName: 'sensitivityGroupIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_settings',
@@ -36021,6 +47261,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_context_analysis',
+          dartName: 'aiContextAnalysisRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'ocr', dartName: 'ocrRef', dartType: 'bool'),
       ],
     ),
     MigrateEntry(
@@ -36046,6 +47297,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(tfName: 'ocr', dartName: 'ocr', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36150,6 +47406,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'client_default',
+          dartName: 'clientDefaultRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'dns_destination_ips_id',
+          dartName: 'dnsDestinationIpsIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ecs_support',
+          dartName: 'ecsSupportRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36231,6 +47507,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location_id',
+          dartName: 'locationIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36283,7 +47569,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_app_types_list',
@@ -36307,7 +47624,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_categories_list',
@@ -36331,7 +47659,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_certificate',
@@ -36411,6 +47750,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'activate',
+          dartName: 'activateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'validity_period_days',
+          dartName: 'validityPeriodDaysRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36484,6 +47838,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'uploadedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'certificate_id',
+          dartName: 'certificateIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36508,7 +47872,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_logging',
@@ -36542,6 +47917,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'redact_pii',
+          dartName: 'redactPiiRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36565,6 +47950,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'redact_pii',
           dartName: 'redactPii',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -36625,6 +48015,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'contents',
+          dartName: 'contentsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'slug', dartName: 'slugRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -36674,6 +48080,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'url', dartName: 'url', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pacfile_id',
+          dartName: 'pacfileIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36698,7 +48114,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_policies',
@@ -36750,7 +48177,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_policy',
@@ -36894,6 +48352,51 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'warningStatus',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'device_posture',
+          dartName: 'devicePostureRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'filters',
+          dartName: 'filtersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'identity',
+          dartName: 'identityRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'precedence',
+          dartName: 'precedenceRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'traffic',
+          dartName: 'trafficRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -36997,6 +48500,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'warningStatus',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_id',
+          dartName: 'ruleIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37054,6 +48567,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ips',
+          dartName: 'ipsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37104,6 +48627,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'proxy_endpoint_id',
+          dartName: 'proxyEndpointIdRef',
           dartType: 'String',
         ),
       ],
@@ -37158,7 +48691,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_settings',
@@ -37195,6 +48759,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37222,6 +48791,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
           dartType: 'String',
         ),
       ],
@@ -37289,6 +48863,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -37343,6 +48928,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'list_id',
+          dartName: 'listIdRef',
           dartType: 'String',
         ),
       ],
@@ -37404,7 +48999,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_network_hostname_route',
@@ -37462,6 +49089,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'tunnel_name',
           dartName: 'tunnelName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
           dartType: 'String',
         ),
       ],
@@ -37533,6 +49180,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tunnelName',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname_route_id',
+          dartName: 'hostnameRouteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37594,6 +49251,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'existed_at',
+          dartName: 'existedAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_deleted',
+          dartName: 'isDeletedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37764,6 +49456,81 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'trustedAccounts',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'allow_authenticate_via_warp',
+          dartName: 'allowAuthenticateViaWarpRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'auth_domain',
+          dartName: 'authDomainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_redirect_to_identity',
+          dartName: 'autoRedirectToIdentityRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deny_unmatched_requests',
+          dartName: 'denyUnmatchedRequestsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deny_unmatched_requests_exempted_zone_names',
+          dartName: 'denyUnmatchedRequestsExemptedZoneNamesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'is_ui_read_only',
+          dartName: 'isUiReadOnlyRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'mfa_configuration_allowed',
+          dartName: 'mfaConfigurationAllowedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'mfa_required_for_all_apps',
+          dartName: 'mfaRequiredForAllAppsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'session_duration',
+          dartName: 'sessionDurationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ui_read_only_toggle_reason',
+          dartName: 'uiReadOnlyToggleReasonRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'user_seat_expiration_inactive_time',
+          dartName: 'userSeatExpirationInactiveTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'warp_auth_non_browser_401',
+          dartName: 'warpAuthNonBrowser401Ref',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'warp_auth_session_duration',
+          dartName: 'warpAuthSessionDurationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -37854,6 +49621,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'warp_auth_session_duration',
           dartName: 'warpAuthSessionDuration',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -37975,6 +49752,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryIdRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'hostnames',
+          dartName: 'hostnamesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'human_id',
+          dartName: 'humanIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_subnets',
+          dartName: 'ipSubnetsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'port_protocols',
+          dartName: 'portProtocolsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'support_domains',
+          dartName: 'supportDomainsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38083,6 +49895,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'version',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38149,7 +49966,40 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fields',
+          dartName: 'fieldsRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter',
+          dartName: 'filterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'offset', dartName: 'offsetRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'order_by',
+          dartName: 'orderByRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'search',
+          dartName: 'searchRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_categories',
@@ -38187,7 +50037,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'limit', dartName: 'limitRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(tfName: 'offset', dartName: 'offsetRef', dartType: 'num'),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_category',
@@ -38224,6 +50087,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'description',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38250,7 +50118,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'ZeroTrustRiskBehaviorBehaviors',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_risk_behavior',
@@ -38267,7 +50141,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_risk_scoring_integration',
@@ -38329,6 +50209,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wellKnownUrl',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'active',
+          dartName: 'activeRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'integration_type',
+          dartName: 'integrationTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reference_id',
+          dartName: 'referenceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tenant_url',
+          dartName: 'tenantUrlRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38386,6 +50291,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'wellKnownUrl',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38410,7 +50325,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared',
@@ -38490,6 +50416,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'tun_type',
           dartName: 'tunType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'config_src',
+          dartName: 'configSrcRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_secret',
+          dartName: 'tunnelSecretRef',
           dartType: 'String',
         ),
       ],
@@ -38573,6 +50514,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tunType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38620,6 +50571,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source',
+          dartName: 'sourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38652,6 +50618,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'source', dartName: 'source', dartType: 'String'),
         MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38707,6 +50683,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'deleted_at',
           dartName: 'deletedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'network',
+          dartName: 'networkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkIdRef',
           dartType: 'String',
         ),
       ],
@@ -38771,6 +50772,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'virtual_network_id',
           dartName: 'virtualNetworkId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'route_id',
+          dartName: 'routeIdRef',
           dartType: 'String',
         ),
       ],
@@ -38860,7 +50871,63 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'existed_at',
+          dartName: 'existedAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_deleted',
+          dartName: 'isDeletedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network_subset',
+          dartName: 'networkSubsetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'network_superset',
+          dartName: 'networkSupersetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'route_id',
+          dartName: 'routeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tun_types',
+          dartName: 'tunTypesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_token',
@@ -38886,6 +50953,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'token', dartName: 'token', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38944,6 +51021,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'deletedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'comment',
+          dartName: 'commentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_default',
+          dartName: 'isDefaultRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_default_network',
+          dartName: 'isDefaultNetworkRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -38998,6 +51095,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'is_default_network',
           dartName: 'isDefaultNetwork',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -39054,6 +51161,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_default',
+          dartName: 'isDefaultRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_default_network',
+          dartName: 'isDefaultNetworkRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_deleted',
+          dartName: 'isDeletedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39143,6 +51275,52 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_prefix',
+          dartName: 'excludePrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'existed_at',
+          dartName: 'existedAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_prefix',
+          dartName: 'includePrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_deleted',
+          dartName: 'isDeletedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'uuid', dartName: 'uuidRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'was_active_at',
+          dartName: 'wasActiveAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'was_inactive_at',
+          dartName: 'wasInactiveAtRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39220,6 +51398,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tunType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ha', dartName: 'haRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'tunnel_secret',
+          dartName: 'tunnelSecretRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39291,6 +51480,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'tunType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39347,6 +51546,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ha_mode',
+          dartName: 'haModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39392,6 +51606,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'updatedAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39418,6 +51642,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'token', dartName: 'token', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tunnel_id',
+          dartName: 'tunnelIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39507,6 +51741,52 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'exclude_prefix',
+          dartName: 'excludePrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'existed_at',
+          dartName: 'existedAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_prefix',
+          dartName: 'includePrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_deleted',
+          dartName: 'isDeletedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'uuid', dartName: 'uuidRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'was_active_at',
+          dartName: 'wasActiveAtRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'was_inactive_at',
+          dartName: 'wasInactiveAtRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39611,6 +51891,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'verificationKey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'vanity_name_servers',
+          dartName: 'vanityNameServersRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39701,6 +51992,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'verificationKey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39732,6 +52028,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39755,6 +52061,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified_on',
           dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -39793,6 +52104,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39823,6 +52144,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39860,6 +52186,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -39887,6 +52218,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'modified_on',
           dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -39972,7 +52308,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'ZoneDnsSettingsSoa',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'flatten_all_cnames',
+          dartName: 'flattenAllCnamesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'foundation_dns',
+          dartName: 'foundationDnsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'multi_provider',
+          dartName: 'multiProviderRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'ns_ttl', dartName: 'nsTtlRef', dartType: 'num'),
+        MigrateGetter(
+          tfName: 'secondary_overrides',
+          dartName: 'secondaryOverridesRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_mode',
+          dartName: 'zoneModeRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zone_dns_settings',
@@ -40014,6 +52382,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'zone_mode',
           dartName: 'zoneMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -40097,6 +52470,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'publicKey',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'dnssec_multi_signer',
+          dartName: 'dnssecMultiSignerRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'dnssec_presigned',
+          dartName: 'dnssecPresignedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'dnssec_use_nsec3',
+          dartName: 'dnssecUseNsec3Ref',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40166,6 +52564,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40200,6 +52603,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'hold', dartName: 'hold', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'hold_after',
+          dartName: 'holdAfterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'include_subdomains',
+          dartName: 'includeSubdomainsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40228,6 +52646,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'include_subdomains',
           dartName: 'includeSubdomains',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
           dartType: 'String',
         ),
       ],
@@ -40296,6 +52719,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'modifiedOn',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'paused',
+          dartName: 'pausedRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'urls',
+          dartName: 'urlsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40350,6 +52798,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'urls',
           dartName: 'urls',
           dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'lock_downs_id',
+          dartName: 'lockDownsIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -40438,7 +52896,59 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           attribute: 'id',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'created_on',
+          dartName: 'createdOnRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description_search',
+          dartName: 'descriptionSearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ip', dartName: 'ipRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'ip_range_search',
+          dartName: 'ipRangeSearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_search',
+          dartName: 'ipSearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'modified_on',
+          dartName: 'modifiedOnRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'uri_search',
+          dartName: 'uriSearchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_zone_setting',
@@ -40493,6 +53003,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'timeRemaining',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'setting_id',
+          dartName: 'settingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
+          dartType: 'Object?',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40536,6 +53066,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(tfName: 'value', dartName: 'value', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'setting_id',
+          dartName: 'settingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40587,6 +53127,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'price', dartName: 'price', dartType: 'num'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'frequency',
+          dartName: 'frequencyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40628,6 +53178,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'price', dartName: 'price', dartType: 'num'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40689,6 +53244,41 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'destinations',
+          dartName: 'destinationsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'enabled',
+          dartName: 'enabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'forward_context',
+          dartName: 'forwardContextRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'persist',
+          dartName: 'persistRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'propagation_policy',
+          dartName: 'propagationPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sampling_ratio',
+          dartName: 'samplingRatioRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40730,6 +53320,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'samplingRatio',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40758,6 +53353,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40777,6 +53377,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'zone_id',
+          dartName: 'zoneIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -40845,6 +53450,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match',
+          dartName: 'matchRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_items',
+          dartName: 'maxItemsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'order',
+          dartName: 'orderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'type',
+          dartName: 'typeRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
   ],

@@ -4,11 +4,19 @@
 library;
 
 export 'src/binary_authorization/google_binary_authorization_attestor.dart'
-    show GoogleBinaryAuthorizationAttestor;
+    show
+        BinaryAuthorizationAttestorAttestationAuthorityNote,
+        BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys,
+        BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey,
+        GoogleBinaryAuthorizationAttestor;
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_binding.dart'
-    show GoogleBinaryAuthorizationAttestorIamBinding;
+    show
+        BinaryAuthorizationAttestorIamBindingCondition,
+        GoogleBinaryAuthorizationAttestorIamBinding;
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_member.dart'
-    show GoogleBinaryAuthorizationAttestorIamMember;
+    show
+        BinaryAuthorizationAttestorIamMemberCondition,
+        GoogleBinaryAuthorizationAttestorIamMember;
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_policy.dart'
     show GoogleBinaryAuthorizationAttestorIamPolicy;
 export 'src/binary_authorization/google_binary_authorization_policy.dart'

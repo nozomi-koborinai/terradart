@@ -131,4 +131,7 @@ final class CloudflareFirewallRule extends Resource {
 
   /// Reference to `ref` attribute.
   TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

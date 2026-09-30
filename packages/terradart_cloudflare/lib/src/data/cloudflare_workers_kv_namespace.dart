@@ -90,4 +90,11 @@ final class DataCloudflareWorkersKvNamespace extends Data {
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `namespace_id` attribute.
+  TfRef<String> get namespaceIdRef =>
+      TfRef.attribute<String>(this, 'namespace_id');
 }

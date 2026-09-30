@@ -78,4 +78,39 @@ final class DataAwsIamPrincipalPolicySimulation extends Data {
   /// Reference to `results` attribute.
   TfRef<List<Map<String, Object?>>> get results =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'results');
+
+  /// Reference to `action_names` attribute.
+  TfRef<List<String>> get actionNamesRef =>
+      TfRef.attribute<List<String>>(this, 'action_names');
+
+  /// Reference to `additional_policies_json` attribute.
+  TfRef<List<String>> get additionalPoliciesJsonRef =>
+      TfRef.attribute<List<String>>(this, 'additional_policies_json');
+
+  /// Reference to `caller_arn` attribute.
+  TfRef<String> get callerArnRef => TfRef.attribute<String>(this, 'caller_arn');
+
+  /// Reference to `permissions_boundary_policies_json` attribute.
+  TfRef<List<String>> get permissionsBoundaryPoliciesJsonRef =>
+      TfRef.attribute<List<String>>(this, 'permissions_boundary_policies_json');
+
+  /// Reference to `policy_source_arn` attribute.
+  TfRef<String> get policySourceArnRef =>
+      TfRef.attribute<String>(this, 'policy_source_arn');
+
+  /// Reference to `resource_arns` attribute.
+  TfRef<List<String>> get resourceArnsRef =>
+      TfRef.attribute<List<String>>(this, 'resource_arns');
+
+  /// Reference to `resource_handling_option` attribute.
+  TfRef<String> get resourceHandlingOptionRef =>
+      TfRef.attribute<String>(this, 'resource_handling_option');
+
+  /// Reference to `resource_owner_account_id` attribute.
+  TfRef<String> get resourceOwnerAccountIdRef =>
+      TfRef.attribute<String>(this, 'resource_owner_account_id');
+
+  /// Reference to `resource_policy_json` attribute.
+  TfRef<String> get resourcePolicyJsonRef =>
+      TfRef.attribute<String>(this, 'resource_policy_json');
 }

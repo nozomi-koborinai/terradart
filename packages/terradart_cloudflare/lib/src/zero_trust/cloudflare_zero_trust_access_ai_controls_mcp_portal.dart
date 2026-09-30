@@ -176,4 +176,25 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
 
   /// Reference to `modified_by` attribute.
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `allow_code_mode` attribute.
+  TfRef<bool> get allowCodeModeRef =>
+      TfRef.attribute<bool>(this, 'allow_code_mode');
+
+  /// Reference to `code_mode` attribute.
+  TfRef<String> get codeModeRef => TfRef.attribute<String>(this, 'code_mode');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `secure_web_gateway` attribute.
+  TfRef<bool> get secureWebGatewayRef =>
+      TfRef.attribute<bool>(this, 'secure_web_gateway');
 }

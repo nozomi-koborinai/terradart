@@ -32,4 +32,14 @@ final class DataCloudflareApiTokens extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareApiTokensSensitive;
+
+  /// Reference to `direction` attribute.
+  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `include_expired` attribute.
+  TfRef<bool> get includeExpiredRef =>
+      TfRef.attribute<bool>(this, 'include_expired');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
 }

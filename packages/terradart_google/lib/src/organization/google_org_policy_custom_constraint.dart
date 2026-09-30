@@ -76,4 +76,34 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `action_type` attribute.
+  TfRef<String> get actionTypeRef =>
+      TfRef.attribute<String>(this, 'action_type');
+
+  /// Reference to `condition` attribute.
+  TfRef<String> get conditionRef => TfRef.attribute<String>(this, 'condition');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `method_types` attribute.
+  TfRef<List<String>> get methodTypesRef =>
+      TfRef.attribute<List<String>>(this, 'method_types');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `resource_types` attribute.
+  TfRef<List<String>> get resourceTypesRef =>
+      TfRef.attribute<List<String>>(this, 'resource_types');
 }

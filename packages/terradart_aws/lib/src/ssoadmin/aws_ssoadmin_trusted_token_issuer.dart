@@ -133,4 +133,23 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `client_token` attribute.
+  TfRef<String> get clientTokenRef =>
+      TfRef.attribute<String>(this, 'client_token');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `trusted_token_issuer_type` attribute.
+  TfRef<String> get trustedTokenIssuerTypeRef =>
+      TfRef.attribute<String>(this, 'trusted_token_issuer_type');
 }

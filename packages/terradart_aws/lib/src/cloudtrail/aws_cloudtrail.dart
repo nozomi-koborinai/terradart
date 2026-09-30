@@ -327,4 +327,54 @@ final class AwsCloudtrail extends Resource {
   /// Reference to `sns_topic_arn` attribute.
   TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
+
+  /// Reference to `cloud_watch_logs_group_arn` attribute.
+  TfRef<String> get cloudWatchLogsGroupArnRef =>
+      TfRef.attribute<String>(this, 'cloud_watch_logs_group_arn');
+
+  /// Reference to `cloud_watch_logs_role_arn` attribute.
+  TfRef<String> get cloudWatchLogsRoleArnRef =>
+      TfRef.attribute<String>(this, 'cloud_watch_logs_role_arn');
+
+  /// Reference to `enable_log_file_validation` attribute.
+  TfRef<bool> get enableLogFileValidationRef =>
+      TfRef.attribute<bool>(this, 'enable_log_file_validation');
+
+  /// Reference to `enable_logging` attribute.
+  TfRef<bool> get enableLoggingRef =>
+      TfRef.attribute<bool>(this, 'enable_logging');
+
+  /// Reference to `include_global_service_events` attribute.
+  TfRef<bool> get includeGlobalServiceEventsRef =>
+      TfRef.attribute<bool>(this, 'include_global_service_events');
+
+  /// Reference to `is_multi_region_trail` attribute.
+  TfRef<bool> get isMultiRegionTrailRef =>
+      TfRef.attribute<bool>(this, 'is_multi_region_trail');
+
+  /// Reference to `is_organization_trail` attribute.
+  TfRef<bool> get isOrganizationTrailRef =>
+      TfRef.attribute<bool>(this, 'is_organization_trail');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `s3_bucket_name` attribute.
+  TfRef<String> get s3BucketNameRef =>
+      TfRef.attribute<String>(this, 's3_bucket_name');
+
+  /// Reference to `s3_key_prefix` attribute.
+  TfRef<String> get s3KeyPrefixRef =>
+      TfRef.attribute<String>(this, 's3_key_prefix');
+
+  /// Reference to `sns_topic_name` attribute.
+  TfRef<String> get snsTopicNameRef =>
+      TfRef.attribute<String>(this, 'sns_topic_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

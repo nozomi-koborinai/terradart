@@ -40,4 +40,19 @@ final class AwsSsoadminPermissionSetInlinePolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `inline_policy` attribute.
+  TfRef<String> get inlinePolicyRef =>
+      TfRef.attribute<String>(this, 'inline_policy');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `permission_set_arn` attribute.
+  TfRef<String> get permissionSetArnRef =>
+      TfRef.attribute<String>(this, 'permission_set_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

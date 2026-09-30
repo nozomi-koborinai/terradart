@@ -34,9 +34,8 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_service_networking_connection.`).
-/// - `network`: full self_link of a [GoogleComputeNetwork]
-///   (`TfArg.ref(vpc.selfLink)`). The provider rejects short network
-///   names here.
+/// - `network`: a [GoogleComputeNetwork] (`vpc.ref`, which emits its
+///   full `id` path). The provider rejects short network names here.
 /// - `service`: the producer service ID. The only documented value at
 ///   the time of writing is `'servicenetworking.googleapis.com'`; passed
 ///   as a plain string so callers can target other producer services
@@ -51,7 +50,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// ```dart
 /// final psaPeering = GoogleServiceNetworkingConnection(
 ///   localName: 'psa',
-///   network: TfArg.ref(vpc.selfLink),
+///   network: vpc.ref,
 ///   service: TfArg.literal('servicenetworking.googleapis.com'),
 ///   reservedPeeringRanges: TfArg.literal([
 ///     '\${google_compute_global_address.psa_range.name}',
@@ -96,4 +95,22 @@ final class GoogleServiceNetworkingConnection extends Resource {
 
   /// Reference to `peering` attribute.
   TfRef<String> get peering => TfRef.attribute<String>(this, 'peering');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `reserved_peering_ranges` attribute.
+  TfRef<List<String>> get reservedPeeringRangesRef =>
+      TfRef.attribute<List<String>>(this, 'reserved_peering_ranges');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `update_on_creation_fail` attribute.
+  TfRef<bool> get updateOnCreationFailRef =>
+      TfRef.attribute<bool>(this, 'update_on_creation_fail');
 }

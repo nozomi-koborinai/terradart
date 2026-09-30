@@ -504,4 +504,7 @@ final class AwsLakeformationOptIn extends Resource {
   /// Reference to `last_updated_by` attribute.
   TfRef<String> get lastUpdatedBy =>
       TfRef.attribute<String>(this, 'last_updated_by');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

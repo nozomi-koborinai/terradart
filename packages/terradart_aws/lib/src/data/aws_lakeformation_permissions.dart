@@ -258,4 +258,17 @@ final class DataAwsLakeformationPermissions extends Data {
   /// Reference to `permissions_with_grant_option` attribute.
   TfRef<List<String>> get permissionsWithGrantOption =>
       TfRef.attribute<List<String>>(this, 'permissions_with_grant_option');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `catalog_resource` attribute.
+  TfRef<bool> get catalogResourceRef =>
+      TfRef.attribute<bool>(this, 'catalog_resource');
+
+  /// Reference to `principal` attribute.
+  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

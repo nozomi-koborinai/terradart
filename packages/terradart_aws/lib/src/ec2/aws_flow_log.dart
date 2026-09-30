@@ -307,4 +307,59 @@ final class AwsFlowLog extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `deliver_cross_account_role` attribute.
+  TfRef<String> get deliverCrossAccountRoleRef =>
+      TfRef.attribute<String>(this, 'deliver_cross_account_role');
+
+  /// Reference to `eni_id` attribute.
+  TfRef<String> get eniIdRef => TfRef.attribute<String>(this, 'eni_id');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `log_destination` attribute.
+  TfRef<String> get logDestinationRef =>
+      TfRef.attribute<String>(this, 'log_destination');
+
+  /// Reference to `log_destination_type` attribute.
+  TfRef<String> get logDestinationTypeRef =>
+      TfRef.attribute<String>(this, 'log_destination_type');
+
+  /// Reference to `log_format` attribute.
+  TfRef<String> get logFormatRef => TfRef.attribute<String>(this, 'log_format');
+
+  /// Reference to `max_aggregation_interval` attribute.
+  TfRef<num> get maxAggregationIntervalRef =>
+      TfRef.attribute<num>(this, 'max_aggregation_interval');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `regional_nat_gateway_id` attribute.
+  TfRef<String> get regionalNatGatewayIdRef =>
+      TfRef.attribute<String>(this, 'regional_nat_gateway_id');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `traffic_type` attribute.
+  TfRef<String> get trafficTypeRef =>
+      TfRef.attribute<String>(this, 'traffic_type');
+
+  /// Reference to `transit_gateway_attachment_id` attribute.
+  TfRef<String> get transitGatewayAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
+
+  /// Reference to `transit_gateway_id` attribute.
+  TfRef<String> get transitGatewayIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_id');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

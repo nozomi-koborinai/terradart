@@ -79,4 +79,15 @@ final class DataAwsRoute53ResolverQueryLogConfig extends Data {
   /// Reference to `share_status` attribute.
   TfRef<String> get shareStatus =>
       TfRef.attribute<String>(this, 'share_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resolver_query_log_config_id` attribute.
+  TfRef<String> get resolverQueryLogConfigIdRef =>
+      TfRef.attribute<String>(this, 'resolver_query_log_config_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

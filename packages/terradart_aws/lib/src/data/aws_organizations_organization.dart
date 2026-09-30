@@ -73,4 +73,8 @@ final class DataAwsOrganizationsOrganization extends Data {
   /// Reference to `roots` attribute.
   TfRef<List<Map<String, Object?>>> get roots =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'roots');
+
+  /// Reference to `return_organization_only` attribute.
+  TfRef<bool> get returnOrganizationOnlyRef =>
+      TfRef.attribute<bool>(this, 'return_organization_only');
 }

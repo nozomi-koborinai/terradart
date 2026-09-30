@@ -160,4 +160,18 @@ final class AwsEcrRepository extends Resource {
   /// Reference to `repository_url` attribute.
   TfRef<String> get repositoryUrl =>
       TfRef.attribute<String>(this, 'repository_url');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `image_tag_mutability` attribute.
+  TfRef<String> get imageTagMutabilityRef =>
+      TfRef.attribute<String>(this, 'image_tag_mutability');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

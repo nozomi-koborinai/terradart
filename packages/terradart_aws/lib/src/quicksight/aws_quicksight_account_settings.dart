@@ -36,4 +36,19 @@ final class AwsQuicksightAccountSettings extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsQuicksightAccountSettings>`.
   RefTo<AwsQuicksightAccountSettings> get ref => RefTo.of(this);
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `default_namespace` attribute.
+  TfRef<String> get defaultNamespaceRef =>
+      TfRef.attribute<String>(this, 'default_namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `termination_protection_enabled` attribute.
+  TfRef<bool> get terminationProtectionEnabledRef =>
+      TfRef.attribute<bool>(this, 'termination_protection_enabled');
 }

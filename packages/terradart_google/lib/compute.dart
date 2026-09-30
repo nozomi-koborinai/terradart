@@ -97,7 +97,9 @@ export 'src/compute/google_compute_backend_service.dart'
 export 'src/compute/google_compute_backend_service_signed_url_key.dart'
     show GoogleComputeBackendServiceSignedUrlKey;
 export 'src/compute/google_compute_bulk_per_instance_config.dart'
-    show GoogleComputeBulkPerInstanceConfig;
+    show
+        ComputeBulkPerInstanceConfigInstances,
+        GoogleComputeBulkPerInstanceConfig;
 export 'src/compute/google_compute_cross_site_network.dart'
     show GoogleComputeCrossSiteNetwork;
 export 'src/compute/google_compute_disk.dart'
@@ -111,17 +113,21 @@ export 'src/compute/google_compute_disk.dart'
         ComputeDiskSourceSnapshotEncryptionKey,
         GoogleComputeDisk;
 export 'src/compute/google_compute_disk_async_replication.dart'
-    show GoogleComputeDiskAsyncReplication;
+    show
+        ComputeDiskAsyncReplicationSecondaryDisk,
+        GoogleComputeDiskAsyncReplication;
 export 'src/compute/google_compute_disk_iam_binding.dart'
-    show GoogleComputeDiskIamBinding;
+    show ComputeDiskIamBindingCondition, GoogleComputeDiskIamBinding;
 export 'src/compute/google_compute_disk_iam_member.dart'
-    show GoogleComputeDiskIamMember;
+    show ComputeDiskIamMemberCondition, GoogleComputeDiskIamMember;
 export 'src/compute/google_compute_disk_iam_policy.dart'
     show GoogleComputeDiskIamPolicy;
 export 'src/compute/google_compute_disk_resource_policy_attachment.dart'
     show GoogleComputeDiskResourcePolicyAttachment;
 export 'src/compute/google_compute_external_vpn_gateway.dart'
     show
+        ComputeExternalVpnGatewayInterface,
+        ComputeExternalVpnGatewayParams,
         ComputeExternalVpnGatewayRedundancyType,
         GoogleComputeExternalVpnGateway;
 export 'src/compute/google_compute_firewall.dart'
@@ -131,6 +137,7 @@ export 'src/compute/google_compute_firewall.dart'
         ComputeFirewallFirewallAllowRule,
         ComputeFirewallFirewallDenyRule,
         ComputeFirewallFirewallLogConfig,
+        ComputeFirewallParams,
         ComputeFirewallRulePolicy,
         FirewallDirection,
         FirewallLogMetadata,
@@ -140,9 +147,13 @@ export 'src/compute/google_compute_firewall_policy.dart'
 export 'src/compute/google_compute_firewall_policy_association.dart'
     show GoogleComputeFirewallPolicyAssociation;
 export 'src/compute/google_compute_firewall_policy_iam_binding.dart'
-    show GoogleComputeFirewallPolicyIamBinding;
+    show
+        ComputeFirewallPolicyIamBindingCondition,
+        GoogleComputeFirewallPolicyIamBinding;
 export 'src/compute/google_compute_firewall_policy_iam_member.dart'
-    show GoogleComputeFirewallPolicyIamMember;
+    show
+        ComputeFirewallPolicyIamMemberCondition,
+        GoogleComputeFirewallPolicyIamMember;
 export 'src/compute/google_compute_firewall_policy_iam_policy.dart'
     show GoogleComputeFirewallPolicyIamPolicy;
 export 'src/compute/google_compute_firewall_policy_rule.dart'
@@ -210,7 +221,9 @@ export 'src/compute/google_compute_global_vm_extension_policy.dart'
 export 'src/compute/google_compute_ha_vpn_gateway.dart'
     show
         ComputeHaVpnGatewayGatewayIpVersion,
+        ComputeHaVpnGatewayParams,
         ComputeHaVpnGatewayStackType,
+        ComputeHaVpnGatewayVpnInterfaces,
         GoogleComputeHaVpnGateway;
 export 'src/compute/google_compute_health_check.dart'
     show
@@ -243,9 +256,9 @@ export 'src/compute/google_compute_image.dart'
         ComputeImageSourceSnapshotEncryptionKey,
         GoogleComputeImage;
 export 'src/compute/google_compute_image_iam_binding.dart'
-    show GoogleComputeImageIamBinding;
+    show ComputeImageIamBindingCondition, GoogleComputeImageIamBinding;
 export 'src/compute/google_compute_image_iam_member.dart'
-    show GoogleComputeImageIamMember;
+    show ComputeImageIamMemberCondition, GoogleComputeImageIamMember;
 export 'src/compute/google_compute_image_iam_policy.dart'
     show GoogleComputeImageIamPolicy;
 export 'src/compute/google_compute_instance.dart'
@@ -319,7 +332,7 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateWorkloadIdentityConfig,
         GoogleComputeInstanceFromTemplate;
 export 'src/compute/google_compute_instance_group.dart'
-    show GoogleComputeInstanceGroup;
+    show ComputeInstanceGroupNamedPort, GoogleComputeInstanceGroup;
 export 'src/compute/google_compute_instance_group_manager.dart'
     show
         ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig,
@@ -344,9 +357,9 @@ export 'src/compute/google_compute_instance_group_membership.dart'
 export 'src/compute/google_compute_instance_group_named_port.dart'
     show GoogleComputeInstanceGroupNamedPort;
 export 'src/compute/google_compute_instance_iam_binding.dart'
-    show GoogleComputeInstanceIamBinding;
+    show ComputeInstanceIamBindingCondition, GoogleComputeInstanceIamBinding;
 export 'src/compute/google_compute_instance_iam_member.dart'
-    show GoogleComputeInstanceIamMember;
+    show ComputeInstanceIamMemberCondition, GoogleComputeInstanceIamMember;
 export 'src/compute/google_compute_instance_iam_policy.dart'
     show GoogleComputeInstanceIamPolicy;
 export 'src/compute/google_compute_instance_settings.dart'
@@ -387,24 +400,35 @@ export 'src/compute/google_compute_instance_template.dart'
         InstanceTemplateProvisioningModel,
         InstanceTemplateReservationAffinityType;
 export 'src/compute/google_compute_instance_template_iam_binding.dart'
-    show GoogleComputeInstanceTemplateIamBinding;
+    show
+        ComputeInstanceTemplateIamBindingCondition,
+        GoogleComputeInstanceTemplateIamBinding;
 export 'src/compute/google_compute_instance_template_iam_member.dart'
-    show GoogleComputeInstanceTemplateIamMember;
+    show
+        ComputeInstanceTemplateIamMemberCondition,
+        GoogleComputeInstanceTemplateIamMember;
 export 'src/compute/google_compute_instance_template_iam_policy.dart'
     show GoogleComputeInstanceTemplateIamPolicy;
 export 'src/compute/google_compute_instant_snapshot.dart'
-    show GoogleComputeInstantSnapshot;
+    show ComputeInstantSnapshotParams, GoogleComputeInstantSnapshot;
 export 'src/compute/google_compute_instant_snapshot_iam_binding.dart'
-    show GoogleComputeInstantSnapshotIamBinding;
+    show
+        ComputeInstantSnapshotIamBindingCondition,
+        GoogleComputeInstantSnapshotIamBinding;
 export 'src/compute/google_compute_instant_snapshot_iam_member.dart'
-    show GoogleComputeInstantSnapshotIamMember;
+    show
+        ComputeInstantSnapshotIamMemberCondition,
+        GoogleComputeInstantSnapshotIamMember;
 export 'src/compute/google_compute_instant_snapshot_iam_policy.dart'
     show GoogleComputeInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
         ComputeInterconnectInterconnectType,
         ComputeInterconnectLinkType,
+        ComputeInterconnectMacsec,
+        ComputeInterconnectMacsecPreSharedKeys,
         ComputeInterconnectOperationalStatus,
+        ComputeInterconnectParams,
         ComputeInterconnectState,
         GoogleComputeInterconnect;
 export 'src/compute/google_compute_interconnect_attachment.dart'
@@ -441,6 +465,7 @@ export 'src/compute/google_compute_network.dart'
     show
         BgpBestPathSelectionMode,
         BgpInterRegionCost,
+        ComputeNetworkParams,
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
@@ -461,9 +486,13 @@ export 'src/compute/google_compute_network_firewall_policy.dart'
 export 'src/compute/google_compute_network_firewall_policy_association.dart'
     show GoogleComputeNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_network_firewall_policy_iam_binding.dart'
-    show GoogleComputeNetworkFirewallPolicyIamBinding;
+    show
+        ComputeNetworkFirewallPolicyIamBindingCondition,
+        GoogleComputeNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_network_firewall_policy_iam_member.dart'
-    show GoogleComputeNetworkFirewallPolicyIamMember;
+    show
+        ComputeNetworkFirewallPolicyIamMemberCondition,
+        GoogleComputeNetworkFirewallPolicyIamMember;
 export 'src/compute/google_compute_network_firewall_policy_iam_policy.dart'
     show GoogleComputeNetworkFirewallPolicyIamPolicy;
 export 'src/compute/google_compute_network_firewall_policy_rule.dart'
@@ -662,9 +691,11 @@ export 'src/compute/google_compute_region_disk.dart'
         ComputeRegionDiskSourceSnapshotEncryptionKey,
         GoogleComputeRegionDisk;
 export 'src/compute/google_compute_region_disk_iam_binding.dart'
-    show GoogleComputeRegionDiskIamBinding;
+    show
+        ComputeRegionDiskIamBindingCondition,
+        GoogleComputeRegionDiskIamBinding;
 export 'src/compute/google_compute_region_disk_iam_member.dart'
-    show GoogleComputeRegionDiskIamMember;
+    show ComputeRegionDiskIamMemberCondition, GoogleComputeRegionDiskIamMember;
 export 'src/compute/google_compute_region_disk_iam_policy.dart'
     show GoogleComputeRegionDiskIamPolicy;
 export 'src/compute/google_compute_region_disk_resource_policy_attachment.dart'
@@ -746,9 +777,13 @@ export 'src/compute/google_compute_region_instant_snapshot.dart'
         ComputeRegionInstantSnapshotParams,
         GoogleComputeRegionInstantSnapshot;
 export 'src/compute/google_compute_region_instant_snapshot_iam_binding.dart'
-    show GoogleComputeRegionInstantSnapshotIamBinding;
+    show
+        ComputeRegionInstantSnapshotIamBindingCondition,
+        GoogleComputeRegionInstantSnapshotIamBinding;
 export 'src/compute/google_compute_region_instant_snapshot_iam_member.dart'
-    show GoogleComputeRegionInstantSnapshotIamMember;
+    show
+        ComputeRegionInstantSnapshotIamMemberCondition,
+        GoogleComputeRegionInstantSnapshotIamMember;
 export 'src/compute/google_compute_region_instant_snapshot_iam_policy.dart'
     show GoogleComputeRegionInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_region_network_endpoint.dart'
@@ -772,9 +807,13 @@ export 'src/compute/google_compute_region_network_firewall_policy.dart'
 export 'src/compute/google_compute_region_network_firewall_policy_association.dart'
     show GoogleComputeRegionNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_binding.dart'
-    show GoogleComputeRegionNetworkFirewallPolicyIamBinding;
+    show
+        ComputeRegionNetworkFirewallPolicyIamBindingCondition,
+        GoogleComputeRegionNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_member.dart'
-    show GoogleComputeRegionNetworkFirewallPolicyIamMember;
+    show
+        ComputeRegionNetworkFirewallPolicyIamMemberCondition,
+        GoogleComputeRegionNetworkFirewallPolicyIamMember;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_policy.dart'
     show GoogleComputeRegionNetworkFirewallPolicyIamPolicy;
 export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
@@ -841,6 +880,8 @@ export 'src/compute/google_compute_region_security_policy_rule.dart'
     show
         ComputeRegionSecurityPolicyRuleMatch,
         ComputeRegionSecurityPolicyRuleMatchConfig,
+        ComputeRegionSecurityPolicyRuleNetworkMatch,
+        ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields,
         ComputeRegionSecurityPolicyRulePreconfiguredWafConfig,
         ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion,
         ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch,
@@ -1033,15 +1074,18 @@ export 'src/compute/google_compute_route.dart'
         ComputeRouteInstanceNextHop,
         ComputeRouteIpNextHop,
         ComputeRouteNextHop,
+        ComputeRouteParams,
         ComputeRouteVpnTunnelNextHop,
         GoogleComputeRoute;
 export 'src/compute/google_compute_router.dart'
     show
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
+        ComputeRouterMd5AuthenticationKeys,
         ComputeRouterNetwork,
         ComputeRouterNetworkChoice,
         ComputeRouterNetworkNccGateway,
+        ComputeRouterParams,
         GoogleComputeRouter;
 export 'src/compute/google_compute_router_interface.dart'
     show GoogleComputeRouterInterface;
@@ -1111,6 +1155,8 @@ export 'src/compute/google_compute_security_policy.dart'
         SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_security_policy_rule.dart'
     show
+        ComputeSecurityPolicyRuleHeaderAction,
+        ComputeSecurityPolicyRuleHeaderActionRequestHeadersToAdds,
         ComputeSecurityPolicyRuleMatch,
         ComputeSecurityPolicyRuleMatchConfig,
         ComputeSecurityPolicyRulePreconfiguredWafConfig,
@@ -1118,9 +1164,13 @@ export 'src/compute/google_compute_security_policy_rule.dart'
         ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch,
         ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig,
         ComputeSecurityPolicyRuleRateLimitOptions,
+        ComputeSecurityPolicyRuleRedirectOptions,
         GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
-    show GoogleComputeServiceAttachment, ServiceAttachmentConnectionPreference;
+    show
+        ComputeServiceAttachmentConsumerAcceptLists,
+        GoogleComputeServiceAttachment,
+        ServiceAttachmentConnectionPreference;
 export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
@@ -1136,9 +1186,9 @@ export 'src/compute/google_compute_snapshot.dart'
         ComputeSnapshotSourceDiskEncryptionKey,
         GoogleComputeSnapshot;
 export 'src/compute/google_compute_snapshot_iam_binding.dart'
-    show GoogleComputeSnapshotIamBinding;
+    show ComputeSnapshotIamBindingCondition, GoogleComputeSnapshotIamBinding;
 export 'src/compute/google_compute_snapshot_iam_member.dart'
-    show GoogleComputeSnapshotIamMember;
+    show ComputeSnapshotIamMemberCondition, GoogleComputeSnapshotIamMember;
 export 'src/compute/google_compute_snapshot_iam_policy.dart'
     show GoogleComputeSnapshotIamPolicy;
 export 'src/compute/google_compute_snapshot_settings.dart'
@@ -1162,13 +1212,18 @@ export 'src/compute/google_compute_storage_pool.dart'
         ComputeStoragePoolPerformanceProvisioningType,
         GoogleComputeStoragePool;
 export 'src/compute/google_compute_storage_pool_iam_binding.dart'
-    show GoogleComputeStoragePoolIamBinding;
+    show
+        ComputeStoragePoolIamBindingCondition,
+        GoogleComputeStoragePoolIamBinding;
 export 'src/compute/google_compute_storage_pool_iam_member.dart'
-    show GoogleComputeStoragePoolIamMember;
+    show
+        ComputeStoragePoolIamMemberCondition,
+        GoogleComputeStoragePoolIamMember;
 export 'src/compute/google_compute_storage_pool_iam_policy.dart'
     show GoogleComputeStoragePoolIamPolicy;
 export 'src/compute/google_compute_subnetwork.dart'
     show
+        ComputeSubnetworkParams,
         ComputeSubnetworkSecondaryIpRange,
         ComputeSubnetworkSubnetworkLogConfig,
         GoogleComputeSubnetwork,
@@ -1180,9 +1235,11 @@ export 'src/compute/google_compute_subnetwork.dart'
         SubnetworkRole,
         SubnetworkStackType;
 export 'src/compute/google_compute_subnetwork_iam_binding.dart'
-    show GoogleComputeSubnetworkIamBinding;
+    show
+        ComputeSubnetworkIamBindingCondition,
+        GoogleComputeSubnetworkIamBinding;
 export 'src/compute/google_compute_subnetwork_iam_member.dart'
-    show GoogleComputeSubnetworkIamMember;
+    show ComputeSubnetworkIamMemberCondition, GoogleComputeSubnetworkIamMember;
 export 'src/compute/google_compute_subnetwork_iam_policy.dart'
     show GoogleComputeSubnetworkIamPolicy;
 export 'src/compute/google_compute_target_grpc_proxy.dart'
@@ -1347,9 +1404,13 @@ export 'src/compute/google_compute_url_map.dart'
         UrlMapMetadataFilterMatchCriteria,
         UrlMapRedirectResponseCode;
 export 'src/compute/google_compute_vpn_gateway.dart'
-    show GoogleComputeVpnGateway;
+    show ComputeVpnGatewayParams, GoogleComputeVpnGateway;
 export 'src/compute/google_compute_vpn_tunnel.dart'
     show
+        ComputeVpnTunnelCipherSuite,
+        ComputeVpnTunnelCipherSuitePhase1,
+        ComputeVpnTunnelCipherSuitePhase2,
+        ComputeVpnTunnelParams,
         ComputeVpnTunnelPeer,
         ComputeVpnTunnelPeerExternalGateway,
         ComputeVpnTunnelPeerGcpGateway,
@@ -1364,4 +1425,8 @@ export 'src/compute/google_compute_wire_group.dart'
         ComputeWireGroupWireProperties,
         GoogleComputeWireGroup;
 export 'src/compute/google_compute_zone_vm_extension_policy.dart'
-    show GoogleComputeZoneVmExtensionPolicy;
+    show
+        ComputeZoneVmExtensionPolicyExtensionPolicies,
+        ComputeZoneVmExtensionPolicyInstanceSelectors,
+        ComputeZoneVmExtensionPolicyInstanceSelectorsLabelSelector,
+        GoogleComputeZoneVmExtensionPolicy;

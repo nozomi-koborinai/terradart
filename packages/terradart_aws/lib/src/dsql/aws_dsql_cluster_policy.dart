@@ -41,4 +41,18 @@ final class AwsDsqlClusterPolicy extends Resource {
   /// Reference to `policy_version` attribute.
   TfRef<String> get policyVersion =>
       TfRef.attribute<String>(this, 'policy_version');
+
+  /// Reference to `bypass_policy_lockout_safety_check` attribute.
+  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+      TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

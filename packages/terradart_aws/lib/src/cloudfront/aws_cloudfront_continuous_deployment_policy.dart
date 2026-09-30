@@ -183,4 +183,7 @@ final class AwsCloudfrontContinuousDeploymentPolicy extends Resource {
   /// Reference to `last_modified_time` attribute.
   TfRef<String> get lastModifiedTime =>
       TfRef.attribute<String>(this, 'last_modified_time');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
 }

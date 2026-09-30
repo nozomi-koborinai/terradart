@@ -41,4 +41,7 @@ final class DataAwsDbParameterGroup extends Data {
 
   /// Reference to `family` attribute.
   TfRef<String> get family => TfRef.attribute<String>(this, 'family');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

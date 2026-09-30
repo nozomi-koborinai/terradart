@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_monitoring_custom_service`.
 const Set<String> _googleMonitoringCustomServiceSensitive = <String>{};
+
+/// Typed helper for the `telemetry` block of
+/// `google_monitoring_custom_service` (derived from provider schema).
+@immutable
+final class MonitoringCustomServiceTelemetry {
+  const MonitoringCustomServiceTelemetry({this.resourceName});
+
+  final TfArg<String>? resourceName;
+
+  Map<String, Object?> encode() => {'resource_name': ?resourceName?.toTfJson()};
+}
 
 /// Factory wrapper for `google_monitoring_custom_service`.
 ///
@@ -31,6 +43,7 @@ final class GoogleMonitoringCustomService extends Resource {
     TfArg<String>? serviceId,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? userLabels,
+    MonitoringCustomServiceTelemetry? telemetry,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -42,6 +55,8 @@ final class GoogleMonitoringCustomService extends Resource {
            'service_id': ?serviceId,
            'display_name': ?displayName,
            'user_labels': ?userLabels,
+           if (telemetry != null)
+             'telemetry': TfArg.literal(telemetry.encode()),
            'project': ?project,
          },
        );
@@ -55,6 +70,21 @@ final class GoogleMonitoringCustomService extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `user_labels` attribute.
+  TfRef<Map<String, String>> get userLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_labels');
 
   TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

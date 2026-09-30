@@ -12,7 +12,7 @@
 ///
 /// No VMs — the stack creates and destroys quickly in a single project.
 ///
-/// Exports the VPC name as a typed Dart constant via `Stack.addExport`.
+/// Exports the VPC name as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -41,6 +41,7 @@ final class NetworkRouteStack extends Stack {
   NetworkRouteStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/network_route_stack.app.dart'),
       ) {
     final apiCompute = add(
       GoogleProjectService(
@@ -268,14 +269,9 @@ final class NetworkRouteStack extends Stack {
     );
 
     // Literal VPC name -- emitted as a Dart constant at synth time.
-    addExport('DEMO_VPC_NAME', StringExport('terradart-route-demo'));
+    addConstant('demoVpcName', .ref(vpc.nameRef));
 
     // Full route resource id -- Terraform output only (computed).
-    addExport(
-      'DEMO_ROUTE_ID',
-      ResourceIdExport(route.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/network_route_stack.app.dart');
+    addOutput('demo_route_id', .ref(route.id));
   }
 }

@@ -129,4 +129,24 @@ final class CloudflareTokenValidationRules extends Resource {
   /// Reference to `last_updated` attribute.
   TfRef<String> get lastUpdated =>
       TfRef.attribute<String>(this, 'last_updated');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `expression` attribute.
+  TfRef<String> get expressionRef =>
+      TfRef.attribute<String>(this, 'expression');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

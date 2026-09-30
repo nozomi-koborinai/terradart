@@ -43,4 +43,7 @@ final class DataCloudflareAiSearchNamespace extends Data {
   /// Reference to `public_endpoint_id` attribute.
   TfRef<String> get publicEndpointId =>
       TfRef.attribute<String>(this, 'public_endpoint_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

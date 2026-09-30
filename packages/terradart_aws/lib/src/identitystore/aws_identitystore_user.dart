@@ -190,4 +190,41 @@ final class AwsIdentitystoreUser extends Resource {
 
   /// Reference to `user_status` attribute.
   TfRef<String> get userStatus => TfRef.attribute<String>(this, 'user_status');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `identity_store_id` attribute.
+  TfRef<String> get identityStoreIdRef =>
+      TfRef.attribute<String>(this, 'identity_store_id');
+
+  /// Reference to `locale` attribute.
+  TfRef<String> get localeRef => TfRef.attribute<String>(this, 'locale');
+
+  /// Reference to `nickname` attribute.
+  TfRef<String> get nicknameRef => TfRef.attribute<String>(this, 'nickname');
+
+  /// Reference to `preferred_language` attribute.
+  TfRef<String> get preferredLanguageRef =>
+      TfRef.attribute<String>(this, 'preferred_language');
+
+  /// Reference to `profile_url` attribute.
+  TfRef<String> get profileUrlRef =>
+      TfRef.attribute<String>(this, 'profile_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `timezone` attribute.
+  TfRef<String> get timezoneRef => TfRef.attribute<String>(this, 'timezone');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+
+  /// Reference to `user_type` attribute.
+  TfRef<String> get userTypeRef => TfRef.attribute<String>(this, 'user_type');
 }

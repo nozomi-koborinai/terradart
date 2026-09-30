@@ -78,4 +78,15 @@ final class DataAwsEcrRepository extends Data {
   /// Reference to `repository_url` attribute.
   TfRef<String> get repositoryUrl =>
       TfRef.attribute<String>(this, 'repository_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_id` attribute.
+  TfRef<String> get registryIdRef =>
+      TfRef.attribute<String>(this, 'registry_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

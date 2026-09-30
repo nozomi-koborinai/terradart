@@ -51,4 +51,19 @@ final class AwsMskconnectWorkerConfiguration extends Resource {
   /// Reference to `latest_revision` attribute.
   TfRef<num> get latestRevision =>
       TfRef.attribute<num>(this, 'latest_revision');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `properties_file_content` attribute.
+  TfRef<String> get propertiesFileContentRef =>
+      TfRef.attribute<String>(this, 'properties_file_content');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

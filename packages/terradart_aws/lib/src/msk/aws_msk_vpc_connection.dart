@@ -51,4 +51,30 @@ final class AwsMskVpcConnection extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `authentication` attribute.
+  TfRef<String> get authenticationRef =>
+      TfRef.attribute<String>(this, 'authentication');
+
+  /// Reference to `client_subnets` attribute.
+  TfRef<List<String>> get clientSubnetsRef =>
+      TfRef.attribute<List<String>>(this, 'client_subnets');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_cluster_arn` attribute.
+  TfRef<String> get targetClusterArnRef =>
+      TfRef.attribute<String>(this, 'target_cluster_arn');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

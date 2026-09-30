@@ -132,6 +132,70 @@ class ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch {
   };
 }
 
+/// Typed helper for the `network_match` block of
+/// `google_compute_region_security_policy_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionSecurityPolicyRuleNetworkMatch {
+  const ComputeRegionSecurityPolicyRuleNetworkMatch({
+    this.destIpRanges,
+    this.destPorts,
+    this.ipProtocols,
+    this.srcAsns,
+    this.srcIpRanges,
+    this.srcPorts,
+    this.srcRegionCodes,
+    this.userDefinedFields,
+  });
+
+  final TfArg<List<String>>? destIpRanges;
+
+  final TfArg<List<String>>? destPorts;
+
+  final TfArg<List<String>>? ipProtocols;
+
+  final TfArg<List<num>>? srcAsns;
+
+  final TfArg<List<String>>? srcIpRanges;
+
+  final TfArg<List<String>>? srcPorts;
+
+  final TfArg<List<String>>? srcRegionCodes;
+
+  final List<ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields>?
+  userDefinedFields;
+
+  Map<String, Object?> encode() => {
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'dest_ports': ?destPorts?.toTfJson(),
+    'ip_protocols': ?ipProtocols?.toTfJson(),
+    'src_asns': ?srcAsns?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
+    'src_ports': ?srcPorts?.toTfJson(),
+    'src_region_codes': ?srcRegionCodes?.toTfJson(),
+    if (userDefinedFields != null)
+      'user_defined_fields': [for (final e in userDefinedFields!) e.encode()],
+  };
+}
+
+/// Typed helper for the `network_match.user_defined_fields` block of
+/// `google_compute_region_security_policy_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields {
+  const ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields({
+    this.name,
+    this.values,
+  });
+
+  final TfArg<String>? name;
+
+  final TfArg<List<String>>? values;
+
+  Map<String, Object?> encode() => {
+    'name': ?name?.toTfJson(),
+    'values': ?values?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_region_security_policy_rule`.
 ///
 /// A rule for the RegionSecurityPolicy.
@@ -148,7 +212,7 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
     required TfArg<String> region,
     required TfArg<String> securityPolicy,
     ComputeRegionSecurityPolicyRuleMatch? match,
-    TfArg<Map<String, dynamic>>? networkMatch,
+    ComputeRegionSecurityPolicyRuleNetworkMatch? networkMatch,
     ComputeRegionSecurityPolicyRulePreconfiguredWafConfig?
     preconfiguredWafConfig,
     ComputeRegionSecurityPolicyRuleRateLimitOptions? rateLimitOptions,
@@ -167,7 +231,8 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
            'region': region,
            'security_policy': securityPolicy,
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
-           'network_match': ?networkMatch,
+           if (networkMatch != null)
+             'network_match': TfArg.literal(networkMatch.encode()),
            if (preconfiguredWafConfig != null)
              'preconfigured_waf_config': TfArg.literal([
                preconfiguredWafConfig.toArgMap(),
@@ -187,4 +252,31 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `preview` attribute.
+  TfRef<bool> get previewRef => TfRef.attribute<bool>(this, 'preview');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_policy` attribute.
+  TfRef<String> get securityPolicyRef =>
+      TfRef.attribute<String>(this, 'security_policy');
 }

@@ -2,6 +2,7 @@ outputDir: storage
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 # Hyphenated MM enum values cannot be derived as Dart identifiers — hand-map
 # via [StorageAnywhereCacheAdmissionPolicy].

@@ -43,9 +43,9 @@ export 'src/logging/google_logging_linked_dataset.dart'
 export 'src/logging/google_logging_log_scope.dart' show GoogleLoggingLogScope;
 export 'src/logging/google_logging_log_view.dart' show GoogleLoggingLogView;
 export 'src/logging/google_logging_log_view_iam_binding.dart'
-    show GoogleLoggingLogViewIamBinding;
+    show GoogleLoggingLogViewIamBinding, LoggingLogViewIamBindingCondition;
 export 'src/logging/google_logging_log_view_iam_member.dart'
-    show GoogleLoggingLogViewIamMember;
+    show GoogleLoggingLogViewIamMember, LoggingLogViewIamMemberCondition;
 export 'src/logging/google_logging_log_view_iam_policy.dart'
     show GoogleLoggingLogViewIamPolicy;
 export 'src/logging/google_logging_metric.dart'

@@ -113,7 +113,7 @@ The full factory list with example pointers is on [Coverage](/docs/coverage/); s
 
 ## Next steps
 
-- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, AppExport
+- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, outputs and constants
 - [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output
 - [How it's built](/docs/how-its-built/) — generation pipeline, verification, sustainability
 - [Status](/docs/status/) — alpha expectations

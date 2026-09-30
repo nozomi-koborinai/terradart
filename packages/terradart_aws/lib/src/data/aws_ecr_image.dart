@@ -51,4 +51,25 @@ final class DataAwsEcrImage extends Data {
 
   /// Reference to `image_uri` attribute.
   TfRef<String> get imageUri => TfRef.attribute<String>(this, 'image_uri');
+
+  /// Reference to `image_digest` attribute.
+  TfRef<String> get imageDigestRef =>
+      TfRef.attribute<String>(this, 'image_digest');
+
+  /// Reference to `image_tag` attribute.
+  TfRef<String> get imageTagRef => TfRef.attribute<String>(this, 'image_tag');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `registry_id` attribute.
+  TfRef<String> get registryIdRef =>
+      TfRef.attribute<String>(this, 'registry_id');
+
+  /// Reference to `repository_name` attribute.
+  TfRef<String> get repositoryNameRef =>
+      TfRef.attribute<String>(this, 'repository_name');
 }

@@ -1552,4 +1552,123 @@ final class AwsAutoscalingGroup extends Resource {
 
   /// Reference to `warm_pool_size` attribute.
   TfRef<num> get warmPoolSize => TfRef.attribute<num>(this, 'warm_pool_size');
+
+  /// Reference to `availability_zones` attribute.
+  TfRef<List<String>> get availabilityZonesRef =>
+      TfRef.attribute<List<String>>(this, 'availability_zones');
+
+  /// Reference to `capacity_rebalance` attribute.
+  TfRef<bool> get capacityRebalanceRef =>
+      TfRef.attribute<bool>(this, 'capacity_rebalance');
+
+  /// Reference to `context` attribute.
+  TfRef<String> get contextRef => TfRef.attribute<String>(this, 'context');
+
+  /// Reference to `default_cooldown` attribute.
+  TfRef<num> get defaultCooldownRef =>
+      TfRef.attribute<num>(this, 'default_cooldown');
+
+  /// Reference to `default_instance_warmup` attribute.
+  TfRef<num> get defaultInstanceWarmupRef =>
+      TfRef.attribute<num>(this, 'default_instance_warmup');
+
+  /// Reference to `desired_capacity` attribute.
+  TfRef<num> get desiredCapacityRef =>
+      TfRef.attribute<num>(this, 'desired_capacity');
+
+  /// Reference to `desired_capacity_type` attribute.
+  TfRef<String> get desiredCapacityTypeRef =>
+      TfRef.attribute<String>(this, 'desired_capacity_type');
+
+  /// Reference to `enabled_metrics` attribute.
+  TfRef<List<String>> get enabledMetricsRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_metrics');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `force_delete_warm_pool` attribute.
+  TfRef<bool> get forceDeleteWarmPoolRef =>
+      TfRef.attribute<bool>(this, 'force_delete_warm_pool');
+
+  /// Reference to `health_check_grace_period` attribute.
+  TfRef<num> get healthCheckGracePeriodRef =>
+      TfRef.attribute<num>(this, 'health_check_grace_period');
+
+  /// Reference to `health_check_type` attribute.
+  TfRef<String> get healthCheckTypeRef =>
+      TfRef.attribute<String>(this, 'health_check_type');
+
+  /// Reference to `ignore_failed_scaling_activities` attribute.
+  TfRef<bool> get ignoreFailedScalingActivitiesRef =>
+      TfRef.attribute<bool>(this, 'ignore_failed_scaling_activities');
+
+  /// Reference to `launch_configuration` attribute.
+  TfRef<String> get launchConfigurationRef =>
+      TfRef.attribute<String>(this, 'launch_configuration');
+
+  /// Reference to `load_balancers` attribute.
+  TfRef<List<String>> get loadBalancersRef =>
+      TfRef.attribute<List<String>>(this, 'load_balancers');
+
+  /// Reference to `max_instance_lifetime` attribute.
+  TfRef<num> get maxInstanceLifetimeRef =>
+      TfRef.attribute<num>(this, 'max_instance_lifetime');
+
+  /// Reference to `max_size` attribute.
+  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+
+  /// Reference to `metrics_granularity` attribute.
+  TfRef<String> get metricsGranularityRef =>
+      TfRef.attribute<String>(this, 'metrics_granularity');
+
+  /// Reference to `min_elb_capacity` attribute.
+  TfRef<num> get minElbCapacityRef =>
+      TfRef.attribute<num>(this, 'min_elb_capacity');
+
+  /// Reference to `min_size` attribute.
+  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `placement_group` attribute.
+  TfRef<String> get placementGroupRef =>
+      TfRef.attribute<String>(this, 'placement_group');
+
+  /// Reference to `protect_from_scale_in` attribute.
+  TfRef<bool> get protectFromScaleInRef =>
+      TfRef.attribute<bool>(this, 'protect_from_scale_in');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_linked_role_arn` attribute.
+  TfRef<String> get serviceLinkedRoleArnRef =>
+      TfRef.attribute<String>(this, 'service_linked_role_arn');
+
+  /// Reference to `suspended_processes` attribute.
+  TfRef<List<String>> get suspendedProcessesRef =>
+      TfRef.attribute<List<String>>(this, 'suspended_processes');
+
+  /// Reference to `target_group_arns` attribute.
+  TfRef<List<String>> get targetGroupArnsRef =>
+      TfRef.attribute<List<String>>(this, 'target_group_arns');
+
+  /// Reference to `termination_policies` attribute.
+  TfRef<List<String>> get terminationPoliciesRef =>
+      TfRef.attribute<List<String>>(this, 'termination_policies');
+
+  /// Reference to `vpc_zone_identifier` attribute.
+  TfRef<List<String>> get vpcZoneIdentifierRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_zone_identifier');
+
+  /// Reference to `wait_for_capacity_timeout` attribute.
+  TfRef<String> get waitForCapacityTimeoutRef =>
+      TfRef.attribute<String>(this, 'wait_for_capacity_timeout');
+
+  /// Reference to `wait_for_elb_capacity` attribute.
+  TfRef<num> get waitForElbCapacityRef =>
+      TfRef.attribute<num>(this, 'wait_for_elb_capacity');
 }

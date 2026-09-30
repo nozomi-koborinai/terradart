@@ -23,4 +23,7 @@ final class DataAwsEcsClusters extends Data {
   /// Reference to `cluster_arns` attribute.
   TfRef<List<String>> get clusterArns =>
       TfRef.attribute<List<String>>(this, 'cluster_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

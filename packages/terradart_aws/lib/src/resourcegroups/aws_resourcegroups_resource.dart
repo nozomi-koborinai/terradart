@@ -41,4 +41,14 @@ final class AwsResourcegroupsResource extends Resource {
   /// Reference to `resource_type` attribute.
   TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
+
+  /// Reference to `group_arn` attribute.
+  TfRef<String> get groupArnRef => TfRef.attribute<String>(this, 'group_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }
