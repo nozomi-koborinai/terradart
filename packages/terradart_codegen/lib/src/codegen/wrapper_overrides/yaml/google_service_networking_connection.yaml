@@ -1,6 +1,7 @@
 outputDir: service_networking
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
