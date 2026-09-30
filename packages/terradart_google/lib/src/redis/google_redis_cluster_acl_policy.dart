@@ -1,0 +1,75 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_redis_cluster_acl_policy`.
+const Set<String> _googleRedisClusterAclPolicySensitive = <String>{};
+
+/// Typed helper for the `rules` block of
+/// `google_redis_cluster_acl_policy` (derived from provider schema).
+@immutable
+final class RedisClusterAclPolicyRules {
+  const RedisClusterAclPolicyRules({
+    required this.rule,
+    required this.username,
+  });
+
+  final TfArg<String> rule;
+
+  final TfArg<String> username;
+
+  Map<String, Object?> encode() => {
+    'rule': rule.toTfJson(),
+    'username': username.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_redis_cluster_acl_policy`.
+///
+/// A Google Cloud Redis Cluster ACL policy.
+final class GoogleRedisClusterAclPolicy extends Resource {
+  static const String tfType = 'google_redis_cluster_acl_policy';
+
+  GoogleRedisClusterAclPolicy({
+    required super.localName,
+    required TfArg<String> aclPolicyId,
+    required TfArg<String> location,
+    required List<RedisClusterAclPolicyRules> rules,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'acl_policy_id': aclPolicyId,
+           'location': location,
+           'rules': TfArg.literal([for (final e in rules) e.encode()]),
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _googleRedisClusterAclPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleRedisClusterAclPolicy>`.
+  RefTo<GoogleRedisClusterAclPolicy> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+}

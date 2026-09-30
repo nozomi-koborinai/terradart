@@ -56,18 +56,22 @@ final class ZeroTrustCasbWebhookHeaders {
 /// Accepted Permissions
 ///
 /// - `Zero Trust Read` - `Zero Trust Write`
+///
+/// CASB webhook: where a `CloudflareZeroTrustCasbPolicy` action sends
+/// its data. `signingSecret` is used only with the `HMAC-Signing`
+/// authentication type; it and the header values are sensitive.
 final class CloudflareZeroTrustCasbWebhook extends Resource {
   static const String tfType = 'cloudflare_zero_trust_casb_webhook';
 
   CloudflareZeroTrustCasbWebhook({
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
-    required TfArg<ZeroTrustCasbWebhookAuthenticationType> authenticationType,
-    required TfArg<String> destinationUrl,
     required TfArg<String> label,
+    required TfArg<String> destinationUrl,
+    required TfArg<ZeroTrustCasbWebhookAuthenticationType> authenticationType,
     TfArg<String>? signingSecret,
-    TfArg<ZeroTrustCasbWebhookStatus>? status,
     List<ZeroTrustCasbWebhookHeaders>? headers,
+    TfArg<ZeroTrustCasbWebhookStatus>? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -76,13 +80,13 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           'authentication_type': authenticationType,
-           'destination_url': destinationUrl,
            'label': label,
+           'destination_url': destinationUrl,
+           'authentication_type': authenticationType,
            'signing_secret': ?signingSecret,
-           'status': ?status,
            if (headers != null)
              'headers': TfArg.literal([for (final e in headers) e.encode()]),
+           'status': ?status,
          },
        );
 

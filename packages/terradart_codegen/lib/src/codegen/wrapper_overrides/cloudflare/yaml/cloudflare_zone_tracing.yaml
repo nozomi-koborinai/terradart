@@ -4,3 +4,18 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Cloudflare Traces for a zone: samples `samplingRatio` (0 to 1) of
+  /// requests and sends the traces to up to 100 OpenTelemetry
+  /// `destinations`. Per-request overrides live on
+  /// `CloudflareZoneTracingRules`.
+
+paramOrder:
+  - zone_id
+  - enabled
+  - sampling_ratio
+  - destinations
+  - propagation_policy
+  - forward_context
+  - persist

@@ -4,3 +4,15 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Magic WAN BGP filter profile: allows or denies (`matchAction`) the
+  /// routes that match one of the CIDR prefixes in `targets`. A target may
+  /// carry a `{X,Y}` suffix to match a range of prefix lengths.
+
+paramOrder:
+  - account_id
+  - name
+  - match_action
+  - targets
+  - description

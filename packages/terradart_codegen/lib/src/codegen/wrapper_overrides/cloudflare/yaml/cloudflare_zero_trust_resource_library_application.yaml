@@ -4,3 +4,13 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+paramOrder:
+  - account_id
+  - name
+  - hostnames
+  - ip_subnets
+  - port_protocols
+  - support_domains
+  - category_id
+  - human_id

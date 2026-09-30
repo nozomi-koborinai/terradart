@@ -11,6 +11,14 @@ export 'src/firestore/google_firestore_backup_schedule.dart'
         FirestoreBackupScheduleDailyRecurrence,
         FirestoreBackupScheduleWeeklyRecurrence,
         GoogleFirestoreBackupSchedule;
+export 'src/firestore/google_firestore_change_stream.dart'
+    show
+        FirestoreChangeStreamCollectionGroupScope,
+        FirestoreChangeStreamDatabaseScope,
+        FirestoreChangeStreamScope,
+        FirestoreChangeStreamScopeCollectionGroupScope,
+        FirestoreChangeStreamScopeDatabaseScope,
+        GoogleFirestoreChangeStream;
 export 'src/firestore/google_firestore_database.dart'
     show
         AppEngineIntegrationMode,

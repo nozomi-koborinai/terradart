@@ -65,19 +65,26 @@ final class ZeroTrustCasbPolicyActionsWebhookConfigs {
 /// Accepted Permissions
 ///
 /// - `Zero Trust Read` - `Zero Trust Write`
+///
+/// CASB policy: runs [ZeroTrustCasbPolicyActions] (webhooks and at most
+/// one remediation) when a finding of `findingTypeId` is raised.
+///
+/// Set `appliesToAllIntegrations: .literal(true)`, or `false` together
+/// with `integrationIds` — the provider requires the list when the flag
+/// is false.
 final class CloudflareZeroTrustCasbPolicy extends Resource {
   static const String tfType = 'cloudflare_zero_trust_casb_policy';
 
   CloudflareZeroTrustCasbPolicy({
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
-    required TfArg<bool> appliesToAllIntegrations,
-    TfArg<String>? description,
     required TfArg<String> displayName,
-    required TfArg<bool> enabled,
     required TfArg<String> findingTypeId,
+    required TfArg<bool> enabled,
+    required TfArg<bool> appliesToAllIntegrations,
     TfArg<List<String>>? integrationIds,
     required ZeroTrustCasbPolicyActions actions,
+    TfArg<String>? description,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -86,13 +93,13 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           'applies_to_all_integrations': appliesToAllIntegrations,
-           'description': ?description,
            'display_name': displayName,
-           'enabled': enabled,
            'finding_type_id': findingTypeId,
+           'enabled': enabled,
+           'applies_to_all_integrations': appliesToAllIntegrations,
            'integration_ids': ?integrationIds,
            'actions': TfArg.literal(actions.encode()),
+           'description': ?description,
          },
        );
 

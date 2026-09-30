@@ -403,8 +403,8 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareCtAlerting(
         localName: 'ct_alerting',
-        enabled: .literal(true),
         zoneId: .literal(zoneId),
+        enabled: .literal(true),
       ),
     );
 
@@ -589,12 +589,12 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareEmailSecurityAllowPolicy(
         localName: 'email_security_allow_policy',
         accountId: .literal(accountId),
-        isAcceptableSender: .literal(true),
-        isExemptRecipient: .literal(true),
-        isRegex: .literal(true),
-        isTrustedSender: .literal(true),
         pattern: .literal(leftover),
         patternType: .literal(.email),
+        isRegex: .literal(true),
+        isTrustedSender: .literal(true),
+        isAcceptableSender: .literal(true),
+        isExemptRecipient: .literal(true),
         verifySender: .literal(true),
       ),
     );
@@ -613,8 +613,8 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareEmailSecurityDomain(
         localName: 'email_security_domain',
         accountId: .literal(accountId),
-        allowedDeliveryModes: .literal([leftover]),
         domain: .literal(leftover),
+        allowedDeliveryModes: .literal([leftover]),
         dropDispositions: .literal([leftover]),
         ipRestrictions: .literal([leftover]),
         regions: .literal([leftover]),
@@ -642,8 +642,8 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareEmailSendingSubdomain(
         localName: 'email_sending_subdomain',
-        name: .literal(leftover),
         zoneId: .literal(zoneId),
+        name: .literal(leftover),
       ),
     );
 
@@ -960,8 +960,8 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareMagicWanBgpFilterProfile(
         localName: 'magic_wan_bgp_filter_profile',
         accountId: .literal(accountId),
-        matchAction: .literal(.allow),
         name: .literal(leftover),
+        matchAction: .literal(.allow),
         targets: .literal([leftover]),
       ),
     );
@@ -1998,10 +1998,10 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustCasbPolicy(
         localName: 'zero_trust_casb_policy',
         accountId: .literal(accountId),
-        appliesToAllIntegrations: .literal(true),
         displayName: .literal(leftover),
-        enabled: .literal(true),
         findingTypeId: .literal('00000000000000000000000000000001'),
+        enabled: .literal(true),
+        appliesToAllIntegrations: .literal(true),
         actions: ZeroTrustCasbPolicyActions(
           remediationTypes: [
             ZeroTrustCasbPolicyActionsRemediationTypes(
@@ -2016,9 +2016,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustCasbWebhook(
         localName: 'zero_trust_casb_webhook',
         accountId: .literal(accountId),
-        authenticationType: .literal(.none),
-        destinationUrl: .literal('https://example.com'),
         label: .literal(leftover),
+        destinationUrl: .literal('https://example.com'),
+        authenticationType: .literal(.none),
       ),
     );
 

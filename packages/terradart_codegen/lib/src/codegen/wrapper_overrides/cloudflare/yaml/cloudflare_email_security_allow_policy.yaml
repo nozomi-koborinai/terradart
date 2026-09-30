@@ -4,3 +4,26 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Email Security allow policy: exempts messages matching `pattern`
+  /// (an email address, domain or IP / CIDR, per `patternType`) from
+  /// detections.
+  ///
+  /// `isTrustedSender` bypasses every detection for the sender,
+  /// `isAcceptableSender` only Spam / Spoof / Bulk, and `isExemptRecipient`
+  /// every detection for the recipient; `verifySender` honors the policy
+  /// only for mail that passes DMARC, SPF or DKIM. The deprecated
+  /// `is_sender`, `is_spoof` and `is_recipient` inputs (end of life
+  /// 2026-07-01) are not exposed.
+
+paramOrder:
+  - account_id
+  - pattern
+  - pattern_type
+  - is_regex
+  - is_trusted_sender
+  - is_acceptable_sender
+  - is_exempt_recipient
+  - verify_sender
+  - comments

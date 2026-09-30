@@ -964,6 +964,22 @@ fail at `terraform validate`; now it doesn't compile. `terradart-migrate`
 picks the variant from whichever member the source sets, and leaves the
 argument out when none is set.
 
+### `CloudflareEmailSecurityAllowPolicy` drops the deprecated sender flags
+
+**Breaking (`terradart_cloudflare`)** — `CloudflareEmailSecurityAllowPolicy`
+no longer takes `isSender`, `isSpoof` or `isRecipient`. Cloudflare
+deprecated them on 2025-07-01 with an end of life of 2026-07-01; use the
+replacements the provider names, which the constructor already requires:
+
+| Before | After |
+|--------|-------|
+| `isSender: .literal(true)` | `isTrustedSender: .literal(true)` |
+| `isSpoof: .literal(true)` | `isAcceptableSender: .literal(true)` |
+| `isRecipient: .literal(true)` | `isExemptRecipient: .literal(true)` |
+
+Synth output no longer contains the three keys. `terradart-migrate` keeps a
+policy that sets one of them in the leftover sidecar.
+
 ### `terradart_aws` at-most-one inputs are nullable sealed types
 
 **Breaking (`terradart_aws`)** — 229 input groups across 160 resources whose

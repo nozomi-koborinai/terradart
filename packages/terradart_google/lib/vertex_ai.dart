@@ -64,6 +64,8 @@ export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dar
         VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGetHttpHeaders,
         VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeTcpSocket,
         VertexAiEndpointWithModelGardenDeploymentPublisherModel;
+export 'src/vertex_ai/google_vertex_ai_evaluation_metric.dart'
+    show GoogleVertexAiEvaluationMetric, VertexAiEvaluationMetricEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
 export 'src/vertex_ai/google_vertex_ai_feature_group_feature.dart'

@@ -4,3 +4,13 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+curatedDoc: |-
+  /// Precursor enforcement for a zone: `defaultMode` applies to every
+  /// request no `enforcementRules` entry matches; rules are evaluated in
+  /// order and cannot use `off`.
+
+paramOrder:
+  - zone_id
+  - default_mode
+  - enforcement_rules

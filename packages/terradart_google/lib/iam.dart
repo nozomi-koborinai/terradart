@@ -22,6 +22,14 @@ export 'src/iam/google_iam_deny_policy.dart'
         IamDenyPolicyRules,
         IamDenyPolicyRulesDenyRule,
         IamDenyPolicyRulesDenyRuleDenialCondition;
+export 'src/iam/google_iam_folder_access_policy.dart'
+    show
+        GoogleIamFolderAccessPolicy,
+        IamFolderAccessPolicyDetails,
+        IamFolderAccessPolicyDetailsRules,
+        IamFolderAccessPolicyDetailsRulesConditions,
+        IamFolderAccessPolicyDetailsRulesEffect,
+        IamFolderAccessPolicyDetailsRulesOperation;
 export 'src/iam/google_iam_folders_policy_binding.dart'
     show
         GoogleIamFoldersPolicyBinding,
@@ -30,6 +38,14 @@ export 'src/iam/google_iam_folders_policy_binding.dart'
 export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
 export 'src/iam/google_iam_oauth_client_credential.dart'
     show GoogleIamOauthClientCredential;
+export 'src/iam/google_iam_organization_access_policy.dart'
+    show
+        GoogleIamOrganizationAccessPolicy,
+        IamOrganizationAccessPolicyDetails,
+        IamOrganizationAccessPolicyDetailsRules,
+        IamOrganizationAccessPolicyDetailsRulesConditions,
+        IamOrganizationAccessPolicyDetailsRulesEffect,
+        IamOrganizationAccessPolicyDetailsRulesOperation;
 export 'src/iam/google_iam_organizations_policy_binding.dart'
     show
         GoogleIamOrganizationsPolicyBinding,
@@ -40,6 +56,14 @@ export 'src/iam/google_iam_principal_access_boundary_policy.dart'
         GoogleIamPrincipalAccessBoundaryPolicy,
         IamPrincipalAccessBoundaryPolicyDetails,
         IamPrincipalAccessBoundaryPolicyDetailsRules;
+export 'src/iam/google_iam_project_access_policy.dart'
+    show
+        GoogleIamProjectAccessPolicy,
+        IamProjectAccessPolicyDetails,
+        IamProjectAccessPolicyDetailsRules,
+        IamProjectAccessPolicyDetailsRulesConditions,
+        IamProjectAccessPolicyDetailsRulesEffect,
+        IamProjectAccessPolicyDetailsRulesOperation;
 export 'src/iam/google_iam_projects_policy_binding.dart'
     show
         GoogleIamProjectsPolicyBinding,

@@ -1,0 +1,15 @@
+outputDir: firestore
+
+deriveClassDoc: true
+deriveExactlyOne: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+paramOrder:
+  - database
+  - name
+  - database_scope
+  - collection_group_scope
+  - retention_period
+  - deletion_policy
+  - project
