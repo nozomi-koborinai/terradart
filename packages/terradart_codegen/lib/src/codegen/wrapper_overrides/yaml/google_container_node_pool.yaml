@@ -2,6 +2,7 @@ outputDir: container
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -18,6 +19,8 @@ curatedDoc: |-
 
 paramOrder:
   - cluster
+  - deletion_policy
+  - ignore_node_count_changes
   - initial_node_count
   - location
   - max_pods_per_node
@@ -28,6 +31,7 @@ paramOrder:
   - project
   - version
   - autoscaling
+  - maintenance_policy
   - management
   - network_config
   - node_config
