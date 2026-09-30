@@ -129,7 +129,10 @@ export 'src/monitoring/google_monitoring_slo.dart'
         MonitoringSloWindowsBasedSliMetricSumInRange,
         MonitoringSloWindowsBasedSliMetricSumInRangeRange;
 export 'src/monitoring/google_monitoring_snooze.dart'
-    show GoogleMonitoringSnooze;
+    show
+        GoogleMonitoringSnooze,
+        MonitoringSnoozeCriteria,
+        MonitoringSnoozeInterval;
 export 'src/monitoring/google_monitoring_uptime_check_config.dart'
     show
         GoogleMonitoringUptimeCheckConfig,
