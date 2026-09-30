@@ -22,7 +22,8 @@ enum HealthCheckType implements TerraformEnum {
   tcp('TCP'),
   ssl('SSL'),
   http2('HTTP2'),
-  grpc('GRPC');
+  grpc('GRPC'),
+  grpcWithTls('GRPC_WITH_TLS');
 
   const HealthCheckType(this.terraformValue);
   @override
@@ -59,7 +60,7 @@ enum HealthCheckPortSpecification implements TerraformEnum {
 }
 
 // ===========================================================================
-// ComputeHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc)
+// ComputeHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc | grpcTls)
 // ===========================================================================
 
 /// Mutually exclusive per-protocol config block. Each concrete `*Config`
@@ -127,6 +128,13 @@ sealed class ComputeHealthCheckProtocol {
     HealthCheckPortSpecification? portSpecification,
     TfArg<String>? grpcServiceName,
   }) = ComputeHealthCheckGrpcHealthCheckConfig;
+
+  /// `grpc_tls_health_check` block.
+  const factory ComputeHealthCheckProtocol.grpcTls({
+    TfArg<int>? port,
+    HealthCheckPortSpecification? portSpecification,
+    TfArg<String>? grpcServiceName,
+  }) = ComputeHealthCheckGrpcTlsHealthCheckConfig;
 
   /// Terraform nested-block key (e.g. `https_health_check`).
   String get blockKey;
@@ -401,6 +409,41 @@ final class ComputeHealthCheckGrpcHealthCheckConfig
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
+/// `grpc_tls_health_check` block. Probes via the gRPC Health Checking
+/// Protocol over TLS.
+@immutable
+final class ComputeHealthCheckGrpcTlsHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
+  const ComputeHealthCheckGrpcTlsHealthCheckConfig({
+    this.port,
+    this.portSpecification,
+    this.grpcServiceName,
+  });
+
+  /// Port number. Must be set if `port_specification` is
+  /// [HealthCheckPortSpecification.useFixedPort]. Valid 1-65535.
+  final TfArg<int>? port;
+  final HealthCheckPortSpecification? portSpecification;
+
+  /// gRPC service name passed in the `service` field of the Check RPC.
+  /// Empty means "report aggregate server health". ASCII only.
+  final TfArg<String>? grpcServiceName;
+
+  Map<String, Object?> toArgMap() => {
+    if (port != null) 'port': port!.toTfJson(),
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+    if (grpcServiceName != null)
+      'grpc_service_name': grpcServiceName!.toTfJson(),
+  };
+
+  @override
+  String get blockKey => 'grpc_tls_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
+}
+
 // ===========================================================================
 // log_config (max_items=1)
 // ===========================================================================
@@ -450,7 +493,7 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// `google_compute_region_health_check` (curated separately).
 ///
 /// Choose exactly one [ComputeHealthCheckProtocol] variant (HTTP, HTTPS,
-/// HTTP2, TCP, SSL, or gRPC). The choice determines the read-only `type`
+/// HTTP2, TCP, SSL, gRPC, or gRPC over TLS). The choice determines the read-only `type`
 /// getter value. The sealed type enforces the GCP / Terraform
 /// exactly-one constraint at compile time.
 ///

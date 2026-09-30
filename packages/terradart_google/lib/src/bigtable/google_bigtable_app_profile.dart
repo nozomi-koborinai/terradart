@@ -1,88 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_bigtable_app_profile`.
 const Set<String> _googleBigtableAppProfileSensitive = <String>{};
-
-/// Routing strategy for `google_bigtable_app_profile` — exactly one variant.
-sealed class BigtableAppProfileRouting {
-  const BigtableAppProfileRouting();
-
-  /// Route all traffic to one cluster.
-  const factory BigtableAppProfileRouting.singleClusterRouting({
-    required TfArg<String> clusterId,
-    TfArg<bool>? allowTransactionalWrites,
-  }) = BigtableAppProfileSingleClusterRouting;
-
-  /// Multi-cluster routing with a priority tier.
-  const factory BigtableAppProfileRouting.standardIsolation({
-    required TfArg<BigtableAppProfileIsolationPriority> priority,
-  }) = BigtableAppProfileStandardIsolation;
-
-  /// Read-only Data Boost isolation.
-  const factory BigtableAppProfileRouting.dataBoostIsolation({
-    required TfArg<BigtableAppProfileComputeBillingOwner> computeBillingOwner,
-  }) = BigtableAppProfileDataBoostIsolation;
-
-  String get blockKey;
-  Map<String, Object?> encode();
-}
-
-/// Route all traffic to one cluster.
-final class BigtableAppProfileSingleClusterRouting
-    extends BigtableAppProfileRouting {
-  const BigtableAppProfileSingleClusterRouting({
-    required this.clusterId,
-    this.allowTransactionalWrites,
-  });
-
-  final TfArg<String> clusterId;
-  final TfArg<bool>? allowTransactionalWrites;
-
-  @override
-  String get blockKey => 'single_cluster_routing';
-
-  @override
-  Map<String, Object?> encode() => {
-    'cluster_id': clusterId.toTfJson(),
-    if (allowTransactionalWrites != null)
-      'allow_transactional_writes': allowTransactionalWrites!.toTfJson(),
-  };
-}
-
-/// Multi-cluster routing with a priority tier.
-final class BigtableAppProfileStandardIsolation
-    extends BigtableAppProfileRouting {
-  const BigtableAppProfileStandardIsolation({required this.priority});
-
-  final TfArg<BigtableAppProfileIsolationPriority> priority;
-
-  @override
-  String get blockKey => 'standard_isolation';
-
-  @override
-  Map<String, Object?> encode() => {'priority': priority.toTfJson()};
-}
-
-/// Read-only Data Boost isolation.
-final class BigtableAppProfileDataBoostIsolation
-    extends BigtableAppProfileRouting {
-  const BigtableAppProfileDataBoostIsolation({
-    required this.computeBillingOwner,
-  });
-
-  final TfArg<BigtableAppProfileComputeBillingOwner> computeBillingOwner;
-
-  @override
-  String get blockKey => 'data_boost_isolation_read_only';
-
-  @override
-  Map<String, Object?> encode() => {
-    'compute_billing_owner': computeBillingOwner.toTfJson(),
-  };
-}
 
 /// `compute_billing_owner` on `data_boost_isolation_read_only`.
 enum BigtableAppProfileComputeBillingOwner implements TerraformEnum {
@@ -93,14 +16,205 @@ enum BigtableAppProfileComputeBillingOwner implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `priority` on `standard_isolation`.
-enum BigtableAppProfileIsolationPriority implements TerraformEnum {
-  priorityUnspecified('PRIORITY_UNSPECIFIED'),
+/// Exactly one of `single_cluster_routing`, `multi_cluster_routing_use_any` on `google_bigtable_app_profile`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.singleClusterRouting(...)`.
+sealed class BigtableAppProfileRouting {
+  const BigtableAppProfileRouting();
+
+  /// Sets `single_cluster_routing`.
+  const factory BigtableAppProfileRouting.singleClusterRouting(
+    BigtableAppProfileSingleClusterRouting singleClusterRouting,
+  ) = BigtableAppProfileRoutingSingleClusterRouting;
+
+  /// Sets `multi_cluster_routing_use_any`.
+  const factory BigtableAppProfileRouting.multiClusterRoutingUseAny(
+    TfArg<bool> multiClusterRoutingUseAny,
+  ) = BigtableAppProfileRoutingMultiClusterRoutingUseAny;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [BigtableAppProfileRouting.singleClusterRouting] choice: sets `single_cluster_routing`.
+final class BigtableAppProfileRoutingSingleClusterRouting
+    extends BigtableAppProfileRouting {
+  const BigtableAppProfileRoutingSingleClusterRouting(
+    this.singleClusterRouting,
+  );
+
+  final BigtableAppProfileSingleClusterRouting singleClusterRouting;
+
+  @override
+  String get blockKey => 'single_cluster_routing';
+
+  @override
+  Map<String, Object?> encode() => {
+    'single_cluster_routing': singleClusterRouting.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'single_cluster_routing': TfArg.literal(singleClusterRouting.encode()),
+  };
+}
+
+/// The [BigtableAppProfileRouting.multiClusterRoutingUseAny] choice: sets `multi_cluster_routing_use_any`.
+final class BigtableAppProfileRoutingMultiClusterRoutingUseAny
+    extends BigtableAppProfileRouting {
+  const BigtableAppProfileRoutingMultiClusterRoutingUseAny(
+    this.multiClusterRoutingUseAny,
+  );
+
+  final TfArg<bool> multiClusterRoutingUseAny;
+
+  @override
+  String get blockKey => 'multi_cluster_routing_use_any';
+
+  @override
+  Map<String, Object?> encode() => {
+    'multi_cluster_routing_use_any': multiClusterRoutingUseAny.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'multi_cluster_routing_use_any': multiClusterRoutingUseAny,
+  };
+}
+
+/// At most one of `standard_isolation`, `data_boost_isolation_read_only` on `google_bigtable_app_profile`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.standardIsolation(...)`.
+sealed class BigtableAppProfileIsolation {
+  const BigtableAppProfileIsolation();
+
+  /// Sets `standard_isolation`.
+  const factory BigtableAppProfileIsolation.standardIsolation(
+    BigtableAppProfileStandardIsolation standardIsolation,
+  ) = BigtableAppProfileIsolationStandardIsolation;
+
+  /// Sets `data_boost_isolation_read_only`.
+  const factory BigtableAppProfileIsolation.dataBoostIsolationReadOnly(
+    BigtableAppProfileDataBoostIsolationReadOnly dataBoostIsolationReadOnly,
+  ) = BigtableAppProfileIsolationDataBoostIsolationReadOnly;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [BigtableAppProfileIsolation.standardIsolation] choice: sets `standard_isolation`.
+final class BigtableAppProfileIsolationStandardIsolation
+    extends BigtableAppProfileIsolation {
+  const BigtableAppProfileIsolationStandardIsolation(this.standardIsolation);
+
+  final BigtableAppProfileStandardIsolation standardIsolation;
+
+  @override
+  String get blockKey => 'standard_isolation';
+
+  @override
+  Map<String, Object?> encode() => {
+    'standard_isolation': standardIsolation.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'standard_isolation': TfArg.literal(standardIsolation.encode()),
+  };
+}
+
+/// The [BigtableAppProfileIsolation.dataBoostIsolationReadOnly] choice: sets `data_boost_isolation_read_only`.
+final class BigtableAppProfileIsolationDataBoostIsolationReadOnly
+    extends BigtableAppProfileIsolation {
+  const BigtableAppProfileIsolationDataBoostIsolationReadOnly(
+    this.dataBoostIsolationReadOnly,
+  );
+
+  final BigtableAppProfileDataBoostIsolationReadOnly dataBoostIsolationReadOnly;
+
+  @override
+  String get blockKey => 'data_boost_isolation_read_only';
+
+  @override
+  Map<String, Object?> encode() => {
+    'data_boost_isolation_read_only': dataBoostIsolationReadOnly.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_boost_isolation_read_only': TfArg.literal(
+      dataBoostIsolationReadOnly.encode(),
+    ),
+  };
+}
+
+/// Typed helper for the `data_boost_isolation_read_only` block of
+/// `google_bigtable_app_profile` (derived from provider schema).
+@immutable
+final class BigtableAppProfileDataBoostIsolationReadOnly {
+  const BigtableAppProfileDataBoostIsolationReadOnly({
+    required this.computeBillingOwner,
+  });
+
+  final TfArg<BigtableAppProfileComputeBillingOwner> computeBillingOwner;
+
+  Map<String, Object?> encode() => {
+    'compute_billing_owner': computeBillingOwner.toTfJson(),
+  };
+}
+
+/// Typed helper for the `single_cluster_routing` block of
+/// `google_bigtable_app_profile` (derived from provider schema).
+@immutable
+final class BigtableAppProfileSingleClusterRouting {
+  const BigtableAppProfileSingleClusterRouting({
+    this.allowTransactionalWrites,
+    required this.clusterId,
+  });
+
+  final TfArg<bool>? allowTransactionalWrites;
+
+  final TfArg<String> clusterId;
+
+  Map<String, Object?> encode() => {
+    'allow_transactional_writes': ?allowTransactionalWrites?.toTfJson(),
+    'cluster_id': clusterId.toTfJson(),
+  };
+}
+
+/// Typed helper for the `standard_isolation` block of
+/// `google_bigtable_app_profile` (derived from provider schema).
+@immutable
+final class BigtableAppProfileStandardIsolation {
+  const BigtableAppProfileStandardIsolation({required this.priority});
+
+  final TfArg<BigtableAppProfileStandardIsolationPriority> priority;
+
+  Map<String, Object?> encode() => {'priority': priority.toTfJson()};
+}
+
+/// `priority` — derived from the provider schema description.
+enum BigtableAppProfileStandardIsolationPriority implements TerraformEnum {
   priorityLow('PRIORITY_LOW'),
   priorityMedium('PRIORITY_MEDIUM'),
   priorityHigh('PRIORITY_HIGH');
 
-  const BigtableAppProfileIsolationPriority(this.terraformValue);
+  const BigtableAppProfileStandardIsolationPriority(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,7 +230,10 @@ enum BigtableAppProfileIsolationPriority implements TerraformEnum {
 /// - [localName]: Terraform local name.
 /// - [appProfileId]: profile ID within the instance.
 /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
-/// - [routing]: pick exactly one [BigtableAppProfileRouting] variant.
+/// - [routing]: pick exactly one [BigtableAppProfileRouting] variant
+///   (single-cluster, or multi-cluster across
+///   [multiClusterRoutingClusterIds]). [isolation] optionally picks
+///   standard or Data Boost isolation.
 ///
 /// Example (single-cluster routing):
 /// ```dart
@@ -124,8 +241,10 @@ enum BigtableAppProfileIsolationPriority implements TerraformEnum {
 ///   localName: 'default',
 ///   appProfileId: TfArg.literal('default'),
 ///   instance: TfArg.ref(instance.nameRef),
-///   routing: BigtableAppProfileSingleClusterRouting(
-///     clusterId: TfArg.literal('events-c1'),
+///   routing: .singleClusterRouting(
+///     BigtableAppProfileSingleClusterRouting(
+///       clusterId: TfArg.literal('events-c1'),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -137,6 +256,8 @@ final class GoogleBigtableAppProfile extends Resource {
     required TfArg<String> appProfileId,
     TfArg<String>? instance,
     required BigtableAppProfileRouting routing,
+    TfArg<List<String>>? multiClusterRoutingClusterIds,
+    BigtableAppProfileIsolation? isolation,
     TfArg<String>? description,
     TfArg<bool>? ignoreWarnings,
     TfArg<bool>? rowAffinity,
@@ -151,7 +272,9 @@ final class GoogleBigtableAppProfile extends Resource {
          argMap: {
            'app_profile_id': appProfileId,
            'instance': ?instance,
-           routing.blockKey: TfArg.literal([routing.encode()]),
+           ...routing.argMap,
+           'multi_cluster_routing_cluster_ids': ?multiClusterRoutingClusterIds,
+           ...?isolation?.argMap,
            'description': ?description,
            'ignore_warnings': ?ignoreWarnings,
            'row_affinity': ?rowAffinity,
