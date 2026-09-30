@@ -1,12 +1,36 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 
 /// Sensitive field paths for `google_compute_subnetwork_iam_member`.
 const Set<String> _googleComputeSubnetworkIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_compute_subnetwork_iam_member` (derived from provider schema).
+@immutable
+final class ComputeSubnetworkIamMemberCondition {
+  const ComputeSubnetworkIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_subnetwork_iam_member`.
 final class GoogleComputeSubnetworkIamMember extends Resource {
@@ -17,7 +41,7 @@ final class GoogleComputeSubnetworkIamMember extends Resource {
     required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    ComputeSubnetworkIamMemberCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,
     super.lifecycle,
@@ -30,7 +54,8 @@ final class GoogleComputeSubnetworkIamMember extends Resource {
            'subnetwork': subnetwork.encodeAs('id'),
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'region': ?region,
            'project': ?project,
          },

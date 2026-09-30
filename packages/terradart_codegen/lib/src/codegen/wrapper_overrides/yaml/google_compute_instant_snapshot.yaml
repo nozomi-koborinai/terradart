@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -10,6 +11,7 @@ paramOrder:
   - source_disk
   - description
   - labels
+  - params
   - deletion_policy
   - zone
   - project
