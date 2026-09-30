@@ -110,6 +110,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
     required TfArg<String> location,
     required TfArg<String> domainId,
     FirebaseAppHostingDomainAppHostingDomainServe? serve,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -122,6 +123,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
            'location': location,
            'domain_id': domainId,
            if (serve != null) 'serve': TfArg.literal([serve.toArgMap()]),
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

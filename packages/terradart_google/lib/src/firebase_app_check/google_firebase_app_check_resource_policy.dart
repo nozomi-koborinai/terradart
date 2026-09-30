@@ -70,6 +70,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
     required TfArg<String> serviceId,
     required TfArg<String> targetResource,
     TfArg<AppCheckEnforcementMode>? enforcementMode,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -81,6 +82,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
            'service_id': serviceId,
            'target_resource': targetResource,
            'enforcement_mode': ?enforcementMode,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

@@ -1,11 +1,140 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_contact_center_insights_analysis_rule`.
 const Set<String> _googleContactCenterInsightsAnalysisRuleSensitive =
     <String>{};
+
+/// Typed helper for the `annotator_selector` block of
+/// `google_contact_center_insights_analysis_rule` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsAnalysisRuleAnnotatorSelector {
+  const ContactCenterInsightsAnalysisRuleAnnotatorSelector({
+    this.issueModels,
+    this.phraseMatchers,
+    this.runEntityAnnotator,
+    this.runIntentAnnotator,
+    this.runInterruptionAnnotator,
+    this.runIssueModelAnnotator,
+    this.runPhraseMatcherAnnotator,
+    this.runQaAnnotator,
+    this.runSentimentAnnotator,
+    this.runSilenceAnnotator,
+    this.runSummarizationAnnotator,
+    this.qaConfig,
+    this.summarizationConfig,
+  });
+
+  final TfArg<List<String>>? issueModels;
+
+  final TfArg<List<String>>? phraseMatchers;
+
+  final TfArg<bool>? runEntityAnnotator;
+
+  final TfArg<bool>? runIntentAnnotator;
+
+  final TfArg<bool>? runInterruptionAnnotator;
+
+  final TfArg<bool>? runIssueModelAnnotator;
+
+  final TfArg<bool>? runPhraseMatcherAnnotator;
+
+  final TfArg<bool>? runQaAnnotator;
+
+  final TfArg<bool>? runSentimentAnnotator;
+
+  final TfArg<bool>? runSilenceAnnotator;
+
+  final TfArg<bool>? runSummarizationAnnotator;
+
+  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig? qaConfig;
+
+  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig?
+  summarizationConfig;
+
+  Map<String, Object?> encode() => {
+    'issue_models': ?issueModels?.toTfJson(),
+    'phrase_matchers': ?phraseMatchers?.toTfJson(),
+    'run_entity_annotator': ?runEntityAnnotator?.toTfJson(),
+    'run_intent_annotator': ?runIntentAnnotator?.toTfJson(),
+    'run_interruption_annotator': ?runInterruptionAnnotator?.toTfJson(),
+    'run_issue_model_annotator': ?runIssueModelAnnotator?.toTfJson(),
+    'run_phrase_matcher_annotator': ?runPhraseMatcherAnnotator?.toTfJson(),
+    'run_qa_annotator': ?runQaAnnotator?.toTfJson(),
+    'run_sentiment_annotator': ?runSentimentAnnotator?.toTfJson(),
+    'run_silence_annotator': ?runSilenceAnnotator?.toTfJson(),
+    'run_summarization_annotator': ?runSummarizationAnnotator?.toTfJson(),
+    'qa_config': ?qaConfig?.encode(),
+    'summarization_config': ?summarizationConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `annotator_selector.qa_config` block of
+/// `google_contact_center_insights_analysis_rule` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig {
+  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig({
+    this.scorecardList,
+  });
+
+  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList?
+  scorecardList;
+
+  Map<String, Object?> encode() => {'scorecard_list': ?scorecardList?.encode()};
+}
+
+/// Typed helper for the `annotator_selector.qa_config.scorecard_list` block of
+/// `google_contact_center_insights_analysis_rule` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList {
+  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList({
+    this.qaScorecardRevisions,
+  });
+
+  final TfArg<List<String>>? qaScorecardRevisions;
+
+  Map<String, Object?> encode() => {
+    'qa_scorecard_revisions': ?qaScorecardRevisions?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `annotator_selector.summarization_config` block of
+/// `google_contact_center_insights_analysis_rule` (derived from provider schema).
+@immutable
+final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig {
+  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig({
+    this.conversationProfile,
+    this.summarizationModel,
+  });
+
+  final TfArg<String>? conversationProfile;
+
+  final TfArg<
+    ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel
+  >?
+  summarizationModel;
+
+  Map<String, Object?> encode() => {
+    'conversation_profile': ?conversationProfile?.toTfJson(),
+    'summarization_model': ?summarizationModel?.toTfJson(),
+  };
+}
+
+/// `summarization_model` — derived from the provider schema description.
+enum ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel
+    implements TerraformEnum {
+  baselineModel('BASELINE_MODEL'),
+  baselineModelV20('BASELINE_MODEL_V2_0');
+
+  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
 
 /// Factory wrapper for `google_contact_center_insights_analysis_rule`.
 ///
@@ -31,6 +160,7 @@ final class GoogleContactCenterInsightsAnalysisRule extends Resource {
     TfArg<bool>? active,
     TfArg<num>? analysisPercentage,
     TfArg<String>? conversationFilter,
+    ContactCenterInsightsAnalysisRuleAnnotatorSelector? annotatorSelector,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -45,6 +175,8 @@ final class GoogleContactCenterInsightsAnalysisRule extends Resource {
            'active': ?active,
            'analysis_percentage': ?analysisPercentage,
            'conversation_filter': ?conversationFilter,
+           if (annotatorSelector != null)
+             'annotator_selector': TfArg.literal(annotatorSelector.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
          },

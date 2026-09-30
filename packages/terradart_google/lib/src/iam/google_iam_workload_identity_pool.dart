@@ -252,6 +252,7 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
     TfArg<String>? description,
     TfArg<bool>? disabled,
     TfArg<WorkloadIdentityPoolMode>? mode,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     List<IamWorkloadIdentityPoolAttestationRules>? attestationRules,
     IamWorkloadIdentityPoolInlineCertificateIssuanceConfig?
@@ -269,6 +270,7 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
            'description': ?description,
            'disabled': ?disabled,
            'mode': ?mode,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
            if (attestationRules != null)
              'attestation_rules': TfArg.literal([

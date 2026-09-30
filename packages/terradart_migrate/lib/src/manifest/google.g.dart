@@ -47078,6 +47078,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'guest_os_features',
+          dartName: 'guestOsFeatures',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeImageGuestOsFeatures',
+        ),
+        MigrateSlot(
+          tfName: 'params',
+          dartName: 'params',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeImageParams',
+        ),
+        MigrateSlot(
+          tfName: 'raw_disk',
+          dartName: 'rawDisk',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeImageRawDisk',
+        ),
+        MigrateSlot(
+          tfName: 'shielded_instance_initial_state',
+          dartName: 'shieldedInstanceInitialState',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeImageShieldedInstanceInitialState',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -69655,6 +69688,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeZoneVmExtensionPolicyInstanceSelectors',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'priority',
+          dartName: 'priority',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -69952,6 +69999,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'annotator_selector',
+          dartName: 'annotatorSelector',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContactCenterInsightsAnalysisRuleAnnotatorSelector',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -70392,6 +70447,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'predefined_question_config',
+          dartName: 'predefinedQuestionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContactCenterInsightsQaQuestionPredefinedQuestionConfig',
+        ),
+        MigrateSlot(
+          tfName: 'qa_question_data_options',
+          dartName: 'qaQuestionDataOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContactCenterInsightsQaQuestionQaQuestionDataOptions',
+        ),
+        MigrateSlot(
+          tfName: 'tuning_metadata',
+          dartName: 'tuningMetadata',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContactCenterInsightsQaQuestionTuningMetadata',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -91243,6 +91322,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'inference_parameter',
+          dartName: 'inferenceParameter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DialogflowGeneratorInferenceParameter',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -98921,6 +99008,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -99155,6 +99249,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'AppCheckEnforcementMode',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -99196,6 +99297,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'AppCheckEnforcementMode',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -99287,6 +99395,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -99488,6 +99603,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'FirebaseAppHostingDomainAppHostingDomainServe',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -104556,6 +104678,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'fleet_default_member_config',
+          dartName: 'fleetDefaultMemberConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureFleetDefaultMemberConfig',
+        ),
+        MigrateSlot(
+          tfName: 'spec',
+          dartName: 'spec',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpec',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -111831,6 +111969,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'WorkloadIdentityPoolMode',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -117476,6 +117621,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'IdentityPlatformTenantDeletionPolicy',
+        ),
+        MigrateSlot(
+          tfName: 'client',
+          dartName: 'client',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'IdentityPlatformTenantClient',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -126129,6 +126282,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'MigrationCenterPreferenceSetDeletionPolicy',
+        ),
+        MigrateSlot(
+          tfName: 'virtual_machine_preferences',
+          dartName: 'virtualMachinePreferences',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'MigrationCenterPreferenceSetVirtualMachinePreferences',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -148809,6 +148970,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'CustomRoleStage',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -158685,6 +158853,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -159186,6 +159361,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[
@@ -225789,6 +225971,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'tcp',
     ),
+    'ComputeImageGuestOsFeatures': MigrateHelper(
+      className: 'ComputeImageGuestOsFeatures',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'ComputeImageGuestOsFeaturesType',
+        ),
+      ],
+    ),
     'ComputeImageIamBindingCondition': MigrateHelper(
       className: 'ComputeImageIamBindingCondition',
       slots: <MigrateSlot>[
@@ -225869,6 +226063,160 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'rsa_encrypted_key',
           dartName: 'rsaEncryptedKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeImageParams': MigrateHelper(
+      className: 'ComputeImageParams',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_manager_tags',
+          dartName: 'resourceManagerTags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+      ],
+    ),
+    'ComputeImageRawDisk': MigrateHelper(
+      className: 'ComputeImageRawDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'container_type',
+          dartName: 'containerType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sha1',
+          dartName: 'sha1',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'source',
+          dartName: 'source',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeImageShieldedInstanceInitialState': MigrateHelper(
+      className: 'ComputeImageShieldedInstanceInitialState',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dbs',
+          dartName: 'dbs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeImageShieldedInstanceInitialStateDbs',
+        ),
+        MigrateSlot(
+          tfName: 'dbxs',
+          dartName: 'dbxs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeImageShieldedInstanceInitialStateDbxs',
+        ),
+        MigrateSlot(
+          tfName: 'keks',
+          dartName: 'keks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeImageShieldedInstanceInitialStateKeks',
+        ),
+        MigrateSlot(
+          tfName: 'pk',
+          dartName: 'pk',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeImageShieldedInstanceInitialStatePk',
+        ),
+      ],
+    ),
+    'ComputeImageShieldedInstanceInitialStateDbs': MigrateHelper(
+      className: 'ComputeImageShieldedInstanceInitialStateDbs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content',
+          dartName: 'content',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'file_type',
+          dartName: 'fileType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeImageShieldedInstanceInitialStateDbxs': MigrateHelper(
+      className: 'ComputeImageShieldedInstanceInitialStateDbxs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content',
+          dartName: 'content',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'file_type',
+          dartName: 'fileType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeImageShieldedInstanceInitialStateKeks': MigrateHelper(
+      className: 'ComputeImageShieldedInstanceInitialStateKeks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content',
+          dartName: 'content',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'file_type',
+          dartName: 'fileType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeImageShieldedInstanceInitialStatePk': MigrateHelper(
+      className: 'ComputeImageShieldedInstanceInitialStatePk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content',
+          dartName: 'content',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'file_type',
+          dartName: 'fileType',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -245005,6 +245353,155 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'gitSource',
     ),
+    'ContactCenterInsightsAnalysisRuleAnnotatorSelector': MigrateHelper(
+      className: 'ContactCenterInsightsAnalysisRuleAnnotatorSelector',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'issue_models',
+          dartName: 'issueModels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'phrase_matchers',
+          dartName: 'phraseMatchers',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'run_entity_annotator',
+          dartName: 'runEntityAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_intent_annotator',
+          dartName: 'runIntentAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_interruption_annotator',
+          dartName: 'runInterruptionAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_issue_model_annotator',
+          dartName: 'runIssueModelAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_phrase_matcher_annotator',
+          dartName: 'runPhraseMatcherAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_qa_annotator',
+          dartName: 'runQaAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_sentiment_annotator',
+          dartName: 'runSentimentAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_silence_annotator',
+          dartName: 'runSilenceAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'run_summarization_annotator',
+          dartName: 'runSummarizationAnnotator',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'qa_config',
+          dartName: 'qaConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig',
+        ),
+        MigrateSlot(
+          tfName: 'summarization_config',
+          dartName: 'summarizationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig',
+        ),
+      ],
+    ),
+    'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig': MigrateHelper(
+      className: 'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'scorecard_list',
+          dartName: 'scorecardList',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList',
+        ),
+      ],
+    ),
+    'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList':
+        MigrateHelper(
+          className:
+              'ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'qa_scorecard_revisions',
+              dartName: 'qaScorecardRevisions',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'List<String>',
+            ),
+          ],
+        ),
+    'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig':
+        MigrateHelper(
+          className:
+              'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'conversation_profile',
+              dartName: 'conversationProfile',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'summarization_model',
+              dartName: 'summarizationModel',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType:
+                  'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel',
+            ),
+          ],
+        ),
     'ContactCenterInsightsAssessmentRuleSampleRule': MigrateHelper(
       className: 'ContactCenterInsightsAssessmentRuleSampleRule',
       slots: <MigrateSlot>[
@@ -245163,6 +245660,72 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'str_value',
           dartName: 'strValue',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContactCenterInsightsQaQuestionPredefinedQuestionConfig': MigrateHelper(
+      className: 'ContactCenterInsightsQaQuestionPredefinedQuestionConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContactCenterInsightsQaQuestionQaQuestionDataOptions': MigrateHelper(
+      className: 'ContactCenterInsightsQaQuestionQaQuestionDataOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'conversation_data_options',
+          dartName: 'conversationDataOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions',
+        ),
+      ],
+    ),
+    'ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions':
+        MigrateHelper(
+          className:
+              'ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'include_dialogflow_interaction_data',
+              dartName: 'includeDialogflowInteractionData',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContactCenterInsightsQaQuestionTuningMetadata': MigrateHelper(
+      className: 'ContactCenterInsightsQaQuestionTuningMetadata',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dataset_validation_warnings',
+          dartName: 'datasetValidationWarnings',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'total_valid_label_count',
+          dartName: 'totalValidLabelCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tuning_error',
+          dartName: 'tuningError',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -288383,6 +288946,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DialogflowGeneratorInferenceParameter': MigrateHelper(
+      className: 'DialogflowGeneratorInferenceParameter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_output_tokens',
+          dartName: 'maxOutputTokens',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'temperature',
+          dartName: 'temperature',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'top_k',
+          dartName: 'topK',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'top_p',
+          dartName: 'topP',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
     'DialogflowGeneratorSummarizationContext': MigrateHelper(
       className: 'DialogflowGeneratorSummarizationContext',
       slots: <MigrateSlot>[
@@ -294649,6 +295245,572 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'GkeHubFeatureFleetDefaultMemberConfig': MigrateHelper(
+      className: 'GkeHubFeatureFleetDefaultMemberConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'configmanagement',
+          dartName: 'configmanagement',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureFleetDefaultMemberConfigConfigmanagement',
+        ),
+        MigrateSlot(
+          tfName: 'mesh',
+          dartName: 'mesh',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureFleetDefaultMemberConfigMesh',
+        ),
+        MigrateSlot(
+          tfName: 'policycontroller',
+          dartName: 'policycontroller',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureFleetDefaultMemberConfigPolicycontroller',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigConfigmanagement': MigrateHelper(
+      className: 'GkeHubFeatureFleetDefaultMemberConfigConfigmanagement',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'management',
+          dartName: 'management',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement',
+        ),
+        MigrateSlot(
+          tfName: 'version',
+          dartName: 'version',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'config_sync',
+          dartName: 'configSync',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync': MigrateHelper(
+      className:
+          'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSync',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'metrics_gcp_service_account_email',
+          dartName: 'metricsGcpServiceAccountEmail',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'prevent_drift',
+          dartName: 'preventDrift',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'source_format',
+          dartName: 'sourceFormat',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'git',
+          dartName: 'git',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit',
+        ),
+        MigrateSlot(
+          tfName: 'oci',
+          dartName: 'oci',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncGit',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_service_account_email',
+              dartName: 'gcpServiceAccountEmail',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'https_proxy',
+              dartName: 'httpsProxy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'policy_dir',
+              dartName: 'policyDir',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'secret_type',
+              dartName: 'secretType',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_branch',
+              dartName: 'syncBranch',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_repo',
+              dartName: 'syncRepo',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_rev',
+              dartName: 'syncRev',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_wait_secs',
+              dartName: 'syncWaitSecs',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_service_account_email',
+              dartName: 'gcpServiceAccountEmail',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'policy_dir',
+              dartName: 'policyDir',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'secret_type',
+              dartName: 'secretType',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_repo',
+              dartName: 'syncRepo',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'sync_wait_secs',
+              dartName: 'syncWaitSecs',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'version',
+              dartName: 'version',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigMesh': MigrateHelper(
+      className: 'GkeHubFeatureFleetDefaultMemberConfigMesh',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'management',
+          dartName: 'management',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'GkeHubFeatureFleetDefaultMemberConfigMeshManagement',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontroller': MigrateHelper(
+      className: 'GkeHubFeatureFleetDefaultMemberConfigPolicycontroller',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'version',
+          dartName: 'version',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'policy_controller_hub_config',
+          dartName: 'policyControllerHubConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig': MigrateHelper(
+      className:
+          'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'audit_interval_seconds',
+          dartName: 'auditIntervalSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'constraint_violation_limit',
+          dartName: 'constraintViolationLimit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'exemptable_namespaces',
+          dartName: 'exemptableNamespaces',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'install_spec',
+          dartName: 'installSpec',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec',
+        ),
+        MigrateSlot(
+          tfName: 'log_denies_enabled',
+          dartName: 'logDeniesEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'mutation_enabled',
+          dartName: 'mutationEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'referential_rules_enabled',
+          dartName: 'referentialRulesEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'deployment_configs',
+          dartName: 'deploymentConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs',
+        ),
+        MigrateSlot(
+          tfName: 'monitoring',
+          dartName: 'monitoring',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring',
+        ),
+        MigrateSlot(
+          tfName: 'policy_content',
+          dartName: 'policyContent',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs': MigrateHelper(
+      className:
+          'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'component',
+          dartName: 'component',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pod_affinity',
+          dartName: 'podAffinity',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity',
+        ),
+        MigrateSlot(
+          tfName: 'replica_count',
+          dartName: 'replicaCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'container_resources',
+          dartName: 'containerResources',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources',
+        ),
+        MigrateSlot(
+          tfName: 'pod_toleration',
+          dartName: 'podToleration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration',
+        ),
+      ],
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'limits',
+              dartName: 'limits',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits',
+            ),
+            MigrateSlot(
+              tfName: 'requests',
+              dartName: 'requests',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cpu',
+              dartName: 'cpu',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory',
+              dartName: 'memory',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cpu',
+              dartName: 'cpu',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory',
+              dartName: 'memory',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodToleration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'effect',
+              dartName: 'effect',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'operator',
+              dartName: 'operator',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoring',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'backends',
+              dartName: 'backends',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              repeated: true,
+              dartType:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContent',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'bundles',
+              dartName: 'bundles',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles',
+            ),
+            MigrateSlot(
+              tfName: 'template_library',
+              dartName: 'templateLibrary',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentBundles',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'bundle',
+              dartName: 'bundle',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'exempted_namespaces',
+              dartName: 'exemptedNamespaces',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'List<String>',
+            ),
+          ],
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'installation',
+              dartName: 'installation',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType:
+                  'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation',
+            ),
+          ],
+        ),
     'GkeHubFeatureIamBindingCondition': MigrateHelper(
       className: 'GkeHubFeatureIamBindingCondition',
       slots: <MigrateSlot>[
@@ -295436,6 +296598,248 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'GkeHubFeatureSpec': MigrateHelper(
+      className: 'GkeHubFeatureSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'clusterupgrade',
+          dartName: 'clusterupgrade',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecClusterupgrade',
+        ),
+        MigrateSlot(
+          tfName: 'fleetobservability',
+          dartName: 'fleetobservability',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecFleetobservability',
+        ),
+        MigrateSlot(
+          tfName: 'multiclusteringress',
+          dartName: 'multiclusteringress',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecMulticlusteringress',
+        ),
+        MigrateSlot(
+          tfName: 'rbacrolebindingactuation',
+          dartName: 'rbacrolebindingactuation',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecRbacrolebindingactuation',
+        ),
+        MigrateSlot(
+          tfName: 'workloadidentity',
+          dartName: 'workloadidentity',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecWorkloadidentity',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecClusterupgrade': MigrateHelper(
+      className: 'GkeHubFeatureSpecClusterupgrade',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'upstream_fleets',
+          dartName: 'upstreamFleets',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'gke_upgrade_overrides',
+          dartName: 'gkeUpgradeOverrides',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides',
+        ),
+        MigrateSlot(
+          tfName: 'post_conditions',
+          dartName: 'postConditions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecClusterupgradePostConditions',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides': MigrateHelper(
+      className: 'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverrides',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'post_conditions',
+          dartName: 'postConditions',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions',
+        ),
+        MigrateSlot(
+          tfName: 'upgrade',
+          dartName: 'upgrade',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesPostConditions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'soaking',
+              dartName: 'soaking',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade': MigrateHelper(
+      className: 'GkeHubFeatureSpecClusterupgradeGkeUpgradeOverridesUpgrade',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'version',
+          dartName: 'version',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecClusterupgradePostConditions': MigrateHelper(
+      className: 'GkeHubFeatureSpecClusterupgradePostConditions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'soaking',
+          dartName: 'soaking',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecFleetobservability': MigrateHelper(
+      className: 'GkeHubFeatureSpecFleetobservability',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'logging_config',
+          dartName: 'loggingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'GkeHubFeatureSpecFleetobservabilityLoggingConfig',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecFleetobservabilityLoggingConfig': MigrateHelper(
+      className: 'GkeHubFeatureSpecFleetobservabilityLoggingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_config',
+          dartName: 'defaultConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig',
+        ),
+        MigrateSlot(
+          tfName: 'fleet_scope_logs_config',
+          dartName: 'fleetScopeLogsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig': MigrateHelper(
+      className:
+          'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig':
+        MigrateHelper(
+          className:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'mode',
+              dartName: 'mode',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType:
+                  'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode',
+            ),
+          ],
+        ),
+    'GkeHubFeatureSpecMulticlusteringress': MigrateHelper(
+      className: 'GkeHubFeatureSpecMulticlusteringress',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'config_membership',
+          dartName: 'configMembership',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecRbacrolebindingactuation': MigrateHelper(
+      className: 'GkeHubFeatureSpecRbacrolebindingactuation',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allowed_custom_roles',
+          dartName: 'allowedCustomRoles',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'GkeHubFeatureSpecWorkloadidentity': MigrateHelper(
+      className: 'GkeHubFeatureSpecWorkloadidentity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'scope_tenancy_pool',
+          dartName: 'scopeTenancyPool',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'GkeHubFleetBinaryAuthorizationConfig': MigrateHelper(
       className: 'GkeHubFleetBinaryAuthorizationConfig',
       slots: <MigrateSlot>[
@@ -304042,6 +305446,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'IdentityPlatformTenantClient': MigrateHelper(
+      className: 'IdentityPlatformTenantClient',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'permissions',
+          dartName: 'permissions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'IdentityPlatformTenantClientPermissions',
+        ),
+      ],
+    ),
+    'IdentityPlatformTenantClientPermissions': MigrateHelper(
+      className: 'IdentityPlatformTenantClientPermissions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled_user_deletion',
+          dartName: 'disabledUserDeletion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'disabled_user_signup',
+          dartName: 'disabledUserSignup',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
     'IdentityPlatformTenantInboundSamlConfigIdpConfig': MigrateHelper(
       className: 'IdentityPlatformTenantInboundSamlConfigIdpConfig',
       slots: <MigrateSlot>[
@@ -307907,6 +309343,231 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferences': MigrateHelper(
+      className: 'MigrationCenterPreferenceSetVirtualMachinePreferences',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'commitment_plan',
+          dartName: 'commitmentPlan',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sizing_optimization_strategy',
+          dartName: 'sizingOptimizationStrategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'target_product',
+          dartName: 'targetProduct',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'compute_engine_preferences',
+          dartName: 'computeEnginePreferences',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences',
+        ),
+        MigrateSlot(
+          tfName: 'region_preferences',
+          dartName: 'regionPreferences',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences',
+        ),
+        MigrateSlot(
+          tfName: 'sole_tenancy_preferences',
+          dartName: 'soleTenancyPreferences',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences',
+        ),
+        MigrateSlot(
+          tfName: 'vmware_engine_preferences',
+          dartName: 'vmwareEnginePreferences',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences',
+        ),
+      ],
+    ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'license_type',
+              dartName: 'licenseType',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'persistent_disk_type',
+              dartName: 'persistentDiskType',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType:
+                  'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType',
+            ),
+            MigrateSlot(
+              tfName: 'machine_preferences',
+              dartName: 'machinePreferences',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'allowed_machine_series',
+              dartName: 'allowedMachineSeries',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'code',
+              dartName: 'code',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'preferred_regions',
+              dartName: 'preferredRegions',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'List<String>',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'commitment_plan',
+              dartName: 'commitmentPlan',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'cpu_overcommit_ratio',
+              dartName: 'cpuOvercommitRatio',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'host_maintenance_policy',
+              dartName: 'hostMaintenancePolicy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'node_types',
+              dartName: 'nodeTypes',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'node_name',
+              dartName: 'nodeName',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences':
+        MigrateHelper(
+          className:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'commitment_plan',
+              dartName: 'commitmentPlan',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'cpu_overcommit_ratio',
+              dartName: 'cpuOvercommitRatio',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'memory_overcommit_ratio',
+              dartName: 'memoryOvercommitRatio',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'storage_deduplication_compression_ratio',
+              dartName: 'storageDeduplicationCompressionRatio',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
     'MigrationCenterReportConfigGroupPreferencesetAssignment': MigrateHelper(
       className: 'MigrationCenterReportConfigGroupPreferencesetAssignment',
       slots: <MigrateSlot>[
@@ -350782,6 +352443,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'IPV6_ONLY': 'ipv6Only',
       },
     ),
+    'ComputeImageGuestOsFeaturesType': MigrateEnum(
+      name: 'ComputeImageGuestOsFeaturesType',
+      members: <String, String>{
+        'MULTI_IP_SUBNET': 'multiIpSubnet',
+        'SECURE_BOOT': 'secureBoot',
+        'SEV_CAPABLE': 'sevCapable',
+        'UEFI_COMPATIBLE': 'uefiCompatible',
+        'VIRTIO_SCSI_MULTIQUEUE': 'virtioScsiMultiqueue',
+        'WINDOWS': 'windows',
+        'GVNIC': 'gvnic',
+        'IDPF': 'idpf',
+        'SEV_LIVE_MIGRATABLE': 'sevLiveMigratable',
+        'SEV_SNP_CAPABLE': 'sevSnpCapable',
+        'SUSPEND_RESUME_COMPATIBLE': 'suspendResumeCompatible',
+        'TDX_CAPABLE': 'tdxCapable',
+        'SEV_LIVE_MIGRATABLE_V2': 'sevLiveMigratableV2',
+        'SNP_SVSM_CAPABLE': 'snpSvsmCapable',
+      },
+    ),
     'ComputeInstanceFromTemplateNetworkInterfaceNicType': MigrateEnum(
       name: 'ComputeInstanceFromTemplateNetworkInterfaceNicType',
       members: <String, String>{
@@ -351454,6 +353134,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ConfigDeploymentQuotaValidation',
       members: <String, String>{'ENABLED': 'enabled', 'ENFORCED': 'enforced'},
     ),
+    'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel':
+        MigrateEnum(
+          name:
+              'ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel',
+          members: <String, String>{
+            'BASELINE_MODEL': 'baselineModel',
+            'BASELINE_MODEL_V2_0': 'baselineModelV20',
+          },
+        ),
     'ContactCenterInsightsAutoLabelingRuleLabelKeyType': MigrateEnum(
       name: 'ContactCenterInsightsAutoLabelingRuleLabelKeyType',
       members: <String, String>{
@@ -354182,6 +355871,66 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'NO_VOLUME_DATA_RESTORATION': 'noVolumeDataRestoration',
           },
         ),
+    'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureFleetDefaultMemberConfigConfigmanagementManagement',
+          members: <String, String>{
+            'MANAGEMENT_UNSPECIFIED': 'managementUnspecified',
+            'MANAGEMENT_AUTOMATIC': 'managementAutomatic',
+            'MANAGEMENT_MANUAL': 'managementManual',
+          },
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigMeshManagement': MigrateEnum(
+      name: 'GkeHubFeatureFleetDefaultMemberConfigMeshManagement',
+      members: <String, String>{
+        'MANAGEMENT_UNSPECIFIED': 'managementUnspecified',
+        'MANAGEMENT_AUTOMATIC': 'managementAutomatic',
+        'MANAGEMENT_MANUAL': 'managementManual',
+      },
+    ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity',
+          members: <String, String>{
+            'AFFINITY_UNSPECIFIED': 'affinityUnspecified',
+            'NO_AFFINITY': 'noAffinity',
+            'ANTI_AFFINITY': 'antiAffinity',
+          },
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigInstallSpec',
+          members: <String, String>{
+            'INSTALL_SPEC_UNSPECIFIED': 'installSpecUnspecified',
+            'INSTALL_SPEC_NOT_INSTALLED': 'installSpecNotInstalled',
+            'INSTALL_SPEC_ENABLED': 'installSpecEnabled',
+            'INSTALL_SPEC_SUSPENDED': 'installSpecSuspended',
+            'INSTALL_SPEC_DETACHED': 'installSpecDetached',
+          },
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigMonitoringBackends',
+          members: <String, String>{
+            'MONITORING_BACKEND_UNSPECIFIED': 'monitoringBackendUnspecified',
+            'PROMETHEUS': 'prometheus',
+            'CLOUD_MONITORING': 'cloudMonitoring',
+          },
+        ),
+    'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureFleetDefaultMemberConfigPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation',
+          members: <String, String>{
+            'INSTALLATION_UNSPECIFIED': 'installationUnspecified',
+            'NOT_INSTALLED': 'notInstalled',
+            'ALL': 'all',
+          },
+        ),
     'GkeHubFeatureMembershipMeshControlPlane': MigrateEnum(
       name: 'GkeHubFeatureMembershipMeshControlPlane',
       members: <String, String>{
@@ -354229,6 +355978,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'INSTALLATION_UNSPECIFIED': 'installationUnspecified',
             'NOT_INSTALLED': 'notInstalled',
             'ALL': 'all',
+          },
+        ),
+    'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigDefaultConfigMode',
+          members: <String, String>{
+            'MODE_UNSPECIFIED': 'modeUnspecified',
+            'COPY': 'copy',
+            'MOVE': 'move',
+          },
+        ),
+    'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode':
+        MigrateEnum(
+          name:
+              'GkeHubFeatureSpecFleetobservabilityLoggingConfigFleetScopeLogsConfigMode',
+          members: <String, String>{
+            'MODE_UNSPECIFIED': 'modeUnspecified',
+            'COPY': 'copy',
+            'MOVE': 'move',
           },
         ),
     'GkeHubFleetBinaryAuthorizationEvaluationMode': MigrateEnum(
@@ -355245,6 +357014,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType':
+        MigrateEnum(
+          name:
+              'MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType',
+          members: <String, String>{
+            'PERSISTENT_DISK_TYPE_STANDARD': 'persistentDiskTypeStandard',
+            'PERSISTENT_DISK_TYPE_BALANCED': 'persistentDiskTypeBalanced',
+            'PERSISTENT_DISK_TYPE_SSD': 'persistentDiskTypeSsd',
+          },
+        ),
     'MigrationCenterReportConfigDeletionPolicy': MigrateEnum(
       name: 'MigrationCenterReportConfigDeletionPolicy',
       members: <String, String>{

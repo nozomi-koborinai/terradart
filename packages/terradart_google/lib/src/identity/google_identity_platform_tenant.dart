@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_identity_platform_tenant`.
@@ -15,6 +16,36 @@ enum IdentityPlatformTenantDeletionPolicy implements TerraformEnum {
   const IdentityPlatformTenantDeletionPolicy(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `client` block of
+/// `google_identity_platform_tenant` (derived from provider schema).
+@immutable
+final class IdentityPlatformTenantClient {
+  const IdentityPlatformTenantClient({this.permissions});
+
+  final IdentityPlatformTenantClientPermissions? permissions;
+
+  Map<String, Object?> encode() => {'permissions': ?permissions?.encode()};
+}
+
+/// Typed helper for the `client.permissions` block of
+/// `google_identity_platform_tenant` (derived from provider schema).
+@immutable
+final class IdentityPlatformTenantClientPermissions {
+  const IdentityPlatformTenantClientPermissions({
+    this.disabledUserDeletion,
+    this.disabledUserSignup,
+  });
+
+  final TfArg<bool>? disabledUserDeletion;
+
+  final TfArg<bool>? disabledUserSignup;
+
+  Map<String, Object?> encode() => {
+    'disabled_user_deletion': ?disabledUserDeletion?.toTfJson(),
+    'disabled_user_signup': ?disabledUserSignup?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_identity_platform_tenant`.
@@ -43,6 +74,7 @@ final class GoogleIdentityPlatformTenant extends Resource {
     TfArg<bool>? enableEmailLinkSignin,
     TfArg<bool>? disableAuth,
     TfArg<IdentityPlatformTenantDeletionPolicy>? deletionPolicy,
+    IdentityPlatformTenantClient? client,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -56,6 +88,7 @@ final class GoogleIdentityPlatformTenant extends Resource {
            'enable_email_link_signin': ?enableEmailLinkSignin,
            'disable_auth': ?disableAuth,
            'deletion_policy': ?deletionPolicy,
+           if (client != null) 'client': TfArg.literal(client.encode()),
            'project': ?project,
          },
        );

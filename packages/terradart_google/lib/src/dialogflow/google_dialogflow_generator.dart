@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dialogflow_generator`.
@@ -34,6 +35,33 @@ final class DialogflowGeneratorSummarizationContext {
     if (version != null) 'version': version!.toTfJson(),
     if (outputLanguageCode != null)
       'output_language_code': outputLanguageCode!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `inference_parameter` block of
+/// `google_dialogflow_generator` (derived from provider schema).
+@immutable
+final class DialogflowGeneratorInferenceParameter {
+  const DialogflowGeneratorInferenceParameter({
+    this.maxOutputTokens,
+    this.temperature,
+    this.topK,
+    this.topP,
+  });
+
+  final TfArg<num>? maxOutputTokens;
+
+  final TfArg<num>? temperature;
+
+  final TfArg<num>? topK;
+
+  final TfArg<num>? topP;
+
+  Map<String, Object?> encode() => {
+    'max_output_tokens': ?maxOutputTokens?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_k': ?topK?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -82,6 +110,7 @@ final class GoogleDialogflowGenerator extends Resource {
     TfArg<DialogflowGeneratorTriggerEvent>? triggerEvent,
     required DialogflowGeneratorSummarizationContext summarizationContext,
     TfArg<String>? publishedModel,
+    DialogflowGeneratorInferenceParameter? inferenceParameter,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -99,6 +128,8 @@ final class GoogleDialogflowGenerator extends Resource {
              summarizationContext.encode(),
            ]),
            'published_model': ?publishedModel,
+           if (inferenceParameter != null)
+             'inference_parameter': TfArg.literal(inferenceParameter.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
          },

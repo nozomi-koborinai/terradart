@@ -54,6 +54,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
     required TfArg<String> appId,
     required TfArg<String> displayName,
     required TfArg<String> token,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -65,6 +66,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
            'app_id': appId,
            'display_name': displayName,
            'token': token,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

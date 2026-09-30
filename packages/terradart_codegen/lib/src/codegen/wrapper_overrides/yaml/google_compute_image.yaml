@@ -6,15 +6,6 @@ deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
 
-# Thin curation: seal scalar sources only. Freeze nested blocks (guest OS
-# features, raw_disk GCS import, encryption keys, shielded state, params)
-# until a follow-up types them.
-nestedTypeExcludes:
-  - guest_os_features
-  - raw_disk
-  - shielded_instance_initial_state
-  - params
-
 curatedDoc: |-
   /// An Image must have exactly one [ComputeImageSource]:
   /// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
@@ -114,6 +105,10 @@ paramOrder:
   - storage_locations
   - disk_size_gb
   - deletion_policy
+  - guest_os_features
+  - params
+  - raw_disk
+  - shielded_instance_initial_state
   - project
   - image_encryption_key
   - source_disk_encryption_key
@@ -129,6 +124,10 @@ argMapOrder:
   - storage_locations
   - disk_size_gb
   - deletion_policy
+  - guest_os_features
+  - params
+  - raw_disk
+  - shielded_instance_initial_state
   - project
   - source
   - image_encryption_key

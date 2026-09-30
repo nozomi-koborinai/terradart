@@ -4,10 +4,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-# Annotator / summarization knobs stay Map for this thin Wave.
-nestedTypeExcludes:
-  - annotator_selector
-
 curatedDoc: |-
   /// Analysis rule for Contact Center AI Insights — selects which conversations
   /// get automatic analysis (filter + percentage).
@@ -22,5 +18,6 @@ paramOrder:
   - active
   - analysis_percentage
   - conversation_filter
+  - annotator_selector
   - project
   - deletion_policy
