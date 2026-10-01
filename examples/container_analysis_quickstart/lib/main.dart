@@ -63,7 +63,7 @@ final class ContainerAnalysisStack extends Stack {
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         member: viewer.principal,
-        dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
+        dependsOn: [note, viewer],
       ),
     );
 
@@ -73,7 +73,7 @@ final class ContainerAnalysisStack extends Stack {
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         members: .literal([viewer.principal]),
-        dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
+        dependsOn: [note, viewer],
       ),
     );
 
@@ -88,7 +88,7 @@ final class ContainerAnalysisStack extends Stack {
                 'serviceAccount:ca-note-viewer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [ResourceDependency(note), ResourceDependency(noteBinding)],
+        dependsOn: [note, noteBinding],
       ),
     );
   }

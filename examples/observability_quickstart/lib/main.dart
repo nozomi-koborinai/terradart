@@ -38,7 +38,7 @@ final class ObservabilityStack extends Stack {
         // covers just the current project.
         resourceNames: .literal(['projects/$projectId']),
         description: .literal('Trace scope for the current project'),
-        dependsOn: [ResourceDependency(apiObservability)],
+        dependsOn: [apiObservability],
       ),
     );
 

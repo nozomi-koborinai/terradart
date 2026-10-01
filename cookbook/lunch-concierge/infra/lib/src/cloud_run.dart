@@ -12,7 +12,7 @@ GoogleCloudRunV2Service addCloudRunService({
   required Stack stack,
   required String imageUri,
   required String invokerEmail,
-  required List<ResourceDependency> apiDeps,
+  required List<TfAddressed> apiDeps,
   required Resource vertexApi,
   required Resource iapApi,
   required LunchNetwork network,
@@ -76,16 +76,16 @@ GoogleCloudRunV2Service addCloudRunService({
       ],
       dependsOn: [
         ...apiDeps,
-        ResourceDependency(vertexApi),
-        ResourceDependency(iapApi),
-        ResourceDependency(network.subnet),
-        ResourceDependency(database.sql),
-        ResourceDependency(database.database),
-        ResourceDependency(database.sqlUser),
-        ResourceDependency(identity.serviceAccount),
-        ResourceDependency(identity.cloudSqlClientGrant),
-        ResourceDependency(identity.instanceUserGrant),
-        ResourceDependency(identity.vertexUserGrant),
+        vertexApi,
+        iapApi,
+        network.subnet,
+        database.sql,
+        database.database,
+        database.sqlUser,
+        identity.serviceAccount,
+        identity.cloudSqlClientGrant,
+        identity.instanceUserGrant,
+        identity.vertexUserGrant,
       ],
     ),
   );
@@ -96,7 +96,7 @@ GoogleCloudRunV2Service addCloudRunService({
       service: service.ref,
       role: .literal('roles/run.invoker'),
       member: .user(invokerEmail),
-      dependsOn: [ResourceDependency(service)],
+      dependsOn: [service],
     ),
   );
 
@@ -114,7 +114,7 @@ GoogleCloudRunV2Service addCloudRunService({
         'service-${project.number.interpolation}'
         '@gcp-sa-iap.iam.gserviceaccount.com',
       ),
-      dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],
+      dependsOn: [service, iapApi],
     ),
   );
 
@@ -125,7 +125,7 @@ GoogleCloudRunV2Service addCloudRunService({
       location: .literal(region),
       role: .literal('roles/iap.httpsResourceAccessor'),
       member: .literal('user:$invokerEmail'),
-      dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],
+      dependsOn: [service, iapApi],
     ),
   );
 

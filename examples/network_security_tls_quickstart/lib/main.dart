@@ -32,7 +32,7 @@ final class NetworkSecurityTlsStack extends Stack {
         name: .literal('terradart-client-tls'),
         location: .literal('global'),
         description: .literal('TerraDart smoke client TLS policy'),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
 
@@ -43,7 +43,7 @@ final class NetworkSecurityTlsStack extends Stack {
         location: .literal('global'),
         description: .literal('TerraDart smoke server TLS policy'),
         allowOpen: .literal(true),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
   }

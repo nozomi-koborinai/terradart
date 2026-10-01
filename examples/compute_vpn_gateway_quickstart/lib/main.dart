@@ -40,7 +40,7 @@ final class ComputeVpnGatewayStack extends Stack {
         localName: 'vpn_vpc',
         name: .literal('terradart-vpn-gw-vpc'),
         autoCreateSubnetworks: .literal(false),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -51,7 +51,7 @@ final class ComputeVpnGatewayStack extends Stack {
         network: vpc.ref,
         region: .literal(region),
         description: .literal('Classic VPN gateway shell (no tunnels)'),
-        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
+        dependsOn: [apiCompute, vpc],
       ),
     );
 
@@ -63,7 +63,7 @@ final class ComputeVpnGatewayStack extends Stack {
         region: .literal(region),
         description: .literal('HA VPN gateway shell (no tunnels)'),
         stackType: .literal(.ipv4Only),
-        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
+        dependsOn: [apiCompute, vpc],
       ),
     );
 
@@ -80,7 +80,7 @@ final class ComputeVpnGatewayStack extends Stack {
             ipAddress: .literal('203.0.113.1'),
           ),
         ],
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

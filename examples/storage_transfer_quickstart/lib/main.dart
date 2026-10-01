@@ -72,7 +72,7 @@ final class StorageTransferStack extends Stack {
         bucket: src.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: stsMember,
-        dependsOn: [...apiDeps, ResourceDependency(src)],
+        dependsOn: [...apiDeps, src],
       ),
     );
 
@@ -82,7 +82,7 @@ final class StorageTransferStack extends Stack {
         bucket: dst.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: stsMember,
-        dependsOn: [...apiDeps, ResourceDependency(dst)],
+        dependsOn: [...apiDeps, dst],
       ),
     );
 
@@ -102,7 +102,7 @@ final class StorageTransferStack extends Stack {
         bucket: src.ref,
         role: .literal('roles/storage.admin'),
         member: insightsMember,
-        dependsOn: [...apiDeps, ResourceDependency(src)],
+        dependsOn: [...apiDeps, src],
       ),
     );
 
@@ -114,7 +114,7 @@ final class StorageTransferStack extends Stack {
         bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(
           limitMbps: .literal('120'),
         ),
-        dependsOn: [...apiDeps, ResourceDependency(stsPubsub)],
+        dependsOn: [...apiDeps, stsPubsub],
       ),
     );
 
@@ -127,13 +127,7 @@ final class StorageTransferStack extends Stack {
           gcsDataSource: .new(bucketName: src.ref),
           gcsDataSink: .new(bucketName: dst.ref),
         ),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(src),
-          ResourceDependency(dst),
-          ResourceDependency(stsSrcAdmin),
-          ResourceDependency(stsDstAdmin),
-        ],
+        dependsOn: [...apiDeps, src, dst, stsSrcAdmin, stsDstAdmin],
       ),
     );
 
@@ -166,11 +160,7 @@ final class StorageTransferStack extends Stack {
               ),
               storageFilters: .new(bucket: src.ref),
             ),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(src),
-          ResourceDependency(insightsAdmin),
-        ],
+        dependsOn: [...apiDeps, src, insightsAdmin],
       ),
     );
 
@@ -194,7 +184,7 @@ final class StorageTransferStack extends Stack {
         localName: 'legacy_bucket_acl',
         bucket: aclBucket.ref,
         predefinedAcl: .literal('private'),
-        dependsOn: [...apiDeps, ResourceDependency(aclBucket)],
+        dependsOn: [...apiDeps, aclBucket],
       ),
     );
 
@@ -217,7 +207,7 @@ final class StorageTransferStack extends Stack {
         roleEntity: .literal([
           'OWNER:project-owners-${current.number.interpolation}',
         ]),
-        dependsOn: [...apiDeps, ResourceDependency(defaultAclBucket)],
+        dependsOn: [...apiDeps, defaultAclBucket],
       ),
     );
 
@@ -240,7 +230,7 @@ final class StorageTransferStack extends Stack {
         name: .literal('acl-marker.txt'),
         body: .source(source: .literal('../acl-marker.txt')),
         contentType: .literal('text/plain'),
-        dependsOn: [...apiDeps, ResourceDependency(objectAclBucket)],
+        dependsOn: [...apiDeps, objectAclBucket],
       ),
     );
 
@@ -250,7 +240,7 @@ final class StorageTransferStack extends Stack {
         bucket: objectAclBucket.ref,
         object: marker.ref,
         predefinedAcl: .literal('private'),
-        dependsOn: [...apiDeps, ResourceDependency(marker)],
+        dependsOn: [...apiDeps, marker],
       ),
     );
   }

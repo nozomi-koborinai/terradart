@@ -107,11 +107,7 @@ final class EndpointsStack extends Stack {
       TimeSleep(
         localName: 'api_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 60)),
-        dependsOn: [
-          ResourceDependency(apiServiceManagement),
-          ResourceDependency(apiServiceControl),
-          ResourceDependency(apiEndpoints),
-        ],
+        dependsOn: [apiServiceManagement, apiServiceControl, apiEndpoints],
       ),
     );
 
@@ -121,7 +117,7 @@ final class EndpointsStack extends Stack {
         serviceName: .literal(serviceName),
         openapiConfig: .literal(_openapiConfig(serviceName)),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiWait)],
+        dependsOn: [apiWait],
       ),
     );
 
@@ -139,7 +135,7 @@ final class EndpointsStack extends Stack {
         service: .literal(serviceName),
         role: .literal('roles/viewer'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(service), ResourceDependency(sa)],
+        dependsOn: [service, sa],
       ),
     );
   }

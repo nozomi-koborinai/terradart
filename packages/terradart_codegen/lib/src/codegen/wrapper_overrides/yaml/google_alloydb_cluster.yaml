@@ -67,7 +67,7 @@ curatedDoc: |-
   ///     password: .passwordWo(.literal(dbPassword)),
   ///     passwordWoVersion: .literal('1'),
   ///   ),
-  ///   dependsOn: [ResourceDependency(psaConnection)],
+  ///   dependsOn: [psaConnection],
   /// );
   /// ```
 

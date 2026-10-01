@@ -67,7 +67,7 @@ final class PrivilegedAccessManagerStack extends Stack {
               requirement: .unstructured(.new()),
             ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiPam), ResourceDependency(requester)],
+        dependsOn: [apiPam, requester],
       ),
     );
   }

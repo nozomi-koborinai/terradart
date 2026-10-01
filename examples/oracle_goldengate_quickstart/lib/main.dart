@@ -42,7 +42,7 @@ final class OracleGoldengateStack extends Stack {
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
-      dependsOn: [...apiDeps, ResourceDependency(vpc)],
+      dependsOn: [...apiDeps, vpc],
     );
     add(odbNetwork);
 
@@ -53,7 +53,7 @@ final class OracleGoldengateStack extends Stack {
       odbSubnetId: .literal(odbSubnetId),
       cidrRange: .literal('10.20.0.0/24'),
       purpose: .literal(.clientSubnet),
-      dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
+      dependsOn: [...apiDeps, odbNetwork],
     );
     add(odbSubnet);
 
@@ -73,7 +73,7 @@ final class OracleGoldengateStack extends Stack {
         ),
       ),
       deletionPolicy: .literal(.delete),
-      dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
+      dependsOn: [...apiDeps, odbSubnet],
     );
     add(deployment);
 
@@ -103,11 +103,7 @@ final class OracleGoldengateStack extends Stack {
           goldengateDeployment: deployment.ref,
         ),
         displayName: .literal('TerraDart connection assignment'),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(deployment),
-          ResourceDependency(connection),
-        ],
+        dependsOn: [...apiDeps, deployment, connection],
       ),
     );
   }

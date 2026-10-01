@@ -80,7 +80,7 @@ final class SccLeftoverStack extends Stack {
         source: source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(source), ResourceDependency(sa)],
+        dependsOn: [source, sa],
       ),
     );
 
@@ -98,7 +98,7 @@ final class SccLeftoverStack extends Stack {
         source: v2Source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(v2Source), ResourceDependency(sa)],
+        dependsOn: [v2Source, sa],
       ),
     );
 
@@ -112,7 +112,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
     // The organization's SCC notification service agent publishes findings to
@@ -142,7 +142,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
     add(
@@ -154,7 +154,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
     add(
@@ -166,7 +166,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
     add(
@@ -179,7 +179,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
     add(
@@ -192,7 +192,7 @@ final class SccLeftoverStack extends Stack {
           filter: .literal('state = "ACTIVE"'),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(topic)],
+        dependsOn: [topic],
       ),
     );
 
@@ -376,7 +376,7 @@ final class SccLeftoverStack extends Stack {
         filter: .literal('state="ACTIVE"'),
         description: .literal('org leftover export'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -388,7 +388,7 @@ final class SccLeftoverStack extends Stack {
         filter: .literal('state="ACTIVE"'),
         description: .literal('folder leftover export'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -399,7 +399,7 @@ final class SccLeftoverStack extends Stack {
         filter: .literal('state="ACTIVE"'),
         description: .literal('project leftover export'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -410,7 +410,7 @@ final class SccLeftoverStack extends Stack {
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -421,7 +421,7 @@ final class SccLeftoverStack extends Stack {
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -432,7 +432,7 @@ final class SccLeftoverStack extends Stack {
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
     add(
@@ -442,7 +442,7 @@ final class SccLeftoverStack extends Stack {
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
   }

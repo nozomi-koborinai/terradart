@@ -66,7 +66,7 @@ final class AnalystPersonaStack extends Stack {
             {'name': 'closing_balance', 'type': 'NUMERIC', 'mode': 'REQUIRED'},
           ]),
         ),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -74,8 +74,7 @@ final class AnalystPersonaStack extends Stack {
     // in-stack dataset/table ids are interpolated into the expected format.
     final datasetPath =
         'projects/$projectId/datasets/${dataset.datasetId.interpolation}';
-    final tablePath =
-        '$datasetPath/tables/${positions.tableId.interpolation}';
+    final tablePath = '$datasetPath/tables/${positions.tableId.interpolation}';
 
     add(
       GoogleAgenticApplicationsAnalystAgentPersona(
@@ -199,7 +198,7 @@ final class AnalystPersonaStack extends Stack {
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
           documentGenerationOptions: .new(exportFormat: .literal('PDF')),
         ),
-        dependsOn: [...apiDeps, ResourceDependency(positions)],
+        dependsOn: [...apiDeps, positions],
       ),
     );
   }

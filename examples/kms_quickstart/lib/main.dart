@@ -86,7 +86,7 @@ final class CryptoStack extends Stack {
       GoogleKmsCryptoKeyVersion(
         localName: 'payments_primary',
         cryptoKey: paymentsKey.ref,
-        dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
+        dependsOn: [...apiDeps, paymentsKey],
       ),
     );
 
@@ -95,7 +95,7 @@ final class CryptoStack extends Stack {
         localName: 'insights_cmek',
         location: .literal('asia-northeast1'),
         kmsKey: paymentsKey.ref,
-        dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
+        dependsOn: [...apiDeps, paymentsKey],
       ),
     );
 
@@ -156,7 +156,7 @@ final class CryptoStack extends Stack {
         cryptoKey: paymentsKey.ref,
         // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
         plaintext: TfArg.variable('kms_secret_plaintext'),
-        dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
+        dependsOn: [...apiDeps, paymentsKey],
       ),
     );
 
@@ -167,7 +167,7 @@ final class CryptoStack extends Stack {
         importJobId: .literal('terradart-import'),
         importMethod: .literal(.rsaOaep3072Sha1Aes256),
         protectionLevel: .literal(.software),
-        dependsOn: [...apiDeps, ResourceDependency(ring)],
+        dependsOn: [...apiDeps, ring],
       ),
     );
   }

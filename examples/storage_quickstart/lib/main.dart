@@ -148,7 +148,7 @@ final class AssetsStack extends Stack {
         bucket: assets.ref,
         role: .literal('roles/storage.objectAdmin'),
         members: .literal([assetsAdmin.principal]),
-        dependsOn: [ResourceDependency(assetsAdmin)],
+        dependsOn: [assetsAdmin],
       ),
     );
 
@@ -156,7 +156,7 @@ final class AssetsStack extends Stack {
       GoogleStorageHmacKey(
         localName: 'interop_hmac',
         serviceAccountEmail: reader.ref,
-        dependsOn: [ResourceDependency(reader)],
+        dependsOn: [reader],
       ),
     );
 
@@ -187,7 +187,7 @@ final class AssetsStack extends Stack {
             permission: .literal(.readOnly),
           ),
         ],
-        dependsOn: [ResourceDependency(sftp)],
+        dependsOn: [sftp],
       ),
     );
 
@@ -215,10 +215,7 @@ final class AssetsStack extends Stack {
         managedFolder: managedFolder.ref,
         role: .literal('roles/storage.objectViewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(managedFolder),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [managedFolder, reader],
       ),
     );
 
@@ -239,7 +236,7 @@ final class AssetsStack extends Stack {
         operation: .putMetadata(
           .new(customMetadata: .literal({'managed-by': 'terradart'})),
         ),
-        dependsOn: [ResourceDependency(assets)],
+        dependsOn: [assets],
       ),
     );
 
@@ -264,7 +261,7 @@ final class AssetsStack extends Stack {
         body: .source(source: .literal('./legacy/readme.txt')),
         contentType: .literal('text/plain'),
         storageClass: .literal(.standard),
-        dependsOn: [ResourceDependency(legacy)],
+        dependsOn: [legacy],
       ),
     );
 
@@ -274,7 +271,7 @@ final class AssetsStack extends Stack {
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
-        dependsOn: [ResourceDependency(legacy)],
+        dependsOn: [legacy],
       ),
     );
 
@@ -284,7 +281,7 @@ final class AssetsStack extends Stack {
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
-        dependsOn: [ResourceDependency(legacy)],
+        dependsOn: [legacy],
       ),
     );
 
@@ -295,10 +292,7 @@ final class AssetsStack extends Stack {
         object: .literal('readme.txt'),
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
-        dependsOn: [
-          ResourceDependency(legacy),
-          ResourceDependency(legacyObject),
-        ],
+        dependsOn: [legacy, legacyObject],
       ),
     );
 
@@ -333,7 +327,7 @@ final class AssetsStack extends Stack {
           StorageNotificationEventType.objectDelete,
         ],
         objectNamePrefix: objectPrefix.output<String>('prefix'),
-        dependsOn: [ResourceDependency(objectEventsTopic)],
+        dependsOn: [objectEventsTopic],
       ),
     );
   }

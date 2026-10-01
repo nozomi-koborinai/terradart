@@ -45,7 +45,7 @@ final class FirestoreSeededDataStack extends Stack {
         // database in place on `terraform destroy` — Terraform reports
         // success but the resource survives in GCP. See FRICTIONS.md §P1.
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiFirestore)],
+        dependsOn: [apiFirestore],
       ),
     );
 
@@ -60,7 +60,7 @@ final class FirestoreSeededDataStack extends Stack {
           'rollout_pct': 100,
           'last_updated': DateTime.utc(2026, 5, 22),
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -74,7 +74,7 @@ final class FirestoreSeededDataStack extends Stack {
           'rollout_pct': 0,
           'target_regions': ['us', 'jp'],
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -89,7 +89,7 @@ final class FirestoreSeededDataStack extends Stack {
           'target_users': ['founder@example.com'],
           'metadata': {'requested_by': 'product-team'},
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -104,7 +104,7 @@ final class FirestoreSeededDataStack extends Stack {
           'monthly_usd': 0,
           'features': ['analytics_basic'],
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -118,7 +118,7 @@ final class FirestoreSeededDataStack extends Stack {
           'monthly_usd': 29,
           'features': ['analytics_basic', 'priority_support'],
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -140,7 +140,7 @@ final class FirestoreSeededDataStack extends Stack {
             'projects/$projectId/databases/(default)/documents/billing_profiles/annual',
           ),
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -156,7 +156,7 @@ final class FirestoreSeededDataStack extends Stack {
           'date_format': 'MM/DD/YYYY',
           'translations': {'subscribe': 'Subscribe', 'cancel': 'Cancel'},
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -171,7 +171,7 @@ final class FirestoreSeededDataStack extends Stack {
           'date_format': 'YYYY/MM/DD',
           'translations': {'subscribe': '登録', 'cancel': 'キャンセル'},
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -186,7 +186,7 @@ final class FirestoreSeededDataStack extends Stack {
           'date_format': 'YYYY-MM-DD',
           'translations': {'subscribe': '구독', 'cancel': '취소'},
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -205,7 +205,7 @@ final class FirestoreSeededDataStack extends Stack {
           ),
           'shipping_zones': ['west', 'central', 'east'],
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -223,7 +223,7 @@ final class FirestoreSeededDataStack extends Stack {
           ),
           'vat_rate': 0.10,
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -254,7 +254,7 @@ final class FirestoreSeededDataStack extends Stack {
         database: db.ref,
         retention: .literal('604800s'),
         recurrence: const .daily(),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
   }

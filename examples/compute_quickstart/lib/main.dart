@@ -165,7 +165,7 @@ final class NetworkStack extends Stack {
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
         ipRange: .literal('169.254.0.1/30'),
-        dependsOn: [ResourceDependency(edgeRouter)],
+        dependsOn: [edgeRouter],
       ),
     );
 
@@ -178,7 +178,7 @@ final class NetworkStack extends Stack {
         peerAsn: .literal(65001),
         region: .literal('asia-northeast1'),
         peerIpAddress: .literal('169.254.0.2'),
-        dependsOn: [ResourceDependency(edgeRouter)],
+        dependsOn: [edgeRouter],
       ),
     );
 
@@ -214,10 +214,7 @@ final class NetworkStack extends Stack {
           ComputeRouterNatSourceSubnetworkIpRangesToNat
               .allSubnetworksAllIpRanges,
         ),
-        dependsOn: [
-          ResourceDependency(edgeRouter),
-          ResourceDependency(egressNatIp0),
-        ],
+        dependsOn: [edgeRouter, egressNatIp0],
       ),
     );
 
@@ -228,10 +225,7 @@ final class NetworkStack extends Stack {
         routerNat: egressNat.ref,
         region: .literal('asia-northeast1'),
         natIps: .literal([egressNatIp1.ref]),
-        dependsOn: [
-          ResourceDependency(egressNat),
-          ResourceDependency(egressNatIp1),
-        ],
+        dependsOn: [egressNat, egressNatIp1],
       ),
     );
 
@@ -249,7 +243,7 @@ final class NetworkStack extends Stack {
             actions: [.new(expression: .literal('accept()'))],
           ),
         ],
-        dependsOn: [ResourceDependency(edgeRouter)],
+        dependsOn: [edgeRouter],
       ),
     );
 
@@ -350,7 +344,7 @@ final class NetworkStack extends Stack {
         // instead via its pre-formatted `serviceAccount:<email>` member.
         member: oncallSre.principal,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [ResourceDependency(oncallSre)],
+        dependsOn: [oncallSre],
       ),
     );
 
@@ -362,11 +356,7 @@ final class NetworkStack extends Stack {
         role: .literal('roles/iap.tunnelResourceAccessor'),
         member: oncallSre.principal,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [
-          ResourceDependency(bastion),
-          ResourceDependency(oncallSre),
-          ...apiDeps,
-        ],
+        dependsOn: [bastion, oncallSre, ...apiDeps],
       ),
     );
 
@@ -396,10 +386,7 @@ final class NetworkStack extends Stack {
         disk: backupDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(backupDisk),
-          ResourceDependency(oncallSre),
-        ],
+        dependsOn: [backupDisk, oncallSre],
       ),
     );
 
@@ -409,7 +396,7 @@ final class NetworkStack extends Stack {
         name: .literal('bastion-instant-1'),
         sourceDisk: backupDisk.ref,
         region: .literal('asia-northeast1'),
-        dependsOn: [ResourceDependency(backupDisk)],
+        dependsOn: [backupDisk],
       ),
     );
 
@@ -419,10 +406,7 @@ final class NetworkStack extends Stack {
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(oncallSre),
-          ResourceDependency(bastionInstant),
-        ],
+        dependsOn: [oncallSre, bastionInstant],
       ),
     );
 
@@ -432,10 +416,7 @@ final class NetworkStack extends Stack {
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([oncallSre.principal]),
-        dependsOn: [
-          ResourceDependency(oncallSre),
-          ResourceDependency(bastionInstant),
-        ],
+        dependsOn: [oncallSre, bastionInstant],
       ),
     );
 
@@ -450,10 +431,7 @@ final class NetworkStack extends Stack {
                 'serviceAccount:oncall-sre@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(bastionInstant),
-          ResourceDependency(bastionInstantBinding),
-        ],
+        dependsOn: [bastionInstant, bastionInstantBinding],
       ),
     );
 
@@ -480,10 +458,7 @@ final class NetworkStack extends Stack {
         disk: scratchDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(scratchDisk),
-          ResourceDependency(oncallSre),
-        ],
+        dependsOn: [scratchDisk, oncallSre],
       ),
     );
 
@@ -495,7 +470,7 @@ final class NetworkStack extends Stack {
         name: .literal('ops-scratch-instant'),
         sourceDisk: scratchDisk.ref,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [ResourceDependency(scratchDisk)],
+        dependsOn: [scratchDisk],
       ),
     );
 
@@ -505,10 +480,7 @@ final class NetworkStack extends Stack {
         instantSnapshot: scratchInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(oncallSre),
-          ResourceDependency(scratchInstant),
-        ],
+        dependsOn: [oncallSre, scratchInstant],
       ),
     );
 
@@ -520,7 +492,7 @@ final class NetworkStack extends Stack {
         name: .literal('ops-scratch-snapshot'),
         source: .disk(sourceDisk: scratchDisk.selfLink),
         storageLocations: .literal(['asia-northeast1']),
-        dependsOn: [ResourceDependency(scratchDisk)],
+        dependsOn: [scratchDisk],
       ),
     );
 
@@ -530,10 +502,7 @@ final class NetworkStack extends Stack {
         snapshot: scratchSnapshot.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(oncallSre),
-          ResourceDependency(scratchSnapshot),
-        ],
+        dependsOn: [oncallSre, scratchSnapshot],
       ),
     );
 
@@ -545,7 +514,7 @@ final class NetworkStack extends Stack {
         source: .snapshot(sourceSnapshot: scratchSnapshot.selfLink),
         family: .literal('ops-scratch'),
         storageLocations: .literal(['asia-northeast1']),
-        dependsOn: [ResourceDependency(scratchSnapshot)],
+        dependsOn: [scratchSnapshot],
       ),
     );
 
@@ -555,10 +524,7 @@ final class NetworkStack extends Stack {
         image: scratchImage.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(oncallSre),
-          ResourceDependency(scratchImage),
-        ],
+        dependsOn: [oncallSre, scratchImage],
       ),
     );
 
@@ -596,10 +562,7 @@ final class NetworkStack extends Stack {
         instanceTemplate: bulkWorkerTemplate.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(bulkWorkerTemplate),
-          ResourceDependency(oncallSre),
-        ],
+        dependsOn: [bulkWorkerTemplate, oncallSre],
       ),
     );
 
@@ -634,7 +597,7 @@ final class NetworkStack extends Stack {
             name: .literal('bulk-worker-1'),
           ),
         ],
-        dependsOn: [ResourceDependency(bulkWorkersMig)],
+        dependsOn: [bulkWorkersMig],
       ),
     );
 
@@ -666,7 +629,7 @@ final class NetworkStack extends Stack {
           metadata: .literal({'role': 'pic-demo'}),
         ),
         removeInstanceOnDestroy: .literal(true),
-        dependsOn: [ResourceDependency(picDemoMig)],
+        dependsOn: [picDemoMig],
       ),
     );
 
@@ -690,10 +653,7 @@ final class NetworkStack extends Stack {
         firewallPolicy: edgeFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(edgeFirewallPolicy),
-          ResourceDependency(oncallSre),
-        ],
+        dependsOn: [edgeFirewallPolicy, oncallSre],
       ),
     );
 
@@ -703,10 +663,7 @@ final class NetworkStack extends Stack {
         name: .literal('ops-edge-policy-assoc'),
         firewallPolicy: edgeFirewallPolicy.ref,
         attachmentTarget: mainVpc.ref,
-        dependsOn: [
-          ResourceDependency(edgeFirewallPolicy),
-          ResourceDependency(mainVpc),
-        ],
+        dependsOn: [edgeFirewallPolicy, mainVpc],
       ),
     );
 
@@ -725,7 +682,7 @@ final class NetworkStack extends Stack {
             .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
           ],
         ),
-        dependsOn: [ResourceDependency(edgeFirewallPolicy)],
+        dependsOn: [edgeFirewallPolicy],
       ),
     );
 
@@ -763,7 +720,7 @@ final class NetworkStack extends Stack {
         region: .literal('asia-northeast1'),
         connectionPreference: .literal(.acceptAutomatic),
         subnetworks: .literal([workloadSubnet.ref]),
-        dependsOn: [ResourceDependency(workloadSubnet), ...apiDeps],
+        dependsOn: [workloadSubnet, ...apiDeps],
       ),
     );
 
@@ -788,10 +745,7 @@ final class NetworkStack extends Stack {
         networkEndpoints: [
           ComputeNetworkEndpoints(instance: bastion.ref, port: .literal(80)),
         ],
-        dependsOn: [
-          ResourceDependency(bastionNeg),
-          ResourceDependency(bastion),
-        ],
+        dependsOn: [bastionNeg, bastion],
       ),
     );
 
@@ -823,10 +777,7 @@ final class NetworkStack extends Stack {
         description: .literal('Legacy NLB target pool (demo)'),
         instances: .literal([bastion.selfLink.interpolation]),
         healthChecks: .literal([legacyHttpHc.selfLink.interpolation]),
-        dependsOn: [
-          ResourceDependency(bastion),
-          ResourceDependency(legacyHttpHc),
-        ],
+        dependsOn: [bastion, legacyHttpHc],
       ),
     );
 
@@ -838,7 +789,7 @@ final class NetworkStack extends Stack {
         zone: .literal('asia-northeast1-a'),
         description: .literal('Protocol-forwarding target for the bastion'),
         natPolicy: .literal(.noNat),
-        dependsOn: [ResourceDependency(bastion)],
+        dependsOn: [bastion],
       ),
     );
 
@@ -875,7 +826,7 @@ final class NetworkStack extends Stack {
             .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
           ],
         ),
-        dependsOn: [ResourceDependency(regionalFirewallPolicy)],
+        dependsOn: [regionalFirewallPolicy],
       ),
     );
 
@@ -885,10 +836,7 @@ final class NetworkStack extends Stack {
         firewallPolicy: regionalFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
-        dependsOn: [
-          ResourceDependency(regionalFirewallPolicy),
-          ResourceDependency(oncallSre),
-        ],
+        dependsOn: [regionalFirewallPolicy, oncallSre],
       ),
     );
 
@@ -899,10 +847,7 @@ final class NetworkStack extends Stack {
         firewallPolicy: regionalFirewallPolicy.ref,
         attachmentTarget: mainVpc.ref,
         region: .literal('asia-northeast1'),
-        dependsOn: [
-          ResourceDependency(regionalFirewallPolicy),
-          ResourceDependency(mainVpc),
-        ],
+        dependsOn: [regionalFirewallPolicy, mainVpc],
       ),
     );
 
@@ -966,10 +911,7 @@ final class NetworkStack extends Stack {
         disk: bastionDataDisk.selfLink,
         instance: bastion.selfLink,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [
-          ResourceDependency(bastion),
-          ResourceDependency(bastionDataDisk),
-        ],
+        dependsOn: [bastion, bastionDataDisk],
       ),
     );
 
@@ -989,10 +931,7 @@ final class NetworkStack extends Stack {
         instance: bastion.ref,
         instanceGroup: opsUnmanagedGroup.ref,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [
-          ResourceDependency(bastion),
-          ResourceDependency(opsUnmanagedGroup),
-        ],
+        dependsOn: [bastion, opsUnmanagedGroup],
       ),
     );
 
@@ -1003,7 +942,7 @@ final class NetworkStack extends Stack {
         name: .literal('http'),
         port: .literal(80),
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [ResourceDependency(opsUnmanagedGroup)],
+        dependsOn: [opsUnmanagedGroup],
       ),
     );
 
@@ -1013,7 +952,7 @@ final class NetworkStack extends Stack {
         name: .literal('templated-worker'),
         sourceInstanceTemplate: bulkWorkerTemplate.selfLink,
         zone: .literal('asia-northeast1-a'),
-        dependsOn: [ResourceDependency(bulkWorkerTemplate), ...apiDeps],
+        dependsOn: [bulkWorkerTemplate, ...apiDeps],
       ),
     );
 
@@ -1052,10 +991,7 @@ final class NetworkStack extends Stack {
         secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(
           disk: asyncSecondary.id,
         ),
-        dependsOn: [
-          ResourceDependency(asyncPrimary),
-          ResourceDependency(asyncSecondary),
-        ],
+        dependsOn: [asyncPrimary, asyncSecondary],
       ),
     );
 
@@ -1117,7 +1053,7 @@ final class NetworkStack extends Stack {
           metadata: .literal({'role': 'regional-pic-demo'}),
         ),
         removeInstanceOnDestroy: .literal(true),
-        dependsOn: [ResourceDependency(regionalPicMig)],
+        dependsOn: [regionalPicMig],
       ),
     );
 
@@ -1144,10 +1080,7 @@ final class NetworkStack extends Stack {
         name: bastionSchedulePolicy.ref,
         zone: .literal('asia-northeast1-a'),
         deletionPolicy: .literal('ABANDON'),
-        dependsOn: [
-          ResourceDependency(bastion),
-          ResourceDependency(bastionSchedulePolicy),
-        ],
+        dependsOn: [bastion, bastionSchedulePolicy],
       ),
     );
 
@@ -1178,10 +1111,7 @@ final class NetworkStack extends Stack {
         name: backupSnapshotPolicy.ref,
         region: .literal('asia-northeast1'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(backupDisk),
-          ResourceDependency(backupSnapshotPolicy),
-        ],
+        dependsOn: [backupDisk, backupSnapshotPolicy],
       ),
     );
 

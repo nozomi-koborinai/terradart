@@ -44,7 +44,7 @@ final class FirebaserulesStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [ResourceDependency(apiRules)],
+        dependsOn: [apiRules],
       ),
     );
   }

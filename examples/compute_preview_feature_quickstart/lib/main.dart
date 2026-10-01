@@ -36,7 +36,7 @@ final class ComputePreviewFeatureStack extends Stack {
             predefinedRolloutPlan: .literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
           ),
         ),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

@@ -32,7 +32,7 @@ final class ComputeCloudArmorTierStack extends Stack {
       GoogleComputeProjectCloudArmorTier(
         localName: 'armor_tier',
         cloudArmorTier: .literal(.caStandard),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

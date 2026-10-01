@@ -57,7 +57,7 @@ final class FeatureStack extends Stack {
         datasetId: .literal('vertex_features'),
         location: .literal('us-central1'),
         deleteContentsOnDestroy: .literal(true),
-        dependsOn: [ResourceDependency(apiBigquery)],
+        dependsOn: [apiBigquery],
       ),
     );
 
@@ -72,7 +72,7 @@ final class FeatureStack extends Stack {
           '{"name":"feature_score","type":"FLOAT64","mode":"NULLABLE"},'
           '{"name":"feature_timestamp","type":"TIMESTAMP","mode":"NULLABLE"}]',
         ),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -88,7 +88,7 @@ final class FeatureStack extends Stack {
           ),
           entityIdColumns: .literal(['entity_id']),
         ),
-        dependsOn: [ResourceDependency(apiVertex), ResourceDependency(table)],
+        dependsOn: [apiVertex, table],
       ),
     );
 
@@ -100,7 +100,7 @@ final class FeatureStack extends Stack {
         region: .literal('us-central1'),
         versionColumnName: .literal('feature_score'),
         description: .literal('Customer score from BigQuery'),
-        dependsOn: [ResourceDependency(featureGroup)],
+        dependsOn: [featureGroup],
       ),
     );
 
@@ -114,7 +114,7 @@ final class FeatureStack extends Stack {
           'gs://google-cloud-aiplatform/schema/dataset/metadata/image_1.0.0.yaml',
         ),
         region: .literal('us-central1'),
-        dependsOn: [ResourceDependency(apiVertex)],
+        dependsOn: [apiVertex],
       ),
     );
 
@@ -126,7 +126,7 @@ final class FeatureStack extends Stack {
         displayName: .literal('terradart-experiments'),
         description: .literal('Experiment metrics (demo)'),
         region: .literal('us-central1'),
-        dependsOn: [ResourceDependency(apiVertex)],
+        dependsOn: [apiVertex],
       ),
     );
 
@@ -148,7 +148,7 @@ final class FeatureStack extends Stack {
         location: .literal('us-central1'),
         displayName: .literal('TerraDart training experiment'),
         description: .literal('Demo experiment'),
-        dependsOn: [ResourceDependency(tensorboard)],
+        dependsOn: [tensorboard],
       ),
     );
 
@@ -160,7 +160,7 @@ final class FeatureStack extends Stack {
         tensorboard: tensorboardShortId,
         location: .literal('us-central1'),
         displayName: .literal('TerraDart training run'),
-        dependsOn: [ResourceDependency(experiment)],
+        dependsOn: [experiment],
       ),
     );
 
@@ -170,7 +170,7 @@ final class FeatureStack extends Stack {
       GoogleVertexAiCacheConfig(
         localName: 'genai_cache',
         disableCache: .literal(false),
-        dependsOn: [ResourceDependency(apiVertex)],
+        dependsOn: [apiVertex],
       ),
     );
 
@@ -191,7 +191,7 @@ final class FeatureStack extends Stack {
             },
           }),
         ),
-        dependsOn: [ResourceDependency(apiVertex)],
+        dependsOn: [apiVertex],
       ),
     );
 

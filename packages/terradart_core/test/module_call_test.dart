@@ -1,4 +1,3 @@
-import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
@@ -172,7 +171,7 @@ void main() {
             source: './modules/events',
             providers: const {'google': 'google.eu'},
             count: const TfArgLiteral<num>(2),
-            dependsOn: [ResourceDependency(topic)],
+            dependsOn: [topic],
           ),
         );
       expect(

@@ -32,7 +32,7 @@ final class ComputeSnapshotSettingsStack extends Stack {
         storageLocation: ComputeSnapshotSettingsStorageLocation(
           policy: .literal(.localRegion),
         ),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

@@ -60,11 +60,7 @@ final class IntegrationsStack extends Stack {
       TimeSleep(
         localName: 'api_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 60)),
-        dependsOn: [
-          ResourceDependency(apiIntegrations),
-          ResourceDependency(apiSecretManager),
-          ResourceDependency(apiConnectors),
-        ],
+        dependsOn: [apiIntegrations, apiSecretManager, apiConnectors],
       ),
     );
 
@@ -72,7 +68,7 @@ final class IntegrationsStack extends Stack {
       GoogleIntegrationsClient(
         localName: 'client',
         location: .literal('us-east1'),
-        dependsOn: [ResourceDependency(apiWait)],
+        dependsOn: [apiWait],
       ),
     );
 
@@ -94,7 +90,7 @@ final class IntegrationsStack extends Stack {
           ),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(client), ResourceDependency(apiWait)],
+        dependsOn: [client, apiWait],
       ),
     );
   }

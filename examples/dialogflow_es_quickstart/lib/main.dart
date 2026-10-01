@@ -50,10 +50,10 @@ final class DialogflowEsStack extends Stack {
         localName: 'agent_ready',
         createDuration: TfArg.duration(const Duration(seconds: 20)),
         triggers: .literal({'agent': agent.id.interpolation}),
-        dependsOn: [...apiDeps, ResourceDependency(agent)],
+        dependsOn: [...apiDeps, agent],
       ),
     );
-    final onAgent = [ResourceDependency(agentReady)];
+    final onAgent = [agentReady];
 
     add(
       GoogleDialogflowIntent(
@@ -103,7 +103,7 @@ final class DialogflowEsStack extends Stack {
         location: .literal('global'),
         agentVersion: version.ref,
         description: .literal('terradart es env'),
-        dependsOn: [...onAgent, ResourceDependency(version)],
+        dependsOn: [...onAgent, version],
       ),
     );
   }

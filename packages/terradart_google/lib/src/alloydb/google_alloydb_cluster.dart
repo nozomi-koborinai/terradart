@@ -668,7 +668,7 @@ final class AlloydbClusterSecondaryConfig {
 ///     password: .passwordWo(.literal(dbPassword)),
 ///     passwordWoVersion: .literal('1'),
 ///   ),
-///   dependsOn: [ResourceDependency(psaConnection)],
+///   dependsOn: [psaConnection],
 /// );
 /// ```
 final class GoogleAlloydbCluster extends Resource {

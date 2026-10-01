@@ -63,7 +63,7 @@ final class AuditPipelineStack extends Stack {
       location: .literal('asia-northeast1'),
       friendlyName: .literal('Cloud Audit Logs sink'),
       description: .literal('Sink destination for cloudaudit.googleapis.com.'),
-      dependsOn: [ResourceDependency(apiBigquery)],
+      dependsOn: [apiBigquery],
     );
     add(dataset);
 
@@ -75,7 +75,7 @@ final class AuditPipelineStack extends Stack {
       retentionDays: .literal(30),
       enableAnalytics: .literal(true),
       description: .literal('Audit log bucket for filtered views.'),
-      dependsOn: [ResourceDependency(apiLogging)],
+      dependsOn: [apiLogging],
     );
     add(auditBucket);
 
@@ -87,7 +87,7 @@ final class AuditPipelineStack extends Stack {
           'projects/$projectId/locations/$location/buckets/$bucketId',
         ]),
         description: .literal('Scope for audit log analytics.'),
-        dependsOn: [ResourceDependency(auditBucket)],
+        dependsOn: [auditBucket],
       ),
     );
 
@@ -99,10 +99,7 @@ final class AuditPipelineStack extends Stack {
         bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
           datasetId: dataset.datasetId,
         ),
-        dependsOn: [
-          ResourceDependency(auditBucket),
-          ResourceDependency(dataset),
-        ],
+        dependsOn: [auditBucket, dataset],
       ),
     );
 
@@ -113,7 +110,7 @@ final class AuditPipelineStack extends Stack {
       location: .literal(location),
       filter: .literal('logName:"cloudaudit.googleapis.com"'),
       description: .literal('Audit-only slice of the audit log bucket.'),
-      dependsOn: [ResourceDependency(auditBucket)],
+      dependsOn: [auditBucket],
     );
     add(auditView);
 
@@ -123,7 +120,7 @@ final class AuditPipelineStack extends Stack {
         logView: auditView.ref,
         role: .literal('roles/logging.viewer'),
         member: .group('security-auditors@example.com'),
-        dependsOn: [ResourceDependency(auditView)],
+        dependsOn: [auditView],
       ),
     );
 
@@ -133,7 +130,7 @@ final class AuditPipelineStack extends Stack {
         name: .literal('drop-dns-noise'),
         filter: .literal('resource.type="dns_query"'),
         description: .literal('Skip high-volume DNS query logs.'),
-        dependsOn: [ResourceDependency(apiLogging)],
+        dependsOn: [apiLogging],
       ),
     );
 
@@ -152,7 +149,7 @@ final class AuditPipelineStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [ResourceDependency(apiLogging)],
+        dependsOn: [apiLogging],
       ),
     );
 
@@ -169,7 +166,7 @@ final class AuditPipelineStack extends Stack {
           valueType: .literal(.int64),
           displayName: .literal('Audit error count'),
         ),
-        dependsOn: [ResourceDependency(auditBucket)],
+        dependsOn: [auditBucket],
       ),
     );
 
@@ -187,10 +184,7 @@ final class AuditPipelineStack extends Stack {
         bigqueryOptions: LoggingProjectSinkBigqueryOptions(
           usePartitionedTables: .literal(true),
         ),
-        dependsOn: [
-          ResourceDependency(dataset),
-          ResourceDependency(apiLogging),
-        ],
+        dependsOn: [dataset, apiLogging],
       ),
     );
 
@@ -205,10 +199,7 @@ final class AuditPipelineStack extends Stack {
         bigqueryOptions: LoggingFolderSinkBigqueryOptions(
           usePartitionedTables: .literal(true),
         ),
-        dependsOn: [
-          ResourceDependency(dataset),
-          ResourceDependency(apiLogging),
-        ],
+        dependsOn: [dataset, apiLogging],
       ),
     );
 
@@ -223,10 +214,7 @@ final class AuditPipelineStack extends Stack {
         bigqueryOptions: LoggingOrganizationSinkBigqueryOptions(
           usePartitionedTables: .literal(true),
         ),
-        dependsOn: [
-          ResourceDependency(dataset),
-          ResourceDependency(apiLogging),
-        ],
+        dependsOn: [dataset, apiLogging],
       ),
     );
 
@@ -238,7 +226,7 @@ final class AuditPipelineStack extends Stack {
         config: .literal('regional-asia-northeast1'),
         displayName: .literal('Audit metadata store'),
         numNodes: .literal(1),
-        dependsOn: [ResourceDependency(apiSpanner)],
+        dependsOn: [apiSpanner],
       ),
     );
 
@@ -248,7 +236,7 @@ final class AuditPipelineStack extends Stack {
         instance: spanner.ref,
         name: .literal('audit_meta'),
         versionRetentionPeriod: .literal('86400s'),
-        dependsOn: [ResourceDependency(spanner)],
+        dependsOn: [spanner],
       ),
     );
 
@@ -258,7 +246,7 @@ final class AuditPipelineStack extends Stack {
         instance: spanner.ref,
         role: .literal('roles/spanner.viewer'),
         member: .group('audit-readers@example.com'),
-        dependsOn: [ResourceDependency(spanner)],
+        dependsOn: [spanner],
       ),
     );
 
@@ -268,7 +256,7 @@ final class AuditPipelineStack extends Stack {
         database: spannerDb.ref,
         role: .literal('roles/spanner.databaseReader'),
         member: .group('audit-readers@example.com'),
-        dependsOn: [ResourceDependency(spannerDb)],
+        dependsOn: [spannerDb],
       ),
     );
   }

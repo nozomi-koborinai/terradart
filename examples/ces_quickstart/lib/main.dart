@@ -58,7 +58,7 @@ final class CesStack extends Stack {
         googleSearchTool: CesToolGoogleSearchTool(
           name: .literal('google_search'),
         ),
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -83,7 +83,7 @@ final class CesStack extends Stack {
             '          description: ok\n',
           ),
         ),
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -112,7 +112,7 @@ final class CesStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -127,12 +127,7 @@ final class CesStack extends Stack {
         tools: .literal([search.name.interpolation]),
         toolsets: [CesAgentToolsets(toolset: openapi.ref)],
         guardrails: .literal([safety.name.interpolation]),
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(search),
-          ResourceDependency(openapi),
-          ResourceDependency(safety),
-        ],
+        dependsOn: [app, search, openapi, safety],
       ),
     );
 
@@ -141,7 +136,7 @@ final class CesStack extends Stack {
         localName: 'root',
         appId: app.ref,
         agentId: agent.agentId,
-        dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
+        dependsOn: [app, agent],
       ),
     );
 
@@ -159,7 +154,7 @@ final class CesStack extends Stack {
             chunks: [.new(text: .literal('Hello'))],
           ),
         ],
-        dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
+        dependsOn: [app, agent],
       ),
     );
 
@@ -169,13 +164,7 @@ final class CesStack extends Stack {
         app: app.ref,
         appVersionId: .literal('v1'),
         displayName: .literal('terradart-ces-v1'),
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(association),
-          ResourceDependency(search),
-          ResourceDependency(openapi),
-          ResourceDependency(safety),
-        ],
+        dependsOn: [app, association, search, openapi, safety],
       ),
     );
 
@@ -189,7 +178,7 @@ final class CesStack extends Stack {
           channelType: .literal('API'),
           profileId: .literal('terradart-ces-api'),
         ),
-        dependsOn: [ResourceDependency(app), ResourceDependency(version)],
+        dependsOn: [app, version],
       ),
     );
   }

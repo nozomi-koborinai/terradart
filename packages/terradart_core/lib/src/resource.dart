@@ -45,10 +45,10 @@ abstract base class Resource implements TfAddressed {
   /// this resource's schema declares the operations set here.
   final TfTimeouts? timeouts;
 
-  /// Optional `depends_on = [...]`. Each entry is a `DependencyTarget` —
-  /// either a wholesale resource (rendered as bare address) or an explicit
-  /// `TfRef` (rendered via `bareAddress`).
-  final List<DependencyTarget>? dependsOn;
+  /// Optional `depends_on = [...]`: the resources, data sources and module
+  /// calls this block waits for, e.g. `dependsOn: [api, ...apiDeps]`.
+  /// Terraform takes whole blocks only, so an entry is never an attribute.
+  final List<TfAddressed>? dependsOn;
 
   /// Optional Terraform `provider` meta-argument: a provider name
   /// (`'google-beta'` on a GA type) or a `name.alias` pair (`'google.eu'`).

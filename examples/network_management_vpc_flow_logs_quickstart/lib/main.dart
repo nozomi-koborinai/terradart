@@ -43,7 +43,7 @@ final class VpcFlowLogsStack extends Stack {
         localName: 'vpc',
         name: .literal('terradart-flow-vpc'),
         autoCreateSubnetworks: .literal(false),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -60,10 +60,7 @@ final class VpcFlowLogsStack extends Stack {
         state: .literal(.enabled),
         flowSampling: .literal(0.5),
         metadata: .literal(.excludeAllMetadata),
-        dependsOn: [
-          ResourceDependency(apiNetworkManagement),
-          ResourceDependency(network),
-        ],
+        dependsOn: [apiNetworkManagement, network],
       ),
     );
   }

@@ -33,7 +33,7 @@ final class ComputeInstanceSettingsStack extends Stack {
         metadata: ComputeInstanceSettingsMetadata(
           items: .literal({'terradart-smoke': '1'}),
         ),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

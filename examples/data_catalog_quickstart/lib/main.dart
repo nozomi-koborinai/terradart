@@ -42,7 +42,7 @@ final class DataCatalogStack extends Stack {
         region: .literal('us-central1'),
         displayName: .literal('TerraDart entry group'),
         description: .literal('TerraDart smoke Data Catalog entry group'),
-        dependsOn: [ResourceDependency(apiDataCatalog)],
+        dependsOn: [apiDataCatalog],
       ),
     );
 
@@ -56,7 +56,7 @@ final class DataCatalogStack extends Stack {
         ),
         userSpecifiedSystem: .literal('TerraDart'),
         displayName: .literal('TerraDart custom entry'),
-        dependsOn: [ResourceDependency(group)],
+        dependsOn: [group],
       ),
     );
 
@@ -67,7 +67,7 @@ final class DataCatalogStack extends Stack {
         description: .literal('Policy tags for PII columns'),
         activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']),
         region: .literal('us-central1'),
-        dependsOn: [ResourceDependency(apiDataCatalog)],
+        dependsOn: [apiDataCatalog],
       ),
     );
 
@@ -77,7 +77,7 @@ final class DataCatalogStack extends Stack {
         displayName: .literal('email'),
         taxonomy: taxonomy.ref,
         description: .literal('Email addresses'),
-        dependsOn: [ResourceDependency(taxonomy)],
+        dependsOn: [taxonomy],
       ),
     );
 
@@ -98,7 +98,7 @@ final class DataCatalogStack extends Stack {
           ),
         ],
         forceDelete: .literal(true),
-        dependsOn: [ResourceDependency(apiDataCatalog)],
+        dependsOn: [apiDataCatalog],
       ),
     );
 
@@ -114,10 +114,7 @@ final class DataCatalogStack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(customEntry),
-          ResourceDependency(tagTemplate),
-        ],
+        dependsOn: [customEntry, tagTemplate],
       ),
     );
 
@@ -136,7 +133,7 @@ final class DataCatalogStack extends Stack {
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(group), ResourceDependency(reader)],
+        dependsOn: [group, reader],
       ),
     );
 
@@ -147,7 +144,7 @@ final class DataCatalogStack extends Stack {
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(taxonomy), ResourceDependency(reader)],
+        dependsOn: [taxonomy, reader],
       ),
     );
 
@@ -157,7 +154,7 @@ final class DataCatalogStack extends Stack {
         policyTag: emailTag.ref,
         role: .literal('roles/datacatalog.viewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(emailTag), ResourceDependency(reader)],
+        dependsOn: [emailTag, reader],
       ),
     );
 
@@ -168,10 +165,7 @@ final class DataCatalogStack extends Stack {
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(tagTemplate),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [tagTemplate, reader],
       ),
     );
   }

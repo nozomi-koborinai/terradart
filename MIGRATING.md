@@ -162,6 +162,20 @@ block already has (`kind`, `default`, `ref`, `localName`, `override`,
 `runtimeType`, ...) takes an `Attr` suffix. `addConstant(name, .ref(x))`
 is unchanged.
 
+### `dependsOn` takes the blocks
+
+`dependsOn` is a `List<TfAddressed>`: pass the resources, data sources and
+module calls themselves. `DependencyTarget`, `ResourceDependency` and
+`RefDependency` are gone, and `Apis.enable` returns `List<TfAddressed>`.
+Terraform rejects an attribute in `depends_on`, so nothing replaces
+`RefDependency`. Synth output does not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `dependsOn: [ResourceDependency(schema), ResourceDependency(api)]` | `dependsOn: [schema, api]` |
+| `dependsOn: [ResourceDependency(db), ...apiDeps]` | `dependsOn: [db, ...apiDeps]` |
+| `final List<ResourceDependency> deps` | `final List<TfAddressed> deps` |
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

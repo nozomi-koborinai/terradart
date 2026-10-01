@@ -82,7 +82,7 @@ final class TagsStack extends Stack {
           '${current.number.interpolation}',
         ),
         tagValue: prodValue.ref,
-        dependsOn: [ResourceDependency(prodValue)],
+        dependsOn: [prodValue],
       ),
     );
 
@@ -93,7 +93,7 @@ final class TagsStack extends Stack {
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         member: tagger.principal,
-        dependsOn: [ResourceDependency(envKey), ResourceDependency(tagger)],
+        dependsOn: [envKey, tagger],
       ),
     );
 
@@ -103,7 +103,7 @@ final class TagsStack extends Stack {
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         members: .literal([tagger.principal]),
-        dependsOn: [ResourceDependency(envKey), ResourceDependency(envViewer)],
+        dependsOn: [envKey, envViewer],
       ),
     );
 
@@ -118,10 +118,7 @@ final class TagsStack extends Stack {
                 'serviceAccount:terradart-tagger@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(envKey),
-          ResourceDependency(envViewerBinding),
-        ],
+        dependsOn: [envKey, envViewerBinding],
       ),
     );
 
@@ -132,7 +129,7 @@ final class TagsStack extends Stack {
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         member: tagger.principal,
-        dependsOn: [ResourceDependency(prodValue), ResourceDependency(tagger)],
+        dependsOn: [prodValue, tagger],
       ),
     );
 
@@ -142,10 +139,7 @@ final class TagsStack extends Stack {
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         members: .literal([tagger.principal]),
-        dependsOn: [
-          ResourceDependency(prodValue),
-          ResourceDependency(prodUser),
-        ],
+        dependsOn: [prodValue, prodUser],
       ),
     );
 
@@ -160,10 +154,7 @@ final class TagsStack extends Stack {
                 'serviceAccount:terradart-tagger@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(prodValue),
-          ResourceDependency(prodUserBinding),
-        ],
+        dependsOn: [prodValue, prodUserBinding],
       ),
     );
 

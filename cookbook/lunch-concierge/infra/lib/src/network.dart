@@ -18,7 +18,7 @@ final class LunchNetwork {
   final GoogleServiceNetworkingConnection psaConnection;
 }
 
-LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
+LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
   final vpc = stack.add(
     GoogleComputeNetwork(
       localName: 'lunch_vpc',
@@ -36,7 +36,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       network: vpc.ref,
       ipCidrRange: .literal(subnetCidr),
       privateIpGoogleAccess: .literal(true),
-      dependsOn: [ResourceDependency(vpc)],
+      dependsOn: [vpc],
     ),
   );
 
@@ -48,7 +48,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       purpose: .literal(.vpcPeering),
       prefixLength: .literal(16),
       network: vpc.ref,
-      dependsOn: [ResourceDependency(vpc)],
+      dependsOn: [vpc],
     ),
   );
 
@@ -58,7 +58,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       network: vpc.ref,
       service: .literal('servicenetworking.googleapis.com'),
       reservedPeeringRanges: .literal([psaRange.name.interpolation]),
-      dependsOn: [...apiDeps, ResourceDependency(psaRange)],
+      dependsOn: [...apiDeps, psaRange],
     ),
   );
 

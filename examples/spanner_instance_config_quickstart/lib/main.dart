@@ -41,7 +41,7 @@ final class SpannerInstanceConfigStack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiSpanner)],
+        dependsOn: [apiSpanner],
       ),
     );
   }

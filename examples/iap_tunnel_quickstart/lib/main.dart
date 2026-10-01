@@ -34,7 +34,7 @@ final class IapTunnelStack extends Stack {
         groupName: .literal('terradart-internal'),
         region: .literal('us-central1'),
         cidrs: .literal(['10.1.0.0/16']),
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -53,10 +53,7 @@ final class IapTunnelStack extends Stack {
         region: .literal('us-central1'),
         role: .literal('roles/viewer'),
         member: tunnelUser.principal,
-        dependsOn: [
-          ResourceDependency(destGroup),
-          ResourceDependency(tunnelUser),
-        ],
+        dependsOn: [destGroup, tunnelUser],
       ),
     );
 
@@ -66,7 +63,7 @@ final class IapTunnelStack extends Stack {
         localName: 'tunnel_project_grant',
         role: .literal('roles/iap.tunnelResourceAccessor'),
         member: tunnelUser.principal,
-        dependsOn: [ResourceDependency(apiIap), ResourceDependency(tunnelUser)],
+        dependsOn: [apiIap, tunnelUser],
       ),
     );
   }

@@ -54,7 +54,7 @@ final class IapSettingsStack extends Stack {
         localName: 'web_invoker',
         accountId: .literal('iap-web-invoker'),
         displayName: .literal('IAP location-web invoker (demo)'),
-        dependsOn: [ResourceDependency(apiIam)],
+        dependsOn: [apiIam],
       ),
     );
 
@@ -62,7 +62,7 @@ final class IapSettingsStack extends Stack {
       GoogleIapSettings(
         localName: 'web',
         name: .literal('projects/$projectId/iap_web'),
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -72,7 +72,7 @@ final class IapSettingsStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([webInvoker.principal]),
-        dependsOn: [ResourceDependency(apiIap), ResourceDependency(webInvoker)],
+        dependsOn: [apiIap, webInvoker],
       ),
     );
 
@@ -87,10 +87,7 @@ final class IapSettingsStack extends Stack {
                 'serviceAccount:iap-web-invoker@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(apiIap),
-          ResourceDependency(locationBinding),
-        ],
+        dependsOn: [apiIap, locationBinding],
       ),
     );
   }

@@ -57,7 +57,7 @@ final class ColabStack extends Stack {
         localName: 'colab_vpc',
         name: .literal('terradart-colab-vpc'),
         autoCreateSubnetworks: .literal(false),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -69,7 +69,7 @@ final class ColabStack extends Stack {
         network: network.ref,
         ipCidrRange: .literal('10.40.0.0/24'),
         privateIpGoogleAccess: .literal(true),
-        dependsOn: [ResourceDependency(network)],
+        dependsOn: [network],
       ),
     );
 
@@ -98,7 +98,7 @@ final class ColabStack extends Stack {
           network: .of(network),
           subnetwork: .of(subnet),
         ),
-        dependsOn: [ResourceDependency(apiAi), ResourceDependency(subnet)],
+        dependsOn: [apiAi, subnet],
       ),
     );
 
@@ -108,7 +108,7 @@ final class ColabStack extends Stack {
         runtimeTemplate: template.ref,
         role: .literal('roles/viewer'),
         member: runner.principal,
-        dependsOn: [ResourceDependency(template), ResourceDependency(runner)],
+        dependsOn: [template, runner],
       ),
     );
 
@@ -119,7 +119,7 @@ final class ColabStack extends Stack {
         location: .literal('US-CENTRAL1'),
         forceDestroy: .literal(true),
         uniformBucketLevelAccess: .literal(true),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
 
@@ -130,7 +130,7 @@ final class ColabStack extends Stack {
         name: .literal('hello_world.ipynb'),
         body: .source(source: .literal('../hello_world.ipynb')),
         contentType: .literal('application/json'),
-        dependsOn: [ResourceDependency(bucket)],
+        dependsOn: [bucket],
       ),
     );
 
@@ -161,18 +161,12 @@ final class ColabStack extends Stack {
               compute: .notebookRuntimeTemplateResourceName(
                 .literal(templateResourceName),
               ),
-              gcsOutputUri: .literal(
-                'gs://${bucket.name.interpolation}/out',
-              ),
+              gcsOutputUri: .literal('gs://${bucket.name.interpolation}/out'),
               identity: .serviceAccount(.of(runner)),
             ),
           ),
         ),
-        dependsOn: [
-          ResourceDependency(template),
-          ResourceDependency(notebook),
-          ResourceDependency(runner),
-        ],
+        dependsOn: [template, notebook, runner],
       ),
     );
   }

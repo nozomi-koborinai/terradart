@@ -86,7 +86,7 @@ void main() {
           localName: 'audit',
           argMap: const {'name': TfArgLiteral<String>('audit-prod')},
           lifecycle: LifecycleOptions(replaceTriggeredBy: [triggerRef]),
-          dependsOn: <DependencyTarget>[ResourceDependency(ordersTopic)],
+          dependsOn: [ordersTopic],
         ),
       );
 
