@@ -114,8 +114,9 @@ Per-package changelogs live alongside each package and are the system of record 
   renamed, and 3,538 fewer are declared (27,684 → 24,146). Longest name 217
   → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 32. The
   new `tool/type_name_length_test.dart` gate fails on a name over 80
-  characters that is more than its resource stem and one Terraform segment,
-  unless `tool/type_name_length_debt.yaml` gives a reason (10 today). Synth
+  characters that is more than one Terraform segment past the type it is
+  named after (the resource stem, or for a sealed type its owner), unless
+  `tool/type_name_length_debt.yaml` gives a reason (6 today). Synth
   output is unchanged. See `MIGRATING.md`.
 
 - **Value lists inside helper classes take their element type**

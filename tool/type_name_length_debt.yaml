@@ -1,28 +1,20 @@
 # Generated type names over the 80-character limit
 # (tool/type_name_length_test.dart): type name → reason.
 #
-# A name that is only the resource stem plus one Terraform segment (two for a
-# sealed variant) passes without an entry — only the stem is long. A name
-# listed here also carries an ancestor segment, usually because the leaf block
-# names differently shaped blocks elsewhere in the resource. Shorten it (a `sealedNames` concept, or a
-# reshaped override) and delete the entry; an entry that no longer names such
-# a type fails the gate as stale.
+# A name one Terraform segment past the type it is named after passes without
+# an entry: a helper or enum past the resource stem, a sealed type past the
+# stem or the helper holding it, a variant past its sealed type (or that
+# type's owner). Only the prefix is long there. A name listed here also
+# carries an ancestor segment, usually because the leaf block names
+# differently shaped blocks elsewhere in the resource. Shorten it (a
+# `sealedNames` concept, or a reshaped override) and delete the entry; an
+# entry that no longer names such a type fails the gate as stale.
 
 ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration: >-
   collision: backup_configuration differs under destination.logs_configuration
   and destination.metrics_configuration, so each keeps its parent
 ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration: >-
   collision: see the destination.metrics_configuration entry
-SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig: >-
-  collision: training_job_definition and training_job_definitions both hold
-  resources.hyper_parameter_tuning_resource_config with different shapes
-SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig: >-
-  collision: see the training_job_definitions entry
-PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory: >-
-  collision: a variant of the requester_justification_config requirement
-  group; requirement alone names another block of the resource
-PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured: >-
-  collision: see the NotMandatory variant entry
 DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig: >-
   collision: crypto_deterministic_config appears under several differently
   shaped transformation blocks

@@ -1,15 +1,15 @@
 // Every type `terradart wrap` declares in the package of a tool/providers.yaml
 // lane stays at or under [maxTypeNameLength] characters, unless its name is
-// already as short as the naming rules allow: the resource stem
-// (`shortResourcePascal`) followed by one Terraform segment — two for a sealed
-// variant (its concept or block, then its member) — and an optional `Choice`
-// collision suffix. Only the stem is long there, and Terraform chose it. Any
-// other name over the limit needs a reasoned entry in
+// already as short as the naming rules allow: one Terraform segment (and an
+// optional `Choice` collision suffix) past the type it is named after — see
+// [irreducibleTypes]. Only that prefix is long there, and Terraform chose it.
+// Any other name over the limit needs a reasoned entry in
 // tool/type_name_length_debt.yaml, and an entry that no longer names such a
 // type fails as stale.
 
 import 'dart:io';
 
+import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
@@ -34,17 +34,37 @@ String _pascal(String snake) => [
     if (p.isNotEmpty) p[0].toUpperCase() + p.substring(1),
 ].join();
 
-/// Every Terraform name segment (block, attribute, sealed member) the
-/// manifest records, in PascalCase.
+/// Every run of consecutive words in [snake], in PascalCase: a type name may
+/// drop the words a segment repeats from its prefix, and a derived sealed
+/// concept is the members' shared leading or trailing words.
+Iterable<String> _wordRuns(String snake) sync* {
+  final words = [
+    for (final w in snake.split('_'))
+      if (w.isNotEmpty) w,
+  ];
+  for (var i = 0; i < words.length; i++) {
+    for (var j = i + 1; j <= words.length; j++) {
+      yield _pascal(words.sublist(i, j).join('_'));
+    }
+  }
+}
+
+/// Every Terraform name segment (block, attribute, sealed member, sealed
+/// concept) the manifest records, and every word run of one, in PascalCase.
 Set<String> _segments(MigrateManifest manifest) {
   final out = <String>{};
   void add(Iterable<MigrateSlot> slots) {
     for (final s in slots) {
       for (final t in s.tfName.split('.')) {
-        if (t.isNotEmpty) out.add(_pascal(t));
+        out.addAll(_wordRuns(t));
       }
-      for (final member in s.variants?.keys ?? const <String>[]) {
-        out.add(_pascal(member));
+      if (s.variants case final variants?) {
+        if (s.dartName.isNotEmpty) {
+          out.add(s.dartName[0].toUpperCase() + s.dartName.substring(1));
+        }
+        for (final member in variants.keys) {
+          out.addAll(_wordRuns(member));
+        }
       }
     }
   }
@@ -58,22 +78,60 @@ Set<String> _segments(MigrateManifest manifest) {
   return out;
 }
 
-/// Whether [rest] is at most [parts] segments of [segments] back to back.
-bool _fits(String rest, int parts, Set<String> segments) {
-  if (rest.isEmpty) return true;
-  if (parts == 0) return false;
-  for (var i = 1; i <= rest.length; i++) {
-    if (segments.contains(rest.substring(0, i)) &&
-        _fits(rest.substring(i), parts - 1, segments)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/// A declared type: its name, the file declaring it, and whether it is at
-/// most one segment (two for a sealed variant) past the resource stem.
+/// A declared type: its name, the file declaring it, and whether it is one
+/// segment past the type it is named after (see [irreducibleTypes]).
 typedef TypeName = ({String name, String file, bool irreducible});
+
+/// The types [src] declares whose name is one of [segments] (plus an
+/// optional `Choice`) past the type it is named after, where:
+/// - a helper class or enum is named after a resource stem in [stems];
+/// - a sealed type is named after a stem or the helper class holding it;
+/// - a variant is named after its sealed type, or after that type's owner
+///   when the member takes the concept's place.
+Set<String> irreducibleTypes(
+  String src,
+  List<String> stems,
+  Set<String> segments,
+) {
+  bool oneMore(String name, String owner) {
+    final trimmed = name.endsWith('Choice')
+        ? name.substring(0, name.length - 'Choice'.length)
+        : name;
+    return trimmed.length > owner.length &&
+        trimmed.startsWith(owner) &&
+        segments.contains(trimmed.substring(owner.length));
+  }
+
+  final declared = [for (final m in _decl.allMatches(src)) m[1]!];
+  final sealed = {
+    for (final m in RegExp(r'\bsealed class (\w+)').allMatches(src)) m[1]!,
+  };
+  final parentOf = {
+    for (final m in RegExp(
+      r'\bfinal class (\w+)\s+extends\s+(\w+)',
+    ).allMatches(src))
+      if (sealed.contains(m[2])) m[1]!: m[2]!,
+  };
+  final helpers = [
+    for (final n in declared)
+      if (!sealed.contains(n) && !parentOf.containsKey(n)) n,
+  ];
+  final ownerOf = <String, List<String>>{
+    for (final s in sealed)
+      s: [
+        for (final o in [...stems, ...helpers])
+          if (oneMore(s, o)) o,
+      ],
+  };
+  return {
+    for (final h in helpers)
+      if (stems.any((s) => oneMore(h, s))) h,
+    for (final s in sealed)
+      if (ownerOf[s]!.isNotEmpty) s,
+    for (final MapEntry(key: v, value: s) in parentOf.entries)
+      if (oneMore(v, s) || ownerOf[s]!.any((o) => oneMore(v, o))) v,
+  };
+}
 
 const _header = '// GENERATED FILE - DO NOT EDIT';
 final _decl = RegExp(
@@ -94,42 +152,15 @@ List<TypeName> declaredTypes(String package, Set<String> segments) {
   for (final f in files) {
     final src = f.readAsStringSync();
     if (!src.startsWith(_header)) continue;
-    final base = f.uri.pathSegments.last.replaceAll('.dart', '');
-    final short = _pascal(
-      base.replaceFirst(RegExp(r'^(google|aws|cloudflare|appwrite)_'), ''),
+    final short = shortResourcePascal(
+      f.uri.pathSegments.last.replaceAll('.dart', ''),
     );
-    final stems = [short, 'Data$short'];
-    final sealed = {
-      for (final m in RegExp(r'\bsealed class (\w+)').allMatches(src)) m[1]!,
-    };
-    final variants = {
-      for (final m in RegExp(
-        r'\bfinal class (\w+)\s+extends\s+(\w+)',
-      ).allMatches(src))
-        if (sealed.contains(m[2])) m[1]!,
-    };
+    final irreducible = irreducibleTypes(src, [short, 'Data$short'], segments);
     for (final m in _decl.allMatches(src)) {
-      final name = m[1]!;
-      final stem = stems
-          .where(name.startsWith)
-          .fold<String?>(
-            null,
-            (a, s) => a == null || s.length > a.length ? s : a,
-          );
-      final trimmed = name.endsWith('Choice')
-          ? name.substring(0, name.length - 'Choice'.length)
-          : name;
       out.add((
-        name: name,
+        name: m[1]!,
         file: f.path,
-        irreducible:
-            stem != null &&
-            trimmed.length >= stem.length &&
-            _fits(
-              trimmed.substring(stem.length),
-              variants.contains(name) ? 2 : 1,
-              segments,
-            ),
+        irreducible: irreducible.contains(m[1]),
       ));
     }
   }
@@ -146,12 +177,41 @@ Map<String, String> _ledger() {
 }
 
 void main() {
-  test('_fits splits a suffix into known segments', () {
-    const segs = {'Target', 'ResourceConfig', 'Existing'};
-    expect(_fits('', 1, segs), isTrue);
-    expect(_fits('ResourceConfig', 1, segs), isTrue);
-    expect(_fits('TargetResourceConfig', 1, segs), isFalse);
-    expect(_fits('TargetResourceConfig', 2, segs), isTrue);
+  test('a type one segment past what it is named after is irreducible', () {
+    const src = '''
+class LambdaFunctionVpcConfig {}
+class LambdaFunctionVpcConfigSubnet {}
+class LambdaFunctionTargetResourceConfig {}
+sealed class LambdaFunctionCode {}
+final class LambdaFunctionCodeImageUri extends LambdaFunctionCode {}
+final class LambdaFunctionS3Bucket extends LambdaFunctionCode {}
+final class LambdaFunctionCodeVpcConfigChoice extends LambdaFunctionCode {}
+final class LambdaFunctionCodeOther extends LambdaFunctionCode {}
+sealed class LambdaFunctionVpcConfigNetwork {}
+final class LambdaFunctionVpcConfigNetworkSubnet
+    extends LambdaFunctionVpcConfigNetwork {}
+sealed class LambdaFunctionImageUriTarget {}
+''';
+    final segments = {
+      for (final s in ['vpc_config', 'image_uri', 's3_bucket', 'subnet'])
+        ..._wordRuns(s),
+      'Code',
+      'Network',
+      'Target',
+      'ResourceConfig',
+    };
+    expect(
+      irreducibleTypes(src, ['LambdaFunction'], segments),
+      unorderedEquals([
+        'LambdaFunctionVpcConfig',
+        'LambdaFunctionCode',
+        'LambdaFunctionCodeImageUri',
+        'LambdaFunctionS3Bucket',
+        'LambdaFunctionCodeVpcConfigChoice',
+        'LambdaFunctionVpcConfigNetwork',
+        'LambdaFunctionVpcConfigNetworkSubnet',
+      ]),
+    );
   });
 
   final ledger = _ledger();
