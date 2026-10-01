@@ -484,11 +484,10 @@ final class GooglePrivilegedAccessManagerSettings extends Resource {
     serviceAccountApproverSettings,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'location': location,
            'parent': parent,
@@ -506,6 +505,9 @@ final class GooglePrivilegedAccessManagerSettings extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googlePrivilegedAccessManagerSettingsSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GooglePrivilegedAccessManagerSettings>`.

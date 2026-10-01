@@ -64,11 +64,10 @@ final class GoogleCloudIdentityPolicy extends Resource {
     required CloudIdentityPolicySetting setting,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'customer': customer,
            'deletion_policy': ?deletionPolicy,
@@ -79,6 +78,9 @@ final class GoogleCloudIdentityPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleCloudIdentityPolicySensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleCloudIdentityPolicy>`.

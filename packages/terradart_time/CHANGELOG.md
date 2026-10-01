@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `TimeSleep` takes `provider:`, the registered `TimeProvider` instance (an aliased `TimeProvider(alias: ...)` from `addProvider`). See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** `TimeSleep` takes its local name as the first positional argument: `TimeSleep('wait', createDuration: ...)`.
 
 ## 0.31.0 - 2026-10-01

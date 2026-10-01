@@ -27,11 +27,10 @@ final class GoogleActiveDirectoryPeering extends Resource {
     TfArg<String>? statusMessage,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'authorized_network': authorizedNetwork.encodeAs('id'),
            'deletion_policy': ?deletionPolicy,
@@ -46,6 +45,9 @@ final class GoogleActiveDirectoryPeering extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleActiveDirectoryPeeringSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleActiveDirectoryPeering>`.

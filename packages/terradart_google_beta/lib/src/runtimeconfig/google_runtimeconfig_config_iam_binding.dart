@@ -52,11 +52,10 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
     RuntimeconfigConfigIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'config': config.encodeAs('name'),
            'members': members,
@@ -70,6 +69,9 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleRuntimeconfigConfigIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleRuntimeconfigConfigIamBinding>`.

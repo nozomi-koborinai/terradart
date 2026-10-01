@@ -74,6 +74,7 @@ const Set<String> stackMemberNames = {
   'addExternalBlock',
   'addMoved',
   'addModule',
+  'addProvider',
   'moved',
   'modules',
   'setRequiredVersion',

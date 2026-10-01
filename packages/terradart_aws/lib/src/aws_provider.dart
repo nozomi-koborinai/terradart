@@ -49,8 +49,9 @@ final class AwsProvider implements StackProvider {
   });
 
   /// Provider alias (`provider "aws" { alias = "us_west_2" }`), or `null`
-  /// for the default configuration. Select it on a resource with
-  /// `provider: 'aws.<alias>'`.
+  /// for the default configuration. Select it on a resource by passing the
+  /// instance as `provider:`; `Stack.addProvider` registers it and returns
+  /// it for that.
   @override
   final String? alias;
 

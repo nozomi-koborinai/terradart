@@ -47,11 +47,10 @@ final class GoogleDataplexDataAsset extends Resource {
     List<DataplexDataAssetAccessGroupConfigs>? accessGroupConfigs,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'data_asset_id': dataAssetId,
            'data_product_id': dataProductId.encodeAs('data_product_id'),
@@ -69,6 +68,9 @@ final class GoogleDataplexDataAsset extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataplexDataAssetSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataplexDataAsset>`.

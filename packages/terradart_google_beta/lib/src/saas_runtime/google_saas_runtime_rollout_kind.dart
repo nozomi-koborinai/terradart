@@ -76,11 +76,10 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
     SaasRuntimeRolloutKindErrorBudget? errorBudget,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'annotations': ?annotations,
            'deletion_policy': ?deletionPolicy,
@@ -99,6 +98,9 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeRolloutKindSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSaasRuntimeRolloutKind>`.

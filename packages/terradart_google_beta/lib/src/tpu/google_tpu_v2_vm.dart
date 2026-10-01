@@ -326,11 +326,10 @@ final class GoogleTpuV2Vm extends Resource {
     TpuV2VmShieldedInstanceConfig? shieldedInstanceConfig,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            ...?accelerator?.argMap,
            'cidr_block': ?cidrBlock,
@@ -361,6 +360,9 @@ final class GoogleTpuV2Vm extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleTpuV2VmSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleTpuV2Vm>`.

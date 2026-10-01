@@ -47,7 +47,7 @@ abstract interface class StackProvider {
   /// number of aliases per name. Synth then emits every configuration of the
   /// name as a list under `provider.<providerName>`, the aliased ones
   /// carrying their `alias`, and a resource selects one with the `provider`
-  /// meta-argument (`provider: 'google.eu'`). Aliases share the name's
+  /// meta-argument (`provider: eu`, the instance). Aliases share the name's
   /// `required_providers` entry, so [source] and [versionConstraint] must
   /// agree across them.
   String? get alias;
@@ -109,7 +109,7 @@ abstract base class Stack {
     StackBackend? backend,
     this.appExports,
     this.devMode = false,
-  }) : _providers = List<StackProvider>.unmodifiable(providers),
+  }) : _providers = [...providers],
        _backend = backend;
 
   /// When true, synth-time injection flips `deletion_protection` to
@@ -159,7 +159,10 @@ abstract base class Stack {
 
   // ---- Public read-only views (synth reads these) ------------------------
 
-  List<StackProvider> get providers => _providers;
+  /// The configurations passed to the constructor, then those registered
+  /// with [addProvider], in that order.
+  List<StackProvider> get providers =>
+      List<StackProvider>.unmodifiable(_providers);
   StackBackend? get backend => _backend;
   List<Resource> get resources =>
       List<Resource>.unmodifiable(_resources.values);
@@ -201,6 +204,20 @@ abstract base class Stack {
   String get requiredVersion => _requiredVersion;
 
   // ---- Coordination mutators ---------------------------------------------
+
+  /// Registers [provider] like an entry of `Stack(providers: [...])` and
+  /// returns it, so the constructor body holds the instance a resource
+  /// selects with `provider:`.
+  ///
+  /// ```dart
+  /// final eu = addProvider(GoogleProvider(alias: 'eu', region: 'europe-west1'));
+  /// add(GoogleStorageBucket('eu_assets', name: .literal('assets-eu'),
+  ///     location: .literal('EU'), provider: eu));
+  /// ```
+  P addProvider<P extends StackProvider>(P provider) {
+    _providers.add(provider);
+    return provider;
+  }
 
   /// Declare `output "<name>" { value = <value> }`.
   ///

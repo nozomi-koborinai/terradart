@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
 import 'lifecycle.dart';
+import 'stack.dart';
 import 'tf_arg.dart';
 import 'tf_timeouts.dart';
 
@@ -50,15 +51,23 @@ abstract base class Resource implements TfAddressed, ReplaceTrigger {
   /// Terraform takes whole blocks only, so an entry is never an attribute.
   final List<TfAddressed>? dependsOn;
 
-  /// Optional Terraform `provider` meta-argument: a provider name
-  /// (`'google-beta'` on a GA type) or a `name.alias` pair (`'google.eu'`).
+  /// Optional Terraform `provider` meta-argument: the provider configuration
+  /// this block uses, e.g. the aliased `GoogleProvider(alias: 'eu')` the
+  /// Stack registered with `addProvider`.
   ///
-  /// When set, synth emits `"provider": "<value>"` on the block and requires
-  /// a [StackProvider] registered with that [StackProvider.providerName] and
-  /// [StackProvider.alias]. Omit for the default configuration of the
-  /// provider implied by [terraformType]'s prefix. Every curated factory
+  /// When set, synth emits `"provider": "<name>[.<alias>]"` on the block and
+  /// requires that same instance to be registered on the Stack. Omit for the
+  /// default configuration of [defaultProvider]. Every curated factory
   /// exposes it as its `provider:` constructor parameter.
-  final String? provider;
+  final StackProvider? provider;
+
+  /// The provider name a block without [provider] uses: by default the
+  /// prefix of [terraformType] (`google` for `google_pubsub_topic`).
+  ///
+  /// A wrapper whose type belongs to a provider with another name overrides
+  /// it — the `terradart_google_beta` factories return `'google-beta'` — and
+  /// synth then emits it as the block's `provider`.
+  String get defaultProvider => terraformType.split('_').first;
 
   /// Terraform address `<terraformType>.<localName>`, e.g.
   /// `google_pubsub_topic.orders`.

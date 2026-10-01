@@ -22,11 +22,10 @@ final class GoogleApiGatewayApi extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'api_id': apiId,
            'deletion_policy': ?deletionPolicy,
@@ -39,6 +38,9 @@ final class GoogleApiGatewayApi extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleApiGatewayApi>`.

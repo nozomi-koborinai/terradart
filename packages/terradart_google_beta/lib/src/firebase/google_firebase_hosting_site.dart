@@ -20,11 +20,10 @@ final class GoogleFirebaseHostingSite extends Resource {
     TfArg<String>? siteId,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'app_id': ?appId,
            'deletion_policy': ?deletionPolicy,
@@ -35,6 +34,9 @@ final class GoogleFirebaseHostingSite extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingSiteSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseHostingSite>`.

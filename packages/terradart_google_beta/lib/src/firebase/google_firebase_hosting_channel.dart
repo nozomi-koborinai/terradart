@@ -85,11 +85,10 @@ final class GoogleFirebaseHostingChannel extends Resource {
     required TfArg<String> siteId,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'channel_id': channelId,
            'deletion_policy': ?deletionPolicy,
@@ -102,6 +101,9 @@ final class GoogleFirebaseHostingChannel extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingChannelSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseHostingChannel>`.

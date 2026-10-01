@@ -16,6 +16,12 @@ Per-package changelogs live alongside each package and are the system of record 
   member bare (`routingMode: .regional`, `actions: [.getcertificate]`) and
   `.variable(...)` / `.expression(...)` / `.arg(...)` cover the rest.
   `TerraformEnum` and `terraformValue` are removed.
+- **Providers are instances** (`terradart_core`, `terradart_codegen`,
+  every provider package, `terradart_migrate`) — `provider:` takes the
+  registered `StackProvider` (`provider: eu`, from `final eu =
+  addProvider(GoogleProvider(alias: 'eu'))`) instead of `'google.eu'`, and
+  `ModuleCall.providers` maps to instances. Beta wrappers override
+  `Resource.defaultProvider`.
 - **Typed lifecycle** (`terradart_core`, `terradart_migrate`) —
   `ignoreChanges: .all` / `.of(['target_size'])`, `replaceTriggeredBy:
   [template, template.id]` (any `ReplaceTrigger`: a resource or an

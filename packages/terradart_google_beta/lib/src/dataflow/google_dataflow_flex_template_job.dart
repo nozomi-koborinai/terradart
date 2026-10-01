@@ -48,11 +48,10 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
     TfArg<Map<String, String>>? transformNameMapping,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'additional_experiments': ?additionalExperiments,
            'additional_pipeline_options': ?additionalPipelineOptions,
@@ -86,6 +85,9 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataflowFlexTemplateJobSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataflowFlexTemplateJob>`.

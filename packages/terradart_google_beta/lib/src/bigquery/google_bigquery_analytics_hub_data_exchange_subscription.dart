@@ -113,11 +113,10 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
     destinationDataset,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'data_exchange_id': dataExchangeId,
            'data_exchange_location': dataExchangeLocation,
@@ -136,6 +135,9 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
   @override
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubDataExchangeSubscriptionSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBigqueryAnalyticsHubDataExchangeSubscription>`.

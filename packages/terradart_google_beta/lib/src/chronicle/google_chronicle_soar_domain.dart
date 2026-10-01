@@ -24,11 +24,10 @@ final class GoogleChronicleSoarDomain extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
@@ -41,6 +40,9 @@ final class GoogleChronicleSoarDomain extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleChronicleSoarDomainSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleChronicleSoarDomain>`.

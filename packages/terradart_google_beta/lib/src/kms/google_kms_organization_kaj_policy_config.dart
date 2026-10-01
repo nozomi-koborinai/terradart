@@ -118,11 +118,10 @@ final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
     defaultKeyAccessJustificationPolicy,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'organization': organization,
            if (defaultKeyAccessJustificationPolicy != null)
@@ -135,6 +134,9 @@ final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleKmsOrganizationKajPolicyConfigSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleKmsOrganizationKajPolicyConfig>`.

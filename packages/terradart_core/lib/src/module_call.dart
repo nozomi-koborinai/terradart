@@ -1,3 +1,4 @@
+import 'stack.dart';
 import 'tf_arg.dart';
 
 /// A `module "<localName>" { ... }` call as a Dart value.
@@ -34,12 +35,12 @@ base class ModuleCall implements TfAddressed {
     required this.source,
     this.version,
     Map<String, TfArg<dynamic>?> inputs = const {},
-    Map<String, String> providers = const {},
+    Map<String, StackProvider> providers = const {},
     this.dependsOn,
     this.count,
     this.forEach,
   }) : inputs = Map<String, TfArg<dynamic>?>.unmodifiable(inputs),
-       providers = Map<String, String>.unmodifiable(providers) {
+       providers = Map<String, StackProvider>.unmodifiable(providers) {
     if (localName.trim().isEmpty) {
       throw ArgumentError.value(localName, 'localName', 'must not be empty');
     }
@@ -88,9 +89,9 @@ base class ModuleCall implements TfAddressed {
   final Map<String, TfArg<dynamic>?> inputs;
 
   /// `providers = { <child name> = <this Stack's provider> }`: the child
-  /// module's provider name mapped to a provider the Stack registers
-  /// (`'google'`, `'google.eu'`).
-  final Map<String, String> providers;
+  /// module's provider name (`'google'`, `'google.eu'`) mapped to a provider
+  /// configuration the Stack registers.
+  final Map<String, StackProvider> providers;
 
   /// Optional `depends_on = [...]`, like a resource's.
   final List<TfAddressed>? dependsOn;

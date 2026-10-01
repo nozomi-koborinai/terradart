@@ -54,11 +54,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamBinding extends Resource {
     VertexAiFeatureOnlineStoreIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'feature_online_store': featureOnlineStore.encodeAs('name'),
            'members': members,
@@ -73,6 +72,9 @@ final class GoogleVertexAiFeatureOnlineStoreIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleVertexAiFeatureOnlineStoreIamBinding>`.

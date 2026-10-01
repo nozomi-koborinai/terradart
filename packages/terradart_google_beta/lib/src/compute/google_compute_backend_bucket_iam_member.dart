@@ -46,11 +46,10 @@ final class GoogleComputeBackendBucketIamMember extends Resource {
     ComputeBackendBucketIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'member': member,
            'name': backendBucket.encodeAs('name'),
@@ -64,6 +63,9 @@ final class GoogleComputeBackendBucketIamMember extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeBackendBucketIamMemberSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeBackendBucketIamMember>`.

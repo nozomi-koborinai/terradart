@@ -1058,7 +1058,10 @@ barrels:
             'google_project_service_identity.dart',
           ),
         ).readAsStringSync();
-        expect(wrapper, contains("provider: provider ?? 'google-beta',"));
+        expect(
+          wrapper,
+          contains("String get defaultProvider => 'google-beta';"),
+        );
 
         final files = <String>[];
         for (final ent in Directory(tmp.path).listSync(recursive: true)) {

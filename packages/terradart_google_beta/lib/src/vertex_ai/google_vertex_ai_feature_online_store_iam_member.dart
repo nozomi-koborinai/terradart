@@ -49,11 +49,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamMember extends Resource {
     VertexAiFeatureOnlineStoreIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'feature_online_store': featureOnlineStore.encodeAs('name'),
            'member': member,
@@ -68,6 +67,9 @@ final class GoogleVertexAiFeatureOnlineStoreIamMember extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreIamMemberSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleVertexAiFeatureOnlineStoreIamMember>`.

@@ -193,11 +193,10 @@ final class GoogleSecurityScannerScanConfig extends Resource {
     SecurityScannerScanConfigSchedule? schedule,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'blacklist_patterns': ?blacklistPatterns,
            'deletion_policy': ?deletionPolicy,
@@ -221,6 +220,9 @@ final class GoogleSecurityScannerScanConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleSecurityScannerScanConfigSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSecurityScannerScanConfig>`.

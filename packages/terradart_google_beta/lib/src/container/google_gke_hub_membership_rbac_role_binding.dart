@@ -73,11 +73,10 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
     required GkeHubMembershipRbacRoleBindingRole role,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'location': location,
@@ -92,6 +91,9 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleGkeHubMembershipRbacRoleBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleGkeHubMembershipRbacRoleBinding>`.

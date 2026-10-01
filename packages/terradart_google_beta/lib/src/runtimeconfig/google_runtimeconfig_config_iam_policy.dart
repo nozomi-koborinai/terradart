@@ -25,11 +25,10 @@ final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'config': config.encodeAs('name'),
            'policy_data': policyData,
@@ -40,6 +39,9 @@ final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleRuntimeconfigConfigIamPolicySensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleRuntimeconfigConfigIamPolicy>`.

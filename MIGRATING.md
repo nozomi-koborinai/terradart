@@ -307,6 +307,30 @@ Terraform propagates from a dependency takes effect. Synth reports an
 inside `.of([...])`, and a condition with an empty error message.
 `terradart-migrate` writes the new forms, including the conditions.
 
+### Providers are instances
+
+`provider:` on a factory takes the `StackProvider` instance the Stack
+registers instead of a `'name.alias'` string, and `ModuleCall.providers`
+maps a child name to an instance. `Stack.addProvider` registers a
+configuration from the constructor body and returns it:
+
+| 0.31 | 0.32 |
+|------|------|
+| `super(providers: [GoogleProvider(...), GoogleProvider(alias: 'eu', ...)])` | `super(providers: [GoogleProvider(...)])`, then `final eu = addProvider(GoogleProvider(alias: 'eu', ...));` in the body |
+| `provider: 'google.eu'` | `provider: eu` |
+| `provider: 'google-beta'` on a GA type | `provider: beta`, with `final beta = addProvider(GoogleBetaProvider(...));` |
+| `providers: {'google': 'google.eu'}` on a `ModuleCall` | `providers: {'google': eu}` |
+| `Resource.provider` is a `String?` | a `StackProvider?`; `Resource.defaultProvider` is the name a block without one uses |
+
+The synth output is the same. Synth reports `MissingProvider` for an
+instance the Stack does not register, an equal-looking copy included,
+because a copy may carry different settings than the registered one. A
+hand-written `Resource` for a type whose prefix is not its provider's name
+overrides `defaultProvider` (the `terradart_google_beta` wrappers return
+`'google-beta'`) instead of passing `provider: 'google-beta'`.
+`terradart-migrate` registers each selected configuration with
+`addProvider` (`googleEuProvider`, `googleBetaProvider`) and passes it.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

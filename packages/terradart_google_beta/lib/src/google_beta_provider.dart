@@ -24,8 +24,9 @@ final class GoogleBetaProvider implements StackProvider {
   const GoogleBetaProvider({this.alias, this.project, this.region, this.zone});
 
   /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
-  /// the default configuration. Select it on a resource with
-  /// `provider: 'google-beta.<alias>'`.
+  /// the default configuration. Select it on a resource by passing the
+  /// instance as `provider:`; `Stack.addProvider` registers it and returns
+  /// it for that.
   @override
   final String? alias;
 

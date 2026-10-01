@@ -47,11 +47,10 @@ final class GoogleRuntimeconfigConfigIamMember extends Resource {
     RuntimeconfigConfigIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'config': config.encodeAs('name'),
            'member': member,
@@ -65,6 +64,9 @@ final class GoogleRuntimeconfigConfigIamMember extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleRuntimeconfigConfigIamMemberSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleRuntimeconfigConfigIamMember>`.

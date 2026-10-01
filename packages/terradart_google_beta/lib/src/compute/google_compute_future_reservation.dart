@@ -604,11 +604,10 @@ final class GoogleComputeFutureReservation extends Resource {
     required ComputeFutureReservationTimeWindow timeWindow,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'auto_created_reservations_delete_time':
                ?autoCreatedReservationsDeleteTime,
@@ -649,6 +648,9 @@ final class GoogleComputeFutureReservation extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleComputeFutureReservationSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeFutureReservation>`.

@@ -49,11 +49,10 @@ final class GoogleFirebaseHostingRelease extends Resource {
     RefTo<GoogleFirebaseHostingVersion>? versionName,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'channel_id': ?channelId,
            'message': ?message,
@@ -65,6 +64,9 @@ final class GoogleFirebaseHostingRelease extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingReleaseSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseHostingRelease>`.

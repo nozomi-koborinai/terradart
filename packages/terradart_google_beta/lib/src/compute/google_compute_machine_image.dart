@@ -68,11 +68,10 @@ final class GoogleComputeMachineImage extends Resource {
     ComputeMachineImageParams? params,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
@@ -90,6 +89,9 @@ final class GoogleComputeMachineImage extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleComputeMachineImageSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeMachineImage>`.

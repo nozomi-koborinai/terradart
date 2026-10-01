@@ -18,8 +18,9 @@
 /// folder IAM, Storage Batch Operations (`put_metadata`), and a separate
 /// fine-grained-ACL bucket (UBLA off) for access-control factories.
 ///
-/// A second `GoogleProvider` registered with `alias: 'eu'` and a bucket that
-/// selects it with `provider: 'google.eu'` show the provider-alias pattern
+/// A second `GoogleProvider` registered with `alias: 'eu'` through
+/// `addProvider`, and a bucket that passes that instance as `provider:`,
+/// show the provider-alias pattern
 /// (`provider "google" { alias = "eu" }` + `provider = google.eu` in HCL).
 ///
 /// `addModule(ModuleCall(source: '../modules/object_prefix', ...))` calls the
@@ -38,16 +39,15 @@ final class AssetsStack extends Stack {
     : super(
         providers: [
           GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          // `provider "google" { alias = "eu" ... }`: a second configuration
-          // of the same provider. Resources use the default one unless they
-          // opt in with `provider: 'google.eu'`.
-          GoogleProvider(
-            alias: 'eu',
-            project: projectId,
-            region: 'europe-west1',
-          ),
         ],
       ) {
+    // `provider "google" { alias = "eu" ... }`: a second configuration of
+    // the same provider. Resources use the default one unless they pass
+    // this instance as `provider:`.
+    final eu = addProvider(
+      GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
+    );
+
     final assets = GoogleStorageBucket(
       'assets',
       name: .literal('my-app-assets-prod'),
@@ -85,7 +85,7 @@ final class AssetsStack extends Stack {
         storageClass: .standard,
         forceDestroy: .literal(false),
         uniformBucketLevelAccess: .literal(true),
-        provider: 'google.eu',
+        provider: eu,
       ),
     );
     // The EU bucket was declared as `assets_europe` in an earlier revision.

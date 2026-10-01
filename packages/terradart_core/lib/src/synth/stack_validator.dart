@@ -54,8 +54,8 @@ abstract final class StackValidator {
           provider: ref,
           reason: alias == null
               ? 'registered twice without an alias. Give every configuration '
-                    "after the default one an `alias:` and select it with "
-                    "`provider: '${p.providerName}.<alias>'` on the resource."
+                    'after the default one an `alias:` and pass that '
+                    'instance as `provider:` on the resource.'
               : 'the alias "$ref" is registered twice.',
         );
       }
@@ -82,15 +82,30 @@ abstract final class StackValidator {
       for (final p in stack.providers) TfJsonEncoder.providerReference(p),
     };
     for (final r in [...stack.resources, ...stack.dataSources]) {
-      final needed = r.provider ?? r.terraformType.split('_').first;
+      final explicit = r.provider;
+      if (explicit != null) {
+        if (!stack.providers.any((p) => identical(p, explicit))) {
+          yield MissingProvider(
+            address: r.tfAddress,
+            provider: TfJsonEncoder.providerReference(explicit),
+            unregisteredInstance: true,
+          );
+        }
+        continue;
+      }
+      final needed = r.defaultProvider;
       if (!registered.contains(needed)) {
         yield MissingProvider(address: r.tfAddress, provider: needed);
       }
     }
     for (final m in stack.modules) {
-      for (final name in m.providers.values) {
-        if (!registered.contains(name)) {
-          yield MissingProvider(address: m.tfAddress, provider: name);
+      for (final p in m.providers.values) {
+        if (!stack.providers.any((q) => identical(q, p))) {
+          yield MissingProvider(
+            address: m.tfAddress,
+            provider: TfJsonEncoder.providerReference(p),
+            unregisteredInstance: true,
+          );
         }
       }
     }

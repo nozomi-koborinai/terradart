@@ -96,11 +96,10 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
     NetworkSecuritySacRealmSymantecOptions? symantecOptions,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'labels': ?labels,
@@ -114,6 +113,9 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleNetworkSecuritySacRealmSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleNetworkSecuritySacRealm>`.

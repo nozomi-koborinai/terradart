@@ -41,7 +41,7 @@ void main() {
         service: TfArg.literal('cloudasset.googleapis.com'),
       );
       expect(identity.terraformType, 'google_project_service_identity');
-      expect(identity.provider, 'google-beta');
+      expect(identity.defaultProvider, 'google-beta');
       expect(
         identity.argMap['service']!.toTfJson(),
         'cloudasset.googleapis.com',
