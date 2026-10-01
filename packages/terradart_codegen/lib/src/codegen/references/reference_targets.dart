@@ -618,8 +618,7 @@ ReferenceResolution resolveReferences({
     for (final type in curated) {
       if (_hasPrincipal(resourceSchemas[type])) principalResources.add(type);
     }
-    for (final MapEntry(key: type, value: block)
-        in dataSourceSchemas.entries) {
+    for (final MapEntry(key: type, value: block) in dataSourceSchemas.entries) {
       if (_hasPrincipal(block)) principalDataSources.add(type);
     }
   }

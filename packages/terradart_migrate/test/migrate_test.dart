@@ -241,12 +241,7 @@ resource "aws_s3_bucket" "logs" {
       expect(src, contains('.literal(.protocolBuffer)'));
       expect(src, contains('.pushConfig(PubsubSubscriptionPushConfig('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
-      expect(
-        src,
-        contains(
-          'members: .literal([ordersPublisher.principal])',
-        ),
-      );
+      expect(src, contains('members: .literal([ordersPublisher.principal])'));
       expect(
         src,
         contains(
@@ -320,8 +315,7 @@ resource "aws_s3_bucket" "logs" {
           'agent': {
             'topic': r'${google_pubsub_topic.orders.name}',
             'role': 'roles/pubsub.viewer',
-            'member':
-                r'serviceAccount:${google_service_account.runtime.email}',
+            'member': r'serviceAccount:${google_service_account.runtime.email}',
           },
         },
         'google_pubsub_topic_iam_binding': {
