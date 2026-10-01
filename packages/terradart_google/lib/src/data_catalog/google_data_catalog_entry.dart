@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_entry_group.dart'
+    show GoogleDataCatalogEntryGroup;
+
 /// Sensitive field paths for `google_data_catalog_entry`.
 const Set<String> _googleDataCatalogEntrySensitive = <String>{};
 
@@ -94,7 +97,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 /// ```dart
 /// GoogleDataCatalogEntry(
 ///   localName: 'custom',
-///   entryGroup: TfArg.ref(group.id),
+///   entryGroup: group.ref,
 ///   entryId: TfArg.literal('my_entry'),
 ///   entryKind: DataCatalogEntryCustomType(
 ///     userSpecifiedType: TfArg.literal('my_custom_type'),
@@ -107,7 +110,7 @@ final class GoogleDataCatalogEntry extends Resource {
 
   GoogleDataCatalogEntry({
     required super.localName,
-    required TfArg<String> entryGroup,
+    required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> entryId,
     required DataCatalogEntryKind entryKind,
     TfArg<String>? displayName,
@@ -124,7 +127,7 @@ final class GoogleDataCatalogEntry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_group': entryGroup,
+           'entry_group': entryGroup.encodeAs('id'),
            'entry_id': entryId,
            entryKind.blockKey: entryKind.value,
            'display_name': ?displayName,

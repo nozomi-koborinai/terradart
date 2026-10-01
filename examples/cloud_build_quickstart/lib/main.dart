@@ -142,7 +142,7 @@ final class CloudBuildStack extends Stack {
         localName: 'lb_repo',
         location: .literal(region),
         name: .literal('myapp'),
-        parentConnection: TfArg.ref<String>(lbConn.id),
+        parentConnection: lbConn.ref,
         remoteUri: .literal('https://github.com/example/myapp.git'),
         dependsOn: apiDeps,
       ),

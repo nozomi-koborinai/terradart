@@ -32,7 +32,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleSpannerDatabase(
   ///   localName: 'main',
-  ///   instance: TfArg.ref(spanner.nameRef),
+  ///   instance: spanner.ref,
   ///   name: TfArg.literal('main'),
   ///   versionRetentionPeriod: TfArg.literal('86400s'),
   /// );

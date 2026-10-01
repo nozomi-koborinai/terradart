@@ -4,6 +4,8 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+import '../storage/google_storage_bucket_object.dart'
+    show GoogleStorageBucketObject;
 
 /// Sensitive field paths for `google_storage_object_acl`.
 const Set<String> _googleStorageObjectAclSensitive = <String>{};
@@ -25,7 +27,7 @@ const Set<String> _googleStorageObjectAclSensitive = <String>{};
 /// GoogleStorageObjectAcl(
 ///   localName: 'legacy_object_acl',
 ///   bucket: legacy.ref,
-///   object: TfArg.literal('acl-marker.txt'),
+///   object: .literal('acl-marker.txt'),
 ///   predefinedAcl: TfArg.literal('private'),
 /// );
 /// ```
@@ -35,7 +37,7 @@ final class GoogleStorageObjectAcl extends Resource {
   GoogleStorageObjectAcl({
     required super.localName,
     required RefTo<GoogleStorageBucket> bucket,
-    required TfArg<String> object,
+    required RefTo<GoogleStorageBucketObject> object,
     TfArg<String>? predefinedAcl,
     TfArg<List<String>>? roleEntity,
     TfArg<String>? deletionPolicy,
@@ -47,7 +49,7 @@ final class GoogleStorageObjectAcl extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('name'),
-           'object': object,
+           'object': object.encodeAs('name'),
            'predefined_acl': ?predefinedAcl,
            'role_entity': ?roleEntity,
            'deletion_policy': ?deletionPolicy,

@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleComputeNetworkFirewallPolicyRule(
   ///   localName: 'allow_https',
-  ///   firewallPolicy: TfArg.ref(policy.nameRef),
+  ///   firewallPolicy: policy.ref,
   ///   priority: TfArg.literal(1000),
   ///   action: TfArg.literal('allow'),
   ///   direction: TfArg.literal(

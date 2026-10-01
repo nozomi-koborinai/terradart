@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../firestore/google_firestore_document.dart';
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
 
 /// Sensitive field paths for `google_firestore_document`.
 const Set<String> _googleFirestoreDocumentSensitive = <String>{};
@@ -17,7 +19,7 @@ final class DataGoogleFirestoreDocument extends Data {
   DataGoogleFirestoreDocument({
     required super.localName,
     required TfArg<String> collection,
-    required TfArg<String> database,
+    required RefTo<GoogleFirestoreDatabase> database,
     required TfArg<String> documentId,
     TfArg<String>? project,
     super.provider,
@@ -26,7 +28,7 @@ final class DataGoogleFirestoreDocument extends Data {
          terraformType: tfType,
          argMap: {
            'collection': collection,
-           'database': database,
+           'database': database.encodeAs('name'),
            'document_id': documentId,
            'project': ?project,
          },

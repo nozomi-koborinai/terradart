@@ -9,6 +9,9 @@ import 'package:terradart_google/src/compute/google_compute_security_policy.dart
         SecurityPolicyWafExclusionOperator;
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_security_policy.dart'
+    show GoogleComputeSecurityPolicy;
+
 /// Sensitive field paths for `google_compute_security_policy_rule`.
 const Set<String> _googleComputeSecurityPolicyRuleSensitive = <String>{};
 
@@ -194,7 +197,7 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
     TfArg<bool>? preview,
     required TfArg<num> priority,
     TfArg<String>? project,
-    required TfArg<String> securityPolicy,
+    required RefTo<GoogleComputeSecurityPolicy> securityPolicy,
     ComputeSecurityPolicyRuleHeaderAction? headerAction,
     ComputeSecurityPolicyRuleMatch? match,
     ComputeSecurityPolicyRulePreconfiguredWafConfig? preconfiguredWafConfig,
@@ -212,7 +215,7 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
            'preview': ?preview,
            'priority': priority,
            'project': ?project,
-           'security_policy': securityPolicy,
+           'security_policy': securityPolicy.encodeAs('name'),
            if (headerAction != null)
              'header_action': TfArg.literal(headerAction.encode()),
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),

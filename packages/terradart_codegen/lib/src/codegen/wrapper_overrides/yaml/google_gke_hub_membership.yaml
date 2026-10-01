@@ -26,7 +26,7 @@ curatedDoc: |-
   ///   membershipId: TfArg.literal('main-cluster'),
   ///   endpoint: GkeHubMembershipEndpoint(
   ///     gkeCluster: GkeHubMembershipGkeCluster(
-  ///       resourceLink: TfArg.ref(cluster.id),
+  ///       resourceLink: cluster.ref,
   ///     ),
   ///   ),
   ///   authority: GkeHubMembershipAuthority(

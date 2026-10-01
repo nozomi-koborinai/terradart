@@ -19,7 +19,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleComputeRegionNetworkFirewallPolicyRule(
   ///   localName: 'allow_https',
-  ///   firewallPolicy: TfArg.ref(policy.nameRef),
+  ///   firewallPolicy: policy.ref,
   ///   region: TfArg.literal('asia-northeast1'),
   ///   priority: TfArg.literal(1000),
   ///   action: TfArg.literal('allow'),

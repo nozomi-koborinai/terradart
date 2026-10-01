@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
+
 /// Sensitive field paths for `google_logging_metric`.
 const Set<String> _googleLoggingMetricSensitive = <String>{};
 
@@ -253,7 +256,7 @@ final class GoogleLoggingMetric extends Resource {
     TfArg<Map<String, String>>? labelExtractors,
     LoggingMetricDescriptor? metricDescriptor,
     LoggingMetricBucketOptions? bucketOptions,
-    TfArg<String>? bucketName,
+    RefTo<GoogleLoggingProjectBucketConfig>? bucketName,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -272,7 +275,7 @@ final class GoogleLoggingMetric extends Resource {
              'metric_descriptor': TfArg.literal([metricDescriptor.toArgMap()]),
            if (bucketOptions != null)
              'bucket_options': TfArg.literal([bucketOptions.toArgMap()]),
-           'bucket_name': ?bucketName,
+           'bucket_name': ?bucketName?.encodeAs('id'),
            'project': ?project,
          },
        );

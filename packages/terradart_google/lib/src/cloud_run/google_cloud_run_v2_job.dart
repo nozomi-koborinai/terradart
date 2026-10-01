@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../secret_manager/google_secret_manager_secret.dart'
+    show GoogleSecretManagerSecret;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_cloud_run_v2_job`.
@@ -460,12 +462,12 @@ final class CloudRunV2JobSecretKeyRef {
     required this.version,
   });
 
-  final TfArg<String> secret;
+  final RefTo<GoogleSecretManagerSecret> secret;
 
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    'secret': secret.toTfJson(),
+    'secret': secret.encodeAs('id').toTfJson(),
     'version': version.toTfJson(),
   };
 }
@@ -831,13 +833,13 @@ final class CloudRunV2JobSecret {
 
   final TfArg<num>? defaultMode;
 
-  final TfArg<String> secret;
+  final RefTo<GoogleSecretManagerSecret> secret;
 
   final List<CloudRunV2JobItems>? items;
 
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
-    'secret': secret.toTfJson(),
+    'secret': secret.encodeAs('id').toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
 }

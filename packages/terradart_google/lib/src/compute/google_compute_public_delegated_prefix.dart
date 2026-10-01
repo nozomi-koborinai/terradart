@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_public_advertised_prefix.dart'
+    show GoogleComputePublicAdvertisedPrefix;
+
 /// Sensitive field paths for `google_compute_public_delegated_prefix`.
 const Set<String> _googleComputePublicDelegatedPrefixSensitive = <String>{};
 
@@ -50,7 +53,7 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
     TfArg<bool>? isLiveMigration,
     TfArg<ComputePublicDelegatedPrefixMode>? mode,
     required TfArg<String> name,
-    required TfArg<String> parentPrefix,
+    required RefTo<GoogleComputePublicAdvertisedPrefix> parentPrefix,
     TfArg<String>? project,
     required TfArg<String> region,
     super.lifecycle,
@@ -67,7 +70,7 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
            'is_live_migration': ?isLiveMigration,
            'mode': ?mode,
            'name': name,
-           'parent_prefix': parentPrefix,
+           'parent_prefix': parentPrefix.encodeAs('id'),
            'project': ?project,
            'region': region,
          },

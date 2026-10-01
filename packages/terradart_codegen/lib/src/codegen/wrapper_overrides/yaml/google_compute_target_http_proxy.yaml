@@ -31,7 +31,7 @@ curatedDoc: |-
   /// final httpProxy = GoogleComputeTargetHttpProxy(
   ///   localName: 'lb_http',
   ///   name: TfArg.literal('lb-http-proxy'),
-  ///   urlMap: TfArg.ref(urlMap.selfLink),
+  ///   urlMap: urlMap.ref,
   /// );
   /// ```
   ///

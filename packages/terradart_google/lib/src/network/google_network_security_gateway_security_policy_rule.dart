@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_security_gateway_security_policy.dart'
+    show GoogleNetworkSecurityGatewaySecurityPolicy;
+
 /// Sensitive field paths for `google_network_security_gateway_security_policy_rule`.
 const Set<String> _googleNetworkSecurityGatewaySecurityPolicyRuleSensitive =
     <String>{};
@@ -43,7 +46,7 @@ enum NetworkSecurityGatewaySecurityPolicyRuleBasicProfile
 ///   localName: 'allow_example',
 ///   name: TfArg.literal('terradart-allow-example'),
 ///   location: TfArg.literal('us-central1'),
-///   gatewaySecurityPolicy: TfArg.ref(policy.nameRef),
+///   gatewaySecurityPolicy: policy.ref,
 ///   enabled: TfArg.literal(true),
 ///   priority: TfArg.literal(1),
 ///   sessionMatcher: TfArg.literal("host() == 'example.com'"),
@@ -60,7 +63,8 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> gatewaySecurityPolicy,
+    required RefTo<GoogleNetworkSecurityGatewaySecurityPolicy>
+    gatewaySecurityPolicy,
     required TfArg<bool> enabled,
     required TfArg<num> priority,
     required TfArg<String> sessionMatcher,
@@ -80,7 +84,7 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'gateway_security_policy': gatewaySecurityPolicy,
+           'gateway_security_policy': gatewaySecurityPolicy.encodeAs('name'),
            'enabled': enabled,
            'priority': priority,
            'session_matcher': sessionMatcher,

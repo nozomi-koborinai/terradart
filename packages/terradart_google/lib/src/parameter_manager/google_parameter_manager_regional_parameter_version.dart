@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../parameter_manager/google_parameter_manager_regional_parameter.dart'
+    show GoogleParameterManagerRegionalParameter;
+
 /// Sensitive field paths for `google_parameter_manager_regional_parameter_version`.
 const Set<String> _googleParameterManagerRegionalParameterVersionSensitive =
     <String>{'parameter_data'};
@@ -17,7 +20,7 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
 
   GoogleParameterManagerRegionalParameterVersion({
     required super.localName,
-    required TfArg<String> parameter,
+    required RefTo<GoogleParameterManagerRegionalParameter> parameter,
     required TfArg<String> parameterVersionId,
     required TfArg<String> parameterData,
     TfArg<bool>? disabled,
@@ -29,7 +32,7 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'parameter': parameter,
+           'parameter': parameter.encodeAs('name'),
            'parameter_version_id': parameterVersionId,
            'parameter_data': parameterData,
            'disabled': ?disabled,

@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleComputeNetworkEndpoint(
   ///   localName: 'onprem_vm',
-  ///   networkEndpointGroup: TfArg.ref(neg.id),
+  ///   networkEndpointGroup: neg.ref,
   ///   ipAddress: TfArg.literal('10.0.0.5'),
   ///   port: TfArg.literal(8080),
   ///   zone: TfArg.literal('asia-northeast1-a'),

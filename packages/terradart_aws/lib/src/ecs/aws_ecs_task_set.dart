@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
 
 /// Sensitive field paths for `aws_ecs_task_set`.
 const Set<String> _awsEcsTaskSetSensitive = <String>{};
@@ -224,7 +225,7 @@ final class AwsEcsTaskSet extends Resource {
 
   AwsEcsTaskSet({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<AwsEcsCluster> cluster,
     TfArg<String>? externalId,
     TfArg<bool>? forceDelete,
     EcsTaskSetCompute? compute,
@@ -246,7 +247,7 @@ final class AwsEcsTaskSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('arn'),
            'external_id': ?externalId,
            'force_delete': ?forceDelete,
            ...?compute?.argMap,

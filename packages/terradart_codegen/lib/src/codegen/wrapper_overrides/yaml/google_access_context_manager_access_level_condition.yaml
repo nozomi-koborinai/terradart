@@ -27,7 +27,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleAccessContextManagerAccessLevelCondition(
   ///   localName: 'chromeos_condition',
-  ///   accessLevel: TfArg.ref(chromeos.nameRef),
+  ///   accessLevel: chromeos.ref,
   ///   ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
   ///   members: TfArg.literal([
   ///     'user:test@google.com',

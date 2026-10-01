@@ -18,8 +18,8 @@ curatedDoc: |-
   /// ```dart
   /// GoogleBigtableGcPolicy(
   ///   localName: 'cf1_max_age',
-  ///   instanceName: TfArg.ref(instance.nameRef),
-  ///   table: TfArg.ref(table.nameRef),
+  ///   instanceName: instance.ref,
+  ///   table: table.ref,
   ///   columnFamily: TfArg.literal('cf1'),
   ///   policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
   /// );

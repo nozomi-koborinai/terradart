@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gkeonprem/google_gkeonprem_vmware_cluster.dart'
+    show GoogleGkeonpremVmwareCluster;
+
 /// Sensitive field paths for `google_gkeonprem_vmware_node_pool`.
 const Set<String> _googleGkeonpremVmwareNodePoolSensitive = <String>{};
 
@@ -186,7 +189,7 @@ final class GoogleGkeonpremVmwareNodePool extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> vmwareCluster,
+    required RefTo<GoogleGkeonpremVmwareCluster> vmwareCluster,
     required GkeonpremVmwareNodePoolConfig config,
     TfArg<String>? onPremVersion,
     TfArg<String>? displayName,
@@ -203,7 +206,7 @@ final class GoogleGkeonpremVmwareNodePool extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'vmware_cluster': vmwareCluster,
+           'vmware_cluster': vmwareCluster.encodeAs('name'),
            'config': TfArg.literal(config.encode()),
            'on_prem_version': ?onPremVersion,
            'display_name': ?displayName,

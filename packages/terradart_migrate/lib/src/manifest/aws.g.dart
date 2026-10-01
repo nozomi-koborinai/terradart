@@ -1084,9 +1084,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'certificate_arn',
           dartName: 'certificateArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsAcmCertificate',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -78059,9 +78060,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository',
           dartName: 'repository',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsEcrRepository',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -78892,9 +78894,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository',
           dartName: 'repository',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsEcrRepository',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -79211,9 +79214,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsEcsCluster',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -79841,9 +79845,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsEcsCluster',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'cpu',
@@ -79870,9 +79875,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'infrastructure_role_arn',
           dartName: 'infrastructureRoleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'memory',
@@ -80046,9 +80052,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsEcsCluster',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'deployment_maximum_percent',
@@ -81036,9 +81043,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsEcsCluster',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'desired_count',
@@ -81256,9 +81264,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsEcsCluster',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'external_id',
@@ -168911,9 +168920,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -169016,9 +169026,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -169075,9 +169086,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -169107,9 +169119,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
         MigrateSlot(
           tfName: 'resource_record_set',
@@ -170959,9 +170972,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -171223,9 +171237,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsRoute53Zone',
+          attribute: 'zone_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -256138,9 +256153,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cache_policy_id',
           dartName: 'cachePolicyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontCachePolicy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cached_methods',
@@ -256451,9 +256467,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cache_policy_id',
           dartName: 'cachePolicyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontCachePolicy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cached_methods',
@@ -256623,9 +256640,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'origin_access_control_id',
           dartName: 'originAccessControlId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontOriginAccessControl',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'origin_id',
@@ -256948,9 +256966,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'acm_certificate_arn',
           dartName: 'acmCertificateArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsAcmCertificate',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'cloudfront_default_certificate',
@@ -257275,9 +257294,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cache_policy_id',
           dartName: 'cachePolicyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontCachePolicy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'compress',
@@ -257495,9 +257515,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cache_policy_id',
           dartName: 'cachePolicyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontCachePolicy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'compress',
@@ -257727,9 +257748,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'origin_access_control_id',
           dartName: 'originAccessControlId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsCloudfrontOriginAccessControl',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'origin_path',
@@ -257944,9 +257966,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'acm_certificate_arn',
           dartName: 'acmCertificateArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsAcmCertificate',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'cloudfront_default_certificate',
@@ -281641,9 +281664,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'infrastructure_role_arn',
           dartName: 'infrastructureRoleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'propagate_tags',

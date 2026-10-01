@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+import '../bigtable/google_bigtable_table.dart' show GoogleBigtableTable;
+
 /// Sensitive field paths for `google_bigtable_gc_policy`.
 const Set<String> _googleBigtableGcPolicySensitive = <String>{};
 
@@ -69,8 +72,8 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
 /// ```dart
 /// GoogleBigtableGcPolicy(
 ///   localName: 'cf1_max_age',
-///   instanceName: TfArg.ref(instance.nameRef),
-///   table: TfArg.ref(table.nameRef),
+///   instanceName: instance.ref,
+///   table: table.ref,
 ///   columnFamily: TfArg.literal('cf1'),
 ///   policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
 /// );
@@ -80,8 +83,8 @@ final class GoogleBigtableGcPolicy extends Resource {
 
   GoogleBigtableGcPolicy({
     required super.localName,
-    required TfArg<String> instanceName,
-    required TfArg<String> table,
+    required RefTo<GoogleBigtableInstance> instanceName,
+    required RefTo<GoogleBigtableTable> table,
     required TfArg<String> columnFamily,
     required BigtableGcPolicyRule policy,
     TfArg<String>? gcRules,
@@ -96,8 +99,8 @@ final class GoogleBigtableGcPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_name': instanceName,
-           'table': table,
+           'instance_name': instanceName.encodeAs('name'),
+           'table': table.encodeAs('name'),
            'column_family': columnFamily,
            policy.blockKey: TfArg.literal([policy.encode()]),
            'gc_rules': ?gcRules,

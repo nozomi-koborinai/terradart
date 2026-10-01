@@ -55,14 +55,14 @@ curatedDoc: |-
   /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
   ///   localName: 'lb_https',
   ///   name: TfArg.literal('lb-https-proxy'),
-  ///   urlMap: TfArg.ref(regionUrlMap.selfLink),
+  ///   urlMap: regionUrlMap.ref,
   ///   region: TfArg.literal('us-central1'),
   ///   certificates: .sslCertificates(
   ///     TfArg.literal(const [
   ///       'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
   ///     ]),
   ///   ),
-  ///   sslPolicy: TfArg.ref(regionSslPolicy.selfLink),
+  ///   sslPolicy: regionSslPolicy.ref,
   /// );
   /// ```
   ///

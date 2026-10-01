@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../spanner/google_spanner_database.dart' show GoogleSpannerDatabase;
+import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
 
 /// Sensitive field paths for `google_spanner_backup_schedule`.
 const Set<String> _googleSpannerBackupScheduleSensitive = <String>{};
@@ -186,8 +188,8 @@ final class GoogleSpannerBackupSchedule extends Resource {
 
   GoogleSpannerBackupSchedule({
     required super.localName,
-    required TfArg<String> instance,
-    required TfArg<String> database,
+    required RefTo<GoogleSpannerInstance> instance,
+    required RefTo<GoogleSpannerDatabase> database,
     required TfArg<String> retentionDuration,
     required SpannerBackupScheduleBackupSpec backupSpec,
     SpannerBackupScheduleSpec? spec,
@@ -202,8 +204,8 @@ final class GoogleSpannerBackupSchedule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
-           'database': database,
+           'instance': instance.encodeAs('name'),
+           'database': database.encodeAs('name'),
            'retention_duration': retentionDuration,
            if (spec != null) 'spec': TfArg.literal(spec.encode()),
            if (encryptionConfig != null)

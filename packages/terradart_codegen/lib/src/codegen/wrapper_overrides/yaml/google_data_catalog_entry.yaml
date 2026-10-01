@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleDataCatalogEntry(
   ///   localName: 'custom',
-  ///   entryGroup: TfArg.ref(group.id),
+  ///   entryGroup: group.ref,
   ///   entryId: TfArg.literal('my_entry'),
   ///   entryKind: DataCatalogEntryCustomType(
   ///     userSpecifiedType: TfArg.literal('my_custom_type'),

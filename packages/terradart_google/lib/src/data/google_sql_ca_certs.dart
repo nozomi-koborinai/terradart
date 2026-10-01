@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
 
 /// Sensitive field paths for `google_sql_ca_certs`.
 const Set<String> _googleSqlCaCertsSensitive = <String>{};
@@ -15,13 +17,13 @@ final class DataGoogleSqlCaCerts extends Data {
 
   DataGoogleSqlCaCerts({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'instance': instance, 'project': ?project},
+         argMap: {'instance': instance.encodeAs('name'), 'project': ?project},
        );
 
   @override

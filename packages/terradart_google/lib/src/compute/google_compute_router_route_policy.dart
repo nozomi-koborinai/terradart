@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+
 /// Sensitive field paths for `google_compute_router_route_policy`.
 const Set<String> _googleComputeRouterRoutePolicySensitive = <String>{};
 
@@ -107,7 +109,7 @@ final class GoogleComputeRouterRoutePolicy extends Resource {
   GoogleComputeRouterRoutePolicy({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> router,
+    required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,
     TfArg<ComputeRouterRoutePolicyType>? type,
     required List<ComputeRouterRoutePolicyTerms> terms,
@@ -121,7 +123,7 @@ final class GoogleComputeRouterRoutePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'router': router,
+           'router': router.encodeAs('name'),
            'region': ?region,
            'type': ?type,
            'terms': TfArg.literal([for (final e in terms) e.encode()]),

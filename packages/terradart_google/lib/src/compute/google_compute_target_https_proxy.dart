@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_ssl_policy.dart' show GoogleComputeSslPolicy;
+import '../compute/google_compute_url_map.dart' show GoogleComputeUrlMap;
+
 /// Sensitive field paths for `google_compute_target_https_proxy`.
 const Set<String> _googleComputeTargetHttpsProxySensitive = <String>{};
 
@@ -163,11 +166,11 @@ final class ComputeTargetHttpsProxySslCertificates
 /// final httpsProxy = GoogleComputeTargetHttpsProxy(
 ///   localName: 'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
-///   urlMap: TfArg.ref(urlMap.selfLink),
+///   urlMap: urlMap.ref,
 ///   certificates: .sslCertificates(
 ///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
 ///   ),
-///   sslPolicy: TfArg.ref(sslPolicy.selfLink),
+///   sslPolicy: sslPolicy.ref,
 ///   quicOverride: TfArg.literal(QuicOverride.enable),
 /// );
 /// ```
@@ -182,10 +185,10 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
   GoogleComputeTargetHttpsProxy({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> urlMap,
+    required RefTo<GoogleComputeUrlMap> urlMap,
     ComputeTargetHttpsProxyCertificates? certificates,
     TfArg<String>? certificateMap,
-    TfArg<String>? sslPolicy,
+    RefTo<GoogleComputeSslPolicy>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
     TfArg<QuicOverride>? quicOverride,
     TfArg<TlsEarlyData>? tlsEarlyData,
@@ -201,10 +204,10 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'url_map': urlMap,
+           'url_map': urlMap.encodeAs('self_link'),
            ...?certificates?.argMap,
            'certificate_map': ?certificateMap,
-           'ssl_policy': ?sslPolicy,
+           'ssl_policy': ?sslPolicy?.encodeAs('self_link'),
            'server_tls_policy': ?serverTlsPolicy,
            'quic_override': ?quicOverride,
            'tls_early_data': ?tlsEarlyData,

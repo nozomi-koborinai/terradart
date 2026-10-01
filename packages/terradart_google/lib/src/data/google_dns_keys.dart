@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
 
 /// Sensitive field paths for `google_dns_keys`.
 const Set<String> _googleDnsKeysSensitive = <String>{};
@@ -15,13 +16,16 @@ final class DataGoogleDnsKeys extends Data {
 
   DataGoogleDnsKeys({
     required super.localName,
-    required TfArg<String> managedZone,
+    required RefTo<GoogleDnsManagedZone> managedZone,
     TfArg<String>? project,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'managed_zone': managedZone, 'project': ?project},
+         argMap: {
+           'managed_zone': managedZone.encodeAs('name'),
+           'project': ?project,
+         },
        );
 
   @override

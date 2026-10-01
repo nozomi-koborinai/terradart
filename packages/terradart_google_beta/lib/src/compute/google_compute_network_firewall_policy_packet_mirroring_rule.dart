@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeNetworkFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_network_firewall_policy_packet_mirroring_rule`.
 const Set<String>
 _googleComputeNetworkFirewallPolicyPacketMirroringRuleSensitive = <String>{};
@@ -95,7 +98,7 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
     required TfArg<ComputeNetworkFirewallPolicyPacketMirroringRuleDirection>
     direction,
     TfArg<bool>? disabled,
-    required TfArg<String> firewallPolicy,
+    required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<num> priority,
     TfArg<String>? project,
     TfArg<String>? ruleName,
@@ -117,7 +120,7 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
            'description': ?description,
            'direction': direction,
            'disabled': ?disabled,
-           'firewall_policy': firewallPolicy,
+           'firewall_policy': firewallPolicy.encodeAs('name'),
            'priority': priority,
            'project': ?project,
            'rule_name': ?ruleName,

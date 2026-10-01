@@ -73,7 +73,7 @@ final class EventarcStack extends Stack {
         localName: 'audit_source',
         location: .literal(location),
         googleApiSourceId: .literal('audit-source'),
-        destination: .ref(messageBus.nameRef),
+        destination: messageBus.ref,
         displayName: .literal('Audit log API source'),
         loggingConfig: const EventarcMessageBusLoggingConfig(
           logSeverity: EventarcMessageBusLogSeverity.warning,
@@ -122,8 +122,8 @@ final class EventarcStack extends Stack {
         location: .literal(location),
         enrollmentId: .literal('audit-enrollment'),
         celMatch: .literal('true'),
-        messageBus: .ref(messageBus.nameRef),
-        destination: .ref(pipeline.nameRef),
+        messageBus: messageBus.ref,
+        destination: pipeline.ref,
         dependsOn: eventarcDeps,
       ),
     );

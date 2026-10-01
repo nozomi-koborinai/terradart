@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
+
 /// Sensitive field paths for `google_firestore_user_creds`.
 const Set<String> _googleFirestoreUserCredsSensitive = <String>{
   'secure_password',
@@ -28,7 +31,7 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 /// ```dart
 /// final readerCreds = GoogleFirestoreUserCreds(
 ///   localName: 'reader_creds',
-///   database: TfArg.ref(db.nameRef),
+///   database: db.ref,
 ///   name: TfArg.literal('analytics-reader'),
 /// );
 /// ```
@@ -38,7 +41,7 @@ final class GoogleFirestoreUserCreds extends Resource {
   GoogleFirestoreUserCreds({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> database,
+    required RefTo<GoogleFirestoreDatabase> database,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -46,7 +49,11 @@ final class GoogleFirestoreUserCreds extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'database': database, 'project': ?project},
+         argMap: {
+           'name': name,
+           'database': database.encodeAs('name'),
+           'project': ?project,
+         },
        );
 
   @override

@@ -43,12 +43,12 @@ prelude: |
       required this.preferenceSet,
     });
 
-    final TfArg<String> group;
-    final TfArg<String> preferenceSet;
+    final RefTo<GoogleMigrationCenterGroup> group;
+    final RefTo<GoogleMigrationCenterPreferenceSet> preferenceSet;
 
     Map<String, Object?> toArgMap() => {
-      'group': group.toTfJson(),
-      'preference_set': preferenceSet.toTfJson(),
+      'group': group.encodeAs('name').toTfJson(),
+      'preference_set': preferenceSet.encodeAs('name').toTfJson(),
     };
   }
 

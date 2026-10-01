@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_logical_view`.
 const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 
@@ -23,7 +25,7 @@ const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 /// GoogleBigtableLogicalView(
 ///   localName: 'recent_events',
 ///   logicalViewId: TfArg.literal('recent-events'),
-///   instance: TfArg.ref(instance.nameRef),
+///   instance: instance.ref,
 ///   query: TfArg.literal('SELECT * FROM events WHERE timestamp > 0'),
 /// );
 /// ```
@@ -34,7 +36,7 @@ final class GoogleBigtableLogicalView extends Resource {
     required super.localName,
     required TfArg<String> logicalViewId,
     required TfArg<String> query,
-    TfArg<String>? instance,
+    RefTo<GoogleBigtableInstance>? instance,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
@@ -47,7 +49,7 @@ final class GoogleBigtableLogicalView extends Resource {
          argMap: {
            'logical_view_id': logicalViewId,
            'query': query,
-           'instance': ?instance,
+           'instance': ?instance?.encodeAs('name'),
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,
            'project': ?project,

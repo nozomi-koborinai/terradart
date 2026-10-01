@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
+
 /// Sensitive field paths for `google_oracle_database_goldengate_deployment`.
 const Set<String> _googleOracleDatabaseGoldengateDeploymentSensitive =
     <String>{};
@@ -170,8 +175,8 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
     required TfArg<String> location,
     required TfArg<String> goldengateDeploymentId,
     required TfArg<String> displayName,
-    required TfArg<String> odbSubnet,
-    TfArg<String>? odbNetwork,
+    required RefTo<GoogleOracleDatabaseOdbSubnet> odbSubnet,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     TfArg<String>? gcpOracleZone,
     required OracleDatabaseGoldengateDeploymentProperties properties,
     TfArg<Map<String, String>>? labels,
@@ -187,8 +192,8 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
            'location': location,
            'goldengate_deployment_id': goldengateDeploymentId,
            'display_name': displayName,
-           'odb_subnet': odbSubnet,
-           'odb_network': ?odbNetwork,
+           'odb_subnet': odbSubnet.encodeAs('name'),
+           'odb_network': ?odbNetwork?.encodeAs('name'),
            'gcp_oracle_zone': ?gcpOracleZone,
            'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,

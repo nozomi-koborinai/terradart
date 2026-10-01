@@ -72,7 +72,7 @@ final class MigrationCenterStack extends Stack {
         localName: 'agent',
         location: .literal(location),
         discoveryClientId: .literal('terradart-discovery'),
-        source: .ref(discoverySource.nameRef),
+        source: discoverySource.ref,
         serviceAccount: discoverySa.ref,
         displayName: .literal('TerraDart discovery client'),
         dependsOn: [
@@ -87,7 +87,7 @@ final class MigrationCenterStack extends Stack {
       localName: 'upload',
       location: .literal(location),
       importJobId: .literal(importJobId),
-      assetSource: .ref(uploadSource.nameRef),
+      assetSource: uploadSource.ref,
       displayName: .literal('TerraDart import job'),
       dependsOn: [...apiDeps, ResourceDependency(uploadSource)],
     );
@@ -146,8 +146,8 @@ final class MigrationCenterStack extends Stack {
       displayName: .literal('TerraDart report config'),
       groupPreferencesetAssignments: [
         MigrationCenterReportConfigGroupPreferencesetAssignment(
-          group: .ref(group.nameRef),
-          preferenceSet: .ref(preferenceSet.nameRef),
+          group: group.ref,
+          preferenceSet: preferenceSet.ref,
         ),
       ],
       dependsOn: [

@@ -36,7 +36,7 @@ curatedDoc: |-
   ///   displayName: TfArg.literal('terradart-dummy-basic'),
   ///   location: TfArg.literal('us-east1'),
   ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
-  ///     credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
+  ///     credentialType: .literal('USERNAME_AND_PASSWORD'),
   ///     secret: .usernameAndPassword(
   ///       IntegrationsAuthConfigUsernameAndPassword(
   ///         username: TfArg.literal('terradart-dummy'),

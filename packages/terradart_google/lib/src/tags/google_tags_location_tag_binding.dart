@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../tags/google_tags_tag_value.dart' show GoogleTagsTagValue;
+
 /// Sensitive field paths for `google_tags_location_tag_binding`.
 const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 
@@ -26,7 +28,7 @@ const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 ///     '${project.number.interpolation}/locations/asia-northeast1/'
 ///     'repositories/${repo.repositoryIdRef.interpolation}',
 ///   ),
-///   tagValue: TfArg.ref(value.id),
+///   tagValue: value.ref,
 ///   location: TfArg.literal('asia-northeast1'),
 /// );
 /// ```
@@ -36,7 +38,7 @@ final class GoogleTagsLocationTagBinding extends Resource {
   GoogleTagsLocationTagBinding({
     required super.localName,
     required TfArg<String> parent,
-    required TfArg<String> tagValue,
+    required RefTo<GoogleTagsTagValue> tagValue,
     TfArg<String>? location,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -47,7 +49,7 @@ final class GoogleTagsLocationTagBinding extends Resource {
          terraformType: tfType,
          argMap: {
            'parent': parent,
-           'tag_value': tagValue,
+           'tag_value': tagValue.encodeAs('id'),
            'location': ?location,
            'deletion_policy': ?deletionPolicy,
          },

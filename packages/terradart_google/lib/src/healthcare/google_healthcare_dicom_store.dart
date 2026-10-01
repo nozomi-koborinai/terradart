@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_healthcare_dicom_store`.
@@ -39,7 +41,7 @@ final class GoogleHealthcareDicomStore extends Resource {
   GoogleHealthcareDicomStore({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<Map<String, String>>? labels,
     HealthcareDicomStoreNotificationConfig? notificationConfig,
     super.lifecycle,
@@ -50,7 +52,7 @@ final class GoogleHealthcareDicomStore extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'dataset': dataset,
+           'dataset': dataset.encodeAs('self_link'),
            'labels': ?labels,
            if (notificationConfig != null)
              'notification_config': TfArg.literal(notificationConfig.encode()),
