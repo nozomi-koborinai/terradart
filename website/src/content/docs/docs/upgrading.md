@@ -1,5 +1,5 @@
 ---
-title: Migrating
+title: Upgrading
 description: Upgrade notes for every TerraDart package — the 0.30.x → 0.31.0 breaking changes, and where to find older ones.
 ---
 
