@@ -15,29 +15,27 @@ final class NetworkStack extends Stack {
     // so the fixture exercises per-module breakdown and child_modules recursion.
     final vpc = add(
       GoogleComputeNetwork(
-        localName: r'vpc',
-        name: .literal(r'example-vpc'),
+        localName: 'vpc',
+        name: .literal('example-vpc'),
         autoCreateSubnetworks: .literal(false),
       ),
     );
     add(
       GoogleComputeSubnetwork(
-        localName: r'subnet',
-        name: .literal(r'example-subnet'),
-        region: .literal(r'us-central1'),
+        localName: 'subnet',
+        name: .literal('example-subnet'),
+        region: .literal('us-central1'),
         network: vpc.ref,
-        ipCidrRange: .literal(r'10.0.0.0/24'),
+        ipCidrRange: .literal('10.0.0.0/24'),
       ),
     );
     add(
       GoogleComputeRoute(
-        localName: r'egress',
-        name: .literal(r'example-egress'),
-        network: vpc.ref.pinned(r'name'),
-        destRange: .literal(r'0.0.0.0/0'),
-        nextHop: .gateway(
-          nextHopGateway: .literal(r'default-internet-gateway'),
-        ),
+        localName: 'egress',
+        name: .literal('example-egress'),
+        network: vpc.ref.pinned('name'),
+        destRange: .literal('0.0.0.0/0'),
+        nextHop: .gateway(nextHopGateway: .literal('default-internet-gateway')),
       ),
     );
   }

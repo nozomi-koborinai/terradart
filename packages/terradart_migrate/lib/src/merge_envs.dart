@@ -280,11 +280,11 @@ MergedEnvironment mergeEnvironments({
     }
     previous = guard;
   }
-  // A guarded local another `if` block reads is declared ahead of the one
-  // that assigns it (`late final GoogleStorageBucket backups;`), so the two
-  // blocks share the name without either leaving its guard. A reader outside
-  // the environments that declare it would read an unassigned local, and is
-  // refused instead.
+  // A guarded local another `if` block reads is declared outside any block,
+  // `null` in the other environments
+  // (`final backups = env.isProd ? add(...) : null;`), so the two blocks
+  // share the name. A reader outside the environments that declare it would
+  // read `null`, and is refused instead.
   final hoisted = <String>{};
   for (var i = 0; i < runs.length; i++) {
     final run = runs[i];
@@ -331,19 +331,47 @@ MergedEnvironment mergeEnvironments({
     ...lines.where((l) => l.contains('package:')).toList()..sort(),
     ...lines.where((l) => !l.contains('package:')).toList()..sort(),
   ];
+  // A hoisted local is `null` outside its environments; every guard that
+  // reads one also tests it, which promotes it to the block's type.
+  String condition(String guard, Iterable<StackStatement> readers) => [
+    'env.$guard',
+    for (final tag in {
+      for (final s in readers) ...s.uses.where(hoisted.contains),
+    })
+      '${_localOf(statements[tag]!.values.first)} != null',
+  ].join(' && ');
   final body = StringBuffer();
   for (final run in runs) {
-    for (final s in run.statements) {
-      if (!hoisted.contains(s.tag)) continue;
-      body.writeln('late final ${s.dartType} ${_localOf(s)};');
+    final guard = run.guard;
+    if (guard == null) {
+      for (final s in run.statements) {
+        body.writeln(s.text);
+      }
+      continue;
     }
-    if (run.guard != null) body.writeln('if (env.${run.guard}) {');
+    var chunk = <StackStatement>[];
+    void flush() {
+      if (chunk.isEmpty) return;
+      body.writeln('if (${condition(guard, chunk)}) {');
+      for (final s in chunk) {
+        body.writeln(s.text);
+      }
+      body.writeln('}');
+      chunk = [];
+    }
+
     for (final s in run.statements) {
+      if (!hoisted.contains(s.tag)) {
+        chunk.add(s);
+        continue;
+      }
+      flush();
+      final m = RegExp(r'^final (\w+) = ([\s\S]*);\s*$').firstMatch(s.text)!;
       body.writeln(
-        hoisted.contains(s.tag) ? s.text.replaceFirst('final ', '') : s.text,
+        'final ${m[1]} = ${condition(guard, [s])} ? ${m[2]} : null;',
       );
     }
-    if (run.guard != null) body.writeln('}');
+    flush();
   }
 
   final usesWorkspace = envs.any((e) => emitted[e.member]!.usesWorkspace);
@@ -470,12 +498,7 @@ ${members.join('\n')}
 ${declarations.join('\n\n')}
 
   /// The environment called [name] (`dev`), or `null`.
-  static $envClass? byName(String name) {
-    for (final env in values) {
-      if (env.name == name) return env;
-    }
-    return null;
-  }
+  static $envClass? byName(String name) => values.asNameMap()[name];
 }
 ''';
 }

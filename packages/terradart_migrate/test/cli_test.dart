@@ -114,8 +114,8 @@ void main() {
       expect(
         File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
         contains(
-          "addModule(ModuleCall(localName: r'network', "
-          "source: r'./modules/network'));",
+          "addModule(ModuleCall(localName: 'network', "
+          "source: './modules/network'));",
         ),
       );
       expect(
@@ -124,7 +124,7 @@ void main() {
       );
       expect(
         File(p.join(out, 'bin/infra.dart')).readAsStringSync(),
-        contains("await NetworkStack().writeTo(r'tf-out/modules/network');"),
+        contains("await NetworkStack().writeTo('tf-out/modules/network');"),
       );
 
       // Non-destructive: a non-empty --out is refused without --force.
@@ -221,7 +221,7 @@ void main() {
       ['infra_stack.dart'],
     );
     final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
-    expect(infra, contains("InfraStack().writeTo(r'tf-out')"));
+    expect(infra, contains("InfraStack().writeTo('tf-out')"));
     expect(infra, isNot(contains('MStack')));
     expect(
       File(

@@ -3,6 +3,9 @@
 ## Unreleased
 
 - A kept block the migrated Stack still reads is declared with `addExternalBlock('<address>')`, which synth now requires for a reference to a block the Stack does not hold.
+- Migrated strings are plain `'...'`; only a string holding `$` or `\` stays raw (`r'${google_x.y.id}'`).
+- A generated module wrapper forwards `ModuleCall`'s parameters as super parameters (`required super.localName, required super.source, super.version, ...`).
+- A merged Stack declares a block only some environments have as a nullable local (`final backups = env.isProd ? add(...) : null;`), and a block that reads it tests it in its guard (`if (env.isProd && backups != null)`), instead of `late final` plus an assignment. `Env.byName` is `values.asNameMap()[name]`.
 - A migrated Stack builds a helper nested inside another helper or inside a sealed variant with `.new(...)` (`.pushConfig(.new(pushEndpoint: ...))`); a resource's own block arguments keep the class name.
 
 ## 0.31.0 - 2026-10-01

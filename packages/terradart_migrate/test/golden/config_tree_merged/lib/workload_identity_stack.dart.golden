@@ -13,31 +13,31 @@ final class WorkloadIdentityStack extends Stack {
   WorkloadIdentityStack() : super(providers: [const GoogleProvider()]) {
     final github = add(
       GoogleIamWorkloadIdentityPool(
-        localName: r'github',
-        workloadIdentityPoolId: .literal(r'github-pool'),
+        localName: 'github',
+        workloadIdentityPoolId: .literal('github-pool'),
       ),
     );
     add(
       GoogleIamWorkloadIdentityPoolProvider(
-        localName: r'github',
+        localName: 'github',
         workloadIdentityPoolId: github.ref,
-        workloadIdentityPoolProviderId: .literal(r'github-provider'),
+        workloadIdentityPoolProviderId: .literal('github-provider'),
         trustSource: .oidc(
           .new(
-            issuerUri: .literal(r'https://token.actions.githubusercontent.com'),
+            issuerUri: .literal('https://token.actions.githubusercontent.com'),
           ),
         ),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
-        localName: r'github_actions',
+        localName: 'github_actions',
         serviceAccount: .literal(
-          r'projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com',
+          'projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com',
         ),
-        role: .literal(r'roles/iam.workloadIdentityUser'),
+        role: .literal('roles/iam.workloadIdentityUser'),
         member: .literal(
-          r'principalSet://iam.googleapis.com/example/attribute.repository/owner/repo',
+          'principalSet://iam.googleapis.com/example/attribute.repository/owner/repo',
         ),
       ),
     );

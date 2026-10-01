@@ -11,12 +11,12 @@ import 'package:terradart_google/provider.dart';
 
 final class CloudRunStack extends Stack {
   CloudRunStack() : super(providers: [const GoogleProvider()]) {
-    addVariable(r'name', const TfVariable(type: r'string'));
+    addVariable('name', const TfVariable(type: 'string'));
     final thisCloudRunV2Service = add(
       GoogleCloudRunV2Service(
-        localName: r'this',
-        name: .variable(r'name'),
-        location: .literal(r'asia-northeast1'),
+        localName: 'this',
+        name: .variable('name'),
+        location: .literal('asia-northeast1'),
         template: CloudRunV2ServiceTemplate(
           containers: [
             .new(
@@ -28,12 +28,12 @@ final class CloudRunStack extends Stack {
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
-        localName: r'invoker',
+        localName: 'invoker',
         service: thisCloudRunV2Service.ref,
-        role: .literal(r'roles/run.invoker'),
-        member: .literal(r'allUsers'),
+        role: .literal('roles/run.invoker'),
+        member: .literal('allUsers'),
       ),
     );
-    addOutput(r'service_name', .ref(thisCloudRunV2Service.nameRef));
+    addOutput('service_name', .ref(thisCloudRunV2Service.nameRef));
   }
 }
