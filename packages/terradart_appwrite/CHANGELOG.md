@@ -2,6 +2,8 @@
 
 ## 0.31.0 - 2026-10-01
 
+- **Breaking** — three enums no longer repeat their stem's last word: `MongoBackupStorageStorageProvider`, `MysqlBackupStorageStorageProvider` and `PostgresqlBackupStorageStorageProvider` are `MongoBackupStorageProvider`, `MysqlBackupStorageProvider` and `PostgresqlBackupStorageProvider`. Values and synth output are unchanged. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).
+- **Breaking** — arguments that name another Appwrite resource take `RefTo<R>` and emit its `id`: `project_id`, `database_id` (the database of the same family), `table_id` / `related_table_id`, `bucket_id`, `topic_id`, `function_id` and `site_id` (93 inputs on resources and data sources). Pass `db.ref`, or `.literal('...')` for a value outside the Stack. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#arguments-that-name-another-resource-take-reftor).
 - 377 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource will take. Additive.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).

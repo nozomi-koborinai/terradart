@@ -2,6 +2,7 @@
 
 ## 0.31.0 - 2026-10-01
 
+- **Breaking** — generated type names are short: a derived helper, enum or nested sealed type is named after its resource and its own block or attribute instead of the whole block path, a name two blocks would share takes the nearest parent that tells them apart, identical blocks share one helper, and no name repeats the words its resource stem ends with. 8,671 types are renamed (`QuicksightDashboardThousandsSeparator`, `S3BucketVersioningVersioningConfiguration` → `S3BucketVersioningConfiguration`). Arguments, variant constructors and synth output are unchanged; `dart analyze` lists the old names. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).
 - 11,760 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - **Breaking** — 1,142 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Five QuickSight helpers shared by blocks of one shape split where the element type tells the blocks apart (string parameter `defaultValues`, `decimalParameters` / `integerParameters`). Synth output is unchanged. See `MIGRATING.md`.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
