@@ -93,7 +93,7 @@ String _camel(String snake) => [
 /// maps the type prefix `google_<x>_` to its product, and [type] takes the
 /// products of the two longest prefixes it starts with. Right for ~92% of
 /// the committed rows; a miss becomes an `upstream: null` row that
-/// tool/check_mm_upstream_fingerprint.dart flags when the type is MM-shaped.
+/// tool/check_google_mm_fingerprint.dart flags when the type is MM-shaped.
 @visibleForTesting
 List<String> guessMmUpstreams(String type, String mmSources) {
   final files = (loadYaml(mmSources) as YamlMap)['files'] as YamlMap;

@@ -106,11 +106,11 @@ dart tool/wrap_lanes.dart
 # [frozen-by-exclude], never failing) — genuinely un-migrated sites fail here
 # again, same as top-level and NESTED_PARTIAL gaps (modulo
 # tool/enum_gap_debt.yaml).
-echo ">> check_override_enum_gaps"
-dart tool/check_override_enum_gaps.dart --strict-nested
+echo ">> google lane: check_google_enum_gaps"
+dart tool/check_google_enum_gaps.dart --strict-nested
 
-echo ">> check_mm_upstream_fingerprint"
-dart tool/check_mm_upstream_fingerprint.dart
+echo ">> google lane: check_google_mm_fingerprint"
+dart tool/check_google_mm_fingerprint.dart
 
 if [[ "$QUICK" == "0" ]]; then
   echo ">> smoke_quickstart"

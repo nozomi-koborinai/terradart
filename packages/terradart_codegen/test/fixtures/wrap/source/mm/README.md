@@ -15,5 +15,5 @@ file retains its original license header. No modifications are made on sync:
   those YAML files are TerraDart-authored in the same format (not Google
   copies).
 - Drift against upstream is audited by
-  `tool/check_mm_upstream_fingerprint.dart` and refreshed by the weekly
+  `tool/check_google_mm_fingerprint.dart` and refreshed by the weekly
   schema-bump workflow.
